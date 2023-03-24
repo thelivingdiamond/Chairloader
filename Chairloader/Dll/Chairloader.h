@@ -50,6 +50,7 @@ public:
 private:
 	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
+	fs::path m_ModsDirPath;
 	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
     bool m_bTrainerEnabled = false;
@@ -63,6 +64,7 @@ private:
 	KeyNameMap m_KeyNames;
 
 	void InitHooks();
+	void InitPaths();
 	void InstallHooks();
 
     // init m_KeyNames. Call once
@@ -79,6 +81,8 @@ public:
 	bool IsEditorEnabled() override;
 	CGame* GetCGame() override;
 	int* GetAssertFlagAddress() override;
+	void RegisterCVar(ICVar* pCVar, std::string& modName) override;
+	const fs::path& GetModsPath() override;
 
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
@@ -86,7 +90,6 @@ public:
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
-	void RegisterCVar(ICVar* pCVar, std::string& modName) override;
 	IPreditorToChair* GetPreditorAPI() override;
 
 	// IChairToPreditor

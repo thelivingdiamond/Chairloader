@@ -252,6 +252,8 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	if (pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "noaudio"))
 		pSystem->m_sys_audio_disable->Set(1);
 
+	InitPaths();
+
 	// Initialize Core
 	m_pCore->InitSystem();
 
@@ -406,6 +408,66 @@ void Chairloader::InitHooks()
 		uint8_t* base = (uint8_t*)GetModuleBase();
 		mem::Patch(base + 0xF240CD, bytes + 0, 1);
 		mem::Patch(base + 0xF240E0, bytes + 1, 1);
+	}
+}
+
+void Chairloader::InitPaths()
+{
+	if (false)
+	{
+		// Preditor code will go here...
+	}
+	else
+	{
+		auto fnReadFromCmdLineOrDefault = [](fs::path& outPath, const char* cmdArg, const char* defaultName)
+		{
+			const ICmdLineArg* pArg = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, cmdArg);
+
+			if (pArg)
+			{
+				// Use the path from command line
+				outPath = fs::u8path(pArg->GetValue());
+
+				if (outPath.is_relative())
+					outPath = fs::current_path() / outPath;
+
+				if (!fs::exists(outPath) || !fs::is_directory(outPath))
+				{
+					CryFatalError("Path supplied to -{} doesn't exist or not valid.\n"
+						"It must point to an existing directory.\n\n"
+						"Path:\n"
+						"{}",
+						cmdArg, outPath.u8string()
+					);
+				}
+			}
+			else
+			{
+				// Use default path
+				outPath = fs::current_path() / fs::u8path(defaultName);
+				fs::create_directories(outPath);
+			}
+		};
+
+		// I thought the config dir was next to Mods, so I made this extendable.
+		// Turned out it was in Mods. Well, I'm not rewriting this. - tmp64
+		fnReadFromCmdLineOrDefault(m_ModsDirPath, "chair_mods_path", "Mods");
+	}
+
+	CryLog("Mods Path: {}", m_ModsDirPath.u8string());
+
+	// Create config fir
+	std::error_code ec;
+	fs::path configDirPath = m_ModsDirPath / "config";
+	fs::create_directory(configDirPath, ec);
+
+	if (ec)
+	{
+		CryFatalError("Failed to create config directory.\n\n"
+			"Path: {}\n"
+			"Reason: {}",
+			configDirPath.u8string(), ec.message()
+		);
 	}
 }
 
@@ -599,6 +661,11 @@ void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
         CryLog("Registering CVar {} for {}", pCVar->GetName(), modName);
         m_pCore->GetCVarManager()->RegisterCVar(pCVar, modName);
     }
+}
+
+const fs::path& Chairloader::GetModsPath()
+{
+	return m_ModsDirPath;
 }
 
 IPreditorToChair* Chairloader::GetPreditorAPI()

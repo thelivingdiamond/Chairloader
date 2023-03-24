@@ -81,7 +81,7 @@ void ChairloaderCore::RegisterMods()
 				m_pModDllManager->RegisterModFromXML(mod);
 			}
 
-			fs::path modDirPath = fs::current_path() / "Mods" / fs::u8path(modName);
+			fs::path modDirPath = gChair->GetModsPath() / fs::u8path(modName);
 			fs::path shadersPath = modDirPath / "Shaders";
 			if (fs::exists(shadersPath))
 			{
