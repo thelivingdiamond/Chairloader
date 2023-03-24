@@ -4,6 +4,10 @@
 #include <Chairloader/IPreditorToChair.h>
 
 struct IGameViewport;
+
+namespace Engine
+{
+
 class PreditorImGui;
 
 class PreditorEngine
@@ -54,3 +58,6 @@ private:
 	void ApplyMinimalPatches();	//!< Applies patches used by the minimal engine.
 	void InstallHooks();
 };
+
+} // namespace Engine
+

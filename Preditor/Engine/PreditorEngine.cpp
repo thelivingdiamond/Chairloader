@@ -25,6 +25,8 @@
 #include "HardwareMousePatch.h"
 #include "RendererGlobals.h"
 
+namespace Engine
+{
 namespace
 {
 
@@ -32,8 +34,8 @@ namespace
 // Globals
 //----------------------------------------------------------------------------
 PreditorEngine g_PreditorEngine;
-PreditorEngine::ProgressCallback g_ProgressCallback;
-PreditorEngine::InitParams g_InitParams;
+Engine::PreditorEngine::ProgressCallback g_ProgressCallback;
+Engine::PreditorEngine::InitParams g_InitParams;
 DebuggerConsoleOutput g_DebuggerConsoleOutput;
 
 //----------------------------------------------------------------------------
@@ -269,21 +271,22 @@ std::string GetLastErrorAsString()
 }
 
 } // namespace
+} // namespace Engine
 
-IPreditorEngine* IPreditorEngine::Get() { return &g_PreditorEngine; }
+IPreditorEngine* IPreditorEngine::Get() { return &Engine::g_PreditorEngine; }
 
-void PreditorEngine::InitGame()
+void Engine::PreditorEngine::InitGame()
 {
 	m_pImGui = std::make_shared<PreditorImGui>();
 }
 
-void PreditorEngine::ShutdownGame()
+void Engine::PreditorEngine::ShutdownGame()
 {
 	m_pImGui = nullptr;
 	Application::Get()->SetAppImGui(nullptr);
 }
 
-bool PreditorEngine::HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
+bool Engine::PreditorEngine::HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
 {
 	HWND hMainWnd = (HWND)gEnv->pSystem->GetHWND();
 	IBasicEventListener* pBasicEventListener = &static_cast<CGameStartup*>(g_PreditorEngine.m_pGameStartup)->m_basicEventListener;
@@ -308,7 +311,7 @@ bool PreditorEngine::HandleKeyboardMessage(HWND hWnd, unsigned msg, uint64_t wPa
 	return result != IBasicEventListener::eA_Default;
 }
 
-void PreditorEngine::Load(const InitParams& params)
+void Engine::PreditorEngine::Load(const InitParams& params)
 {
 	if (m_hPreyDll)
 		throw std::logic_error("DLL already loaded");
@@ -383,7 +386,7 @@ void PreditorEngine::Load(const InitParams& params)
 	InstallHooks();
 }
 
-bool PreditorEngine::Start(const InitParams& params)
+bool Engine::PreditorEngine::Start(const InitParams& params)
 {
 	if (m_bWasEverStarted)
 		std::abort();
@@ -422,7 +425,7 @@ bool PreditorEngine::Start(const InitParams& params)
 	return true;
 }
 
-void PreditorEngine::Shutdown()
+void Engine::PreditorEngine::Shutdown()
 {
 	if (m_pGameStartup)
 	{
@@ -443,13 +446,13 @@ void PreditorEngine::Shutdown()
 	m_hSystemMSWSock = nullptr;
 }
 
-void PreditorEngine::SetAppImGui()
+void Engine::PreditorEngine::SetAppImGui()
 {
 	Application::Get()->SetAppImGui(m_pImGui);
 	m_pImGui->BeginFrame();
 }
 
-bool PreditorEngine::Update()
+bool Engine::PreditorEngine::Update()
 {
 	if (!m_pGameStartup)
 		return true;
@@ -485,41 +488,41 @@ bool PreditorEngine::Update()
 	}
 }
 
-ITexture* PreditorEngine::GetViewportTexture()
+ITexture* Engine::PreditorEngine::GetViewportTexture()
 {
 	return EngineSwapChainPatch::GetBackbuffer();
 }
 
-IChairToPreditor* PreditorEngine::GetIChairToPreditor()
+IChairToPreditor* Engine::PreditorEngine::GetIChairToPreditor()
 {
 	return m_pChair;
 }
 
-void PreditorEngine::SetGameInputEnabled(bool state)
+void Engine::PreditorEngine::SetGameInputEnabled(bool state)
 {
 	m_bGameInput = state;
 	m_pImGui->SetGameInputEnabled(state);
 	HardwareMousePatch::SetWindowFocused(state);
 }
 
-bool PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
+bool Engine::PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
 {
 	return HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
 }
 
-void PreditorEngine::SetGameViewport(IGameViewport* pVP)
+void Engine::PreditorEngine::SetGameViewport(IGameViewport* pVP)
 {
 	m_pGameViewport = pVP;
 	GameViewportPatch::SetGameViewport(pVP);
 	HardwareMousePatch::SetGameViewport(pVP);
 }
 
-IChairloaderMod* PreditorEngine::GetMod()
+IChairloaderMod* Engine::PreditorEngine::GetMod()
 {
 	return &g_PreditorAsMod;
 }
 
-bool PreditorEngine::HandleInputEvent(const SInputEvent& event)
+bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 {
 	if (m_bGameInput)
 	{
@@ -533,14 +536,14 @@ bool PreditorEngine::HandleInputEvent(const SInputEvent& event)
 	}
 }
 
-bool PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
+bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
 {
 	if (m_pGameViewport && m_pGameViewport->HandleInputEventPreGame(event))
 		return true;
 	return false;
 }
 
-void PreditorEngine::ApplyBasePatches()
+void Engine::PreditorEngine::ApplyBasePatches()
 {
 	// Init function system
 	PreyFunctionSystem::Init((uintptr_t)m_hPreyDll.get());
@@ -551,7 +554,7 @@ void PreditorEngine::ApplyBasePatches()
 	g_CSystem_OpenBasicPaks_Hook.SetHookFunc(&CSystem_OpenBasicPaks_Hook);
 }
 
-void PreditorEngine::ApplyFullPatches()
+void Engine::PreditorEngine::ApplyFullPatches()
 {
 	PreditorImGui::InitHooks();
 	EngineSwapChainPatch::InitHooks();
@@ -576,7 +579,7 @@ void PreditorEngine::ApplyFullPatches()
 	mem::Nop(dllBase + 0x5C6C50, 0x5C6C53 - 0x5C6C50);
 }
 
-void PreditorEngine::ApplyMinimalPatches()
+void Engine::PreditorEngine::ApplyMinimalPatches()
 {
 	uint8_t* dllBase = (uint8_t*)m_hPreyDll.get();
 
@@ -635,7 +638,7 @@ void PreditorEngine::ApplyMinimalPatches()
 	mem::Nop(dllBase + 0x11C92D1, 0x11C9300 - 0x11C92D1); // skip CArkFlowNodeMimicPlayerEvent UI Calls
 }
 
-void PreditorEngine::InstallHooks()
+void Engine::PreditorEngine::InstallHooks()
 {
 	HookTransaction ht;
 	PreyFunctionSystem::InstallHooks();

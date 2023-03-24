@@ -8,7 +8,7 @@ enum class EDisplayOutputMode;
 namespace
 {
 
-EngineSwapChainPatch g_SwapChainPatch;
+Engine::EngineSwapChainPatch g_SwapChainPatch;
 auto DeviceInfo_CreateDevice = PreyFunction<bool(DeviceInfo* const _this, bool windowed, int width, int height, int backbufferWidth, int backbufferHeight, EDisplayOutputMode _outputMode, int zbpp, HRESULT(*pCreateDeviceCallback)(ID3D11Device*), HWND__* (*pCreateWindowCallback)())>(0xF23FE0);
 auto DeviceInfo_CreateViews = PreyFunction<bool(DeviceInfo* const _this)>(0xF24650);
 auto g_DeviceInfo_CreateDevice_Hook = DeviceInfo_CreateDevice.MakeHook();
@@ -30,9 +30,9 @@ bool DeviceInfo_CreateViews_Hook(DeviceInfo* const _this)
 	return g_DeviceInfo_CreateViews_Hook.InvokeOrig(_this);
 }
 
-}
+} // namespace
 
-class EngineSwapChainPatch::FakeSwapChain : public IDXGISwapChain
+class Engine::EngineSwapChainPatch::FakeSwapChain : public IDXGISwapChain
 {
 public:
 	IDXGISwapChain* m_pReal = nullptr;
@@ -198,11 +198,11 @@ public:
 		_Out_  UINT* pLastPresentCount) { return m_pReal->GetLastPresentCount(pLastPresentCount); }
 };
 
-EngineSwapChainPatch::EngineSwapChainPatch()
+Engine::EngineSwapChainPatch::EngineSwapChainPatch()
 {
 }
 
-EngineSwapChainPatch::~EngineSwapChainPatch()
+Engine::EngineSwapChainPatch::~EngineSwapChainPatch()
 {
 	m_pRealRTV.ReleaseOwnership();
 	m_pRealRTV.ReleaseOwnership();
@@ -210,24 +210,24 @@ EngineSwapChainPatch::~EngineSwapChainPatch()
 	m_pBackbufferRef.ReleaseOwnership();
 }
 
-void EngineSwapChainPatch::InitHooks()
+void Engine::EngineSwapChainPatch::InitHooks()
 {
 	g_DeviceInfo_CreateDevice_Hook.SetHookFunc(&DeviceInfo_CreateDevice_Hook);
 	g_DeviceInfo_CreateViews_Hook.SetHookFunc(&DeviceInfo_CreateViews_Hook);
 }
 
-ITexture* EngineSwapChainPatch::GetBackbuffer()
+ITexture* Engine::EngineSwapChainPatch::GetBackbuffer()
 {
 	return g_SwapChainPatch.m_pBackbufferRef;
 }
 
-void EngineSwapChainPatch::RT_UpdateSize(int width, int height)
+void Engine::EngineSwapChainPatch::RT_UpdateSize(int width, int height)
 {
 	if (g_SwapChainPatch.m_pSwapChain->UpdateSize(width, height))
 		g_SwapChainPatch.RT_UpdateRealRTV();
 }
 
-IDXGISwapChain* EngineSwapChainPatch::MakeSwapChain(IDXGISwapChain* pRealSwapChain)
+IDXGISwapChain* Engine::EngineSwapChainPatch::MakeSwapChain(IDXGISwapChain* pRealSwapChain)
 {
 	m_pSwapChain = std::make_unique<FakeSwapChain>(pRealSwapChain);
 	DXGI_SWAP_CHAIN_DESC desc;
@@ -238,7 +238,7 @@ IDXGISwapChain* EngineSwapChainPatch::MakeSwapChain(IDXGISwapChain* pRealSwapCha
 	return m_pSwapChain.get();
 }
 
-void EngineSwapChainPatch::RT_UpdateRealRTV()
+void Engine::EngineSwapChainPatch::RT_UpdateRealRTV()
 {
 	ID3D11Texture2D* swapTex = nullptr;
 	ID3D11RenderTargetView* swapTexView = nullptr;
@@ -249,7 +249,7 @@ void EngineSwapChainPatch::RT_UpdateRealRTV()
 	SAFE_RELEASE(swapTexView);
 }
 
-void EngineSwapChainPatch::RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT dxgiFormat)
+void Engine::EngineSwapChainPatch::RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT dxgiFormat)
 {
 	assert(width > 0 && height > 0 && dxgiFormat != DXGI_FORMAT_UNKNOWN);
 	ETEX_Format format = CTexture::TexFormatFromDeviceFormat(dxgiFormat);
@@ -287,7 +287,7 @@ void EngineSwapChainPatch::RT_ResizeBackbuffer(int width, int height, DXGI_FORMA
 	}
 }
 
-void EngineSwapChainPatch::RT_DrawImGui()
+void Engine::EngineSwapChainPatch::RT_DrawImGui()
 {
 	PreditorImGuiRenderer* pImGui = PreditorImGuiRenderer::Get();
 	if (pImGui && gcpRendD3D && gRenDev)

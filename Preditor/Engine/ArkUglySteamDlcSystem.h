@@ -4,6 +4,9 @@
 struct IArkDlcSystem;
 struct IArkDlcListener;
 
+namespace Engine
+{
+
 // A really ugly hack to instantiate CArkDlcSystem without implementing any virtual methods.
 class CArkUglySteamDlcSystem
 {
@@ -50,3 +53,5 @@ private:
 	// CArkSteamDlcSystem
 	std::unordered_map<uint64_t, string, hash_string> m_appIds;
 };
+
+} // namespace Engine

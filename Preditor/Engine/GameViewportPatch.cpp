@@ -53,13 +53,13 @@ void CFlashUIElement_Render_Hook(CFlashUIElement* const _this)
 
 } // namespace
 
-void GameViewportPatch::InitHooks()
+void Engine::GameViewportPatch::InitHooks()
 {
 	g_CSystem_Render_Hook.SetHookFunc(&CSystem_Render_Hook);
 	g_CFlashUIElement_Render_Hook.SetHookFunc(&CFlashUIElement_Render_Hook);
 }
 
-void GameViewportPatch::SetGameViewport(IGameViewport* pVP)
+void Engine::GameViewportPatch::SetGameViewport(IGameViewport* pVP)
 {
 	g_pVP = pVP;
 }

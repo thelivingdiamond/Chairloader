@@ -5,7 +5,7 @@
 
 namespace
 {
-MainWindowResizePatch g_MainWindowResizePatch;
+Engine::MainWindowResizePatch g_MainWindowResizePatch;
 auto g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook = CD3D9Renderer::FHandleDisplayPropertyChanges.MakeHook();
 auto g_CD3D9Renderer_AdjustWindowForChange_Hook = CD3D9Renderer::FAdjustWindowForChange.MakeHook();
 
@@ -21,41 +21,41 @@ HRESULT CD3D9Renderer_AdjustWindowForChange_Hook(CD3D9Renderer* const _this)
 	return S_OK;
 }
 
-}
+} // namespace
 
-void MainWindowResizePatch::InitHooks()
+void Engine::MainWindowResizePatch::InitHooks()
 {
 	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.SetHookFunc(&CD3D9Renderer_HandleDisplayPropertyChanges_Hook);
 	g_CD3D9Renderer_AdjustWindowForChange_Hook.SetHookFunc(&CD3D9Renderer_AdjustWindowForChange_Hook);
 }
 
-void MainWindowResizePatch::InitSystem()
+void Engine::MainWindowResizePatch::InitSystem()
 {
 	gCL->pRender->AddListener(&g_MainWindowResizePatch);
 }
 
-void MainWindowResizePatch::ShutdownSystem()
+void Engine::MainWindowResizePatch::ShutdownSystem()
 {
 	gCL->pRender->RemoveListener(&g_MainWindowResizePatch);
 }
 
-void MainWindowResizePatch::OnWindowResize(int width, int height)
+void Engine::MainWindowResizePatch::OnWindowResize(int width, int height)
 {
 	g_MainWindowResizePatch.m_WindowSize.x = width;
 	g_MainWindowResizePatch.m_WindowSize.y = height;
 }
 
-void MainWindowResizePatch::RT_HandleDisplayPropertyChanges()
+void Engine::MainWindowResizePatch::RT_HandleDisplayPropertyChanges()
 {
 	EngineSwapChainPatch::RT_UpdateSize(m_WindowSize.x, m_WindowSize.y);
 }
 
-int MainWindowResizePatch::GetChairRenderListenerFlags()
+int Engine::MainWindowResizePatch::GetChairRenderListenerFlags()
 {
 	return eCRF_InitRenderer;
 }
 
-void MainWindowResizePatch::InitRenderer()
+void Engine::MainWindowResizePatch::InitRenderer()
 {
 	HWND hWnd = (HWND)gcpRendD3D->GetHWND();
 

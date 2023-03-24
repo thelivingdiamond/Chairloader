@@ -1,6 +1,9 @@
 #pragma once
 #include <Chairloader/IChairRender.h>
 
+namespace Engine
+{
+
 //! This patch allows the user to resize the main window and handles real swap chain resize.
 class MainWindowResizePatch : private IChairRenderListener
 {
@@ -24,3 +27,5 @@ private:
 	int GetChairRenderListenerFlags() override;
 	void InitRenderer() override;
 };
+
+} // namespace Engine

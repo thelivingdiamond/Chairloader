@@ -2,6 +2,9 @@
 #include <chrono>
 #include <App/IAppImGui.h>
 
+namespace Engine
+{
+
 class PreditorImGuiRenderer;
 
 class PreditorImGui : public IAppImGui
@@ -85,3 +88,5 @@ private:
 
 	static ImGuiKey VirtualKeyToImGuiKey(WPARAM wParam);
 };
+
+} // namespace Engine

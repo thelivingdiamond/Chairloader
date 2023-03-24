@@ -6,6 +6,9 @@ struct ID3D11RenderTargetView;
 struct ITexture;
 class CTexture;
 
+namespace Engine
+{
+
 //! This patch replaces the engine's IDXGISwapChain with a fake one that draws
 //! the contents into an off-screen buffer. The buffer can later be displayed in ImGui.
 class EngineSwapChainPatch
@@ -21,7 +24,7 @@ public:
 
 private:
 	class FakeSwapChain;
-	
+
 	std::unique_ptr<FakeSwapChain> m_pSwapChain;
 
 	//! The render target owning texture.
@@ -42,3 +45,5 @@ private:
 	void RT_ResizeBackbuffer(int width, int height, DXGI_FORMAT format);
 	void RT_DrawImGui();
 };
+
+} // namespace Engine

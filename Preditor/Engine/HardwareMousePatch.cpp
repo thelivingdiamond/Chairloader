@@ -117,7 +117,7 @@ void CHardwareMouse_OnSystemEvent_Hook(ISystemEventListener* const _this, ESyste
 
 } // namespace
 
-void HardwareMousePatch::InitHooks()
+void Engine::HardwareMousePatch::InitHooks()
 {
 	g_CHardwareMouse_Event_Hook.SetHookFunc(&CHardwareMouse_Event_Hook);
 	g_CHardwareMouse_SetHardwareMousePosition_Hook.SetHookFunc(&CHardwareMouse_SetHardwareMousePosition_Hook);
@@ -128,17 +128,17 @@ void HardwareMousePatch::InitHooks()
 	g_CHardwareMouse_OnSystemEvent_Hook.SetHookFunc(&CHardwareMouse_OnSystemEvent_Hook);
 }
 
-void HardwareMousePatch::SetIBasicEventListener(IBasicEventListener* ptr)
+void Engine::HardwareMousePatch::SetIBasicEventListener(IBasicEventListener* ptr)
 {
 	g_pBasicEventListener = ptr;
 }
 
-void HardwareMousePatch::SetGameViewport(IGameViewport* pVP)
+void Engine::HardwareMousePatch::SetGameViewport(IGameViewport* pVP)
 {
 	g_pVP = pVP;
 }
 
-bool HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max)
+bool Engine::HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max)
 {
 	if (g_ViewportId != viewportId || g_MinBounds != min || g_MaxBounds != max)
 	{
@@ -157,7 +157,7 @@ bool HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Ve
 	return false;
 }
 
-void HardwareMousePatch::SetWindowFocused(bool bFocus)
+void Engine::HardwareMousePatch::SetWindowFocused(bool bFocus)
 {
 	CHardwareMouse* _this = static_cast<CHardwareMouse*>(gEnv->pHardwareMouse);
 
@@ -183,7 +183,7 @@ void HardwareMousePatch::SetWindowFocused(bool bFocus)
 	}
 }
 
-bool HardwareMousePatch::HandleMouseMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
+bool Engine::HardwareMousePatch::HandleMouseMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
 {
 	HWND hMainWnd = (HWND)gEnv->pSystem->GetHWND();
 	lParam = FixUpMouseLParam(hWnd, lParam);

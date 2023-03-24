@@ -4,6 +4,9 @@
 struct IBasicEventListener;
 struct IGameViewport;
 
+namespace Engine
+{
+
 //! The patch rewrites some of the methods in CHardwareMouse to support multiple windows.
 class HardwareMousePatch
 {
@@ -23,3 +26,5 @@ public:
 	//! @returns true if it was processed and doesn't need to be passed to the game.
 	static bool HandleMouseMessage(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam);
 };
+
+} // namespace Engine

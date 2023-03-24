@@ -1,6 +1,9 @@
 #pragma once
 #include <Prey/CrySystem/IConsole.h>
 
+namespace Engine
+{
+
 class DebuggerConsoleOutput : public IOutputPrintSink
 {
 public:
@@ -10,3 +13,5 @@ public:
 private:
 	void PrintExistingMessages();
 };
+
+} // namespace Engine

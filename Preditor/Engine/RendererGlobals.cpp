@@ -1,26 +1,26 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include "RendererGlobals.h"
 
-static RendererGlobals g_RendererGlobals;
+static Engine::RendererGlobals g_RendererGlobals;
 CD3D9Renderer* gcpRendD3D;
 CRenderer* gRenDev;
 
-void RendererGlobals::InitSystem()
+void Engine::RendererGlobals::InitSystem()
 {
 	gCL->pRender->AddListener(&g_RendererGlobals);
 }
 
-void RendererGlobals::ShutdownSystem()
+void Engine::RendererGlobals::ShutdownSystem()
 {
 	gCL->pRender->RemoveListener(&g_RendererGlobals);
 }
 
-int RendererGlobals::GetChairRenderListenerFlags()
+int Engine::RendererGlobals::GetChairRenderListenerFlags()
 {
 	return eCRF_InitRendererModule;
 }
 
-void RendererGlobals::InitRendererModule(CD3D9Renderer* pRenderer)
+void Engine::RendererGlobals::InitRendererModule(CD3D9Renderer* pRenderer)
 {
 	gcpRendD3D = pRenderer;
 	gRenDev = pRenderer;

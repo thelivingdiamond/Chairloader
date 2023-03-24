@@ -3,6 +3,9 @@
 #include <Chairloader/IChairRender.h>
 #include <ImGuiRendererD3D11.h>
 
+namespace Engine
+{
+
 class PreditorImGui;
 
 class PreditorImGuiRenderer : private ISyncMainWithRenderListener
@@ -57,3 +60,5 @@ private:
 	static void Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size);
 	void RT_Plat_SetWindowSize(size_t vdIdx, ImVec2 size);
 };
+
+} // namespace Engine

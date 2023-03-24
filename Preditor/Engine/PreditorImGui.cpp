@@ -19,17 +19,17 @@
 
 namespace
 {
-PreditorImGui* g_pInstance = nullptr;
+Engine::PreditorImGui* g_pInstance = nullptr;
 auto g_CGameStartup_WndProcHndl_Hook = CGameStartup::FWndProcHndl.MakeHook();
 
 int64_t CGameStartup_WndProcHndl_Hook(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
 {
     if (g_pInstance)
     {
-        if (g_pInstance->IsGameInputEnabled() && PreditorEngine::HandleKeyboardMessage(hWnd, msg, wParam, lParam))
+        if (g_pInstance->IsGameInputEnabled() && Engine::PreditorEngine::HandleKeyboardMessage(hWnd, msg, wParam, lParam))
             return 1;
 
-        bool handledMouse = HardwareMousePatch::HandleMouseMessage(hWnd, msg, wParam, lParam);
+        bool handledMouse = Engine::HardwareMousePatch::HandleMouseMessage(hWnd, msg, wParam, lParam);
 
         if (g_pInstance->WndProcHndl(hWnd, msg, wParam, lParam))
             return 1;
@@ -64,13 +64,13 @@ static void GetWin32StyleFromViewportFlags(ImGuiViewportFlags flags, DWORD* out_
 
 } // namespace
 
-void PreditorImGui::InitHooks()
+void Engine::PreditorImGui::InitHooks()
 {
     g_CGameStartup_WndProcHndl_Hook.SetHookFunc(&CGameStartup_WndProcHndl_Hook);
     PreditorImGuiRenderer::InitHooks();
 }
 
-HWND PreditorImGui::GetHWNDForViewport(ImGuiID viewportId)
+HWND Engine::PreditorImGui::GetHWNDForViewport(ImGuiID viewportId)
 {
     ImGuiViewport* vp = ImGui::FindViewportByID(viewportId);
     if (vp)
@@ -79,7 +79,7 @@ HWND PreditorImGui::GetHWNDForViewport(ImGuiID viewportId)
         return nullptr;
 }
 
-PreditorImGui::PreditorImGui()
+Engine::PreditorImGui::PreditorImGui()
 {
     assert(!g_pInstance);
     g_pInstance = this;
@@ -92,7 +92,7 @@ PreditorImGui::PreditorImGui()
     ImGui::SetCurrentContext(prevCtx);
 }
 
-PreditorImGui::~PreditorImGui()
+Engine::PreditorImGui::~PreditorImGui()
 {
     m_pRenderer = nullptr;
     ShutdownBackend();
@@ -101,9 +101,9 @@ PreditorImGui::~PreditorImGui()
     g_pInstance = nullptr;
 }
 
-void PreditorImGui::BeginFrame()
+void Engine::PreditorImGui::BeginFrame()
 {
-    CRY_PROFILE_MARKER("PreditorImGui::BeginFrame");
+    CRY_PROFILE_MARKER("Engine::PreditorImGui::BeginFrame");
     assert(!m_bIsInFrame);
     // Update context
     if (!ImGui::GetCurrentContext())
@@ -150,7 +150,7 @@ void PreditorImGui::BeginFrame()
     ImGui::NewFrame();
 }
 
-void PreditorImGui::EndFrame()
+void Engine::PreditorImGui::EndFrame()
 {
     if (ImGui::GetCurrentContext() != m_pContext)
         return;
@@ -162,12 +162,12 @@ void PreditorImGui::EndFrame()
     }
 }
 
-void PreditorImGui::OnWasRendered()
+void Engine::PreditorImGui::OnWasRendered()
 {
     m_bIsInFrame = false;
 }
 
-void PreditorImGui::ReloadFonts()
+void Engine::PreditorImGui::ReloadFonts()
 {
     ImGuiIO& io = ImGui::GetIO();
 
@@ -182,7 +182,7 @@ void PreditorImGui::ReloadFonts()
     m_pRenderer->UpdateFontAtlasTexture();
 }
 
-int64_t PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
+int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
 {
     if (ImGui::GetCurrentContext() == NULL)
         return 0;
@@ -331,7 +331,7 @@ int64_t PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int
     return 0;
 }
 
-void PreditorImGui::InitImGui()
+void Engine::PreditorImGui::InitImGui()
 {
     IMGUI_CHECKVERSION();
     m_pContext = ImGui::CreateContext();
@@ -357,13 +357,13 @@ void PreditorImGui::InitImGui()
     ImGui::StyleColorsDark();
 }
 
-void PreditorImGui::ShutdownImGui()
+void Engine::PreditorImGui::ShutdownImGui()
 {
     ImGui::DestroyContext();
     m_pContext = nullptr;
 }
 
-void PreditorImGui::InitBackend()
+void Engine::PreditorImGui::InitBackend()
 {
     ImGuiIO& io = ImGui::GetIO();
     assert(io.BackendPlatformUserData == NULL && "Already initialized a platform backend!");
@@ -388,7 +388,7 @@ void PreditorImGui::InitBackend()
         InitPlatformInterface();
 }
 
-void PreditorImGui::ShutdownBackend()
+void Engine::PreditorImGui::ShutdownBackend()
 {
     ImGuiIO& io = ImGui::GetIO();
 
@@ -398,7 +398,7 @@ void PreditorImGui::ShutdownBackend()
     io.BackendPlatformUserData = nullptr;
 }
 
-void PreditorImGui::InitPlatformInterface()
+void Engine::PreditorImGui::InitPlatformInterface()
 {
     WNDCLASSEX wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -445,7 +445,7 @@ void PreditorImGui::InitPlatformInterface()
     main_viewport->PlatformHandle = (void*)m_hWnd;
 }
 
-void PreditorImGui::ShutdownPlatformInterface()
+void Engine::PreditorImGui::ShutdownPlatformInterface()
 {
     ::UnregisterClassA("Preditor ImGui Platform", ::GetModuleHandle(NULL));
     ImGui::DestroyPlatformWindows();
@@ -471,14 +471,14 @@ static BOOL CALLBACK PreditorImGui_UpdateMonitors_EnumFunc(HMONITOR monitor, HDC
     return TRUE;
 }
 
-void PreditorImGui::UpdateMonitors()
+void Engine::PreditorImGui::UpdateMonitors()
 {
     ImGui::GetPlatformIO().Monitors.resize(0);
     ::EnumDisplayMonitors(NULL, NULL, PreditorImGui_UpdateMonitors_EnumFunc, 0);
     m_bWantUpdateMonitors = false;
 }
 
-void PreditorImGui::UpdateMouseData()
+void Engine::PreditorImGui::UpdateMouseData()
 {
     ImGuiIO& io = ImGui::GetIO();
     assert(m_hWnd != 0);
@@ -533,7 +533,7 @@ void PreditorImGui::UpdateMouseData()
     io.AddMouseViewportEvent(mouse_viewport_id);
 }
 
-void PreditorImGui::ProcessKeyEventsWorkarounds()
+void Engine::PreditorImGui::ProcessKeyEventsWorkarounds()
 {
     // Left & right Shift keys: when both are pressed together, Windows tend to not generate the WM_KEYUP event for the first released one.
     if (ImGui::IsKeyDown(ImGuiKey_LeftShift) && !IsVkDown(VK_LSHIFT))
@@ -548,7 +548,7 @@ void PreditorImGui::ProcessKeyEventsWorkarounds()
         AddKeyEvent(ImGuiKey_RightSuper, false, VK_RWIN);
 }
 
-bool PreditorImGui::UpdateMouseCursor()
+bool Engine::PreditorImGui::UpdateMouseCursor()
 {
     ImGuiIO& io = ImGui::GetIO();
     if (io.ConfigFlags & ImGuiConfigFlags_NoMouseCursorChange)
@@ -581,7 +581,7 @@ bool PreditorImGui::UpdateMouseCursor()
     return true;
 }
 
-void PreditorImGui::UpdateKeyModifiers()
+void Engine::PreditorImGui::UpdateKeyModifiers()
 {
     ImGuiIO& io = ImGui::GetIO();
     io.AddKeyEvent(ImGuiKey_ModCtrl, IsVkDown(VK_CONTROL));
@@ -590,14 +590,14 @@ void PreditorImGui::UpdateKeyModifiers()
     io.AddKeyEvent(ImGuiKey_ModSuper, IsVkDown(VK_APPS));
 }
 
-void PreditorImGui::AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int native_scancode)
+void Engine::PreditorImGui::AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int native_scancode)
 {
     ImGuiIO& io = ImGui::GetIO();
     io.AddKeyEvent(key, down);
     io.SetKeyEventNativeData(key, native_keycode, native_scancode); // To support legacy indexing (<1.87 user code)
 }
 
-void PreditorImGui::SaveMainWindowSizeAndPos()
+void Engine::PreditorImGui::SaveMainWindowSizeAndPos()
 {
     WINDOWPLACEMENT wnpl;
     wnpl.length = sizeof(WINDOWPLACEMENT);
@@ -610,7 +610,7 @@ void PreditorImGui::SaveMainWindowSizeAndPos()
     ProjectManager::GetUserSettings()->SetWindowRestoredSize(restSize);
 }
 
-void PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)
 {
     ViewportData* vd = IM_NEW(ViewportData)();
     viewport->PlatformUserData = vd;
@@ -634,7 +634,7 @@ void PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)
     viewport->PlatformHandle = viewport->PlatformHandleRaw = vd->hWnd;
 }
 
-void PreditorImGui::Plat_DestroyWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_DestroyWindow(ImGuiViewport* viewport)
 {
     if (ViewportData* vd = (ViewportData*)viewport->PlatformUserData)
     {
@@ -652,7 +652,7 @@ void PreditorImGui::Plat_DestroyWindow(ImGuiViewport* viewport)
     viewport->PlatformUserData = viewport->PlatformHandle = NULL;
 }
 
-void PreditorImGui::Plat_ShowWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_ShowWindow(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -662,7 +662,7 @@ void PreditorImGui::Plat_ShowWindow(ImGuiViewport* viewport)
         ::ShowWindow(vd->hWnd, SW_SHOW);
 }
 
-void PreditorImGui::Plat_UpdateWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_UpdateWindow(ImGuiViewport* viewport)
 {
     // (Optional) Update Win32 style if it changed _after_ creation.
     // Generally they won't change unless configuration flags are changed, but advanced uses (such as manually rewriting viewport flags) make this useful.
@@ -693,7 +693,7 @@ void PreditorImGui::Plat_UpdateWindow(ImGuiViewport* viewport)
     }
 }
 
-ImVec2 PreditorImGui::Plat_GetWindowPos(ImGuiViewport* viewport)
+ImVec2 Engine::PreditorImGui::Plat_GetWindowPos(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -702,7 +702,7 @@ ImVec2 PreditorImGui::Plat_GetWindowPos(ImGuiViewport* viewport)
     return ImVec2((float)pos.x, (float)pos.y);
 }
 
-void PreditorImGui::Plat_SetWindowPos(ImGuiViewport* viewport, ImVec2 pos)
+void Engine::PreditorImGui::Plat_SetWindowPos(ImGuiViewport* viewport, ImVec2 pos)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -711,7 +711,7 @@ void PreditorImGui::Plat_SetWindowPos(ImGuiViewport* viewport, ImVec2 pos)
     ::SetWindowPos(vd->hWnd, NULL, rect.left, rect.top, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
 }
 
-ImVec2 PreditorImGui::Plat_GetWindowSize(ImGuiViewport* viewport)
+ImVec2 Engine::PreditorImGui::Plat_GetWindowSize(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -720,7 +720,7 @@ ImVec2 PreditorImGui::Plat_GetWindowSize(ImGuiViewport* viewport)
     return ImVec2(float(rect.right - rect.left), float(rect.bottom - rect.top));
 }
 
-void PreditorImGui::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
+void Engine::PreditorImGui::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -729,7 +729,7 @@ void PreditorImGui::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
     ::SetWindowPos(vd->hWnd, NULL, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER | SWP_NOMOVE | SWP_NOACTIVATE);
 }
 
-void PreditorImGui::Plat_SetWindowFocus(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_SetWindowFocus(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -738,21 +738,21 @@ void PreditorImGui::Plat_SetWindowFocus(ImGuiViewport* viewport)
     ::SetFocus(vd->hWnd);
 }
 
-bool PreditorImGui::Plat_GetWindowFocus(ImGuiViewport* viewport)
+bool Engine::PreditorImGui::Plat_GetWindowFocus(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
     return ::GetForegroundWindow() == vd->hWnd;
 }
 
-bool PreditorImGui::Plat_GetWindowMinimized(ImGuiViewport* viewport)
+bool Engine::PreditorImGui::Plat_GetWindowMinimized(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
     return ::IsIconic(vd->hWnd) != 0;
 }
 
-void PreditorImGui::Plat_SetWindowTitle(ImGuiViewport* viewport, const char* title)
+void Engine::PreditorImGui::Plat_SetWindowTitle(ImGuiViewport* viewport, const char* title)
 {
     // ::SetWindowTextA() doesn't properly handle UTF-8 so we explicitely convert our string.
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
@@ -764,7 +764,7 @@ void PreditorImGui::Plat_SetWindowTitle(ImGuiViewport* viewport, const char* tit
     ::SetWindowTextW(vd->hWnd, title_w.Data);
 }
 
-void PreditorImGui::Plat_SetWindowAlpha(ImGuiViewport* viewport, float alpha)
+void Engine::PreditorImGui::Plat_SetWindowAlpha(ImGuiViewport* viewport, float alpha)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
@@ -782,18 +782,18 @@ void PreditorImGui::Plat_SetWindowAlpha(ImGuiViewport* viewport, float alpha)
     }
 }
 
-float PreditorImGui::Plat_GetWindowDpiScale(ImGuiViewport* viewport)
+float Engine::PreditorImGui::Plat_GetWindowDpiScale(ImGuiViewport* viewport)
 {
     ViewportData* vd = (ViewportData*)viewport->PlatformUserData;
     IM_ASSERT(vd->hWnd != 0);
     return ImGui_ImplWin32_GetDpiScaleForHwnd(vd->hWnd);
 }
 
-void PreditorImGui::Plat_OnChangedViewport(ImGuiViewport* viewport)
+void Engine::PreditorImGui::Plat_OnChangedViewport(ImGuiViewport* viewport)
 {
 }
 
-LRESULT PreditorImGui::WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT Engine::PreditorImGui::WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (g_pInstance->m_bEnableGameInput && PreditorEngine::HandleKeyboardMessage(hWnd, msg, wParam, lParam))
         return 1;
@@ -837,7 +837,7 @@ LRESULT PreditorImGui::WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wP
     return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-ImGuiKey PreditorImGui::VirtualKeyToImGuiKey(WPARAM wParam)
+ImGuiKey Engine::PreditorImGui::VirtualKeyToImGuiKey(WPARAM wParam)
 {
     switch (wParam)
     {

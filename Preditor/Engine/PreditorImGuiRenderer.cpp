@@ -8,29 +8,29 @@
 namespace
 {
 
-PreditorImGuiRenderer* g_pPreditorImGuiRenderer;
+Engine::PreditorImGuiRenderer* g_pPreditorImGuiRenderer;
 auto s_CSystem_RenderEnd_Hook = CSystem::FRenderEnd.MakeHook();
 
 void CSystem_RenderEnd_Hook(CSystem* const _this, bool bRenderStats)
 {
 	ImGuiIO& io = ImGui::GetIO();
-	static_cast<PreditorImGuiRenderer*>(io.BackendRendererUserData)->RenderEnd();
+	static_cast<Engine::PreditorImGuiRenderer*>(io.BackendRendererUserData)->RenderEnd();
 	return s_CSystem_RenderEnd_Hook.InvokeOrig(_this, bRenderStats);
 }
 
 }
 
-PreditorImGuiRenderer* PreditorImGuiRenderer::Get()
+Engine::PreditorImGuiRenderer* Engine::PreditorImGuiRenderer::Get()
 {
 	return g_pPreditorImGuiRenderer;
 }
 
-void PreditorImGuiRenderer::InitHooks()
+void Engine::PreditorImGuiRenderer::InitHooks()
 {
 	s_CSystem_RenderEnd_Hook.SetHookFunc(&CSystem_RenderEnd_Hook);
 }
 
-PreditorImGuiRenderer::PreditorImGuiRenderer(PreditorImGui* pBackend)
+Engine::PreditorImGuiRenderer::PreditorImGuiRenderer(PreditorImGui* pBackend)
 {
 	assert(!g_pPreditorImGuiRenderer);
 	g_pPreditorImGuiRenderer = this;
@@ -50,7 +50,7 @@ PreditorImGuiRenderer::PreditorImGuiRenderer(PreditorImGui* pBackend)
 		InitPlatformInterface();
 }
 
-PreditorImGuiRenderer::~PreditorImGuiRenderer()
+Engine::PreditorImGuiRenderer::~PreditorImGuiRenderer()
 {
 	assert(g_pPreditorImGuiRenderer == this);
 	ShutdownPlatformInterface();
@@ -58,7 +58,7 @@ PreditorImGuiRenderer::~PreditorImGuiRenderer()
 	g_pPreditorImGuiRenderer = nullptr;
 }
 
-void PreditorImGuiRenderer::RenderEnd()
+void Engine::PreditorImGuiRenderer::RenderEnd()
 {
 	if (ImGui::GetCurrentContext() != m_pBackend->GetContext())
 		return;
@@ -93,7 +93,7 @@ void PreditorImGuiRenderer::RenderEnd()
 	m_pBackend->OnWasRendered();
 }
 
-void PreditorImGuiRenderer::UpdateFontAtlasTexture()
+void Engine::PreditorImGuiRenderer::UpdateFontAtlasTexture()
 {
 	m_pFontAtlas = nullptr;
 	ImGuiIO& io = ImGui::GetIO();
@@ -117,7 +117,7 @@ void PreditorImGuiRenderer::UpdateFontAtlasTexture()
 	io.Fonts->SetTexID((ImTextureID)m_pFontAtlas);
 }
 
-void PreditorImGuiRenderer::RT_Render()
+void Engine::PreditorImGuiRenderer::RT_Render()
 {
 	int bufIdx = !m_iCurrentFillBuf;
 
@@ -151,7 +151,7 @@ void PreditorImGuiRenderer::RT_Render()
 	}
 }
 
-void PreditorImGuiRenderer::InitPlatformInterface()
+void Engine::PreditorImGuiRenderer::InitPlatformInterface()
 {
 	ImGuiPlatformIO& platform_io = ImGui::GetPlatformIO();
 	platform_io.Renderer_CreateWindow = Plat_CreateWindow;
@@ -169,13 +169,13 @@ void PreditorImGuiRenderer::InitPlatformInterface()
 		});
 }
 
-void PreditorImGuiRenderer::ShutdownPlatformInterface()
+void Engine::PreditorImGuiRenderer::ShutdownPlatformInterface()
 {
 	if (m_nCmdSetWindowSize != INVALID_RENDER_CMD_ID)
 		gCL->pRender->UnregisterRenderCommand(m_nCmdSetWindowSize);
 }
 
-void PreditorImGuiRenderer::SyncMainWithRender()
+void Engine::PreditorImGuiRenderer::SyncMainWithRender()
 {
 	if (m_bSwapOnSync)
 	{
@@ -185,7 +185,7 @@ void PreditorImGuiRenderer::SyncMainWithRender()
 	}
 }
 
-void PreditorImGuiRenderer::Plat_CreateWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGuiRenderer::Plat_CreateWindow(ImGuiViewport* viewport)
 {
 	gcpRendD3D->m_pRT->FlushAndWait();
 	auto& vdList = g_pPreditorImGuiRenderer->m_ViewportData;
@@ -247,7 +247,7 @@ void PreditorImGuiRenderer::Plat_CreateWindow(ImGuiViewport* viewport)
 	}
 }
 
-void PreditorImGuiRenderer::Plat_DestroyWindow(ImGuiViewport* viewport)
+void Engine::PreditorImGuiRenderer::Plat_DestroyWindow(ImGuiViewport* viewport)
 {
 	// The main viewport (owned by the application) will always have RendererUserData == NULL since we didn't create the data for it.
 	size_t vdIdx = (size_t)viewport->RendererUserData;
@@ -264,7 +264,7 @@ void PreditorImGuiRenderer::Plat_DestroyWindow(ImGuiViewport* viewport)
 	viewport->RendererUserData = NULL;
 }
 
-void PreditorImGuiRenderer::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
+void Engine::PreditorImGuiRenderer::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 size)
 {
 	size_t vdIdx = (size_t)viewport->RendererUserData;
 	assert(vdIdx != 0);
@@ -276,7 +276,7 @@ void PreditorImGuiRenderer::Plat_SetWindowSize(ImGuiViewport* viewport, ImVec2 s
 	buf.EndCommand();
 }
 
-void PreditorImGuiRenderer::RT_Plat_SetWindowSize(size_t vdIdx, ImVec2 size)
+void Engine::PreditorImGuiRenderer::RT_Plat_SetWindowSize(size_t vdIdx, ImVec2 size)
 {
 	ViewportData* vd = &m_ViewportData[vdIdx];
 	vd->pRTView = nullptr;
