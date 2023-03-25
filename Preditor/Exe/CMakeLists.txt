@@ -32,6 +32,7 @@ set(SOURCE_FILES
 	LoadGameStage.h
 	LookingGlass.cpp
 	LookingGlass.h
+	pch.h
 	Preditor.cpp
 	Preditor.h
 	ProjectSelectStage.cpp
@@ -40,7 +41,8 @@ set(SOURCE_FILES
 	ProjectStage.h
 	SceneViewport.cpp
 	SceneViewport.h
-	pch.h
+	SimControlWindow.cpp
+	SimControlWindow.h
 )
 
 add_executable(Preditor.Exe WIN32

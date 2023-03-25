@@ -24,6 +24,7 @@
 #include "MainWindowResizePatch.h"
 #include "HardwareMousePatch.h"
 #include "RendererGlobals.h"
+#include "SimulationController.h"
 
 namespace Engine
 {
@@ -278,10 +279,12 @@ IPreditorEngine* IPreditorEngine::Get() { return &Engine::g_PreditorEngine; }
 void Engine::PreditorEngine::InitGame()
 {
 	m_pImGui = std::make_shared<PreditorImGui>();
+	m_pSimulationController = std::make_unique<SimulationController>();
 }
 
 void Engine::PreditorEngine::ShutdownGame()
 {
+	m_pSimulationController = nullptr;
 	m_pImGui = nullptr;
 	Application::Get()->SetAppImGui(nullptr);
 }
@@ -464,27 +467,11 @@ bool Engine::PreditorEngine::Update()
 	}
 	else
 	{
-		static bool gameMode = true;
-		static bool runPhysics = false;
-		if (ImGui::Begin("Engine Test"))
-		{
-			ImGui::Checkbox("Game Mode", &gameMode);
-			ImGui::BeginDisabled(gameMode);
-			ImGui::Checkbox("Run Physics/AI", &runPhysics);
-			ImGui::EndDisabled();
-		}
-		ImGui::End();
-
-		unsigned updateFlags = 0;
-
-		if (!gameMode)
-		{
-			updateFlags |= ESYSUPDATE_EDITOR;
-			if (runPhysics)
-				updateFlags |= ESYSUPDATE_EDITOR_AI_PHYSICS;
-		}
-
-		return m_pGameStartup->Update(true, updateFlags);
+		unsigned updateFlags = m_pSimulationController->GetUpdateFlags();
+		m_pSimulationController->BeginUpdate();
+		int result = m_pGameStartup->Update(true, updateFlags);
+		m_pSimulationController->EndUpdate();
+		return result;
 	}
 }
 
@@ -496,6 +483,11 @@ ITexture* Engine::PreditorEngine::GetViewportTexture()
 IChairToPreditor* Engine::PreditorEngine::GetIChairToPreditor()
 {
 	return m_pChair;
+}
+
+Engine::ISimulationController* Engine::PreditorEngine::GetSimController()
+{
+	return m_pSimulationController.get();
 }
 
 void Engine::PreditorEngine::SetGameInputEnabled(bool state)

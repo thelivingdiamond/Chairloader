@@ -12,6 +12,7 @@ set(SOURCE_FILES
 	App/IAppImGui.h
 	
 	Preditor/Engine/IPreditorEngine.h
+	Preditor/Engine/ISimulationController.h
 
 	Preditor/Project/Project.h
 	Preditor/Project/ProjectManager.h

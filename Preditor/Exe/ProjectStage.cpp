@@ -10,6 +10,7 @@
 #include "GameViewport.h"
 #include "EntityHierarchyWindow.h"
 #include "InspectorWindow.h"
+#include "SimControlWindow.h"
 
 ProjectStage::ProjectStage()
 {
@@ -28,6 +29,7 @@ void ProjectStage::Start() {
     m_pGameViewport = WindowManager::Get().Create<GameViewport>();
     m_pEntHierWindow = WindowManager::Get().Create<EntityHierarchyWindow>();
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
+    m_pSimControlWindow = WindowManager::Get().Create<SimControlWindow>();
 }
 
 void ProjectStage::Update() {
@@ -78,6 +80,12 @@ void ProjectStage::DrawMainMenuBar()
 
             if (ImGui::MenuItem("Quit"))
                 gEnv->pSystem->Quit();
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Simulation"))
+        {
+            m_pSimControlWindow->ShowMenu();
             ImGui::EndMenu();
         }
 

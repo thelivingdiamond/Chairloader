@@ -22,6 +22,8 @@ set(SOURCE_FILES
 	PreditorImGuiRenderer.h
 	RendererGlobals.cpp
 	RendererGlobals.h
+	SimulationController.cpp
+	SimulationController.h
 )
 
 add_library(Preditor.Engine STATIC ${SOURCE_FILES})

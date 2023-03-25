@@ -7,6 +7,7 @@ class ManagedWindow;
 class GameViewport;
 class EntityHierarchyWindow;
 class InspectorWindow;
+class SimControlWindow;
 
 class ProjectStage : public AppStage, public ISystemEventListener
 {
@@ -29,6 +30,7 @@ private:
     std::shared_ptr<GameViewport> m_pGameViewport;
     std::shared_ptr<EntityHierarchyWindow> m_pEntHierWindow;
     std::shared_ptr<InspectorWindow> m_pInspectorWindow;
+    std::shared_ptr<SimControlWindow> m_pSimControlWindow;
 
     void DrawMainMenuBar();
     void ShowWindowMenuItem(const char* label, ManagedWindow* window);

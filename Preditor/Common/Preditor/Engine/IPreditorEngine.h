@@ -6,6 +6,11 @@ struct ITexture;
 struct IChairToPreditor;
 struct IGameViewport;
 
+namespace Engine
+{
+struct ISimulationController;
+} // namespace Engine
+
 struct IPreditorEngine
 {
 	using ProgressCallback = std::function<void(const char* sProgressMsg)>;
@@ -65,6 +70,9 @@ struct IPreditorEngine
 
 	//! @returns IChairToPreditor instance.
 	virtual IChairToPreditor* GetIChairToPreditor() = 0;
+
+	//! @returns ISimulationController instance.
+	virtual Engine::ISimulationController* GetSimController() = 0;
 
 	//! Enables/disable keyboard and mouse input to the game.
 	virtual void SetGameInputEnabled(bool state) = 0;
