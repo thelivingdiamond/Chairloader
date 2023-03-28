@@ -104,6 +104,8 @@ find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
+find_package(GTest REQUIRED)
+
 
 find_package(unofficial-curlpp CONFIG REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
