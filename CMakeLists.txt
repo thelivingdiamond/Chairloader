@@ -106,6 +106,9 @@ find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
 find_package(GTest REQUIRED)
 
+# Enable CTest
+enable_testing()
+
 
 find_package(unofficial-curlpp CONFIG REQUIRED)
 # add_subdirectory(ThirdParty/ExampleLibrary)
