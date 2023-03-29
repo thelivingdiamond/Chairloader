@@ -36,6 +36,7 @@ configure_file(
         @ONLY)
 
 add_executable(ChairManager WIN32 ${SOURCE_FILES})
+target_include_directories(ChairManager PRIVATE .)
 
 target_link_libraries(ChairManager
         version.lib
@@ -44,7 +45,11 @@ target_link_libraries(ChairManager
         ZLIB::ZLIB
         unofficial::curlpp::curlpp
         ${Boost_LIBRARIES}
-        )
+		GTest::gtest
+		GTest::gmock
+		)
+gtest_discover_tests(ChairManager EXTRA_ARGS --gtest WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DISCOVERY_TIMEOUT 60)
+
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
 
