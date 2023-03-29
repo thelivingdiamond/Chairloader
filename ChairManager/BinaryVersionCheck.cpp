@@ -90,7 +90,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
     }));
     try{
         easyhandle.perform();
-    } catch (std::exception &e){
+    } catch (const std::exception &e){
         ChairManager::Get().log(severityLevel::error, "Failed to check latest version: %s", std::string(e.what()));
     }
 
@@ -109,7 +109,7 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
         tag_name = json.at("tag_name").as_string();
         // get the etag
 //        auto etag = curlpp::infos::ResponseCode::G
-    } catch (std::exception &e) {
+    } catch (const std::exception &e) {
         ChairManager::Get().log(severityLevel::error, "Failed to parse latest version string: %s", std::string(e.what()));
         return;
     }

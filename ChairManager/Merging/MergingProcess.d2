@@ -1,0 +1,89 @@
+title: Chairloader XML Merging {
+  near: top-center
+  shape: text
+  style: {
+    font-size: 29
+    bold: true
+    underline: true
+  }
+}
+PreMerge: Pre Merge {
+  Collect: Collect Mod List
+  Config: Load Mod Configs
+  Conflict: Detect File Conflicts (TODO)
+
+  Collect -> Config
+  Collect -> Conflict
+}
+PreMerge -> Merge
+Merge: {
+  Iterate: For Each Mod {
+    Copy: Copy non-XML files
+    Copy -> IterateXML: Begin Merging
+    IterateXML: For each XML file {
+      Policy: Get File Merging Policy
+      Wildcards: {Find Config -> Recursive Tree Descent -> Replace \"\{\{ configValue \}\}\"}
+      Policy -> Wildcards
+      Wildcards -> IterateNodes.Root
+      IterateNodes: For Each XML Node {
+        Root: Root Node
+        Root -> PolicyOverride
+
+        PolicyOverride: is policy overriden? {shape: diamond}
+        PolicyOverride -> Find Node Policy: Yes
+        Find Node Policy -> PolicyAttributes
+
+        PolicyAttributes: Policy Attributes {shape: diamond}
+        PolicyOverride -> PolicyAttributes: No
+        PolicyAttributes -> Merge XML attributes: merge_attributes
+        Merge XML attributes -> PolicyAttributes: pop
+        PolicyAttributes -> Merge Node: merge_node
+        Merge Node -> PolicyAttributes: pop
+        PolicyAttributes -> Merge Children: merge_children
+        PolicyAttributes -> Recurse on Children: No Attributes Left\nIterate over each child
+
+        Merge Children -> PolicyMatch: Iterate over each child
+        PolicyMatch: Match nodes by policy
+        PolicyMatch -> NodeMerge: For each matching node
+        PolicyMatch -> NodeAppend: No match and not patch mode
+        NodeAppend: {
+          Append: Append node to parent
+        }
+        NodeMerge: Node Merging: {
+          VanillaCheck: Vanilla Check
+          VanillaCheck -> NodeAttributes: Doesn't match vanilla
+          VanillaCheck -> Ignore Mod Node: Matches vanilla
+          NodeAttributes: Node Attributes {shape: diamond}
+          NodeAttributes -> Ignore Mod Node: ch:apply_if=false
+          Ignore Mod Node -> End
+          NodeAttributes -> Delete Target Node: ch:remove=true
+          Delete Target Node -> End
+          NodeAttributes -> Patch Mode: ch:patch_mode
+          Patch Mode -- Merge.Patch Mode?
+          NodeAttributes -> Merge: all attributes handled
+          Merge: {
+            Patch Mode?: {shape: diamond}
+            Patch Mode? -> Attributes: no
+            Attributes: Merge Attributes
+            Content: Merge Content
+            Attributes -> Content
+            Patch Mode? -> PatchAttributes: yes
+            PatchAttributes: Patch Attributes
+            PatchRecurse: Recurse on children
+            PatchAttributes -> PatchRecurse
+          }
+          Merge -> End
+          End
+        }
+      }
+    }
+  }
+}
+Merge -> PostMerge
+
+PostMerge: {
+  Level Entity ID seralization (TODO)
+  Pack Level files
+  Pack Main Patch
+  Copy Patches
+}
