@@ -88,7 +88,12 @@ void VersionCheck::fetchLatestVersion(bool bForce) {
         }
         return size * nmemb;
     }));
-    easyhandle.perform();
+    try{
+        easyhandle.perform();
+    } catch (std::exception &e){
+        ChairManager::Get().log(severityLevel::error, "Failed to check latest version: %s", std::string(e.what()));
+    }
+
     // get the response code
     long http_code = curlpp::infos::ResponseCode::get(easyhandle);
     ChairManager::Get().log(severityLevel::debug, "HTTP Response Code: %ld", http_code);
