@@ -1,0 +1,20 @@
+<files>
+    <file type="level" path="Campaign\EndGame\level.pak" hash="04e7cf2b276d5a3a3087c5bba626e00e358236123bc18f4443906e5974ca69ff" />
+    <file type="level" path="Campaign\Engineering\CargoBay\level.pak" hash="8e46bffae98055c222a041ad2391824a483f43251f4754c388e5dd3321bb6154" />
+    <file type="level" path="Campaign\Engineering\LifeSupport\level.pak" hash="6ce514c66b5100bda7edb41f72109d9150684016724131d829582a9800bc4a3d" />
+    <file type="level" path="Campaign\Engineering\PowerSource\level.pak" hash="d7e5070f838e8ac15d212a8e36074fbdff6ab03de11d216f377143f3b96d7651" />
+    <file type="level" path="Campaign\Executive\Arboretum\level.pak" hash="90aba3367c509adde16d16aaa074b1f6df9fe18a99894879b123cf87f2005eb9" />
+    <file type="level" path="Campaign\Executive\Bridge\level.pak" hash="01aad93b18d1ed60f657d86d6385e31b7c1fe47a7e774e664999b0b63414dcc7" />
+    <file type="level" path="Campaign\Executive\CorporateIT\level.pak" hash="e063f842fdf5ab690bbe82789031efb7201dec56b204869b45089b533f2aaa4a" />
+    <file type="level" path="Campaign\Executive\CrewFacilities\level.pak" hash="14d0c2c416a9b2233c038e23e070825e0dbdb5418016ffc3ffce4e8bf24341c9" />
+    <file type="level" path="Campaign\PlayerGenderSelect\level.pak" hash="18a58fc0b71f45b652740e663bb9f3b1fe8f110142cbfa5a7971613148d100be" />
+    <file type="level" path="Campaign\PlayerGenderSelect2\level.pak" hash="48c3b39386ad1549f55a45a9d7444b20f6abea08312de401c80b97104f089b41" />
+    <file type="level" path="Campaign\Research\Lobby\level.pak" hash="f79f495b24a46df0e5365c5985cd07e94b2aa240afb0732742da2bb3462456fb" />
+    <file type="level" path="Campaign\Research\Prototype\level.pak" hash="2c4877c22627e48180c6b67aadeae5f6c80129440ddb5bcc756035ab522b8b30" />
+    <file type="level" path="Campaign\Research\Psychotronics\level.pak" hash="4cf9ddf4a0a9759d3147ed407dc420391cdc881833b696c1a16378ff377526c0" />
+    <file type="level" path="Campaign\Research\ShuttleBay\level.pak" hash="6953f9ea4812d97fa42bbf5b8f76c563ace887694dda19a3e069e68c3fca2128" />
+    <file type="level" path="Campaign\Research\SimulationLabs\level.pak" hash="b453dc579f03808ae9f48b20246701c4b8d2385b3d47e3725fe49fd3455b6194" />
+    <file type="level" path="Campaign\Research\ZeroG_UtilityTunnels\level.pak" hash="f43ccc5ccda3071d32d67997ca3b530484fa015d2ed8bb5d67a81312ec8f866a" />
+    <file type="level" path="Campaign\Station\Exterior\level.pak" hash="c6c2b3ca8b0b2f11254c3f3c5c08c2cc676dc15e12898ee3a49e6cbe93b0747a" />
+    <file type="localization" path=".\English_xml_patch.pak" hash="5e9bbf442f79d757f7fad8cd167df6ec779ee1ef0ab56e02e009672bd0191a79" />
+</files>
