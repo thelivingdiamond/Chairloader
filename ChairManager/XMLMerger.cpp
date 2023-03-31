@@ -9,15 +9,14 @@
 // import regex
 #include <regex>
 
-
 XMLMerger::XMLMerger() {
 
 }
 
-XMLMerger::mergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std::string modName) {
-    mergingPolicy policy;
+MergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std::string modName) {
+    MergingPolicy policy;
     auto root = mergingLibrary.child("root");
-    policy = mergingPolicy(root.child("mergingPolicy"), filePath, modName);
+    policy = MergingPolicy(root.child("MergingPolicy"), filePath, modName);
     auto currentNode = root;
     fs::path currentPath;
     for (auto &directory : filePath){
@@ -26,19 +25,18 @@ XMLMerger::mergingPolicy XMLMerger::getFileMergingPolicy(fs::path filePath, std:
         }
         currentPath /= directory;
         currentNode = noCaseChild(currentNode, directory.u8string());
-//        ModLoader::Get().log(ModLoader::severityLevel::debug, "Current Node: %s", currentNode.name());
         if(!currentNode){
             continue;
         } else {
-            if(currentNode.child("mergingPolicy")){
-                policy = mergingPolicy(currentNode.child("mergingPolicy"), filePath, modName);
+            if(currentNode.child("MergingPolicy")){
+                policy = MergingPolicy(currentNode.child("MergingPolicy"), filePath, modName);
             }
         }
     }
     if  (currentPath != filePath){
         // File is not in the library, so it must be novel
         ChairManager::Get().log(severityLevel::error, "XMLMerger: File %s not found in merging library", filePath.u8string());
-        policy.policy = mergingPolicy::identification_policy::unknown;
+        policy.policy = MergingPolicy::identification_policy::unknown;
         policy.attributeMatches.clear();
         policy.nodeStructure = pugi::xml_node();
     }
@@ -136,11 +134,11 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
     // if the file exists in the output directory, we can merge
     if(baseResult) {
         auto policy = getFileMergingPolicy(relativeFilePath, modName);
-        if(policy.policy == mergingPolicy::identification_policy::unknown){
+        if(policy.policy == MergingPolicy::identification_policy::unknown){
             ChairManager::Get().log(severityLevel::error, "File %s was loaded as default game file but is not in the merging library, and no merging policy was defined for it", relativeFilePath.u8string());
             return false;
         // if policy is error, error out
-        } else if (policy.policy == mergingPolicy::identification_policy::error) {
+        } else if (policy.policy == MergingPolicy::identification_policy::error) {
             ChairManager::Get().log(severityLevel::error,
                                     "File %s has an invalid merging policy, and cannot be merged",
                                     relativeFilePath.u8string());
@@ -167,12 +165,12 @@ bool XMLMerger::mergeXMLFile(fs::path relativeFilePath, std::string modName, boo
 
 
 // at this point we know that we have 3 valid xml files, and that they have a known policy. We must now merge them
-bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, mergingPolicy policy) {
-    if(policy.policy == mergingPolicy::identification_policy::unknown || policy.policy == mergingPolicy::identification_policy::overwrite){
+bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, MergingPolicy policy) {
+    if(policy.policy == MergingPolicy::identification_policy::unknown || policy.policy == MergingPolicy::identification_policy::overwrite){
         ChairManager::Get().log(severityLevel::error, "Invalid merging policy for XML file %s", policy.file_path.u8string().c_str());
         return false;
     }
-    if(policy.policy == mergingPolicy::identification_policy::overwrite){
+    if(policy.policy == MergingPolicy::identification_policy::overwrite){
         // overwrite the base file with the mod file, regardless of original file
         baseDoc.reset(modDoc);
         auto result = baseDoc.save_file(("Output" / policy.file_path).wstring().c_str());
@@ -180,7 +178,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
 
         return true;
     }
-    if(policy.policy == mergingPolicy::identification_policy::match_spreadsheet){
+    if(policy.policy == MergingPolicy::identification_policy::match_spreadsheet){
         auto baseNode = baseDoc.first_child();
         baseNode.prepend_child(pugi::node_comment).set_value((std::string("Chairloader: merged from mod ") + policy.mod_name).c_str());
         auto modNode = modDoc.first_child();
@@ -208,7 +206,7 @@ bool XMLMerger::mergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document
 
 
 // at this point we have 3 nodes with valid paths and valid wildcards, a policy, and no need to overwrite. We must now recursively merge the nodes and determine policies for each node if necessary
-bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, mergingPolicy policy) {
+bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, MergingPolicy policy) {
     for(auto & node: policy.nodeStructure.children()){
         // children = nodes on our way to merge the actual content nodes
         pugi::xml_node baseChild, modChild, originalChild;
@@ -240,46 +238,46 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
         auto localPolicy = policy; // copy policy so we can modify it for each node
         localPolicy.nodePath /= node.name(); // TODO: rethink node path
         localPolicy.nodeStructure = node;
-        mergingPolicy::node_tags nodeTags = mergingPolicy::getNodeTags(node);
+        MergingPolicy::node_tags nodeTags = MergingPolicy::getNodeTags(node);
 
         // check if this node overrides the policy
-        if (nodeTags & mergingPolicy::node_tags::override_policy){
-            localPolicy.policy = mergingPolicy::parsePolicy(node.attribute("identification_policy").value());
+        if (nodeTags & MergingPolicy::node_tags::override_policy){
+            localPolicy.policy = MergingPolicy::parsePolicy(node.attribute("identification_policy").value());
             localPolicy.attributeMatches.clear();
-            if(localPolicy.policy == mergingPolicy::identification_policy::match_attribute){
+            if(localPolicy.policy == MergingPolicy::identification_policy::match_attribute){
                 for(auto &attributeNode : node.children("attribute")){
-                    localPolicy.attributeMatches.emplace_back(mergingPolicy::attributeMatch{attributeNode.attribute("name").as_string(), attributeNode.attribute("priority").as_int()});
+                    localPolicy.attributeMatches.emplace_back(MergingPolicy::attributeMatch{attributeNode.attribute("name").as_string(), attributeNode.attribute("priority").as_int()});
                 }
-                localPolicy.match_all_attributes = nodeTags & mergingPolicy::node_tags::match_all;
+                localPolicy.match_all_attributes = nodeTags & MergingPolicy::node_tags::match_all;
             }
         }
         // check if node needs to merge attributes
-        if(nodeTags & mergingPolicy::node_tags::merge_attributes){
+        if(nodeTags & MergingPolicy::node_tags::merge_attributes){
             mergeXMLNodeAttributes(baseChild, modChild);
         }
 
         // merge children is a leaf node tag, so it must end the recursion
-        if(nodeTags & mergingPolicy::node_tags::merge_children) {
+        if(nodeTags & MergingPolicy::node_tags::merge_children) {
             switch(localPolicy.policy){
                 //overwrite = identical to merge_node
-                case mergingPolicy::identification_policy::overwrite:
+                case MergingPolicy::identification_policy::overwrite:
                     ChairManager::Get().log(severityLevel::warning, "XMLMerger: merge_node should be used instead of merge_children & overwrite policy");
                     break;
                 // unknown should never be passed into a mergeNodeStructure call
-                case mergingPolicy::identification_policy::match_spreadsheet:
+                case MergingPolicy::identification_policy::match_spreadsheet:
                     ChairManager::Get().log(severityLevel::error, "XMLMerger: match_spreadsheet policy should never be passed into a mergeNodeStructure call");
                     break;
-                case mergingPolicy::identification_policy::unknown:
-                case mergingPolicy::identification_policy::error:
+                case MergingPolicy::identification_policy::unknown:
+                case MergingPolicy::identification_policy::error:
                     ChairManager::Get().log(severityLevel::error, "XMLMerger: Invalid merging policy passed to mergeNodeStructure");
                     break;
-                case mergingPolicy::identification_policy::match_attribute:
+                case MergingPolicy::identification_policy::match_attribute:
                     mergeByAttribute(baseChild, modChild, originalChild, localPolicy);
                     break;
-                case mergingPolicy::identification_policy::match_tag:
+                case MergingPolicy::identification_policy::match_tag:
                     mergeByTag(baseChild, modChild, originalChild, localPolicy);
                     break;
-                case mergingPolicy::identification_policy::match_contents:
+                case MergingPolicy::identification_policy::match_contents:
                     mergeByContents(baseChild, modChild, originalChild, localPolicy);
                     break;
             }
@@ -287,7 +285,7 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
         }
 
         // merge node for one off nodes that need to be merged
-        if(nodeTags & mergingPolicy::node_tags::merge_node){
+        if(nodeTags & MergingPolicy::node_tags::merge_node){
             if(!checkNodeEquality(modChild, originalChild)) {
                 mergeXMLNode(baseChild, modChild);
             } else {
@@ -302,7 +300,7 @@ bool XMLMerger::mergeNodeStructure(pugi::xml_node &baseNode, pugi::xml_node &mod
     return true;
 }
 
-void XMLMerger::mergeByAttribute(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, XMLMerger::mergingPolicy policy) {
+void XMLMerger::mergeByAttribute(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, MergingPolicy policy) {
     for(auto & modChild : modNode.children()) {
         bool overwrite = false;
         bool matchAll = true;
@@ -338,7 +336,7 @@ void XMLMerger::mergeByAttribute(pugi::xml_node &baseNode, pugi::xml_node &modNo
     }
 }
 
-void XMLMerger::mergeByTag(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, XMLMerger::mergingPolicy policy) {
+void XMLMerger::mergeByTag(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, MergingPolicy policy) {
    for(auto &child : modNode){
         pugi::xml_node baseChild, originalChild;
         if(baseNode.child(child.name())) {
@@ -361,7 +359,7 @@ void XMLMerger::mergeByTag(pugi::xml_node &baseNode, pugi::xml_node &modNode, pu
    }
 }
 
-void XMLMerger::mergeByContents(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, XMLMerger::mergingPolicy policy) {
+void XMLMerger::mergeByContents(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, MergingPolicy policy) {
     for(auto & modChild :modNode) {
         pugi::xml_node baseChild, originalChild;
         for(auto &searchChild : baseNode) {
@@ -391,7 +389,7 @@ void XMLMerger::mergeByContents(pugi::xml_node &baseNode, pugi::xml_node &modNod
 }
 
 void
-XMLMerger::mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, XMLMerger::mergingPolicy policy) {
+XMLMerger::mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode, pugi::xml_node &originalNode, MergingPolicy policy) {
     //TODO: implement
     //- debug the names of the nodes passed in
 //    ModLoader::Get().log(ModLoader::severityLevel::debug, "baseNode: %s", baseNode.name());
@@ -443,14 +441,7 @@ XMLMerger::mergeBySpreadsheet(pugi::xml_node &baseNode, pugi::xml_node &modNode,
     }
 }
 
-pugi::xml_node noCaseChild(pugi::xml_node& node, std::string name) {
-    for(auto &child : node.children()){
-        if(boost::iequals(child.name(), name)){
-            return child;
-        }
-    }
-    return {};
-}
+
 
 //TODO: resolve deeper wildcards
 void XMLMerger::resolvePathWildcards(pugi::xml_node node, pugi::xml_node nodeStructure){
@@ -477,7 +468,7 @@ XMLMerger::resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeS
     <X chair_apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
     <X chair_apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
      */
-//    if(mergingPolicy::getNodeTags(nodeStructure) & mergingPolicy::node_tags::merge_children){
+//    if(MergingPolicy::getNodeTags(nodeStructure) & MergingPolicy::node_tags::merge_children){
     std::vector<pugi::xml_node> nodesToDelete;
     for (auto child: node) {
 //        ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking child %s", child.name());
@@ -488,19 +479,19 @@ XMLMerger::resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeS
         }
     }
     for(auto &attribute : node.attributes()){
-        attributeWildcard match;
+        AttributeWildcard match;
         match.attribute = attribute;
         match.mod_name = modName;
         getWildcardValue(match);
         if(match.has_match_value){
-            if(match.type == attributeWildcard::wildcard_type::apply_if){
+            if(match.type == AttributeWildcard::wildcard_type::apply_if){
                 if(match.apply_if){
                     node.remove_attribute(attribute);
                     ChairManager::Get().log(severityLevel::debug, "Node %s applied by wildcard", node.name());
                 } else {
                     nodesToDelete.emplace_back(node);
                 }
-            } else if (match.type == attributeWildcard::wildcard_type::replace) {
+            } else if (match.type == AttributeWildcard::wildcard_type::replace) {
                 attribute.set_value(match.match_value.c_str());
                 ChairManager::Get().log(severityLevel::trace, "Attribute %s replaced with %s", attribute.name(), match.match_value);
             }
@@ -528,12 +519,12 @@ bool XMLMerger::checkNodeEquality(pugi::xml_node modNode, pugi::xml_node origina
 
 }
 
-std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
+std::string XMLMerger::getWildcardValue(AttributeWildcard &wildcardValue) {
 //    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
     if(wildcardValue.attribute.name() == std::string("chair_apply_if")){
-        wildcardValue.type = attributeWildcard::wildcard_type::apply_if;
+        wildcardValue.type = AttributeWildcard::wildcard_type::apply_if;
     } else {
-        wildcardValue.type = attributeWildcard::wildcard_type::replace;
+        wildcardValue.type = AttributeWildcard::wildcard_type::replace;
     }
     if(std::string(wildcardValue.attribute.value()).find("{{") != std::string::npos && std::string(wildcardValue.attribute.value()).find("}}") != std::string::npos) {
         // regex to find the value
@@ -577,7 +568,7 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
                     }
                 }
 
-                if(wildcardValue.type == attributeWildcard::wildcard_type::apply_if){
+                if(wildcardValue.type == AttributeWildcard::wildcard_type::apply_if){
                     if(wildcardValue.match_value == "true"){
                         wildcardValue.apply_if = true;
                     } else if(wildcardValue.match_value == "false"){
@@ -588,10 +579,10 @@ std::string XMLMerger::getWildcardValue(attributeWildcard &wildcardValue) {
             }
         } else {
             ChairManager::Get().log(severityLevel::warning, "Could not find wildcard value in %s", wildcardValue.attribute.value());
-            wildcardValue.type = attributeWildcard::wildcard_type::none;
+            wildcardValue.type = AttributeWildcard::wildcard_type::none;
         }
     } else {
-        wildcardValue.type = attributeWildcard::wildcard_type::none;
+        wildcardValue.type = AttributeWildcard::wildcard_type::none;
 //        ModLoader::Get().log(ModLoader::severityLevel::trace, "Not a wildcard value");
     }
     return {};
@@ -609,6 +600,5 @@ void XMLMerger::patchXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) 
         }
     }
 }
-
 
 
