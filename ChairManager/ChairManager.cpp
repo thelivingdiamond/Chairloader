@@ -2599,4 +2599,8 @@ const fs::path &ChairManager::GetGamePath() {
     return m_pGamePath->GetGamePath();
 }
 
+void ChairManager::GTestInit() {
+    Init();
+}
+
 

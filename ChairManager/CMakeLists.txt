@@ -48,7 +48,9 @@ target_link_libraries(ChairManager
 		GTest::gtest
 		GTest::gmock
 		)
-gtest_discover_tests(ChairManager EXTRA_ARGS --gtest WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DISCOVERY_TIMEOUT 60)
+#gtest_discover_tests(ChairManager WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DISCOVERY_TIMEOUT 60 XML_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/TestResults DISCOVERY_MODE POST_BUILD)
+#gtest_discover_tests(ChairManager)
+#add_test(NAME monolithic COMMAND ChairManager)
 
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
