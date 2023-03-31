@@ -1408,7 +1408,10 @@ void ChairManager::Update() {
         oldDpiScaling = dpiScale;
 //        ImGui::GetFont()->Scale *= dpiScale;
         ImGui::GetIO().Fonts->Clear();
-        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+        if(fs::exists("Montserrat-Regular.ttf"))
+            ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+        else
+            ImGui::GetIO().Fonts->AddFontDefault();
 //        ImGui::GetIO().Fonts->
 //        if(!ImGui::GetIO().Fonts->IsBuilt())
         ImGui::GetIO().Fonts->Build();
