@@ -2,7 +2,7 @@
 // Created by theli on 9/13/2022.
 //
 #pragma once
-
+#include <mutex>
 
 
 /*
@@ -101,7 +101,7 @@ public:
     void draw();
 private:
     std::vector<ModConfig> m_modConfigs;
-
+    std::mutex m_modConfigsMutex;
 
     void loadConfig(const std::string& modName);
     void loadConfigs();

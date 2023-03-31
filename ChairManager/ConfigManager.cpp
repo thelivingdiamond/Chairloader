@@ -15,6 +15,7 @@ void ConfigManager::init() {
 }
 
 ConfigManager::ModConfig& ConfigManager::operator[](std::string modName){
+    std::scoped_lock lock(m_modConfigsMutex);
     auto it = std::find_if(m_modConfigs.begin(), m_modConfigs.end(), [&modName](const ModConfig& config) {
         return config.modName == modName;
     });
@@ -60,6 +61,8 @@ void ConfigManager::copyDefaultConfig(const std::string& modName){
 
 
 void ConfigManager::loadConfig(const std::string& modName){
+    std::scoped_lock lock(m_modConfigsMutex);
+
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
@@ -110,6 +113,7 @@ void ConfigManager::saveConfigs() {
 
 void ConfigManager::draw() {
    if(ImGui::BeginTabItem("Mod Config")){
+       std::scoped_lock lock(m_modConfigsMutex);
        if(ImGui::BeginTabBar("##Mod Configs", ImGuiTabBarFlags_TabListPopupButton | ImGuiTabBarFlags_FittingPolicyScroll)){
               for(auto& config : m_modConfigs){
                   if(config.configNode.first_child() == nullptr){
@@ -178,6 +182,7 @@ void ConfigManager::drawXMLConfigNode(pugi::xml_node node) {
 }
 
 void ConfigManager::setDirty(const std::string& modName, bool dirty) {
+    std::scoped_lock lock(m_modConfigsMutex);
     auto config = std::find(m_modConfigs.begin(), m_modConfigs.end(), modName);
     if(config != m_modConfigs.end()){
         config->dirty = dirty;
