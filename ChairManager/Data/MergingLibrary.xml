@@ -297,7 +297,7 @@
                             <MarkedEnemies merge_node="true"/>
                             <ArkPlayerScopeComponent merge_node="true"/>
                             <Flashlight merge_node="true"/>
-                            <Movement merge_children="true" identification_policy="match_tag"/>
+                            <Movement merge_children="true" identification_policy="match_tag" merge_attributes="true"/>
                             <AutoSave merge_node="true"/>
                             <NPCTargeting merge_node="true"/>
                             <Weapon merge_node="true"/>
