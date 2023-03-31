@@ -55,6 +55,7 @@ void WorldManager::DrawLevelManagerWindow() {
                 std::string mapId = std::to_string(locationManager.GetCurrentLocation());
                 if (ImGui::Selectable(mapId.c_str())) {
                     CryLog("{}", mapId);
+                    ImGui::SetClipboardText(mapId.c_str());
                 }
                 ImGui::Text("Map Scheduled to End: %u", ((CCryAction*)gCL->cl->GetFramework())->m_bScheduleLevelEnd);
             }

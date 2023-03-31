@@ -1,0 +1,44 @@
+//
+// Created by theli on 3/31/2023.
+//
+
+#ifndef CHAIRLOADER_IMPORTANTCLASS_H
+#define CHAIRLOADER_IMPORTANTCLASS_H
+
+
+class ImportantClass {
+public:
+    static const inline std::map <uint64_t, std::tuple<Vec3, Quat>> m_LevelLocationsMap = {
+            {12889009724983807463, {Vec3(854.10467529,1577.71997070,7.50000000), Quat(0.81858742,-0.06139960,-0.08920243,-0.56408113)}},
+            {1713490239377285936, {Vec3(317.77999878,676.09997559,495.68017578), Quat(0.57362378,-0.00465082,-0.00546345,0.81908751)}},
+            {844024417263019221, {Vec3(445.73867798,420.77999878,501.92999268), Quat(0.06026566,0.04219847,-0.57202208,-0.81693214)}},
+            {11824555372632688907, {Vec3(1213.43005371,1027.07995605,194.00000000), Quat(0.69636428,-0.12278773,0.54167509,0.45451966)}},
+            {4349723564886052417, {Vec3(78.08144379,452.37921143,849.30450439), Quat(0.85518265,0.42678720,0.29345191,0.02003392)}},
+            {1713490239386284818, {Vec3(1698.48999023,375.40786743,46.00000000), Quat(0.62433809,-0.33196649,-0.32101974,0.63003677)}},
+            {844024417275035158, {Vec3(1005.44000244,175.10000610,266.61999512), Quat(0.70555460,0.50210088,0.27738833,0.41610458)}},
+            {1713490239377738413, {Vec3(1272.54028320,781.29669189,312.17733765), Quat(-0.26551321,-0.05973770,0.33102930,0.90352297)}},
+            {844024417252490146, {Vec3(1228.57824707,883.56097412,217.18374634), Quat(-0.36104497,0.89156485,0.26352569,0.07288948)}},
+    };
+
+    static void SpawnImportantObject();
+
+    static void DestroyImportantObject();
+};
+
+
+class ImportantListener: public ISystemEventListener {
+public:
+    ImportantListener() {
+        gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
+    }
+
+    ~ImportantListener() override {
+        gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
+    }
+
+    void OnSystemEventAnyThread(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
+
+    void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
+};
+
+#endif //CHAIRLOADER_IMPORTANTCLASS_H

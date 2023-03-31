@@ -9,6 +9,7 @@
 #include <Chairloader/ChairloaderEnv.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IModDllManager.h>
+#include "ImportantClass.h"
 #include <mem.h>
 #include "Chairloader.h"
 #include <Chairloader/IChairVarManager.h>
@@ -26,6 +27,8 @@ Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 static int CV_cl_asserts;
+
+static std::unique_ptr<ImportantListener> g_ImportantListener;
 
 namespace
 {
@@ -276,6 +279,8 @@ void Chairloader::InitSystem(CSystem* pSystem)
     m_pCore->GetDllManager()->CallConnect();
 
 	m_pRender->SetRenderThreadIsIdle(false);
+
+    g_ImportantListener = std::make_unique<ImportantListener>();
 }
 
 void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
@@ -392,7 +397,6 @@ void Chairloader::InitHooks()
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_CEntitySystem_PrePhysicsUpdate_Hook.SetHookFunc(&CEntitySystem_PrePhysicsUpdate_Hook);
 	g_CCryAction_FPostUpdate_Hook.SetHookFunc(&CCryAction_FPostUpdate_Hook);
-
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached
 	{
