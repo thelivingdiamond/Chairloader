@@ -6,6 +6,7 @@
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
 #include <Manager/GamePath.h>
+#include <Merging/ChairMerger.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "ChairWizards/GamePathDialog.h"
@@ -885,29 +886,29 @@ void ChairManager::DrawAssetView() {
                         auto firstNode = doc.first_child();
                         XMLMerger::resolvePathWildcards(firstNode, policy.nodeStructure);
                         switch (policy.policy) {
-                            case XMLMerger::mergingPolicy::identification_policy::error:
+                            case MergingPolicy::identification_policy::error:
                                 ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Error");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::unknown:
+                            case MergingPolicy::identification_policy::unknown:
                                 ImGui::Text("Unknown");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file is not registered with the merging library. It will be copied to the output directory as-is. This file cannot be merged with other mods.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::overwrite:
+                            case MergingPolicy::identification_policy::overwrite:
                                 ImGui::Text("Overwrite");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will overwrite the same file in the output directory. This file cannot be merged with other mods.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_tag:
+                            case MergingPolicy::identification_policy::match_tag:
                                 ImGui::Text("Match Tag");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will be merged. The merging policy is based on the tag (name) of each node set to be merged");
                                 displayXmlNode(policy.nodeStructure, 0);
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_attribute:
+                            case MergingPolicy::identification_policy::match_attribute:
                                 ImGui::Text("Match Attribute");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker("This file will be merged. The merging policy is based on the value of specific attributes of each node set to be merged");
@@ -920,13 +921,13 @@ void ChairManager::DrawAssetView() {
                                     ImGui::TreePop();
                                 }
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_spreadsheet:
+                            case MergingPolicy::identification_policy::match_spreadsheet:
                                 ImGui::Text("Match Spreadsheet");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will be merged. This is a special mode for Excel spreadsheet XML Files. They will be matched based on the first column of each row.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_contents:
+                            case MergingPolicy::identification_policy::match_contents:
                                 ImGui::Text("Match Contents");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
@@ -1422,7 +1423,7 @@ void ChairManager::Update() {
 
 void ChairManager::DeployForInstallWizard()
 {
-    assert(m_DeployState == DeployState::Invalid);
+    assert(m_DeployState == DeployStep::Invalid);
     mergeXMLFiles(true);
 
     if (!packChairloaderPatch())
@@ -1431,7 +1432,7 @@ void ChairManager::DeployForInstallWizard()
         throw std::runtime_error("Failed to copy patch_chairloader.pak");
 
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::Invalid;
+    m_DeployState = DeployStep::Invalid;
     m_DeployLogMutex.unlock();
 }
 
@@ -1668,7 +1669,7 @@ bool ChairManager::DeployMods() {
     if(packChairloaderPatch()){
         if(copyChairloaderPatch()){
             m_DeployLogMutex.lock();
-            m_DeployState = DeployState::Done;
+            m_DeployState = DeployStep::Done;
             m_DeployLogMutex.unlock();
             overlayLog(severityLevel::info, "Mods Deployed");
 //            m_State = State::MainWindow;
@@ -1682,17 +1683,17 @@ bool ChairManager::DeployMods() {
 void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
     // Remove old output files
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::RemovingOldOutput;
+    m_DeployState = DeployStep::RemovingOldOutput;
     m_DeployLogMutex.unlock();
     fs::remove_all("./Output/");
     fs::create_directory("./Output/");
 
     // Copy Base Files
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::CopyingBaseFiles;
+    m_DeployState = DeployStep::CopyingBaseFiles;
     m_DeployLogMutex.unlock();
 
-    bool doLevelPatches = false;
+    bool doLevelPatches = true;
     for (Mod& mod : ModList) {
         if (mod.enabled && mod.hasLevelXML)
         {
@@ -1731,7 +1732,7 @@ void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
     {
         //merge legacy mods
         m_DeployLogMutex.lock();
-        m_DeployState = DeployState::MergingLegacyMods;
+        m_DeployState = DeployStep::MergingLegacyMods;
         m_DeployLogMutex.unlock();
         for (auto& directory : fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
             if (fs::is_directory(directory)) {
@@ -1741,7 +1742,7 @@ void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
         }
         //registered mods
         m_DeployLogMutex.lock();
-        m_DeployState = DeployState::MergingMods;
+        m_DeployState = DeployStep::MergingMods;
         m_DeployLogMutex.unlock();
         for (auto& mod : ModList) {
             if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
@@ -1901,7 +1902,7 @@ void ChairManager::mergeDirectory(fs::path path, std::string modName, bool legac
 bool ChairManager::packChairloaderPatch() {
     // Remove Old Patches
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::RemovingOldPatches;
+    m_DeployState = DeployStep::RemovingOldPatches;
     m_DeployLogMutex.unlock();
     try {
         fs::remove("patch_chairloader.pak");
@@ -1913,7 +1914,7 @@ bool ChairManager::packChairloaderPatch() {
     }
 
     // See if any mods have level patches
-    bool doLevelPatches = false;
+    bool doLevelPatches = true;
     for (Mod& mod : ModList) {
         if (mod.enabled && mod.hasLevelXML)
         {
@@ -1922,11 +1923,11 @@ bool ChairManager::packChairloaderPatch() {
         }
     }
 
-    if (doLevelPatches)
+    if (doLevelPatches) //FIXME: DEBUG STEP
     {
         // packing level files
         m_DeployLogMutex.lock();
-        m_DeployState = DeployState::PackingLevelFiles;
+        m_DeployState = DeployStep::PackingLevelFiles;
         m_DeployLogMutex.unlock();
         auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
         try {
@@ -1951,7 +1952,7 @@ bool ChairManager::packChairloaderPatch() {
         }
         // Copying Level Files
         m_DeployLogMutex.lock();
-        m_DeployState = DeployState::CopyingLevelFiles;
+        m_DeployState = DeployStep::CopyingLevelFiles;
         m_DeployLogMutex.unlock();
         try {
             for (auto &levelDirectory: levelDirectories) {
@@ -1975,7 +1976,7 @@ bool ChairManager::packChairloaderPatch() {
 
     // Pack Localization Patch
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::PackingLocalization;
+    m_DeployState = DeployStep::PackingLocalization;
     m_DeployLogMutex.unlock();
 
     STARTUPINFOW LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
@@ -2007,7 +2008,7 @@ bool ChairManager::packChairloaderPatch() {
 
     // pack chairloader patch
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::PackingMainPatch;
+    m_DeployState = DeployStep::PackingMainPatch;
     m_DeployLogMutex.unlock();
     STARTUPINFOW ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
     PROCESS_INFORMATION ChairloaderProcessInfo;
@@ -2034,7 +2035,7 @@ bool ChairManager::packChairloaderPatch() {
 bool ChairManager::copyChairloaderPatch() {
     // copy chairloader patch
     m_DeployLogMutex.lock();
-    m_DeployState = DeployState::CopyingMainPatch;
+    m_DeployState = DeployStep::CopyingMainPatch;
     m_DeployLogMutex.unlock();
     try {
         fs::copy("patch_chairloader.pak", GetGamePath() / "GameSDK/Precache",
@@ -2218,7 +2219,7 @@ void ChairManager::DrawDebug() {
         }
         static std::string filePath, modName = "TestMod";
         ImGui::InputText("Mod Name", &modName);
-        static XMLMerger::mergingPolicy policy;
+        static MergingPolicy policy;
         static pugi::xml_document doc;
         if(ImGui::CollapsingHeader("File Merging")) {
             ImGui::InputText("File Path", &filePath);
@@ -2368,38 +2369,41 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
         // RemovingOldOutput, CopyingBaseFiles, MergingLegacyMods, MergingMods, RemovingOldPatches, PackingLevelFiles, CopyingLevelFiles, PackingLocalization, PackingMainPatch, CopyingMainPatch, Done, Invalid
         ImGui::Text("Deploying Mods, Please Wait:");
         ImGui::Separator();
-        if(m_DeployState >= DeployState::RemovingOldOutput){
+        if(m_DeployState >= DeployStep::RemovingOldOutput){
             ImGui::Text("Removing old merge output files...");
         }
-        if(m_DeployState >= DeployState::CopyingBaseFiles){
+        if(m_DeployState >= DeployStep::CopyingBaseFiles){
             ImGui::Text("Copying base files...");
         }
-        if(m_DeployState >= DeployState::MergingLegacyMods){
+        if(m_DeployState >= DeployStep::MergingLegacyMods){
             ImGui::Text("Merging legacy mods...");
         }
-        if(m_DeployState >= DeployState::MergingMods){
+        if(m_DeployState >= DeployStep::MergingMods){
             ImGui::Text("Merging registered mods...");
         }
-        if(m_DeployState >= DeployState::RemovingOldPatches){
+        if(m_DeployState >= DeployStep::RemovingOldPatches){
             ImGui::Text("Removing old patch files...");
         }
-        if(m_DeployState >= DeployState::PackingLevelFiles){
+        if(m_DeployState >= DeployStep::PackingLevelFiles){
             ImGui::Text("Packing level files...");
         }
-        if(m_DeployState >= DeployState::CopyingLevelFiles){
+        if(m_DeployState >= DeployStep::CopyingLevelFiles){
             ImGui::Text("Copying level files...");
         }
-        if(m_DeployState >= DeployState::PackingLocalization){
+        if(m_DeployState >= DeployStep::PackingLocalization){
             ImGui::Text("Packing localization...");
         }
-        if(m_DeployState >= DeployState::PackingMainPatch){
+        if(m_DeployState >= DeployStep::PackingMainPatch){
             ImGui::Text("Packing patch_chairloader.pak...");
         }
-        if(m_DeployState >= DeployState::CopyingMainPatch){
+        if(m_DeployState >= DeployStep::CopyingMainPatch){
             ImGui::Text("Copying patch_chairloader.pak...");
         }
-        if(m_DeployState >= DeployState::Done){
+        if(m_DeployState >= DeployStep::Done){
             ImGui::Text("Done!");
+        }
+        if(m_bDeployFailed){
+            ImGui::TextColored(errorColor, "Deploy Failed!");
         }
         m_DeployLogMutex.unlock();
 //        ImGui::Text("Deploying Mods, Please Hold");
@@ -2410,14 +2414,14 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     if(IsFutureReady(m_DeployTaskFuture)){
         m_DeployTaskFuture.get();
         m_State = State::MainWindow;
-        m_DeployState = DeployState::Invalid;
+        m_DeployState = DeployStep::Invalid;
         ImGui::CloseCurrentPopup();
         return;
     }
 }
 
 void ChairManager::RunAsyncDeploy() {
-    if(m_DeployState <= DeployState::Invalid) {
+    if(m_DeployState <= DeployStep::Invalid) {
         SwitchToDeployScreen();
         m_DeployTaskFuture = std::async(std::launch::async, [&]() { DeployMods(); });
     } else {
