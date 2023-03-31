@@ -1,0 +1,36 @@
+{
+  "$artifacts": "Map of build targets and their build artifacts to where to copy them to.",
+  "artifacts": {
+    "Chairloader/Dll": {
+      "Chairloader.dll": "Release/Chairloader.dll",
+      "Chairloader.pdb": "Release/Chairloader.pdb"
+    },
+
+    "Chairloader/Loader": {
+      "mswsock.dll": "Release/mswsock.dll",
+      "mswsock.pdb": "Release/mswsock.pdb"
+    },
+
+    "ChairManager": {
+      "ChairManager.exe": "ChairManager.exe",
+      "ChairManager.pdb": "ChairManager.pdb",
+      "curlpp.dll": "curlpp.dll",
+      "libcurl.dll": "libcurl.dll",
+      "libcurl-d.dll": "libcurl-d.dll",
+      "zlib1.dll": "zlib1.dll",
+      "zlibd1.dll": "zlibd1.dll"
+    }
+  },
+
+  "$file_list": "List of files to copy to the output archive",
+  "file_list": [
+    "ChairloaderPatch",
+    "Examples",
+    "PreyFiles",
+    "Versions",
+    "7za.exe",
+    "chairloader_default.xml",
+    "MergingLibrary.xml",
+    "Montserrat-Regular.ttf"
+  ]
+}
