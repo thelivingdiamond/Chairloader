@@ -19,6 +19,7 @@
 #include <boost/format.hpp>
 #include "LogEntry.h"
 #include "Mod.h"
+#include "Merging/ChairMerger.h"
 
 class GamePathDialog;
 class GameVersion;
@@ -27,6 +28,8 @@ class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
 struct SemanticVersion;
+enum class DeployStep;
+
 
 class ChairManager {
 public:
@@ -90,6 +93,20 @@ public:
     }
 
     GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
+
+    void GTestInit();
+
+    /* Deploy Screen */
+
+    void SetDeployState(DeployStep state){
+        std::lock_guard<std::mutex> lock(m_DeployLogMutex);
+        m_DeployState = state;
+    }
+
+    void SetDeployFailed(bool failed = true){
+        std::lock_guard<std::mutex> lock(m_DeployLogMutex);
+        m_bDeployFailed = failed;
+    }
 private:
     //! DPI
     bool updateDPIScaling;
@@ -143,25 +160,9 @@ private:
     void DrawUpdateWizard(bool* pbIsOpen);
     bool m_bShowUpdateWizard = false;
 
-    /* Deploy Screen */
-    enum class DeployState
-    {
-        Invalid,
-        RemovingOldOutput,
-        CopyingBaseFiles,
-        MergingLegacyMods,
-        MergingMods,
-        RemovingOldPatches,
-        PackingLevelFiles,
-        CopyingLevelFiles,
-        PackingLocalization,
-        PackingMainPatch,
-        CopyingMainPatch,
-        Done
-    };
-
-    DeployState m_DeployState = DeployState::Invalid;
+    DeployStep m_DeployState = DeployStep::Invalid;
     std::mutex m_DeployLogMutex;
+    bool m_bDeployFailed = false;
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::future<void> m_DeployTaskFuture;
