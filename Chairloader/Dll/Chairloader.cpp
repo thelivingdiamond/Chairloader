@@ -126,6 +126,19 @@ void CCryAction_FPostUpdate_Hook(CCryAction* const _this, bool haveFocus, unsign
 	g_CCryAction_FPostUpdate_Hook.InvokeOrig(_this, haveFocus, updateFlags);
 }
 
+
+//-----------------------------------------------------------------
+// ImportantClass
+//-----------------------------------------------------------------
+
+auto g_CEntitySystem_FOnLevelEnd_Hook = CEntitySystem::FOnLevelEnd.MakeHook();
+
+void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
+    ImportantClass::DestroyImportantObject();
+    g_CEntitySystem_FOnLevelEnd_Hook.InvokeOrig(_this);
+}
+
+
 } // namespace
 
 void Chairloader::CreateInstance()
@@ -397,6 +410,7 @@ void Chairloader::InitHooks()
 	g_CGame_Shutdown_Hook.SetHookFunc(&CGame_Shutdown_Hook);
 	g_CEntitySystem_PrePhysicsUpdate_Hook.SetHookFunc(&CEntitySystem_PrePhysicsUpdate_Hook);
 	g_CCryAction_FPostUpdate_Hook.SetHookFunc(&CCryAction_FPostUpdate_Hook);
+    g_CEntitySystem_FOnLevelEnd_Hook.SetHookFunc(&CEntitySystem_FOnLevelEnd_Hook);
 	// DeviceInfo::CreateDevice: Remove D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY flag
 	// Allows graphics debuggers to be attached
 	{

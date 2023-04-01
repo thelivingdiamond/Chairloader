@@ -34,7 +34,5 @@ void ImportantListener::OnSystemEventAnyThread(ESystemEvent event, UINT_PTR wpar
 void ImportantListener::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) {
     if(/*event == ESYSTEM_EVENT_GAME_RESUMED || */event == ESYSTEM_EVENT_LEVEL_PRECACHE_END){
         ImportantClass::SpawnImportantObject();
-    } else if (/*event == ESYSTEM_EVENT_GAME_PAUSED ||*/ event == ESYSTEM_EVENT_ENTITY_UNLOAD){
-        ImportantClass::DestroyImportantObject();
     }
 }
