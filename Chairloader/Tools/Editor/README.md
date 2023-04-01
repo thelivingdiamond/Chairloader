@@ -4,7 +4,7 @@
 *To launch check `Editor` in the Chair Manager launch options menu. This is a work in progress interface, so stability may suffer while using the editor.*
 
 ### Free Cam
-- Improved free cam with configurable speed and an inutitive interface
+- Improved free cam with configurable speed and an intuitive interface
 
 ### Entity Selection
 - Click on any entity to select it while in free cam mode
