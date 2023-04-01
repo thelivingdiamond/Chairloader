@@ -25,13 +25,13 @@ Chairloader is a modding framework built for Prey (2017) developed by Arkane. Fi
 - Works for all XML assets in the game
 
 
-## [Chairloader Editor] (Chairloader/Tools/Editor/README.md)
+## [Chairloader Editor](Chairloader/Tools/Editor/README.md)
 - Free cam
 - Click on entities to inspect
 - Entity editing
 - Pause the game to explore with free cam
 
-## [Chairloader Modules](ChairLoader/Tools/README.md)
+## [Chairloader Modules](Chairloader/Tools/README.md)
 #### Built-in trainer-like functions:
 - Entity Manager
 - Player Manager
