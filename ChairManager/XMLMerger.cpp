@@ -67,12 +67,12 @@ void XMLMerger::mergeXMLNodeAttributes(pugi::xml_node &baseNode, pugi::xml_node 
 
 
 void XMLMerger::mergeXMLNode(pugi::xml_node &baseNode, pugi::xml_node &modNode) {
-    if(modNode.attribute("chair_remove").as_bool()) {
+    if(modNode.attribute("ch:remove").as_bool()) {
         baseNode.parent().remove_child(baseNode);
         return;
     } else {
-        if(modNode.attribute("chair_patch_mode").as_bool()) {
-            baseNode.remove_attribute("chair_patch_mode");
+        if(modNode.attribute("ch:patch_mode").as_bool()) {
+            baseNode.remove_attribute("ch:patch_mode");
             patchXMLNode(baseNode, modNode);
             return;
         }
@@ -465,8 +465,8 @@ XMLMerger::resolveAttributeWildcards(pugi::xml_node &node, pugi::xml_node &nodeS
     /*
     <X Param="{{ configValue }}" /> <!-- Current mod's config -->
     <X Param="{{ $.modAuthor.modName.configValue }}"/> <!-- Reference a different mod. modAuthor.modName is actually "modName" from ModInfo.xml. $ is like some global object -->
-    <X chair_apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
-    <X chair_apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
+    <X ch:apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
+    <X ch:apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
      */
 //    if(MergingPolicy::getNodeTags(nodeStructure) & MergingPolicy::node_tags::merge_children){
     std::vector<pugi::xml_node> nodesToDelete;
@@ -521,8 +521,8 @@ bool XMLMerger::checkNodeEquality(pugi::xml_node modNode, pugi::xml_node origina
 
 std::string XMLMerger::getWildcardValue(AttributeWildcard &wildcardValue) {
 //    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
-    if(wildcardValue.attribute.name() == std::string("chair_apply_if")){
-        wildcardValue.type = AttributeWildcard::wildcard_type::apply_if;
+    if(wildcardValue.attribute.name() == std::string("ch:apply_if")){
+        wildcardValue.type = attributeWildcard::wildcard_type::apply_if;
     } else {
         wildcardValue.type = AttributeWildcard::wildcard_type::replace;
     }

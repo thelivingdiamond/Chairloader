@@ -7,6 +7,8 @@ set(SOURCE_FILES
 	version.rc.in
 	WinConsole.cpp
 	WinConsole.h
+	ImportantClass.h
+	ImportantClass.cpp
 )
 
 configure_file(

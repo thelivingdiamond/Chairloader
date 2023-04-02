@@ -59,11 +59,11 @@ if(PREY_DLL_DIR)
 endif()
 
 # Chairloader Version
-set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
-set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
-set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
+set(_CHAIRLOADER_VERSION_MINOR 0)  # Increment when new features are added
+set(_CHAIRLOADER_VERSION_PATCH 2)  # Increment when bug fixes are made
 set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
-set(_CHAIRLOADER_VERSION_TYPE "-rc2")  # Indicates a pre-release version (e.g. "-alpha")
+set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Macros and functions
 
