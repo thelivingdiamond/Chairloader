@@ -44,6 +44,7 @@ target_link_libraries(ChairManager
         ZLIB::ZLIB
         unofficial::curlpp::curlpp
         ${Boost_LIBRARIES}
+        StackWalker
         )
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
