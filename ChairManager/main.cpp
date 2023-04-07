@@ -6,66 +6,16 @@
 #include <cstdio>
 #include <StackWalker.h>
 #include "UI.h"
+#include "CrashHandler.h"
 
-#define EXCEPTION_LOG_FILE_NAME "ChairManagerError.log"
-
-class ChairStackWalker : public StackWalker
-{
-public:
-	using StackWalker::StackWalker;
-
-	const std::string& GetTextBuf() { return m_TextBuf; }
-
-protected:
-	virtual void OnOutput(LPCSTR szText)
-	{
-		m_TextBuf += szText;
-		StackWalker::OnOutput(szText);
-	}
-
-	virtual void OnLoadModule(LPCSTR img,
-		LPCSTR mod,
-		DWORD64 baseAddr,
-		DWORD size,
-		DWORD result,
-		LPCSTR symType,
-		LPCSTR pdbName,
-		ULONGLONG fileVersion) override
-	{
-		// Don't print
-	}
-
-	virtual void OnSymInit(LPCSTR szSearchPath, DWORD symOptions, LPCSTR szUserName) override
-	{
-		// Don't print
-	}
-
-private:
-	std::string m_TextBuf;
-};
-
-void ShowFatalErrorAndDie(ChairStackWalker& sw, const std::string& text)
-{
-	std::string messageText;
-	messageText += "An unhandled exception has occured on the main thread.\n";
-	messageText += "This message is duplicated in " EXCEPTION_LOG_FILE_NAME ".\n\n";
-	messageText += "Exception message:\n";
-	messageText += text + "\n\n";
-	messageText += "Call stack:\n";
-	messageText += sw.GetTextBuf();
-	MessageBoxA(nullptr, messageText.c_str(), "Fatal Error", MB_OK | MB_ICONERROR);
-
-	std::ofstream logFile(EXCEPTION_LOG_FILE_NAME);
-	logFile << messageText;
-	logFile.close(); // Must close because std::exit doesn't return
-
-	std::exit(-1);
-}
+#define ERROR_TEXT "Unhandled exception on main thread:\n"
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
 //    AllocConsole();
 //    FILE *pFileCon = NULL;
 //    pFileCon = freopen("CONOUT$", "w", stdout);
+	CrashHandler::Get().AddExceptionHandler();
+
 	try
 	{
 		UI::Render();
@@ -74,12 +24,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	{
 		ChairStackWalker sw;
 		sw.ShowCallstack(GetCurrentThread(), sw.GetCurrentExceptionContext());
-		ShowFatalErrorAndDie(sw, e.what());
+		std::string errorText = std::string(ERROR_TEXT) + e.what();
+		CrashHandler::Get().HandleFatalError(sw, errorText.c_str(), nullptr);
+		return -1;
 	}
 	catch (...)
 	{
 		ChairStackWalker sw(StackWalker::AfterCatch);
 		sw.ShowCallstack();
-		ShowFatalErrorAndDie(sw, "Unknown Exception Type");
+		CrashHandler::Get().HandleFatalError(sw, ERROR_TEXT "Unknown Exception Type", nullptr);
+		return -1;
 	}
 }

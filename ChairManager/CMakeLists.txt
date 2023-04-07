@@ -1,29 +1,43 @@
 set(SOURCE_FILES
-        CMakeLists.txt
-        #ImGuiStandalone
-        UI.cpp
-        UI.h
-        #ChairManager
-        ChairWizards/ChairInstallWizard.cpp
-        ChairWizards/ChairInstallWizard.h
-        ChairManager.cpp
-        ChairManager.h
-        ChairWizards/GamePathDialog.cpp
-        ChairWizards/GamePathDialog.h
-        GameVersion.cpp
-        GameVersion.h
-        pch.h
-        main.cpp
-        #Miscellaneous
-        zipconf.h
-        ./Data/Montserrat-Regular.ttf
-        Resources/appicon.rc
-        Resources/version.rc.in
-        Resources/version.rc
-        ChairWizards/ChairUninstallWizard.cpp
-        ChairWizards/ChairUninstallWizard.h
-        BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h)
+    CMakeLists.txt
+    #ImGuiStandalone
+    UI.cpp
+    UI.h
+    #ChairManager
+    ChairWizards/ChairInstallWizard.cpp
+    ChairWizards/ChairInstallWizard.h
+    ChairManager.cpp
+    ChairManager.h
+    ChairWizards/GamePathDialog.cpp
+    ChairWizards/GamePathDialog.h
+    GameVersion.cpp
+    GameVersion.h
+    pch.h
+    main.cpp
+    #Miscellaneous
+    zipconf.h
+    ./Data/Montserrat-Regular.ttf
+    Resources/appicon.rc
+    Resources/version.rc.in
+    Resources/version.rc
+    ChairWizards/ChairUninstallWizard.cpp
+    ChairWizards/ChairUninstallWizard.h
+    BinaryVersionCheck.h
+    BinaryVersionCheck.cpp
+    XMLMerger.cpp
+    XMLMerger.h
+    CrashHandler.cpp
+    CrashHandler.h
+    ConfigManager.cpp
+    ConfigManager.h
+    UpdateHandler.cpp
+    UpdateHandler.h
+    ChairWizards/ChairUpdateWizard.cpp
+    ChairWizards/ChairUpdateWizard.h
+    UpdateURL.h
+    LogEntry.h
+    Mod.h
+)
 
 
 
@@ -45,6 +59,7 @@ target_link_libraries(ChairManager
         unofficial::curlpp::curlpp
         ${Boost_LIBRARIES}
         StackWalker
+        Dbghelp.lib
         )
 
 target_precompile_headers(ChairManager PRIVATE pch.h)
