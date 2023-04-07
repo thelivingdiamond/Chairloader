@@ -187,18 +187,18 @@ void CrashHandler::PrintModuleList(FILE* file)
 	for (int i = 0; i < count; i++)
 	{
 		GetModuleInformation(hProcess, hMods[i], &moduleInfo, sizeof(moduleInfo));
-		DWORD moduleBase = (DWORD)moduleInfo.lpBaseOfDll;
-		DWORD moduleSize = (DWORD)moduleInfo.SizeOfImage;
+		UINT_PTR moduleBase = (UINT_PTR)moduleInfo.lpBaseOfDll;
+		UINT_PTR moduleSize = (UINT_PTR)moduleInfo.SizeOfImage;
 
 		// Get the full path to the module's file.
 		TCHAR szModName[MAX_PATH];
 		if (GetModuleFileNameEx(hProcess, hMods[i], szModName, sizeof(szModName) / sizeof(TCHAR)))
 		{
-			fprintf(file, "  %08X %08X %s\n", moduleBase, moduleSize, szModName);
+			fprintf(file, "  %08llX %08llX %s\n", moduleBase, moduleSize, szModName);
 		}
 		else
 		{
-			fprintf(file, "  %08X %08X\n", moduleBase, moduleSize);
+			fprintf(file, "  %08llX %08llX\n", moduleBase, moduleSize);
 		}
 	}
 
@@ -279,7 +279,7 @@ void CrashHandler::ShowCrashDialog(const char* errorText)
 LONG CrashHandler::VectoredExceptionsHandler(PEXCEPTION_POINTERS pExceptionInfo) noexcept
 {
 	DWORD exceptionCode = pExceptionInfo->ExceptionRecord->ExceptionCode;
-	DWORD exceptionAddress = (long)pExceptionInfo->ExceptionRecord->ExceptionAddress;
+	UINT_PTR exceptionAddress = (UINT_PTR)pExceptionInfo->ExceptionRecord->ExceptionAddress;
 
 	// Ignore C++ exceptions
 	if (exceptionCode == CPP_EXCEPTION_CODE)
@@ -290,7 +290,7 @@ LONG CrashHandler::VectoredExceptionsHandler(PEXCEPTION_POINTERS pExceptionInfo)
 	{
 		char errorText[256];
 		snprintf(errorText, sizeof(errorText),
-			"Exception %s (0x%08X) at address 0x%08X (%s)",
+			"Exception %s (0x%08X) at address 0x%08llX (%s)",
 			ExceptionCodeString(exceptionCode),
 			exceptionCode,
 			exceptionAddress,
@@ -361,7 +361,7 @@ const char* CrashHandler::ExceptionCodeString(DWORD exceptionCode)
 	}
 }
 
-const char* CrashHandler::GetModuleNameForAddress(DWORD address)
+const char* CrashHandler::GetModuleNameForAddress(UINT_PTR address)
 {
 	// Get modules info
 	HMODULE hMods[1024];
@@ -376,8 +376,8 @@ const char* CrashHandler::GetModuleNameForAddress(DWORD address)
 	for (int i = 0; i < count; i++)
 	{
 		GetModuleInformation(hProcess, hMods[i], &moduleInfo, sizeof(moduleInfo));
-		DWORD moduleBase = (DWORD)moduleInfo.lpBaseOfDll;
-		DWORD moduleSize = (DWORD)moduleInfo.SizeOfImage;
+		UINT_PTR moduleBase = (UINT_PTR)moduleInfo.lpBaseOfDll;
+		UINT_PTR moduleSize = (UINT_PTR)moduleInfo.SizeOfImage;
 
 		if (moduleBase <= address && address < (moduleBase + moduleSize))
 		{

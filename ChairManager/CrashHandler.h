@@ -69,5 +69,5 @@ private:
 	LONG VectoredExceptionsHandler(PEXCEPTION_POINTERS pExceptionInfo) noexcept;
 
 	static const char* ExceptionCodeString(DWORD exceptionCode);
-	static const char* GetModuleNameForAddress(DWORD address);
+	static const char* GetModuleNameForAddress(UINT_PTR address);
 };

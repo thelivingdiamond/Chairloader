@@ -35,4 +35,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		CrashHandler::Get().HandleFatalError(sw, ERROR_TEXT "Unknown Exception Type", nullptr);
 		return -1;
 	}
+
+	return 0;
 }
