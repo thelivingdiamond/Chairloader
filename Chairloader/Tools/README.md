@@ -1,4 +1,4 @@
-# Chairloader Modules
+# Chairloader Tools
 **These are internal modules that provide an array of useful functions in game. They possess many trainer-like features, including entity, player, and world manipulation. They are a statically linked library that is compiled into the main chairloader DLL.**
 
 ## Entity Manager

@@ -59,11 +59,11 @@ if(PREY_DLL_DIR)
 endif()
 
 # Chairloader Version
-set(_CHAIRLOADER_VERSION_MAJOR 0)  # Increment when breaking changes are made
-set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
-set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
+set(_CHAIRLOADER_VERSION_MINOR 0)  # Increment when new features are added
+set(_CHAIRLOADER_VERSION_PATCH 2)  # Increment when bug fixes are made
 set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
-set(_CHAIRLOADER_VERSION_TYPE "-rc2")  # Indicates a pre-release version (e.g. "-alpha")
+set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Macros and functions
 
@@ -104,9 +104,13 @@ find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
+find_package(GTest REQUIRED)
+
+# Enable CTest
+enable_testing()
+
 
 find_package(unofficial-curlpp CONFIG REQUIRED)
-# add_subdirectory(ThirdParty/ExampleLibrary)
 
 # Project libraries
 add_subdirectory(Common)
@@ -131,6 +135,7 @@ unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
 # Since ModToolKit interfaces with PreyDll.dll, everything must use Release ABI
 # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+add_subdirectory(ThirdParty/StackWalker)
 add_subdirectory(CommonChairManager)
 #add_subdirectory(ChairLoaderXMLLoader)
 add_subdirectory(ChairManager)

@@ -6,9 +6,4 @@
 	hasXML="true"
 	hasLevelXML="false"
 	author="The Chair">
-    <ArchetypeLibraries>
-        <ArchetypeLibrary>ArkNpcs.xml</ArchetypeLibrary>
-        <ArchetypeLibrary>ExampleMod.xml</ArchetypeLibrary>
-    </ArchetypeLibraries>
-    <!-- TODO: Add other novel-loadable libraries to this document -->
 </Mod>

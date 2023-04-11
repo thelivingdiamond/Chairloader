@@ -4,6 +4,7 @@
 ### Key Features
 
 - Install mods from .zip or .7z file
+- Install legacy mods from .pak
 - Enable and disable mods from loading through Chairloader
 - Easy Chairloader install and uninstall wizards
 - Automatic DLL patching to add Chairloader support
@@ -19,12 +20,19 @@
 
 
 ### Intuitive Mod Management Interface
-![ChairloaderModLoader_msE8tb8OSO](https://user-images.githubusercontent.com/11778849/187586693-c67e344d-43b2-4db4-b822-939b967d507d.png)
+![ChairManager_Main](https://user-images.githubusercontent.com/11778849/229260970-300016e0-5d3e-465c-a731-25cc54b310ef.png)
+
+
+### Legacy Mod Support
+![ChairManager_Legacy](https://user-images.githubusercontent.com/11778849/229260976-b13f1492-ba13-4698-9ec7-813e858da22a.png)
+
 
 
 ### Mod Merging and Deployment
-![ChairloaderModLoader_Qjor3xt8d6](https://user-images.githubusercontent.com/11778849/187586951-7a142971-6b93-4000-8c40-e447e4873943.png)
+![ChairManager_Deploy](https://user-images.githubusercontent.com/11778849/229261027-cc3509f4-89c0-4e87-880d-df3edc702f6e.png)
+
 
 
 ### Game DLL Patching to enable Chairloader Support on Steam/GOG
-![ChairloaderModLoader_VfT2Usc3Ew](https://user-images.githubusercontent.com/11778849/187587097-00c8367c-e8df-4b38-ace9-b440c4efd19b.png)
+![ChairManager_Settings](https://user-images.githubusercontent.com/11778849/229261031-b3385d46-7bfd-4755-9d8c-7a8c8918e7fc.png)
+
