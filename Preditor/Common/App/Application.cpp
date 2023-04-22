@@ -37,12 +37,27 @@ int Application::Run()
 			gEnv->pJobManager->PushProfilingMarker("Application::Run");
 
 		m_pImGui->BeginFrame();
-		Update();
-//        assert(false);
-		m_pCurrentStage->UpdateInternal();
-		ShowUI(&m_bIsRunning);
-		m_pCurrentStage->ShowUI(&m_bIsRunning);
-		PostUpdate();
+
+		// Switch stages before update
+		if (m_pCurrentStage->IsStageFinished())
+		{
+			AppStagePtr pNextStage = std::move(m_pCurrentStage->m_pNextStage);
+			OnStageChange(m_pCurrentStage.get(), pNextStage.get());
+			m_pCurrentStage = std::move(pNextStage);
+
+			// Quit on null stage
+			if (!m_pCurrentStage)
+				QuitApp();
+		}
+
+		if (m_pCurrentStage)
+		{
+			Update();
+			m_pCurrentStage->UpdateInternal();
+			ShowUI(&m_bIsRunning);
+			m_pCurrentStage->ShowUI(&m_bIsRunning);
+			PostUpdate();
+		}
 
 		m_pImGui->EndFrame();
 
@@ -58,10 +73,10 @@ void Application::QuitApp()
 	m_bIsRunning = false;
 }
 
-void Application::SetStage(AppStage* stage)
+void Application::SetStage(std::unique_ptr<AppStage>&& pStage)
 {
-	CRY_ASSERT_MESSAGE(!stage || !m_pCurrentStage, "Call SetStage(nullptr) first");
-	m_pCurrentStage = stage;
+	CRY_ASSERT_MESSAGE(!pStage || !m_pCurrentStage, "Call SetStage(nullptr) first");
+	m_pCurrentStage = std::move(pStage);
 }
 
 void Application::RefreshUI()
@@ -76,6 +91,10 @@ void Application::RefreshUI()
 void Application::SetAppImGui(std::shared_ptr<IAppImGui> ptr)
 {
 	m_pImGui = std::move(ptr);
+}
+
+void Application::OnStageChange(AppStage* pOldStage, AppStage* pNewStage)
+{
 }
 
 void Application::Update()

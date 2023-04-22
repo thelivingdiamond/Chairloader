@@ -10,6 +10,7 @@ set(SOURCE_FILES
 	App/AppStage.cpp
 	App/AppStage.h
 	App/IAppImGui.h
+	App/SingletonAppStage.h
 	
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h

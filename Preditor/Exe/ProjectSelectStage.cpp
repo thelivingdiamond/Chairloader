@@ -8,6 +8,7 @@
 #include "App/AppImGui.h"
 #include "Preditor.h"
 #include "ImGui/imgui_stdlib.h"
+#include "LoadGameStage.h"
 
 void ProjectSelectStage::Update() {
 }
@@ -150,5 +151,5 @@ void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool 
         return;
     }
 
-    SetStageFinished();
+    SetStageFinished(std::make_unique<LoadGameStage>());
 }

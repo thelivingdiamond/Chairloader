@@ -1,7 +1,7 @@
 #pragma once
 #include "App/AppStage.h"
 
-class LoadGameStage : AppStage
+class LoadGameStage : public AppStage
 {
 public:
 	LoadGameStage();

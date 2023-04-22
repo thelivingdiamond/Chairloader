@@ -47,7 +47,7 @@ void LoadGameStage::Start()
 		if (!IPreditorEngine::Get()->Start(params))
 			throw std::runtime_error("Engine failed to start");
 
-		SetStageFinished();
+		SetStageFinished(Preditor::Get()->OnGameLoaded());
 	}
 	catch (const std::exception& e)
 	{

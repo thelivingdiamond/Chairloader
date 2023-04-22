@@ -8,7 +8,8 @@
 #include "App/AppImGui.h"
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include "ImGui/imgui_stdlib.h"
-
+#include "ProjectSelectStage.h"
+#include "Preditor.h"
 
 
 ConfigValidationStage::~ConfigValidationStage() {
@@ -44,15 +45,16 @@ void ConfigValidationStage::ShowUI(bool *bOpen) {
         case ConfigUIState::Error:
             showErrorWindow();
             break;
-        case ConfigUIState::None:
         default:
-            SetStageFinished();
+            assert(false);
             break;
     }
     ImGui::PopFont();
+
     if(!m_bShow){
         if(m_uiState == ConfigUIState::Done) {
-            SetStageFinished();
+            Preditor::Get()->OnConfigValidated();
+            SetStageFinished(std::make_unique<ProjectSelectStage>());
         }
         else {
             *bOpen = false;
@@ -153,7 +155,6 @@ void ConfigValidationStage::showDoneWindow() {
     if (ImGui::Begin(WINDOW_TITLE.c_str(), &m_bShow, WINDOW_FLAGS)) {
         ImGui::Text("The configuration is now complete. You can now close this window.");
         if (ImGui::Button("Close")) {
-            SetStageFinished();
             m_bShow = false;
         }
     }

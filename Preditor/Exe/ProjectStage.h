@@ -1,5 +1,5 @@
 #pragma once
-#include "App/AppStage.h"
+#include "App/SingletonAppStage.h"
 #include "FlowgraphEditor.h"
 
 struct IChairloaderToolsPreditor;
@@ -9,7 +9,7 @@ class EntityHierarchyWindow;
 class InspectorWindow;
 class SimControlWindow;
 
-class ProjectStage : public AppStage, public ISystemEventListener
+class ProjectStage : public SingletonAppStage<ProjectStage>, public ISystemEventListener
 {
 public:
     ProjectStage();

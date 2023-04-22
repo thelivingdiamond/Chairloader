@@ -1,9 +1,12 @@
 #pragma once
 
+class AppStage;
+using AppStagePtr = std::unique_ptr<AppStage>;
+
 //! Base class for Application Stages.
 //! They represent different states the app can be in (e.g. different dialogs).
-//! Only one stage can be active at a time.
-//! Stages call SetStage in the app automatically.
+//! Only one stage can be active at a time. The active stage is owned by Application instance.
+//! Stages are switched using SetStageFinished on the current stage.
 class AppStage
 {
 public:
@@ -12,7 +15,10 @@ public:
 
 	//! @returns whether the stage is finished and requests a switch to a different stage.
 	bool IsStageFinished() const { return m_bIsFinished; }
-	void SetStageFinished() { m_bIsFinished = true; }
+
+	//! Requests the stage to be switched to a different one.
+	//! @param	pNextStage	The next stage. If null, app will exit.
+	void SetStageFinished(AppStagePtr&& pNextStage);
 
 	//! Starts the stage. Called just before the first update.
 	virtual void Start();
@@ -26,6 +32,7 @@ public:
 private:
 	bool m_bIsStarted = false;
 	bool m_bIsFinished = false;
+	AppStagePtr m_pNextStage;
 
 	void UpdateInternal();
 

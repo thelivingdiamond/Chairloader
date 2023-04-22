@@ -3,12 +3,16 @@
 
 AppStage::AppStage()
 {
-	Application::Get()->SetStage(this);
 }
 
 AppStage::~AppStage()
 {
-	Application::Get()->SetStage(nullptr);
+}
+
+void AppStage::SetStageFinished(AppStagePtr&& pNextStage)
+{
+	m_bIsFinished = true;
+	m_pNextStage = std::move(pNextStage);
 }
 
 void AppStage::Start()

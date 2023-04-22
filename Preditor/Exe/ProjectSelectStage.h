@@ -9,7 +9,7 @@
 #include "App/AppStage.h"
 #include "ImGui/imgui.h"
 
-class ProjectSelectStage: private AppStage {
+class ProjectSelectStage : public AppStage {
 public:
     void Update() override;
     void ShowUI(bool * bOpen) override;

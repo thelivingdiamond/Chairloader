@@ -24,8 +24,8 @@ public:
 	void QuitApp();
 
 	//! Sets the current app stage.
-	void SetStage(AppStage* stage);
-	AppStage* GetStage() { return m_pCurrentStage; }
+	void SetStage(std::unique_ptr<AppStage>&& pStage);
+	AppStage* GetStage() { return m_pCurrentStage.get(); }
 
 	//! Calls ShowUI for the stage and redraws ImGui.
 	//! Can be used inside Update to show progress or something.
@@ -35,6 +35,11 @@ public:
 	void SetAppImGui(std::shared_ptr<IAppImGui> ptr);
 
 protected:
+	//! Called when changing stages.
+	//! @param	pOldStage	The current stage.
+	//! @param	pNewStage	The next stage. May be null.
+	virtual void OnStageChange(AppStage* pOldStage, AppStage* pNewStage);
+
 	//! Updates the app. Called before the stage update.
 	virtual void Update();
 
@@ -47,6 +52,6 @@ protected:
 private:
 	fs::path m_ProgramPath;
 	std::shared_ptr<IAppImGui> m_pImGui;
-	AppStage* m_pCurrentStage = nullptr;
+	std::unique_ptr<AppStage> m_pCurrentStage;
 	bool m_bIsRunning = false;
 };

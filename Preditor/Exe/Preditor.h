@@ -22,6 +22,13 @@ public:
 
 	ConfigManager GetConfig() { return m_Config; }
 
+	//! Called after the config is validated.
+	void OnConfigValidated();
+
+	//! Called after the engine is successfully loaded.
+	//! @returns the next stage.
+	AppStagePtr OnGameLoaded();
+
 protected:
 	void Update() override;
 	void ShowUI(bool* bOpen) override;
@@ -34,10 +41,4 @@ private:
 	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;
     std::unique_ptr<LookingGlass> m_pLookingGlass;
-
-    // STAGES
-    std::unique_ptr<ConfigValidationStage> m_ConfigValidateStage;
-	std::unique_ptr<ProjectSelectStage> m_pProjectSelectStage;
-	std::unique_ptr<LoadGameStage> m_pLoadGameStage;
-	std::unique_ptr<ProjectStage> m_pProjectStage;
 };

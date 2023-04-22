@@ -7,15 +7,12 @@
 #include "Preditor.h"
 #include "LoadGameStage.h"
 
-// Dear God, No
-//#include "../ChairLoader/DevConsoleDialog.h"
-
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
 Preditor::Preditor()
 {
     m_Config.LoadFromXML(); // TODO:
-    m_ConfigValidateStage = std::make_unique<ConfigValidationStage>();
+    SetStage(std::make_unique<ConfigValidationStage>());
 }
 
 Preditor::~Preditor()
@@ -23,38 +20,26 @@ Preditor::~Preditor()
     IPreditorEngine::Get()->Shutdown();
 }
 
+void Preditor::OnConfigValidated()
+{
+    m_pProjectManager = std::make_unique<ProjectManager>();
+}
+
+AppStagePtr Preditor::OnGameLoaded()
+{
+    IPreditorEngine::Get()->SetAppImGui();
+    std::unique_ptr<ProjectStage> pProjectStage = std::make_unique<ProjectStage>();
+    m_pLookingGlass = std::make_unique<LookingGlass>();
+    m_pLookingGlass->Init();
+
+    return pProjectStage;
+}
+
 void Preditor::Update()
 {
-	if (GetStage()->IsStageFinished())
-	{
-        if(m_ConfigValidateStage)
-        {
-            m_ConfigValidateStage.reset();
-            m_pProjectManager = std::make_unique<ProjectManager>();
-            m_pProjectSelectStage = std::make_unique<ProjectSelectStage>();
-        }
-        else if (m_pProjectSelectStage)
-        {
-            m_pProjectSelectStage.reset();
-            m_pLoadGameStage = std::make_unique<LoadGameStage>();
-        }
-        else if (m_pLoadGameStage)
-        {
-			m_pLoadGameStage.reset();
-            IPreditorEngine::Get()->SetAppImGui();
-            m_pProjectStage = std::make_unique<ProjectStage>();
-            m_pLookingGlass = std::make_unique<LookingGlass>();
-            m_pLookingGlass->Init();
-		}
-        else if (m_pProjectStage)
-        {
-            QuitApp();
-        }
-	}
-
     // Only the main stage has a dedicated main window.
     // Dock space needs to be created before any windows.
-    if (m_pProjectStage)
+    if (ProjectStage::Get())
         ImGui::DockSpaceOverViewport();
 }
 
@@ -62,13 +47,13 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
-    if (m_pLookingGlass)
+    if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
         m_pLookingGlass->ShowUI();
 }
 
 void Preditor::PostUpdate()
 {
-    // Engine must be updated at the ent of the tick because it will end the ImGui frame.
+    // Engine must be updated at the end of the tick because it will end the ImGui frame.
     if (!IPreditorEngine::Get()->Update())
         QuitApp();
 }
