@@ -163,7 +163,9 @@ void AppImGui::InitImGui()
     ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 18.0f);
     static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_16_MD, 0 };
     ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.GlyphOffset.y = 5.0f; icons_config.PixelSnapH = true;
-    m_pPrettyFont =  ImGui::GetIO().Fonts->AddFontFromFileTTF("MaterialIcons-Regular.ttf", 18.0f, &icons_config, icons_ranges);
+
+	fs::path prettyFontPath = Application::Get()->GetProgramPath() / "Preditor/MaterialIcons-Regular.ttf";
+    m_pPrettyFont =  ImGui::GetIO().Fonts->AddFontFromFileTTF(prettyFontPath.u8string().c_str(), 18.0f, &icons_config, icons_ranges);
 
     ImGui_ImplWin32_Init((HWND)m_hWndVoid);
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);

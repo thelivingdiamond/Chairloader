@@ -64,7 +64,7 @@ target_precompile_headers(Preditor.Exe PRIVATE pch.h)
 set_target_properties(Preditor.Exe PROPERTIES OUTPUT_NAME "Preditor")
 
 set_target_properties(Preditor.Exe PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../Data"
+	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/ChairManager/Data"
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

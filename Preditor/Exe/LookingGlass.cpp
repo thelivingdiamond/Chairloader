@@ -6,6 +6,7 @@
 #include "LookingGlass.h"
 #include "ConfigManager.h"
 #include "ImGui/imgui_stdlib.h"
+#include "Preditor.h"
 static LookingGlass* m_pLookingGlass = nullptr;
 
 pugi::xml_node noCaseChild(pugi::xml_node& node, std::string name) {
@@ -26,7 +27,8 @@ LookingGlass::~LookingGlass() {
 }
 
 void LookingGlass::Init() {
-    m_PolicyDocument.load_file("LookingGlassReferenceLibrary.xml");
+    fs::path policyPath = Preditor::Get()->GetProgramPath() / "Preditor/LookingGlassReferenceLibrary.xml";
+    m_PolicyDocument.load_file(policyPath.c_str());
     m_PolicyNode = m_PolicyDocument.first_child();
     AppModule::Init();
 }

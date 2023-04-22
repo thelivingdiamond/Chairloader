@@ -34,7 +34,7 @@ public:
     bool validateConfigPaths(std::string &error);
 
 protected:
-    static constexpr char CONFIG_FILE_NAME[] = "ModToolKitConfig.xml";
+    static constexpr char CONFIG_FILE_NAME[] = "Preditor/ModToolKitConfig.xml";
     fs::path m_gamePath;
     fs::path m_PreyFilesPath;
 

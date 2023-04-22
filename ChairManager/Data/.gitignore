@@ -1,3 +1,5 @@
 # Crash dumps
 *-Crash-*.dmp
 *-Crash-*.txt
+
+/imgui.ini
