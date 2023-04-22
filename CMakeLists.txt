@@ -25,6 +25,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Prey was build in Release so mods must match it even in Debug
 set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
+set(CMAKE_MAP_IMPORTED_CONFIG_DEBUG Release)
 add_compile_definitions(
 	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
 )
@@ -99,7 +100,7 @@ function(cl_set_debug_path targetName)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS program_options)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
