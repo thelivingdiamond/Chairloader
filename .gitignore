@@ -412,6 +412,7 @@ ChairLoader/PreyDll.dll.gzf
 # Ignore Output Directories and Files
 ChairManager/English_xml_patch.pak
 ChairManager/Data/LevelOutput/
+ChairManager/Data/LocalizationOutput/
 ChairManager/Data/Output/
 ChairManager/Data/ChairManagerConfig.xml
 ChairManager/Data/patch_chairloader.pak
