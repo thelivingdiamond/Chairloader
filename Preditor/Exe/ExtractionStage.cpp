@@ -88,6 +88,9 @@ void ExtractionStage::Start()
 			m_CurrentPakIndex++;
 		}
 
+		// Create the file to mark data as successfully extracted
+		std::ofstream markFile(m_Opts.outputPath / "FilesExtracted.dat");
+
 		m_State = EState::Done;
 		SetStageFinished(nullptr);
 	}
@@ -246,6 +249,10 @@ void ExtractionStage::ExtractPak(const pugi::xml_node node)
 			FileMap allFiles;
 			FillFileList(pRootDir, "", allFiles);
 			ThrowIfCancelling();
+
+			// Check if the pak was touched by Chairloader
+			if (allFiles.find(".chairloader") != allFiles.end())
+				throw std::runtime_error("pak was modified by Chairloader. Validate game files.");
 
 			FileMap filesToExtract = FilterFiles(node, allFiles);
 			ThrowIfCancelling();
