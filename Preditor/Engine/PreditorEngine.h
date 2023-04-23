@@ -58,7 +58,7 @@ private:
 
 	void ApplyBasePatches();	//!< Applies patches used by both full and minimal engine.
 	void ApplyFullPatches();	//!< Applies patches used by the full engine.
-	void ApplyMinimalPatches();	//!< Applies patches used by the minimal engine.
+	void ApplyMinimalPatches(const InitParams& params);	//!< Applies patches used by the minimal engine.
 	void InstallHooks();
 };
 

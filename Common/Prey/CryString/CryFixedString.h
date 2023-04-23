@@ -2039,8 +2039,8 @@ public:
 #undef ASSERT_WLEN
 typedef CryStackStringT<char, 512> stack_string;
 
-//! Special string type used for specifying file paths.
-typedef CryStackStringT<char, 512> CryPathString;
+//! Special string type used for specifying file paths. Not yet added in Prey.
+// typedef CryStackStringT<char, 512> CryPathString;
 
 #if defined(USER_alexl)
 struct SUnitTest_FixedString

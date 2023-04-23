@@ -100,6 +100,7 @@ struct ICryArchive : public _reference_target_t
 
     struct IEnumerateArchiveEntries
     {
+        //! @returns whether to continue enumeration.
         virtual bool OnEnumArchiveEntry(const char* pFilename, Handle hEntry, bool bIsFolder, int aSize, int64 aModifiedTime) = 0;
         virtual ~IEnumerateArchiveEntries(){}
     };
@@ -281,19 +282,19 @@ struct ICryPak // Id=800062E Size=8
 
     //! After this call, the pak file will be searched for files when they aren't on the OS file system.
     //! \param pName Must not be 0.
-    virtual bool OpenPack(const char *pName, unsigned nFlags, IMemoryBlock *pData = 0, CryPathString * pFullPath = 0) = 0;
+    virtual bool OpenPack(const char *pName, unsigned nFlags, IMemoryBlock *pData = 0, CryFixedStringT<ICryPak::g_nMaxPath>* pFullPath = 0) = 0;
 
     //! After this call, the pak file will be searched for files when they aren't on the OS file system.
-    virtual bool OpenPack(const char *pBindingRoot, const char *pName, unsigned arg2, IMemoryBlock *pData = 0, CryPathString * pFullPath = 0) = 0;
+    virtual bool OpenPack(const char *pBindingRoot, const char *pName, unsigned arg2, IMemoryBlock *pData = 0, CryFixedStringT<ICryPak::g_nMaxPath>* pFullPath = 0) = 0;
 
     //! After this call, the file will be unlocked and closed, and its contents won't be used to search for files.
     virtual bool ClosePack(const char *pName, unsigned nFlags) = 0;
 
     //! Opens pack files by the path and wildcard.
-    virtual bool OpenPacks(const char *pWildcard, unsigned nFlags, std::vector<CryPathString> *pFullPaths = nullptr) = 0;
+    virtual bool OpenPacks(const char *pWildcard, unsigned nFlags, std::vector<CryFixedStringT<ICryPak::g_nMaxPath>> *pFullPaths = nullptr) = 0;
 
     //! Opens pack files by the path and wildcard.
-    virtual bool OpenPacks(const char* pBindingRoot, const char* pWildcard, unsigned nFlags, std::vector<CryPathString>* pFullPaths = NULL) = 0;
+    virtual bool OpenPacks(const char* pBindingRoot, const char* pWildcard, unsigned nFlags, std::vector<CryFixedStringT<ICryPak::g_nMaxPath>>* pFullPaths = NULL) = 0;
 
 
     virtual void SetFlagsOnPak(const char *arg0, unsigned arg1) = 0;

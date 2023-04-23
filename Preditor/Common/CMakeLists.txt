@@ -31,6 +31,7 @@ target_compile_definitions(Preditor.Common PUBLIC
 )
 
 target_link_libraries(Preditor.Common PUBLIC
+	Boost::program_options
 	Common
 	CommonChairManager
 )

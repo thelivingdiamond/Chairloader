@@ -151,5 +151,5 @@ void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool 
         return;
     }
 
-    SetStageFinished(std::make_unique<LoadGameStage>());
+    SetStageFinished(std::make_unique<LoadGameStage>(nullptr));
 }

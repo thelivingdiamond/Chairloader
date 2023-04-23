@@ -40,6 +40,10 @@ struct IPreditorEngine
 
 		//! Load PAKs from the original GameSDK. Only use if GameSDK path is different.
 		bool loadGamePaks = false;
+
+		//! Load pak files with original file case.
+		//! WARNING: Will break file opening by name from paks.
+		bool caseSensitivePaks = false;
 	};
 
 	//! @returns the singleton instance.

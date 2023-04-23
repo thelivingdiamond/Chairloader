@@ -198,26 +198,29 @@ void CSystem_LoadConfiguration_Hook(CSystem* const _this, const char* sFilename,
 	}
 	else if (!strcmp(sFilename, "user.cfg"))
 	{
-		// Disable fullscreen
-		_this->m_rFullscreen->Set(0);
-
-		// Set window size
-		UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
-		Vec2i size = pSettings->GetWindowRestoredSize();
-
-		if (size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
+		if (ProjectManager::Get())
 		{
-			_this->m_rWidth->Set(size.x);
-			_this->m_rHeight->Set(size.y);
-		}
-		else
-		{
-			// Default to working area size of the main monitor
-			RECT rc;
-			if (SystemParametersInfoA(SPI_GETWORKAREA, 0, &rc, 0))
+			// Disable fullscreen
+			_this->m_rFullscreen->Set(0);
+
+			// Set window size
+			UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
+			Vec2i size = pSettings->GetWindowRestoredSize();
+
+			if (size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
 			{
-				_this->m_rWidth->Set(rc.right - rc.left);
-				_this->m_rHeight->Set(rc.bottom - rc.top);
+				_this->m_rWidth->Set(size.x);
+				_this->m_rHeight->Set(size.y);
+			}
+			else
+			{
+				// Default to working area size of the main monitor
+				RECT rc;
+				if (SystemParametersInfoA(SPI_GETWORKAREA, 0, &rc, 0))
+				{
+					_this->m_rWidth->Set(rc.right - rc.left);
+					_this->m_rHeight->Set(rc.bottom - rc.top);
+				}
 			}
 		}
 	}
@@ -383,7 +386,7 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 
 	ApplyBasePatches();
 	if (params.minimal)
-		ApplyMinimalPatches();
+		ApplyMinimalPatches(params);
 	else
 		ApplyFullPatches();
 	InstallHooks();
@@ -571,7 +574,7 @@ void Engine::PreditorEngine::ApplyFullPatches()
 	mem::Nop(dllBase + 0x5C6C50, 0x5C6C53 - 0x5C6C50);
 }
 
-void Engine::PreditorEngine::ApplyMinimalPatches()
+void Engine::PreditorEngine::ApplyMinimalPatches(const InitParams& params)
 {
 	uint8_t* dllBase = (uint8_t*)m_hPreyDll.get();
 
@@ -598,8 +601,9 @@ void Engine::PreditorEngine::ApplyMinimalPatches()
 	mem::Nop(dllBase + 0x16D0B2A, 0x14);
 	mem::Nop(dllBase + 0x16D0B4B, 0x05);
 
-	// CGame::Init: Skip ArkGame::Init
-	mem::Nop(dllBase + 0x16D0E39, 0x05);
+	// CGame::Init
+	mem::Nop(dllBase + 0x16D0C93, 0x03);	// Skip CGame::LoadActionMaps
+	mem::Nop(dllBase + 0x16D0E39, 0x05);	// Skip ArkGame::Init
 
 	// CGame::InitGameType: Remove pHardwareMouse calls
 	mem::Nop(dllBase + 0x16D1A0C, 0x16D1A12 - 0x16D1A0C);
@@ -628,6 +632,15 @@ void Engine::PreditorEngine::ApplyMinimalPatches()
 	mem::Nop(dllBase + 0x179447B, 0x1794480 - 0x179447B); // skip CTacticalScanNode Hud Event Register Call
 
 	mem::Nop(dllBase + 0x11C92D1, 0x11C9300 - 0x11C92D1); // skip CArkFlowNodeMimicPlayerEvent UI Calls
+
+	if (params.caseSensitivePaks)
+	{
+		// ZipDir::CacheFactory::BuildFileEntryMap: Remove tolower call
+		// This will break opening files in paks by name.
+		uint8_t toLowerPatch[] = { 0x89, 0xC8 }; // mov eax, ecx
+		mem::Nop(dllBase + 0xE42A43, 0xE42A49 - 0xE42A43);
+		mem::Patch(dllBase + 0xE42A43, toLowerPatch, std::size(toLowerPatch));
+	}
 }
 
 void Engine::PreditorEngine::InstallHooks()

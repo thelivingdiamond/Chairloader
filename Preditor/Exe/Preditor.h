@@ -9,6 +9,7 @@
 #include "LookingGlass.h"
 
 struct IGameStartup;
+struct ExtractionOptions;
 class LoadGameStage;
 class DevConsoleDialog;
 
@@ -36,9 +37,12 @@ protected:
 
 private:
 	ConfigManager m_Config;
+	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
 
     // MODULES
 	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;
     std::unique_ptr<LookingGlass> m_pLookingGlass;
+
+	void ParseCommandLine();
 };

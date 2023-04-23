@@ -6,9 +6,11 @@
 #include "LoadGameStage.h"
 #include "Preditor.h"
 #include "ConfigManager.h"
+#include "ExtractionOptions.h"
 
-LoadGameStage::LoadGameStage()
+LoadGameStage::LoadGameStage(ExtractionOptions* pExtractionOptions)
 {
+	m_pExtractionOptions = pExtractionOptions;
 }
 
 void LoadGameStage::Start()
@@ -20,26 +22,48 @@ void LoadGameStage::Start()
 		// Parse game path
 		GamePath gamePath;
 		{
-			const fs::path& configGamePath = ConfigManager::Get()->getGamePath();
+			fs::path gameRootPath;
 			std::string error;
 
-			if (!gamePath.TrySetGamePath(configGamePath, &error))
+			if (m_pExtractionOptions)
+				gameRootPath = m_pExtractionOptions->gamePath;
+			else
+				gameRootPath = ConfigManager::Get()->getGamePath();
+
+			if (!gamePath.TrySetGamePath(gameRootPath, &error))
 				throw std::runtime_error("Failed to set game path: " + error);
 		}
 
-		fs::path projRuntime = ProjectManager::GetProject()->GetRuntimePath();
 		IPreditorEngine::InitParams params;
 		params.progressCallback = [&](const char* msg) { UpdateProgressText(msg); };
 		params.enginePath = gamePath;
-		params.modDirPath = projRuntime / "GameSDK";
-		params.userPath = projRuntime / "User";
-		params.chairloaderConfigPath = projRuntime / "Config";
-		params.minimal = false;
-		params.loadGamePaks = false;
+
+		if (m_pExtractionOptions)
+		{
+			// Extraction doesn't need the full engine
+			params.gameSdkPath = m_pExtractionOptions->outputPath / "_temp/GameSDK";
+			params.userPath = m_pExtractionOptions->outputPath / "_temp/User";
+			params.minimal = true;
+			params.caseSensitivePaks = true;
+			fs::create_directories(params.gameSdkPath);
+			fs::create_directories(params.userPath);
+		}
+		else
+		{
+			// Load the whole game
+			fs::path projRuntime = ProjectManager::GetProject()->GetRuntimePath();
+			params.modDirPath = projRuntime / "GameSDK";
+			params.userPath = projRuntime / "User";
+			params.chairloaderConfigPath = projRuntime / "Config";
+			params.minimal = false;
+			params.loadGamePaks = false;
+		}
 
 		// Create directories
 		fs::create_directory(params.userPath);
-		fs::create_directory(params.chairloaderConfigPath);
+
+		if (!params.chairloaderConfigPath.empty())
+			fs::create_directory(params.chairloaderConfigPath);
 
 		IPreditorEngine::Get()->Load(params);
 		

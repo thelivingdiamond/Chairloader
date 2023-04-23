@@ -22,6 +22,9 @@ set(SOURCE_FILES
 	ConfigValidationStage.h
 	EntityHierarchyWindow.cpp
 	EntityHierarchyWindow.h
+	ExtractionOptions.h
+	ExtractionStage.cpp
+	ExtractionStage.h
 	FlowgraphEditor.cpp
 	FlowgraphEditor.h
 	GameViewport.cpp
