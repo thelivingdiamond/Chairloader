@@ -6,7 +6,6 @@
 #define CHAIRLOADER_HASHUTILS_H
 
 #include <Manager/SHA256.h>
-#include "VirtualFileSystem.h"
 
 namespace HashUtils {
     SHA256::Digest HashFile(fs::path path);
