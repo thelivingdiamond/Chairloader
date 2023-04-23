@@ -15,11 +15,13 @@
 #include <windows.h>
 #include "BinaryVersionCheck.h"
 #include "XMLMerger.h"
+#include "Merging/XMLMerger2.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
 #include "LogEntry.h"
 #include "Mod.h"
 #include "Merging/ChairMerger.h"
+
 
 class GamePathDialog;
 class GameVersion;
@@ -29,6 +31,7 @@ class ChairUninstallWizard;
 class ChairUpdateWizard;
 struct SemanticVersion;
 enum class DeployStep;
+class ChairMerger;
 
 
 class ChairManager {
@@ -57,7 +60,7 @@ public:
     }
     std::string GetDisplayName(std::string modName);
 
-    const float GetDPIScale() { return dpiScale; }
+    const float GetDPIScale() const { return dpiScale; }
 
     void updateDPI(float dpiScaleIn){
         updateDPIScaling = true;
@@ -85,6 +88,7 @@ public:
             return versionNode.text().as_string();
         return "";
     }
+
     void setCachedLatestVersion(std::string version) {
         if(!ChairManagerConfigFile.first_child().child("LatestVersion"))
             ChairManagerConfigFile.first_child().append_child("LatestVersion");
@@ -96,17 +100,6 @@ public:
 
     void GTestInit();
 
-    /* Deploy Screen */
-
-    void SetDeployState(DeployStep state){
-        std::lock_guard<std::mutex> lock(m_DeployLogMutex);
-        m_DeployState = state;
-    }
-
-    void SetDeployFailed(bool failed = true){
-        std::lock_guard<std::mutex> lock(m_DeployLogMutex);
-        m_bDeployFailed = failed;
-    }
 private:
     //! DPI
     bool updateDPIScaling;
@@ -160,9 +153,7 @@ private:
     void DrawUpdateWizard(bool* pbIsOpen);
     bool m_bShowUpdateWizard = false;
 
-    DeployStep m_DeployState = DeployStep::Invalid;
     std::mutex m_DeployLogMutex;
-    bool m_bDeployFailed = false;
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::future<void> m_DeployTaskFuture;
@@ -252,10 +243,6 @@ private:
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
 
-    //Deploy
-    bool DeployMods();
-    void RunAsyncDeploy();
-
     /* XML MERGING */
     void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
     void mergeXMLFiles(bool onlyChairPatch = false);
@@ -263,6 +250,8 @@ private:
 
     //! XML MERGING V2
     XMLMerger m_XMLMerger;
+
+    std::unique_ptr<ChairMerger> m_pChairMerger;
 
     //! config manager
     ConfigManager m_ConfigManager;
@@ -370,4 +359,6 @@ private:
 
     void removeStartupCinematics();
     void restoreStartupCinematics();
+
+    void RunAsyncDeploy();
 };
