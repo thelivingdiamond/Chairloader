@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	Chairloader/ChairXmlUtils.cpp
+	Chairloader/ChairXmlUtils.h
 	Chairloader/IChairloaderCore.h
 	Chairloader/IChairloaderCryRender.h
 	Chairloader/IChairloaderDll.h

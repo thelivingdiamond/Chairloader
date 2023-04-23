@@ -13,6 +13,7 @@
 #include <mem.h>
 #include "Chairloader.h"
 #include <Chairloader/IChairVarManager.h>
+#include <Chairloader/ChairXmlUtils.h>
 
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryCore/Platform/platform_impl.inl>
@@ -27,6 +28,7 @@ Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 static int CV_cl_asserts;
+static ChairXmlUtils g_XmlUtils;
 
 static std::unique_ptr<ImportantListener> g_ImportantListener;
 
@@ -213,6 +215,7 @@ Chairloader::~Chairloader()
 void Chairloader::InitSystem(CSystem* pSystem)
 {
 	gCL->cl = this;
+	gCL->pXmlUtils = &g_XmlUtils;
 	ModuleInitISystem(pSystem, "Chairloader");
 	ModuleInitIChairLogger("Chairloader");
 	m_WinConsole.InitSystem();

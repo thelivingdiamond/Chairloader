@@ -30,6 +30,7 @@ set(SOURCE_FILES
 	Chairloader/IChairLogger.h
 	Chairloader/IChairloaderMod.h
 	Chairloader/IChairRender.h
+	Chairloader/IChairXmlUtils.h
 	Chairloader/IRenderAuxGeomEx.h
 	Chairloader/pch.h
 	Chairloader/PreyFunction.cpp
