@@ -26,6 +26,12 @@ set(SOURCE_FILES
         BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h
 		Merging/MergingPolicy.h
 		Merging/AttributeWildcard.h Merging/ChairMerger.cpp Merging/ChairMerger.h Merging/XMLMerger2.cpp Merging/XMLMerger2.h Merging/ChairMergerTest.cpp Merging/XMLMerger2Test.cpp Merging/FileChecksum.h)
+		Merging/HashUtils.h
+		Merging/HashUtils.cpp
+		Merging/HashUtilsTest.cpp
+		Merging/ZipUtils.h
+		Merging/ZipUtils.cpp
+		Merging/ZipUtilsTest.cpp
 
 
 
