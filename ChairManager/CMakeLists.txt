@@ -25,13 +25,25 @@ set(SOURCE_FILES
         BinaryVersionCheck.h
         BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h
 		Merging/MergingPolicy.h
-		Merging/AttributeWildcard.h Merging/ChairMerger.cpp Merging/ChairMerger.h Merging/XMLMerger2.cpp Merging/XMLMerger2.h Merging/ChairMergerTest.cpp Merging/XMLMerger2Test.cpp Merging/FileChecksum.h)
+		Merging/AttributeWildcard.h
+		Merging/ChairMerger.cpp
+		Merging/ChairMerger.h
+		Merging/XMLMerger2.cpp
+		Merging/XMLMerger2.h
+		Merging/ChairMergerTest.cpp
+		Merging/XMLMerger2Test.cpp
+		Merging/FileChecksum.h
 		Merging/HashUtils.h
 		Merging/HashUtils.cpp
 		Merging/HashUtilsTest.cpp
 		Merging/ZipUtils.h
 		Merging/ZipUtils.cpp
 		Merging/ZipUtilsTest.cpp
+		ModConfig.h
+		LuaUtils.cpp
+		LuaUtils.h
+		LuaUtilsTest.cpp
+		)
 
 
 
@@ -45,7 +57,7 @@ configure_file(
         @ONLY)
 
 add_executable(ChairManager WIN32 ${SOURCE_FILES})
-target_include_directories(ChairManager PRIVATE .)
+target_include_directories(ChairManager PRIVATE . ${LUABRIDGE_INCLUDE_DIRS} ${LUA_INCLUDE_DIR})
 
 target_link_libraries(ChairManager
         version.lib
@@ -56,6 +68,9 @@ target_link_libraries(ChairManager
         ${Boost_LIBRARIES}
 		GTest::gtest
 		GTest::gmock
+		libzip::zip
+		libzippp::libzippp
+		${LUA_LIBRARIES}
 		)
 #gtest_discover_tests(ChairManager WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data DISCOVERY_TIMEOUT 60 XML_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/TestResults DISCOVERY_MODE POST_BUILD)
 #gtest_discover_tests(ChairManager)
