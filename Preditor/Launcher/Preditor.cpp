@@ -13,6 +13,7 @@ ChairloaderGlobalEnvironment* gCL = nullptr;
 
 Preditor::Preditor()
 {
+    gPreditor->pPaths = &m_Paths;
     ParseCommandLine();
 
     if (m_pExtractionOptions)

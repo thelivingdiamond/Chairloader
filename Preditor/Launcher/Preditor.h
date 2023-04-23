@@ -18,6 +18,8 @@ public:
 	Preditor();
 	~Preditor();
 
+	PreditorPaths& GetPahts() { return m_Paths; }
+
 	//! Called after the config is validated.
 	void OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig);
 
@@ -31,6 +33,7 @@ protected:
 	void PostUpdate() override;
 
 private:
+	PreditorPaths m_Paths;
 	std::unique_ptr<PreditorConfig> m_pConfig;
 	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
 
