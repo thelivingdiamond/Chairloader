@@ -1,7 +1,6 @@
 #pragma once
 #include <Preditor/Project/ProjectManager.h>
 #include "App/Application.h"
-#include "ConfigManager.h"
 #include "ProjectSelectStage.h"
 #include "ProjectStage.h"
 #include "ConfigValidationStage.h"
@@ -19,10 +18,8 @@ public:
 	Preditor();
 	~Preditor();
 
-	ConfigManager GetConfig() { return m_Config; }
-
 	//! Called after the config is validated.
-	void OnConfigValidated();
+	void OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig);
 
 	//! Called after the engine is successfully loaded.
 	//! @returns the next stage.
@@ -34,7 +31,7 @@ protected:
 	void PostUpdate() override;
 
 private:
-	ConfigManager m_Config;
+	std::unique_ptr<PreditorConfig> m_pConfig;
 	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
 
     // MODULES

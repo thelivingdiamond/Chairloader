@@ -22,7 +22,6 @@ Preditor::Preditor()
     }
     else
     {
-        m_Config.LoadFromXML(); // TODO:
         SetStage(std::make_unique<ConfigValidationStage>());
     }
 }
@@ -32,8 +31,10 @@ Preditor::~Preditor()
     IPreditorEngine::Get()->Shutdown();
 }
 
-void Preditor::OnConfigValidated()
+void Preditor::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)
 {
+    m_pConfig = std::move(pConfig);
+    gPreditor->pConfig = m_pConfig.get();
     m_pProjectManager = std::make_unique<ProjectManager>();
 }
 

@@ -19,8 +19,13 @@ set(SOURCE_FILES
 	Preditor/Project/ProjectManager.h
 	Preditor/Project/UserProjectSettings.h
 
+	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h
 	Preditor/IGameViewport.h
+	Preditor/pch.h
+	Preditor/PreditorConfig.cpp
+	Preditor/PreditorConfig.h
+	Preditor/PreditorPaths.h
 )
 
 add_library(Preditor.Common STATIC ${SOURCE_FILES})
@@ -29,6 +34,8 @@ target_include_directories(Preditor.Common PUBLIC .)
 target_compile_definitions(Preditor.Common PUBLIC
 	PREDITOR
 )
+
+target_precompile_headers(Preditor.Common PUBLIC Preditor/pch.h)
 
 target_link_libraries(Preditor.Common PUBLIC
 	Boost::program_options

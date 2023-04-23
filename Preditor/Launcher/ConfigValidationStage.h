@@ -6,23 +6,21 @@
 #define CHAIRLOADER_CONFIGVALIDATIONSTAGE_H
 
 #include "ImGui/imgui.h"
-#include "pch.h"
 #include "App/AppStage.h"
-#include "ConfigManager.h"
 
-class ConfigValidationStage : public AppStage {
+class ConfigValidationStage : public AppStage
+{
 public:
-    ~ConfigValidationStage() override;
-
-    ConfigValidationStage();
-
     void Start() override;
+    void ShowUI(bool* bOpen) override;
 
-    void Update() override;
-
-    void ShowUI(bool *bOpen) override;
 private:
-    bool m_bShow = false;
+    const ImVec2 WINDOW_SIZE = ImVec2(800, 300);
+    static constexpr ImGuiWindowFlags WINDOW_FLAGS =
+        ImGuiWindowFlags_NoCollapse |
+        ImGuiWindowFlags_NoResize |
+        ImGuiWindowFlags_NoDocking;
+    static constexpr char WINDOW_TITLE[] = "Preditor Configuration";
 
     enum class ConfigUIState {
         None,
@@ -30,25 +28,29 @@ private:
         GamePaths,
         Error,
         Done,
+        FatalError,
     };
+
+    std::unique_ptr<PreditorConfig> m_pConfig;
     ConfigUIState m_uiState = ConfigUIState::None;
     std::string m_error;
-    void setState(ConfigUIState state) { m_uiState = state; }
-    void error(const std::string &error);
 
-    ImVec2 WINDOW_SIZE = ImVec2(800, 300);
-    ImGuiWindowFlags WINDOW_FLAGS = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking;
-    std::string WINDOW_TITLE = "Preditor Configuration";
+    std::string m_GamePath;
 
-    void showWelcomeWindow();
+    //! Switches to a new state.
+    void SetState(ConfigUIState state) { m_uiState = state; }
 
-    void showGamePathsWindow();
+    //! Switches to the error state. Allows to go back.
+    void Error(const std::string& error);
 
-    void showErrorWindow();
+    //! Called when config is successfully validated.
+    void OnFinish();
 
-    void showDoneWindow();
-
-    ConfigManager* m_configManager;
+    void ShowWelcomeWindow(bool* bOpen);
+    void ShowGamePathsWindow(bool* bOpen);
+    void ShowErrorWindow(bool* bOpen);
+    void ShowDoneWindow(bool* bOpen);
+    void ShowFatalErrorWindow(bool* bOpen);
 };
 
 

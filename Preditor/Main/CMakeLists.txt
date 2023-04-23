@@ -20,7 +20,6 @@ set(SOURCE_FILES
 	InspectorWindow.h
 	LookingGlass.cpp
 	LookingGlass.h
-	pch.h
 	SceneViewport.cpp
 	SceneViewport.h
 	SimControlWindow.cpp
@@ -39,5 +38,4 @@ target_link_libraries(Preditor.Main
 	Chairloader.Tools.Preditor
 )
 
-target_precompile_headers(Preditor.Main PRIVATE pch.h)
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

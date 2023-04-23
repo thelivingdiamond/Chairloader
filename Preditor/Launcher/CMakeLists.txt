@@ -7,8 +7,6 @@ set(SOURCE_FILES
 
 	Resources/Preditor.rc
 
-	ConfigManager.cpp
-	ConfigManager.h
 	ConfigValidationStage.cpp
 	ConfigValidationStage.h
 	ExtractionOptions.h
@@ -16,9 +14,10 @@ set(SOURCE_FILES
 	ExtractionStage.h
 	LoadGameStage.cpp
 	LoadGameStage.h
-	pch.h
 	Preditor.cpp
 	Preditor.h
+	ProjectHistory.cpp
+	ProjectHistory.h
 	ProjectSelectStage.cpp
 	ProjectSelectStage.h
 	ProjectStage.cpp
@@ -40,7 +39,6 @@ target_link_libraries(Preditor.Launcher
 	D3D11.lib
 )
 
-target_precompile_headers(Preditor.Launcher PRIVATE pch.h)
 set_target_properties(Preditor.Launcher PROPERTIES OUTPUT_NAME "Preditor")
 
 set_target_properties(Preditor.Launcher PROPERTIES
