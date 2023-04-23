@@ -1,11 +1,7 @@
 //
 // Created by theli on 11/11/2022.
 //
-#pragma once
-
-#include "UpdateHandler.h"
-#include "BinaryVersionCheck.h"
-#include <boost/json/src.hpp>
+#include <boost/json.hpp>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
@@ -13,7 +9,8 @@
 #include "ChairManager.h"
 #include "UpdateURL.h"
 #include "../Common/Chairloader/SemanticVersion.h"
-
+#include "UpdateHandler.h"
+#include "BinaryVersionCheck.h"
 
 static double progress_dltotal = 0, progress_dlnow = 0;
 static std::mutex progress_mutex, error_mutex;

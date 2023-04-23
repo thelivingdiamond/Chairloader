@@ -30,6 +30,7 @@ set(SOURCE_FILES
 
 
 set(APP_ICON_RESOURCE_WINDOWS "Resources/appicon.rc")
+set(Boost_USE_STATIC_LIBS ON)
 
 message(STATUS "Version: ${_CHAIRLOADER_VERSION_STR}")
 configure_file(
