@@ -522,7 +522,7 @@ bool XMLMerger::checkNodeEquality(pugi::xml_node modNode, pugi::xml_node origina
 std::string XMLMerger::getWildcardValue(AttributeWildcard &wildcardValue) {
 //    ModLoader::Get().log(ModLoader::severityLevel::trace, "Checking attribute %s", wildcardValue.attribute.name());
     if(wildcardValue.attribute.name() == std::string("ch:apply_if")){
-        wildcardValue.type = attributeWildcard::wildcard_type::apply_if;
+        wildcardValue.type = AttributeWildcard::wildcard_type::apply_if;
     } else {
         wildcardValue.type = AttributeWildcard::wildcard_type::replace;
     }
@@ -550,7 +550,7 @@ std::string XMLMerger::getWildcardValue(AttributeWildcard &wildcardValue) {
                                 wildcardValue.match_value = ChairManager::Get().IsModEnabled(modName) ? "true" : "false";
                             } else {
                                 auto modConfig = ChairManager::Get().GetConfigManager()->getModConfig(modName);
-                                wildcardValue.match_value = modConfig.getConfigValue(parameter);
+                                wildcardValue.match_value = modConfig.getConfigValueString(parameter);
                                 wildcardValue.has_match_value = true;
                                 if(wildcardValue.match_value.empty()) {
                                     ChairManager::Get().log(severityLevel::error, "XMLMerger: could not find config value %s in mod %s", parameter.c_str(), modName.c_str());
@@ -560,7 +560,7 @@ std::string XMLMerger::getWildcardValue(AttributeWildcard &wildcardValue) {
                     }
                 } else {
                     // this means we will be looking for values from the current mod
-                    wildcardValue.match_value = ChairManager::Get().GetConfigManager()->getModConfig(wildcardValue.mod_name).getConfigValue(wildcardName);
+                    wildcardValue.match_value = ChairManager::Get().GetConfigManager()->getModConfig(wildcardValue.mod_name).getConfigValueString(wildcardName);
                     if(!wildcardValue.match_value.empty()) {
                         wildcardValue.has_match_value = true;
                     } else {
