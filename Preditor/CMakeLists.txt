@@ -6,6 +6,7 @@ add_subdirectory(Common)
 
 # Modules
 add_subdirectory(Engine)
+add_subdirectory(Main)
 
 # EXEs and DLLs
-add_subdirectory(Exe)
+add_subdirectory(Launcher)

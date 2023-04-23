@@ -47,8 +47,9 @@ AppStagePtr Preditor::OnGameLoaded()
     {
         IPreditorEngine::Get()->SetAppImGui();
         std::unique_ptr<ProjectStage> pProjectStage = std::make_unique<ProjectStage>();
-        m_pLookingGlass = std::make_unique<LookingGlass>();
-        m_pLookingGlass->Init();
+        // TODO: Move to Main
+        // m_pLookingGlass = std::make_unique<LookingGlass>();
+        // m_pLookingGlass->Init();
 
         return pProjectStage;
     }
@@ -66,8 +67,10 @@ void Preditor::ShowUI(bool* bOpen)
 {
     if(m_Config.isShown())
         m_Config.ShowUI();
-    if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
-        m_pLookingGlass->ShowUI();
+
+    // TODO: Move to Main
+    // if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
+    //     m_pLookingGlass->ShowUI();
 }
 
 void Preditor::PostUpdate()

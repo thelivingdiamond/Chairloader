@@ -2,11 +2,9 @@
 #include <Preditor/Project/ProjectManager.h>
 #include "App/Application.h"
 #include "ConfigManager.h"
-#include "FlowgraphEditor.h"
 #include "ProjectSelectStage.h"
 #include "ProjectStage.h"
 #include "ConfigValidationStage.h"
-#include "LookingGlass.h"
 
 struct IGameStartup;
 struct ExtractionOptions;
@@ -40,9 +38,7 @@ private:
 	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
 
     // MODULES
-	//std::unique_ptr<DevConsoleDialog> m_pDevConsole;
     std::unique_ptr<ProjectManager> m_pProjectManager;
-    std::unique_ptr<LookingGlass> m_pLookingGlass;
 
 	void ParseCommandLine();
 };
