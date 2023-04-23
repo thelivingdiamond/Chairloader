@@ -5,6 +5,7 @@
 #include "ChairMerger.h"
 #include "ChairManager.h"
 #include <gtest/gtest.h>
+#include <chrono>
 
 
 class ChairMergerTest : public ::testing::Test {
@@ -117,9 +118,16 @@ TEST_F(ChairMergerTest, ResolveFileWildcardSingleNode) {
     pugi::xml_document doc;
     doc.load_string(R"(<X ch:apply_if="{{ testBool }}" absolute_unit="{{ testString }}" />)");
     ASSERT_TRUE(exampleMod != nullptr);
-    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod);
-    EXPECT_TRUE(doc.first_child().attribute("ch:apply_if").value() == std::string("1"));
-    EXPECT_TRUE(doc.first_child().attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    // profile this function, it is slow
+    auto start = std::chrono::high_resolution_clock::now();
+    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of microseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    // print the time it took to run
+    printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
+    EXPECT_EQ(doc.first_child().attribute("ch:apply_if").as_bool(), true);
+    EXPECT_EQ(doc.first_child().attribute("absolute_unit").value(), std::string("The quick brown fox fuckin jumped over the lazy dog"));
 }
 
 TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes) {
@@ -135,35 +143,133 @@ TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes) {
         </X>
     )");
     ASSERT_TRUE(exampleMod != nullptr);
-    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod);
-    EXPECT_TRUE(doc.first_child().attribute("ch:apply_if").value() == std::string("1"));
+//    auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
+    // profile this function, it is slow
+    auto start = std::chrono::high_resolution_clock::now();
+    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of microseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    // print the time it took to run
+    printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
+    EXPECT_TRUE(doc.first_child().attribute("ch:apply_if").value() == std::string("true"));
     EXPECT_TRUE(doc.first_child().attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto y = doc.first_child().child("Y");
-    EXPECT_TRUE(y.attribute("ch:apply_if").value() == std::string("1"));
+    EXPECT_TRUE(y.attribute("ch:apply_if").value() == std::string("true"));
     EXPECT_TRUE(y.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto z = y.child("Z");
-    EXPECT_TRUE(z.attribute("ch:apply_if").value() == std::string("1"));
+    EXPECT_TRUE(z.attribute("ch:apply_if").value() == std::string("true"));
     EXPECT_TRUE(z.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto z2 = y.child("Z2");
-    EXPECT_TRUE(z2.attribute("ch:apply_if").value() == std::string("1"));
+    EXPECT_TRUE(z2.attribute("ch:apply_if").value() == std::string("true"));
     EXPECT_TRUE(z2.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
 }
 
 
-TEST_F(ChairMergerTest, GetAttributeWildcardValue) {
+TEST_F(ChairMergerTest, LuaAttributeResolution){
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
     pugi::xml_document doc;
-    doc.load_string(R"(<X ch:apply_if="{{ testBool }}" absolute_unit="{{ testString }}" />)");
-    wildcard->attribute = doc.child("X").attribute("ch:apply_if");
-    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard));
-    EXPECT_TRUE(wildcard->match_value == "1");
-    wildcard = std::make_shared<AttributeWildcard>();
-    wildcard->mod_name = "TheChair.ExampleMod";
-    wildcard->attribute = doc.child("X").attribute("absolute_unit");
-    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard));
-    EXPECT_TRUE(wildcard->match_value == "The quick brown fox fuckin jumped over the lazy dog");
+    doc.load_string(R"(
+        <X ch:apply_if="{{ testInt < testUInt }}" absolute_unit="{{ testEnum }}">
+            <Y ch:apply_if="{{ testXMLNode.node1 == 'IDK put whatever tf you want here' }}" absolute_unit="{{ G.TheChair.ExampleMod.testXMLNode.node2 }}"/>
+        </X>
+    )");
+    ASSERT_TRUE(exampleMod != nullptr);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of microseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    // print the time it took to run
+    printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
+
+    EXPECT_EQ(doc.first_child().attribute("ch:apply_if").as_bool(), true);
+    EXPECT_EQ(doc.first_child().attribute("absolute_unit").value(), std::string("B"));
+    auto y = doc.first_child().child("Y");
+    EXPECT_EQ(y.attribute("ch:apply_if").as_bool(), true);
+    EXPECT_EQ(y.attribute("absolute_unit").value(), std::string("OUG"));
 }
+
+TEST_F(ChairMergerTest, LuaGlobalFail){
+    auto wildcard = std::make_shared<AttributeWildcard>();
+    wildcard->mod_name = "TheChair.ExampleMod";
+    pugi::xml_document doc;
+    doc.load_string(R"(
+        <X ch:apply_if="{{ testInt == testUInt }}" absolute_unit="{{ testEnum }}" enum_table="{{testEnum_enum['option'..tostring(0)]}}">
+            <Y ch:apply_if="{{ testXMLNode.node1 == 'IDK put whatever tf you want here' }}" absolute_unit="{{ G.TheChair.ExampleMod.testXMLNode.node2 }}" test="{{IsModEnabled('TheChair.ExampleMod')}}"/>
+            <Z random_enum_test="{{testEnum_enum['option'..tostring(Random(0,2))]}}" lltest="{{testInt64}}" ulltest="{{testUInt64}}"/>
+        </X>
+    )");
+    ASSERT_TRUE(exampleMod != nullptr);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of microseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    // print the time it took to run
+    printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
+
+    EXPECT_EQ(doc.first_child().attribute("ch:apply_if").as_string(), std::string("false"));
+    EXPECT_EQ(doc.first_child().attribute("absolute_unit").value(), std::string("B"));
+    EXPECT_EQ(doc.first_child().attribute("enum_table").value(), std::string("A"));
+    auto y = doc.first_child().child("Y");
+    EXPECT_EQ(y.attribute("ch:apply_if").as_bool(), true);
+    EXPECT_EQ(y.attribute("absolute_unit").value(), std::string("OUG"));
+    EXPECT_EQ(y.attribute("test").as_bool(), true);
+    auto z = doc.first_child().child("Z");
+    std::string random_enum_test = z.attribute("random_enum_test").value();
+    EXPECT_TRUE(random_enum_test == "B" || random_enum_test == "A" || random_enum_test == "C");
+    EXPECT_EQ(z.attribute("lltest").value(), std::string("-6942000000000000"));
+    EXPECT_EQ(z.attribute("ulltest").value(), std::string("18446744073709551615"));
+    printf("random_enum_test: %s\n", random_enum_test.c_str());
+}
+
+
+TEST_F(ChairMergerTest, LuaRandomTest){
+    // start by testing the randomfloat function
+    auto f = ChairMerger::RandomFloat(1.5, 3.5);
+    ASSERT_TRUE(f >= 1.5 && f <= 3.5);
+
+
+    auto wildcard = std::make_shared<AttributeWildcard>();
+    wildcard->mod_name = "TheChair.ExampleMod";
+    pugi::xml_document doc;
+    doc.load_string(R"(
+        <X random1="{{Random(1,10)}}" random2="{{Random(20,40)}}" random3="{{ RandomFloat(1.5, 3.5) }}" />
+    )");
+    ASSERT_TRUE(exampleMod != nullptr);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of microseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    // print the time it took to run
+    printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
+
+    EXPECT_TRUE(doc.first_child().attribute("random1").as_int() <= 10 && doc.first_child().attribute("random1").as_int() >= 1);
+    EXPECT_TRUE(doc.first_child().attribute("random2").as_int() <= 40 && doc.first_child().attribute("random2").as_int() >= 20);
+    EXPECT_TRUE(doc.first_child().attribute("random3").as_float() <= 3.5f && doc.first_child().attribute("random3").as_float() >= 1.5f);
+}
+
+//TEST_F(ChairMergerTest, GetAttributeWildcardValue) {
+//    auto wildcard = std::make_shared<AttributeWildcard>();
+//    wildcard->mod_name = "TheChair.ExampleMod";
+//    auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
+//    pugi::xml_document doc;
+//    doc.load_string(R"(<X ch:apply_if="{{ testBool }}" absolute_unit="{{ testString }}" />)");
+//    wildcard->attribute = doc.child("X").attribute("ch:apply_if");
+//    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
+//    EXPECT_TRUE(wildcard->match_value == "true");
+//    wildcard = std::make_shared<AttributeWildcard>();
+//    wildcard->mod_name = "TheChair.ExampleMod";
+//    wildcard->attribute = doc.child("X").attribute("absolute_unit");
+//    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
+//    EXPECT_TRUE(wildcard->match_value == "The quick brown fox fuckin jumped over the lazy dog");
+//}
 
 
 
@@ -183,7 +289,7 @@ TEST_F(ChairMergerTest, ProcessXMLFilePlayerConfig){
 
 TEST_F(ChairMergerTest, CopyModDataFiles){
     fs::path dataPath = ChairMerger::m_ModPath / exampleMod->modName / "Data";
-    merger->CopyModDataFiles(dataPath, exampleMod->modName);
+    merger->CopyModDataFiles(dataPath);
     merger->m_MergeThreadPool->wait();
 
     EXPECT_TRUE(RecursiveOutputEquivalenceCheck(""));
@@ -203,18 +309,11 @@ TEST_F(ChairMergerTest, ProcessExampleMod){
     EXPECT_TRUE(RecursiveOutputAbsoluteCheck(""));
 }
 
-TEST_F(ChairMergerTest, IsLevelFile){
-    fs::path modPath = ChairMerger::m_ModPath / exampleMod->modName / "Data";
-    fs::path testPath = modPath / "Ark" / "ArkFactions.xml";
-    EXPECT_FALSE(ChairMerger::IsLevelFile(testPath, exampleMod->modName));
-    testPath = modPath / "Ark" / "Player" / "PlayerConfig.xml";
-    EXPECT_FALSE(ChairMerger::IsLevelFile(testPath, exampleMod->modName));
-    EXPECT_FALSE(merger->m_LevelFilesChanged);
-    testPath = modPath / "Levels" / "Campaign" / "Research" / "Lobby" / "level" / "mission_mission0.xml";
-    EXPECT_TRUE(ChairMerger::IsLevelFile(testPath, exampleMod->modName));
-    testPath = modPath / "Levels" / "Campaign" / "Research" / "Lobby" / "level" / "shaderslist.txt";
-    EXPECT_TRUE(ChairMerger::IsLevelFile(testPath, exampleMod->modName));
-    EXPECT_TRUE(merger->m_LevelFilesChanged);
+
+TEST_F(ChairMergerTest, LoadPatchChecksums){
+    merger->LoadPatchFileChecksums();
+    EXPECT_TRUE(merger->m_LevelFileChecksums.size() > 0);
+    EXPECT_TRUE(merger->m_LocalizationFileChecksums.size() > 0);
 }
 
 
