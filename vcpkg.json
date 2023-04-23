@@ -10,11 +10,14 @@
     "boost-format",
     "boost-bimap",
     "boost-json",
+    "luabridge",
+    "lua",
     "curlpp",
     "detours",
     "fmt",
     "libzip",
     "pugixml",
-    "gtest"
+    "gtest",
+    "libzippp"
   ]
 }
