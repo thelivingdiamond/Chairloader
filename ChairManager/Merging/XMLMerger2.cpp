@@ -256,6 +256,12 @@ void XMLMerger2::MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_documen
 }
 
 void XMLMerger2::MergeNodeStructure(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy) {
+    if(policy.nodeStructure.children().empty()) {
+        // due to a lack of node structure in spreadsheet cases, we need to check for the policy here
+        if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet) {
+            MergeBySpreadsheet(baseNode, modNode, originalNode, policy);
+        }
+    }
     for(auto & policyNode: policy.nodeStructure.children()){
         auto localPolicy = policy;
         // get the node tags
@@ -376,4 +382,49 @@ pugi::xml_node XMLMerger2::FindNodeByAttributeList(pugi::xml_node &searchNode, p
     }
     return searchResult;
 }
+
+void XMLMerger2::SerializeLevelEntityIDs(fs::path levelPath) {
+    pugi::xml_document MissionFile, SerializeFile;
+    fs::path missionPath = "mission_mission0.xml";
+    fs::path serializePath = "serialize.xml";
+    auto missionResult = MissionFile.load_file(missionPath.wstring().c_str());
+    auto serializeResult = SerializeFile.load_file(serializePath.wstring().c_str());
+    if (!missionResult || !serializeResult) {
+        return;
+    }
+    std::map <int32_t, pugi::xml_node> entityIDs;
+    std::map <int32_t, pugi::xml_node> serializedIDs;
+    std::vector<pugi::xml_node> conflictingEntities;
+    auto entityList = MissionFile.first_child().child("Objects");
+    for(auto & entity :entityList.children("Entity")){
+        if(entity.attribute("EntityId")){
+//            Check if the entity id is already in the set
+            if(entityIDs.find(entity.attribute("EntityId").as_int()) != entityIDs.end()){
+                conflictingEntities.emplace_back(entity);
+                continue;
+            }
+            entityIDs.emplace(entity.attribute("EntityId").as_int(), entity);
+        }
+    }
+    // serialize the entity ids so they start from 1 and are sequential
+    int32_t id = 1;
+    for(auto & entity : entityIDs){
+        entity.second.attribute("EntityId").set_value(id);
+        serializedIDs.emplace(id, entity.second);
+        id++;
+    }
+    // fix conflicting entities by making them the next available ID in the set, i.e. the last element + 1
+    for(auto & entity : conflictingEntities){
+        entity.attribute("EntityId").set_value(id);
+        serializedIDs.emplace(id, entity);
+        id++;
+    }
+    // write the new entity IDs to the serialize file
+    auto serializeEntityList = SerializeFile.first_child();
+    serializeEntityList.remove_children();
+    for (auto& entity: serializedIDs){
+        serializeEntityList.append_child("Entity").append_attribute("id").set_value(entity.first);
+    }
+}
+
 

@@ -47,6 +47,10 @@ public:
     static bool CheckNodeEquality(pugi::xml_node modNode, pugi::xml_node originalNode);
     //! Check if a mod node is identical to the vanilla node
     static bool IsVanillaNode(pugi::xml_node modNode, pugi::xml_node originalNode);
+
+    /// \brief Serialize the level entity IDs to a file
+    /// \param levelPath The path to the contents of level.pak
+    static void SerializeLevelEntityIDs(fs::path levelPath);
 };
 
 
