@@ -6,6 +6,7 @@
 #include "ChairManager.h"
 #include <gtest/gtest.h>
 #include <chrono>
+#include <LuaUtils.h>
 
 
 class ChairMergerTest : public ::testing::Test {
@@ -316,5 +317,101 @@ TEST_F(ChairMergerTest, LoadPatchChecksums){
     EXPECT_TRUE(merger->m_LocalizationFileChecksums.size() > 0);
 }
 
+
+TEST_F(ChairMergerTest, LoadIdNamePairs){
+    pugi::xml_document doc;
+    std::string docString = R"(
+        <X>
+            <X2>
+                <Y id="1" name="test1" />
+                <Y id="2" name="test2" />
+                <Y id="3" name="test3" />
+            </X2>
+        </X>
+    )";
+    auto result = doc.load_string(docString.c_str());
+    ASSERT_TRUE(result);
+
+    std::map<std::string, uint64_t> expectedPairs = {
+        {"test1", 1},
+        {"test2", 2},
+        {"test3", 3}
+    };
+
+    auto pairs = merger->LoadIdNamePairsFromXml(doc.root(), "X/X2", "name", "id");
+    EXPECT_TRUE(pairs.size() == 3);
+    for(auto & pair : pairs){
+        EXPECT_TRUE(expectedPairs[pair.first] == pair.second);
+    }
+}
+
+
+TEST_F(ChairMergerTest, IdNamePairUsage){
+    merger->m_PreyFilePath = "PreyFiles";
+
+    // profile this function to see if it's slow
+    auto start1 = std::chrono::high_resolution_clock::now();
+    merger->LoadIdNameMap();
+    auto end1 = std::chrono::high_resolution_clock::now();
+    // get the number of milliseconds it took to run
+    auto duration1 = std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1);
+    // print the time it took to run
+    printf("LoadIdNameMap took %lld milliseconds\n", duration1.count());
+
+    lua_State * L = luaL_newstate();
+    luaL_openlibs(L);
+
+    // profile this function to see if it's slow
+    auto start = std::chrono::high_resolution_clock::now();
+    merger->AddIdNameMapToLua(L);
+    auto end = std::chrono::high_resolution_clock::now();
+    // get the number of milliseconds it took to run
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    // print the time it took to run
+    printf("AddIdNameMapToLua took %lld milliseconds\n", duration.count());
+
+    std::string luaString = R"(
+    function dump(o)
+       if type(o) == 'table' then
+          local s = '{ '
+          for k,v in pairs(o) do
+             if type(k) ~= 'number' then k = '\"'..k..'\"' end
+             s = s .. '['..k..'] = ' .. dump(v) .. ','
+          end
+          return s .. '} '
+       else
+          return tostring(o)
+       end
+    end
+
+    function countElements(tbl)
+        local count = 0
+        for k, v in pairs(tbl) do
+            if type(v) == "table" then
+                count = count + countElements(v)
+            else
+                count = count + 1
+            end
+        end
+        return count
+    end
+
+    arkSize = countElements(Ark)
+    libSize = countElements(Libs)
+    print("Ark Size:" .. tostring(arkSize))
+    print("Libs Size:" .. tostring(libSize))
+    print("Total Size:" .. tostring(arkSize + libSize))
+    print("Ark:" .. dump(Ark))
+    print("Libs:" .. dump(Libs))
+    )";
+
+    auto result = luaL_dostring(L, luaString.c_str());
+    LuaUtils::report_errors(L, result);
+
+    lua_close(L);
+
+    // check the console to see what the output was
+    //TODO: fetch it off the stack and check it here
+}
 
 

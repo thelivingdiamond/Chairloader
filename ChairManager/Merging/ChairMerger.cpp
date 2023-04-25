@@ -14,8 +14,14 @@
 
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;
+std::map<std::string, uint64_t> ChairMerger::m_NameToIdMap;
+
+
+
 
 void ChairMerger::PreMerge() {
+    // profile pre merge task
+    auto now = std::chrono::high_resolution_clock::now();
     SetDeployPhase(DeployPhase::PreMerge);
     // make sure mod configs are loaded
     // clear out the output directory
@@ -36,9 +42,16 @@ void ChairMerger::PreMerge() {
     // load the patch file checksums
     SetDeployStep(DeployStep::LoadingPatchChecksums);
     LoadPatchFileChecksums();
+    LoadIdNameMap();
+    if(m_bDeployFailed)
+        return;
+    auto end = std::chrono::high_resolution_clock::now();
+    ChairManager::Get().log(severityLevel::debug, "Pre-Merge took %f seconds", std::chrono::duration_cast<std::chrono::duration<double>>(end - now).count());
 }
 
 void ChairMerger::Merge() {
+    // profile merge task
+    auto now = std::chrono::high_resolution_clock::now();
     if(m_bForceVanillaPack)
         return;
     // merge the legacy mods
@@ -62,9 +75,14 @@ void ChairMerger::Merge() {
             ChairManager::Get().log(severityLevel::trace, "Finished merging mod: %s", mod.modName);
         }
     }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    ChairManager::Get().log(severityLevel::debug, "Merge took %f seconds", std::chrono::duration_cast<std::chrono::duration<double>>(end - now).count());
 }
 
 void ChairMerger::PostMerge() {
+    // profile post merge task
+    auto now = std::chrono::high_resolution_clock::now();
     SetDeployPhase(DeployPhase::PostMerge);
     // Post merge tasks
 
@@ -82,6 +100,9 @@ void ChairMerger::PostMerge() {
     if(m_bDeployFailed)
         return;
     SetDeployStep(DeployStep::CleaningUp);
+
+    auto end = std::chrono::high_resolution_clock::now();
+    ChairManager::Get().log(severityLevel::debug, "Post-Merge took %f seconds", std::chrono::duration_cast<std::chrono::duration<double>>(end - now).count());
 }
 //! Function to resolve all attribute wildcards in an xml document
 void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modName) {
@@ -111,6 +132,8 @@ void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modNa
     //TODO: add local mod config variables in a way to ignore g.modName
 
     LuaUtils::AddXmlNodeAsVariables(L, configNode, modName, false);
+
+    AddIdNameMapToLua(L);
 
     ResolveAttributeWildcards(docNode, modName, L);
 
@@ -676,7 +699,7 @@ void ChairMerger::PackMainPatch() {
     // at this point level and localization packs are packed and their files moved. We can now pack what is left in the output path
     auto deployedFileHash = HashUtils::HashUncompressedFile(m_PrecacheFilesPath / "patch_chairloader.pak");
     auto outputFileHash = HashUtils::HashDirectory(m_OutputPath);
-    if(deployedFileHash == outputFileHash){
+    if(deployedFileHash == outputFileHash && !m_bForceMainPatchPack){
         ChairManager::Get().log(severityLevel::info, "ChairMerger: Main patch is up to date, skipping");
         return;
     }
@@ -818,4 +841,57 @@ int ChairMerger::Random(int min, int max) {
 float ChairMerger::RandomFloat(float min, float max) {
     std::uniform_real_distribution<float> distribution(min, max);
     return distribution(m_RandomGenerator);
+}
+
+std::vector<std::pair<std::string, uint64_t>> ChairMerger::LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute) {
+    std::vector<std::pair<std::string, uint64_t>> pairs;
+    auto targetChild = node.first_element_by_path(xmlPath.c_str());
+    for(auto child : targetChild.children()){
+        auto name = child.attribute(nameAttribute.c_str()).as_string();
+        auto id = child.attribute(idAttribute.c_str()).as_ullong();
+        pairs.emplace_back(name, id);
+    }
+    return pairs;
+}
+
+void ChairMerger::LoadIdNameMap() {
+    m_NameToIdMap.clear();
+
+//    // profile this function to see if it's slow
+//    auto start = std::chrono::high_resolution_clock::now();
+    pugi::xml_document doc;
+    doc.load_file("VariableLibrary.xml");
+    auto rootNode = doc.first_child();
+    for(auto& idFile: rootNode){
+        fs::path idFilePath = idFile.attribute("path").as_string();
+        idFilePath = m_PreyFilePath / idFilePath;
+        std::string nameAttribute = idFile.attribute("nameAttribute").as_string(),
+                idAttribute = idFile.attribute("idAttribute").as_string(),
+                xmlPath = idFile.attribute("xmlPath").as_string(),
+                variablePath = idFile.attribute("variablePath").as_string();
+        pugi::xml_document idFileDoc;
+        idFileDoc.load_file(idFilePath.wstring().c_str());
+        auto pairs = LoadIdNamePairsFromXml(idFileDoc.root(), xmlPath, nameAttribute, idAttribute);
+        for(auto& pair : pairs){
+            std::string validName = LuaUtils::MakeValidVariableName(pair.first);
+            auto path = variablePath + "." + validName;
+            m_NameToIdMap[path] = pair.second;
+        }
+    }
+//    auto end = std::chrono::high_resolution_clock::now();
+//    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+//    ChairManager::Get().log(severityLevel::trace, "ChairMerger: Loaded id name map in %llu milliseconds", elapsed.count());
+    //TODO: Load from mods
+
+}
+
+void ChairMerger::AddIdNameMapToLua(lua_State *L) {
+//    // profile this function to see if it's slow
+//    auto start = std::chrono::high_resolution_clock::now();
+    for(auto& pair : m_NameToIdMap){
+        LuaUtils::AddVariableWithPath(L, pair.first, std::to_string(pair.second));
+    }
+//    auto end = std::chrono::high_resolution_clock::now();
+//    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+//    ChairManager::Get().log(severityLevel::trace, "ChairMerger: Added id name map to lua in %llu milliseconds", elapsed.count());
 }

@@ -79,6 +79,10 @@ protected:
     FRIEND_TEST(ChairMergerTest, CopyModDataFiles);
     FRIEND_TEST(ChairMergerTest, IsLevelFile);
     FRIEND_TEST(ChairMergerTest, LoadPatchChecksums);
+    FRIEND_TEST(ChairMergerTest, LoadIdNamePairs);
+    FRIEND_TEST(ChairMergerTest, IdNamePairUsage);
+
+
 
     friend class ChairMergerTest;
     friend class ChairManager;
@@ -170,6 +174,13 @@ protected:
     //! Get the failure message
     std::string GetDeployFailedMessage();
 
+
+    void LoadIdNameMap();
+
+    static void AddIdNameMapToLua(lua_State *L);
+
+    std::vector<std::pair<std::string, uint64_t>> LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute);
+
     // Static paths
     static inline fs::path m_OutputPath = "Output";
     static inline fs::path m_LevelOutputPath = "LevelOutput";
@@ -226,6 +237,7 @@ protected:
     // force all level packs and localization packs to be repacked
     bool m_bForceLevelPack = false;
     bool m_bForceLocalizationPack = false;
+    bool m_bForceMainPatchPack = false;
 
     bool m_bForceVanillaPack = false;
 
@@ -233,6 +245,8 @@ protected:
     static int Random(int min, int max);
     static float RandomFloat(float min, float max);
     static std::mt19937 m_RandomGenerator;
+
+    static std::map<std::string, uint64_t> m_NameToIdMap;
 
 };
 
