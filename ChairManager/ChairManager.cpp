@@ -7,6 +7,7 @@
 #include <curlpp/cURLpp.hpp>
 #include <Manager/GamePath.h>
 #include <Merging/ChairMerger.h>
+#include <boost/algorithm/string/predicate.hpp>
 #include "ChairManager.h"
 #include "UI.h"
 #include "ChairWizards/GamePathDialog.h"
@@ -2520,6 +2521,10 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
         ImGui::Checkbox("Force Localization to be Repacked", &m_pChairMerger->m_bForceLocalizationPack);
         ImGui::SameLine();
         ImGuiUtils::HelpMarker("This will force all localization files to be repacked, even if they haven't changed. This may be useful if you are having issues with localization not updating properly. (This will take longer to deploy)");
+        ImGui::Checkbox("Force Main Patch to be Repacked", &m_pChairMerger->m_bForceMainPatchPack);
+        ImGui::SameLine();
+        ImGuiUtils::HelpMarker("This will force the main patch to be repacked, even if it hasn't changed. This may be useful if you are having issues with the main patch not updating properly. (This will take longer to deploy)");
+        ImGui::Separator();
         ImGui::Checkbox("Pack only Vanilla Files (No Mods)", &m_pChairMerger->m_bForceVanillaPack);
         ImGui::SameLine();
         ImGuiUtils::HelpMarker("This will only pack vanilla files, and will not include any mod files. This will not disable dll mods, but will restore the game files to their original state.");
