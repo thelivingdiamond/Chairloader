@@ -189,3 +189,24 @@ TEST(LuaUtilsTest, CPPSandboxSetup){
     lua_close(L);
 
 }
+
+
+TEST(LuaUtilsTest, MakeValidVariableName){
+    std::string testNameInvalid1 = "test name";
+    std::string testNameInvalid2 = "test-name";
+    std::string testNameInvalid3 = "test.name";
+    std::string testNameInvalid4 = "9test name's";
+    std::string testNameInvalid5 = "Dr. Calvino's Workshop";
+
+    std::string testNameValid1 = "test_name";
+    std::string testNameValid2 = "testname";
+    std::string testNameValid3 = "testname";
+    std::string testNameValid4 = "_9test_names";
+    std::string testNameValid5 = "Dr_Calvinos_Workshop";
+
+    EXPECT_EQ(LuaUtils::MakeValidVariableName(testNameInvalid1), testNameValid1);
+    EXPECT_EQ(LuaUtils::MakeValidVariableName(testNameInvalid2), testNameValid2);
+    EXPECT_EQ(LuaUtils::MakeValidVariableName(testNameInvalid3), testNameValid3);
+    EXPECT_EQ(LuaUtils::MakeValidVariableName(testNameInvalid4), testNameValid4);
+    EXPECT_EQ(LuaUtils::MakeValidVariableName(testNameInvalid5), testNameValid5);
+}

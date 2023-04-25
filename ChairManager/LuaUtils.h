@@ -69,6 +69,27 @@ result = f()
         }
 
     }
+
+
+    static inline std::string MakeValidVariableName(std::string name) {
+        // A valid lua variable name must start with a letter or underscore, and can only contain letters, numbers, and underscores
+        // If the name starts with a number, we must prepend an underscore
+        if(name[0] >= '0' && name[0] <= '9'){
+            name = "_" + name;
+        }
+
+        // now we need to replace all spaces with underscores
+        std::replace(name.begin(), name.end(), ' ', '_');
+
+        // any non alpha-numeric characters must be removed (except underscores)
+        name.erase(std::remove_if(name.begin(), name.end(), [](char c) {
+            return !std::isalnum(c) && c != '_';
+        } ), name.end());
+
+        return name;
+    }
+
+    void AddVariableWithPath(lua_State *luaState, std::string path, std::string value, char delimiter = '.');
 };
 
 

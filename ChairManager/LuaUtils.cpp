@@ -225,3 +225,44 @@ void LuaUtils::CreateModNameTable(lua_State *luaState, std::string modName) {
         table = table[modNameParts[i].c_str()];
     }
 }
+
+void LuaUtils::AddVariableWithPath(lua_State *luaState, std::string path, std::string value, char delimiter) {
+    // the path will be a string like "Ark.Game.Mission.MissionName" and we need to get, or create tables up to the last part of the path, and then add the value to that table under the last part of the path
+
+    // first, we need to split the path into its parts
+    std::vector<std::string> pathParts;
+
+    size_t pos = 0;
+    std::string token;
+    while ((pos = path.find(delimiter)) != std::string::npos) {
+        token = path.substr(0, pos);
+        pathParts.push_back(token);
+        path.erase(0, pos + 1);
+    }
+    pathParts.push_back(path);
+
+    // now iterate through the path parts, creating tables as needed until we get to the last part, where we add the value
+    // start with the first part of the path
+    auto table = luabridge::getGlobal(luaState, pathParts[0].c_str());
+    // if the table doesn't exist, create it
+    if(table.isNil()){
+        table = luabridge::newTable(luaState);
+        luabridge::setGlobal(luaState, table, pathParts[0].c_str());
+    }
+    // iterate through the rest of the path parts, except the last one
+    for(int i = 1; i < pathParts.size() - 1; i++){
+        // if the table doesn't exist, create it
+        if(table[pathParts[i].c_str()].isNil()){
+            table[pathParts[i].c_str()] = luabridge::newTable(luaState);
+        }
+        // set the table to the next part of the path
+        table = table[pathParts[i].c_str()];
+    }
+
+    // now we can add the value to the table
+    table[pathParts[pathParts.size() - 1].c_str()] = value;
+
+    // success! (hopefully)
+
+}
+
