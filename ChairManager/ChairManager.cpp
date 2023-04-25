@@ -2421,6 +2421,60 @@ void ChairManager::DrawDebug() {
                 modConfigNamespace = m_ConfigManager.getModSpaceBooleanVariables(modName);
             }
         }
+        if(ImGui::CollapsingHeader("ID Testing")){
+            if(ImGui::Button("List All Files with id attribute by policy")){
+                std::ofstream id_name_file("id_name_files.txt");
+                std::ofstream id_file("id_files.txt");
+                std::ofstream attribute_file("attribute_list.txt");
+                std::set<std::string> allAttributeNames;
+                for(auto & dir: fs::recursive_directory_iterator("PreyFiles")){
+                    auto relativePath = fs::relative(dir, "PreyFiles");
+                    auto policy = m_pChairMerger->GetFileMergingPolicy(relativePath, "");
+                    if(policy.policy == MergingPolicy::identification_policy::match_attribute){
+                        bool hasId = false, hasName = false;
+                        for(auto & attributeMatch: policy.attributeMatches){
+                            if(boost::iequals(attributeMatch.attribute_name, "id") || boost::iequals(attributeMatch.attribute_name, "ArchetypeId")){
+                                hasId = true;
+                            }
+                            if(boost::iequals(attributeMatch.attribute_name, "name") || boost::iequals(attributeMatch.attribute_name, "ArchetypeName")){
+                                hasName = true;
+                            }
+                            allAttributeNames.insert(attributeMatch.attribute_name);
+                        }
+                        if(hasId && hasName){
+                            id_name_file << relativePath << std::endl;
+                        }
+                        if(hasId){
+                            id_file << relativePath << std::endl;
+                        }
+                    }
+                }
+                for(auto & attribute: allAttributeNames){
+                    attribute_file << attribute << std::endl;
+                }
+                id_name_file.close();
+                id_file.close();
+                attribute_file.close();
+            }
+            if(ImGui::Button("Load Id Name Map")){
+                m_pChairMerger->LoadIdNameMap();
+            }
+            ImGui::Text("Id Name Map Size: %llu", m_pChairMerger->m_NameToIdMap.size());
+            if(ImGui::BeginTable("Id Name Map", 2, ImGuiTableFlags_ScrollY | ImGuiTableFlags_Resizable, ImVec2(0, 300))){
+                ImGui::TableSetupScrollFreeze(0, 1);
+                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("Value");
+                ImGui::TableHeadersRow();
+                for(auto &variableName : m_pChairMerger->m_NameToIdMap){
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", variableName.first.c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%llu", variableName.second);
+                }
+                ImGui::EndTable();
+            }
+        }
     }
 }
 
