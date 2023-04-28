@@ -521,7 +521,6 @@ void ChairMerger::PackLevelFiles() {
     }
     if(CheckLevelPacksChanged()){
         std::atomic<bool> bFailure = false;
-        SerializeLevelPacks();
         ChairManager::Get().log(severityLevel::debug, "ChairMerger: Level files have changed, repacking");
         // level files have changed, repack the level files, we just need to check which ones are changed
         for(auto& changedPack: m_ChangedLevelPacks){
@@ -552,6 +551,8 @@ void ChairMerger::PackLevelFiles() {
                 } catch (fs::filesystem_error &e) {
                     ChairManager::Get().log(severityLevel::debug, "ChairMerger: Could not copy level output directory %s, no mod modified this level.", (m_OutputPath / "Levels" / levelPath).string());
                 }
+                // then serialize the entity level ids
+                XMLMerger2::SerializeLevelEntityIDs(m_LevelOutputPath / levelPath / "level");
                 // now check if we need to continue to pack the level directory
                 auto levelPakHashPath = m_LevelOutputPath / levelPath / "level";
                 auto levelOutputChecksum = HashUtils::HashDirectory(levelPakHashPath);

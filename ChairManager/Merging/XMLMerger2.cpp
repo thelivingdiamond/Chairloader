@@ -385,15 +385,16 @@ pugi::xml_node XMLMerger2::FindNodeByAttributeList(pugi::xml_node &searchNode, p
 
 void XMLMerger2::SerializeLevelEntityIDs(fs::path levelPath) {
     pugi::xml_document MissionFile, SerializeFile;
-    fs::path missionPath = "mission_mission0.xml";
-    fs::path serializePath = "serialize.xml";
+    fs::path missionPath = levelPath / "mission_mission0.xml";
+    fs::path serializePath = levelPath / "serialize.xml";
     auto missionResult = MissionFile.load_file(missionPath.wstring().c_str());
     auto serializeResult = SerializeFile.load_file(serializePath.wstring().c_str());
     if (!missionResult || !serializeResult) {
+        std::cerr << "Failed to load mission or serialize file" << std::endl;
         return;
     }
     std::map <int32_t, pugi::xml_node> entityIDs;
-    std::map <int32_t, pugi::xml_node> serializedIDs;
+//    std::map <int32_t, pugi::xml_node> serializedIDs;
     std::vector<pugi::xml_node> conflictingEntities;
     auto entityList = MissionFile.first_child().child("Objects");
     for(auto & entity :entityList.children("Entity")){
@@ -406,25 +407,25 @@ void XMLMerger2::SerializeLevelEntityIDs(fs::path levelPath) {
             entityIDs.emplace(entity.attribute("EntityId").as_int(), entity);
         }
     }
-    // serialize the entity ids so they start from 1 and are sequential
-    int32_t id = 1;
-    for(auto & entity : entityIDs){
-        entity.second.attribute("EntityId").set_value(id);
-        serializedIDs.emplace(id, entity.second);
-        id++;
-    }
+    // set id to the last element in the set + 1
+    int32_t id = entityIDs.rbegin()->first + 1;
+
     // fix conflicting entities by making them the next available ID in the set, i.e. the last element + 1
     for(auto & entity : conflictingEntities){
         entity.attribute("EntityId").set_value(id);
-        serializedIDs.emplace(id, entity);
+        entityIDs.emplace(id, entity);
         id++;
     }
     // write the new entity IDs to the serialize file
     auto serializeEntityList = SerializeFile.first_child();
     serializeEntityList.remove_children();
-    for (auto& entity: serializedIDs){
+    for (auto& entity: entityIDs){
         serializeEntityList.append_child("Entity").append_attribute("id").set_value(entity.first);
     }
+
+    // write the new entity IDs to the mission file
+    MissionFile.save_file(missionPath.wstring().c_str());
+    SerializeFile.save_file(serializePath.wstring().c_str());
 }
 
 
