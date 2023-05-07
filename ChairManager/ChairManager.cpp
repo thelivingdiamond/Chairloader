@@ -885,7 +885,7 @@ void ChairManager::DrawAssetView() {
                         static pugi::xml_document doc;
                         pugi::xml_parse_result result = doc.load_file(selectedFile.path.u8string().c_str());
                         auto firstNode = doc.first_child();
-                        XMLMerger::resolvePathWildcards(firstNode, policy.nodeStructure);
+                        XMLMerger2::ResolvePolicyPathWildcards(firstNode, policy.nodeStructure);
                         switch (policy.policy) {
                             case MergingPolicy::identification_policy::error:
                                 ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Error");
@@ -974,15 +974,6 @@ void ChairManager::DrawDeploySettings() {
 //            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
         ImGui::EndTabItem();
-        if(ImGui::Button("Merge XML Files")){
-            mergeXMLFiles();
-        }
-        if(ImGui::Button("Pack Chairloader Patch")){
-            packChairloaderPatch();
-        }
-        if(ImGui::Button("Copy Chairloader Patch")){
-            copyChairloaderPatch();
-        }
     }
 }
 
@@ -1422,20 +1413,6 @@ void ChairManager::Update() {
     }
 }
 
-void ChairManager::DeployForInstallWizard()
-{
-    assert(m_pChairMerger->GetDeployStep() == DeployStep::Invalid);
-    mergeXMLFiles(true);
-
-    if (!packChairloaderPatch())
-        throw std::runtime_error("Failed to pack patch_chairloader.pak");
-    if (!copyChairloaderPatch())
-        throw std::runtime_error("Failed to copy patch_chairloader.pak");
-
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-}
-
 bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
     fs::path path;
     ImGuiTreeNodeFlags_ treeFlags = ImGuiTreeNodeFlags_None;
@@ -1663,75 +1640,6 @@ void ChairManager::EnableMod(std::string modName, bool enabled) {
     }
 }
 
-void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
-    // Remove old output files
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-    fs::remove_all("./Output/");
-    fs::create_directory("./Output/");
-
-    // Copy Base Files
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-
-    bool doLevelPatches = true;
-    for (Mod& mod : ModList) {
-        if (mod.enabled && mod.hasLevelXML)
-        {
-            doLevelPatches = true;
-            break;
-        }
-    }
-    if (doLevelPatches) {
-        try {
-            fs::copy(".\\PreyFiles\\Levels", ".\\Output\\Levels", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-        } catch (std::exception &exc) {
-            std::cerr << exc.what() << std::endl;
-            overlayLog(severityLevel::error, "Could not copy Levels folder: %s", exc.what());
-            return;
-        }
-    }
-    try {
-        fs::create_directories("./Output/Localization/English_xml");
-        fs::copy("./PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
-                 fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch (std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
-        return;
-    }
-    //Chairloader Patch
-    try{
-        fs::copy("./ChairloaderPatch/", "./Output/", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch(std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        overlayLog(severityLevel::error, "Error copying base files: %s", exc.what());
-        return;
-    }
-
-    if (!onlyChairPatch)
-    {
-        //merge legacy mods
-        m_DeployLogMutex.lock();
-                m_DeployLogMutex.unlock();
-        for (auto& directory : fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
-            if (fs::is_directory(directory)) {
-                log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
-                mergeDirectory("", directory.path().filename().u8string(), true);
-            }
-        }
-        //registered mods
-        m_DeployLogMutex.lock();
-                m_DeployLogMutex.unlock();
-        for (auto& mod : ModList) {
-            if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
-                mergeDirectory("", mod.modName);
-                ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
-            }
-        }
-    }
-}
-
 float overlayLogPadding = 2.0f;
 static std::string logEntryToDelete;
 static float accumulatedHeight = 0.0f;
@@ -1843,221 +1751,6 @@ void ChairManager::OverlayLogElement(LogEntry entry) {
         ImGui::EndChild();
 }
 
-void ChairManager::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
-    fs::path modPath;
-    if(legacyMod) {
-        modPath = GetGamePath() / "Mods/Legacy" / modName / path;
-    } else {
-        modPath = GetGamePath() / "Mods" / modName / "Data" / path.u8string();
-    }
-    fs::path originalPath = "./PreyFiles" / path;
-    fs::path outputPath = "./Output" / path;
-    try {
-        // merge level files anyway
-        if (is_directory(modPath)/* && modPath != GetGamePath().u8string() + "/Mods/" + modName + "/Data/Levels"*/) {
-            log(severityLevel::trace, "Exploring directory %s", modPath.u8string().c_str());
-            if(!fs::exists(outputPath)) {
-                fs::create_directories(outputPath);
-            }
-            for (auto &directory: fs::directory_iterator(modPath)) {
-                mergeDirectory(path / directory.path().filename(), modName, legacyMod);
-            }
-        } else if (is_regular_file(modPath)) {
-            if(modPath.extension() == ".xml") {
-                m_XMLMerger.mergeXMLFile(path, modName, legacyMod);
-            } else {
-                log(severityLevel::trace, "Copying %s", modPath.u8string().c_str());
-                fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
-            }
-        }
-    } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while merging %s: %s", modPath.u8string().c_str(), exception.what());
-    }
-}
-
-
-
-
-bool ChairManager::packChairloaderPatch() {
-    // Remove Old Patches
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-    try {
-        fs::remove("patch_chairloader.pak");
-        fs::remove_all("./LevelOutput");
-        fs::remove("English_xml_patch.pak");
-    } catch (std::exception & exception) {
-        overlayLog(severityLevel::error, "Error: %s", exception.what());
-        return false;
-    }
-
-    // See if any mods have level patches
-    bool doLevelPatches = true;
-    for (Mod& mod : ModList) {
-        if (mod.enabled && mod.hasLevelXML)
-        {
-            doLevelPatches = true;
-            break;
-        }
-    }
-
-    if (doLevelPatches)
-    {
-        // packing level files
-        m_DeployLogMutex.lock();
-                m_DeployLogMutex.unlock();
-        auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
-        try {
-            fs::create_directories("./LevelOutput/Levels");
-            fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
-        } catch (std::exception & exception) {
-            overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
-            return false;
-        }
-        std::vector<PROCESS_INFORMATION> processes;
-        processes.clear();
-        for(auto &levelDirectory: levelDirectories){
-            auto processInfo = packLevel(levelDirectory);
-            if(processInfo.hProcess != nullptr) {
-                processes.push_back(processInfo);
-            }
-        }
-        for(auto & processInfo: processes){
-            WaitForSingleObject(processInfo.hProcess, INFINITE);
-            CloseHandle(processInfo.hProcess);
-            CloseHandle(processInfo.hThread);
-        }
-        // Copying Level Files
-        m_DeployLogMutex.lock();
-                m_DeployLogMutex.unlock();
-        try {
-            for (auto &levelDirectory: levelDirectories) {
-                fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
-                log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
-                if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
-                    fs::remove_all("./LevelOutput" / basePath / "level/");
-                    log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
-                    fs::copy("./LevelOutput" / basePath, GetGamePath() / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), GetGamePath().u8string() + "/GameSDK/" + basePath.u8string());
-                } else {
-                    log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
-                }
-            }
-            fs::remove_all("./Output/Levels");
-        } catch (std::exception & exception) {
-            overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
-            return false;
-        }
-    }
-
-    // Pack Localization Patch
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-
-    STARTUPINFOW LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
-    PROCESS_INFORMATION LocalizationProcessInfo;
-    log(severityLevel::trace, "Packing localization patch");
-    auto command = fs::path(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)").wstring();
-    command.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &LocalizationStartupInfo, &LocalizationProcessInfo)){
-        WaitForSingleObject(LocalizationProcessInfo.hProcess, INFINITE);
-        CloseHandle(LocalizationProcessInfo.hProcess);
-        CloseHandle(LocalizationProcessInfo.hThread);
-    } else {
-        log(severityLevel::error, "Error packing localization patch: %d", GetLastError());
-        return false;
-    }
-
-    if(!fs::exists("./English_xml_patch.pak")) {
-        overlayLog(severityLevel::error, "Error packing localization patch");
-        return false;
-    } else {
-        try {
-            fs::remove_all("./Output/Localization/");
-            fs::copy_file("./English_xml_patch.pak", GetGamePath() / "Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
-        } catch (std::exception &exception) {
-            overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
-            return false;
-        }
-    }
-
-    // pack chairloader patch
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-    STARTUPINFOW ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
-    PROCESS_INFORMATION ChairloaderProcessInfo;
-    auto commandChairloader = fs::path(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)").wstring();
-    commandChairloader.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &commandChairloader[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &ChairloaderStartupInfo, &ChairloaderProcessInfo)){
-        WaitForSingleObject(ChairloaderProcessInfo.hProcess, INFINITE);
-        CloseHandle(ChairloaderProcessInfo.hProcess);
-        CloseHandle(ChairloaderProcessInfo.hThread);
-    } else {
-        log(severityLevel::error, "Error packing chairloader patch: %d", GetLastError());
-        return false;
-    }
-//    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
-    if(!fs::exists("patch_chairloader.pak")) {
-        overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
-        return false;
-    } else {
-        log(severityLevel::info, "Packed patch_chairloader.pak");
-        return true;
-    }
-}
-
-bool ChairManager::copyChairloaderPatch() {
-    // copy chairloader patch
-    m_DeployLogMutex.lock();
-        m_DeployLogMutex.unlock();
-    try {
-        fs::copy("patch_chairloader.pak", GetGamePath() / "GameSDK/Precache",
-                 fs::copy_options::overwrite_existing);
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while copying patch_chairloader.pak: %s", exception.what());
-        return false;
-    }
-}
-
-std::vector<fs::path> ChairManager::exploreLevelDirectory(fs::path pathToExplore) {
-    std::vector<fs::path> levelPaths;
-    for(auto &directory: fs::directory_iterator(pathToExplore)) {
-        if(fs::exists(directory.path() / "level/")){
-            levelPaths.emplace_back(directory.path());
-        } else {
-            auto childrenPaths = exploreLevelDirectory(directory.path());
-            for(auto &childPath: childrenPaths) {
-                levelPaths.emplace_back(childPath);
-            }
-        }
-    }
-    return levelPaths;
-}
-
-PROCESS_INFORMATION ChairManager::packLevel(fs::path path) {
-    try {
-        STARTUPINFOW startupInfo = {sizeof(startupInfo)};
-        PROCESS_INFORMATION processInfo;
-        fs::path basePath = path.wstring().substr(std::string(".\\Output\\").size(), path.wstring().size() - 1);
-//        fs::path tempPath = basePath;
-//        std::replace(tempPath.wstring().begin(), tempPath.wstring().end(), '/', '\\');
-        auto command = (R"(.\7za.exe a .\LevelOutput)" /  basePath / "level.pak -tzip ").wstring() + (path / "level\\*").wstring();
-        command.resize(MAX_PATH);
-        if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
-            log(severityLevel::trace, "Packed level %s", basePath.u8string().c_str());
-            return processInfo;
-        } else {
-            log(severityLevel::error, "Failed to pack level %s: %d", basePath.u8string().c_str(), GetLastError());
-            return {};
-        }
-    } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while packing level %s: %s", path.u8string().c_str(), exception.what());
-        return {};
-    }
-    return {};
-}
-
 bool ChairManager::verifyDependencies(std::string modName) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()){
@@ -2089,9 +1782,6 @@ bool ChairManager::verifyDependenciesEnabled(std::string modName) {
     return false;
 }
 
-bool ChairManager::copyLocalizationPatch() {
-    return false;
-}
 bool ChairManager::verifyChairloaderConfigFile() {
     try {
         return fs::exists(GetGamePath() / "Mods/config/Chairloader.xml");
@@ -2159,7 +1849,6 @@ void ChairManager::Init() {
         log(severityLevel::info, "Chairloader config file not found, creating default");
         createChairloaderConfigFile();
     }
-    m_XMLMerger.init();
     m_pChairMerger.reset();
     m_pChairMerger = std::make_unique<ChairMerger>();
     if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
@@ -2196,40 +1885,6 @@ void ChairManager::DrawDebug() {
         ImGui::InputText("Mod Name", &modName);
         static MergingPolicy policy;
         static pugi::xml_document doc;
-        if(ImGui::CollapsingHeader("File Merging")) {
-            ImGui::InputText("File Path", &filePath);
-            if (ImGui::Button("Load Xml File")) {
-                doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("Clear Xml File")) {
-                doc.reset();
-            }
-            if (ImGui::Button("Resolve Path wildcards")) {
-                XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
-            }
-            if (ImGui::Button("Merge Xml File")) {
-                m_XMLMerger.mergeXMLFile(filePath, modName, false);
-            }
-            if (!doc.empty()) {
-                ImGui::Text("Loaded Xml File: %s", doc.name());
-                ImGui::Text("Root Node: %s", doc.root().name());
-                ImGui::Text("First Child: %s", doc.root().first_child().name());
-            }
-            if (ImGui::Button("Get Merging Policy")) {
-                policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
-            }
-            ImGui::Text("Merging Policy: %d", policy.policy);
-            ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
-            if (!policy.attributeMatches.empty()) {
-                for (auto &attributeMatch: policy.attributeMatches) {
-                    ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
-                }
-            }
-            if (!policy.nodeStructure.empty())
-                displayXmlNode(policy.nodeStructure, 0);
-        }
-
         if(ImGui::CollapsingHeader("Config")){
             if(ImGui::Button("Copy Default Config File")){
                 ConfigManager::copyDefaultConfig(modName);
@@ -2333,42 +1988,6 @@ void ChairManager::DrawDebug() {
                     fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
                 } catch (const fs::filesystem_error &e){
                     log(severityLevel::error, "Failed to copy level files to output dir: %s", e.what());
-                }
-            }
-            if(ImGui::Button("Pack Levels")){
-                auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
-                std::vector<PROCESS_INFORMATION> processes;
-                processes.clear();
-                for(auto &levelDirectory: levelDirectories){
-                    auto processInfo = packLevel(levelDirectory);
-                    if(processInfo.hProcess != nullptr) {
-                        processes.push_back(processInfo);
-                    }
-                }
-                for(auto & processInfo: processes){
-                    WaitForSingleObject(processInfo.hProcess, INFINITE);
-                    CloseHandle(processInfo.hProcess);
-                    CloseHandle(processInfo.hThread);
-                }
-            }
-            if(ImGui::Button("Copy Levels")){
-                auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
-                try {
-                    for (auto &levelDirectory: levelDirectories) {
-                        fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
-                        log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
-                        if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
-                            fs::remove_all("./LevelOutput" / basePath / "level/");
-                            log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
-                            fs::copy("./LevelOutput" / basePath, GetGamePath() / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                            log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), GetGamePath().u8string() + "/GameSDK/" + basePath.u8string());
-                        } else {
-                            log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
-                        }
-                    }
-                    fs::remove_all("./Output/Levels");
-                } catch (std::exception & exception) {
-                    overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
                 }
             }
         }

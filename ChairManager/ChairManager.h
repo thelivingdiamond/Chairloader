@@ -14,7 +14,6 @@
 #include <chrono>
 #include <windows.h>
 #include "BinaryVersionCheck.h"
-#include "XMLMerger.h"
 #include "Merging/XMLMerger2.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
@@ -62,7 +61,7 @@ public:
 
     const float GetDPIScale() const { return dpiScale; }
 
-    void updateDPI(float dpiScaleIn){
+    void updateDPI(float dpiScaleIn) {
         updateDPIScaling = true;
         oldDpiScaling = dpiScale;
         dpiScale = dpiScaleIn;
@@ -70,7 +69,10 @@ public:
 
 
 
-    void DeployForInstallWizard();
+    void DeployForInstallWizard(){
+        RunAsyncDeploy();
+    }
+
 
     std::string getETag() {
         return m_githubETag;
@@ -153,7 +155,6 @@ private:
     void DrawUpdateWizard(bool* pbIsOpen);
     bool m_bShowUpdateWizard = false;
 
-    std::mutex m_DeployLogMutex;
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::future<void> m_DeployTaskFuture;
@@ -243,24 +244,13 @@ private:
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
 
-    /* XML MERGING */
-    void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
-    void mergeXMLFiles(bool onlyChairPatch = false);
 
-
-    //! XML MERGING V2
-    XMLMerger m_XMLMerger;
-
+    /// XML Merging V3
     std::unique_ptr<ChairMerger> m_pChairMerger;
 
     //! config manager
     ConfigManager m_ConfigManager;
 
-    std::vector<fs::path> exploreLevelDirectory(fs::path);
-    PROCESS_INFORMATION packLevel(fs::path path);
-    bool packChairloaderPatch();
-    bool copyChairloaderPatch();
-    bool copyLocalizationPatch();
 
     // Load Order
     std::map<int, std::string> loadOrder;

@@ -23,7 +23,7 @@ set(SOURCE_FILES
         ChairWizards/ChairUninstallWizard.cpp
         ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp XMLMerger.cpp XMLMerger.h ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h
+        BinaryVersionCheck.cpp ConfigManager.cpp ConfigManager.h UpdateHandler.cpp UpdateHandler.h ChairWizards/ChairUpdateWizard.cpp ChairWizards/ChairUpdateWizard.h UpdateURL.h LogEntry.h Mod.h
 		Merging/MergingPolicy.h
 		Merging/AttributeWildcard.h
 		Merging/ChairMerger.cpp
