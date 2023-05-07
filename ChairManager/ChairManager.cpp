@@ -352,7 +352,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         DrawAssetView();
         DrawLog();
         DrawDLLSettings();
-#if 1
+#ifdef _DEBUG
         DrawDebug();
 #endif
         ImGui::EndTabBar();
