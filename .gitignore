@@ -416,6 +416,7 @@ ChairManager/Data/LocalizationOutput/
 ChairManager/Data/Output/
 ChairManager/Data/ChairManagerConfig.xml
 ChairManager/Data/patch_chairloader.pak
+ChairManager/Data/Testing/Hashing/Ark.pak
 ChairManager/Resources/version.rc
 ChairLoader/version.rc
 ChairManager/Data/update.zip
