@@ -1901,7 +1901,7 @@ bool ChairManager::packChairloaderPatch() {
         }
     }
 
-    if (doLevelPatches) //FIXME: DEBUG STEP
+    if (doLevelPatches)
     {
         // packing level files
         m_DeployLogMutex.lock();
