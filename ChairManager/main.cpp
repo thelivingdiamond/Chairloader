@@ -27,4 +27,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	{
 		MessageBoxA(nullptr, e.what(), "Fatal Error", MB_OK | MB_ICONERROR);
 	}
+
+    return 0;
 }
