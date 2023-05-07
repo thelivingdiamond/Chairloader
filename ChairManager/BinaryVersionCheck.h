@@ -5,7 +5,6 @@
 #ifndef CHAIRLOADER_BINARYVERSIONCHECK_H
 #define CHAIRLOADER_BINARYVERSIONCHECK_H
 
-#pragma once
 #include <string>
 struct SemanticVersion;
 
