@@ -52,6 +52,8 @@ set(SOURCE_FILES
         LuaUtils.cpp
         LuaUtils.h
         LuaUtilsTest.cpp
+		CrashHandler.h
+		CrashHandler.cpp
 		)
 
 
