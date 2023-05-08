@@ -114,7 +114,6 @@ enable_testing()
 
 
 find_package(unofficial-curlpp CONFIG REQUIRED)
-# add_subdirectory(ThirdParty/ExampleLibrary)
 
 # Project libraries
 add_subdirectory(Common)
@@ -139,6 +138,7 @@ unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
 # Targets that don't need to use Prey ABI
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+add_subdirectory(ThirdParty/StackWalker)
 add_subdirectory(CommonChairManager)
 #add_subdirectory(ChairLoaderXMLLoader)
 add_subdirectory(ChairManager)

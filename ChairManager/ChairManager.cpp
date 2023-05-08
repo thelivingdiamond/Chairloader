@@ -1885,6 +1885,25 @@ void ChairManager::DrawDebug() {
         ImGui::InputText("Mod Name", &modName);
         static MergingPolicy policy;
         static pugi::xml_document doc;
+        if (ImGui::Button("Commit Persona 3"))
+        {
+            throw std::logic_error("Thou art I... And I am thou...\n"
+                "Thou hast established a new error...\n\n"
+                "It brings thee closer to the truth...\n\n"
+                "Thou shalt be blessed when creating\n"
+                "Exceptions of the Logic_Error Arcana...");
+        }
+        ImGui::SameLine();
+
+        if (ImGui::Button("Commit Persona 3 FES"))
+            throw "F-ing Exception String";
+        ImGui::SameLine();
+
+        if (ImGui::Button("Commit Persona 3 Portable"))
+        {
+            int* volatile ptr = nullptr;
+            *ptr = 0x0451;
+        }
         if(ImGui::CollapsingHeader("Config")){
             if(ImGui::Button("Copy Default Config File")){
                 ConfigManager::copyDefaultConfig(modName);
