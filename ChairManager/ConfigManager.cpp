@@ -62,8 +62,6 @@ void ConfigManager::copyDefaultConfig(const std::string& modName){
 
 
 void ConfigManager::loadConfig(const std::string& modName){
-    std::scoped_lock lock(m_modConfigsMutex);
-
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
@@ -71,7 +69,18 @@ void ConfigManager::loadConfig(const std::string& modName){
     pugi::xml_document doc;
     auto result = doc.load_file(configPath.string().c_str());
     if(result){
-        m_modConfigs.emplace_back(modName, doc, configPath);
+        // check if the config already exists
+        // if so swap it with the new one, otherwise add it
+        bool found = false;
+        for(auto& config : m_modConfigs){
+            if(config.modName == modName){
+                config = ModConfig(modName, doc, configPath);
+                found = true;
+                break;
+            }
+        }
+        if(!found)
+            m_modConfigs.emplace_back(modName, doc, configPath);
     } else {
         ChairManager::Get().log(severityLevel::error, "Failed to load config for mod %s with Error: %s", modName.c_str(), result.description());
     }
@@ -116,21 +125,57 @@ void ConfigManager::draw() {
    if(ImGui::BeginTabItem("Mod Config")){
        std::scoped_lock lock(m_modConfigsMutex);
        if(ImGui::BeginTabBar("##Mod Configs", ImGuiTabBarFlags_TabListPopupButton | ImGuiTabBarFlags_FittingPolicyScroll)){
-              for(auto& config : m_modConfigs){
-                  if(config.configNode.first_child() == nullptr){
-                      continue;
-                  }
-                  auto displayName = ChairManager::Get().GetDisplayName(config.modName);
-                  if(displayName.empty()){
-                      displayName = config.modName;
-                  }
-                if(ImGui::BeginTabItem((displayName + "##" + config.modName).c_str())){
-                    ImGui::BeginChild("##Mod Config", ImGui::GetContentRegionAvail(), false);
-                    drawXMLConfigNode(config.configNode);
-                    ImGui::EndChild();
-                     ImGui::EndTabItem();
-                }
-              }
+           for(auto& config : m_modConfigs){
+               std::string modName = config.modName;
+               if(config.configNode.first_child() == nullptr){
+                   continue;
+               }
+               auto displayName = ChairManager::Get().GetDisplayName(config.modName);
+               if(displayName.empty()){
+                   displayName = config.modName;
+               }
+               if(ImGui::BeginTabItem((displayName + "##" + config.modName).c_str())){
+                   static bool open_reset_popup = false;
+                   // create a sort of toolbar where we can add stuff like presets and a reset to default button
+                   ImGui::BeginChild("##Mod Config", ImGui::GetContentRegionAvail(), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_MenuBar);
+                   if(ImGui::BeginMenuBar()) {
+                       ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x * 0.35f);
+                       //TODO: add presets and only show this dropdown if the mod has presets
+                       if(false) {
+                           if (ImGui::BeginCombo("##Presets", "Default")) {
+                               ImGui::EndCombo();
+                           }
+                       }
+                       // add a vertical separator
+                       if(ImGui::Button(("Reset To Default##" + config.modName).c_str())){
+                           open_reset_popup = true;
+                       }
+                       ImGui::EndMenuBar();
+                   }
+                   drawXMLConfigNode(config.configNode);
+                   if(open_reset_popup){
+                       ImGui::OpenPopup(("Reset To Default?##" + config.modName).c_str());
+                       open_reset_popup = false;
+                   }
+                   if(ImGui::BeginPopupModal(("Reset To Default?##" + config.modName).c_str(), nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
+                       ImGui::Text("Are you sure you want to reset the config for %s to default?", config.modName.c_str());
+                       ImGui::Separator();
+                       if(ImGui::Button("Yes")){
+                           copyDefaultConfig(modName);
+                           loadConfig(modName);
+                           ImGui::CloseCurrentPopup();
+                       }
+                       ImGui::SameLine();
+                       if(ImGui::Button("No")){
+                           ImGui::CloseCurrentPopup();
+                       }
+                       ImGui::EndPopup();
+                   }
+
+                   ImGui::EndChild();
+                   ImGui::EndTabItem();
+               }
+           }
            ImGui::EndTabBar();
        }
        ImGui::EndTabItem();

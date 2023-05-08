@@ -12,6 +12,7 @@ struct ModConfig {
     fs::path configPath;
     std::string modName;
     std::string displayName;
+    //TODO: add versioning, presets
 
     bool dirty = false;
     ModConfig() = default;
