@@ -270,6 +270,17 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Initialize Core
 	m_pCore->InitSystem();
 
+	// Initialize Patches
+	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nopatches"))
+	{
+		m_pPatches = Internal::IChairloaderPatches::CreateInstance();
+		m_pPatches->InitSystem();
+	}
+	else
+	{
+		CryLog("Optional patches disabled via command line");
+	}
+
 	// Initialize Tools
 	Internal::SToolsInitParams toolsParams;
 	toolsParams.bEnableEditor = m_bEditorEnabled;
@@ -310,6 +321,10 @@ void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 	m_pRender->SetRenderThreadIsIdle(true);
 	m_pCore->InitGame();
 	m_pRender->InitGame();
+
+	if (m_pPatches)
+		m_pPatches->InitGame();
+
 	m_pTools->InitGame();
 	m_pCore->GetDllManager()->CallInitGame();
 	m_pRender->SetRenderThreadIsIdle(false);
@@ -330,6 +345,9 @@ void Chairloader::ShutdownGame()
 	// Destroy tools before ImGui
 	m_pTools = nullptr;
 
+	if (m_pPatches)
+		m_pPatches->ShutdownGame();
+
 	m_pCore->ShutdownGame();
 	m_pFramework = nullptr;
 
@@ -344,6 +362,9 @@ void Chairloader::ShutdownSystem()
 
 	m_pCore->GetDllManager()->CallShutdownSystem();
 	m_pCore->GetDllManager()->UnloadModules();
+
+	if (m_pPatches)
+		m_pPatches->ShutdownGame();
 
 	m_pRender->ShutdownSystem();
 	m_pCore->ShutdownSystem();
@@ -376,6 +397,10 @@ void Chairloader::MainUpdate(unsigned updateFlags)
 {
 	m_pCore->MainUpdate(updateFlags);
 	m_pRender->MainUpdate(updateFlags);
+
+	if (m_pPatches)
+		m_pPatches->MainUpdate(updateFlags);
+
 	m_pTools->MainUpdate(updateFlags);
 
 	if (gCL->gui->IsEnabled())

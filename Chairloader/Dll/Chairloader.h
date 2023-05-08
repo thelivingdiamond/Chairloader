@@ -3,6 +3,7 @@
 #include <Chairloader/IChairloaderCore.h>
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IChairloaderPatches.h>
 #include <Chairloader/IChairloaderTools.h>
 #include "WinConsole.h"
 
@@ -50,6 +51,7 @@ private:
     bool m_bTrainerEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
+	std::unique_ptr<Internal::IChairloaderPatches> m_pPatches;
 	std::unique_ptr<Internal::IChairloaderTools> m_pTools;
 	unsigned m_SavedUpdateFlags = 0;
 
