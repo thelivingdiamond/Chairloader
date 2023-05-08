@@ -1,7 +1,10 @@
 //
 // Created by theli on 9/2/2022.
 //
-#pragma once
+
+#ifndef CHAIRLOADER_BINARYVERSIONCHECK_H
+#define CHAIRLOADER_BINARYVERSIONCHECK_H
+
 #include <string>
 struct SemanticVersion;
 
@@ -44,3 +47,5 @@ namespace VersionCheck {
 //! \return The version string
     std::string getLatestChairloaderVersionString();
 };
+
+#endif //CHAIRLOADER_BINARYVERSIONCHECK_H

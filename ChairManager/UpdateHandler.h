@@ -5,7 +5,6 @@
 #ifndef CHAIRLOADER_UPDATEHANDLER_H
 #define CHAIRLOADER_UPDATEHANDLER_H
 #pragma once
-#include "BinaryVersionCheck.h"
 
 namespace UpdateHandler {
 //! Check if an update is available

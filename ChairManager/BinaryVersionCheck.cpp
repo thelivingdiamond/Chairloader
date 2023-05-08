@@ -1,6 +1,7 @@
 //
 // Created by theli on 9/2/2022.
 //
+#include <boost/json.hpp>
 #include <Manager/GamePath.h>
 #include "BinaryVersionCheck.h"
 #include <Windows.h>
@@ -10,7 +11,6 @@
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
-#include <boost/json.hpp>
 #include <curlpp/Info.hpp>
 #include <curlpp/Infos.hpp>
 #include "UpdateURL.h"

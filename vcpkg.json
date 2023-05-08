@@ -7,14 +7,17 @@
   "$boost": "Don't include the whole Boost!",
   "dependencies": [
     "boost-core",
-    "boost-format",
     "boost-bimap",
+    "boost-format",
     "boost-json",
     "curlpp",
     "detours",
     "fmt",
+    "gtest",
     "libzip",
-    "pugixml",
-    "gtest"
+    "libzippp",
+    "lua",
+    "luabridge",
+    "pugixml"
   ]
 }
