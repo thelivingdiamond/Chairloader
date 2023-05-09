@@ -43,14 +43,6 @@ ChairSteamAPI::~ChairSteamAPI()
 
     assert(gCL->pSteamAPI == this);
     gCL->pSteamAPI = nullptr;
-
-    // Note: the game crashes in GameOverlayRenderer64.dll on shutdown.
-    // Callstack:
-    // - GameOverlayRenderer64.dll!???
-    // - GameOverlayRenderer64.dll!XInputSetState_Hook
-    // - PreyDll.dll!CleanupVibrationAtExit
-    // This also happens in normal Steam version of the game.
-    // I guess it's fine?
 }
 
 void ChairSteamAPI::ReplaceArkSystems()
