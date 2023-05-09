@@ -9,7 +9,7 @@ std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
 
     if (!hModule)
     {
-        CryLog("{} not found. Not running Steam version.");
+        CryLog("{} not found. Not running Steam version.", DLL_NAME);
         return nullptr;
     }
 
