@@ -2,13 +2,6 @@
 #include <Chairloader/IChairXmlUtils.h>
 #include "SteamAPI/ArkSteamRewardSystem.h"
 
-ArkSteamRewardSystem::ArkSteamRewardSystem()
-{
-    // Replace existing reward system
-    delete gEnv->pArkRewardSystem;
-    gEnv->pArkRewardSystem = this;
-}
-
 bool ArkSteamRewardSystem::LoadRewardData(const string& _strRewardFile)
 {
     if (!CArkRewardSystem::LoadRewardData(_strRewardFile))

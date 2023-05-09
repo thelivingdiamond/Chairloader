@@ -63,8 +63,6 @@ private:
     decltype(&SteamInternal_ContextInit) m_pContextInit = nullptr;
     decltype(&SteamAPI_RunCallbacks) m_pRunCallbacks = nullptr;
     //! @}
-    
-    std::unique_ptr<ArkSteamRewardSystem> m_pRewardSystem;
 
     //! Loads functions from the DLL.
     void LoadFuncs();

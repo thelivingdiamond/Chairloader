@@ -55,7 +55,9 @@ ChairSteamAPI::~ChairSteamAPI()
 
 void ChairSteamAPI::ReplaceArkSystems()
 {
-    m_pRewardSystem = std::make_unique<ArkSteamRewardSystem>();
+    // Existing systems are owned by CSystem. It will destroy them in ShutDown.
+    delete gEnv->pArkRewardSystem;
+    gEnv->pArkRewardSystem = new ArkSteamRewardSystem();
 }
 
 void ChairSteamAPI::Update()

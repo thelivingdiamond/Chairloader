@@ -5,8 +5,6 @@
 class ArkSteamRewardSystem : public ArkFixedRewardSystem
 {
 public:
-    ArkSteamRewardSystem();
-
     virtual bool LoadRewardData(const string& _strRewardFile) override;
     virtual void InternalRewardUnlocked(unsigned _rewardId) override;
 };
