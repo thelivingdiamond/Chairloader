@@ -1,4 +1,5 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <mem.h>
 #include "SteamAPI/ArkSteamDlcSystem.h"
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
@@ -39,13 +40,6 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
     assert(!g_pIChairSteamAPI);
     assert(!gCL->pSteamAPI);
     m_bIsGog = isGog;
-
-    if (!isGog)
-    {
-        // Steam API is only available for Steam version
-        // GOG's wrapper is too limited.
-        gCL->pSteamAPI = this;
-    }
     
     m_hModule = hModuleVoid;
     LoadFuncs();
@@ -53,7 +47,20 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
     if (!isGog && !IsSteamRunning())
         CryFatalError("Steam is not running");
 
-    InitSteam();
+    if (!InitSteam())
+        return;
+
+    if (!isGog)
+    {
+        // Steam API is only available for Steam version
+        // GOG's wrapper is too limited.
+        gCL->pSteamAPI = this;
+    }
+
+    // CArkEntitlementSystem::Init
+    // Remove EntitlementGranted call for Whiplash.
+    // Since Steam API is available, it will be granted by the DLC system.
+    mem::Nop((uint8_t*)(gCL->cl->GetPreyDllBase() + 0xD5B5BF), 0xD5B5C4 - 0xD5B5BF);
 }
 
 ChairSteamAPI::~ChairSteamAPI()
@@ -138,7 +145,7 @@ void ChairSteamAPI::LoadFuncs()
     }
 }
 
-void ChairSteamAPI::InitSteam()
+bool ChairSteamAPI::InitSteam()
 {
     if (!m_pInit())
     {
@@ -153,7 +160,7 @@ void ChairSteamAPI::InitSteam()
             CryFatalError("SteamAPI_Init failed");
         }
 
-        return;
+        return false;
     }
 
     // Initialize the context
@@ -178,8 +185,9 @@ void ChairSteamAPI::InitSteam()
             CryFatalError("SteamInternal_ContextInit returned nullptr");
 
         g_pIChairSteamAPI = nullptr;
-        return;
+        return false;
     }
 
     CryLog("Steam AppID = {}", SteamUtils()->GetAppID());
+    return true;
 }

@@ -70,5 +70,6 @@ private:
     void LoadFuncs();
 
     //! Initializes Steam API.
-    void InitSteam();
+    //! @returns whether it was successful.
+    bool InitSteam();
 };
