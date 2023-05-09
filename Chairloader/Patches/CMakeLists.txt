@@ -6,6 +6,8 @@ set(SOURCE_FILES
 	SteamAPI/ChairSteamAPI.cpp
 	SteamAPI/ChairSteamAPI.h
 	
+	ArkFixedRewardSystem.cpp
+	ArkFixedRewardSystem.h
 	ChairloaderPatches.cpp
 	ChairloaderPatches.h
 )
