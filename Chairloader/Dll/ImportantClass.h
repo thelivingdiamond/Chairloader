@@ -38,7 +38,8 @@ public:
     }
 
     ~ImportantListener() override {
-        gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
+        if (gEnv && gEnv->pSystem)
+            gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
     }
 
     void OnSystemEventAnyThread(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
