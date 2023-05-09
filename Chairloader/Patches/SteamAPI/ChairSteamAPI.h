@@ -15,7 +15,7 @@ public:
     ~ChairSteamAPI();
 
     //! Initializes various Ark???System that replace ones created in CSystem::Init.
-    void InitArkSystems();
+    void ReplaceArkSystems();
 
     //! Runs Steam callbacks.
     void Update();

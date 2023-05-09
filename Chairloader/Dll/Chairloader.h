@@ -83,6 +83,7 @@ public:
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
 	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender.get(); }
+	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches.get(); }
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;

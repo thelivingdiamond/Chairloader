@@ -1,15 +1,6 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
-#include <Prey/CrySystem/System.h>
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
-
-auto g_CSystem_InitSoundSystem_Hook = CSystem::FInitSoundSystem.MakeHook();
-
-bool CSystem_InitSoundSystem_Hook(CSystem* const _this, const SSystemInitParams& _initParams)
-{
-    static_cast<ChairSteamAPI*>(gCL->pSteamAPI)->InitArkSystems();
-    return g_CSystem_InitSoundSystem_Hook.InvokeOrig(_this, _initParams);
-}
 
 std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
 {
@@ -38,8 +29,6 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid)
         CryFatalError("Steam is not running");
 
     InitSteam();
-
-    g_CSystem_InitSoundSystem_Hook.SetHookFunc(&CSystem_InitSoundSystem_Hook);
 }
 
 ChairSteamAPI::~ChairSteamAPI()
@@ -64,7 +53,7 @@ ChairSteamAPI::~ChairSteamAPI()
     // I guess it's fine?
 }
 
-void ChairSteamAPI::InitArkSystems()
+void ChairSteamAPI::ReplaceArkSystems()
 {
     m_pRewardSystem = std::make_unique<ArkSteamRewardSystem>();
 }
