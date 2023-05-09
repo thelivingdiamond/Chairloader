@@ -3,30 +3,54 @@
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
 
+//! Used in steam_api_chairloader.cpp only in Chairloader.
+IChairSteamAPI* g_pIChairSteamAPI = nullptr;
+
 std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
 {
-    HMODULE hModule = LoadLibraryA(DLL_NAME);
+    HMODULE hModule = nullptr;
 
-    if (!hModule)
+    // Try Steam
+    hModule = LoadLibraryA(DLL_NAME);
+    if (hModule)
     {
-        CryLog("{} not found. Not running Steam version.", DLL_NAME);
-        return nullptr;
+        char path[MAX_PATH];
+        GetModuleFileNameA(hModule, path, sizeof(path));
+        CryLog("Found Steam API: {}", path);
+        return std::make_unique<ChairSteamAPI>(hModule, false);
     }
 
-    char path[MAX_PATH];
-    GetModuleFileNameA(hModule, path, sizeof(path));
-    CryLog("Found Steam API: {}", path);
-    return std::make_unique<ChairSteamAPI>(hModule);
+    // Try GOG
+    hModule = LoadLibraryA(GOG_DLL_NAME);
+    if (hModule)
+    {
+        char path[MAX_PATH];
+        GetModuleFileNameA(hModule, path, sizeof(path));
+        CryLog("Found Galaxy API: {}", path);
+        return std::make_unique<ChairSteamAPI>(hModule, true);
+    }
+
+    CryLog("{} or {} not found. Not running Steam/GOG version.", DLL_NAME, GOG_DLL_NAME);
+    return nullptr;
 }
 
-ChairSteamAPI::ChairSteamAPI(void* hModuleVoid)
+ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
 {
+    assert(!g_pIChairSteamAPI);
     assert(!gCL->pSteamAPI);
-    gCL->pSteamAPI = this;
+    m_bIsGog = isGog;
+
+    if (!isGog)
+    {
+        // Steam API is only available for Steam version
+        // GOG's wrapper is too limited.
+        gCL->pSteamAPI = this;
+    }
+    
     m_hModule = hModuleVoid;
     LoadFuncs();
 
-    if (!IsSteamRunning())
+    if (!isGog && !IsSteamRunning())
         CryFatalError("Steam is not running");
 
     InitSteam();
@@ -42,7 +66,9 @@ ChairSteamAPI::~ChairSteamAPI()
         m_hModule = nullptr;
     }
 
-    assert(gCL->pSteamAPI == this);
+    assert(!g_pIChairSteamAPI || g_pIChairSteamAPI == this);
+    assert(!gCL->pSteamAPI || gCL->pSteamAPI == this);
+    g_pIChairSteamAPI = nullptr;
     gCL->pSteamAPI = nullptr;
 }
 
@@ -74,15 +100,20 @@ void ChairSteamAPI::LoadFuncs()
             errorFuncList.push_back(name);
     };
 
-    // IChairSteamAPI funcs
+    if (!m_bIsGog)
+    {
+        // IChairSteamAPI funcs
+        fnGetFunc(m_pRegisterCallResult, "SteamAPI_RegisterCallResult");
+        fnGetFunc(m_pUnregisterCallResult, "SteamAPI_UnregisterCallResult");
+        fnGetFunc(m_pIsSteamRunning, "SteamAPI_IsSteamRunning");
+        fnGetFunc(m_pGetHSteamUserCurrent, "Steam_GetHSteamUserCurrent");
+        fnGetFunc(m_pGetSteamInstallPath, "SteamAPI_GetSteamInstallPath");
+    }
+
+    // IChairSteamAPI funcs available in GOG wrapper
     fnGetFunc(m_pGetHSteamUser, "SteamAPI_GetHSteamUser");
     fnGetFunc(m_pRegisterCallback, "SteamAPI_RegisterCallback");
     fnGetFunc(m_pUnregisterCallback, "SteamAPI_UnregisterCallback");
-    fnGetFunc(m_pRegisterCallResult, "SteamAPI_RegisterCallResult");
-    fnGetFunc(m_pUnregisterCallResult, "SteamAPI_UnregisterCallResult");
-    fnGetFunc(m_pIsSteamRunning, "SteamAPI_IsSteamRunning");
-    fnGetFunc(m_pGetHSteamUserCurrent, "Steam_GetHSteamUserCurrent");
-    fnGetFunc(m_pGetSteamInstallPath, "SteamAPI_GetSteamInstallPath");
     fnGetFunc(m_pGetHSteamPipe, "SteamAPI_GetHSteamPipe");
     fnGetFunc(m_pCreateInterface, "SteamInternal_CreateInterface");
 
@@ -102,16 +133,32 @@ void ChairSteamAPI::LoadFuncs()
         for (const std::string& i : errorFuncList)
             msg += i + "\n";
 
-        CryFatalError("Failed to load functions from {}:\n{}", DLL_NAME, msg);
+        const char* dllName = m_bIsGog ? GOG_DLL_NAME : DLL_NAME;
+        CryFatalError("Failed to load functions from {}:\n{}", dllName, msg);
     }
 }
 
 void ChairSteamAPI::InitSteam()
 {
     if (!m_pInit())
-        CryFatalError("SteamAPI_Init failed");
+    {
+        if (m_bIsGog)
+        {
+            // Non-fatal because GOG must be DRM-free.
+            CryError("Galaxy API init failed. Achievements in GOG Galaxy will not work.");
+        }
+        else
+        {
+            // Fatal because see LoadFuncs
+            CryFatalError("SteamAPI_Init failed");
+        }
+
+        return;
+    }
 
     // Initialize the context
+    assert(!g_pIChairSteamAPI);
+    g_pIChairSteamAPI = this;
 
     // SteamInternal_ContextInit takes a base pointer for the equivalent of
     // struct { void (*pFn)(void* pCtx); uintp counter; CSteamAPIContext ctx; }
@@ -124,7 +171,15 @@ void ChairSteamAPI::InitSteam()
     m_pContext = (CSteamAPIContext*)m_pContextInit(s_CallbackCounterAndContext);
 
     if (!m_pContext)
-        CryFatalError("SteamInternal_ContextInit returned nullptr");
+    {
+        if (m_bIsGog)
+            CryError("SteamInternal_ContextInit returned nullptr. Achievements in GOG Galaxy will not work.");
+        else
+            CryFatalError("SteamInternal_ContextInit returned nullptr");
+
+        g_pIChairSteamAPI = nullptr;
+        return;
+    }
 
     CryLog("Steam AppID = {}", SteamUtils()->GetAppID());
 }

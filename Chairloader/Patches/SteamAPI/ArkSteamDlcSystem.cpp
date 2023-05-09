@@ -15,7 +15,7 @@ void ArkSteamDlcSystem::Refresh()
     for (auto& [name, dlcInfo] : m_dlcPlatformIdMap)
     {
         AppId_t steamAppId = std::strtol(dlcInfo.SteamId.c_str(), nullptr, 10);
-        bool isInstalled = pSteamApps->BIsDlcInstalled(steamAppId);
+        bool isInstalled = pSteamApps && pSteamApps->BIsDlcInstalled(steamAppId);
         UpdateDlcUnlocked(&dlcInfo, isInstalled);
 
         if (isInstalled)

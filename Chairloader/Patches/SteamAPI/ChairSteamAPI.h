@@ -8,8 +8,9 @@ public:
     //! @returns instance or nullptr.
     static std::unique_ptr<ChairSteamAPI> CreateInstance();
 
-    //! @param hModule DLL handle.
-    ChairSteamAPI(void* hModule);
+    //! @param  hModule DLL handle.
+    //! @param  isGog   GOG version.
+    ChairSteamAPI(void* hModule, bool isGog);
     ~ChairSteamAPI();
 
     //! Initializes various Ark???System that replace ones created in CSystem::Init.
@@ -36,6 +37,9 @@ public:
 private:
     //! DLL handle.
     void* m_hModule = nullptr;
+
+    //! Using GOG version's Steam API wrapper.
+    bool m_bIsGog = false;
 
     //! The context pointer
     CSteamAPIContext* m_pContext = nullptr;

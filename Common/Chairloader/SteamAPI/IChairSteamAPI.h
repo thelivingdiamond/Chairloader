@@ -7,6 +7,9 @@ struct IChairSteamAPI
     //! The name of Steam API DLL.
     static constexpr char DLL_NAME[] = "steam_api64.dll";
 
+    //! The name of the wrapper DLL in GOG version of the game.
+    static constexpr char GOG_DLL_NAME[] = "common64.dll";
+
     virtual ~IChairSteamAPI() {}
 
     //! CSteamAPIContext is marked as deprecated but actually

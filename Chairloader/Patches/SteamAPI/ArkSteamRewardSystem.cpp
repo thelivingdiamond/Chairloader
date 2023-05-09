@@ -33,15 +33,19 @@ void ArkSteamRewardSystem::InternalRewardUnlocked(unsigned unlockId)
     // unlockId = ArkReward::unlockId
     CArkRewardSystem::InternalRewardUnlocked(unlockId);
 
-    const char* name = SteamUserStats()->GetAchievementName(unlockId);
-    if (!name)
+    ISteamUserStats* pUserStats = SteamUserStats();
+    if (pUserStats)
     {
-        CryError("[ArkSteamRewardSystem] Unknown unlockId {}", unlockId);
-        return;
-    }
+        const char* name = pUserStats->GetAchievementName(unlockId);
+        if (!name)
+        {
+            CryError("[ArkSteamRewardSystem] Unknown unlockId {}", unlockId);
+            return;
+        }
 
-    const char* displayName = SteamUserStats()->GetAchievementDisplayAttribute(name, "name");
-    CryLog("[ArkSteamRewardSystem] Unlocking '{}' (id = {}, name = {})", displayName, unlockId, name);
-    SteamUserStats()->SetAchievement(name);
-    SteamUserStats()->StoreStats();
+        const char* displayName = pUserStats->GetAchievementDisplayAttribute(name, "name");
+        CryLog("[ArkSteamRewardSystem] Unlocking '{}' (id = {}, name = {})", displayName, unlockId, name);
+        pUserStats->SetAchievement(name);
+        pUserStats->StoreStats();
+    }
 }
