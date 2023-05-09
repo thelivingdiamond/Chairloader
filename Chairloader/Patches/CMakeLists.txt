@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	SteamAPI/ArkSteamDlcSystem.cpp
+	SteamAPI/ArkSteamDlcSystem.h
 	SteamAPI/ArkSteamRewardSystem.cpp
 	SteamAPI/ArkSteamRewardSystem.h
 	SteamAPI/ChairSteamAPI.cpp

@@ -1,8 +1,6 @@
 #pragma once
 #include <Chairloader/SteamAPI/IChairSteamAPI.h>
 
-class ArkSteamRewardSystem;
-
 class ChairSteamAPI final : public IChairSteamAPI, NoCopy
 {
 public:

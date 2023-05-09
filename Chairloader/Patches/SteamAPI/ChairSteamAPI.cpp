@@ -1,4 +1,5 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include "SteamAPI/ArkSteamDlcSystem.h"
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
 
@@ -49,7 +50,10 @@ void ChairSteamAPI::ReplaceArkSystems()
 {
     // Existing systems are owned by CSystem. It will destroy them in ShutDown.
     delete gEnv->pArkRewardSystem;
+    delete gEnv->pArkDlcSystem;
     gEnv->pArkRewardSystem = new ArkSteamRewardSystem();
+    gEnv->pArkDlcSystem = new ArkSteamDlcSystem();
+    gEnv->pArkDlcSystem->InitEnv(gEnv);
 }
 
 void ChairSteamAPI::Update()
