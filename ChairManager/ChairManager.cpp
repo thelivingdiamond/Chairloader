@@ -1604,6 +1604,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
+                    m_ConfigManager.init();
                 } catch (std::exception &exc) {
                     std::cerr << exc.what() << std::endl;
                     log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
