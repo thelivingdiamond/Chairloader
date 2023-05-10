@@ -20,6 +20,7 @@
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
+#include "Merging/ZipUtils.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -1561,36 +1562,12 @@ void ChairManager::UninstallMod(std::string &modName) {
 }
 
 void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
-//    char shortPath[MAX_PATH];
-//    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    std::wstring commandArgs = L".\\7za.exe x \"";
-//    commandArgs +=  path.wstring();
-//    commandArgs += L"\\";
-    commandArgs += fileName.wstring();
-    commandArgs += L"\" -otemp -spe";
-//    log(severityLevel::trace, "Command args: %s", commandArgs.c_str());
-//    printf("Command args: %ls", commandArgs.c_str());
-    STARTUPINFOW si = {sizeof(STARTUPINFO)};
-    PROCESS_INFORMATION pi;
-    //DONE: move to CreateProcessA instead of system()
-//    auto si = new STARTUPINFOA;
-//    auto pi = new PROCESS_INFORMATION;
-//    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
-//    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
-//        WaitForSingleObject(pi->hProcess, INFINITE);
-    commandArgs.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
-        log(severityLevel::debug, "7Zip operation started");
-        WaitForSingleObject(pi.hProcess, INFINITE);
-        log(severityLevel::debug, "7Zip process finished");
-        LPDWORD exitCode = new DWORD;
-        GetExitCodeProcess(pi.hProcess, exitCode);
-        log(severityLevel::trace, "7Zip exit code: %i", *exitCode);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-    } else {
-        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
-        overlayLog(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
+
+    try {
+        ZipUtils::ExtractFolder(path / fileName, "temp");
+    }
+    catch (std::exception &e) {
+        overlayLog(severityLevel::error, "Could not extract %s: %s", fileName.u8string().c_str(), e.what());
         return;
     }
 
