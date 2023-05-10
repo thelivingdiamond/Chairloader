@@ -70,8 +70,15 @@ public:
 
 
     void DeployForInstallWizard(){
+        Init();
+        m_pChairMerger->m_bForceMainPatchPack = true;
         RunAsyncDeploy();
+        while(!IsFutureReady(m_DeployTaskFuture)){
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+        m_DeployTaskFuture.get();
     }
+
 
 
     std::string getETag() {
