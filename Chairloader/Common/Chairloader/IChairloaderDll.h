@@ -17,6 +17,9 @@ struct IChairloaderDll : public IChairloader
 	virtual IChairloaderPatches* GetPatches() = 0;
 	virtual IChairloaderTools* GetTools() = 0;
 
+	//! @returns the Chairloader DLL handle.
+	virtual void* GetDllHandle() = 0;
+
 	//! @returns whether it was handled and shouldn't be passed over to the game.
 	virtual bool HandleKeyPress(const SInputEvent& event) = 0;
 

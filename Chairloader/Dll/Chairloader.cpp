@@ -143,9 +143,9 @@ void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
 
 } // namespace
 
-void Chairloader::CreateInstance()
+void Chairloader::CreateInstance(void* hThisDll)
 {
-	gChairloaderDll = std::make_unique<Chairloader>();
+	gChairloaderDll = std::make_unique<Chairloader>(hThisDll);
 }
 
 Chairloader* Chairloader::Get()
@@ -153,7 +153,8 @@ Chairloader* Chairloader::Get()
 	return gChairloaderDll.get();
 }
 
-Chairloader::Chairloader() {
+Chairloader::Chairloader(void* hThisDll) {
+	m_hThisDll = hThisDll;
 	gChair = this;
 	m_WinConsole.InitConsole();
 	printf("ChairLoader Initializing...\n");
