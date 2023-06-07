@@ -1,6 +1,9 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	Lua/LuaWarnPatch.cpp
+	Lua/LuaWarnPatch.h
+
 	SteamAPI/ArkSteamDlcSystem.cpp
 	SteamAPI/ArkSteamDlcSystem.h
 	SteamAPI/ArkSteamRewardSystem.cpp
