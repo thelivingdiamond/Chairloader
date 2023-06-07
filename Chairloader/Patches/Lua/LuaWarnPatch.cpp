@@ -49,7 +49,7 @@ void lua_storedebuginfo_Hook(lua_State* L, int e)
 
 		// On first call (during CScriptSystem::Init) check -lua_storedebug cmd line arg
 		const ICmdLineArg* pArg = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "lua_storedebug");
-		if (pArg && pArg->GetIValue())
+		if ((!pArg && gEnv->pSystem->IsDevMode()) || (pArg && pArg->GetIValue()))
 		{
 			g_lua_storedebuginfo_Hook.InvokeOrig(L, 1);
 			return;
