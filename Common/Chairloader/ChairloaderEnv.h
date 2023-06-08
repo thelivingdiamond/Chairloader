@@ -8,6 +8,7 @@ class EntityUtils;
 struct IRenderAuxGeomEx;
 struct IChairRender;
 struct IChairXmlUtils;
+struct IChairSteamAPI;
 
 struct ChairloaderGlobalEnvironment {
 	IChairloader* cl;
@@ -17,6 +18,7 @@ struct ChairloaderGlobalEnvironment {
 	IRenderAuxGeomEx* pAuxGeomEx;
 	IChairRender* pRender;
 	IChairXmlUtils* pXmlUtils;
+	IChairSteamAPI* pSteamAPI; //!< NULL if not Steam version
 };
 
 extern ChairloaderGlobalEnvironment* gCL;
