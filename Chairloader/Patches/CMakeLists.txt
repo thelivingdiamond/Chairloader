@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 	
+	Lua/LuaDbgFix.cpp
+	Lua/LuaDbgFix.h
 	Lua/LuaDbgRes.cpp
 	Lua/LuaDbgRes.h
 	Lua/LuaWarnPatch.cpp

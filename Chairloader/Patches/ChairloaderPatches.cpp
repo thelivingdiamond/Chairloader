@@ -2,6 +2,7 @@
 #include <Prey/CryInput/dxinput.h>
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/Hooks/HookTransaction.h>
+#include "Lua/LuaDbgFix.h"
 #include "Lua/LuaDbgRes.h"
 #include "Lua/LuaWarnPatch.h"
 #include "SteamAPI/ChairSteamAPI.h"
@@ -61,6 +62,7 @@ void ChairloaderPatches::InitSystem()
 	g_CSystem_InitSoundSystem_Hook.SetHookFunc(&CSystem_InitSoundSystem_Hook);
 	g_CDXInput_ShutDown_Hook.SetHookFunc(&CDXInput_ShutDown_Hook);
 
+	LuaDbgFix::InitSystem();
 	LuaDbgRes::InitSystem();
 	LuaWarnPatch::InitSystem();
 	m_pSteamAPI = ChairSteamAPI::CreateInstance();
