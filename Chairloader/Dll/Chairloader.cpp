@@ -85,6 +85,9 @@ auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
 	g_pGame = _this;
+
+	gChairloaderDll->GetCore()->PreInitGame();
+
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
