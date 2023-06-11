@@ -183,6 +183,7 @@ void LuaModManager::RegisterMods()
         }
 
         RegisterModTable(mod.get(), modTable);
+        gEnv->pScriptSystem->SetGlobalToNull(CURRENT_MOD_VAR);
     }
 
     // Remove broken mods
