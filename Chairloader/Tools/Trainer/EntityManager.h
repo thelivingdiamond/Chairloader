@@ -4,6 +4,7 @@
 #include <EntityUtils.h>
 #include "Components/EntityHierarchy.h"
 #include "Components/EntityInspector.h"
+#include "Trainer/EntitySpawnList.h"
 
 class EntityManager
 {
@@ -14,6 +15,9 @@ public:
     void InitGame();
     std::string GetModuleName() { return moduleName; };
 private:
+    //! Path to the spawn list file.
+    static constexpr char SPAWN_LIST_PATH[] = "Libs/Chairloader/Trainer/EntitySpawnList.xml";
+
     void drawEntitySpawner(bool* bShow);
     void drawEntityList(bool* bShow);
     void drawMenuBar();
@@ -24,8 +28,10 @@ private:
     EntityHierarchy hierarchy;
     EntityInspector inspector;
 
+    EntitySpawnList m_SpawnList;
+    EntitySpawnList::EntitySpawnInfo m_LastSpawnedItem;
+
     uint64_t archetypeToSpawn = 0;
-    uint64_t lastSpawnedEntity = 0;
 
     // archetype filter
     std::string archetypeFilterText, oldArchetypeFilterText;
@@ -50,7 +56,12 @@ private:
     time_t statusTimer;
 
     void spawnEntity();
-    void quickSpawnEntity(uint64_t archetypeId);
+
+    //! Reloads the spawn list XML.
+    void LoadSpawnList();
+
+    //! Spawns an item from the spawn list.
+    void SpawnListItem(const EntitySpawnList::EntitySpawnInfo& spawnInfo, int spawnCount);
 private:
     // Currently Mostly Unused
     std::vector <std::string> actions{
