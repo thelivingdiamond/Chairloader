@@ -695,6 +695,17 @@
         </WorldUIInterferenceConfig.xml>
     </Ark>
     <Libs>
+        <Chairloader>
+            <Trainer>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Header" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <EntitySpawnList merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Trainer>
+        </Chairloader>
         <BodyDamage>
             <mergingPolicy identification_policy="overwrite"/>
         </BodyDamage>

@@ -52,21 +52,21 @@ struct ILog : public IMiniLog
 	//! All the following functions will be removed are here just to be able to compile the project.
 
 	//! Logs the text both to file and console.
+	virtual void LogComment(const char* szCommand, ...) PRINTF_PARAMS(2, 3) = 0;
 	virtual void Log(const char* szCommand, ...) PRINTF_PARAMS(2, 3) = 0;
-
 	virtual void LogAlways(const char* szCommand, ...) PRINTF_PARAMS(2, 3) = 0;
+	virtual void LogWarning(const char* szFormat, ...) = 0;
+	virtual void LogError(const char* szFormat, ...) = 0;
 
 	//! Logs the text both to the end of file and console.
 	virtual void LogPlus(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
 
 	//! Logs to the file specified in SetFileName.
 	virtual void LogToFile(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
-
 	virtual void LogToFilePlus(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
 
 	//! Logs to console only.
 	virtual void LogToConsole(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
-
 	virtual void LogToConsolePlus(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
 
 	virtual void UpdateLoadingScreen(const char* command, ...) PRINTF_PARAMS(2, 3) = 0;
