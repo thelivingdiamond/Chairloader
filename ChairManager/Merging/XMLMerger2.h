@@ -10,13 +10,17 @@
 class XMLMerger2 {
 public:
     //! Merge two XML documents together, using the specified merging policy.
+    //! @param  baseDoc     Currently merged document.
+    //! @param  modDoc      Mod document that needs to be merged into base.
+    //! @param  originalDoc Original document from Prey.
+    //! @param  policy      Merging policy.
     static void MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, MergingPolicy policy);
 
     //! Merge two XML nodes together, using the specified merging policy.
     static void MergeNodeStructure(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy);
 
     //! Merge two xml nodes, including wildcard matching, vanilla checking, and indicator handling
-    static void MergeXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode);
+    static void MergeXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, bool forcePatchMode = false);
 
     //! Different merging policies
     static void MergeByAttribute(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy);
@@ -51,6 +55,19 @@ public:
     /// \brief Serialize the level entity IDs to a file
     /// \param levelPath The path to the contents of level.pak
     static void SerializeLevelEntityIDs(fs::path levelPath);
+
+    //! Parses a sibling query.
+    //! @param  query   The query in the format "key1=val1;key2=val2";
+    //! @returns List of keys and values.
+    static std::vector<std::pair<std::string, std::string>> ParseSiblingQuery(std::string_view query);
+
+private:
+    //! When a node has this attribute, it will be created based on an existing node.
+    static constexpr char COPY_SIBLING[] = "ch:copy_sibling";
+
+    //! Checks that the mod node doesn't have copy_sibling attribute.
+    //! If it does, throws std::runtime_error.
+    static void VerifyNotCopySibling(pugi::xml_node baseNode, pugi::xml_node modNode);
 };
 
 
