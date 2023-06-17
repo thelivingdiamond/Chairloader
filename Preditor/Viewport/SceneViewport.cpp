@@ -134,7 +134,7 @@ void Viewport::SceneViewport::UpdateCamera()
 
 	Quat rotQuat = Quat(info.rot);
 
-	// TODO 2023-07-17: Implement input
+	// TODO 2023-06-17: Implement input
 
 	Matrix34 camMat;
 	camMat.SetRotation33(Matrix33(rotQuat));
