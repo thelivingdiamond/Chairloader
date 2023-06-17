@@ -13,8 +13,8 @@ set(SOURCE_FILES
 	ExtractionStage.h
 	LoadGameStage.cpp
 	LoadGameStage.h
-	Preditor.cpp
-	Preditor.h
+	PreditorApp.cpp
+	PreditorApp.h
 	ProjectHistory.cpp
 	ProjectHistory.h
 	ProjectSelectStage.cpp

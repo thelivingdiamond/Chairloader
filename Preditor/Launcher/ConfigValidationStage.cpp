@@ -7,7 +7,7 @@
 #include "App/AppImGui.h"
 #include "ImGui/imgui_stdlib.h"
 #include "ProjectSelectStage.h"
-#include "Preditor.h"
+#include "PreditorApp.h"
 
 void ConfigValidationStage::Start()
 {
@@ -67,7 +67,7 @@ void ConfigValidationStage::Error(const std::string& error) {
 
 void ConfigValidationStage::OnFinish()
 {
-    Preditor::Get()->OnConfigValidated(std::move(m_pConfig));
+    PreditorApp::Get()->OnConfigValidated(std::move(m_pConfig));
     SetStageFinished(std::make_unique<ProjectSelectStage>());
 }
 

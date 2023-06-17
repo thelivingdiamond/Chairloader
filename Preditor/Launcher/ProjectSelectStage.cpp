@@ -7,7 +7,7 @@
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
 #include "App/AppImGui.h"
-#include "Preditor.h"
+#include "PreditorApp.h"
 #include "ImGui/imgui_stdlib.h"
 #include "LoadGameStage.h"
 #include "ProjectHistory.h"
@@ -170,7 +170,7 @@ void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool 
         }
 
         ProjectHistory::AddToHistory(m_loadProjectPath);
-        Preditor::Get()->GetPahts().SetProjectDirPath(m_loadProjectPath);
+        PreditorApp::Get()->GetPahts().SetProjectDirPath(m_loadProjectPath);
         SetStageFinished(std::make_unique<LoadGameStage>(nullptr));
     }
     catch (const std::exception& e)

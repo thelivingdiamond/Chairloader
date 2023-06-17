@@ -3,7 +3,7 @@
 #include <Manager/GamePath.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include "LoadGameStage.h"
-#include "Preditor.h"
+#include "PreditorApp.h"
 #include "ExtractionOptions.h"
 
 LoadGameStage::LoadGameStage(ExtractionOptions* pExtractionOptions)
@@ -69,7 +69,7 @@ void LoadGameStage::Start()
 		if (!IPreditorEngine::Get()->Start(params))
 			throw std::runtime_error("Engine failed to start");
 
-		SetStageFinished(Preditor::Get()->OnGameLoaded());
+		SetStageFinished(PreditorApp::Get()->OnGameLoaded());
 	}
 	catch (const std::exception& e)
 	{
@@ -107,5 +107,5 @@ void LoadGameStage::UpdateProgressText(const std::string& text)
 {
 	m_ProgressText = text;
 	m_ProgressCount++;
-	Preditor::Get()->RefreshUI();
+	PreditorApp::Get()->RefreshUI();
 }

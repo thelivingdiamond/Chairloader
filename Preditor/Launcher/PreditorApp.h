@@ -9,13 +9,13 @@ struct ExtractionOptions;
 class LoadGameStage;
 class DevConsoleDialog;
 
-class Preditor : public Application
+class PreditorApp : public Application
 {
 public:
-	static Preditor* Get() { return static_cast<Preditor*>(Application::Get()); }
+	static PreditorApp* Get() { return static_cast<PreditorApp*>(Application::Get()); }
 
-	Preditor();
-	~Preditor();
+	PreditorApp();
+	~PreditorApp();
 
 	PreditorPaths& GetPahts() { return m_Paths; }
 

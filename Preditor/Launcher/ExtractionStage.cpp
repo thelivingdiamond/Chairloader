@@ -3,7 +3,7 @@
 #include <Chairloader/ChairXmlUtils.h>
 #include <mem.h>
 #include "ExtractionStage.h"
-#include "Preditor.h"
+#include "PreditorApp.h"
 
 static_assert(sizeof(ZipDir::CZipFile) == 64);
 static_assert(sizeof(ZipDir::DirHeader) == 4);
@@ -33,11 +33,11 @@ public:
 template <typename T>
 static T WaitForFuture(std::future<T>&& future)
 {
-	Preditor::Get()->RefreshUI();
+	PreditorApp::Get()->RefreshUI();
 
 	while (future.wait_for(std::chrono::milliseconds(1000 / WAIT_FOR_FUTURE_FPS)) == std::future_status::timeout)
 	{
-		Preditor::Get()->RefreshUI();
+		PreditorApp::Get()->RefreshUI();
 	}
 
 	return future.get();
@@ -69,7 +69,7 @@ void ExtractionStage::Start()
 	try
 	{
 		m_CurrentPakName = "Loading extract list...";
-		Preditor::Get()->RefreshUI();
+		PreditorApp::Get()->RefreshUI();
 		LoadExtractList();
 
 		pugi::xml_node root = m_ExtractList.child("ExtractList");
@@ -199,7 +199,7 @@ void ExtractionStage::Cancel()
 
 void ExtractionStage::LoadExtractList()
 {
-	fs::path path = Preditor::Get()->GetProgramPath() / "Preditor/ExtractList.xml";
+	fs::path path = PreditorApp::Get()->GetProgramPath() / "Preditor/ExtractList.xml";
 	pugi::xml_parse_result result = m_ExtractList.load_file(path.c_str());
 
 	if (!result)

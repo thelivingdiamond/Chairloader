@@ -5,13 +5,13 @@
 #include <WindowManager/WindowManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include "App/AppStage.h"
-#include "Preditor.h"
+#include "PreditorApp.h"
 #include "LoadGameStage.h"
 #include "ExtractionStage.h"
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
-Preditor::Preditor()
+PreditorApp::PreditorApp()
 {
     gPreditor->pPaths = &m_Paths;
     ParseCommandLine();
@@ -27,18 +27,18 @@ Preditor::Preditor()
     }
 }
 
-Preditor::~Preditor()
+PreditorApp::~PreditorApp()
 {
     IPreditorEngine::Get()->Shutdown();
 }
 
-void Preditor::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)
+void PreditorApp::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)
 {
     m_pConfig = std::move(pConfig);
     gPreditor->pConfig = m_pConfig.get();
 }
 
-AppStagePtr Preditor::OnGameLoaded()
+AppStagePtr PreditorApp::OnGameLoaded()
 {
     if (m_pExtractionOptions)
     {
@@ -56,7 +56,7 @@ AppStagePtr Preditor::OnGameLoaded()
     }
 }
 
-void Preditor::Update()
+void PreditorApp::Update()
 {
     // Only the main stage has a dedicated main window.
     // Dock space needs to be created before any windows.
@@ -64,21 +64,21 @@ void Preditor::Update()
         ImGui::DockSpaceOverViewport();
 }
 
-void Preditor::ShowUI(bool* bOpen)
+void PreditorApp::ShowUI(bool* bOpen)
 {
     // TODO: Move to Main
     // if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
     //     m_pLookingGlass->ShowUI();
 }
 
-void Preditor::PostUpdate()
+void PreditorApp::PostUpdate()
 {
     // Engine must be updated at the end of the tick because it will end the ImGui frame.
     if (!IPreditorEngine::Get()->Update())
         QuitApp();
 }
 
-void Preditor::ParseCommandLine()
+void PreditorApp::ParseCommandLine()
 {
     try
     {
@@ -122,6 +122,6 @@ void Preditor::ParseCommandLine()
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
 {
-	auto pApp = std::make_unique<Preditor>();
+	auto pApp = std::make_unique<PreditorApp>();
 	return pApp->Run();
 }
