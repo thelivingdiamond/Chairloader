@@ -6,6 +6,8 @@
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
 #include <Manager/GamePath.h>
+#include <Merging/ChairMerger.h>
+#include <boost/algorithm/string/predicate.hpp>
 #include "ChairManager.h"
 #include "UI.h"
 #include "ChairWizards/GamePathDialog.h"
@@ -18,6 +20,7 @@
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
+#include "Merging/ZipUtils.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -260,7 +263,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
                 saveChairloaderConfigFile();
             }
             if(ImGui::MenuItem("Deploy Mods")){
-                RunAsyncDeploy();
+                SwitchToDeployScreen();
             }
             ImGui::EndMenu();
         }
@@ -679,7 +682,7 @@ void ChairManager::DrawModList() {
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
             if(ImGui::Button("Deploy Mods")){
-                RunAsyncDeploy();
+                SwitchToDeployScreen();
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
@@ -879,35 +882,35 @@ void ChairManager::DrawAssetView() {
                         ImGui::Text("XML Merging Policy:");
                         ImGui::Separator();
 //                    ImGui::TextWrapped("%s", selectedFile.path.u8string().c_str());
-                        auto policy = m_XMLMerger.getFileMergingPolicy(selectedFile.relativePath, "PreyFiles");
+                        auto policy = m_pChairMerger->GetFileMergingPolicy(selectedFile.relativePath, "PreyFiles");
                         static pugi::xml_document doc;
                         pugi::xml_parse_result result = doc.load_file(selectedFile.path.u8string().c_str());
                         auto firstNode = doc.first_child();
-                        XMLMerger::resolvePathWildcards(firstNode, policy.nodeStructure);
+                        XMLMerger2::ResolvePolicyPathWildcards(firstNode, policy.nodeStructure);
                         switch (policy.policy) {
-                            case XMLMerger::mergingPolicy::identification_policy::error:
+                            case MergingPolicy::identification_policy::error:
                                 ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "Error");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::unknown:
+                            case MergingPolicy::identification_policy::unknown:
                                 ImGui::Text("Unknown");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file is not registered with the merging library. It will be copied to the output directory as-is. This file cannot be merged with other mods.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::overwrite:
+                            case MergingPolicy::identification_policy::overwrite:
                                 ImGui::Text("Overwrite");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will overwrite the same file in the output directory. This file cannot be merged with other mods.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_tag:
+                            case MergingPolicy::identification_policy::match_tag:
                                 ImGui::Text("Match Tag");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will be merged. The merging policy is based on the tag (name) of each node set to be merged");
                                 displayXmlNode(policy.nodeStructure, 0);
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_attribute:
+                            case MergingPolicy::identification_policy::match_attribute:
                                 ImGui::Text("Match Attribute");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker("This file will be merged. The merging policy is based on the value of specific attributes of each node set to be merged");
@@ -920,13 +923,13 @@ void ChairManager::DrawAssetView() {
                                     ImGui::TreePop();
                                 }
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_spreadsheet:
+                            case MergingPolicy::identification_policy::match_spreadsheet:
                                 ImGui::Text("Match Spreadsheet");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
                                         "This file will be merged. This is a special mode for Excel spreadsheet XML Files. They will be matched based on the first column of each row.");
                                 break;
-                            case XMLMerger::mergingPolicy::identification_policy::match_contents:
+                            case MergingPolicy::identification_policy::match_contents:
                                 ImGui::Text("Match Contents");
                                 ImGui::SameLine();
                                 ImGuiUtils::HelpMarker(
@@ -972,15 +975,6 @@ void ChairManager::DrawDeploySettings() {
 //            log(severityLevel::debug, "Save Result: %i", BaseDoc.save_file(R"(C:\Program Files (x86)\Steam\steamapps\common\Prey\Mods\ExampleMod\MergeTest_NEW.xml)"));
         }
         ImGui::EndTabItem();
-        if(ImGui::Button("Merge XML Files")){
-            mergeXMLFiles();
-        }
-        if(ImGui::Button("Pack Chairloader Patch")){
-            packChairloaderPatch();
-        }
-        if(ImGui::Button("Copy Chairloader Patch")){
-            copyChairloaderPatch();
-        }
     }
 }
 
@@ -1165,7 +1159,7 @@ void ChairManager::LoadModsFromConfig() {
 }
 void ChairManager::DetectNewMods() {
     for(auto &directory : fs::directory_iterator(fs::path(GetGamePath().u8string() + "/Mods/"))){
-        if(directory.path() != GetGamePath() / "Mods/config" && directory.path() != GetGamePath() / "Mods/Legacy") {
+        if(directory.path() != GetGamePath() / "Mods/config" && directory.path() != GetGamePath() / "Mods/Legacy" && directory.is_directory()) {
             Mod mod;
             if(LoadModInfoFile(directory.path(), &mod, false)) {
                 if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
@@ -1408,28 +1402,16 @@ void ChairManager::Update() {
         oldDpiScaling = dpiScale;
 //        ImGui::GetFont()->Scale *= dpiScale;
         ImGui::GetIO().Fonts->Clear();
-        ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+        if(fs::exists("Montserrat-Regular.ttf"))
+            ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
+        else
+            ImGui::GetIO().Fonts->AddFontDefault();
 //        ImGui::GetIO().Fonts->
 //        if(!ImGui::GetIO().Fonts->IsBuilt())
         ImGui::GetIO().Fonts->Build();
         UI::ResetDX11();
         log(severityLevel::trace, "DPI Scale Changed to %.2f", dpiScale);
     }
-}
-
-void ChairManager::DeployForInstallWizard()
-{
-    assert(m_DeployState == DeployState::Invalid);
-    mergeXMLFiles(true);
-
-    if (!packChairloaderPatch())
-        throw std::runtime_error("Failed to pack patch_chairloader.pak");
-    if (!copyChairloaderPatch())
-        throw std::runtime_error("Failed to copy patch_chairloader.pak");
-
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::Invalid;
-    m_DeployLogMutex.unlock();
 }
 
 bool ChairManager::TreeNodeWalkDirectory(fs::path relativePath, std::string modName, XMLFile::XMLType type) {
@@ -1580,36 +1562,12 @@ void ChairManager::UninstallMod(std::string &modName) {
 }
 
 void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
-//    char shortPath[MAX_PATH];
-//    GetShortPathNameA(fileName.c_str(), shortPath, MAX_PATH);
-    std::wstring commandArgs = L".\\7za.exe x \"";
-//    commandArgs +=  path.wstring();
-//    commandArgs += L"\\";
-    commandArgs += fileName.wstring();
-    commandArgs += L"\" -otemp -spe";
-//    log(severityLevel::trace, "Command args: %s", commandArgs.c_str());
-//    printf("Command args: %ls", commandArgs.c_str());
-    STARTUPINFOW si = {sizeof(STARTUPINFO)};
-    PROCESS_INFORMATION pi;
-    //DONE: move to CreateProcessA instead of system()
-//    auto si = new STARTUPINFOA;
-//    auto pi = new PROCESS_INFORMATION;
-//    LPSTR cmdList[] = {TEXT("x"), TEXT((char*)fileName.c_str()), TEXT("-otemp")};
-//    if(CreateProcessA(nullptr, args, nullptr, nullptr, true, 0, nullptr, nullptr, si, pi))
-//        WaitForSingleObject(pi->hProcess, INFINITE);
-    commandArgs.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &commandArgs[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) {
-        log(severityLevel::debug, "7Zip operation started");
-        WaitForSingleObject(pi.hProcess, INFINITE);
-        log(severityLevel::debug, "7Zip process finished");
-        LPDWORD exitCode = new DWORD;
-        GetExitCodeProcess(pi.hProcess, exitCode);
-        log(severityLevel::trace, "7Zip exit code: %i", *exitCode);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-    } else {
-        log(severityLevel::error, "Error, 7za.exe failed to execute %i", GetLastError());
-        overlayLog(severityLevel::error, "Mod Installation Failed: could not decompress %s", fileName);
+
+    try {
+        ZipUtils::ExtractFolder(path / fileName, "temp");
+    }
+    catch (std::exception &e) {
+        overlayLog(severityLevel::error, "Could not extract %s: %s", fileName.u8string().c_str(), e.what());
         return;
     }
 
@@ -1623,6 +1581,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
+                    m_ConfigManager.init();
                 } catch (std::exception &exc) {
                     std::cerr << exc.what() << std::endl;
                     log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
@@ -1656,96 +1615,6 @@ void ChairManager::EnableMod(std::string modName, bool enabled) {
     if(mod != ModList.end()) {
         if(mod->installed)
             mod->enabled = enabled;
-    }
-}
-
-bool ChairManager::DeployMods() {
-    mergeXMLFiles();
-    saveChairloaderConfigFile();
-    if(packChairloaderPatch()){
-        if(copyChairloaderPatch()){
-            m_DeployLogMutex.lock();
-            m_DeployState = DeployState::Done;
-            m_DeployLogMutex.unlock();
-            overlayLog(severityLevel::info, "Mods Deployed");
-//            m_State = State::MainWindow;
-            return true;
-        }
-    }
-//    m_State = State::MainWindow;
-    return false;
-}
-
-void ChairManager::mergeXMLFiles(bool onlyChairPatch) {
-    // Remove old output files
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::RemovingOldOutput;
-    m_DeployLogMutex.unlock();
-    fs::remove_all("./Output/");
-    fs::create_directory("./Output/");
-
-    // Copy Base Files
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::CopyingBaseFiles;
-    m_DeployLogMutex.unlock();
-
-    bool doLevelPatches = false;
-    for (Mod& mod : ModList) {
-        if (mod.enabled && mod.hasLevelXML)
-        {
-            doLevelPatches = true;
-            break;
-        }
-    }
-    if (doLevelPatches) {
-        try {
-            fs::copy(".\\PreyFiles\\Levels", ".\\Output\\Levels", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-        } catch (std::exception &exc) {
-            std::cerr << exc.what() << std::endl;
-            overlayLog(severityLevel::error, "Could not copy Levels folder: %s", exc.what());
-            return;
-        }
-    }
-    try {
-        fs::create_directories("./Output/Localization/English_xml");
-        fs::copy("./PreyFiles/Localization/English_xml_patch/", "./Output/Localization/English_xml/",
-                 fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch (std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        overlayLog(severityLevel::error, "Could not copy Localization folder: %s", exc.what());
-        return;
-    }
-    //Chairloader Patch
-    try{
-        fs::copy("./ChairloaderPatch/", "./Output/", fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-    } catch(std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        overlayLog(severityLevel::error, "Error copying base files: %s", exc.what());
-        return;
-    }
-
-    if (!onlyChairPatch)
-    {
-        //merge legacy mods
-        m_DeployLogMutex.lock();
-        m_DeployState = DeployState::MergingLegacyMods;
-        m_DeployLogMutex.unlock();
-        for (auto& directory : fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
-            if (fs::is_directory(directory)) {
-                log(severityLevel::trace, "Merging Legacy Mod %s", directory.path().u8string().c_str());
-                mergeDirectory("", directory.path().filename().u8string(), true);
-            }
-        }
-        //registered mods
-        m_DeployLogMutex.lock();
-        m_DeployState = DeployState::MergingMods;
-        m_DeployLogMutex.unlock();
-        for (auto& mod : ModList) {
-            if (mod.installed && mod.enabled && verifyDependenciesEnabled(mod.modName)) {
-                mergeDirectory("", mod.modName);
-                ModListNode.child(mod.modName.c_str()).child("deployed").text().set(true);
-            }
-        }
     }
 }
 
@@ -1860,227 +1729,6 @@ void ChairManager::OverlayLogElement(LogEntry entry) {
         ImGui::EndChild();
 }
 
-void ChairManager::mergeDirectory(fs::path path, std::string modName, bool legacyMod) {
-    fs::path modPath;
-    if(legacyMod) {
-        modPath = GetGamePath() / "Mods/Legacy" / modName / path;
-    } else {
-        modPath = GetGamePath() / "Mods" / modName / "Data" / path.u8string();
-    }
-    fs::path originalPath = "./PreyFiles" / path;
-    fs::path outputPath = "./Output" / path;
-    try {
-        // merge level files anyway
-        if (is_directory(modPath)/* && modPath != GetGamePath().u8string() + "/Mods/" + modName + "/Data/Levels"*/) {
-            log(severityLevel::trace, "Exploring directory %s", modPath.u8string().c_str());
-            if(!fs::exists(outputPath)) {
-                fs::create_directories(outputPath);
-            }
-            for (auto &directory: fs::directory_iterator(modPath)) {
-                mergeDirectory(path / directory.path().filename(), modName, legacyMod);
-            }
-        } else if (is_regular_file(modPath)) {
-            if(modPath.extension() == ".xml") {
-                m_XMLMerger.mergeXMLFile(path, modName, legacyMod);
-            } else {
-                log(severityLevel::trace, "Copying %s", modPath.u8string().c_str());
-                fs::copy_file(modPath, outputPath, fs::copy_options::overwrite_existing);
-            }
-        }
-    } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while merging %s: %s", modPath.u8string().c_str(), exception.what());
-    }
-}
-
-
-
-
-bool ChairManager::packChairloaderPatch() {
-    // Remove Old Patches
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::RemovingOldPatches;
-    m_DeployLogMutex.unlock();
-    try {
-        fs::remove("patch_chairloader.pak");
-        fs::remove_all("./LevelOutput");
-        fs::remove("English_xml_patch.pak");
-    } catch (std::exception & exception) {
-        overlayLog(severityLevel::error, "Error: %s", exception.what());
-        return false;
-    }
-
-    // See if any mods have level patches
-    bool doLevelPatches = false;
-    for (Mod& mod : ModList) {
-        if (mod.enabled && mod.hasLevelXML)
-        {
-            doLevelPatches = true;
-            break;
-        }
-    }
-
-    if (doLevelPatches)
-    {
-        // packing level files
-        m_DeployLogMutex.lock();
-        m_DeployState = DeployState::PackingLevelFiles;
-        m_DeployLogMutex.unlock();
-        auto levelDirectories = exploreLevelDirectory(".\\Output\\Levels");
-        try {
-            fs::create_directories("./LevelOutput/Levels");
-            fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
-        } catch (std::exception & exception) {
-            overlayLog(severityLevel::error, "Error Copying level directory: %s", exception.what());
-            return false;
-        }
-        std::vector<PROCESS_INFORMATION> processes;
-        processes.clear();
-        for(auto &levelDirectory: levelDirectories){
-            auto processInfo = packLevel(levelDirectory);
-            if(processInfo.hProcess != nullptr) {
-                processes.push_back(processInfo);
-            }
-        }
-        for(auto & processInfo: processes){
-            WaitForSingleObject(processInfo.hProcess, INFINITE);
-            CloseHandle(processInfo.hProcess);
-            CloseHandle(processInfo.hThread);
-        }
-        // Copying Level Files
-        m_DeployLogMutex.lock();
-        m_DeployState = DeployState::CopyingLevelFiles;
-        m_DeployLogMutex.unlock();
-        try {
-            for (auto &levelDirectory: levelDirectories) {
-                fs::path basePath = levelDirectory.wstring().substr(std::string("./Output/").size(), levelDirectory.wstring().size() - 1);
-                log(severityLevel::trace, "Packing level %s", levelDirectory.u8string().c_str());
-                if(fs::exists("./LevelOutput" / basePath / "level.pak")) {
-                    fs::remove_all("./LevelOutput" / basePath / "level/");
-                    log(severityLevel::trace, "Removing level directory %s", "./LevelOutput" / basePath / "level/");
-                    fs::copy("./LevelOutput" / basePath, GetGamePath() / "GameSDK" / basePath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::trace, "Copying Level files from %s to %s", "./LevelOutput/" + basePath.u8string(), GetGamePath().u8string() + "/GameSDK/" + basePath.u8string());
-                } else {
-                    log(severityLevel::error, "Level %s not packed", basePath.u8string().c_str());
-                }
-            }
-            fs::remove_all("./Output/Levels");
-        } catch (std::exception & exception) {
-            overlayLog(severityLevel::error, "Error packing level: %s", exception.what());
-            return false;
-        }
-    }
-
-    // Pack Localization Patch
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::PackingLocalization;
-    m_DeployLogMutex.unlock();
-
-    STARTUPINFOW LocalizationStartupInfo = {sizeof(LocalizationStartupInfo)};
-    PROCESS_INFORMATION LocalizationProcessInfo;
-    log(severityLevel::trace, "Packing localization patch");
-    auto command = fs::path(R"(.\7za.exe a English_xml_patch.pak -tzip .\Output\Localization\English_xml\*)").wstring();
-    command.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &LocalizationStartupInfo, &LocalizationProcessInfo)){
-        WaitForSingleObject(LocalizationProcessInfo.hProcess, INFINITE);
-        CloseHandle(LocalizationProcessInfo.hProcess);
-        CloseHandle(LocalizationProcessInfo.hThread);
-    } else {
-        log(severityLevel::error, "Error packing localization patch: %d", GetLastError());
-        return false;
-    }
-
-    if(!fs::exists("./English_xml_patch.pak")) {
-        overlayLog(severityLevel::error, "Error packing localization patch");
-        return false;
-    } else {
-        try {
-            fs::remove_all("./Output/Localization/");
-            fs::copy_file("./English_xml_patch.pak", GetGamePath() / "Localization/English_xml_patch.pak", fs::copy_options::overwrite_existing);
-        } catch (std::exception &exception) {
-            overlayLog(severityLevel::error, "Error removing localization patch files: %s", exception.what());
-            return false;
-        }
-    }
-
-    // pack chairloader patch
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::PackingMainPatch;
-    m_DeployLogMutex.unlock();
-    STARTUPINFOW ChairloaderStartupInfo = {sizeof(ChairloaderStartupInfo)};
-    PROCESS_INFORMATION ChairloaderProcessInfo;
-    auto commandChairloader = fs::path(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)").wstring();
-    commandChairloader.resize(MAX_PATH);
-    if(CreateProcessW(nullptr, &commandChairloader[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &ChairloaderStartupInfo, &ChairloaderProcessInfo)){
-        WaitForSingleObject(ChairloaderProcessInfo.hProcess, INFINITE);
-        CloseHandle(ChairloaderProcessInfo.hProcess);
-        CloseHandle(ChairloaderProcessInfo.hThread);
-    } else {
-        log(severityLevel::error, "Error packing chairloader patch: %d", GetLastError());
-        return false;
-    }
-//    system(R"(.\7za.exe a patch_chairloader.pak -tzip .\Output\*)");
-    if(!fs::exists("patch_chairloader.pak")) {
-        overlayLog(severityLevel::error, "Failed to pack patch_chairloader.pak");
-        return false;
-    } else {
-        log(severityLevel::info, "Packed patch_chairloader.pak");
-        return true;
-    }
-}
-
-bool ChairManager::copyChairloaderPatch() {
-    // copy chairloader patch
-    m_DeployLogMutex.lock();
-    m_DeployState = DeployState::CopyingMainPatch;
-    m_DeployLogMutex.unlock();
-    try {
-        fs::copy("patch_chairloader.pak", GetGamePath() / "GameSDK/Precache",
-                 fs::copy_options::overwrite_existing);
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while copying patch_chairloader.pak: %s", exception.what());
-        return false;
-    }
-}
-
-std::vector<fs::path> ChairManager::exploreLevelDirectory(fs::path pathToExplore) {
-    std::vector<fs::path> levelPaths;
-    for(auto &directory: fs::directory_iterator(pathToExplore)) {
-        if(fs::exists(directory.path() / "level/")){
-            levelPaths.emplace_back(directory.path());
-        } else {
-            auto childrenPaths = exploreLevelDirectory(directory.path());
-            for(auto &childPath: childrenPaths) {
-                levelPaths.emplace_back(childPath);
-            }
-        }
-    }
-    return levelPaths;
-}
-
-PROCESS_INFORMATION ChairManager::packLevel(fs::path path) {
-    try {
-        STARTUPINFOW startupInfo = {sizeof(startupInfo)};
-        PROCESS_INFORMATION processInfo;
-        fs::path basePath = path.wstring().substr(std::string(".\\Output\\").size(), path.wstring().size() - 1);
-//        fs::path tempPath = basePath;
-//        std::replace(tempPath.wstring().begin(), tempPath.wstring().end(), '/', '\\');
-        auto command = (R"(.\7za.exe a .\LevelOutput)" /  basePath / "level.pak -tzip ").wstring() + (path / "level\\*").wstring();
-        command.resize(MAX_PATH);
-        if(CreateProcessW(nullptr, &command[0], nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr, &startupInfo, &processInfo)){
-            log(severityLevel::trace, "Packed level %s", basePath.u8string().c_str());
-            return processInfo;
-        } else {
-            log(severityLevel::error, "Failed to pack level %s: %d", basePath.u8string().c_str(), GetLastError());
-            return {};
-        }
-    } catch (std::exception & exception){
-        log(severityLevel::error, "Exception while packing level %s: %s", path.u8string().c_str(), exception.what());
-        return {};
-    }
-    return {};
-}
-
 bool ChairManager::verifyDependencies(std::string modName) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()){
@@ -2112,9 +1760,6 @@ bool ChairManager::verifyDependenciesEnabled(std::string modName) {
     return false;
 }
 
-bool ChairManager::copyLocalizationPatch() {
-    return false;
-}
 bool ChairManager::verifyChairloaderConfigFile() {
     try {
         return fs::exists(GetGamePath() / "Mods/config/Chairloader.xml");
@@ -2182,7 +1827,8 @@ void ChairManager::Init() {
         log(severityLevel::info, "Chairloader config file not found, creating default");
         createChairloaderConfigFile();
     }
-    m_XMLMerger.init();
+    m_pChairMerger.reset();
+    m_pChairMerger = std::make_unique<ChairMerger>();
     if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }
@@ -2215,9 +1861,8 @@ void ChairManager::DrawDebug() {
         }
         static std::string filePath, modName = "TestMod";
         ImGui::InputText("Mod Name", &modName);
-        static XMLMerger::mergingPolicy policy;
+        static MergingPolicy policy;
         static pugi::xml_document doc;
-
         if (ImGui::Button("Commit Persona 3"))
         {
             throw std::logic_error("Thou art I... And I am thou...\n"
@@ -2237,41 +1882,6 @@ void ChairManager::DrawDebug() {
             int* volatile ptr = nullptr;
             *ptr = 0x0451;
         }
-
-        if(ImGui::CollapsingHeader("File Merging")) {
-            ImGui::InputText("File Path", &filePath);
-            if (ImGui::Button("Load Xml File")) {
-                doc.load_file((fs::path("PreyFiles") / filePath).wstring().c_str());
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("Clear Xml File")) {
-                doc.reset();
-            }
-            if (ImGui::Button("Resolve Path wildcards")) {
-                XMLMerger::resolvePathWildcards(doc.first_child(), policy.nodeStructure.first_child());
-            }
-            if (ImGui::Button("Merge Xml File")) {
-                m_XMLMerger.mergeXMLFile(filePath, modName, false);
-            }
-            if (!doc.empty()) {
-                ImGui::Text("Loaded Xml File: %s", doc.name());
-                ImGui::Text("Root Node: %s", doc.root().name());
-                ImGui::Text("First Child: %s", doc.root().first_child().name());
-            }
-            if (ImGui::Button("Get Merging Policy")) {
-                policy = m_XMLMerger.getFileMergingPolicy(filePath, std::string());
-            }
-            ImGui::Text("Merging Policy: %d", policy.policy);
-            ImGui::Text("Path: %s", policy.file_path.u8string().c_str());
-            if (!policy.attributeMatches.empty()) {
-                for (auto &attributeMatch: policy.attributeMatches) {
-                    ImGui::Text("Attribute Match: %s, %d", attributeMatch.attribute_name.c_str(), attributeMatch.priority);
-                }
-            }
-            if (!policy.nodeStructure.empty())
-                displayXmlNode(policy.nodeStructure, 0);
-        }
-
         if(ImGui::CollapsingHeader("Config")){
             if(ImGui::Button("Copy Default Config File")){
                 ConfigManager::copyDefaultConfig(modName);
@@ -2356,17 +1966,144 @@ void ChairManager::DrawDebug() {
             ImGui::Text("GAME BACKUP: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
         }
         ImGui::EndTabItem();
+
+        if(ImGui::CollapsingHeader("Hashing Utilities")){
+            if(ImGui::Button("Clear Output Dirs")){
+                try{
+                    fs::remove_all("Output");
+                    fs::remove_all("LevelOutput");
+                    fs::create_directory("Output");
+                    fs::create_directory("LevelOutput");
+                } catch (const fs::filesystem_error &e){
+                    log(severityLevel::error, "Failed to clear output dir: %s", e.what());
+                }
+            }
+            if(ImGui::Button("Copy Level Files to LevelOutput")){
+                try{
+                    fs::copy("PreyFiles/Levels", "Output/Levels", fs::copy_options::recursive);
+                    fs::create_directories("./LevelOutput/Levels");
+                    fs::copy("./Output/Levels", "./LevelOutput/Levels", fs::copy_options::recursive);
+                } catch (const fs::filesystem_error &e){
+                    log(severityLevel::error, "Failed to copy level files to output dir: %s", e.what());
+                }
+            }
+        }
+
+        if(ImGui::CollapsingHeader("Merging V3")){
+            ImGui::Checkbox("Force Level Pack", &m_pChairMerger->m_bForceLevelPack);
+            ImGui::Checkbox("Force Localization Pack", &m_pChairMerger->m_bForceLocalizationPack);
+            ImGui::Checkbox("Force Vanilla Pack", &m_pChairMerger->m_bForceVanillaPack);
+            if(ImGui::Button("Pre Merge")){
+                m_pChairMerger->PreMerge();
+            }
+            if(ImGui::Button("Merge")){
+                m_pChairMerger->Merge();
+            }
+            if(ImGui::Button("Post Merge")){
+                m_pChairMerger->PostMerge();
+            }
+            if(ImGui::BeginTable("Level Checksums Debug", 2, ImGuiTableFlags_ScrollY, ImVec2(0, 300))){
+                ImGui::TableSetupScrollFreeze(0, 1);
+                ImGui::TableSetupColumn("Level", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("Checksum");
+                ImGui::TableHeadersRow();
+                for(auto &level: m_pChairMerger->m_LevelFileChecksums){
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", level.first.u8string().c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", SHA256::toString(level.second.data()).c_str());
+                }
+                ImGui::EndTable();
+            }
+            static std::unordered_map<std::string, bool> modConfigNamespace;
+            if(ImGui::BeginTable("Mod Configs", 2, ImGuiTableFlags_ScrollY, ImVec2(0, 300))){
+                ImGui::TableSetupScrollFreeze(0, 1);
+                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("Value");
+                ImGui::TableHeadersRow();
+                for(auto &variableName : modConfigNamespace){
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", variableName.first.c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", variableName.second ? "true" : "false");
+                }
+                ImGui::EndTable();
+            }
+            static std::string modName = "TheChair.ExampleMod";
+            ImGui::InputText("Mod Name", &modName);
+            if(ImGui::Button("GetModConfigNamespace")){
+                modConfigNamespace = m_ConfigManager.getModSpaceBooleanVariables(modName);
+            }
+        }
+        if(ImGui::CollapsingHeader("ID Testing")){
+            if(ImGui::Button("List All Files with id attribute by policy")){
+                std::ofstream id_name_file("id_name_files.txt");
+                std::ofstream id_file("id_files.txt");
+                std::ofstream attribute_file("attribute_list.txt");
+                std::set<std::string> allAttributeNames;
+                for(auto & dir: fs::recursive_directory_iterator("PreyFiles")){
+                    auto relativePath = fs::relative(dir, "PreyFiles");
+                    auto policy = m_pChairMerger->GetFileMergingPolicy(relativePath, "");
+                    if(policy.policy == MergingPolicy::identification_policy::match_attribute){
+                        bool hasId = false, hasName = false;
+                        for(auto & attributeMatch: policy.attributeMatches){
+                            if(boost::iequals(attributeMatch.attribute_name, "id") || boost::iequals(attributeMatch.attribute_name, "ArchetypeId")){
+                                hasId = true;
+                            }
+                            if(boost::iequals(attributeMatch.attribute_name, "name") || boost::iequals(attributeMatch.attribute_name, "ArchetypeName")){
+                                hasName = true;
+                            }
+                            allAttributeNames.insert(attributeMatch.attribute_name);
+                        }
+                        if(hasId && hasName){
+                            id_name_file << relativePath << std::endl;
+                        }
+                        if(hasId){
+                            id_file << relativePath << std::endl;
+                        }
+                    }
+                }
+                for(auto & attribute: allAttributeNames){
+                    attribute_file << attribute << std::endl;
+                }
+                id_name_file.close();
+                id_file.close();
+                attribute_file.close();
+            }
+            if(ImGui::Button("Load Id Name Map")){
+                m_pChairMerger->LoadIdNameMap();
+            }
+            ImGui::Text("Id Name Map Size: %llu", m_pChairMerger->m_NameToIdMap.size());
+            if(ImGui::BeginTable("Id Name Map", 2, ImGuiTableFlags_ScrollY | ImGuiTableFlags_Resizable, ImVec2(0, 300))){
+                ImGui::TableSetupScrollFreeze(0, 1);
+                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("Value");
+                ImGui::TableHeadersRow();
+                for(auto &variableName : m_pChairMerger->m_NameToIdMap){
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", variableName.first.c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%llu", variableName.second);
+                }
+                ImGui::EndTable();
+            }
+        }
     }
 }
 
 void ChairManager::SwitchToDeployScreen() {
     modalInitPos = ImGui::GetWindowPos();
     modalInitPos.x -= (ImGui::GetWindowWidth() + 125);
-    initPosSet = false;
     m_State = State::Deploying;
 }
 
 void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
+    auto deployPhase = m_pChairMerger->GetDeployPhase();
+    auto deployStep = m_pChairMerger->GetDeployStep();
+
     ImGuiWindowFlags windowFlags =
             ImGuiWindowFlags_NoSavedSettings |
             ImGuiWindowFlags_NoCollapse |
@@ -2377,67 +2114,124 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     const ImVec2 deployScreenSize = {500, 300};
     ImGui::SetNextWindowSize({ deployScreenSize.x * dpiScale, deployScreenSize.y * dpiScale});
     ImGui::SetNextWindowBgAlpha(1.0f);
-//    ImGui::SetNextWindowPos({ (float) (GetSystemMetrics(SM_CXSCREEN) / 2 - 250), (float) (GetSystemMetrics(SM_CYSCREEN) / 2 - 150) });
-    if(!initPosSet) {
-        ImGui::SetNextWindowPos(modalInitPos);
-    }
+    ImGui::SetNextWindowPos(modalInitPos, ImGuiCond_Appearing);
     if(ImGui::BeginPopupModal("Deploying Mods", nullptr, windowFlags)) {
-        m_DeployLogMutex.lock();
         // RemovingOldOutput, CopyingBaseFiles, MergingLegacyMods, MergingMods, RemovingOldPatches, PackingLevelFiles, CopyingLevelFiles, PackingLocalization, PackingMainPatch, CopyingMainPatch, Done, Invalid
         ImGui::Text("Deploying Mods, Please Wait:");
         ImGui::Separator();
-        if(m_DeployState >= DeployState::RemovingOldOutput){
-            ImGui::Text("Removing old merge output files...");
+        if(!m_pChairMerger->DeployFailed())
+            ImGui::Text("%s", ChairMerger::GetDeployPhaseString(deployPhase).c_str());
+        else
+            ImGui::TextColored(errorColor, "FAILED");
+        ImVec2 childSize = ImGui::GetContentRegionAvail();
+        if(m_pChairMerger->DeployFailed()){
+            childSize.y -= ImGui::GetFrameHeightWithSpacing();
         }
-        if(m_DeployState >= DeployState::CopyingBaseFiles){
-            ImGui::Text("Copying base files...");
+        ImGui::BeginChild("Progress Steps", childSize);
+        if(deployStep >= DeployStep::RemovingOldOutput){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::RemovingOldOutput).c_str());
         }
-        if(m_DeployState >= DeployState::MergingLegacyMods){
-            ImGui::Text("Merging legacy mods...");
+        if(deployStep >= DeployStep::CopyingBaseFiles){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::CopyingBaseFiles).c_str());
         }
-        if(m_DeployState >= DeployState::MergingMods){
-            ImGui::Text("Merging registered mods...");
+        if(deployStep >= DeployStep::LoadingPatchChecksums){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::LoadingPatchChecksums).c_str());
         }
-        if(m_DeployState >= DeployState::RemovingOldPatches){
-            ImGui::Text("Removing old patch files...");
+        ImGui::BeginDisabled(m_pChairMerger->m_bForceVanillaPack);
+        if(deployStep >= DeployStep::MergingLegacyMods){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::MergingLegacyMods).c_str());
         }
-        if(m_DeployState >= DeployState::PackingLevelFiles){
-            ImGui::Text("Packing level files...");
+        if(deployStep >= DeployStep::MergingMods){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::MergingMods).c_str());
         }
-        if(m_DeployState >= DeployState::CopyingLevelFiles){
-            ImGui::Text("Copying level files...");
+        ImGui::EndDisabled();
+        if(deployStep >= DeployStep::PackingLevelPatches){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::PackingLevelPatches).c_str());
         }
-        if(m_DeployState >= DeployState::PackingLocalization){
-            ImGui::Text("Packing localization...");
+        if(deployStep >= DeployStep::PackingLocalizationPatches){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::PackingLocalizationPatches).c_str());
         }
-        if(m_DeployState >= DeployState::PackingMainPatch){
-            ImGui::Text("Packing patch_chairloader.pak...");
+        if(deployStep >= DeployStep::PackingMainPatch){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::PackingMainPatch).c_str());
         }
-        if(m_DeployState >= DeployState::CopyingMainPatch){
-            ImGui::Text("Copying patch_chairloader.pak...");
+        if(deployStep >= DeployStep::CleaningUp){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::CleaningUp).c_str());
         }
-        if(m_DeployState >= DeployState::Done){
-            ImGui::Text("Done!");
+        if(deployStep >= DeployStep::Done){
+            ImGui::Text("%s", ChairMerger::GetDeployStepString(DeployStep::Done).c_str());
         }
-        m_DeployLogMutex.unlock();
-//        ImGui::Text("Deploying Mods, Please Hold");
+        if(m_pChairMerger->DeployFailed()){
+            ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
+            ImGui::Text("Deploy Failed");
+            ImGui::TextWrapped("%s", m_pChairMerger->GetDeployFailedMessage().c_str());
+            ImGui::PopStyleColor();
+        }
+        ImGui::EndChild();
+        if(m_pChairMerger->DeployFailed()){
+            if(ImGui::Button("Close")){
+                ImGui::CloseCurrentPopup();
+                m_State = State::MainWindow;
+                m_pChairMerger->m_DeployStep = DeployStep::Invalid;
+                m_pChairMerger->m_DeployPhase = DeployPhase::Invalid;
+            }
+        }
         ImGui::EndPopup();
         initPosSet = true;
     }
-    ImGui::OpenPopup("Deploying Mods");
+    bool optionsOpen = true;
+    ImGui::SetNextWindowSize({ deployScreenSize.x * dpiScale, deployScreenSize.y * dpiScale});
+    ImGui::SetNextWindowBgAlpha(1.0f);
+    ImGui::SetNextWindowPos(modalInitPos, ImGuiCond_Appearing);
+    if(ImGui::BeginPopupModal("Deploy Options", &optionsOpen, windowFlags)){
+        ImGui::Text("Deploy Options");
+        ImGui::Separator();
+        ImGui::Checkbox("Force Levels to be Repacked", &m_pChairMerger->m_bForceLevelPack);
+        ImGui::SameLine();
+        ImGuiUtils::HelpMarker("This will force all levels to be repacked, even if they haven't changed. This may be useful if you are having issues with levels not updating properly. (This will take longer to deploy)");
+        ImGui::Checkbox("Force Localization to be Repacked", &m_pChairMerger->m_bForceLocalizationPack);
+        ImGui::SameLine();
+        ImGuiUtils::HelpMarker("This will force all localization files to be repacked, even if they haven't changed. This may be useful if you are having issues with localization not updating properly. (This will take longer to deploy)");
+        ImGui::Checkbox("Force Main Patch to be Repacked", &m_pChairMerger->m_bForceMainPatchPack);
+        ImGui::SameLine();
+        ImGuiUtils::HelpMarker("This will force the main patch to be repacked, even if it hasn't changed. This may be useful if you are having issues with the main patch not updating properly. (This will take longer to deploy)");
+        ImGui::Separator();
+        ImGui::Checkbox("Pack only Vanilla Files (No Mods)", &m_pChairMerger->m_bForceVanillaPack);
+        ImGui::SameLine();
+        ImGuiUtils::HelpMarker("This will only pack vanilla files, and will not include any mod files. This will not disable dll mods, but will restore the game files to their original state.");
+
+        // set buttons to bottom of the window
+        ImGui::SetCursorPosY(ImGui::GetWindowHeight() - ImGui::GetFrameHeightWithSpacing());
+        if(ImGui::Button("Deploy")){
+            RunAsyncDeploy();
+        }
+        ImGui::SameLine();
+        if(ImGui::Button("Cancel")){
+            optionsOpen = false;
+        }
+        ImGui::EndPopup();
+    }
+    if(!optionsOpen){
+        m_State = State::MainWindow;
+    }
+    if(deployStep <= DeployStep::Invalid){
+        ImGui::OpenPopup("Deploy Options");
+    } else {
+        ImGui::OpenPopup("Deploying Mods");
+    }
     if(IsFutureReady(m_DeployTaskFuture)){
         m_DeployTaskFuture.get();
-        m_State = State::MainWindow;
-        m_DeployState = DeployState::Invalid;
-        ImGui::CloseCurrentPopup();
+        if(!m_pChairMerger->DeployFailed()) {
+            m_State = State::MainWindow;
+            m_pChairMerger->SetDeployStep(DeployStep::Invalid);
+            m_pChairMerger->SetDeployPhase(DeployPhase::Invalid);
+        }
         return;
     }
 }
 
 void ChairManager::RunAsyncDeploy() {
-    if(m_DeployState <= DeployState::Invalid) {
-        SwitchToDeployScreen();
-        m_DeployTaskFuture = std::async(std::launch::async, [&]() { DeployMods(); });
+    if(m_pChairMerger->GetDeployStep() <= DeployStep::Invalid && m_pChairMerger->GetDeployPhase() <= DeployPhase::Invalid) {
+        m_DeployTaskFuture = m_pChairMerger->LaunchAsyncDeploy();
     } else {
         overlayLog(severityLevel::error, "Mods are already being deployed");
     }
@@ -2611,6 +2405,10 @@ void ChairManager::restoreStartupCinematics() {
 
 const fs::path &ChairManager::GetGamePath() {
     return m_pGamePath->GetGamePath();
+}
+
+void ChairManager::GTestInit() {
+    Init();
 }
 
 

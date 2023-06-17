@@ -3,6 +3,7 @@
 #include <Chairloader/IChairloaderCore.h>
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderDll.h>
+#include <Chairloader/IChairloaderPatches.h>
 #include <Chairloader/IChairloaderTools.h>
 #include <Chairloader/PreditorAPI.h>
 #include <Chairloader/IChairToPreditor.h>
@@ -56,6 +57,7 @@ private:
     bool m_bTrainerEnabled = false;
 	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
 	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
+	std::unique_ptr<Internal::IChairloaderPatches> m_pPatches;
 	std::unique_ptr<Internal::IChairloaderTools> m_pTools;
 	unsigned m_SavedUpdateFlags = 0;
 
@@ -87,6 +89,7 @@ public:
 	// IChairloaderDll
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
 	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender.get(); }
+	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches.get(); }
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;

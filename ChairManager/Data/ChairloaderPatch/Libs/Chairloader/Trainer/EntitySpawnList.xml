@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<EntitySpawnList>
+    <Category Header="Typhon">
+        <Category Header="Mimics">
+            <Npc Name="ArkNpcs.Mimics.Mimic">Mimic</Npc>
+            <Npc Name="ArkNpcs.Mimics.EliteMimic">Greater Mimic</Npc>
+        </Category>
+
+        <Category Header="Phantoms">
+            <Npc Name="ArkNpcs.Phantoms.BasePhantom">Normal</Npc>
+            <Npc Name="ArkNpcs.Phantoms.ThermalPhantom">Thermal</Npc>
+            <Npc Name="ArkNpcs.Phantoms.EthericPhantom">Etheric</Npc>
+            <Npc Name="ArkNpcs.Phantoms.VoltaicPhantom">Voltaic</Npc>
+        </Category>
+
+        <Npc Name="ArkNpcs.ArkNightmare">Nightmare</Npc>
+        <Npc Name="ArkNpcs.ArkPoltergeist">Poltergeist</Npc>
+        <Npc Name="ArkNpcs.Overseers.Telepath">Telepath</Npc>
+        <Npc Name="ArkNpcs.Overseers.Technopath">Technopath</Npc>
+    </Category>
+
+    <Category Header="Operators">
+        <Npc Name="ArkRobots.Operators\Generic.MedicalOperator">Medical</Npc>
+        <Npc Name="ArkRobots.Operators\Generic.EngineeringOperator">Engineering</Npc>
+        <Npc Name="ArkRobots.Operators\Generic.ScienceOperator">Science</Npc>
+        <Npc Name="ArkRobots.Operators\Generic.MilitaryOperator">Military</Npc>
+    </Category>
+    
+    <Npc Name="ArkRobots.Turrets.Turret_Default">Turret</Npc>
+
+    <Category Header="Weapons">
+        <Entity Name="ArkPickups.Weapons.Wrench">Wrench</Entity>
+        <Entity Name="ArkPickups.Weapons.Shotgun">Shotgun</Entity>
+        <Entity Name="ArkPickups.Ammo.ShotgunShells">Shotgun Ammo</Entity>
+        <Entity Name="ArkPickups.Weapons.Pistol">Pistol</Entity>
+        <Entity Name="ArkPickups.Ammo.PistolBullets">Pistol Ammo</Entity>
+        <Entity Name="ArkPickups.Weapons.GooGun">Gloo Gun</Entity>
+        <Entity Name="ArkPickups.Ammo.GooGun">Gloo Gun Ammo</Entity>
+        <Entity Name="ArkPickups.Weapons.Instalaser">Q Beam</Entity>
+        <Entity Name="ArkPickups.Ammo.InstaLaser">Q Beam Ammo</Entity>
+        <Entity Name="ArkPickups.Weapons.StunGun">Stun Gun</Entity>
+        <Entity Name="ArkPickups.Ammo.StunGunAmmo">Stun Gun Ammo</Entity>
+    </Category>
+</EntitySpawnList>

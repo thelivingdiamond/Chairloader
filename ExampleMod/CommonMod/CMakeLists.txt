@@ -42,6 +42,7 @@ target_include_directories(CommonMod PUBLIC
 	.
 	${COMMON_PATH}
 	${COMMON_PATH}/Chairloader.ImGui # In Chairloader it's built as a separate static lib. Here, it's part of CommonMod
+	${COMMON_PATH}/pugixml
 	${Boost_INCLUDE_DIRS}
 )
 

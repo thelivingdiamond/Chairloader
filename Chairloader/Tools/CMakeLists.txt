@@ -28,6 +28,8 @@ set(CHAIR_SOURCE_FILES
 
 	Trainer/EntityManager.cpp
 	Trainer/EntityManager.h
+	Trainer/EntitySpawnList.cpp
+	Trainer/EntitySpawnList.h
 	Trainer/PlayerManager.cpp
 	Trainer/PlayerManager.h
 	Trainer/WorldManager.cpp

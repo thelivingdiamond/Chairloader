@@ -38,7 +38,7 @@ set(SOURCE_FILES
 	Manager/SHA256.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
-		)
+	Manager/ThreadPool.h Manager/PugiUtils.h)
 
 add_library(CommonChairManager STATIC
 	${SOURCE_FILES}

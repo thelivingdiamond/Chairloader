@@ -14,8 +14,11 @@
     "curlpp",
     "detours",
     "fmt",
+    "gtest",
     "libzip",
-    "pugixml",
-    "gtest"
+    "libzippp",
+    "lua",
+    "luabridge",
+    "pugixml"
   ]
 }

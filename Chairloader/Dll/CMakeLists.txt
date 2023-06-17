@@ -24,6 +24,7 @@ target_link_libraries(Chairloader.Dll PRIVATE
 	Chairloader.Common
 	Chairloader.Core
 	Chairloader.CryRender
+	Chairloader.Patches
 	Chairloader.Tools
 )
 
