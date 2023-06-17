@@ -36,7 +36,6 @@ void Preditor::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)
 {
     m_pConfig = std::move(pConfig);
     gPreditor->pConfig = m_pConfig.get();
-    m_pProjectManager = std::make_unique<ProjectManager>();
 }
 
 AppStagePtr Preditor::OnGameLoaded()
@@ -67,9 +66,6 @@ void Preditor::Update()
 
 void Preditor::ShowUI(bool* bOpen)
 {
-    if(m_Config.isShown())
-        m_Config.ShowUI();
-
     // TODO: Move to Main
     // if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
     //     m_pLookingGlass->ShowUI();

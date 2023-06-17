@@ -33,7 +33,6 @@ void ProjectHistory::AddToHistory(const fs::path& path)
     existingHistory.insert(existingHistory.begin(), path);
 
     // Save to the file
-    fs::path filePath = gPreditor->pConfig->GetPreditorRoot() / FILE_PATH;
     pugi::xml_document doc;
     pugi::xml_node root = doc.append_child("ProjectHistory");
     

@@ -1,5 +1,4 @@
 #pragma once
-#include <Preditor/Project/ProjectManager.h>
 #include "App/Application.h"
 #include "ProjectSelectStage.h"
 #include "ProjectStage.h"
@@ -36,9 +35,6 @@ private:
 	PreditorPaths m_Paths;
 	std::unique_ptr<PreditorConfig> m_pConfig;
 	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
-
-    // MODULES
-    std::unique_ptr<ProjectManager> m_pProjectManager;
 
 	void ParseCommandLine();
 };

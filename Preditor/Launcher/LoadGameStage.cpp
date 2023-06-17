@@ -1,11 +1,9 @@
 #include <ChairLoader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <Manager/GamePath.h>
-#include <Preditor/Project/ProjectManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include "LoadGameStage.h"
 #include "Preditor.h"
-#include "ConfigManager.h"
 #include "ExtractionOptions.h"
 
 LoadGameStage::LoadGameStage(ExtractionOptions* pExtractionOptions)
@@ -28,7 +26,7 @@ void LoadGameStage::Start()
 			if (m_pExtractionOptions)
 				gameRootPath = m_pExtractionOptions->gamePath;
 			else
-				gameRootPath = ConfigManager::Get()->getGamePath();
+				gameRootPath = gPreditor->pConfig->GetGamePath().GetGamePath();
 
 			if (!gamePath.TrySetGamePath(gameRootPath, &error))
 				throw std::runtime_error("Failed to set game path: " + error);
@@ -51,7 +49,7 @@ void LoadGameStage::Start()
 		else
 		{
 			// Load the whole game
-			fs::path projRuntime = ProjectManager::GetProject()->GetRuntimePath();
+			fs::path projRuntime = gPreditor->pPaths->GetUserPath();
 			params.modDirPath = projRuntime / "GameSDK";
 			params.userPath = projRuntime / "User";
 			params.chairloaderConfigPath = projRuntime / "Config";
