@@ -9,6 +9,7 @@ namespace Main
 class PreditorUI;
 class Project;
 class UserProjectSettings;
+class SceneEditorManager;
 
 class Preditor : public IPreditor
 {
@@ -27,6 +28,7 @@ public:
 private:
     std::unique_ptr<Project> m_pProject;
     std::unique_ptr<UserProjectSettings> m_pUserSettings;
+    std::unique_ptr<SceneEditorManager> m_pSceneEditorManager;
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::unique_ptr<PreditorUI> m_pUI;
 };

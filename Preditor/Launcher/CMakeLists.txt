@@ -31,6 +31,7 @@ target_include_directories(Preditor.Launcher PRIVATE
 target_link_libraries(Preditor.Launcher
 	Preditor.Common
 	Preditor.Engine
+	Preditor.GameEditor
 	Preditor.Main
 	Preditor.Viewport
 	D3D11.lib

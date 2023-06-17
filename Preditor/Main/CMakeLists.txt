@@ -28,6 +28,8 @@ set(SOURCE_FILES
 	LookingGlass.h
 	Preditor.cpp
 	Preditor.h
+	SceneEditorManager.cpp
+	SceneEditorManager.h
 	SimControlWindow.cpp
 	SimControlWindow.h
 )

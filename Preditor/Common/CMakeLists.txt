@@ -18,6 +18,12 @@ set(SOURCE_FILES
 	Preditor/Main/IPreditor.h
 	Preditor/Main/IProject.h
 	Preditor/Main/IUserProjectSettings.h
+	
+	Preditor/SceneEditor/Common.h
+	Preditor/SceneEditor/IObjectManipulator.h
+	Preditor/SceneEditor/ISceneEditor.h
+	Preditor/SceneEditor/ISceneEditorManager.h
+	Preditor/SceneEditor/IViewportHandler.h
 
 	Preditor/Viewport/IViewport.h
 	Preditor/Viewport/IViewportWindow.h

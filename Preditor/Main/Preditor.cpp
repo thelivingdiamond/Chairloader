@@ -4,6 +4,7 @@
 #include "Project/UserProjectSettings.h"
 #include "UI/PreditorUI.h"
 #include "Preditor.h"
+#include "SceneEditorManager.h"
 
 std::unique_ptr<IPreditor> IPreditor::CreateInstance()
 {
@@ -30,6 +31,8 @@ void Main::Preditor::InitSystem()
 
 void Main::Preditor::InitGame()
 {
+    m_pSceneEditorManager = std::make_unique<SceneEditorManager>();
+
     m_pChairTools = IChairloaderToolsPreditor::CreateInstance(gPreditor->pEngine->GetIChairToPreditor());
     m_pUI = std::make_unique<PreditorUI>();
 }
@@ -38,6 +41,8 @@ void Main::Preditor::ShutdownGame()
 {
     m_pUI = nullptr;
     m_pChairTools = nullptr;
+
+    m_pSceneEditorManager = nullptr;
 }
 
 void Main::Preditor::ShutdownSystem()
