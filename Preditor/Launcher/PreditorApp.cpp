@@ -34,6 +34,7 @@ PreditorApp::PreditorApp()
 PreditorApp::~PreditorApp()
 {
     IPreditorEngine::Get()->Shutdown();
+    m_pMainPreditor = nullptr;
 }
 
 void PreditorApp::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)

@@ -46,6 +46,7 @@ void Main::Preditor::ShutdownSystem()
 
 void Main::Preditor::Update()
 {
+    m_pUserSettings->Update();
 }
 
 void Main::Preditor::ShowUI()

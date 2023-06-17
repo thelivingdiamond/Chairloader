@@ -7,6 +7,12 @@ Main::UserProjectSettings::UserProjectSettings(const fs::path& path)
 		LoadFile();
 }
 
+Main::UserProjectSettings::~UserProjectSettings()
+{
+	// Save if need to
+	Update();
+}
+
 void Main::UserProjectSettings::MarkDirty()
 {
 	if (!m_bDirty)

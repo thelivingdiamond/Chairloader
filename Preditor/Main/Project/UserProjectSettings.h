@@ -11,6 +11,7 @@ class UserProjectSettings : public IUserProjectSettings
 {
 public:
 	UserProjectSettings(const fs::path& path);
+	~UserProjectSettings();
 
 	//! @returns whether there are unsaved changes.
 	bool IsDirty() const { return m_bDirty; }
