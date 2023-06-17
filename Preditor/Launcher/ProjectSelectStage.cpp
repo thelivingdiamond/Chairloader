@@ -2,7 +2,7 @@
 // Created by theli on 10/28/2022.
 //
 
-#include <Preditor/Project/IProject.h>
+#include <Preditor/Main/IProject.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"

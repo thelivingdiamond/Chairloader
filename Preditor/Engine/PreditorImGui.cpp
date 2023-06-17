@@ -7,7 +7,7 @@
 #include <imgui_internal.h>
 #include <imgui_impl_win32.h>
 #include <App/Application.h>
-#include <Preditor/Project/ProjectManager.h>
+#include <Preditor/Main/IUserProjectSettings.h>
 #include "PreditorImGui.h"
 #include "PreditorImGuiRenderer.h"
 #include "MainWindowResizePatch.h"
@@ -317,7 +317,7 @@ int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wPa
             SaveMainWindowSizeAndPos();
 
             if (wParam == SIZE_MAXIMIZED)
-                ProjectManager::GetUserSettings()->SetWindowMaximized(true);
+                gPreditor->pUserSettings->SetWindowMaximized(true);
         }
         return 1;
     case WM_MOVE:
@@ -606,8 +606,8 @@ void Engine::PreditorImGui::SaveMainWindowSizeAndPos()
 
     Vec2i restPos(wnpl.rcNormalPosition.left, wnpl.rcNormalPosition.top);
     Vec2i restSize = Vec2i(wnpl.rcNormalPosition.right, wnpl.rcNormalPosition.bottom) - restPos;
-    ProjectManager::GetUserSettings()->SetWindowRestoredPos(restPos);
-    ProjectManager::GetUserSettings()->SetWindowRestoredSize(restSize);
+    gPreditor->pUserSettings->SetWindowRestoredPos(restPos);
+    gPreditor->pUserSettings->SetWindowRestoredSize(restSize);
 }
 
 void Engine::PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)

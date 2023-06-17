@@ -1,13 +1,13 @@
-#include <Preditor/Project/UserProjectSettings.h>
+#include "Project/UserProjectSettings.h"
 
-UserProjectSettings::UserProjectSettings(const fs::path& path)
+Main::UserProjectSettings::UserProjectSettings(const fs::path& path)
 {
 	m_FilePath = path;
 	if (fs::exists(path))
 		LoadFile();
 }
 
-void UserProjectSettings::MarkDirty()
+void Main::UserProjectSettings::MarkDirty()
 {
 	if (!m_bDirty)
 	{
@@ -16,7 +16,7 @@ void UserProjectSettings::MarkDirty()
 	}
 }
 
-void UserProjectSettings::LoadFile()
+void Main::UserProjectSettings::LoadFile()
 {
 	m_bDirty = false;
 	m_Xml = pugi::xml_document();
@@ -32,7 +32,7 @@ void UserProjectSettings::LoadFile()
 	m_bWindowMaximized = node.attribute("m_bWindowMaximized").as_bool(false);
 }
 
-void UserProjectSettings::SaveFile()
+void Main::UserProjectSettings::SaveFile()
 {
 	m_bDirty = false;
 
@@ -51,7 +51,7 @@ void UserProjectSettings::SaveFile()
 	m_Xml.save(file);
 }
 
-void UserProjectSettings::Update()
+void Main::UserProjectSettings::Update()
 {
 	if (m_bDirty && std::chrono::steady_clock::now() >= m_NextSaveTime)
 	{
@@ -59,22 +59,22 @@ void UserProjectSettings::Update()
 	}
 }
 
-void UserProjectSettings::SetWindowRestoredPos(const Vec2i& val)
+void Main::UserProjectSettings::SetWindowRestoredPos(const Vec2i& val)
 {
 	UpdateValue(m_WindowRestPos, val);
 }
 
-void UserProjectSettings::SetWindowRestoredSize(const Vec2i& val)
+void Main::UserProjectSettings::SetWindowRestoredSize(const Vec2i& val)
 {
 	UpdateValue(m_WindowRestSize, val);
 }
 
-void UserProjectSettings::SetWindowMaximized(bool val)
+void Main::UserProjectSettings::SetWindowMaximized(bool val)
 {
 	UpdateValue(m_bWindowMaximized, val);
 }
 
-pugi::xml_attribute UserProjectSettings::EnsureAttribute(pugi::xml_node& node, const char* name)
+pugi::xml_attribute Main::UserProjectSettings::EnsureAttribute(pugi::xml_node& node, const char* name)
 {
 	pugi::xml_attribute attr = node.attribute(name);
 	if (attr)

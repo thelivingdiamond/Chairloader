@@ -1,18 +1,15 @@
 #pragma once
-#include <pugixml.hpp>
+#include <Preditor/Main/IUserProjectSettings.h>
+
+namespace Main
+{
 
 //! UserProjectSettings
 //! Keeps project settings that are unrelated to the project data
 //! and that are adjusted per-user (e.g. main window size).
-class UserProjectSettings
+class UserProjectSettings : public IUserProjectSettings
 {
 public:
-	//! Name of the XML file.
-	static constexpr char FILE_NAME[] = "UserSettings.xml";
-
-	//! The invalid value for size and position.
-	static constexpr int INVALID_SIZE = -65536;
-
 	UserProjectSettings(const fs::path& path);
 
 	//! @returns whether there are unsaved changes.
@@ -27,18 +24,13 @@ public:
 	//! Per frame update.
 	void Update();
 
-	//! Non-maximized window pos and size
-	//! @{
-	const Vec2i& GetWindowRestoredPos() const { return m_WindowRestPos; }
-	void SetWindowRestoredPos(const Vec2i& val);
-
-	const Vec2i& GetWindowRestoredSize() const { return m_WindowRestSize; }
-	void SetWindowRestoredSize(const Vec2i& val);
-	//! @}
-
-	//! @returns whether the window was maximized.
-	bool IsWindowMaximized() const { return m_bWindowMaximized; }
-	void SetWindowMaximized(bool val);
+	// IUserProjectSettings
+	virtual const Vec2i& GetWindowRestoredPos() const override { return m_WindowRestPos; }
+	virtual void SetWindowRestoredPos(const Vec2i& val) override;
+	virtual const Vec2i& GetWindowRestoredSize() const override { return m_WindowRestSize; }
+	virtual void SetWindowRestoredSize(const Vec2i& val) override;
+	virtual bool IsWindowMaximized() const override { return m_bWindowMaximized; }
+	virtual void SetWindowMaximized(bool val) override;
 
 private:
 	static constexpr int SAVE_DELAY_MS = 3000;
@@ -75,3 +67,5 @@ private:
 		}
 	}
 };
+
+} // namespace Main

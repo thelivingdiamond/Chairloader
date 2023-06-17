@@ -11,7 +11,6 @@
 #include "ImGui/imgui_internal.h"
 #include "App/AppImGui.h"
 #include <filesystem>
-#include "ConfigManager.h"
 
 class CNullFlowGraph : public IFlowGraph
 {
@@ -140,7 +139,7 @@ void FlowgraphEditor::loadXmlDocuments() {
         {
             std::scoped_lock lock(m_InitStatusMutex);
             m_LoadingProgress++;
-            m_CurrentLoadingFile = path.wstring().substr(ConfigManager::Get()->getPreyFilesPath().wstring().length());
+            m_CurrentLoadingFile = path.wstring().substr(gPreditor->pConfig->GetPreyFiles().wstring().length());
         }
         m_BaseGameFlowgaphs.emplace_back(std::make_shared<FlowGraphXMLFile>(path));
     }
@@ -571,7 +570,7 @@ void FlowgraphEditor::initAsync() {
         m_InitStatus = "Finding Flowgraphs";
         m_InitState = InitializationState::SearchingDocuments;
     }
-    searchXmlDocuments(ConfigManager::Get()->getPreyFilesPath());
+    searchXmlDocuments(gPreditor->pConfig->GetPreyFiles());
     {
         std::scoped_lock lock(m_InitStatusMutex);
         m_InitStatus = "Loading Flowgraphs";

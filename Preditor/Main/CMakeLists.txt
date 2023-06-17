@@ -10,6 +10,11 @@ set(SOURCE_FILES
 	Flowgraph/Node.cpp
 	Flowgraph/IChairFlowgraph.h
 
+	Project/Project.cpp
+	Project/Project.h
+	Project/UserProjectSettings.cpp
+	Project/UserProjectSettings.h
+
 	UI/PreditorUI.cpp
 	UI/PreditorUI.h
 

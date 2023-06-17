@@ -5,7 +5,6 @@
 #ifndef CHAIRLOADER_XMLREFERENCE_H
 #define CHAIRLOADER_XMLREFERENCE_H
 #pragma once
-#include "../pch.h"
 #include <filesystem>
 #include <pugixml.hpp>
 #include <Prey/CryExtension/CryGUID.h>

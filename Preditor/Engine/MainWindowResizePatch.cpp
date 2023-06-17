@@ -1,5 +1,5 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
-#include <Preditor/Project/ProjectManager.h>
+#include <Preditor/Main/IUserProjectSettings.h>
 #include "MainWindowResizePatch.h"
 #include "EngineSwapChainPatch.h"
 
@@ -71,12 +71,12 @@ void Engine::MainWindowResizePatch::InitRenderer()
 	SetWindowTextA(hWnd, gcpRendD3D->m_WinTitle);
 
 	// Apply size from config
-	UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
+	IUserProjectSettings* pSettings = gPreditor->pUserSettings;
 	Vec2i pos = pSettings->GetWindowRestoredPos();
 	Vec2i size = pSettings->GetWindowRestoredSize();
 
-	if (pos.x != UserProjectSettings::INVALID_SIZE && pos.y != UserProjectSettings::INVALID_SIZE &&
-		size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
+	if (pos.x != IUserProjectSettings::INVALID_SIZE && pos.y != IUserProjectSettings::INVALID_SIZE &&
+		size.x != IUserProjectSettings::INVALID_SIZE && size.y != IUserProjectSettings::INVALID_SIZE)
 		MoveWindow(hWnd, pos.x, pos.y, size.x, size.y, false);
 
 	if (pSettings->IsWindowMaximized())

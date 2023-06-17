@@ -1,8 +1,5 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	
-	Project/Project.cpp
-	Project/UserProjectSettings.cpp
 
 	Resources/Preditor.rc
 

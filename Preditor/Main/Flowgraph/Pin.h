@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include "UniqueID.h"
 
 enum class PinKind

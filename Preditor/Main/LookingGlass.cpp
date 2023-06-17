@@ -4,7 +4,6 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 #include "LookingGlass.h"
-#include "ConfigManager.h"
 #include "ImGui/imgui_stdlib.h"
 #include "Preditor.h"
 static LookingGlass* m_pLookingGlass = nullptr;
@@ -27,7 +26,7 @@ LookingGlass::~LookingGlass() {
 }
 
 void LookingGlass::Init() {
-    fs::path policyPath = Preditor::Get()->GetProgramPath() / "Preditor/LookingGlassReferenceLibrary.xml";
+    fs::path policyPath = gPreditor->pConfig->GetPreditorRoot() / "Preditor/LookingGlassReferenceLibrary.xml";
     m_PolicyDocument.load_file(policyPath.c_str());
     m_PolicyNode = m_PolicyDocument.first_child();
     AppModule::Init();
@@ -115,7 +114,7 @@ LookingGlass::LookingGlassFilePolicy LookingGlass::getPolicyForFile(fs::path rel
     auto currentNode = m_PolicyNode;
     fs::path currentPath;
     for (auto &directory : relativePath){
-        if(!fs::exists(ConfigManager::Get()->getPreyFilesPath() / currentPath / directory)){
+        if(!fs::exists(gPreditor->pConfig->GetPreyFiles() / currentPath / directory)){
             break;
         }
         currentPath /= directory;
@@ -139,13 +138,13 @@ void LookingGlass::loadReferencesFromFile(fs::path path) {
         return;
     }
     pugi::xml_document document;
-    document.load_file((ConfigManager::Get()->getPreyFilesPath() / path).string().c_str());
+    document.load_file((gPreditor->pConfig->GetPreyFiles() / path).string().c_str());
     collectReferences(document.first_child(), policy.m_NodeStructure.first_child(), path);
 
 }
 
 void LookingGlass::loadReferences() {
-    recursiveReferenceLoad(ConfigManager::Get()->getPreyFilesPath());
+    recursiveReferenceLoad(gPreditor->pConfig->GetPreyFiles());
 }
 
 //Ark\AI\AiDistractors\ArkAutomaticDistractors.xml
@@ -231,7 +230,7 @@ void LookingGlass::recursiveReferenceLoad(fs::path path) {
             recursiveReferenceLoad(entry.path());
         }
     } else if (path.filename().extension() == ".xml"){
-        fs::path relativePath = fs::relative(path, ConfigManager::Get()->getPreyFilesPath());
+        fs::path relativePath = fs::relative(path, gPreditor->pConfig->GetPreyFiles());
         loadReferencesFromFile(relativePath);
     }
 }

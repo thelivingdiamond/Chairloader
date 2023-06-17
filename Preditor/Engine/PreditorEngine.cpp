@@ -11,7 +11,7 @@
 #include <Chairloader/IChairToPreditor.h>
 #include <Chairloader/Hooks/HookTransaction.h>
 #include <App/Application.h>
-#include <Preditor/Project/ProjectManager.h>
+#include <Preditor/Main/IUserProjectSettings.h>
 #include <Preditor/IGameViewport.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
@@ -198,16 +198,16 @@ void CSystem_LoadConfiguration_Hook(CSystem* const _this, const char* sFilename,
 	}
 	else if (!strcmp(sFilename, "user.cfg"))
 	{
-		if (ProjectManager::Get())
+		if (gPreditor->pUserSettings)
 		{
 			// Disable fullscreen
 			_this->m_rFullscreen->Set(0);
 
 			// Set window size
-			UserProjectSettings* pSettings = ProjectManager::GetUserSettings();
+			IUserProjectSettings* pSettings = gPreditor->pUserSettings;
 			Vec2i size = pSettings->GetWindowRestoredSize();
 
-			if (size.x != UserProjectSettings::INVALID_SIZE && size.y != UserProjectSettings::INVALID_SIZE)
+			if (size.x != IUserProjectSettings::INVALID_SIZE && size.y != IUserProjectSettings::INVALID_SIZE)
 			{
 				_this->m_rWidth->Set(size.x);
 				_this->m_rHeight->Set(size.y);

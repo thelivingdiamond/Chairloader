@@ -16,10 +16,8 @@ set(SOURCE_FILES
 	Preditor/Engine/ISimulationController.h
 	
 	Preditor/Main/IPreditor.h
-
-	Preditor/Project/IProject.h
-	Preditor/Project/Project.h
-	Preditor/Project/UserProjectSettings.h
+	Preditor/Main/IProject.h
+	Preditor/Main/IUserProjectSettings.h
 
 	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h

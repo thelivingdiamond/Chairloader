@@ -1,7 +1,23 @@
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include "Project/Project.h"
+#include "Project/UserProjectSettings.h"
 #include "UI/PreditorUI.h"
 #include "Preditor.h"
+
+Main::Preditor::Preditor()
+{
+    m_pProject = std::make_unique<Project>(gPreditor->pPaths->GetProjectDirPath());
+    m_pUserSettings = std::make_unique<UserProjectSettings>(gPreditor->pPaths->GetUserPath() / IUserProjectSettings::FILE_NAME);
+    gPreditor->pProject = m_pProject.get();
+    gPreditor->pUserSettings = m_pUserSettings.get();
+}
+
+Main::Preditor::~Preditor()
+{
+    gPreditor->pProject = nullptr;
+    gPreditor->pUserSettings = nullptr;
+}
 
 void Main::Preditor::InitSystem()
 {

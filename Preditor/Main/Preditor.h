@@ -7,6 +7,8 @@ namespace Main
 {
 
 class PreditorUI;
+class Project;
+class UserProjectSettings;
 
 class Preditor : public IPreditor
 {
@@ -23,6 +25,8 @@ public:
     virtual void ShowUI() override;
 
 private:
+    std::unique_ptr<Project> m_pProject;
+    std::unique_ptr<UserProjectSettings> m_pUserSettings;
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::unique_ptr<PreditorUI> m_pUI;
 };
