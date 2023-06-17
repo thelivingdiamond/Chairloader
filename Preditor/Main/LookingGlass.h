@@ -6,7 +6,6 @@
 #define CHAIRLOADER_LOOKINGGLASS_H
 #pragma once
 
-#include "pch.h"
 #include "App/AppModule.h"
 #include "ImGui/imgui.h"
 //#include "ImGui/imgui_stdlib.h"

@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 #include "Pin.h"
 #include "UniqueID.h"
 #include "ImGui/imgui.h"

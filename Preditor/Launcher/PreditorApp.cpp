@@ -4,11 +4,15 @@
 #include <Prey/CryGame/IGameStartup.h>
 #include <WindowManager/WindowManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Main/IPreditor.h>
 #include "App/AppStage.h"
 #include "PreditorApp.h"
 #include "LoadGameStage.h"
+#include "MainStage.h"
 #include "ExtractionStage.h"
 
+SPreditorEnvironment gPreditorEnv;
+SPreditorEnvironment* gPreditor = &gPreditorEnv;
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
 PreditorApp::PreditorApp()
@@ -38,6 +42,15 @@ void PreditorApp::OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig)
     gPreditor->pConfig = m_pConfig.get();
 }
 
+void PreditorApp::CreatePreditorMain()
+{
+    m_pMainPreditor = IPreditor::CreateInstance();
+    gPreditor->pMain = m_pMainPreditor.get();
+
+    // This should probably be somewhere else but IPreditorEngine is a global variable.
+    gPreditor->pEngine = IPreditorEngine::Get();
+}
+
 AppStagePtr PreditorApp::OnGameLoaded()
 {
     if (m_pExtractionOptions)
@@ -47,12 +60,8 @@ AppStagePtr PreditorApp::OnGameLoaded()
     else
     {
         IPreditorEngine::Get()->SetAppImGui();
-        std::unique_ptr<ProjectStage> pProjectStage = std::make_unique<ProjectStage>();
-        // TODO: Move to Main
-        // m_pLookingGlass = std::make_unique<LookingGlass>();
-        // m_pLookingGlass->Init();
-
-        return pProjectStage;
+        auto pMainStage = std::make_unique<MainStage>();
+        return pMainStage;
     }
 }
 
@@ -60,7 +69,7 @@ void PreditorApp::Update()
 {
     // Only the main stage has a dedicated main window.
     // Dock space needs to be created before any windows.
-    if (ProjectStage::Get())
+    if (gPreditor->pMain)
         ImGui::DockSpaceOverViewport();
 }
 

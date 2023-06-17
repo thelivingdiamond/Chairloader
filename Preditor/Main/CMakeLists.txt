@@ -10,6 +10,9 @@ set(SOURCE_FILES
 	Flowgraph/Node.cpp
 	Flowgraph/IChairFlowgraph.h
 
+	UI/PreditorUI.cpp
+	UI/PreditorUI.h
+
 	EntityHierarchyWindow.cpp
 	EntityHierarchyWindow.h
 	FlowgraphEditor.cpp
@@ -20,6 +23,8 @@ set(SOURCE_FILES
 	InspectorWindow.h
 	LookingGlass.cpp
 	LookingGlass.h
+	Preditor.cpp
+	Preditor.h
 	SceneViewport.cpp
 	SceneViewport.h
 	SimControlWindow.cpp

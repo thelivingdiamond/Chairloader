@@ -1,10 +1,10 @@
 #pragma once
 #include "App/Application.h"
 #include "ProjectSelectStage.h"
-#include "ProjectStage.h"
 #include "ConfigValidationStage.h"
 
 struct IGameStartup;
+struct IPreditor;
 struct ExtractionOptions;
 class LoadGameStage;
 class DevConsoleDialog;
@@ -22,6 +22,9 @@ public:
 	//! Called after the config is validated.
 	void OnConfigValidated(std::unique_ptr<PreditorConfig>&& pConfig);
 
+	//! Creates the IPreditor instance.
+	void CreatePreditorMain();
+
 	//! Called after the engine is successfully loaded.
 	//! @returns the next stage.
 	AppStagePtr OnGameLoaded();
@@ -35,6 +38,7 @@ private:
 	PreditorPaths m_Paths;
 	std::unique_ptr<PreditorConfig> m_pConfig;
 	std::unique_ptr<ExtractionOptions> m_pExtractionOptions;
+	std::unique_ptr<IPreditor> m_pMainPreditor;
 
 	void ParseCommandLine();
 };

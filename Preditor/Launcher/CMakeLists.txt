@@ -13,14 +13,14 @@ set(SOURCE_FILES
 	ExtractionStage.h
 	LoadGameStage.cpp
 	LoadGameStage.h
+	MainStage.cpp
+	MainStage.h
 	PreditorApp.cpp
 	PreditorApp.h
 	ProjectHistory.cpp
 	ProjectHistory.h
 	ProjectSelectStage.cpp
 	ProjectSelectStage.h
-	ProjectStage.cpp
-	ProjectStage.h
 )
 
 add_executable(Preditor.Launcher WIN32

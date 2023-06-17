@@ -32,6 +32,10 @@ void LoadGameStage::Start()
 				throw std::runtime_error("Failed to set game path: " + error);
 		}
 
+		// Create main
+		if (!m_pExtractionOptions)
+			PreditorApp::Get()->CreatePreditorMain();
+
 		IPreditorEngine::InitParams params;
 		params.progressCallback = [&](const char* msg) { UpdateProgressText(msg); };
 		params.enginePath = gamePath;

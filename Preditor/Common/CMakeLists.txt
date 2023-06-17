@@ -14,6 +14,8 @@ set(SOURCE_FILES
 	
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
+	
+	Preditor/Main/IPreditor.h
 
 	Preditor/Project/IProject.h
 	Preditor/Project/Project.h
