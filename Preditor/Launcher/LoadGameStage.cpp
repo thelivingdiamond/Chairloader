@@ -54,6 +54,7 @@ void LoadGameStage::Start()
 		{
 			// Load the whole game
 			fs::path projRuntime = gPreditor->pPaths->GetUserPath();
+			fs::create_directories(projRuntime);
 			params.modDirPath = projRuntime / "GameSDK";
 			params.userPath = projRuntime / "User";
 			params.chairloaderConfigPath = projRuntime / "Config";

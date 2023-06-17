@@ -12,7 +12,7 @@ public:
 	const fs::path& GetProjectDirPath() const { return m_ProjectDirPath; }
 
 	//! @returns the path to the directory for user-specific project files.
-	const fs::path& GetUserPath() const { return m_ProjectDirPath; }
+	const fs::path& GetUserPath() const { return m_UserPath; }
 
 	//! Sets the path to the project directory. Also sets all paths that depend on it.
 	void SetProjectDirPath(const fs::path& path)

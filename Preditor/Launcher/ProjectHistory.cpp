@@ -38,7 +38,7 @@ void ProjectHistory::AddToHistory(const fs::path& path)
     
     for (const fs::path& i : existingHistory)
     {
-        root.append_child("Path").set_value(i.u8string().c_str());
+        root.append_child("Path").text().set(i.u8string().c_str());
     }
 
     fs::path filePath = gPreditor->pConfig->GetPreditorRoot() / FILE_PATH;

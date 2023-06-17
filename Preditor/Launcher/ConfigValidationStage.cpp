@@ -23,6 +23,7 @@ void ConfigValidationStage::Start()
             {
                 // Config is valid, can go on
                 OnFinish();
+                return;
             }
         }
 

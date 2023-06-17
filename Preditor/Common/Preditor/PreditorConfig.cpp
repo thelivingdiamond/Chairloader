@@ -38,7 +38,7 @@ void PreditorConfig::SaveToXml()
 
     pugi::xml_document doc;
     pugi::xml_node root = doc.append_child("PreditorConfig");
-    root.append_child("GamePath").set_value(m_GamePath.GetGamePath().u8string().c_str());
+    root.append_child("GamePath").text().set(m_GamePath.GetGamePath().u8string().c_str());
 
     fs::path path = GetPreditorRoot() / XML_FILE_PATH;
     doc.save_file(path.c_str());

@@ -5,6 +5,11 @@
 #include "UI/PreditorUI.h"
 #include "Preditor.h"
 
+std::unique_ptr<IPreditor> IPreditor::CreateInstance()
+{
+    return std::make_unique<Main::Preditor>();
+}
+
 Main::Preditor::Preditor()
 {
     m_pProject = std::make_unique<Project>(gPreditor->pPaths->GetProjectDirPath());
