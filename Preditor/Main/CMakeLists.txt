@@ -22,16 +22,12 @@ set(SOURCE_FILES
 	EntityHierarchyWindow.h
 	FlowgraphEditor.cpp
 	FlowgraphEditor.h
-	GameViewport.cpp
-	GameViewport.h
 	InspectorWindow.cpp
 	InspectorWindow.h
 	LookingGlass.cpp
 	LookingGlass.h
 	Preditor.cpp
 	Preditor.h
-	SceneViewport.cpp
-	SceneViewport.h
 	SimControlWindow.cpp
 	SimControlWindow.h
 )

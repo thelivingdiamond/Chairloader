@@ -2,7 +2,6 @@
 #include <imgui.h>
 
 struct IBasicEventListener;
-struct IGameViewport;
 
 namespace Engine
 {
@@ -13,7 +12,6 @@ class HardwareMousePatch
 public:
 	static void InitHooks();
 	static void SetIBasicEventListener(IBasicEventListener* ptr);
-	static void SetGameViewport(IGameViewport* pVP);
 
 	//! Sets the screen bounds of the viewport window.
 	//! @returns whether it was changed.

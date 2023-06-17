@@ -12,6 +12,9 @@ struct IUserProjectSettings;
 // Engine
 struct IPreditorEngine;
 
+// Viewport
+struct IViewportWindow;
+
 struct SPreditorEnvironment
 {
 	// Common
@@ -25,6 +28,9 @@ struct SPreditorEnvironment
 
 	// Engine
 	IPreditorEngine* pEngine;
+
+	// Viewport
+	IViewportWindow* pViewportWindow;
 };
 
 extern SPreditorEnvironment* gPreditor;

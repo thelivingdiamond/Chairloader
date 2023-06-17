@@ -32,6 +32,7 @@ target_link_libraries(Preditor.Launcher
 	Preditor.Common
 	Preditor.Engine
 	Preditor.Main
+	Preditor.Viewport
 	D3D11.lib
 )
 

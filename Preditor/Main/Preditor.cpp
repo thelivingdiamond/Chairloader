@@ -51,4 +51,5 @@ void Main::Preditor::Update()
 
 void Main::Preditor::ShowUI()
 {
+    m_pUI->ShowUI();
 }

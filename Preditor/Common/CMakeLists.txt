@@ -19,9 +19,11 @@ set(SOURCE_FILES
 	Preditor/Main/IProject.h
 	Preditor/Main/IUserProjectSettings.h
 
+	Preditor/Viewport/IViewport.h
+	Preditor/Viewport/IViewportWindow.h
+
 	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h
-	Preditor/IGameViewport.h
 	Preditor/pch.h
 	Preditor/PreditorConfig.cpp
 	Preditor/PreditorConfig.h

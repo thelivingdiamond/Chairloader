@@ -59,6 +59,9 @@ bool ManagedWindow::UpdateWindow()
 			PreUpdate();
 			bool isStillOpen = true;
 			bool isVisible = ImGui::Begin(m_FullTitle.c_str(), m_bCloseable ? &isStillOpen : nullptr, m_Flags);
+
+			m_bFocused = ImGui::IsWindowFocused();
+
 			Update(isVisible);
 			if (isVisible)
 				ShowContents();

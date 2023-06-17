@@ -3,8 +3,6 @@
 #include <Chairloader/PreditorAPI.h>
 #include <Chairloader/IPreditorToChair.h>
 
-struct IGameViewport;
-
 namespace Engine
 {
 
@@ -34,7 +32,6 @@ public:
 	Engine::ISimulationController* GetSimController() override;
 	void SetGameInputEnabled(bool state) override;
 	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
-	void SetGameViewport(IGameViewport* pVP) override;
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;
@@ -54,7 +51,6 @@ private:
 	std::shared_ptr<PreditorImGui> m_pImGui;
 	std::unique_ptr<SimulationController> m_pSimulationController;
 	bool m_bGameInput = false;
-	IGameViewport* m_pGameViewport = nullptr;
 
 	void ApplyBasePatches();	//!< Applies patches used by both full and minimal engine.
 	void ApplyFullPatches();	//!< Applies patches used by the full engine.

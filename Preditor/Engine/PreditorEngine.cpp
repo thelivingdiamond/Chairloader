@@ -12,7 +12,9 @@
 #include <Chairloader/Hooks/HookTransaction.h>
 #include <App/Application.h>
 #include <Preditor/Main/IUserProjectSettings.h>
-#include <Preditor/IGameViewport.h>
+#include <Preditor/Main/IPreditor.h>
+#include <Preditor/Viewport/IViewportWindow.h>
+#include <Preditor/Viewport/IViewport.h>
 #include <imgui.h>
 #include "PreditorEngine.h"
 #include "DebuggerConsoleOutput.h"
@@ -92,7 +94,7 @@ public:
 SystemUserCallback g_SystemUserCallback;
 
 //----------------------------------------------------------------------------
-// SystemUserCallback
+// PreditorAsMod
 //----------------------------------------------------------------------------
 class PreditorAsMod : public IChairloaderMod
 {
@@ -124,6 +126,8 @@ public:
 
 		RendererGlobals::InitSystem();
 		MainWindowResizePatch::InitSystem();
+
+		gPreditor->pMain->InitSystem();
 	}
 
 	void Connect(const std::vector<IChairloaderMod*>& mods) override {}
@@ -133,17 +137,20 @@ public:
 		assert(!isHotReloading);
 		g_pGame = gCL->cl->GetCGame();
 		g_PreditorEngine.InitGame();
+		gPreditor->pMain->InitGame();
 	}
 
 	void ShutdownGame(bool isHotUnloading) override
 	{
 		assert(!isHotUnloading);
+		gPreditor->pMain->ShutdownGame();
 		g_PreditorEngine.ShutdownGame();
 	}
 
 	void ShutdownSystem(bool isHotUnloading) override
 	{
 		assert(!isHotUnloading);
+		gPreditor->pMain->ShutdownSystem();
 		MainWindowResizePatch::ShutdownSystem();
 		RendererGlobals::ShutdownSystem();
 	}
@@ -505,13 +512,6 @@ bool Engine::PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, 
 	return HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);
 }
 
-void Engine::PreditorEngine::SetGameViewport(IGameViewport* pVP)
-{
-	m_pGameViewport = pVP;
-	GameViewportPatch::SetGameViewport(pVP);
-	HardwareMousePatch::SetGameViewport(pVP);
-}
-
 IChairloaderMod* Engine::PreditorEngine::GetMod()
 {
 	return &g_PreditorAsMod;
@@ -533,8 +533,12 @@ bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 
 bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
 {
-	if (m_pGameViewport && m_pGameViewport->HandleInputEventPreGame(event))
-		return true;
+	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
+	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
+
+	if (pVP)
+		return !pVP->EnableMouseEvents();
+
 	return false;
 }
 

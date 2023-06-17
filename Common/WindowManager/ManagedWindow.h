@@ -56,6 +56,9 @@ public:
 	void CloseWindow();
 	bool IsWindowOpen() const { return m_bOpen; }
 
+	//! Whether the window is focused.
+	bool IsFocused() const { return m_bVisible && m_bFocused; }
+
 	// IManagedWindow
 	bool UpdateWindow() final override;
 
@@ -97,6 +100,9 @@ private:
 
 	//! Whether to destroy the window when it's closed.
 	bool m_bDestroyOnClose = true;
+
+	//! Whether the window is focused.
+	bool m_bFocused = false;
 
 	//! Updates m_FullTitle based on IDs.
 	void UpdateFullTitle();

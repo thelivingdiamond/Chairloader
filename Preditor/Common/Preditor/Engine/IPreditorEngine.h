@@ -4,7 +4,6 @@
 struct IGameStartup;
 struct ITexture;
 struct IChairToPreditor;
-struct IGameViewport;
 
 namespace Engine
 {
@@ -84,7 +83,4 @@ struct IPreditorEngine
 	//! Sets the bounds of the game viewport in screen coordinates.
 	//! @returns whether they were changed.
 	virtual bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) = 0;
-
-	//! Sets the IGameViewport instance pointer.
-	virtual void SetGameViewport(IGameViewport* pVP) = 0;
 };

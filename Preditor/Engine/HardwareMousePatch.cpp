@@ -1,6 +1,7 @@
 #include <Prey/CrySystem/HardwareMouse.h>
 #include <Prey/GameDll/basiceventlistener.h>
-#include <Preditor/IGameViewport.h>
+#include <Preditor/Viewport/IViewportWindow.h>
+#include <Preditor/Viewport/IViewport.h>
 #include "HardwareMousePatch.h"
 #include "PreditorImGui.h"
 
@@ -8,7 +9,6 @@ namespace
 {
 
 IBasicEventListener* g_pBasicEventListener = nullptr;
-IGameViewport* g_pVP = nullptr;
 ImGuiID g_ViewportId = 0;
 Vec2i g_MinBounds = Vec2i(ZERO);
 Vec2i g_MaxBounds = Vec2i(ZERO);
@@ -35,7 +35,10 @@ int64_t FixUpMouseLParam(HWND hWnd, int64_t lParam)
 
 void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)
 {
-	if (!g_pVP || g_pVP->EnableMouseEvents())
+	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
+	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
+
+	if (!pVP || pVP->EnableMouseEvents())
 		g_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
 }
 
@@ -131,11 +134,6 @@ void Engine::HardwareMousePatch::InitHooks()
 void Engine::HardwareMousePatch::SetIBasicEventListener(IBasicEventListener* ptr)
 {
 	g_pBasicEventListener = ptr;
-}
-
-void Engine::HardwareMousePatch::SetGameViewport(IGameViewport* pVP)
-{
-	g_pVP = pVP;
 }
 
 bool Engine::HardwareMousePatch::SetGameViewportBounds(ImGuiID viewportId, Vec2i min, Vec2i max)
