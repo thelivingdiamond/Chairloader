@@ -7,6 +7,7 @@ add_subdirectory(Common)
 # Modules
 add_subdirectory(Engine)
 add_subdirectory(GameEditor)
+add_subdirectory(Input)
 add_subdirectory(Main)
 add_subdirectory(Viewport)
 

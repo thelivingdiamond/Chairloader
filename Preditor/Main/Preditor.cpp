@@ -1,5 +1,6 @@
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Input/IPreditorInput.h>
 #include "Project/Project.h"
 #include "Project/UserProjectSettings.h"
 #include "UI/PreditorUI.h"
@@ -31,6 +32,9 @@ void Main::Preditor::InitSystem()
 
 void Main::Preditor::InitGame()
 {
+    m_pInput = IPreditorInput::CreateInstance();
+    gPreditor->pInput = m_pInput.get();
+
     m_pSceneEditorManager = std::make_unique<SceneEditorManager>();
 
     m_pChairTools = IChairloaderToolsPreditor::CreateInstance(gPreditor->pEngine->GetIChairToPreditor());
@@ -43,6 +47,9 @@ void Main::Preditor::ShutdownGame()
     m_pChairTools = nullptr;
 
     m_pSceneEditorManager = nullptr;
+
+    gPreditor->pInput = nullptr;
+    m_pInput = nullptr;
 }
 
 void Main::Preditor::ShutdownSystem()

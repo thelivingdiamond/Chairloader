@@ -14,6 +14,14 @@ set(SOURCE_FILES
 	
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
+
+	Preditor/Input/Common.h
+	Preditor/Input/IAction.h
+	Preditor/Input/IActionSet.h
+	Preditor/Input/IKeyboardInputSystem.h
+	Preditor/Input/IKeyMap.h
+	Preditor/Input/IMouseInputSystem.h
+	Preditor/Input/IPreditorInput.h
 	
 	Preditor/Main/IPreditor.h
 	Preditor/Main/IProject.h

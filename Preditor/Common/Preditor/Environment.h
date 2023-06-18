@@ -12,6 +12,9 @@ struct IUserProjectSettings;
 // Engine
 struct IPreditorEngine;
 
+// Input
+struct IPreditorInput;
+
 // Viewport
 struct IViewportWindow;
 
@@ -28,6 +31,9 @@ struct SPreditorEnvironment
 
 	// Engine
 	IPreditorEngine* pEngine;
+
+	// Input
+	IPreditorInput* pInput;
 
 	// Viewport
 	IViewportWindow* pViewportWindow;
