@@ -31,7 +31,7 @@
   <KeyInfo id="12" name="equals" isBindable="1" vkCode="187" />
   <KeyInfo id="13" name="backspace" isBindable="1" vkCode="8" />
   <KeyInfo id="69" name="scroll_lock" isBindable="1" vkCode="145" />
-  <KeyInfo id="95" name="pause" isBindable="1" vkCode="0" />
+  <KeyInfo id="95" name="pause" isBindable="1" vkCode="19" />
   <KeyInfo id="29" name="a" isBindable="1" vkCode="65" />
   <KeyInfo id="47" name="b" isBindable="1" vkCode="66" />
   <KeyInfo id="45" name="c" isBindable="1" vkCode="67" />
@@ -92,7 +92,7 @@
   <KeyInfo id="54" name="np_mult" isBindable="1" vkCode="106" />
   <KeyInfo id="73" name="np_substr" isBindable="1" vkCode="109" />
   <KeyInfo id="77" name="np_add" isBindable="1" vkCode="107" />
-  <KeyInfo id="89" name="np_enter" isBindable="1" vkCode="0" />
+  <KeyInfo id="89" name="np_enter" isBindable="1" vkCode="13" />
   <KeyInfo id="91" name="np_period" isBindable="1" vkCode="110" />
   <KeyInfo id="81" name="np_0" isBindable="1" vkCode="96" />
   <KeyInfo id="78" name="np_1" isBindable="1" vkCode="97" />

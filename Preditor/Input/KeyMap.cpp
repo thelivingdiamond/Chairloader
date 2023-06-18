@@ -1,9 +1,12 @@
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <Prey/CryString/UnicodeFunctions.h>
 #include "KeyMap.h"
 
 Input::KeyMap::KeyMap()
 {
     LoadKeyMap();
     LoadModifiers();
+    LoadDisplayNames();
 }
 
 const KeyInfo* Input::KeyMap::GetKeyInfo(EKeyId id)
@@ -60,9 +63,6 @@ void Input::KeyMap::LoadKeyMap()
             CryFatalError("KeyMap: Key with invalid id: {} - {}", keyInfo.name, (int)keyInfo.id);
         m_IdToInfo[keyInfo.id] = &keyInfo;
         m_NameToInfo.insert({ keyInfo.name, &keyInfo });
-
-        // TODO 2023-06-18: Real display name
-        keyInfo.displayName = keyInfo.name;
     }
 }
 
@@ -88,8 +88,37 @@ void Input::KeyMap::LoadModifiers()
 
         it->second->isModifier = true;
     }
+}
 
-    // TODO 2023-06-18: Real display name
-    for (ModifierKeyInfo& i : m_Modifiers)
-        i.displayName = i.name;
+void Input::KeyMap::LoadDisplayNames()
+{
+    for (KeyInfo& keyInfo : m_Keys)
+    {
+        if (!keyInfo.displayName.empty())
+            continue;
+
+        // Default
+        keyInfo.displayName = keyInfo.name;
+
+        if (keyInfo.vkCode == 0)
+            CryFatalError("KeyMap: Virtual key code not set: {}", keyInfo.name);
+
+        // Convert to scancode
+        UINT scanCode = MapVirtualKeyW(keyInfo.vkCode, MAPVK_VK_TO_VSC);
+
+        // Get string
+        wchar_t keyName[32];
+        if (!GetKeyNameTextW(scanCode << 16, keyName, std::size(keyName)))
+        {
+            CryError("KeyMap: GetKeyNameTextW failed: {}, {}", keyInfo.name, scanCode);
+            continue;
+        }
+
+        wstring keyName2 = keyName;
+        Unicode::Convert(keyInfo.displayName, keyName2);
+    }
+
+    m_Modifiers[(int)EModifierId::Ctrl].displayName = "Ctrl";
+    m_Modifiers[(int)EModifierId::Alt].displayName = "Alt";
+    m_Modifiers[(int)EModifierId::Shift].displayName = "Shift";
 }

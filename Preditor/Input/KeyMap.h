@@ -26,6 +26,7 @@ private:
 
     void LoadKeyMap();
     void LoadModifiers();
+    void LoadDisplayNames();
 };
 
 } // namespace Input
