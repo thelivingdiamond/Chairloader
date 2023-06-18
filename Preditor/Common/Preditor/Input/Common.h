@@ -24,6 +24,9 @@ struct KeyInfo
     //! Key ID
     EKeyId id = eKI_Unknown;
 
+    //! An index in the the key map array.
+    unsigned internalIdx = 0;
+
     //! Internal name - lower-case.
     std::string name;
 
@@ -39,3 +42,17 @@ struct KeyInfo
     //! Windows virtual key code.
     uint32_t vkCode = 0;
 };
+
+//! Mask of pressed modifier keys.
+using ModifierKeyMask = uint8_t;
+
+//! Modifier mask contants
+//! @{
+constexpr ModifierKeyMask MODIFIER_MASK_NONE = 0;
+constexpr ModifierKeyMask MODIFIER_MASK_CTRL = 1 << ((int)EModifierId::Ctrl - 1);
+constexpr ModifierKeyMask MODIFIER_MASK_ALT = 1 << ((int)EModifierId::Alt - 1);
+constexpr ModifierKeyMask MODIFIER_MASK_SHIFT = 1 << ((int)EModifierId::Shift - 1);
+//! @}
+
+//! Enable input system debugging.
+constexpr bool PREDITOR_INPUT_DEBUG = true;

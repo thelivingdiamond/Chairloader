@@ -8,6 +8,8 @@
 #include <imgui_impl_win32.h>
 #include <App/Application.h>
 #include <Preditor/Main/IUserProjectSettings.h>
+#include <Preditor/Input/IPreditorInput.h>
+#include <Preditor/Input/IKeyboardInputSystem.h>
 #include "PreditorImGui.h"
 #include "PreditorImGuiRenderer.h"
 #include "MainWindowResizePatch.h"
@@ -290,6 +292,16 @@ int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wPa
             {
                 if (IsVkDown(VK_LMENU) == is_key_down) { AddKeyEvent(ImGuiKey_LeftAlt, is_key_down, VK_LMENU, scancode); }
                 if (IsVkDown(VK_RMENU) == is_key_down) { AddKeyEvent(ImGuiKey_RightAlt, is_key_down, VK_RMENU, scancode); }
+            }
+
+            // Submit to the input system
+            if (!io.WantTextInput)
+            {
+                EKeyId cryKeyId = VirtualKeyToCryKeyId(vk);
+                if (is_key_down)
+                    gPreditor->pInput->GetKeyboard()->OnKeyDown(cryKeyId);
+                else
+                    gPreditor->pInput->GetKeyboard()->OnKeyUp(cryKeyId);
             }
         }
         return 0;
@@ -583,10 +595,23 @@ bool Engine::PreditorImGui::UpdateMouseCursor()
 
 void Engine::PreditorImGui::UpdateKeyModifiers()
 {
+    bool ctrl = IsVkDown(VK_CONTROL);
+    bool alt = IsVkDown(VK_MENU);
+    bool shift = IsVkDown(VK_SHIFT);
+
+    ModifierKeyMask modMask = MODIFIER_MASK_NONE;
+    if (ctrl)
+        modMask |= MODIFIER_MASK_CTRL;
+    if (alt)
+        modMask |= MODIFIER_MASK_ALT;
+    if (shift)
+        modMask |= MODIFIER_MASK_SHIFT;
+    gPreditor->pInput->GetKeyboard()->UpdateModMask(modMask);
+
     ImGuiIO& io = ImGui::GetIO();
-    io.AddKeyEvent(ImGuiKey_ModCtrl, IsVkDown(VK_CONTROL));
-    io.AddKeyEvent(ImGuiKey_ModShift, IsVkDown(VK_SHIFT));
-    io.AddKeyEvent(ImGuiKey_ModAlt, IsVkDown(VK_MENU));
+    io.AddKeyEvent(ImGuiKey_ModCtrl, ctrl);
+    io.AddKeyEvent(ImGuiKey_ModShift, shift);
+    io.AddKeyEvent(ImGuiKey_ModAlt, alt);
     io.AddKeyEvent(ImGuiKey_ModSuper, IsVkDown(VK_APPS));
 }
 
@@ -946,5 +971,115 @@ ImGuiKey Engine::PreditorImGui::VirtualKeyToImGuiKey(WPARAM wParam)
     case VK_F11: return ImGuiKey_F11;
     case VK_F12: return ImGuiKey_F12;
     default: return ImGuiKey_None;
+    }
+}
+
+EKeyId Engine::PreditorImGui::VirtualKeyToCryKeyId(WPARAM wParam)
+{
+    switch (wParam)
+    {
+    case VK_TAB: return eKI_Tab;
+    case VK_LEFT: return eKI_Left;
+    case VK_RIGHT: return eKI_Right;
+    case VK_UP: return eKI_Up;
+    case VK_DOWN: return eKI_Down;
+    case VK_PRIOR: return eKI_PgUp;
+    case VK_NEXT: return eKI_PgDn;
+    case VK_HOME: return eKI_Home;
+    case VK_END: return eKI_End;
+    case VK_INSERT: return eKI_Insert;
+    case VK_DELETE: return eKI_Delete;
+    case VK_BACK: return eKI_Backspace;
+    case VK_SPACE: return eKI_Space;
+    case VK_RETURN: return eKI_Enter;
+    case VK_ESCAPE: return eKI_Escape;
+    case VK_OEM_7: return eKI_Apostrophe;
+    case VK_OEM_COMMA: return eKI_Comma;
+    case VK_OEM_MINUS: return eKI_Minus;
+    case VK_OEM_PERIOD: return eKI_Period;
+    case VK_OEM_2: return eKI_Slash;
+    case VK_OEM_1: return eKI_Semicolon;
+    case VK_OEM_PLUS: return eKI_Equals;
+    case VK_OEM_4: return eKI_LBracket;
+    case VK_OEM_5: return eKI_Backslash;
+    case VK_OEM_6: return eKI_RBracket;
+    case VK_OEM_3: return eKI_Tilde;
+    case VK_CAPITAL: return eKI_CapsLock;
+    case VK_SCROLL: return eKI_ScrollLock;
+    case VK_NUMLOCK: return eKI_NumLock;
+    case VK_SNAPSHOT: return eKI_Print;
+    case VK_PAUSE: return eKI_Pause;
+    case VK_NUMPAD0: return eKI_NP_0;
+    case VK_NUMPAD1: return eKI_NP_1;
+    case VK_NUMPAD2: return eKI_NP_2;
+    case VK_NUMPAD3: return eKI_NP_3;
+    case VK_NUMPAD4: return eKI_NP_4;
+    case VK_NUMPAD5: return eKI_NP_5;
+    case VK_NUMPAD6: return eKI_NP_6;
+    case VK_NUMPAD7: return eKI_NP_7;
+    case VK_NUMPAD8: return eKI_NP_8;
+    case VK_NUMPAD9: return eKI_NP_9;
+    case VK_DECIMAL: return eKI_NP_Period;
+    case VK_DIVIDE: return eKI_NP_Divide;
+    case VK_MULTIPLY: return eKI_NP_Multiply;
+    case VK_SUBTRACT: return eKI_NP_Substract;
+    case VK_ADD: return eKI_NP_Add;
+    case IM_VK_KEYPAD_ENTER: return eKI_NP_Enter;
+    case VK_LSHIFT: return eKI_LShift;
+    case VK_LCONTROL: return eKI_LCtrl;
+    case VK_LMENU: return eKI_LAlt;
+    case VK_RSHIFT: return eKI_RShift;
+    case VK_RCONTROL: return eKI_RCtrl;
+    case VK_RMENU: return eKI_RAlt;
+    case VK_APPS: return eKI_Apps;
+    case '0': return eKI_0;
+    case '1': return eKI_1;
+    case '2': return eKI_2;
+    case '3': return eKI_3;
+    case '4': return eKI_4;
+    case '5': return eKI_5;
+    case '6': return eKI_6;
+    case '7': return eKI_7;
+    case '8': return eKI_8;
+    case '9': return eKI_9;
+    case 'A': return eKI_A;
+    case 'B': return eKI_B;
+    case 'C': return eKI_C;
+    case 'D': return eKI_D;
+    case 'E': return eKI_E;
+    case 'F': return eKI_F;
+    case 'G': return eKI_G;
+    case 'H': return eKI_H;
+    case 'I': return eKI_I;
+    case 'J': return eKI_J;
+    case 'K': return eKI_K;
+    case 'L': return eKI_L;
+    case 'M': return eKI_M;
+    case 'N': return eKI_N;
+    case 'O': return eKI_O;
+    case 'P': return eKI_P;
+    case 'Q': return eKI_Q;
+    case 'R': return eKI_R;
+    case 'S': return eKI_S;
+    case 'T': return eKI_T;
+    case 'U': return eKI_U;
+    case 'V': return eKI_V;
+    case 'W': return eKI_W;
+    case 'X': return eKI_X;
+    case 'Y': return eKI_Y;
+    case 'Z': return eKI_Z;
+    case VK_F1: return eKI_F1;
+    case VK_F2: return eKI_F2;
+    case VK_F3: return eKI_F3;
+    case VK_F4: return eKI_F4;
+    case VK_F5: return eKI_F5;
+    case VK_F6: return eKI_F6;
+    case VK_F7: return eKI_F7;
+    case VK_F8: return eKI_F8;
+    case VK_F9: return eKI_F9;
+    case VK_F10: return eKI_F10;
+    case VK_F11: return eKI_F11;
+    case VK_F12: return eKI_F12;
+    default: return eKI_Unknown;
     }
 }

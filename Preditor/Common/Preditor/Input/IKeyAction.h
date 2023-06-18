@@ -1,13 +1,27 @@
 #pragma once
 #include <Preditor/Input/Common.h>
+#include <Preditor/ListenerSet.h>
+
+struct IKeyAction;
+struct IKeyActionSet;
+
+struct KeyActionEventArgs
+{
+    IKeyAction* pAction = nullptr;
+
+    //! Whether the action is pressed or released.
+    bool isPressed = false;
+};
 
 //! An action that can be triggered by pressing one of key combinations.
 //! Can also be polled by the program (whether it's currently pressed, whether it was first pressed this frame)
 //! Most actions can't be bound to modifier keys. But sometimes they need to be. In that case, IsModifier() == true,
 //! it can be bound to a key as usual, or can be bound to a single modifier key with no other modifiers.
-struct IAction
+struct IKeyAction
 {
-    virtual ~IAction() {}
+    using ActionListener = std::function<void(const KeyActionEventArgs&)>;
+
+    virtual ~IKeyAction() {}
 
     //! @returns the name of the action in the set.
     virtual const std::string& GetName() = 0;
@@ -15,10 +29,13 @@ struct IAction
     //! @returns a UI shortcut string (like "Ctrl+V").
     virtual const std::string& GetUIShortcut() = 0;
 
+    //! @returns the parent action set.
+    virtual IKeyActionSet* GetActionSet() = 0;
+
     //! Adds/removes a press listener.
     //! @{
-    virtual void AddListener() = 0;
-    virtual void RemoveListener() = 0;
+    virtual ListenerId AddListener(const ActionListener& listener) = 0;
+    virtual bool RemoveListener(ListenerId id) = 0;
     //! @}
 
     //! @returns whether the action is currently active.

@@ -87,6 +87,7 @@ private:
 	static LRESULT CALLBACK WndProcHndl_PlatformWindow(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	static ImGuiKey VirtualKeyToImGuiKey(WPARAM wParam);
+	static EKeyId VirtualKeyToCryKeyId(WPARAM wParam);
 };
 
 } // namespace Engine

@@ -10,6 +10,9 @@ class KeyMap final : public IKeyMap
 public:
     KeyMap();
 
+    //! @returns the number of keys.
+    size_t GetKeyCount() const { return m_Keys.size(); }
+
     // IKeyMap
     virtual const KeyInfo* GetKeyInfo(EKeyId id) override;
     virtual const KeyInfo* FindKeyByName(std::string_view name) override;

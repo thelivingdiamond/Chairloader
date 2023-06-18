@@ -40,10 +40,13 @@ void Input::KeyMap::LoadKeyMap()
     if (!result)
         CryFatalError("KeyMap: Failed to load {}: {}", KEY_MAP_PATH, result.description());
 
+    unsigned keyIdx = 0;
+
     for (pugi::xml_node node : doc.first_child())
     {
         KeyInfo info;
         info.id = (EKeyId)node.attribute("id").as_uint(eKI_Unknown);
+        info.internalIdx = keyIdx;
         info.name = node.attribute("name").as_string();
         info.isBindable = node.attribute("isBindable").as_bool();
         info.vkCode = node.attribute("vkCode").as_uint();
@@ -52,6 +55,7 @@ void Input::KeyMap::LoadKeyMap()
             CryFatalError("KeyMap: Key with unknown id: {}", info.name);
 
         m_Keys.push_back(info);
+        keyIdx++;
     }
 
     m_Keys.shrink_to_fit();

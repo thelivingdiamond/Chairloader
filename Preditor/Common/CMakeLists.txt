@@ -16,8 +16,8 @@ set(SOURCE_FILES
 	Preditor/Engine/ISimulationController.h
 
 	Preditor/Input/Common.h
-	Preditor/Input/IAction.h
-	Preditor/Input/IActionSet.h
+	Preditor/Input/IKeyAction.h
+	Preditor/Input/IKeyActionSet.h
 	Preditor/Input/IKeyboardInputSystem.h
 	Preditor/Input/IKeyMap.h
 	Preditor/Input/IMouseInputSystem.h
@@ -38,6 +38,7 @@ set(SOURCE_FILES
 
 	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h
+	Preditor/ListenerSet.h
 	Preditor/pch.h
 	Preditor/PreditorConfig.cpp
 	Preditor/PreditorConfig.h

@@ -1,13 +1,15 @@
 set(SOURCE_FILES
 	CMakeLists.txt
-	Action.cpp
-	Action.h
-	ActionBind.cpp
-	ActionBind.h
-	ActionSet.cpp
-	ActionSet.h
 	InputDebuggerWindow.cpp
 	InputDebuggerWindow.h
+	KeyAction.cpp
+	KeyAction.h
+	KeyActionBind.cpp
+	KeyActionBind.h
+	KeyActionSet.cpp
+	KeyActionSet.h
+	KeyBind.cpp
+	KeyBind.h
 	KeyMap.cpp
 	KeyMap.h
 	KeyboardInputSystem.cpp

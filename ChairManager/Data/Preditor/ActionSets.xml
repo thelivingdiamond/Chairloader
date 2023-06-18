@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<!--
+    Action set priorities:
+        80  Viewport Camera Control
+        50  Default
+-->
+
+<ActionSets defaultPriority="50">
+    <!-- viewport_camera -->
+    <ActionSet
+        name="viewport_camera"
+        description="Scene Viewport Camera"
+        priority="80"
+        startActive="0">
+        <!-- Horizontal -->
+        <Action name="forward" description="Move Forward">
+            <Bind key="w"/>
+        </Action>
+        <Action name="backward" description="Move Backward">
+            <Bind key="s"/>
+        </Action>
+        <Action name="left" description="Move Left">
+            <Bind key="a"/>
+        </Action>
+        <Action name="right" description="Move Right">
+            <Bind key="d"/>
+        </Action>
+
+        <!-- Vertical -->
+        <Action name="up" description="Move Up">
+            <Bind key="q"/>
+        </Action>
+        <Action name="down" description="Move Down">
+            <Bind key="e"/>
+        </Action>
+
+        <!-- Speed -->
+        <Action name="speed_up" description="Speed Up" isModifier="1">
+            <Bind key="shift"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Tool Select -->
+    <ActionSet
+        name="tool_select"
+        description="Tool Selection">
+        <Action name="select" description="Select">
+            <Bind key="q"/>
+        </Action>
+        <Action name="move" description="Move">
+            <Bind key="w"/>
+        </Action>
+        <Action name="rotate" description="Rotate">
+            <Bind key="e"/>
+        </Action>
+        <Action name="scale" description="Scale">
+            <Bind key="r"/>
+        </Action>
+    </ActionSet>
+</ActionSets>

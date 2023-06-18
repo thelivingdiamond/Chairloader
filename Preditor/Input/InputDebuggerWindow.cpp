@@ -21,6 +21,10 @@ void Input::InputDebuggerWindow::ShowContents()
         LoadLayout();
     ImGui::SameLine();
 
+    if (ImGui::Button("Reload Binds"))
+        gPreditor->pInput->GetKeyboard()->ReloadKeybinds();
+    ImGui::SameLine();
+
     ImGui::DragFloat("Scale", &m_KeyScale, 0.1f, 0.1f, 5.0f);
 
     ImVec2 cursorBegin = ImGui::GetCursorPos();
