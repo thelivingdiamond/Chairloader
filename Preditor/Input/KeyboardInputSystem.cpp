@@ -75,7 +75,7 @@ void Input::KeyboardInputSystem::ReloadKeybinds()
             if (lhsPrio > rhsPrio)
                 return true;
             else if (lhsPrio < rhsPrio)
-                return true;
+                return false;
 
             // Modifier count
             int lhsCount = CountModifiers(lhs.GetModMask());
