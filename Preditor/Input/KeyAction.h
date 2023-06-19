@@ -31,6 +31,7 @@ public:
     virtual bool IsPressed() override;
     virtual bool IsModifier() override { return m_IsModifier; }
     virtual bool CanHaveModifiers() override { return m_CanHaveModifiers; }
+    virtual bool IsEnabledInGame() override { return m_IsEnabledInGame; }
 
 private:
     //! Frame index for not triggered action.
@@ -48,6 +49,7 @@ private:
     std::string m_UIShortcut;
     bool m_IsModifier = false;
     bool m_CanHaveModifiers = true;
+    bool m_IsEnabledInGame = true;
     ListenerSet<const KeyActionEventArgs&> m_Listeners;
 
     //! The frame that the action was triggered.

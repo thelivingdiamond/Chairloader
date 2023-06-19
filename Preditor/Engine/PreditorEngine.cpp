@@ -507,6 +507,11 @@ void Engine::PreditorEngine::SetGameInputEnabled(bool state)
 	HardwareMousePatch::SetWindowFocused(state);
 }
 
+bool Engine::PreditorEngine::IsGameInputEnabled()
+{
+	return m_bGameInput;
+}
+
 bool Engine::PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
 {
 	return HardwareMousePatch::SetGameViewportBounds(viewportId, min, max);

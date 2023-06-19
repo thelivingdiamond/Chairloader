@@ -18,6 +18,8 @@ public:
     //! @returns the parent input system.
     KeyboardInputSystem* GetParent() { return m_pParent; }
 
+    bool IsEnabledInGame() { return m_IsEnabledInGame; }
+
     // IActionSet
     virtual const std::string& GetName() override { return m_Name; }
     virtual void SetActive(bool state) override;
@@ -31,6 +33,7 @@ private:
     std::string m_Name;
     int m_Priority = -1;
     bool m_CanHaveModifiers = true;
+    bool m_IsEnabledInGame = true;
     bool m_IsActive = false;
     std::vector<KeyAction> m_Actions;
     std::map<std::string, KeyAction*, std::less<>> m_ActionsByName;

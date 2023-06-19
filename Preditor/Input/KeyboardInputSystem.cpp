@@ -1,3 +1,4 @@
+#include <Preditor/Engine/IPreditorEngine.h>
 #include "KeyboardInputSystem.h"
 #include "KeyBind.h"
 
@@ -210,7 +211,9 @@ void Input::KeyboardInputSystem::ProcessKeyEvent(const KeyEventArgs& ev)
         // Notify the first valid action
         for (KeyActionBind& bind : pList->bindList)
         {
-            if (!bind.GetAction()->CanHaveModifiers() || bind.GetModMask() == m_ModMask)
+            bool modifierCheck = !bind.GetAction()->CanHaveModifiers() || bind.GetModMask() == m_ModMask;
+            bool gameInputCheck = bind.GetAction()->IsEnabledInGame() || !gPreditor->pEngine->IsGameInputEnabled();
+            if (modifierCheck && gameInputCheck)
             {
                 KeyActionSet* pActionSet = bind.GetActionSet();
 

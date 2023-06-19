@@ -79,6 +79,7 @@ struct IPreditorEngine
 
 	//! Enables/disable keyboard and mouse input to the game.
 	virtual void SetGameInputEnabled(bool state) = 0;
+	virtual bool IsGameInputEnabled() = 0;
 
 	//! Sets the bounds of the game viewport in screen coordinates.
 	//! @returns whether they were changed.

@@ -27,4 +27,11 @@ struct IPreditorInput
 
     //! Updates the input system. Any events are queued until an update.
     virtual void Update() = 0;
+
+    //! Finds an action by its path.
+    //! @returns action or nullptr.
+    IKeyAction* FindAction(std::string_view path, bool silent = false)
+    {
+        return GetKeyboard()->FindAction(path, silent);
+    }
 };

@@ -7,6 +7,7 @@ Input::KeyActionSet::KeyActionSet(KeyboardInputSystem* pParent, pugi::xml_node x
     m_Name = xml.attribute("name").as_string();
     m_Priority = xml.attribute("priority").as_int(pParent->GetDefaultPriority());
     m_CanHaveModifiers = xml.attribute("canHaveModifiers").as_bool(true);
+    m_IsEnabledInGame = xml.attribute("enableInGame").as_bool(false);
 
     for (pugi::xml_node node : xml)
     {

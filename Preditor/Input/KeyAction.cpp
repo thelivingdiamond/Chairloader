@@ -7,6 +7,7 @@ Input::KeyAction::KeyAction(KeyActionSet* pParent, pugi::xml_node xml)
     m_pParent = pParent;
     m_pSystem = pParent->GetParent();
     m_Name = xml.attribute("name").as_string();
+    m_IsEnabledInGame = xml.attribute("enableInGame").as_bool(pParent->IsEnabledInGame());
 
     pugi::xml_attribute canHaveModifiers = xml.attribute("canHaveModifiers");
     if (canHaveModifiers)

@@ -50,4 +50,9 @@ struct IKeyAction
     //! Whether the action has modifiers.
     //! If not, modifiers are not checked when triggering the action.
     virtual bool CanHaveModifiers() = 0;
+
+    //! Whether the action is enabled in game mode.
+    //! In game mode, most Preditor actions are disabled so the user can control the game
+    //! without removing something in the editor.
+    virtual bool IsEnabledInGame() = 0;
 };
