@@ -7,6 +7,26 @@ Input::KeyAction::KeyAction(KeyActionSet* pParent, pugi::xml_node xml)
     m_pParent = pParent;
     m_pSystem = pParent->GetParent();
     m_Name = xml.attribute("name").as_string();
+
+    pugi::xml_attribute canHaveModifiers = xml.attribute("canHaveModifiers");
+    if (canHaveModifiers)
+    {
+        if (pParent->CanHaveModifiers())
+        {
+            m_CanHaveModifiers = canHaveModifiers.as_bool(true);
+        }
+        else
+        {
+            CryWarning("[KeyAction] {}.{}: ignoring canHaveModifiers as action set has it set to false",
+                m_pParent->GetName(), GetName());
+            m_CanHaveModifiers = false;
+        }
+    }
+    else
+    {
+        // Inherit it
+        m_CanHaveModifiers = pParent->CanHaveModifiers();
+    }
 }
 
 void Input::KeyAction::ResetPressed()

@@ -30,6 +30,7 @@ public:
     virtual bool IsHeldDown() override { return m_PressedFrame != NOT_PRESSED_FRAME; }
     virtual bool IsPressed() override;
     virtual bool IsModifier() override { return m_IsModifier; }
+    virtual bool CanHaveModifiers() override { return m_CanHaveModifiers; }
 
 private:
     //! Frame index for not triggered action.
@@ -46,6 +47,7 @@ private:
     std::string m_Name;
     std::string m_UIShortcut;
     bool m_IsModifier = false;
+    bool m_CanHaveModifiers = true;
     ListenerSet<const KeyActionEventArgs&> m_Listeners;
 
     //! The frame that the action was triggered.

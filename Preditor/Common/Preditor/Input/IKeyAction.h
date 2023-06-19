@@ -46,4 +46,8 @@ struct IKeyAction
 
     //! @returns whether this is a modifier action.
     virtual bool IsModifier() = 0;
+
+    //! Whether the action has modifiers.
+    //! If not, modifiers are not checked when triggering the action.
+    virtual bool CanHaveModifiers() = 0;
 };

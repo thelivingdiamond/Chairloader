@@ -23,12 +23,14 @@ public:
     virtual void SetActive(bool state) override;
     virtual bool IsActive() override { return m_IsActive; }
     virtual int GetPriority() override { return m_Priority; }
+    virtual bool CanHaveModifiers() override { return m_CanHaveModifiers; }
     virtual IKeyAction* FindAction(std::string_view name) override;
 
 private:
     KeyboardInputSystem* m_pParent = nullptr;
     std::string m_Name;
     int m_Priority = -1;
+    bool m_CanHaveModifiers = true;
     bool m_IsActive = false;
     std::vector<KeyAction> m_Actions;
     std::map<std::string, KeyAction*, std::less<>> m_ActionsByName;

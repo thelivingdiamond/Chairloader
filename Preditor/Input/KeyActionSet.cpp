@@ -6,6 +6,7 @@ Input::KeyActionSet::KeyActionSet(KeyboardInputSystem* pParent, pugi::xml_node x
     m_pParent = pParent;
     m_Name = xml.attribute("name").as_string();
     m_Priority = xml.attribute("priority").as_int(pParent->GetDefaultPriority());
+    m_CanHaveModifiers = xml.attribute("canHaveModifiers").as_bool(true);
 
     for (pugi::xml_node node : xml)
     {

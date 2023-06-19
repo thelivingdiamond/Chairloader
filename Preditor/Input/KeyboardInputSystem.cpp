@@ -210,7 +210,7 @@ void Input::KeyboardInputSystem::ProcessKeyEvent(const KeyEventArgs& ev)
         // Notify the first valid action
         for (KeyActionBind& bind : pList->bindList)
         {
-            if (bind.GetModMask() == m_ModMask)
+            if (!bind.GetAction()->CanHaveModifiers() || bind.GetModMask() == m_ModMask)
             {
                 KeyActionSet* pActionSet = bind.GetActionSet();
 

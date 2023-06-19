@@ -22,6 +22,10 @@ struct IKeyActionSet
     //! @returns the prioroty of the action set.
     virtual int GetPriority() = 0;
 
+    //! Whether actions can have modifiers.
+    //! If not, modifiers are not checked when triggering the action.
+    virtual bool CanHaveModifiers() = 0;
+
     //! Finds an action by its name.
     //! @returns action or nullptr.
     virtual IKeyAction* FindAction(std::string_view name) = 0;
