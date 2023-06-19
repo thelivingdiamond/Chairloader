@@ -56,7 +56,7 @@ void Input::KeyAction::OnKeyUp(unsigned bindId)
             pressCount++;
     }
 
-    if (pressCount == 0)
+    if (pressCount == 0 && m_PressedFrame != NOT_PRESSED_FRAME)
     {
         if constexpr (PREDITOR_INPUT_DEBUG)
             CryLog("[KeyAction] Up: {}.{}, {}", m_pParent->GetName(), GetName(), bindId);
