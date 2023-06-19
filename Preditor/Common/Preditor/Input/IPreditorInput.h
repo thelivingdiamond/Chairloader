@@ -1,5 +1,10 @@
 #pragma once
 
+// Commonly used includes for key input in Preditor.
+#include <Preditor/Input/IKeyAction.h>
+#include <Preditor/Input/IKeyActionSet.h>
+#include <Preditor/Input/IKeyboardInputSystem.h>
+
 struct IKeyboardInputSystem;
 struct IMouseInputSystem;
 class ManagedWindow;

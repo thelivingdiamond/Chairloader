@@ -12,7 +12,8 @@
         name="viewport_camera"
         description="Scene Viewport Camera"
         priority="80"
-        startActive="0">
+        startActive="0"
+        canHaveModifiers="0">
         <!-- Horizontal -->
         <Action name="forward" description="Move Forward">
             <Bind key="w"/>
@@ -29,10 +30,10 @@
 
         <!-- Vertical -->
         <Action name="up" description="Move Up">
-            <Bind key="q"/>
+            <Bind key="e"/>
         </Action>
         <Action name="down" description="Move Down">
-            <Bind key="e"/>
+            <Bind key="q"/>
         </Action>
 
         <!-- Speed -->

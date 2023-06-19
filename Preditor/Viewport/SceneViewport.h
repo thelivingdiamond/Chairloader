@@ -2,6 +2,9 @@
 #include "BaseViewport.h"
 #include "MouseGuard.h"
 
+struct IKeyAction;
+struct IKeyActionSet;
+
 namespace Viewport
 {
 
@@ -42,6 +45,21 @@ private:
     MouseGuard m_InputEnabled;
     CCamera m_Cam;
     CameraInfo m_CamInfo;
+
+    // Camera controls
+    IKeyActionSet* m_pCameraActionSet = nullptr;
+    IKeyAction* m_pFwd = nullptr;
+    IKeyAction* m_pBkwd = nullptr;
+    IKeyAction* m_pLeft = nullptr;
+    IKeyAction* m_pRight = nullptr;
+    IKeyAction* m_pUp = nullptr;
+    IKeyAction* m_pDown = nullptr;
+    IKeyAction* m_pSpeedUp = nullptr;
+    float m_MoveSpeed = 0;
+    bool m_IsInCameraMode = false;
+
+    //! Sets whether currently controlling the camera.
+    void SetCameraMode(bool state);
 
     void ShowCameraMenu();
 

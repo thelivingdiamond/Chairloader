@@ -2,11 +2,36 @@
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Input/IPreditorInput.h>
 #include "SceneViewport.h"
+
+float CV_ed_ViewMinSpeed;
+float CV_ed_ViewMaxSpeed;
+float CV_ed_ViewAccel;
+float CV_ed_ViewDecel;
+float CV_ed_ViewSens;
+float CV_ed_ViewBoostScale;
 
 Viewport::SceneViewport::SceneViewport()
 {
 	gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
+
+	REGISTER_CVAR2("ed_ViewMinSpeed", &CV_ed_ViewMinSpeed, 3, VF_NULL, "Editor: View minimum speed");
+	REGISTER_CVAR2("ed_ViewMaxSpeed", &CV_ed_ViewMaxSpeed, 20, VF_NULL, "Editor: View maximum speed");
+	REGISTER_CVAR2("ed_ViewAccel", &CV_ed_ViewAccel, 10, VF_NULL, "Editor: View acceleration");
+	REGISTER_CVAR2("ed_ViewDecel", &CV_ed_ViewDecel, 3, VF_NULL, "Editor: View deceleration");
+	REGISTER_CVAR2("ed_ViewSens", &CV_ed_ViewSens, 13, VF_NULL, "Editor: Mouse sensitivity");
+	REGISTER_CVAR2("ed_ViewBoostScale", &CV_ed_ViewBoostScale, 5, VF_NULL, "Editor: Speed boost on SHIFT");
+
+	IKeyboardInputSystem* pKbd = gPreditor->pInput->GetKeyboard();
+	m_pCameraActionSet = pKbd->FindActionSet("viewport_camera");
+	m_pFwd = m_pCameraActionSet->FindAction("forward");
+	m_pBkwd = m_pCameraActionSet->FindAction("backward");
+	m_pLeft = m_pCameraActionSet->FindAction("left");
+	m_pRight = m_pCameraActionSet->FindAction("right");
+	m_pUp = m_pCameraActionSet->FindAction("up");
+	m_pDown = m_pCameraActionSet->FindAction("down");
+	m_pSpeedUp = m_pCameraActionSet->FindAction("speed_up");
 }
 
 Viewport::SceneViewport::~SceneViewport()
@@ -64,6 +89,8 @@ void Viewport::SceneViewport::ShowUI()
 	ShowCameraMenu();
 
 	ShowViewportImage();
+
+	SetCameraMode(ImGui::IsMouseDown(ImGuiMouseButton_Right));
 }
 
 void Viewport::SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
@@ -72,6 +99,16 @@ void Viewport::SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam,
 	{
 		m_CamInfo.transformValid = false;
 	}
+}
+
+void Viewport::SceneViewport::SetCameraMode(bool state)
+{
+	if (m_IsInCameraMode == state)
+		return;
+
+	CryLog("[SceneViewport] Camera Mode: {}", state);
+	m_IsInCameraMode = state;
+	m_pCameraActionSet->SetActive(state);
 }
 
 void Viewport::SceneViewport::ShowCameraMenu()
@@ -134,7 +171,59 @@ void Viewport::SceneViewport::UpdateCamera()
 
 	Quat rotQuat = Quat(info.rot);
 
-	// TODO 2023-06-17: Implement input
+	// Positional input
+	{
+		/*Vec3 fwd = rotQuat * Vec3(0, 1, 0);
+		Vec3 right = rotQuat * Vec3(1, 0, 0);
+		Vec3 up = rotQuat * Vec3(0, 0, 1);*/
+		float timeDelta = gEnv->pTimer->GetRealFrameTime();
+
+		Vec3 dir = Vec3(ZERO);
+		const Vec3 fwd = Vec3(0, 1, 0);
+		const Vec3 right = Vec3(1, 0, 0);
+		const Vec3 up = Vec3(0, 0, 1);
+
+		if (m_pFwd->IsHeldDown())
+			dir += fwd;
+		if (m_pBkwd->IsHeldDown())
+			dir -= fwd;
+
+		if (m_pRight->IsHeldDown())
+			dir += right;
+		if (m_pLeft->IsHeldDown())
+			dir -= right;
+
+		if (m_pUp->IsHeldDown())
+			dir += up;
+		if (m_pDown->IsHeldDown())
+			dir -= up;
+
+		dir.NormalizeSafe();
+
+		Vec2 speedLimit = Vec2(CV_ed_ViewMinSpeed, CV_ed_ViewMaxSpeed);
+		float accel = CV_ed_ViewAccel;
+
+		if (m_pSpeedUp->IsHeldDown())
+		{
+			speedLimit *= CV_ed_ViewBoostScale;
+			accel *= CV_ed_ViewBoostScale;
+		}
+
+		if (dir != Vec3(ZERO))
+		{
+			m_MoveSpeed += accel * timeDelta;
+			m_MoveSpeed = std::clamp(m_MoveSpeed, speedLimit.x, speedLimit.y);
+		}
+		else
+		{
+			m_MoveSpeed -= accel * timeDelta;
+			m_MoveSpeed = std::max(0.0f, m_MoveSpeed);
+		}
+
+		info.pos += (rotQuat * dir) * (m_MoveSpeed * timeDelta);
+	}
+
+	// TODO 2023-06-19: Implement mouse input
 
 	Matrix34 camMat;
 	camMat.SetRotation33(Matrix33(rotQuat));
