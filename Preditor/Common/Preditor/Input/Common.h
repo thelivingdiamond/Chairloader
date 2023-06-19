@@ -34,7 +34,7 @@ struct KeyInfo
     std::string displayName;
 
     //! Whether this is a modifier key.
-    bool isModifier = false;
+    EModifierId modifierId = EModifierId::None;
 
     //! Whether the key can have keybinds.
     bool isBindable = false;

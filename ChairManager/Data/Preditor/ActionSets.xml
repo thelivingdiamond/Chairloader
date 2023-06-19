@@ -37,7 +37,7 @@
 
         <!-- Speed -->
         <Action name="speed_up" description="Speed Up" isModifier="1">
-            <Bind key="shift"/>
+            <Bind key="lshift"/>
         </Action>
     </ActionSet>
 

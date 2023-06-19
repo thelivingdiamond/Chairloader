@@ -76,21 +76,28 @@ void Input::KeyMap::LoadModifiers()
     m_Modifiers[(int)EModifierId::Alt].name = "alt";
     m_Modifiers[(int)EModifierId::Shift].name = "shift";
 
-    // Set isModifier on keys
-    std::string_view keys[] = {
-        "lctrl", "rctrl",
-        "lshift", "rshift",
-        "lalt", "ralt",
+    // Set modifierId on keys
+    std::tuple<EModifierId, std::string_view, std::string_view> keys[] = {
+        std::make_tuple(EModifierId::Ctrl, "lctrl", "rctrl"),
+        std::make_tuple(EModifierId::Shift, "lshift", "rshift"),
+        std::make_tuple(EModifierId::Alt, "lalt", "ralt"),
     };
 
-    for (std::string_view keyName : keys)
+    for (auto& modKey : keys)
     {
-        auto it = m_NameToInfo.find(keyName);
+        std::string_view modKeyNames[] = {
+            std::get<1>(modKey), std::get<2>(modKey),
+        };
 
-        if (it == m_NameToInfo.end())
-            CryFatalError("KeyMap: modifier key '{}' not found", keyName);
+        for (std::string_view keyName : modKeyNames)
+        {
+            auto it = m_NameToInfo.find(keyName);
 
-        it->second->isModifier = true;
+            if (it == m_NameToInfo.end())
+                CryFatalError("KeyMap: modifier key '{}' not found", keyName);
+
+            it->second->modifierId = std::get<0>(modKey);
+        }
     }
 }
 

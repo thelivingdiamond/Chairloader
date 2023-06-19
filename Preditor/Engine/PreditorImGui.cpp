@@ -267,7 +267,8 @@ int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wPa
             // Obtain virtual key code
             // (keypad enter doesn't have its own... VK_RETURN with KF_EXTENDED flag means keypad enter, see IM_VK_KEYPAD_ENTER definition for details, it is mapped to ImGuiKey_KeyPadEnter.)
             int vk = (int)wParam;
-            if ((wParam == VK_RETURN) && (HIWORD(lParam) & KF_EXTENDED))
+            bool isExtended = HIWORD(lParam) & KF_EXTENDED;
+            if ((wParam == VK_RETURN) && isExtended)
                 vk = IM_VK_KEYPAD_ENTER;
 
             // Submit key event
@@ -282,16 +283,20 @@ int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wPa
                 // Important: Shift keys tend to get stuck when pressed together, missing key-up events are corrected in ImGui_ImplWin32_ProcessKeyEventsWorkarounds()
                 if (IsVkDown(VK_LSHIFT) == is_key_down) { AddKeyEvent(ImGuiKey_LeftShift, is_key_down, VK_LSHIFT, scancode); }
                 if (IsVkDown(VK_RSHIFT) == is_key_down) { AddKeyEvent(ImGuiKey_RightShift, is_key_down, VK_RSHIFT, scancode); }
+                UINT scancode = (lParam & 0x00ff0000) >> 16;
+                vk = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
             }
             else if (vk == VK_CONTROL)
             {
                 if (IsVkDown(VK_LCONTROL) == is_key_down) { AddKeyEvent(ImGuiKey_LeftCtrl, is_key_down, VK_LCONTROL, scancode); }
                 if (IsVkDown(VK_RCONTROL) == is_key_down) { AddKeyEvent(ImGuiKey_RightCtrl, is_key_down, VK_RCONTROL, scancode); }
+                vk = isExtended ? VK_RCONTROL : VK_LCONTROL;
             }
             else if (vk == VK_MENU)
             {
                 if (IsVkDown(VK_LMENU) == is_key_down) { AddKeyEvent(ImGuiKey_LeftAlt, is_key_down, VK_LMENU, scancode); }
                 if (IsVkDown(VK_RMENU) == is_key_down) { AddKeyEvent(ImGuiKey_RightAlt, is_key_down, VK_RMENU, scancode); }
+                vk = isExtended ? VK_RMENU : VK_LMENU;
             }
 
             // Submit to the input system
