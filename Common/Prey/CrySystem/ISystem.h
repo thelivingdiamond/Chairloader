@@ -1006,7 +1006,7 @@ struct SSystemGlobalEnvironment
 	}
 
 #if CRY_PLATFORM_DESKTOP
-	bool bDedicatedArbitrator;
+	// bool bDedicatedArbitrator;
 
 private:
 	bool bClient;
