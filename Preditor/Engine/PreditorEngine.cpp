@@ -524,6 +524,10 @@ IChairloaderMod* Engine::PreditorEngine::GetMod()
 
 bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 {
+	// Always pass gamepad input
+	if (event.deviceType == eIDT_Gamepad)
+		return false;
+
 	if (m_bGameInput)
 	{
 		// The game can process it
@@ -538,6 +542,10 @@ bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 
 bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
 {
+	// Always pass gamepad input
+	if (event.deviceType == eIDT_Gamepad)
+		return false;
+
 	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
 	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
 
