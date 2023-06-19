@@ -45,6 +45,10 @@ void Viewport::SceneViewport::CustomRender()
 {
 	DrawAuxGeom();
 
+	// Can't render during FMV.
+	if (gEnv->IsFMVPlaying())
+		return;
+
 	// Draw player in the world since camera can now move
 	// TODO 2023-06-17: Gun, held object need to be changed too
 	uint32 oldPlayerFlags = 0;
