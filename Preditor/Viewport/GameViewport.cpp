@@ -1,10 +1,18 @@
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Input/IPreditorInput.h>
 #include "GameViewport.h"
 
 Viewport::GameViewport::GameViewport()
 {
 	m_InputEnabled.SetIncremented(true);
 	m_InputLocked.SetIncremented(true);
+
+	gPreditor->pInput->FindAction("viewport.unlock_mouse")->AddListener(
+		[this](const KeyActionEventArgs& ev)
+		{
+			if (ev.isPressed && IsActive())
+				m_InputLocked.SetIncremented(true);
+		});
 }
 
 void Viewport::GameViewport::OnDisabled()

@@ -1,5 +1,7 @@
 #include <Prey/Cry3DEngine/I3DEngine.h>
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include <Prey/CryGame/Game.h>
+#include <Prey/CryGame/IGameFramework.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/Input/IPreditorInput.h>
@@ -68,6 +70,12 @@ void Viewport::SceneViewport::CustomRender()
 	// Restore slot flags
 	if (ArkPlayer::GetInstancePtr())
 		ArkPlayer::GetInstancePtr()->GetEntity()->SetSlotFlags(0, oldPlayerFlags);
+}
+
+bool Viewport::SceneViewport::CanActivate()
+{
+	// Scene viewport only works when there is a loaded level.
+	return g_pGame->GetIGameFramework()->IsGameStarted();
 }
 
 void Viewport::SceneViewport::OnEnabled()

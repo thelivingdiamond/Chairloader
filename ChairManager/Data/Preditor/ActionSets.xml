@@ -59,4 +59,16 @@
             <Bind key="r"/>
         </Action>
     </ActionSet>
+
+    <!-- Viewport -->
+    <ActionSet
+        name="viewport"
+        description="Viewport">
+        <Action name="toggle_scene" description="Toggle Scene/Game" enableInGame="1">
+            <Bind key="f4"/>
+        </Action>
+        <Action name="unlock_mouse" description="Unlock mouse in Game mode" enableInGame="1">
+            <Bind key="esc"/>
+        </Action>
+    </ActionSet>
 </ActionSets>

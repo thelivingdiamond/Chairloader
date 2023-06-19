@@ -1,7 +1,6 @@
-#include <Prey/CryGame/Game.h>
-#include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Input/IPreditorInput.h>
 #include <WindowManager/WindowManager.h>
 #include "ViewportWindow.h"
 #include "SceneViewport.h"
@@ -28,6 +27,20 @@ Viewport::ViewportWindow::ViewportWindow()
 	// Decrement some initial increment by the engine or something
 	// TODO 2023-06-17: Figure out what's causing it
 	gEnv->pHardwareMouse->DecrementCounter();
+
+	gPreditor->pInput->FindAction("viewport.toggle_scene")->AddListener(
+		[this](const KeyActionEventArgs& ev)
+		{
+			if (ev.isPressed)
+			{
+				if (m_pCurrentViewport == m_pGameViewport.get() && m_pSceneViewport->CanActivate())
+					SetViewport(m_pSceneViewport.get());
+				else
+					SetViewport(m_pGameViewport.get());
+			}
+		});
+
+	SetViewport(m_pGameViewport.get());
 }
 
 Viewport::ViewportWindow::~ViewportWindow()
@@ -36,6 +49,8 @@ Viewport::ViewportWindow::~ViewportWindow()
 
 void Viewport::ViewportWindow::SetViewport(BaseViewport* pViewport)
 {
+	assert(!pViewport || pViewport->CanActivate());
+
 	if (m_pCurrentViewport == pViewport)
 		return;
 
@@ -109,7 +124,7 @@ void Viewport::ViewportWindow::PreUpdate()
 void Viewport::ViewportWindow::Update(bool isVisible)
 {
 	// Only game viewport mode in the menu.
-	if (!g_pGame->GetIGameFramework()->IsGameStarted())
+	if (m_pCurrentViewport && !m_pCurrentViewport->CanActivate())
 		SetViewport(m_pGameViewport.get());
 
 	if (m_pCurrentViewport)
@@ -119,7 +134,7 @@ void Viewport::ViewportWindow::Update(bool isVisible)
 void Viewport::ViewportWindow::ShowContents()
 {
 	// Viewport mode
-	bool sceneAvail = g_pGame->GetIGameFramework()->IsGameStarted();
+	bool sceneAvail = m_pSceneViewport->CanActivate();
 	ImGui::BeginDisabled(!sceneAvail);
 	if (ImGui::RadioButton("Scene", m_pCurrentViewport == m_pSceneViewport.get()))
 		SetViewport(m_pSceneViewport.get());

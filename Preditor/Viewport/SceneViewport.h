@@ -22,6 +22,7 @@ public:
     virtual bool EnableMouseEvents() override { return false; }
 
     // BaseViewport
+    virtual bool CanActivate() override;
     virtual void OnEnabled() override;
     virtual void OnDisabled() override;
     virtual void ShowUI() override;
