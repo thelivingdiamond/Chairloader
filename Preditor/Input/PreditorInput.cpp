@@ -14,3 +14,8 @@ Input::PreditorInput::PreditorInput()
 Input::PreditorInput::~PreditorInput()
 {
 }
+
+void Input::PreditorInput::Update()
+{
+    m_Keyboard.Update();
+}

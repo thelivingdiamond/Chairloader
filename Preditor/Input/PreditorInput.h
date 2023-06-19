@@ -16,6 +16,7 @@ public:
     virtual std::shared_ptr<ManagedWindow> GetDebugWindow() override { return m_pDbgWindow; }
     virtual IKeyboardInputSystem* GetKeyboard() override { return &m_Keyboard; }
     virtual IMouseInputSystem* GetMouse() override { return nullptr; }
+    virtual void Update() override;
 
 private:
     KeyboardInputSystem m_Keyboard;

@@ -37,6 +37,12 @@ private:
         std::vector<KeyActionBind> bindList;
     };
 
+    struct KeyEventArgs
+    {
+        EKeyId keyId = eKI_Unknown;
+        bool isPressed = false;
+    };
+
     KeyMap m_KeyMap;
     int m_DefaultPriority = 0;
     std::vector<std::unique_ptr<KeyActionSet>> m_ActionSets;
@@ -45,6 +51,10 @@ private:
     std::vector<KeyBindList> m_KeyBinds;
     unsigned m_NextBindId = 1;
     ModifierKeyMask m_ModMask = MODIFIER_MASK_NONE;
+
+    //! Key press events can come at different times during the frame.
+    //! Queue them to always process at the same time.
+    std::vector<KeyEventArgs> m_EventQueue;
 
     //! Frame index. Incremented every update.
     unsigned m_CurrentFrame = 1;
@@ -58,6 +68,8 @@ private:
 
     //! Gets the bind list for a key id.
     KeyBindList* GetBindList(EKeyId keyId);
+
+    void ProcessKeyEvent(const KeyEventArgs& ev);
 
     //! Counts the number of modifiers set.
     static int CountModifiers(ModifierKeyMask mask);

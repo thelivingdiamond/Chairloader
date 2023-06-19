@@ -19,4 +19,7 @@ struct IPreditorInput
 
     //! @returns the mouse input system.
     virtual IMouseInputSystem* GetMouse() = 0;
+
+    //! Updates the input system. Any events are queued until an update.
+    virtual void Update() = 0;
 };

@@ -58,6 +58,7 @@ void Main::Preditor::ShutdownSystem()
 
 void Main::Preditor::Update()
 {
+    gPreditor->pInput->Update();
     m_pUserSettings->Update();
 }
 

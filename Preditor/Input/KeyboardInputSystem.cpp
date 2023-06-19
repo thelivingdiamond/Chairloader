@@ -10,6 +10,12 @@ Input::KeyboardInputSystem::KeyboardInputSystem()
 void Input::KeyboardInputSystem::Update()
 {
     m_CurrentFrame++;
+
+    // Process events
+    for (const KeyEventArgs& keyEvent : m_EventQueue)
+        ProcessKeyEvent(keyEvent);
+
+    m_EventQueue.clear();
 }
 
 IKeyActionSet* Input::KeyboardInputSystem::FindActionSet(std::string_view name)
@@ -88,40 +94,12 @@ void Input::KeyboardInputSystem::UpdateModMask(ModifierKeyMask modMask)
 
 void Input::KeyboardInputSystem::OnKeyDown(EKeyId keyId)
 {
-    KeyBindList* pList = GetBindList(keyId);
-    if (!pList)
-        return;
-
-    // Notify the first valid action
-    for (KeyActionBind& bind : pList->bindList)
-    {
-        if (bind.GetModMask() == m_ModMask)
-        {
-            KeyActionSet* pActionSet = bind.GetActionSet();
-
-            if (pActionSet->IsActive())
-            {
-                bind.GetAction()->OnKeyDown(bind.GetBindId());
-                break;
-            }
-        }
-    }
+    m_EventQueue.push_back(KeyEventArgs{ keyId, true });
 }
 
 void Input::KeyboardInputSystem::OnKeyUp(EKeyId keyId)
 {
-    KeyBindList* pList = GetBindList(keyId);
-    if (!pList)
-        return;
-
-    // Notify all enabled actions
-    for (KeyActionBind& bind : pList->bindList)
-    {
-        KeyActionSet* pActionSet = bind.GetActionSet();
-
-        if (pActionSet->IsActive())
-            bind.GetAction()->OnKeyUp(bind.GetBindId());
-    }
+    m_EventQueue.push_back(KeyEventArgs{ keyId, false });
 }
 
 void Input::KeyboardInputSystem::LoadActionSets()
@@ -219,6 +197,42 @@ Input::KeyboardInputSystem::KeyBindList* Input::KeyboardInputSystem::GetBindList
     if (!pKey)
         return nullptr;
     return &m_KeyBinds[pKey->internalIdx];
+}
+
+void Input::KeyboardInputSystem::ProcessKeyEvent(const KeyEventArgs& ev)
+{
+    KeyBindList* pList = GetBindList(ev.keyId);
+    if (!pList)
+        return;
+
+    if (ev.isPressed)
+    {
+        // Notify the first valid action
+        for (KeyActionBind& bind : pList->bindList)
+        {
+            if (bind.GetModMask() == m_ModMask)
+            {
+                KeyActionSet* pActionSet = bind.GetActionSet();
+
+                if (pActionSet->IsActive())
+                {
+                    bind.GetAction()->OnKeyDown(bind.GetBindId());
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        // Notify all enabled actions
+        for (KeyActionBind& bind : pList->bindList)
+        {
+            KeyActionSet* pActionSet = bind.GetActionSet();
+
+            if (pActionSet->IsActive())
+                bind.GetAction()->OnKeyUp(bind.GetBindId());
+        }
+    }
 }
 
 int Input::KeyboardInputSystem::CountModifiers(ModifierKeyMask mask)
