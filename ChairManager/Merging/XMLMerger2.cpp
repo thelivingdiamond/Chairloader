@@ -58,14 +58,52 @@ void XMLMerger2::MergeXmlNodeAttributes(pugi::xml_node baseNode, pugi::xml_node 
 }
 
 void XMLMerger2::AppendXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode) {
-    baseNode.append_copy(modNode);
+    pugi::xml_attribute copySiblingAttr = modNode.attribute(COPY_SIBLING);
+
+    if (copySiblingAttr) {
+        std::vector<std::pair<std::string, std::string>> query = ParseSiblingQuery(copySiblingAttr.as_string());
+
+        // Find a sibling that matches the set of conditions in the query
+        pugi::xml_node foundSibling;
+
+        for (pugi::xml_node sibling : baseNode) {
+            // Check for conditions
+            bool matchesConds = true;
+            for (const auto& i : query) {
+                pugi::xml_attribute keyAttr = sibling.attribute(i.first.c_str());
+                if (!keyAttr || keyAttr.as_string() != i.second) {
+                    // Skip this sibling
+                    matchesConds = false;
+                    break;
+                }
+            }
+
+            if (!matchesConds)
+                continue;
+
+            // Found a sibling
+            foundSibling = sibling;
+        }
+
+        if (!foundSibling)
+            throw std::runtime_error(std::string("ch:copy_sibling: failed to find '") + copySiblingAttr.as_string() + "'");
+
+        // Copy the sibling
+        pugi::xml_node baseChild = baseNode.append_copy(foundSibling);
+
+        // Merge into the sibling
+        MergeXmlNode(baseChild, modNode, pugi::xml_node(), true);
+    } else {
+        // Simply append the node
+        baseNode.append_copy(modNode);
+    }
 }
 
 
 
-void XMLMerger2::MergeXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode) {
+void XMLMerger2::MergeXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, bool forcePatchMode) {
     // find if the node is original to the vanilla node
-    if(IsVanillaNode(modNode, originalNode)){
+    if(originalNode && IsVanillaNode(modNode, originalNode)){
         return;
     }
 
@@ -80,7 +118,7 @@ void XMLMerger2::MergeXmlNode(pugi::xml_node baseNode, pugi::xml_node modNode, p
     if(modNode.attribute("ch:remove").as_bool()){
         baseNode.parent().remove_child(baseNode);
     }
-    bool patchMode = modNode.attribute("ch:patch_mode").as_bool();
+    bool patchMode = forcePatchMode || modNode.attribute("ch:patch_mode").as_bool();
 
     // fuse or patch the node
     if(patchMode){
@@ -148,6 +186,7 @@ void XMLMerger2::MergeByAttribute(pugi::xml_node baseNode, pugi::xml_node modNod
 
         // merge or append the node
         if(overwrite){
+            VerifyNotCopySibling(baseChild, modChild);
             MergeXmlNode(baseChild, modChild, originalChild);
         } else {
             AppendXmlNode(baseNode, modChild);
@@ -166,6 +205,7 @@ void XMLMerger2::MergeByTag(pugi::xml_node baseNode, pugi::xml_node modNode, pug
 
         // merge or append the node
         if(baseChild){
+            VerifyNotCopySibling(baseChild, modChild);
             MergeXmlNode(baseChild, modChild, originalChild);
         } else {
             AppendXmlNode(baseNode, modChild);
@@ -195,6 +235,7 @@ void XMLMerger2::MergeByContents(pugi::xml_node baseNode, pugi::xml_node modNode
 
         // merge or append the node
         if(baseChild){
+            VerifyNotCopySibling(baseChild, modChild);
             MergeXmlNode(baseChild, modChild, originalChild);
         } else {
             AppendXmlNode(baseNode, modChild);
@@ -426,6 +467,49 @@ void XMLMerger2::SerializeLevelEntityIDs(fs::path levelPath) {
     // write the new entity IDs to the mission file
     MissionFile.save_file(missionPath.wstring().c_str());
     SerializeFile.save_file(serializePath.wstring().c_str());
+}
+
+std::vector<std::pair<std::string, std::string>> XMLMerger2::ParseSiblingQuery(std::string_view query)
+{
+    std::vector<std::pair<std::string, std::string>> result;
+    size_t nextSemicol = 0;
+
+    if (query.empty())
+        return result;
+
+    do
+    {
+        size_t prevSemicol = nextSemicol;
+        nextSemicol = query.find(';', prevSemicol);
+        std::string_view substr = query.substr(prevSemicol, nextSemicol - prevSemicol);
+
+        if (nextSemicol != std::string_view::npos)
+            nextSemicol++;
+
+        size_t eqPos = substr.find('=');
+        if (eqPos == std::string_view::npos)
+            throw std::runtime_error("Missing = in query");
+
+        std::string_view key = substr.substr(0, eqPos);
+        std::string_view value = substr.substr(eqPos + 1);
+        result.push_back({ std::string(key), std::string(value) });
+    } while (nextSemicol != std::string_view::npos);
+
+    return result;
+}
+
+void XMLMerger2::VerifyNotCopySibling(pugi::xml_node baseNode, pugi::xml_node modNode)
+{
+    if (modNode.attribute(COPY_SIBLING))
+    {
+        std::stringstream ss;
+        ss << "Cannot " << COPY_SIBLING << ": node with the ID already exists.\n";
+        ss << "Mod node:\n";
+        modNode.print(ss);
+        ss << "\nExisting node:\n";
+        baseNode.print(ss);
+        throw std::runtime_error(ss.str());
+    }
 }
 
 
