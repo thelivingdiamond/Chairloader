@@ -7,6 +7,24 @@
 #include <ImGui/imgui_impl_dx11.h>
 #include <ImGui/imgui_impl_win32.h>
 
+namespace
+{
+
+struct DebugFontLogger : public ImGuiFontList::ILogger
+{
+	virtual void Log(std::string_view str) override
+	{
+		OutputDebugStringA(std::string(str).c_str());
+	}
+
+	virtual void LogWarning(std::string_view str) override { Log(str); }
+	virtual void LogError(std::string_view str)  override { Log(str); }
+};
+
+DebugFontLogger g_DebugFontLogger;
+
+} // namespace
+
 static ID3D11Device* g_pd3dDevice = NULL;
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -38,8 +56,6 @@ AppImGui::~AppImGui()
 	ImGui::DestroyContext();
 	DestroyWindow((HWND)m_hWndVoid);
 	m_hWndVoid = nullptr;
-	m_pPrettyFont = nullptr;
-	m_pDefaultFont = nullptr;
 	g_pAppImGui = nullptr;
 }
 
@@ -158,14 +174,9 @@ void AppImGui::InitImGui()
 		style.WindowRounding = 4.0f;
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
-    ImFontConfig config; config.FontNo = 1;
-    m_pDefaultFont = ImGui::GetIO().Fonts->AddFontDefault();
-    ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", 18.0f);
-    static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_16_MD, 0 };
-    ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.GlyphOffset.y = 5.0f; icons_config.PixelSnapH = true;
 
-	fs::path prettyFontPath = Application::Get()->GetProgramPath() / "Preditor/MaterialIcons-Regular.ttf";
-    m_pPrettyFont =  ImGui::GetIO().Fonts->AddFontFromFileTTF(prettyFontPath.u8string().c_str(), 18.0f, &icons_config, icons_ranges);
+	const fs::path& root = Application::Get()->GetProgramPath();
+	m_FontList.LoadFile(root / "Fonts/FontList.xml", root, &g_DebugFontLogger);
 
     ImGui_ImplWin32_Init((HWND)m_hWndVoid);
 	ImGui_ImplDX11_Init(m_pd3dDevice, m_pd3dDeviceContext);

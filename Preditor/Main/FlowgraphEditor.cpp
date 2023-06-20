@@ -157,7 +157,6 @@ void FlowgraphEditor::ShowUI() {
     static ImGuiDockNodeFlags dockspace_flags = /*ImGuiDockNodeFlags_PassthruCentralNode |*/ ImGuiDockNodeFlags_NoWindowMenuButton;
     if(isShown()) {
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
-        ImGui::PushFont(AppImGui::getPrettyFont());
         ImGui::SetNextWindowSize(ImVec2(800, 500), ImGuiCond_FirstUseEver);
         static auto first_time = true;
         static ImVec2 itemSize = {30, 30};
@@ -226,7 +225,6 @@ void FlowgraphEditor::ShowUI() {
         } else {
             // panic
         }
-        ImGui::PopFont();
         ImGui::PopStyleVar();
         if (!m_bDraw) {
             setShown(false);

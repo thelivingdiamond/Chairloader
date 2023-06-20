@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include <Manager/ImGuiFontList.h>
 #include <App/IAppImGui.h>
 
 namespace Engine
@@ -51,6 +52,8 @@ private:
 	bool m_bIsInFrame = false;
 	bool m_bEnableGameInput = false;
 	std::unique_ptr<PreditorImGuiRenderer> m_pRenderer;
+	ImGuiFontList m_FontList;
+	bool m_ReloadFontsNextFrame = false;
 
 	void InitImGui();
 	void ShutdownImGui();
@@ -67,6 +70,7 @@ private:
 	void AddKeyEvent(ImGuiKey key, bool down, int native_keycode, int native_scancode = -1);
 
 	void SaveMainWindowSizeAndPos();
+	void ReloadFontsNow();
 
 	// Platform interface for multiple viewports
 	static void Plat_CreateWindow(ImGuiViewport* viewport);

@@ -21,6 +21,15 @@
 
 namespace
 {
+
+struct FontListLogger : public ImGuiFontList::ILogger
+{
+    virtual void Log(std::string_view str) override { CryLog("{}", str); }
+    virtual void LogWarning(std::string_view str) override { CryWarning("{}", str); }
+    virtual void LogError(std::string_view str) override { CryError("{}", str); }
+};
+
+FontListLogger g_FontListLogger;
 Engine::PreditorImGui* g_pInstance = nullptr;
 auto g_CGameStartup_WndProcHndl_Hook = CGameStartup::FWndProcHndl.MakeHook();
 
@@ -64,6 +73,11 @@ static void GetWin32StyleFromViewportFlags(ImGuiViewportFlags flags, DWORD* out_
         *out_ex_style |= WS_EX_TOPMOST;
 }
 
+void ReloadFontsCommand(IConsoleCmdArgs*)
+{
+    g_pInstance->ReloadFonts();
+}
+
 } // namespace
 
 void Engine::PreditorImGui::InitHooks()
@@ -92,6 +106,8 @@ Engine::PreditorImGui::PreditorImGui()
     m_pRenderer = std::make_unique<PreditorImGuiRenderer>(this);
     ReloadFonts();
     ImGui::SetCurrentContext(prevCtx);
+
+    REGISTER_COMMAND("ed_reloadfonts", &ReloadFontsCommand, VF_NULL, "Reloads ImGui fonts from the config");
 }
 
 Engine::PreditorImGui::~PreditorImGui()
@@ -149,6 +165,10 @@ void Engine::PreditorImGui::BeginFrame()
         UpdateMouseCursor();
     }
 
+    // Can't reload fonts inside a frame
+    if (m_ReloadFontsNextFrame)
+        ReloadFontsNow();
+
     ImGui::NewFrame();
 }
 
@@ -171,17 +191,7 @@ void Engine::PreditorImGui::OnWasRendered()
 
 void Engine::PreditorImGui::ReloadFonts()
 {
-    ImGuiIO& io = ImGui::GetIO();
-
-    // Clear everything font-related
-    io.Fonts->SetTexID((ImTextureID)nullptr);
-    io.Fonts->Clear();
-
-    // Load fonts from the config
-    // TODO:
-    io.Fonts->AddFontDefault();
-
-    m_pRenderer->UpdateFontAtlasTexture();
+    m_ReloadFontsNextFrame = true;
 }
 
 int64_t Engine::PreditorImGui::WndProcHndl(HWND hWnd, unsigned msg, uint64_t wParam, int64_t lParam)
@@ -638,6 +648,22 @@ void Engine::PreditorImGui::SaveMainWindowSizeAndPos()
     Vec2i restSize = Vec2i(wnpl.rcNormalPosition.right, wnpl.rcNormalPosition.bottom) - restPos;
     gPreditor->pUserSettings->SetWindowRestoredPos(restPos);
     gPreditor->pUserSettings->SetWindowRestoredSize(restSize);
+}
+
+void Engine::PreditorImGui::ReloadFontsNow()
+{
+    ImGuiIO& io = ImGui::GetIO();
+
+    // Clear everything font-related
+    io.Fonts->SetTexID((ImTextureID)nullptr);
+    io.Fonts->Clear();
+
+    // Load fonts from the config
+    const fs::path& root = gPreditor->pConfig->GetPreditorRoot();
+    m_FontList.LoadFile(root / "Fonts/FontList.xml", root, &g_FontListLogger);
+
+    m_pRenderer->UpdateFontAtlasTexture();
+    m_ReloadFontsNextFrame = false;
 }
 
 void Engine::PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)

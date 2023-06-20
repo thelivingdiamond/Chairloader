@@ -33,6 +33,8 @@ set(SOURCE_FILES
 	Manager/BinDiff.cpp
 	Manager/BinDiff.h
 	Manager/IconsMaterialDesign.h
+	Manager/ImGuiFontList.cpp
+	Manager/ImGuiFontList.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h
@@ -55,6 +57,7 @@ target_include_directories(CommonChairManager PUBLIC
 
 target_link_libraries(CommonChairManager PUBLIC
 	D3D11.lib
+	fmt::fmt-header-only
 )
 
 target_precompile_headers(CommonChairManager PUBLIC Manager/pch.h)

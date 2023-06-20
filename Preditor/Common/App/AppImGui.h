@@ -1,5 +1,6 @@
 #pragma once
 #include <ImGui/imgui.h>
+#include <Manager/ImGuiFontList.h>
 #include <App/IAppImGui.h>
 
 struct ID3D11Device;
@@ -18,8 +19,6 @@ public:
 
 	void BeginFrame() override;
 	void EndFrame() override;
-    static ImFont* getPrettyFont() { return m_pPrettyFont; }
-    static ImFont* getDefaultFont() { return m_pDefaultFont; }
 	intptr_t WndProc(void* hWndVoid, unsigned msg, uintptr_t wParam, intptr_t lParam);
 
 private:
@@ -29,8 +28,7 @@ private:
 	IDXGISwapChain* m_pSwapChain;
 	ID3D11RenderTargetView* m_pMainRenderTargetView;
 	bool m_bQuitRequested = false;
-    static inline ImFont* m_pPrettyFont = nullptr;
-    static inline ImFont* m_pDefaultFont = nullptr;
+	ImGuiFontList m_FontList;
 
 	void InitD3D();
 	void InitImGui();

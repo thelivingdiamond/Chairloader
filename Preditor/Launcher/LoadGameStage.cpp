@@ -88,7 +88,7 @@ void LoadGameStage::ShowUI(bool * bOpen)
 	{
 		// Progress dialog
 		int flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings;
-		ImGui::SetNextWindowSize(ImVec2(480, 72));
+		ImGui::SetNextWindowSize(ImVec2(480, 0));
 		if (ImGui::Begin("Initializing Game...###LoadGameStage", nullptr, flags))
 		{
 			ImGui::Text("%s", m_ProgressText.c_str());

@@ -95,6 +95,10 @@ void Engine::PreditorImGuiRenderer::RenderEnd()
 
 void Engine::PreditorImGuiRenderer::UpdateFontAtlasTexture()
 {
+	// Make sure renderer doesn't draw with the font atlas
+	auto pRenderer = static_cast<CD3D9Renderer*>(gEnv->pRenderer);
+	pRenderer->m_pRT->FlushAndWait();
+
 	m_pFontAtlas = nullptr;
 	ImGuiIO& io = ImGui::GetIO();
 	unsigned char* pixels;
@@ -103,7 +107,7 @@ void Engine::PreditorImGuiRenderer::UpdateFontAtlasTexture()
 
 	if (width > 0 && height > 0)
 	{
-		m_pFontAtlas.Assign_NoAddRef(gEnv->pRenderer->CreateTexture(
+		m_pFontAtlas.Assign_NoAddRef(pRenderer->CreateTexture(
 			"ImGui Font Atlas", width, height, 1, pixels, eTF_R8G8B8A8, FT_TEX_FONT
 		));
 	}
