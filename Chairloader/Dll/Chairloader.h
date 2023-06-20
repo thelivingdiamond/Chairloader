@@ -18,11 +18,11 @@ class Chairloader
 	, public IChairToPreditor
 {
 public:
-	static void CreateInstance();
+	static void CreateInstance(void* hThisDll);
 	static Chairloader* Get();
 
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
-	Chairloader();
+	Chairloader(void* hThisDll);
 
 	//! Destroyed after CSystem::Shutdown
 	~Chairloader();
@@ -49,6 +49,7 @@ public:
 	inline IGameFramework* GetFramework() override { return m_pFramework; }
 
 private:
+	void* m_hThisDll = nullptr;
 	WinConsole m_WinConsole;
 	uintptr_t m_ModuleBase = 0;
 	fs::path m_ModsDirPath;
@@ -91,6 +92,7 @@ public:
 	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender.get(); }
 	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches.get(); }
 	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
+	void* GetDllHandle() override { return m_hThisDll; }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;
 	IPreditorToChair* GetPreditorAPI() override;

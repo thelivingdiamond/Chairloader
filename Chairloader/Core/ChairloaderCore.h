@@ -1,6 +1,7 @@
 #pragma once
 #include <Chairloader/IChairloaderCore.h>
 
+class LuaModManager;
 class ModDllManager;
 class ChairloaderConfigManager;
 class ChairloaderGui;
@@ -20,6 +21,7 @@ public:
 	//-------------------------------------------
 	// Game initialization
 	//-------------------------------------------
+	void PreInitGame() override;
 	void InitGame() override;
 	void ShutdownGame() override;
 
@@ -35,6 +37,7 @@ public:
 
     IChairVarManager *GetCVarManager() override;
 
+	bool IsModInstalled(const std::string& modName) override;
     std::unique_ptr<IChairLogger> CreateLogger() override;
 
 	const std::string& GetKeyStrHideGui();
@@ -48,8 +51,10 @@ public:
 private:
 	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
 	std::unique_ptr<ModDllManager> m_pModDllManager;
+	std::unique_ptr<LuaModManager> m_pLuaModManager;
 	std::unique_ptr<ChairloaderGui> m_pGui;
     std::unique_ptr<IChairVarManager> m_pCVarManager;
+	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap
 	EKeyId m_KeyHideGui = eKI_Unknown;

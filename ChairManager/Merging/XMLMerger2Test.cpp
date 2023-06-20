@@ -765,7 +765,6 @@ TEST(XMLMerger2Test, MergeNodeStructureAttribute){
     expectedDoc.save(expected, "", pugi::format_raw);
 
     ASSERT_EQ(base.str(), expected.str());
-
 }
 
 TEST(XMLMerger2Test, MergeXMLDocument){
@@ -899,4 +898,160 @@ TEST(XMLMerger2Test, MergeXMLDocument){
     expectedDoc.save(expected, "", pugi::format_raw);
 
     ASSERT_EQ(base.str(), expected.str());
+}
+
+TEST(XMLMerger2Test, CopySibling) {
+    pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
+    MergingPolicy policy;
+
+    baseDoc.load_string(R"(
+    <X hippo="false">
+        <Y>
+            <Z id="1">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+            <Z id="2">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+            <Z id="3">
+                <A val="10"/>
+                <B val="11"/>
+                <C val="12"/>
+            </Z>
+             <Z id="4">
+                <A val="10"/>
+                <B val="11"/>
+                <C val="12"/>
+            </Z>
+        </Y>
+        <W zebra="27">I'm a zebra</W>
+    </X>
+    )");
+    originalDoc.load_string(R"(
+    <X hippo="false">
+        <Y>
+            <Z id="1">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+            <Z id="2">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+            <Z id="3">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+             <Z id="4">
+                <A val="1"/>
+                <B val="2"/>
+                <C val="3"/>
+            </Z>
+        </Y>
+        <W zebra="27">I'm a zebra</W>
+    </X>
+    )");
+
+    modDoc.load_string(R"(
+    <X hippo="true">
+        <Y>
+            <Z id="1">
+                <A val="4"/>
+                <B val="5"/>
+                <C val="6"/>
+            </Z>
+            <Z id="2">
+                <A val="4"/>
+                <B val="5"/>
+                <C val="6"/>
+            </Z>
+             <Z id="8" ch:copy_sibling="id=2">
+                <A val="420"/>
+            </Z>
+        </Y>
+        <W zebra="42">I'm a special zebra</W>
+    </X>
+    )");
+
+    expectedDoc.load_string(R"(
+    <X hippo="true">
+        <Y>
+            <Z id="1">
+                <A val="4"/>
+                <B val="5"/>
+                <C val="6"/>
+            </Z>
+            <Z id="2">
+                <A val="4"/>
+                <B val="5"/>
+                <C val="6"/>
+            </Z>
+            <Z id="3">
+                <A val="10"/>
+                <B val="11"/>
+                <C val="12"/>
+            </Z>
+             <Z id="4">
+                <A val="10"/>
+                <B val="11"/>
+                <C val="12"/>
+            </Z>
+             <Z id="8" ch:copy_sibling="id=2">
+                <A val="420"/>
+                <B val="5"/>
+                <C val="6"/>
+            </Z>
+        </Y>
+        <W zebra="42">I'm a special zebra</W>
+    </X>
+    )");
+
+    policyDoc.load_string(R"(
+        <mergingPolicy identification_policy="match_attribute">
+            <attribute name="id" priority="0"/>
+            <nodeStructure>
+                <_wildcard_ merge_attributes="true">
+                    <Y merge_children="true"/>
+                    <W merge_node="true"/>
+                </_wildcard_>
+            </nodeStructure>
+        </mergingPolicy>
+    )");
+
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+
+    XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
+
+    std::stringstream base, expected;
+    baseDoc.save(base, "", pugi::format_raw);
+    expectedDoc.save(expected, "", pugi::format_raw);
+
+    ASSERT_EQ(base.str(), expected.str());
+}
+
+TEST(XMLMerger2Test, ParseSiblingQuery) {
+    struct Item
+    {
+        std::string str;
+        std::vector<std::pair<std::string, std::string>> parsed;
+    };
+
+    Item items[] = {
+        Item{ "" },
+        Item{ "key=value", {{"key", "value"}}},
+        Item{ "key1=value1;key2=value2", {{"key1", "value1"}, {"key2", "value2"}}},
+    };
+
+    for (Item& i : items)
+    {
+        auto parsed = XMLMerger2::ParseSiblingQuery(i.str);
+        ASSERT_EQ(parsed, i.parsed);
+    }
 }

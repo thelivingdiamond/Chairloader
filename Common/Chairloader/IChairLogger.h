@@ -18,6 +18,21 @@ struct IChairLogger
 	//! Larger strings will go to the heap and will be formatted twice.
 	static constexpr size_t MSG_BUF_SIZE = 256;
 
+	//! Prints a message to the log using fmt::format.
+	void VLog(EChairLogType type, std::string_view format, fmt::format_args args);
+
+	//! Simple logs of data with low verbosity.
+	template <typename... Args>
+	inline void LogInfo(std::string_view format, const Args &...args) { VLog(EChairLogType::Message, format, fmt::make_format_args(args...)); }
+
+	//! LogInfo but in yellow and with [Warning] prefix.
+	template <typename... Args>
+	inline void LogWarning(std::string_view format, const Args &...args) { VLog(EChairLogType::Warning, format, fmt::make_format_args(args...)); }
+
+	//! LogInfo but in red and with [Error] prefix.
+	template <typename... Args>
+	inline void LogError(std::string_view format, const Args &...args) { VLog(EChairLogType::Error, format, fmt::make_format_args(args...)); }
+
 	virtual ~IChairLogger() {}
 
 	//! Logs the message.
