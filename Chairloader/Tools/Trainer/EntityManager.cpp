@@ -12,11 +12,21 @@
 #include "Prey/GameDll/ark/npc/ArkNpc.h"
 #include "Prey/GameDll/ark/ArkFactionManager.h"
 
+#include <Chairloader/IChairXmlUtils.h>
+
 static ClassLibrary gClassLibrary;
 
 EntityManager::EntityManager() {
     oldArchetypeFilterText = " ";
     InitGame();
+
+    m_SpawnList.SetSpawnCallback([this](const EntitySpawnList::EntitySpawnInfo& spawnInfo)
+        {
+            m_LastSpawnedItem = std::move(spawnInfo);
+            SpawnListItem(spawnInfo, spawnCount);
+        });
+
+    LoadSpawnList();
 }
 
 EntityManager::~EntityManager() {
@@ -1410,85 +1420,13 @@ void EntityManager::drawMenuBar() {
                     std::string lastSpawnedText;
 //                    lastSpawnedText = (lastSpawnedEntity != 0)? std::string("Spawn Last Spawned: (") + gEnv->pEntitySystem->GetEntityArchetype(lastSpawnedEntity)->GetName() + ")" : " Spawn Last Spawned: None";
 
-                    if(ImGui::MenuItem("Spawn Last Quick-Spawned", nullptr, false, lastSpawnedEntity != 0)){
-                        quickSpawnEntity(lastSpawnedEntity);
+                    if(ImGui::MenuItem("Spawn Last Quick-Spawned", nullptr, false, !m_LastSpawnedItem.archetypeName.empty())) {
+                        SpawnListItem(m_LastSpawnedItem, spawnCount);
                     }
                     ImGui::Separator();
+
                     ImGui::TextDisabled("Quick Spawns");
-                    if (ImGui::BeginMenu("Spawn Typhon")) {
-                        if (ImGui::BeginMenu("Mimics")) {
-                            if (ImGui::MenuItem("Mimic"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.Mimic);
-                            if (ImGui::MenuItem("Greater Mimic"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Mimics.EliteMimic);
-                            ImGui::EndMenu();
-                        }
-                        if (ImGui::BeginMenu("Phantoms")) {
-                            if (ImGui::MenuItem("Normal"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.BasePhantom);
-                            if (ImGui::MenuItem("Thermal"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.ThermalPhantom);
-                            if (ImGui::MenuItem("Etheric"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.EthericPhantom);
-                            if (ImGui::MenuItem("Voltaic"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Phantoms.VoltaicPhantom);
-                            ImGui::EndMenu();
-                        }
-                        if (ImGui::MenuItem("Nightmare"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkNightmare);
-                        if (ImGui::MenuItem("Poltergeist"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.ArkPoltergeist);
-                        if (ImGui::MenuItem("Telepath"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Telepath);
-                        if (ImGui::MenuItem("Technopath"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkNpcs.Overseers.Technopath);
-                        ImGui::EndMenu();
-                    }
-                    if (ImGui::BeginMenu("Spawn Operator")) {
-                        if (ImGui::MenuItem("Medical"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MedicalOperator);
-                        if (ImGui::MenuItem("Engineering"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.EngineeringOperator);
-                        if (ImGui::MenuItem("Science"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.ScienceOperator);
-                        if (ImGui::MenuItem("Military"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Operators.Generic.MilitaryOperator);
-                        ImGui::EndMenu();
-                    }
-                    if (ImGui::BeginMenu("Spawn Turrets")) {
-                        if (ImGui::MenuItem("Turret"))
-                            quickSpawnEntity(entityArchetypeLibrary.ArkRobots.Turrets.Turret_Default);
-                        ImGui::EndMenu();
-                    }
-                    ImGui::Separator();
-                    if (ImGui::BeginMenu("Spawn Items")) {
-                        if (ImGui::BeginMenu("Weapons")) {
-                            if (ImGui::MenuItem("Wrench"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Wrench);
-                            if (ImGui::MenuItem("Shotgun"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Shotgun);
-                            if (ImGui::MenuItem("Shotgun Ammo"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.ShotgunShells);
-                            if (ImGui::MenuItem("Pistol"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Pistol);
-                            if (ImGui::MenuItem("Pistol Ammo"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.PistolBullets);
-                            if (ImGui::MenuItem("Gloo Gun"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.GooGun);
-                            if (ImGui::MenuItem("Gloo Gun Ammo"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.GooGun);
-                            if (ImGui::MenuItem("Q Beam"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.Instalaser);
-                            if (ImGui::MenuItem("Q Beam Ammo"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.InstaLaser);
-                            if (ImGui::MenuItem("Stun Gun"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Weapons.StunGun);
-                            if (ImGui::MenuItem("Stun Gun Ammo"))
-                                quickSpawnEntity(entityArchetypeLibrary.ArkPickups.Ammo.StunGunAmmo);
-                            ImGui::EndMenu();
-                        }
-                        ImGui::EndMenu();
-                    }
+                    m_SpawnList.ShowMenuItems();
                     ImGui::EndMenu();
                 }
                 if (ImGui::MenuItem("List Classes")) {
@@ -1519,7 +1457,6 @@ void EntityManager::drawMenuBar() {
         ImGui::EndMainMenuBar();
     }
 }
-
 
 void EntityManager::spawnEntity() {
     try {
@@ -1607,67 +1544,55 @@ void EntityManager::spawnEntity() {
     }
 }
 
-void EntityManager::quickSpawnEntity(uint64_t archetypeId) {
-    try {
-        if (gEnv->pEntitySystem->GetEntityArchetype(archetypeId) != nullptr) {
-            lastSpawnedEntity = archetypeId;
-            static Vec3 pos;
-            static Quat rot = Quat{ 0,0,0,1 };
-            pos = ArkPlayer::GetInstancePtr()->GetEntity()->GetPos();
-            pos.x += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.x * 5;
-            pos.y += ArkPlayer::GetInstancePtr()->m_cachedReticleDir.y * 5;
-            std::string archetypeName = gEnv->pEntitySystem->GetEntityArchetype(archetypeId)->GetName();
+void EntityManager::LoadSpawnList()
+{
+    try
+    {
+        pugi::xml_parse_result loadResult;
+        pugi::xml_document xml = gCL->pXmlUtils->LoadXmlFromFile(SPAWN_LIST_PATH, &loadResult);
+        if (!loadResult)
+            throw std::runtime_error(loadResult.description());
 
-            auto archetype = gEnv->pEntitySystem->GetEntityArchetype(archetypeId);
-            auto entityClass = archetype->GetClass();
-            if(entityClass != nullptr) {
-                if (entityClass->GetName() == std::string(gClassLibrary.ArkNightmare) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkHuman) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkHumanTest) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacle) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkApexTentacleHead) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkBeta) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherDuplicate) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEtherForm) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkEthericDoppelganger) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkMimic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkMimicElite) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkNpcPlayer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperator) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorEngineer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMedic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorScience) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkOperatorMilitary) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPlayer) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPoltergeist) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkPhantomVoltaic) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTelepath) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTentacle) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkWeaver) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkTechnopath) ||
-                    entityClass->GetName() == std::string(gClassLibrary.ArkCystoidNest))
-                    // TODO: ADD ability for mods to define what their archetypes are
-                    // TODO: add cystoid support
-                {
-                    EntityUtils::SpawnNpc("", pos, rot, archetypeId, spawnCount);
-                } else {
-                    EntityUtils::SpawnEntity("", pos, rot, archetypeId, spawnCount);
-                }
-            } else {
-                throw("Error, no class found");
-            }
-            OverlayLog("spawned an entity: {}", inputName);
-        }
-        else {
-            throw("Error, no archetype found");
-        }
+        m_SpawnList.LoadFromXml(xml);
     }
-    catch (std::string& c) {
-        OverlayLog("{}", c.c_str());
+    catch (const std::exception& e)
+    {
+        CryError("[EntityManager] Failed to load spawn list: {}", e.what());
     }
 }
 
+void EntityManager::SpawnListItem(const EntitySpawnList::EntitySpawnInfo& spawnInfo, int spawnCount)
+{
+    try
+    {
+        ArkPlayer* pPlayer = ArkPlayer::GetInstancePtr();
 
+        if (!pPlayer)
+            throw std::runtime_error("ArkPlayer doesn't exist");
+
+        Quat rot = Quat::CreateIdentity();
+        Vec3 pos = pPlayer->GetEntity()->GetPos();
+        pos += pPlayer->m_cachedReticleDir.CompMul(Vec3(5, 5, 0));
+
+        // Find the archetype
+        IEntityArchetype* pArchetype = gEnv->pEntitySystem->FindEntityArchetype(spawnInfo.archetypeName.c_str());
+        if (!pArchetype)
+            throw std::runtime_error(fmt::format("archetype '{}' not found", spawnInfo.archetypeName));
+
+        // Spawn it
+        if (spawnInfo.isNpc)
+            EntityUtils::SpawnNpc("", pos, rot, pArchetype->GetId(), spawnCount);
+        else
+            EntityUtils::SpawnEntity("", pos, rot, pArchetype->GetId(), spawnCount);
+
+        OverlayLog("Spawned {} ({})", spawnInfo.name, pArchetype->GetName());
+    }
+    catch (const std::exception& e)
+    {
+        CryError("[EntityManager] Failed to spawn {}: {}", spawnInfo.name, e.what());
+        OverlayError("Failed to spawn {}: {}", spawnInfo.name, e.what());
+    }
+}
 
 void EntityManager::Draw() {
     drawMenuBar();

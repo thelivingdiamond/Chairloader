@@ -262,6 +262,16 @@
             <PsiPowers>
                 <mergingPolicy identification_policy="overwrite"/>
             </PsiPowers>
+            <Abilities.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="ID" priority="0"/>
+                    <nodeStructure>
+                        <_wildcard_>
+                            <_wildcard_ merge_children="true"/>
+                        </_wildcard_>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Abilities.xml>
             <AimAssistConfig.xml>
                 <mergingPolicy identification_policy="match_attribute">
                     <attribute name="name" priority="0"/>
@@ -297,7 +307,7 @@
                             <MarkedEnemies merge_node="true"/>
                             <ArkPlayerScopeComponent merge_node="true"/>
                             <Flashlight merge_node="true"/>
-                            <Movement merge_children="true" identification_policy="match_tag"/>
+                            <Movement merge_children="true" identification_policy="match_tag" merge_attributes="true"/>
                             <AutoSave merge_node="true"/>
                             <NPCTargeting merge_node="true"/>
                             <Weapon merge_node="true"/>
@@ -685,6 +695,17 @@
         </WorldUIInterferenceConfig.xml>
     </Ark>
     <Libs>
+        <Chairloader>
+            <Trainer>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="Header" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <EntitySpawnList merge_children="true"/>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Trainer>
+        </Chairloader>
         <BodyDamage>
             <mergingPolicy identification_policy="overwrite"/>
         </BodyDamage>
@@ -2827,4 +2848,7 @@
             </PlayerGenderSelect>
         </Campaign>
     </Levels>
+    <Fonts>
+        <mergingPolicy identification_policy = "overwrite"/>
+    </Fonts>
 </root>

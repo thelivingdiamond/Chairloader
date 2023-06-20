@@ -1,1 +1,2 @@
 110 CURSOR Cursor.cur
+IDI_ICON1 ICON DISCARDABLE "PreditorIcon.ico"

@@ -100,12 +100,15 @@ function(cl_set_debug_path targetName)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS program_options)
+find_package(Boost REQUIRED COMPONENTS program_options json)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
 find_package(pugixml REQUIRED)
 find_package(GTest REQUIRED)
+find_package(libzippp CONFIG REQUIRED)
+find_package(Lua REQUIRED)
+find_path(LUABRIDGE_INCLUDE_DIRS "LuaBridge/List.h")
 
 # Enable CTest
 enable_testing()

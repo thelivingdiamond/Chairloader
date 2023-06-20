@@ -182,7 +182,10 @@ void UI::Render()
     float dpiScale = dpi / 96.0f;
     const int defaultFontSize = 18;
     const int fontSize = defaultFontSize * dpiScale;
-    ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", fontSize);
+    if(fs::exists("./Montserrat-Regular.ttf"))
+        ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", fontSize);
+    else
+        ImGui::GetIO().Fonts->AddFontDefault();
     ImGui::GetStyle().ScaleAllSizes(dpiScale);
 
 

@@ -66,10 +66,9 @@ void ChairloaderModBase::ShutdownGame(bool isHotUnloading)
 void ChairloaderModBase::ShutdownSystem(bool isHotUnloading)
 {
 	// Remove all installed hooks
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
+	HookTransaction hookTr;
 	PreyFunctionSystem::RemoveHooks();
-	DetourTransactionCommit();
+	hookTr.Commit(); // No use dying when shutting down
 }
 
 void ChairloaderModBase::InitImGui()

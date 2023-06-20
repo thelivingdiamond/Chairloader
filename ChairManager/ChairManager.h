@@ -14,11 +14,13 @@
 #include <chrono>
 #include <windows.h>
 #include "BinaryVersionCheck.h"
-#include "XMLMerger.h"
+#include "Merging/XMLMerger2.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
 #include "LogEntry.h"
 #include "Mod.h"
+#include "Merging/ChairMerger.h"
+
 
 class GamePathDialog;
 class GameVersion;
@@ -27,6 +29,9 @@ class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
 struct SemanticVersion;
+enum class DeployStep;
+class ChairMerger;
+
 
 class ChairManager {
 public:
@@ -54,9 +59,9 @@ public:
     }
     std::string GetDisplayName(std::string modName);
 
-    const float GetDPIScale() { return dpiScale; }
+    const float GetDPIScale() const { return dpiScale; }
 
-    void updateDPI(float dpiScaleIn){
+    void updateDPI(float dpiScaleIn) {
         updateDPIScaling = true;
         oldDpiScaling = dpiScale;
         dpiScale = dpiScaleIn;
@@ -64,7 +69,17 @@ public:
 
 
 
-    void DeployForInstallWizard();
+    void DeployForInstallWizard(){
+        Init();
+        m_pChairMerger->m_bForceMainPatchPack = true;
+        RunAsyncDeploy();
+        while(!IsFutureReady(m_DeployTaskFuture)){
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+        m_DeployTaskFuture.get();
+    }
+
+
 
     std::string getETag() {
         return m_githubETag;
@@ -82,6 +97,7 @@ public:
             return versionNode.text().as_string();
         return "";
     }
+
     void setCachedLatestVersion(std::string version) {
         if(!ChairManagerConfigFile.first_child().child("LatestVersion"))
             ChairManagerConfigFile.first_child().append_child("LatestVersion");
@@ -90,6 +106,9 @@ public:
     }
 
     GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
+
+    void GTestInit();
+
 private:
     //! DPI
     bool updateDPIScaling;
@@ -143,25 +162,6 @@ private:
     void DrawUpdateWizard(bool* pbIsOpen);
     bool m_bShowUpdateWizard = false;
 
-    /* Deploy Screen */
-    enum class DeployState
-    {
-        Invalid,
-        RemovingOldOutput,
-        CopyingBaseFiles,
-        MergingLegacyMods,
-        MergingMods,
-        RemovingOldPatches,
-        PackingLevelFiles,
-        CopyingLevelFiles,
-        PackingLocalization,
-        PackingMainPatch,
-        CopyingMainPatch,
-        Done
-    };
-
-    DeployState m_DeployState = DeployState::Invalid;
-    std::mutex m_DeployLogMutex;
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::future<void> m_DeployTaskFuture;
@@ -251,26 +251,13 @@ private:
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
 
-    //Deploy
-    bool DeployMods();
-    void RunAsyncDeploy();
 
-    /* XML MERGING */
-    void mergeDirectory(fs::path path, std::string modName, bool legacyMod = false);
-    void mergeXMLFiles(bool onlyChairPatch = false);
-
-
-    //! XML MERGING V2
-    XMLMerger m_XMLMerger;
+    /// XML Merging V3
+    std::unique_ptr<ChairMerger> m_pChairMerger;
 
     //! config manager
     ConfigManager m_ConfigManager;
 
-    std::vector<fs::path> exploreLevelDirectory(fs::path);
-    PROCESS_INFORMATION packLevel(fs::path path);
-    bool packChairloaderPatch();
-    bool copyChairloaderPatch();
-    bool copyLocalizationPatch();
 
     // Load Order
     std::map<int, std::string> loadOrder;
@@ -369,4 +356,6 @@ private:
 
     void removeStartupCinematics();
     void restoreStartupCinematics();
+
+    void RunAsyncDeploy();
 };

@@ -162,5 +162,6 @@ pugi::xml_document ChairXmlUtils::LoadXmlFromBufferInternal(boost::span<const ch
 	catch (const std::exception& e)
 	{
 		CryError("Load Xml: exception: {} ({})", e.what(), context);
+		return pugi::xml_document();
 	}
 }

@@ -2,7 +2,8 @@
 // Created by theli on 9/13/2022.
 //
 #pragma once
-
+#include <mutex>
+#include "ModConfig.h"
 
 
 /*
@@ -17,57 +18,6 @@
 //! the purpose of this class is to load, edit, and manage config files for mods
 class ConfigManager {
 public:
-    struct ModConfig {
-        std::shared_ptr<pugi::xml_document> configDoc;
-        pugi::xml_node configNode;
-        fs::path configPath;
-        std::string modName;
-        std::string displayName;
-        bool dirty = false;
-        ModConfig() = default;
-        ModConfig(const ModConfig& other) {
-            configDoc = other.configDoc;
-            configNode = other.configNode;
-            configPath = other.configPath;
-            modName = other.modName;
-        }
-        ModConfig& operator=(const ModConfig& other) {
-            configDoc = other.configDoc;
-            configNode = other.configNode;
-            configPath = other.configPath;
-            modName = other.modName;
-            return *this;
-        }
-        ModConfig(std::string modName, pugi::xml_document& doc, fs::path path) {
-            this->modName = modName;
-            configDoc = std::make_shared<pugi::xml_document>();
-            configDoc->reset(doc);
-            configNode = configDoc->first_child();
-            configPath = path;
-        }
-        // == operator
-        bool operator==(const ModConfig& other) const {
-            return modName == other.modName;
-        }
-        bool operator==(const std::string& other) const {
-            return modName == other;
-        }
-        std::string getConfigValue(std::string name) const {
-            return configNode.child(name.c_str()).text().as_string();
-        }
-        void setConfigValue(std::string name, std::string value) {
-            configNode.child(name.c_str()).text().set(value.c_str());
-            dirty = true;
-        }
-        bool saveConfig() const {
-            return configDoc->save_file(configPath.string().c_str());
-        }
-        pugi::xml_parse_result loadConfig() {
-            auto result = configDoc->load_file(configPath.string().c_str());
-            configNode = configDoc->first_child();
-            return result;
-        }
-    };
     ConfigManager() = default;
 
     // init needs to
@@ -99,12 +49,18 @@ public:
     void setDirty(const std::string& modName, bool dirty);
 
     void draw();
+
+    std::unordered_map<std::string, bool> getModSpaceBooleanVariables(const std::string& modName);
+
 private:
     std::vector<ModConfig> m_modConfigs;
-
+    std::mutex m_modConfigsMutex;
 
     void loadConfig(const std::string& modName);
     void loadConfigs();
     void drawXMLConfigNode(pugi::xml_node node);
+    void drawXMLValueInput(pugi::xml_node node);
+
+    std::vector<std::pair<std::string, bool>> getModVariableSpace(pugi::xml_node node, const std::set<std::string>& allowedTypes);
 
 };

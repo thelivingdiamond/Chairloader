@@ -8,12 +8,12 @@ title: Chairloader XML Merging {
   }
 }
 PreMerge: Pre Merge {
-  Collect: Collect Mod List
-  Config: Load Mod Configs
+  OutputClear: Clear Output Directory
   Conflict: Detect File Conflicts (TODO)
+  ChairPatch: Copy Chairloader Patch
+  Checksums: Check patch checksums
 
-  Collect -> Config
-  Collect -> Conflict
+  OutputClear -> ChairPatch -> Checksums -> Conflict
 }
 PreMerge -> Merge
 Merge: {
@@ -82,8 +82,17 @@ Merge: {
 Merge -> PostMerge
 
 PostMerge: {
-  Level Entity ID seralization (TODO)
+  LevelEntities: Level Entity ID seralization (TODO)
+  ChairPack: Pack Main Patch
+  PatchCheck: Check as-needed patches {
+    Flag: Flag Set
+    FileCheck: Modified Files Exist
+    Flag -> FileCheck
+    Checksum: Checksum Diff
+    Pack: Pack Patch: {shape: diamond}
+    FileCheck -> Pack: Yes
+    Checksum -> Pack: Yes
+  }
   Pack Level files
-  Pack Main Patch
   Copy Patches
 }
