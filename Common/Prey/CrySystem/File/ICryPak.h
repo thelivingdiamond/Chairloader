@@ -350,7 +350,7 @@ struct ICryPak // Id=800062E Size=8
     virtual int FindNext(int64_t arg0, _finddata64i32_t *arg1) = 0;
     virtual int FindClose(int64_t arg0) = 0;
     virtual uint64_t GetModificationTime(_iobuf *arg0) = 0;
-    virtual bool IsFileExist(const char *arg0, ICryPak::EFileSearchLocation arg1) = 0;
+    virtual bool IsFileExist(const char *arg0, ICryPak::EFileSearchLocation arg1 = eFileLocation_Any) = 0;
     virtual bool IsFolder(const char *arg0) = 0;
     virtual int64_t GetFileSizeOnDisk(const char *arg0) = 0;
     virtual bool IsFileCompressed(const char *arg0) = 0;

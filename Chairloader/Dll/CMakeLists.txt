@@ -1,5 +1,11 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+	
+	LuaDbgRes/LUADBG.ico
+	LuaDbgRes/small.ico
+	LuaDbgRes/toolbar1.bmp
+	LuaDbgRes/TreeView.bmp
+
 	Chairloader.cpp
 	Chairloader.h
 	dllmain.cpp
@@ -9,6 +15,8 @@ set(SOURCE_FILES
 	WinConsole.h
 	ImportantClass.h
 	ImportantClass.cpp
+	LuaDebugger.rc
+	LuaDebuggerResource.h
 )
 
 configure_file(
