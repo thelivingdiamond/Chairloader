@@ -2,6 +2,7 @@
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderTools.h>
 #include <Chairloader/IChairloaderDll.h>
+#include "Lua/LuaModManager.h"
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
 #include "ChairloaderGui.h"
@@ -49,6 +50,7 @@ void ChairloaderCore::InitSystem()
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
+	m_pLuaModManager = std::make_unique<LuaModManager>();
 }
 
 void ChairloaderCore::ShutdownSystem()
@@ -74,12 +76,21 @@ void ChairloaderCore::RegisterMods()
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
 		auto modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
+
 		if (mod.child("enabled").text().as_bool()) {
+			if (m_InstalledMods.find(modName) != m_InstalledMods.end())
+				CryFatalError("Duplicate mod: {}", modName);
+
+			m_InstalledMods.insert(modName);
+
 			if (mod.child("dllName"))
 			{
 				CryLog("Found DLL mod: {}", modName);
 				m_pModDllManager->RegisterModFromXML(mod);
 			}
+
+			if (m_pLuaModManager->RegisterModFromXML(mod))
+				CryLog("Found Lua mod: {}", modName);
 
 			fs::path modDirPath = gChair->GetModsPath() / fs::u8path(modName);
 			fs::path shadersPath = modDirPath / "Shaders";
@@ -94,15 +105,22 @@ void ChairloaderCore::RegisterMods()
 	gChair->GetCryRender()->RefreshShaderFileList();
 }
 
+void ChairloaderCore::PreInitGame()
+{
+	m_pLuaModManager->PreGameInit();
+}
+
 void ChairloaderCore::InitGame()
 {
 	ChairImGui::Get().InitGame();
 	m_pGui = std::make_unique<ChairloaderGui>();
 	g_pProfiler = new Profiler();
+	m_pLuaModManager->PostGameInit();
 }
 
 void ChairloaderCore::ShutdownGame()
 {
+	m_pLuaModManager = nullptr;
     m_pCVarManager->ShutdownGame();
 	m_pGui = nullptr;
 	ChairImGui::Get().ShutdownGame();
@@ -146,6 +164,11 @@ Internal::ILogManager* ChairloaderCore::GetLogManager()
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
 	return m_pModDllManager.get();
+}
+
+bool ChairloaderCore::IsModInstalled(const std::string& modName)
+{
+	return m_InstalledMods.find(modName) != m_InstalledMods.end();
 }
 
 std::unique_ptr<IChairLogger> ChairloaderCore::CreateLogger()

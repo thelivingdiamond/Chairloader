@@ -2,6 +2,24 @@
 
 static std::unique_ptr<IChairLogger> g_pChairLogger = nullptr;
 
+void IChairLogger::VLog(EChairLogType type, std::string_view format, fmt::format_args args)
+{
+	char buf[IChairLogger::MSG_BUF_SIZE];
+	size_t requiredSize = fmt::vformat_to_n(buf, sizeof(buf), format, args).size;
+
+	if (requiredSize <= sizeof(buf))
+	{
+		// Message fits into buf
+		Log(type, buf, requiredSize);
+	}
+	else
+	{
+		// Message was truncated, format again on the heap
+		std::string text = fmt::vformat(format, args);
+		Log(type, text.c_str(), text.size());
+	}
+}
+
 void ModuleInitIChairLogger(const char* modName)
 {
 	g_pChairLogger = gCL->cl->CreateLogger();
@@ -15,20 +33,7 @@ void ModuleShutdownIChairLogger()
 
 void VCryLog(EChairLogType type, std::string_view format, fmt::format_args args)
 {
-	char buf[IChairLogger::MSG_BUF_SIZE];
-	size_t requiredSize = fmt::vformat_to_n(buf, sizeof(buf), format, args).size;
-
-	if (requiredSize <= sizeof(buf))
-	{
-		// Message fits into buf
-		g_pChairLogger->Log(type, buf, requiredSize);
-	}
-	else
-	{
-		// Message was truncated, format again on the heap
-		std::string text = fmt::vformat(format, args);
-		g_pChairLogger->Log(type, text.c_str(), text.size());
-	}
+	g_pChairLogger->VLog(type, format, args);
 }
 
 void VCryFatalError(std::string_view format, fmt::format_args args)
@@ -60,4 +65,3 @@ void VCryOverlayLog(EChairLogType type, std::string_view format, fmt::format_arg
     }
 
 }
-

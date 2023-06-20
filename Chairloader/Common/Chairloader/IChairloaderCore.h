@@ -25,8 +25,14 @@ struct IChairloaderCore : public IChairloaderModule
 	//! Registers all mods from the config with the DLL Manager. Checks if editor is enabled or not.
 	virtual void RegisterMods() = 0;
 
+	//! Called before InitGame.
+	virtual void PreInitGame() = 0;
+
 	//! Game initialization.
 	virtual void InitGame() = 0;
+
+	//! @returns whether the mod is installed and enabled.
+	virtual bool IsModInstalled(const std::string& modName) = 0;
 
 	//! Creates a new IChairLogger instance.
 	virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;

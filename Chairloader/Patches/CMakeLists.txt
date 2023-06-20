@@ -1,5 +1,12 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+	
+	Lua/LuaDbgFix.cpp
+	Lua/LuaDbgFix.h
+	Lua/LuaDbgRes.cpp
+	Lua/LuaDbgRes.h
+	Lua/LuaWarnPatch.cpp
+	Lua/LuaWarnPatch.h
 
 	SteamAPI/ArkSteamDlcSystem.cpp
 	SteamAPI/ArkSteamDlcSystem.h

@@ -1,5 +1,14 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+
+	Lua/LuaModManager.cpp
+	Lua/LuaModManager.h
+	Lua/ScriptBind_Chairloader.cpp
+	Lua/ScriptBind_Chairloader.h
+
+	BackupDxState.cpp
+	BackupDxState.h
+
 	ChairImGui.cpp
 	ChairImGui.h
 	ChairloaderConfigManager.cpp
@@ -10,6 +19,8 @@ set(SOURCE_FILES
 	ChairloaderGui.h
 	ChairLogger.cpp
 	ChairLogger.h
+	ChairVarManager.cpp
+	ChairVarManager.h
 	LogManager.cpp
 	LogManager.h
 	ModDllManager.cpp
@@ -18,7 +29,7 @@ set(SOURCE_FILES
 	OverlayLog.h
 	Profiler.cpp
 	Profiler.h
-        ChairVarManager.cpp ChairVarManager.h)
+)
 
 add_library(Chairloader.Core STATIC ${SOURCE_FILES})
 target_include_directories(Chairloader.Core PRIVATE .)

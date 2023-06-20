@@ -430,31 +430,26 @@ inline const char* constchar_cast(const string& type)
 	return type.c_str();
 }
 
-#if 0
 // std::binary_function removed in C++17
 //! Case sensetive less key for any type convertable to const char*.
 template<class Type>
-struct less_strcmp : public std::binary_function<Type, Type, bool>
+struct less_strcmp
 {
 	bool operator()(const Type& left, const Type& right) const
 	{
 		return strcmp(constchar_cast(left), constchar_cast(right)) < 0;
 	}
 };
-#endif
 
-#if 0
-// std::binary_function removed in C++17
 //! Case insensetive less key for any type convertable to const char*.
 template<class Type>
-struct less_stricmp : public std::binary_function<Type, Type, bool>
+struct less_stricmp
 {
 	bool operator()(const Type& left, const Type& right) const
 	{
 		return stricmp(constchar_cast(left), constchar_cast(right)) < 0;
 	}
 };
-#endif
 
 // Unordered_map usage:
 // typedef std::unordered_map<string, int, stl::hash_stricmp<string>, stl::hash_stricmp<string> > StringToIntHash;

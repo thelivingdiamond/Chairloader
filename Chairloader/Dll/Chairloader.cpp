@@ -86,6 +86,9 @@ auto g_CGame_Shutdown_Hook = CGame::FShutdown.MakeHook();
 bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
 	g_pGame = _this;
+
+	gChairloaderDll->GetCore()->PreInitGame();
+
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
 	if (result)
@@ -144,9 +147,9 @@ void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
 
 } // namespace
 
-void Chairloader::CreateInstance()
+void Chairloader::CreateInstance(void* hThisDll)
 {
-	gChairloaderDll = std::make_unique<Chairloader>();
+	gChairloaderDll = std::make_unique<Chairloader>(hThisDll);
 }
 
 Chairloader* Chairloader::Get()
@@ -154,7 +157,8 @@ Chairloader* Chairloader::Get()
 	return gChairloaderDll.get();
 }
 
-Chairloader::Chairloader() {
+Chairloader::Chairloader(void* hThisDll) {
+	m_hThisDll = hThisDll;
 	gChair = this;
 	m_WinConsole.InitConsole();
 	printf("ChairLoader Initializing...\n");

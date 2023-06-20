@@ -1,0 +1,7 @@
+<Mod
+	modName="Example.LuaModExample"
+	displayName="Lua Mod Example"
+	version="0.1.0"
+	hasXML="true"
+	author="Example">
+</Mod>
