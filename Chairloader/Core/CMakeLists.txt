@@ -6,9 +6,6 @@ set(SOURCE_FILES
 	Lua/ScriptBind_Chairloader.cpp
 	Lua/ScriptBind_Chairloader.h
 
-	BackupDxState.cpp
-	BackupDxState.h
-
 	ChairImGui.cpp
 	ChairImGui.h
 	ChairloaderConfigManager.cpp
