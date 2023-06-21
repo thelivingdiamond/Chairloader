@@ -30,6 +30,7 @@ target_include_directories(Preditor.Input PRIVATE
 
 target_link_libraries(Preditor.Input
 	Preditor.Common
+	Dinput8.lib
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

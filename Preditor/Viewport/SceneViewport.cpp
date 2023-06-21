@@ -5,6 +5,7 @@
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/Input/IPreditorInput.h>
+#include <Preditor/Input/IMouseInputSystem.h>
 #include "SceneViewport.h"
 
 float CV_ed_ViewMinSpeed;
@@ -103,6 +104,15 @@ void Viewport::SceneViewport::ShowUI()
 	ShowViewportImage();
 
 	SetCameraMode(ImGui::IsMouseDown(ImGuiMouseButton_Right));
+
+	if (m_IsInCameraMode)
+	{
+		Vec2 delta = gPreditor->pInput->GetMouse()->GetMouseDelta();
+		Ang3 rot = m_CamInfo.rot;
+		rot.z -= delta.x;
+		rot.x -= delta.y;
+		m_CamInfo.rot = Ang3(Quat(rot)); // Quick and dirty 360 deg wrapping
+	}
 }
 
 void Viewport::SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
@@ -121,6 +131,7 @@ void Viewport::SceneViewport::SetCameraMode(bool state)
 	CryLog("[SceneViewport] Camera Mode: {}", state);
 	m_IsInCameraMode = state;
 	m_pCameraActionSet->SetActive(state);
+	gPreditor->pInput->GetMouse()->SetExclusiveInputActive(state);
 }
 
 void Viewport::SceneViewport::ShowCameraMenu()
@@ -185,9 +196,6 @@ void Viewport::SceneViewport::UpdateCamera()
 
 	// Positional input
 	{
-		/*Vec3 fwd = rotQuat * Vec3(0, 1, 0);
-		Vec3 right = rotQuat * Vec3(1, 0, 0);
-		Vec3 up = rotQuat * Vec3(0, 0, 1);*/
 		float timeDelta = gEnv->pTimer->GetRealFrameTime();
 
 		Vec3 dir = Vec3(ZERO);

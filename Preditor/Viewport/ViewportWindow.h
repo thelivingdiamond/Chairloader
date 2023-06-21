@@ -10,7 +10,7 @@ namespace Viewport
 class SceneViewport;
 class GameViewport;
 
-class ViewportWindow
+class ViewportWindow final
     : public ManagedWindow
     , public IViewportWindow
 {
@@ -27,8 +27,7 @@ public:
 
     // IViewportWindow
     virtual IViewport* GetCurrentViewport() override { return m_pCurrentViewport; }
-    // virtual Vec2i GetScreenPos() override;
-    // virtual Vec2i GetScreenSize() override;
+    virtual Vec4i GetScreenBounds() override { return m_ScreenBounds; }
     virtual bool IsFocused() override { return IsFocused(); }
 
 protected:
@@ -52,6 +51,9 @@ private:
     // Resizing
     MouseGuard m_ResizeGuard;
     int m_ResizeFrameCount = 0;
+
+    // Viewport bounds
+    Vec4i m_ScreenBounds = Vec4i(0, 0, 0, 0);
 
     BaseViewport* m_pCurrentViewport = nullptr;
 

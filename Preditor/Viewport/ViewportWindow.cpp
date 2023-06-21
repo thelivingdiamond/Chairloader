@@ -91,10 +91,17 @@ ImVec4 Viewport::ViewportWindow::ShowViewportImage()
 	ImVec2 windowPos = ImGui::GetWindowPos();
 	Vec2i windowPos2(windowPos.x, windowPos.y);
 
+	m_ScreenBounds = Vec4i(
+		windowPos2.x + min.x,
+		windowPos2.y + min.y,
+		windowPos2.x + max.x,
+		windowPos2.y + max.y
+	);
+
 	bool sizeChanged = IPreditorEngine::Get()->SetGameViewportRect(
 		ImGui::GetWindowViewport()->ID,
-		windowPos2 + Vec2i(min.x, min.y),
-		windowPos2 + Vec2i(max.x, max.y));
+		Vec2i(m_ScreenBounds.x, m_ScreenBounds.y),
+		Vec2i(m_ScreenBounds.z, m_ScreenBounds.w));
 
 	if (sizeChanged)
 	{
