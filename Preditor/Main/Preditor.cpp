@@ -36,6 +36,7 @@ void Main::Preditor::InitGame()
     gPreditor->pInput = m_pInput.get();
 
     m_pSceneEditorManager = std::make_unique<SceneEditorManager>();
+    gPreditor->pSceneEditorManager = m_pSceneEditorManager.get();
 
     m_pChairTools = IChairloaderToolsPreditor::CreateInstance(gPreditor->pEngine->GetIChairToPreditor());
     m_pUI = std::make_unique<PreditorUI>();

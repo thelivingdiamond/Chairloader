@@ -1,6 +1,11 @@
 #pragma once
 #include <WindowManager/ManagedWindow.h>
 
+struct IKeyAction;
+
+namespace Main
+{
+
 class SimControlWindow : public ManagedWindow
 {
 public:
@@ -16,3 +21,5 @@ private:
 	static constexpr float DEFAULT_FPS[] = { 30, 60, 90, 120 };
 	float m_flTimeStepMs = 1000.0f / 60.0f;
 };
+
+} // namespace Main

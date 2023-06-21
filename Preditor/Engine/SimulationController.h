@@ -23,14 +23,12 @@ public:
 
 	// ISimulationController
 	virtual ESimulationMode GetSimulationMode() const override;
-	virtual bool IsPaused() const override;
-	virtual void SetPaused(bool isPaused) override;
+	virtual void SetSimulationMode(ESimulationMode simMode) override;
 	virtual void RunSingleStep(float timestep) override;
 
 private:
 	ICVar* m_pFixedStep = nullptr;
-	ESimulationMode m_CurMode = ESimulationMode::Game;
-	bool m_bPaused = false;
+	ESimulationMode m_CurMode = ESimulationMode::Play;
 	float m_flSingleTimeStep = 0.0f;
 	bool m_bUpdatingSingleStep = false; //!< Inside engine update with single-step.
 	float m_flSavedFixedStep = 0;

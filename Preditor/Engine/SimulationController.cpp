@@ -11,9 +11,9 @@ unsigned Engine::SimulationController::GetUpdateFlags() const
 
 	switch (m_CurMode)
 	{
-	case ESimulationMode::Game:
+	case ESimulationMode::Pause:
 	{
-		if (m_bPaused && !IsSingleStepping())
+		if (!IsSingleStepping())
 		{
 			// Paused. Don't update anything.
 			updateFlags |= ESYSUPDATE_IGNORE_AI;
@@ -22,14 +22,20 @@ unsigned Engine::SimulationController::GetUpdateFlags() const
 		}
 		else
 		{
-			// No special flags to run
+			// No special flags to run the single-step
 		}
 
 		break;
 	}
-	case ESimulationMode::LevelEdit:
+	case ESimulationMode::Play:
 	{
-		CRY_ASSERT_MESSAGE(false, "Not implemented");
+		// No flags to play the game
+		break;
+	}
+	case ESimulationMode::PhysicsAI:
+	{
+		updateFlags |= ESYSUPDATE_EDITOR;
+		updateFlags |= ESYSUPDATE_EDITOR_AI_PHYSICS;
 		break;
 	}
 	default:
@@ -69,14 +75,9 @@ Engine::ESimulationMode Engine::SimulationController::GetSimulationMode() const
 	return m_CurMode;
 }
 
-bool Engine::SimulationController::IsPaused() const
+void Engine::SimulationController::SetSimulationMode(ESimulationMode simMode)
 {
-	return m_bPaused;
-}
-
-void Engine::SimulationController::SetPaused(bool isPaused)
-{
-	m_bPaused = isPaused;
+	m_CurMode = simMode;
 }
 
 void Engine::SimulationController::RunSingleStep(float timestep)

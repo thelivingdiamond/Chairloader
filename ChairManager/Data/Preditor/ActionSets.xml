@@ -71,4 +71,17 @@
             <Bind key="esc"/>
         </Action>
     </ActionSet>
+
+    <!-- Simulation Control -->
+    <ActionSet
+        name="sim_control"
+        description="Simulation Control"
+        enableInGame="1">
+        <Action name="play_pause" description="Toggle Play/Pause">
+            <Bind key="p"/>
+        </Action>
+        <Action name="single_step" description="Run a single step">
+            <Bind key="period"/>
+        </Action>
+    </ActionSet>
 </ActionSets>

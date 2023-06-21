@@ -8,6 +8,7 @@ class PreditorPaths;
 struct IPreditor;
 struct IProject;
 struct IUserProjectSettings;
+struct ISceneEditorManager;
 
 // Engine
 struct IPreditorEngine;
@@ -28,6 +29,7 @@ struct SPreditorEnvironment
 	IPreditor* pMain;
 	IProject* pProject;
 	IUserProjectSettings* pUserSettings;
+	ISceneEditorManager* pSceneEditorManager;
 
 	// Engine
 	IPreditorEngine* pEngine;

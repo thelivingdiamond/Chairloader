@@ -123,6 +123,8 @@ void Engine::PreditorImGui::BeginFrame()
 {
     CRY_PROFILE_MARKER("Engine::PreditorImGui::BeginFrame");
     assert(!m_bIsInFrame);
+    m_bIsInFrame = true;
+
     // Update context
     if (!ImGui::GetCurrentContext())
         ImGui::SetCurrentContext(m_pContext);
@@ -180,6 +182,7 @@ void Engine::PreditorImGui::EndFrame()
     if (m_bIsInFrame)
     {
         ImGui::EndFrame();
+        ImGui::UpdatePlatformWindows();
         m_bIsInFrame = false;
     }
 }

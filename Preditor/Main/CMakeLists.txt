@@ -17,6 +17,8 @@ set(SOURCE_FILES
 
 	UI/PreditorUI.cpp
 	UI/PreditorUI.h
+	UI/SimControlWindow.cpp
+	UI/SimControlWindow.h
 
 	EntityHierarchyWindow.cpp
 	EntityHierarchyWindow.h
@@ -30,8 +32,6 @@ set(SOURCE_FILES
 	Preditor.h
 	SceneEditorManager.cpp
 	SceneEditorManager.h
-	SimControlWindow.cpp
-	SimControlWindow.h
 )
 
 add_library(Preditor.Main STATIC
