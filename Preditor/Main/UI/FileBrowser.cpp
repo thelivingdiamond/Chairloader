@@ -1,7 +1,8 @@
 #include <boost/core/span.hpp>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Manager/IconsMaterialDesign.h>
-#include "FileBrowser.h"
+#include "UI/FileViewers/FileFormats.h"
+#include "UI/FileBrowser.h"
 
 namespace
 {
@@ -187,7 +188,7 @@ void Main::FileBrowser::RefreshCurDirInternal()
             else
             {
                 fileItem.textColor = COLOR_FILE;
-                icon = ICON_MD_DESCRIPTION;
+                icon = FileFormats::Get().GetFileIcon(fileItem.fileName);
             }
 
             fileItem.listName = icon + c_file.name;

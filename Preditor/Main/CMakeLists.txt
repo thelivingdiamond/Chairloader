@@ -15,6 +15,9 @@ set(SOURCE_FILES
 	Project/UserProjectSettings.cpp
 	Project/UserProjectSettings.h
 
+	UI/FileViewers/FileFormats.cpp
+	UI/FileViewers/FileFormats.h
+
 	UI/FileBrowser.cpp
 	UI/FileBrowser.h
 	UI/PreditorUI.cpp
