@@ -15,7 +15,15 @@ Main::PreditorUI::PreditorUI()
     gPreditor->pViewportWindow = m_pViewportWindow.get();
 
     m_pSimControlWindow = WindowManager::Get().Create<SimControlWindow>();
-    m_pFileBrowser = WindowManager::Get().Create<FileBrowser>();
+
+    m_pProjectBrowser = WindowManager::Get().Create<FileBrowser>();
+    m_pProjectBrowser->SetTitle("Project Browser");
+    m_pProjectBrowser->SetPersistentID("ProjectBrowser");
+    m_pProjectBrowser->SetRootPath(gPreditor->pPaths->GetProjectDirPath().u8string());
+
+    m_pAssetBrowser = WindowManager::Get().Create<FileBrowser>();
+    m_pAssetBrowser->SetTitle("Asset Browser");
+    m_pAssetBrowser->SetPersistentID("AssetBrowser");
 }
 
 Main::PreditorUI::~PreditorUI()

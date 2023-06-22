@@ -44,9 +44,11 @@ std::string StringToLower(const std::string& s)
 Main::FileBrowser::FileBrowser()
 {
     SetTitle("File Browser");
-    SetPersistentID("FileBrowser");
-
+    SetRootPath("");
     RefreshCurDir();
+
+    // Disable scroll. Child windows will handle that.
+    SetFlags(ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 }
 
 Main::FileBrowser::~FileBrowser()
@@ -62,6 +64,25 @@ std::string Main::FileBrowser::GetCurrentFullPath()
     return s;
 }
 
+void Main::FileBrowser::SetRootPath(const std::string& pathStr)
+{
+    // Path will be split by slashes automatically
+    fs::path path = fs::u8path(pathStr);
+    path = path.lexically_normal();
+    m_RootPath.clear();
+
+    for (const fs::path& i : path)
+    {
+        // C:\Test -> 'C:', '\', 'Test'
+        // Skip the slash
+        if (!i.empty() && i != "\\")
+            m_RootPath.push_back(i.u8string());
+    }
+
+    m_TreeRoot.fullPath = PathListToString(m_RootPath);
+    RefreshCurDir();
+}
+
 void Main::FileBrowser::SetCurrentPath(const std::string& pathStr)
 {
     // Path will be split by slashes automatically
@@ -73,7 +94,7 @@ void Main::FileBrowser::SetCurrentPath(const std::string& pathStr)
     {
         for (const fs::path& i : path)
         {
-            if (!i.empty())
+            if (!i.empty() && i != ".." && i != "\\")
                 m_Path.push_back(i.u8string());
         }
     }

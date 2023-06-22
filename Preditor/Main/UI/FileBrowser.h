@@ -13,6 +13,10 @@ public:
     //! @returns full path to the current directory. Will have a trailing slash unless empty.
     std::string GetCurrentFullPath();
 
+    //! Sets the root path. User can't escape it.
+    //! @param  pathStr UTF-8 path string for engine file system. May point to real FS.
+    void SetRootPath(const std::string& pathStr);
+
     //! Sets the current path relative to the root.
     void SetCurrentPath(const std::string &pathStr);
 

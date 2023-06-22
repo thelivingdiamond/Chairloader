@@ -23,7 +23,8 @@ private:
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<IViewportWindow> m_pViewportWindow;
     std::shared_ptr<SimControlWindow> m_pSimControlWindow;
-    std::shared_ptr<FileBrowser> m_pFileBrowser;
+    std::shared_ptr<FileBrowser> m_pProjectBrowser;
+    std::shared_ptr<FileBrowser> m_pAssetBrowser;
 
     bool m_bImGuiDemo = false;
 
