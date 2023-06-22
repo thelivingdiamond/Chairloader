@@ -53,6 +53,7 @@ private:
 	bool m_bEnableGameInput = false;
 	std::unique_ptr<PreditorImGuiRenderer> m_pRenderer;
 	ImGuiFontList m_FontList;
+	PreditorFonts m_Fonts;
 	bool m_ReloadFontsNextFrame = false;
 
 	void InitImGui();

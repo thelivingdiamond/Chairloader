@@ -17,6 +17,9 @@ public:
     //! Loads the <FontList> XML node.
     void LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogger* pLog);
 
+    //! @returns font or nullptr.
+    ImFont* FindFont(std::string_view name);
+
 private:
     //! Maps font name to ImGui font.
     std::map<std::string, ImFont*, std::less<>> m_FontMap;

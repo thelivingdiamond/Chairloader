@@ -24,7 +24,14 @@ Internal::IChairloaderDll* ChairToolsUtils::GetDll()
 ImFont* ChairToolsUtils::GetFont(IChairloaderImGui::EFont font)
 {
 #ifdef PREDITOR
-	// TODO:
+	switch (font)
+	{
+	case IChairloaderImGui::EFont::Default:
+		return gPreditor->pFonts->pDefault;
+	case IChairloaderImGui::EFont::Monospace:
+		return gPreditor->pFonts->pMonospace;
+	}
+
 	return nullptr;
 #else
 	return gCL->pImGui->GetFont(font);

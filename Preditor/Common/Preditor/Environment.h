@@ -1,4 +1,5 @@
 #pragma once
+#include <Preditor/PreditorFonts.h>
 
 // Common
 class PreditorConfig;
@@ -33,6 +34,7 @@ struct SPreditorEnvironment
 
 	// Engine
 	IPreditorEngine* pEngine;
+	PreditorFonts* pFonts;
 
 	// Input
 	IPreditorInput* pInput;

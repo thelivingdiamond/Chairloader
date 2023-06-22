@@ -104,6 +104,7 @@ Engine::PreditorImGui::PreditorImGui()
     InitImGui();
     InitBackend();
     m_pRenderer = std::make_unique<PreditorImGuiRenderer>(this);
+    gPreditor->pFonts = &m_Fonts;
     ReloadFonts();
     ImGui::SetCurrentContext(prevCtx);
 
@@ -667,6 +668,19 @@ void Engine::PreditorImGui::ReloadFontsNow()
 
     m_pRenderer->UpdateFontAtlasTexture();
     m_ReloadFontsNextFrame = false;
+
+    auto fnFindFont = [this](std::string_view name)
+    {
+        ImFont* font = m_FontList.FindFont(name);
+
+        if (!font)
+            CryError("Font not found: {}", name);
+
+        return font;
+    };
+
+    m_Fonts.pDefault = fnFindFont("Default");
+    m_Fonts.pMonospace = fnFindFont("Monospace");
 }
 
 void Engine::PreditorImGui::Plat_CreateWindow(ImGuiViewport* viewport)

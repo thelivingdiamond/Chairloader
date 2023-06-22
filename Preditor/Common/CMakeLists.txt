@@ -42,6 +42,7 @@ set(SOURCE_FILES
 	Preditor/pch.h
 	Preditor/PreditorConfig.cpp
 	Preditor/PreditorConfig.h
+	Preditor/PreditorFonts.h
 	Preditor/PreditorPaths.h
 )
 

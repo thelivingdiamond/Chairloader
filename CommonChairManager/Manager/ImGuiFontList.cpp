@@ -143,3 +143,12 @@ void ImGuiFontList::LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogg
         m_FontMap.insert({ fontName, pFont });
     }
 }
+
+ImFont* ImGuiFontList::FindFont(std::string_view name)
+{
+    auto it = m_FontMap.find(name);
+    if (it != m_FontMap.end())
+        return it->second;
+    else
+        return nullptr;
+}
