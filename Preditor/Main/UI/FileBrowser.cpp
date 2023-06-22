@@ -26,6 +26,19 @@ std::string PathListToString(boost::span<std::string> list)
     return s;
 }
 
+std::string StringToLower(const std::string& s)
+{
+    std::string l = s;
+
+    for (char& c : l)
+    {
+        if (c >= 'A' && c <= 'Z')
+            c = c - 'A' + 'a';
+    }
+
+    return l;
+}
+
 } // namespace
 
 Main::FileBrowser::FileBrowser()
@@ -177,7 +190,96 @@ void Main::FileBrowser::RefreshCurDirInternal()
 
     std::sort(m_CurFiles.begin(), m_CurFiles.end(), fnSortPred);
 
+    // Refresh the tree
+    {
+        TreeItem* curTreeItem = &m_TreeRoot;
+        bool isFound = true;
+        m_CurPathIdx++;
+
+        // Iterate over path to find its tree item
+        for (int i = 0; i < m_Path.size(); i++)
+        {
+            std::string lowerPathItem = StringToLower(m_Path[i]);
+            auto it = curTreeItem->children.find(lowerPathItem);
+
+            if (it == curTreeItem->children.end())
+            {
+                // Refresh and retry
+                RefreshTreeItem(*curTreeItem);
+                it = curTreeItem->children.find(lowerPathItem);
+            }
+
+            if (it == curTreeItem->children.end())
+            {
+                // Dir not found
+                isFound = false;
+                auto pathSpan = boost::span(m_Path);
+                CryError("[FileBrowser] Directory not found: {}", PathListToString(pathSpan.first(i + 1)));
+                break;
+            }
+
+            curTreeItem = &it->second;
+            curTreeItem->lastPathIdx = m_CurPathIdx;
+        }
+
+        if (isFound)
+            RefreshTreeItem(*curTreeItem);
+    }
+
     m_PendingRefresh = false;
+    m_PendingTreeOpen = true;
+}
+
+void Main::FileBrowser::RefreshTreeItem(TreeItem& item, bool refreshImmediateChildren)
+{
+    intptr_t hFile = 0;
+    _finddata_t c_file;
+    unsigned refreshIdx = m_NextTreeRefreshIdx++;
+
+    if ((hFile = gEnv->pCryPak->FindFirst((item.fullPath + "*.*").c_str(), &c_file)) != -1L)
+    {
+        do
+        {
+            // Skip files
+            if (!(c_file.attrib & _A_SUBDIR))
+                continue;
+
+            // Skip current directory
+            if (!strcmp(c_file.name, "."))
+                continue;
+
+            // Skip "go up"
+            if (!strcmp(c_file.name, ".."))
+                continue;
+
+            std::string lowerName = StringToLower(c_file.name);
+
+            TreeItem& treeItem = item.children[lowerName];
+            treeItem.parent = &item != &m_TreeRoot ? &item : nullptr;
+            treeItem.fileName = c_file.name;
+            treeItem.fullPath = item.fullPath + treeItem.fileName + "/";
+            treeItem.refreshIdx = refreshIdx;
+
+            if (refreshImmediateChildren)
+                RefreshTreeItem(treeItem, false);
+        }
+        while (gEnv->pCryPak->FindNext(hFile, &c_file) == 0);
+    }
+
+    // Remove old items
+    for (auto it = item.children.begin(); it != item.children.end();)
+    {
+        if (it->second.refreshIdx != refreshIdx)
+        {
+            it = item.children.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    item.isLoaded = true;
 }
 
 void Main::FileBrowser::OpenFile(ListItem& file)
@@ -200,6 +302,48 @@ void Main::FileBrowser::ShowTopRow()
 
 void Main::FileBrowser::ShowDirTree()
 {
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, { 0.0f, 0.0f });
+    ShowTreeItem(m_TreeRoot);
+    ImGui::PopStyleVar();
+    m_PendingTreeOpen = false;
+}
+
+void Main::FileBrowser::ShowTreeItem(TreeItem& item)
+{
+    for (auto& i : item.children)
+    {
+        int flags = ImGuiTreeNodeFlags_SpanAvailWidth |
+            ImGuiTreeNodeFlags_OpenOnDoubleClick |
+            ImGuiTreeNodeFlags_OpenOnArrow;
+
+        if (i.second.isLoaded && i.second.children.empty())
+            flags |= ImGuiTreeNodeFlags_Leaf;
+
+        if (i.second.lastPathIdx == m_CurPathIdx)
+        {
+            flags |= ImGuiTreeNodeFlags_Selected;
+
+            if (m_PendingTreeOpen)
+                ImGui::SetNextItemOpen(true);
+        }
+
+        bool isItemOpen = ImGui::TreeNodeEx(i.second.fileName.c_str(), flags);
+
+        if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
+        {
+            std::string path = i.second.GetLocalPath();
+            SetCurrentPath(path);
+        }
+
+        if (isItemOpen)
+        {
+            if (ImGui::IsItemToggledOpen())
+                RefreshTreeItem(i.second);
+
+            ShowTreeItem(i.second);
+            ImGui::TreePop();
+        }
+    }
 }
 
 void Main::FileBrowser::ShowFileList()
