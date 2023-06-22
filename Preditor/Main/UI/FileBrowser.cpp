@@ -131,7 +131,7 @@ void Main::FileBrowser::RefreshCurDirInternal()
         ListItem& fileItem = m_CurFiles.emplace_back();
         fileItem.fileName = "..";
         fileItem.fullPath = dirPath + fileItem.fileName;
-        fileItem.isDirectory = true;
+        fileItem.type = FileType::GoUp;
         fileItem.textColor = COLOR_DIR;
         fileItem.listName = ICON_MD_ARROW_UPWARD + fileItem.fileName;
     }
@@ -154,20 +154,18 @@ void Main::FileBrowser::RefreshCurDirInternal()
             ListItem& fileItem = m_CurFiles.emplace_back();
             fileItem.fileName = c_file.name;
             fileItem.fullPath = dirPath + c_file.name;
-            fileItem.isDirectory = c_file.attrib & _A_SUBDIR;
-            fileItem.textColor = fileItem.isDirectory ? COLOR_DIR : COLOR_FILE;
+            fileItem.type = (c_file.attrib & _A_SUBDIR) ? FileType::Directory : FileType::File;
 
             std::string icon = ICON_MD_QUESTION_MARK;
 
-            if (fileItem.isDirectory)
+            if (fileItem.type == FileType::Directory)
             {
-                if (!strcmp(c_file.name, ".."))
-                    icon = ICON_MD_ARROW_UPWARD;
-                else
-                    icon = ICON_MD_FOLDER;
+                fileItem.textColor = COLOR_DIR;
+                icon = ICON_MD_FOLDER;
             }
             else
             {
+                fileItem.textColor = COLOR_FILE;
                 icon = ICON_MD_DESCRIPTION;
             }
 
@@ -178,10 +176,10 @@ void Main::FileBrowser::RefreshCurDirInternal()
     // Sort files
     auto fnSortPred = [](ListItem& lhs, const ListItem& rhs)
     {
-        // Directories go first
-        if (lhs.isDirectory && !rhs.isDirectory)
+        // By type (directories go first)
+        if (lhs.type < rhs.type)
             return true;
-        if (!lhs.isDirectory && rhs.isDirectory)
+        if (lhs.type > rhs.type)
             return false;
 
         // Alpha-numerically
@@ -284,7 +282,7 @@ void Main::FileBrowser::RefreshTreeItem(TreeItem& item, bool refreshImmediateChi
 
 void Main::FileBrowser::OpenFile(ListItem& file)
 {
-    if (file.isDirectory)
+    if (file.type == FileType::Directory || file.type == FileType::GoUp)
     {
         SetCurrentPath(PathListToString(m_Path) + file.fileName);
     }

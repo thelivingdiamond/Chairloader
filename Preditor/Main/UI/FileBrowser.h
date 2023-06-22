@@ -26,6 +26,14 @@ protected:
 private:
     static constexpr float TREE_WIDTH = 20;
 
+    enum class FileType
+    {
+        None,
+        GoUp,
+        Directory,
+        File,
+    };
+
     struct ListItem
     {
         //! Path to the file.
@@ -37,8 +45,8 @@ private:
         //! File name with icon.
         std::string listName;
 
-        //! Is this a directory.
-        bool isDirectory = false;
+        //! File type
+        FileType type = FileType::None;
 
         //! Text color.
         ImVec4 textColor;
