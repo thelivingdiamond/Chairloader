@@ -311,6 +311,7 @@ void Main::FileBrowser::OpenFile(ListItem& file)
     else
     {
         // TODO 2023-06-22
+        FileFormats::Get().OpenHexViewer(file.fullPath);
     }
 }
 

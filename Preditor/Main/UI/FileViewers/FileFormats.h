@@ -17,6 +17,9 @@ public:
     //! @returns the icon for a file.
     const char* GetFileIcon(std::string_view fileName);
 
+    //! Opens the specified file in HEX-viewer.
+    void OpenHexViewer(const std::string& path);
+
 private:
     using IconHandler = std::function<const char* (std::string_view fileName)>;
 

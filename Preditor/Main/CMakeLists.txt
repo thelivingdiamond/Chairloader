@@ -17,6 +17,8 @@ set(SOURCE_FILES
 
 	UI/FileViewers/FileFormats.cpp
 	UI/FileViewers/FileFormats.h
+	UI/FileViewers/HexViewer.cpp
+	UI/FileViewers/HexViewer.h
 
 	UI/FileBrowser.cpp
 	UI/FileBrowser.h

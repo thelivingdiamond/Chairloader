@@ -1,5 +1,7 @@
+#include <WindowManager/WindowManager.h>
 #include <Manager/IconsMaterialDesign.h>
 #include "UI/FileViewers/FileFormats.h"
+#include "UI/FileViewers/HexViewer.h"
 
 namespace
 {
@@ -84,4 +86,16 @@ const char* Main::FileFormats::GetFileIcon(std::string_view fileName)
     }
 
     return m_DefaultFileIcon;
+}
+
+void Main::FileFormats::OpenHexViewer(const std::string& path)
+{
+    try
+    {
+        WindowManager::Get().Create<HexViewer>(path);
+    }
+    catch (const std::exception& e)
+    {
+        CryError("Failed to open {}:\n{}", path, e.what());
+    }
 }
