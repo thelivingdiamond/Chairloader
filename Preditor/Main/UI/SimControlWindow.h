@@ -20,6 +20,8 @@ protected:
 private:
 	static constexpr float DEFAULT_FPS[] = { 30, 60, 90, 120 };
 	float m_flTimeStepMs = 1000.0f / 60.0f;
+	IKeyAction* m_pPlayPause = nullptr;
+	IKeyAction* m_pSingleStep = nullptr;
 };
 
 } // namespace Main

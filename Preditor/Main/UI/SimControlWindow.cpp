@@ -12,7 +12,8 @@ Main::SimControlWindow::SimControlWindow()
 
 	gEnv->pConsole->ExecuteString("g_pauseOnLoseFocus 0");
 
-	gPreditor->pInput->FindAction("sim_control.play_pause")->AddListener([this](const KeyActionEventArgs& e)
+	m_pPlayPause = gPreditor->pInput->FindAction("sim_control.play_pause");
+	m_pPlayPause->AddListener([this](const KeyActionEventArgs& e)
 		{
 			if (e.isPressed)
 			{
@@ -26,7 +27,8 @@ Main::SimControlWindow::SimControlWindow()
 			}
 		});
 
-	gPreditor->pInput->FindAction("sim_control.single_step")->AddListener([this](const KeyActionEventArgs& e)
+	m_pSingleStep = gPreditor->pInput->FindAction("sim_control.single_step");
+	m_pSingleStep->AddListener([this](const KeyActionEventArgs& e)
 		{
 			if (e.isPressed)
 			{
@@ -47,12 +49,12 @@ void Main::SimControlWindow::ShowMenu()
 
 		if (simMode == Engine::ESimulationMode::Pause)
 		{
-			if (ImGui::MenuItem("Play"))
+			if (ImGui::MenuItem("Play", m_pPlayPause->GetUIShortcut().c_str()))
 				pSC->SetSimulationMode(Engine::ESimulationMode::Play);
 		}
 		else
 		{
-			if (ImGui::MenuItem("Pause"))
+			if (ImGui::MenuItem("Pause", m_pPlayPause->GetUIShortcut().c_str()))
 				pSC->SetSimulationMode(Engine::ESimulationMode::Pause);
 		}
 
@@ -79,7 +81,7 @@ void Main::SimControlWindow::ShowMenu()
 	ImGui::Separator();
 
 	// Single Step
-	if (ImGui::MenuItem("Single Step"))
+	if (ImGui::MenuItem("Single Step", m_pSingleStep->GetUIShortcut().c_str()))
 		pSC->RunSingleStep(m_flTimeStepMs / 1000.0f);
 
 	// Time step input

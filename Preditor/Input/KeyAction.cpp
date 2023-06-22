@@ -1,6 +1,7 @@
 #include "KeyAction.h"
 #include "KeyActionSet.h"
 #include "KeyboardInputSystem.h"
+#include "KeyBind.h"
 
 Input::KeyAction::KeyAction(KeyActionSet* pParent, pugi::xml_node xml)
 {
@@ -84,6 +85,28 @@ void Input::KeyAction::OnKeyUp(unsigned bindId)
 
         m_PressedFrame = NOT_PRESSED_FRAME;
         InvokeListeners(false);
+    }
+}
+
+void Input::KeyAction::ResetShortcut()
+{
+    m_UIShortcut.clear();
+}
+
+void Input::KeyAction::SetShortcut(const KeyBind& bind)
+{
+    m_UIShortcut.clear();
+
+    if (bind.pKey)
+    {
+        if (bind.modifiers & MODIFIER_MASK_CTRL)
+            m_UIShortcut += "Ctrl+";
+        if (bind.modifiers & MODIFIER_MASK_ALT)
+            m_UIShortcut += "Alt+";
+        if (bind.modifiers & MODIFIER_MASK_SHIFT)
+            m_UIShortcut += "Shift+";
+
+        m_UIShortcut += bind.pKey->displayName;
     }
 }
 

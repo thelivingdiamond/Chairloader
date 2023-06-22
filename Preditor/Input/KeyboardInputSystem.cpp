@@ -58,6 +58,10 @@ void Input::KeyboardInputSystem::ReloadKeybinds()
     for (auto& pActionSet : m_ActionSets)
         pActionSet->ResetPressed();
 
+    // Remove all shortcuts
+    for (auto& pActionSet : m_ActionSets)
+        pActionSet->ResetShortcut();
+
     m_KeyBinds.clear();
     m_KeyBinds.resize(m_KeyMap.GetKeyCount());
     m_NextBindId = 1;
@@ -187,6 +191,7 @@ void Input::KeyboardInputSystem::LoadUserKeybinds()
 void Input::KeyboardInputSystem::AddBind(const KeyBind& bind, KeyAction* pAction)
 {
     assert(bind.pKey);
+    pAction->SetShortcut(bind);
     KeyBindList& list = m_KeyBinds[bind.pKey->internalIdx];
     list.bindList.emplace_back(m_NextBindId, bind, pAction);
     m_NextBindId++;

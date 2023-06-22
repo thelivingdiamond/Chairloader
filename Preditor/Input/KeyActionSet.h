@@ -15,6 +15,9 @@ public:
     //! Clears pressed state.
     void ResetPressed();
 
+    //! Removes the shortcut string from all actions.
+    void ResetShortcut();
+
     //! @returns the parent input system.
     KeyboardInputSystem* GetParent() { return m_pParent; }
 

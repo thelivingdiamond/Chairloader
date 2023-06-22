@@ -30,6 +30,12 @@ void Input::KeyActionSet::ResetPressed()
         action.ResetPressed();
 }
 
+void Input::KeyActionSet::ResetShortcut()
+{
+    for (KeyAction& action : m_Actions)
+        action.ResetShortcut();
+}
+
 void Input::KeyActionSet::SetActive(bool state)
 {
     if (m_IsActive != state)

@@ -25,5 +25,28 @@ void Main::PreditorUI::ShowUI()
 
 void Main::PreditorUI::ShowMainMenuBar()
 {
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("File"))
+        {
+            ImGui::Separator();
 
+            if (ImGui::MenuItem("Quit"))
+                gEnv->pSystem->Quit();
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Simulation"))
+        {
+            m_pSimControlWindow->ShowMenu();
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Window"))
+        {
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMainMenuBar();
+    }
 }

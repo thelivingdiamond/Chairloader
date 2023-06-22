@@ -6,6 +6,7 @@ namespace Input
 
 class KeyActionSet;
 class KeyboardInputSystem;
+class KeyBind;
 
 class KeyAction final : public IKeyAction
 {
@@ -20,6 +21,12 @@ public:
 
     //! Called when the bound key is released.
     void OnKeyUp(unsigned bindId);
+
+    //! Removes the shortcut string.
+    void ResetShortcut();
+
+    //! Sets the shortcut.
+    void SetShortcut(const KeyBind& bind);
 
     // IAction
     virtual const std::string& GetName() override { return m_Name; }
