@@ -5,6 +5,7 @@
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include "PreditorUI.h"
 #include "SimControlWindow.h"
+#include "FileBrowser.h"
 
 Main::PreditorUI::PreditorUI()
 {
@@ -14,6 +15,7 @@ Main::PreditorUI::PreditorUI()
     gPreditor->pViewportWindow = m_pViewportWindow.get();
 
     m_pSimControlWindow = WindowManager::Get().Create<SimControlWindow>();
+    m_pFileBrowser = WindowManager::Get().Create<FileBrowser>();
 }
 
 Main::PreditorUI::~PreditorUI()
@@ -24,8 +26,12 @@ void Main::PreditorUI::ShowUI()
 {
     CRY_PROFILE_MARKER("PreditorUI::ShowUI");
     ShowMainMenuBar();
+
     WindowManager::Get().Update();
     m_pChairTools->Update();
+
+    if (m_bImGuiDemo)
+        ImGui::ShowDemoWindow();
 }
 
 void Main::PreditorUI::ShowMainMenuBar()
@@ -50,6 +56,7 @@ void Main::PreditorUI::ShowMainMenuBar()
         if (ImGui::BeginMenu("Window"))
         {
             m_pChairTools->ShowWindowMenu();
+            ImGui::MenuItem("ImGui Demo", nullptr, &m_bImGuiDemo);
             ImGui::EndMenu();
         }
 

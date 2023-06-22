@@ -15,6 +15,8 @@ set(SOURCE_FILES
 	Project/UserProjectSettings.cpp
 	Project/UserProjectSettings.h
 
+	UI/FileBrowser.cpp
+	UI/FileBrowser.h
 	UI/PreditorUI.cpp
 	UI/PreditorUI.h
 	UI/SimControlWindow.cpp
