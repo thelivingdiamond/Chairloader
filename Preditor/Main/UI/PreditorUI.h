@@ -1,5 +1,6 @@
 #pragma once
 
+struct IChairloaderToolsPreditor;
 struct IViewportWindow;
 
 namespace Main
@@ -18,6 +19,7 @@ public:
     void ShowUI();
 
 private:
+    std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<IViewportWindow> m_pViewportWindow;
     std::shared_ptr<SimControlWindow> m_pSimControlWindow;
 
