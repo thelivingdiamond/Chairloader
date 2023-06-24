@@ -23,13 +23,8 @@ private:
 
     std::vector<fs::path> m_History;
     fs::path m_loadProjectPath;
-    void initiateLoadOrCreateProject(const fs::path& path, bool loadExisting);
+    void initiateLoadProject(const fs::path& path);
 
-    std::string m_newProjectPath;
-    std::string m_newProjectName;
-    bool m_createModFolder = true;
-
-    bool m_newProjectOpen = false;
     bool m_ShowError = false;
     std::string m_ErrorText;
 };

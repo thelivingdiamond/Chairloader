@@ -11,6 +11,7 @@
 #include "ImGui/imgui_stdlib.h"
 #include "LoadGameStage.h"
 #include "ProjectHistory.h"
+#include "ProjectCreateStage.h"
 
 ProjectSelectStage::ProjectSelectStage()
 {
@@ -32,12 +33,11 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
             if (ImGui::Button("Back"))
             {
                 m_ShowError = false;
-                m_newProjectOpen = false;
             }
         }
         ImGui::End();
     }
-    else if (!m_newProjectOpen)
+    else
     {
         ImGui::SetNextWindowSize(WINDOW_SIZE, ImGuiCond_Once);
         if (ImGui::Begin(WINDOW_TITLE, bOpen, WINDOW_FLAGS))
@@ -61,7 +61,7 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
                         ImGui::TableNextRow();
                         ImGui::TableNextColumn();
                         if (ImGui::Selectable(project.u8string().c_str()))
-                            initiateLoadOrCreateProject(project, true);
+                            initiateLoadProject(project);
                     }
                 }
 
@@ -73,7 +73,9 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
                 ImGui::GetWindowHeight() - ImGui::GetFrameHeight() - ImGui::GetStyle().ItemSpacing.y * 2);
 
             if (ImGui::Button("New Project"))
-                m_newProjectOpen = true;
+            {
+                SetStageFinished(std::make_unique<ProjectCreateStage>());
+            }
             ImGui::SameLine();
 
             if (ImGui::Button("Open Project"))
@@ -91,7 +93,7 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
             {
                 if (ImGuiFileDialog::Instance()->IsOk())
                 {
-                    initiateLoadOrCreateProject(fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath()), true);
+                    initiateLoadProject(fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath()));
                 }
 
                 ImGuiFileDialog::Instance()->Close();
@@ -100,52 +102,9 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
 
         ImGui::End();
     }
-    else if (m_newProjectOpen)
-    {
-        if (ImGui::Begin("Create New Project", &m_newProjectOpen, ImGuiWindowFlags_AlwaysAutoResize))
-        {
-            ImGui::Text("New Project");
-            ImGui::Separator();
-
-            ImGui::InputText("Project Name", &m_newProjectName);
-
-            ImGui::InputText("Project Path", &m_newProjectPath);
-            ImGui::SameLine();
-            if (ImGui::Button(ICON_MD_MORE_HORIZ "##Browse")) {
-                ImGuiFileDialog::Instance()->OpenModal("ProjectSelectStage::NewProject", "Select Project Directory", nullptr, ".");
-            }
-
-            ImGui::Checkbox("Create Project Folder", &m_createModFolder);
-
-            if (ImGui::Button("Create"))
-            {
-                fs::path projectPath = fs::u8path(m_newProjectPath);
-
-                if (m_createModFolder)
-                    projectPath /= m_newProjectName;
-
-                fs::create_directories(projectPath);
-                initiateLoadOrCreateProject(projectPath, false);
-                m_newProjectOpen = false;
-            }
-            ImGui::SameLine();
-
-            if (ImGui::Button("Cancel##NewProject"))
-                m_newProjectOpen = false;
-        }
-        ImGui::End();
-
-        if (ImGuiFileDialog::Instance()->Display("ProjectSelectStage::NewProject"))
-        {
-            if (ImGuiFileDialog::Instance()->IsOk())
-                m_newProjectPath = ImGuiFileDialog::Instance()->GetCurrentPath();
-
-            ImGuiFileDialog::Instance()->Close();
-        }
-    }
 }
 
-void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool loadExisting)
+void ProjectSelectStage::initiateLoadProject(const fs::path& path)
 {
     if (!path.is_absolute())
         m_loadProjectPath = fs::absolute(path);
@@ -157,18 +116,6 @@ void ProjectSelectStage::initiateLoadOrCreateProject(const fs::path& path, bool 
 
     try
     {
-        if (!loadExisting)
-        {
-            // Create the directory for the project
-            fs::create_directory(m_loadProjectPath);
-
-            // Create project file
-            fs::path filePath = m_loadProjectPath / IProject::PROJECT_FILE_NAME;
-            pugi::xml_document doc;
-            if (!doc.save_file(filePath.c_str()))
-                throw std::runtime_error("Failed to create project file.");
-        }
-
         ProjectHistory::AddToHistory(m_loadProjectPath);
         PreditorApp::Get()->GetPahts().SetProjectDirPath(m_loadProjectPath);
         SetStageFinished(std::make_unique<LoadGameStage>(nullptr));

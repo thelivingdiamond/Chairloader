@@ -35,6 +35,8 @@ set(SOURCE_FILES
 	Manager/IconsMaterialDesign.h
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
+	Manager/ModInfo.cpp
+	Manager/ModInfo.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h

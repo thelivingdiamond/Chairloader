@@ -14,6 +14,8 @@ set(SOURCE_FILES
 	MainStage.h
 	PreditorApp.cpp
 	PreditorApp.h
+	ProjectCreateStage.cpp
+	ProjectCreateStage.h
 	ProjectHistory.cpp
 	ProjectHistory.h
 	ProjectSelectStage.cpp
