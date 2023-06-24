@@ -1,3 +1,4 @@
+#include <fmt/format.h>
 #include <Manager/ModInfo.h>
 
 constexpr char DEPS_NODE_NAME[] = "Dependencies";
@@ -18,6 +19,28 @@ void Manager::ModInfo::LoadXml(pugi::xml_node node)
     for (pugi::xml_node dep : node.child(DEPS_NODE_NAME)) {
         deps.emplace_back(dep.text().get());
     }
+}
+
+void Manager::ModInfo::LoadFile(const fs::path& path)
+{
+    pugi::xml_document doc;
+    pugi::xml_parse_result status = doc.load_file(path.c_str());
+
+    if (!status)
+    {
+        throw std::runtime_error(fmt::format("Failed to parse {}: {}. Offset: {}",
+            XML_FILE_NAME, status.description(), status.offset));
+    }
+
+    pugi::xml_node node = doc.child(XML_NODE_NAME);
+
+    if (!node)
+    {
+        throw std::runtime_error(fmt::format("Failed to parse {}: {} node not found",
+            XML_FILE_NAME, XML_NODE_NAME));
+    }
+
+    LoadXml(node);
 }
 
 void Manager::ModInfo::SaveXml(pugi::xml_node node)

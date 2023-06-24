@@ -11,6 +11,9 @@ struct IPreditorToChair
 	//! @returns the mod interface of Preditor.
 	virtual IChairloaderMod* GetMod() = 0;
 
+	//! @returns path to the Mods directory.
+	virtual const fs::path& GetModsPath() = 0;
+
 	//! Processes an input event before ChairImGui and the engine.
 	//! @param	event	The input event.
 	//! @returns true if the event was processed and doesn't need to be passed to ChairImGui.

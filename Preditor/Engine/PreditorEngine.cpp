@@ -522,6 +522,11 @@ IChairloaderMod* Engine::PreditorEngine::GetMod()
 	return &g_PreditorAsMod;
 }
 
+const fs::path& Engine::PreditorEngine::GetModsPath()
+{
+	return gPreditor->pPaths->GetModsPath();
+}
+
 bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 {
 	// Always pass gamepad input

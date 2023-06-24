@@ -19,4 +19,7 @@ private:
 	std::string m_ProgressText;
 	std::string m_ErrorText;
 	int m_ProgressCount = 0;
+
+	//! Sets up the .user directory.
+	void SetUpUserDir();
 };

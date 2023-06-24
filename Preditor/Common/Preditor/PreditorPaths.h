@@ -14,14 +14,19 @@ public:
 	//! @returns the path to the directory for user-specific project files.
 	const fs::path& GetUserPath() const { return m_UserPath; }
 
+	//! @returns the Chairloader Mods directory path.
+	const fs::path& GetModsPath() const { return m_ModsPath; }
+
 	//! Sets the path to the project directory. Also sets all paths that depend on it.
 	void SetProjectDirPath(const fs::path& path)
 	{
 		m_ProjectDirPath = path;
 		m_UserPath = path / USER_DIR_NAME;
+		m_ModsPath = m_UserPath / "Mods";
 	}
 
 private:
 	fs::path m_ProjectDirPath;
 	fs::path m_UserPath;
+	fs::path m_ModsPath;
 };

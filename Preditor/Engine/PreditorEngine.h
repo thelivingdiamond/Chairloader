@@ -36,6 +36,7 @@ public:
 
 	// IPreditorToChair
 	IChairloaderMod* GetMod() override;
+	const fs::path& GetModsPath() override;
 	bool HandleInputEvent(const SInputEvent& event) override;
 	bool HandleInputEventPreGame(const SInputEvent& event) override;
 

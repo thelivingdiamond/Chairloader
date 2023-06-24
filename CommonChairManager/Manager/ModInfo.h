@@ -24,6 +24,9 @@ struct ModInfo
     //! Loads from an XML node.
     void LoadXml(pugi::xml_node node);
 
+    //! Loads from an XML file.
+    void LoadFile(const fs::path& path);
+
     //! Saves into an XML.
     //! @param  node    Node to save into (not the parent!).
     void SaveXml(pugi::xml_node node);

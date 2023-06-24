@@ -463,9 +463,9 @@ void Chairloader::InitHooks()
 
 void Chairloader::InitPaths()
 {
-	if (false)
+	if (m_pPreditorAPI)
 	{
-		// Preditor code will go here...
+		m_ModsDirPath = m_pPreditorAPI->GetModsPath();
 	}
 	else
 	{
