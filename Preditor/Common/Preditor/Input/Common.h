@@ -55,4 +55,4 @@ constexpr ModifierKeyMask MODIFIER_MASK_SHIFT = 1 << ((int)EModifierId::Shift - 
 //! @}
 
 //! Enable input system debugging.
-constexpr bool PREDITOR_INPUT_DEBUG = true;
+constexpr bool PREDITOR_INPUT_DEBUG = false;

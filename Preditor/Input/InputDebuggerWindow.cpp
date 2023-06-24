@@ -7,6 +7,7 @@ Input::InputDebuggerWindow::InputDebuggerWindow()
 {
     SetTitle("Input Debugger");
     SetPersistentID("InputDebugger");
+    SetVisible(PREDITOR_INPUT_DEBUG);
 }
 
 void Input::InputDebuggerWindow::ShowContents()
