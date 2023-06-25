@@ -11,6 +11,9 @@ struct IProject;
 struct IUserProjectSettings;
 struct ISceneEditorManager;
 
+// Assets
+struct IAssetSystem;
+
 // Engine
 struct IPreditorEngine;
 
@@ -31,6 +34,9 @@ struct SPreditorEnvironment
 	IProject* pProject;
 	IUserProjectSettings* pUserSettings;
 	ISceneEditorManager* pSceneEditorManager;
+
+	// Assets
+	IAssetSystem* pAssetSystem;
 
 	// Engine
 	IPreditorEngine* pEngine;

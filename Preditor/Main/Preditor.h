@@ -3,6 +3,7 @@
 
 struct IChairloaderToolsPreditor;
 struct IPreditorInput;
+struct IAssetSystem;
 
 namespace Main
 {
@@ -29,6 +30,7 @@ public:
 private:
     std::unique_ptr<Project> m_pProject;
     std::unique_ptr<UserProjectSettings> m_pUserSettings;
+    std::unique_ptr<IAssetSystem> m_pAssetSystem;
     std::unique_ptr<IPreditorInput> m_pInput;
     std::unique_ptr<SceneEditorManager> m_pSceneEditorManager;
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;

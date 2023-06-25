@@ -1,3 +1,4 @@
+#include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/Input/IPreditorInput.h>
@@ -28,6 +29,8 @@ Main::Preditor::~Preditor()
 
 void Main::Preditor::InitSystem()
 {
+    m_pAssetSystem = IAssetSystem::CreateInstance();
+    gPreditor->pAssetSystem = m_pAssetSystem.get();
 }
 
 void Main::Preditor::InitGame()
@@ -55,10 +58,12 @@ void Main::Preditor::ShutdownGame()
 
 void Main::Preditor::ShutdownSystem()
 {
+    gPreditor->pAssetSystem = nullptr;
 }
 
 void Main::Preditor::Update()
 {
+    gPreditor->pAssetSystem->Update();
     gPreditor->pInput->Update();
     m_pUserSettings->Update();
 }

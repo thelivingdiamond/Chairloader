@@ -1,5 +1,6 @@
 #include <Prey/CrySystem/Profiling.h>
 #include <WindowManager/WindowManager.h>
+#include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
@@ -48,6 +49,9 @@ void Main::PreditorUI::ShowMainMenuBar()
     {
         if (ImGui::BeginMenu("File"))
         {
+            if (ImGui::MenuItem("Merge Assets"))
+                gPreditor->pAssetSystem->RequestMerging();
+
             ImGui::Separator();
 
             if (ImGui::MenuItem("Quit"))

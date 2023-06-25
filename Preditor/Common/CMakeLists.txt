@@ -12,6 +12,9 @@ set(SOURCE_FILES
 	App/IAppImGui.h
 	App/SingletonAppStage.h
 	
+	Preditor/Assets/Common.h
+	Preditor/Assets/IAssetSystem.h
+
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
 

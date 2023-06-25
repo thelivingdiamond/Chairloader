@@ -28,7 +28,7 @@ public:
     // IViewportWindow
     virtual IViewport* GetCurrentViewport() override { return m_pCurrentViewport; }
     virtual Vec4i GetScreenBounds() override { return m_ScreenBounds; }
-    virtual bool IsFocused() override { return IsFocused(); }
+    virtual bool IsFocused() override { return ManagedWindow::IsFocused(); }
 
 protected:
     void PreUpdate() override;

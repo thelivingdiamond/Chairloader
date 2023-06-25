@@ -118,7 +118,7 @@ void LoadGameStage::UpdateProgressText(const std::string& text)
 
 void LoadGameStage::SetUpUserDir()
 {
-	fs::create_directories(gPreditor->pPaths->GetUserPath());
+	gPreditor->pPaths->CreateUserDirs();
 	
 	const fs::path& modsPath = gPreditor->pPaths->GetModsPath();
 	fs::path configPath = modsPath / "config";

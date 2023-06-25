@@ -1,0 +1,37 @@
+#pragma once
+#include <Preditor/Assets/IAssetSystem.h>
+#include "AssetMetadata.h"
+
+namespace Assets
+{
+
+class AssetImportSystem;
+
+class AssetSystem final : public IAssetSystem
+{
+public:
+    AssetSystem();
+    ~AssetSystem();
+
+    //! Gets the metadata. It may be cached. Returned pointer is only valid
+    //! during merging. Thread-safe.
+    //! @param  relPath Relative path to the asset.
+    //! @returns metadata file for specified file. nullptr if doesn't exist.
+    AssetMetadata* GetMetadata(std::string_view relPath);
+
+    // IAssetSystem
+    virtual void Update() override;
+    virtual void RequestMerging() override;
+
+private:
+    std::unique_ptr<AssetImportSystem> m_pImportSystem;
+
+    std::mutex m_MetadataCacheMutex;
+    std::map<std::string, AssetMetadata, std::less<>> m_MetadataCache;
+
+    bool m_MergeNextFrame = false;
+
+    void RunMerging();
+};
+
+} // namespace Assets
