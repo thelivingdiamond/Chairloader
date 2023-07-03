@@ -1,13 +1,13 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
-	Importers/CopyAssetImporter.cpp
-	Importers/CopyAssetImporter.h
+	Import/AssetImporter.cpp
+	Import/AssetImporter.h
+	Import/AssetImportSystem.cpp
+	Import/AssetImportSystem.h
+	Import/CopyAssetImporter.cpp
+	Import/CopyAssetImporter.h
 
-	AssetImporter.cpp
-	AssetImporter.h
-	AssetImportSystem.cpp
-	AssetImportSystem.h
 	AssetMetadata.cpp
 	AssetMetadata.h
 	AssetsCommon.h

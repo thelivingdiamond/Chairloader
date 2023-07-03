@@ -1,9 +1,8 @@
-#include "AssetImportSystem.h"
+#include "Import/AssetImportSystem.h"
+#include "Import/CopyAssetImporter.h"
 #include "AssetMetadata.h"
 #include "AssetsCommon.h"
 #include "AssetSystem.h"
-
-#include "Importers/CopyAssetImporter.h"
 
 Assets::AssetImportSystem::AssetImportSystem(AssetSystem* pSys)
 {

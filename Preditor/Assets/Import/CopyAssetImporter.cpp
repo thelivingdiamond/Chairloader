@@ -1,4 +1,4 @@
-#include "Importers/CopyAssetImporter.h"
+#include "Import/CopyAssetImporter.h"
 
 void Assets::CopyAssetImporter::Import()
 {

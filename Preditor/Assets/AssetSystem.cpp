@@ -1,5 +1,5 @@
+#include "Import/AssetImportSystem.h"
 #include "AssetSystem.h"
-#include "AssetImportSystem.h"
 
 std::unique_ptr<IAssetSystem> IAssetSystem::CreateInstance()
 {

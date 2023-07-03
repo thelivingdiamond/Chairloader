@@ -1,4 +1,4 @@
-#include "AssetImporter.h"
+#include "Import/AssetImporter.h"
 #include "AssetsCommon.h"
 
 Assets::AssetImporter::AssetImporter()
