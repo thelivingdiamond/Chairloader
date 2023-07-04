@@ -31,6 +31,7 @@ void Main::Preditor::InitSystem()
 {
     m_pAssetSystem = IAssetSystem::CreateInstance();
     gPreditor->pAssetSystem = m_pAssetSystem.get();
+    m_pAssetSystem->InitSystem();
 }
 
 void Main::Preditor::InitGame()

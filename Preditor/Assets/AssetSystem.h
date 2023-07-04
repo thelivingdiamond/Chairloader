@@ -21,6 +21,7 @@ public:
     AssetMetadata* GetMetadata(std::string_view relPath);
 
     // IAssetSystem
+    virtual void InitSystem() override;
     virtual void Update() override;
     virtual void RequestMerging() override;
 
@@ -33,7 +34,7 @@ private:
 
     bool m_MergeNextFrame = false;
 
-    void RunMerging();
+    bool RunMerging();
 };
 
 } // namespace Assets

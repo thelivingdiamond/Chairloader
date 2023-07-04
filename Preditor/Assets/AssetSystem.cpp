@@ -52,6 +52,15 @@ Assets::AssetMetadata* Assets::AssetSystem::GetMetadata(std::string_view relPath
     }
 }
 
+void Assets::AssetSystem::InitSystem()
+{
+    // Merge assets early on
+    if (!RunMerging())
+    {
+        CryFatalError("Start-up merging failed. Preditor cannot continue to load. Check the console for details.");
+    }
+}
+
 void Assets::AssetSystem::Update()
 {
     if (m_MergeNextFrame)
@@ -66,7 +75,7 @@ void Assets::AssetSystem::RequestMerging()
     m_MergeNextFrame = true;
 }
 
-void Assets::AssetSystem::RunMerging()
+bool Assets::AssetSystem::RunMerging()
 {
     CryLog("[AssetSystem] MERGING BEGIN");
 
@@ -82,7 +91,7 @@ void Assets::AssetSystem::RunMerging()
     if (!importResult)
     {
         CryError("[AssetSystem] Import failed. Merging aborted.");
-        return;
+        return false;
     }
 
     CryLog("[AssetSystem] Merging assets...");
@@ -91,8 +100,9 @@ void Assets::AssetSystem::RunMerging()
     if (!mergeResult)
     {
         CryError("[AssetSystem] Merging failed.");
-        return;
+        return false;
     }
 
     CryLog("[AssetSystem] Merging finished successfully.");
+    return true;
 }

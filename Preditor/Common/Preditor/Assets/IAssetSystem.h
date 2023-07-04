@@ -10,6 +10,9 @@ struct IAssetSystem
 
     virtual ~IAssetSystem() {}
 
+    //! InitSystem callback.
+    virtual void InitSystem() = 0;
+
     //! Per-frame update.
     virtual void Update() = 0;
 
