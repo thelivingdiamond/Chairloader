@@ -1,4 +1,5 @@
 #include "Import/AssetImportSystem.h"
+#include "Merging/AssetMergeSystem.h"
 #include "AssetSystem.h"
 
 std::unique_ptr<IAssetSystem> IAssetSystem::CreateInstance()
@@ -9,6 +10,7 @@ std::unique_ptr<IAssetSystem> IAssetSystem::CreateInstance()
 Assets::AssetSystem::AssetSystem()
 {
     m_pImportSystem = std::make_unique<AssetImportSystem>(this);
+    m_pMergeSystem = std::make_unique<AssetMergeSystem>();
 }
 
 Assets::AssetSystem::~AssetSystem()
@@ -67,6 +69,13 @@ void Assets::AssetSystem::RequestMerging()
 void Assets::AssetSystem::RunMerging()
 {
     CryLog("[AssetSystem] MERGING BEGIN");
+
+    // Clear old metadata cache
+    {
+        std::scoped_lock lock(m_MetadataCacheMutex);
+        m_MetadataCache.clear();
+    }
+
     CryLog("[AssetSystem] Importing assets...");
     bool importResult = m_pImportSystem->ImportAssets();
 
@@ -75,4 +84,15 @@ void Assets::AssetSystem::RunMerging()
         CryError("[AssetSystem] Import failed. Merging aborted.");
         return;
     }
+
+    CryLog("[AssetSystem] Merging assets...");
+    bool mergeResult = m_pMergeSystem->MergeAssets();
+
+    if (!mergeResult)
+    {
+        CryError("[AssetSystem] Merging failed.");
+        return;
+    }
+
+    CryLog("[AssetSystem] Merging finished successfully.");
 }

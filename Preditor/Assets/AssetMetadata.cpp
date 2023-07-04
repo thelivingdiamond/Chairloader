@@ -24,6 +24,7 @@ void Assets::AssetMetadata::Init(const std::string& relPath, const fs::path& met
             metadataNode = m_Doc.append_child(METADATA_NODE_NAME);
 
         skipMerge = metadataNode.attribute("skipMerge").as_bool();
+        mergeSourceFile = metadataNode.attribute("mergeSourceFile").as_bool();
         importerName = metadataNode.attribute("importerName").as_string();
     }
 }
@@ -31,6 +32,7 @@ void Assets::AssetMetadata::Init(const std::string& relPath, const fs::path& met
 void Assets::AssetMetadata::Save()
 {
     EnsureAttr("skipMerge").set_value(skipMerge);
+    EnsureAttr("mergeSourceFile").set_value(mergeSourceFile);
     EnsureAttr("importerName").set_value(importerName.c_str());
 
     if (!m_Doc.save_file(metadataPath.c_str()))

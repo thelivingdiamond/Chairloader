@@ -28,6 +28,9 @@ public:
     //! Whether the asset doesn't need to be merged.
     bool skipMerge = false;
 
+    //! If this file is being imported, whether to merge the source, too.
+    bool mergeSourceFile = false;
+
     //! Asset importer name.
     std::string importerName;
 

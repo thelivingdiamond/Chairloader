@@ -6,6 +6,7 @@ namespace Assets
 {
 
 class AssetImportSystem;
+class AssetMergeSystem;
 
 class AssetSystem final : public IAssetSystem
 {
@@ -25,6 +26,7 @@ public:
 
 private:
     std::unique_ptr<AssetImportSystem> m_pImportSystem;
+    std::unique_ptr<AssetMergeSystem> m_pMergeSystem;
 
     std::mutex m_MetadataCacheMutex;
     std::map<std::string, AssetMetadata, std::less<>> m_MetadataCache;
