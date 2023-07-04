@@ -56,18 +56,15 @@ void LoadGameStage::Start()
 			// Load the whole game
 			SetUpUserDir();
 			fs::path projRuntime = gPreditor->pPaths->GetUserPath();
-			params.modDirPath = projRuntime / "GameSDK";
+			params.modDirPath = gPreditor->pPaths->GetMergedAssetsPath();
 			params.userPath = projRuntime / "User";
-			params.chairloaderConfigPath = projRuntime / "Config";
 			params.minimal = false;
-			params.loadGamePaks = false;
+			params.loadGamePaks = false; // false - doesn't use custom GameSDK path
+			params.skipChairloaderPatch = true;
 		}
 
 		// Create directories
 		fs::create_directory(params.userPath);
-
-		if (!params.chairloaderConfigPath.empty())
-			fs::create_directory(params.chairloaderConfigPath);
 
 		IPreditorEngine::Get()->Load(params);
 		

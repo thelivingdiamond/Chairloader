@@ -31,9 +31,6 @@ struct IPreditorEngine
 		//! Path to the user directory to store user-specific files.
 		fs::path userPath;
 
-		//! Path to the directory to store Chairloader configs.
-		fs::path chairloaderConfigPath;
-
 		//! Initialize bare minimum to get ICryPak.
 		bool minimal = false;
 
@@ -43,6 +40,9 @@ struct IPreditorEngine
 		//! Load pak files with original file case.
 		//! WARNING: Will break file opening by name from paks.
 		bool caseSensitivePaks = false;
+
+		//! Skip loading of patch_chariloader.pak.
+		bool skipChairloaderPatch = false;
 	};
 
 	//! @returns the singleton instance.

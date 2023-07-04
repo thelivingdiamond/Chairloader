@@ -3,6 +3,7 @@
 #include <Chairloader/SemanticVersion.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
+#include <Prey/CrySystem/CryPak.h>
 #include <Prey/CryInput/IHardwareMouse.h>
 #include <Prey/CryGame/Game.h>
 #include <Prey/GameDll/GameStartup.h>
@@ -171,6 +172,7 @@ auto g_CSystem_CreateSystemVars_Hook = CSystem::FCreateSystemVars.MakeHook();
 auto g_CSystem_ChangeUserPath_Hook = CSystem::FChangeUserPath.MakeHook();
 auto g_CSystem_LoadConfiguration_Hook = CSystem::FLoadConfiguration.MakeHook();
 auto g_CSystem_OpenBasicPaks_Hook = CSystem::FOpenBasicPaks.MakeHook();
+auto g_CCryPak_OpenPackCommon_Hook = CCryPak::FOpenPackCommon.MakeHook();
 
 void CSystem_CreateSystemVars_Hook(CSystem* const _this)
 {
@@ -252,6 +254,18 @@ void CSystem_OpenBasicPaks_Hook(CSystem* const _this)
 	}
 	bBasicPaksLoaded = true;
 	g_CSystem_OpenBasicPaks_Hook.InvokeOrig(_this);
+}
+
+bool CCryPak_OpenPackCommon_Hook(CCryPak* const _this, const char* szBindRoot, const char* szFullPath, unsigned nPakFlags, IMemoryBlock* pData)
+{
+	if (g_InitParams.skipChairloaderPatch &&
+		!strcmp(szFullPath, "gamesdk\\precache\\patch_chairloader.pak"))
+	{
+		// Skip Chairloader pak.
+		return false;
+	}
+
+	return g_CCryPak_OpenPackCommon_Hook.InvokeOrig(_this, szBindRoot, szFullPath, nPakFlags, pData);
 }
 
 // Returns the last Win32 error, in string format. Returns an empty string if there is no error.
@@ -569,6 +583,7 @@ void Engine::PreditorEngine::ApplyBasePatches()
 	g_CSystem_ChangeUserPath_Hook.SetHookFunc(&CSystem_ChangeUserPath_Hook);
 	g_CSystem_LoadConfiguration_Hook.SetHookFunc(&CSystem_LoadConfiguration_Hook);
 	g_CSystem_OpenBasicPaks_Hook.SetHookFunc(&CSystem_OpenBasicPaks_Hook);
+	g_CCryPak_OpenPackCommon_Hook.SetHookFunc(&CCryPak_OpenPackCommon_Hook);
 }
 
 void Engine::PreditorEngine::ApplyFullPatches()
