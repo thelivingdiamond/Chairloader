@@ -1,3 +1,4 @@
+#include "Merging/Mergers/AssetMerger.h"
 #include "Merging/Sources/ImportMergeSource.h"
 #include "Merging/Sources/ProjectMergeSource.h"
 #include "Merging/AssetMergeExecutor.h"
@@ -22,6 +23,17 @@ void Assets::AssetMergeExecutor::Execute()
     MergeCache newCache = CreateCache();
 
     FillMergeList(oldCache, newCache);
+
+    if (m_FilesToMerge.empty() && m_FilesToRemove.empty())
+    {
+        // Early exit, don't overwrite the cache
+        // (in case something was missed, in which case cache won't match the real state)
+        if constexpr (ASSETS_DEBUG)
+            CryLog("[Merging] Files are up to date, nothing to do");
+
+        return;
+    }
+
     RemoveOldFiles();
     MergeFiles(newCache);
 
@@ -47,6 +59,11 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
     if (fs::exists(importedAssetsPath))
     {
         m_Sources.push_back(std::make_unique<ImportMergeSource>(importedAssetsPath));
+    }
+
+    for (auto& pSource : m_Sources)
+    {
+        m_SourceNameMap.emplace(pSource->GetSourceName(), pSource.get());
     }
 }
 
@@ -210,6 +227,19 @@ void Assets::AssetMergeExecutor::MergeFiles(const MergeCache& cache)
             }
         }
 
-        // TODO 2023-07-04: Run merging
+        // Prepare file list
+        std::vector<AssetMerger::InputFile> mergeInputFiles;
+
+        for (const MergeCache::SourceFile& src : file.sourceFiles)
+        {
+            AssetMerger::InputFile inFile;
+            inFile.pSource = m_SourceNameMap.find(src.source)->second;
+            inFile.fullPath = inFile.pSource->GetRootDirectory() / fs::u8path(relPath);
+            mergeInputFiles.emplace_back(std::move(inFile));
+        }
+
+        // Run merging
+        auto pMerger = m_pSys->CreateMerger(file.merger);
+        pMerger->MergeFiles(relPath, mergeInputFiles);
     }
 }

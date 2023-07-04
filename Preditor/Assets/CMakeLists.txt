@@ -8,6 +8,11 @@ set(SOURCE_FILES
 	Import/CopyAssetImporter.cpp
 	Import/CopyAssetImporter.h
 
+	Merging/Mergers/AssetMerger.cpp
+	Merging/Mergers/AssetMerger.h
+	Merging/Mergers/SymlinkAssetMerger.cpp
+	Merging/Mergers/SymlinkAssetMerger.h
+
 	Merging/Sources/AssetMergeSource.cpp
 	Merging/Sources/AssetMergeSource.h
 	Merging/Sources/DirectoryAssetMergeSource.cpp

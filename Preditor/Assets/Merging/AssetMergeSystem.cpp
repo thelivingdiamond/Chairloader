@@ -1,3 +1,4 @@
+#include "Mergers/SymlinkAssetMerger.h"
 #include "Merging/AssetMergeExecutor.h"
 #include "Merging/AssetMergeSystem.h"
 #include "Merging/MergeCache.h"
@@ -5,6 +6,7 @@
 
 Assets::AssetMergeSystem::AssetMergeSystem()
 {
+    CreateMergerFactory<SymlinkAssetMerger>();
 }
 
 Assets::AssetMergeSystem::~AssetMergeSystem()
@@ -68,6 +70,16 @@ void Assets::AssetMergeSystem::SaveMergeCache(const MergeCache& cache)
 {
     fs::path cachePath = GetCachePath();
     cache.SaveXml(cachePath);
+}
+
+Assets::AssetMergeSystem::AssetMergerPtr Assets::AssetMergeSystem::CreateMerger(const std::string& name)
+{
+    auto it = m_MergerFactories.find(name);
+
+    if (it == m_MergerFactories.end())
+        throw std::runtime_error(fmt::format("Unknown merger '{}'", name));
+
+    return it->second();
 }
 
 fs::path Assets::AssetMergeSystem::GetCachePath()

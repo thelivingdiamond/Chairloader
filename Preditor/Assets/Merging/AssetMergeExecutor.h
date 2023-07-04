@@ -22,6 +22,7 @@ private:
     //! Merge sources. Sorted in mod config order.
     //! Files from last sources override files from first sources.
     std::vector<std::unique_ptr<AssetMergeSource>> m_Sources;
+    std::map<std::string, AssetMergeSource*, std::less<>> m_SourceNameMap;
 
     //! Set of files that need to be merged.
     std::set<std::string> m_FilesToMerge;
