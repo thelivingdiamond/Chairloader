@@ -1,4 +1,5 @@
 #include "Merging/Mergers/AssetMerger.h"
+#include "Merging/Sources/ChairloaderMergeSource.h"
 #include "Merging/Sources/ImportMergeSource.h"
 #include "Merging/Sources/ProjectMergeSource.h"
 #include "Merging/AssetMergeExecutor.h"
@@ -45,6 +46,8 @@ void Assets::AssetMergeExecutor::Execute()
 
 void Assets::AssetMergeExecutor::CreateMergeSources()
 {
+    m_Sources.push_back(std::make_unique<ChairloaderMergeSource>());
+
     // TODO 2023-07-04: Create sources for mods
     
     // Project assets

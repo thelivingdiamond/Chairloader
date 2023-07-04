@@ -39,7 +39,7 @@ bool Assets::AssetMergeSystem::MergeAssets()
 std::string_view Assets::AssetMergeSystem::GetMergerNameForFile(const std::string& fileRelPath)
 {
     if (EndsWith(fileRelPath, ".xml"))
-        return "xml";
+        return "symlink"; // "xml";
 
     // By default, symlink the last file
     return "symlink";

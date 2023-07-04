@@ -15,6 +15,8 @@ set(SOURCE_FILES
 
 	Merging/Sources/AssetMergeSource.cpp
 	Merging/Sources/AssetMergeSource.h
+	Merging/Sources/ChairloaderMergeSource.cpp
+	Merging/Sources/ChairloaderMergeSource.h
 	Merging/Sources/DirectoryAssetMergeSource.cpp
 	Merging/Sources/DirectoryAssetMergeSource.h
 	Merging/Sources/ImportMergeSource.cpp

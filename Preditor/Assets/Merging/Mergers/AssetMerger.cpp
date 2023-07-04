@@ -29,5 +29,8 @@ void Assets::AssetMerger::MergeFiles(const std::string& relPath, const std::vect
             CryWarning("[AssetMerger] Failed to remove output file {}: {}", relPath, ec.message());
     }
 
+    // Create parent directory
+    fs::create_directories(m_OutputFilePath.parent_path());
+
     DoMerge(inputFiles);
 }
