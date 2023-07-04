@@ -1,7 +1,10 @@
 #ifndef CHAIRLOADER_MERGINGPOLICY_H
 #define CHAIRLOADER_MERGINGPOLICY_H
+#include <boost/algorithm/string.hpp>
 #include <pugixml.hpp>
 #include <filesystem>
+
+constexpr char MERGING_LIBRARY_FILE_NAME[] = "MergingLibrary.xml";
 
 struct MergingPolicy{
     //! tags used to determine when and which operations to perform
@@ -37,14 +40,12 @@ private:
 public:
     bool match_all_attributes = false;
     fs::path nodePath;
-    std::string mod_name;
     MergingPolicy() = default;
     MergingPolicy& operator=(const MergingPolicy& other){
         file_path = other.file_path;
         policy = other.policy;
         attributeMatches = other.attributeMatches;
         nodeDoc = other.nodeDoc;
-        mod_name = other.mod_name;
         nodeStructure = other.nodeStructure;
         match_all_attributes = other.match_all_attributes;
         return *this;
@@ -54,7 +55,6 @@ public:
         policy = other.policy;
         attributeMatches = other.attributeMatches;
         nodeDoc = other.nodeDoc;
-        mod_name = other.mod_name;
         nodeStructure = other.nodeStructure;
         match_all_attributes = other.match_all_attributes;
     }
@@ -62,8 +62,7 @@ public:
     //! \param node the MergingPolicy pugi::xml_node
     //! \param path the file path of the MergingPolicy
     //! \param modName the name of the mod that the MergingPolicy belongs to
-    MergingPolicy(pugi::xml_node node, fs::path path, std::string modName) {
-        mod_name = std::move(modName);
+    MergingPolicy(pugi::xml_node node, fs::path path) {
         file_path = std::move(path);
         nodeDoc = std::make_shared<pugi::xml_document>();
         if(node.name() == std::string("mergingPolicy")){
@@ -123,6 +122,58 @@ public:
             tags = (node_tags)(tags | override_policy);
         }
         return tags;
+    }
+
+    static MergingPolicy FindMergingPolicy(const pugi::xml_document& mergingPolicyDoc, const fs::path& relPath, const fs::path& preyFiles)
+    {
+        pugi::xml_node root = mergingPolicyDoc.child("root");
+        MergingPolicy policy = MergingPolicy(root.child("mergingPolicy"), relPath);
+        pugi::xml_node currentNode = root;
+
+        fs::path currentPath;
+
+        for (auto& directory : relPath)
+        {
+            // TODO 2023-07-04: Is this check really needed? (see issue #64)
+            if (!fs::exists(preyFiles / currentPath / directory))
+                break;
+
+            currentPath /= directory;
+            currentNode = NoCaseChild(currentNode, directory.u8string());
+
+            if (!currentNode)
+            {
+                continue;
+            }
+            else
+            {
+                if (currentNode.child("mergingPolicy"))
+                {
+                    policy = MergingPolicy(currentNode.child("mergingPolicy"), relPath);
+                }
+            }
+        }
+
+        if (currentPath != relPath)
+        {
+            // File is not in the library, so it must be novel
+            policy.policy = MergingPolicy::identification_policy::unknown;
+            policy.attributeMatches.clear();
+            policy.nodeStructure = pugi::xml_node();
+        }
+
+        return policy;
+    }
+
+private:
+    static pugi::xml_node NoCaseChild(pugi::xml_node& node, std::string name) {
+        for (auto& child : node.children())
+        {
+            if (boost::iequals(child.name(), name))
+                return child;
+        }
+
+        return {};
     }
 };
 

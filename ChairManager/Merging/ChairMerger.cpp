@@ -7,7 +7,7 @@
 #include "ChairManager.h"
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
-#include "XMLMerger2.h"
+#include <Manager/XMLMerger2.h>
 #include "ZipUtils.h"
 #include "HashUtils.h"
 #include <LuaUtils.h>
@@ -282,7 +282,7 @@ ChairMerger::ChairMerger() {
     m_MergeThreadPool = std::make_unique<ThreadPool>(numThreads);
     m_MergingPolicyDoc = std::make_unique<pugi::xml_document>();
 
-    auto result = m_MergingPolicyDoc->load_file("MergingLibrary.xml");
+    auto result = m_MergingPolicyDoc->load_file(MERGING_LIBRARY_FILE_NAME);
     if(!result) {
         ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not load MergingLibrary.xml");
     }
@@ -396,42 +396,12 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
 
 }
 
-pugi::xml_node noCaseChild(pugi::xml_node& node, std::string name) {
-    for(auto &child : node.children()){
-        if(boost::iequals(child.name(), name)){
-            return child;
-        }
-    }
-    return {};
-}
-
 MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path &file, std::string modName) {
-    MergingPolicy policy;
-    auto root = m_MergingPolicyDoc->child("root");
-    policy = MergingPolicy(root.child("mergingPolicy"), file, modName);
-    auto currentNode = root;
-    fs::path currentPath;
-    for (auto &directory : file){
-        if(!fs::exists(m_PreyFilePath / currentPath / directory)){
-            break;
-        }
-        currentPath /= directory;
-        currentNode = noCaseChild(currentNode, directory.u8string());
-        if(!currentNode){
-            continue;
-        } else {
-            if(currentNode.child("mergingPolicy")){
-                policy = MergingPolicy(currentNode.child("mergingPolicy"), file, modName);
-            }
-        }
-    }
-    if  (currentPath != file){
-        // File is not in the library, so it must be novel
+    MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilePath);
+
+    if (policy.policy == MergingPolicy::identification_policy::unknown)
         ChairManager::Get().log(severityLevel::error, "XMLMerger: File %s not found in merging library", file.u8string());
-        policy.policy = MergingPolicy::identification_policy::unknown;
-        policy.attributeMatches.clear();
-        policy.nodeStructure = pugi::xml_node();
-    }
+
     return policy;
 }
 

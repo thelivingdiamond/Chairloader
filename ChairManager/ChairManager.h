@@ -14,7 +14,6 @@
 #include <chrono>
 #include <windows.h>
 #include "BinaryVersionCheck.h"
-#include "Merging/XMLMerger2.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
 #include "LogEntry.h"

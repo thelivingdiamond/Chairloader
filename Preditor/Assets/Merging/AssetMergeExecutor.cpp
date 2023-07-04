@@ -134,7 +134,15 @@ void Assets::AssetMergeExecutor::FillMergeList(const MergeCache& oldCache, const
             // Existing file
             const MergeCache::OutFile& oldFile = oldIt->second;
 
-            if (newFile.sourceFiles.size() != oldFile.sourceFiles.size())
+            if (!newFile.SelfEqualsTo(oldFile))
+            {
+                // Merger options changed
+                if constexpr (ASSETS_DEBUG)
+                    CryLog("[Merging] Merger changed: {}", relPath);
+
+                needMerging = true;
+            }
+            else if (newFile.sourceFiles.size() != oldFile.sourceFiles.size())
             {
                 // Source files added/removed
                 if constexpr (ASSETS_DEBUG)

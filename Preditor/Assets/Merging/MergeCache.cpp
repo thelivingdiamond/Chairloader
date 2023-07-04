@@ -21,7 +21,7 @@ void Assets::MergeCache::LoadXml(const fs::path& xmlPath)
     {
         std::string path = fileNode.attribute("path").as_string();
         OutFile file;
-        file.merger = fileNode.attribute("marger").as_string();
+        file.merger = fileNode.attribute("merger").as_string();
 
         for (pugi::xml_node sourceFileNode : fileNode.children("SourceFile"))
         {

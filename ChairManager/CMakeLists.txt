@@ -33,12 +33,8 @@ set(SOURCE_FILES
         UpdateURL.h 
         LogEntry.h 
         Mod.h
-        Merging/MergingPolicy.h
-        Merging/AttributeWildcard.h
         Merging/ChairMerger.cpp
         Merging/ChairMerger.h
-        Merging/XMLMerger2.cpp
-        Merging/XMLMerger2.h
         Merging/ChairMergerTest.cpp
         Merging/XMLMerger2Test.cpp
         Merging/FileChecksum.h

@@ -12,6 +12,8 @@ set(SOURCE_FILES
 	Merging/Mergers/AssetMerger.h
 	Merging/Mergers/SymlinkAssetMerger.cpp
 	Merging/Mergers/SymlinkAssetMerger.h
+	Merging/Mergers/XmlAssetMerger.cpp
+	Merging/Mergers/XmlAssetMerger.h
 
 	Merging/Sources/AssetMergeSource.cpp
 	Merging/Sources/AssetMergeSource.h

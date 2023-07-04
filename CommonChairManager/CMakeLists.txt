@@ -30,11 +30,13 @@ set(SOURCE_FILES
 	ImNodes/imnodes_internal.h
 
 	# ChairManager
+	Manager/AttributeWildcard.h
 	Manager/BinDiff.cpp
 	Manager/BinDiff.h
 	Manager/IconsMaterialDesign.h
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
+	Manager/MergingPolicy.h
 	Manager/ModInfo.cpp
 	Manager/ModInfo.h
 	Manager/pch.h
@@ -42,7 +44,11 @@ set(SOURCE_FILES
 	Manager/SHA256.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
-	Manager/ThreadPool.h Manager/PugiUtils.h)
+	Manager/ThreadPool.h
+	Manager/PugiUtils.h
+	Manager/XMLMerger2.cpp
+	Manager/XMLMerger2.h
+)
 
 add_library(CommonChairManager STATIC
 	${SOURCE_FILES}

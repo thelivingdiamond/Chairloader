@@ -41,6 +41,11 @@ public:
 
         //! List of source files.
         std::vector<SourceFile> sourceFiles;
+
+        bool SelfEqualsTo(const OutFile& other) const
+        {
+            return merger == other.merger;
+        }
     };
     
     // TODO 2023-07-04: Project mod config

@@ -1,5 +1,7 @@
 #pragma once
 
+class MergingPolicy;
+
 namespace Assets
 {
 
@@ -34,36 +36,40 @@ public:
     //! Throws if merger is not found.
     AssetMergerPtr CreateMerger(const std::string& name);
 
+    //! Finds the merging policy for specified file.
+    MergingPolicy FindMergingPolicy(const std::string& relPath) const;
+
 private:
     static constexpr char CACHE_FILE_NAME[] = "MergeCache.xml";
 
     using MergerFactory = std::function<AssetMergerPtr()>;
 
+    pugi::xml_document m_MergingPolicyDoc;
     std::map<std::string, MergerFactory> m_MergerFactories;
 
     //! @returns the merge cache path.
     fs::path GetCachePath();
 
-    template <typename T>
-    void CreateMergerFactory(const std::string& name)
+    template <typename T, typename ...TArgs>
+    void CreateNamedMergerFactory(const std::string& name, TArgs... args)
     {
         auto it = m_MergerFactories.find(name);
 
         if (it != m_MergerFactories.end())
             CryFatalError("AssetMergeSystem: Duplicate factory '{}'", name);
 
-        auto f = []() -> AssetMergerPtr
+        auto f = [=]() -> AssetMergerPtr
         {
-            return std::make_unique<T>();
+            return std::make_unique<T>(args...);
         };
 
         m_MergerFactories.insert({ name, f });
     }
 
-    template <typename T>
-    void CreateMergerFactory()
+    template <typename T, typename ...TArgs>
+    void CreateMergerFactory(TArgs... args)
     {
-        CreateMergerFactory<T>(T::NAME);
+        CreateNamedMergerFactory<T>(T::NAME, args...);
     }
 };
 
