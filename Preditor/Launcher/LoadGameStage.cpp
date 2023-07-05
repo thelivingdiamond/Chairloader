@@ -2,6 +2,7 @@
 #include <ImGui/imgui.h>
 #include <Manager/GamePath.h>
 #include <Manager/ModInfo.h>
+#include <Manager/ModListConfig.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include "LoadGameStage.h"
 #include "PreditorApp.h"
@@ -124,6 +125,10 @@ void LoadGameStage::SetUpUserDir()
 
 	fs::path chairConfig = configPath / "Chairloader.xml";
 
+	// Load mod info
+	Manager::ModInfo modInfo;
+	modInfo.LoadFile(gPreditor->pPaths->GetProjectDirPath() / Manager::ModInfo::XML_FILE_NAME);
+
 	if (!fs::exists(chairConfig))
 	{
 		// Create Chairloader config.
@@ -132,10 +137,6 @@ void LoadGameStage::SetUpUserDir()
 			gPreditor->pConfig->GetPreditorRoot() / "chairloader_default.xml",
 			chairConfig,
 			fs::copy_options::overwrite_existing);
-
-		// Load mod info
-		Manager::ModInfo modInfo;
-		modInfo.LoadFile(gPreditor->pPaths->GetProjectDirPath() / Manager::ModInfo::XML_FILE_NAME);
 
 		// Open config
 		pugi::xml_document chairDoc;
@@ -151,47 +152,71 @@ void LoadGameStage::SetUpUserDir()
 			if (!node)
 				throw std::runtime_error("Node Chairloader/ModList not found");
 
-			pugi::xml_node modNode = node.append_child(modInfo.modName.c_str());
-			modNode.append_attribute("type").set_value("xmlnode");
-
-			//modName
-			node = modNode.append_child("modName");
-			node.append_attribute("type").set_value("string");
-			node.text().set(modInfo.modName.c_str());
-			//loadOrder
-			node = modNode.append_child("loadOrder");
-			node.append_attribute("type").set_value("int");
-			node.text().set(0);
-			//enabled
-			node = modNode.append_child("enabled");
-			node.append_attribute("type").set_value("bool");
-			node.text().set(true);
-			//deployed
-			node = modNode.append_child("deployed");
-			node.append_attribute("type").set_value("bool");
-			node.text().set(false);
-			//Version
-			node = modNode.append_child("version");
-			node.append_attribute("type").set_value("string");
-			node.text().set(modInfo.version.c_str());
-
-			//dllName
-			if (!modInfo.dllName.empty())
-			{
-				fs::path dllPath = gPreditor->pPaths->GetProjectDirPath() / fs::u8path(modInfo.dllName);
-				node = modNode.append_child("dllName");
-				node.append_attribute("type").set_value("string");
-				node.text().set(dllPath.u8string().c_str());
-			}
-
-			//hasXML
-			node = modNode.append_child("hasXML");
-			node.append_attribute("type").set_value("string");
-			node.text().set(modInfo.hasXML);
+			Manager::ModListConfig modList;
+			modList.AddMod(modInfo, true).fullPath = gPreditor->pPaths->GetProjectDirPath();
+			modList.SaveXml(node);
 		}
 
 		// Save config
 		if (!chairDoc.save_file(chairConfig.c_str()))
 			throw std::runtime_error("Failed to save Chairloader config");
+	}
+	else
+	{
+		// Ensure that this project is enabled and path is correct
+		pugi::xml_document chairDoc;
+		pugi::xml_parse_result result = chairDoc.load_file(chairConfig.c_str());
+
+		if (!result)
+			throw std::runtime_error(fmt::format("Failed to parse Chairloader config: {}", result.description()));
+
+		pugi::xml_node node = chairDoc.child("Chairloader").child("ModList");
+
+		if (!node)
+			throw std::runtime_error("Node Chairloader/ModList not found");
+
+		Manager::ModListConfig modList;
+		modList.LoadXml(node);
+
+		bool needSave = false;
+		bool foundProject = false;
+
+		for (auto& i : modList.mods)
+		{
+			if (i.modName == modInfo.modName)
+			{
+				const fs::path& projPath = gPreditor->pPaths->GetProjectDirPath();
+
+				if (i.fullPath != projPath)
+				{
+					i.fullPath = projPath;
+					needSave = true;
+				}
+
+				if (!i.enabled)
+				{
+					i.enabled = true;
+					needSave = true;
+				}
+
+				foundProject = true;
+				break;
+			}
+		}
+
+		if (!foundProject)
+		{
+			modList.AddMod(modInfo, true).fullPath = gPreditor->pPaths->GetProjectDirPath();
+			needSave = true;
+		}
+
+		if (needSave)
+		{
+			modList.SaveXml(node);
+
+			// Save config
+			if (!chairDoc.save_file(chairConfig.c_str()))
+				throw std::runtime_error("Failed to save Chairloader config");
+		}
 	}
 }
