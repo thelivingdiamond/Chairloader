@@ -42,6 +42,7 @@ void Manager::ModListConfig::LoadXml(pugi::xml_node cfgNode)
         item.modName = node.child("modName").text().as_string();
         item.version = node.child("version").text().as_string();
         item.dllName = node.child("dllName").text().as_string();
+        item.fullPath = fs::u8path(node.child("fullPath").text().as_string());
         item.hasXML = node.child("hasXML").text().as_bool();
         item.enabled = node.child("enabled").text().as_bool();
         item.deployed = node.child("deployed").text().as_bool();
@@ -81,6 +82,13 @@ void Manager::ModListConfig::SaveXml(pugi::xml_node cfgNode) const
             val = node.append_child("dllName");
             val.append_attribute("type").set_value("string");
             val.text().set(item.dllName.c_str());
+        }
+
+        if (!item.fullPath.empty())
+        {
+            val = node.append_child("fullPath");
+            val.append_attribute("type").set_value("string");
+            val.text().set(item.fullPath.u8string().c_str());
         }
 
         val = node.append_child("hasXML");

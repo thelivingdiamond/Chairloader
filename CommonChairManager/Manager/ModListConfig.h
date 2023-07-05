@@ -3,7 +3,7 @@
 namespace Manager
 {
 
-class ModInfo;
+struct ModInfo;
 
 class ModListConfig
 {
@@ -13,6 +13,7 @@ public:
         std::string modName;
         std::string version;
         std::string dllName;
+        fs::path fullPath;
         bool hasXML = false;
         bool enabled = false;
         bool deployed = false;

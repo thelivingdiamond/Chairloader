@@ -46,7 +46,8 @@ void Assets::ModListTab::ApplyChanges()
 
         for (const ListItem& item : m_Items)
         {
-            cfg.AddMod(item.info, item.isEnabled);
+            auto& cfgMod = cfg.AddMod(item.info, item.isEnabled);
+            cfgMod.fullPath = item.fullPath;
         }
 
         // Save config
@@ -146,6 +147,10 @@ void Assets::ModListTab::LoadModConfig()
             {
                 item.loadOrder = i;
                 item.isEnabled = cfg.mods[i].enabled;
+
+                // This project always has the path fixed
+                if (!item.isThisProject)
+                    item.fullPath = cfg.mods[i].fullPath;
             }
         }
     }

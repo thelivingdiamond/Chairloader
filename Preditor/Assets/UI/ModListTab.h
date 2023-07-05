@@ -26,6 +26,7 @@ private:
     struct ListItem
     {
         Manager::ModInfo info;
+        fs::path fullPath;
         bool isNameValid = false;
         bool isThisProject = false;
         bool isEnabled = false;
