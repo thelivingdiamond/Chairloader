@@ -59,6 +59,12 @@ public:
 	//! Whether the window is focused.
 	bool IsFocused() const { return m_bVisible && m_bFocused; }
 
+	//! Shows a menu item that toggles the window visibility.
+	//! @param	label		Item label.
+	//! @param	shortcut	Keyboard shortcut.
+	//! @returns true if the state has changed.
+	bool ShowToggleMenuItem(const char* label, const char* shortcut = nullptr);
+
 	// IManagedWindow
 	bool UpdateWindow() final override;
 

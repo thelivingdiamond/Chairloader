@@ -39,6 +39,8 @@ set(SOURCE_FILES
 	Manager/MergingPolicy.h
 	Manager/ModInfo.cpp
 	Manager/ModInfo.h
+	Manager/ModListConfig.cpp
+	Manager/ModListConfig.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h

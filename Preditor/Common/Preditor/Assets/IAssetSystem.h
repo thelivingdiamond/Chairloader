@@ -1,6 +1,8 @@
 #pragma once
 #include <Preditor/Assets/Common.h>
 
+class ManagedWindow;
+
 //! Handles asset import (file conversion from normal formats to engine formats)
 //! and asset merging (like ChairManager).
 struct IAssetSystem
@@ -18,4 +20,7 @@ struct IAssetSystem
 
     //! Runs merging next frame.
     virtual void RequestMerging() = 0;
+
+    //! Shows the Main Menu Bar -> File menu.
+    virtual void ShowMainMenu() = 0;
 };

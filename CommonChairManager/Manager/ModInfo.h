@@ -35,4 +35,4 @@ struct ModInfo
     static bool ValidateModName(std::string_view name, std::string* errorText = nullptr);
 };
 
-} // namespace ChairManager
+} // namespace Manager

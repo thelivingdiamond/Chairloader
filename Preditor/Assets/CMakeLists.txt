@@ -26,6 +26,11 @@ set(SOURCE_FILES
 	Merging/Sources/ProjectMergeSource.cpp
 	Merging/Sources/ProjectMergeSource.h
 
+	UI/ModListTab.cpp
+	UI/ModListTab.h
+	UI/ModManagerWindow.cpp
+	UI/ModManagerWindow.h
+
 	Merging/AssetMergeExecutor.cpp
 	Merging/AssetMergeExecutor.h
 	Merging/AssetMergeSystem.cpp

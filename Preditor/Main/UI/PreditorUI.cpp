@@ -49,9 +49,7 @@ void Main::PreditorUI::ShowMainMenuBar()
     {
         if (ImGui::BeginMenu("File"))
         {
-            if (ImGui::MenuItem("Merge Assets"))
-                gPreditor->pAssetSystem->RequestMerging();
-
+            gPreditor->pAssetSystem->ShowMainMenu();
             ImGui::Separator();
 
             if (ImGui::MenuItem("Quit"))

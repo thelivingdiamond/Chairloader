@@ -48,6 +48,21 @@ void ManagedWindow::CloseWindow()
 	m_bOpen = false;
 }
 
+bool ManagedWindow::ShowToggleMenuItem(const char* label, const char* shortcut)
+{
+	bool isVisible = IsVisible();
+	
+	if (ImGui::MenuItem(label, shortcut, &isVisible))
+	{
+		SetVisible(isVisible);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool ManagedWindow::UpdateWindow()
 {
 	if (m_bOpen)
