@@ -15,22 +15,25 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	ModuleInfo info;
 	info.modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "modName"));
 	info.loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(xmlNode, "loadOrder"));
-	info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
+
+	auto fullPathParam = gCL->conf->getNodeConfigValue(xmlNode, "fullPath");
+
+	if (boost::get<std::string>(&fullPathParam))
+	{
+		// Preditor's main mod is outside of Mods dir.
+		info.modDirPath = fs::u8path(boost::get<std::string>(fullPathParam));
+	}
+	else
+	{
+		info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
+	}
 
 	fs::path dllName = fs::u8path(boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "dllName")));
 
 	if (dllName.is_relative())
-	{
 		info.sourceDllPath = info.modDirPath / dllName;
-	}
 	else
-	{
-		// Preditor's main mod is outside of Mods dir.
-		if (!gChair->GetPreditorAPI())
-			CryFatalError("Mod {} has an absolute DLL path. This is not allowed.", info.modName);
-
 		info.sourceDllPath = dllName;
-	}
 	
 
 	gCL->conf->loadModConfigFile(info.modName);
