@@ -23,6 +23,8 @@ set(SOURCE_FILES
 	Merging/Sources/DirectoryAssetMergeSource.h
 	Merging/Sources/ImportMergeSource.cpp
 	Merging/Sources/ImportMergeSource.h
+	Merging/Sources/ModMergeSource.cpp
+	Merging/Sources/ModMergeSource.h
 	Merging/Sources/ProjectMergeSource.cpp
 	Merging/Sources/ProjectMergeSource.h
 

@@ -1,6 +1,8 @@
+#include <Manager/ModListConfig.h>
 #include "Merging/Mergers/AssetMerger.h"
 #include "Merging/Sources/ChairloaderMergeSource.h"
 #include "Merging/Sources/ImportMergeSource.h"
+#include "Merging/Sources/ModMergeSource.h"
 #include "Merging/Sources/ProjectMergeSource.h"
 #include "Merging/AssetMergeExecutor.h"
 #include "Merging/AssetMergeSystem.h"
@@ -48,22 +50,56 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
 {
     m_Sources.push_back(std::make_unique<ChairloaderMergeSource>());
 
-    // TODO 2023-07-04: Create sources for mods
-    
-    // Project assets
-    const fs::path& assetsPath = gPreditor->pPaths->GetAssetPath();
-    if (fs::exists(assetsPath))
+    // Create sources for mods
+    fs::path chairConfigPath = gPreditor->pPaths->GetModsPath() / "config/Chairloader.xml";
+    pugi::xml_document chairConfig;
+
+    if (!chairConfig.load_file(chairConfigPath.c_str()))
+        throw std::runtime_error("Failed to load Chairloader config");
+
+    Manager::ModListConfig modList;
+    modList.LoadXml(chairConfig.first_child().child("ModList"));
+
+    for (const auto& mod : modList.mods)
     {
-        m_Sources.push_back(std::make_unique<ProjectMergeSource>(assetsPath));
+        if (!mod.enabled)
+            continue;
+
+        bool isProject = !mod.fullPath.empty() && fs::equivalent(mod.fullPath, gPreditor->pPaths->GetProjectDirPath());
+
+        if (isProject)
+        {
+            // Project assets
+            const fs::path& assetsPath = gPreditor->pPaths->GetAssetPath();
+            if (fs::exists(assetsPath))
+            {
+                m_Sources.push_back(std::make_unique<ProjectMergeSource>(assetsPath));
+            }
+
+            // Imported project assets
+            const fs::path& importedAssetsPath = gPreditor->pPaths->GetImportedAssetsPath();
+            if (fs::exists(importedAssetsPath))
+            {
+                m_Sources.push_back(std::make_unique<ImportMergeSource>(importedAssetsPath));
+            }
+        }
+        else
+        {
+            fs::path modDirPath = mod.fullPath;
+
+            if (modDirPath.empty())
+                modDirPath = gPreditor->pPaths->GetModsPath() / fs::u8path(mod.modName);
+
+            fs::path modDataPath = modDirPath / "Data";
+
+            if (fs::exists(modDataPath))
+            {
+                m_Sources.push_back(std::make_unique<ModMergeSource>(mod.modName, modDataPath));
+            }
+        }
     }
 
-    // Imported project assets
-    const fs::path& importedAssetsPath = gPreditor->pPaths->GetImportedAssetsPath();
-    if (fs::exists(importedAssetsPath))
-    {
-        m_Sources.push_back(std::make_unique<ImportMergeSource>(importedAssetsPath));
-    }
-
+    // Map names to objects
     for (auto& pSource : m_Sources)
     {
         m_SourceNameMap.emplace(pSource->GetSourceName(), pSource.get());
