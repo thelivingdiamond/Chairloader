@@ -21,6 +21,9 @@ struct IAssetSystem
     //! Runs merging next frame.
     virtual void RequestMerging() = 0;
 
+    //! Invalidates caches.
+    virtual void InvalidateCache(bool import, bool merge) = 0;
+
     //! Shows the Main Menu Bar -> File menu.
     virtual void ShowMainMenu() = 0;
 };

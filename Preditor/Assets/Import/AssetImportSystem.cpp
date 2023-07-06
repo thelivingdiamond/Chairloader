@@ -16,10 +16,26 @@ Assets::AssetImportSystem::~AssetImportSystem()
 
 void Assets::AssetImportSystem::InvalidateCache()
 {
-    fs::path cachePath = gPreditor->pPaths->GetUserPath() / CACHE_FILE_NAME;
+    fs::path cacheFilePath = gPreditor->pPaths->GetUserPath() / CACHE_FILE_NAME;
 
-    if (fs::exists(cachePath))
-        fs::remove(cachePath);
+    if (fs::exists(cacheFilePath))
+        fs::remove(cacheFilePath);
+
+    const fs::path& impPath = gPreditor->pPaths->GetImportedAssetsPath();
+    
+    // Safety check
+    if (!impPath.is_absolute())
+        throw std::logic_error("GetImportedAssetsPath is not absolute");
+
+    // Remove import contents
+    for (const fs::directory_entry& i : fs::directory_iterator(impPath))
+    {
+        std::error_code ec;
+        fs::remove_all(i.path(), ec);
+
+        if (ec)
+            CryError("[Import] Failed to remove {}: {}", i.path().u8string(), ec.message());
+    }
 }
 
 bool Assets::AssetImportSystem::ImportAssets()

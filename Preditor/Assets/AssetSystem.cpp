@@ -1,6 +1,7 @@
 #include <WindowManager/WindowManager.h>
 #include "Import/AssetImportSystem.h"
 #include "Merging/AssetMergeSystem.h"
+#include "UI/InvalidateWindow.h"
 #include "UI/ModManagerWindow.h"
 #include "AssetSystem.h"
 
@@ -14,6 +15,7 @@ Assets::AssetSystem::AssetSystem()
     m_pImportSystem = std::make_unique<AssetImportSystem>(this);
     m_pMergeSystem = std::make_unique<AssetMergeSystem>();
     m_pModManagerWindow = WindowManager::Get().Create<ModManagerWindow>();
+    m_pInvalidateWindow = WindowManager::Get().Create<InvalidateWindow>();
 }
 
 Assets::AssetSystem::~AssetSystem()
@@ -78,15 +80,22 @@ void Assets::AssetSystem::RequestMerging()
     m_MergeNextFrame = true;
 }
 
+void Assets::AssetSystem::InvalidateCache(bool import, bool merge)
+{
+    if (import)
+        m_pImportSystem->InvalidateCache();
+
+    if (merge)
+        m_pMergeSystem->InvalidateCache();
+}
+
 void Assets::AssetSystem::ShowMainMenu()
 {
     if (ImGui::MenuItem("Merge Assets"))
         RequestMerging();
 
     m_pModManagerWindow->ShowToggleMenuItem("Mod Manager...");
-
-    if (ImGui::MenuItem("Invalidate Caches..."))
-        CryError("Not Implemented"); // TODO 2023-07-05
+    m_pInvalidateWindow->ShowToggleMenuItem("Invalidate Caches...");
 }
 
 bool Assets::AssetSystem::RunMerging()

@@ -28,6 +28,8 @@ set(SOURCE_FILES
 	Merging/Sources/ProjectMergeSource.cpp
 	Merging/Sources/ProjectMergeSource.h
 
+	UI/InvalidateWindow.cpp
+	UI/InvalidateWindow.h
 	UI/ModConfigTab.cpp
 	UI/ModConfigTab.h
 	UI/ModListTab.cpp

@@ -25,10 +25,26 @@ Assets::AssetMergeSystem::~AssetMergeSystem()
 
 void Assets::AssetMergeSystem::InvalidateCache()
 {
-    fs::path cachePath = GetCachePath();
+    fs::path cacheFilePath = GetCachePath();
 
-    if (fs::exists(cachePath))
-        fs::remove(cachePath);
+    if (fs::exists(cacheFilePath))
+        fs::remove(cacheFilePath);
+
+    const fs::path& mergePath = gPreditor->pPaths->GetMergedAssetsPath();
+
+    // Safety check
+    if (!mergePath.is_absolute())
+        throw std::logic_error("GetMergedAssetsPath is not absolute");
+
+    // Remove import contents
+    for (const fs::directory_entry& i : fs::directory_iterator(mergePath))
+    {
+        std::error_code ec;
+        fs::remove_all(i.path(), ec);
+
+        if (ec)
+            CryError("[Merge] Failed to remove {}: {}", i.path().u8string(), ec.message());
+    }
 }
 
 bool Assets::AssetMergeSystem::MergeAssets()
