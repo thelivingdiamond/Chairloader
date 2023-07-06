@@ -19,6 +19,12 @@
       "libcurl-d.dll": "libcurl-d.dll",
       "zlib1.dll": "zlib1.dll",
       "zlibd1.dll": "zlibd1.dll"
+    },
+
+    "Preditor/Launcher": {
+      "Preditor.exe": "Preditor.exe",
+      "Preditor.pdb": "Preditor.pdb",
+      "boost_program_options-vc143-mt-x64-1_79.dll": "boost_program_options-vc143-mt-x64-1_79.dll"
     }
   },
 
