@@ -4,6 +4,8 @@
 
 #ifndef CHAIRLOADER_LOGENTRY_H
 #define CHAIRLOADER_LOGENTRY_H
+#include <chrono>
+#include <boost/format.hpp>
 
 //TODO: rework logging system to be CryLog() compatible
 enum class severityLevel{

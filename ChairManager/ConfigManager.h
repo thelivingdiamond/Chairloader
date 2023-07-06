@@ -15,6 +15,8 @@
 <X ch:patch_mode/> <!-- Patch mode: will overwrite all attributes present in the mod node w/out any vanilla checking. -->
  */
 
+struct IChairManager;
+
 //! the purpose of this class is to load, edit, and manage config files for mods
 class ConfigManager {
 public:
@@ -25,7 +27,7 @@ public:
     // - be repeatable
 
     //! loads all config files
-    void init();
+    void init(IChairManager* pChair);
 
     //! saves all configs
     void saveConfigs();
@@ -41,10 +43,10 @@ public:
     }
 
     //! copies a config file from the default config directory to the mod's config directory, creates an empty config file if it doesn't exist
-    static void copyDefaultConfig(const std::string &modName);
+    void copyDefaultConfig(const std::string &modName);
 
     //! checks if a config file exists in the Config/ directory
-    static bool isConfigPresent(const std::string &modName);
+    bool isConfigPresent(const std::string &modName);
 
     void setDirty(const std::string& modName, bool dirty);
 
@@ -53,6 +55,7 @@ public:
     std::unordered_map<std::string, bool> getModSpaceBooleanVariables(const std::string& modName);
 
 private:
+    IChairManager* m_pChair = nullptr;
     std::vector<ModConfig> m_modConfigs;
     std::mutex m_modConfigsMutex;
 

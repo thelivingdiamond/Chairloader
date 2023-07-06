@@ -30,8 +30,7 @@ set(SOURCE_FILES
         UpdateHandler.h 
         ChairWizards/ChairUpdateWizard.cpp 
         ChairWizards/ChairUpdateWizard.h 
-        UpdateURL.h 
-        LogEntry.h 
+        UpdateURL.h
         Mod.h
         Merging/ChairMerger.cpp
         Merging/ChairMerger.h

@@ -2,14 +2,16 @@
 // Created by theli on 9/13/2022.
 //
 
+#include <Manager/IChairManager.h>
 #include "ConfigManager.h"
-#include "ChairManager.h"
+// #include "ChairManager.h"
 #include "../Chairloader/Common/GUIUtils.h"
 
 // init needs to
 // - load all config files
 // - be repeatable
-void ConfigManager::init() {
+void ConfigManager::init(IChairManager* pChair) {
+    m_pChair = pChair;
     saveDirtyConfigs();
     m_modConfigs.clear();
     loadConfigs();
@@ -38,25 +40,29 @@ ModConfig &ConfigManager::operator[](const char *modName) {
 
 bool ConfigManager::isConfigPresent(const std::string& modName){
     try {
-        return fs::exists(ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"));
+        fs::path cfgPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
+        return fs::exists(cfgPath);
     } catch (fs::filesystem_error& e) {
-        ChairManager::Get().log(severityLevel::error, "Error checking for config file: %s", e.what());
+        m_pChair->Log(severityLevel::error, "Error checking for config file: %s", e.what());
         return false;
     }
 }
 
 void ConfigManager::copyDefaultConfig(const std::string& modName){
     try{
-        if(fs::exists(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"))){
-            fs::copy_file(ChairManager::Get().GetGamePath() / "Mods" / modName / (modName + "_default.xml"), ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml"), fs::copy_options::overwrite_existing);
+        fs::path cfgPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
+        fs::path defaultCfgPath = m_pChair->GetModPath(modName) / fs::u8path(modName + "_default.xml");
+
+        if(fs::exists(defaultCfgPath)){
+            fs::copy_file(defaultCfgPath, cfgPath, fs::copy_options::overwrite_existing);
         } else {
-            ChairManager::Get().log(severityLevel::warning, "Default config file for mod %s not found! Creating empty config file", modName.c_str());
+            m_pChair->Log(severityLevel::warning, "Default config file for mod %s not found! Creating empty config file", modName.c_str());
             pugi::xml_document doc;
             doc.append_child(modName.c_str());
-            doc.save_file((ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml")).string().c_str());
+            doc.save_file(cfgPath.c_str());
         }
     } catch (fs::filesystem_error& e) {
-        ChairManager::Get().log(severityLevel::error, "Failed to copy default config for mod %s : %s", modName.c_str(), e.what());
+        m_pChair->Log(severityLevel::error, "Failed to copy default config for mod %s : %s", modName.c_str(), e.what());
     }
 }
 
@@ -65,7 +71,7 @@ void ConfigManager::loadConfig(const std::string& modName){
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
-    fs::path configPath = ChairManager::Get().GetGamePath() / "Mods" / "Config" / (modName + ".xml");
+    fs::path configPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
     pugi::xml_document doc;
     auto result = doc.load_file(configPath.string().c_str());
     if(result){
@@ -82,19 +88,19 @@ void ConfigManager::loadConfig(const std::string& modName){
         if(!found)
             m_modConfigs.emplace_back(modName, doc, configPath);
     } else {
-        ChairManager::Get().log(severityLevel::error, "Failed to load config for mod %s with Error: %s", modName.c_str(), result.description());
+        m_pChair->Log(severityLevel::error, "Failed to load config for mod %s with Error: %s", modName.c_str(), result.description());
     }
 }
 
 
 //! Load all config files, copying default config files if they don't exist
 void ConfigManager::loadConfigs(){
-    auto modList = ChairManager::Get().GetMods();
-    for(auto& mod : modList){
-        if(!isConfigPresent(mod.modName)){
-            copyDefaultConfig(mod.modName);
+    auto modList = m_pChair->GetModNames();
+    for(auto& modName : modList){
+        if(!isConfigPresent(modName)){
+            copyDefaultConfig(modName);
         }
-        loadConfig(mod.modName);
+        loadConfig(modName);
     }
 }
 
@@ -103,7 +109,7 @@ void ConfigManager::saveDirtyConfigs() {
     for(auto& config : m_modConfigs){
         if(config.dirty){
             if(!config.saveConfig()){
-                ChairManager::Get().log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
+                m_pChair->Log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
             }
         }
     }
@@ -113,7 +119,7 @@ void ConfigManager::saveDirtyConfigs() {
 void ConfigManager::saveConfigs() {
     for(auto& config : m_modConfigs){
         if(!config.saveConfig()){
-            ChairManager::Get().log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
+            m_pChair->Log(severityLevel::error, "Failed to save config for mod %s", config.modName.c_str());
         }
     }
 }
@@ -130,7 +136,7 @@ void ConfigManager::draw() {
                if(config.configNode.first_child() == nullptr){
                    continue;
                }
-               auto displayName = ChairManager::Get().GetDisplayName(config.modName);
+               auto displayName = m_pChair->GetModDisplayName(config.modName);
                if(displayName.empty()){
                    displayName = config.modName;
                }
@@ -227,7 +233,7 @@ void ConfigManager::setDirty(const std::string& modName, bool dirty) {
     if(config != m_modConfigs.end()){
         config->dirty = dirty;
     } else {
-        ChairManager::Get().log(severityLevel::warning, "Failed to set dirty flag for mod %s, mod not found", modName.c_str());
+        m_pChair->Log(severityLevel::warning, "Failed to set dirty flag for mod %s, mod not found", modName.c_str());
     }
 }
 

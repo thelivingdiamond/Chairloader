@@ -36,6 +36,7 @@ set(SOURCE_FILES
 	Manager/IconsMaterialDesign.h
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
+	Manager/LogEntry.h
 	Manager/MergingPolicy.h
 	Manager/ModInfo.cpp
 	Manager/ModInfo.h
@@ -46,6 +47,7 @@ set(SOURCE_FILES
 	Manager/SHA256.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
+	Manager/IChairManager.h
 	Manager/ThreadPool.h
 	Manager/PugiUtils.h
 	Manager/XMLMerger2.cpp

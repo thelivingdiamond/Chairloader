@@ -8,6 +8,8 @@
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_stdlib.h"
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
+#include <Manager/LogEntry.h>
+#include <Manager/IChairManager.h>
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
@@ -16,7 +18,6 @@
 #include "BinaryVersionCheck.h"
 #include "ConfigManager.h"
 #include <boost/format.hpp>
-#include "LogEntry.h"
 #include "Mod.h"
 #include "Merging/ChairMerger.h"
 
@@ -32,7 +33,7 @@ enum class DeployStep;
 class ChairMerger;
 
 
-class ChairManager {
+class ChairManager final : public IChairManager {
 public:
     static ChairManager& Get() { return *m_spInstance; }
 
@@ -107,6 +108,13 @@ public:
     GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
 
     void GTestInit();
+
+    // IChairManager
+    virtual fs::path GetConfigPath() override;
+    virtual fs::path GetModPath(const std::string& modName) override;
+    virtual std::vector<std::string> GetModNames() override;
+    virtual std::string GetModDisplayName(const std::string& modName) override;
+    virtual void LogString(severityLevel level, std::string_view str) override;
 
 private:
     //! DPI
@@ -292,19 +300,11 @@ private:
     //Logging function
 public:
     template<typename...Args>
-    inline void log(severityLevel level, const char* format, const Args&...args){\
-    auto message = boost::str((boost::format(format) % ... % args));
-        // scope limiting for mutex
-        {
-            std::scoped_lock<std::mutex> lock(logMutex);
-            logRecord.emplace_back(LogEntry(message, level));
-            fileQueue.emplace_back(LogEntry(message, level));
-        }
-        if(level == severityLevel::fatal){
-            flushFileQueue();
-            throw std::runtime_error(message);
-        }
+    inline void log(severityLevel level, const char* format, const Args&...args){
+        auto message = boost::str((boost::format(format) % ... % args));
+        LogString(level, message);
     }
+
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
         auto message = boost::str((boost::format(format) % ... % args));
