@@ -12,9 +12,9 @@
 // - be repeatable
 void ConfigManager::init(IChairManager* pChair) {
     m_pChair = pChair;
-    saveDirtyConfigs();
     m_modConfigs.clear();
     loadConfigs();
+    m_IsDirty = false;
 }
 
 ModConfig& ConfigManager::operator[](std::string modName){
@@ -113,6 +113,8 @@ void ConfigManager::saveDirtyConfigs() {
             }
         }
     }
+
+    m_IsDirty = false;
 }
 
 //! Save all configs
@@ -235,6 +237,9 @@ void ConfigManager::setDirty(const std::string& modName, bool dirty) {
     } else {
         m_pChair->Log(severityLevel::warning, "Failed to set dirty flag for mod %s, mod not found", modName.c_str());
     }
+
+    if (dirty)
+        m_IsDirty = true;
 }
 
 void ConfigManager::drawXMLValueInput(pugi::xml_node node) {

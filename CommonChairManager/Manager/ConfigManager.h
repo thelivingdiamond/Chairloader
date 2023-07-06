@@ -42,6 +42,8 @@ public:
         return m_modConfigs.size();
     }
 
+    bool IsDirty() const { return m_IsDirty; }
+
     //! copies a config file from the default config directory to the mod's config directory, creates an empty config file if it doesn't exist
     void copyDefaultConfig(const std::string &modName);
 
@@ -58,6 +60,7 @@ private:
     IChairManager* m_pChair = nullptr;
     std::vector<ModConfig> m_modConfigs;
     std::mutex m_modConfigsMutex;
+    bool m_IsDirty = false;
 
     void loadConfig(const std::string& modName);
     void loadConfigs();

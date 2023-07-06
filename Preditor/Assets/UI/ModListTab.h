@@ -13,6 +13,15 @@ public:
     //! @returns whether there are any unsaved changes.
     bool HasUnsavedChanges() { return m_HasUnsavedChanges; }
 
+    //! @returns path to the mod directory. Throws if mod doesn't exist.
+    fs::path GetModPath(const std::string& modName);
+
+    //! @returns the list of names of installed mods.
+    std::vector<std::string> GetModNames();
+
+    //! @returns the mod display name or empty string if not found.
+    std::string GetModDisplayName(const std::string& modName);
+
     //! Resets any user changes, reloads configs from disk.
     void Reset();
 

@@ -10,6 +10,45 @@ Assets::ModListTab::~ModListTab()
 {
 }
 
+fs::path Assets::ModListTab::GetModPath(const std::string& modName)
+{
+    for (const ListItem& item : m_Items)
+    {
+        if (item.info.modName == modName)
+        {
+            if (!item.fullPath.empty())
+                return item.fullPath;
+            else
+                return gPreditor->pPaths->GetModsPath() / fs::u8path(modName);
+        }
+    }
+
+    throw std::logic_error(fmt::format("Mod not found: {}", modName));
+}
+
+std::vector<std::string> Assets::ModListTab::GetModNames()
+{
+    std::vector<std::string> list;
+
+    for (const ListItem& item : m_Items)
+    {
+        list.push_back(item.info.modName);
+    }
+
+    return list;
+}
+
+std::string Assets::ModListTab::GetModDisplayName(const std::string& modName)
+{
+    for (const ListItem& item : m_Items)
+    {
+        if (item.info.modName == modName)
+            return item.info.displayName;
+    }
+
+    return std::string();
+}
+
 void Assets::ModListTab::Reset()
 {
     // Save selected mod

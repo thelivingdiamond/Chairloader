@@ -615,6 +615,7 @@ void ChairManager::DrawModList() {
             if (ImGui::Button("Refresh Mod List")) {
                 loadModInfoFiles();
                 selectedMod.clear();
+                m_ConfigManager.saveDirtyConfigs();
                 m_ConfigManager.init(this);
             }
             ImGui::SameLine();
@@ -1582,6 +1583,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
+                    m_ConfigManager.saveDirtyConfigs();
                     m_ConfigManager.init(this);
                 } catch (std::exception &exc) {
                     std::cerr << exc.what() << std::endl;
