@@ -23,9 +23,7 @@ set(SOURCE_FILES
         ChairWizards/ChairUninstallWizard.cpp
         ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
-        BinaryVersionCheck.cpp 
-        ConfigManager.cpp 
-        ConfigManager.h 
+        BinaryVersionCheck.cpp
         UpdateHandler.cpp 
         UpdateHandler.h 
         ChairWizards/ChairUpdateWizard.cpp 
@@ -43,7 +41,6 @@ set(SOURCE_FILES
         Merging/ZipUtils.h
         Merging/ZipUtils.cpp
         Merging/ZipUtilsTest.cpp
-        ModConfig.h
         LuaUtils.cpp
         LuaUtils.h
         LuaUtilsTest.cpp

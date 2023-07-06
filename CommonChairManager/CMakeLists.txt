@@ -33,11 +33,14 @@ set(SOURCE_FILES
 	Manager/AttributeWildcard.h
 	Manager/BinDiff.cpp
 	Manager/BinDiff.h
+	Manager/ConfigManager.cpp
+	Manager/ConfigManager.h
 	Manager/IconsMaterialDesign.h
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
 	Manager/LogEntry.h
 	Manager/MergingPolicy.h
+	Manager/ModConfig.h
 	Manager/ModInfo.cpp
 	Manager/ModInfo.h
 	Manager/ModListConfig.cpp

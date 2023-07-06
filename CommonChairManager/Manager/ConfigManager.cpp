@@ -3,7 +3,7 @@
 //
 
 #include <Manager/IChairManager.h>
-#include "ConfigManager.h"
+#include <Manager/ConfigManager.h>
 // #include "ChairManager.h"
 #include "../Chairloader/Common/GUIUtils.h"
 

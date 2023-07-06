@@ -10,13 +10,13 @@
 #include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
+#include <Manager/ConfigManager.h>
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
 #include <chrono>
 #include <windows.h>
 #include "BinaryVersionCheck.h"
-#include "ConfigManager.h"
 #include <boost/format.hpp>
 #include "Mod.h"
 #include "Merging/ChairMerger.h"
