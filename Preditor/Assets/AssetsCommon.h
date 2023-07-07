@@ -8,7 +8,7 @@
 namespace Assets
 {
 
-constexpr bool ASSETS_DEBUG = true;
+constexpr bool ASSETS_DEBUG = false;
 
 using FileModTime = std::chrono::system_clock::duration;
 
