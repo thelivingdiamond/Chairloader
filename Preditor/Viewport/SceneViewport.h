@@ -16,6 +16,9 @@ public:
     SceneViewport();
     ~SceneViewport();
 
+    //! @returns a ray from screen coordinates.
+    Ray GetRayForMouse(Vec2 mousePos, Vec2 vpSize);
+
     // IViewport
     virtual bool NeedCustomRender() override { return true; }
     virtual void CustomRender() override;

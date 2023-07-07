@@ -12,6 +12,9 @@ public:
     EditToolManager(ISceneEditor* pEditor);
     ~EditToolManager();
 
+    //! @returns the editor that owns this tool manager;
+    ISceneEditor* GetEditor() const { return m_pEditor; }
+
     //! @returns the current tool (or nullptr, if none).
     EditTool* GetCurrentTool() const { return m_pCurTool; }
 

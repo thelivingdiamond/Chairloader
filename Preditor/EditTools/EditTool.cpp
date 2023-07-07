@@ -2,6 +2,7 @@
 
 EditTools::EditTool::EditTool(EditToolManager* pMgr)
 {
+    m_pMgr = pMgr;
 }
 
 EditTools::EditTool::~EditTool()

@@ -46,6 +46,18 @@ Viewport::SceneViewport::~SceneViewport()
 	gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
+Ray Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 vpSize)
+{
+	Vec2 normCoords = 2.0f * mousePos / vpSize - Vec2(1, 1); // [-1; 1)
+	Vec3 scale(-normCoords.x, 1, -normCoords.y);
+	Vec3 nearPoint = m_Cam.GetEdgeN().CompMul(scale);
+	Vec3 farPoint = m_Cam.GetEdgeF().CompMul(scale);
+
+	Vec3 start = m_Cam.GetMatrix() * nearPoint;
+	Vec3 end = m_Cam.GetMatrix() * farPoint;
+	return Ray(start, end - start);
+}
+
 void Viewport::SceneViewport::CustomRender()
 {
 	DrawAuxGeom();
@@ -290,6 +302,11 @@ void Viewport::SceneViewport::CopyViewCameraTransform()
 void Viewport::SceneViewport::DrawAuxGeom()
 {
 	DrawViewCameraFrustum();
+
+	ISceneEditor* pEditor = gPreditor->pSceneEditorManager->GetEditor();
+
+	if (pEditor)
+		pEditor->GetViewport()->DrawAuxGeom();
 }
 
 void Viewport::SceneViewport::DrawViewCameraFrustum()

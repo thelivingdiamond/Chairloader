@@ -120,6 +120,11 @@ ImVec4 Viewport::ViewportWindow::ShowViewportImage()
 	return ImVec4(min.x, min.y, max.x, max.y);
 }
 
+Ray Viewport::ViewportWindow::GetRayForMouse(Vec2 mousePos, Vec2 vpSize)
+{
+	return m_pSceneViewport->GetRayForMouse(mousePos, vpSize);
+}
+
 void Viewport::ViewportWindow::PreUpdate()
 {
 	// Game viewport currently only works in the main window

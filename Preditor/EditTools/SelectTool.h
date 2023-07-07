@@ -1,5 +1,7 @@
 #include "EditTool.h"
 
+struct IKeyAction;
+
 namespace EditTools
 {
 
@@ -11,6 +13,9 @@ public:
 
     // EditTool
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize);
+
+private:
+    IKeyAction* m_pAppendKey = nullptr;
 };
 
 } // namespace EditTools

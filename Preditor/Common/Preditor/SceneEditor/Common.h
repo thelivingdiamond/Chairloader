@@ -31,3 +31,9 @@ using SceneObjectId = uint64_t;
 
 //! An ID of an invalid scene object.
 constexpr SceneObjectId INVALID_SCENE_OBJECT = -1;
+
+//! Selection colors. Stolen from Blender.
+//! @{
+inline const ColorB SELECTION_COLOR = ColorB(220, 84, 20, 255);
+inline const ColorB SELECTION_ACTIVE_COLOR = ColorB(243, 153, 51, 255);
+//! @}

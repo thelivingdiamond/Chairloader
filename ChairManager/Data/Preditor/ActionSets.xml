@@ -3,6 +3,7 @@
 <!--
     Action set priorities:
         80  Viewport Camera Control
+        60  Edit Tools
         50  Default
 -->
 
@@ -42,7 +43,17 @@
         </Action>
     </ActionSet>
 
-    <!-- Tool Select -->
+    <!-- Select Tool -->
+    <ActionSet
+        name="select_tool"
+        description="Select Tool"
+        priority="60">
+        <Action name="append" description="Append to current selection" isModifier="1">
+            <Bind key="lshift"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Tool Selection -->
     <ActionSet
         name="tool_select"
         description="Tool Selection">

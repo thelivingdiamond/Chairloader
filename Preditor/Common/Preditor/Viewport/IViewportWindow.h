@@ -17,4 +17,7 @@ struct IViewportWindow
 
     //! @returns whether the window is focused.
     virtual bool IsFocused() = 0;
+
+    //! @returns a ray from screen coordinates.
+    virtual Ray GetRayForMouse(Vec2 mousePos, Vec2 vpSize) = 0;
 };

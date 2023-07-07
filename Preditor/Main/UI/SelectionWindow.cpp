@@ -30,6 +30,9 @@ void Main::SelectionWindow::ShowContents()
 	}
 	else
 	{
+		if (ImGui::Button("Clear Selection"))
+			pSel->ClearSelection();
+
 		SceneObjectId activeObjId = pSel->GetActiveObject();
 		SceneObjectId deselObjId = INVALID_SCENE_OBJECT;
 
