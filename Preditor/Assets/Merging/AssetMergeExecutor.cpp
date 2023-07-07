@@ -25,6 +25,13 @@ bool XmlNodesAreEqual(pugi::xml_node lhs, pugi::xml_node rhs)
         return false;
     }
 
+    // Compare text
+    if (strcmp(lhs.text().as_string(), rhs.text().as_string()))
+    {
+        // Non-equal contents
+        return false;
+    }
+
     // Compare attributes
     {
         auto attrl = lhs.attributes();
