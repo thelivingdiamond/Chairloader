@@ -1,4 +1,5 @@
 #include <Manager/MergingPolicy.h>
+#include <Manager/NameToIdMap.h>
 #include "Mergers/SymlinkAssetMerger.h"
 #include "Mergers/XmlAssetMerger.h"
 #include "Merging/AssetMergeExecutor.h"
@@ -14,6 +15,11 @@ Assets::AssetMergeSystem::AssetMergeSystem()
     {
         CryFatalError("[AssetMergeSystem] Failed to open {}", MERGING_LIBRARY_FILE_NAME);
     }
+
+    m_NameToIdMap = Manager::NameToIdMap::Create(
+        gPreditor->pConfig->GetPreditorRoot() / Manager::NameToIdMap::LIBRARY_FILE_NAME,
+        gPreditor->pConfig->GetPreyFiles()
+    );
 
     CreateMergerFactory<SymlinkAssetMerger>();
     CreateMergerFactory<XmlAssetMerger>(this);

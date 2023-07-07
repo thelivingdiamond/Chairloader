@@ -1,4 +1,7 @@
+#include <Manager/IChairManager.h>
 #include <Manager/ModListConfig.h>
+#include <Manager/WildcardResolver.h>
+#include <Manager/ModConfig.h>
 #include "Merging/Mergers/AssetMerger.h"
 #include "Merging/Sources/ChairloaderMergeSource.h"
 #include "Merging/Sources/ImportMergeSource.h"
@@ -7,18 +10,146 @@
 #include "Merging/AssetMergeExecutor.h"
 #include "Merging/AssetMergeSystem.h"
 #include "Merging/MergeCache.h"
+#include "CMAdapter.h"
+
+class Assets::AssetMergeExecutor::ModSystem final : public IChairManager
+{
+public:
+    ModSystem()
+    {
+        LoadModList();
+        LoadEnabledModConfigs();
+    }
+
+    //! @returns the list of all mods in the config.
+    const auto& GetMods() { return m_ModList.mods; }
+
+    //! @returns the map of mod names and configs.
+    const auto& GetModConfigs() { return m_ModConfigs; }
+
+    //! @returns config for a mod or nullptr.
+    ModConfig* FindConfig(const std::string& modName)
+    {
+        auto it = m_ModConfigs.find(modName);
+
+        if (it != m_ModConfigs.end())
+            return &it->second;
+        else
+            return nullptr;
+    }
+
+    // IChairManager
+    virtual fs::path GetConfigPath() override
+    {
+        return gPreditor->pPaths->GetModsPath() / "config";
+    }
+
+    virtual fs::path GetModPath(const std::string& modName) override
+    {
+        for (const auto& i : m_ModList.mods)
+        {
+            if (i.modName == modName)
+            {
+                if (!i.fullPath.empty())
+                    return i.fullPath;
+                else
+                    return gPreditor->pPaths->GetModsPath() / fs::u8path(modName);
+            }
+        }
+
+        throw std::logic_error(fmt::format("Mod not found: {}", modName));
+    }
+
+    virtual std::vector<std::string> GetModNames() override { throw std::logic_error("Not Implemented"); }
+
+    virtual std::string GetModDisplayName(const std::string& modName) override { throw std::logic_error("Not Implemented"); }
+
+    virtual bool IsModEnabled(const std::string& modName) override
+    {
+        for (const auto& i : m_ModList.mods)
+        {
+            if (i.modName == modName)
+            {
+                return i.enabled;
+            }
+        }
+
+        return false;
+    }
+
+    virtual void LogString(severityLevel level, std::string_view str) override
+    {
+        CMAdapter::LogString(level, str);
+    }
+
+private:
+    Manager::ModListConfig m_ModList;
+    std::map<std::string, ModConfig> m_ModConfigs;
+
+    void LoadModList()
+    {
+        fs::path chairConfigPath = GetConfigPath() / "Chairloader.xml";
+        pugi::xml_document chairConfig;
+
+        if (!chairConfig.load_file(chairConfigPath.c_str()))
+            throw std::runtime_error("Failed to load Chairloader config");
+
+        m_ModList.LoadXml(chairConfig.first_child().child("ModList"));
+    }
+
+    void LoadEnabledModConfigs()
+    {
+        for (const auto& mod : GetMods())
+        {
+            if (!mod.enabled)
+                continue;
+
+            fs::path configPath = GetConfigPath() / fs::u8path(mod.modName + ".xml");
+
+            // Skip mods without configs
+            if (!fs::exists(configPath))
+                continue;
+
+            // Read the XML
+            pugi::xml_document doc;
+            auto result = doc.load_file(configPath.string().c_str());
+
+            if (!result)
+            {
+                throw std::runtime_error(fmt::format(
+                    "Failed to read mod config.\n"
+                    "Path: {}\n"
+                    "Offset: {}\n"
+                    "{}",
+                    configPath.u8string(), result.offset, result.description()
+                ));
+            }
+
+            m_ModConfigs.emplace(mod.modName, ModConfig(mod.modName, doc, configPath));
+        }
+    }
+};
 
 Assets::AssetMergeExecutor::AssetMergeExecutor(AssetMergeSystem* pSys)
 {
     m_pSys = pSys;
+    m_Rng = std::mt19937(std::random_device()());
 }
 
 Assets::AssetMergeExecutor::~AssetMergeExecutor()
 {
 }
 
+std::unique_ptr<WildcardResolver> Assets::AssetMergeExecutor::CreateWildcardResolver(const std::string& modName)
+{
+    auto wr = std::make_unique<WildcardResolver>(m_pModSystem.get(), m_Rng, modName);
+    wr->AddIdNameMap(m_pSys->GetNameToIdMap());
+    return wr;
+}
+
 void Assets::AssetMergeExecutor::Execute()
 {
+    InitModSystem();
     CreateMergeSources();
     CollectSourceFiles();
     
@@ -46,21 +177,21 @@ void Assets::AssetMergeExecutor::Execute()
         CryLog("[Merging] Total merged files: {}", newCache.files.size());
 }
 
+void Assets::AssetMergeExecutor::InitModSystem()
+{
+    m_pModSystem = std::make_unique<ModSystem>();
+}
+
 void Assets::AssetMergeExecutor::CreateMergeSources()
 {
-    m_Sources.push_back(std::make_unique<ChairloaderMergeSource>());
+    {
+        auto pSource = std::make_unique<ChairloaderMergeSource>();
+        InitMergeSource(pSource.get(), nullptr);
+        m_Sources.push_back(std::move(pSource));
+    }
 
     // Create sources for mods
-    fs::path chairConfigPath = gPreditor->pPaths->GetModsPath() / "config/Chairloader.xml";
-    pugi::xml_document chairConfig;
-
-    if (!chairConfig.load_file(chairConfigPath.c_str()))
-        throw std::runtime_error("Failed to load Chairloader config");
-
-    Manager::ModListConfig modList;
-    modList.LoadXml(chairConfig.first_child().child("ModList"));
-
-    for (const auto& mod : modList.mods)
+    for (const auto& mod : m_pModSystem->GetMods())
     {
         if (!mod.enabled)
             continue;
@@ -73,14 +204,18 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
             const fs::path& assetsPath = gPreditor->pPaths->GetAssetPath();
             if (fs::exists(assetsPath))
             {
-                m_Sources.push_back(std::make_unique<ProjectMergeSource>(assetsPath));
+                auto pSource = std::make_unique<ProjectMergeSource>(mod.modName, assetsPath);
+                InitMergeSource(pSource.get(), &mod);
+                m_Sources.push_back(std::move(pSource));
             }
 
             // Imported project assets
             const fs::path& importedAssetsPath = gPreditor->pPaths->GetImportedAssetsPath();
             if (fs::exists(importedAssetsPath))
             {
-                m_Sources.push_back(std::make_unique<ImportMergeSource>(importedAssetsPath));
+                auto pSource = std::make_unique<ImportMergeSource>(mod.modName, importedAssetsPath);
+                InitMergeSource(pSource.get(), &mod);
+                m_Sources.push_back(std::move(pSource));
             }
         }
         else
@@ -94,15 +229,43 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
 
             if (fs::exists(modDataPath))
             {
-                m_Sources.push_back(std::make_unique<ModMergeSource>(mod.modName, modDataPath));
+                auto pSource = std::make_unique<ModMergeSource>(mod.modName, modDataPath);
+                InitMergeSource(pSource.get(), &mod);
+                m_Sources.push_back(std::move(pSource));
             }
         }
     }
 
-    // Map names to objects
     for (auto& pSource : m_Sources)
     {
+        // Map names to objects
         m_SourceNameMap.emplace(pSource->GetSourceName(), pSource.get());
+
+        WildcardResolver* wr = pSource->GetWildcardResolver();
+
+        if (wr)
+        {
+            // Load all mod configs
+            for (const auto& [modName, modConfig] : m_pModSystem->GetModConfigs())
+            {
+                wr->AddModConfig(modConfig);
+            }
+        }
+    }
+}
+
+void Assets::AssetMergeExecutor::InitMergeSource(AssetMergeSource* pSource, const Manager::ModListConfig::Item* modItem)
+{
+    pSource->Init(this);
+
+    WildcardResolver* wr = pSource->GetWildcardResolver();
+
+    // Add the mod config as global
+    if (modItem && wr)
+    {
+        ModConfig* cfg = m_pModSystem->FindConfig(modItem->modName);
+        if (cfg)
+            wr->AddGlobalModConfig(*cfg);
     }
 }
 

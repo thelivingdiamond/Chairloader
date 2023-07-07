@@ -1,4 +1,5 @@
-#include <UI/ModManagerWindow.h>
+#include "UI/ModManagerWindow.h"
+#include "CMAdapter.h"
 
 Assets::ModManagerWindow::ModManagerWindow()
 {
@@ -109,27 +110,5 @@ bool Assets::ModManagerWindow::IsModEnabled(const std::string& modName)
 
 void Assets::ModManagerWindow::LogString(severityLevel level, std::string_view str)
 {
-    EChairLogType type;
-
-    switch (level)
-    {
-    case severityLevel::trace:
-    case severityLevel::debug:
-    case severityLevel::info:
-        type = EChairLogType::Message;
-        break;
-    case severityLevel::warning:
-        type = EChairLogType::Warning;
-        break;
-    case severityLevel::error:
-    case severityLevel::fatal:
-    default:
-        type = EChairLogType::Error;
-        break;
-    }
-
-    VCryLog(type, "{}", fmt::make_format_args(str));
-
-    if (level == severityLevel::fatal)
-        throw std::runtime_error(std::string(str));
+    CMAdapter::LogString(level, str);
 }

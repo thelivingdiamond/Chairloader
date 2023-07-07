@@ -49,6 +49,8 @@ set(SOURCE_FILES
 	AssetsCommon.h
 	AssetSystem.cpp
 	AssetSystem.h
+	CMAdapter.cpp
+	CMAdapter.h
 )
 
 add_library(Preditor.Assets STATIC
@@ -61,6 +63,7 @@ target_include_directories(Preditor.Assets PRIVATE
 
 target_link_libraries(Preditor.Assets
 	Preditor.Common
+	${LUA_LIBRARIES}
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

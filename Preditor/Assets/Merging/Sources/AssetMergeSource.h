@@ -1,8 +1,12 @@
 #pragma once
 #include "AssetsCommon.h"
 
+class WildcardResolver;
+
 namespace Assets
 {
+
+class AssetMergeExecutor;
 
 //! File from a merge source.
 struct MergeFile
@@ -35,16 +39,26 @@ public:
     //! @returns the list of files in the merge source.
     const std::vector<MergeFile>& GetFiles() const { return m_Files; }
 
+    //! @returns the WildcardResolver instance for this source or nullptr.
+    virtual WildcardResolver* GetWildcardResolver() const;
+
+    //! Initializes the merge source for an executor.
+    virtual void Init(AssetMergeExecutor* pExec);
+
     //! Collects all files in the merge source.
     virtual void CollectFiles() = 0;
 
 protected:
+    //! @returns the current AssetMergeExecutor.
+    AssetMergeExecutor& GetExec() { return *m_pExec; }
+
     //! Adds a file to the list.
     void AddFile(const MergeFile& file);
 
 private:
     std::string m_SourceName;
     fs::path m_RootDirectory;
+    AssetMergeExecutor* m_pExec = nullptr;
     std::vector<MergeFile> m_Files;
 
 #ifdef ASSET_MERGE_DEBUG

@@ -1,5 +1,6 @@
 #include <Manager/MergingPolicy.h>
 #include <Manager/XMLMerger2.h>
+#include <Manager/WildcardResolver.h>
 #include "Merging/Mergers/XmlAssetMerger.h"
 #include "Merging/Sources/AssetMergeSource.h"
 #include "Merging/AssetMergeSystem.h"
@@ -90,7 +91,9 @@ pugi::xml_document Assets::XmlAssetMerger::ReadFile(const InputFile& file)
 
 void Assets::XmlAssetMerger::ResolveWildcards(pugi::xml_document& doc, AssetMergeSource* pSource)
 {
-    // TODO 2023-07-04
+    WildcardResolver* wr = pSource->GetWildcardResolver();
+    if (wr)
+        wr->ResolveDocumentWildcards(doc);
 }
 
 void Assets::XmlAssetMerger::SaveXml(const pugi::xml_document& doc)

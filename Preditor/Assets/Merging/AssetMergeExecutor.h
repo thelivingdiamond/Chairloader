@@ -1,5 +1,9 @@
 #pragma once
+#include <random>
+#include <Manager/ModListConfig.h>
 #include "Merging/Sources/AssetMergeSource.h"
+
+class WildcardResolver;
 
 namespace Assets
 {
@@ -14,10 +18,17 @@ public:
     AssetMergeExecutor(AssetMergeSystem* pSys);
     ~AssetMergeExecutor();
 
+    //! Creates and initializes a wildcard resolver for merge sources.
+    std::unique_ptr<WildcardResolver> CreateWildcardResolver(const std::string& modName);
+
     void Execute();
 
 private:
+    class ModSystem;
+
     AssetMergeSystem* m_pSys = nullptr;
+    std::unique_ptr<ModSystem> m_pModSystem;
+    std::mt19937 m_Rng;
 
     //! Merge sources. Sorted in mod config order.
     //! Files from last sources override files from first sources.
@@ -30,8 +41,14 @@ private:
     //! Set of files that need to be removed (no longer exist in the new cache).
     std::set<std::string> m_FilesToRemove;
 
+    //! Initializes ModSystem.
+    void InitModSystem();
+
     //! Creates merge sources for the project and enabled mods.
     void CreateMergeSources();
+
+    //! Initializes a merge source after it was created.
+    void InitMergeSource(AssetMergeSource* pSource, const Manager::ModListConfig::Item* modItem);
 
     //! Collects files in the merge sources.
     void CollectSourceFiles();

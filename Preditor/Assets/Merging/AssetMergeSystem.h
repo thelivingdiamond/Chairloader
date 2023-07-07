@@ -39,12 +39,16 @@ public:
     //! Finds the merging policy for specified file.
     MergingPolicy FindMergingPolicy(const std::string& relPath) const;
 
+    //! @returns NameToIdMap
+    const auto& GetNameToIdMap() const { return m_NameToIdMap; }
+
 private:
     static constexpr char CACHE_FILE_NAME[] = "MergeCache.xml";
 
     using MergerFactory = std::function<AssetMergerPtr()>;
 
     pugi::xml_document m_MergingPolicyDoc;
+    std::map<std::string, uint64_t> m_NameToIdMap; //!< Maps Ark/Prey XML names to their IDs.
     std::map<std::string, MergerFactory> m_MergerFactories;
 
     //! @returns the merge cache path.

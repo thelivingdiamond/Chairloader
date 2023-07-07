@@ -1,15 +1,25 @@
+#include <Manager/WildcardResolver.h>
 #include "Merging/Sources/ProjectMergeSource.h"
+#include "Merging/AssetMergeExecutor.h"
 #include "AssetMetadata.h"
 #include "AssetSystem.h"
 
-Assets::ProjectMergeSource::ProjectMergeSource(const fs::path& rootDirectory)
+Assets::ProjectMergeSource::ProjectMergeSource(const std::string& modName, const fs::path& rootDirectory)
     : DirectoryAssetMergeSource("project.assets", rootDirectory)
 {
     m_pSys = static_cast<AssetSystem*>(gPreditor->pAssetSystem);
+    m_ModName = modName;
 }
 
 Assets::ProjectMergeSource::~ProjectMergeSource()
 {
+}
+
+void Assets::ProjectMergeSource::Init(AssetMergeExecutor* pExec)
+{
+    DirectoryAssetMergeSource::Init(pExec);
+    m_pWR = GetExec().CreateWildcardResolver(m_ModName);
+    // Config will be loaded by AssetMergeExecutor
 }
 
 bool Assets::ProjectMergeSource::CheckFile(const std::string& relPath, const fs::path& fullPath)

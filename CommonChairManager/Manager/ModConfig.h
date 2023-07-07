@@ -7,6 +7,7 @@
 #include <variant>
 
 struct ModConfig {
+    // TODO 2023-07-07: Why is this shared_ptr?
     std::shared_ptr<pugi::xml_document> configDoc;
     pugi::xml_node configNode;
     fs::path configPath;

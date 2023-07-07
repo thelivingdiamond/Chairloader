@@ -16,6 +16,16 @@ Assets::AssetMergeSource::~AssetMergeSource()
 {
 }
 
+WildcardResolver* Assets::AssetMergeSource::GetWildcardResolver() const
+{
+    return nullptr;
+}
+
+void Assets::AssetMergeSource::Init(AssetMergeExecutor* pExec)
+{
+    m_pExec = pExec;
+}
+
 void Assets::AssetMergeSource::AddFile(const MergeFile& file)
 {
 #ifdef ASSET_MERGE_DEBUG
