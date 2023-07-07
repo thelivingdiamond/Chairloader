@@ -1,9 +1,6 @@
 #pragma once
 #include <Prey/CryInput/IHardwareMouse.h>
 
-namespace Viewport
-{
-
 //! Helper class to call IncrementCounter and DecrementCounter the correct number of times.
 class MouseGuard : NoCopy
 {
@@ -33,5 +30,3 @@ public:
 private:
     bool m_IsIncremented = false;
 };
-
-} // namespace Viewport

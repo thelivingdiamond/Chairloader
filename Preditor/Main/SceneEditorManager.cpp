@@ -49,8 +49,15 @@ void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam
 
     switch (event)
     {
+    case ESYSTEM_EVENT_LEVEL_LOAD_PREPARE:
+    {
+        // Increment counter so the mouse is not stuck in the loading screen
+        m_LoadingMouseGuard.SetIncremented(true);
+        break;
+    }
     case ESYSTEM_EVENT_LEVEL_LOAD_END:
     {
+        m_LoadingMouseGuard.SetIncremented(false);
         OnLevelLoad();
         break;
     }

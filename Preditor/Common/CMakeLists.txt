@@ -46,6 +46,7 @@ set(SOURCE_FILES
 	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h
 	Preditor/ListenerSet.h
+	Preditor/MouseGuard.h
 	Preditor/pch.h
 	Preditor/PreditorConfig.cpp
 	Preditor/PreditorConfig.h

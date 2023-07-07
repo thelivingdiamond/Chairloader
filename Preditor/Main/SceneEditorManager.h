@@ -1,5 +1,6 @@
 #pragma once
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
+#include <Preditor/MouseGuard.h>
 
 namespace Main
 {
@@ -31,6 +32,7 @@ private:
     EEditMode m_CurrentMode = EEditMode::None;
     EPlayMode m_CurrentPlayMode = EPlayMode::Edit;
     ISceneEditor* m_pCurrentEditor = nullptr;
+    MouseGuard m_LoadingMouseGuard;
 
     //! Resets the internal state. Makes the object act like no level is loaded.
     void Reset();

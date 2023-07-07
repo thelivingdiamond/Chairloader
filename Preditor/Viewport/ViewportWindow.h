@@ -1,8 +1,8 @@
 #pragma once
 #include <WindowManager/ManagedWindow.h>
 #include <Preditor/Viewport/IViewportWindow.h>
+#include <Preditor/MouseGuard.h>
 #include "BaseViewport.h"
-#include "MouseGuard.h"
 
 namespace Viewport
 {

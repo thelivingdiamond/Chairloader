@@ -4,7 +4,6 @@ set(SOURCE_FILES
 	BaseViewport.h
 	GameViewport.cpp
 	GameViewport.h
-	MouseGuard.h
 	SceneViewport.cpp
 	SceneViewport.h
 	ViewportWindow.cpp
