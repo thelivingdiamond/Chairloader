@@ -317,7 +317,8 @@ TEST_F(ChairMergerTest, LoadPatchChecksums){
     EXPECT_TRUE(merger->m_LocalizationFileChecksums.size() > 0);
 }
 
-
+// FIXME 2023-07-07: Moved to class NameToIdMap
+#if 0
 TEST_F(ChairMergerTest, LoadIdNamePairs){
     pugi::xml_document doc;
     std::string docString = R"(
@@ -344,6 +345,7 @@ TEST_F(ChairMergerTest, LoadIdNamePairs){
         EXPECT_TRUE(expectedPairs[pair.first] == pair.second);
     }
 }
+#endif
 
 
 TEST_F(ChairMergerTest, IdNamePairUsage){

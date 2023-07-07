@@ -168,10 +168,7 @@ protected:
     //! Get the failure message
     std::string GetDeployFailedMessage();
 
-
     void LoadIdNameMap();
-
-    std::vector<std::pair<std::string, uint64_t>> LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute);
 
     // Static paths
     static inline fs::path m_OutputPath = "Output";

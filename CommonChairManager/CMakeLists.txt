@@ -47,6 +47,7 @@ set(SOURCE_FILES
 	Manager/ModInfo.h
 	Manager/ModListConfig.cpp
 	Manager/ModListConfig.h
+	Manager/NameToIdMap.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h

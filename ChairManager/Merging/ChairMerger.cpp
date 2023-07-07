@@ -10,6 +10,7 @@
 #include <Manager/XMLMerger2.h>
 #include <Manager/LuaUtils.h>
 #include <Manager/WildcardResolver.h>
+#include <Manager/NameToIdMap.h>
 #include "ZipUtils.h"
 #include "HashUtils.h"
 
@@ -111,6 +112,7 @@ void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modNa
 
     // add the config variables to the lua state
     for (auto& mod : ChairManager::Get().GetMods()) {
+        // TODO 2023-07-07: Check if mod is enabled. Disabled mods shouldn't influence other mods.
         auto& config = ChairManager::Get().GetConfigManager()->getModConfig(mod.modName);
         wr.AddModConfig(config);
     }
@@ -704,41 +706,12 @@ float ChairMerger::RandomFloat(float min, float max) {
     return distribution(m_RandomGenerator);
 }
 
-std::vector<std::pair<std::string, uint64_t>> ChairMerger::LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute) {
-    std::vector<std::pair<std::string, uint64_t>> pairs;
-    auto targetChild = node.first_element_by_path(xmlPath.c_str());
-    for(auto child : targetChild.children()){
-        auto name = child.attribute(nameAttribute.c_str()).as_string();
-        auto id = child.attribute(idAttribute.c_str()).as_ullong();
-        pairs.emplace_back(name, id);
-    }
-    return pairs;
-}
-
 void ChairMerger::LoadIdNameMap() {
-    m_NameToIdMap.clear();
-
 //    // profile this function to see if it's slow
 //    auto start = std::chrono::high_resolution_clock::now();
-    pugi::xml_document doc;
-    doc.load_file("VariableLibrary.xml");
-    auto rootNode = doc.first_child();
-    for(auto& idFile: rootNode){
-        fs::path idFilePath = idFile.attribute("path").as_string();
-        idFilePath = m_PreyFilePath / idFilePath;
-        std::string nameAttribute = idFile.attribute("nameAttribute").as_string(),
-                idAttribute = idFile.attribute("idAttribute").as_string(),
-                xmlPath = idFile.attribute("xmlPath").as_string(),
-                variablePath = idFile.attribute("variablePath").as_string();
-        pugi::xml_document idFileDoc;
-        idFileDoc.load_file(idFilePath.wstring().c_str());
-        auto pairs = LoadIdNamePairsFromXml(idFileDoc.root(), xmlPath, nameAttribute, idAttribute);
-        for(auto& pair : pairs){
-            std::string validName = LuaUtils::MakeValidVariableName(pair.first);
-            auto path = variablePath + "." + validName;
-            m_NameToIdMap[path] = pair.second;
-        }
-    }
+    
+    m_NameToIdMap = Manager::NameToIdMap::Create(Manager::NameToIdMap::LIBRARY_FILE_NAME, m_PreyFilePath);
+
 //    auto end = std::chrono::high_resolution_clock::now();
 //    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 //    ChairManager::Get().log(severityLevel::trace, "ChairMerger: Loaded id name map in %llu milliseconds", elapsed.count());
