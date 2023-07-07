@@ -31,9 +31,9 @@ Main::PreditorUI::PreditorUI()
     m_pAssetBrowser->SetTitle("Asset Browser");
     m_pAssetBrowser->SetPersistentID("AssetBrowser");
 
-    m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
     m_pHierarchyWindow = WindowManager::Get().Create<HierarchyWindow>();
+    m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
 }
 
 Main::PreditorUI::~PreditorUI()

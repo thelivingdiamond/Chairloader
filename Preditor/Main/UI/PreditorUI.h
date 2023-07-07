@@ -30,9 +30,9 @@ private:
     std::shared_ptr<ManagedWindow> m_pToolSelectionWindow;
     std::shared_ptr<FileBrowser> m_pProjectBrowser;
     std::shared_ptr<FileBrowser> m_pAssetBrowser;
-    std::shared_ptr<SelectionWindow> m_pSelectionWindow;
     std::shared_ptr<InspectorWindow> m_pInspectorWindow;
     std::shared_ptr<HierarchyWindow> m_pHierarchyWindow;
+    std::shared_ptr<SelectionWindow> m_pSelectionWindow;
 
     bool m_bImGuiDemo = false;
 
