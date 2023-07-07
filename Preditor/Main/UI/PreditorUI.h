@@ -8,6 +8,7 @@ namespace Main
 {
 
 class FileBrowser;
+class InspectorWindow;
 class SelectionWindow;
 class SimControlWindow;
 
@@ -29,6 +30,7 @@ private:
     std::shared_ptr<FileBrowser> m_pProjectBrowser;
     std::shared_ptr<FileBrowser> m_pAssetBrowser;
     std::shared_ptr<SelectionWindow> m_pSelectionWindow;
+    std::shared_ptr<InspectorWindow> m_pInspectorWindow;
 
     bool m_bImGuiDemo = false;
 

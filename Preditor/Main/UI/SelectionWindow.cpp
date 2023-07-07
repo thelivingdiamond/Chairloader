@@ -38,9 +38,13 @@ void Main::SelectionWindow::ShowContents()
 
 		for (SceneObjectId objId : pSel->GetList())
 		{
-			// TODO 2023-07-07: Show object name
 			char buf[128];
-			snprintf(buf, sizeof(buf), "%llu", objId);
+			const char* objName = pEditor->GetObjectName(objId);
+
+			if (!objName)
+				objName = "< invalid obj >";
+
+			snprintf(buf, sizeof(buf), "%s (%llu)", objName, objId);
 
 			ImGui::Selectable(buf, activeObjId == objId);
 

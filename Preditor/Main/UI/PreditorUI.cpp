@@ -5,10 +5,11 @@
 #include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
-#include "PreditorUI.h"
-#include "SimControlWindow.h"
-#include "FileBrowser.h"
-#include "SelectionWindow.h"
+#include "UI/PreditorUI.h"
+#include "UI/FileBrowser.h"
+#include "UI/InspectorWindow.h"
+#include "UI/SelectionWindow.h"
+#include "UI/SimControlWindow.h"
 
 Main::PreditorUI::PreditorUI()
 {
@@ -30,6 +31,7 @@ Main::PreditorUI::PreditorUI()
     m_pAssetBrowser->SetPersistentID("AssetBrowser");
 
     m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
+    m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
 }
 
 Main::PreditorUI::~PreditorUI()
@@ -76,6 +78,7 @@ void Main::PreditorUI::ShowMainMenuBar()
 
             m_pToolSelectionWindow->ShowToggleMenuItem("Tool Selection");
             m_pSelectionWindow->ShowToggleMenuItem("Object Selection List");
+            m_pInspectorWindow->ShowToggleMenuItem("Inspector");
             ImGui::Separator();
 
             m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");

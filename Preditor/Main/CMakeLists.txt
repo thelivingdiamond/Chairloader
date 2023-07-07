@@ -22,6 +22,8 @@ set(SOURCE_FILES
 
 	UI/FileBrowser.cpp
 	UI/FileBrowser.h
+	UI/InspectorWindow.cpp
+	UI/InspectorWindow.h
 	UI/PreditorUI.cpp
 	UI/PreditorUI.h
 	UI/SelectionWindow.cpp
@@ -33,8 +35,6 @@ set(SOURCE_FILES
 	EntityHierarchyWindow.h
 	FlowgraphEditor.cpp
 	FlowgraphEditor.h
-	InspectorWindow.cpp
-	InspectorWindow.h
 	LookingGlass.cpp
 	LookingGlass.h
 	Preditor.cpp

@@ -12,7 +12,7 @@ void EntityInspector::ShowContents(EntityId entityId)
 
 	if (entityId == 0)
 	{
-		ImGui::TextWrapped("No entity selected.");
+		ImGui::TextDisabled("No entity selected.");
 		return;
 	}
 

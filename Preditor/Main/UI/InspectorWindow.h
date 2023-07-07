@@ -1,8 +1,9 @@
 #pragma once
+#include <Preditor/SceneEditor/Common.h>
 #include <WindowManager/ManagedWindow.h>
 
-// I still hate myself
-#include "../../Chairloader/Tools/Components/EntityInspector.h"
+namespace Main
+{
 
 class InspectorWindow : public ManagedWindow
 {
@@ -11,7 +12,6 @@ public:
 
 protected:
 	void ShowContents() override;
-
-private:
-	EntityInspector m_Inspector;
 };
+
+} // namespace Main

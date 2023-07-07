@@ -30,6 +30,9 @@ struct ISceneEditor
     //! @returns the undo buffer.
     virtual UndoBuffer* GetUndoBuffer() = 0;
 
+    //! @returns name of the object. nullptr of ID is invalid.
+    virtual const char* GetObjectName(SceneObjectId id) = 0;
+
     //! Called when the scene editor is enabled.
     virtual void OnEnabled() = 0;
 
