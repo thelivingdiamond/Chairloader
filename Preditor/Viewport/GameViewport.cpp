@@ -36,7 +36,7 @@ void Viewport::GameViewport::Update(bool isVisible)
 			bFocused = vp->PlatformUserData && ImGui::GetPlatformIO().Platform_GetWindowFocus(vp);
 		}
 
-		SetInputEnabled(bFocused && ImGui::IsWindowHovered());
+		SetInputEnabled(bFocused && ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByActiveItem));
 
 		// Unlock the mouse on focus loss
 		if (!bFocused)
