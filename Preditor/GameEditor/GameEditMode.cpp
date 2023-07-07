@@ -4,6 +4,7 @@
 #include "GameViewportHandler.h"
 
 // I still hate myself...
+#include "../../Chairloader/Tools/Components/EntityHierarchy.h"
 #include "../../Chairloader/Tools/Components/EntityInspector.h"
 
 std::unique_ptr<ISceneEditor> ISceneEditor::CreateGameEditor()
@@ -16,6 +17,7 @@ GameEditor::GameEditMode::GameEditMode()
     m_pSelection = std::make_unique<EntitySelectionManager>(this);
     m_pViewportHandler = std::make_unique<GameViewportHandler>(this);
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
+    m_pEntityHierarchy = std::make_unique<EntityHierarchy>();
     m_pEntityInspector = std::make_unique<EntityInspector>();
 }
 
@@ -50,6 +52,22 @@ void GameEditor::GameEditMode::OnEnabled()
 void GameEditor::GameEditMode::OnDisabled()
 {
     m_pEditToolManager->SetEnabled(false);
+}
+
+void GameEditor::GameEditMode::ShowHierarchy()
+{
+    SceneObjectId objId = m_pSelection->GetActiveObject();
+    EntityId entId = objId != INVALID_SCENE_OBJECT ? (EntityId)objId : INVALID_ENTITYID;
+    m_pEntityHierarchy->SetSelectedEntity(entId);
+    m_pEntityHierarchy->ShowContents();
+
+    EntityId activeId = m_pEntityHierarchy->GetSelectedEntity();
+
+    if (activeId != entId)
+    {
+        m_pSelection->ClearSelection();
+        m_pSelection->AddToSelection(activeId);
+    }
 }
 
 void GameEditor::GameEditMode::ShowInspector()

@@ -7,6 +7,7 @@
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include "UI/PreditorUI.h"
 #include "UI/FileBrowser.h"
+#include "UI/HierarchyWindow.h"
 #include "UI/InspectorWindow.h"
 #include "UI/SelectionWindow.h"
 #include "UI/SimControlWindow.h"
@@ -32,6 +33,7 @@ Main::PreditorUI::PreditorUI()
 
     m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
+    m_pHierarchyWindow = WindowManager::Get().Create<HierarchyWindow>();
 }
 
 Main::PreditorUI::~PreditorUI()
@@ -79,6 +81,7 @@ void Main::PreditorUI::ShowMainMenuBar()
             m_pToolSelectionWindow->ShowToggleMenuItem("Tool Selection");
             m_pSelectionWindow->ShowToggleMenuItem("Object Selection List");
             m_pInspectorWindow->ShowToggleMenuItem("Inspector");
+            m_pHierarchyWindow->ShowToggleMenuItem("Hierarchy");
             ImGui::Separator();
 
             m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");

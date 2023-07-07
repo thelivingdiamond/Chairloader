@@ -39,6 +39,9 @@ struct ISceneEditor
     //! Called when the scene editor is disabled.
     virtual void OnDisabled() = 0;
 
+    //! Shows the hierarchy window contents.
+    virtual void ShowHierarchy() = 0;
+
     //! Shows the inspector contents.
     virtual void ShowInspector() = 0;
 };

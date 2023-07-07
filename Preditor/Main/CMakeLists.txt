@@ -22,6 +22,8 @@ set(SOURCE_FILES
 
 	UI/FileBrowser.cpp
 	UI/FileBrowser.h
+	UI/HierarchyWindow.cpp
+	UI/HierarchyWindow.h
 	UI/InspectorWindow.cpp
 	UI/InspectorWindow.h
 	UI/PreditorUI.cpp
