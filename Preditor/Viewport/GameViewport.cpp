@@ -36,7 +36,7 @@ void Viewport::GameViewport::Update(bool isVisible)
 			bFocused = vp->PlatformUserData && ImGui::GetPlatformIO().Platform_GetWindowFocus(vp);
 		}
 
-		SetInputEnabled(bFocused);
+		SetInputEnabled(bFocused && ImGui::IsWindowHovered());
 
 		// Unlock the mouse on focus loss
 		if (!bFocused)
@@ -56,6 +56,11 @@ void Viewport::GameViewport::ShowUI()
 	if (ImGui::Checkbox("Lock Mouse", &bLockMouse))
 		m_InputLocked.SetIncremented(!bLockMouse);
 
+#ifdef DEBUG_BUILD
+	ImGui::SameLine();
+	ImGui::Text("Input: %d", m_InputActive);
+#endif
+
     ShowViewportImage();
 
 	if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
@@ -64,6 +69,7 @@ void Viewport::GameViewport::ShowUI()
 
 void Viewport::GameViewport::SetInputEnabled(bool state)
 {
+	m_InputActive = state;
 	gPreditor->pEngine->SetGameInputEnabled(state);
 	m_InputEnabled.SetIncremented(!state);
 }

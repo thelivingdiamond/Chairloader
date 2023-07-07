@@ -13,7 +13,7 @@ public:
     // IViewport
     virtual bool NeedCustomRender() override { return false; }
     virtual void CustomRender() override {}
-    virtual bool EnableMouseEvents() override { return true; }
+    virtual bool EnableMouseEvents() override { return m_InputActive; }
 
     // BaseViewport
     virtual void OnDisabled() override;
@@ -23,6 +23,7 @@ public:
 private:
     MouseGuard m_InputEnabled;
     MouseGuard m_InputLocked;
+    bool m_InputActive = false;
 
     void SetInputEnabled(bool state);
 };
