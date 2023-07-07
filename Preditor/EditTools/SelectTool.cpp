@@ -56,7 +56,7 @@ EEditToolResult EditTools::SelectTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSi
             }
             else
             {
-                pSel->AddToSelection(objId, activeObjId == INVALID_SCENE_OBJECT);
+                pSel->AddToSelection(objId, true);
             }
         }
         else
