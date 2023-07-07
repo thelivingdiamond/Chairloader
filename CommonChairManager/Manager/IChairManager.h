@@ -20,6 +20,9 @@ struct IChairManager
     //! @returns the mod display name or empty string if not found.
     virtual std::string GetModDisplayName(const std::string& modName) = 0;
 
+    //! @returns whether the mod is enabled.
+    virtual bool IsModEnabled(const std::string& modName) = 0;
+
     //! Prints a string to the log.
     //! Fatal logs will additionally throw an exception.
     virtual void LogString(severityLevel level, std::string_view str) = 0;

@@ -39,6 +39,8 @@ set(SOURCE_FILES
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
 	Manager/LogEntry.h
+	Manager/LuaUtils.cpp
+	Manager/LuaUtils.h
 	Manager/MergingPolicy.h
 	Manager/ModConfig.h
 	Manager/ModInfo.cpp
@@ -52,6 +54,8 @@ set(SOURCE_FILES
 	Manager/GamePath.h
 	Manager/IChairManager.h
 	Manager/ThreadPool.h
+	Manager/WildcardResolver.cpp
+	Manager/WildcardResolver.h
 	Manager/PugiUtils.h
 	Manager/XMLMerger2.cpp
 	Manager/XMLMerger2.h

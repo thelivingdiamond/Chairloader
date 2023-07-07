@@ -33,6 +33,7 @@ private:
     virtual fs::path GetModPath(const std::string& modName) override;
     virtual std::vector<std::string> GetModNames() override;
     virtual std::string GetModDisplayName(const std::string& modName) override;
+    virtual bool IsModEnabled(const std::string& modName) override;
     virtual void LogString(severityLevel level, std::string_view str) override;
 };
 

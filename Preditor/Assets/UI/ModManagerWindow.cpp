@@ -102,6 +102,11 @@ std::string Assets::ModManagerWindow::GetModDisplayName(const std::string& modNa
     return m_ModListTab.GetModDisplayName(modName);
 }
 
+bool Assets::ModManagerWindow::IsModEnabled(const std::string& modName)
+{
+    throw std::logic_error("IsModEnabled Not Implemented");
+}
+
 void Assets::ModManagerWindow::LogString(severityLevel level, std::string_view str)
 {
     EChairLogType type;

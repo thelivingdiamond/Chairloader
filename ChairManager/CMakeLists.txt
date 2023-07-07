@@ -41,8 +41,6 @@ set(SOURCE_FILES
         Merging/ZipUtils.h
         Merging/ZipUtils.cpp
         Merging/ZipUtilsTest.cpp
-        LuaUtils.cpp
-        LuaUtils.h
         LuaUtilsTest.cpp
 		CrashHandler.h
 		CrashHandler.cpp
