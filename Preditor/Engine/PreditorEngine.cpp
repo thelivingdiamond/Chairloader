@@ -240,8 +240,10 @@ void CSystem_OpenBasicPaks_Hook(CSystem* const _this)
 	static bool bBasicPaksLoaded = false;
 	if (!bBasicPaksLoaded)
 	{
-		if (!g_InitParams.modDirPath.empty())
-			_this->m_env->pCryPak->AddMod(g_InitParams.modDirPath.u8string().c_str());
+		for (const fs::path& i : g_InitParams.modDirPaths)
+		{
+			_this->m_env->pCryPak->AddMod(i.u8string().c_str());
+		}
 
 		if (g_InitParams.loadGamePaks)
 		{

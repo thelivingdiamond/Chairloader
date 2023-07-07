@@ -610,6 +610,7 @@ void Assets::AssetMergeExecutor::RemoveOldFiles()
 
 void Assets::AssetMergeExecutor::MergeFiles(const MergeCache& cache)
 {
+    fs::create_directory(gPreditor->pPaths->GetMergedAssetsRootPath());
     fs::create_directory(gPreditor->pPaths->GetMergedAssetsPath());
 
     for (const std::string& relPath : m_FilesToMerge)

@@ -57,7 +57,8 @@ void LoadGameStage::Start()
 			// Load the whole game
 			SetUpUserDir();
 			fs::path projRuntime = gPreditor->pPaths->GetUserPath();
-			params.modDirPath = gPreditor->pPaths->GetMergedAssetsPath();
+			params.modDirPaths.push_back(gPreditor->pPaths->GetMergedAssetsPath());
+			params.modDirPaths.push_back(gPreditor->pPaths->GetMergedAssetsRootPath());
 			params.userPath = projRuntime / "User";
 			params.minimal = false;
 			params.loadGamePaks = false; // false - doesn't use custom GameSDK path

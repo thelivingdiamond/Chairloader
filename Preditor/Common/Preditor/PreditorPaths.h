@@ -26,6 +26,9 @@ public:
 	//! @returns the merged assets directory.
 	const fs::path& GetMergedAssetsPath() const { return m_MergedAssetsPath; }
 
+	//! @returns the root of merged assets directory, which contains GameSDK directory.
+	const fs::path& GetMergedAssetsRootPath() const { return m_MergedAssetsRootPath; }
+
 	//! Sets the path to the project directory. Also sets all paths that depend on it.
 	void SetProjectDirPath(const fs::path& path)
 	{
@@ -35,7 +38,8 @@ public:
 		m_UserPath = path / USER_DIR_NAME;
 		m_ModsPath = m_UserPath / "Mods";
 		m_ImportedAssetsPath = m_UserPath / "ImportedAssets";
-		m_MergedAssetsPath = m_UserPath / "MergedAssets";
+		m_MergedAssetsRootPath = m_UserPath / "MergedAssets";
+		m_MergedAssetsPath = m_MergedAssetsRootPath / "GameSDK";
 	}
 
 	//! Creates user directories and subdirectories.
@@ -55,5 +59,6 @@ private:
 	fs::path m_UserPath; // .user
 	fs::path m_ModsPath; // .user/Mods
 	fs::path m_ImportedAssetsPath; // .user/ImportedAssets
-	fs::path m_MergedAssetsPath; // .user/MergedAssets
+	fs::path m_MergedAssetsRootPath; // .user/MergedAssets
+	fs::path m_MergedAssetsPath; // .user/MergedAssets/GameSDK
 };

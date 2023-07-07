@@ -42,14 +42,17 @@ void Assets::AssetMergeSystem::InvalidateCache()
     if (!mergePath.is_absolute())
         throw std::logic_error("GetMergedAssetsPath is not absolute");
 
-    // Remove import contents
-    for (const fs::directory_entry& i : fs::directory_iterator(mergePath))
+    if (fs::exists(mergePath))
     {
-        std::error_code ec;
-        fs::remove_all(i.path(), ec);
+        // Remove merge contents
+        for (const fs::directory_entry& i : fs::directory_iterator(mergePath))
+        {
+            std::error_code ec;
+            fs::remove_all(i.path(), ec);
 
-        if (ec)
-            CryError("[Merge] Failed to remove {}: {}", i.path().u8string(), ec.message());
+            if (ec)
+                CryError("[Merge] Failed to remove {}: {}", i.path().u8string(), ec.message());
+        }
     }
 }
 

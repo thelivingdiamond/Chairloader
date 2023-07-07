@@ -25,8 +25,8 @@ struct IPreditorEngine
 		//! Optional path to the GameSDK directory to use.
 		fs::path gameSdkPath;
 
-		//! Optional path to a mod directory. If set, files from here will override GameSDK files.
-		fs::path modDirPath;
+		//! Optional paths to mod directories. If set, files from there will override GameSDK files.
+		std::vector<fs::path> modDirPaths;
 
 		//! Path to the user directory to store user-specific files.
 		fs::path userPath;
