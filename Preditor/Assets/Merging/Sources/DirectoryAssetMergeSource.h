@@ -17,11 +17,7 @@ public:
 protected:
     //! Checks if the file needs to be added.
     //! @returns true if needs to be added.
-    virtual bool CheckFile(const std::string& relPath, const fs::path& fullPath)
-    {
-        // Derived classes can override this.
-        return true;
-    }
+    virtual bool CheckFile(const std::string& relPath, const fs::path& fullPath);
 
     //! @returns metadata mod time for the file.
     virtual FileModTime GetMetaModTime(const std::string& relPath, const fs::path& fullPath);

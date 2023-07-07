@@ -1,4 +1,5 @@
 #include "Merging/Sources/DirectoryAssetMergeSource.h"
+#include "AssetsCommon.h"
 
 Assets::DirectoryAssetMergeSource::DirectoryAssetMergeSource(std::string_view sourceName, const fs::path& rootDirectory)
     : AssetMergeSource(sourceName, rootDirectory)
@@ -12,6 +13,15 @@ Assets::DirectoryAssetMergeSource::~DirectoryAssetMergeSource()
 void Assets::DirectoryAssetMergeSource::CollectFiles()
 {
     RecursiveFindFiles("");
+}
+
+bool Assets::DirectoryAssetMergeSource::CheckFile(const std::string& relPath, const fs::path& fullPath)
+{
+    // Skip level files (will be handled separately)
+    if (StartsWith(relPath, "levels/"))
+        return false;
+
+    return true;
 }
 
 Assets::FileModTime Assets::DirectoryAssetMergeSource::GetMetaModTime(const std::string& relPath, const fs::path& fullPath)
