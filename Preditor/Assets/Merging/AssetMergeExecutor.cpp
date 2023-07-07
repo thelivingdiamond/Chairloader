@@ -261,9 +261,7 @@ void Assets::AssetMergeExecutor::Execute()
     {
         // Early exit, don't overwrite the cache
         // (in case something was missed, in which case cache won't match the real state)
-        if constexpr (ASSETS_DEBUG)
-            CryLog("[Merging] Files are up to date, nothing to do");
-
+        CryLog("[Merging] Files are up to date, nothing to do");
         return;
     }
 
@@ -271,9 +269,7 @@ void Assets::AssetMergeExecutor::Execute()
     MergeFiles(newCache);
 
     m_pSys->SaveMergeCache(newCache);
-
-    if constexpr (ASSETS_DEBUG)
-        CryLog("[Merging] Total merged files: {}", newCache.files.size());
+    CryLog("[Merging] Total merged files: {}", newCache.files.size());
 }
 
 void Assets::AssetMergeExecutor::InitModSystem()

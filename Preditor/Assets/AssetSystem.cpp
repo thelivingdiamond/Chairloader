@@ -101,7 +101,7 @@ void Assets::AssetSystem::ShowMainMenu()
 bool Assets::AssetSystem::RunMerging()
 {
     CTimeValue startTime = gEnv->pTimer->GetAsyncTime();
-    CryLog("[AssetSystem] MERGING BEGIN");
+    CryLog("$7[AssetSystem] MERGING BEGIN");
 
     // Clear old metadata cache
     {
@@ -128,7 +128,7 @@ bool Assets::AssetSystem::RunMerging()
     }
 
     CTimeValue endTime = gEnv->pTimer->GetAsyncTime();
-    CryLog("[AssetSystem] Merging finished successfully.");
-    CryLog("[AssetSystem] Merging time: {:.3f} s.", (endTime - startTime).GetSeconds());
+    CryLog("$5[AssetSystem] Merging finished successfully.");
+    CryLog("$5[AssetSystem] Merging time: {:.3f} s.", (endTime - startTime).GetSeconds());
     return true;
 }
