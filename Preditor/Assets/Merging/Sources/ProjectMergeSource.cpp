@@ -5,7 +5,7 @@
 #include "AssetSystem.h"
 
 Assets::ProjectMergeSource::ProjectMergeSource(const std::string& modName, const fs::path& rootDirectory)
-    : DirectoryAssetMergeSource("project.assets", rootDirectory)
+    : DirectoryAssetMergeSource(SOURCE_NAME, rootDirectory)
 {
     m_pSys = static_cast<AssetSystem*>(gPreditor->pAssetSystem);
     m_ModName = modName;

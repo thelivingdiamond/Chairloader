@@ -10,6 +10,8 @@ class AssetSystem;
 class ProjectMergeSource : public DirectoryAssetMergeSource
 {
 public:
+    static constexpr char SOURCE_NAME[] = "project.assets";
+
     ProjectMergeSource(const std::string& modName, const fs::path& rootDirectory);
     ~ProjectMergeSource();
 

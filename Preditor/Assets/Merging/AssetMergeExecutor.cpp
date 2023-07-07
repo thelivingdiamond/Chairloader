@@ -12,6 +12,98 @@
 #include "Merging/MergeCache.h"
 #include "CMAdapter.h"
 
+namespace
+{
+
+//! Checks if two XML nodes are equal.
+bool XmlNodesAreEqual(pugi::xml_node lhs, pugi::xml_node rhs)
+{
+    // Compare names
+    if (strcmp(lhs.name(), rhs.name()))
+    {
+        // Non-equal names
+        return false;
+    }
+
+    // Compare attributes
+    {
+        auto attrl = lhs.attributes();
+        auto attrr = rhs.attributes();
+        auto itl = attrl.begin();
+        auto itr = attrr.begin();
+
+        for (;;)
+        {
+            if (itl == attrl.end() && itr == attrr.end())
+            {
+                // Equal size and contents
+                break;
+            }
+            else if (itl == attrl.end() || itr == attrr.end())
+            {
+                // One attr list is shorter
+                return false;
+            }
+
+            assert(itl != attrl.end() && itr != attrr.end());
+
+            // Compare attr contents
+            if (strcmp(itl->name(), itr->name()))
+            {
+                // Non-equal names
+                return false;
+            }
+
+            if (strcmp(itl->as_string(), itr->as_string()))
+            {
+                // Non-equal values
+                return false;
+            }
+
+            ++itl;
+            ++itr;
+        }
+    }
+
+    // Compare children
+    {
+        auto childrenl = lhs.children();
+        auto childrenr = rhs.children();
+        auto itl = childrenl.begin();
+        auto itr = childrenr.begin();
+
+        for (;;)
+        {
+            if (itl == childrenl.end() && itr == childrenr.end())
+            {
+                // Equal size and contents
+                break;
+            }
+            else if (itl == childrenl.end() || itr == childrenr.end())
+            {
+                // One child list is shorter
+                return false;
+            }
+
+            assert(itl != childrenl.end() && itr != childrenr.end());
+
+            if (!XmlNodesAreEqual(*itl, *itr))
+            {
+                // Non-equal children
+                return false;
+            }
+
+            ++itl;
+            ++itr;
+        }
+    }
+
+    // All checks passed
+    return true;
+}
+
+} // namespace
+
 class Assets::AssetMergeExecutor::ModSystem final : public IChairManager
 {
 public:
@@ -200,6 +292,11 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
 
         if (isProject)
         {
+            if (!m_ProjectModName.empty())
+                throw std::logic_error(fmt::format("Duplicate project mod? '{}' and '{}'", m_ProjectModName, mod.modName));
+
+            m_ProjectModName = mod.modName;
+
             // Project assets
             const fs::path& assetsPath = gPreditor->pPaths->GetAssetPath();
             if (fs::exists(assetsPath))
@@ -242,6 +339,9 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
             }
         }
     }
+
+    if (m_ProjectModName.empty())
+        throw std::logic_error("Project mod not found. Is it disabled?");
 
     for (auto& pSource : m_Sources)
     {
@@ -291,6 +391,15 @@ Assets::MergeCache Assets::AssetMergeExecutor::CreateCache()
 {
     MergeCache cache;
 
+    // Configs
+    for (const auto& [modName, modConfig] : m_pModSystem->GetModConfigs())
+    {
+        pugi::xml_document configDoc;
+        configDoc.append_copy(modConfig.configDoc->first_child());
+        cache.modConfigs.emplace(modName, std::move(configDoc));
+    }
+
+    // Files
     for (auto& pSource : m_Sources)
     {
         for (const MergeFile& mergeFile : pSource->GetFiles())
@@ -320,6 +429,64 @@ Assets::MergeCache Assets::AssetMergeExecutor::CreateCache()
 void Assets::AssetMergeExecutor::FillMergeList(const MergeCache& oldCache, const MergeCache& newCache)
 {
     // TODO 2023-07-04: Check mod configs
+
+    // List of sources that need to be fully merged
+    std::set<std::string, std::less<>> invalidateSourceList;
+
+    // Compare configs
+    for (const auto& [modName, modConfig] : newCache.modConfigs)
+    {
+        bool needInvalidate = false;
+        auto oldConfig = oldCache.modConfigs.find(modName);
+
+        if (oldConfig == oldCache.modConfigs.end())
+        {
+            // Config added
+            if constexpr (ASSETS_DEBUG)
+                CryLog("[Merging] New mod config: {}", modName);
+
+            needInvalidate = true;
+        }
+        else
+        {
+            // Config exists in old cache
+            // Compare them
+            bool equalNodes = XmlNodesAreEqual(modConfig, oldConfig->second);
+
+            if (!equalNodes)
+            {
+                if constexpr (ASSETS_DEBUG)
+                    CryLog("[Merging] Config nodes changed: {}", modName);
+
+                needInvalidate = true;
+            }
+        }
+
+        if (needInvalidate)
+        {
+            bool isProject = m_ProjectModName == modName;
+
+            if (isProject)
+            {
+                invalidateSourceList.insert(ProjectMergeSource::SOURCE_NAME);
+                invalidateSourceList.insert(ImportMergeSource::SOURCE_NAME);
+
+                if constexpr (ASSETS_DEBUG)
+                {
+                    CryLog("[Merging] Source invalidated: {}", ProjectMergeSource::SOURCE_NAME);
+                    CryLog("[Merging] Source invalidated: {}", ImportMergeSource::SOURCE_NAME);
+                }
+            }
+            else
+            {
+                std::string sourceName = fmt::format("mod.{}", modName);
+                invalidateSourceList.insert(sourceName);
+
+                if constexpr (ASSETS_DEBUG)
+                    CryLog("[Merging] Source invalidated: {}", sourceName);
+            }
+        }
+    }
 
     // Check new files
     for (const auto& [relPath, newFile] : newCache.files)
@@ -369,6 +536,14 @@ void Assets::AssetMergeExecutor::FillMergeList(const MergeCache& oldCache, const
                         // File changed
                         if constexpr (ASSETS_DEBUG)
                             CryLog("[Merging] Source file changed: {}", relPath);
+
+                        needMerging = true;
+                    }
+                    else if (invalidateSourceList.find(newSource.source) != invalidateSourceList.end())
+                    {
+                        // Source invalidated
+                        if constexpr (ASSETS_DEBUG)
+                            CryLog("[Merging] Source file's source '{}' is invalidated: {}", newSource.source, relPath);
 
                         needMerging = true;
                     }

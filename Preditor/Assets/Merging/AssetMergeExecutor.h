@@ -29,6 +29,7 @@ private:
     AssetMergeSystem* m_pSys = nullptr;
     std::unique_ptr<ModSystem> m_pModSystem;
     std::mt19937 m_Rng;
+    std::string m_ProjectModName;
 
     //! Merge sources. Sorted in mod config order.
     //! Files from last sources override files from first sources.

@@ -48,12 +48,12 @@ public:
         }
     };
     
-    // TODO 2023-07-04: Project mod config
-    // TODO 2023-07-04: Other mod configs
-
+    std::map<std::string, pugi::xml_document, std::less<>> modConfigs;
     std::map<std::string, OutFile, std::less<>> files;
 
     MergeCache();
+    MergeCache(const MergeCache&) = delete;
+    MergeCache(MergeCache&&) noexcept = default;
     ~MergeCache();
 
     //! Loads the cache from an XML file.
@@ -61,6 +61,9 @@ public:
 
     //! Saves the cache into an XML file.
     void SaveXml(const fs::path& xmlPath) const;
+
+    MergeCache& operator=(const MergeCache&) = delete;
+    MergeCache& operator=(MergeCache&&) noexcept = default;
 };
 
 } // namespace Assets

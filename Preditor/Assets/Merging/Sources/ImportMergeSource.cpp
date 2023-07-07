@@ -3,7 +3,7 @@
 #include "Merging/AssetMergeExecutor.h"
 
 Assets::ImportMergeSource::ImportMergeSource(const std::string& modName, const fs::path& rootDirectory)
-    : DirectoryAssetMergeSource("project.import", rootDirectory)
+    : DirectoryAssetMergeSource(SOURCE_NAME, rootDirectory)
 {
     m_ModName = modName;
 }

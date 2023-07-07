@@ -16,6 +16,19 @@ void Assets::MergeCache::LoadXml(const fs::path& xmlPath)
     if (!result)
         throw std::runtime_error(result.description());
 
+    // Configs
+    for (pugi::xml_node configNode : doc.first_child().child("ModConfigs").children("Config"))
+    {
+        std::string modName = configNode.attribute("mod").as_string();
+        pugi::xml_document configDoc;
+        configDoc.append_copy(configNode.first_child());
+
+        bool isInserted = modConfigs.emplace(modName, std::move(configDoc)).second;
+
+        if (!isInserted)
+            throw std::runtime_error(fmt::format("Duplicate mod config: {}", modName));
+    }
+
     // Files
     for (pugi::xml_node fileNode : doc.first_child().child("Files").children("OutFile"))
     {
@@ -32,9 +45,9 @@ void Assets::MergeCache::LoadXml(const fs::path& xmlPath)
             file.sourceFiles.push_back(std::move(sourceFile));
         }
 
-        bool isInseted = files.emplace(path, std::move(file)).second;
+        bool isInserted = files.emplace(path, std::move(file)).second;
 
-        if (!isInseted)
+        if (!isInserted)
             throw std::runtime_error(fmt::format("Duplicate path: {}", path));
     }
 }
@@ -44,6 +57,16 @@ void Assets::MergeCache::SaveXml(const fs::path& xmlPath) const
     pugi::xml_document doc;
     pugi::xml_node root = doc.append_child("MergeCache");
 
+    // Configs
+    pugi::xml_node modConfigsNode = root.append_child("ModConfigs");
+    for (const auto& [modName, configDoc] : modConfigs)
+    {
+        pugi::xml_node configNode = modConfigsNode.append_child("Config");
+        configNode.append_attribute("mod").set_value(modName.c_str());
+        configNode.append_copy(configDoc.first_child());
+    }
+
+    // Files
     pugi::xml_node filesNode = root.append_child("Files");
     for (const auto& [path, file] : files)
     {

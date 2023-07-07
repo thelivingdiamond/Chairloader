@@ -10,6 +10,8 @@ class AssetSystem;
 class ImportMergeSource : public DirectoryAssetMergeSource
 {
 public:
+    static constexpr char SOURCE_NAME[] = "project.import";
+
     ImportMergeSource(const std::string& modName, const fs::path& rootDirectory);
     ~ImportMergeSource();
 
