@@ -1,5 +1,7 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+	EntitySelectionManager.cpp
+	EntitySelectionManager.h
 	GameEditMode.cpp
 	GameEditMode.h
 	GameViewportHandler.cpp

@@ -24,6 +24,8 @@ set(SOURCE_FILES
 	UI/FileBrowser.h
 	UI/PreditorUI.cpp
 	UI/PreditorUI.h
+	UI/SelectionWindow.cpp
+	UI/SelectionWindow.h
 	UI/SimControlWindow.cpp
 	UI/SimControlWindow.h
 

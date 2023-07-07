@@ -4,6 +4,7 @@
 namespace GameEditor
 {
 
+class EntitySelectionManager;
 class GameViewportHandler;
 
 //! Runtime entity editing.
@@ -14,7 +15,7 @@ public:
     ~GameEditMode();
 
     // ISceneEditor
-    virtual SelectionManager* GetSelection() override { return nullptr; } // TODO 2023-06-17
+    virtual SelectionManager* GetSelection() override;
     virtual IViewportHandler* GetViewport() override;
     virtual IObjectManipulator* GetManipulator() override { return nullptr; } // TODO 2023-06-17
     virtual IEditToolManager* GetToolManager() override { return m_pEditToolManager.get(); }
@@ -24,6 +25,7 @@ public:
     virtual void ShowInspector() override;
 
 private:
+    std::unique_ptr<EntitySelectionManager> m_pSelection;
     std::unique_ptr<GameViewportHandler> m_pViewportHandler;
     std::unique_ptr<IEditToolManager> m_pEditToolManager;
 };

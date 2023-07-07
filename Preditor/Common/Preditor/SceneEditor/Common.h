@@ -28,3 +28,6 @@ enum class EPlayMode
 
 //! An ID used by SceneEditor interfaces to reference an object (either an entity or level object).
 using SceneObjectId = uint64_t;
+
+//! An ID of an invalid scene object.
+constexpr SceneObjectId INVALID_SCENE_OBJECT = -1;

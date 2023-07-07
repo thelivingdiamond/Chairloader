@@ -37,6 +37,8 @@ set(SOURCE_FILES
 	Preditor/SceneEditor/ISceneEditor.h
 	Preditor/SceneEditor/ISceneEditorManager.h
 	Preditor/SceneEditor/IViewportHandler.h
+	Preditor/SceneEditor/SelectionManager.cpp
+	Preditor/SceneEditor/SelectionManager.h
 
 	Preditor/Viewport/IViewport.h
 	Preditor/Viewport/IViewportWindow.h

@@ -8,6 +8,7 @@
 #include "PreditorUI.h"
 #include "SimControlWindow.h"
 #include "FileBrowser.h"
+#include "SelectionWindow.h"
 
 Main::PreditorUI::PreditorUI()
 {
@@ -27,6 +28,8 @@ Main::PreditorUI::PreditorUI()
     m_pAssetBrowser = WindowManager::Get().Create<FileBrowser>();
     m_pAssetBrowser->SetTitle("Asset Browser");
     m_pAssetBrowser->SetPersistentID("AssetBrowser");
+
+    m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
 }
 
 Main::PreditorUI::~PreditorUI()
@@ -69,7 +72,15 @@ void Main::PreditorUI::ShowMainMenuBar()
         {
             m_pChairTools->ShowWindowMenu();
             ImGui::MenuItem("ImGui Demo", nullptr, &m_bImGuiDemo);
+            ImGui::Separator();
+
             m_pToolSelectionWindow->ShowToggleMenuItem("Tool Selection");
+            m_pSelectionWindow->ShowToggleMenuItem("Object Selection List");
+            ImGui::Separator();
+
+            m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");
+            m_pAssetBrowser->ShowToggleMenuItem("Game File Browser");
+
             ImGui::EndMenu();
         }
 
