@@ -4,6 +4,10 @@
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/EditTools/IEditToolManager.h>
+#include <Preditor/SceneEditor/ISceneEditor.h>
+#include <Preditor/SceneEditor/ISceneEditorManager.h>
+#include <Preditor/SceneEditor/IViewportHandler.h>
 #include <Preditor/Input/IPreditorInput.h>
 #include <Preditor/Input/IMouseInputSystem.h>
 #include "SceneViewport.h"
@@ -101,9 +105,18 @@ void Viewport::SceneViewport::ShowUI()
 	ImGui::SameLine();
 	ShowCameraMenu();
 
-	ShowViewportImage();
+	ImVec4 imageBounds = ShowViewportImage();
 
-	SetCameraMode(ImGui::IsMouseDown(ImGuiMouseButton_Right));
+	SetCameraMode(ImGui::IsItemHovered() && ImGui::IsMouseDown(ImGuiMouseButton_Right));
+
+	if (!m_IsInCameraMode && ImGui::IsItemClicked(ImGuiMouseButton_Left))
+	{
+		ImVec2 windowPos = ImGui::GetWindowPos();
+		ImVec2 mousePosScreen = ImGui::GetMousePos();
+		Vec2 vpSize(imageBounds.z - imageBounds.x, imageBounds.w - imageBounds.y);
+		Vec2 mousePos(mousePosScreen.x - imageBounds.x - windowPos.x, mousePosScreen.y - imageBounds.y - windowPos.y);
+		OnViewportClick(mousePos, vpSize);
+	}
 
 	if (m_IsInCameraMode)
 	{
@@ -128,10 +141,23 @@ void Viewport::SceneViewport::SetCameraMode(bool state)
 	if (m_IsInCameraMode == state)
 		return;
 
-	CryLog("[SceneViewport] Camera Mode: {}", state);
+	// CryLog("[SceneViewport] Camera Mode: {}", state);
 	m_IsInCameraMode = state;
 	m_pCameraActionSet->SetActive(state);
 	gPreditor->pInput->GetMouse()->SetExclusiveInputActive(state);
+}
+
+void Viewport::SceneViewport::OnViewportClick(Vec2 mousePos, Vec2 vpSize)
+{
+	ISceneEditor* pEditor = gPreditor->pSceneEditorManager->GetEditor();
+
+	if (!pEditor)
+		return;
+
+	EEditToolResult result = pEditor->GetViewport()->OnLeftMouseClick(mousePos, vpSize);
+
+	if (result == EEditToolResult::Passthrough)
+		result = pEditor->GetToolManager()->OnLeftMouseClick(mousePos, vpSize);
 }
 
 void Viewport::SceneViewport::ShowCameraMenu()

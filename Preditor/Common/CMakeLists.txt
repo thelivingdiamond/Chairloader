@@ -15,6 +15,8 @@ set(SOURCE_FILES
 	Preditor/Assets/Common.h
 	Preditor/Assets/IAssetSystem.h
 
+	Preditor/EditTools/IEditToolManager.h
+
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
 

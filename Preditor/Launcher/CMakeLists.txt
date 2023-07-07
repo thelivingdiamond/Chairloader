@@ -33,6 +33,7 @@ target_include_directories(Preditor.Launcher PRIVATE
 target_link_libraries(Preditor.Launcher
 	Preditor.Assets
 	Preditor.Common
+	Preditor.EditTools
 	Preditor.Engine
 	Preditor.GameEditor
 	Preditor.Input

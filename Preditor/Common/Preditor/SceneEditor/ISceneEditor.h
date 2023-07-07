@@ -3,7 +3,7 @@
 
 struct IViewportHandler;
 struct IObjectManipulator;
-struct IToolManager;
+struct IEditToolManager;
 class SelectionManager;
 class UndoBuffer;
 
@@ -25,7 +25,7 @@ struct ISceneEditor
     virtual IObjectManipulator* GetManipulator() = 0;
 
     //! @returns the tool manager.
-    virtual IToolManager* GetToolManager() = 0;
+    virtual IEditToolManager* GetToolManager() = 0;
 
     //! @returns the undo buffer.
     virtual UndoBuffer* GetUndoBuffer() = 0;

@@ -2,6 +2,7 @@
 
 struct IChairloaderToolsPreditor;
 struct IViewportWindow;
+class ManagedWindow;
 
 namespace Main
 {
@@ -23,6 +24,7 @@ private:
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<IViewportWindow> m_pViewportWindow;
     std::shared_ptr<SimControlWindow> m_pSimControlWindow;
+    std::shared_ptr<ManagedWindow> m_pToolSelectionWindow;
     std::shared_ptr<FileBrowser> m_pProjectBrowser;
     std::shared_ptr<FileBrowser> m_pAssetBrowser;
 

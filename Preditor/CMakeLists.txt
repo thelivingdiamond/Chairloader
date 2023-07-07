@@ -6,6 +6,7 @@ add_subdirectory(Common)
 
 # Modules
 add_subdirectory(Assets)
+add_subdirectory(EditTools)
 add_subdirectory(Engine)
 add_subdirectory(GameEditor)
 add_subdirectory(Input)

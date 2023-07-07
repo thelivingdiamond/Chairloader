@@ -2,6 +2,7 @@
 #include <WindowManager/WindowManager.h>
 #include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
+#include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include "PreditorUI.h"
@@ -16,6 +17,7 @@ Main::PreditorUI::PreditorUI()
     gPreditor->pViewportWindow = m_pViewportWindow.get();
 
     m_pSimControlWindow = WindowManager::Get().Create<SimControlWindow>();
+    m_pToolSelectionWindow = IEditToolManager::CreateToolSelectionWindow();
 
     m_pProjectBrowser = WindowManager::Get().Create<FileBrowser>();
     m_pProjectBrowser->SetTitle("Project Browser");
@@ -67,6 +69,7 @@ void Main::PreditorUI::ShowMainMenuBar()
         {
             m_pChairTools->ShowWindowMenu();
             ImGui::MenuItem("ImGui Demo", nullptr, &m_bImGuiDemo);
+            m_pToolSelectionWindow->ShowToggleMenuItem("Tool Selection");
             ImGui::EndMenu();
         }
 

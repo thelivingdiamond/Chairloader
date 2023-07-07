@@ -2,6 +2,8 @@ set(SOURCE_FILES
 	CMakeLists.txt
 	GameEditMode.cpp
 	GameEditMode.h
+	GameViewportHandler.cpp
+	GameViewportHandler.h
 )
 
 add_library(Preditor.GameEditor STATIC

@@ -62,6 +62,9 @@ private:
     //! Sets whether currently controlling the camera.
     void SetCameraMode(bool state);
 
+    //! LMB was clicked on the viewport.
+    void OnViewportClick(Vec2 mousePos, Vec2 vpSize);
+
     void ShowCameraMenu();
 
     void UpdateCamera();
