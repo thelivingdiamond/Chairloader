@@ -225,6 +225,13 @@ void Assets::AssetMergeExecutor::CreateMergeSources()
             if (modDirPath.empty())
                 modDirPath = gPreditor->pPaths->GetModsPath() / fs::u8path(mod.modName);
 
+            if (!fs::exists(modDirPath))
+            {
+                throw std::logic_error(fmt::format(
+                    "Mod directory doesn't exist. Bug in the code?\n{}", modDirPath.u8string()
+                ));
+            }
+
             fs::path modDataPath = modDirPath / "Data";
 
             if (fs::exists(modDataPath))

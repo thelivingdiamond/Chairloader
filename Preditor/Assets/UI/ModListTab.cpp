@@ -155,6 +155,7 @@ void Assets::ModListTab::LoadModList()
         item.isNameValid = Manager::ModInfo::ValidateModName(item.info.modName);
         item.isThisProject = true;
         item.isEnabled = true;
+        item.fullPath = gPreditor->pPaths->GetProjectDirPath();
 
         m_Items.emplace_back(std::move(item));
     }
