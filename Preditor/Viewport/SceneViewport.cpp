@@ -137,6 +137,8 @@ void Viewport::SceneViewport::ShowUI()
 		rot.z -= delta.x;
 		rot.x -= delta.y;
 		m_CamInfo.rot = Ang3(Quat(rot)); // Quick and dirty 360 deg wrapping
+
+		ImGui::SetWindowFocus();
 	}
 }
 
