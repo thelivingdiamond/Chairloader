@@ -46,7 +46,7 @@ Viewport::SceneViewport::~SceneViewport()
 	gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }
 
-Ray Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 vpSize)
+ViewportRaycastInfo Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 vpSize)
 {
 	Vec2 normCoords = 2.0f * mousePos / vpSize - Vec2(1, 1); // [-1; 1)
 	Vec3 scale(-normCoords.x, 1, -normCoords.y);
@@ -55,7 +55,12 @@ Ray Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 vpSize)
 
 	Vec3 start = m_Cam.GetMatrix() * nearPoint;
 	Vec3 end = m_Cam.GetMatrix() * farPoint;
-	return Ray(start, end - start);
+
+	ViewportRaycastInfo rc;
+	rc.ray = Ray(start, end - start);
+	rc.viwportSize = vpSize;
+	rc.viewportClickPos = mousePos;
+	return rc;
 }
 
 void Viewport::SceneViewport::CustomRender()

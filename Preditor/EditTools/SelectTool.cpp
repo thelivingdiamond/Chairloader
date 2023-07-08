@@ -18,11 +18,6 @@ EditTools::SelectTool::~SelectTool()
 
 EEditToolResult EditTools::SelectTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize)
 {
-    ViewportRaycastInfo rc;
-    rc.viewportClickPos = clickPos;
-    rc.viwportSize = vpSize;
-    rc.ray = gPreditor->pViewportWindow->GetRayForMouse(clickPos, vpSize);
-
     ISceneEditor* pEditor = GetManager()->GetEditor();
     SelectionManager* pSel = pEditor->GetSelection();
     bool append = m_pAppendKey->IsHeldDown();
@@ -38,6 +33,7 @@ EEditToolResult EditTools::SelectTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSi
         pSel->ValidateSelection();
     }
 
+    ViewportRaycastInfo rc = gPreditor->pViewportWindow->GetRayForMouse(clickPos, vpSize);
     SceneObjectId activeObjId = pSel->GetActiveObject();
     SceneObjectId objId = pEditor->GetViewport()->Raycast(rc);
 

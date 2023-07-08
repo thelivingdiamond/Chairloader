@@ -1,4 +1,5 @@
 #pragma once
+#include <Preditor/SceneEditor/IViewportHandler.h>
 #include <Preditor/MouseGuard.h>
 #include "BaseViewport.h"
 
@@ -17,7 +18,7 @@ public:
     ~SceneViewport();
 
     //! @returns a ray from screen coordinates.
-    Ray GetRayForMouse(Vec2 mousePos, Vec2 vpSize);
+    ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize);
 
     // IViewport
     virtual bool NeedCustomRender() override { return true; }

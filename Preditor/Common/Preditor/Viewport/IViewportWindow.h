@@ -1,4 +1,5 @@
 #pragma once
+#include <Preditor/SceneEditor/IViewportHandler.h>
 
 struct IViewport;
 
@@ -19,5 +20,5 @@ struct IViewportWindow
     virtual bool IsFocused() = 0;
 
     //! @returns a ray from screen coordinates.
-    virtual Ray GetRayForMouse(Vec2 mousePos, Vec2 vpSize) = 0;
+    virtual ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize) = 0;
 };
