@@ -159,6 +159,17 @@
                     </nodeStructure>
                 </mergingPolicy>
             </AudioLogs.xml>
+            <KeycodeLibrary.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="ID" priority="0"/>
+                    <attribute name="Name" priority="1"/>
+                    <nodeStructure>
+                        <_wildcard_>
+                            <_wildcard_ merge_children="true"/>
+                        </_wildcard_>
+                    </nodeStructure>
+                </mergingPolicy>
+            </KeycodeLibrary.xml>
             <StationAccessLibrary.xml>
                 <mergingPolicy identification_policy="match_attribute">
                     <attribute name="ID" priority="0"/>
