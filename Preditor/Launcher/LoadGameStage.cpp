@@ -82,7 +82,7 @@ void LoadGameStage::Start()
 	}
 }
 
-void LoadGameStage::ShowUI(bool * bOpen)
+void LoadGameStage::ShowUI(bool* bOpen)
 {
 	if (m_ErrorText.empty())
 	{
@@ -100,9 +100,12 @@ void LoadGameStage::ShowUI(bool * bOpen)
 	{
 		// Error dialog
 		ImGui::SetNextWindowSize(ImVec2(480, 200));
-		if (ImGui::Begin("Initialization Failed###LoadGameStage", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings))
+		if (ImGui::Begin("Initialization Failed###LoadGameStage", bOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings))
 		{
 			ImGui::TextWrapped("The Mod Toolkit failed to load.\n\n%s", m_ErrorText.c_str());
+
+			if (ImGui::Button("Quit"))
+				*bOpen = false;
 		}
 		ImGui::End();
 	}
