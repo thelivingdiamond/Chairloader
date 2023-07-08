@@ -45,6 +45,9 @@ private:
         float fov = 90.0f; // In degrees
         float nearPlane = DEFAULT_NEAR;
         float farPlane = DEFAULT_FAR;
+
+        bool bDrawRealWorld = true;
+        bool bDrawLookingGlass = true;
     };
 
     MouseGuard m_InputEnabled;

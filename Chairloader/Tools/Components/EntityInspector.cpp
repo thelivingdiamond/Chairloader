@@ -2,6 +2,7 @@
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
 #include <Prey/CryScriptSystem/IScriptSystem.h>
+#include <Prey/CryEntitySystem/Entity.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "EntityInspector.h"
 
@@ -427,6 +428,11 @@ void EntityInspector::InspectRender(IEntity* pEnt) {
         ImGui::Text("Opacity: %.3f", pProxy->GetOpacity());
         ImGui::Text("Last seen time: %.3f", pProxy->GetLastSeenTime());
         ImGui::Text("Visarea visible: %d", pProxy->IsRenderProxyVisAreaVisible());
+        
+        auto pEnt2 = static_cast<CEntity*>(pEnt);
+        int sceneMask = pEnt2->GetSceneMask();
+        ImGui::Text("Scene Mask: 0x%X", sceneMask);
+
         EndInspector();
     }
 }

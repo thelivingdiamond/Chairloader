@@ -222,6 +222,25 @@ void Viewport::SceneViewport::ShowCameraMenu()
 			info.farPlane = DEFAULT_FAR;
 		}
 
+		bool updateLookingGlass = false;
+		ImGui::Text("Looking Glass");
+		updateLookingGlass |= ImGui::Checkbox("Real", &info.bDrawRealWorld);
+		ImGui::SameLine();
+		updateLookingGlass |= ImGui::Checkbox("LG", &info.bDrawLookingGlass);
+
+		if (updateLookingGlass)
+		{
+			ICVar* pCvar = gEnv->pConsole->GetCVar("e_ArkLookingGlass");
+			if (info.bDrawRealWorld && info.bDrawLookingGlass)
+				pCvar->Set(1);
+			else if (info.bDrawRealWorld)
+				pCvar->Set(2);
+			else if (info.bDrawLookingGlass)
+				pCvar->Set(3);
+			else
+				pCvar->Set(0);
+		}
+
 		ImGui::EndPopup();
 	}
 }
@@ -287,8 +306,6 @@ void Viewport::SceneViewport::UpdateCamera()
 
 		info.pos += (rotQuat * dir) * (m_MoveSpeed * timeDelta);
 	}
-
-	// TODO 2023-06-19: Implement mouse input
 
 	Matrix34 camMat;
 	camMat.SetRotation33(Matrix33(rotQuat));
