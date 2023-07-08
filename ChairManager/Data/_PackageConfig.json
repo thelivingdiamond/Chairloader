@@ -14,9 +14,18 @@
     "ChairManager": {
       "ChairManager.exe": "ChairManager.exe",
       "ChairManager.pdb": "ChairManager.pdb",
+      "boost_json-vc143-mt-x64-1_79.dll": "boost_json-vc143-mt-x64-1_79.dll",
+      "boost_json-vc143-mt-gd-x64-1_79.dll": "boost_json-vc143-mt-gd-x64-1_79.dll",
+      "bz2.dll": "bz2.dll",
+      "bz2d.dll": "bz2d.dll",
       "curlpp.dll": "curlpp.dll",
+      "gtest.dll": "gtest.dll",
+      "gtestd.dll": "gtestd.dll",
       "libcurl.dll": "libcurl.dll",
       "libcurl-d.dll": "libcurl-d.dll",
+      "libzippp.dll": "libzippp.dll",
+      "lua.dll": "lua.dll",
+      "zip.dll": "zip.dll",
       "zlib1.dll": "zlib1.dll",
       "zlibd1.dll": "zlibd1.dll"
     }
