@@ -60,6 +60,25 @@ ViewportRaycastInfo Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 
 	rc.ray = Ray(start, end - start);
 	rc.viwportSize = vpSize;
 	rc.viewportClickPos = mousePos;
+
+	const CameraInfo& info = m_CamInfo;
+
+	if (info.bDrawRealWorld)
+	{
+		// Only select real world when it's visible (ignore LG)
+		rc.sceneMask |= SCENE_MASK_REAL;
+	}
+	else if (info.bDrawLookingGlass)
+	{
+		rc.sceneMask |= SCENE_MASK_LG;
+	}
+	else
+	{
+		// When both checkboxes are clear, the game kinda breaks so allow selection from both
+		rc.sceneMask |= SCENE_MASK_REAL;
+		rc.sceneMask |= SCENE_MASK_LG;
+	}
+
 	return rc;
 }
 
@@ -121,6 +140,10 @@ void Viewport::SceneViewport::ShowUI()
 {
 	ImGui::SameLine();
 	ShowCameraMenu();
+
+	ISceneEditor* pEditor = gPreditor->pSceneEditorManager->GetEditor();
+	if (pEditor)
+		pEditor->GetViewport()->ShowViewportControls();
 
 	ImVec4 imageBounds = ShowViewportImage();
 

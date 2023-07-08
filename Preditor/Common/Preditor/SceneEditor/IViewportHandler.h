@@ -2,6 +2,12 @@
 #include <Preditor/SceneEditor/Common.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 
+//! Scene mask for the real world.
+constexpr uint8_t SCENE_MASK_REAL = 1 << 0;
+
+//! Scene mask for the Looking Glass world.
+constexpr uint8_t SCENE_MASK_LG = 1 << 1;
+
 struct ViewportRaycastInfo
 {
     //! World-space ray from the viewport.
@@ -12,11 +18,17 @@ struct ViewportRaycastInfo
 
     //! Mouse position on the viewport where click occured.
     Vec2 viewportClickPos = Vec2(ZERO);
+
+    //! Viewport scene mask.
+    uint8_t sceneMask = 0;
 };
 
 struct IViewportHandler
 {
     virtual ~IViewportHandler() {}
+
+    //! Shows ImGui controls on the scene viewport.
+    virtual void ShowViewportControls() = 0;
 
     //! Called when the viewport is left-clicked.
     //! @param  clickPos    Position where the mouse was clicked [(0,0) is in top-left corner].

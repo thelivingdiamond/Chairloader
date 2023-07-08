@@ -1,3 +1,4 @@
+#include <Prey/Cry3DEngine/IStatObj.h>
 #include <Prey/CryAction/GameObject.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
@@ -171,7 +172,7 @@ void EntityInspector::InspectSlots(IEntity* pEnt)
                 ImGui::Text("Parent Slot: %d", slotInfo.nParentSlot);
 
                 if (slotInfo.pStatObj)
-                    ImGui::Text("StatObj");
+                    ImGui::TextWrapped("StatObj: %s", slotInfo.pStatObj->GetFilePath());
                 if (slotInfo.pCharacter)
                     ImGui::Text("Character");
                 if (slotInfo.pParticleEmitter)
