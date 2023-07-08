@@ -77,8 +77,9 @@ SceneObjectId GameEditor::GameViewportHandler::Raycast(const ViewportRaycastInfo
 			if (!pProxy)
 				continue;
 
-			if (pProxy->GetLastSeenTime() < lastSeenThreshold)
-				continue;
+			// TODO 2023-07-08: Sometimes GetLastSeenTime lags behind GetCurrTime (but still updated every frame).
+			// if (pProxy->GetLastSeenTime() < lastSeenThreshold)
+			//	continue;
 
 			// Test AABB
 			{
