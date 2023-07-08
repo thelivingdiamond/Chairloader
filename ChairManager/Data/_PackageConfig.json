@@ -39,6 +39,12 @@
 
   "$file_list": "List of files to copy to the output archive",
   "file_list": [
+    "Preditor/ActionSets.xml",
+    "Preditor/ExtractList.xml",
+    "Preditor/KeyDbgLayout.xml",
+    "Preditor/KeyMap.xml",
+    "Preditor/LookingGlassReferenceLibrary.xml",
+    "Preditor/Project.gitignore",
     "ChairloaderPatch",
     "Examples",
     "PreyFiles",
