@@ -1,4 +1,4 @@
-//
+    //
 // Created by theli on 4/18/2023.
 //
 
@@ -57,7 +57,7 @@ debug.setmetatable(sandbox, {
 local f = load(code, "sandbox code", "t", sandbox)
 -- run the code in the sandbox environment
 -- store the result in a global variable so we can access it later
-result = f()
+result = tostring(f())
 )";
 
     static inline const std::string GetExpressionCodeString(std::string expression) {
