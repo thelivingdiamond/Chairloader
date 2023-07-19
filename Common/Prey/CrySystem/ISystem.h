@@ -1297,7 +1297,7 @@ struct ISystem
 	virtual XmlNodeRef LoadXmlFromBuffer(const char* buffer, size_t size, bool bReuseStrings = false) = 0;
 
 	//! Loads xml file, returns 0 if load failed.
-	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false) = 0;
+	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bAllowUseFilesystem = false) = 0;
 
 	//! Retrieves access to XML utilities interface.
 	virtual IXmlUtils* GetXmlUtils() = 0;
