@@ -30,6 +30,7 @@ static auto g_EventNames = GetEventNames();
 Main::SceneEditorManager::SceneEditorManager()
 {
     gEnv->pSystem->GetISystemEventDispatcher()->RegisterListener(this);
+    gEnv->pConsole->AddCommand("map_edit", &SceneEditorManager::MapEditCmd, VF_NULL, "Load a level in Preditor");
 
     Reset();
 }
@@ -66,7 +67,27 @@ void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam
         Reset();
         break;
     }
+    case ESYSTEM_EVENT_LEVEL_LOAD_ERROR:
+    {
+        m_NextLoadIsInEditor = false;
+        break;
     }
+    }
+}
+
+void Main::SceneEditorManager::MapEditCmd(IConsoleCmdArgs* pArgs)
+{
+    auto pThis = static_cast<SceneEditorManager*>(gPreditor->pSceneEditorManager);
+    std::string mapCmd = "map";
+
+    for (int i = 1; i < pArgs->GetArgCount(); i++)
+    {
+        mapCmd.append(" ");
+        mapCmd.append(pArgs->GetArg(i));
+    }
+
+    pThis->m_NextLoadIsInEditor = true;
+    gEnv->pConsole->ExecuteString(mapCmd.c_str());
 }
 
 void Main::SceneEditorManager::Reset()
@@ -79,16 +100,24 @@ void Main::SceneEditorManager::Reset()
 
     m_pSceneEditor = nullptr;
     m_pLevelEditor = nullptr;
+    m_NextLoadIsInEditor = false;
 }
 
 void Main::SceneEditorManager::OnLevelLoad()
 {
-    // TODO 2023-06-17: Level editing
     assert(!m_pCurrentEditor);
     assert(m_CurrentMode == EEditMode::None);
 
-    m_pSceneEditor = ISceneEditor::CreateGameEditor();
-    SetEditor(m_pSceneEditor.get(), EEditMode::Game);
+    if (m_NextLoadIsInEditor)
+    {
+        m_pLevelEditor = ISceneEditor::CreateLevelEditor();
+        SetEditor(m_pLevelEditor.get(), EEditMode::Level);
+    }
+    else
+    {
+        m_pSceneEditor = ISceneEditor::CreateGameEditor();
+        SetEditor(m_pSceneEditor.get(), EEditMode::Game);
+    }
 }
 
 void Main::SceneEditorManager::SetEditor(ISceneEditor* pEditor, EEditMode editMode)

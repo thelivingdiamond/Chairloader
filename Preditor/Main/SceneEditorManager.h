@@ -34,6 +34,12 @@ private:
     ISceneEditor* m_pCurrentEditor = nullptr;
     MouseGuard m_LoadingMouseGuard;
 
+    //! On next level load, load the editor.
+    bool m_NextLoadIsInEditor = false;
+
+    //! "map_edit" command handler.
+    static void MapEditCmd(IConsoleCmdArgs* pArgs);
+
     //! Resets the internal state. Makes the object act like no level is loaded.
     void Reset();
 

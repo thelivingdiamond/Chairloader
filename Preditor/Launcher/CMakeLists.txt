@@ -37,6 +37,7 @@ target_link_libraries(Preditor.Launcher
 	Preditor.Engine
 	Preditor.GameEditor
 	Preditor.Input
+	Preditor.LevelEditor
 	Preditor.Main
 	Preditor.Viewport
 	D3D11.lib

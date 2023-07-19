@@ -10,6 +10,7 @@ add_subdirectory(EditTools)
 add_subdirectory(Engine)
 add_subdirectory(GameEditor)
 add_subdirectory(Input)
+add_subdirectory(LevelEditor)
 add_subdirectory(Main)
 add_subdirectory(Viewport)
 
