@@ -1,3 +1,4 @@
+#include "Objects/EntityObject.h"
 #include "Objects/Object.h"
 #include "ObjectManager.h"
 
@@ -39,8 +40,7 @@ LevelEditor::Object* LevelEditor::ObjectManager::CreateObject(XmlNodeRef objectN
     
     if (objType == "Entity")
     {
-        // TODO
-        pTempObj = std::make_unique<Object>();
+        pTempObj = std::make_unique<EntityObject>();
     }
     else if (objType == "Object")
     {

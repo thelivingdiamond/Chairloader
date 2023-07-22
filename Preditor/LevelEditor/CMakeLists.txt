@@ -5,9 +5,13 @@ set(SOURCE_FILES
 	Components/Component.h
 	Components/ComponentList.cpp
 	Components/ComponentList.h
+	Components/EntityArchetypeComponent.cpp
+	Components/EntityArchetypeComponent.h
 	Components/Transform.cpp
 	Components/Transform.h
 
+	Objects/EntityObject.cpp
+	Objects/EntityObject.h
 	Objects/Object.cpp
 	Objects/Object.h
 

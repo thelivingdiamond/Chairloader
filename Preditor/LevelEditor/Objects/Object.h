@@ -13,6 +13,7 @@ enum class EObjectType
 {
     None,
     Object,
+    Entity,
 };
 
 //! Information of an object's runtime time.
