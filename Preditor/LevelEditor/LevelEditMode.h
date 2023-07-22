@@ -32,12 +32,16 @@ public:
     virtual void OnExitPlayMode() override;
 
 private:
+    struct SInGameEntitySystemListener;
+
     GlobalLevel m_Global;
     std::unique_ptr<ObjectSelectionManager> m_pSelection;
     std::unique_ptr<LevelViewportHandler> m_pViewportHandler;
     std::unique_ptr<IEditToolManager> m_pEditToolManager;
     std::unique_ptr<ObjectManager> m_pObjectManager;
     ICVar* m_pCanSaveLoad = nullptr;
+
+    std::unique_ptr<SInGameEntitySystemListener> m_pEntitySystemListener;
 
     //! Loads current level data.
     void LoadLevel();

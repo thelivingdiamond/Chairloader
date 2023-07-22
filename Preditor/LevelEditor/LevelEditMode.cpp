@@ -14,6 +14,75 @@
 #include "LevelViewportHandler.h"
 #include "ObjectManager.h"
 
+// Implements EntitySystemSink for play mode.
+struct LevelEditor::LevelEditMode::SInGameEntitySystemListener : public IEntitySystemSink
+{
+    SInGameEntitySystemListener()
+    {
+        gEnv->pEntitySystem->AddSink(this, IEntitySystem::OnSpawn | IEntitySystem::OnRemove, 0);
+    }
+
+    ~SInGameEntitySystemListener()
+    {
+        gEnv->pEntitySystem->RemoveSink(this);
+
+        // Remove all remaining entities from entity system.
+        IEntitySystem* pEntitySystem = gEnv->pEntitySystem;
+
+        for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
+        {
+            EntityId entityId = *it;
+            IEntity* pEntity = pEntitySystem->GetEntity(entityId);
+            if (pEntity)
+            {
+                IEntity* pParent = pEntity->GetParent();
+                if (pParent)
+                {
+                    // Childs of irremovable entity are also not deleted (Needed for vehicles weapons for example)
+                    if (pParent->GetFlags() & ENTITY_FLAG_UNREMOVABLE)
+                        continue;
+                }
+            }
+            pEntitySystem->RemoveEntity(*it, true);
+        }
+    }
+
+    virtual bool OnBeforeSpawn(SEntitySpawnParams& params) override
+    {
+        return true;
+    }
+
+    virtual void OnSpawn(IEntity* e, SEntitySpawnParams& params) override
+    {
+        //if (params.ed.ClassId!=0 && ed.ClassId!=PLAYER_CLASS_ID) // Ignore MainPlayer
+        if (!(e->GetFlags() & ENTITY_FLAG_UNREMOVABLE))
+        {
+            m_entities.insert(e->GetId());
+        }
+    }
+
+    virtual bool OnRemove(IEntity* e) override
+    {
+        if (!(e->GetFlags() & ENTITY_FLAG_UNREMOVABLE))
+            m_entities.erase(e->GetId());
+        return true;
+    }
+
+    virtual void OnReused(IEntity* pEntity, SEntitySpawnParams& params) override
+    {
+        CRY_ASSERT_MESSAGE(false, "Editor should not be receiving entity reused events from IEntitySystemSink, investigate this.");
+    }
+
+    virtual void OnEvent(IEntity* pEntity, SEntityEvent& event) override
+    {
+
+    }
+
+private:
+    // Ids of all spawned entities.
+    std::set<EntityId> m_entities;
+};
+
 LevelEditor::GlobalLevel* LevelEditor::gLevel;
 
 std::unique_ptr<ILevelSceneEditor> ILevelSceneEditor::CreateLevelEditor()
@@ -158,6 +227,8 @@ void LevelEditor::LevelEditMode::OnExitPlayMode()
     // this has to be done before the RemoveSink() call, or else some entities may not be removed
     // gEnv->p3DEngine->GetDeferredPhysicsEventManager()->ClearDeferredEvents(); // FIXME 2023-07-22
 
+    m_pEntitySystemListener = nullptr;
+
     // reset movie-system
     gEnv->pSystem->GetIPhysicalWorld()->ResetDynamicEntities();
 
@@ -232,6 +303,8 @@ void LevelEditor::LevelEditMode::ResetEntities(bool isPlayMode)
         }
     }
 
+    m_pEntitySystemListener = std::make_unique<SInGameEntitySystemListener>();
+
     SEntityEvent event;
     event.event = ENTITY_EVENT_RESET;
     event.nParam[0] = isPlayMode ? 1 : 0;
@@ -246,7 +319,7 @@ void LevelEditor::LevelEditMode::ResetEntities(bool isPlayMode)
 
 void LevelEditor::LevelEditMode::NotifyGameModeChange(bool isPlayMode)
 {
-     // gEnv->pGame->EditorResetGame(isPlayMode); // FIXME 2023-07-22: Crashes when entering play mode
+    // gEnv->pGame->EditorResetGame(isPlayMode); // FIXME 2023-07-22: Crashes when entering play mode
     gEnv->pGame->GetIGameFramework()->OnEditorSetGameMode(isPlayMode);
 
     if (isPlayMode)
