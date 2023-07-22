@@ -611,6 +611,17 @@ void Engine::PreditorEngine::ApplyFullPatches()
 	// CCryAction::PostUpdate: Remove p3DEngine->PrepareOcclusion calls because SceneViewport changes the camera
 	mem::Nop(dllBase + 0x5C6AA7, 0x5C6AAA - 0x5C6AA7);
 	mem::Nop(dllBase + 0x5C6C50, 0x5C6C53 - 0x5C6C50);
+
+	// ArkGame::Update: Remove screen fade in (call to pRenderer->Draw2dImage)
+	mem::Nop(dllBase + 0x1170D9E, 0x1170DA4 - 0x1170D9E);
+
+	// CActionGame::OnEditorSetGameMode: Remove IFlashUI::Reload (hides HUD for some reason)
+	mem::Nop(dllBase + 0x5AF312, 0x5AF315 - 0x5AF312);
+
+	// CGame::EditorResetGame
+	mem::Nop(dllBase + 0x16CFCFD, 0x16CFD02 - 0x16CFCFD); // Remove ArkNpcGameEffectManager::Reset call (causes a purecall crash when spawning NPCs)
+	mem::Nop(dllBase + 0x16CFCDD, 0x16CFCE2 - 0x16CFCDD); // Remove ArkNpcAreaManager::Reset call (causes a crash somewhere in nav system)
+	// mem::Nop(dllBase + 0x16CFD95, 0x16CFD9A - 0x16CFD95); // Remove CArkGlooIslandNavLinkManager::Reset call (causes a different crash somewhere in nav system)
 }
 
 void Engine::PreditorEngine::ApplyMinimalPatches(const InitParams& params)

@@ -35,6 +35,18 @@ public:
     //! @param  objectsNode <Objects> node from mission0.xml
     void CreateLevelObjects(XmlNodeRef objectsNode);
 
+    //! Invokes a method on all objects.
+    //! @param  pfnMethod   The method.
+    //! @param  args        Method args.
+    template <auto func, typename ...TArgs>
+    void InvokeOnAll(TArgs&&... args)
+    {
+        for (std::unique_ptr<Object>& i : m_Objects)
+        {
+            std::invoke(func, *i, std::forward<TArgs>(args)...);
+        }
+    }
+
 private:
     std::vector<std::unique_ptr<Object>> m_Objects;
 

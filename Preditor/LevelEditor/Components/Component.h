@@ -27,6 +27,12 @@ protected:
     //! @param  nWhyFlags   Mask of EEntityXFormFlags. Informs what has changed.
     virtual void OnTransformChanged(unsigned nWhyFlags) {}
 
+    //! Called when entering Play Mode.
+    virtual void OnEnterPlayMode() {}
+
+    //! Called when exiting Play Mode.
+    virtual void OnExitPlayMode() {}
+
     //! Shows the component's inspector nodes.
     virtual void ShowInspector() {}
 

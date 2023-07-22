@@ -82,6 +82,16 @@ ViewportRaycastInfo Viewport::SceneViewport::GetRayForMouse(Vec2 mousePos, Vec2 
 	return rc;
 }
 
+Matrix34 Viewport::SceneViewport::GetCameraTransform()
+{
+	if (!m_CamInfo.transformValid)
+		return Matrix34(IDENTITY);
+
+	Matrix34 m(Quat(m_CamInfo.rot));
+	m.SetTranslation(m_CamInfo.pos);
+	return m;
+}
+
 void Viewport::SceneViewport::CustomRender()
 {
 	DrawAuxGeom();

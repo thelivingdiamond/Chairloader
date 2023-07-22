@@ -6,6 +6,7 @@ namespace LevelEditor
 
 class EntityArchetypeComponent;
 
+//! Object type for entities.
 class EntityObject : public Object
 {
 public:
@@ -21,9 +22,14 @@ public:
     //! Respawns the entity.
     void RespawnEntity();
 
+    //! Applies the object tranform to the entity.
+    void ApplyTranformToEntity();
+
     // Object
     virtual void Init(XmlNodeRef objectNode) override;
     virtual void ShowInspectorSelf() override;
+    virtual void OnEnterPlayMode() override;
+    virtual void OnExitPlayMode() override;
 
 private:
     XmlString m_EntityClassName;

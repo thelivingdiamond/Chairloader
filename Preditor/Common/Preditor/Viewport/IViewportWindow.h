@@ -22,6 +22,9 @@ struct IViewportWindow
     //! @returns a ray from screen coordinates.
     virtual ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize) = 0;
 
+    //! @returns scene viewport camera transform matrix.
+    virtual Matrix34 GetSceneCameraTransform() = 0;
+
     //! Activates the scene viewport.
     virtual void ActivateSceneViewport() = 0;
 

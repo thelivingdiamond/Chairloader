@@ -63,7 +63,7 @@ void LevelEditor::Transform::Init(XmlNodeRef objectNode)
 
     if (objectNode->getAttr("Rotate", szRotate))
     {
-        if (sscanf(szRotate, "%f,%f,%f,%f", &rot.v.x, &rot.v.y, &rot.v.z, &rot.w) != 4)
+        if (sscanf(szRotate, "%f,%f,%f,%f", &rot.w, &rot.v.x, &rot.v.y, &rot.v.z) != 4)
             CryError("[{}] Invalid Rotate: {}", GetObject()->GetName(), szRotate);
     }
 

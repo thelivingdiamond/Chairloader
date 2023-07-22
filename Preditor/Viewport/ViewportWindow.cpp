@@ -125,6 +125,11 @@ ViewportRaycastInfo Viewport::ViewportWindow::GetRayForMouse(Vec2 mousePos, Vec2
 	return m_pSceneViewport->GetRayForMouse(mousePos, vpSize);
 }
 
+Matrix34 Viewport::ViewportWindow::GetSceneCameraTransform()
+{
+	return m_pSceneViewport->GetCameraTransform();
+}
+
 void Viewport::ViewportWindow::ActivateSceneViewport()
 {
 	if (m_pSceneViewport->CanActivate())

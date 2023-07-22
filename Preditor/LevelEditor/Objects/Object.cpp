@@ -64,6 +64,16 @@ void LevelEditor::Object::OnTransformChanged(unsigned nWhyFlags)
     m_Components.InvokeOnAll<&Component::OnTransformChanged>(nWhyFlags);
 }
 
+void LevelEditor::Object::OnEnterPlayMode()
+{
+    m_Components.InvokeOnAll<&Component::OnEnterPlayMode>();
+}
+
+void LevelEditor::Object::OnExitPlayMode()
+{
+    m_Components.InvokeOnAll<&Component::OnExitPlayMode>();
+}
+
 void LevelEditor::Object::SetType(const ObjectTypeInfo& typeInfo)
 {
     typeInfo.Validate();

@@ -30,6 +30,7 @@ public:
     virtual Vec4i GetScreenBounds() override { return m_ScreenBounds; }
     virtual bool IsFocused() override { return ManagedWindow::IsFocused(); }
     virtual ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize) override;
+    virtual Matrix34 GetSceneCameraTransform() override;
     virtual void ActivateSceneViewport() override;
     virtual void ActivateGameViewport() override;
 

@@ -1,4 +1,11 @@
 #include <Prey/Cry3DEngine/I3DEngine.h>
+#include <Prey/CryAction/IActorSystem.h>
+#include <Prey/CryEntitySystem/Entity.h>
+#include <Prey/CryEntitySystem/EntitySystem.h>
+#include <Prey/CryGame/IGame.h>
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryPhysics/physinterface.h>
+#include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include "Objects/Object.h"
@@ -117,12 +124,51 @@ void LevelEditor::LevelEditMode::OnEnterPlayMode()
 {
     CryLog("================= Enter Play Mode =================");
     gPreditor->pViewportWindow->ActivateGameViewport();
+
+    // Reset 3d engine effects
+    gEnv->p3DEngine->ResetPostEffects();
+    gEnv->p3DEngine->ResetParticlesAndDecals();
+    MovePlayerToSceneCamera();
+
+    NotifyGameModeChange(true);
+
+    // Reset physics state before switching to game.
+    gEnv->pSystem->GetIPhysicalWorld()->ResetDynamicEntities();
+
+    m_pObjectManager->InvokeOnAll<&Object::OnEnterPlayMode>();
+
+    // gEnv->pSystem->GetAISystem()->Reset(IAISystem::RESET_ENTER_GAME); // FIXME 2023-07-22
+    gEnv->pEntitySystem->ResetAreas();
+    ResetEntities(true);
+
+    // gEnv->pSystem->GetIMovieSystem()->Reset(true, false); // FIXME 2023-07-22
 }
 
 void LevelEditor::LevelEditMode::OnExitPlayMode()
 {
     CryLog("================= Exit Play Mode =================");
     gPreditor->pViewportWindow->ActivateSceneViewport();
+
+    // gEnv->pSystem->GetIMovieSystem()->Reset(false, false); // FIXME 2023-07-22
+
+    // Reset 3d engine effects
+    gEnv->p3DEngine->ResetPostEffects();
+    gEnv->p3DEngine->ResetParticlesAndDecals();
+
+    // this has to be done before the RemoveSink() call, or else some entities may not be removed
+    // gEnv->p3DEngine->GetDeferredPhysicsEventManager()->ClearDeferredEvents(); // FIXME 2023-07-22
+
+    // reset movie-system
+    gEnv->pSystem->GetIPhysicalWorld()->ResetDynamicEntities();
+
+    ResetEntities(false);
+
+    // clean up AI System
+    // gEnv->pSystem->GetAISystem()->Reset(IAISystem::RESET_EXIT_GAME); // FIXME 2023-07-22
+
+    m_pObjectManager->InvokeOnAll<&Object::OnExitPlayMode>();
+
+    NotifyGameModeChange(false);
 }
 
 void LevelEditor::LevelEditMode::LoadLevel()
@@ -130,4 +176,85 @@ void LevelEditor::LevelEditMode::LoadLevel()
     std::string missionXmlPath = gEnv->p3DEngine->GetLevelFilePath("mission_mission0.xml");
     XmlNodeRef missionXml = gEnv->pSystem->LoadXmlFromFile(missionXmlPath.c_str());
     m_pObjectManager->CreateLevelObjects(missionXml->findChild("Objects"));
+}
+
+void LevelEditor::LevelEditMode::MovePlayerToSceneCamera()
+{
+    Matrix34 sceneCam = gPreditor->pViewportWindow->GetSceneCameraTransform();
+
+    // Skip if camera pos is invalid
+    if (sceneCam.IsIdentity())
+        return;
+
+    IActor* pClActor = gEnv->pGame->GetIGameFramework()->GetClientActor();
+    
+    if (pClActor)
+    {
+        // pos coming from editor is a camera position, we must convert it into the player position by subtructing eye height.
+        IEntity* myPlayer = pClActor->GetEntity();
+        if (myPlayer)
+        {
+            pe_player_dimensions dim;
+            dim.heightEye = 0;
+            if (myPlayer->GetPhysics())
+            {
+                myPlayer->GetPhysics()->GetParams(&dim);
+                Vec3 tr = sceneCam.GetTranslation();
+                tr.z -= dim.heightEye;
+                sceneCam.SetTranslation(tr);
+            }
+        }
+
+        pClActor->GetEntity()->SetPosRotScale(sceneCam.GetTranslation(), Quat(sceneCam), Vec3(1, 1, 1),
+            ENTITY_XFORM_EDITOR | ENTITY_XFORM_POS | ENTITY_XFORM_ROT | ENTITY_XFORM_SCL);
+    }
+}
+
+void LevelEditor::LevelEditMode::ResetEntities(bool isPlayMode)
+{
+    auto pEntSystem = static_cast<CEntitySystem*>(gEnv->pEntitySystem);
+
+    for (CEntity* const pEntity : pEntSystem->m_EntityArray)
+    {
+        if (pEntity == nullptr)
+            continue;
+
+        // Activate entity if was deactivated:
+        if (pEntity->IsGarbage())
+        {
+            // Entity may have been queued for deletion
+            stl::find_and_erase(pEntSystem->m_deletedEntities, pEntity);
+
+            // If entity was deleted in game, resurrect it.
+            SEntityEvent entevnt;
+            entevnt.event = ENTITY_EVENT_INIT;
+            pEntity->SendEvent(entevnt);
+        }
+    }
+
+    SEntityEvent event;
+    event.event = ENTITY_EVENT_RESET;
+    event.nParam[0] = isPlayMode ? 1 : 0;
+    pEntSystem->SendEventToAll(event);
+
+    if (isPlayMode)
+    {
+        event.event = ENTITY_EVENT_START_GAME;
+        pEntSystem->SendEventToAll(event);
+    }
+}
+
+void LevelEditor::LevelEditMode::NotifyGameModeChange(bool isPlayMode)
+{
+     // gEnv->pGame->EditorResetGame(isPlayMode); // FIXME 2023-07-22: Crashes when entering play mode
+    gEnv->pGame->GetIGameFramework()->OnEditorSetGameMode(isPlayMode);
+
+    if (isPlayMode)
+    {
+        // Revive the player
+        if (ArkPlayer* pPlayer = ArkPlayer::GetInstancePtr())
+        {
+            // pPlayer->Revive();
+        }
+    }
 }

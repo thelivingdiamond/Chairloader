@@ -20,6 +20,9 @@ public:
     //! @returns a ray from screen coordinates.
     ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize);
 
+    //! @returns the camera transform matrix.
+    Matrix34 GetCameraTransform();
+
     // IViewport
     virtual bool NeedCustomRender() override { return true; }
     virtual void CustomRender() override;

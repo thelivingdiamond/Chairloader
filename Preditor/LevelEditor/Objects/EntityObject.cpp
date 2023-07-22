@@ -67,6 +67,15 @@ void LevelEditor::EntityObject::RespawnEntity()
     }
 }
 
+void LevelEditor::EntityObject::ApplyTranformToEntity()
+{
+    if (m_pEntity)
+    {
+        Transform* t = GetTransform();
+        m_pEntity->SetPosRotScale(t->GetPos(), t->GetRot(), t->GetScale(), ENTITY_XFORM_EDITOR);
+    }
+}
+
 void LevelEditor::EntityObject::Init(XmlNodeRef objectNode)
 {
     Object::Init(objectNode);
@@ -109,6 +118,18 @@ void LevelEditor::EntityObject::ShowInspectorSelf()
 
     if (ImGui::Button("Respawn"))
         RespawnEntity();
+}
+
+void LevelEditor::EntityObject::OnEnterPlayMode()
+{
+    Object::OnEnterPlayMode();
+    ApplyTranformToEntity();
+}
+
+void LevelEditor::EntityObject::OnExitPlayMode()
+{
+    Object::OnExitPlayMode();
+    ApplyTranformToEntity();
 }
 
 bool LevelEditor::EntityObject::FindExistingEntity()

@@ -99,6 +99,12 @@ public:
     //! @param  nWhyFlags   Mask of EEntityXFormFlags. Informs what has changed.
     virtual void OnTransformChanged(unsigned nWhyFlags);
 
+    //! Called when entering Play Mode.
+    virtual void OnEnterPlayMode();
+
+    //! Called when exiting Play Mode.
+    virtual void OnExitPlayMode();
+
 protected:
     //! Sets the object type.
     //! Call this in the constructor.

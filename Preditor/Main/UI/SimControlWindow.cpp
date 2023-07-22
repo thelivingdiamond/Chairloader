@@ -101,7 +101,7 @@ void Main::SimControlWindow::ShowMenu()
 		ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
 		EPlayMode playMode = pSEM->GetPlayMode();
 
-		bool isInPlayMode = playMode == EPlayMode::Edit;
+		bool isInPlayMode = playMode == EPlayMode::Play;
 		bool isPaused = simMode == Engine::ESimulationMode::Pause;
 
 		if (ImGui::MenuItem("Play Mode", m_pTogglePlayMode->GetUIShortcut().c_str(), &isInPlayMode))

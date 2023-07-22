@@ -41,6 +41,12 @@ private:
 
     //! Loads current level data.
     void LoadLevel();
+
+    //! Moves the player entity to where the scene camera is.
+    void MovePlayerToSceneCamera();
+
+    void ResetEntities(bool isPlayMode);
+    void NotifyGameModeChange(bool isPlayMode);
 };
 
 } // namespace LevelEditor
