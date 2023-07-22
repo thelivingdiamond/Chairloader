@@ -125,6 +125,17 @@ ViewportRaycastInfo Viewport::ViewportWindow::GetRayForMouse(Vec2 mousePos, Vec2
 	return m_pSceneViewport->GetRayForMouse(mousePos, vpSize);
 }
 
+void Viewport::ViewportWindow::ActivateSceneViewport()
+{
+	if (m_pSceneViewport->CanActivate())
+		SetViewport(m_pSceneViewport.get());
+}
+
+void Viewport::ViewportWindow::ActivateGameViewport()
+{
+	SetViewport(m_pGameViewport.get());
+}
+
 void Viewport::ViewportWindow::PreUpdate()
 {
 	// Game viewport currently only works in the main window

@@ -1,5 +1,5 @@
 #pragma once
-#include <Preditor/SceneEditor/ISceneEditor.h>
+#include <Preditor/SceneEditor/ILevelSceneEditor.h>
 
 namespace LevelEditor
 {
@@ -9,7 +9,7 @@ class LevelViewportHandler;
 class ObjectManager;
 
 //! Runtime entity editing.
-class LevelEditMode : public ISceneEditor
+class LevelEditMode : public ILevelSceneEditor
 {
 public:
     LevelEditMode();
@@ -26,6 +26,10 @@ public:
     virtual void OnDisabled() override;
     virtual void ShowHierarchy() override;
     virtual void ShowInspector() override;
+
+    // ILevelSceneEditor
+    virtual void OnEnterPlayMode() override;
+    virtual void OnExitPlayMode() override;
 
 private:
     GlobalLevel m_Global;

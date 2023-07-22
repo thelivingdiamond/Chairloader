@@ -33,6 +33,7 @@ set(SOURCE_FILES
 	Preditor/Main/IUserProjectSettings.h
 	
 	Preditor/SceneEditor/Common.h
+	Preditor/SceneEditor/ILevelSceneEditor.h
 	Preditor/SceneEditor/IObjectManipulator.h
 	Preditor/SceneEditor/ISceneEditor.h
 	Preditor/SceneEditor/ISceneEditorManager.h

@@ -21,4 +21,10 @@ struct IViewportWindow
 
     //! @returns a ray from screen coordinates.
     virtual ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize) = 0;
+
+    //! Activates the scene viewport.
+    virtual void ActivateSceneViewport() = 0;
+
+    //! Activates the game viewport.
+    virtual void ActivateGameViewport() = 0;
 };

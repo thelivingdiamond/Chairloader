@@ -1,5 +1,6 @@
 #include <Prey/Cry3DEngine/I3DEngine.h>
 #include <Preditor/EditTools/IEditToolManager.h>
+#include <Preditor/Viewport/IViewportWindow.h>
 #include "Objects/Object.h"
 #include "ObjectSelectionManager.h"
 #include "LevelEditMode.h"
@@ -8,7 +9,7 @@
 
 LevelEditor::GlobalLevel* LevelEditor::gLevel;
 
-std::unique_ptr<ISceneEditor> ISceneEditor::CreateLevelEditor()
+std::unique_ptr<ILevelSceneEditor> ILevelSceneEditor::CreateLevelEditor()
 {
     return std::make_unique<LevelEditor::LevelEditMode>();
 }
@@ -110,6 +111,18 @@ void LevelEditor::LevelEditMode::ShowInspector()
             ImGui::TextDisabled("Invalid object selected??");
         }
     }
+}
+
+void LevelEditor::LevelEditMode::OnEnterPlayMode()
+{
+    CryLog("================= Enter Play Mode =================");
+    gPreditor->pViewportWindow->ActivateGameViewport();
+}
+
+void LevelEditor::LevelEditMode::OnExitPlayMode()
+{
+    CryLog("================= Exit Play Mode =================");
+    gPreditor->pViewportWindow->ActivateSceneViewport();
 }
 
 void LevelEditor::LevelEditMode::LoadLevel()

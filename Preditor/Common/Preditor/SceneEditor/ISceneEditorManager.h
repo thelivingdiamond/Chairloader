@@ -16,6 +16,7 @@ struct ISceneEditorManager
 
     //! @returns current play mode state.
     virtual EPlayMode GetPlayMode() = 0;
+    virtual void SetPlayMode(EPlayMode playMode) = 0;
 
     //! @returns current scene editor.
     virtual ISceneEditor* GetEditor() = 0;

@@ -50,6 +50,31 @@ void Main::PreditorUI::ShowUI()
 
     if (m_bImGuiDemo)
         ImGui::ShowDemoWindow();
+
+#if 0
+    if (ImGui::Begin("Timer Debug"))
+    {
+        ITimer* pTimer = gEnv->pTimer;
+
+        ImGui::Text("GetAsyncTime: %.3f", pTimer->GetAsyncTime().GetSeconds());
+        ImGui::Text("GetAsyncCurTime: %.3f", pTimer->GetAsyncCurTime());
+        ImGui::Text("GetRealFrameTime: %.3f", pTimer->GetRealFrameTime());
+        ImGui::Text("IsTimerEnabled: %d", pTimer->IsTimerEnabled());
+        ImGui::Text("GetFrameRate: %.3f", pTimer->GetFrameRate());
+
+        for (int i = 0; i < ITimer::ETIMER_LAST; i++)
+        {
+            ITimer::ETimer timer = (ITimer::ETimer)i;
+            ImGui::Text("TIMER %d", i);
+            ImGui::Text("GetCurrTime: %.3f", pTimer->GetCurrTime(timer));
+            ImGui::Text("GetFrameStartTime: %.3f", pTimer->GetFrameStartTime(timer).GetSeconds());
+            ImGui::Text("GetFrameTime: %.3f", pTimer->GetFrameTime(timer));
+            ImGui::Text("GetTimeScale: %.3f", pTimer->GetTimeScale(timer));
+            ImGui::Text("IsTimerPaused: %d", pTimer->IsTimerPaused(timer));
+        }
+    }
+    ImGui::End();
+#endif
 }
 
 void Main::PreditorUI::ShowMainMenuBar()

@@ -94,5 +94,8 @@
         <Action name="single_step" description="Run a single step">
             <Bind key="period"/>
         </Action>
+        <Action name="toggle_play_mode" description="Enter/Exit Play Mode">
+            <Bind key="f5"/>
+        </Action>
     </ActionSet>
 </ActionSets>

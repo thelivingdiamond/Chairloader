@@ -11,7 +11,6 @@ class UndoBuffer;
 struct ISceneEditor
 {
     static std::unique_ptr<ISceneEditor> CreateGameEditor();
-    static std::unique_ptr<ISceneEditor> CreateLevelEditor();
 
     virtual ~ISceneEditor() {}
 

@@ -1,4 +1,8 @@
+#include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/Engine/ISimulationController.h>
+#include <Preditor/SceneEditor/ILevelSceneEditor.h>
 #include <Preditor/SceneEditor/ISceneEditor.h>
+#include <Preditor/Viewport/IViewportWindow.h>
 #include "SceneEditorManager.h"
 
 static std::map<ESystemEvent, const char*> GetEventNames()
@@ -38,6 +42,44 @@ Main::SceneEditorManager::SceneEditorManager()
 Main::SceneEditorManager::~SceneEditorManager()
 {
     gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
+}
+
+void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
+{
+    assert(m_pLevelEditor);
+
+    if (m_CurrentPlayMode == playMode)
+        return;
+
+    Engine::ISimulationController* pSim = gPreditor->pEngine->GetSimController();
+
+    switch (playMode)
+    {
+    case EPlayMode::Edit:
+    {
+        if (m_CurrentPlayMode == EPlayMode::Play)
+            m_pLevelEditor->OnExitPlayMode();
+
+        pSim->SetSimulationMode(Engine::ESimulationMode::Pause);
+        break;
+    }
+    case EPlayMode::Play:
+    {
+        m_pLevelEditor->OnEnterPlayMode();
+        pSim->SetSimulationMode(Engine::ESimulationMode::Play);
+        break;
+    }
+    case EPlayMode::PhysicsAI:
+    {
+        if (m_CurrentPlayMode == EPlayMode::Play)
+            m_pLevelEditor->OnExitPlayMode();
+
+        pSim->SetSimulationMode(Engine::ESimulationMode::PhysicsAI);
+        break;
+    }
+    }
+
+    m_CurrentPlayMode = playMode;
 }
 
 void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
@@ -110,8 +152,11 @@ void Main::SceneEditorManager::OnLevelLoad()
 
     if (m_NextLoadIsInEditor)
     {
-        m_pLevelEditor = ISceneEditor::CreateLevelEditor();
+        m_pLevelEditor = ILevelSceneEditor::CreateLevelEditor();
         SetEditor(m_pLevelEditor.get(), EEditMode::Level);
+
+        // Pause the engine
+        gPreditor->pEngine->GetSimController()->SetSimulationMode(Engine::ESimulationMode::Pause);
     }
     else
     {

@@ -22,6 +22,7 @@ private:
 	float m_flTimeStepMs = 1000.0f / 60.0f;
 	IKeyAction* m_pPlayPause = nullptr;
 	IKeyAction* m_pSingleStep = nullptr;
+	IKeyAction* m_pTogglePlayMode = nullptr;
 };
 
 } // namespace Main

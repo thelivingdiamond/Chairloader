@@ -17,6 +17,10 @@ Main::SimControlWindow::SimControlWindow()
 		{
 			if (e.isPressed)
 			{
+				ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
+				if (pSEM->GetMode() == EEditMode::Level && pSEM->GetPlayMode() != EPlayMode::Play)
+					return;
+
 				Engine::ISimulationController* pSC = IPreditorEngine::Get()->GetSimController();
 				Engine::ESimulationMode simMode = pSC->GetSimulationMode();
 
@@ -32,7 +36,30 @@ Main::SimControlWindow::SimControlWindow()
 		{
 			if (e.isPressed)
 			{
+				ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
+				if (pSEM->GetMode() == EEditMode::Level && pSEM->GetPlayMode() != EPlayMode::Play)
+					return;
+
 				IPreditorEngine::Get()->GetSimController()->RunSingleStep(m_flTimeStepMs / 1000.0f);
+			}
+		});
+
+	m_pTogglePlayMode = gPreditor->pInput->FindAction("sim_control.toggle_play_mode");
+	m_pTogglePlayMode->AddListener([this](const KeyActionEventArgs& e)
+		{
+			if (e.isPressed)
+			{
+				ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
+
+				if (pSEM->GetMode() == EEditMode::Level)
+				{
+					EPlayMode playMode = pSEM->GetPlayMode();
+
+					if (playMode == EPlayMode::Edit)
+						pSEM->SetPlayMode(EPlayMode::Play);
+					else
+						pSEM->SetPlayMode(EPlayMode::Edit);
+				}
 			}
 		});
 }
@@ -42,6 +69,7 @@ void Main::SimControlWindow::ShowMenu()
 	Engine::ISimulationController* pSC = IPreditorEngine::Get()->GetSimController();
 	Engine::ESimulationMode simMode = pSC->GetSimulationMode();
 	EEditMode editMode = gPreditor->pSceneEditorManager->GetMode();
+	bool enableSingleStep = false;
 
 	if (editMode == EEditMode::Game)
 	{
@@ -64,10 +92,29 @@ void Main::SimControlWindow::ShowMenu()
 		{
 			pSC->SetSimulationMode(isPhysAI ? Engine::ESimulationMode::PhysicsAI : Engine::ESimulationMode::Play);
 		}
+
+		enableSingleStep = true;
 	}
 	else if (editMode == EEditMode::Level)
 	{
 		ImGui::TextDisabled("(Level Edit Mode)");
+		ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
+		EPlayMode playMode = pSEM->GetPlayMode();
+
+		bool isInPlayMode = playMode == EPlayMode::Edit;
+		bool isPaused = simMode == Engine::ESimulationMode::Pause;
+
+		if (ImGui::MenuItem("Play Mode", m_pTogglePlayMode->GetUIShortcut().c_str(), &isInPlayMode))
+		{
+			pSEM->SetPlayMode(isInPlayMode ? EPlayMode::Play : EPlayMode::Edit);
+		}
+
+		if (ImGui::MenuItem("Pause", m_pPlayPause->GetUIShortcut().c_str(), &isPaused, isInPlayMode))
+		{
+			pSC->SetSimulationMode(isPaused ? Engine::ESimulationMode::Pause : Engine::ESimulationMode::Play);
+		}
+
+		enableSingleStep = isInPlayMode;
 	}
 	else if (editMode == EEditMode::None)
 	{
@@ -81,7 +128,7 @@ void Main::SimControlWindow::ShowMenu()
 	ImGui::Separator();
 
 	// Single Step
-	if (ImGui::MenuItem("Single Step", m_pSingleStep->GetUIShortcut().c_str()))
+	if (ImGui::MenuItem("Single Step", m_pSingleStep->GetUIShortcut().c_str(), nullptr, enableSingleStep))
 		pSC->RunSingleStep(m_flTimeStepMs / 1000.0f);
 
 	// Time step input
@@ -138,7 +185,29 @@ void Main::SimControlWindow::ShowContents()
 	}
 	else if (editMode == EEditMode::Level)
 	{
-		ImGui::TextDisabled("(Level Edit Mode)");
+		ISceneEditorManager* pSEM = gPreditor->pSceneEditorManager;
+		EPlayMode playMode = pSEM->GetPlayMode();
+
+		bool isInPlayMode = playMode == EPlayMode::Play;
+		bool isPaused = simMode == Engine::ESimulationMode::Pause;
+
+		// Play
+		if (ImGui::Checkbox("Play", &isInPlayMode))
+			pSEM->SetPlayMode(isInPlayMode ? EPlayMode::Play : EPlayMode::Edit);
+		ImGui::SameLine();
+
+		ImGui::BeginDisabled(!isInPlayMode);
+
+		// Pause
+		if (ImGui::Checkbox("Pause", &isPaused))
+			pSC->SetSimulationMode(isPaused ? Engine::ESimulationMode::Pause : Engine::ESimulationMode::Play);
+		ImGui::SameLine();
+
+		// Single Step
+		if (ImGui::Button("Single"))
+			pSC->RunSingleStep(m_flTimeStepMs / 1000.0f);
+
+		ImGui::EndDisabled();
 	}
 	else if (editMode == EEditMode::None)
 	{
