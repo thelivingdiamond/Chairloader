@@ -35,6 +35,7 @@ target_link_libraries(Preditor.Launcher
 	Preditor.Common
 	Preditor.EditTools
 	Preditor.Engine
+	Preditor.FGE
 	Preditor.GameEditor
 	Preditor.Input
 	Preditor.LevelEditor

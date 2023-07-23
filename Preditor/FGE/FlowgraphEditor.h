@@ -12,7 +12,7 @@ struct Node;
 #include "ImGui/imgui.h"
 #include "ImNodes/imnodes.h"
 
-#include "Flowgraph/Flowgraph.h"
+#include "Flowgraph.h"
 #include "App/AppModule.h"
 #include <future>
 

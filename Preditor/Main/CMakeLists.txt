@@ -1,15 +1,6 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
-	Flowgraph/Flowgraph.cpp
-	Flowgraph/Flowgraph.h
-	Flowgraph/Pin.h
-	Flowgraph/Node.h
-	Flowgraph/Edge.h
-	Flowgraph/UniqueID.h
-	Flowgraph/Node.cpp
-	Flowgraph/IChairFlowgraph.h
-
 	Project/Project.cpp
 	Project/Project.h
 	Project/UserProjectSettings.cpp
@@ -37,8 +28,6 @@ set(SOURCE_FILES
 
 	EntityHierarchyWindow.cpp
 	EntityHierarchyWindow.h
-	FlowgraphEditor.cpp
-	FlowgraphEditor.h
 	LookingGlass.cpp
 	LookingGlass.h
 	Preditor.cpp

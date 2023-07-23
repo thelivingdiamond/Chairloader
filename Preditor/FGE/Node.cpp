@@ -1,7 +1,7 @@
 #include "Node.h"
 #include "ImNodes/imnodes.h"
 #include "ImGui/imgui_stdlib.h"
-#include "../LookingGlass.h"
+// #include "../LookingGlass.h"
 
 void Node::draw() {
     if(Proto->Category == PrototypeNode::nodeCategory::COMMENT){
@@ -45,7 +45,8 @@ void Node::draw() {
                 ImGui::PushStyleColor(ImGuiCol_FrameBg, ImGui::GetStyleColorVec4(ImGuiCol_FrameBg));
             }
             ImGui::SetNextItemWidth(120);
-            ImGui::LookingGlassInputText(("##input" + input.Name + std::to_string(input.ID)).c_str(), &input.value);
+            // TODO 2023-07-23: LookingGlass refactoring
+            // ImGui::LookingGlassInputText(("##input" + input.Name + std::to_string(input.ID)).c_str(), &input.value);
             ImGui::PopStyleColor();
         }
         ImNodes::EndInputAttribute();
