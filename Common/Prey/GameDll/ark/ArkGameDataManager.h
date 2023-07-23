@@ -2,6 +2,8 @@
 
 #pragma once
 
+class ArkReflectedLibrary;
+
 // Header: FromCpp
 // Prey/GameDll/ark/ArkGameDataManager.h
 class ArkGameDataManager // Id=8015355 Size=64

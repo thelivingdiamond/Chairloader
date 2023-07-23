@@ -20,6 +20,8 @@ set(SOURCE_FILES
 	UI/FileViewers/HexViewer.cpp
 	UI/FileViewers/HexViewer.h
 
+	UI/ArkLibraryExplorer.cpp
+	UI/ArkLibraryExplorer.h
 	UI/FileBrowser.cpp
 	UI/FileBrowser.h
 	UI/HierarchyWindow.cpp

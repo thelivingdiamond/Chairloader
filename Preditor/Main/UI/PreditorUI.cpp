@@ -11,6 +11,39 @@
 #include "UI/InspectorWindow.h"
 #include "UI/SelectionWindow.h"
 #include "UI/SimControlWindow.h"
+#include "UI/ArkLibraryExplorer.h"
+
+namespace
+{
+
+//! Shows a menu item that toggles the window visibility.
+//! @param	label		Item label.
+//! @param	shortcut	Keyboard shortcut.
+//! @returns true if the state has changed.
+template<typename T>
+inline bool ShowToggleMenuItem(std::weak_ptr<T>& pWindowWeak, const char* label, const char* shortcut = nullptr)
+{
+    std::shared_ptr<T> pWindow = pWindowWeak.lock();
+    bool isVisible = pWindow ? pWindow->IsVisible() : false;
+
+    if (ImGui::MenuItem(label, shortcut, &isVisible))
+    {
+        if (!pWindow)
+        {
+            pWindow = WindowManager::Get().Create<T>();
+            pWindowWeak = pWindow;
+        }
+
+        pWindow->SetVisible(isVisible);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+} // namespace
 
 Main::PreditorUI::PreditorUI()
 {
@@ -111,6 +144,7 @@ void Main::PreditorUI::ShowMainMenuBar()
 
             m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");
             m_pAssetBrowser->ShowToggleMenuItem("Game File Browser");
+            ShowToggleMenuItem(m_pArkLibraryExplorer, "Ark Library Explorer");
 
             ImGui::EndMenu();
         }

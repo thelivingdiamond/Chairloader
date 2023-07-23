@@ -12,6 +12,7 @@ class HierarchyWindow;
 class InspectorWindow;
 class SelectionWindow;
 class SimControlWindow;
+class ArkLibraryExplorer;
 
 //! Preditor UI elements using ImGui.
 class PreditorUI : NoCopy
@@ -33,6 +34,7 @@ private:
     std::shared_ptr<InspectorWindow> m_pInspectorWindow;
     std::shared_ptr<HierarchyWindow> m_pHierarchyWindow;
     std::shared_ptr<SelectionWindow> m_pSelectionWindow;
+    std::weak_ptr<ArkLibraryExplorer> m_pArkLibraryExplorer;
 
     bool m_bImGuiDemo = false;
 
