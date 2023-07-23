@@ -19,8 +19,9 @@ struct Node;
 class ImGuiDockNode;
 class IFlowNode;
 
-class FlowgraphEditor : public AppModule{
-public:
+class FlowgraphEditor : public AppModule
+{
+  public:
     FlowgraphEditor();
     ~FlowgraphEditor() override;
 
@@ -28,26 +29,27 @@ public:
     void ShowUI() override;
     void Update() override;
 
-    static FlowgraphEditor* getInstance(){ return m_pFlowgraphEditorInstance;}
-    ImGuiDockNode* getDockNode(){ return m_DockNode; }
+    static FlowgraphEditor* getInstance() { return m_pFlowgraphEditorInstance; }
+    ImGuiDockNode* getDockNode() { return m_DockNode; }
 
-    void setCurrentFlowgraph(FlowGraph* flowgraph){ p_CurrentFlowGraph = flowgraph;}
+    void setCurrentFlowgraph(FlowGraph* flowgraph) { p_CurrentFlowGraph = flowgraph; }
     void removeFlowgraph(FlowGraph* flowgraph);
 
-
-    std::map<PrototypeNode::NodeClass,  std::shared_ptr<PrototypeNode>>& getPrototypes(){ return m_PrototypeNodes; }
+    std::map<PrototypeNode::NodeClass, std::shared_ptr<PrototypeNode>>& getPrototypes() { return m_PrototypeNodes; }
     void addUnknownPrototype(PrototypeNode::NodeClass nodeClass);
     void addPinToPrototype(PrototypeNode::NodeClass nodeClass, PrototypePin pin);
 
-    static void setShowNodePopup(bool bShow){ m_bShowNodePopup = bShow;}
+    static void setShowNodePopup(bool bShow) { m_bShowNodePopup = bShow; }
 
-private:
-    enum class UIState {
+  private:
+    enum class UIState
+    {
         Initialization,
         Editor,
     };
     UIState m_UIState = UIState::Initialization;
-    enum class InitializationState{
+    enum class InitializationState
+    {
         None,
         LoadingPrototypes,
         SearchingDocuments,
@@ -57,7 +59,7 @@ private:
     };
 
     bool m_bDraw = true;
-    std::map<PrototypeNode::NodeClass,  std::shared_ptr<PrototypeNode>> m_PrototypeNodes;
+    std::map<PrototypeNode::NodeClass, std::shared_ptr<PrototypeNode>> m_PrototypeNodes;
     std::vector<fs::path> m_BaseGameFlowgraphPaths;
     std::vector<std::shared_ptr<FlowGraphXMLFile>> m_BaseGameFlowgaphs;
     std::vector<FlowGraph*> m_FlowGraphs;
@@ -65,7 +67,7 @@ private:
 
     void loadPrototypes();
     void searchXmlDocuments(fs::path path);
-    bool findGraphNodes(pugi::xml_node &node);
+    bool findGraphNodes(pugi::xml_node& node);
     void loadXmlDocuments();
 
     std::mutex m_InitStatusMutex;
@@ -86,5 +88,4 @@ private:
     ImGuiDockNode* m_DockNode;
 };
 
-
-#endif //CHAIRLOADER_FLOWGRAPHEDITOR_H
+#endif // CHAIRLOADER_FLOWGRAPHEDITOR_H

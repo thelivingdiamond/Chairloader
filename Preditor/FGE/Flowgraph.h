@@ -15,7 +15,8 @@
 #include "IChairFlowgraph.h"
 #include <ImNodes/ImNodes.h>
 
-struct FlowGraph : public IChairFlowgraph {
+struct FlowGraph : public IChairFlowgraph
+{
     FlowGraph();
     ~FlowGraph();
     ImNodesEditorContext* m_Context;
@@ -24,26 +25,22 @@ struct FlowGraph : public IChairFlowgraph {
     void drawTab();
     void update();
 
-    //TODO: add gametokens
+    // TODO: add gametokens
     fs::path m_Path;
     std::string m_Name;
-    std::map<int64_t,Node> m_Nodes;
-    std::map<int64_t,Edge> m_Edges;
-    std::map<int64_t,Pin*> m_pPins;
+    std::map<int64_t, Node> m_Nodes;
+    std::map<int64_t, Edge> m_Edges;
+    std::map<int64_t, Pin*> m_pPins;
     std::map<int64_t, GraphToken> m_Tokens;
 
-    Node * getNode(int64_t id);
-    Pin * getPin(int64_t id);
-    Edge * getEdge(int64_t id);
+    Node* getNode(int64_t id);
+    Pin* getPin(int64_t id);
+    Edge* getEdge(int64_t id);
 
     int64_t uniqueID;
-    int64_t GetUniqueID() override{
-        return uniqueID++;
-    }
+    int64_t GetUniqueID() override { return uniqueID++; }
 
-    void AddPin(int64_t id, Pin* pin) override{
-        m_pPins[id] = pin;
-    }
+    void AddPin(int64_t id, Pin* pin) override { m_pPins[id] = pin; }
 
     void refreshUnknownNodes();
     void refreshNodesOfClass(PrototypeNode::NodeClass nodeClass);
@@ -54,20 +51,22 @@ struct FlowGraph : public IChairFlowgraph {
     bool m_bShowNodeList = true;
 
     bool m_bResetPan = false;
-    ImVec2 m_ResetPos = {0, 0};
+    ImVec2 m_ResetPos = { 0, 0 };
 
     //! add a node from a prototype node
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos = {0,0}, int64_t id = -1);
+    bool addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos = { 0, 0 }, int64_t id = -1);
     //! add a node from a prototype class name
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, PrototypeNode::NodeClass &protoClass, ImVec2 pos = {0,0}, int64_t id = -1);
+    bool addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos = { 0, 0 }, int64_t id = -1);
     //! add a node from a prototype with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, std::shared_ptr<PrototypeNode>, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
+    bool addNode(std::string name, std::shared_ptr<PrototypeNode>, ImVec2 pos, int64_t id,
+                 std::map<std::string, std::string>& defaultInputs);
     //! add a node from a prototype class name with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
-    bool addNode(std::string name, PrototypeNode::NodeClass &protoClass, ImVec2 pos, int64_t id, std::map<std::string, std::string> &defaultInputs);
+    bool addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id,
+                 std::map<std::string, std::string>& defaultInputs);
 
     //! add a comment box node
     /// \returns true if the node was added successfully, false if the node already exists or other error
@@ -85,13 +84,12 @@ struct FlowGraph : public IChairFlowgraph {
     /// \returns true if the edge was removed, false if the edge does not exist
     bool removeEdge(int64_t id);
 
-
     bool loadXML(fs::path path);
 
-//    bool m_bSave = false;
-//    virtual bool saveToXmlFile(fs::path path){return false;};
-    virtual bool saveXML(){return false;};
-//    virtual void exportXmlFile() {};
+    //    bool m_bSave = false;
+    //    virtual bool saveToXmlFile(fs::path path){return false;};
+    virtual bool saveXML() { return false; };
+    //    virtual void exportXmlFile() {};
 
     void resetPanning(ImVec2 pos);
 
@@ -99,8 +97,10 @@ struct FlowGraph : public IChairFlowgraph {
     void drawNodeProperties(Node& node);
     float m_nodePropertiesHeight = 0.2f;
 
-    struct FlowGraphCommand{
-        enum class CommandOperation {
+    struct FlowGraphCommand
+    {
+        enum class CommandOperation
+        {
             ADD_NODE,
             REMOVE_NODE,
             ADD_EDGE,
@@ -108,7 +108,7 @@ struct FlowGraph : public IChairFlowgraph {
             MOVE_NODE,
             CHANGE_NODE_INFO,
         };
-        std::variant<Node,Edge> m_StoredObject;
+        std::variant<Node, Edge> m_StoredObject;
         CommandOperation m_Operation;
         FlowGraph* m_pFlowgraph;
         bool m_bIsUndone = false;
@@ -122,10 +122,10 @@ struct FlowGraph : public IChairFlowgraph {
     void RedoLastCommand();
 };
 
+#endif // CHAIRLOADER_FLOWGRAPH_H
 
-#endif //CHAIRLOADER_FLOWGRAPH_H
-
-enum class FilePlace {
+enum class FilePlace
+{
     Ark,
     Level,
     Libs,
@@ -137,12 +137,14 @@ enum class FilePlace {
 
 class FlowGraphXMLFile;
 
-class FlowGraphFromXML : public FlowGraph {
-public:
-    FlowGraphFromXML(pugi::xml_node &node, fs::path path, std::string name, FlowGraphXMLFile* parent);
+class FlowGraphFromXML : public FlowGraph
+{
+  public:
+    FlowGraphFromXML(pugi::xml_node& node, fs::path path, std::string name, FlowGraphXMLFile* parent);
     FilePlace m_FilePlace;
 
-    enum class FlowGraphType{
+    enum class FlowGraphType
+    {
         Entity,
         FlowgraphModule,
         FlowgraphObjectList,
@@ -152,41 +154,50 @@ public:
         Unknown,
         COUNT
     };
-    struct EntityFileInfo {
+    struct EntityFileInfo
+    {
         std::string entityName;
         uint64_t entityID;
     };
-    struct FlowgraphModuleFileInfo {
+    struct FlowgraphModuleFileInfo
+    {
         std::string moduleName;
     };
-    struct FlowgraphObjectListFileInfo {
+    struct FlowgraphObjectListFileInfo
+    {
         std::string objectListName;
     };
-    struct GlobalActionFileInfo {
+    struct GlobalActionFileInfo
+    {
     };
-    struct UIActionFileInfo {
+    struct UIActionFileInfo
+    {
     };
-    struct PrefabObjectFileInfo {
+    struct PrefabObjectFileInfo
+    {
         std::string prefabObjectName;
         uint64_t prefabObjectID;
     };
-    struct UnknownFileInfo {
+    struct UnknownFileInfo
+    {
     };
-    std::variant<EntityFileInfo, FlowgraphModuleFileInfo, FlowgraphObjectListFileInfo, GlobalActionFileInfo, UIActionFileInfo, PrefabObjectFileInfo, UnknownFileInfo> m_FileInfo;
+    std::variant<EntityFileInfo, FlowgraphModuleFileInfo, FlowgraphObjectListFileInfo, GlobalActionFileInfo,
+                 UIActionFileInfo, PrefabObjectFileInfo, UnknownFileInfo>
+        m_FileInfo;
     FlowGraphType m_FlowGraphType;
     pugi::xml_node m_RootNode;
     std::string m_FlowGraphName;
-    FlowGraphXMLFile *m_pParent;
+    FlowGraphXMLFile* m_pParent;
 
-    bool loadXML(pugi::xml_node &node);
+    bool loadXML(pugi::xml_node& node);
     bool saveXML() override;
 
     void draw() override;
 };
 
-
-class FlowGraphXMLFile : public FlowGraph {
-public:
+class FlowGraphXMLFile : public FlowGraph
+{
+  public:
     fs::path m_RelativePath;
     FilePlace m_FilePlace;
 

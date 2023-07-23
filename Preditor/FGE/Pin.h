@@ -6,23 +6,22 @@ enum class PinKind
     Output,
     Input
 };
-struct PrototypePin{
-    std::string Name,
-            HumanName,
-            Description;
-    PinKind     Kind = PinKind::Input;
+struct PrototypePin
+{
+    std::string Name, HumanName, Description;
+    PinKind Kind = PinKind::Input;
     // input pins only
     std::string sUIConfig;
     // inputData struct thing
     // output pins only
-    int         Type = 0;
+    int Type = 0;
     PrototypePin() = default;
 };
 struct Node;
-struct Pin: public PrototypePin
+struct Pin : public PrototypePin
 {
-    int64_t   ID = 0;
-    Node*     Parent_Node = nullptr;
+    int64_t ID = 0;
+    Node* Parent_Node = nullptr;
     std::string value;
     int numberOfConnections = 0;
     // constructor from prototypePin

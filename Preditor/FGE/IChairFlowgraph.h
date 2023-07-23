@@ -5,12 +5,13 @@
 #ifndef CHAIRLOADER_IFLOWGRAPH_H
 #define CHAIRLOADER_IFLOWGRAPH_H
 
-#endif //CHAIRLOADER_IFLOWGRAPH_H
+#endif // CHAIRLOADER_IFLOWGRAPH_H
 #pragma once
 
-
-struct IChairFlowgraph {
-    struct GraphToken {
+struct IChairFlowgraph
+{
+    struct GraphToken
+    {
         int64_t m_ID;
         std::string m_Name;
         int m_Type;
