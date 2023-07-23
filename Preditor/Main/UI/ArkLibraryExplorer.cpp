@@ -138,8 +138,6 @@ void Main::ArkLibraryExplorer::ShowContents()
     if (ImGui::Button("Force Reload"))
         m_pMgr->LoadLibraries(true);
 
-    std::string valueStr;
-
     ImGui::PushFont(gPreditor->pFonts->pMonospace);
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, { 0.0f, 0.0f });
 
