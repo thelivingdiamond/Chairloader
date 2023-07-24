@@ -23,7 +23,9 @@ void ChairXmlUtils::CopyNodeToPugi(XmlNodeRef cryNode, pugi::xml_node pugiRootNo
 	}
 
 	// Copy text content
-	pugiNode.text().set(cryNode->getContent());
+	const char* text = cryNode->getContent();
+	if (text && text[0] != '\0')
+		pugiNode.text().set(cryNode->getContent());
 
 	// Copy child nodes
 	int childCount = cryNode->getChildCount();
