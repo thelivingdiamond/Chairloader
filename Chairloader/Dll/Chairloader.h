@@ -30,6 +30,9 @@ public:
 	//! Called during CSystem::Init, before any engine modules.
 	void InitSystem(CSystem* pSystem);
 
+	//! Called before CGame::Init
+	void PreInitGame(CGame* pGame, IGameFramework* pFramework);
+
 	//! Called after CGame::Init
 	void InitGame(CGame* pGame, IGameFramework* pFramework);
 

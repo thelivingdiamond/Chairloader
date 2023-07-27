@@ -6,7 +6,6 @@
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
-#include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
 
 // ArkTraumaBleeding
 // Header:  Prey/GameDll/ark/player/trauma/ArkTraumaBleeding.h

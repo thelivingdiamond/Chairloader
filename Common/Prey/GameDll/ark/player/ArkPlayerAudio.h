@@ -2,8 +2,7 @@
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryGame/IGameTokens.h>
-#include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
-#include <Prey/GameDll/ark/player/ArkAudioSwitchState.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 
 enum EGameTokenEvent;
 class ICrySizer;

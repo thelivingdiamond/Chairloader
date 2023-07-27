@@ -34,11 +34,11 @@ public:
 	static constexpr const unsigned k_sampleIndexMask = 15872;
 	static constexpr const unsigned k_resultIndexMask = 511;
 	static std::bitset<k_totalResultsCount> s_results;
-	unsigned m_data;
+	unsigned m_data = 0;
 	static constexpr const uint64_t k_maxRunCount = 8;
 	
 	static void Initialize(unsigned _seed) { FInitialize(_seed); }
-	ArkRegularOutcome();
+	ArkRegularOutcome() = default;
 	bool operator()() const { return FoperatorRBLRBR(this); }
 	void Reset() const { FResetOv1(this); }
 	void Reset(float _probability) const { FResetOv0(this,_probability); }

@@ -84,6 +84,7 @@ enum EFRAMEWORKLISTENERPRIORITY
     FRAMEWORKLISTENERPRIORITY_MENU
 };
 
+static const EntityId LOCAL_PLAYER_ENTITY_ID = 0x7777u; //!< 30583 between static and dynamic EntityIDs.
 
 // Header: MadeUp
 // _unknown/IGameFramework.h

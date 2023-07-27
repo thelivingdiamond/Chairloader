@@ -17,8 +17,6 @@ struct SAnimationContext;
 template <typename T>
 class ArkFlowNodeDialogTrigger;
 
-struct IParticleEmitter : detail::StubSmartPtrIface {};
-struct IParticleEffect : detail::StubSmartPtrIface {};
 struct IMaterial : detail::StubSmartPtrIface {};
 struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
 struct SCrySessionID : detail::StubSmartPtrIface {};
@@ -37,13 +35,6 @@ public:
 	};
 
 	void* pad[15];
-};
-
-struct IParticleEffectListener // Id=8001CCA Size=8
-{
-	virtual ~IParticleEffectListener();
-	virtual void OnCreateEmitter(IParticleEmitter* arg0) = 0;
-	virtual void OnDeleteEmitter(IParticleEmitter* arg0) = 0;
 };
 
 using ArkMaterialAnimationChannel = EMaterialParamFloat;

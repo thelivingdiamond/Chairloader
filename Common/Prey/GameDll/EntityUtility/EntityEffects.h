@@ -80,11 +80,11 @@ class CEffectsController // Id=8013ED2 Size=40
 public:
 	using TAttachedEffects = std::vector<EntityEffects::SEffectInfo>;
 	
-	IEntity *m_pOwnerEntity;
+	IEntity *m_pOwnerEntity = nullptr;
 	std::vector<EntityEffects::SEffectInfo> m_attachedEffects;
-	unsigned m_effectGeneratorId;
+	unsigned m_effectGeneratorId = 0;
 	
-	CEffectsController();
+	CEffectsController() = default;
 	void InitWithEntity(IEntity *pEntity) { FInitWithEntity(this,pEntity); }
 	void FreeAllEffects() { FFreeAllEffects(this); }
 	unsigned AttachParticleEffect(IParticleEffect *pParticleEffect, EntityEffects::SEffectAttachParams const &attachParams) { return FAttachParticleEffectOv3(this,pParticleEffect,attachParams); }

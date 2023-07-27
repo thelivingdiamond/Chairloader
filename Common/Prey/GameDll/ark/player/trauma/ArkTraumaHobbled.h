@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
-#include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
 
 // ArkTraumaHobbled
 // Header:  Prey/GameDll/ark/player/trauma/ArkTraumaHobbled.h
