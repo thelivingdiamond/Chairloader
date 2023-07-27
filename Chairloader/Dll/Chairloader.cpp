@@ -86,7 +86,7 @@ bool CGame_Init_Hook(CGame* _this, IGameFramework* pFramework)
 {
 	g_pGame = _this;
 
-	gChairloaderDll->GetCore()->PreInitGame();
+	gChairloaderDll->PreInitGame(_this, pFramework);
 
 	bool result = g_CGame_Init_Hook.InvokeOrig(_this, pFramework);
 
@@ -314,11 +314,17 @@ void Chairloader::InitSystem(CSystem* pSystem)
     g_ImportantListener = std::make_unique<ImportantListener>();
 }
 
+void Chairloader::PreInitGame(CGame* pGame, IGameFramework* pFramework)
+{
+	CryLog("Chairloader::PreInitGame");
+	m_pGame = pGame;
+	m_pFramework = pFramework;
+	gChairloaderDll->GetCore()->PreInitGame();
+}
+
 void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 {
 	CryLog("Chairloader::InitGame");
-	m_pGame = pGame;
-	m_pFramework = pFramework;
 
 	gRenDev->m_pRT->SyncMainWithRender();
 	gRenDev->m_pRT->SyncMainWithRender();
