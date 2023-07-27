@@ -338,7 +338,7 @@ public:
 	void mfGetShaderListPath(CryStackStringT<char, 512>& nameOut, int nType) { FmfGetShaderListPath(this, nameOut, nType); }
 	CShaderMan();
 	void ShutDown() { FShutDown(this); }
-	//SShaderGen* mfCreateShaderGenInfo(const char* szName, bool bRuntime) { return FmfCreateShaderGenInfo(this, szName, bRuntime); }
+	SShaderGen* mfCreateShaderGenInfo(const char* szName, bool bRuntime) { return FmfCreateShaderGenInfo(this, szName, bRuntime); }
 	void mfRemapShaderGenInfoBits(const char* szName, SShaderGen* pShGen) { FmfRemapShaderGenInfoBits(this, szName, pShGen); }
 	uint64_t mfGetRemapedShaderMaskGen(const char* szName, uint64_t nMaskGen, bool bFixup) { return FmfGetRemapedShaderMaskGen(this, szName, nMaskGen, bFixup); }
 	bool mfUsesGlobalFlags(const char* szShaderName) { return FmfUsesGlobalFlags(this, szShaderName); }
@@ -346,7 +346,7 @@ public:
 	uint64_t mfGetShaderGlobalMaskGenFromString(const char* szShaderGen) { return FmfGetShaderGlobalMaskGenFromString(this, szShaderGen); }
 	void mfInitGlobal() { FmfInitGlobal(this); }
 	void mfInitLevelPolicies() { FmfInitLevelPolicies(this); }
-	//void mfInitLookups() { FmfInitLookups(this); }
+	void mfInitLookups() { FmfInitLookups(this); }
 	void mfInitCommonGlobalFlags() { FmfInitCommonGlobalFlags(this); }
 	void mfInitCommonGlobalFlagsLegacyFix() { FmfInitCommonGlobalFlagsLegacyFix(this); }
 	bool mfRemapCommonGlobalFlagsWithLegacy() { return FmfRemapCommonGlobalFlagsWithLegacy(this); }
@@ -358,9 +358,9 @@ public:
 	bool mfRefreshResourceConstants(CShaderResources* Res) { return FmfRefreshResourceConstantsOv1(this, Res); }
 	bool mfUpdateTechnik(SShaderItem& SI, CCryNameTSCRC& Name) { return FmfUpdateTechnik(this, SI, Name); }
 	SShaderItem mfShaderItemForName(const char* nameEf, bool bShare, int flags, SInputShaderResources* Res = 0, uint64_t nMaskGen = 0, IRenderer::SLoadShaderItemArgs const* pArgs = 0) { return FmfShaderItemForName(this, nameEf, bShare, flags, Res, nMaskGen, pArgs); }
-	//CShader* mfForName(const char* nameSh, int flags, CShaderResources const* Res = nullptr, uint64_t nMaskGen = 0) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }
+	CShader* mfForName(const char* nameSh, int flags, CShaderResources const* Res = nullptr, uint64_t nMaskGen = 0) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }
 	bool mfRefreshSystemShader(const char* szName, CShader*& pSysShader) { return FmfRefreshSystemShader(this, szName, pSysShader); }
-	//void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRT_ParseShader(this, pSH, nMaskGen, flags, pRes); }
+	void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRT_ParseShader(this, pSH, nMaskGen, flags, pRes); }
 	void RT_SetShaderQuality(EShaderType eST, EShaderQuality eSQ) { FRT_SetShaderQuality(this, eST, eSQ); }
 	SFXParam* mfGetFXParameter(std::vector<SFXParam>& Params, const char* param) { return FmfGetFXParameter(this, Params, param); }
 	SFXSampler* mfGetFXSampler(std::vector<SFXSampler>& Params, const char* param) { return FmfGetFXSampler(this, Params, param); }
@@ -437,14 +437,6 @@ public:
 	static float EvalWaveForm(SWaveForm2* arg0);
 	static float EvalWaveForm2(SWaveForm* arg0, float arg1);
 #endif
-
-	// Shader compiling in Chairloader
-	bool           CheckAllFilesAreWritable(const char* szDir) const;
-	void mfInitShadersCache(byte bForLevel, FXShaderCacheCombinations* Combinations, const char* pCombinations, int nType);
-	CShader* mfForName(const char* nameSh, int flags, CShaderResources const* Res = nullptr, uint64_t nMaskGen = 0);
-	SShaderGen* mfCreateShaderGenInfo(const char* szName, bool bRuntime);
-	void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes);
-	void mfInitLookups();
 
 	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xA13080);
 	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x103C5E0);
