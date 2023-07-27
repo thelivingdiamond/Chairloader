@@ -29,14 +29,17 @@ public:
 	template <typename T>
 	struct CArkItemCreator : public IArkItemCreator // Id=801D0EE Size=8
 	{
-#if 0
-		virtual std::shared_ptr<IGameObjectExtension> Create();
-		virtual void GetGameObjectExtensionRMIData(void** _ppRMI, uint64_t* _nCount);
-		void CArkItemCreator();
-		void CArkItemCreator(ArkItemSystem::CArkItemCreator const& arg0);
-		void CArkItemCreator(ArkItemSystem::CArkItemCreator* arg0);
-		virtual void ~CArkItemCreator();
-#endif
+		CArkItemCreator() = default;
+
+		virtual std::shared_ptr<IGameObjectExtension> Create()
+		{
+			return std::make_shared<T>();
+		}
+
+		virtual void GetGameObjectExtensionRMIData(void** _ppRMI, uint64_t* _nCount)
+		{
+			T::GetGameObjectExtensionRMIData(_ppRMI, _nCount);
+		}
 	};
 
 	std::map<string, ArkItemSystem::IArkItemCreator *> m_creators;

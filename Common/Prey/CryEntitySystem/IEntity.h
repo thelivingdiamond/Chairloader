@@ -20,24 +20,7 @@ class XmlNodeRef;
 class CDLight;
 struct AIObjectParams;
 struct IParticleEffect;
-struct SpawnParams {
-	enum EGeomType eAttachType;// Offset=0x0 Size=0x4
-	enum EGeomForm eAttachForm;// Offset=0x4 Size=0x4
-	bool bCountPerUnit;// Offset=0x8 Size=0x1
-	bool bPrime;// Offset=0x9 Size=0x1
-	bool bRegisterByBBox;// Offset=0xa Size=0x1
-	bool bNowhere;// Offset=0xb Size=0x1
-	bool bUseUITimer;// Offset=0xc Size=0x1
-	bool bForceVAClip;// Offset=0xd Size=0x1
-	float fCountScale;// Offset=0x10 Size=0x4
-	float fSizeScale;// Offset=0x14 Size=0x4
-	float fSpeedScale;// Offset=0x18 Size=0x4
-	float fTimeScale;// Offset=0x1c Size=0x4
-	float fPulsePeriod;// Offset=0x20 Size=0x4
-	float fStrength;// Offset=0x24 Size=0x4
-	bool bEnableAudio;// Offset=0x28 Size=0x1
-	class CryStringT<char> audioRtpc;// Offset=0x30 Size=0x8
-};
+struct SpawnParams;
 struct IComponentEventDistributer;
 struct IEntityProxy;
 struct IGeomCacheRenderNode;

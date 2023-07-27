@@ -12,17 +12,17 @@ struct IEntity;
 class IArkPlayerInteractionListener
 { // Size=8 (0x8)
 public:
-	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
-	virtual bool OnHoldToUseStopped(IEntity* const _pEntity);
-	virtual bool OnSpecialUseStopped(IEntity* const _pEntity);
-	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
-	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo,4>& _interactionArray) const;
-	virtual bool PopulateRemoteManipulationInteraction(const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo) const;
-	virtual Vec3 GetInteractionPosition(const IEntity* const _pEntity) const;
-	virtual void OnStartLookingAt(unsigned _targetId);
-	virtual void OnStopLookingAt(unsigned _targetId);
-	virtual void OnInteractionInfoChanged(unsigned _targetId);
-	virtual bool HideDisplayName(const IEntity* const _pEntity) const;
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity) { return false; }
+	virtual bool OnHoldToUseStopped(IEntity* const _pEntity) { return false; }
+	virtual bool OnSpecialUseStopped(IEntity* const _pEntity) { return false; }
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const { return false; }
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo,4>& _interactionArray) const { return false; }
+	virtual bool PopulateRemoteManipulationInteraction(const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo) const { return false; }
+	virtual Vec3 GetInteractionPosition(const IEntity* const _pEntity) const { return Vec3(ZERO); }
+	virtual void OnStartLookingAt(unsigned _targetId) {}
+	virtual void OnStopLookingAt(unsigned _targetId) {}
+	virtual void OnInteractionInfoChanged(unsigned _targetId) {}
+	virtual bool HideDisplayName(const IEntity* const _pEntity) const { return false; }
 
 	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0xDD23F0);
 	static inline auto FOnHoldToUseStopped = PreyFunction<bool(IArkPlayerInteractionListener* const _this, IEntity* const _pEntity)>(0xDD23F0);

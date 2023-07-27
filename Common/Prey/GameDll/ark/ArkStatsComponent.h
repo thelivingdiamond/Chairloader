@@ -137,8 +137,8 @@ public:
 #endif
 	};
 
-	unsigned m_ownerId;
-	unsigned m_currentId;
+	unsigned m_ownerId = 0;
+	unsigned m_currentId = 1;
 	std::unordered_map<CCryName,ArkStatsComponent::ArkStat> m_stats;
 	ArkStatModifierPackages m_packagesDesc;
 	std::unordered_map<unsigned int,std::vector<unsigned int>> m_activePackages;

@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-//#include <Prey/CryParticleSystem/IParticles.h>
+#include <Prey/CryParticleSystem/IParticles.h>
 
 class ArkSafeScriptTable;
 namespace EntityEffects
@@ -86,9 +86,9 @@ public:
 class ArkFireAndForgetEffect : public ArkEffectBase // Id=80141EF Size=64
 {
 public:
-	ArkFireAndForgetEffect();
-	ArkFireAndForgetEffect(IParticleEffect *_pEffect);
-	~ArkFireAndForgetEffect();
+	ArkFireAndForgetEffect() = default;
+	ArkFireAndForgetEffect(IParticleEffect* _pEffect) { LoadEffect(_pEffect); }
+	~ArkFireAndForgetEffect() = default;
 	void Start(QuatTS const &_location) const { FStart(this,_location); }
 	
 	static inline auto FBitNotArkFireAndForgetEffect = PreyFunction<void(ArkFireAndForgetEffect *const _this)>(0x11577E0);
@@ -173,10 +173,14 @@ public:
 	EntityEffects::CEffectsController &m_controller;
 	string m_attachmentName;
 	int m_attachmentSlot;
-	unsigned m_effectId;
+	unsigned m_effectId = 0;
 	
-	ArkEntityAttachmentEffect(EntityEffects::CEffectsController &_controller, int _attachmentSlot);
-	~ArkEntityAttachmentEffect();
+	ArkEntityAttachmentEffect(EntityEffects::CEffectsController& _controller, int _attachmentSlot)
+		: m_controller(_controller)
+	{
+		m_attachmentSlot = _attachmentSlot;
+	}
+
 	void SetAttachmentName(const char *_szAttachmentName) { FSetAttachmentName(this,_szAttachmentName); }
 	void SetAttachmentSlot(int _attachmentSlot) { FSetAttachmentSlot(this,_attachmentSlot); }
 	void Start() { FStart(this); }

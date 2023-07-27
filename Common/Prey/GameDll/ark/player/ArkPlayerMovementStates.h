@@ -4,7 +4,6 @@
 #include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegendHandler.h>
 

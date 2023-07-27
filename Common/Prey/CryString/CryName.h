@@ -527,4 +527,16 @@ inline bool operator!=(const char* s, const CCryNameCRC& n)
 	return n != s;
 }
 
+//! For std::unordered_map.
+//! CCryName uses reference counting internally so equal CCryNames will have equal pointers.
+template <>
+struct std::hash<CCryName>
+{
+	std::size_t operator()(const CCryName& k) const
+	{
+		std::hash<const void*> h;
+		return h(static_cast<const void*>(k.c_str()));
+	}
+};
+
 #endif //__CryName_h__

@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/ui/ArkHitDamageInfo.h>
 
 struct HitInfo;
 struct ICVar;
