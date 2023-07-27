@@ -139,7 +139,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	{
 #if !defined(_RELEASE) && !defined(CONSOLE_CONST_CVAR_MODE) && !defined(IS_EAAS)
 		{
-			char acTemp[512];
+			char acTemp[512] = "ERROR: shader is missing from the cache and user cache is not enabled";
 			if (bValid & 1)
 			{
 				cry_sprintf(acTemp, "WARNING: Bin FXShader '%s' source crc mismatch", nameBin);

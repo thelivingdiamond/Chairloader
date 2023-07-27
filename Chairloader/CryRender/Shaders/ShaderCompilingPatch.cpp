@@ -83,13 +83,16 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 {
 	if (!_this->m_bInitialized)
 	{
-		*CRenderer::CV_r_shadersediting = 1;
 		*CRenderer::CV_r_shadersAllowCompilation = 1;
 		*CRenderer::CV_r_shadersasyncactivation = 1;
 		*CRenderer::CV_r_shadersasynccompiling = 1;
 
-		const ICmdLineArg* shadersdebug = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersdebug");
-		if (shadersdebug)
+		if (const ICmdLineArg* shadersediting = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersediting"))
+			*CRenderer::CV_r_shadersediting = shadersediting->GetIValue();
+		else
+			*CRenderer::CV_r_shadersediting = 0;
+
+		if (const ICmdLineArg* shadersdebug = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersdebug"))
 			*CRenderer::CV_r_shadersdebug = shadersdebug->GetIValue();
 		else
 			*CRenderer::CV_r_shadersdebug = 0;
@@ -173,11 +176,21 @@ void AddShadersMod(const std::string& name)
 
 bool GetShaderModsRegistered()
 {
-	return g_bEnableShaderMods;
+	if (g_bEnableShaderMods)
+		return true;
+
+	if (gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadercompiler"))
+	{
+		g_bEnableShaderMods = true;
+		return true;
+	}
+
+	return false;
 }
 
 void InitHooks()
 {
+	CryWarning("Enabling expreimental shader compiler!");
 	g_CHWShader_D3D_mfActivate_Hook.SetHookFunc(&CHWShader_D3D_mfActivate_Hook);
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
 	g_CShaderMan_mfReleaseSystemShaders_Hook.SetHookFunc(&CShaderMan_mfReleaseSystemShaders_Hook);

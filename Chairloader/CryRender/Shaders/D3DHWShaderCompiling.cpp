@@ -3352,7 +3352,7 @@ bool CHWShader_D3D::mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vecto
 	CAsyncShaderTask::InsertPendingShader(pInst->m_pAsync);
 
 	if (*CRenderer::CV_r_shadersdebug >= 2)
-		CryLog("Async {}: Requested compiling 0x{:x} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
+		CryLog("Async {}: Requested compiling 0x{:p} '{}' shader\n", gRenDev->GetFrameID(false), (void*)pInst, nameSrc);
 #endif
 	return false;
 }
