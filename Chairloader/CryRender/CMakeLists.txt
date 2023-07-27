@@ -25,8 +25,6 @@ if(RENDERDLL_SHADER_COMPILER)
 		Shaders/ShaderCompilingPatch.h
 		Shaders/ShaderFXParseBin.cpp
 		Shaders/ShaderMan.cpp
-		Shaders/ShaderPaths.cpp
-		Shaders/ShaderPaths.h
 	)
 else()
 	set(SOURCE_FILES

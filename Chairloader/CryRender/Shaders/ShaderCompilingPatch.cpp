@@ -6,7 +6,6 @@
 #include <Prey/RenderDll/Common/ResFile.h>
 #include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
 #include <mem.h>
-#include "ShaderPaths.h"
 #include "ShaderCompilingPatch.h"
 
 //-----------------------------------------------------------------------------------
@@ -28,6 +27,8 @@ void CShaderMan::mfInitLookups()
 
 namespace RenderDll::Shaders
 {
+
+bool g_bEnableShaderMods = false;
 
 // This hepler class allows you to hook a PreyFunction to call a method of a class.
 // Doesn't work with virtual functions.
@@ -129,7 +130,6 @@ void CShaderMan_mfReleaseSystemShaders_Hook(CShaderMan* _this)
 bool CShaderMan_mfReloadAllShaders_Hook(CShaderMan* const _this, int nFlags, unsigned nFlagsHW)
 {
 	// Refresh file list on shader reload
-	ShaderPaths::Get().RefreshFileList();
 	return g_CShaderMan_mfReloadAllShaders_Hook.InvokeOrig(_this, nFlags, nFlagsHW);
 }
 
@@ -166,9 +166,14 @@ void CD3D9Renderer_SF_CreateResources_Hook(CD3D9Renderer* const _this)
 
 //-----------------------------------------------------------------------------------
 
+void AddShadersMod(const std::string& name)
+{
+	g_bEnableShaderMods = true;
+}
+
 bool GetShaderModsRegistered()
 {
-	return ShaderPaths::Get().HasAnyFiles();
+	return g_bEnableShaderMods;
 }
 
 void InitHooks()
@@ -212,8 +217,6 @@ void InitHooks()
 	INIT_OVERRIDE(CShaderManBin, GetBinShader);
 
 #undef INIT_OVERRIDE
-
-	ShaderPaths::Get().Init();
 }
 
 void ShutdownRenderer()
@@ -224,26 +227,15 @@ void ShutdownRenderer()
 #endif
 }
 
-void AddShadersDir(const fs::path& path)
-{
-	ShaderPaths::Get().AddShadersDir(path);
-}
-
-void RefreshShaderFileList()
-{
-	ShaderPaths::Get().RefreshFileList();
-}
-
 }
 #else
 
 namespace RenderDll::Shaders
 {
+void AddShadersMod(const std::string& name) {}
 bool GetShaderModsRegistered() { return false; }
 void InitHooks() {}
 void ShutdownRenderer() {}
-void AddShadersDir(const fs::path& path) {}
-void RefreshShaderFileList() {}
 }
 
 CShader* CShaderMan::mfForName(const char* nameSh, int flags, CShaderResources const* Res, uint64_t nMaskGen) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }

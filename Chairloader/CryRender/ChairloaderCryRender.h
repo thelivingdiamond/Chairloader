@@ -11,8 +11,7 @@ public:
 	void InitGame() override;
 	void ShutdownSystem() override;
 	void SetRenderThreadIsIdle(bool state) override;
-	void AddShadersDir(const fs::path& path) override;
-	void RefreshShaderFileList() override;
+	void AddShadersMod(const std::string& name) override;
 };
 
 } // namespace RenderDll

@@ -5,9 +5,8 @@ class CD3D9Renderer;
 namespace RenderDll::Shaders
 {
 
+void AddShadersMod(const std::string& name);
 bool GetShaderModsRegistered();
-void AddShadersDir(const fs::path& path);
-void RefreshShaderFileList();
 
 void InitHooks();
 void ShutdownRenderer();

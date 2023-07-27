@@ -38,12 +38,7 @@ void RenderDll::ChairloaderCryRender::SetRenderThreadIsIdle(bool state)
 	ChairRender::Get().SetCanChangeRenderCmds(state);
 }
 
-void RenderDll::ChairloaderCryRender::AddShadersDir(const fs::path& path)
+void RenderDll::ChairloaderCryRender::AddShadersMod(const std::string& name)
 {
-	Shaders::AddShadersDir(path);
-}
-
-void RenderDll::ChairloaderCryRender::RefreshShaderFileList()
-{
-	Shaders::RefreshShaderFileList();
+	Shaders::AddShadersMod(name);
 }
