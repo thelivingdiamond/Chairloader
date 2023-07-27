@@ -42,7 +42,7 @@ enum ESaveGameReason {
 struct ISaveGame
 {
 public:
-	virtual ~ISaveGame() = 0;
+	virtual ~ISaveGame() {}
 	virtual bool Init(const char*) = 0;
 	virtual void AddMetadata(const char*, int) = 0;
 	virtual void AddMetadata(const char*, const char*) = 0;
@@ -62,7 +62,7 @@ public:
 struct ILoadGame
 {
 public:
-	virtual ~ILoadGame() = 0;
+	virtual ~ILoadGame() {}
 	virtual bool Init(const char*) = 0;
 	virtual unsigned int GetPlatformUserId() = 0;
 	virtual IGeneralMemoryHeap* GetHeap() = 0;
@@ -79,15 +79,15 @@ public:
 class IGameFrameworkListener
 {
 public:
-	virtual ~IGameFrameworkListener() = 0;
+	virtual ~IGameFrameworkListener() {}
 	virtual void OnPostUpdate(float) = 0;
 	virtual void OnSaveGame(ISaveGame*) = 0;
 	virtual void OnLoadGame(ILoadGame*) = 0;
 	virtual void OnLevelEnd(const char*) = 0;
 	virtual void OnActionEvent(const SActionEvent&) = 0;
-	virtual void OnPreRender() = 0;
-	virtual void OnSavegameFileLoadedInMemory(const char*) = 0;
-	virtual void OnForceLoadingWithFlash() = 0;
+	virtual void OnPreRender() {}
+	virtual void OnSavegameFileLoadedInMemory(const char*) {}
+	virtual void OnForceLoadingWithFlash() {}
 
 
 };

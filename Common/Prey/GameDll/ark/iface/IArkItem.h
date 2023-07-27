@@ -43,6 +43,6 @@ struct IArkItem : public IGameObjectExtension // Id=8001F57 Size=64
 	virtual bool IsArchetype(const uint64_t arg0) const = 0;
 	virtual bool HasMetaTags(std::vector<unsigned __int64> const &arg0) const = 0;
 	virtual unsigned GetOwnerId() const = 0;
-	virtual ~IArkItem();
+	virtual ~IArkItem() {}
 };
 

@@ -22,10 +22,8 @@ static_assert(sizeof(ArkAimAssistShape::ArkInnerRadiusProperty) == 32);
 static_assert(sizeof(ArkAimAssistShape::ArkOuterRadiusProperty) == 32);
 static_assert(sizeof(ArkAimAssistShape::ArkPointsProperty) == 32);
 
-#include "ArkAudioSwitch.h"
+#include <Prey/Ark/ArkAudioUtil.h>
 static_assert(sizeof(ArkAudioSwitch) == 4);
-
-#include "ArkAudioSwitchState.h"
 static_assert(sizeof(ArkAudioSwitchState) == 4);
 
 #include "ArkExaminationMode.h"

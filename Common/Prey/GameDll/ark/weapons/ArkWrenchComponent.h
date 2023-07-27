@@ -46,21 +46,21 @@ public:
 #endif
 	};
 
-	uint64_t m_packageId;
-	uint64_t m_criticalPackageId;
-	uint64_t m_chargedPackageId;
-	uint64_t m_chargedCriticalPackageId;
-	int m_hitType;
-	float m_hitOffset;
-	float m_maxForceMassScale;
-	float m_rayRange;
-	float m_speedRangeFactor;
-	float m_speedRangeMax;
-	float m_fatigueThisHit;
-	bool m_bChain;
-	bool m_bInterrupt;
-	bool m_bInChainWindow;
-	bool m_bDodge;
+	uint64_t m_packageId = -1;
+	uint64_t m_criticalPackageId = -1;
+	uint64_t m_chargedPackageId = -1;
+	uint64_t m_chargedCriticalPackageId = -1;
+	int m_hitType = 0;
+	float m_hitOffset = 0;
+	float m_maxForceMassScale = 0;
+	float m_rayRange = 0;
+	float m_speedRangeFactor = 0;
+	float m_speedRangeMax = 0;
+	float m_fatigueThisHit = 0;
+	bool m_bChain = false;
+	bool m_bInterrupt = false;
+	bool m_bInChainWindow = false;
+	bool m_bDodge = false;
 	std::vector<uint64_t> m_sneakAttackMetaTags;
 	
 	static uint64_t GetWrenchArchetypeId() { return FGetWrenchArchetypeId(); }

@@ -1,17 +1,15 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-//#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#include <cinttypes>
+#include <Prey/CryScriptSystem/IScriptSystem.h>
 #include <Prey/GameDll/ark/arkscripttable.h>
 
 struct IEntity;
 struct IEntityClass;
 struct IScriptTable;
 
-class SmartScriptTable {
-public:
-	IScriptTable* ptr;
-};
+class ArkSafeScriptTable;
 
 // Header: Exact
 // Prey/GameDll/ark/arkscripttable.h
@@ -20,6 +18,53 @@ class ArkScriptTableBase // Id=8013471 Size=8
 {
 public:
 	SmartScriptTable m_pScriptTable;
+
+	ArkSafeScriptTable GetSafeSubTable(const char* sKey) const;
+
+	float GetFloat(const char* _pKey, float _default = 0.0f) const
+	{
+		float result = _default;
+
+		if (m_pScriptTable)
+		{
+			ScriptAnyValue any;
+			if (m_pScriptTable->GetValueAny(_pKey, any))
+				any.CopyTo(result);
+		}
+
+		return result;
+	}
+
+	uint64_t GetArkUniqueId(const char* _pKey, uint64_t _default = 0) const
+	{
+		uint64_t result = _default;
+
+		if (m_pScriptTable)
+		{
+			ScriptAnyValue any;
+			if (m_pScriptTable->GetValueAny(_pKey, any))
+			{
+				if (any.GetVarType() == ANY_TSTRING)
+					sscanf(any.str, SCNx64, &result);
+			}
+		}
+
+		return result;
+	}
+
+	const char* GetString(const char* _pKey, const char* _default = "") const
+	{
+		const char* result = _default;
+
+		if (m_pScriptTable)
+		{
+			ScriptAnyValue any;
+			if (m_pScriptTable->GetValueAny(_pKey, any))
+				any.CopyTo(result);
+		}
+
+		return result;
+	}
 
 #if 0
 	int* operator int ArkSafeBool<ArkScriptTableBase<T>>::* () const;
@@ -45,7 +90,7 @@ public:
 class ArkSafeScriptTable : public ArkScriptTableBase<ArkSafeScriptTable> // Id=801346F Size=8
 {
 public:
-	ArkSafeScriptTable(SmartScriptTable const &_pScriptTable);
+	ArkSafeScriptTable(SmartScriptTable const& _pScriptTable) { m_pScriptTable = _pScriptTable; }
 	ArkSafeScriptTable(IScriptTable *_pScriptTable);
 	ArkSafeScriptTable(IEntity const &_entity);
 	ArkSafeScriptTable(IEntity const *_pEntity);
@@ -56,8 +101,22 @@ public:
 class ArkScriptTable : public ArkScriptTableBase<ArkScriptTable> // Id=8013470 Size=8
 {
 public:
-	ArkScriptTable(SmartScriptTable const &_pScriptTable);
+	ArkScriptTable(SmartScriptTable const &_pScriptTable) { m_pScriptTable = _pScriptTable; }
 	ArkScriptTable(IScriptTable *_pScriptTable);
 	ArkScriptTable(IEntity const *_pEntity);
 };
 
+template <typename T>
+ArkSafeScriptTable ArkScriptTableBase<T>::GetSafeSubTable(const char* _pKey) const
+{
+	SmartScriptTable outTable;
+
+	if (m_pScriptTable)
+	{
+		ScriptAnyValue any;
+		if (m_pScriptTable->GetValueAny(_pKey, any))
+			any.CopyTo(outTable);
+	}
+
+	return ArkSafeScriptTable(outTable);
+}

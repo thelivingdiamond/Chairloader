@@ -9,10 +9,10 @@
 class ArkTimeRemaining // Id=80134C3 Size=4
 {
 public:
-	float m_timeRemaining;
+	float m_timeRemaining = 0.0f;
 	
-	ArkTimeRemaining();
-	ArkTimeRemaining(float _duration);
+	ArkTimeRemaining() {}
+	ArkTimeRemaining(float _duration) { m_timeRemaining = _duration; }
 	bool Update(float _frameTime) { return FUpdate(this,_frameTime); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void SetDuration(float _duration) { FSetDuration(this,_duration); }
@@ -39,13 +39,21 @@ public:
 class ArkSimpleTimer : public ArkTimeRemaining // Id=80134C2 Size=8
 {
 public:
-	float m_duration;
+	float m_duration = 0.0f;
 	
-	ArkSimpleTimer();
-	ArkSimpleTimer(float _duration, bool _bResetTimer);
+	ArkSimpleTimer() : ArkSimpleTimer(0, false) {}
+
+	ArkSimpleTimer(float _duration, bool _bResetTimer) : ArkTimeRemaining(_duration)
+	{
+		if (!_bResetTimer)
+			_duration = std::min(_duration, 0.0f);
+
+		m_duration = _duration;
+	}
+
 	bool Update(float _frameTime) { return FUpdate(this,_frameTime); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
-	void SetDuration(float _duration, bool _bResetTimer) { FSetDuration(this,_duration,_bResetTimer); }
+	void SetDuration(float _duration, bool _bResetTimer = false) { FSetDuration(this,_duration,_bResetTimer); }
 	float GetDuration() const { return FGetDuration(this); }
 	void ResetTimer() { FResetTimer(this); }
 	bool IsTimerReset() const { return FIsTimerReset(this); }

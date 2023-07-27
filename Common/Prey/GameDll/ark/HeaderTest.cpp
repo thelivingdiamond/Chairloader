@@ -488,7 +488,4 @@ static_assert(sizeof(CScriptBind_Inventory) == 96);
 static_assert(sizeof(CScriptBind_ItemSystem) == 96);
 #endif
 
-#include "ScriptHandle.h"
-static_assert(sizeof(ScriptHandle) == 8);
-
 #include "ArkItemSystem.h"
