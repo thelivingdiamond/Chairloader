@@ -744,8 +744,17 @@ class CParserBin
 	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2BA7198);
 
 public:
-	CParserBin(SShaderBin* pBin);
-	CParserBin(SShaderBin* pBin, CShader* pSH);
+	CParserBin(SShaderBin* pBin)
+	{
+		m_pCurBinShader = pBin;
+		m_pCurShader = NULL;
+	}
+
+	CParserBin(SShaderBin* pBin, CShader* pSH)
+	{
+		m_pCurBinShader = pBin;
+		m_pCurShader = pSH;
+	}
 
 	static FXMacroBin&        GetStaticMacroses() { return *m_StaticMacros; }
 	static const char* GetString(unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey = false) { return FGetStringOv2(nToken, Table, bOnlyKey); }
@@ -915,10 +924,12 @@ public:
 		return -1;
 	}
 
-	static bool               CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text);
-	static bool               ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens = false);
+#ifdef RENDERDLL_SHADER_COMPILER
+	static bool chair_CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text);
+	static bool chair_ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens = false);
+#endif
 
-	static bool m_bEditable;
+	static constexpr bool m_bEditable = false;
 	static constexpr uint32 m_nPlatform = SF_D3D11;
 	static constexpr bool m_bEndians = false;
 	static inline auto m_bParseFX = PreyGlobal<bool>(0x2270BF8);

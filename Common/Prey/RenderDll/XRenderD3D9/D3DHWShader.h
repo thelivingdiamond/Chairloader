@@ -798,6 +798,33 @@ public:
 	static uint16_t GetDeclaredVertexStreamMask(void* arg0);
 #endif
 
+#ifdef RENDERDLL_SHADER_COMPILER
+	bool chair_mfActivate(CShader* pSH, unsigned nFlags, std::vector<STokenD>* Table, TArray<unsigned int>* pSHData, bool bCompressedOnly);
+	void chair_mfSubmitRequestLine(SHWSInstance* pInst, string* pRequestLine = NULL);
+	
+	bool chair_mfGenerateScript(CShader* pSH, SHWSInstance*& pInst, std::vector<SCGBind>& InstBindVars, uint32 nFlags, FXShaderToken* Table, TArray<uint32>* pSHData, TArray<char>& sNewScr);
+	void chair_CorrectScriptEnums(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, FXShaderToken* Table);
+	bool chair_ConvertBinScriptToASCII(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, FXShaderToken* Table, TArray<char>& Scr);
+	void chair_RemoveUnaffectedParameters_D3D10(CParserBin& Parser, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars);
+	
+	LPD3D10BLOB chair_mfCompileHLSL(CShader* pSH, char* prog_text, void** ppConstantTable, LPD3D10BLOB* ppErrorMsgs, uint32 nFlags, std::vector<SCGBind>& InstBindVars);
+	bool chair_mfCompileHLSL_Int(CShader* pSH, char* prog_text, LPD3D10BLOB* ppShader, void** ppConstantTable, LPD3D10BLOB* ppErrorMsgs, string& strErr, std::vector<SCGBind>& InstBindVars);
+	void chair_mfSaveCGFile(const char* scr, const char* path);
+
+	bool chair_mfRequestAsync(CShader* pSH, SHWSInstance* pInst, std::vector<SCGBind>& InstBindVars, const char* prog_text, const char* szProfile, const char* szEntry);
+
+	//ILINE most common outcome (avoid LHS on link register 360)
+	ILINE ED3DShError chair_mfIsValid(SHWSInstance*& pInst, bool bFinalise)
+	{
+		if (pInst->m_Handle.m_pShader)
+			return ED3DShError_Ok;
+		if (pInst->m_bAsyncActivating)
+			return ED3DShError_NotCompiled;
+
+		return mfIsValid_Int(pInst, bFinalise);
+	}
+#endif
+
 	static inline auto FSize = PreyFunction<int(CHWShader_D3D* const _this)>(0xEEC3C0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D const* const _this, ICrySizer* pSizer)>(0xEEB420);
 	static inline auto FmfInit = PreyFunction<void()>(0xEEE1D0);

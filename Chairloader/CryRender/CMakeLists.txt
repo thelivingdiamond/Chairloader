@@ -17,6 +17,9 @@ if(RENDERDLL_SHADER_COMPILER)
 		lzss/lzss.cpp
 		lzss/lzss.h
 		
+		Shaders/D3DHWShaderCompiling.cpp
+		Shaders/ParserBin.cpp
+		Shaders/ResFile.cpp
 		Shaders/ShaderCompilingPatch.cpp
 		Shaders/ShaderCompilingPatch.h
 	)

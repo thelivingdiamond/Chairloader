@@ -745,6 +745,10 @@ public:
 	static void mfValidateTokenData(CResFile* arg0);
 #endif
 
+#ifdef RENDERDLL_SHADER_COMPILER
+	static SShaderDevCache* mfInitDevCache(const char* name, CHWShader* pSH);
+#endif
+
 	static CCryNameTSCRC  mfGetClassName(EHWShaderClass eClass)
 	{
 		if (eClass == eHWSC_Vertex)

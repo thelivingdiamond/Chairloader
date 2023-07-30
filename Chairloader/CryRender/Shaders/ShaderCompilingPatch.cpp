@@ -11,7 +11,65 @@
 namespace RenderDll::Shaders
 {
 
+//-----------------------------------------------------------------------------------
+
+// This hepler class allows you to hook a PreyFunction to call a method of a class.
+// Doesn't work with virtual functions.
+// @tparam	pPreyFunc			Pointer to PreyFunction<>.
+// @tparam	pOverrideMethod		Pointer to a method to call.
+template<auto pPreyFunc, auto pOverrideMethod>
+class PreyFuncOverride
+{
+public:
+	//! PreyFunction<>
+	using PreyFuncType = std::remove_pointer_t<decltype(pPreyFunc)>;
+
+	//! Initializes the hook.
+	static void Init()
+	{
+		m_Hook.SetHookFunc(&Wrapper);
+	}
+
+private:
+	static inline auto m_Hook = pPreyFunc->MakeHook();
+
+	//! Wrapper function that calls the method. It's required because member function pointers
+	//! can't be cast to an address.
+	template <typename... Args>
+	static typename PreyFuncType::FuncReturnType Wrapper(Args... args)
+	{
+		return std::invoke(pOverrideMethod, args...);
+	}
+};
+
+//-----------------------------------------------------------------------------------
+
 bool g_bEnableShaderMods = false;
+auto g_CShaderMan_mfInit_Hook = CShaderMan::FmfInit.MakeHook();
+
+//-----------------------------------------------------------------------------------
+
+void CShaderMan_mfInit_Hook(CShaderMan* _this)
+{
+	if (!_this->m_bInitialized)
+	{
+		*CRenderer::CV_r_shadersAllowCompilation = 1;
+		*CRenderer::CV_r_shadersasyncactivation = 1;
+		*CRenderer::CV_r_shadersasynccompiling = 1;
+
+		if (const ICmdLineArg* shadersediting = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersediting"))
+			*CRenderer::CV_r_shadersediting = shadersediting->GetIValue();
+		else
+			*CRenderer::CV_r_shadersediting = 0;
+
+		if (const ICmdLineArg* shadersdebug = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersdebug"))
+			*CRenderer::CV_r_shadersdebug = shadersdebug->GetIValue();
+		else
+			*CRenderer::CV_r_shadersdebug = 0;
+	}
+
+	g_CShaderMan_mfInit_Hook.InvokeOrig(_this);
+}
 
 //-----------------------------------------------------------------------------------
 
@@ -39,6 +97,12 @@ bool GetShaderModsRegistered()
 void InitHooks()
 {
 	CryWarning("Enabling expreimental shader compiler!");
+
+	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
+
+#define INIT_OVERRIDE(className, funcName) PreyFuncOverride<&className::F##funcName, &className::chair_##funcName>::Init()
+	INIT_OVERRIDE(CHWShader_D3D, mfActivate);
+#undef INIT_OVERRIDE
 }
 
 void ShutdownRenderer()
