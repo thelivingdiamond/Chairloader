@@ -55,7 +55,7 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 	{
 		*CRenderer::CV_r_shadersAllowCompilation = 1;
 		*CRenderer::CV_r_shadersasyncactivation = 1;
-		*CRenderer::CV_r_shadersasynccompiling = 1;
+		*CRenderer::CV_r_shadersasynccompiling = 0;
 
 		if (const ICmdLineArg* shadersediting = gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "shadersediting"))
 			*CRenderer::CV_r_shadersediting = shadersediting->GetIValue();
