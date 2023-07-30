@@ -18,10 +18,14 @@ if(RENDERDLL_SHADER_COMPILER)
 		lzss/lzss.h
 		
 		Shaders/D3DHWShaderCompiling.cpp
+		Shaders/Parser.cpp
+		Shaders/Parser.h
 		Shaders/ParserBin.cpp
 		Shaders/ResFile.cpp
+		Shaders/ResLookupDataMan.cpp
 		Shaders/ShaderCompilingPatch.cpp
 		Shaders/ShaderCompilingPatch.h
+		Shaders/ShaderManBin.cpp
 	)
 else()
 	set(SOURCE_FILES

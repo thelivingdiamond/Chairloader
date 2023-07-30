@@ -1,6 +1,7 @@
 #include <D3D11Shader.h>
 #include <D3DCompiler.h>
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
+#include "Parser.h"
 
 //-----------------------------------------------------------------------------------
 
@@ -56,21 +57,6 @@ static void sCR(TArray<char>& Text, int nLevel)
 		Text.AddElem(' ');
 		Text.AddElem(' ');
 	}
-}
-
-static bool SkipChar(unsigned int ch)
-{
-	bool res = ch <= 0x20;
-
-	res |= (ch - 0x21) < 2;  // !"
-	res |= (ch - 0x26) < 10; // &'()*+,-./
-	res |= (ch - 0x3A) < 6;  // :;<=>?
-	res |= ch == 0x5B;       // [
-	// cppcheck-suppress badBitmaskCheck
-	res |= ch == 0x5D;      // ]
-	res |= (ch - 0x7B) < 3; // {|}
-
-	return res;
 }
 
 //-----------------------------------------------------------------------------------

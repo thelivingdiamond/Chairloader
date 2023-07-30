@@ -977,6 +977,4 @@ public:
 	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x100D8B0);
 };
 
-char* fxFillPr(char** buf, char* dst);
-
 #endif

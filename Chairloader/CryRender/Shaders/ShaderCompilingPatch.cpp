@@ -46,6 +46,7 @@ private:
 
 bool g_bEnableShaderMods = false;
 auto g_CShaderMan_mfInit_Hook = CShaderMan::FmfInit.MakeHook();
+auto g_CShaderMan_mfInitLookups_Hook = CShaderMan::FmfInitLookups.MakeHook();
 
 //-----------------------------------------------------------------------------------
 
@@ -69,6 +70,20 @@ void CShaderMan_mfInit_Hook(CShaderMan* _this)
 	}
 
 	g_CShaderMan_mfInit_Hook.InvokeOrig(_this);
+}
+
+void CShaderMan_mfInitLookups_Hook(CShaderMan* _this)
+{
+	_this->m_ResLookupDataMan[CACHE_READONLY].Clear();
+	string dirdatafilename(_this->m_ShadersCache);
+	dirdatafilename += "lookupdata.bin";
+	_this->m_ResLookupDataMan[CACHE_READONLY].LoadData(dirdatafilename.c_str(), true);
+
+	// CACHE_USER is missing in Prey's function
+	_this->m_ResLookupDataMan[CACHE_USER].Clear();
+	dirdatafilename = _this->m_szUserPath + _this->m_ShadersCache;
+	dirdatafilename += "lookupdata.bin";
+	_this->m_ResLookupDataMan[CACHE_USER].LoadData(dirdatafilename.c_str(), false);
 }
 
 //-----------------------------------------------------------------------------------
@@ -99,9 +114,11 @@ void InitHooks()
 	CryWarning("Enabling expreimental shader compiler!");
 
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
+	g_CShaderMan_mfInitLookups_Hook.SetHookFunc(&CShaderMan_mfInitLookups_Hook);
 
 #define INIT_OVERRIDE(className, funcName) PreyFuncOverride<&className::F##funcName, &className::chair_##funcName>::Init()
 	INIT_OVERRIDE(CHWShader_D3D, mfActivate);
+	INIT_OVERRIDE(CShaderManBin, GetBinShader);
 #undef INIT_OVERRIDE
 }
 

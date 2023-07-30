@@ -314,6 +314,13 @@ public:
 	void AddAffectedTexture(CParserBin& arg0, std::vector<SFXTexture>& arg1, TArray<int>& arg2, SFXTexture* arg3, EHWShaderClass arg4, unsigned arg5, SShaderTechnique* arg6);
 #endif
 
+#ifdef RENDERDLL_SHADER_COMPILER
+	SShaderBin* chair_SearchInCache(const char* szName, bool bInclude);
+	bool chair_AddToCache(SShaderBin* pSB, bool bInclude);
+	SShaderBin* chair_GetBinShader(const char* szName, bool bInclude, uint32 nRefCRC32, bool* pbChanged = NULL);
+	SShaderBin* chair_SaveBinShader(uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc);
+#endif
+
 	static inline auto FLoadBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, _iobuf* fpBin, const char* szName, const char* szNameBin, bool bReadParams)>(0x102AC90);
 	static inline auto FSaveBinShaderLocalInfo = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX, TArray<int>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures)>(0x1033800);
 	static inline auto FGetParamInfo = PreyFunction<SParamCacheInfo* (CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX)>(0x102A0E0);
