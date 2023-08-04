@@ -74,12 +74,15 @@ SShaderBin* CShaderManBin::chair_GetBinShader(const char* szName, bool bInclude,
 	FILE* fpSrc = NULL;
 	uint32 nSourceCRC32 = 0;
 	cry_sprintf(nameFile, "%sCryFX/%s.%s", gRenDev->m_cEF.m_ShadersPath, szName, bInclude ? "cfi" : "cfx");
+
+	// TODO 2023-07-30: Only check CRC in shader editing mode. Otherwise causes lags when shaders are loaded even from cache.
 #if !defined(_RELEASE) && !defined(IS_EAAS)
 	{
 		fpSrc = gEnv->pCryPak->FOpen(nameFile, "rb");
 		nSourceCRC32 = fpSrc ? gEnv->pCryPak->ComputeCRC(nameFile) : 0;
 	}
 #endif
+
 	//char szPath[1024];
 	//getcwd(szPath, 1024);
 	cry_sprintf(nameBin, "%s%s.%s", m_pCEF->m_ShadersCache, szName, bInclude ? "cfib" : "cfxb");
