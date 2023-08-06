@@ -1189,7 +1189,7 @@ TEST(XMLMerger2Test, NodeNotInBaseDocument){
         </mergingPolicy>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
 
