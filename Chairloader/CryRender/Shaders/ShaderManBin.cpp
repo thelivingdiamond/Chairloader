@@ -1,35 +1,11 @@
-// Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
-
-/*=============================================================================
-   ShaderFXParseBin.cpp : implementation of the Shaders parser using FX language.
-
-   Revision history:
-* Created by Honich Andrey
-
-   =============================================================================*/
-
-#include <Prey/CryCore/Platform/IPlatformOS.h>
-#include <Prey/CryCore/AlignmentTools.h>
-#include <Prey/RenderDll/Common/CommonRender.h>
-#include <Prey/RenderDll/Common/Textures/TextureHelpers.h>
-#include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
-#include <Prey/RenderDll/Common/Shaders/Parser.h>
-#include <Prey/RenderDll/Common/Renderer.h>
 #include <d3d9types.h>
-#include <Prey/CryCore/Assert/CryAssert.h>
+#include <Prey/CryCore/Platform/IPlatformOS.h>
+#include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
+#include "Parser.h"
 
 static FOURCC FOURCC_SHADERBIN = MAKEFOURCC('F', 'X', 'B', '0');
 
-namespace
-{
-static std::vector<SFXParam> s_tempFXParams;
-}
-
-//SShaderBin SShaderBin::s_Root;
-//uint32 SShaderBin::s_nCache = 0;
-//uint32 SShaderBin::s_nMaxFXBinCache = MAX_FXBIN_CACHE;
-
-SShaderBin* CShaderManBin::SearchInCache(const char* szName, bool bInclude)
+SShaderBin* CShaderManBin::chair_SearchInCache(const char* szName, bool bInclude)
 {
 	char nameFile[256], nameLwr[256];
 	cry_strcpy(nameLwr, szName);
@@ -50,7 +26,34 @@ SShaderBin* CShaderManBin::SearchInCache(const char* szName, bool bInclude)
 	return NULL;
 }
 
-SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint32 nRefCRC, bool* pbChanged)
+bool CShaderManBin::chair_AddToCache(SShaderBin* pSB, bool bInclude)
+{
+	if (!*CRenderer::CV_r_shadersediting)
+	{
+		if (*SShaderBin::s_nCache >= *SShaderBin::s_nMaxFXBinCache)
+		{
+			SShaderBin* pS;
+			for (pS = SShaderBin::s_Root->m_Prev; pS != SShaderBin::s_Root.Get(); pS = pS->m_Prev)
+			{
+				if (!pS->m_bLocked)
+				{
+					DeleteFromCache(pS);
+					break;
+				}
+			}
+		}
+
+		assert(*SShaderBin::s_nCache < *SShaderBin::s_nMaxFXBinCache);
+	}
+
+	pSB->m_bInclude = bInclude;
+	pSB->Link(SShaderBin::s_Root.Get());
+	(*SShaderBin::s_nCache)++;
+
+	return true;
+}
+
+SShaderBin* CShaderManBin::chair_GetBinShader(const char* szName, bool bInclude, uint32 nRefCRC, bool* pbChanged)
 {
 	//static float sfTotalTime = 0.0f;
 
@@ -62,7 +65,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 
 	//float fTime0 = iTimer->GetAsyncCurTime();
 
-	SShaderBin* pSHB = SearchInCache(szName, bInclude);
+	SShaderBin* pSHB = chair_SearchInCache(szName, bInclude);
 	if (pSHB)
 		return pSHB;
 	SShaderBinHeader Header[2];
@@ -71,8 +74,15 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	FILE* fpSrc = NULL;
 	uint32 nSourceCRC32 = 0;
 	cry_sprintf(nameFile, "%sCryFX/%s.%s", gRenDev->m_cEF.m_ShadersPath, szName, bInclude ? "cfi" : "cfx");
-	fpSrc = gEnv->pCryPak->FOpen(nameFile, "rb");
-	nSourceCRC32 = fpSrc ? gEnv->pCryPak->ComputeCRC(nameFile) : 0;
+
+	// TODO 2023-07-30: Only check CRC in shader editing mode. Otherwise causes lags when shaders are loaded even from cache.
+#if !defined(_RELEASE) && !defined(IS_EAAS)
+	{
+		fpSrc = gEnv->pCryPak->FOpen(nameFile, "rb");
+		nSourceCRC32 = fpSrc ? gEnv->pCryPak->ComputeCRC(nameFile) : 0;
+	}
+#endif
+
 	//char szPath[1024];
 	//getcwd(szPath, 1024);
 	cry_sprintf(nameBin, "%s%s.%s", m_pCEF->m_ShadersCache, szName, bInclude ? "cfib" : "cfxb");
@@ -114,6 +124,8 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 		else
 		{
 			gEnv->pCryPak->FReadRaw(&Header[i], 1, sizeof(SShaderBinHeader), fpDst);
+			// if (CParserBin::m_bEndians)
+			//	SwapEndian(Header[i], eBigEndian);
 
 #if !defined(_RELEASE) && !defined(IS_EAAS)
 			// check source crc changes
@@ -139,7 +151,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	{
 #if !defined(_RELEASE) && !defined(CONSOLE_CONST_CVAR_MODE) && !defined(IS_EAAS)
 		{
-			char acTemp[512];
+			char acTemp[512] = "ERROR: shader is missing from the cache and user cache is not enabled";
 			if (bValid & 1)
 			{
 				cry_sprintf(acTemp, "WARNING: Bin FXShader '%s' source crc mismatch", nameBin);
@@ -168,7 +180,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 
 			if (bValid)
 			{
-				CryWarning("{}", acTemp);
+				CryWarning("%s", acTemp);
 			}
 
 			if (fpDst)
@@ -222,14 +234,14 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 
 				if (*CRenderer::CV_r_shadersAllowCompilation)
 				{
-					pSHB = SaveBinShader(nSourceCRC32, szName, bInclude, fpSrc);
+					pSHB = chair_SaveBinShader(nSourceCRC32, szName, bInclude, fpSrc);
 					assert(!pSHB->m_Next);
 					if (pbChanged)
 						*pbChanged = true;
 
 					// remove the entries in the looupdata, to be sure that level and global caches have also become invalid for these shaders!
-					gRenDev->m_cEF.m_ResLookupDataMan[CACHE_READONLY].RemoveData(Header[0].m_CRC32);
-					gRenDev->m_cEF.m_ResLookupDataMan[CACHE_USER].RemoveData(Header[1].m_CRC32);
+					gRenDev->m_cEF.m_ResLookupDataMan[CACHE_READONLY].chair_RemoveData(Header[0].m_CRC32);
+					gRenDev->m_cEF.m_ResLookupDataMan[CACHE_USER].chair_RemoveData(Header[1].m_CRC32);
 
 					// has the shader been successfully written to the dest address
 					fpDst = gEnv->pCryPak->FOpen(szDst.c_str(), "rb", ICryPak::FLAGS_NEVER_IN_PAK | ICryPak::FLAGS_PATH_REAL | ICryPak::FOPEN_ONDISK);
@@ -270,7 +282,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 		else
 			pSHB->m_bReadOnly = false;
 
-		AddToCache(pSHB, bInclude);
+		chair_AddToCache(pSHB, bInclude);
 		if (!bInclude)
 		{
 			char nm[128];
@@ -287,14 +299,14 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	else
 	{
 		if (fpDst)
-			CryWarning("Error: Failed to get binary shader '{}'", nameFile);
+			CryWarning("Error: Failed to get binary shader '%s'", nameFile);
 		else
 		{
 			cry_sprintf(nameFile, "%s.%s", szName, bInclude ? "cfi" : "cfx");
 			const char* matName = 0;
 			if (m_pCEF && m_pCEF->m_pCurInputResources)
 				matName = m_pCEF->m_pCurInputResources->m_szMaterialName;
-			CryWarning("Error: Shader \"{}\" doesn't exist (used in material \"{}\")", nameFile, matName != 0 ? matName : "$unknown$");
+			CryWarning("Error: Shader \"%s\" doesn't exist (used in material \"%s\")", nameFile, matName != 0 ? matName : "$unknown$");
 		}
 	}
 
@@ -311,8 +323,7 @@ SShaderBin* CShaderManBin::GetBinShader(const char* szName, bool bInclude, uint3
 	return pSHB;
 }
 
-SShaderBin* CShaderManBin::SaveBinShader(
-	uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc)
+SShaderBin* CShaderManBin::chair_SaveBinShader(uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc)
 {
 	SShaderBin* pBin = new SShaderBin;
 
@@ -493,53 +504,50 @@ SShaderBin* CShaderManBin::SaveBinShader(
 		Header.m_nSourceCRC32 = nSourceCRC32;
 		SShaderBinHeader hdTemp, * pHD;
 		pHD = &Header;
+		if (CParserBin::m_bEndians)
+		{
+			hdTemp = Header;
+			// SwapEndian(hdTemp, eBigEndian);
+			pHD = &hdTemp;
+		}
 		gEnv->pCryPak->FWrite((void*)pHD, sizeof(Header), 1, fpDst);
-		gEnv->pCryPak->FWrite(&pBin->m_Tokens[0], pBin->m_Tokens.size() * sizeof(DWORD), 1, fpDst);
+		if (CParserBin::m_bEndians)
+		{
+			DWORD* pT = new DWORD[pBin->m_Tokens.size()];
+			memcpy(pT, &pBin->m_Tokens[0], pBin->m_Tokens.size() * sizeof(DWORD));
+			// SwapEndian(pT, (size_t)pBin->m_Tokens.size(), eBigEndian);
+			gEnv->pCryPak->FWrite((void*)pT, pBin->m_Tokens.size() * sizeof(DWORD), 1, fpDst);
+			delete[] pT;
+		}
+		else
+			gEnv->pCryPak->FWrite(&pBin->m_Tokens[0], pBin->m_Tokens.size() * sizeof(DWORD), 1, fpDst);
 		FXShaderTokenItor itor;
 		for (itor = pBin->m_TokenTable.begin(); itor != pBin->m_TokenTable.end(); itor++)
 		{
 			STokenD T = *itor;
+			//if (CParserBin::m_bEndians)
+				//SwapEndian(T.Token, eBigEndian);
 			gEnv->pCryPak->FWrite(&T.Token, sizeof(DWORD), 1, fpDst);
 			gEnv->pCryPak->FWrite(T.SToken.c_str(), T.SToken.size() + 1, 1, fpDst);
 		}
 		Header.m_nOffsetParamsLocal = gEnv->pCryPak->FTell(fpDst);
 		gEnv->pCryPak->FSeek(fpDst, 0, SEEK_SET);
+		if (CParserBin::m_bEndians)
+		{
+			hdTemp = Header;
+			// SwapEndian(hdTemp, eBigEndian);
+			pHD = &hdTemp;
+		}
 		gEnv->pCryPak->FWrite((void*)pHD, sizeof(Header), 1, fpDst);
 		gEnv->pCryPak->FClose(fpDst);
 	}
 	else
 	{
-		gEnv->pLog->LogWarning("CShaderManBin::SaveBinShader: Cannot write shader to file '%s'.", nameFile);
+		CryWarning("CShaderManBin::SaveBinShader: Cannot write shader to file '%s'.", nameFile);
 		pBin->m_bReadOnly = true;
 	}
 
 	SAFE_DELETE_ARRAY(pBuf);
 
 	return pBin;
-}
-
-bool CShaderManBin::AddToCache(SShaderBin* pSB, bool bInclude)
-{
-	if (!*CRenderer::CV_r_shadersediting)
-	{
-		if (*SShaderBin::s_nCache >= *SShaderBin::s_nMaxFXBinCache)
-		{
-			SShaderBin* pS;
-			for (pS = SShaderBin::s_Root->m_Prev; pS != SShaderBin::s_Root.Get(); pS = pS->m_Prev)
-			{
-				if (!pS->m_bLocked)
-				{
-					DeleteFromCache(pS);
-					break;
-				}
-			}
-		}
-		assert(*SShaderBin::s_nCache < *SShaderBin::s_nMaxFXBinCache);
-	}
-
-	pSB->m_bInclude = bInclude;
-	pSB->Link(SShaderBin::s_Root.Get());
-	(*SShaderBin::s_nCache)++;
-
-	return true;
 }

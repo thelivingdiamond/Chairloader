@@ -1,7 +1,6 @@
-#include <Prey/RenderDll/Common/CommonRender.h>
-#include <Prey/RenderDll/Common/Shaders/CShader.h>
-#include <Prey/RenderDll/Common/Shaders/Parser.h>
 #include <Prey/RenderDll/Common/Shaders/ParserBin.h>
+
+//-----------------------------------------------------------------------------------
 
 static void sCR(TArray<char>& Text, int nLevel)
 {
@@ -13,18 +12,24 @@ static void sCR(TArray<char>& Text, int nLevel)
 	}
 }
 
-CParserBin::CParserBin(SShaderBin* pBin)
+static bool SkipChar(unsigned int ch)
 {
-	m_pCurBinShader = pBin;
-	m_pCurShader = NULL;
-}
-CParserBin::CParserBin(SShaderBin* pBin, CShader* pSH)
-{
-	m_pCurBinShader = pBin;
-	m_pCurShader = pSH;
+	bool res = ch <= 0x20;
+
+	res |= (ch - 0x21) < 2;  // !"
+	res |= (ch - 0x26) < 10; // &'()*+,-./
+	res |= (ch - 0x3A) < 6;  // :;<=>?
+	res |= ch == 0x5B;       // [
+	// cppcheck-suppress badBitmaskCheck
+	res |= ch == 0x5D;      // ]
+	res |= (ch - 0x7B) < 3; // {|}
+
+	return res;
 }
 
-bool CParserBin::CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text)
+//-----------------------------------------------------------------------------------
+
+bool CParserBin::chair_CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<char>& Text)
 {
 	bool bRes = true;
 
@@ -58,7 +63,7 @@ bool CParserBin::CorrectScript(uint32* pTokens, uint32& i, uint32 nT, TArray<cha
 	return false;
 }
 
-bool CParserBin::ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens)
+bool CParserBin::chair_ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table, TArray<char>& Text, bool bInclSkipTokens)
 {
 	uint32 i;
 	bool bRes = true;
@@ -97,7 +102,7 @@ bool CParserBin::ConvertToAscii(uint32* pTokens, uint32 nT, FXShaderToken& Table
 		assert(szStr);
 		if (!szStr || !szStr[0])
 		{
-			bRes = CParserBin::CorrectScript(pTokens, i, nT, Text);
+			bRes = CParserBin::chair_CorrectScript(pTokens, i, nT, Text);
 		}
 		else
 		{
