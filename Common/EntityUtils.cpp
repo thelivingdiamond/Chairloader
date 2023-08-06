@@ -4,7 +4,10 @@
 #include "EntityUtils.h"
 #include <Prey/ArkEntityClassLibrary.h>
 #include <Prey/GameDll/ark/npc/ArkNpc.h>
+// #include <Prey/GameDll/ark/turret/ArkTurret.h>
 #include <Prey/GameDll/ark/ArkFactionManager.h>
+
+inline auto FGetArkTurretFromEntity = PreyFunction<ArkTurret * (IEntity const*)>(0x12A71A0);
 
 IEntity* EntityUtils::SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
 	IEntity* latestEntity = nullptr;
@@ -131,7 +134,7 @@ ArkNpc *EntityUtils::GetArkNpc(IEntity *entity) {
 //    return nullptr;
 }
 
-
-
-
-
+ArkTurret* EntityUtils::GetArkTurret(IEntity* entity)
+{
+	return FGetArkTurretFromEntity(entity);
+}

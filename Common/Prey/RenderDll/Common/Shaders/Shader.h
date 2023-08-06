@@ -710,7 +710,7 @@ public:
 	
 	virtual ~CHWShader();
 	static CHWShader* mfForName(const char* name, const char* nameSource, unsigned CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<unsigned int>& SHData, std::vector<STokenD>* pTable, unsigned dwType, CShader* pFX, uint64_t nMaskGen, uint64_t nMaskGenFX) { return FmfForName(name, nameSource, CRC32, szEntryFunc, eClass, SHData, pTable, dwType, pFX, nMaskGen, nMaskGenFX); }
-	//static void mfFlushPendedShadersWait(int nMaxAllowed) { FmfFlushPendedShadersWait(nMaxAllowed); }
+	static void mfFlushPendedShadersWait(int nMaxAllowed) { FmfFlushPendedShadersWait(nMaxAllowed); }
 	virtual int Size() = 0;
 	virtual void GetMemoryUsage(ICrySizer* arg0) const = 0;
 	virtual void mfReset(unsigned CRC32);
@@ -727,9 +727,9 @@ public:
 	static const char* mfClassString(EHWShaderClass eClass) { return FmfClassString(eClass); }
 	static void mfGenName(uint64_t GLMask, uint64_t RTMask, unsigned LightMask, unsigned MDMask, unsigned MDVMask, uint64_t PSS, EHWShaderClass eClass, char* dstname, int nSize, uint8_t bType) { FmfGenName(GLMask, RTMask, LightMask, MDMask, MDVMask, PSS, eClass, dstname, nSize, bType); }
 	static void mfCleanupCache() { FmfCleanupCache(); }
-	//static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync = false) { return FmfInitCache(name, pSH, bCheckValid, CRC32, bReadOnly, bAsync); }
-	//static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly) { return F_OpenCacheFile(fVersion, pCache, pSH, bCheckValid, CRC32, nCache, pRF, bReadOnly); }
-	//static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly) { return FmfOpenCacheFile(szName, fVersion, pCache, pSH, bCheckValid, CRC32, bReadOnly); }
+	static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync = false) { return FmfInitCache(name, pSH, bCheckValid, CRC32, bReadOnly, bAsync); }
+	static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly) { return F_OpenCacheFile(fVersion, pCache, pSH, bCheckValid, CRC32, nCache, pRF, bReadOnly); }
+	static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly) { return FmfOpenCacheFile(szName, fVersion, pCache, pSH, bCheckValid, CRC32, bReadOnly); }
 
 #if 0
 	static void mfReloadScript(const char* arg0, const char* arg1, int arg2, uint64_t arg3);
@@ -745,19 +745,9 @@ public:
 	static void mfValidateTokenData(CResFile* arg0);
 #endif
 
-	// Shader compiling in Chairloader
-	static void             mfValidateTokenData(CResFile* pRF);
+#ifdef RENDERDLL_SHADER_COMPILER
 	static SShaderDevCache* mfInitDevCache(const char* name, CHWShader* pSH);
-	static bool             mfOptimiseCacheFile(SShaderCache* pCache, bool bForce, SOptimiseStats* Stats);
-	static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly);
-	static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly);
-	static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync = false);
-	static byte* mfIgnoreBindsFromCache(int nParams, byte* pP);
-	static void mfFlushPendedShadersWait(int nMaxAllowed);
-	static bool ImportSamplers(SShaderSerializeContext& SC, struct SCHWShader* pSHW, byte*& pData, std::vector<STexSamplerRT>& Samplers);
-	static bool ImportParams(SShaderSerializeContext& SC, SCHWShader* pSHW, byte*& pData, std::vector<SFXParam>& Params);
-	static CHWShader* Import(SShaderSerializeContext& SC, int nOffs, uint32 CRC32, CShader* pSH);
-	static const char* GetCurrentShaderCombinations(bool bForLevel);
+#endif
 
 	static CCryNameTSCRC  mfGetClassName(EHWShaderClass eClass)
 	{
@@ -1207,9 +1197,6 @@ public:
 	static void operator delete(void* arg0);
 	static CCryNameTSCRC mfGetClassName();
 #endif
-
-	// Shader compiling in Chairloader
-	void        mfFlushPendedShaders();
 
 	static CCryNameTSCRC mfGetClassName()
 	{

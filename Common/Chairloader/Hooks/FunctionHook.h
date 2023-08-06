@@ -29,10 +29,10 @@ template <typename UnusedType>
 class FunctionHook;
 
 //! Class for function hooks.
-template <typename ReturnType, typename ... ArgumentTypes>
-class FunctionHook<ReturnType(ArgumentTypes ...)> : public FunctionHookBase {
+template <typename ReturnType, typename... ArgumentTypes>
+class FunctionHook<ReturnType(ArgumentTypes...)> : public FunctionHookBase {
 public:
-	using Type = ReturnType(ArgumentTypes ...);
+	using Type = ReturnType(ArgumentTypes...);
 
 	//! Installs a function hook.
 	//! Must be called in a Detours transaction.
@@ -41,8 +41,8 @@ public:
 	inline void InstallHook(Type* origFunc, Type* hookFunc) { FunctionHookBase::InstallHook(origFunc, hookFunc); }
 
 	//! Calls the original function with specified arguments.
-	inline ReturnType InvokeOrig(ArgumentTypes ... args) {
-		return static_cast<Type*>(m_pfn)(args ...);
+	inline ReturnType InvokeOrig(ArgumentTypes... args) {
+		return static_cast<Type*>(m_pfn)(std::forward<ArgumentTypes>(args)...);
 	}
 
 	//! @returns pointer to use when calling original function.

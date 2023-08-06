@@ -218,12 +218,11 @@ public:
 
 	FILE* mfGetHandle() { return m_handle; }
 	
-#if 0
 	bool mfActivate(bool bFirstTime) { return FmfActivate(this, bFirstTime); }
-	void Unlink() { FUnlink(this); }
+	// void Unlink() { FUnlink(this); }
 	SResFileLookupData* GetLookupData(bool bCreate, unsigned CRC, float fVersion) const { return FGetLookupData(this, bCreate, CRC, fVersion); }
 	const char* mfGetError() { return FmfGetError(this); }
-	void mfSetError(const char* er, ... buffer) { FmfSetError(this, er, buffer); }
+	// void mfSetError(const char* er, ... buffer) { FmfSetError(this, er, buffer); }
 	void mfDeactivate(bool bReleaseDir) { FmfDeactivate(this, bReleaseDir); }
 	void mfTickStreaming() { FmfTickStreaming(this); }
 	int mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo = nullptr) { return FmfOpen(this, type, pMan, pStreamInfo); }
@@ -246,80 +245,6 @@ public:
 	std::vector<SDirEntry>* mfGetDirectory() { return FmfGetDirectory(this); }
 	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
 	static void Tick() { FTick(); }
-#endif
-
-	// Shader compilation in Chairloader
-	SResFileLookupData* GetLookupData(bool bCreate, uint32 CRC, float fVersion) const;
-	bool mfActivate(bool bFirstTime);
-
-	const char* mfGetError(void);
-	void        mfSetError(const char* er, ...);
-	const char* mfGetFileName() const { return m_name.c_str(); }
-	int         mfGetVersion() { return m_version; }
-	void        mfDeactivate(bool bReleaseDir);
-
-	void mfTickStreaming();
-
-	int  mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo = NULL);
-	bool mfClose();
-	int  mfFlush(bool bCompressDir = false);
-	int  mfFlushDir(long nSeek, bool bOptimise);
-	bool mfPrepareDir();
-	int  mfLoadDir(SResStreamInfo* pStreamInfo);
-	void mfReleaseDir();
-
-	int mfGetNumFiles() { return m_Dir.size(); }
-
-	byte* mfFileReadCompressed(SDirEntry* de, uint32& nSizeDecomp, uint32& nSizeComp);
-
-	int mfFileRead(SDirEntry* de);
-	int mfFileRead(const char* name);
-	int mfFileRead(CCryNameTSCRC name);
-
-	int mfFileWrite(CCryNameTSCRC name, void* data);
-
-	void mfFileRead2(SDirEntry* de, int size, void* buf);
-	void mfFileRead2(CCryNameTSCRC name, int size, void* buf);
-
-	void* mfFileGetBuf(SDirEntry* de);
-	void* mfFileGetBuf(CCryNameTSCRC name);
-
-	int mfFileSeek(SDirEntry* de, int offs, int type);
-	int mfFileSeek(CCryNameTSCRC name, int offs, int type);
-	int mfFileSeek(char* name, int offs, int type);
-
-	int mfFileLength(SDirEntry* de);
-	int mfFileLength(CCryNameTSCRC name);
-	int mfFileLength(char* name);
-
-	int mfFileAdd(SDirEntry* de);
-
-	bool mfIsDirty() { return m_bDirty; }
-	bool mfIsDirStreaming() { return m_bDirStreaming; }
-
-	//int mfFileDelete(SDirEntry *de);
-	//int mfFileDelete(CCryNameTSCRC name);
-	//int mfFileDelete(char* name);
-
-	bool mfFileExist(CCryNameTSCRC name);
-	bool mfFileExist(const char* name);
-
-	int            mfFileClose(SDirEntry* de);
-	bool           mfCloseEntry(SDirEntry* de, bool bEraseOpenEntry = true);
-	SDirEntryOpen* mfOpenEntry(SDirEntry* de);
-	SDirEntryOpen* mfGetOpenEntry(SDirEntry* de);
-	SDirEntry* mfGetEntry(CCryNameTSCRC name, bool* bAsync = NULL);
-	ResDir* mfGetDirectory();
-
-	int   mfGetResourceSize();
-
-	uint64 mfGetModifTime();
-
-	int  Size();
-	void GetMemoryUsage(ICrySizer* pSizer) const;
-
-	static void Tick();
-	static bool IsStreaming();
 
 #if 0
 	void Relink(CResFile* arg0);
@@ -348,6 +273,11 @@ public:
 	uint64_t mfGetModifTime();
 	int Size();
 	static bool IsStreaming();
+#endif
+
+#ifdef RENDERDLL_SHADER_COMPILER
+	const char* chair_mfGetFileName() const { return m_name.c_str(); }
+	bool chair_mfIsDirStreaming() { return m_bDirStreaming; }
 #endif
 
 	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFC53A0);

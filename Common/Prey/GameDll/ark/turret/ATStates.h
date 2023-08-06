@@ -4,6 +4,21 @@
 
 class ArkTurretFsm;
 
+enum class EArkTurretStateId
+{
+	any = -1,
+	null = 0,
+	undeployed = 1,
+	fallenSpaz = 2,
+	attacking = 3,
+	searching = 4,
+	flowgraphControlled = 5,
+	playerControlled = 6,
+	playerCarried = 7,
+	disabled = 8,
+	count_ = 9,
+};
+
 namespace ATStates
 {
 

@@ -100,12 +100,12 @@ public:
 class ArkEntityEffectBase : public ArkEffectBase // Id=801422F Size=128
 {
 public:
-	Matrix34 m_localTM;
-	int m_nSlot;
-	bool m_bStarted;
-	bool m_bSerialize;
+	Matrix34 m_localTM = Matrix34(IDENTITY);
+	int m_nSlot = -1;
+	bool m_bStarted = false;
+	bool m_bSerialize = false;
 	
-	~ArkEntityEffectBase();
+	~ArkEntityEffectBase() {}
 	void Start() { FStart(this); }
 	void Stop() { FStop(this); }
 	void Kill() { FKill(this); }
@@ -146,8 +146,14 @@ class ArkEntityEffect : public ArkEntityEffectBase // Id=801422E Size=136
 public:
 	IGameObjectExtension &m_owner;
 	
-	ArkEntityEffect(IGameObjectExtension &_owner, int _nSlot, bool _bSerialize);
-	virtual IEntity *GetEntity() const;
+	ArkEntityEffect(IGameObjectExtension& _owner, int _nSlot, bool _bSerialize)
+		: m_owner(_owner)
+	{
+		m_nSlot = _nSlot;
+		m_bSerialize = _nSlot;
+	}
+
+	virtual IEntity* GetEntity() const { return FGetEntity(this); }
 	
 	static inline auto FGetEntity = PreyFunction<IEntity *(ArkEntityEffect const *const _this)>(0x11578F0);
 };

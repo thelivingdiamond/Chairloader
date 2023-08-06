@@ -6,6 +6,7 @@
 class ArkPlayer;
 class CGameObject;
 class ArkNpc;
+class ArkTurret;
 
 // spawn non-npc entities through IEntitySystem.spawnNpcfromArchetype()
    //- create spawn parameters from Vec3 pos, Rot, name, archetype ID or class ID
@@ -26,4 +27,5 @@ public:
 	static IEntity* SpawnEntity(const char* name, Vec3 pos, Quat rot, uint64 archetypeId, unsigned int spawnCount = 1);
 
 	static ArkNpc* GetArkNpc(IEntity* entity);
+	static ArkTurret* GetArkTurret(IEntity* entity);
 };

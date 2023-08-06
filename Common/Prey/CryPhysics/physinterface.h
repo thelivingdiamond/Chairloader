@@ -726,7 +726,7 @@ enum ark_phentity_flags
 struct pe_params_flags : pe_params
 {
 	enum entype { type_id = ePE_params_flags };
-	pe_params_flags() { type = type_id; MARK_UNUSED flags, flagsOR, flagsAND; }
+	pe_params_flags() { type = type_id; MARK_UNUSED flags, flagsOR, flagsAND, arkFlags, arkFlagsOR, arkFlagsAND; }
 	unsigned int flags;
 	unsigned int flagsOR;  //!< when setting, flagsNew = (flags set ? flags:flagsOld) & flagsAND | flagsOR
 	unsigned int flagsAND; //!< when getting, only flags is filled
@@ -2005,6 +2005,15 @@ enum geom_flags
 	geom_colltype_vehicle       = geom_colltype3, geom_colltype_foliage = geom_colltype4, geom_colltype_debris = geom_colltype5,
 	geom_colltype_foliage_proxy = geom_colltype13, geom_colltype_obstruct = geom_colltype14,
 	geom_colltype_solid         = 0x1FFF & ~geom_colltype_explosion, geom_collides = 0xFFFF
+};
+
+enum class ark_geom_flags
+{
+	geom_colltype_sight = 128,
+	geom_colltype_acute_sight = 512,
+	geom_colltype_permeable = 1024,
+	geom_colltype_projectile = 2048,
+	geom_colltype_breaks_glass = 4096,
 };
 
 struct pe_geomparams

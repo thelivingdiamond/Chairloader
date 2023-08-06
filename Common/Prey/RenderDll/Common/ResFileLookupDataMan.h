@@ -111,11 +111,14 @@ public:
 
 	void                AddData(const CResFile* pResFile, uint32 CRC) { FAddData(this, pResFile, CRC); }
 	void                AddDataCFX(const char* szPath, uint32 CRC);
-	void                RemoveData(uint32 CRC);
 
 	SResFileLookupData* GetData(const CCryNameTSCRC& name) { return FGetData(this, name); }
 	SCFXLookupData*     GetDataCFX(const char* szPath);
 	void                MarkDirty(bool bDirty) { m_bDirty = bDirty; }
+
+#ifdef RENDERDLL_SHADER_COMPILER
+	void chair_RemoveData(uint32 CRC);
+#endif
 
 	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC8BA0);
 	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9200);
