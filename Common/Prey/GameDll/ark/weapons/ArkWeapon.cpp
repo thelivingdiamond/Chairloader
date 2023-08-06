@@ -14,7 +14,7 @@ CArkWeapon::CArkWeapon(bool _bRetainPhysicsOnEquip)
 	, m_playerLight(EArkPlayerLightPriority::Weapon, this)
 	, m_bRetainPhysicsOnEquip(_bRetainPhysicsOnEquip)
 {
-	// TODO 2023-07-24: Destructor doesn't remove the listener?
+	// Unregistered in CArkWeapon::Release
 	ArkListenerManager* pListenerMgr = g_pGame->m_pArkListenerManager.get();
 	pListenerMgr->RegisterStatsListener(LOCAL_PLAYER_ENTITY_ID, *ARKNAME_WeaponCriticalHitChance, this);
 	pListenerMgr->RegisterCombatFocusListener(this);

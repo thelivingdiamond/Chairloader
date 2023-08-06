@@ -24,9 +24,10 @@ public:
 	ATStates::PlayerCarried m_playerCarriedState;
 	ATStates::Disabled m_disabledState;
 	
-	struct ?$StateSelector@$00 // Id=80152B5 Size=1
+	template <EStateId stateId>
+	struct StateSelector // Id=80152B5 Size=1
 	{
-		using StateType = ATStates::Undeployed;
+		// using StateType = ATStates::Undeployed;
 		
 #if 0
 		static ATStates::Undeployed &Get(ArkTurretFsmBase_template_<void> &arg0);

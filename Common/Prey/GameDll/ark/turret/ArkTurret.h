@@ -420,4 +420,3 @@ public:
 	static inline auto FOnFortified = PreyFunction<void(ArkTurret *const _this)>(0x15E3170);
 	static inline auto FOnEtherDuplicateCreated = PreyFunction<void(ArkTurret *const _this, const unsigned _etherDuplicate)>(0x15E3100);
 };
-

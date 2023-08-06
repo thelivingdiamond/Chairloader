@@ -1329,4 +1329,4 @@ public:
 	static inline auto FStartAmbientSound = PreyFunction<void(ArkNpc const *const _this, EArkNpcAmbientSoundId _soundId)>(0x15046F0);
 };
 
-static inline auto FSafeGetArkNpc = PreyFunction<ArkNpc *(IEntity const *)>(0x12AF240);
+inline auto FSafeGetArkNpc = PreyFunction<ArkNpc *(IEntity const *)>(0x12AF240);
