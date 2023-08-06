@@ -340,12 +340,14 @@ void XMLMerger2::MergeNodeStructure(pugi::xml_node baseNode, pugi::xml_node modN
             originalChild = originalNode.child(policyNode.name());
         }
 
-        if(!baseChild || !originalChild){
-            // this is an error, we should never be merge descending a node that doesn't exist in the base document or original document
-            break;
+        if(!modChild) {
+            continue;
         }
 
-        if(!modChild) {
+        if (!baseChild){
+            // The node doesn't exist in the base file.
+            // Modder added a new node. Create it.
+            baseNode.append_copy(modChild);
             continue;
         }
 

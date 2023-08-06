@@ -33,7 +33,7 @@ public:
 
 		virtual std::shared_ptr<IGameObjectExtension> Create()
 		{
-			return std::make_shared<T>();
+			return ComponentCreate_DeleteWithRelease<T>();
 		}
 
 		virtual void GetGameObjectExtensionRMIData(void** _ppRMI, uint64_t* _nCount)

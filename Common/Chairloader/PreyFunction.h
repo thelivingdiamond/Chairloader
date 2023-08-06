@@ -9,8 +9,8 @@ template <typename UnusedType>
 class PreyFunctionHook;
 
 // Forward declarations
-template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunctionHook<ReturnType(ArgumentTypes ...)>;
+template <typename ReturnType, typename... ArgumentTypes>
+class PreyFunctionHook<ReturnType(ArgumentTypes...)>;
 
 //------------------------------------------------------------
 // PreyPointer
@@ -69,17 +69,17 @@ public:
 
 //! Class for pointers to functions in the game DLL.
 //! Instances of this class must exist for as long as current DLL does.
-template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunction<ReturnType(ArgumentTypes ...)> : public PreyPointer {
+template <typename ReturnType, typename... ArgumentTypes>
+class PreyFunction<ReturnType(ArgumentTypes...)> : public PreyPointer {
 public:
-	using Type = ReturnType(ArgumentTypes ...);
+	using Type = ReturnType(ArgumentTypes...);
 	using FuncReturnType = ReturnType;
 
 	using PreyPointer::PreyPointer;
 
 	//! Calls the function with specified arguments.
-	inline ReturnType operator ()(ArgumentTypes ... args) {
-		return Get()(args ...);
+	inline ReturnType operator ()(ArgumentTypes... args) {
+		return Get()(std::forward<ArgumentTypes>(args)...);
 	}
 
 	//! @returns the function pointer.
@@ -126,10 +126,10 @@ private:
 
 //! Class for PreyDll function hooks.
 //! Instances of this class must exist for as long as current DLL does.
-template <typename ReturnType, typename ... ArgumentTypes>
-class PreyFunctionHook<ReturnType(ArgumentTypes ...)> : public PreyFunctionHookBase {
+template <typename ReturnType, typename... ArgumentTypes>
+class PreyFunctionHook<ReturnType(ArgumentTypes...)> : public PreyFunctionHookBase {
 public:
-	using Type = ReturnType(ArgumentTypes ...);
+	using Type = ReturnType(ArgumentTypes...);
 
 	//! Constructs the hook.
 	//! @param	origFunc	Function to be hooked
@@ -142,8 +142,8 @@ public:
 	inline void SetHookFunc(Type* hookFunc) { m_pHookFunc = hookFunc; }
 
 	//! Calls the original function with specified arguments.
-	inline ReturnType InvokeOrig(ArgumentTypes ... args) {
-		return GetOrig()(args ...);
+	inline ReturnType InvokeOrig(ArgumentTypes... args) {
+		return GetOrig()(std::forward<ArgumentTypes>(args)...);
 	}
 
 	//! @returns pointer to use when calling original function.

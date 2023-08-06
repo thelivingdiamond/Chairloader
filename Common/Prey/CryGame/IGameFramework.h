@@ -110,6 +110,36 @@ struct IPersistantDebug
 
 static const EntityId LOCAL_PLAYER_ENTITY_ID = 0x7777u; //!< 30583 between static and dynamic EntityIDs.
 
+//! When you add stuff here, you must also update in CCryAction::Init.
+enum EGameFrameworkEvent
+{
+    eGFE_PauseGame = 0,
+    eGFE_ResumeGame = 1,
+    eGFE_OnCollision = 2,
+    eGFE_OnPostStep = 3,
+    eGFE_OnStateChange = 4,
+    eGFE_ResetAnimationGraphs = 5,
+    eGFE_OnBreakable2d = 6,
+    eGFE_OnBecomeVisible = 7,
+    eGFE_PreShatter = 8,
+    eGFE_BecomeLocalPlayer = 9,
+    eGFE_DisablePhysics = 10,
+    eGFE_EnablePhysics = 11,
+    eGFE_ScriptEvent = 12,
+    eGFE_StoodOnChange = 13,
+    eGFE_QueueRagdollCreation = 14,
+    eGFE_QueueBlendFromRagdoll = 15,
+    eGFE_RagdollPhysicalized = 16,
+    eGFE_RagdollUnPhysicalized = 17,
+    eGFE_EnableBlendRagdoll = 18,
+    eGFE_DisableBlendRagdoll = 19,
+    eGFE_BlendFromRagdollFinish = 20,
+    eGFE_AIActive = 21,
+    eGFE_AIInactive = 22,
+
+    eGFE_Last = 23,
+};
+
 // Header: MadeUp
 // _unknown/IGameFramework.h
 struct IGameFramework // Id=8001CF0 Size=8

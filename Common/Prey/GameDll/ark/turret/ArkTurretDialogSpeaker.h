@@ -3,6 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
+#include <Prey/GameDll/ark/turret/ArkDialogTurret.h>
 
 class ArkResponseQuery;
 class ArkTurret;

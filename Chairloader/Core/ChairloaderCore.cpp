@@ -92,17 +92,13 @@ void ChairloaderCore::RegisterMods()
 			if (m_pLuaModManager->RegisterModFromXML(mod))
 				CryLog("Found Lua mod: {}", modName);
 
-			fs::path modDirPath = gChair->GetModsPath() / fs::u8path(modName);
-			fs::path shadersPath = modDirPath / "Shaders";
-			if (fs::exists(shadersPath))
+			if (mod.child("enableShaderCompiler").text().as_bool())
 			{
 				CryLog("Found Shader mod: {}", modName);
-				gChair->GetCryRender()->AddShadersDir(shadersPath);
+				gChair->GetCryRender()->AddShadersMod(modName);
 			}
 		}
 	}
-
-	gChair->GetCryRender()->RefreshShaderFileList();
 }
 
 void ChairloaderCore::PreInitGame()

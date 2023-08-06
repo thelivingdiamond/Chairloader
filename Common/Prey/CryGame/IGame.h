@@ -1,7 +1,7 @@
 #pragma once
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
-#include "Prey/CryNetwork/ISerialize.h"
+#include "Prey/CryNetwork/SerializeFwd.h"
 #include "Prey/CryThreading/IJobManager.h"
 
 struct IGameFramework;
