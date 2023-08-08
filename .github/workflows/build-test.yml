@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        buildType: [Debug, RelWithDebInfo]
+        buildType: [DebugChair, Release]
     
     runs-on: windows-latest
     
