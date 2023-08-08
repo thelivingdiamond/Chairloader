@@ -78,9 +78,8 @@ for target_name, files in config['artifacts'].items():
         src_file_path = target_files_path / src_file
         dst_file_path = output_dir_path / dst_file
 
-        # TODO: Ignore missing files. Some only exist in Debug builds, others in Release
-        # if not src_file_path.exists():
-        #     raise ValueError(f"An artifact doesn't exist.\nFull path: {src_file_path}")
+        if not src_file_path.exists():
+            raise ValueError(f"An artifact doesn't exist.\nFull path: {src_file_path}")
 
         if src_file_path.exists():
             print(f'- {src_file_path} -> {dst_file_path}')
