@@ -22,7 +22,7 @@
       "libzippp.dll": "libzippp.dll",
       "lua.dll": "lua.dll",
       "zip.dll": "zip.dll",
-      "zlib1.dll": "zlib1.dll",
+      "zlib1.dll": "zlib1.dll"
     },
 
     "Preditor/Launcher": {
