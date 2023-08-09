@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<FontList>
+    <Font name="Default">
+        <!-- Main font -->
+        <FontFile
+            size="16"
+            path="ChairloaderPatch/Libs/Chairloader/Fonts/Montserrat-Regular.ttf"
+            rasterizerMultiply="1.8"
+            main="1"/>
+        
+        <!-- Fallback font -->
+        <FontFile
+            size="18"
+            path="C:/Windows/Fonts/segoeui.ttf"
+            rasterizerMultiply="1.8"
+            main="1"/>
+        
+        <!-- Material Icons -->
+        <FontFile
+            size="16"
+            path="Fonts/MaterialIcons-Regular.ttf"
+            glyphOffsetY="5.0"
+            pixelSnapH="1">
+            <GlyphRange min="0xE000" max="0xF8FF"/>
+        </FontFile>
+    </Font>
+    
+    <Font name="Monospace">
+        <!-- Main font -->
+        <FontFile
+            size="15"
+            path="ChairloaderPatch/Libs/Chairloader/Fonts/CascadiaMono-Regular.ttf"
+            rasterizerMultiply="1.2"
+            main="1"/>
+        
+        <!-- Fallback font -->
+        <FontFile
+            size="14"
+            path="C:/Windows/Fonts/consola.ttf"
+            rasterizerMultiply="1.2"
+            main="1"/>
+    </Font>
+</FontList>

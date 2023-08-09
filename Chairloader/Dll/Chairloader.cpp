@@ -9,6 +9,7 @@
 #include <Chairloader/ChairloaderEnv.h>
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IModDllManager.h>
+#include <Chairloader/IPreditorToChair.h>
 #include "ImportantClass.h"
 #include <mem.h>
 #include "Chairloader.h"
@@ -225,16 +226,21 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	m_WinConsole.InitSystem();
 	CryLog("Chairloader::InitSystem");
 	CryLog("Chairloader: gEnv = 0x{:p}\n", (void*)gEnv);
-    ChairSetGlobalModName("Chairloader");
+	ChairSetGlobalModName("Chairloader");
+
+	if (m_pPreditorAPI)
+		CryWarning("Chairloader is running in Preditor mode. API: {}", PREDITOR_API_VERSION);
+
 	// Increase log verbosity: messages, warnings, errors.
 	// Max level is 4 (eComment) but it floods the console.
 	gEnv->pConsole->ExecuteString("log_Verbosity 3");
 
 	// Editor cmd line switch
 	m_bEditorEnabled = pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "editor");
-	if (m_bEditorEnabled)
+
+	if (m_bEditorEnabled || m_pPreditorAPI)
 	{
-		// Dev mode is always enabled in Editor.
+		// Dev mode is always enabled in (Pr)Editor.
 		pSystem->SetDevMode(true);
         m_bTrainerEnabled = true;
 	}
@@ -293,6 +299,8 @@ void Chairloader::InitSystem(CSystem* pSystem)
 
 	// Register mods
 	m_pCore->RegisterMods();
+	if (m_pPreditorAPI)
+		m_pCore->GetDllManager()->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
 
 	// Init renderer patches. Must be done after shader mods are registered.
 	Internal::SCryRenderInitParams renderParams;
@@ -461,9 +469,9 @@ void Chairloader::InitHooks()
 
 void Chairloader::InitPaths()
 {
-	if (false)
+	if (m_pPreditorAPI)
 	{
-		// Preditor code will go here...
+		m_ModsDirPath = m_pPreditorAPI->GetModsPath();
 	}
 	else
 	{
@@ -714,4 +722,19 @@ void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
 const fs::path& Chairloader::GetModsPath()
 {
 	return m_ModsDirPath;
+}
+
+IPreditorToChair* Chairloader::GetPreditorAPI()
+{
+	return m_pPreditorAPI;
+}
+
+void Chairloader::SetIPreditorToChair(IPreditorToChair* pPreditor)
+{
+	m_pPreditorAPI = pPreditor;
+}
+
+Internal::IChairloaderDll* Chairloader::GetIChairloaderDll()
+{
+	return this;
 }

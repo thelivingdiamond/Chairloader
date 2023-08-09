@@ -6,8 +6,6 @@ set(SOURCE_FILES
 	Lua/ScriptBind_Chairloader.cpp
 	Lua/ScriptBind_Chairloader.h
 
-	BackupDxState.cpp
-	BackupDxState.h
 	ChairImGui.cpp
 	ChairImGui.h
 	ChairloaderConfigManager.cpp
@@ -20,9 +18,6 @@ set(SOURCE_FILES
 	ChairLogger.h
 	ChairVarManager.cpp
 	ChairVarManager.h
-	ImGuiDoubleBuffering.h
-	ImGuiRendererD3D11.cpp
-	ImGuiRendererD3D11.h
 	LogManager.cpp
 	LogManager.h
 	ModDllManager.cpp

@@ -15,26 +15,34 @@
       "ChairManager.exe": "ChairManager.exe",
       "ChairManager.pdb": "ChairManager.pdb",
       "boost_json-vc143-mt-x64-1_79.dll": "boost_json-vc143-mt-x64-1_79.dll",
-      "boost_json-vc143-mt-gd-x64-1_79.dll": "boost_json-vc143-mt-gd-x64-1_79.dll",
       "bz2.dll": "bz2.dll",
-      "bz2d.dll": "bz2d.dll",
       "curlpp.dll": "curlpp.dll",
       "gtest.dll": "gtest.dll",
-      "gtestd.dll": "gtestd.dll",
       "libcurl.dll": "libcurl.dll",
-      "libcurl-d.dll": "libcurl-d.dll",
       "libzippp.dll": "libzippp.dll",
       "lua.dll": "lua.dll",
       "zip.dll": "zip.dll",
-      "zlib1.dll": "zlib1.dll",
-      "zlibd1.dll": "zlibd1.dll"
+      "zlib1.dll": "zlib1.dll"
+    },
+
+    "Preditor/Launcher": {
+      "Preditor.exe": "Preditor.exe",
+      "Preditor.pdb": "Preditor.pdb",
+      "boost_program_options-vc143-mt-x64-1_79.dll": "boost_program_options-vc143-mt-x64-1_79.dll"
     }
   },
 
   "$file_list": "List of files to copy to the output archive",
   "file_list": [
+    "Preditor/ActionSets.xml",
+    "Preditor/ExtractList.xml",
+    "Preditor/KeyDbgLayout.xml",
+    "Preditor/KeyMap.xml",
+    "Preditor/LookingGlassReferenceLibrary.xml",
+    "Preditor/Project.gitignore",
     "ChairloaderPatch",
     "Examples",
+    "Fonts",
     "PreyFiles",
     "Versions",
     "7za.exe",

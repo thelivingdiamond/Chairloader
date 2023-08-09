@@ -8,7 +8,7 @@
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CryThreading/CryThread.h>
-#include <Prey/GameDll/ark/VectorMap.h>
+#include <Prey/CryCore/Containers/VectorMap.h>
 #include <Prey/CryThreading/CryThread.h>
 #include <Prey/CryCore/Containers/CryArray.h>
 //#include <_unknown/DynArray__iobuf _,int,NArray__SmallDynStorage_NAlloc__AllocCompatible_NAlloc__ModuleAlloc_ _ _.h>
@@ -38,7 +38,7 @@ struct CZipPseudoFile // Id=800F551 Size=24
     };
 
     unsigned long m_nCurSeek;
-    _smart_ptr<CCachedFileData> m_pFileData;
+	CCachedFileData* m_pFileData; // !!! _smart_ptr<CCachedFileData> m_pFileData;
     unsigned m_nFlags;
 
     unsigned GetFileSize() { return FGetFileSize(this); }
@@ -67,47 +67,9 @@ struct CZipPseudoFile // Id=800F551 Size=24
 };
 
 class CCryPak;
-
-class CCryPakFindData : public _reference_target<int> // Id=800F5CD Size=32
-{
-public:
-    struct FileDesc // Id=800F5CE Size=32
-    {
-        unsigned nAttrib;
-        unsigned nSize;
-        int64_t tAccess;
-        int64_t tCreate;
-        int64_t tWrite;
-
-#if 0
-        void GetMemoryUsage(ICrySizer *arg0) const;
-#endif
-    };
-
-    using FileMap = std::map<string,CCryPakFindData::FileDesc,CIStringOrder,std::allocator<std::pair<CryStringT<char> const,CCryPakFindData::FileDesc>>>;
-
-    std::map<string,CCryPakFindData::FileDesc,
-    ,std::allocator<std::pair<CryStringT<char> const,CCryPakFindData::FileDesc>>> m_mapFiles;
-
-    bool Fetch(_finddata64i32_t *pfd) { return FFetch(this,pfd); }
-    virtual void Scan(CCryPak *pPak, const char *szDir, bool bAllowUseFS);
-    void ScanFS(CCryPak *pPak, const char *szDirIn) { FScanFS(this,pPak,szDirIn); }
-    void ScanZips(CCryPak *pPak, const char *szDir) { FScanZips(this,pPak,szDir); }
-    virtual ~CCryPakFindData();
-
-#if 0
-    bool empty() const;
-	uint64_t sizeofThis() const;
-	void GetMemoryUsage(ICrySizer *arg0) const;
-#endif
-
-    static inline auto FFetch = PreyFunction<bool(CCryPakFindData *const _this, _finddata64i32_t *pfd)>(0xD6FC80);
-    static inline auto FScan = PreyFunction<void(CCryPakFindData *const _this, CCryPak *pPak, const char *szDir, bool bAllowUseFS)>(0xD758B0);
-    static inline auto FScanFS = PreyFunction<void(CCryPakFindData *const _this, CCryPak *pPak, const char *szDirIn)>(0xD767A0);
-    static inline auto FScanZips = PreyFunction<void(CCryPakFindData *const _this, CCryPak *pPak, const char *szDir)>(0xD76A90);
-};
-
-
+class CCryPakFindData;
+class CCachedFileRawData;
+struct tNameAlias;
 
 // Header: Exact
 // CryEngine/crysystem/crypak.h
@@ -218,29 +180,7 @@ public:
 	std::map<string,unsigned int,std::less<string>,std::allocator<std::pair<CryStringT<char> const,unsigned int>>> m_mapMissingFiles;
 	std::set<unsigned int,std::less<unsigned int>,stl::STLGlobalAllocator<unsigned int> > m_filesCachedOnHDD;
 	
-	class CPakFileWidget : public ICryPerfHUDWidget // Id=800F643 Size=40
-	{
-	public:
-		minigui::IMiniTable *m_pTable;
-		CCryPak *m_pPak;
-		
-		virtual ~CPakFileWidget();
-		virtual void Reset();
-		virtual void Update();
-		virtual bool ShouldUpdate();
-		virtual void LoadBudgets(XmlNodeRef perfXML);
-		virtual void SaveStats(XmlNodeRef statsXML);
-		virtual void Enable(int mode);
-		virtual void Disable();
-		
-		static inline auto FReset = PreyFunction<void(CCryPak::CPakFileWidget *const _this)>(0xA13080);
-		static inline auto FUpdate = PreyFunction<void(CCryPak::CPakFileWidget *const _this)>(0xD77FC0);
-		static inline auto FShouldUpdate = PreyFunction<bool(CCryPak::CPakFileWidget *const _this)>(0xD77AB0);
-		static inline auto FLoadBudgets = PreyFunction<void(CCryPak::CPakFileWidget *const _this, XmlNodeRef perfXML)>(0x1A97E0);
-		static inline auto FSaveStats = PreyFunction<void(CCryPak::CPakFileWidget *const _this, XmlNodeRef statsXML)>(0x1A97E0);
-		static inline auto FEnable = PreyFunction<void(CCryPak::CPakFileWidget *const _this, int mode)>(0xD6DAC0);
-		static inline auto FDisable = PreyFunction<void(CCryPak::CPakFileWidget *const _this)>(0x1A8590);
-	};
+	class CPakFileWidget;
 
 	CCryPak::CPakFileWidget *m_pWidget;
 	
@@ -301,8 +241,8 @@ public:
 	virtual bool SetPackAccessible(bool bAccessible, const char *pName, unsigned nFlags);
 	virtual void SetPacksAccessibleForLevel(const char *sLevelName);
 	virtual uint64_t GetModificationTime(_iobuf *hFile);
-	_smart_ptr<CCachedFileData> GetFileData(const char *szName, unsigned &nArchiveFlags) { return FGetFileDataOv1(this,szName,nArchiveFlags); }
-	_smart_ptr<CCachedFileData> GetOpenedFileDataInZip(_iobuf *hFile) { return FGetOpenedFileDataInZip(this,hFile); }
+	// _smart_ptr<CCachedFileData> GetFileData(const char *szName, unsigned &nArchiveFlags) { return FGetFileDataOv1(this,szName,nArchiveFlags); }
+	// _smart_ptr<CCachedFileData> GetOpenedFileDataInZip(_iobuf *hFile) { return FGetOpenedFileDataInZip(this,hFile); }
 	bool WillOpenFromPak(const char *szPath) { return FWillOpenFromPak(this,szPath); }
 	ZipDir::FileEntry *FindPakFileEntry(const char *szPath, unsigned &nArchiveFlags, _smart_ptr<ZipDir::Cache> *pZip, bool bSkipInMemoryPaks) { return FFindPakFileEntryOv1(this,szPath,nArchiveFlags,pZip,bSkipInMemoryPaks); }
 	virtual bool LoadPakToMemory(const char *pName, ICryPak::EInMemoryPakLocation nLoadPakToMemory, IMemoryBlock *pMemoryBlock);
@@ -503,73 +443,3 @@ public:
 	static inline auto FCreatePerfHUDWidget = PreyFunction<void(CCryPak *const _this)>(0xD6D610);
 	static inline auto FScanDirectory = PreyFunction<void(CCryPak *const _this, const char *_folderPath, const char *_fileFilter, std::vector<string> &_outFiles, bool _recursive, bool _bAllowUseFileSystem)>(0xD75940);
 };
-
-// Header: Exact
-// CryEngine/crysystem/crypak.h
-
-
-// Header: FromCpp
-// CryEngine/crysystem/crypak.h
-
-// Header: FromCpp
-// CryEngine/crysystem/crypak.h
-class CResourceList : public IResourceList // Id=800FAF5 Size=80
-{
-public:
-	using ResourceSet = std::set<string,std::less<string>>;
-	
-	CryCriticalSection m_lock;
-	std::set<string,std::less<string>> m_set;
-	std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<string>>> m_iter;
-	
-	CResourceList();
-	virtual ~CResourceList();
-	static CryStackStringT<char,512> UnifyFilename(const char *sResourceFile) { return FUnifyFilename(sResourceFile); }
-	virtual void Add(const char *sResourceFile);
-	virtual void Clear();
-	virtual bool IsExist(const char *sResourceFile);
-	virtual bool Load(const char *sResourceListFilename);
-	virtual const char *GetFirst();
-	virtual const char *GetNext();
-	virtual void GetMemoryStatistics(ICrySizer *pSizer);
-	
-	static inline auto FUnifyFilename = PreyFunction<CryStackStringT<char,512>(const char *sResourceFile)>(0xD77C40);
-	static inline auto FAdd = PreyFunction<void(CResourceList *const _this, const char *sResourceFile)>(0xD6B650);
-	static inline auto FClear = PreyFunction<void(CResourceList *const _this)>(0xD6CAF0);
-	static inline auto FIsExist = PreyFunction<bool(CResourceList *const _this, const char *sResourceFile)>(0xD722E0);
-	static inline auto FLoad = PreyFunction<bool(CResourceList *const _this, const char *sResourceListFilename)>(0xD72A60);
-	static inline auto FGetFirst = PreyFunction<const char *(CResourceList *const _this)>(0xD70FE0);
-	static inline auto FGetNext = PreyFunction<const char *(CResourceList *const _this)>(0xD71B10);
-	static inline auto FGetMemoryStatistics = PreyFunction<void(CResourceList *const _this, ICrySizer *pSizer)>(0xD717F0);
-};
-
-// Header: FromCpp
-// CryEngine/crysystem/crypak.h
-class CNextLevelResourceList : public IResourceList // Id=800FAF6 Size=40
-{
-public:
-	std::vector<unsigned int> m_resources_crc32;
-	
-	virtual ~CNextLevelResourceList();
-	virtual void Add(const char *sResourceFile);
-	virtual void Clear();
-	virtual bool IsExist(const char *sResourceFile);
-	virtual bool Load(const char *sResourceListFilename);
-	virtual const char *GetFirst();
-	virtual const char *GetNext();
-	virtual void GetMemoryStatistics(ICrySizer *pSizer);
-	
-#if 0
-	const char *UnifyFilename(const char *arg0);
-	unsigned GetFilenameHash(const char *arg0);
-#endif
-	
-	static inline auto FAdd = PreyFunction<void(CNextLevelResourceList *const _this, const char *sResourceFile)>(0xA13080);
-	static inline auto FClear = PreyFunction<void(CNextLevelResourceList *const _this)>(0xD6CAC0);
-	static inline auto FIsExist = PreyFunction<bool(CNextLevelResourceList *const _this, const char *sResourceFile)>(0xD721F0);
-	static inline auto FLoad = PreyFunction<bool(CNextLevelResourceList *const _this, const char *sResourceListFilename)>(0xD72860);
-	static inline auto FGetFirst = PreyFunction<const char *(CNextLevelResourceList *const _this)>(0x158AEF0);
-	static inline auto FGetNext = PreyFunction<const char *(CNextLevelResourceList *const _this)>(0x158AEF0);
-	static inline auto FGetMemoryStatistics = PreyFunction<void(CNextLevelResourceList *const _this, ICrySizer *pSizer)>(0xD71770);
-};
-

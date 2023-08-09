@@ -100,6 +100,7 @@
 #pragma warning(disable: 6255)  // _alloca indicates failure by raising a stack overflow exception. Consider using _malloca instead. (Note: _malloca requires _freea.)
 #pragma warning(disable: 4838)  // conversion from 'T1' to 'T2' requires a narrowing conversion (C++11)
 #pragma warning(disable: 4577)  // 'noexcept' used with no exception handling mode specified, this is OK since we don't use exceptions
+#pragma warning(disable: 4355)  // 'this': used in base member initializer list
 
 // TODO: This should be re-enabled and all the warnings fixed
 #pragma warning(disable: 4316)  // 'T' : object allocated on the heap may not be aligned X

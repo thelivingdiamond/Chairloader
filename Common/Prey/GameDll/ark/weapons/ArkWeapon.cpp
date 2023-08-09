@@ -7,8 +7,6 @@
 #include <Prey/GameDll/ark/ArkListenerManager.h>
 #include <Prey/GameDll/ark/ArkNames.h>
 
-#pragma warning(disable : 4355) // 'this': used in base member initializer list
-
 CArkWeapon::CArkWeapon(bool _bRetainPhysicsOnEquip)
 	: m_disruptionVFX(m_effectController, 0)
 	, m_playerLight(EArkPlayerLightPriority::Weapon, this)

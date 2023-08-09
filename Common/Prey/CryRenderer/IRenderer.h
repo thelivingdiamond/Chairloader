@@ -189,6 +189,14 @@ enum EDrawTextFlags
 	eDrawText_IgnoreOverscan = BIT(10), //!< Ignore the overscan borders, text should be drawn at the location specified.
 };
 
+enum EShaderRenderingFlags
+{
+	SHDF_ALLOWHDR = BIT(0),
+	SHDF_ZPASS = BIT(1),
+	SHDF_ALLOWPOSTPROCESS = BIT(2),
+	SHDF_ALLOW_WATER = BIT(3),
+};
+
 class IRendererEventListener
 {
 public:

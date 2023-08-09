@@ -15,13 +15,44 @@ void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
 	ModuleInfo info;
 	info.modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "modName"));
 	info.loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(xmlNode, "loadOrder"));
-	info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
+
+	auto fullPathParam = gCL->conf->getNodeConfigValue(xmlNode, "fullPath");
+
+	if (boost::get<std::string>(&fullPathParam))
+	{
+		// Preditor's main mod is outside of Mods dir.
+		info.modDirPath = fs::u8path(boost::get<std::string>(fullPathParam));
+	}
+	else
+	{
+		info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
+	}
 
 	fs::path dllName = fs::u8path(boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "dllName")));
-	info.sourceDllPath = info.modDirPath / dllName;
+
+	if (dllName.is_relative())
+		info.sourceDllPath = info.modDirPath / dllName;
+	else
+		info.sourceDllPath = dllName;
+	
 
 	gCL->conf->loadModConfigFile(info.modName);
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
+}
+
+void ModDllManager::RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst)
+{
+	Module* mod;
+	if (asFirst)
+		mod = &(*m_Modules.emplace(m_Modules.begin()));
+	else
+		mod = &m_Modules.emplace_back();
+
+	mod->modName = name;
+	mod->bIsRawMod = true;
+	mod->pModIface = pMod;
+	CheckModSdkVersion(*mod);
+	CryLog("[ModDllManager] Added raw mod {}", name);
 }
 
 void ModDllManager::LoadModules()
@@ -79,9 +110,12 @@ void ModDllManager::ReloadModules()
 	std::vector<Module*> modsToReload;
 	for (Module& i : m_Modules)
 	{
-		CRY_ASSERT(i.hModule);
-		if (i.dllInfo.supportsHotReload)
-			modsToReload.push_back(&i);
+		if (!i.bIsRawMod)
+		{
+			CRY_ASSERT(i.hModule);
+			if (i.dllInfo.supportsHotReload)
+				modsToReload.push_back(&i);
+		}
 	}
 
 	// Unload mods in reverse order
@@ -116,6 +150,12 @@ bool ModDllManager::CheckModulesForChanges()
 	{
 		if (!mod.bSourceFileModified && mod.dllInfo.supportsHotReload)
 		{
+			if (!fs::exists(mod.sourceDllPath))
+			{
+				CryError("[ModDllManager] Mod {} DLL no longer exists", mod.modName);
+				return false;
+			}
+
 			fs::file_time_type modTime = fs::last_write_time(mod.sourceDllPath);
 			if (modTime != mod.sourceModificationTime)
 			{
@@ -251,15 +291,18 @@ void ModDllManager::LoadModule(Module& mod)
 
 void ModDllManager::UnloadModule(Module& mod)
 {
-	CRY_ASSERT(mod.hModule);
-	CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
-	mod.pfnShutdown();
-	FreeLibrary(mod.hModule);
+	if (!mod.bIsRawMod)
+	{
+		CRY_ASSERT(mod.hModule);
+		CryLog("[ModDllManager] Unloading {} ({})", mod.modName, mod.realDllPath.u8string());
+		mod.pfnShutdown();
+		FreeLibrary(mod.hModule);
 
-	mod.hModule = nullptr;
-	mod.pfnInit = nullptr;
-	mod.pfnShutdown = nullptr;
-	mod.pModIface = nullptr;
+		mod.hModule = nullptr;
+		mod.pfnInit = nullptr;
+		mod.pfnShutdown = nullptr;
+		mod.pModIface = nullptr;
+	}
 }
 
 void ModDllManager::InitModule(Module& mod, bool isHotReloading)
@@ -279,6 +322,9 @@ void ModDllManager::InitModule(Module& mod, bool isHotReloading)
 
 	if (mod.modName != mod.dllInfo.modName)
 		CryWarning("[ModDllManager] {}: Name mismatch. DLL says \"{}\"", mod.modName.c_str(), mod.dllInfo.modName);
+
+	if (mod.bIsRawMod && mod.dllInfo.supportsHotReload)
+		mod.dllInfo.supportsHotReload = false;
 }
 
 void ModDllManager::CheckModSdkVersion(Module& mod)

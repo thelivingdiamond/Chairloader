@@ -1,11 +1,16 @@
 #pragma once
 
+struct IChairloaderMod;
+
 namespace Internal
 {
 
 struct IModDllManager
 {
 	virtual ~IModDllManager() {}
+
+	//! Registers a mod interface without DLL. Only calls callbacks. Doesn't support reloading.
+	virtual void RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst = false) = 0;
 
 	//! Loads the mod DLLs.
 	virtual void LoadModules() = 0;

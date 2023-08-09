@@ -63,7 +63,7 @@ void ChairloaderCore::ShutdownSystem()
 void ChairloaderCore::RegisterMods()
 {
     m_pModDllManager = std::make_unique<ModDllManager>();
-    m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled());
+    m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
 	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
 

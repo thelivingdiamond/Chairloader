@@ -18,6 +18,9 @@ public:
 	//! Loads the mod's config.
 	void RegisterModFromXML(pugi::xml_node xmlNode);
 
+	//! Registers a mod interface without DLL. Only calls callbacks. Doesn't support reloading.
+	void RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst = false) override;
+
 	//! Loads the mod DLLs.
 	void LoadModules() override;
 
@@ -52,7 +55,7 @@ private:
 		std::string modName;
 
 		//! The load order.
-		int loadOrder;
+		int loadOrder = 0;
 
 		//! Path to the mod's directory.
 		fs::path modDirPath;
@@ -63,7 +66,11 @@ private:
 
 	struct Module : ModuleInfo
 	{
+		Module() = default;
 		Module(const ModuleInfo& info) : ModuleInfo(info) {}
+
+		//! Raw mods don't have a DLL here. Only used for callbacks.
+		bool bIsRawMod = false;
 
 		//! Path to the DLL for loading. May be a copy of source DLL when hot reloading.
 		fs::path realDllPath;

@@ -1,4 +1,5 @@
 #pragma once
+#include <Prey/CryInput/IInput.h>
 #include <EntityUtils.h>
 
 #include "ChairloaderEnv.h"
@@ -7,6 +8,7 @@
 
 struct IGameFramework;
 struct IChairLogger;
+struct ICVar;
 class CGame;
 
 struct IChairloader {

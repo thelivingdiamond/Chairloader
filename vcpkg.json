@@ -9,6 +9,7 @@
     "boost-core",
     "boost-bimap",
     "boost-format",
+    "boost-program-options",
     "boost-json",
     "curlpp",
     "detours",

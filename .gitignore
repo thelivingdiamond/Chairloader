@@ -419,5 +419,11 @@ ChairManager/Data/patch_chairloader.pak
 ChairManager/Data/Testing/Hashing/Ark.pak
 ChairManager/Resources/version.rc
 ChairLoader/version.rc
+Preditor/Data/ModToolKitConfig.xml
+ModToolKit/Data/imgui.ini
+ModToolKit/Data/ModToolKitConfig.xml
+ModToolKit/Data/user/Profiles/default/actionmaps.xml
+ModToolKit/Data/user/Profiles/default/attributes.xml
+ModToolKit/Data/user/Profiles/default/profile.xml
 ChairManager/Data/update.zip
 ChairManager/Data/English_xml_patch.pak

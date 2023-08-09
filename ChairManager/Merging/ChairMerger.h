@@ -4,8 +4,8 @@
 
 #ifndef CHAIRLOADER_CHAIRMERGER_H
 #define CHAIRLOADER_CHAIRMERGER_H
-#include "AttributeWildcard.h"
-#include "MergingPolicy.h"
+#include <Manager/MergingPolicy.h>
+#include <Manager/AttributeWildcard.h>
 #include <gtest/gtest.h>
 #include <thread>
 #include <Manager/ThreadPool.h>
@@ -95,12 +95,6 @@ protected:
     //! Function to resolve all attribute wildcards in an xml document
     static void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
 
-    //! Recursive function to descend an xml node tree and find all attribute wildcards
-    static void ResolveAttributeWildcards(pugi::xml_node node, std::string modName, void *L);
-
-    //! Gets the value of an attribute wildcard, and returns true if the wildcard was resolved
-    static bool GetAttributeWildcardValue(std::shared_ptr<AttributeWildcard> wildcard, void *L);
-
     //! Copy the chairloader patch files to the output directory
     static void CopyChairloaderPatchFiles();
 
@@ -174,12 +168,7 @@ protected:
     //! Get the failure message
     std::string GetDeployFailedMessage();
 
-
     void LoadIdNameMap();
-
-    static void AddIdNameMapToLua(lua_State *L);
-
-    std::vector<std::pair<std::string, uint64_t>> LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute);
 
     // Static paths
     static inline fs::path m_OutputPath = "Output";

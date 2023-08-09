@@ -6,6 +6,7 @@
 #define CHAIRLOADER_MOD_H
 
 //TODO: refactor my variables to match the naming convention of the rest of the codebase
+// TODO 2023-06-24: Replace with ChairManager::ModInfo
 struct Mod{
     std::string modName;
     std::string displayName;

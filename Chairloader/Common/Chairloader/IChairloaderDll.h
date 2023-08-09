@@ -1,6 +1,8 @@
 #pragma once
 #include <Chairloader/IChairloader.h>
 
+struct IPreditorToChair;
+
 namespace Internal
 {
 
@@ -26,8 +28,13 @@ struct IChairloaderDll : public IChairloader
 	//! Reloads all mod DLLs that support hot-reloading.
 	//! Can only be called with specific conditions in mind.
 	virtual void ReloadModDLLs() = 0;
+
+	//! @returns Preditor interface.
+	virtual IPreditorToChair* GetPreditorAPI() = 0;
 };
 
 }
 
+#ifndef PREDITOR
 extern Internal::IChairloaderDll* gChair;
+#endif

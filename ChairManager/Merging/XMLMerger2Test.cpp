@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include "XMLMerger2.h"
+#include <Manager/XMLMerger2.h>
 
 
 
@@ -308,7 +308,7 @@ TEST(XMLMerger2Test, MergeByAttributes) {
     </TestList>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeByAttribute(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
     auto test1Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test1");
@@ -366,7 +366,7 @@ TEST(XMLMerger2Test, MergeByTag) {
     </TestList>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeByTag(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
     auto test1Node = baseDoc.first_child().child("Test1");
@@ -424,7 +424,7 @@ TEST(XMLMerger2Test, MergeByContents) {
     </TestList>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeByContents(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
 
@@ -617,7 +617,7 @@ TEST(XMLMerger2Test, MergeBySpreadsheet) {
     pugi::xml_node originalNode = originalDoc.first_child();
     pugi::xml_node expectedNode = expectedDoc.first_child();
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeBySpreadsheet(baseNode, modNode, originalNode, policy);
 
@@ -756,7 +756,7 @@ TEST(XMLMerger2Test, MergeNodeStructureAttribute){
     pugi::xml_node originalNode = originalDoc.first_child();
     pugi::xml_node expectedNode = expectedDoc.first_child();
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeNodeStructure(baseNode, modNode, originalNode, policy);
 
@@ -889,7 +889,7 @@ TEST(XMLMerger2Test, MergeXMLDocument){
         </mergingPolicy>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
 
@@ -1025,7 +1025,7 @@ TEST(XMLMerger2Test, CopySibling) {
         </mergingPolicy>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
 
@@ -1189,7 +1189,7 @@ TEST(XMLMerger2Test, NodeNotInBaseDocument){
         </mergingPolicy>
     )");
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/", "TheChair.ExampleMod");
+    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
     XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
 

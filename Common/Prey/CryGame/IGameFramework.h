@@ -72,6 +72,7 @@ struct SGameContextParams;
 struct SGameStartParams;
 struct SSystemInitParams;
 struct ICryUnknown;
+struct SEntityTagParams;
 
 enum EFRAMEWORKLISTENERPRIORITY
 {
@@ -82,6 +83,29 @@ enum EFRAMEWORKLISTENERPRIORITY
     FRAMEWORKLISTENERPRIORITY_GAME,
     FRAMEWORKLISTENERPRIORITY_HUD,
     FRAMEWORKLISTENERPRIORITY_MENU
+};
+
+struct IPersistantDebug
+{
+    virtual ~IPersistantDebug() {}
+    virtual void Begin(const char* name, bool clear) = 0;
+    virtual void AddSphere(const Vec3& pos, float radius, ColorF clr, float timeout) = 0;
+    virtual void AddDirection(const Vec3& pos, float radius, const Vec3& dir, ColorF clr, float timeout) = 0;
+    virtual void AddLine(const Vec3& pos1, const Vec3& pos2, ColorF clr, float timeout) = 0;
+    virtual void AddPlanarDisc(const Vec3& pos, float innerRadius, float outerRadius, ColorF clr, float timeout) = 0;
+    virtual void AddCone(const Vec3& pos, const Vec3& dir, float baseRadius, float height, ColorF clr, float timeout) = 0;
+    virtual void AddCylinder(const Vec3& pos, const Vec3& dir, float radius, float height, ColorF clr, float timeout) = 0;
+    virtual void Add2DText(const char* text, float size, ColorF clr, float timeout) = 0;
+    virtual void AddText(float x, float y, float size, ColorF clr, float timeout, const char* fmt, ...) = 0;
+    virtual void Add2DLine(float x1, float y1, float x2, float y2, ColorF clr, float timeout) = 0;
+    virtual void AddQuat(const Vec3& pos, const Quat& q, float r, ColorF clr, float timeout) = 0;
+    virtual void AddAABB(const Vec3& min, const Vec3& max, ColorF clr, float timeout) = 0;
+    virtual void AddEntityTag(const SEntityTagParams& params, const char* tagContext) = 0;
+    virtual void ClearEntityTags(unsigned entityId) = 0;
+    virtual void ClearStaticTag(unsigned entityId, const char* staticId) = 0;
+    virtual void ClearTagContext(const char* tagContext) = 0;
+    virtual void ClearTagContext(const char* tagContext, unsigned entityId) = 0;
+    virtual void Reset() = 0;
 };
 
 static const EntityId LOCAL_PLAYER_ENTITY_ID = 0x7777u; //!< 30583 between static and dynamic EntityIDs.
@@ -144,7 +168,7 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual void RegisterFactory(const char *arg0, IGameFramework::IActorCreator *arg1, bool arg2) = 0;
     virtual void RegisterFactory(const char *arg0, IGameFramework::IItemCreator *arg1, bool arg2) = 0;
     virtual void RegisterFactory(const char *arg0, IGameFramework::IGameObjectExtensionCreator *arg1, bool arg2) = 0;
-    virtual ~IGameFramework();
+    virtual ~IGameFramework() = default;
     virtual bool Init(SSystemInitParams &arg0) = 0;
     virtual void InitGameType(bool arg0, bool arg1) = 0;
     virtual bool CompleteInit() = 0;

@@ -1,5 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Chairloader/PreditorAPI.h>
 #include "Chairloader.h"
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -18,4 +19,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
         break;
     }
     return TRUE;
+}
+
+extern "C" DLL_EXPORT IChairToPreditor* Chair_GetPreditorAPI(int preditorVersion, int* chairVersion)
+{
+    *chairVersion = PREDITOR_API_VERSION;
+    if (preditorVersion != PREDITOR_API_VERSION)
+        return nullptr;
+    return Chairloader::Get();
 }

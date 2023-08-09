@@ -42,9 +42,11 @@ namespace fs = std::filesystem;
 #include <fstream>
 #include <pugixml.hpp>
 #include <imgui.h>
+#include <imgui_stdlib.h>
 
 template <typename R>
 inline bool IsFutureReady(const std::future<R>& f)
 {
 	return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
 }
+

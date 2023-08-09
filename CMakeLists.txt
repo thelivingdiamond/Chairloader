@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(Chairloader C CXX ASM_MASM)
+project(Chairloader C CXX)
 set(CHAIRLOADER TRUE)
 
 if((NOT MSVC) OR (MSVC_TOOLSET_VERSION LESS 141))
@@ -23,16 +23,43 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Enable project folders in VS
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# Prey was build in Release so mods must match it even in Debug
+# Create DebugChair configuration
+# Debug CRT and Release CRT have different ABIs.
+# Since Prey was linked with Release CRT, Chairloader must use it even in Debug.
+# 
+# vcpkg is hardcoded to use debug libraries for Debug and release for everything else.
+# DebugChair is added to solve that. Debug is hidden to reduce confusion.
+set(CMAKE_C_FLAGS_DEBUGCHAIR ${CMAKE_CXX_FLAGS_DEBUG} CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS_DEBUGCHAIR ${CMAKE_CXX_FLAGS_DEBUG} CACHE STRING "" FORCE)
+set(CMAKE_EXE_LINKER_FLAGS_DEBUGCHAIR ${CMAKE_EXE_LINKER_FLAGS_DEBUG} CACHE STRING "" FORCE)
+set(CMAKE_SHARED_LINKER_FLAGS_DEBUGCHAIR ${CMAKE_SHARED_LINKER_FLAGS_DEBUG} CACHE STRING "" FORCE)
+
+set(CMAKE_CONFIGURATION_TYPES DebugChair Release)
+set(CMAKE_CONFIGURATION_TYPES "${CMAKE_CONFIGURATION_TYPES}" CACHE STRING "Reset the configurations to what we need" FORCE)
+
 set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
-add_compile_definitions(
-	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
-)
+set(CMAKE_MAP_IMPORTED_CONFIG_DEBUGCHAIR Release)
 
 # Compiler and linker flags
-string(REPLACE "/Zi" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}") # Remove /Zi
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI") # /ZI Edit and Continue
+# Use Windows subsystem for DLLs
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
+
+# Edit and Continue in Debug
+string(REPLACE "/Zi" "/ZI" CMAKE_CXX_FLAGS_DEBUGCHAIR "${CMAKE_CXX_FLAGS_DEBUGCHAIR}")
+
+# PDBs and optimizations in Release
+set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /debug")   # Generate PDB
+set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /OPT:REF") # Remove unreferenced functions and data
+set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /OPT:ICF") # Identical COMDAT folding
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi /Gy")
+set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
+
+# Compile definitions
+add_compile_definitions(
+	$<IF:$<CONFIG:DebugChair>,DEBUG_BUILD,RELEASE_BUILD>
+)
 
 # Game path
 set(PREY_DLL_DIR "" CACHE PATH "(optional) Path to the game binaries directory (where Prey.exe/.dll are) to automatically install built binaries")
@@ -74,15 +101,11 @@ function(cl_output_dir targetName)
 		set(out_path "${PREY_DLL_DIR}")
 		set_target_properties(${targetName} PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_DEBUG ${out_path}
+			RUNTIME_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
 			RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
 			LIBRARY_OUTPUT_DIRECTORY ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_DEBUG ${out_path}
+			LIBRARY_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
 			LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL ${out_path}
 		)
 	endif()
 endfunction()
@@ -99,7 +122,7 @@ function(cl_set_debug_path targetName)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS json)
+find_package(Boost REQUIRED COMPONENTS program_options json)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(libzip REQUIRED)
@@ -136,13 +159,14 @@ unset(CMAKE_FOLDER)
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
-# Targets that don't need to use Prey ABI
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+# Since ModToolKit interfaces with PreyDll.dll, everything must use Release ABI
+# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 add_subdirectory(ThirdParty/StackWalker)
 add_subdirectory(CommonChairManager)
 #add_subdirectory(ChairLoaderXMLLoader)
 add_subdirectory(ChairManager)
 add_subdirectory(BinDiff)
+add_subdirectory(Preditor)
 
 # Set default VS project
 set(VS_STARTUP_PROJECT "Chairloader.Dll")

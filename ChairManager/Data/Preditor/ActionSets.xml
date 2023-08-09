@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<!--
+    Action set priorities:
+        80  Viewport Camera Control
+        60  Edit Tools
+        50  Default
+-->
+
+<ActionSets defaultPriority="50">
+    <!-- viewport_camera -->
+    <ActionSet
+        name="viewport_camera"
+        description="Scene Viewport Camera"
+        priority="80"
+        startActive="0"
+        canHaveModifiers="0">
+        <!-- Horizontal -->
+        <Action name="forward" description="Move Forward">
+            <Bind key="w"/>
+        </Action>
+        <Action name="backward" description="Move Backward">
+            <Bind key="s"/>
+        </Action>
+        <Action name="left" description="Move Left">
+            <Bind key="a"/>
+        </Action>
+        <Action name="right" description="Move Right">
+            <Bind key="d"/>
+        </Action>
+
+        <!-- Vertical -->
+        <Action name="up" description="Move Up">
+            <Bind key="e"/>
+        </Action>
+        <Action name="down" description="Move Down">
+            <Bind key="q"/>
+        </Action>
+
+        <!-- Speed -->
+        <Action name="speed_up" description="Speed Up" isModifier="1">
+            <Bind key="lshift"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Select Tool -->
+    <ActionSet
+        name="select_tool"
+        description="Select Tool"
+        priority="60">
+        <Action name="append" description="Append to current selection" isModifier="1">
+            <Bind key="lshift"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Tool Selection -->
+    <ActionSet
+        name="tool_select"
+        description="Tool Selection">
+        <Action name="select" description="Select">
+            <Bind key="q"/>
+        </Action>
+        <Action name="move" description="Move">
+            <Bind key="w"/>
+        </Action>
+        <Action name="rotate" description="Rotate">
+            <Bind key="e"/>
+        </Action>
+        <Action name="scale" description="Scale">
+            <Bind key="r"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Viewport -->
+    <ActionSet
+        name="viewport"
+        description="Viewport">
+        <Action name="toggle_scene" description="Toggle Scene/Game" enableInGame="1">
+            <Bind key="f4"/>
+        </Action>
+        <Action name="unlock_mouse" description="Unlock mouse in Game mode" enableInGame="1">
+            <Bind key="esc"/>
+        </Action>
+    </ActionSet>
+
+    <!-- Simulation Control -->
+    <ActionSet
+        name="sim_control"
+        description="Simulation Control"
+        enableInGame="1">
+        <Action name="play_pause" description="Toggle Play/Pause">
+            <Bind key="p"/>
+        </Action>
+        <Action name="single_step" description="Run a single step">
+            <Bind key="period"/>
+        </Action>
+        <Action name="toggle_play_mode" description="Enter/Exit Play Mode">
+            <Bind key="f5"/>
+        </Action>
+    </ActionSet>
+</ActionSets>

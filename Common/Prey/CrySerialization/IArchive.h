@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include "ChairLoader/PreyFunction.h"
 
 namespace Serialization
 {

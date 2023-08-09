@@ -24,15 +24,43 @@ set(SOURCE_FILES
 	ImGuiFileDialog/ImGuiFileDialog.h
 	ImGuiFileDialog/ImGuiFileDialog.cpp
 
+	# ImNodes
+	ImNodes/imnodes.cpp
+	ImNodes/imnodes.h
+	ImNodes/imnodes_internal.h
+
 	# ChairManager
+	Manager/AttributeWildcard.h
 	Manager/BinDiff.cpp
 	Manager/BinDiff.h
+	Manager/ConfigManager.cpp
+	Manager/ConfigManager.h
+	Manager/IconsMaterialDesign.h
+	Manager/ImGuiFontList.cpp
+	Manager/ImGuiFontList.h
+	Manager/LogEntry.h
+	Manager/LuaUtils.cpp
+	Manager/LuaUtils.h
+	Manager/MergingPolicy.h
+	Manager/ModConfig.h
+	Manager/ModInfo.cpp
+	Manager/ModInfo.h
+	Manager/ModListConfig.cpp
+	Manager/ModListConfig.h
+	Manager/NameToIdMap.h
 	Manager/pch.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
-	Manager/ThreadPool.h Manager/PugiUtils.h)
+	Manager/IChairManager.h
+	Manager/ThreadPool.h
+	Manager/WildcardResolver.cpp
+	Manager/WildcardResolver.h
+	Manager/PugiUtils.h
+	Manager/XMLMerger2.cpp
+	Manager/XMLMerger2.h
+)
 
 add_library(CommonChairManager STATIC
 	${SOURCE_FILES}
@@ -49,6 +77,7 @@ target_include_directories(CommonChairManager PUBLIC
 
 target_link_libraries(CommonChairManager PUBLIC
 	D3D11.lib
+	fmt::fmt-header-only
 )
 
 target_precompile_headers(CommonChairManager PUBLIC Manager/pch.h)

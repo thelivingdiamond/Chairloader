@@ -6,6 +6,7 @@
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
 #include <Manager/GamePath.h>
+#include <Manager/XMLMerger2.h>
 #include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include "ChairManager.h"
@@ -614,7 +615,8 @@ void ChairManager::DrawModList() {
             if (ImGui::Button("Refresh Mod List")) {
                 loadModInfoFiles();
                 selectedMod.clear();
-                m_ConfigManager.init();
+                m_ConfigManager.saveDirtyConfigs();
+                m_ConfigManager.init(this);
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Loads mod list from the Chairloader config file. Also discovers new mods in the Mods/ folder.");
@@ -1581,7 +1583,8 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
                     InstallMod(mod->modName);
-                    m_ConfigManager.init();
+                    m_ConfigManager.saveDirtyConfigs();
+                    m_ConfigManager.init(this);
                 } catch (std::exception &exc) {
                     std::cerr << exc.what() << std::endl;
                     log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
@@ -1848,7 +1851,7 @@ void ChairManager::Init() {
         ModNameToDisplayName.insert(std::pair(mod.modName, mod.displayName));
     }
     m_pGameVersion = std::make_unique<GameVersion>();
-    m_ConfigManager.init();
+    m_ConfigManager.init(this);
     initialized = true;
 }
 
@@ -1884,11 +1887,11 @@ void ChairManager::DrawDebug() {
         }
         if(ImGui::CollapsingHeader("Config")){
             if(ImGui::Button("Copy Default Config File")){
-                ConfigManager::copyDefaultConfig(modName);
+                m_ConfigManager.copyDefaultConfig(modName);
             }
             ImGui::BeginDisabled();
             static bool configExists;
-            configExists = ConfigManager::isConfigPresent(modName);
+            configExists = m_ConfigManager.isConfigPresent(modName);
             ImGui::Checkbox("Config File Exists", &configExists);
             ImGui::EndDisabled();
         }
@@ -2411,4 +2414,50 @@ void ChairManager::GTestInit() {
     Init();
 }
 
+fs::path ChairManager::GetConfigPath()
+{
+    return GetGamePath() / "Mods/Config";
+}
 
+fs::path ChairManager::GetModPath(const std::string& modName)
+{
+    return GetGamePath() / "Mods" / fs::u8path(modName);
+}
+
+std::vector<std::string> ChairManager::GetModNames()
+{
+    std::vector<std::string> list;
+
+    for (const auto& i : GetMods())
+    {
+        list.push_back(i.modName);
+    }
+
+    return list;
+}
+
+std::string ChairManager::GetModDisplayName(const std::string& modName)
+{
+    for (const auto& i : GetMods())
+    {
+        if (i.modName == modName)
+            return i.displayName;
+    }
+
+    return std::string();
+}
+
+void ChairManager::LogString(severityLevel level, std::string_view str)
+{
+    // scope limiting for mutex
+    {
+        std::scoped_lock<std::mutex> lock(logMutex);
+        logRecord.emplace_back(LogEntry(std::string(str), level));
+        fileQueue.emplace_back(LogEntry(std::string(str), level));
+    }
+
+    if (level == severityLevel::fatal) {
+        flushFileQueue();
+        throw std::runtime_error(std::string(str));
+    }
+}

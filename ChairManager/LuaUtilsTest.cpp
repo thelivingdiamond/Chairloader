@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <LuaUtils.h>
+#include <Manager/LuaUtils.h>
 #include <pugixml.hpp>
 
 TEST(LuaUtilsTest, AddXmlNodeAsVariables) {

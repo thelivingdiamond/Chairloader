@@ -1,7 +1,9 @@
+#include <Prey/Cry3DEngine/IStatObj.h>
 #include <Prey/CryAction/GameObject.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryGame/Game.h>
 #include <Prey/CryScriptSystem/IScriptSystem.h>
+#include <Prey/CryEntitySystem/Entity.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include "EntityInspector.h"
 
@@ -12,7 +14,7 @@ void EntityInspector::ShowContents(EntityId entityId)
 
 	if (entityId == 0)
 	{
-		ImGui::TextWrapped("No entity selected.");
+		ImGui::TextDisabled("No entity selected.");
 		return;
 	}
 
@@ -170,7 +172,7 @@ void EntityInspector::InspectSlots(IEntity* pEnt)
                 ImGui::Text("Parent Slot: %d", slotInfo.nParentSlot);
 
                 if (slotInfo.pStatObj)
-                    ImGui::Text("StatObj");
+                    ImGui::TextWrapped("StatObj: %s", slotInfo.pStatObj->GetFilePath());
                 if (slotInfo.pCharacter)
                     ImGui::Text("Character");
                 if (slotInfo.pParticleEmitter)
@@ -427,6 +429,11 @@ void EntityInspector::InspectRender(IEntity* pEnt) {
         ImGui::Text("Opacity: %.3f", pProxy->GetOpacity());
         ImGui::Text("Last seen time: %.3f", pProxy->GetLastSeenTime());
         ImGui::Text("Visarea visible: %d", pProxy->IsRenderProxyVisAreaVisible());
+        
+        auto pEnt2 = static_cast<CEntity*>(pEnt);
+        int sceneMask = pEnt2->GetSceneMask();
+        ImGui::Text("Scene Mask: 0x%X", sceneMask);
+
         EndInspector();
     }
 }

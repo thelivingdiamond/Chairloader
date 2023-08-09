@@ -5,6 +5,7 @@
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/IChairloaderImGui.h>
 #include "DevConsoleDialog.h"
+#include "ChairToolsUtils.h"
 
 namespace {
 
@@ -79,8 +80,11 @@ void Command_Find(IConsoleCmdArgs *args) {
 
 DevConsoleDialog::DevConsoleDialog() {
 	m_pConsole = gEnv->pConsole;
-	m_pLogManager = gChair->GetCore()->GetLogManager();
+	m_pLogManager = ChairToolsUtils::GetDll()->GetCore()->GetLogManager();
+
+#ifndef PREDITOR
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
+#endif
 }
 
 void DevConsoleDialog::Show(bool *p_open) {
@@ -148,7 +152,7 @@ void DevConsoleDialog::ShowConsole()
 {
 	ImGui::TextWrapped("'cvar_name ?' for help. '?string' for search. 'find string' for search (variables only) with help.");
 	ImGui::Separator();
-	ImGui::PushFont(gCL->pImGui->GetFont(IChairloaderImGui::EFont::Monospace));
+	ImGui::PushFont(ChairToolsUtils::GetFont(IChairloaderImGui::EFont::Monospace));
 
 	// Reserve enough left-over height for 1 separator + 1 input text
 	const float footer_height_to_reserve = ImGui::GetStyle().ItemSpacing.y + ImGui::GetFrameHeightWithSpacing();
@@ -205,7 +209,7 @@ void DevConsoleDialog::ShowModLog()
 	ImGui::TextWrapped("Tip: Press Alt+ConsoleKey to open mod log directly or toggle between console and log.");
 	ImGui::Separator();
 
-	ImGui::PushFont(gCL->pImGui->GetFont(IChairloaderImGui::EFont::Monospace));
+	ImGui::PushFont(ChairToolsUtils::GetFont(IChairloaderImGui::EFont::Monospace));
 	ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
 
 	// I'd love to use ImGuiListClipper but text may contain line breaks

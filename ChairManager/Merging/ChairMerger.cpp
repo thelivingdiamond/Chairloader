@@ -7,10 +7,12 @@
 #include "ChairManager.h"
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
-#include "XMLMerger2.h"
+#include <Manager/XMLMerger2.h>
+#include <Manager/LuaUtils.h>
+#include <Manager/WildcardResolver.h>
+#include <Manager/NameToIdMap.h>
 #include "ZipUtils.h"
 #include "HashUtils.h"
-#include <LuaUtils.h>
 
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;
@@ -106,131 +108,21 @@ void ChairMerger::PostMerge() {
 }
 //! Function to resolve all attribute wildcards in an xml document
 void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modName) {
-
-    auto configVariables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables(modName);
-    // start the recursive descent on the root node
-    auto configNode = ChairManager::Get().GetConfigManager()->getModConfig(modName).configNode;
-
-    // create a new lua state
-    lua_State* L = luaL_newstate();
-    // load the lua libraries
-    luaL_openlibs(L);
-
-    luabridge::getGlobalNamespace(L).addFunction("IsModEnabled", &ChairMerger::IsModEnabled);
-
-    // add random function
-    luabridge::getGlobalNamespace(L).addFunction("Random", &ChairMerger::Random);
-
-    // add random Float function
-    luabridge::getGlobalNamespace(L).addFunction("RandomFloat", &ChairMerger::RandomFloat);
+    WildcardResolver wr(&ChairManager::Get(), m_RandomGenerator, modName);
 
     // add the config variables to the lua state
-    for(auto& mod :ChairManager::Get().GetMods()){
-        auto config = ChairManager::Get().GetConfigManager()->getModConfig(mod.modName);
-        LuaUtils::AddXmlNodeAsVariables(L, config.configNode, mod.modName);
+    for (auto& mod : ChairManager::Get().GetMods()) {
+        // TODO 2023-07-07: Check if mod is enabled. Disabled mods shouldn't influence other mods.
+        auto& config = ChairManager::Get().GetConfigManager()->getModConfig(mod.modName);
+        wr.AddModConfig(config);
     }
+
     //TODO: add local mod config variables in a way to ignore g.modName
+    auto& curModConfig = ChairManager::Get().GetConfigManager()->getModConfig(modName);
+    wr.AddGlobalModConfig(curModConfig);
 
-    LuaUtils::AddXmlNodeAsVariables(L, configNode, modName, false);
-
-    AddIdNameMapToLua(L);
-
-    ResolveAttributeWildcards(docNode, modName, L);
-
-    // close the lua state
-    lua_close(L);
-
-}
-
-//! Recursive function to descend an xml node tree and find all attribute wildcards
-void ChairMerger::ResolveAttributeWildcards(pugi::xml_node node, std::string modName, void *L_) {
-    auto L = (lua_State*)L_;
-    // iterate over all attributes
-    for (auto &attribute : node.attributes()) {
-        auto wildcard = std::make_shared<AttributeWildcard>();
-        wildcard->attribute = attribute;
-        wildcard->mod_name = modName;
-        if(GetAttributeWildcardValue(wildcard, L))
-            attribute.set_value(wildcard->match_value.c_str());
-
-    }
-
-    // iterate over all child nodes
-    for (auto &childNode : node.children()) {
-        // recursively descend the tree
-        ResolveAttributeWildcards(childNode, modName, L);
-    }
-}
-
-
-/*! Attribute Wildcards
-<X Param="{{ configValue }}" /> <!-- Current mod's config -->
-<X Param="{{ $.modAuthor.modName.configValue }}"/> <!-- Reference a different mod. modAuthor.modName is actually "modName" from ModInfo.xml. $ indicates that we are looking in the global space -->
-<X ch:apply_if="$.modAuthor.modName.modEnabled" /> <!-- Check if different mod is installed and enabled. Allows for some basic interop between XML mods -->
-<X ch:apply_if="{{ configValue }}"/> <!-- apply if some other config value -->
-<X ch:remove /> <!-- Remove this node from the XML -->
- <X ch:patch_mode/> <!-- Patch mode: will overwrite all attributes present in the mod node w/out any vanilla checking. -->
- */
-bool ChairMerger::GetAttributeWildcardValue(std::shared_ptr<AttributeWildcard> wildcard, void *L_) {
-    auto L = (lua_State*)L_;
-    if(std::string(wildcard->attribute.value()).find("{{") != std::string::npos && std::string(wildcard->attribute.value()).find("}}") != std::string::npos) {
-        // Regex to determine if the attribute value is a wildcard
-        std::regex re(R"(\{\{(.*)\}\})");
-        std::smatch match;
-        std::string value = wildcard->attribute.value();
-        if(std::regex_search(value, match, re)) {
-            if(match.ready()) {
-                std::string wildcardName;
-                wildcardName = match[1].str();
-
-                // setup the lua buffer
-                luaL_Buffer b;
-                luaL_buffinit(L, &b);
-                luaL_addstring(&b,LuaUtils::GetExpressionCodeString(wildcardName).c_str());
-                luaL_addstring(&b, LuaUtils::SandboxString.c_str());
-                luaL_pushresult(&b);
-                int code = luaL_dostring(L, lua_tostring(L, -1));
-                bool success = LuaUtils::report_errors(L, code);
-                std::string result;
-                if(success){
-                    lua_getglobal(L, "result");
-                    if (luabridge::isInstance<bool>(L, -1)) {
-                        result = luabridge::Stack<bool>::get(L, -1) ? "true" : "false";
-                        wildcard->match_value = result;
-                        wildcard->has_match_value = true;
-                    } else if (luabridge::isInstance<float>(L, -1)) {
-                        result = std::to_string(luabridge::Stack<float>::get(L, -1));
-                        wildcard->match_value = result;
-                        wildcard->has_match_value = true;
-                    } else if (luabridge::isInstance<int>(L, -1)) {
-                        result = std::to_string(luabridge::Stack<int>::get(L, -1));
-                        wildcard->match_value = result;
-                        wildcard->has_match_value = true;
-                    } else if (luabridge::isInstance<std::string>(L, -1)) {
-                        result = luabridge::Stack<std::string>::get(L, -1);
-                        wildcard->match_value = result;
-                        wildcard->has_match_value = true;
-                    }  else if (luabridge::isInstance<unsigned int>(L, -1)) {
-                        result = std::to_string(luabridge::Stack<unsigned int>::get(L, -1));
-                        wildcard->match_value = result;
-                        wildcard->has_match_value = true;
-                    } else {
-                        ChairManager::Get().log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
-                    }
-
-                }
-                else{
-                    ChairManager::Get().log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
-                }
-            }
-        } else {
-            ChairManager::Get().log(severityLevel::warning, "Could not find wildcard value in %s", wildcard->attribute.value());
-            wildcard->type = AttributeWildcard::wildcard_type::none;
-        }
-    } else {
-        wildcard->type = AttributeWildcard::wildcard_type::none;
-    }
-    return wildcard->has_match_value;
+    wr.AddIdNameMap(m_NameToIdMap);
+    wr.ResolveDocumentWildcards(docNode);
 }
 
 void ChairMerger::CopyModDataFiles(fs::path sourcePath) {
@@ -282,7 +174,7 @@ ChairMerger::ChairMerger() {
     m_MergeThreadPool = std::make_unique<ThreadPool>(numThreads);
     m_MergingPolicyDoc = std::make_unique<pugi::xml_document>();
 
-    auto result = m_MergingPolicyDoc->load_file("MergingLibrary.xml");
+    auto result = m_MergingPolicyDoc->load_file(MERGING_LIBRARY_FILE_NAME);
     if(!result) {
         ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not load MergingLibrary.xml");
     }
@@ -396,42 +288,12 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
 
 }
 
-pugi::xml_node noCaseChild(pugi::xml_node& node, std::string name) {
-    for(auto &child : node.children()){
-        if(boost::iequals(child.name(), name)){
-            return child;
-        }
-    }
-    return {};
-}
-
 MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path &file, std::string modName) {
-    MergingPolicy policy;
-    auto root = m_MergingPolicyDoc->child("root");
-    policy = MergingPolicy(root.child("mergingPolicy"), file, modName);
-    auto currentNode = root;
-    fs::path currentPath;
-    for (auto &directory : file){
-        if(!fs::exists(m_PreyFilePath / currentPath / directory)){
-            break;
-        }
-        currentPath /= directory;
-        currentNode = noCaseChild(currentNode, directory.u8string());
-        if(!currentNode){
-            continue;
-        } else {
-            if(currentNode.child("mergingPolicy")){
-                policy = MergingPolicy(currentNode.child("mergingPolicy"), file, modName);
-            }
-        }
-    }
-    if  (currentPath != file){
-        // File is not in the library, so it must be novel
+    MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilePath);
+
+    if (policy.policy == MergingPolicy::identification_policy::unknown)
         ChairManager::Get().log(severityLevel::error, "XMLMerger: File %s not found in merging library", file.u8string());
-        policy.policy = MergingPolicy::identification_policy::unknown;
-        policy.attributeMatches.clear();
-        policy.nodeStructure = pugi::xml_node();
-    }
+
     return policy;
 }
 
@@ -844,55 +706,15 @@ float ChairMerger::RandomFloat(float min, float max) {
     return distribution(m_RandomGenerator);
 }
 
-std::vector<std::pair<std::string, uint64_t>> ChairMerger::LoadIdNamePairsFromXml(pugi::xml_node node, std::string xmlPath, std::string nameAttribute, std::string idAttribute) {
-    std::vector<std::pair<std::string, uint64_t>> pairs;
-    auto targetChild = node.first_element_by_path(xmlPath.c_str());
-    for(auto child : targetChild.children()){
-        auto name = child.attribute(nameAttribute.c_str()).as_string();
-        auto id = child.attribute(idAttribute.c_str()).as_ullong();
-        pairs.emplace_back(name, id);
-    }
-    return pairs;
-}
-
 void ChairMerger::LoadIdNameMap() {
-    m_NameToIdMap.clear();
-
 //    // profile this function to see if it's slow
 //    auto start = std::chrono::high_resolution_clock::now();
-    pugi::xml_document doc;
-    doc.load_file("VariableLibrary.xml");
-    auto rootNode = doc.first_child();
-    for(auto& idFile: rootNode){
-        fs::path idFilePath = idFile.attribute("path").as_string();
-        idFilePath = m_PreyFilePath / idFilePath;
-        std::string nameAttribute = idFile.attribute("nameAttribute").as_string(),
-                idAttribute = idFile.attribute("idAttribute").as_string(),
-                xmlPath = idFile.attribute("xmlPath").as_string(),
-                variablePath = idFile.attribute("variablePath").as_string();
-        pugi::xml_document idFileDoc;
-        idFileDoc.load_file(idFilePath.wstring().c_str());
-        auto pairs = LoadIdNamePairsFromXml(idFileDoc.root(), xmlPath, nameAttribute, idAttribute);
-        for(auto& pair : pairs){
-            std::string validName = LuaUtils::MakeValidVariableName(pair.first);
-            auto path = variablePath + "." + validName;
-            m_NameToIdMap[path] = pair.second;
-        }
-    }
+    
+    m_NameToIdMap = Manager::NameToIdMap::Create(Manager::NameToIdMap::LIBRARY_FILE_NAME, m_PreyFilePath);
+
 //    auto end = std::chrono::high_resolution_clock::now();
 //    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 //    ChairManager::Get().log(severityLevel::trace, "ChairMerger: Loaded id name map in %llu milliseconds", elapsed.count());
     //TODO: Load from mods
 
-}
-
-void ChairMerger::AddIdNameMapToLua(lua_State *L) {
-//    // profile this function to see if it's slow
-//    auto start = std::chrono::high_resolution_clock::now();
-    for(auto& pair : m_NameToIdMap){
-        LuaUtils::AddVariableWithPath(L, pair.first, std::to_string(pair.second));
-    }
-//    auto end = std::chrono::high_resolution_clock::now();
-//    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-//    ChairManager::Get().log(severityLevel::trace, "ChairMerger: Added id name map to lua in %llu milliseconds", elapsed.count());
 }
