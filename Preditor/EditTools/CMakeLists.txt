@@ -4,6 +4,8 @@ set(SOURCE_FILES
 	EditTool.h
 	EditToolManager.cpp
 	EditToolManager.h
+	MoveTool.cpp
+	MoveTool.h
 	SelectTool.cpp
 	SelectTool.h
 	ToolSelectionWindow.cpp

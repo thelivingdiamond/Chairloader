@@ -24,6 +24,10 @@ public:
     //! Called when the tool is disabled.
     virtual void OnDisabled();
 
+    //! Called from the viewport context.
+    //! @param  bounds  Viewport bounds.
+    virtual void DrawViewport(const Vec4& bounds, const Matrix44& projMat, const Matrix44& viewMat) {}
+
     //! Called when the viewport is left-clicked.
     //! @param  clickPos    Position where the mouse was clicked [(0,0) is in top-left corner].
     //! @param  vpSize      Size of the viewport.

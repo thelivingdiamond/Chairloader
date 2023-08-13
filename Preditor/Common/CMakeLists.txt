@@ -11,6 +11,10 @@ set(SOURCE_FILES
 	App/AppStage.h
 	App/IAppImGui.h
 	App/SingletonAppStage.h
+
+	ImGuizmo/ImGuizmo.cpp
+	ImGuizmo/ImGuizmo.h
+	ImGuizmo/ImZoomSlider.h
 	
 	Preditor/Assets/Common.h
 	Preditor/Assets/IAssetSystem.h

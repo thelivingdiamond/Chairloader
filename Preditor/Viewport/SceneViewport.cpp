@@ -194,6 +194,13 @@ void Viewport::SceneViewport::ShowUI()
 
 		ImGui::SetWindowFocus();
 	}
+
+	if (pEditor)
+	{
+		pEditor->GetToolManager()->DrawViewport(
+			Vec4(imageBounds.x, imageBounds.y, imageBounds.z, imageBounds.w),
+			m_CamInfo.lastFrameView);
+	}
 }
 
 void Viewport::SceneViewport::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
@@ -369,6 +376,8 @@ void Viewport::SceneViewport::UpdateCamera()
 		info.nearPlane,
 		info.farPlane,
 		1.0f);
+
+	m_CamInfo.lastFrameView = m_Cam.GetViewMatrix();
 }
 
 void Viewport::SceneViewport::CopyViewCameraTransform()

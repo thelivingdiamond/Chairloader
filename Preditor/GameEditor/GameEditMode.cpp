@@ -1,4 +1,5 @@
 #include <Preditor/EditTools/IEditToolManager.h>
+#include "EntityManipulator.h"
 #include "EntitySelectionManager.h"
 #include "GameEditMode.h"
 #include "GameViewportHandler.h"
@@ -16,6 +17,7 @@ GameEditor::GameEditMode::GameEditMode()
 {
     m_pSelection = std::make_unique<EntitySelectionManager>(this);
     m_pViewportHandler = std::make_unique<GameViewportHandler>(this);
+    m_pEntityManipulator = std::make_unique<EntityManipulator>(this);
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
     m_pEntityHierarchy = std::make_unique<EntityHierarchy>();
     m_pEntityInspector = std::make_unique<EntityInspector>();
@@ -33,6 +35,11 @@ SelectionManager* GameEditor::GameEditMode::GetSelection()
 IViewportHandler* GameEditor::GameEditMode::GetViewport()
 {
     return m_pViewportHandler.get();
+}
+
+IObjectManipulator* GameEditor::GameEditMode::GetManipulator()
+{
+    return m_pEntityManipulator.get();
 }
 
 const char* GameEditor::GameEditMode::GetObjectName(SceneObjectId id)

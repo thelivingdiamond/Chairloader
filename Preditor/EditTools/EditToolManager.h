@@ -5,6 +5,7 @@ namespace EditTools
 {
 
 class EditTool;
+class MoveTool;
 
 class EditToolManager final : public IEditToolManager
 {
@@ -24,6 +25,7 @@ public:
     // IEditToolManager
     virtual void SetEnabled(bool state) override;
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize) override;
+    virtual void DrawViewport(const Vec4& bounds, const Matrix44& viewMat) override;
 
 private:
     bool m_bIsActive = false;
@@ -31,6 +33,7 @@ private:
     EditTool* m_pCurTool = nullptr;
 
     std::unique_ptr<EditTool> m_pSelectTool;
+    std::unique_ptr<MoveTool> m_pMoveTool;
 
     //! Changes the active tool to a different one.
     void SetCurrentTool(EditTool* pTool);

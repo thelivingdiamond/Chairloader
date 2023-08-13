@@ -1,6 +1,8 @@
+#include <Prey/CryRenderer/IRenderer.h>
 #include "EditTool.h"
 #include "EditToolManager.h"
 #include "SelectTool.h"
+#include "MoveTool.h"
 
 std::unique_ptr<IEditToolManager> IEditToolManager::CreateInstance(ISceneEditor* pEditor)
 {
@@ -12,6 +14,7 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pEditor = pEditor;
 
     m_pSelectTool = std::make_unique<SelectTool>(this);
+    m_pMoveTool = std::make_unique<MoveTool>(this);
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
@@ -23,14 +26,17 @@ EditTools::EditToolManager::~EditToolManager()
 
 void EditTools::EditToolManager::ShowSelectionUI()
 {
-    EditTool* tools[] = { m_pSelectTool.get() };
-    const char* names[] = {"Select"};
+    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get() };
+    const char* names[] = { "Select", "Move" };
 
     for (size_t i = 0; i < std::size(tools); i++)
     {
         if (ImGui::RadioButton(names[i], tools[i] == m_pCurTool))
             SetCurrentTool(tools[i]);
+        ImGui::SameLine();
     }
+
+    ImGui::NewLine();
 }
 
 void EditTools::EditToolManager::SetEnabled(bool state)
@@ -62,6 +68,20 @@ EEditToolResult EditTools::EditToolManager::OnLeftMouseClick(Vec2 clickPos, Vec2
     }
 
     return result;
+}
+
+void EditTools::EditToolManager::DrawViewport(const Vec4& bounds, const Matrix44& viewMat)
+{
+    if (!m_bIsActive)
+        return;
+
+    if (m_pCurTool)
+    {
+        Matrix44 projMat;
+        gEnv->pRenderer->GetProjectionMatrix(projMat.GetData());
+        projMat.Transpose();
+        m_pCurTool->DrawViewport(bounds, projMat, viewMat);
+    }
 }
 
 void EditTools::EditToolManager::SetCurrentTool(EditTool* pTool)
