@@ -1232,10 +1232,10 @@ inline bool OBB_OBB(const Vec3& pos1, const OBB& obb1, const Vec3& pos2, const O
 	return 1;   //no separating axis found, we have an overlap
 }
 
-#define PLANE_X         0
-#define PLANE_Y         1
-#define PLANE_Z         2
-#define PLANE_NON_AXIAL 3
+int constexpr PLANE_X = 0;
+int constexpr PLANE_Y = 1;
+int constexpr PLANE_Z = 2;
+int constexpr PLANE_NON_AXIAL = 3;
 
 //! check if the point is inside a triangle
 inline bool PointInTriangle(const Vec3& point, const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& normal)
