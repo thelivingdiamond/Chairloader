@@ -435,12 +435,12 @@
         <WeaponMods>
             <ArkWeaponMods.xml>
                 <mergingPolicy identification_policy="match_attribute">
-                    <attribute name="id" priority="0"/>
-                    <attribute name="name" priority="1"/>
+                    <attribute name="ID" priority="0"/>
+                    <attribute name="Name" priority="1"/>
                     <nodeStructure>
-                        <_wildcard_>
-                            <_wildcard_ merge_children="true"/>
-                        </_wildcard_>
+                        <ArkWeaponModifiers>
+                            <WeaponModifiers merge_children="true"/>
+                        </ArkWeaponModifiers>
                     </nodeStructure>
                 </mergingPolicy>
             </ArkWeaponMods.xml>
