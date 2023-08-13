@@ -10,3 +10,4 @@
 #define INIT_ARK_NAME(name) ARKNAME_##name = CCryName(#name)
 
 DECLARE_ARK_NAME_GLOBAL(0x2BC98A0, WeaponCriticalHitChance);
+DECLARE_ARK_NAME_GLOBAL(0x2BC9420, HealthDrainForPsi);
