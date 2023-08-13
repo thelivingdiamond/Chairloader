@@ -386,6 +386,26 @@ void EntityInspector::InspectPhysics(IEntity* pEnt) {
         if(physicalEntity) {
             auto type = physicalEntity->GetType();
             ImGui::Text("Type: %s", typeNames[type].c_str());
+
+            pe_status_dynamics dynStatus;
+            if (physicalEntity->GetStatus(&dynStatus))
+            {
+                ImGui::BeginDisabled();
+                ImGui::InputFloat3("Velocity", &dynStatus.v.x);
+                ImGui::InputFloat3("Ang. Velocity", &dynStatus.w.x);
+                ImGui::InputFloat3("Accel.", &dynStatus.a.x);
+                ImGui::InputFloat3("Ang. Accel.", &dynStatus.wa.x);
+                ImGui::InputFloat3("Mass Center", &dynStatus.centerOfMass.x);
+                ImGui::InputFloat("Submerged Fract.", &dynStatus.submergedFraction);
+                ImGui::InputFloat("Mass", &dynStatus.mass);
+                ImGui::InputFloat("Energy", &dynStatus.energy);
+                ImGui::InputInt("Contacts", &dynStatus.nContacts);
+                ImGui::EndDisabled();
+            }
+            else
+            {
+                ImGui::Text("Failed to get dynamics status");
+            }
         }
         if (ImGui::Button("Apply Force")) {
             pProxy->AddImpulse(-1, pEnt->GetPos(), m_force, false, 1.0);
