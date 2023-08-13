@@ -106,7 +106,10 @@ public:
 	TArkAudioSwitch() = default;
 	TArkAudioSwitch(const char* sAudioSwitchName) : ArkAudioSwitch(sAudioSwitchName) {}
 
-	void SetState(T _state, IEntity* _pEntity) const;
+	void SetState(T _state, IEntity* _pEntity) const
+	{
+		FSetState(this, _state, _pEntity);
+	}
 
 	bool LoadState(T stateId, const char* sAudioTriggerName)
 	{
@@ -118,4 +121,6 @@ public:
 	TArkAudioSwitch(const char* _arg0_);
 	bool LoadState(T _arg0_, const char* _arg1_);
 #endif
+
+	static inline auto FSetState = PreyFunction<void(TArkAudioSwitch const* const _this, T _state, IEntity * _pEntity)>(0x132BC80);
 };
