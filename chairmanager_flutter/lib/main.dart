@@ -50,8 +50,8 @@ class MyApp extends ConsumerWidget {
     return  FluentApp(
       theme: FluentThemeData(
           brightness: Brightness.dark,
-          accentColor: Colors.purple,
-          scaffoldBackgroundColor: Color.fromARGB(255, 30, 30, 30),
+          accentColor: material.Colors.deepPurple.toAccentColor(),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 30, 30, 30),
           // acrylicBackgroundColor: Colors.transparent,
           navigationPaneTheme: const NavigationPaneThemeData(
             backgroundColor: Color.fromARGB(255, 30, 30, 30),
@@ -299,13 +299,14 @@ class _HomeState extends ConsumerState<Home> with WindowListener{
                     title: const Text("Mod Config"),
                     body: const ConfigPane(),
                   ),
-                  PaneItem(
-                    icon: const Icon(material.Icons.folder, size: 18,),
-                    title: const Text("Asset Viewer"),
-                    body: Container(
-                      child: const AssetPane(),
-                    ),
-                  ),
+                  // TODO: Make Asset Viewer Usable
+                  // PaneItem(
+                  //   icon: const Icon(material.Icons.folder, size: 18,),
+                  //   title: const Text("Asset Viewer"),
+                  //   body: Container(
+                  //     child: const AssetPane(),
+                  //   ),
+                  // ),
                   PaneItem(
                     icon: const Icon(material.Icons.edit_note, size: 18,),
                     title: const Text("Log"),

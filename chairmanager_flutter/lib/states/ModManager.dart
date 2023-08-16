@@ -82,4 +82,11 @@ class ModManager extends StateNotifier<ModList> {
     setModLoadOrderBelow(mod, getModByIndex(mod.loadOrder + 1));
   }
 
+  void enableMod(Mod mod, bool enabled){
+    // get mod from the list
+    Mod modToEnable = getMod(mod.modName);
+    // set enabled to true
+    modToEnable.enabled = enabled;
+  }
+
 }
