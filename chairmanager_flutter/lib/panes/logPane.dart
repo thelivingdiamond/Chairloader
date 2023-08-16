@@ -1,5 +1,6 @@
 import 'package:chairmanager_flutter/panes/paneThemes.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:chairmanager_flutter/log/log.dart';
 
@@ -16,6 +17,17 @@ class _LogPaneState extends State<LogPane> {
 
   bool _isMessageFiltered(OutputEvent event) {
     return event.level.index <= (_filterLevel.index-1);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // if debug mode, log everything, otherwise, only log info and above
+    if (kDebugMode) {
+      _filterLevel = Level.verbose;
+    } else {
+      _filterLevel = Level.info;
+    }
   }
 
   @override

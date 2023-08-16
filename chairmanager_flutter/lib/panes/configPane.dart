@@ -153,7 +153,7 @@ class ModConfigTabBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child:  mod.configFile == null ? TreeView(
+        child:  mod.configFile != null ? TreeView(
           shrinkWrap: false,
           itemExtent: 36,
           items: (){
