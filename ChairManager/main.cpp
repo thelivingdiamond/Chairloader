@@ -2,6 +2,7 @@
 // Created by theli on 8/1/2022.
 //
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <WinShell/WinShell.h>
 #include <shellapi.h>
 #include <d3d11.h>
 #include <cstdio>
@@ -50,5 +51,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		return -1;
 	}
 
+	WinShell::CloseAllDialogs();
 	return 0;
 }

@@ -47,6 +47,9 @@ struct DialogResult
 //! Shows a file open dialog.
 std::future<DialogResult> ShowOpenDialog(const DialogOptions& opts);
 
+//! Sends a request to close all open dialogs.
+void CloseAllDialogs();
+
 //! Shows a file open dialog in ImGui API-style.
 //! If the dialog is already visible, it's options are not updated.
 //! Use ImUpdateFileOpenDialog to poll for events.

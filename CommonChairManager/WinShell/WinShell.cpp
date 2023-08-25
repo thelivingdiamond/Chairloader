@@ -8,19 +8,111 @@
 namespace WinShell
 {
 
+std::mutex g_AllFileWindowsMutex;
+std::set<HWND> g_AllFileWindows;
+
 std::map<ImGuiID, std::future<DialogResult>> g_ImWindows;
 
 struct CComRaii : NoCopy
 {
 	CComRaii()
 	{
-		if (CoInitializeEx(nullptr, COINIT_MULTITHREADED | COINIT_DISABLE_OLE1DDE) != S_OK)
+		if (CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE) != S_OK)
 			throw std::runtime_error("CoInitializeEx failed");
 	}
 
 	~CComRaii()
 	{
 		CoUninitialize();
+	}
+};
+
+// I hate COM so fucking much...
+class FileDialogEvents : public IFileDialogEvents
+{
+public:
+	HWND m_hWnd = nullptr;
+
+	FileDialogEvents() {}
+	~FileDialogEvents() {}
+
+	// IUnknown
+	STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override
+	{
+		if (!ppvObject)
+			return E_POINTER;
+
+		if (IsEqualIID(riid, __uuidof(IUnknown)))
+		{
+			*ppvObject = (IUnknown*)this;
+			return S_OK;
+		}
+
+		if (IsEqualIID(riid, __uuidof(IFileDialogEvents)))
+		{
+			*ppvObject = (IFileDialogEvents*)this;
+			return S_OK;
+		}
+
+		return E_NOINTERFACE;
+	}
+	STDMETHODIMP_(ULONG) AddRef() override { return 1; };
+	STDMETHODIMP_(ULONG) Release() override { return 1; }
+
+	// IFileDialogEvents
+	STDMETHODIMP OnFileOk(IFileDialog* pfd) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnFolderChanging(IFileDialog* pfd, IShellItem* psiFolder) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnFolderChange(IFileDialog* pfd) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnSelectionChange(IFileDialog* pfd) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnShareViolation(IFileDialog* pfd, IShellItem* psi, FDE_SHAREVIOLATION_RESPONSE* pResponse) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnTypeChange(IFileDialog* pfd) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+	STDMETHODIMP OnOverwrite(IFileDialog* pfd, IShellItem* psi, FDE_OVERWRITE_RESPONSE* pResponse) override
+	{
+		UpdateHwnd(pfd);
+		return S_OK;
+	}
+
+private:
+	void UpdateHwnd(IFileDialog* pfd)
+	{
+		if (m_hWnd)
+			return;
+
+		CComPtr<IOleWindow> pWindow;
+
+		if (SUCCEEDED(pfd->QueryInterface(&pWindow)))
+		{
+			if (SUCCEEDED(pWindow->GetWindow(&m_hWnd)) && m_hWnd)
+			{
+				// Add to the global list
+				std::scoped_lock lock(g_AllFileWindowsMutex);
+				g_AllFileWindows.insert(m_hWnd);
+			}
+		}
 	}
 };
 
@@ -42,6 +134,11 @@ std::future<WinShell::DialogResult> WinShell::ShowOpenDialog(const DialogOptions
 			CComPtr<IFileOpenDialog> pFileDialog;
 			if (FAILED(CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFileDialog))))
 				throw std::runtime_error("CoCreateInstance failed");
+
+			// Register the event handler
+			DWORD eventHandlerCookie = 0;
+			FileDialogEvents eventHandler;
+			pFileDialog->Advise(&eventHandler, &eventHandlerCookie);
 
 			// Set title
 			pFileDialog->SetTitle(ConvertUTF8ToWide(opts.title).c_str());
@@ -107,6 +204,15 @@ std::future<WinShell::DialogResult> WinShell::ShowOpenDialog(const DialogOptions
 			// Show the dialog
 			HRESULT hr = pFileDialog->Show(nullptr);
 
+			if (eventHandler.m_hWnd)
+			{
+				// Remove from the global list
+				std::scoped_lock lock(g_AllFileWindowsMutex);
+				g_AllFileWindows.erase(eventHandler.m_hWnd);
+			}
+
+			pFileDialog->Unadvise(eventHandlerCookie);
+
 			if (hr == S_OK)
 			{
 				CComPtr<IShellItem> pSelectedItem;
@@ -131,6 +237,16 @@ std::future<WinShell::DialogResult> WinShell::ShowOpenDialog(const DialogOptions
 				throw std::runtime_error("pFileDialog->Show failed");
 			}
 		});
+}
+
+void WinShell::CloseAllDialogs()
+{
+	std::scoped_lock lock(g_AllFileWindowsMutex);
+
+	for (HWND hWnd : g_AllFileWindows)
+	{
+		SendNotifyMessageW(hWnd, WM_CLOSE, 0, 0);
+	}
 }
 
 bool WinShell::ImShowFileOpenDialog(const char* strId, const DialogOptions& opts)
