@@ -1,6 +1,6 @@
 #include <Manager/GamePath.h>
+#include <WinShell/WinShell.h>
 #include "GamePathDialog.h"
-#include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include "../ChairManager.h"
 
 
@@ -59,24 +59,22 @@ GamePathDialog::Result GamePathDialog::ShowContents()
 
     if (ImGui::Button("Browse..."))
     {
-        // Directory selection is broken
-        //ImGuiFileDialog::Instance()->OpenDialog("GamePathDialog", "Choose File", nullptr, ".");
-        ImGui::SetNextWindowSize({ 800, 500 });
-        ImGuiFileDialog::Instance()->OpenDialog("GamePathDialog", "Choose File", ".exe", ".");
+        WinShell::DialogOptions opts;
+        opts.title = "Choose the Prey Executable...";
+        opts.fileTypes.push_back({ "Prey executable (Prey.exe)", "Prey.exe" });
+        WinShell::ImShowFileOpenDialog("GamePathDialog", opts);
     }
 
-    if (ImGuiFileDialog::Instance()->Display("GamePathDialog"))
+    WinShell::DialogResult dialogResult;
+
+    if (WinShell::ImUpdateFileOpenDialog("GamePathDialog", &dialogResult))
     {
-        // action if OK
-        if (ImGuiFileDialog::Instance()->IsOk())
+        if (dialogResult.isOk)
         {
-            std::string filePathName = ImGuiFileDialog::Instance()->GetFilePathName();
+            std::string filePathName = dialogResult.filePath.u8string();
             snprintf(m_PathInput, sizeof(m_PathInput), "%s", filePathName.c_str());
             ValidatePath();
         }
-
-        // close
-        ImGuiFileDialog::Instance()->Close();
     }
 
     if (!m_ValidationError.empty())

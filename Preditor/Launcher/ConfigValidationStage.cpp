@@ -2,7 +2,7 @@
 // Created by theli on 10/28/2022.
 //
 
-#include <ImGuiFileDialog/ImGuiFileDialog.h>
+#include <WinShell/WinShell.h>
 #include "ConfigValidationStage.h"
 #include "App/AppImGui.h"
 #include "ImGui/imgui_stdlib.h"
@@ -102,7 +102,12 @@ void ConfigValidationStage::ShowGamePathsWindow(bool* bOpen)
         ImGui::SameLine();
 
         if (ImGui::Button(ICON_MD_MORE_HORIZ "##GAMEPATHSELECTION"))
-            ImGuiFileDialog::Instance()->OpenModal("SelectGamePathDialog", "Select Game Directory", nullptr, ".");
+        {
+            WinShell::DialogOptions opts;
+            opts.title = "Select Game Directory...";
+            opts.flags |= WinShell::FL_PICK_FOLDERS;
+            WinShell::ImShowFileOpenDialog("SelectGamePathDialog", opts);
+        }
 
         ImGui::NewLine();
         ImGui::NewLine();
@@ -122,16 +127,15 @@ void ConfigValidationStage::ShowGamePathsWindow(bool* bOpen)
     }
     ImGui::End();
 
-    ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos()), ImGuiCond_Appearing);
-    if (ImGuiFileDialog::Instance()->Display("SelectGamePathDialog"))
+    WinShell::DialogResult dialogResult;
+
+    if (WinShell::ImUpdateFileOpenDialog("SelectGamePathDialog", &dialogResult))
     {
-        if (ImGuiFileDialog::Instance()->IsOk())
+        if (dialogResult.isOk)
         {
-            m_GamePath = ImGuiFileDialog::Instance()->GetCurrentPath();
+            m_GamePath = dialogResult.filePath.u8string();
             m_pConfig->SetRawGamePath(fs::u8path(m_GamePath), nullptr);
         }
-
-        ImGuiFileDialog::Instance()->Close();
     }
 }
 

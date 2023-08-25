@@ -7,7 +7,6 @@
 //#include <archive_entry.h>
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_stdlib.h"
-#include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
@@ -357,4 +356,7 @@ private:
     void restoreStartupCinematics();
 
     void RunAsyncDeploy();
+
+    //! Opens the file select dialog for mod installation.
+    void OpenInstallModDialog(bool isLegacy);
 };

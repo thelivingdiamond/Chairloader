@@ -9,6 +9,7 @@
 #include <Manager/XMLMerger2.h>
 #include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>
+#include <WinShell/WinShell.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "ChairWizards/GamePathDialog.h"
@@ -240,7 +241,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("Files", true)) {
             if (ImGui::MenuItem("Install Mod")) {
-                ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", modToLoadPath.u8string(), 1, nullptr);
+                OpenInstallModDialog(false);
             }
             ImGui::Separator();
             if(ImGui::MenuItem("Uninstall Chairloader")){
@@ -740,11 +741,7 @@ void ChairManager::DrawModList() {
             ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
 
             if(ImGui::Button("Select File")){
-                m_bInstallLegacyMod = installType == 1;
-                if(!m_bInstallLegacyMod)
-                    ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Mod File", "Mod Archive (*.zip *.7z){.zip,.7z}", fileToLoad.u8string(), 1, nullptr);
-                else
-                    ImGuiFileDialog::Instance()->OpenModal("ChooseModFile", "Choose Legacy Mod File", "Legacy Mod File (*.pak){.pak}", fileToLoad.u8string(), 1, nullptr);
+                OpenInstallModDialog(installType == 1);
                 ImGui::CloseCurrentPopup();
             }
             ImGui::SameLine();
@@ -755,16 +752,18 @@ void ChairManager::DrawModList() {
             ImGui::EndPopup();
         }
         ImGui::EndChild();
-        ImVec2 maxSize = {(float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN)};
-        ImVec2 minSize = {maxSize.x * 0.3f, maxSize.y * 0.3f};
-        ImGui::SetNextWindowSize({maxSize.x * 0.5f, maxSize.y * 0.5f}, ImGuiCond_FirstUseEver);
-        if(ImGuiFileDialog::Instance()->Display("ChooseModFile", ImGuiWindowFlags_None, minSize, maxSize)){
+
+        WinShell::DialogResult result;
+
+        if(WinShell::ImUpdateFileOpenDialog("ChooseModFile", &result)) {
             // action if OK
-            if (ImGuiFileDialog::Instance()->IsOk())
+            if (result.isOk)
             {
                 try {
-                    modToLoadPath = ImGuiFileDialog::Instance()->GetCurrentPath();
-                    fileToLoad = ImGuiFileDialog::Instance()->GetFilePathName();
+                    // WTF?
+                    modToLoadPath = result.filePath;
+                    fileToLoad = modToLoadPath.filename();
+                    modToLoadPath = modToLoadPath.parent_path();
                     log(severityLevel::trace, "File To Load: %s", fileToLoad.u8string());
                     if (!(fileToLoad).empty()) {
                         fs::remove_all("temp");
@@ -775,7 +774,6 @@ void ChairManager::DrawModList() {
                     std::cerr << exc.what() << std::endl;
                 }
             }
-            ImGuiFileDialog::Instance()->Close();
         }
         ImGui::EndTabItem();
     }
@@ -2238,6 +2236,25 @@ void ChairManager::RunAsyncDeploy() {
     } else {
         overlayLog(severityLevel::error, "Mods are already being deployed");
     }
+}
+
+void ChairManager::OpenInstallModDialog(bool isLegacy)
+{
+    m_bInstallLegacyMod = isLegacy;
+    WinShell::DialogOptions fileDialogOpts;
+
+    if (!m_bInstallLegacyMod)
+    {
+        fileDialogOpts.title = "Choose Mod File...";
+        fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip; *.7z)", "*.zip;*.7z" });
+    }
+    else
+    {
+        fileDialogOpts.title = "Choose Legacy Mod File...";
+        fileDialogOpts.fileTypes.push_back({ "Legacy Mod File (*.pak)", "*.pak" });
+    }
+
+    WinShell::ImShowFileOpenDialog("ChooseModFile", fileDialogOpts);
 }
 
 void ChairManager::SwitchToUninstallWizard() {

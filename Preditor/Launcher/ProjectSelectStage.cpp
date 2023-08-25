@@ -3,7 +3,7 @@
 //
 
 #include <Preditor/Main/IProject.h>
-#include <ImGuiFileDialog/ImGuiFileDialog.h>
+#include <WinShell/WinShell.h>
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
 #include "App/AppImGui.h"
@@ -80,23 +80,24 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
 
             if (ImGui::Button("Open Project"))
             {
-                ImGuiFileDialog::Instance()->OpenModal(
-                    "ProjectSelectStage::OpenProject",
-                    "Select Project Directory", nullptr, ".");
+                WinShell::DialogOptions opts;
+                opts.title = "Select Project Directory...";
+                opts.flags |= WinShell::FL_PICK_FOLDERS;
+                WinShell::ImShowFileOpenDialog("ProjectSelectStage::OpenProject", opts);
             }
             ImGui::SameLine();
 
             if (ImGui::Button("Quit"))
                 SetStageFinished(nullptr);
 
-            if (ImGuiFileDialog::Instance()->Display("ProjectSelectStage::OpenProject"))
-            {
-                if (ImGuiFileDialog::Instance()->IsOk())
-                {
-                    initiateLoadProject(fs::u8path(ImGuiFileDialog::Instance()->GetCurrentPath()));
-                }
+            WinShell::DialogResult dialogResult;
 
-                ImGuiFileDialog::Instance()->Close();
+            if (WinShell::ImUpdateFileOpenDialog("ProjectSelectStage::OpenProject", &dialogResult))
+            {
+                if (dialogResult.isOk)
+                {
+                    initiateLoadProject(dialogResult.filePath);
+                }
             }
         }
 

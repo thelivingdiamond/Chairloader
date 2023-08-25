@@ -60,6 +60,9 @@ set(SOURCE_FILES
 	Manager/PugiUtils.h
 	Manager/XMLMerger2.cpp
 	Manager/XMLMerger2.h
+
+	WinShell/WinShell.cpp
+	WinShell/WinShell.h
 )
 
 add_library(CommonChairManager STATIC
