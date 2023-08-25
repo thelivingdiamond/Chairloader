@@ -78,6 +78,7 @@ target_include_directories(CommonChairManager PUBLIC
 target_link_libraries(CommonChairManager PUBLIC
 	D3D11.lib
 	fmt::fmt-header-only
+	Common
 )
 
 target_precompile_headers(CommonChairManager PUBLIC Manager/pch.h)

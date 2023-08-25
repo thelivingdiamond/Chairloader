@@ -1,13 +1,18 @@
 //
 // Created by theli on 8/1/2022.
 //
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <shellapi.h>
 #include <d3d11.h>
-#include <windows.h>
 #include <cstdio>
 #include <StackWalker.h>
 #include "UI.h"
 #include <gtest/gtest.h>
 #include "CrashHandler.h"
+#include <Prey/CryCore/Platform/platform_impl.inl>
+
+// TODO 2023-08-25: Remove this
+struct ChairloaderGlobalEnvironment* gCL;
 
 #define ERROR_TEXT "Unhandled exception on main thread:\n"
 

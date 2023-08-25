@@ -3,6 +3,10 @@
 #include <fstream>
 #include <chrono>
 #include <Manager/BinDiff.h>
+#include <Prey/CryCore/Platform/platform_impl.inl>
+
+// TODO 2023-08-25: Remove this
+struct ChairloaderGlobalEnvironment* gCL;
 
 static std::vector<uint8_t> ReadFile(const char* path)
 {
