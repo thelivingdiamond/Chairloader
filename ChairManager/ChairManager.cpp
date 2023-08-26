@@ -1546,21 +1546,33 @@ void ChairManager::UninstallMod(std::string &modName) {
 }
 
 void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
+    fs::path tempDir = fs::absolute("./temp");
+    fs::path outPath = tempDir;
 
     try {
-        ZipUtils::ExtractFolder(path / fileName, "temp");
+        ZipUtils::ExtractFolder(path / fileName, outPath);
     }
     catch (std::exception &e) {
         overlayLog(severityLevel::error, "Could not extract %s: %s", fileName.u8string().c_str(), e.what());
         return;
     }
 
+    // See if the archive only contains a directory
+    std::vector<fs::directory_entry> outPathFileList;
+    for (const auto& i : fs::directory_iterator(outPath))
+    {
+        outPathFileList.push_back(i);
+    }
+
+    if (outPathFileList.size() == 1 && outPathFileList[0].is_directory())
+        outPath = outPathFileList[0].path();
+
     if(!m_bInstallLegacyMod) {
-        if (exists(fs::path("./temp/ModInfo.xml"))) {
+        if (exists(outPath / "ModInfo.xml")) {
             auto mod = new Mod;
-            if (LoadModInfoFile(fs::path("./temp"), mod, true)) {
+            if (LoadModInfoFile(outPath, mod, true)) {
                 try {
-                    fs::copy("./temp/", GetGamePath() / "Mods" / mod->modName,
+                    fs::copy(outPath, GetGamePath() / "Mods" / mod->modName,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                     log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
                     DetectNewMods();
@@ -1576,11 +1588,11 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
             log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
         }
     } else {
-        if (exists(fs::path("./temp/"))) {
+        if (exists(outPath)) {
             try {
                 auto BaseModFolder = fileName.filename().replace_extension("");
                 log(severityLevel::info, "Installing Legacy Mod: %s", BaseModFolder.u8string().c_str());
-                fs::copy("./temp/", GetGamePath() / "Mods" / "Legacy" / BaseModFolder,
+                fs::copy(outPath, GetGamePath() / "Mods" / "Legacy" / BaseModFolder,
                          fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 log(severityLevel::info, "Mod Installation Succeeded: %s loaded", BaseModFolder.u8string().c_str());
                 loadModInfoFiles();
@@ -1592,7 +1604,7 @@ void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
             log(severityLevel::error, "Mod Installation Failed: file not extracted");
         }
     }
-    fs::remove_all("./temp/");
+    fs::remove_all(tempDir);
 }
 
 void ChairManager::EnableMod(std::string modName, bool enabled) {

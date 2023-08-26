@@ -3,3 +3,6 @@
 *-Crash-*.txt
 
 /imgui.ini
+
+# Temporary files
+/temp
