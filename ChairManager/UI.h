@@ -34,6 +34,7 @@ public:
 	static void RequestExit();
     static void ResetDX11();
 	static void ReloadFonts(float dpiScale);
+	static std::chrono::steady_clock::duration GetNextFrameTimeout();
 };
 
 #endif
