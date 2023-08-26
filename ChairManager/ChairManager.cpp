@@ -181,7 +181,7 @@ void ChairManager::SwitchToInstallWizard()
         log(severityLevel::info, "Chairloader not found, starting the wizard");
         m_State = State::InstallWizard;
     }
-#ifndef _DEBUG
+#ifndef DEBUG_BUILD
     else if(VersionCheck::getInstalledChairloaderVersion() < VersionCheck::getPackagedChairloaderVersion()) {
         log(severityLevel::info, "Chairloader version mismatch, running install wizard");
         m_State = State::InstallWizard;
@@ -247,7 +247,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
             if(ImGui::MenuItem("Uninstall Chairloader")){
                 SwitchToUninstallWizard();
             }
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
             ImGui::Separator();
             ImGui::MenuItem("Show Demo Window", nullptr, &showDemo);
 #endif
@@ -270,7 +270,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
             ImGui::EndMenu();
         }
         // Print test overlay log messages for each severity level
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
         if (ImGui::BeginMenu("Log", true)) {
             if (ImGui::MenuItem("Info")) {
                 overlayLog(severityLevel::info, "Info");
@@ -355,7 +355,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         DrawAssetView();
         DrawLog();
         DrawDLLSettings();
-#ifdef _DEBUG
+#ifdef DEBUG_BUILD
         DrawDebug();
 #endif
         ImGui::EndTabBar();

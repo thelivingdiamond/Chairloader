@@ -184,7 +184,7 @@ private:
     void DrawDeploySettings();
     void DrawLog();
 
-    // _DEBUG only tab
+    // DEBUG_BUILD only tab
     void DrawDebug();
 
     float OverlayWidth = 20.0f;
@@ -292,7 +292,7 @@ private:
     // light green
     ImColor debugColor = {120,200,120};
 
-    #ifdef _DEBUG
+    #ifdef DEBUG_BUILD
         severityLevel filterLevel = severityLevel::trace;
     #else
         severityLevel filterLevel = severityLevel::info;
