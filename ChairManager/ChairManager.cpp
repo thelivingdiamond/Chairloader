@@ -1848,6 +1848,8 @@ void ChairManager::Init() {
 
 void ChairManager::DrawDebug() {
     if(ImGui::BeginTabItem("DEBUG")) {
+        ImGui::Text("Draw Time: %.3f s", ImGui::GetTime());
+
         ImGui::Text("%.2f", ImGui::GetWindowViewport()->DpiScale);
         if(ImGui::Button("Scale 2x")){
             dpiScale = 2.0f;

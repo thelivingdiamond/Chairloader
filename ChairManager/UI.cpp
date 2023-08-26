@@ -1,8 +1,11 @@
+#define NOMINMAX
+
 #include <memory>
 #include <Manager/ImGuiFontList.h>
 #include "UI.h"
 #include "ChairManager.h"
 
+#include "ImGui/imgui_internal.h"
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
 
@@ -37,7 +40,60 @@ private:
 
 FontLogger g_FontLogger;
 
+//! The last time the main loop was running.
+std::chrono::steady_clock::time_point g_LastUpdateTime;
+
+//! The last time user did something to one of the windows.
+std::chrono::steady_clock::time_point g_LastInteractionTime;
+
+void ResetInteractionTimer()
+{
+    g_LastInteractionTime = std::chrono::steady_clock::now();
+}
+
+void ResetInteractionTimerOnMsg(UINT msg)
+{
+    switch (msg)
+    {
+    case WM_SIZE:
+    case WM_DPICHANGED:
+    case WM_MOUSEMOVE:
+    case WM_MOUSELEAVE:
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDBLCLK:
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONDBLCLK:
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONDBLCLK:
+    case WM_XBUTTONDOWN:
+    case WM_XBUTTONDBLCLK:
+    case WM_LBUTTONUP:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONUP:
+    case WM_XBUTTONUP:
+    case WM_MOUSEWHEEL:
+    case WM_MOUSEHWHEEL:
+    case WM_KEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYDOWN:
+    case WM_SYSKEYUP:
+    case WM_SETFOCUS:
+    case WM_KILLFOCUS:
+    case WM_CHAR:
+    case WM_SETCURSOR:
+    case WM_DISPLAYCHANGE:
+        ResetInteractionTimer();
+        break;
+    }
+}
+
 } // namespace
+
+LRESULT ImGui_ImplWin32_WndProcHandler_PlatformWindow_Hook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    ResetInteractionTimerOnMsg(msg);
+    return false;
+}
 
 bool UI::CreateDeviceD3D(HWND hWnd)
 {
@@ -116,6 +172,8 @@ void UI::CleanupDeviceD3D()
 
 LRESULT WINAPI UI::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    ResetInteractionTimerOnMsg(msg);
+
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
 
@@ -150,6 +208,7 @@ LRESULT WINAPI UI::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     default:
         break;
     }
+
     return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
@@ -226,6 +285,12 @@ void UI::Render()
 
     while (bIsRunning)
     {
+        std::chrono::steady_clock::duration msgTimeout = GetNextFrameTimeout();
+        MsgWaitForMultipleObjects(
+            0, nullptr, false,
+            std::chrono::duration_cast<std::chrono::milliseconds>(msgTimeout).count(),
+            QS_ALLINPUT);
+
         MSG msg;
         while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
         {
@@ -291,4 +356,50 @@ void UI::ReloadFonts(float dpiScale)
 {
     fs::path root = fs::current_path();
     fontList.LoadFile(root / "Fonts/FontList.xml", root, &g_FontLogger, dpiScale);
+}
+
+std::chrono::steady_clock::duration UI::GetNextFrameTimeout()
+{
+    //! The time the app will continue to refresh after the user has stopped interacting
+    constexpr auto WAIT_DELAY = std::chrono::seconds(2);
+
+    auto now = std::chrono::steady_clock::now();
+    auto frameDelta = now - g_LastUpdateTime;
+    g_LastUpdateTime = now;
+
+    // See if any windows are focused
+    auto& viewports = GImGui->Viewports;
+    bool anyActive = false;
+    HWND hActiveWnd = GetActiveWindow();
+
+    for (ImGuiViewport* pVP : viewports)
+    {
+        auto hWnd = (HWND)pVP->PlatformHandleRaw;
+        if (hWnd && hWnd == hActiveWnd)
+        {
+            anyActive = true;
+            break;
+        }
+    }
+
+    if (anyActive)
+    {
+        // User is interacting with the window
+        g_LastInteractionTime = now;
+    }
+    else
+    {
+        auto interactionDelta = now - g_LastInteractionTime;
+
+        if (interactionDelta > WAIT_DELAY)
+        {
+            // Wait for a while for a new message
+            return std::chrono::hours(1);
+        }
+    }
+
+    // Limit FPS to a sane value in case v-sync fails
+    auto fpsWaitTime = std::chrono::microseconds(1'000'000 / 160) - frameDelta;
+    fpsWaitTime = std::max(fpsWaitTime, std::chrono::nanoseconds(0));
+    return fpsWaitTime;
 }
