@@ -349,8 +349,7 @@ private:
         m_bLoadEditor = false,
         m_bDevMode = true,
         m_bTrainer = true,
-        m_bNoRandom = false,
-        m_bAuxGeom = false;
+        m_bNoRandom = false;
     void launchGame();
 
     void removeStartupCinematics();

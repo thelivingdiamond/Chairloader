@@ -99,10 +99,6 @@ void ChairManager::LoadModManagerConfig()
         if(!launchOptionsNode.attribute("NoRandom"))
             launchOptionsNode.append_attribute("NoRandom").set_value(false);
         m_bNoRandom = launchOptionsNode.attribute("NoRandom").as_bool();
-        //AuxGeom
-        if(!launchOptionsNode.attribute("AuxGeom"))
-            launchOptionsNode.append_attribute("AuxGeom").set_value(false);
-        m_bAuxGeom = launchOptionsNode.attribute("AuxGeom").as_bool();
         //Trainer
         if(!launchOptionsNode.attribute("Trainer"))
             launchOptionsNode.append_attribute("Trainer").set_value(false);
@@ -706,8 +702,7 @@ void ChairManager::DrawModList() {
             // bool m_bLoadChairloader,
             //        m_bLoadEditor,
             //        m_bDevMode,
-            //        m_bNoRandom,
-            //        m_bAuxGeom;
+            //        m_bNoRandom;
             if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
                 saveModManagerConfigFile();
@@ -726,10 +721,6 @@ void ChairManager::DrawModList() {
             }
             if(ImGui::Checkbox("No Random", &m_bNoRandom)){
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
-                saveModManagerConfigFile();
-            }
-            if(ImGui::Checkbox("Aux Geometry Renderer", &m_bAuxGeom)) {
-                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("AuxGeom").set_value(m_bAuxGeom);
                 saveModManagerConfigFile();
             }
             ImGui::InputText("Custom Launch Options", &m_customArgs);
@@ -2348,7 +2339,6 @@ void ChairManager::launchGame() {
     //        m_bLoadEditor -editor
     //        m_bDevMode -devmode
     //        m_bNoRandom -norandom
-    //        m_bAuxGeom -auxgeom
     if(!m_bLoadChairloader){
         m_chairloaderLaunchOptions += L" -nochair";
     }
@@ -2360,9 +2350,6 @@ void ChairManager::launchGame() {
     }
     if(m_bNoRandom){
         m_chairloaderLaunchOptions += L" -norandom";
-    }
-    if(m_bAuxGeom){
-        m_chairloaderLaunchOptions += L" -auxgeom";
     }
     if(m_bTrainer){
         m_chairloaderLaunchOptions += L" -trainer";
