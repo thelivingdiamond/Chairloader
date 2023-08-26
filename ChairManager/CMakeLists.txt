@@ -16,7 +16,6 @@ set(SOURCE_FILES
         main.cpp
         #Miscellaneous
         zipconf.h
-        ./Data/Montserrat-Regular.ttf
         Resources/appicon.rc
         Resources/version.rc.in
         Resources/version.rc

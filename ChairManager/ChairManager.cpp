@@ -1400,14 +1400,7 @@ void ChairManager::Update() {
         OverlayElementWidth = OverlayElementWidth * (dpiScale / oldDpiScaling);
         OverlayElementHeight = OverlayElementHeight * (dpiScale / oldDpiScaling);
         oldDpiScaling = dpiScale;
-//        ImGui::GetFont()->Scale *= dpiScale;
-        ImGui::GetIO().Fonts->Clear();
-        if(fs::exists("Montserrat-Regular.ttf"))
-            ImGui::GetIO().Fonts->AddFontFromFileTTF("Montserrat-Regular.ttf", (int)(defaultTextSize * dpiScale));
-        else
-            ImGui::GetIO().Fonts->AddFontDefault();
-//        ImGui::GetIO().Fonts->
-//        if(!ImGui::GetIO().Fonts->IsBuilt())
+        UI::ReloadFonts(dpiScale);
         ImGui::GetIO().Fonts->Build();
         UI::ResetDX11();
         log(severityLevel::trace, "DPI Scale Changed to %.2f", dpiScale);
