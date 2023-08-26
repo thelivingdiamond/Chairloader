@@ -12,10 +12,10 @@ public:
     };
 
     //! Loads an XML file.
-    void LoadFile(const fs::path& path, const fs::path& rootPath, ILogger* pLog);
+    void LoadFile(const fs::path& path, const fs::path& rootPath, ILogger* pLog, float dpiScale = 1.0f);
 
     //! Loads the <FontList> XML node.
-    void LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogger* pLog);
+    void LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogger* pLog, float dpiScale = 1.0f);
 
     //! @returns font or nullptr.
     ImFont* FindFont(std::string_view name);

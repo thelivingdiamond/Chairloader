@@ -1,4 +1,5 @@
 #include <memory>
+#include <Manager/ImGuiFontList.h>
 #include "UI.h"
 #include "ChairManager.h"
 
@@ -10,6 +11,33 @@ ID3D11DeviceContext* UI::pd3dDeviceContext = nullptr;
 IDXGISwapChain* UI::pSwapChain = nullptr;
 ID3D11RenderTargetView* UI::pMainRenderTargetView = nullptr;
 bool UI::bIsRunning = false;
+ImGuiFontList UI::fontList;
+
+namespace
+{
+
+class FontLogger : public ImGuiFontList::ILogger
+{
+public:
+    virtual void Log(std::string_view str) override { Log(severityLevel::info, str); }
+    virtual void LogWarning(std::string_view str) override { Log(severityLevel::warning, str); }
+    virtual void LogError(std::string_view str)  override { Log(severityLevel::error, str); }
+
+private:
+    void Log(severityLevel level, std::string_view str)
+    {
+        OutputDebugStringA(std::string(str).c_str());
+
+        if (ChairManager::IsInstantiated())
+        {
+            ChairManager::Get().Log(level, "%s", str);
+        }
+    }
+};
+
+FontLogger g_FontLogger;
+
+} // namespace
 
 bool UI::CreateDeviceD3D(HWND hWnd)
 {
@@ -180,12 +208,7 @@ void UI::Render()
     //! handle DPI awareness
     auto dpi = GetDpiForWindow(hwnd);
     float dpiScale = dpi / 96.0f;
-    const int defaultFontSize = 18;
-    const int fontSize = defaultFontSize * dpiScale;
-    if(fs::exists("./Montserrat-Regular.ttf"))
-        ImGui::GetIO().Fonts->AddFontFromFileTTF("./Montserrat-Regular.ttf", fontSize);
-    else
-        ImGui::GetIO().Fonts->AddFontDefault();
+    ReloadFonts(dpiScale);
     ImGui::GetStyle().ScaleAllSizes(dpiScale);
 
 
@@ -262,4 +285,10 @@ void UI::RequestExit()
 void UI::ResetDX11() {
     ImGui_ImplDX11_InvalidateDeviceObjects();
     ImGui_ImplDX11_CreateDeviceObjects();
+}
+
+void UI::ReloadFonts(float dpiScale)
+{
+    fs::path root = fs::current_path();
+    fontList.LoadFile(root / "Fonts/FontList.xml", root, &g_FontLogger, dpiScale);
 }

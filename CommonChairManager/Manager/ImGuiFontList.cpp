@@ -1,7 +1,7 @@
 #include <fmt/format.h>
 #include <Manager/ImGuiFontList.h>
 
-void ImGuiFontList::LoadFile(const fs::path& path, const fs::path& rootPath, ILogger* pLog)
+void ImGuiFontList::LoadFile(const fs::path& path, const fs::path& rootPath, ILogger* pLog, float dpiScale)
 {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(path.c_str());
@@ -12,10 +12,10 @@ void ImGuiFontList::LoadFile(const fs::path& path, const fs::path& rootPath, ILo
         return;
     }
 
-    LoadXml(doc.first_child(), rootPath, pLog);
+    LoadXml(doc.first_child(), rootPath, pLog, dpiScale);
 }
 
-void ImGuiFontList::LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogger* pLog)
+void ImGuiFontList::LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogger* pLog, float dpiScale)
 {
     ImGuiIO& io = ImGui::GetIO();
 
@@ -118,6 +118,7 @@ void ImGuiFontList::LoadXml(pugi::xml_node node, const fs::path& rootPath, ILogg
             }
 
             float size = fontFileNode.attribute("size").as_float(14);
+            size = floor(size * dpiScale);
 
             ImFont* pThisFont = io.Fonts->AddFontFromFileTTF(
                 path.u8string().c_str(), // filename

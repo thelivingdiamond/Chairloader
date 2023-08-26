@@ -34,6 +34,7 @@ class ChairMerger;
 
 class ChairManager final : public IChairManager {
 public:
+    static bool IsInstantiated() { return m_spInstance != nullptr; }
     static ChairManager& Get() { return *m_spInstance; }
 
     ChairManager();
