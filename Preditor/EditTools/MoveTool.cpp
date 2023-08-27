@@ -5,16 +5,32 @@
 #include "EditToolManager.h"
 #include "MoveTool.h"
 
-Matrix44 ToImGuizmo(const Matrix44& src)
+/**
+ * Right +X
+ * Up +Y
+ * Forward -Z
+ */
+static const Matrix44 g_ImGuizmoBasis = Matrix44(
+     1.0f,  0.0f,  0.0f,  0.0f,
+     0.0f,  0.0f,  1.0f,  0.0f,
+     0.0f, -1.0f,  0.0f,  0.0f,
+     0.0f,  0.0f,  0.0f,  1.0f
+);
+
+static const Matrix44 g_ImGuizmoBasisInv = g_ImGuizmoBasis.GetInverted();
+
+Matrix44 CryToImGuizmo(const Matrix44& src)
 {
-    Matrix44 dest;
+    Matrix44 dest = g_ImGuizmoBasis * src * g_ImGuizmoBasisInv;
+    dest.Transpose();
+    return dest;
+}
 
-    for (auto row = 0; row < 4; row++)
-    {
-        for (auto col = 0; col < 4; col++)
-            dest[row * 4 + col] = src[col * 4 + row];
-    }
-
+Matrix44 ImGuizmoToCry(const Matrix44& src)
+{
+    Matrix44 dest = src;
+    dest.Transpose();
+    dest = g_ImGuizmoBasisInv * dest * g_ImGuizmoBasis;
     return dest;
 }
 
@@ -77,12 +93,10 @@ void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const Matrix44& projM
     if (activeObj != INVALID_SCENE_OBJECT)
     {
         IObjectManipulator* pManip = pEditor->GetManipulator();
-        Matrix44 projMat2 = projMat.GetTransposed();
-        Matrix44 viewMat2 = viewMat.GetTransposed();
-        Matrix44 objectTM = pManip->GetObjectWorldTM(activeObj).GetTransposed();
+        Matrix44 viewMat2 = CryToImGuizmo(viewMat);
+        Matrix44 objectTM = CryToImGuizmo(pManip->GetObjectWorldTM(activeObj));
 
-        // projMat2.m32 = -1 * projMat2.m32;
-        Matrix44 projMat2_compare = projMat.GetTransposed();
+        Matrix44 projMat2;
         Perspective(90 / 2.0f, 1439.0f / 862.0f, 0.250f, 1024.0f, projMat2.GetData());
 
         ImGuizmo::Manipulate(
@@ -92,7 +106,7 @@ void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const Matrix44& projM
             ImGuizmo::WORLD,
             objectTM.GetData());
 
-        pManip->SetObjectWorldTM(activeObj, Matrix34(objectTM.GetTransposed()));
+        pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM)));
     }
 }
 
