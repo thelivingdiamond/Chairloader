@@ -23,6 +23,12 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     RegisterToolSelectKey("rotate", m_pRotateTool);
     RegisterToolSelectKey("scale", m_pScaleTool);
 
+    gPreditor->pInput->FindAction("transform_tools.toggle_pivot")->AddListener([this](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                m_bPivotCenter ^= 1;
+        });
+
     gPreditor->pInput->FindAction("transform_tools.toggle_tool_space")->AddListener([this](const KeyActionEventArgs& e)
         {
             if (e.isPressed)
@@ -39,6 +45,10 @@ EditTools::EditToolManager::~EditToolManager()
 
 void EditTools::EditToolManager::ShowSelectionUI()
 {
+    if (ImGui::Button(m_bPivotCenter ? ICON_MD_CENTER_FOCUS_WEAK : ICON_MD_TRIP_ORIGIN))
+        m_bPivotCenter ^= 1;
+    ImGui::SameLine();
+
     if (ImGui::Button(m_bWorldTransform ? ICON_MD_LANGUAGE : ICON_MD_VIEW_IN_AR))
         m_bWorldTransform ^= 1;
     ImGui::SameLine();

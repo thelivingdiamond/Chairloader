@@ -34,3 +34,16 @@ void GameEditor::EntityManipulator::SetObjectWorldTM(SceneObjectId id, const Mat
 
     pEnt->SetWorldTM(tm, ENTITY_XFORM_EDITOR);
 }
+
+void GameEditor::EntityManipulator::GetObjectLocalBounds(SceneObjectId id, AABB& aabb)
+{
+    IEntity* pEnt = gEnv->pEntitySystem->GetEntity((EntityId)id);
+
+    if (!pEnt)
+    {
+        CryError("GetObjectLocalBounds called with invalid entity id {}", id);
+        return;
+    }
+
+    pEnt->GetLocalBounds(aabb);
+}

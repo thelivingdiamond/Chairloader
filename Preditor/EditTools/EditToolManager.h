@@ -18,6 +18,9 @@ public:
     //! @returns the current tool (or nullptr, if none).
     EditTool* GetCurrentTool() const { return m_pCurTool; }
 
+    //! @returns whether transformation tools should pivot around the center instead of local origin.
+    bool IsPivotCenter() const { return m_bPivotCenter; }
+
     //! @returns whether transformation tools should tranform in the world space.
     bool IsWorldTransform() const { return m_bWorldTransform; }
 
@@ -33,7 +36,8 @@ private:
     bool m_bIsActive = false;
     ISceneEditor* m_pEditor = nullptr;
     EditTool* m_pCurTool = nullptr;
-    bool m_bWorldTransform = true;
+    bool m_bPivotCenter = true;
+    bool m_bWorldTransform = false;
 
     std::unique_ptr<EditTool> m_pSelectTool;
     std::unique_ptr<EditTool> m_pMoveTool;

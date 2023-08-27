@@ -106,8 +106,18 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
     if (activeObj != INVALID_SCENE_OBJECT)
     {
         IObjectManipulator* pManip = pEditor->GetManipulator();
+        Matrix44 pivotTransform(IDENTITY);
+
+        if (GetManager()->IsPivotCenter())
+        {
+            // Get AABB center
+            AABB aabb;
+            pManip->GetObjectLocalBounds(activeObj, aabb);
+            pivotTransform.SetTranslation(aabb.GetCenter());
+        }
+
         Matrix44 viewMat = CryToImGuizmo(camera.GetViewMatrix());
-        Matrix44 objectTM = CryToImGuizmo(pManip->GetObjectWorldTM(activeObj));
+        Matrix44 objectTM = CryToImGuizmo(pManip->GetObjectWorldTM(activeObj) * pivotTransform);
 
         Matrix44 projMat;
         FrustumFromCamera(camera, bounds.z - bounds.x, bounds.w - bounds.y, projMat.GetData());
@@ -119,10 +129,10 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
             GetManager()->IsWorldTransform() ? ImGuizmo::WORLD : ImGuizmo::LOCAL,
             objectTM.GetData(),
             nullptr, // deltaMatrix
-            m_pSnapKey->IsHeldDown() ? & m_Snap.x : nullptr);
+            m_pSnapKey->IsHeldDown() ? &m_Snap.x : nullptr);
 
         if (manipulated)
-            pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM)));
+            pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM) * pivotTransform.GetInverted()));
     }
 }
 
