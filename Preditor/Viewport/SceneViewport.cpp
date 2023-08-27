@@ -376,8 +376,6 @@ void Viewport::SceneViewport::UpdateCamera()
 		info.nearPlane,
 		info.farPlane,
 		1.0f);
-
-	m_CamInfo.lastFrameView = m_Cam.GetViewMatrix();
 }
 
 void Viewport::SceneViewport::CopyViewCameraTransform()

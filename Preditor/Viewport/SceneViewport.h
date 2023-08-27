@@ -52,9 +52,6 @@ private:
 
         bool bDrawRealWorld = true;
         bool bDrawLookingGlass = true;
-
-        // Last frame's data
-        Matrix44 lastFrameView;
     };
 
     MouseGuard m_InputEnabled;
