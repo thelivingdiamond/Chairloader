@@ -112,7 +112,7 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
         Matrix44 projMat;
         FrustumFromCamera(camera, bounds.z - bounds.x, bounds.w - bounds.y, projMat.GetData());
 
-        ImGuizmo::Manipulate(
+        bool manipulated = ImGuizmo::Manipulate(
             viewMat.GetData(),
             projMat.GetData(),
             m_Op,
@@ -121,7 +121,8 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
             nullptr, // deltaMatrix
             m_pSnapKey->IsHeldDown() ? & m_Snap.x : nullptr);
 
-        pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM)));
+        if (manipulated)
+            pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM)));
     }
 }
 

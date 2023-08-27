@@ -19,7 +19,7 @@ public:
     EditTool* GetCurrentTool() const { return m_pCurTool; }
 
     //! @returns whether transformation tools should tranform in the world space.
-    bool IsWorldTransform() const { return m_bWorldTransforms; }
+    bool IsWorldTransform() const { return m_bWorldTransform; }
 
     //! Shows controls for the tool selection UI.
     void ShowSelectionUI();
@@ -33,7 +33,7 @@ private:
     bool m_bIsActive = false;
     ISceneEditor* m_pEditor = nullptr;
     EditTool* m_pCurTool = nullptr;
-    bool m_bWorldTransforms = true;
+    bool m_bWorldTransform = true;
 
     std::unique_ptr<EditTool> m_pSelectTool;
     std::unique_ptr<EditTool> m_pMoveTool;
