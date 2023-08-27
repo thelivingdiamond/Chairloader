@@ -34,6 +34,8 @@ private:
 
     std::unique_ptr<EditTool> m_pSelectTool;
     std::unique_ptr<ImGuizmoTool> m_pMoveTool;
+    std::unique_ptr<ImGuizmoTool> m_pRotateTool;
+    std::unique_ptr<ImGuizmoTool> m_pScaleTool;
 
     //! Changes the active tool to a different one.
     void SetCurrentTool(EditTool* pTool);

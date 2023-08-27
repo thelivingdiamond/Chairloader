@@ -15,6 +15,8 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
 
     m_pSelectTool = std::make_unique<SelectTool>(this);
     m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE);
+    m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE);
+    m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE);
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
@@ -26,8 +28,8 @@ EditTools::EditToolManager::~EditToolManager()
 
 void EditTools::EditToolManager::ShowSelectionUI()
 {
-    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get() };
-    const char* names[] = { "Select", "Move" };
+    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get(), m_pRotateTool.get(), m_pScaleTool.get() };
+    const char* names[] = { "Select", "Move", "Rotate", "Scale" };
 
     for (size_t i = 0; i < std::size(tools); i++)
     {
