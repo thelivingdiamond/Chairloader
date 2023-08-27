@@ -9,7 +9,7 @@ namespace EditTools
 class ImGuizmoTool : public EditTool
 {
 public:
-    ImGuizmoTool(EditToolManager* pMgr, ImGuizmo::OPERATION operation);
+    ImGuizmoTool(EditToolManager* pMgr, ImGuizmo::OPERATION operation, const Vec3& snap);
     ~ImGuizmoTool();
 
     // EditTool
@@ -18,7 +18,8 @@ public:
 
 private:
     ImGuizmo::OPERATION m_Op = (ImGuizmo::OPERATION)0;
-    IKeyAction* m_pAppendKey = nullptr;
+    Vec3 m_Snap = Vec3(ZERO);
+    IKeyAction* m_pSnapKey = nullptr;
 };
 
 } // namespace EditTools

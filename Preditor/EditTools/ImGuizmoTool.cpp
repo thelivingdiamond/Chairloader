@@ -1,3 +1,4 @@
+#include <Preditor/Input/IPreditorInput.h>
 #include <Preditor/SceneEditor/ISceneEditor.h>
 #include <Preditor/SceneEditor/IObjectManipulator.h>
 #include <Preditor/SceneEditor/SelectionManager.h>
@@ -76,10 +77,12 @@ void FrustumFromCamera(const CCamera& cam, float width, float height, float* m16
 
 } // namespace
 
-EditTools::ImGuizmoTool::ImGuizmoTool(EditToolManager* pMgr, ImGuizmo::OPERATION operation)
+EditTools::ImGuizmoTool::ImGuizmoTool(EditToolManager* pMgr, ImGuizmo::OPERATION operation, const Vec3& snap)
     : EditTool(pMgr)
 {
     m_Op = operation;
+    m_Snap = snap;
+    m_pSnapKey = gPreditor->pInput->FindAction("transform_tools.snap");
 }
 
 EditTools::ImGuizmoTool::~ImGuizmoTool()
@@ -114,7 +117,9 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
             projMat.GetData(),
             m_Op,
             ImGuizmo::WORLD,
-            objectTM.GetData());
+            objectTM.GetData(),
+            nullptr, // deltaMatrix
+            m_pSnapKey->IsHeldDown() ? & m_Snap.x : nullptr);
 
         pManip->SetObjectWorldTM(activeObj, Matrix34(ImGuizmoToCry(objectTM)));
     }

@@ -14,9 +14,9 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pEditor = pEditor;
 
     m_pSelectTool = std::make_unique<SelectTool>(this);
-    m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE);
-    m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE);
-    m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE);
+    m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE, Vec3(0.25f));
+    m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE, Vec3(5));
+    m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE, Vec3(0.25f));
 
     RegisterToolSelectKey("select", m_pSelectTool);
     RegisterToolSelectKey("move", m_pMoveTool);

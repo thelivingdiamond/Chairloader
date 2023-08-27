@@ -53,6 +53,16 @@
         </Action>
     </ActionSet>
 
+    <!-- Transform Tools -->
+    <ActionSet
+        name="transform_tools"
+        description="Transform Tools"
+        priority="60">
+        <Action name="snap" description="Snap To Grid" isModifier="1">
+            <Bind key="lctrl"/>
+        </Action>
+    </ActionSet>
+
     <!-- Tool Selection -->
     <ActionSet
         name="tool_select"
