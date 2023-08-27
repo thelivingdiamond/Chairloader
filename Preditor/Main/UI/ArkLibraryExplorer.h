@@ -24,6 +24,9 @@ private:
     //! Shows a node for an object.
     void ShowObjectNode(const ArkClass* pClass, ArkReflectedObject* pObject, const char* name);
     void ShowObjectNode(const char* className, ArkReflectedObject* pObject, const char* name);
+
+    //! Dumps all reflection data into a JSON file.
+    void DumpClassesToJson();
 };
 
 } // namespace Main

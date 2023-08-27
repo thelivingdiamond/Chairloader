@@ -1,3 +1,4 @@
+#include <boost/json.hpp>
 #include <Prey/ArkCommon/reflection/ArkClass.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/GameDll/ark/ArkGameDataManager.h>
@@ -93,6 +94,47 @@ auto VisitArkProperty(const ArkProperty* pProp, ArkReflectedObject* pObject, T& 
     return visitor(pProp->m_arkType);
 }
 
+std::string_view ArkTypeToString(ArkProperty::EArkType type)
+{
+    switch (type)
+    {
+        case ArkProperty::EArkType::intT:
+            return "intT";
+        case ArkProperty::EArkType::uintT:
+            return "uintT";
+        case ArkProperty::EArkType::boolT:
+            return "boolT";
+        case ArkProperty::EArkType::floatT:
+            return "floatT";
+        case ArkProperty::EArkType::stringT:
+            return "stringT";
+        case ArkProperty::EArkType::crynameT:
+            return "crynameT";
+        case ArkProperty::EArkType::vec2T:
+            return "vec2T";
+        case ArkProperty::EArkType::vec3T:
+            return "vec3T";
+        case ArkProperty::EArkType::objectT:
+            return "objectT";
+        case ArkProperty::EArkType::object_ptrT:
+            return "object_ptrT";
+        case ArkProperty::EArkType::unknownT:
+            return "unknownT";
+        default:
+            return "";
+    }
+}
+
+boost::json::value ArkTypeToJsonValue(ArkProperty::EArkType type)
+{
+    std::string_view s = ArkTypeToString(type);
+
+    if (s.empty())
+        return nullptr;
+
+    return s;
+}
+
 //! Converts ArkProperty value to a string.
 class PropertyToStringVisitor
 {
@@ -137,6 +179,10 @@ void Main::ArkLibraryExplorer::ShowContents()
 {
     if (ImGui::Button("Force Reload"))
         m_pMgr->LoadLibraries(true);
+
+    ImGui::SameLine();
+    if (ImGui::Button("Dump JSON"))
+        DumpClassesToJson();
 
     ImGui::PushFont(gPreditor->pFonts->pMonospace);
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, { 0.0f, 0.0f });
@@ -200,4 +246,38 @@ void Main::ArkLibraryExplorer::ShowObjectNode(const char* className, ArkReflecte
         ShowObjectNode(pClass, pObject, name);
     else
         ImGui::TreeNodeEx(pObject, LEAF_NODE_FLAGS, "%s: %s = < unknown class >", name, className);
+}
+
+void Main::ArkLibraryExplorer::DumpClassesToJson()
+{
+    namespace json = boost::json;
+
+    json::object jRoot;
+    const auto& classMap = ArkClass::GetClasses();
+
+    for (const auto& [className, pClass] : classMap)
+    {
+        json::object jClass;
+        json::object jProps;
+
+        jClass["name"] = pClass->m_name;
+        jClass["baseClass"] = pClass->m_baseClass ? pClass->m_baseClass->m_name : json::value(nullptr);
+
+        for (const auto& [propName, pProperty] : pClass->m_Properties)
+        {
+            json::object jProp;
+            jProp["name"] = pProperty->m_name;
+            jProp["type"] = pProperty->m_typeStr;
+            jProp["arkType"] = ArkTypeToJsonValue(pProperty->m_arkType);
+            jProp["isArray"] = pProperty->IsArray();
+
+            jProps[propName.c_str()] = std::move(jProp);
+        }
+
+        jClass["properties"] = std::move(jProps);
+        jRoot[className.c_str()] = std::move(jClass);
+    }
+
+    std::ofstream file(gPreditor->pPaths->GetUserPath() / "ark_classes.json");
+    file << json::serialize(jRoot) << "\n";
 }

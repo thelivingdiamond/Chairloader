@@ -45,6 +45,7 @@ target_include_directories(Preditor.Main PRIVATE
 )
 
 target_link_libraries(Preditor.Main
+	Boost::json
 	Chairloader.Tools.Preditor
 )
 
