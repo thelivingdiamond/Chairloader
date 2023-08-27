@@ -1,4 +1,4 @@
-#include <Prey/CryRenderer/IRenderer.h>
+#include <Preditor/Input/IPreditorInput.h>
 #include "EditTool.h"
 #include "EditToolManager.h"
 #include "SelectTool.h"
@@ -17,6 +17,11 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE);
     m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE);
     m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE);
+
+    RegisterToolSelectKey("select", m_pSelectTool);
+    RegisterToolSelectKey("move", m_pMoveTool);
+    RegisterToolSelectKey("rotate", m_pRotateTool);
+    RegisterToolSelectKey("scale", m_pScaleTool);
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
@@ -103,4 +108,15 @@ void EditTools::EditToolManager::SetCurrentTool(EditTool* pTool)
         m_pCurTool = pTool;
         m_pCurTool->SetActive(m_bIsActive);
     }
+}
+
+void EditTools::EditToolManager::RegisterToolSelectKey(std::string_view action, std::unique_ptr<EditTool>& pTool)
+{
+    IKeyActionSet* pActionSet = gPreditor->pInput->GetKeyboard()->FindActionSet("tool_select");
+    IKeyAction* pAction = pActionSet->FindAction(action);
+    pAction->AddListener([this, &pTool](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                SetCurrentTool(pTool.get());
+        });
 }
