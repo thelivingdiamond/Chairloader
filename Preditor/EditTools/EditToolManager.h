@@ -5,7 +5,7 @@ namespace EditTools
 {
 
 class EditTool;
-class MoveTool;
+class ImGuizmoTool;
 
 class EditToolManager final : public IEditToolManager
 {
@@ -33,7 +33,7 @@ private:
     EditTool* m_pCurTool = nullptr;
 
     std::unique_ptr<EditTool> m_pSelectTool;
-    std::unique_ptr<MoveTool> m_pMoveTool;
+    std::unique_ptr<ImGuizmoTool> m_pMoveTool;
 
     //! Changes the active tool to a different one.
     void SetCurrentTool(EditTool* pTool);

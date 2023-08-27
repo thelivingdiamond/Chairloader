@@ -1,9 +1,8 @@
-#include <ImGuizmo/ImGuizmo.h>
 #include <Preditor/SceneEditor/ISceneEditor.h>
 #include <Preditor/SceneEditor/IObjectManipulator.h>
 #include <Preditor/SceneEditor/SelectionManager.h>
 #include "EditToolManager.h"
-#include "MoveTool.h"
+#include "ImGuizmoTool.h"
 
 namespace
 {
@@ -77,16 +76,17 @@ void FrustumFromCamera(const CCamera& cam, float width, float height, float* m16
 
 } // namespace
 
-EditTools::MoveTool::MoveTool(EditToolManager* pMgr)
+EditTools::ImGuizmoTool::ImGuizmoTool(EditToolManager* pMgr, ImGuizmo::OPERATION operation)
     : EditTool(pMgr)
 {
+    m_Op = operation;
 }
 
-EditTools::MoveTool::~MoveTool()
+EditTools::ImGuizmoTool::~ImGuizmoTool()
 {
 }
 
-void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const CCamera& camera)
+void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& camera)
 {
     ImVec2 windowPos = ImGui::GetWindowPos();
     ImGuizmo::SetDrawlist();
@@ -112,7 +112,7 @@ void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const CCamera& camera
         ImGuizmo::Manipulate(
             viewMat.GetData(),
             projMat.GetData(),
-            ImGuizmo::TRANSLATE,
+            m_Op,
             ImGuizmo::WORLD,
             objectTM.GetData());
 
@@ -120,7 +120,7 @@ void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const CCamera& camera
     }
 }
 
-EEditToolResult EditTools::MoveTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize)
+EEditToolResult EditTools::ImGuizmoTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize)
 {
     if (ImGuizmo::IsOver())
         return EEditToolResult::Handled;

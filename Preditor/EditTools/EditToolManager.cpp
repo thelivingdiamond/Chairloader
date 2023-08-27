@@ -2,7 +2,7 @@
 #include "EditTool.h"
 #include "EditToolManager.h"
 #include "SelectTool.h"
-#include "MoveTool.h"
+#include "ImGuizmoTool.h"
 
 std::unique_ptr<IEditToolManager> IEditToolManager::CreateInstance(ISceneEditor* pEditor)
 {
@@ -14,7 +14,7 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pEditor = pEditor;
 
     m_pSelectTool = std::make_unique<SelectTool>(this);
-    m_pMoveTool = std::make_unique<MoveTool>(this);
+    m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE);
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
