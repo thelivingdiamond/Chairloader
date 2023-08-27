@@ -5,19 +5,22 @@
 #include "EditToolManager.h"
 #include "MoveTool.h"
 
+namespace
+{
+
 /**
  * Right +X
  * Up +Y
  * Forward -Z
  */
-static const Matrix44 g_ImGuizmoBasis = Matrix44(
+const Matrix44 g_ImGuizmoBasis = Matrix44(
      1.0f,  0.0f,  0.0f,  0.0f,
      0.0f,  0.0f,  1.0f,  0.0f,
      0.0f, -1.0f,  0.0f,  0.0f,
      0.0f,  0.0f,  0.0f,  1.0f
 );
 
-static const Matrix44 g_ImGuizmoBasisInv = g_ImGuizmoBasis.GetInverted();
+const Matrix44 g_ImGuizmoBasisInv = g_ImGuizmoBasis.GetInverted();
 
 Matrix44 CryToImGuizmo(const Matrix44& src)
 {
@@ -59,13 +62,20 @@ void Frustum(float left, float right, float bottom, float top, float znear, floa
     m16[15] = 0.0;
 }
 
-void Perspective(float fovyInDegrees, float aspectRatio, float znear, float zfar, float* m16)
+void Perspective(float fovy, float aspectRatio, float znear, float zfar, float* m16)
 {
     float ymax, xmax;
-    ymax = znear * tanf(fovyInDegrees * 3.141592f / 180.0f);
+    ymax = znear * tanf(fovy);
     xmax = ymax * aspectRatio;
     Frustum(-xmax, xmax, -ymax, ymax, znear, zfar, m16);
 }
+
+void FrustumFromCamera(const CCamera& cam, float width, float height, float* m16)
+{
+    Perspective(0.5f * cam.GetFov(), width / height, cam.GetNearPlane(), cam.GetFarPlane(), m16);
+}
+
+} // namespace
 
 EditTools::MoveTool::MoveTool(EditToolManager* pMgr)
     : EditTool(pMgr)
@@ -76,7 +86,7 @@ EditTools::MoveTool::~MoveTool()
 {
 }
 
-void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const Matrix44& projMat, const Matrix44& viewMat)
+void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const CCamera& camera)
 {
     ImVec2 windowPos = ImGui::GetWindowPos();
     ImGuizmo::SetDrawlist();
@@ -93,15 +103,15 @@ void EditTools::MoveTool::DrawViewport(const Vec4& bounds, const Matrix44& projM
     if (activeObj != INVALID_SCENE_OBJECT)
     {
         IObjectManipulator* pManip = pEditor->GetManipulator();
-        Matrix44 viewMat2 = CryToImGuizmo(viewMat);
+        Matrix44 viewMat = CryToImGuizmo(camera.GetViewMatrix());
         Matrix44 objectTM = CryToImGuizmo(pManip->GetObjectWorldTM(activeObj));
 
-        Matrix44 projMat2;
-        Perspective(90 / 2.0f, 1439.0f / 862.0f, 0.250f, 1024.0f, projMat2.GetData());
+        Matrix44 projMat;
+        FrustumFromCamera(camera, bounds.z - bounds.x, bounds.w - bounds.y, projMat.GetData());
 
         ImGuizmo::Manipulate(
-            viewMat2.GetData(),
-            projMat2.GetData(),
+            viewMat.GetData(),
+            projMat.GetData(),
             ImGuizmo::TRANSLATE,
             ImGuizmo::WORLD,
             objectTM.GetData());

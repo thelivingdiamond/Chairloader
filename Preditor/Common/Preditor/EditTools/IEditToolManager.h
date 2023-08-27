@@ -33,5 +33,6 @@ struct IEditToolManager
 
     //! Called from the viewport ImGui window context.
     //! @param  bounds  Viewport bounds.
-    virtual void DrawViewport(const Vec4& bounds, const Matrix44& viewMat) = 0;
+    //! @param  camera  Viewport camera.
+    virtual void DrawViewport(const Vec4& bounds, const CCamera& camera) = 0;
 };

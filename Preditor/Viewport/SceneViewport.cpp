@@ -199,7 +199,7 @@ void Viewport::SceneViewport::ShowUI()
 	{
 		pEditor->GetToolManager()->DrawViewport(
 			Vec4(imageBounds.x, imageBounds.y, imageBounds.z, imageBounds.w),
-			m_CamInfo.lastFrameView);
+			m_Cam);
 	}
 }
 

@@ -12,7 +12,7 @@ public:
     ~MoveTool();
 
     // EditTool
-    virtual void DrawViewport(const Vec4& bounds, const Matrix44& projMat, const Matrix44& viewMat) override;
+    virtual void DrawViewport(const Vec4& bounds, const CCamera& camera) override;
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize);
 
 private:

@@ -70,17 +70,14 @@ EEditToolResult EditTools::EditToolManager::OnLeftMouseClick(Vec2 clickPos, Vec2
     return result;
 }
 
-void EditTools::EditToolManager::DrawViewport(const Vec4& bounds, const Matrix44& viewMat)
+void EditTools::EditToolManager::DrawViewport(const Vec4& bounds, const CCamera& camera)
 {
     if (!m_bIsActive)
         return;
 
     if (m_pCurTool)
     {
-        Matrix44 projMat;
-        gEnv->pRenderer->GetProjectionMatrix(projMat.GetData());
-        projMat.Transpose();
-        m_pCurTool->DrawViewport(bounds, projMat, viewMat);
+        m_pCurTool->DrawViewport(bounds, camera);
     }
 }
 
