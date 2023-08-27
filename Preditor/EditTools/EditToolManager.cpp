@@ -23,6 +23,12 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     RegisterToolSelectKey("rotate", m_pRotateTool);
     RegisterToolSelectKey("scale", m_pScaleTool);
 
+    gPreditor->pInput->FindAction("transform_tools.toggle_tool_space")->AddListener([this](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                m_bWorldTransforms ^= 1;
+        });
+
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
 }
@@ -33,6 +39,10 @@ EditTools::EditToolManager::~EditToolManager()
 
 void EditTools::EditToolManager::ShowSelectionUI()
 {
+    if (ImGui::Button(m_bWorldTransforms ? ICON_MD_LANGUAGE : ICON_MD_VIEW_IN_AR))
+        m_bWorldTransforms ^= 1;
+    ImGui::SameLine();
+
     EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get(), m_pRotateTool.get(), m_pScaleTool.get() };
     const char* names[] = { "Select", "Move", "Rotate", "Scale" };
 

@@ -58,6 +58,9 @@
         name="transform_tools"
         description="Transform Tools"
         priority="60">
+        <Action name="toggle_tool_space" description="Toggle tool space between local and world">
+            <Bind key="x"/>
+        </Action>
         <Action name="snap" description="Snap To Grid" isModifier="1">
             <Bind key="lctrl"/>
         </Action>

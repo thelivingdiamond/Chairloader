@@ -116,7 +116,7 @@ void EditTools::ImGuizmoTool::DrawViewport(const Vec4& bounds, const CCamera& ca
             viewMat.GetData(),
             projMat.GetData(),
             m_Op,
-            ImGuizmo::WORLD,
+            GetManager()->IsWorldTransform() ? ImGuizmo::WORLD : ImGuizmo::LOCAL,
             objectTM.GetData(),
             nullptr, // deltaMatrix
             m_pSnapKey->IsHeldDown() ? & m_Snap.x : nullptr);
