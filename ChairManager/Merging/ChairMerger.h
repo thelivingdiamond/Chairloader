@@ -50,6 +50,21 @@ enum class DeployStep
     Done,
 };
 
+class ChairMergerException : public std::runtime_error
+{
+public:
+    ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages);
+
+    DeployStep GetDeployStep() const { return m_Step; }
+    DeployPhase GetDeployPhase() const { return m_Phase; }
+    const std::vector<std::string>& GetMessages() const { return m_Messages; }
+
+private:
+    DeployStep m_Step;
+    DeployPhase m_Phase;
+    std::vector<std::string> m_Messages;
+};
+
 class ChairMerger {
 public:
     ChairMerger();
@@ -65,6 +80,13 @@ public:
     std::string GetFailedDeployMessage();
 
     static bool IsModEnabled(std::string modName);
+
+    //! Get the deploy phase descriptive string
+    static std::string GetDeployPhaseString(DeployPhase phase);
+
+    //! Get the deploy step descriptive string
+    static std::string GetDeployStepString(DeployStep step);
+
 protected:
     FRIEND_TEST(ChairMergerTest, GetAttributeWildcardValue);
     FRIEND_TEST(ChairMergerTest, ResolveFileWildcardSingleNode);
@@ -97,12 +119,6 @@ protected:
 
     //! Copy the chairloader patch files to the output directory
     static void CopyChairloaderPatchFiles();
-
-    //! Get the deploy phase descriptive string
-    static std::string GetDeployPhaseString(DeployPhase phase);
-
-    //! Get the deploy step descriptive string
-    static std::string GetDeployStepString(DeployStep step);
 
 // Member functions
     //! finds the merging policy for a given file in the merging library
@@ -230,6 +246,9 @@ protected:
 
     bool m_bForceVanillaPack = false;
 
+    //! List of pending tasks on the thread pool.
+    std::vector<std::future<void>> m_PendingTasks;
+
     // Random Number Generator
     static int Random(int min, int max);
     static float RandomFloat(float min, float max);
@@ -237,6 +256,12 @@ protected:
 
     static std::map<std::string, uint64_t> m_NameToIdMap;
 
+    //! Adds a task to the pending task list.
+    void AddPendingTask(std::future<void>&& future);
+
+    //! Waits for any pending tasks.
+    //! If they throw any exceptions, they will be rethrown.
+    void WaitForPendingTasks();
 };
 
 
