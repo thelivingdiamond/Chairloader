@@ -1,6 +1,0 @@
-
-<EquipPack name="ArkPlayer_RecyclerGrenade" primary="ArkAmmoPickupRecyclerGrenades">
- <Items>
-  <ArkAmmoPickupRecyclerGrenades type="" archetype="ArkPickups.Ammo.RecyclerGrenades" count="50"/>
- </Items>
-</EquipPack>

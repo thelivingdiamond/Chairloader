@@ -1,9 +1,0 @@
-
-<SignalAccumulators>
- <Imports>
-  <File file="Ark/AI/AiSignalAccumulatorConfigs/ElitePhantomAccumulatorConfig.xml"/>
- </Imports>
- <Accumulators>
-  <Accumulator signalGroup="3149325216980261830" rising_threshold="3" falling_threshold="0" maximum_accumulation="30" deaccumulateAmountPerSecond="1" timeToStartDeaccumulationOnNoSignal="0"/>
- </Accumulators>
-</SignalAccumulators>

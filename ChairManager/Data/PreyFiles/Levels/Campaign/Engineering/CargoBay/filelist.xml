@@ -1,7 +1,0 @@
-
-<download name="cargobay" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="4162674" md5="9812f51b91c578a5fe026fe8b51bb91b"/>
- </files>
-</download>

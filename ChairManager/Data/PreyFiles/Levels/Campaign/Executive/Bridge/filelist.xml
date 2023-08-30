@@ -1,7 +1,0 @@
-
-<download name="bridge" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="862189" md5="815b854d010c2afbec8e29014265d9e8"/>
- </files>
-</download>
