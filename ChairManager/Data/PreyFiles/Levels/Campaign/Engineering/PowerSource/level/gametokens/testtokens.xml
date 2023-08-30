@@ -1,7 +1,0 @@
-<GameTokensLibrary Name="TestTokens">
- <GameToken Id="938639386" Name="TestTokenGroup.bTest" Type="Bool" Value="false"/>
- <GameToken Id="1912761627" Name="TestTokenGroup.nTest" Type="Int" Value="0"/>
- <GameToken Id="1114777306" Name="TestTokenGroup.fTest" Type="Float" Value="0.000000"/>
- <GameToken Id="1785871912" Name="TestTokenGroup.sTest" Type="String" Value="false"/>
- <GameToken Id="580039000" Name="TestTokenGroup.vTest" Type="Vec3" Value="0.000000,0.000000,0.000000"/>
-</GameTokensLibrary>

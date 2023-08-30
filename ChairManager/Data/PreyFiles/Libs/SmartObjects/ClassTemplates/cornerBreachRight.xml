@@ -1,6 +1,0 @@
-
-<sotemplate>
- <object model="c3_so_cornerPopOutSearchRight.cgf"/>
- <helper name="start_1" pos="-1.25, -0.5, 0.0" rot="1.0, 0.0, 0.0, 0.0" radius="0.2" projectOnGround="1"/>
- <helper name="end_1" pos="0.5, 1.25, 0.0" rot="0.0, 0.0, 0.707106, 0.707108" radius="0.2" projectOnGround="1"/>
-</sotemplate>

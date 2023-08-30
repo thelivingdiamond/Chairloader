@@ -1,7 +1,0 @@
-
-<download name="powersource" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="4950581" md5="46ef87f9dd1ac13bef70c2be177974e8"/>
- </files>
-</download>

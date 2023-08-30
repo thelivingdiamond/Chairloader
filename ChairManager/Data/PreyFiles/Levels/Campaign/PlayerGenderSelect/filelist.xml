@@ -1,7 +1,0 @@
-
-<download name="playergenderselect" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="2850957" md5="c0a0616bfd54cdf15a27898644c5392f"/>
- </files>
-</download>

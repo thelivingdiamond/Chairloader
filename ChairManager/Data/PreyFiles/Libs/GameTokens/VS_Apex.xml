@@ -1,6 +1,0 @@
-
-<GameTokensLibrary Name="VS_Apex">
- <GameToken Id="1387748847" Name="Sequence Playing" Type="Bool" Value="false"/>
- <GameToken Id="1597464507" Name="Sequence_Time" Type="Float" Value="0.000000"/>
- <GameToken Id="639480044" Name="Physics Activation" Type="Bool" Value="false"/>
-</GameTokensLibrary>

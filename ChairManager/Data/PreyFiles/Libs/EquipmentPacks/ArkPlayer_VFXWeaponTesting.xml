@@ -1,7 +1,0 @@
-
-<EquipPack name="ArkPlayer_VFXWeaponTesting" primary="ArkShotgun">
- <Items>
-  <ArkShotgun type="ItemGivable" setup="|ExtendedClip|" archetype=""/>
- </Items>
- <Ammos/>
-</EquipPack>

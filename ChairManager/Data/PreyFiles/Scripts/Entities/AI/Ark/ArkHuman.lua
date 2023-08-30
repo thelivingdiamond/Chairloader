@@ -1,8 +1,0 @@
-Script.ReloadScript("SCRIPTS/Entities/AI/Ark/ArkHuman_x.lua")
-Script.ReloadScript("SCRIPTS/Entities/actor/BasicActor.lua")
-Script.ReloadScript("SCRIPTS/Entities/AI/Shared/BasicAI.lua")
-Script.ReloadScript("SCRIPTS/Entities/actor/ArkNpc.lua")
-CreateActor(ArkHuman_x)
-CreateArkNpc(ArkHuman_x)
-ArkHuman = CreateAI(ArkHuman_x)
-ArkHuman:Expose()
