@@ -2217,13 +2217,17 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     } else {
         ImGui::OpenPopup("Deploying Mods");
     }
-    if(IsFutureReady(m_DeployTaskFuture)){
+
+    if (IsFutureReady(m_DeployTaskFuture))
+    {
         m_DeployTaskFuture.get();
+
         if(!m_pChairMerger->DeployFailed()) {
             m_State = State::MainWindow;
             m_pChairMerger->SetDeployStep(DeployStep::Invalid);
             m_pChairMerger->SetDeployPhase(DeployPhase::Invalid);
         }
+
         return;
     }
 }
