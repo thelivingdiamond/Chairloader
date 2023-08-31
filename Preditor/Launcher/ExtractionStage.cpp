@@ -1,6 +1,7 @@
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CrySystem/ZipDirStructures.h>
 #include <Chairloader/ChairXmlUtils.h>
+#include <Manager/PreditorFiles.h>
 #include <mem.h>
 #include "ExtractionStage.h"
 #include "PreditorApp.h"
@@ -89,7 +90,7 @@ void ExtractionStage::Start()
 		}
 
 		// Create the file to mark data as successfully extracted
-		std::ofstream markFile(m_Opts.outputPath / "FilesExtracted.dat");
+		std::ofstream markFile(m_Opts.outputPath / PREDITOR_FILES_EXTRACTED);
 
 		m_State = EState::Done;
 		SetStageFinished(nullptr);
@@ -251,7 +252,7 @@ void ExtractionStage::ExtractPak(const pugi::xml_node node)
 			ThrowIfCancelling();
 
 			// Check if the pak was touched by Chairloader
-			if (allFiles.find(".chairloader") != allFiles.end())
+			if (allFiles.find(MARK_OF_THE_CHAIR) != allFiles.end())
 				throw std::runtime_error("pak was modified by Chairloader. Validate game files.");
 
 			FileMap filesToExtract = FilterFiles(node, allFiles);

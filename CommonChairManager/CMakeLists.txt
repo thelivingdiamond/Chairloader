@@ -49,6 +49,7 @@ set(SOURCE_FILES
 	Manager/ModListConfig.h
 	Manager/NameToIdMap.h
 	Manager/pch.h
+	Manager/PreditorFiles.h
 	Manager/SHA256.cpp
 	Manager/SHA256.h
 	Manager/GamePath.cpp
