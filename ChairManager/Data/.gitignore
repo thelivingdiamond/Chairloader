@@ -2,7 +2,11 @@
 *-Crash-*.dmp
 *-Crash-*.txt
 
+# Generated files
 /imgui.ini
+/PreyFiles
+/Preditor.exe
+/*.dll
 
 # Temporary files
 /temp

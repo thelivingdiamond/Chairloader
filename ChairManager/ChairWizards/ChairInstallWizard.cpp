@@ -1,4 +1,6 @@
 #include <Manager/GamePath.h>
+#include <Manager/PreditorFiles.h>
+#include <Prey/CryString/UnicodeFunctions.h>
 #include "ChairInstallWizard.h"
 #include "../GameVersion.h"
 #include "../ChairManager.h"
@@ -11,7 +13,7 @@ static bool bDPIUpdated = false;
 
 bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 {
-	if (m_State == State::Progress)
+	if (m_State == State::Progress || m_State == State::Extract)
 		pbIsOpen = nullptr;
 	m_Cancel = false;
 
@@ -41,11 +43,17 @@ bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 		case State::VersionCheck:
 			ShowVersionCheckPage();
 			break;
+		case State::VerifyFilesWarning:
+			ShowVerifyFilesWarningPage();
+			break;
 		case State::Confirm:
 			ShowConfirmPage();
 			break;
 		case State::Progress:
 			ShowProgressPage();
+			break;
+		case State::Extract:
+			ShowExtractPage();
 			break;
 		case State::Finish:
 			ShowFinishPage();
@@ -59,7 +67,7 @@ bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 
 	if (pbIsOpen)
 	{
-		if (m_State == State::Progress)
+		if (m_State == State::Progress || m_State == State::Extract)
 		{
 			// May be closed just before starting the install
 			*pbIsOpen = true;
@@ -113,11 +121,15 @@ void ChairInstallWizard::ShowWelcomePage()
         ImGui::NewLine();
     } else {
         ImGui::TextWrapped("Before using the Mod Manager, the game needs to be modified to add support "
-                           "for code mods. It will be done in the following steps.");
+                           "for code mods and game scripts must be extracted.");
+		ImGui::NewLine();
+		ImGui::TextWrapped("It will be done automatically in the following steps.");
         ImGui::NewLine();
+
         ImGui::Text("\t1) Check if your version of the game is supported");
-        ImGui::Text("\t2) Patch the game DLL file for Chairloader");
+        ImGui::Text("\t2) Patch the game DLL file for Chairloader, if necessary");
         ImGui::Text("\t3) Install Chairloader files");
+		ImGui::Text("\t4) Extract script files from the installed game");
         ImGui::NewLine();
 
         ShowPatchWarning(false);
@@ -136,7 +148,7 @@ void ChairInstallWizard::ShowVersionCheckPage()
 	GameVersion::Result result = m_pGameVersion->ShowInstalledVersion(false);
 
 	auto fnBack = [&]() { m_State = State::Welcome; };
-	auto fnNext = [&]() { m_State = State::Confirm; };
+	auto fnNext = [&]() { m_State = State::VerifyFilesWarning; };
 	auto fnCancel = [&]() { m_Cancel = true; };
 
 	switch (result)
@@ -160,6 +172,20 @@ void ChairInstallWizard::ShowVersionCheckPage()
 		ShowBottomBtns(fnBack, BtnCallback(), fnCancel);
 		break;
 	}
+}
+
+void ChairInstallWizard::ShowVerifyFilesWarningPage()
+{
+	ImGui::TextColored(ImColor(255, 255, 0), "Important!");
+	ImGui::TextWrapped("If you ever installed any mods or an older version of Chairloader, "
+		"please, verify game files in Steam/GOG/EGS. Chairloader requires original game "
+		"files to install mods correctly.");
+	ImGui::NewLine();
+
+	auto fnBack = [&]() { m_State = State::VersionCheck; };
+	auto fnNext = [&]() { m_State = State::Confirm; };
+	auto fnCancel = [&]() { m_Cancel = true; };
+	ShowBottomBtns(fnBack, fnNext, fnCancel);
 }
 
 void ChairInstallWizard::ShowConfirmPage()
@@ -198,10 +224,9 @@ void ChairInstallWizard::ShowProgressPage()
 	ImGui::EndChild();
 
 	if (m_bIsInstallFinished)
-		ShowBottomBtns(BtnCallback(), [&]() { m_State = State::Finish; }, BtnCallback());
+		ShowBottomBtns(BtnCallback(), [&]() { StartExtract(); }, BtnCallback());
 	else
 		ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
-	
 
 	if (IsFutureReady(m_InstallFuture))
 	{
@@ -209,6 +234,35 @@ void ChairInstallWizard::ShowProgressPage()
 		{
 			m_InstallFuture.get();
 			m_bIsInstallFinished = true;
+		}
+		catch (const std::exception& e)
+		{
+			SetError(e.what());
+		}
+	}
+}
+
+void ChairInstallWizard::ShowExtractPage()
+{
+	if (m_bIsExtractFinished)
+	{
+		ImGui::TextWrapped("Extraction finished.");
+		ImGui::TextWrapped("Press Next.");
+		ShowBottomBtns(BtnCallback(), [&]() { m_State = State::Finish; }, BtnCallback());
+	}
+	else
+	{
+		ImGui::TextWrapped("Extraction is in progress...");
+		ImGui::TextWrapped("Please, monitor the Preditor window.");
+		ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
+	}
+
+	if (IsFutureReady(m_ExtractFuture))
+	{
+		try
+		{
+			m_ExtractFuture.get();
+			m_bIsExtractFinished = true;
 		}
 		catch (const std::exception& e)
 		{
@@ -246,6 +300,15 @@ void ChairInstallWizard::StartInstall()
 {
 	m_State = State::Progress;
 	m_InstallFuture = std::async(std::launch::async, [&]() { InstallAsyncTask(); });
+}
+
+void ChairInstallWizard::StartExtract()
+{
+	// Clear old log
+	m_InstallLog.clear();
+
+	m_State = State::Extract;
+	m_ExtractFuture = std::async(std::launch::async, [&]() { ExtractAsyncTask(); });
 }
 
 void ChairInstallWizard::SetError(const std::string& text)
@@ -338,4 +401,54 @@ void ChairInstallWizard::InstallAsyncTask() const
     }
 
 	printlog("Finished!");
+}
+
+void ChairInstallWizard::ExtractAsyncTask() const
+{
+	fs::path outPath = fs::absolute("PreyFiles");
+
+	// Remove old files
+	fs::remove_all(outPath);
+
+	// Create directory
+	fs::create_directories(outPath);
+
+	// Launch Preditor in extract mode
+	STARTUPINFOW startupInfo = { sizeof(STARTUPINFOW) };
+	PROCESS_INFORMATION processInfo = {};
+	fs::path gamePath = ChairManager::Get().GetGamePathUtil()->GetGamePath();
+	std::string cmdLine = fmt::format("Preditor.exe --extract --game-path \"{}\" --output-path \"{}\"", gamePath.u8string(), outPath.u8string());
+	std::wstring wideCmdLine;
+	Unicode::Convert(wideCmdLine, cmdLine);
+
+	bool result = CreateProcessW(
+		nullptr, // lpApplicationName
+		wideCmdLine.data(), // lpCommandLine
+		nullptr, // lpProcessAttributes
+		nullptr, // lpThreadAttributes
+		false, // bInheritHandles
+		0, // dwCreationFlags
+		nullptr, // lpEnvironment
+		nullptr, // lpCurrentDirectory
+		&startupInfo, // lpStartupInfo
+		&processInfo // lpProcessInformation
+	);
+
+	if (!result)
+		throw std::runtime_error("CreateProcessW failed");
+
+	WaitForSingleObject(processInfo.hProcess, INFINITE);
+
+	DWORD exitCode = -1;
+	if (!GetExitCodeProcess(processInfo.hProcess, &exitCode))
+		throw std::runtime_error("GetExitCodeProcess failed");
+
+	if (exitCode != 0)
+		throw std::runtime_error(fmt::format("Preditor failed with code {}", exitCode));
+
+	CloseHandle(processInfo.hProcess);
+	CloseHandle(processInfo.hThread);
+
+	if (!fs::exists(outPath / PREDITOR_FILES_EXTRACTED))
+		throw std::runtime_error(fmt::format("{} was not found. Extraction failed.", PREDITOR_FILES_EXTRACTED));
 }
