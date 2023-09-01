@@ -29,6 +29,7 @@ jobs:
         python-version: 3.11
 
     - name: Disk Usage - Initial
+      if: always()
       run: |
         python ./Scripts/print_disk_usage.py
     
@@ -42,6 +43,7 @@ jobs:
         runVcpkgInstall: true
 
     - name: Disk Usage - Pre-build
+      if: always()
       run: |
         python ./Scripts/print_disk_usage.py
 
@@ -56,6 +58,7 @@ jobs:
         VCPKG_FORCE_SYSTEM_BINARIES: 1
 
     - name: Disk Usage - Post-build
+      if: always()
       run: |
         python ./Scripts/print_disk_usage.py
 
@@ -68,6 +71,7 @@ jobs:
         del /s /q *.ilk
 
     - name: Disk Usage - Post-clean
+      if: always()
       run: |
         python ./Scripts/print_disk_usage.py
 
@@ -77,6 +81,7 @@ jobs:
         python ./Scripts/make_package.py --repo-path=. --build-path=_build/ninja-vcpkg --build-config ${{matrix.buildType}} --output-dir-path=_temp --temp-path=_temp
 
     - name: Disk Usage - Post-archive
+      if: always()
       run: |
         python ./Scripts/print_disk_usage.py
     
