@@ -27,6 +27,10 @@ jobs:
       uses: actions/setup-python@v4.5.0
       with:
         python-version: 3.11
+
+    - name: Disk Usage - Initial
+      run: |
+        python ./Scripts/print_disk_usage.py
     
     - name: Restore artifacts, or setup vcpkg for building artifacts
       uses: lukka/run-vcpkg@v10
@@ -36,6 +40,10 @@ jobs:
         vcpkgDirectory: '${{env.VCPKG_ROOT}}'
         vcpkgGitCommitId: 'a7b6122f6b6504d16d96117336a0562693579933'
         runVcpkgInstall: true
+
+    - name: Disk Usage - Pre-build
+      run: |
+        python ./Scripts/print_disk_usage.py
 
     - name: Run CMake+vcpkg+Ninja+CTest to generate/build/test.
       uses: lukka/run-cmake@v10
@@ -47,10 +55,30 @@ jobs:
       env:
         VCPKG_FORCE_SYSTEM_BINARIES: 1
 
+    - name: Disk Usage - Post-build
+      run: |
+        python ./Scripts/print_disk_usage.py
+
+    - name: Remove object files
+      shell: cmd
+      run: |
+        cd _build/ninja-vcpkg
+        del /s /q *.obj
+        del /s /q *.pch
+        del /s /q *.ilk
+
+    - name: Disk Usage - Post-clean
+      run: |
+        python ./Scripts/print_disk_usage.py
+
     - name: Archive dist files
       id: createDist
       run: |
         python ./Scripts/make_package.py --repo-path=. --build-path=_build/ninja-vcpkg --build-config ${{matrix.buildType}} --output-dir-path=_temp --temp-path=_temp
+
+    - name: Disk Usage - Post-archive
+      run: |
+        python ./Scripts/print_disk_usage.py
     
     - name: Upload binaries archive
       uses: actions/upload-artifact@v3.1.2
