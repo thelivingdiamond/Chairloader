@@ -31,7 +31,6 @@ ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 static int CV_cl_asserts;
 static ChairXmlUtils g_XmlUtils;
 
-static std::unique_ptr<ImportantListener> g_ImportantListener;
 
 namespace
 {
@@ -318,8 +317,6 @@ void Chairloader::InitSystem(CSystem* pSystem)
     m_pCore->GetDllManager()->CallConnect();
 
 	m_pRender->SetRenderThreadIsIdle(false);
-
-    g_ImportantListener = std::make_unique<ImportantListener>();
 }
 
 void Chairloader::PreInitGame(CGame* pGame, IGameFramework* pFramework)
