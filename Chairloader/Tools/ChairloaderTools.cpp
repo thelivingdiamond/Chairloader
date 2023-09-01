@@ -4,6 +4,7 @@
 #include "Trainer/EntityManager.h"
 #include "Trainer/PlayerManager.h"
 #include "Trainer/WorldManager.h"
+#include "Trainer/SignalSystemManager.h"
 #include "DevConsoleDialog.h"
 #include "FileBrowser.h"
 #include "PerfOverlay.h"
@@ -39,6 +40,7 @@ void ChairloaderTools::InitGame()
 		m_pEntityManager = std::make_unique<EntityManager>();
 		m_pPlayerManager = std::make_unique<PlayerManager>();
 		m_pWorldManager = std::make_unique<WorldManager>();
+        m_pSignalSystemManager = std::make_unique<SignalSystemManager>();
 	}
 
 	if (m_bEnableEditor)
@@ -76,6 +78,7 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 			m_pEntityManager->Draw();
 			m_pPlayerManager->draw();
 			m_pWorldManager->Draw();
+            m_pSignalSystemManager->Draw();
 		}
 
 		if (m_bEnableEditor)

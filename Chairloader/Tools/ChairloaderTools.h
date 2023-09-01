@@ -9,6 +9,7 @@ class LocalizationUtil;
 class EntityManager;
 class PlayerManager;
 class WorldManager;
+class SignalSystemManager;
 
 class Editor;
 
@@ -35,6 +36,7 @@ private:
 	std::unique_ptr<EntityManager> m_pEntityManager;
 	std::unique_ptr<PlayerManager> m_pPlayerManager;
 	std::unique_ptr<WorldManager> m_pWorldManager;
+    std::unique_ptr<SignalSystemManager> m_pSignalSystemManager;
 
 	// Editor
 	bool m_bEnableEditor = false;

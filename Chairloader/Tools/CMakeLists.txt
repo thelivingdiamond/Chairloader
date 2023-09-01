@@ -42,7 +42,7 @@ set(CHAIR_SOURCE_FILES
 	LocalizationUtil.h
 	PerfOverlay.cpp
 	PerfOverlay.h
-)
+        Trainer/SignalSystemManager.cpp Trainer/SignalSystemManager.h)
 
 set(PREDITOR_SOURCE_FILES
 	# Only in Preditor
