@@ -3,6 +3,7 @@
 #pragma once
 
 class ArkReflectedLibrary;
+class ArkClass;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkGameDataManager.h

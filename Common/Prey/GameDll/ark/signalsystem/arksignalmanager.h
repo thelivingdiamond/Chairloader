@@ -210,7 +210,7 @@ public:
 	unsigned m_uniqueHitIdGenerator;
 	
 	Manager();
-	virtual ~Manager();
+	virtual ~Manager(){};
 	void Scan() { FScan(this); }
 	void Reset() { FReset(this); }
 	void RegisterEntityReceiver(const unsigned _entityId, ArkSignalSystem::Receiver &_receiver) { FRegisterEntityReceiver(this,_entityId,_receiver); }
@@ -221,11 +221,11 @@ public:
 	void UnregisterForAllSignalsForEntity(const unsigned _entityId) { FUnregisterForAllSignalsForEntity(this,_entityId); }
 	std::vector<unsigned __int64> GetRegisteredSignals(const unsigned _entityId, bool &_bAllSignals) const { return FGetRegisteredSignals(this,_entityId,_bAllSignals); }
 	void SendPackage(unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend) { FSendPackage(this,_targetEntityId,_senderEntityId,_instigatorEntityId,_packageId,_context,_scale,_numRepeats,_repeatTime,_bDelayFirstSend); }
-	virtual bool OnBeforeSpawn(SEntitySpawnParams &params);
-	virtual void OnSpawn(IEntity *pEntity, SEntitySpawnParams &params);
-	virtual bool OnRemove(IEntity *_pEntity);
-	virtual void OnReused(IEntity *pEntity, SEntitySpawnParams &params);
-	virtual void OnEvent(IEntity *pEntity, SEntityEvent &event);
+	virtual bool OnBeforeSpawn(SEntitySpawnParams &params){return false;};
+	virtual void OnSpawn(IEntity *pEntity, SEntitySpawnParams &params){};
+	virtual bool OnRemove(IEntity *_pEntity){return false;};
+	virtual void OnReused(IEntity *pEntity, SEntitySpawnParams &params){};
+	virtual void OnEvent(IEntity *pEntity, SEntityEvent &event){};
 	unsigned SendPackageInArea(Vec3 const &_pos, float _radius, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, int _hitType, float _scale, ArkDelegate<void __cdecl(unsigned int)> _callback) { return FSendPackageInArea(this,_pos,_radius,_senderEntityId,_instigatorEntityId,_packageId,_hitType,_scale,_callback); }
 	void OnLevelLoad() { FOnLevelLoad(this); }
 	ArkSignalSystem::Data::PackageData const *GetPackageData(uint64_t _id) const { return FGetPackageData(this,_id); }
