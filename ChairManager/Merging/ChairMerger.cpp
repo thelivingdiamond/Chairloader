@@ -258,7 +258,7 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
     if(!originalResult){
         // this is a new file, we have to just copy it over, even if base exists
         fs::create_directories(baseFile.parent_path());
-        fs::copy_file(file, baseFile, fs::copy_options::overwrite_existing);
+        modDoc.save_file(baseFile.wstring().c_str(), "\t", pugi::format_default, pugi::encoding_utf8);
         return;
     }
 
