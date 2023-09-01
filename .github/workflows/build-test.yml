@@ -60,6 +60,15 @@ jobs:
       run: |
         python ./Scripts/ci_space_debug.py
 
+    - name: Remove object files
+      run: |
+        cd _build/ninja-vcpkg
+        del /s /q *.obj
+
+    - name: CI Test 3.5
+      run: |
+        python ./Scripts/ci_space_debug.py
+
     - name: Archive dist files
       id: createDist
       run: |
