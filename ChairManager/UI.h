@@ -10,6 +10,8 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+class ImGuiFontList;
+
 class UI
 {
 private:
@@ -18,6 +20,7 @@ private:
 	static IDXGISwapChain* pSwapChain;
 	static ID3D11RenderTargetView* pMainRenderTargetView;
 	static bool bIsRunning;
+	static ImGuiFontList fontList;
 
 	static bool CreateDeviceD3D(HWND hWnd);
 	static void CleanupDeviceD3D();
@@ -30,6 +33,8 @@ public:
 	static void Render();
 	static void RequestExit();
     static void ResetDX11();
+	static void ReloadFonts(float dpiScale);
+	static std::chrono::steady_clock::duration GetNextFrameTimeout();
 };
 
 #endif

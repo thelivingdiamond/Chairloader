@@ -39,6 +39,11 @@ static LRESULT WINAPI ImGuiWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 	return g_pAppImGui->WndProc(hWnd, msg, wParam, lParam);
 }
 
+LRESULT ImGui_ImplWin32_WndProcHandler_PlatformWindow_Hook(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	return false;
+}
+
 AppImGui::AppImGui()
 {
 	assert(!g_pAppImGui);

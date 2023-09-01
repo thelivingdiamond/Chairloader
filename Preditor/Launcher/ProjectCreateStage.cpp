@@ -1,4 +1,4 @@
-#include <ImGuiFileDialog/ImGuiFileDialog.h>
+#include <WinShell/WinShell.h>
 #include <Manager/ModInfo.h>
 #include <Preditor/Main/IProject.h>
 #include "ProjectCreateStage.h"
@@ -196,20 +196,23 @@ void ProjectCreateStage::ShowInputs()
     changed |= ImGui::InputText("Project Location", &m_ProjectPath);
     ImGui::SameLine();
     if (ImGui::Button(ICON_MD_MORE_HORIZ "##Browse")) {
-        ImGuiFileDialog::Instance()->OpenModal("ProjectCreateStage::m_ProjectPath", "Select Project Directory", nullptr, ".");
+        WinShell::DialogOptions opts;
+        opts.title = "Select Project Directory...";
+        opts.flags |= WinShell::FL_PICK_FOLDERS;
+        WinShell::ImShowFileOpenDialog("ProjectCreateStage::m_ProjectPath", opts);
     }
 
     changed |= ImGui::Checkbox("Create Project Folder", &m_CreateModFolder);
 
-    if (ImGuiFileDialog::Instance()->Display("ProjectCreateStage::m_ProjectPath"))
+    WinShell::DialogResult dialogResult;
+
+    if (WinShell::ImUpdateFileOpenDialog("ProjectCreateStage::m_ProjectPath", &dialogResult))
     {
-        if (ImGuiFileDialog::Instance()->IsOk())
+        if (dialogResult.isOk)
         {
-            m_ProjectPath = ImGuiFileDialog::Instance()->GetCurrentPath();
+            m_ProjectPath = dialogResult.filePath.u8string();
             changed = true;
         }
-
-        ImGuiFileDialog::Instance()->Close();
     }
 
     if (changed)

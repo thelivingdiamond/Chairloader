@@ -18,8 +18,16 @@
 std::mt19937 ChairMerger::m_RandomGenerator;
 std::map<std::string, uint64_t> ChairMerger::m_NameToIdMap;
 
-
-
+ChairMergerException::ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages)
+    : std::runtime_error(
+        fmt::format("Merging error when {} during {}",
+            ChairMerger::GetDeployStepString(step),
+            ChairMerger::GetDeployPhaseString(phase)))
+{
+    m_Step = step;
+    m_Phase = phase;
+    m_Messages = std::move(messages);
+}
 
 void ChairMerger::PreMerge() {
     // profile pre merge task
@@ -61,7 +69,7 @@ void ChairMerger::Merge() {
     SetDeployStep(DeployStep::MergingLegacyMods);
     for(auto& legacyMod : ChairManager::Get().GetLegacyMods()){
         ProcessLegacyMod(legacyMod);
-        m_MergeThreadPool->wait();
+        WaitForPendingTasks();
         ChairManager::Get().log(severityLevel::trace, "Finished merging legacy mod: %s", legacyMod);
     }
 
@@ -73,7 +81,7 @@ void ChairMerger::Merge() {
     for(auto& mod : ChairManager::Get().GetMods()){
         if(mod.enabled) {
             ProcessMod(std::make_shared<Mod>(mod));
-            m_MergeThreadPool->wait();
+            WaitForPendingTasks();
             ChairManager::Get().log(severityLevel::trace, "Finished merging mod: %s", mod.modName);
         }
     }
@@ -126,9 +134,9 @@ void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modNa
 }
 
 void ChairMerger::CopyModDataFiles(fs::path sourcePath) {
-    m_MergeThreadPool->enqueue([sourcePath] {
+    AddPendingTask(m_MergeThreadPool->enqueue([sourcePath] {
         RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, {".xml"});
-    });
+    }));
 }
 
 void ChairMerger::RecursiveFileCopyBlacklist(fs::path source, fs::path destination, std::vector<std::string> exclusions) {
@@ -215,9 +223,9 @@ void ChairMerger::RecursiveMergeXMLFiles(const fs::path &source, std::string mod
             } else {
                 if(file.path().extension() == ".xml") {
                     // Toss the file into the thread pool
-                    m_MergeThreadPool->enqueue([this, file, modName,isLegacy] {
+                    AddPendingTask(m_MergeThreadPool->enqueue([this, file, modName,isLegacy] {
                         ProcessXMLFile(file, modName, isLegacy);
-                    });
+                    }));
                 }
             }
         }
@@ -249,7 +257,9 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
 
     if(!modResult) {
         ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not load mod file %s", file.u8string().c_str());
-        return;
+        ChairManager::Get().log(severityLevel::error, "ChairMerger: Description: %s", modResult.description());
+        ChairManager::Get().log(severityLevel::error, "ChairMerger: Offset: %lld", modResult.offset);
+        throw std::runtime_error(fmt::format("Could not load {}", file.u8string()));
     }
     // resolve attribute wildcards on non legacy files
     if(!isLegacy)
@@ -276,7 +286,9 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
         baseResult = baseDoc.load_file(baseFile.wstring().c_str());
         if(!baseResult){
             ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not load base file %s", baseFile.u8string().c_str());
-            return;
+            ChairManager::Get().log(severityLevel::error, "ChairMerger: Description: %s", baseResult.description());
+            ChairManager::Get().log(severityLevel::error, "ChairMerger: Offset: %lld", baseResult.offset);
+            throw std::runtime_error(fmt::format("Could not load base file {}", baseFile.u8string()));
         }
     }
 
@@ -390,7 +402,7 @@ void ChairMerger::PackLevelFiles() {
             const auto levelPath = changedPack.parent_path();
             const auto deployedHash = m_DeployedLevelFileChecksums[changedPack];
             const bool forcePack = m_bForceLevelPack;
-            m_MergeThreadPool->enqueue([levelPath, deployedHash, forcePack, &bFailure]{
+            AddPendingTask(m_MergeThreadPool->enqueue([levelPath, deployedHash, forcePack, &bFailure]{
                 try {
                     // create the level directory in the level output path
                     fs::create_directories(m_LevelOutputPath / levelPath);
@@ -455,9 +467,9 @@ void ChairMerger::PackLevelFiles() {
                     return;
                 }
                 ChairManager::Get().log(severityLevel::trace, "ChairMerger: Finished merging level pack %s", levelPath.string());
-            });
+            }));
         }
-        m_MergeThreadPool->wait();
+        WaitForPendingTasks();
         if(bFailure){
             SetDeployFailed("Error merging level packs");
             return;
@@ -483,7 +495,7 @@ void ChairMerger::PackLocalizationFiles() {
             const auto localizationPath = changedPack.parent_path();
             const auto deployedLocalizationChecksum = m_DeployedLocalizationFileChecksums[changedPack];
             const bool forcePack = m_bForceLocalizationPack;
-            m_MergeThreadPool->enqueue([localizationPath, changedPack, deployedLocalizationChecksum, forcePack, &bFailure]{
+            AddPendingTask(m_MergeThreadPool->enqueue([localizationPath, changedPack, deployedLocalizationChecksum, forcePack, &bFailure]{
                 // patch file path is XXXX_patch.pak
                 // non-patch path is XXXX, so the filename needs to be changed and the extension removed
                 fs::path patchFilePath = localizationPath / changedPack.filename();
@@ -551,9 +563,9 @@ void ChairMerger::PackLocalizationFiles() {
                     ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not copy merged localization pack %s", (m_LocalizationOutputPath / localizationPath).string());
                     bFailure = true;
                 }
-            });
+            }));
         }
-        m_MergeThreadPool->wait();
+        WaitForPendingTasks();
         ChairManager::Get().log(severityLevel::trace, "ChairMerger: Finished merging localization packs");
     }
 }
@@ -580,7 +592,7 @@ void ChairMerger::PackMainPatch() {
 bool ChairMerger::CheckLevelPacksChanged() {
     m_ChangedLevelPacks.clear();
     for(auto& levelPack : m_LevelFileChecksums){
-        m_MergeThreadPool->enqueue([levelPack, this](){
+        AddPendingTask(m_MergeThreadPool->enqueue([levelPack, this](){
             auto existingFile = m_LevelFilesPath / levelPack.first;
             bool exists = fs::exists(existingFile);
             auto checksum = HashUtils::HashUncompressedFile(existingFile);
@@ -592,9 +604,9 @@ bool ChairMerger::CheckLevelPacksChanged() {
                 AddChangedLevelPack(levelPack.first);
             }
 //            }
-        });
+        }));
     }
-    m_MergeThreadPool->wait();
+    WaitForPendingTasks();
     return !m_ChangedLevelPacks.empty();
 }
 
@@ -645,26 +657,49 @@ void ChairMerger::AddChangedLocalizationPack(fs::path pack) {
 }
 
 void ChairMerger::AsyncDeploy() {
-    ClearDeployFailed();
-    auto now = std::chrono::high_resolution_clock::now();
-    PreMerge();
-    if(m_bDeployFailed)
-        return;
-    Merge();
-    if(m_bDeployFailed)
-        return;
-    PostMerge();
-    if(m_bDeployFailed)
-        return;
-    SetDeployPhase(DeployPhase::Done);
-    SetDeployStep(DeployStep::Done);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - now);
-    if(!m_bDeployFailed){
-        ChairManager::Get().log(severityLevel::info, "ChairMerger: Finished merging in %.1f seconds", elapsed.count() / 1000.0f);
+    try
+    {
+        ClearDeployFailed();
+        auto now = std::chrono::high_resolution_clock::now();
+        PreMerge();
+        if (m_bDeployFailed)
+            return;
+        Merge();
+        if (m_bDeployFailed)
+            return;
+        PostMerge();
+        if (m_bDeployFailed)
+            return;
+        SetDeployPhase(DeployPhase::Done);
+        SetDeployStep(DeployStep::Done);
+        auto end = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - now);
+        if (!m_bDeployFailed) {
+            ChairManager::Get().log(severityLevel::info, "ChairMerger: Finished merging in %.1f seconds", elapsed.count() / 1000.0f);
+        }
+        else {
+            ChairManager::Get().log(severityLevel::info, "ChairMerger: Merge failed, %d seconds", elapsed.count() / 1000.0f);
+        }
     }
-    else {
-        ChairManager::Get().log(severityLevel::info, "ChairMerger: Merge failed, %d seconds", elapsed.count() / 1000.0f);
+    catch (const ChairMergerException& e)
+    {
+        std::string errorMsg = e.what();
+        ChairManager::Get().log(severityLevel::error, "Merging failed: %s", e.what());
+
+        for (const std::string& msg : e.GetMessages())
+        {
+            ChairManager::Get().log(severityLevel::error, " - %s", msg.c_str());
+            errorMsg.append("\n");
+            errorMsg.append(msg);
+        }
+
+        SetDeployFailed(errorMsg);
+    }
+    catch (const std::exception& e)
+    {
+        std::string errorMsg = e.what();
+        ChairManager::Get().log(severityLevel::error, "Merging failed: %s", e.what());
+        SetDeployFailed(errorMsg);
     }
 }
 
@@ -704,6 +739,37 @@ int ChairMerger::Random(int min, int max) {
 float ChairMerger::RandomFloat(float min, float max) {
     std::uniform_real_distribution<float> distribution(min, max);
     return distribution(m_RandomGenerator);
+}
+
+void ChairMerger::AddPendingTask(std::future<void>&& future)
+{
+    m_PendingTasks.emplace_back(std::move(future));
+}
+
+void ChairMerger::WaitForPendingTasks()
+{
+    m_MergeThreadPool->wait();
+    std::vector<std::string> messages;
+
+    for (auto& task : m_PendingTasks)
+    {
+        // Using exceptions in this way is generally bad but I see no other way here
+        try
+        {
+            task.get();
+        }
+        catch (const std::exception& e)
+        {
+            messages.push_back(e.what());
+        }
+    }
+
+    m_PendingTasks.clear();
+
+    if (!messages.empty())
+    {
+        throw ChairMergerException(GetDeployStep(), GetDeployPhase(), std::move(messages));
+    }
 }
 
 void ChairMerger::LoadIdNameMap() {

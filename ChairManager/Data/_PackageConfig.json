@@ -14,7 +14,7 @@
     "ChairManager": {
       "ChairManager.exe": "ChairManager.exe",
       "ChairManager.pdb": "ChairManager.pdb",
-      "boost_json-vc143-mt-x64-1_79.dll": "boost_json-vc143-mt-x64-1_79.dll",
+      "boost_json-vc143-mt-x64-1_82.dll": "boost_json-vc143-mt-x64-1_82.dll",
       "bz2.dll": "bz2.dll",
       "curlpp.dll": "curlpp.dll",
       "gtest.dll": "gtest.dll",
@@ -28,7 +28,7 @@
     "Preditor/Launcher": {
       "Preditor.exe": "Preditor.exe",
       "Preditor.pdb": "Preditor.pdb",
-      "boost_program_options-vc143-mt-x64-1_79.dll": "boost_program_options-vc143-mt-x64-1_79.dll"
+      "boost_program_options-vc143-mt-x64-1_82.dll": "boost_program_options-vc143-mt-x64-1_82.dll"
     }
   },
 
@@ -47,7 +47,6 @@
     "Versions",
     "7za.exe",
     "chairloader_default.xml",
-    "MergingLibrary.xml",
-    "Montserrat-Regular.ttf"
+    "MergingLibrary.xml"
   ]
 }

@@ -61,14 +61,16 @@ public:
     }
 
     template<typename F, typename... Args>
-    void enqueue(F&& f, Args&&... args) {
+    [[nodiscard]] auto enqueue(F&& f, Args&&... args) {
         auto task = std::make_shared<std::packaged_task<void()>>(std::bind(std::forward<F>(f), std::forward<Args>(args)...));
+        auto future = task->get_future();
         {
             std::unique_lock<std::mutex> lock(queue_mutex);
             tasks.emplace([task]() { (*task)(); });
             ++numPendingTasks;
         }
         condition.notify_one();
+        return future;
     }
 
     void wait() {

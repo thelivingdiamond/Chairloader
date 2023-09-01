@@ -60,6 +60,9 @@ set(SOURCE_FILES
 	Manager/PugiUtils.h
 	Manager/XMLMerger2.cpp
 	Manager/XMLMerger2.h
+
+	WinShell/WinShell.cpp
+	WinShell/WinShell.h
 )
 
 add_library(CommonChairManager STATIC
@@ -78,6 +81,7 @@ target_include_directories(CommonChairManager PUBLIC
 target_link_libraries(CommonChairManager PUBLIC
 	D3D11.lib
 	fmt::fmt-header-only
+	Common
 )
 
 target_precompile_headers(CommonChairManager PUBLIC Manager/pch.h)

@@ -7,7 +7,6 @@
 //#include <archive_entry.h>
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_stdlib.h"
-#include "ImGuiFileDialog/ImGuiFileDialog.h"
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
@@ -35,6 +34,7 @@ class ChairMerger;
 
 class ChairManager final : public IChairManager {
 public:
+    static bool IsInstantiated() { return m_spInstance != nullptr; }
     static ChairManager& Get() { return *m_spInstance; }
 
     ChairManager();
@@ -184,7 +184,7 @@ private:
     void DrawDeploySettings();
     void DrawLog();
 
-    // _DEBUG only tab
+    // DEBUG_BUILD only tab
     void DrawDebug();
 
     float OverlayWidth = 20.0f;
@@ -292,7 +292,7 @@ private:
     // light green
     ImColor debugColor = {120,200,120};
 
-    #ifdef _DEBUG
+    #ifdef DEBUG_BUILD
         severityLevel filterLevel = severityLevel::trace;
     #else
         severityLevel filterLevel = severityLevel::info;
@@ -349,12 +349,14 @@ private:
         m_bLoadEditor = false,
         m_bDevMode = true,
         m_bTrainer = true,
-        m_bNoRandom = false,
-        m_bAuxGeom = false;
+        m_bNoRandom = false;
     void launchGame();
 
     void removeStartupCinematics();
     void restoreStartupCinematics();
 
     void RunAsyncDeploy();
+
+    //! Opens the file select dialog for mod installation.
+    void OpenInstallModDialog(bool isLegacy);
 };
