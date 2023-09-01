@@ -64,6 +64,9 @@ jobs:
       run: |
         cd _build/ninja-vcpkg
         del /s /q *.obj
+        del /s /q *.pch
+        del /s /q *.ilk
+      shell: cmd
 
     - name: CI Test 3.5
       run: |
