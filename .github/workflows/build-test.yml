@@ -27,6 +27,10 @@ jobs:
       uses: actions/setup-python@v4.5.0
       with:
         python-version: 3.11
+
+    - name: CI Test 1
+      run: |
+        python ./Scripts/ci_space_debug.py
     
     - name: Restore artifacts, or setup vcpkg for building artifacts
       uses: lukka/run-vcpkg@v10
@@ -36,6 +40,11 @@ jobs:
         vcpkgDirectory: '${{env.VCPKG_ROOT}}'
         vcpkgGitCommitId: 'a7b6122f6b6504d16d96117336a0562693579933'
         runVcpkgInstall: true
+        
+
+    - name: CI Test 2
+      run: |
+        python ./Scripts/ci_space_debug.py
 
     - name: Run CMake+vcpkg+Ninja+CTest to generate/build/test.
       uses: lukka/run-cmake@v10
@@ -46,6 +55,10 @@ jobs:
         buildPresetAdditionalArgs: "[`--config`, `${{matrix.buildType}}`]"
       env:
         VCPKG_FORCE_SYSTEM_BINARIES: 1
+
+    - name: CI Test 3
+      run: |
+        python ./Scripts/ci_space_debug.py
 
     - name: Archive dist files
       id: createDist
@@ -58,8 +71,16 @@ jobs:
         name: ${{steps.createDist.outputs.artifact_name}}
         path: _temp/${{steps.createDist.outputs.artifact_name}}.zip
 
+    - name: CI Test 4
+      run: |
+        python ./Scripts/ci_space_debug.py
+
     - name: Upload symbols archive
       uses: actions/upload-artifact@v3.1.2
       with:
         name: ${{steps.createDist.outputs.artifact_name_symbols}}
         path: _temp/${{steps.createDist.outputs.artifact_name_symbols}}.zip
+
+    - name: CI Test 5
+      run: |
+        python ./Scripts/ci_space_debug.py
