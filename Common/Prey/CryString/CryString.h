@@ -2372,6 +2372,13 @@ typedef CryStringLocalT<char>    string;
 typedef CryStringLocalT<wchar_t> wstring;
 	#endif
 
+// fmtlib formatting support
+template <typename T>
+inline std::basic_string_view<T> format_as(const CryStringT<T>& str)
+{
+	return std::basic_string_view<T>(str.data(), str.size());
+}
+
 #else // !defined(NOT_USE_CRY_STRING)
 
 	#include <string> // STL string
