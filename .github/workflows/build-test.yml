@@ -34,13 +34,13 @@ jobs:
         python ./Scripts/print_disk_usage.py
     
     - name: Restore artifacts, or setup vcpkg for building artifacts
-      uses: lukka/run-vcpkg@v10
+      uses: lukka/run-vcpkg@v11
       id: runvcpkg
       with:
         vcpkgJsonGlob: 'vcpkg.json'
         vcpkgDirectory: '${{env.VCPKG_ROOT}}'
-        vcpkgGitCommitId: 'a7b6122f6b6504d16d96117336a0562693579933'
-        runVcpkgInstall: true
+        vcpkgGitCommitId: '3f6e8e9c09e28a0eae4b37cceb2982ca2518278c'
+        runVcpkgInstall: false
 
     - name: Disk Usage - Pre-build
       if: always()
