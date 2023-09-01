@@ -42,6 +42,8 @@ target_link_libraries(Preditor.Launcher
 	Preditor.Main
 	Preditor.Viewport
 	D3D11.lib
+	libzip::zip
+	libzippp::libzippp
 )
 
 set_target_properties(Preditor.Launcher PROPERTIES OUTPUT_NAME "Preditor")
