@@ -209,7 +209,7 @@
             </FabricationPlanLibrary.xml>
             <LootTables.xml>
                 <mergingPolicy identification_policy="match_attribute">
-                    <attribute name="id" priority="0"/>
+                    <attribute name="Name" priority="0"/>
                     <nodeStructure>
                         <ArkLootTables>
                             <Tables merge_children="true"/>
