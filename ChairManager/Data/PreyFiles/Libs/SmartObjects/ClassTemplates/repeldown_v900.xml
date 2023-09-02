@@ -1,6 +1,0 @@
-
-<sotemplate>
- <object model="c3_repeldown_v900.cgf"/>
- <helper name="start_1" pos="0,2.75,9" rot="0.0,0.0,0.0,-1.0" radius="0.2" projectOnGround="1"/>
- <helper name="end_1" pos="0,0,0" rot="1.0,0.0,0.0,0.0" radius="0.2" projectOnGround="1"/>
-</sotemplate>

@@ -1,8 +1,0 @@
-
-<ArkSpaceSettings>
- <Sun Angles="170,0,30" Speed="0.025" Scale="10" Intensity="1"/>
- <Stars RotationOffset="10,0,0" Intensity="3" Scale="5.5999999" CountPercentage="0.14"/>
- <Earth SunOffsetAngles="-14,0,-15" Orientation="15,0,0" RotationSpeed="1" Distance="200000" Scale="4.5"/>
- <Moon WorldOffsetAngles="-15,35,45" Orientation="0,0,0" RotationSpeed="-1" Distance="2000" Scale="0.85000002"/>
- <HDR shoulderScale="4" midtonesScale="1" toeScale="1" whitepoint="2" saturation="1" colorBalance="1,1,1" sceneKey="0.18000001" minExposure="0.36000001" maxExposure="2.8" evMin="4.5" evMax="17" evAutoCompensation="1.5" bloomAmount="2" hdrMultiplier="0"/>
-</ArkSpaceSettings>

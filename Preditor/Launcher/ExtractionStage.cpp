@@ -1,6 +1,8 @@
+#include <libzippp.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CrySystem/ZipDirStructures.h>
 #include <Chairloader/ChairXmlUtils.h>
+#include <Manager/PreditorFiles.h>
 #include <mem.h>
 #include "ExtractionStage.h"
 #include "PreditorApp.h"
@@ -89,7 +91,7 @@ void ExtractionStage::Start()
 		}
 
 		// Create the file to mark data as successfully extracted
-		std::ofstream markFile(m_Opts.outputPath / "FilesExtracted.dat");
+		std::ofstream markFile(m_Opts.outputPath / PREDITOR_FILES_EXTRACTED);
 
 		m_State = EState::Done;
 		SetStageFinished(nullptr);
@@ -222,6 +224,11 @@ void ExtractionStage::ExtractPak(const pugi::xml_node node)
 	std::string relativePath = node.attribute("path").as_string();
 	fs::path fullPath = m_Opts.gamePath / "GameSDK" / fs::u8path(relativePath);
 
+	if (IsModdedPak(fullPath))
+	{
+		throw std::runtime_error(fmt::format("Pak is modded. Verify game files.", fullPath.u8string()));
+	}
+
 	uint32 flags =
 		ICryArchive::FLAGS_RELATIVE_PATHS_ONLY |
 		ICryArchive::FLAGS_OPTIMIZED_READ_ONLY | // Required for encrypted paks
@@ -251,8 +258,8 @@ void ExtractionStage::ExtractPak(const pugi::xml_node node)
 			ThrowIfCancelling();
 
 			// Check if the pak was touched by Chairloader
-			if (allFiles.find(".chairloader") != allFiles.end())
-				throw std::runtime_error("pak was modified by Chairloader. Validate game files.");
+			if (allFiles.find(MARK_OF_THE_CHAIR) != allFiles.end())
+				throw std::runtime_error("Pak is modded. Validate game files.");
 
 			FileMap filesToExtract = FilterFiles(node, allFiles);
 			ThrowIfCancelling();
@@ -412,6 +419,57 @@ ExtractionStage::FileMap ExtractionStage::FilterFiles(const pugi::xml_node node,
 	}
 
 	return filesToExtract;
+}
+
+bool ExtractionStage::IsModdedPak(const fs::path& pakPath)
+{
+	// Check magic
+	{
+		std::ifstream file(pakPath, std::ios::binary);
+		if (file.fail())
+			throw std::runtime_error("Failed to open the file");
+
+		char magic[2];
+		file.read(magic, sizeof(magic));
+
+		if (memcmp(magic, "PK", sizeof(magic)))
+		{
+			// Not a valid ZIP, probably encrypted pak (definitely not modded).
+			return false;
+		}
+	}
+
+	// Open as ZIP
+	// It probably passes the string into std::ifstream, which takes it in local encoding.
+	// So, fs::path::string is used.
+	libzippp::ZipArchive zip(pakPath.string());
+	
+	if (!zip.open(libzippp::ZipArchive::ReadOnly))
+	{
+		// Invalid zip. Might be an encrypted archive that just happens to start with "PK".
+		return false;
+	}
+
+	std::vector<libzippp::ZipEntry> entries = zip.getEntries();
+
+	// All times should be before 2023.
+	constexpr int MAX_YEAR = 2023;
+	tm maxTM = {};
+	maxTM.tm_year = MAX_YEAR - 1900;
+	time_t maxTime = mktime(&maxTM);
+
+	for (const libzippp::ZipEntry& entry : entries)
+	{
+		time_t date = entry.getDate();
+
+		if (date > maxTime)
+		{
+			gEnv->pLog->LogWarning("File %s is newer than %d (%lld > %lld)", entry.getName().c_str(), MAX_YEAR, date, maxTime);
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void ExtractionStage::ThrowIfCancelling()

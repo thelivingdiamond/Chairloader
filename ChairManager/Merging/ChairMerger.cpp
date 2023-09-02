@@ -11,6 +11,7 @@
 #include <Manager/LuaUtils.h>
 #include <Manager/WildcardResolver.h>
 #include <Manager/NameToIdMap.h>
+#include <Manager/PreditorFiles.h>
 #include "ZipUtils.h"
 #include "HashUtils.h"
 
@@ -445,6 +446,7 @@ void ChairMerger::PackLevelFiles() {
                 }
                 try {
                     // then we must pack the level directory
+                    std::ofstream(m_LevelOutputPath / levelPath / "level" / MARK_OF_THE_CHAIR).close();
                     ZipUtils::CompressFolder(m_LevelOutputPath / levelPath / "level", m_LevelOutputPath / levelPath / "level.pak", true);
                 } catch (std::exception &e) {
                     ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not pack level directory %s", (m_LevelOutputPath / levelPath / "level").string());
@@ -542,6 +544,7 @@ void ChairMerger::PackLocalizationFiles() {
                 }
                 try {
                     // then we must pack the localization directory
+                    std::ofstream(m_LocalizationOutputPath / localizationPath / originalDirectoryPath / MARK_OF_THE_CHAIR).close();
                     ZipUtils::CompressFolder(m_LocalizationOutputPath / localizationPath / originalDirectoryPath, m_LocalizationOutputPath / localizationPath / patchFilePath, true);
                 } catch (std::exception &e) {
                     ChairManager::Get().log(severityLevel::error, "ChairMerger: Could not pack localization directory %s", (m_LocalizationOutputPath / localizationPath / "localization").string());
@@ -585,6 +588,7 @@ void ChairMerger::PackMainPatch() {
         SetDeployFailed("Could not remove old patch file: " + std::string(e.what()));
         return;
     }
+    std::ofstream(m_OutputPath / MARK_OF_THE_CHAIR).close();
     ZipUtils::CompressFolder(m_OutputPath, m_PrecacheFilesPath / "patch_chairloader.pak", true);
     ChairManager::Get().log(severityLevel::trace, "ChairMerger: Finished packing main patch");
 }

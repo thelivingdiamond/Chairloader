@@ -1,6 +1,0 @@
-
-<EquipPack name="ArkPlayer_AlienLure" primary="ArkAmmoPickupLureGrenades">
- <Items>
-  <ArkAmmoPickupLureGrenades type="" archetype="ArkPickups.Ammo.LureGrenades" count="25"/>
- </Items>
-</EquipPack>

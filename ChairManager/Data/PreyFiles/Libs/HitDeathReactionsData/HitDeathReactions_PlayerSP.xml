@@ -1,9 +1,0 @@
-
-<DeathHitReactionsParams>
- <HitDeathReactionsConfig collReactionStartDist="0.4" maxRagdolImpulse="1000" maximumReactionTime="6.0"/>
- <HitReactionParams/>
- <DeathReactionParams>
-  <DeathReactionParam manqReaction="0" noRagdollOnEnd="1"/>
-  <DeathReactionParam reactionFunc="DeathImpulse_Reaction"/>
- </DeathReactionParams>
-</DeathHitReactionsParams>

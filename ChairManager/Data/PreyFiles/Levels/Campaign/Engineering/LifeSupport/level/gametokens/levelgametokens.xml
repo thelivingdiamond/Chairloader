@@ -1,9 +1,0 @@
-<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/engineering/lifesupport">
- <GameToken Id="-812960091" Name="PriceSpawned" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-235688292" Name="DahlPatrolStatus" Flags="4" Type="String" Value="false"/>
- <GameToken Id="-756175438" Name="AtmoOxygenOff" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-1847281108" Name="PowerOn" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-570223545" Name="FanFixed" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-348505968" Name="FansOff" Flags="4" Type="Bool" Value="false"/>
- <GameToken Id="-1495150406" Name="PsiPlaced" Flags="4" Type="Bool" Value="false"/>
-</GameTokensLibrary>

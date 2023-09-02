@@ -1,3 +1,0 @@
-<GameTokensLibrary Name="Level" LevelName="gamesdk/levels/campaign/endgame">
- <GameToken Id="-166952079" Name="AlexState.IsIdle" Flags="4" Type="Bool" Value="false"/>
-</GameTokensLibrary>

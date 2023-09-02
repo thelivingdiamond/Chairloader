@@ -1,6 +1,0 @@
-
-<sotemplate>
- <object model="c2_jump_v450.cgf"/>
- <helper name="start_2" pos="0,-1.75,0.0" rot="1.0,0.0,0.0,0.0" radius="0.2" projectOnGround="1"/>
- <helper name="end_2" pos="0,2.5,4.5" rot="0.0,0.0,0.0,-1.0" radius="0.2" projectOnGround="1"/>
-</sotemplate>

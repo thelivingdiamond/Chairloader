@@ -1,4 +1,0 @@
-
-<DialogScript Name="Player.Plyr_SomethingForNothing" Description="">
- <Line actor="0" lookatActor="255" flagLookAtSticky="0" flagSoundStopsAnim="0" flagAGSignal="0" flagAGEP="0" sound="vs/player/player_plyrpickupneuromod_a_response" anim="" facial="" delay="0" facialWeight="0.5" facialFadeTime="0.5" desc=""/>
-</DialogScript>

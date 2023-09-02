@@ -72,6 +72,9 @@ private:
 	//! @returns map of files that need to be extracted.
 	FileMap FilterFiles(const pugi::xml_node node, const FileMap& allFiles);
 
+	//! Checks if the pak file was modded.
+	bool IsModdedPak(const fs::path& pakPath);
+
 	//! Throws CancelledException if the user requested cancellation.
 	void ThrowIfCancelling();
 };

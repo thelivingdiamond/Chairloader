@@ -1,7 +1,0 @@
-
-<download name="zerog_utilitytunnels" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="4335196" md5="1d168b01422754a1f24a043e869b81b9"/>
- </files>
-</download>

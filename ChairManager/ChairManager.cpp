@@ -7,6 +7,7 @@
 #include <curlpp/cURLpp.hpp>
 #include <Manager/GamePath.h>
 #include <Manager/XMLMerger2.h>
+#include <Manager/PreditorFiles.h>
 #include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <WinShell/WinShell.h>
@@ -1775,11 +1776,17 @@ void ChairManager::createChairloaderConfigFile() {
 
 bool ChairManager::verifyChairloaderInstalled() {
     try{
+        // Check for installed Chairloader binaries
         for (const char* fileName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries())
         {
             if (!fs::exists(GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / fileName))
                 return false;
         }
+
+        // Check for extracted PreyFiles
+        // TODO 2023-08-30: Remove all hardcoded PreyFiles
+        if (!fs::exists(fs::path("PreyFiles") / PREDITOR_FILES_EXTRACTED))
+            return false;
 
         return true;
     } catch (std::exception & exception){

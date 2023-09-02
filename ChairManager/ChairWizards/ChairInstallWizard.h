@@ -15,8 +15,10 @@ private:
 		Error,
 		Welcome,
 		VersionCheck,
+		VerifyFilesWarning,
 		Confirm,
 		Progress,
+		Extract,
 		Finish,
 	};
 
@@ -39,15 +41,21 @@ private:
 	mutable std::mutex m_InstallLogMutex;
 	bool m_bIsInstallFinished = false;
 
+	std::future<void> m_ExtractFuture;
+	bool m_bIsExtractFinished = false;
+
 	void ShowErrorPage();
 	void ShowWelcomePage();
 	void ShowVersionCheckPage();
+	void ShowVerifyFilesWarningPage();
 	void ShowConfirmPage();
 	void ShowProgressPage();
+	void ShowExtractPage();
 	void ShowFinishPage();
 
 	void ToVersionCheck();
 	void StartInstall();
+	void StartExtract();
 	void SetError(const std::string& text);
 
 	float GetButtonRowHeight();
@@ -55,4 +63,5 @@ private:
 	void ShowPatchWarning(bool isFinal);
 
 	void InstallAsyncTask() const;
+	void ExtractAsyncTask() const;
 };
