@@ -64,6 +64,8 @@ set(SOURCE_FILES
 
 	WinShell/WinShell.cpp
 	WinShell/WinShell.h
+
+	version_info.rc.in
 )
 
 add_library(CommonChairManager STATIC

@@ -10,4 +10,6 @@ set_target_properties(Chairloader.Loader PROPERTIES OUTPUT_NAME "mswsock")
 cl_output_dir(Chairloader.Loader)
 cl_set_debug_path(Chairloader.Loader)
 
+cl_version_info(Chairloader.Loader "mswsock.dll" "Chairloader Loader")
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

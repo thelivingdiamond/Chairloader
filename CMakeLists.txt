@@ -121,6 +121,39 @@ function(cl_set_debug_path targetName)
 	endif()
 endfunction()
 
+# Generates version_info.rc resource file for the target.
+# @param target_name		Target name. Must be an EXE or a DLL.
+# @param file_name			Output file name.
+# @param file_description	Short file description.
+function(cl_version_info target_name file_name file_description)
+	get_target_property(target_type ${target_name} TYPE)
+
+	if(target_type STREQUAL "EXECUTABLE")
+		set(is_dll 0)
+	elseif(target_type STREQUAL "SHARED_LIBRARY")
+		set(is_dll 1)
+	else()
+		message(FATAL_ERROR "Target ${target_name} is neither EXE nor DLL, it's ${target_type}")
+	endif()
+
+	if(_CHAIRLOADER_VERSION_TYPE)
+		set(is_prerelease 1)
+	else()
+		set(is_prerelease 0)
+	endif()
+
+	set(in_file_path "${CMAKE_SOURCE_DIR}/CommonChairManager/version_info.rc.in")
+	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/version_info.rc")
+
+	configure_file(
+		${in_file_path}
+		${out_file_path}
+		@ONLY
+	)
+
+	target_sources(${target_name} PRIVATE ${out_file_path})
+endfunction()
+
 # Third-party libraries
 find_package(Boost REQUIRED COMPONENTS program_options json)
 find_package(Detours MODULE REQUIRED)

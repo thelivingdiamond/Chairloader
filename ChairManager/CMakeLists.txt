@@ -17,8 +17,6 @@ set(SOURCE_FILES
         #Miscellaneous
         zipconf.h
         Resources/appicon.rc
-        Resources/version.rc.in
-        Resources/version.rc
         ChairWizards/ChairUninstallWizard.cpp
         ChairWizards/ChairUninstallWizard.h
         BinaryVersionCheck.h
@@ -50,12 +48,6 @@ set(SOURCE_FILES
 set(APP_ICON_RESOURCE_WINDOWS "Resources/appicon.rc")
 set(Boost_USE_STATIC_LIBS ON)
 
-message(STATUS "Version: ${_CHAIRLOADER_VERSION_STR}")
-configure_file(
-        Resources/version.rc.in
-        Resources/version.rc
-        @ONLY)
-
 add_executable(ChairManager WIN32 ${SOURCE_FILES})
 target_include_directories(ChairManager PRIVATE . ${LUABRIDGE_INCLUDE_DIRS} ${LUA_INCLUDE_DIR})
 
@@ -84,5 +76,7 @@ target_precompile_headers(ChairManager PRIVATE pch.h)
 set_target_properties(ChairManager PROPERTIES
 	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Data"
 )
+
+cl_version_info(ChairManager "ChairManager.exe" "Chairloader Mod Manager")
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

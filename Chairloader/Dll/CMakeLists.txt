@@ -9,20 +9,12 @@ set(SOURCE_FILES
 	Chairloader.cpp
 	Chairloader.h
 	dllmain.cpp
-	version.rc
-	version.rc.in
 	WinConsole.cpp
 	WinConsole.h
 	ImportantClass.h
 	ImportantClass.cpp
 	LuaDebugger.rc
 	LuaDebuggerResource.h
-)
-
-configure_file(
-	${CMAKE_CURRENT_SOURCE_DIR}/version.rc.in
-	${CMAKE_CURRENT_SOURCE_DIR}/version.rc
-	@ONLY
 )
 
 add_library(Chairloader.Dll SHARED ${SOURCE_FILES})
@@ -39,5 +31,7 @@ target_link_libraries(Chairloader.Dll PRIVATE
 set_target_properties(Chairloader.Dll PROPERTIES OUTPUT_NAME "Chairloader")
 cl_output_dir(Chairloader.Dll)
 cl_set_debug_path(Chairloader.Dll)
+
+cl_version_info(Chairloader.Dll "Chairloader.dll" "Mod Loader for Prey (2017)")
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
