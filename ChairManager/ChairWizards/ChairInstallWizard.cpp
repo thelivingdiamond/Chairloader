@@ -177,9 +177,12 @@ void ChairInstallWizard::ShowVersionCheckPage()
 void ChairInstallWizard::ShowVerifyFilesWarningPage()
 {
 	ImGui::TextColored(ImColor(255, 255, 0), "Important!");
-	ImGui::TextWrapped("If you ever installed any mods or an older version of Chairloader, "
-		"please, verify game files in Steam/GOG/EGS. Chairloader requires original game "
-		"files to install mods correctly.");
+	ImGui::Text("If you ever installed any mods or an older version of Chairloader, "
+		"please, ");
+	ImGui::TextColored(ImColor(247, 115, 7), "verify game files ");
+	ImGui::SameLine(0, 0);
+	ImGui::Text("in Steam/GOG/EGS. Chairloader requires original game files");
+	ImGui::Text("to install mods correctly.");
 	ImGui::NewLine();
 
 	auto fnBack = [&]() { m_State = State::VersionCheck; };
@@ -199,7 +202,12 @@ void ChairInstallWizard::ShowConfirmPage()
 		ImGui::NewLine();
 	}
 
-	ImGui::TextWrapped("This is your last chance to cancel the installation.\nDo you wish to proceed?");
+	ImGui::Text("This is your ");
+	ImGui::SameLine(0, 0);
+	ImGui::TextColored(ImColor(247, 115, 7), "last chance");
+	ImGui::SameLine(0, 0);
+	ImGui::Text(" to cancel the installation.");
+	ImGui::Text("Do you wish to proceed?");
 	ShowBottomBtns([&]() { m_State = State::VersionCheck; }, [&]() { StartInstall(); }, [&]() { m_Cancel = true; });
 }
 
