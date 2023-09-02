@@ -464,7 +464,7 @@ bool ExtractionStage::IsModdedPak(const fs::path& pakPath)
 
 		if (date > maxTime)
 		{
-			gEnv->pLog->LogWarning("File %s is newer than %s (%lld > %lld)", entry.getName().c_str(), MAX_YEAR, date, maxTime);
+			gEnv->pLog->LogWarning("File %s is newer than %d (%lld > %lld)", entry.getName().c_str(), MAX_YEAR, date, maxTime);
 			return true;
 		}
 	}
