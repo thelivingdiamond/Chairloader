@@ -355,7 +355,7 @@ void ChairInstallWizard::ShowPatchWarning(bool isFinal)
 {
 	ImGui::TextColored(ImColor(255, 255, 0), isFinal ? "Final Warning: " : "Warning: ");
 	ImGui::TextWrapped("Patching the game will turn your version of the game into an Epic Games Store version. "
-		"This will disable Steam/GOG integration, including achievements.");
+		"Steam/GOG achievements will continue to work. Xbox Game Pass/MS Store achievements will be disabled.");
 }
 
 void ChairInstallWizard::InstallAsyncTask() const
