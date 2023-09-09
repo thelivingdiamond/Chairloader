@@ -68,7 +68,7 @@
 
 // Disable CRT/STL deprecation and warnings for standard C++ functions.
 // You can define CRY_SAFE_RUNTIME before including platform.h if you DO want the secure warnings behavior.
-#if CRY_COMPILER_MSVC
+#if CRY_COMPILER_MSVC || CRY_COMPILER_CLANG
 	#if !defined(CRY_SAFE_RUNTIME)
 		#define _CRT_SECURE_NO_DEPRECATE
 		#define _CRT_SECURE_NO_WARNINGS
