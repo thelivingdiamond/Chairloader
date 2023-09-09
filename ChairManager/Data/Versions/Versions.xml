@@ -58,4 +58,10 @@
 		<ReleaseDate>2019-06-12</ReleaseDate>
 		<Type>MS</Type>
 	</Version>
+
+	<Version>
+		<SHA256>88ccbf590ed7cf06e9bd6202aa5f0298d2dde0deadd89aa3994da6a0f6f918be</SHA256>
+		<ReleaseDate>2023-05-19</ReleaseDate>
+		<Type>MS</Type>
+	</Version>
 </Versions>
