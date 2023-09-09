@@ -15,7 +15,8 @@ class ArkDisruptableSignalReceiver : public ArkSignalSystem::Receiver // Id=8016
 {
 public:
 	ArkDisruptable &m_disruptable;
-	
+
+    ArkDisruptableSignalReceiver();
 	virtual ~ArkDisruptableSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	

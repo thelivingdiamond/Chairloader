@@ -5,7 +5,6 @@
 #include <Prey/GameDll/ark/dialog/IArkConversation.h>
 #include <Prey/GameDll/ark/dialog/IArkSpeaker.h>
 #include <Prey/GameDll/ark/dialog/SArkRuleQuery.h>
-#include <Prey/GameDll/ark/dialog/arkconversation.h>
 
 class ArkCharacter;
 class ArkResponse;

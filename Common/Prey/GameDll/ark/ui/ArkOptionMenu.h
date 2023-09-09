@@ -74,7 +74,7 @@ public:
 	
 	ArkOptionMenu(ArkUIOptionMenuBase *_pOptionMenu);
 	virtual ~ArkOptionMenu();
-	virtual void LoadOptionProfile(const char *_filename, bool __formal);
+	virtual void LoadOptionProfile(const char *_filename, bool );
 	virtual void Init();
 	virtual bool Update();
 	virtual void Reset();
@@ -140,7 +140,7 @@ public:
 	void RefreshResolutionsForMonitorSwitch(const int arg0, const int arg1);
 #endif
 	
-	static inline auto FLoadOptionProfile = PreyFunction<void(ArkOptionMenu *const _this, const char *_filename, bool __formal)>(0x1368530);
+	static inline auto FLoadOptionProfile = PreyFunction<void(ArkOptionMenu *const _this, const char *_filename, bool )>(0x1368530);
 	static inline auto FInit = PreyFunction<void(ArkOptionMenu *const _this)>(0x13682D0);
 	static inline auto FUpdate = PreyFunction<bool(ArkOptionMenu *const _this)>(0x136BEB0);
 	static inline auto FReset = PreyFunction<void(ArkOptionMenu *const _this)>(0x13697B0);

@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/cryaction/ark/ArkActionGame.h>
+#include <Prey/CryAction/ark/ArkActionGame.h>
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryAction/ActionGame.h>
 #include <Prey/CryAction/IGameRulesSystem.h>
@@ -309,9 +309,9 @@ public:
 	static int OnStateChangeImmediate(EventPhys const *pEvent) { return FOnStateChangeImmediate(pEvent); }
 	static int OnCreatePhysicalEntityImmediate(EventPhys const *pEvent) { return FOnCreatePhysicalEntityImmediate(pEvent); }
 	static int OnUpdateMeshImmediate(EventPhys const *pEvent) { return FOnUpdateMeshImmediate(pEvent); }
-	virtual void OnHit(HitInfo const &__formal);
+	virtual void OnHit(HitInfo const &);
 	virtual void OnExplosion(ExplosionInfo const &ei);
-	virtual void OnServerExplosion(ExplosionInfo const &__formal);
+	virtual void OnServerExplosion(ExplosionInfo const &);
 	static void OnCollisionLogged_MaterialFX(EventPhys const *pEvent) { FOnCollisionLogged_MaterialFX(pEvent); }
 	static void OnCollisionLogged_Breakable(EventPhys const *pEvent) { FOnCollisionLogged_Breakable(pEvent); }
 	static void OnPostStepLogged_MaterialFX(EventPhys const *pEvent) { FOnPostStepLogged_MaterialFX(pEvent); }
@@ -417,9 +417,9 @@ public:
 	static inline auto FOnStateChangeImmediate = PreyFunction<int(EventPhys const *pEvent)>(0x5B09A0);
 	static inline auto FOnCreatePhysicalEntityImmediate = PreyFunction<int(EventPhys const *pEvent)>(0x5AEB20);
 	static inline auto FOnUpdateMeshImmediate = PreyFunction<int(EventPhys const *pEvent)>(0x5B0CD0);
-	static inline auto FOnHit = PreyFunction<void(CActionGame *const _this, HitInfo const &__formal)>(0xA13080);
+	static inline auto FOnHit = PreyFunction<void(CActionGame *const _this, HitInfo const &)>(0xA13080);
 	static inline auto FOnExplosion = PreyFunction<void(CActionGame *const _this, ExplosionInfo const &ei)>(0x5AF390);
-	static inline auto FOnServerExplosion = PreyFunction<void(CActionGame *const _this, ExplosionInfo const &__formal)>(0xA13080);
+	static inline auto FOnServerExplosion = PreyFunction<void(CActionGame *const _this, ExplosionInfo const &)>(0xA13080);
 	static inline auto FOnCollisionLogged_MaterialFX = PreyFunction<void(EventPhys const *pEvent)>(0x5AD420);
 	static inline auto FOnCollisionLogged_Breakable = PreyFunction<void(EventPhys const *pEvent)>(0x5AD1A0);
 	static inline auto FOnPostStepLogged_MaterialFX = PreyFunction<void(EventPhys const *pEvent)>(0x5AFE40);
@@ -510,8 +510,8 @@ struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
 	virtual uint64_t GetTotalSize();
 	virtual uint64_t GetObjectCount();
 	virtual IResourceCollector *GetResourceCollector();
-	virtual void Push(const char *__formal);
-	virtual void PushSubcomponent(const char *__formal);
+	virtual void Push(const char *);
+	virtual void PushSubcomponent(const char *);
 	virtual void Pop();
 	virtual bool AddObject(const void *id, uint64_t size, int count);
 	virtual void Reset();
@@ -523,8 +523,8 @@ struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
 	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0xD87500);
 	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0x5BFB50);
 	static inline auto FGetResourceCollector = PreyFunction<IResourceCollector *(CrySizerNaive *const _this)>(0x158AEF0);
-	static inline auto FPush = PreyFunction<void(CrySizerNaive *const _this, const char *__formal)>(0xA13080);
-	static inline auto FPushSubcomponent = PreyFunction<void(CrySizerNaive *const _this, const char *__formal)>(0xA13080);
+	static inline auto FPush = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
+	static inline auto FPushSubcomponent = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
 	static inline auto FPop = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
 	static inline auto FAddObject = PreyFunction<bool(CrySizerNaive *const _this, const void *id, uint64_t size, int count)>(0x5A8880);
 	static inline auto FReset = PreyFunction<void(CrySizerNaive *const _this)>(0x1800CA0);

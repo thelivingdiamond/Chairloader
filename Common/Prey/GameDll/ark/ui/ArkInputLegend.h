@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryString/CryName.h>
-#include <Prey/GameDll/ark/ui/arkinputlegend.h>
 #include <Prey/Ark/arkgamenoise.h>
 
 class ArkClass;

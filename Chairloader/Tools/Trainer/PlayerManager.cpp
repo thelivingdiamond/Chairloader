@@ -7,7 +7,7 @@
 #include <Prey/CryString/UnicodeFunctions.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerStatusComponent.h>
-#include <Prey/GameDll/ark/player/arkpsicomponent.h>
+#include <Prey/GameDll/ark/player/ArkPsiComponent.h>
 #include <Prey/GameDll/ark/player/ArkPlayerFatigueComponent.h>
 #include <Prey/GameDll/ark/player/psipower/IArkPsiPower.h>
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>

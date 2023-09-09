@@ -196,7 +196,7 @@ public:
 	void BuildVolumeOctree() { FBuildVolumeOctree(this); }
 	void AddVolumeToOctree(CArkRoomVolumeManager::VolumeData const *_volume) { FAddVolumeToOctree(this,_volume); }
 	static void ExploreAudioPropagation_r(CArkRoomVolumeManager const &_roomVolumeManager, std::unordered_map<ArkRoomPathNodePair,ArkRoomPath> &_pathMap, ArkRoomPath &_currentPath, float _fMaxAudibleDistance, GeneratePropagationStats &_stats) { FExploreAudioPropagation_r(_roomVolumeManager,_pathMap,_currentPath,_fMaxAudibleDistance,_stats); }
-	static void ComputeAudioCmd(IConsoleCmdArgs *__formal) { FComputeAudioCmd(__formal); }
+	static void ComputeAudioCmd(IConsoleCmdArgs *arg) { FComputeAudioCmd(arg); }
 	virtual ~CArkRoomVolumeManager();
 	
 #if 0
@@ -258,6 +258,6 @@ public:
 	static inline auto FBuildVolumeOctree = PreyFunction<void(CArkRoomVolumeManager *const _this)>(0x14791F0);
 	static inline auto FAddVolumeToOctree = PreyFunction<void(CArkRoomVolumeManager *const _this, CArkRoomVolumeManager::VolumeData const *_volume)>(0x1478D80);
 	static inline auto FExploreAudioPropagation_r = PreyFunction<void(CArkRoomVolumeManager const &_roomVolumeManager, std::unordered_map<ArkRoomPathNodePair,ArkRoomPath> &_pathMap, ArkRoomPath &_currentPath, float _fMaxAudibleDistance, GeneratePropagationStats &_stats)>(0x1479C20);
-	static inline auto FComputeAudioCmd = PreyFunction<void(IConsoleCmdArgs *__formal)>(0x1479360);
+	static inline auto FComputeAudioCmd = PreyFunction<void(IConsoleCmdArgs *)>(0x1479360);
 };
 

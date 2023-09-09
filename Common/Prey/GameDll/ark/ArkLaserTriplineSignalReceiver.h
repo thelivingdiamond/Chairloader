@@ -15,7 +15,8 @@ class ArkLaserTriplineSignalReceiver : public ArkSignalSystem::Receiver // Id=80
 {
 public:
 	ArkLaserTripline &m_owner;
-	
+
+    ArkLaserTriplineSignalReceiver();
 	virtual ~ArkLaserTriplineSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	

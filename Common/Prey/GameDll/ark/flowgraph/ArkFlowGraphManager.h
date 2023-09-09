@@ -31,7 +31,7 @@ public:
 	void RegisterRemoteEvent(unsigned _graphID, uint16_t _nodeID) { FRegisterRemoteEvent(this,_graphID,_nodeID); }
 	void UnregisterRemoteEvent(unsigned _graphID, uint16_t _nodeID) { FUnregisterRemoteEvent(this,_graphID,_nodeID); }
 	void OnLevelUnload() { FOnLevelUnload(this); }
-	void Reset(bool __formal) { FReset(this,__formal); }
+	void Reset(bool ) { FReset(this,); }
 	static void OnConsoleEvent(IConsoleCmdArgs *_pCmdArgs) { FOnConsoleEvent(_pCmdArgs); }
 	void ExecuteConsoleEvent(string const &_eventName) const { FExecuteConsoleEvent(this,_eventName); }
 	void ExecuteRemoteEvent(string const &_eventName) const { FExecuteRemoteEvent(this,_eventName); }
@@ -48,7 +48,7 @@ public:
 	static inline auto FRegisterRemoteEvent = PreyFunction<void(CArkFlowGraphManager *const _this, unsigned _graphID, uint16_t _nodeID)>(0x14A73A0);
 	static inline auto FUnregisterRemoteEvent = PreyFunction<void(CArkFlowGraphManager *const _this, unsigned _graphID, uint16_t _nodeID)>(0x14A74C0);
 	static inline auto FOnLevelUnload = PreyFunction<void(CArkFlowGraphManager *const _this)>(0xA13080);
-	static inline auto FReset = PreyFunction<void(CArkFlowGraphManager *const _this, bool __formal)>(0x14A73F0);
+	static inline auto FReset = PreyFunction<void(CArkFlowGraphManager *const _this, bool )>(0x14A73F0);
 	static inline auto FOnConsoleEvent = PreyFunction<void(IConsoleCmdArgs *_pCmdArgs)>(0x14A7230);
 	static inline auto FExecuteConsoleEvent = PreyFunction<void(CArkFlowGraphManager const *const _this, string const &_eventName)>(0x14A6E10);
 	static inline auto FExecuteRemoteEvent = PreyFunction<void(CArkFlowGraphManager const *const _this, string const &_eventName)>(0x14A70F0);

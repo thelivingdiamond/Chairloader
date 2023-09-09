@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arksimplecharge.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/arksimplecharge.h

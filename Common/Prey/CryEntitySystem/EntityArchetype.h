@@ -4,7 +4,7 @@
 #include <Prey/CryEntitySystem/EntityArchetype.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CrySystem/XML/IXml.h>
-#include <Prey/GameDll/ark/arkscripttable.h>
+#include <Prey/GameDll/ark/ArkScriptTable.h>
 #include <Prey/CryEntitySystem/IEntityClass.h>
 #include <Chairloader/PreyFunction.h>
 

@@ -31,7 +31,7 @@ public:
 	virtual void UnloadEventSystem();
 	virtual void OnUpdate(float fDelta);
 	virtual bool OnAction(CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent);
-	virtual void OnActiveUserIdChanged(unsigned __formal);
+	virtual void OnActiveUserIdChanged(unsigned );
 	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
 	virtual bool OnActiveUserReengaged();
 	virtual void OnActiveUserSignedOut();
@@ -75,7 +75,7 @@ public:
 	static inline auto FUnloadEventSystem = PreyFunction<void(ArkUIOptionMenuBase *const _this)>(0x163FAB0);
 	static inline auto FOnUpdate = PreyFunction<void(ArkUIOptionMenuBase *const _this, float fDelta)>(0x163F380);
 	static inline auto FOnAction = PreyFunction<bool(ArkUIOptionMenuBase *const _this, CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent)>(0x163E740);
-	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkUIOptionMenuBase *const _this, unsigned __formal)>(0xA13080);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkUIOptionMenuBase *const _this, unsigned )>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkUIOptionMenuBase *const _this, bool _bControllerDisconnect)>(0x163EAB0);
 	static inline auto FOnActiveUserReengaged = PreyFunction<bool(ArkUIOptionMenuBase *const _this)>(0x163EB10);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkUIOptionMenuBase *const _this)>(0xA13080);

@@ -43,11 +43,11 @@ public:
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void PostUpdate(float frameTime);
 	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(SGameObjectEvent const &__formal);
+	virtual void HandleEvent(SGameObjectEvent const &);
 	virtual void ProcessEvent(SEntityEvent &_event);
 	virtual void SetChannelId(uint16_t id);
 	virtual void SetAuthority(bool auth);
-	virtual void GetMemoryUsage(ICrySizer *__formal) const;
+	virtual void GetMemoryUsage(ICrySizer *) const;
 	virtual IArkSpeaker *GetSpeaker();
 	virtual ~ArkSpeakerExtension();
 	
@@ -67,11 +67,11 @@ public:
 	static inline auto FUpdate = PreyFunction<void(ArkSpeakerExtension *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x13D61E0);
 	static inline auto FPostUpdate = PreyFunction<void(ArkSpeakerExtension *const _this, float frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSpeakerExtension *const _this)>(0xA13080);
-	static inline auto FHandleEvent = PreyFunction<void(ArkSpeakerExtension *const _this, SGameObjectEvent const &__formal)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(ArkSpeakerExtension *const _this, SGameObjectEvent const &)>(0xA13080);
 	static inline auto FProcessEvent = PreyFunction<void(ArkSpeakerExtension *const _this, SEntityEvent &_event)>(0x13D6040);
 	static inline auto FSetChannelId = PreyFunction<void(ArkSpeakerExtension *const _this, uint16_t id)>(0xA13080);
 	static inline auto FSetAuthority = PreyFunction<void(ArkSpeakerExtension *const _this, bool auth)>(0xA13080);
-	static inline auto FGetMemoryUsage = PreyFunction<void(ArkSpeakerExtension const *const _this, ICrySizer *__formal)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(ArkSpeakerExtension const *const _this, ICrySizer *)>(0xA13080);
 	static inline auto FGetSpeaker = PreyFunction<IArkSpeaker *(ArkSpeakerExtension *const _this)>(0x855C80);
 };
 

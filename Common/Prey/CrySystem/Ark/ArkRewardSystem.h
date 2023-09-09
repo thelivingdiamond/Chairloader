@@ -48,11 +48,8 @@ public:
 	{ // Size=16 (0x10)
 		CryEvent& event;
 
+        CArkRewardSystemFlushJobInfo(CryEvent& _arg0_);
 		virtual CArkRewardSystem::IArkRewardsJobInfo::ArkRewardsJobInfoType JobType() const;
-
-	#if 0
-		CArkRewardSystemFlushJobInfo(CryEvent& _arg0_);
-	#endif
 
 		static inline auto FJobType = PreyFunction<CArkRewardSystem::IArkRewardsJobInfo::ArkRewardsJobInfoType(const CArkRewardSystem::CArkRewardSystemFlushJobInfo* const _this)>(0x158AEF0);
 	};

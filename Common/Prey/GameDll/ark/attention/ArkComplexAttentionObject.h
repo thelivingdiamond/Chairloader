@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/attention/arkcomplexattentionobject.h>
 #include <Prey/GameDll/ark/perception/arkvisualperceiver.h>
 
 struct ArkAttentionLevelChange;

@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkentitlement.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
 class ArkClass;

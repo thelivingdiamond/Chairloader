@@ -62,7 +62,7 @@ void LoadChairLoader()
     {
         // Mooncrash is loaded by the same Prey.exe so it will also load mswsock.dll.
         // Check if the loaded PreyDll.dll is from Mooncrash.
-        wchar_t* mooncrashPaths[] = {
+        const wchar_t* mooncrashPaths[] = {
             L"Whiplash\\Binaries\\Danielle\\x64\\Release\\PreyDll.dll",
             L"Whiplash\\Binaries\\Danielle\\x64-Epic\\Release\\PreyDll.dll",
         };
@@ -76,7 +76,7 @@ void LoadChairLoader()
                 c = '\\';
         }
 
-        for (wchar_t* prefix : mooncrashPaths)
+        for (const wchar_t* prefix : mooncrashPaths)
         {
             int prefixLen = wcslen(prefix);
             if (pathLen >= prefixLen && !_wcsicmp(prefix, preyDllPath + pathLen - prefixLen))

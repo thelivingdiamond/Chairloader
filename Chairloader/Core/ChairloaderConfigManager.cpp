@@ -1,4 +1,3 @@
-#pragma once
 #include <Chairloader/IChairloaderDll.h>
 #include "ChairloaderConfigManager.h"
 

@@ -19,17 +19,11 @@ class EnumDescription;
 
 namespace Serialization
 {
-using yasli::ClassFactory;
 class IArchive;
 struct SBlackBox;
 struct SContext;
 struct SContextLink;
 struct SStruct;
-using yasli::TypeID;
-using yasli::StringList;
-using yasli::StringListValue;
-using yasli::StringListStatic;
-using yasli::StringListStaticValue;
-using yasli::EnumDescription;
 class CContextList;
+class TypeID;
 }

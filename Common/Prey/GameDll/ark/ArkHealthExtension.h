@@ -39,14 +39,14 @@ public:
 	virtual void PostSerialize();
 	virtual void SerializeSpawnInfo(TSerialize ser);
 	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext &ctx, int __formal);
+	virtual void Update(SEntityUpdateContext &ctx, int );
 	virtual void PostUpdate(float frameTime);
 	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(SGameObjectEvent const &__formal);
+	virtual void HandleEvent(SGameObjectEvent const &);
 	virtual void ProcessEvent(SEntityEvent &_event);
 	virtual void SetChannelId(uint16_t id);
 	virtual void SetAuthority(bool auth);
-	virtual void GetMemoryUsage(ICrySizer *__formal) const;
+	virtual void GetMemoryUsage(ICrySizer *) const;
 	virtual ~ArkHealthExtension();
 	
 #if 0
@@ -75,13 +75,13 @@ public:
 	static inline auto FPostSerialize = PreyFunction<void(ArkHealthExtension *const _this)>(0xA13080);
 	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkHealthExtension *const _this, TSerialize ser)>(0xA13080);
 	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>(ArkHealthExtension *const _this)>(0x13883F0);
-	static inline auto FUpdate = PreyFunction<void(ArkHealthExtension *const _this, SEntityUpdateContext &ctx, int __formal)>(0xA13080);
+	static inline auto FUpdate = PreyFunction<void(ArkHealthExtension *const _this, SEntityUpdateContext &ctx, int )>(0xA13080);
 	static inline auto FPostUpdate = PreyFunction<void(ArkHealthExtension *const _this, float frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkHealthExtension *const _this)>(0xA13080);
-	static inline auto FHandleEvent = PreyFunction<void(ArkHealthExtension *const _this, SGameObjectEvent const &__formal)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(ArkHealthExtension *const _this, SGameObjectEvent const &)>(0xA13080);
 	static inline auto FProcessEvent = PreyFunction<void(ArkHealthExtension *const _this, SEntityEvent &_event)>(0xA13080);
 	static inline auto FSetChannelId = PreyFunction<void(ArkHealthExtension *const _this, uint16_t id)>(0xA13080);
 	static inline auto FSetAuthority = PreyFunction<void(ArkHealthExtension *const _this, bool auth)>(0xA13080);
-	static inline auto FGetMemoryUsage = PreyFunction<void(ArkHealthExtension const *const _this, ICrySizer *__formal)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(ArkHealthExtension const *const _this, ICrySizer *)>(0xA13080);
 };
 

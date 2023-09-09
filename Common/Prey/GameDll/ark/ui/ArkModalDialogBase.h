@@ -65,7 +65,7 @@ public:
 	virtual bool OnControlSchemeChanged(EControlScheme _controlScheme);
 	virtual bool OnAction(CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent);
 	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	virtual void OnActiveUserIdChanged(unsigned __formal);
+	virtual void OnActiveUserIdChanged(unsigned );
 	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
 	virtual void OnActiveUserSignedOut();
 	virtual IUIElement *GetUIElement() const = 0;
@@ -102,7 +102,7 @@ public:
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkModalDialogBase *const _this, EControlScheme _controlScheme)>(0x16045D0);
 	static inline auto FOnAction = PreyFunction<bool(ArkModalDialogBase *const _this, CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent)>(0x1604190);
 	static inline auto FOnSystemEvent = PreyFunction<void(ArkModalDialogBase *const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x1604670);
-	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkModalDialogBase *const _this, unsigned __formal)>(0xA13080);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkModalDialogBase *const _this, unsigned )>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkModalDialogBase *const _this, bool _bControllerDisconnect)>(0x1604480);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkModalDialogBase *const _this)>(0xA13080);
 	static inline auto FSetContents = PreyFunction<void(ArkModalDialogBase const *const _this)>(0x1604B20);

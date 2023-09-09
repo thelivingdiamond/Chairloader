@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/Ark/arkdistractiondata.h>
-#include <Prey/Ark/arkworkstation.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 

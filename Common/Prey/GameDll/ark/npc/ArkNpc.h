@@ -31,7 +31,7 @@
 #include <Prey/GameDll/ark/npc/desires/ArkNpcLookDesire.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcLookDesireManager.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcNoiseStateDesire.h>
-#include <Prey/GameDll/ark/npc/desires/ArkNpcNoiseStateDesireManager.h>
+#include <Prey/GameDll/Ark/npc/desires/ArkNpcNoiseStateDesireManager.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcSpeedDesireManager.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
@@ -39,7 +39,7 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h>
 #include <Prey/GameDll/ark/spatial/ArkSpatialManagerEntry.h>
 #include <Prey/GameDll/ark/ArkAiKnowledge.h>
-#include <Prey/GameDLL/ark/perception/ArkAttentiveSubject.h>
+#include <Prey/GameDll/ark/perception/ArkAttentiveSubject.h>
 #include <Prey/GameDll/ark/npc/IArkNpc.h>
 #include <Chairloader/PreyFunction.h>
 #include <Prey/ArkCommon/ArkUnanimous.h>

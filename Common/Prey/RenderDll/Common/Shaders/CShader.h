@@ -510,10 +510,6 @@ public:
 	static inline auto FBitNotCShaderMan = PreyFunction<void(CShaderMan* const _this)>(0xFB1AD0);
 };
 
-#if CRY_PLATFORM_WINDOWS && CRY_PLATFORM_64BIT
-#pragma warning( pop ) //AMD Port
-#endif
-
 //=====================================================================
 
 #endif                   // __CSHADER_H__

@@ -3,7 +3,6 @@
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/GameDll/ark/ui/ArkOptionDropDownBase.h>
-#include <Prey/GameDll/ark/ui/arkoptionlayout.h>
 #include <Prey/GameDll/ark/ui/ArkOptionDropDownBase.h>
 
 class ArkClass;
