@@ -98,3 +98,4 @@
 #pragma clang diagnostic ignored "-Winconsistent-missing-override"
 #pragma clang diagnostic ignored "-Wswitch"
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
+#pragma clang diagnostic ignored "-Wnonportable-include-path"
