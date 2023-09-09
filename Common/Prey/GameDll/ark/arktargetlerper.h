@@ -21,7 +21,8 @@ public:
 	Vec3 m_targetEntityPosOffset;
 	std::function<void __cdecl(void)> m_timerExpiredCallback;
 	static std::vector<std::unique_ptr<CArkTargetLerper>> s_targetLerpers;
-	
+
+    CArkTargetLerper();
 	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
 	void Update(const float _dt) { FUpdateOv1(this,_dt); }
 	static void Update(void *_pUserData, unsigned _timerId) { FUpdateOv0(_pUserData,_timerId); }

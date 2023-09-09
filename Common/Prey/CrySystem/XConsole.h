@@ -51,6 +51,8 @@ struct CConsoleCommandArgs : public IConsoleCmdArgs // Id=800F8F7 Size=24
     std::vector<string> &m_args;
     string &m_line;
 
+    CConsoleCommandArgs();
+
     virtual int GetArgCount() const;
     virtual const char *GetArg(int nIndex) const;
     virtual const char *GetCommandLine() const;

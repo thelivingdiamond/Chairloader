@@ -58,6 +58,7 @@ public:
 	std::vector<ArkPlayerWeaponComponent::GameLogData> m_criticalHitData;
 	std::vector<ArkPlayerWeaponComponent::GameLogData> m_mimicHitData;
 
+    ArkPlayerWeaponComponent(ArkPlayer& _arg0_);
 	virtual ~ArkPlayerWeaponComponent();
 	void Init() { FInit(this); }
 	unsigned GetEquippedOrToEquipWeaponId() const { return FGetEquippedOrToEquipWeaponId(this); }
@@ -100,7 +101,6 @@ public:
 	void EnsureSpecialWeapons() { FEnsureSpecialWeapons(this); }
 
 #if 0
-	ArkPlayerWeaponComponent(ArkPlayer& _arg0_);
 	unsigned GetEquippedWeaponId() const;
 	unsigned GetWeaponToEquipId() const;
 	void SetWeaponToEquip(const unsigned _arg0_);

@@ -12,7 +12,8 @@ class ArkInteractiveMachinePerceivable : public ArkAuralPerceivable // Id=801907
 {
 public:
 	ArkInteractiveMachine const &m_machine;
-	
+
+    ArkInteractiveMachinePerceivable();
 	virtual unsigned DoGetEntityId() const;
 	virtual bool DoGetAuralPerceivableIsInVacuum() const;
 	virtual bool DoGetAuralPerceivableIsComplexAttentionObject() const;
@@ -28,7 +29,8 @@ class ArkInteractiveObjectPerceivable : public ArkAuralPerceivable // Id=8019362
 {
 public:
 	ArkInteractiveObject const &m_interactiveObject;
-	
+
+    ArkInteractiveObjectPerceivable();
 	virtual unsigned DoGetEntityId() const;
 	virtual bool DoGetAuralPerceivableIsInVacuum() const;
 	virtual bool DoGetAuralPerceivableIsComplexAttentionObject() const;

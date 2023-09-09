@@ -19,15 +19,16 @@ public:
 	using BaseType = CArkPsiPower<T>;
 	using LevelProperties = typename T::LevelProperties;
 	using UniqueProperties = typename T::LevelProperties;
-	
+
 	ArkSimpleTimer m_cooldownTimer;
 	std::vector<enum EArkPsiPowers> m_blacklist;
 	int m_level;
 	Properties const &m_properties;
 	IParticleEffect *m_pExecutionPlayerEffect;
-	
+
+    CArkPsiPower();
+
 #if 0
-	void CArkPsiPower();
 	virtual int GetCost() const;
 	virtual int GetLevel() const;
 	virtual int GetMaxLevel() const;
