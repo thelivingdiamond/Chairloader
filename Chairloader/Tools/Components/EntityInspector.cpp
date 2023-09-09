@@ -26,11 +26,11 @@ void EntityInspector::ShowContents(EntityId entityId)
 	}
 
 	ImGui::TextWrapped("Name: '%s'", pEnt->GetName());
-	ImGui::TextWrapped("ID: %08X, GUID: %016X", pEnt->GetId(), pEnt->GetGuid());
+	ImGui::TextWrapped("ID: %08X, GUID: %016llX", pEnt->GetId(), pEnt->GetGuid());
 	ImGui::TextWrapped("Class: '%s'", pEnt->GetClass() ? pEnt->GetClass()->GetName() : nullptr);
 
 	if (pEnt->GetArchetype()) {
-		ImGui::TextWrapped("Archetype: '%s', ID: %016X", pEnt->GetArchetype()->GetName(), pEnt->GetArchetype()->GetId());
+		ImGui::TextWrapped("Archetype: '%s', ID: %016llX", pEnt->GetArchetype()->GetName(), pEnt->GetArchetype()->GetId());
 	}
 	else {
 		ImGui::TextWrapped("Archetype: (null)");
@@ -315,7 +315,7 @@ void EntityInspector::ShowScriptTable(IScriptTable* pScriptTable)
             {
                 ScriptHandle handle;
                 iter.value.CopyTo(handle);
-                ImGui::Text("0x%X (handle)", handle.n);
+                ImGui::Text("0x%llX (handle)", handle.n);
                 break;
             }
             case ANY_TNUMBER:

@@ -37,7 +37,7 @@ static float offsetDistance[3] = {0,5,0};
 void EntityManager::drawEntitySpawner(bool* bShow) {
     if(showEntitySpawner){
         if (ImGui::Begin("Entity Spawner", bShow, ImGuiWindowFlags_NoNavInputs)) {
-            ImGui::TextColored(color, statusMessage.c_str());
+            ImGui::TextColored(color, "%s", statusMessage.c_str());
 
             if (archetypeToSpawn == 0 || gEnv->pEntitySystem->GetEntityArchetype(archetypeToSpawn) == nullptr) {
                 ImGui::Text("Entity Archetype Name: ");
@@ -190,7 +190,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                 ImGui::BeginGroup();
                 ImGui::BeginChild("entity view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
                 if (selectedEntity != 0 && gEnv->pEntitySystem->GetEntity(selectedEntity) != nullptr) {
-                    ImGui::Text("Entity: %llu", gEnv->pEntitySystem->GetEntity(selectedEntity)->GetId());
+                    ImGui::Text("Entity: %u", gEnv->pEntitySystem->GetEntity(selectedEntity)->GetId());
                 } else {
                     ImGui::Text("Entity: %s", "Null");
                 }
@@ -300,7 +300,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                         }
                         if (ImGui::BeginTabItem("Actions:")) {
                             // Entity Actions here
-                            ImGui::Text("Hidden: {}", entity->IsHidden() ? "true" : "false");
+                            ImGui::Text("Hidden: %s", entity->IsHidden() ? "true" : "false");
                             if(ImGui::Button("Toggle Hidden")){
                                 entity->Hide(!entity->IsHidden());
                             }
@@ -308,7 +308,7 @@ void EntityManager::drawEntityList(bool* bShow) {
                             nameSet = entity->GetName();
                             if(ImGui::InputText("Name", &nameSet))
                                 entity->SetName(nameSet.c_str());
-                            ImGui::Text("Invisible: {}", entity->IsInvisible() ? "true" : "false");
+                            ImGui::Text("Invisible: %s", entity->IsInvisible() ? "true" : "false");
                             if(ImGui::Button("Toggle Invisible")){
                                 entity->Invisible(!entity->IsInvisible());
                             }
