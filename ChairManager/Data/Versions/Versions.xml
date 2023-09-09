@@ -16,6 +16,7 @@
 		Type: which online store it is distibuted in (Steam, GOG, EGS, MS)
 		SteamManifest: (optional) Manifest ID in Steam. Can be used to download a specific version of the game.
 		IsSupported: (optional) whether the version is supported by Chairloader.
+		IsOutdated: (optional) whether the version is outdated and its support was removed.
 -->
 <Versions>
 	<!-- Use this as a template
@@ -57,6 +58,7 @@
 		<SHA256>934d5cc44a2bafbc1953141d94f88343505d6cb7d97a2ebeb383c410a420a299</SHA256>
 		<ReleaseDate>2019-06-12</ReleaseDate>
 		<Type>MS</Type>
+		<IsOutdated>true</IsOutdated>
 	</Version>
 
 	<Version>

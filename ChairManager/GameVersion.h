@@ -40,6 +40,7 @@ private:
 		std::string type;
 		std::string releaseDate;
 		bool isSupported = false;
+		bool isOutdated = false;
 	};
 
 	struct HashGameResult

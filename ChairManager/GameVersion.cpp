@@ -164,6 +164,11 @@ GameVersion::Result GameVersion::ShowInstalledVersion(bool showBtns)
 			result = Result::Supported;
 			ImGui::Text("This version is supported by Chairloader");
 		}
+		else if (m_pInstalledVersion->isOutdated)
+		{
+			result = Result::NotSupported;
+			ImGui::TextColored(ImColor(252, 127, 3), "This version is outdated. Update your game.");
+		}
 		else
 		{
 			result = Result::Patchable;
@@ -179,7 +184,11 @@ GameVersion::Result GameVersion::ShowInstalledVersion(bool showBtns)
 
 	if (showBtns)
 	{
-		ImGui::BeginDisabled(m_pInstalledVersion == nullptr || m_pInstalledVersion->isSupported);
+		ImGui::BeginDisabled(
+			m_pInstalledVersion == nullptr ||
+			m_pInstalledVersion->isSupported ||
+			m_pInstalledVersion->isOutdated);
+
 		if (ImGui::Button("Patch game"))
 			ImGui::OpenPopup("Confirm Game Patch");
 		ImGui::EndDisabled();
@@ -219,6 +228,7 @@ void GameVersion::LoadKnownVersions()
 		kv.type = ver.child("Type").child_value();
 		kv.releaseDate = ver.child("ReleaseDate").child_value();
 		kv.isSupported = ver.child("IsSupported").text().as_bool(false);
+		kv.isOutdated = ver.child("IsOutdated").text().as_bool(false);
 
 		if (m_KnownVersions.find(kv.sha256) != m_KnownVersions.end())
 			throw std::runtime_error("duplicate hash " + SHA256::toString(kv.sha256.data()));
