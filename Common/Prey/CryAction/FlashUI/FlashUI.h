@@ -337,7 +337,7 @@ public:
 	static inline auto FLoadtimeRender = PreyFunction<void(CFlashUI* const _this)>(0x2D1210);
 	static inline auto FUpdateSteamMenuState = PreyFunction<void(CFlashUI* const _this, bool _bEnable)>(0x2D9340);
 	//static inline auto FLogUIAction = PreyFunction<void(int level, const char* format, ...)>(0x2D7250);
-	static inline auto FReloadAllElements = PreyFunction<void(IConsoleCmdArgs* __formal)>(0x2D8A60);
+	static inline auto FReloadAllElements = PreyFunction<void(IConsoleCmdArgs* )>(0x2D8A60);
 	static inline auto FInvalidateSortedElements = PreyFunction<void(CFlashUI* const _this)>(0x2D6360);
 	static inline auto FLoadElements = PreyFunction<void(CFlashUI* const _this)>(0x2D69A0);
 	static inline auto FLoadActions = PreyFunction<void(CFlashUI* const _this)>(0x2D6890);

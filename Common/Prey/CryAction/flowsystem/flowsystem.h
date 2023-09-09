@@ -323,7 +323,7 @@ public:
 	ArkAiTreeInstanceNode *m_pInstanceNode;
 	bool m_bWantsUpdate;
 	
-	ArkAiTreeInstanceNodeQueueElement(void *__formal);
+	ArkAiTreeInstanceNodeQueueElement(void *);
 	ArkAiTreeInstanceNodeQueueElement(ArkAiTreeNode const &_node, ArkAiTreeInstanceNode &_instanceNode, bool _bWantsUpdate);
 	ArkAiTreeNode const &GetNode() const { return FGetNode(this); }
 	ArkAiTreeInstanceNode &GetInstanceNode() const { return FGetInstanceNode(this); }

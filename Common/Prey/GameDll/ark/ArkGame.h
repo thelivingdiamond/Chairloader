@@ -205,7 +205,7 @@ public:
 	bool SaveGame(const char *const _name, const bool _bImmediate) { return FSaveGame(this,_name,_bImmediate); }
 	void ReleaseSaveGameEnumerators() { FReleaseSaveGameEnumerators(this); }
 	void HandleDisconnectRequest() { FHandleDisconnectRequest(this); }
-	virtual void OnActiveUserIdChanged(unsigned __formal);
+	virtual void OnActiveUserIdChanged(unsigned );
 	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
 	virtual void OnActiveUserSignedOut();
 	
@@ -316,7 +316,7 @@ public:
 	static inline auto FSaveGame = PreyFunction<bool(ArkGame *const _this, const char *const _name, const bool _bImmediate)>(0x116FE80);
 	static inline auto FReleaseSaveGameEnumerators = PreyFunction<void(ArkGame *const _this)>(0x116FBF0);
 	static inline auto FHandleDisconnectRequest = PreyFunction<void(ArkGame *const _this)>(0x116E460);
-	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGame *const _this, unsigned __formal)>(0xA13080);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGame *const _this, unsigned )>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkGame *const _this, bool _bControllerDisconnect)>(0xA13080);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkGame *const _this)>(0x116EFE0);
 

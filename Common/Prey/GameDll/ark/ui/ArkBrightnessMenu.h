@@ -35,7 +35,7 @@ public:
 	virtual void OnSetVisible(IUIElement *pSender, bool bVisible);
 	virtual bool OnControlSchemeChanged(EControlScheme _controlScheme);
 	virtual bool OnAction(CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent);
-	virtual void OnActiveUserIdChanged(unsigned __formal);
+	virtual void OnActiveUserIdChanged(unsigned );
 	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
 	virtual bool OnActiveUserReengaged();
 	virtual void OnActiveUserSignedOut();
@@ -65,7 +65,7 @@ public:
 	static inline auto FOnSetVisible = PreyFunction<void(ArkBrightnessMenu *const _this, IUIElement *pSender, bool bVisible)>(0x1345620);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkBrightnessMenu *const _this, EControlScheme _controlScheme)>(0x1345130);
 	static inline auto FOnAction = PreyFunction<bool(ArkBrightnessMenu *const _this, CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent)>(0x1344D90);
-	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkBrightnessMenu *const _this, unsigned __formal)>(0xA13080);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkBrightnessMenu *const _this, unsigned )>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkBrightnessMenu *const _this, bool _bControllerDisconnect)>(0x1344E90);
 	static inline auto FOnActiveUserReengaged = PreyFunction<bool(ArkBrightnessMenu *const _this)>(0x1344F80);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkBrightnessMenu *const _this)>(0xA13080);

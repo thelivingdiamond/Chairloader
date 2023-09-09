@@ -37,11 +37,11 @@ public:
 	virtual ~CArkAngleRotationComponent();
 	void SetActive(bool _isActive) { FSetActive(this,_isActive); }
 	void SetRotation(Vec3 const &_degreesPerSecond, bool _useWorld) { FSetRotation(this,_degreesPerSecond,_useWorld); }
-	virtual void Update(SEntityUpdateContext &_ctx, int __formal);
+	virtual void Update(SEntityUpdateContext &_ctx, int );
 	virtual void ProcessEvent(SEntityEvent &_event);
 	virtual void PostInit(IGameObject *_gameObject);
-	virtual bool ReloadExtension(IGameObject *_gameObject, SEntitySpawnParams const &__formal);
-	virtual void PostReloadExtension(IGameObject *__formal, SEntitySpawnParams const &__formal);
+	virtual bool ReloadExtension(IGameObject *_gameObject, SEntitySpawnParams const &);
+	virtual void PostReloadExtension(IGameObject *, SEntitySpawnParams const &);
 	virtual void Release();
 	virtual void FullSerialize(TSerialize _ser);
 	virtual void PostSerialize();
@@ -55,11 +55,11 @@ public:
 	
 	static inline auto FSetActive = PreyFunction<void(CArkAngleRotationComponent *const _this, bool _isActive)>(0x114A2F0);
 	static inline auto FSetRotation = PreyFunction<void(CArkAngleRotationComponent *const _this, Vec3 const &_degreesPerSecond, bool _useWorld)>(0x114A340);
-	static inline auto FUpdate = PreyFunction<void(CArkAngleRotationComponent *const _this, SEntityUpdateContext &_ctx, int __formal)>(0x114A390);
+	static inline auto FUpdate = PreyFunction<void(CArkAngleRotationComponent *const _this, SEntityUpdateContext &_ctx, int )>(0x114A390);
 	static inline auto FProcessEvent = PreyFunction<void(CArkAngleRotationComponent *const _this, SEntityEvent &_event)>(0x1149DC0);
 	static inline auto FPostInit = PreyFunction<void(CArkAngleRotationComponent *const _this, IGameObject *_gameObject)>(0x1149D20);
-	static inline auto FReloadExtension = PreyFunction<bool(CArkAngleRotationComponent *const _this, IGameObject *_gameObject, SEntitySpawnParams const &__formal)>(0x13CACC0);
-	static inline auto FPostReloadExtension = PreyFunction<void(CArkAngleRotationComponent *const _this, IGameObject *__formal, SEntitySpawnParams const &__formal)>(0x1149DA0);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkAngleRotationComponent *const _this, IGameObject *_gameObject, SEntitySpawnParams const &)>(0x13CACC0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkAngleRotationComponent *const _this, IGameObject *, SEntitySpawnParams const &)>(0x1149DA0);
 	static inline auto FRelease = PreyFunction<void(CArkAngleRotationComponent *const _this)>(0x1149E00);
 	static inline auto FFullSerialize = PreyFunction<void(CArkAngleRotationComponent *const _this, TSerialize _ser)>(0x1149790);
 	static inline auto FPostSerialize = PreyFunction<void(CArkAngleRotationComponent *const _this)>(0x1149DB0);

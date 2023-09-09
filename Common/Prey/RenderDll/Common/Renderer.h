@@ -900,7 +900,7 @@ public:
 	virtual void SetShadowJittering(float shadowJittering);
 	virtual float GetShadowJittering() const;
 	virtual void* FX_AllocateCharInstCB(SSkinningData*, unsigned);
-	virtual void FX_ClearCharInstCB(unsigned __formal);
+	virtual void FX_ClearCharInstCB(unsigned );
 	virtual EShaderQuality EF_GetShaderQuality(EShaderType eST);
 	virtual ERenderQuality EF_GetRenderQuality() const;
 	void RefreshSystemShaders() { FRefreshSystemShaders(this); }
@@ -1175,8 +1175,8 @@ public:
 	static inline auto FFlushPendingTextureTasks = PreyFunction<void(CRenderer* const _this)>(0xFB72C0);
 	static inline auto FSetShadowJittering = PreyFunction<void(CRenderer* const _this, float shadowJittering)>(0xFBAEC0);
 	static inline auto FGetShadowJittering = PreyFunction<float(CRenderer const* const _this)>(0xFB9070);
-	static inline auto FFX_AllocateCharInstCB = PreyFunction<void* (CRenderer* const _this, SSkinningData* __formal, unsigned __formal)>(0x158AEF0);
-	static inline auto FFX_ClearCharInstCB = PreyFunction<void(CRenderer* const _this, unsigned __formal)>(0xA13080);
+	static inline auto FFX_AllocateCharInstCB = PreyFunction<void* (CRenderer* const _this, SSkinningData* , unsigned )>(0x158AEF0);
+	static inline auto FFX_ClearCharInstCB = PreyFunction<void(CRenderer* const _this, unsigned )>(0xA13080);
 	static inline auto FEF_GetShaderQuality = PreyFunction<EShaderQuality(CRenderer* const _this, EShaderType eST)>(0xFB4470);
 	static inline auto FEF_GetRenderQuality = PreyFunction<ERenderQuality(CRenderer const* const _this)>(0xFB43C0);
 	static inline auto FRefreshSystemShaders = PreyFunction<void(CRenderer* const _this)>(0xF1A610);

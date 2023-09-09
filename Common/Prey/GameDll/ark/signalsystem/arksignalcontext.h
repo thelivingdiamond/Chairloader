@@ -17,7 +17,7 @@ public:
 	
 	CArkSignalContext();
 	CArkSignalContext(HitInfo const *const _pInfo);
-	CArkSignalContext(void *const __formal);
+	CArkSignalContext(void *const );
 	Vec3 GetDamagePosition() const { return FGetDamagePosition(this); }
 	Vec3 GetDamageDirection() const { return FGetDamageDirection(this); }
 	unsigned GetDamageInstigatorId() const { return FGetDamageInstigatorId(this); }

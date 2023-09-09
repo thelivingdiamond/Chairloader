@@ -65,7 +65,7 @@ public:
 	virtual void OnUnload(IUIElement *_pSender);
 	virtual bool OnControlSchemeChanged(EControlScheme _controlScheme);
 	virtual bool OnAction(CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent);
-	virtual void OnActiveUserIdChanged(unsigned __formal);
+	virtual void OnActiveUserIdChanged(unsigned );
 	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
 	virtual bool OnActiveUserReengaged();
 	virtual void OnActiveUserSignedOut();
@@ -92,7 +92,7 @@ public:
 	static inline auto FOnUnload = PreyFunction<void(ArkGenderSelectMenu *const _this, IUIElement *_pSender)>(0x13490F0);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkGenderSelectMenu *const _this, EControlScheme _controlScheme)>(0x1348DA0);
 	static inline auto FOnAction = PreyFunction<bool(ArkGenderSelectMenu *const _this, CCryName const &_action, int _activationMode, float _value, SInputEvent const &_inputEvent)>(0x13489E0);
-	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGenderSelectMenu *const _this, unsigned __formal)>(0xA13080);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGenderSelectMenu *const _this, unsigned )>(0xA13080);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkGenderSelectMenu *const _this, bool _bControllerDisconnect)>(0x1348AB0);
 	static inline auto FOnActiveUserReengaged = PreyFunction<bool(ArkGenderSelectMenu *const _this)>(0x1348C80);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0xA13080);

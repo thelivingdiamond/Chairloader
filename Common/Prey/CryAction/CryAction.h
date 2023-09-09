@@ -307,8 +307,8 @@ public:
 	virtual void RegisterFactory(const char *name, IGameFramework::IActorCreator *pCreator, bool isAI) {FRegisterFactoryOv4(this, name, pCreator, isAI);};
 	virtual void RegisterFactory(const char *name, IGameFramework::IItemCreator *pCreator, bool isAI) {FRegisterFactoryOv3(this, name, pCreator, isAI);};
 	virtual void RegisterFactory(const char *name, IGameFramework::IGameObjectExtensionCreator *pCreator, bool isAI) {FRegisterFactoryOv2(this, name, pCreator, isAI);};
-	virtual void RegisterFactory(const char *name, ISaveGame *(*func)(), bool __formal) {FRegisterFactoryOv1(this, name, func, __formal);};
-	virtual void RegisterFactory(const char *name, ILoadGame *(*func)(), bool __formal) {FRegisterFactoryOv0(this, name, func, __formal);};
+	virtual void RegisterFactory(const char *name, ISaveGame *(*func)(), bool arg) {FRegisterFactoryOv1(this, name, func, arg);};
+	virtual void RegisterFactory(const char *name, ILoadGame *(*func)(), bool arg) {FRegisterFactoryOv0(this, name, func, arg);};
 	virtual bool Init(SSystemInitParams &startupParams) {return FInit(this, startupParams);};
 	virtual void InitGameType(bool multiplayer, bool fromInit) {FInitGameType(this, multiplayer, fromInit);};
 	virtual bool CompleteInit() { return FCompleteInit(this); };
@@ -475,7 +475,7 @@ public:
 	static void PauseCmd(IConsoleCmdArgs *_pArgs) { FPauseCmd(_pArgs); }
 	static void DumpMapsCmd(IConsoleCmdArgs *args) { FDumpMapsCmd(args); }
 	static void MapCmd(IConsoleCmdArgs *args) { FMapCmd(args); }
-	static void ReloadReadabilityXML(IConsoleCmdArgs *__formal) { FReloadReadabilityXML(__formal); }
+	static void ReloadReadabilityXML(IConsoleCmdArgs *args) { FReloadReadabilityXML(args); }
 	static void UnloadCmd(IConsoleCmdArgs *args) { FUnloadCmd(args); }
 	static void PlayCmd(IConsoleCmdArgs *args) { FPlayCmd(args); }
 	static void ConnectCmd(IConsoleCmdArgs *args) { FConnectCmd(args); }
@@ -560,8 +560,8 @@ public:
 	static inline auto FRegisterFactoryOv4 = PreyFunction<void(CCryAction *const _this, const char *name, IGameFramework::IActorCreator *pCreator, bool isAI)>(0x5C7840);
 	static inline auto FRegisterFactoryOv3 = PreyFunction<void(CCryAction *const _this, const char *name, IGameFramework::IItemCreator *pCreator, bool isAI)>(0x5C7870);
 	static inline auto FRegisterFactoryOv2 = PreyFunction<void(CCryAction *const _this, const char *name, IGameFramework::IGameObjectExtensionCreator *pCreator, bool isAI)>(0x5C7850);
-	static inline auto FRegisterFactoryOv1 = PreyFunction<void(CCryAction *const _this, const char *name, ISaveGame *(*func)(), bool __formal)>(0x5C7820);
-	static inline auto FRegisterFactoryOv0 = PreyFunction<void(CCryAction *const _this, const char *name, ILoadGame *(*func)(), bool __formal)>(0x5C7800);
+	static inline auto FRegisterFactoryOv1 = PreyFunction<void(CCryAction *const _this, const char *name, ISaveGame *(*func)(), bool )>(0x5C7820);
+	static inline auto FRegisterFactoryOv0 = PreyFunction<void(CCryAction *const _this, const char *name, ILoadGame *(*func)(), bool )>(0x5C7800);
 	static inline auto FInit = PreyFunction<bool(CCryAction *const _this, SSystemInitParams &startupParams)>(0x5C07C0);
 	static inline auto FInitGameType = PreyFunction<void(CCryAction *const _this, bool multiplayer, bool fromInit)>(0x5C2A80);
 	static inline auto FCompleteInit = PreyFunction<bool(CCryAction *const _this)>(0x5BDCE0);
@@ -728,7 +728,7 @@ public:
 	static inline auto FPauseCmd = PreyFunction<void(IConsoleCmdArgs *_pArgs)>(0x5C6530);
 	static inline auto FDumpMapsCmd = PreyFunction<void(IConsoleCmdArgs *args)>(0x5BEDF0);
 	static inline auto FMapCmd = PreyFunction<void(IConsoleCmdArgs *args)>(0x5C3EF0);
-	static inline auto FReloadReadabilityXML = PreyFunction<void(IConsoleCmdArgs *__formal)>(0x5C7BD0);
+	static inline auto FReloadReadabilityXML = PreyFunction<void(IConsoleCmdArgs *)>(0x5C7BD0);
 	static inline auto FUnloadCmd = PreyFunction<void(IConsoleCmdArgs *args)>(0x5CA090);
 	static inline auto FPlayCmd = PreyFunction<void(IConsoleCmdArgs *args)>(0x5C6870);
 	static inline auto FConnectCmd = PreyFunction<void(IConsoleCmdArgs *args)>(0x5BE2B0);

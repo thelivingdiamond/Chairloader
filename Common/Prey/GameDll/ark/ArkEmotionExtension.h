@@ -40,11 +40,11 @@ public:
 	virtual void Update(SEntityUpdateContext &_ctx, int _updateSlot);
 	virtual void PostUpdate(float frameTime);
 	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(SGameObjectEvent const &__formal);
+	virtual void HandleEvent(SGameObjectEvent const &);
 	virtual void ProcessEvent(SEntityEvent &_event);
 	virtual void SetChannelId(uint16_t id);
 	virtual void SetAuthority(bool auth);
-	virtual void GetMemoryUsage(ICrySizer *__formal) const;
+	virtual void GetMemoryUsage(ICrySizer *) const;
 	virtual ~ArkEmotionExtension();
 	
 	static inline auto FSetEmotion = PreyFunction<void(ArkEmotionExtension *const _this, uint64_t _emotionId, float _blend)>(0x115A200);
@@ -66,10 +66,10 @@ public:
 	static inline auto FUpdate = PreyFunction<void(ArkEmotionExtension *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0xA13080);
 	static inline auto FPostUpdate = PreyFunction<void(ArkEmotionExtension *const _this, float frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkEmotionExtension *const _this)>(0xA13080);
-	static inline auto FHandleEvent = PreyFunction<void(ArkEmotionExtension *const _this, SGameObjectEvent const &__formal)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(ArkEmotionExtension *const _this, SGameObjectEvent const &)>(0xA13080);
 	static inline auto FProcessEvent = PreyFunction<void(ArkEmotionExtension *const _this, SEntityEvent &_event)>(0xA13080);
 	static inline auto FSetChannelId = PreyFunction<void(ArkEmotionExtension *const _this, uint16_t id)>(0xA13080);
 	static inline auto FSetAuthority = PreyFunction<void(ArkEmotionExtension *const _this, bool auth)>(0xA13080);
-	static inline auto FGetMemoryUsage = PreyFunction<void(ArkEmotionExtension const *const _this, ICrySizer *__formal)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(ArkEmotionExtension const *const _this, ICrySizer *)>(0xA13080);
 };
 
