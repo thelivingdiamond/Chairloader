@@ -5,7 +5,6 @@
 #include <Prey/Ark/ArkAbility.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
-#include <Prey/GameDll/ark/arkstatscomponent.h>
 
 class ArkClass;
 class XmlNodeRef;

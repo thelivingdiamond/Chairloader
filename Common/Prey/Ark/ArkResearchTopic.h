@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkresearchtopic.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 

@@ -1,8 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkability.h>
-#include <Prey/Ark/arktraumas.h>
+#include <Prey/Ark/ArkAbility.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryString/CryName.h>

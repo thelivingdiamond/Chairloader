@@ -3,7 +3,7 @@
 #include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
 #include <Prey/GameDll/ark/perception/ArkComplexRoomPerceivable.h>
 #include <Prey/GameDll/ark/perception/ArkComplexVisualPerceivable.h>
-#include <Prey/GameDll/ark/attention/arkcomplexattentionobject.h>
+#include <Prey/GameDll/ark/attention/ArkComplexAttentionObject.h>
 
 struct ArkAttentionLevelChange;
 class ArkPlayer;

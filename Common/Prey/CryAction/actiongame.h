@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/cryaction/ark/ArkActionGame.h>
+#include <Prey/CryAction/ark/ArkActionGame.h>
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryAction/ActionGame.h>
 #include <Prey/CryAction/IGameRulesSystem.h>

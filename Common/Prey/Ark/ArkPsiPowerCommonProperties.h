@@ -1,7 +1,6 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkpsipowercommonproperties.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/ui/ArkInputLegend.h>

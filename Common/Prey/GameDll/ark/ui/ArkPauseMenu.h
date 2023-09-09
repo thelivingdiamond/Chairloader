@@ -10,7 +10,6 @@
 #include <Prey/GameDll/ark/ui/IArkTutorialMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>
-#include <Prey/GameDll/ark/ui/arkpausemenu.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
 #include <Prey/GameDll/ark/ui/IUIModule.h>
 

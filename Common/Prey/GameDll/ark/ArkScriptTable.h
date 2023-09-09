@@ -3,7 +3,6 @@
 #pragma once
 #include <cinttypes>
 #include <Prey/CryScriptSystem/IScriptSystem.h>
-#include <Prey/GameDll/ark/arkscripttable.h>
 
 struct IEntity;
 struct IEntityClass;

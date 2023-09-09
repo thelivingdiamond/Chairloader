@@ -5,7 +5,7 @@ static_assert(sizeof(ArkContiguousMemory) == 24);
 #include "ArkContiguousMemorySizer.h"
 static_assert(sizeof(ArkContiguousMemorySizer) == 8);
 
-#include "arkdelegate.h"
+#include "ArkDelegate.h"
 //static_assert(sizeof(ArkFlowNodeObjectiveState) == 64);
 //static_assert(sizeof(ArkFlowNodeTaskState) == 64);
 //static_assert(sizeof(CArkFlowNodeWorkstationResult) == 64);

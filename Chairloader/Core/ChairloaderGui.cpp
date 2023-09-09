@@ -4,7 +4,7 @@
 #include <Prey/CrySystem/XConsole.h>
 #include <Chairloader/IChairloaderDll.h>
 #include <Chairloader/IChairloaderTools.h>
-#include "ChairloaderGUI.h"
+#include "ChairloaderGui.h"
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
 

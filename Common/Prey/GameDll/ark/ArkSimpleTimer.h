@@ -2,7 +2,6 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
 
 // Header: Override
 // Prey/GameDll/ark/ArkSimpleTimer.h
