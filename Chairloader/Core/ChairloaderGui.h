@@ -1,6 +1,6 @@
 #pragma once
-#include <ChairLoader/IChairloaderGui.h>
-#include <ChairLoader/IChairloaderConfigManager.h>
+#include <Chairloader/IChairloaderGui.h>
+#include <Chairloader/IChairloaderConfigManager.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/ArkEntityArchetypeLibrary.h>
 #include <GUIUtils.h>

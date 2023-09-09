@@ -1,6 +1,6 @@
 #pragma once
 #include <type_traits>
-#include <ChairLoader/Hooks/FunctionHook.h>
+#include <Chairloader/Hooks/FunctionHook.h>
 
 // These declarations are required because C++
 template <typename UnusedType>

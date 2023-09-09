@@ -7,7 +7,7 @@
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryFlowGraph/SFlowSystemVoid.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 typedef uint8  TFlowPortId;
 typedef uint16 TFlowNodeId;

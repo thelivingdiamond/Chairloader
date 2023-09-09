@@ -2,7 +2,7 @@
 #include "CryDX.h"
 #include <Prey/CryRenderer/ITexture.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <mem.h>
 
 class CDeviceTexture;

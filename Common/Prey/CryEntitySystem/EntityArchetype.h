@@ -6,7 +6,7 @@
 #include <Prey/CrySystem/XML/IXml.h>
 #include <Prey/GameDll/ark/arkscripttable.h>
 #include <Prey/CryEntitySystem/IEntityClass.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 class CEntityArchetype;
 class IEntityArchetypeListener;

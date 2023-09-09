@@ -16,7 +16,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryMath/Cry_Color.h>
 #include <Prey/CryString/CryString.h>
-//#include <ChairLoader/PreyFunction.h>
+//#include <Chairloader/PreyFunction.h>
 
 class ICrySizer;
 

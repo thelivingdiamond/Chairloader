@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include "ITexture.h"
 #include "CryDX.h"
 

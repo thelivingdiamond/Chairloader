@@ -1,7 +1,7 @@
 #pragma once
 #include <pugixml.hpp>
 #include <filesystem>
-#include <ChairLoader/IChairloaderConfigManager.h>
+#include <Chairloader/IChairloaderConfigManager.h>
 
 class ChairloaderConfigManager : public IChairloaderConfigManager{
 public:

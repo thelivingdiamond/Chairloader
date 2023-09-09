@@ -1,6 +1,6 @@
 #pragma once
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include <ChairLoader/IChairloaderGui.h>
+#include <Chairloader/IChairloaderGui.h>
 #include <Chairloader/ILogManager.h>
 #include <ConsoleColorParser.h>
 

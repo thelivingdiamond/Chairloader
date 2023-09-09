@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 //#include <Prey/CryAISystem/MovementStyle.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/ArkCommon/ArkDelegate.h>
 #include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireBase.h>
 #include "ArkNpcSpeedDesireManager.h"

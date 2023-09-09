@@ -3,8 +3,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryGame/Game.h>
 #include <detours/detours.h>
-#include <ChairLoader/IChairloaderImGui.h>
-#include <ChairLoader/ModSDK/ChairloaderModBase.h>
+#include <Chairloader/IChairloaderImGui.h>
+#include <Chairloader/ModSDK/ChairloaderModBase.h>
 #include <Chairloader/Hooks/HookTransaction.h>
 
 ChairloaderGlobalEnvironment* gCL = nullptr;

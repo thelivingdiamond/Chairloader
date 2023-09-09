@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/Ark/ArkUtils.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 struct EventPhysCollision;
 struct SMFXRunTimeEffectParams;

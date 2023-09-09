@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/CryCore/StdAfx.h>
 //#include <Prey/GameDll/ark/npc/desires/arknpcdesiretarget.h>
 #include <boost/variant.hpp>

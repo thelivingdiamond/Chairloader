@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "AppImGui.h"
 #include "AppStage.h"
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/CryCore/Platform/platform_impl.inl>
 
 static Application* g_pApp;

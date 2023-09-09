@@ -3,7 +3,7 @@
 #include <Prey/CrySystem/ITimer.h>
 #include <Prey/CryMath/Cry_Camera.h>
 #include <Prey/CryString/CryName.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/Ark/ArkBuildInfo.h>
 
 namespace minigui

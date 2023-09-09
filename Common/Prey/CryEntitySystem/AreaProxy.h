@@ -10,7 +10,7 @@
 #include <Prey/GameDll/ark/npc/ability/arknpcability.h>
 #include <Prey/GameDll/ark/perception/ArkAttentiveSubject.h>
 #include <Prey/GameDll/ark/perception/arkvisualperceiver.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 struct ArkAttentionLevelChange;
 struct ArkComplexAuralPerceptionInfo;

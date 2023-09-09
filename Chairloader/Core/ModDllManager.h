@@ -1,8 +1,8 @@
 #pragma once
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <pugixml.hpp>
-#include <ChairLoader/IChairloaderMod.h>
-#include <ChairLoader/IModDllManager.h>
+#include <Chairloader/IChairloaderMod.h>
+#include <Chairloader/IModDllManager.h>
 
 //! This class manages DLL loading in call dispatch for mods.
 //! Note:

@@ -1,5 +1,5 @@
 #pragma once
-#include <ChairLoader/ModSDK/ChairloaderModBase.h>
+#include <Chairloader/ModSDK/ChairloaderModBase.h>
 
 class ModMain : public ChairloaderModBase
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ChairLoader/pch.h>
+#include <Chairloader/pch.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/CryRenderer/CryDX.h>
 #include <Prey/CryRenderer/IRenderer.h>

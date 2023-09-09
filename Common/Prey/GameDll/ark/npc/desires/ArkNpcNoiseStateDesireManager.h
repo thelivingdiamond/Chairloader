@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireManagerBase.h>
 #include <boost/optional.hpp>
 

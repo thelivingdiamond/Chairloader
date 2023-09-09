@@ -1,6 +1,6 @@
 #pragma once
 #include <Prey/CryFlowGraph/IFlowSystem.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 
 class CAutoRegFlowNodeBase : public IFlowNodeFactory // Id=8005975 Size=24

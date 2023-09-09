@@ -7,7 +7,7 @@
 
 // Core CryEngine and STL headers
 #include <Prey/CryCore/StdAfx.h>
-#include <ChairLoader/ValidateCompiler.h>
+#include <Chairloader/ValidateCompiler.h>
 
 // add headers that you want to pre-compile here
 #include <iostream>
@@ -19,7 +19,7 @@
 
 #include <Prey/ArkEnums.h>
 #include <Prey/ArkStubs.h>
-#include <ChairLoader/PreyFunction.h>
-#include <ChairLoader/ChairloaderEnv.h>
-#include <ChairLoader/IChairloader.h>
+#include <Chairloader/PreyFunction.h>
+#include <Chairloader/ChairloaderEnv.h>
+#include <Chairloader/IChairloader.h>
 #include <Chairloader/SemanticVersion.h>

@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/CryAction/IGameRulesSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 

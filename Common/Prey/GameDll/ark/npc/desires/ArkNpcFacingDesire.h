@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/ArkCommon/ArkDelegate.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcDesireBase.h>

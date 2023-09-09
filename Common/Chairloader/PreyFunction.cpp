@@ -1,4 +1,4 @@
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <detours/detours.h>
 

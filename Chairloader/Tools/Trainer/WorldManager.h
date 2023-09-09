@@ -1,7 +1,7 @@
 //
 // Created by theli on 7/31/2022.
 //
-#include "ChairLoader/ChairloaderEnv.h"
+#include "Chairloader/ChairloaderEnv.h"
 struct pathEntry{
     uint64_t ID;
     std::string Name;

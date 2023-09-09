@@ -1,4 +1,4 @@
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 #include <ImGui/imgui.h>
 #include <Manager/GamePath.h>
 #include <Manager/ModInfo.h>

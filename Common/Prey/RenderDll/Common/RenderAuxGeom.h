@@ -10,7 +10,7 @@
 	#include <Prey/CryRenderer/IRenderAuxGeom.h>
 	#include <Prey/CryRenderer/VertexFormats.h>
 	#include <Prey/RenderDll/Common/TextMessages.h>
-	#include <ChairLoader/IRenderAuxGeomEx.h>
+	#include <Chairloader/IRenderAuxGeomEx.h>
 
 class ICrySizer;
 class CAuxGeomCB;

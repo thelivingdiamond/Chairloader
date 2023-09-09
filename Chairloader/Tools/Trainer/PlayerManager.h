@@ -2,8 +2,8 @@
 #include <Prey/GameDll/ArkInventory.h>
 #include "EntityUtils.h"
 #include <Prey/ArkEntityArchetypeLibrary.h>
-#include <../Common/ChairLoader/ChairloaderEnv.h>
-#include <ChairLoader/IChairloaderGui.h>
+#include <../Common/Chairloader/ChairloaderEnv.h>
+#include <Chairloader/IChairloaderGui.h>
 //#include "GUIUtils.h"
 //#include "OverlayLog.h"
 class PlayerManager

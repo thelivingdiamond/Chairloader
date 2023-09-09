@@ -1,7 +1,7 @@
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #include "D3DRenderAuxGeom.h"
-#include <ChairLoader/IChairRender.h>
+#include <Chairloader/IChairRender.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/RenderDll/Common/RenderThread.h>
 

@@ -1,8 +1,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CryCore/Platform/WindowsUtils.h>
 #include <detours/detours.h>
-#include <ChairLoader/Hooks/FunctionHook.h>
-#include <ChairLoader/Hooks/HookTransaction.h>
+#include <Chairloader/Hooks/FunctionHook.h>
+#include <Chairloader/Hooks/HookTransaction.h>
 
 FunctionHookBase::FunctionHookBase()
 {

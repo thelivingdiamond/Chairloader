@@ -1,8 +1,8 @@
 #pragma once
 #ifdef CHAIRLOADER_MOD_SDK
-#include <ChairLoader/IChairloader.h>
-#include <ChairLoader/IChairloaderMod.h>
-#include <ChairLoader/ChairloaderEnv.h>
+#include <Chairloader/IChairloader.h>
+#include <Chairloader/IChairloaderMod.h>
+#include <Chairloader/ChairloaderEnv.h>
 
 class ChairloaderModBase : public IChairloaderMod
 {

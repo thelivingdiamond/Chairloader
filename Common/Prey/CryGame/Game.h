@@ -1,5 +1,5 @@
 #pragma once
-#include <ChairLoader/PreyFunction.h>
+#include <Chairloader/PreyFunction.h>
 
 //#include "CScriptBind_Ark.h"
 #include "Prey/GameDll/GameActions.h"

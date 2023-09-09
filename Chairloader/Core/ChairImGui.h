@@ -3,8 +3,8 @@
 #include <imgui.h>
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryInput/BaseInput.h>
-#include <ChairLoader/IChairloaderImGui.h>
-#include <ChairLoader/IChairRender.h>
+#include <Chairloader/IChairloaderImGui.h>
+#include <Chairloader/IChairRender.h>
 #include "ImGuiDoubleBuffering.h"
 
 class ITexture;

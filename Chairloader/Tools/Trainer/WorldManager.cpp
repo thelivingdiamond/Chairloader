@@ -3,7 +3,7 @@
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
 #include "Prey/CrySystem/ILocalizationManager.h"
-#include "ChairLoader/IChairloader.h"
+#include "Chairloader/IChairloader.h"
 #include "Prey/CryGame/IGameFramework.h"
 //#include "Prey/ArkLocationLibrary.h"
 #include "Prey/Cry3DEngine/I3DEngine.h"
