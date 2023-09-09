@@ -106,7 +106,7 @@ struct SShaderBin
 		, m_Prev(nullptr)
 		, m_CRC32(0)
 		, m_dwName(0)
-		, m_szName("")
+		, m_szName((char*)"")
 		, m_SourceCRC32(0)
 		, m_bLocked(false)
 		, m_bReadOnly(true)
@@ -133,7 +133,7 @@ struct SShaderBin
 		if (m_szName[0])
 		{
 			g_shaderBucketAllocator.deallocate((void*) m_szName);
-			m_szName = "";
+			m_szName = (char*)"";
 		}
 
 		if (name[0])

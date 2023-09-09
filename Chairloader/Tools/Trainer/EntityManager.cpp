@@ -1463,9 +1463,6 @@ void EntityManager::spawnEntity() {
         if (archetypeToSpawn != 0) {
             static Vec3 pos;
             static Quat rot = Quat{0, 0, 0, 1};
-            archetypeToSpawn;
-            usePlayerPos;
-            offsetFromPlayer;
             if (usePlayerPos) {
                 if (ArkPlayer::GetInstancePtr() != nullptr) {
                     pos = ArkPlayer::GetInstancePtr()->GetEntity()->GetPos();

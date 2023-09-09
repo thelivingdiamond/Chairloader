@@ -25,7 +25,7 @@ void ConsoleColorParser::ProcessLine(const char* line)
 			}
 			[[fallthrough]];
 		case '\\':
-			if (isEscape = !isEscape) {
+			if ((isEscape = !isEscape)) {
 				break;
 			}
 		case 'n':

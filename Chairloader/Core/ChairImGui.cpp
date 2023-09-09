@@ -612,7 +612,7 @@ void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent 
 				io.AddKeyEvent(key, event.value != 0.0f);
 			}
 
-			if (event.inputChar > 0 && event.inputChar < 0x10000 && event.state == eIS_UI) {
+			if (event.inputChar > 0 && event.state == eIS_UI) {
 				io.AddInputCharacterUTF16(event.inputChar);
 			}
 		}

@@ -913,7 +913,7 @@ public:
 		{
 			int n = 0;
 			uint32 nTok;
-			while (nTok = pToks[n])
+			while ((nTok = pToks[n]))
 			{
 				if (pTokens[nStart] == nTok)
 					return nStart;
