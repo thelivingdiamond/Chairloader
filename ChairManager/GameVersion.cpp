@@ -267,7 +267,7 @@ void GameVersion::ShowModals()
 	if (ImGui::BeginPopupModal("Confirm Game Patch", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 	{
 		ImGui::Text("Patching the game will turn your version of the game into an Epic Games Store version.\n"
-			"This will disable Steam/GOG integration, including achievements.");
+			"Steam/GOG achievements will continue to work. Xbox Game Pass/MS Store achievements will be disabled.");
 
 		if (ImGui::Button("Continue"))
 		{
