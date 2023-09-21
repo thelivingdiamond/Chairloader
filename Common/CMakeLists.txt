@@ -112,6 +112,22 @@ target_link_libraries(Common PUBLIC
 
 target_precompile_headers(Common PUBLIC Chairloader/pch.h)
 
+if(STRUCT_VALIDATOR_BPDB)
+	target_compile_options(Common PRIVATE
+		# "-fplugin-arg-structvalidator-bpdb-path=${STRUCT_VALIDATOR_BPDB}"
+		# "-fplugin-arg-structvalidator-dir=${CMAKE_CURRENT_SOURCE_DIR}/Prey"
+		
+		"SHELL:-Xclang -plugin-arg-structvalidator -Xclang \"bpdb-path=${STRUCT_VALIDATOR_BPDB}\""
+		"SHELL:-Xclang -plugin-arg-structvalidator -Xclang \"dir=${CMAKE_CURRENT_SOURCE_DIR}/Prey\""
+	)
+	
+	if(STRUCT_VALIDATOR_DEBUG)
+		target_compile_options(Common PRIVATE
+			"SHELL:-Xclang -plugin-arg-structvalidator -Xclang debug"
+		)
+	endif()
+endif()
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
 
 add_subdirectory(Chairloader.ImGui)

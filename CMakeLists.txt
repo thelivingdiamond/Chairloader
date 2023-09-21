@@ -85,6 +85,10 @@ if(PREY_DLL_DIR)
 	
 endif()
 
+# Struct Validator
+set(STRUCT_VALIDATOR_BPDB "" CACHE FILEPATH "(optional) Path to the BPDB file for struct validation")
+option(STRUCT_VALIDATOR_DEBUG "Enable Struct Validatior debug output" OFF)
+
 # Chairloader Version
 set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
 set(_CHAIRLOADER_VERSION_MINOR 0)  # Increment when new features are added
