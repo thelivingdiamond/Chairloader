@@ -348,11 +348,13 @@ ILINE int IsHeapValid()
 
 #endif //__cplusplus
 
+struct CryModuleMemoryInfo;
 struct ICustomMemoryHeap;
 class IGeneralMemoryHeap;
 class IPageMappingHeap;
 class IDefragAllocator;
 class IMemoryAddressRange;
+enum ECryModuleMemoryInfoAllocType;
 
 //! Interfaces that allow access to the CryEngine memory manager.
 struct IMemoryManager
@@ -396,6 +398,15 @@ struct IMemoryManager
 	//! Used to add memory block size allocated directly from the crt or OS to the memory manager statistics.
 	virtual void FakeAllocation(long size) = 0;
 
+    virtual void InitialiseLevelHeap() = 0;
+    virtual void InitialiseDebugHeap() = 0;
+    virtual void SwitchToGlobalHeap() = 0;
+    virtual int LocalSwitchToGlobalHeap() = 0;
+    virtual void SwitchToHeap(int heap) = 0;
+    virtual int LocalSwitchToHeap(int heap) = 0;
+    virtual bool GetLevelHeapViolationState(bool& usingLevelHeap, uint64_t& numAllocs, uint64_t& allocSize) = 0;
+    virtual bool GetDebugHeapViolationState(bool& usingLevelHeap, uint64_t& numAllocs, uint64_t& allocSize) = 0;
+
 	//////////////////////////////////////////////////////////////////////////
 	//! Heap Tracing API.
 	virtual HeapHandle TraceDefineHeap(const char* heapName, size_t size, const void* pBase) = 0;
@@ -405,6 +416,12 @@ struct IMemoryManager
 	virtual uint32     TraceHeapGetColor() = 0;
 	virtual void       TraceHeapSetLabel(const char* sLabel) = 0;
 	//////////////////////////////////////////////////////////////////////////
+
+    virtual int64_t GetMemoryTrackingOverhead() const = 0;
+    virtual const CryModuleMemoryInfo* const GetMemoryTrackingData() const = 0;
+    virtual const CryModuleMemoryInfo& GetMemoryTrackingData(ECryModule _module) const = 0;
+    virtual int64_t GetMemoryTrackingData(ECryModule _module, ECryModuleMemoryInfoAllocType _type) const = 0;
+    virtual int64_t GetMemoryTrackingData(ECryModuleMemoryInfoAllocType _type) const = 0;
 
 	//! Retrieve access to the MemReplay implementation class.
 	virtual struct IMemReplay* GetIMemReplay() = 0;
@@ -442,14 +459,14 @@ protected:
 //! Structure filled by call to CryModuleGetMemoryInfo().
 struct CryModuleMemoryInfo
 {
-	uint64 requested;
+	int64 requested;
 
-	uint64 allocated;           //!< Total amount of memory allocated.
-	uint64 freed;               //!< Total amount of memory freed.
-	int    num_allocations;     //!< Total number of memory allocations.
-	uint64 CryString_allocated; //!< Allocated in CryString.
-	uint64 STL_allocated;       //!< Allocated in STL.
-	uint64 STL_wasted;          //!< Amount of memory wasted in pools in stl (not useful allocations).
+	int64 allocated;           //!< Total amount of memory allocated.
+	int64 freed;               //!< Total amount of memory freed.
+    int64 num_allocations;     //!< Total number of memory allocations.
+    int64 STL_allocated;       //!< Allocated in STL.
+    int64 STL_wasted;          //!< Amount of memory wasted in pools in stl (not useful allocations).
+    int64 memoryBuckets[3];
 };
 
 struct CryReplayInfo
