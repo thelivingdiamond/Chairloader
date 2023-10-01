@@ -220,9 +220,25 @@ void ExtractionStage::LoadExtractList()
 
 void ExtractionStage::ExtractPak(const pugi::xml_node node)
 {
+	// Reset current file name
+	{
+		std::scoped_lock lock(m_AsyncMutex);
+		m_CurrentFileName.clear();
+		m_CurrentFileIndex = 0;
+		m_TotalFileCount = 0;
+	}
+
 	// Open the archive
 	std::string relativePath = node.attribute("path").as_string();
 	fs::path fullPath = m_Opts.gamePath / "GameSDK" / fs::u8path(relativePath);
+
+	if (!fs::exists(fullPath))
+	{
+		if (!node.attribute("isOptional").as_bool())
+			throw std::runtime_error("Pak not found.");
+		
+		return;
+	}
 
 	if (IsModdedPak(fullPath))
 	{

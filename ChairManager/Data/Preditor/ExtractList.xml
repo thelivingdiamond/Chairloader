@@ -49,7 +49,7 @@
 	<Pak path="Levels/Campaign/Station/Exterior/level.pak" levelPak="1"/>
 	
 	<!-- Patch paks -->
-	<Pak path="Precache/patch.pak">
+	<Pak path="Precache/patch.pak" isOptional="true">
 		<AddPrefix>ark/</AddPrefix>
 		<AddPrefix>levels/</AddPrefix>
 		<AddPrefix>libs/</AddPrefix>
