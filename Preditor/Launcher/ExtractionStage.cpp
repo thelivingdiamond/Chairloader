@@ -371,50 +371,58 @@ ExtractionStage::FileMap ExtractionStage::FilterFiles(const pugi::xml_node node,
 	// List of files that need to be extracted
 	FileMap filesToExtract;
 
-	for (pugi::xml_node i : node.children())
+	if (node.children().begin() == node.children().end())
 	{
-		if (!strcmp(i.name(), "AddPrefix"))
+		// No children, add all files
+		filesToExtract = allFiles;
+	}
+	else
+	{
+		for (pugi::xml_node i : node.children())
 		{
-			// Add all files that begin with the prefix
-			std::string prefix = i.text().as_string();
+			if (!strcmp(i.name(), "AddPrefix"))
+			{
+				// Add all files that begin with the prefix
+				std::string prefix = i.text().as_string();
 
-			if (prefix.empty() && filesToExtract.empty())
-			{
-				// Shortcut for empty AddPrefix nodes.
-				filesToExtract = allFiles;
-			}
-			else
-			{
-				for (const auto& file : allFiles)
+				if (prefix.empty() && filesToExtract.empty())
 				{
-					if (startsWith(file.first, prefix))
-						filesToExtract.insert(file);
-				}
-			}
-		}
-		else if (!strcmp(i.name(), "IgnoreSuffix"))
-		{
-			// Remove all files that end with the suffix
-			std::string suffix = i.text().as_string();
-			auto it = filesToExtract.begin();
-
-			while (it != filesToExtract.end())
-			{
-				if (endsWith(it->first, suffix))
-				{
-					// Remove the element
-					it = filesToExtract.erase(it);
+					// Shortcut for empty AddPrefix nodes.
+					filesToExtract = allFiles;
 				}
 				else
 				{
-					// Go to the next element
-					++it;
+					for (const auto& file : allFiles)
+					{
+						if (startsWith(file.first, prefix))
+							filesToExtract.insert(file);
+					}
 				}
 			}
-		}
-		else
-		{
-			throw std::logic_error(fmt::format("Unknown instruction node: {}", i.name()));
+			else if (!strcmp(i.name(), "IgnoreSuffix"))
+			{
+				// Remove all files that end with the suffix
+				std::string suffix = i.text().as_string();
+				auto it = filesToExtract.begin();
+
+				while (it != filesToExtract.end())
+				{
+					if (endsWith(it->first, suffix))
+					{
+						// Remove the element
+						it = filesToExtract.erase(it);
+					}
+					else
+					{
+						// Go to the next element
+						++it;
+					}
+				}
+			}
+			else
+			{
+				throw std::logic_error(fmt::format("Unknown instruction node: {}", i.name()));
+			}
 		}
 	}
 

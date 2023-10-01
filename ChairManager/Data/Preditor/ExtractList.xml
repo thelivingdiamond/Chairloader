@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
 <!--
- -- This is the list of files that need to be extracted.
- -- To use the extraction mode, set the following command line params:
- --     --extract
- --     --game-path <path to the game root directory>
- --     --output-path <path to the output directory>
- -- Format:
- -- <Pak> child nodes list the instructions on how to build the file list. Names are case-sensitive.
- --     <AddPrefix> will add all files that begin with specified string. If the contents of AddPrefix node are empty, all files are added.
- --     <IgnoreSuffix> will remove all files that end with specified string.
- -->
+	This is the list of files that need to be extracted.
+	To use the extraction mode, set the following command line params:
+		("- -" means double-dash, which is not allowed in XML comments)
+		- -extract
+		- -game-path <path to the game root directory>
+		- -output-path <path to the output directory>
+	Format:
+	<Pak> child nodes list the instructions on how to build the file list. Names are case-sensitive.
+		<AddPrefix> will add all files that begin with specified string. If the contents of AddPrefix node are empty, all files are added.
+		<IgnoreSuffix> will remove all files that end with specified string.
+-->
 <ExtractList>
 	<!-- Main paks -->
 	<Pak path="GameData.pak">
@@ -27,25 +28,25 @@
 		<IgnoreSuffix>.gfx</IgnoreSuffix>	<!-- Flash/Scaleform -->
 		<IgnoreSuffix>.swf</IgnoreSuffix>	<!-- Flash/Scaleform -->
 	</Pak>
-	<Pak path="Scripts.pak"><AddPrefix/></Pak>
+	<Pak path="Scripts.pak"/>
 	
 	<!-- Level paks -->
-	<Pak path="Levels/Campaign/EndGame/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Engineering/CargoBay/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Engineering/LifeSupport/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Engineering/PowerSource/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Executive/Arboretum/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Executive/Bridge/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Executive/CorporateIT/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Executive/CrewFacilities/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/PlayerGenderSelect/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/Lobby/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/Prototype/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/Psychotronics/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/ShuttleBay/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/SimulationLabs/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Research/ZeroG_UtilityTunnels/level.pak" levelPak="1"><AddPrefix/></Pak>
-	<Pak path="Levels/Campaign/Station/Exterior/level.pak" levelPak="1"><AddPrefix/></Pak>
+	<Pak path="Levels/Campaign/EndGame/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Engineering/CargoBay/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Engineering/LifeSupport/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Engineering/PowerSource/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Executive/Arboretum/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Executive/Bridge/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Executive/CorporateIT/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Executive/CrewFacilities/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/PlayerGenderSelect/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/Lobby/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/Prototype/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/Psychotronics/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/ShuttleBay/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/SimulationLabs/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Research/ZeroG_UtilityTunnels/level.pak" levelPak="1"/>
+	<Pak path="Levels/Campaign/Station/Exterior/level.pak" levelPak="1"/>
 	
 	<!-- Patch paks -->
 	<Pak path="Precache/patch.pak">
@@ -67,6 +68,6 @@
 	</Pak>
 	
 	<!-- Localization -->
-	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml"><AddPrefix/></Pak>
-	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml_patch"><AddPrefix/></Pak>
+	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml"/>
+	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml_patch"/>
 </ExtractList>
