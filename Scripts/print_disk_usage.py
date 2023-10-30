@@ -30,5 +30,8 @@ def get_drives():
 
 drives = get_drives()
 for i in drives:
-    usage = shutil.disk_usage(f'{i}:')
-    print(f'{i}: total = {sizeof_fmt(usage.total)}; used = {sizeof_fmt(usage.used)}; free = {sizeof_fmt(usage.free)}')
+    try:
+        usage = shutil.disk_usage(f'{i}:')
+        print(f'{i}: total = {sizeof_fmt(usage.total)}; used = {sizeof_fmt(usage.used)}; free = {sizeof_fmt(usage.free)}')
+    except:
+        print(f'{i}: fail')
