@@ -69,5 +69,5 @@
 	
 	<!-- Localization -->
 	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml"/>
-	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml_patch"/>
+	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml" isOptional="true"/>
 </ExtractList>
