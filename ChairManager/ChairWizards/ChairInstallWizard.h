@@ -19,6 +19,7 @@ private:
 		Confirm,
 		Progress,
 		Extract,
+		Deploy,
 		Finish,
 	};
 
@@ -39,10 +40,12 @@ private:
 	std::future<void> m_InstallFuture;
 	mutable std::list<std::string> m_InstallLog; // Updated in install task, read in ShowProgressPage
 	mutable std::mutex m_InstallLogMutex;
-	bool m_bIsInstallFinished = false;
 
+	// State::Extract
 	std::future<void> m_ExtractFuture;
-	bool m_bIsExtractFinished = false;
+
+	// State::Deploy
+	std::future<void> m_DeployFuture;
 
 	void ShowErrorPage();
 	void ShowWelcomePage();
@@ -51,11 +54,13 @@ private:
 	void ShowConfirmPage();
 	void ShowProgressPage();
 	void ShowExtractPage();
+	void ShowDeployPage();
 	void ShowFinishPage();
 
 	void ToVersionCheck();
 	void StartInstall();
 	void StartExtract();
+	void StartDeploy();
 	void SetError(const std::string& text);
 
 	float GetButtonRowHeight();
@@ -64,4 +69,5 @@ private:
 
 	void InstallAsyncTask() const;
 	void ExtractAsyncTask() const;
+	void DeployAsyncTask() const;
 };

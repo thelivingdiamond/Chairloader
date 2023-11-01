@@ -55,6 +55,9 @@ bool ChairInstallWizard::Show(const char* name, bool* pbIsOpen)
 		case State::Extract:
 			ShowExtractPage();
 			break;
+		case State::Deploy:
+			ShowDeployPage();
+			break;
 		case State::Finish:
 			ShowFinishPage();
 			break;
@@ -231,17 +234,14 @@ void ChairInstallWizard::ShowProgressPage()
 		ImGui::SetScrollHereY(1.0f);
 	ImGui::EndChild();
 
-	if (m_bIsInstallFinished)
-		ShowBottomBtns(BtnCallback(), [&]() { StartExtract(); }, BtnCallback());
-	else
-		ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
+	ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
 
 	if (IsFutureReady(m_InstallFuture))
 	{
 		try
 		{
 			m_InstallFuture.get();
-			m_bIsInstallFinished = true;
+			StartExtract();
 		}
 		catch (const std::exception& e)
 		{
@@ -252,25 +252,35 @@ void ChairInstallWizard::ShowProgressPage()
 
 void ChairInstallWizard::ShowExtractPage()
 {
-	if (m_bIsExtractFinished)
-	{
-		ImGui::TextWrapped("Extraction finished.");
-		ImGui::TextWrapped("Press Next.");
-		ShowBottomBtns(BtnCallback(), [&]() { m_State = State::Finish; }, BtnCallback());
-	}
-	else
-	{
-		ImGui::TextWrapped("Extraction is in progress...");
-		ImGui::TextWrapped("Please, monitor the Preditor window.");
-		ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
-	}
+	ImGui::TextWrapped("Extraction is in progress...");
+	ImGui::TextWrapped("Please, monitor the Preditor window.");
+	ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
 
 	if (IsFutureReady(m_ExtractFuture))
 	{
 		try
 		{
 			m_ExtractFuture.get();
-			m_bIsExtractFinished = true;
+			StartDeploy();
+		}
+		catch (const std::exception& e)
+		{
+			SetError(e.what());
+		}
+	}
+}
+
+void ChairInstallWizard::ShowDeployPage()
+{
+	ImGui::TextWrapped("Deploying Chairloader files...");
+	ShowBottomBtns(BtnCallback(), BtnCallback(), BtnCallback());
+
+	if (IsFutureReady(m_DeployFuture))
+	{
+		try
+		{
+			m_DeployFuture.get();
+			m_State = State::Finish;
 		}
 		catch (const std::exception& e)
 		{
@@ -317,6 +327,15 @@ void ChairInstallWizard::StartExtract()
 
 	m_State = State::Extract;
 	m_ExtractFuture = std::async(std::launch::async, [&]() { ExtractAsyncTask(); });
+}
+
+void ChairInstallWizard::StartDeploy()
+{
+	// Clear old log
+	m_InstallLog.clear();
+
+	m_State = State::Deploy;
+	m_DeployFuture = std::async(std::launch::async, [&]() { DeployAsyncTask(); });
 }
 
 void ChairInstallWizard::SetError(const std::string& text)
@@ -399,14 +418,6 @@ void ChairInstallWizard::InstallAsyncTask() const
 	printlog("Copying binaries...");
 	fs::copy(srcBinPath / ".", dstBinPath, fs::copy_options::overwrite_existing | fs::copy_options::recursive);
 
-	printlog("Deploying Chairloader files...");
-	
-	std::string deployErrorMessage;
-	if (!ChairManager::Get().DeployForInstallWizard(deployErrorMessage))
-	{
-		throw std::runtime_error("Deploy failed.\n" + deployErrorMessage);
-	}
-
     if(fs::exists("ChairManager.old.exe"))
     {
         printlog("Removing old ChairManager.exe...");
@@ -464,4 +475,13 @@ void ChairInstallWizard::ExtractAsyncTask() const
 
 	if (!fs::exists(outPath / PREDITOR_FILES_EXTRACTED))
 		throw std::runtime_error(fmt::format("{} was not found. Extraction failed.", PREDITOR_FILES_EXTRACTED));
+}
+
+void ChairInstallWizard::DeployAsyncTask() const
+{
+	std::string deployErrorMessage;
+	bool success = ChairManager::Get().DeployForInstallWizard(deployErrorMessage);
+
+	if (!success)
+		throw std::runtime_error("Deploy failed.\n" + deployErrorMessage);
 }
