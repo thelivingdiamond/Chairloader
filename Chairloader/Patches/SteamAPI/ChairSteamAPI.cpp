@@ -4,6 +4,12 @@
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
 
+//! Steam App ID file name.
+constexpr char STEAM_APP_ID_FILE[] = "steam_appid.txt";
+
+//! Prey's Steam App ID.
+constexpr int STEAM_APP_ID = 480490;
+
 //! Used in steam_api_chairloader.cpp only in Chairloader.
 IChairSteamAPI* g_pIChairSteamAPI = nullptr;
 
@@ -44,8 +50,13 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
     m_hModule = hModuleVoid;
     LoadFuncs();
 
-    if (!isGog && !IsSteamRunning())
-        CryFatalError("Steam is not running");
+    if (!isGog)
+    {
+        CreateSteamAppId();
+
+        if (!IsSteamRunning())
+            CryFatalError("Steam is not running");
+    }
 
     if (!InitSteam())
         return;
@@ -142,6 +153,17 @@ void ChairSteamAPI::LoadFuncs()
 
         const char* dllName = m_bIsGog ? GOG_DLL_NAME : DLL_NAME;
         CryFatalError("Failed to load functions from {}:\n{}", dllName, msg);
+    }
+}
+
+void ChairSteamAPI::CreateSteamAppId()
+{
+    fs::path appIdPath = fs::current_path() / STEAM_APP_ID_FILE;
+
+    if (!fs::exists(appIdPath))
+    {
+        std::ofstream file(appIdPath);
+        file << STEAM_APP_ID << "\n";
     }
 }
 

@@ -69,6 +69,10 @@ private:
     //! Loads functions from the DLL.
     void LoadFuncs();
 
+    //! Creates the file with AppID for steam if it doesn't exist.
+    //! This lets the user to run the game by launching the exe (like what ChairManager does).
+    void CreateSteamAppId();
+
     //! Initializes Steam API.
     //! @returns whether it was successful.
     bool InitSteam();
