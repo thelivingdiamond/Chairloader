@@ -400,7 +400,12 @@ void ChairInstallWizard::InstallAsyncTask() const
 	fs::copy(srcBinPath / ".", dstBinPath, fs::copy_options::overwrite_existing | fs::copy_options::recursive);
 
 	printlog("Deploying Chairloader files...");
-	ChairManager::Get().DeployForInstallWizard();
+	
+	std::string deployErrorMessage;
+	if (!ChairManager::Get().DeployForInstallWizard(deployErrorMessage))
+	{
+		throw std::runtime_error("Deploy failed.\n" + deployErrorMessage);
+	}
 
     if(fs::exists("ChairManager.old.exe"))
     {

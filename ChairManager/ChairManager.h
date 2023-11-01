@@ -69,14 +69,13 @@ public:
 
 
 
-    void DeployForInstallWizard(){
+    bool DeployForInstallWizard(std::string& errorMessage){
         Init();
         m_pChairMerger->m_bForceMainPatchPack = true;
         RunAsyncDeploy();
-        while(!IsFutureReady(m_DeployTaskFuture)){
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
         m_DeployTaskFuture.get();
+        errorMessage = m_pChairMerger->GetDeployFailedMessage();
+        return !m_pChairMerger->m_bDeployFailed;
     }
 
 
