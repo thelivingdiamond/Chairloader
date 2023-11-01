@@ -127,12 +127,22 @@ void LuaModManager::Init()
     m_pScriptSystem = gEnv->pScriptSystem;
     m_pScriptBind = std::make_unique<ScriptBind_Chairloader>(this);
 
+    if (!gEnv->pCryPak->IsFileExist(CHAIR_SCRIPT_PATH))
+    {
+        std::string text = fmt::format(
+            "Chairloader files are missing. Press \"Deploy Mods\" in the Chairloader Mod Manager.\n\n"
+            "The game will continue without Lua mod support. Some mods will break.", CHAIR_SCRIPT_PATH);
+
+        CryMessageBox(text.c_str(), "Chairloader Error", 0);
+        return;
+    }
+
     // Load Chairloader script
     // Must be loaded after ScriptBind_Chairloader as it extends it.
     bool execSuccess = gEnv->pScriptSystem->ExecuteFile(CHAIR_SCRIPT_PATH, true, false);
     if (!execSuccess)
     {
-        CryFatalError("Failed to execute {}. See log for details.", CHAIR_SCRIPT_PATH);
+        CryFatalError("Failed to execute {}. Press \"Deploy Mods\" in Chairloader Mod Manager.", CHAIR_SCRIPT_PATH);
         return;
     }
 
