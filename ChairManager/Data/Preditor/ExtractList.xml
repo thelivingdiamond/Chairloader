@@ -49,6 +49,7 @@
 	<Pak path="Levels/Campaign/Station/Exterior/level.pak" levelPak="1"/>
 	
 	<!-- Patch paks -->
+	<!-- May not exist in the EGS version -->
 	<Pak path="Precache/patch.pak" isOptional="true">
 		<AddPrefix>ark/</AddPrefix>
 		<AddPrefix>levels/</AddPrefix>
@@ -68,6 +69,9 @@
 	</Pak>
 	
 	<!-- Localization -->
+	<!-- Patch is extracted to the same dir, overwriting base files. -->
+	<!-- ChairManager builds the patched patched pak from this directory. -->
+	<!-- Patch may not exist in the EGS version -->
 	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml"/>
 	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml" isOptional="true"/>
 </ExtractList>
