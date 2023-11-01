@@ -31,6 +31,18 @@ static bool showDemo = false;
 
 static const char* MAIN_WINDOW_NAME = "Chairloader Mod Manager";
 
+//! Path to the cinematics directory relative to game root.
+constexpr char CINEMATICS_PATH[] = "GameSDK/Videos";
+
+//! List of cinematic files.
+constexpr const char* CINEMATICS_FILES[] =
+{
+    "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2",
+    "Bethesda_logo_anim_white.bk2",
+    "LegalScreens.bk2",
+    "Ryzen_Bumper.bk2",
+};
+
 void ChairManager::Draw() {
     bool bDraw = true;
 
@@ -2393,39 +2405,66 @@ void ChairManager::launchGame() {
 
 void ChairManager::removeStartupCinematics() {
     log(severityLevel::info, "Removing startup cinematics");
-    fs::path cinematicsPath = GetGamePath() / "GameSDK" / "Videos";
-    try {
-        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2",
-                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup");
-        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2",
-                   cinematicsPath / "Bethesda_logo_anim_white.bk2.backup");
-        fs::rename(cinematicsPath / "LegalScreens.bk2",
-                   cinematicsPath / "LegalScreens.bk2.backup");
-        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2",
-                   cinematicsPath / "Ryzen_Bumper.bk2.backup");
+    fs::path cinematicsPath = GetGamePath() / CINEMATICS_PATH;
 
-    } catch (fs::filesystem_error &e) {
-        log(severityLevel::error, "Failed to remove startup cinematics: %s", e.what());
+    for (std::string fileName : CINEMATICS_FILES)
+    {
+        try
+        {
+            fs::path filePath = cinematicsPath / fileName;
+            fs::path backupPath = cinematicsPath / (fileName + ".backup");
+
+            if (fs::exists(filePath))
+            {
+                log(severityLevel::debug, "Backing up cinematic %s", fileName.c_str());
+                fs::rename(filePath, backupPath);
+            }
+            else if (fs::exists(backupPath))
+            {
+                log(severityLevel::debug, "Cinematic already backed up: %s", fileName.c_str());
+            }
+            else
+            {
+                log(severityLevel::error, "Both cinematic and backup are missing! - %s", fileName.c_str());
+            }
+        }
+        catch (const fs::filesystem_error& e)
+        {
+            log(severityLevel::error, "Failed to remove startup cinematic %s: %s", fileName.c_str(), e.what());
+        }
     }
-
 }
 
 void ChairManager::restoreStartupCinematics() {
     log(severityLevel::info, "Restoring startup cinematics");
-    fs::path cinematicsPath = GetGamePath() / "GameSDK" / "Videos";
-    try {
-        fs::rename(cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2.backup",
-                   cinematicsPath / "ArkaneLogoAnim_Redux_1080p2997_ST-16LUFS.bk2");
-        fs::rename(cinematicsPath / "Bethesda_logo_anim_white.bk2.backup",
-                     cinematicsPath / "Bethesda_logo_anim_white.bk2");
-        fs::rename(cinematicsPath / "LegalScreens.bk2.backup",
-                        cinematicsPath / "LegalScreens.bk2");
-        fs::rename(cinematicsPath / "Ryzen_Bumper.bk2.backup",
-                        cinematicsPath / "Ryzen_Bumper.bk2");
-    } catch(fs::filesystem_error &e) {
-        log(severityLevel::error, "Failed to restore startup cinematics: %s", e.what());
-    }
+    fs::path cinematicsPath = GetGamePath() / CINEMATICS_PATH;
 
+    for (std::string fileName : CINEMATICS_FILES)
+    {
+        try
+        {
+            fs::path filePath = cinematicsPath / fileName;
+            fs::path backupPath = cinematicsPath / (fileName + ".backup");
+
+            if (fs::exists(filePath))
+            {
+                log(severityLevel::debug, "Cinematic already exists: %s", fileName.c_str());
+            }
+            else if (fs::exists(backupPath))
+            {
+                log(severityLevel::debug, "Restoring cinematic %s", fileName.c_str());
+                fs::rename(backupPath, filePath);
+            }
+            else
+            {
+                log(severityLevel::error, "Cinematic backup is missing! - %s", fileName.c_str());
+            }
+        }
+        catch (const fs::filesystem_error& e)
+        {
+            log(severityLevel::error, "Failed to restore startup cinematic %s: %s", fileName.c_str(), e.what());
+        }
+    }
 }
 
 const fs::path &ChairManager::GetGamePath() {
