@@ -46,6 +46,8 @@
     "Versions",
     "7za.exe",
     "chairloader_default.xml",
-    "MergingLibrary.xml"
+    "MergingLibrary.xml",
+    "patchChecksums.xml",
+    "VariableLibrary.xml"
   ]
 }
