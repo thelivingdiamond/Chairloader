@@ -67,6 +67,7 @@ void VCryLog(EChairLogType type, std::string_view format, fmt::format_args args)
 
 //! Crashes the game.
 //! @see CryFatalError
+[[noreturn]]
 void VCryFatalError(std::string_view format, fmt::format_args args);
 
 //! Simple logs of data with low verbosity.
@@ -83,6 +84,7 @@ inline void CryError(std::string_view format, const Args &...args) { VCryLog(ECh
 
 //! Displays error message, logs it to console and file and error message box, then terminates execution.
 template <typename... Args>
+[[noreturn]]
 inline void CryFatalError(std::string_view format, const Args &...args) { VCryFatalError(format, fmt::make_format_args(args...)); }
 
 
