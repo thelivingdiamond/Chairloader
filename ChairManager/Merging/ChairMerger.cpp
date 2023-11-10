@@ -266,9 +266,12 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
     if(!isLegacy)
         ResolveFileWildcards(modDoc.first_child(), modName);
 
+    // Create the output directory
+    if (!fs::exists(baseFile.parent_path()))
+        fs::create_directories(baseFile.parent_path());
+
     if(!originalResult){
         // this is a new file, we have to just copy it over, even if base exists
-        fs::create_directories(baseFile.parent_path());
         modDoc.save_file(baseFile.wstring().c_str(), "\t", pugi::format_default, pugi::encoding_utf8);
         return;
     }
@@ -281,8 +284,6 @@ void ChairMerger::ProcessXMLFile(const fs::path &file, std::string modName, bool
 
     if(!baseResult){
         // this is a file that hasn't been merged before, we should copy the original over
-        if(!fs::exists(baseFile.parent_path()))
-            fs::create_directories(baseFile.parent_path());
         fs::copy_file(originalFile, baseFile, fs::copy_options::overwrite_existing);
         baseResult = baseDoc.load_file(baseFile.wstring().c_str());
         if(!baseResult){
