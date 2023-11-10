@@ -2,6 +2,28 @@
 
 #include <Prey/CryCore/functor.h>
 
+#define DECLARE_GAMEOBJECTEXTENSION_FACTORY(name)                                       \
+  struct I ## name ## Creator : public IGameObjectExtensionCreatorBase                  \
+  {                                                                                     \
+  };                                                                                    \
+  template<class T>                                                                     \
+  struct C ## name ## Creator : public I ## name ## Creator                             \
+  {                                                                                     \
+    IGameObjectExtensionPtr Create()                                                    \
+    {                                                                                   \
+      return ComponentCreate_DeleteWithRelease<T>();                                    \
+    }                                                                                   \
+    void GetGameObjectExtensionRMIData(void** ppRMI, size_t * nCount)                   \
+    {                                                                                   \
+      T::GetGameObjectExtensionRMIData(ppRMI, nCount);                                  \
+    }                                                                                   \
+  };                                                                                    \
+  virtual void RegisterFactory(const char* name, I ## name ## Creator*, bool isAI) = 0; \
+  template<class T> void RegisterFactory(const char* name, I ## name*, bool isAI, T*)   \
+  {                                                                                     \
+    static C ## name ## Creator<T> creator;                                             \
+    RegisterFactory(name, &creator, isAI);                                              \
+  }
 
 struct IGameObjectExtensionCreatorBase
 {
@@ -144,30 +166,24 @@ enum EGameFrameworkEvent
 // _unknown/IGameFramework.h
 struct IGameFramework // Id=8001CF0 Size=8
 {
-    struct IActorCreator : public IGameObjectExtensionCreatorBase // Id=8001E4B Size=8
-    {
-        virtual ~IActorCreator();
-    };
-
     struct IItemCreator : public IGameObjectExtensionCreatorBase // Id=8001E4C Size=8
     {
         virtual ~IItemCreator();
-    };
-
-    struct IGameObjectExtensionCreator : public IGameObjectExtensionCreatorBase // Id=8001E4D Size=8
-    {
-        virtual ~IGameObjectExtensionCreator();
     };
 
     using TimerID = unsigned;
     using TimerCallback = Functor2<void *,unsigned int>;
     using TEntryFunction = IGameFramework *(*)();
 
-    virtual void RegisterFactory(const char *arg0, ISaveGame *(*arg1)(), bool arg2) = 0;
-    virtual void RegisterFactory(const char *arg0, ILoadGame *(*arg1)(), bool arg2) = 0;
-    virtual void RegisterFactory(const char *arg0, IGameFramework::IActorCreator *arg1, bool arg2) = 0;
-    virtual void RegisterFactory(const char *arg0, IGameFramework::IItemCreator *arg1, bool arg2) = 0;
-    virtual void RegisterFactory(const char *arg0, IGameFramework::IGameObjectExtensionCreator *arg1, bool arg2) = 0;
+
+    virtual void RegisterFactory(const char* arg0, ISaveGame* (*arg1)(), bool arg2) = 0;
+    virtual void RegisterFactory(const char* arg0, ILoadGame* (*arg1)(), bool arg2) = 0;
+
+    DECLARE_GAMEOBJECTEXTENSION_FACTORY(Actor);
+    // DECLARE_GAMEOBJECTEXTENSION_FACTORY(Item);
+    virtual void RegisterFactory(const char* arg0, IGameFramework::IItemCreator* arg1, bool arg2) = 0;
+    DECLARE_GAMEOBJECTEXTENSION_FACTORY(GameObjectExtension);
+
     virtual ~IGameFramework() = default;
     virtual bool Init(SSystemInitParams &arg0) = 0;
     virtual void InitGameType(bool arg0, bool arg1) = 0;
