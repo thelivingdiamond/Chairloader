@@ -77,9 +77,11 @@ struct IPreditorEngine
 	//! @returns ISimulationController instance.
 	virtual Engine::ISimulationController* GetSimController() = 0;
 
-	//! Enables/disable keyboard and mouse input to the game.
-	virtual void SetGameInputEnabled(bool state) = 0;
+	//! @returns Whether all input is passed to the game.
 	virtual bool IsGameInputEnabled() = 0;
+
+	//! Updates the input state from the active viewport.
+	virtual void UpdateInputState() = 0;
 
 	//! Sets the bounds of the game viewport in screen coordinates.
 	//! @returns whether they were changed.

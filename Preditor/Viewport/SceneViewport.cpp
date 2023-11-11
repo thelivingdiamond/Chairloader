@@ -137,13 +137,29 @@ void Viewport::SceneViewport::OnEnabled()
 {
     // Scene doesn't use engine mouse input
     m_InputEnabled.SetIncremented(true);
-    gPreditor->pEngine->SetGameInputEnabled(false);
 }
 
 void Viewport::SceneViewport::OnDisabled()
 {
     // Restore counter
     m_InputEnabled.SetIncremented(false);
+	m_InputMode = EViewportInputMode::None;
+	gPreditor->pEngine->UpdateInputState();
+}
+
+void Viewport::SceneViewport::Update(bool isVisible)
+{
+	if (isVisible)
+	{
+		bool bEnableInput = ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);
+		m_InputMode = bEnableInput ? EViewportInputMode::ImGui : EViewportInputMode::None;
+	}
+	else
+	{
+		m_InputMode = EViewportInputMode::None;
+	}
+
+	gPreditor->pEngine->UpdateInputState();
 }
 
 void Viewport::SceneViewport::ShowUI()

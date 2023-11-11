@@ -13,7 +13,7 @@ public:
     // IViewport
     virtual bool NeedCustomRender() override { return false; }
     virtual void CustomRender() override {}
-    virtual bool EnableMouseEvents() override { return m_InputActive; }
+    virtual EViewportInputMode GetInputMode() override { return m_InputMode; }
 
     // BaseViewport
     virtual void OnDisabled() override;
@@ -23,9 +23,9 @@ public:
 private:
     MouseGuard m_InputEnabled;
     MouseGuard m_InputLocked;
-    bool m_InputActive = false;
+    EViewportInputMode m_InputMode = EViewportInputMode::None;
 
-    void SetInputEnabled(bool state);
+    void SetInputMode(EViewportInputMode mode);
 };
 
 } // namespace Viewport

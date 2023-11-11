@@ -26,12 +26,13 @@ public:
     // IViewport
     virtual bool NeedCustomRender() override { return true; }
     virtual void CustomRender() override;
-    virtual bool EnableMouseEvents() override { return false; }
+    virtual EViewportInputMode GetInputMode() override { return m_InputMode; }
 
     // BaseViewport
     virtual bool CanActivate() override;
     virtual void OnEnabled() override;
     virtual void OnDisabled() override;
+    virtual void Update(bool isVisible) override;
     virtual void ShowUI() override;
 
     // ISystemEventListener
@@ -54,6 +55,7 @@ private:
     };
 
     MouseGuard m_InputEnabled;
+    EViewportInputMode m_InputMode = EViewportInputMode::None;
     CCamera m_Cam;
     CameraInfo m_CamInfo;
 

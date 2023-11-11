@@ -30,8 +30,8 @@ public:
 	ITexture* GetViewportTexture() override;
 	IChairToPreditor* GetIChairToPreditor() override;
 	Engine::ISimulationController* GetSimController() override;
-	void SetGameInputEnabled(bool state) override;
 	bool IsGameInputEnabled() override;
+	void UpdateInputState() override;
 	bool SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max) override;
 
 	// IPreditorToChair

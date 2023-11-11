@@ -20,7 +20,7 @@ void Viewport::GameViewport::OnDisabled()
 	BaseViewport::OnDisabled();
 
 	// Restore mouse counter
-	SetInputEnabled(true);
+	SetInputMode(EViewportInputMode::Game);
 	m_InputLocked.SetIncremented(false);
 }
 
@@ -36,7 +36,8 @@ void Viewport::GameViewport::Update(bool isVisible)
 			bFocused = vp->PlatformUserData && ImGui::GetPlatformIO().Platform_GetWindowFocus(vp);
 		}
 
-		SetInputEnabled(bFocused && ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByActiveItem));
+		bool bEnableInput = bFocused && ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);
+		SetInputMode(bEnableInput ? EViewportInputMode::Game : EViewportInputMode::None);
 
 		// Unlock the mouse on focus loss
 		if (!bFocused)
@@ -44,7 +45,7 @@ void Viewport::GameViewport::Update(bool isVisible)
 	}
 	else
 	{
-		SetInputEnabled(false);
+		SetInputMode(EViewportInputMode::None);
 		m_InputLocked.SetIncremented(true);
 	}
 }
@@ -58,7 +59,7 @@ void Viewport::GameViewport::ShowUI()
 
 #ifdef DEBUG_BUILD
 	ImGui::SameLine();
-	ImGui::Text("Input: %d", m_InputActive);
+	ImGui::Text("Input: %d", (int)m_InputMode);
 #endif
 
     ShowViewportImage();
@@ -67,9 +68,9 @@ void Viewport::GameViewport::ShowUI()
 		m_InputLocked.SetIncremented(false);
 }
 
-void Viewport::GameViewport::SetInputEnabled(bool state)
+void Viewport::GameViewport::SetInputMode(EViewportInputMode mode)
 {
-	m_InputActive = state;
-	gPreditor->pEngine->SetGameInputEnabled(state);
-	m_InputEnabled.SetIncremented(!state);
+	m_InputMode = mode;
+	m_InputEnabled.SetIncremented(mode != EViewportInputMode::Game);
+	gPreditor->pEngine->UpdateInputState();
 }

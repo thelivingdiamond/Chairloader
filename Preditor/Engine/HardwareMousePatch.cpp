@@ -37,8 +37,9 @@ void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int iY, EHAR
 {
 	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
 	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
+	EViewportInputMode inputMode = pVP ? pVP->GetInputMode() : EViewportInputMode::Game;
 
-	if (!pVP || pVP->EnableMouseEvents())
+	if (inputMode == EViewportInputMode::Game)
 		g_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
 }
 

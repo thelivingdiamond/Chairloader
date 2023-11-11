@@ -516,16 +516,19 @@ Engine::ISimulationController* Engine::PreditorEngine::GetSimController()
 	return m_pSimulationController.get();
 }
 
-void Engine::PreditorEngine::SetGameInputEnabled(bool state)
-{
-	m_bGameInput = state;
-	m_pImGui->SetGameInputEnabled(state);
-	HardwareMousePatch::SetWindowFocused(state);
-}
-
 bool Engine::PreditorEngine::IsGameInputEnabled()
 {
 	return m_bGameInput;
+}
+
+void Engine::PreditorEngine::UpdateInputState()
+{
+	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
+	IViewport* pVP = pVPWin->GetCurrentViewport();
+	EViewportInputMode mode = pVP->GetInputMode();
+	m_bGameInput = mode == EViewportInputMode::Game;
+	m_pImGui->SetGameInputEnabled(mode == EViewportInputMode::Game);
+	HardwareMousePatch::SetWindowFocused(mode >= EViewportInputMode::ImGui);
 }
 
 bool Engine::PreditorEngine::SetGameViewportRect(ImGuiID viewportId, Vec2i min, Vec2i max)
@@ -549,16 +552,12 @@ bool Engine::PreditorEngine::HandleInputEvent(const SInputEvent& event)
 	if (event.deviceType == eIDT_Gamepad)
 		return false;
 
-	if (m_bGameInput)
-	{
-		// The game can process it
-		return false;
-	}
-	else
-	{
-		// No input to the game
-		return true;
-	}
+	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
+	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
+	EViewportInputMode inputMode = pVP ? pVP->GetInputMode() : EViewportInputMode::Game;
+
+	// If need ImGui or game input, return false (not handled by Preditor).
+	return !(inputMode >= EViewportInputMode::ImGui);
 }
 
 bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
@@ -569,11 +568,10 @@ bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
 
 	IViewportWindow* pVPWin = gPreditor->pViewportWindow;
 	IViewport* pVP = pVPWin ? pVPWin->GetCurrentViewport() : nullptr;
+	EViewportInputMode inputMode = pVP ? pVP->GetInputMode() : EViewportInputMode::Game;
 
-	if (pVP)
-		return !pVP->EnableMouseEvents();
-
-	return false;
+	// If game input enabled, return false (not handled by Preditor)/
+	return inputMode != EViewportInputMode::Game;
 }
 
 void Engine::PreditorEngine::ApplyBasePatches()
