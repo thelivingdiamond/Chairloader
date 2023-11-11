@@ -1001,8 +1001,8 @@ struct IEntity
 	//! Loads static geometry to the specified slot, or to next available slot.
 	//! If same object is already loaded in this slot, operation is ignored.
 	//! If this slot number is occupied by different kind of object it is overwritten with static object.
-	//! \param nLoadFlags See ELoadFlags
-	//! \see ELoadFlags
+	//! \param nLoadFlags See EEntityLoadFlags
+	//! \see EEntityLoadFlags
 	//! \return Slot id where the object was loaded, or -1 if loading failed.
 	virtual int LoadGeometry(int nSlot, const char* sFilename, const char* sGeomName = NULL, int nLoadFlags = 0) = 0;
 
