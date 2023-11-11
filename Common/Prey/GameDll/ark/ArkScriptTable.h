@@ -65,6 +65,20 @@ public:
 		return result;
 	}
 
+	Vec3 GetVector(const char* _pKey, const Vec3& _default = ZERO) const
+	{
+		Vec3 result = _default;
+
+		if (m_pScriptTable)
+		{
+			ScriptAnyValue any(result);
+			if (m_pScriptTable->GetValueAny(_pKey, any))
+				any.CopyTo(result);
+		}
+
+		return result;
+	}
+
 #if 0
 	int* operator int ArkSafeBool<ArkScriptTableBase<T>>::* () const;
 	SmartScriptTable const& AsSmartScriptTable() const;
