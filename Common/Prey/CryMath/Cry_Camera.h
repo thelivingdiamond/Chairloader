@@ -172,7 +172,7 @@ public:
 
 	// constructor/destructor
 	CCamera() { m_Matrix.SetIdentity(); SetFrustum(640, 480); m_zrangeMin = 0.0f; m_zrangeMax = 1.0f;  m_pMultiCamera = NULL; m_pPortal = NULL; m_JustActivated = 0; m_nPosX = m_nPosY = m_nSizeX = m_nSizeY = 0; m_asymR = 0; m_asymL = 0; m_asymB = 0; m_asymT = 0; m_sceneMaskFilter = 1; }
-	~CCamera() {}
+	~CCamera() = default;
 
 	void GetFrustumVertices(Vec3* pVerts) const;
 	void GetFrustumVerticesCam(Vec3* pVerts) const;
