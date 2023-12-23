@@ -16,7 +16,7 @@ public:
 	static void OnWindowResize(int width, int height);
 
 	//! Resizes the swap chain buffers if window size has changed.
-	void RT_HandleDisplayPropertyChanges();
+	void RT_CheckDeviceLost();
 
 private:
 	// Written in main thread, read in render thread.

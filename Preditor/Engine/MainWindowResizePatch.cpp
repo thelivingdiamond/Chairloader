@@ -6,13 +6,13 @@
 namespace
 {
 Engine::MainWindowResizePatch g_MainWindowResizePatch;
-auto g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook = CD3D9Renderer::FHandleDisplayPropertyChanges.MakeHook();
+auto g_CD3D9Renderer_CheckDeviceLost_Hook = CD3D9Renderer::FCheckDeviceLost.MakeHook();
 auto g_CD3D9Renderer_AdjustWindowForChange_Hook = CD3D9Renderer::FAdjustWindowForChange.MakeHook();
 
-void CD3D9Renderer_HandleDisplayPropertyChanges_Hook(CD3D9Renderer* const _this)
+bool CD3D9Renderer_CheckDeviceLost_Hook(CD3D9Renderer* const _this)
 {
-	g_MainWindowResizePatch.RT_HandleDisplayPropertyChanges();
-	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.InvokeOrig(_this);
+	g_MainWindowResizePatch.RT_CheckDeviceLost();
+	return g_CD3D9Renderer_CheckDeviceLost_Hook.InvokeOrig(_this);
 }
 
 HRESULT CD3D9Renderer_AdjustWindowForChange_Hook(CD3D9Renderer* const _this)
@@ -25,7 +25,7 @@ HRESULT CD3D9Renderer_AdjustWindowForChange_Hook(CD3D9Renderer* const _this)
 
 void Engine::MainWindowResizePatch::InitHooks()
 {
-	g_CD3D9Renderer_HandleDisplayPropertyChanges_Hook.SetHookFunc(&CD3D9Renderer_HandleDisplayPropertyChanges_Hook);
+	g_CD3D9Renderer_CheckDeviceLost_Hook.SetHookFunc(&CD3D9Renderer_CheckDeviceLost_Hook);
 	g_CD3D9Renderer_AdjustWindowForChange_Hook.SetHookFunc(&CD3D9Renderer_AdjustWindowForChange_Hook);
 }
 
@@ -45,7 +45,7 @@ void Engine::MainWindowResizePatch::OnWindowResize(int width, int height)
 	g_MainWindowResizePatch.m_WindowSize.y = height;
 }
 
-void Engine::MainWindowResizePatch::RT_HandleDisplayPropertyChanges()
+void Engine::MainWindowResizePatch::RT_CheckDeviceLost()
 {
 	EngineSwapChainPatch::RT_UpdateSize(m_WindowSize.x, m_WindowSize.y);
 }
