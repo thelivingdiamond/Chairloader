@@ -110,9 +110,9 @@ void ChairImGui::UpdateBeforeSystem() {
 	ImGuiIO &io = ImGui::GetIO();
 
 	// Setup display size (every frame to accommodate for window resizing)
-	int x, y, width, height;
-	gEnv->pRenderer->GetViewport(&x, &y, &width, &height);
-	io.DisplaySize = ImVec2((float)width, (float)height);
+	io.DisplaySize = ImVec2(
+		(float)gEnv->pRenderer->GetOverlayWidth(),
+		(float)gEnv->pRenderer->GetOverlayHeight());
 
 	// Setup time step
 	io.DeltaTime = gEnv->pTimer->GetRealFrameTime();
