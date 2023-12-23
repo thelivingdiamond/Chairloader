@@ -7,11 +7,11 @@ option(RENDERDLL_SHADER_COMPILER "Restores engine's shader compiler. Unstable.'"
 set(RENDERDLL_DEFS)
 
 if(RENDERDLL_DEBUG_MARKERS)
-	set(RENDERDLL_DEFS RENDERDLL_DEBUG_MARKERS)
+	set(RENDERDLL_DEFS ${RENDERDLL_DEFS} RENDERDLL_DEBUG_MARKERS)
 endif()
 
 if(RENDERDLL_SHADER_COMPILER)
-	set(RENDERDLL_DEFS RENDERDLL_SHADER_COMPILER)
+	set(RENDERDLL_DEFS ${RENDERDLL_DEFS} RENDERDLL_SHADER_COMPILER)
 	set(SOURCE_FILES
 		${SOURCE_FILES}
 		lzss/lzss.cpp
@@ -56,6 +56,7 @@ set(SOURCE_FILES
 )
 
 add_library(Chairloader.CryRender STATIC ${SOURCE_FILES})
+
 target_compile_definitions(Chairloader.CryRender PRIVATE ${RENDERDLL_DEFS})
 target_include_directories(Chairloader.CryRender PRIVATE .)
 
