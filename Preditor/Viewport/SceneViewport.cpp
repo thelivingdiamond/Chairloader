@@ -296,7 +296,6 @@ void Viewport::SceneViewport::ShowCameraMenu()
 
 void Viewport::SceneViewport::UpdateCamera()
 {
-	const CCamera& viewCam = gEnv->pSystem->GetViewCamera();
 	CameraInfo& info = m_CamInfo;
 
 	if (!info.transformValid)
@@ -360,8 +359,16 @@ void Viewport::SceneViewport::UpdateCamera()
 	camMat.SetRotation33(Matrix33(rotQuat));
 	camMat.SetTranslation(info.pos);
 	m_Cam.SetMatrixNoUpdate(camMat);
-	m_Cam.SetFrustum(viewCam.GetViewSurfaceX(), viewCam.GetViewSurfaceZ(), DEG2RAD(info.fov),
-		info.nearPlane, info.farPlane, viewCam.GetPixelAspectRatio());
+
+	// Use overlay size here instead the original camera size
+	// Mods may change the original camera, which would break the viewport
+	m_Cam.SetFrustum(
+		gEnv->pRenderer->GetOverlayWidth(),
+		gEnv->pRenderer->GetOverlayHeight(),
+		DEG2RAD(info.fov),
+		info.nearPlane,
+		info.farPlane,
+		1.0f);
 }
 
 void Viewport::SceneViewport::CopyViewCameraTransform()
