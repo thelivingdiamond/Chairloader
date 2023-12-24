@@ -196,6 +196,25 @@ struct CRY_ALIGN(16) SJobState : SJobStateBase
 	CJobBase* m_pFollowUpJob;
 };
 
+struct SJobStateLambda : public SJobState
+{
+	void RegisterPostJobCallback(const char* postJobName, const std::function<void()>& lambda, TPriorityLevel priority = eRegularPriority, SJobState* pJobState = 0)
+	{
+		m_callbackJobName = postJobName;
+		m_callbackJobPriority = priority;
+		m_callbackJobState = pJobState;
+		m_callback = lambda;
+	}
+private:
+	virtual void AddPostJob() override;
+private:
+	const char* m_callbackJobName;
+	SJobState* m_callbackJobState;
+	std::function<void()>          m_callback;
+	TPriorityLevel                 m_callbackJobPriority;
+	CryCriticalSectionNonRecursive m_stopLock;
+};
+
 struct IJobManager
 {
 public:

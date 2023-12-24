@@ -45,3 +45,11 @@ struct ShadowFrustumMGPUCache : public ISyncMainWithRenderListener
 };
 
 static_assert(sizeof(ShadowFrustumMGPUCache) == 144);
+
+struct SShadowFrustumToRender
+{
+	ShadowMapFrustumPtr     pFrustum;
+	SRenderLight* pLight;
+	int                     nLightID;
+	_smart_ptr<IRenderView> pShadowsView;
+};

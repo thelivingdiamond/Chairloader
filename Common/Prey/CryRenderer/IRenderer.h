@@ -562,6 +562,15 @@ struct IRenderView : public CMultiThreadRefCount
 		eUsageModeWriting,
 		eUsageModeWritingDone,
 	};
+
+	enum EViewType
+	{
+		eViewType_Default = 0,
+		eViewType_Recursive = 1,
+		eViewType_Shadow = 2,
+		eViewType_Count = 3,
+	};
+
 	virtual void   SetFrameId(uint64 frameId) = 0;
 	virtual uint64 GetFrameId() const = 0;
 
@@ -579,7 +588,7 @@ struct IRenderView : public CMultiThreadRefCount
 	virtual void   SwitchUsageMode(EUsageMode mode) = 0;
 
 	// All jobs that write items to render view should share and use this synchronization mutex.
-	virtual void *GetWriteMutex() = 0;
+	virtual JobManager::SJobState* GetWriteMutex() = 0;
 
 	//////////////////////////////////////////////////////////////////////////
 	// Access to dynamic lights
