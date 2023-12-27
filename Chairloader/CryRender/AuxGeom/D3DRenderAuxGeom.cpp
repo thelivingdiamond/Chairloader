@@ -1284,7 +1284,7 @@ bool CRenderAuxGeomD3D::BindStreams(EVertexFormat newVertexFormat, D3DVertexBuff
 	return SUCCEEDED(hr);
 }
 
-void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags, int nEye)
+void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags)
 {
 	if (0 == m_pAuxGeomShader)
 	{
@@ -1313,8 +1313,7 @@ void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags, int nE
 		if (false != dirty
 			|| m_pAuxGeomShader != m_renderer.m_RP.m_pShader
 			|| m_curDrawInFrontMode != newDrawInFrontMode
-			|| m_curPrimType != newPrimType
-			|| m_curEyeIdx != nEye)
+			|| m_curPrimType != newPrimType)
 		{
 			if (CAuxGeomCB::e_Obj != newPrimType)
 			{
@@ -1375,7 +1374,6 @@ void CRenderAuxGeomD3D::SetShader(const SAuxGeomRenderFlags& renderFlags, int nE
 				}
 			}
 			m_curPrimType = newPrimType;
-			m_curEyeIdx = nEye;
 		}
 	}
 	else
@@ -1540,22 +1538,6 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 			// prepare rendering
 			PrepareRendering();
 
-			// Stereo rendering
-			bool bStereoEnabled = m_pEyeTargets[0] != nullptr;
-			int nEyeCount = bStereoEnabled ? 2 : 1;
-			SMatrices stereoMats[2];
-			if (bStereoEnabled)
-			{
-				for (int i = 0; i < nEyeCount; i++)
-				{
-					stereoMats[i].m_matView = m_EyeViewMats[i];
-					stereoMats[i].m_matProj = m_EyeProjMats[i];
-					stereoMats[i].m_matViewInv = stereoMats[i].m_matView.GetInverted();
-					stereoMats[i].m_matTrans3D = stereoMats[i].m_matView * stereoMats[i].m_matProj;
-					stereoMats[i].m_pCurTransMat = &stereoMats[i].m_matTrans3D;
-				}
-			}
-
 			// get push buffer to process all submitted auxiliary geometries
 			m_pCurCBRawData->GetSortedPushBuffer(begin, end, m_auxSortedPushBuffer);
 
@@ -1600,43 +1582,31 @@ void CRenderAuxGeomD3D::RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, 
 					}
 				}
 
-				for (int nEye = 0; nEye < nEyeCount; nEye++)
+				// set appropriate shader
+				SetShader(curRenderFlags);
+
+				// draw push buffer entries
+				switch (primType)
 				{
-					if (bStereoEnabled)
-					{
-						m_renderer.FX_PushRenderTarget(0, m_pEyeTargets[nEye], m_pEyeDepthTargets[nEye]);
-						m_matrices = stereoMats[nEye];
-					}
-
-					// set appropriate shader
-					SetShader(curRenderFlags, nEye);
-
-					// draw push buffer entries
-					switch (primType)
-					{
-					case CAuxGeomCB::e_PtList:
-					case CAuxGeomCB::e_LineList:
-					case CAuxGeomCB::e_TriList:
-					{
-						DrawAuxPrimitives(itCur, it, primType);
-					}
-					break;
-					case CAuxGeomCB::e_LineListInd:
-					case CAuxGeomCB::e_TriListInd:
-					{
-						DrawAuxIndexedPrimitives(itCur, it, primType);
-					}
-					break;
-					case CAuxGeomCB::e_Obj:
-					default:
-					{
-						DrawAuxObjects(itCur, it);
-					}
-					break;
-					}
-
-					if (bStereoEnabled)
-						m_renderer.FX_PopRenderTarget(0);
+				case CAuxGeomCB::e_PtList:
+				case CAuxGeomCB::e_LineList:
+				case CAuxGeomCB::e_TriList:
+				{
+					DrawAuxPrimitives(itCur, it, primType);
+				}
+				break;
+				case CAuxGeomCB::e_LineListInd:
+				case CAuxGeomCB::e_TriListInd:
+				{
+					DrawAuxIndexedPrimitives(itCur, it, primType);
+				}
+				break;
+				case CAuxGeomCB::e_Obj:
+				default:
+				{
+					DrawAuxObjects(itCur, it);
+				}
+				break;
 				}
 			}
 		}
@@ -1665,26 +1635,6 @@ void CRenderAuxGeomD3D::Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, siz
 void CRenderAuxGeomD3D::FlushTextMessages(CTextMessages& tMessages, bool reset)
 {
 	gRenDev->FlushTextMessages(tMessages, reset);
-}
-
-void CRenderAuxGeomD3D::SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2])
-{
-	if (pTargets && pDepthTargets)
-	{
-		std::copy(pTargets, pTargets + 2, m_pEyeTargets);
-		std::copy(pDepthTargets, pDepthTargets + 2, m_pEyeDepthTargets);
-	}
-	else
-	{
-		std::fill(m_pEyeTargets, m_pEyeTargets + 2, nullptr);
-		std::fill(m_pEyeDepthTargets, m_pEyeDepthTargets + 2, nullptr);
-	}
-}
-
-void CRenderAuxGeomD3D::SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj)
-{
-	m_EyeViewMats[eyeIdx] = matView;
-	m_EyeProjMats[eyeIdx] = matProj;
 }
 
 void CRenderAuxGeomD3D::SetOrthoMode(bool enable, Matrix44A* pMatrix)

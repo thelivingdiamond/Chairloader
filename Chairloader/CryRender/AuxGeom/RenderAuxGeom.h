@@ -24,9 +24,6 @@ public:
 	virtual void RT_Flush(SAuxGeomCBRawDataPackaged& data, size_t begin, size_t end, bool reset = false) = 0;
 
 	virtual void FlushTextMessages(CTextMessages& tMessages, bool reset) = 0;
-
-	virtual void SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) = 0;
-	virtual void SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) = 0;
 };
 
 class CAuxGeomCB : public IRenderAuxGeom, public IRenderAuxGeomEx
@@ -79,10 +76,10 @@ public:
 	virtual void                Process();
 
 	// IRenderAuxGeomEx
-	virtual bool IsFlushAllowed() override;
-	virtual void SetFlushAllowed(bool state) override;
-	virtual void SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) override;
-	virtual void SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) override;
+	virtual bool DEPRECATED_IsFlushAllowed() override { CryFatalError("Deprecated: {}", __func__); }
+	virtual void DEPRECATED_SetFlushAllowed(bool state) override { CryFatalError("Deprecated: {}", __func__); }
+	virtual void DEPRECATED_SetStereoTargets(CTexture* pTargets[2], SDepthTexture* pDepthTargets[2]) override { CryFatalError("Deprecated: {}", __func__); }
+	virtual void DEPRECATED_SetStereoTransform(int eyeIdx, const Matrix44& matView, const Matrix44& matProj) override { CryFatalError("Deprecated: {}", __func__); }
 
 public:
 	enum EPrimType
@@ -374,8 +371,6 @@ protected:
 	CBList             m_cbData;
 
 	SAuxGeomCBRawData* m_cbCurrent;
-
-	int m_iFlushDisabledCount = 0;
 
 	SAuxGeomCBRawData* AddCBuffer()
 	{
