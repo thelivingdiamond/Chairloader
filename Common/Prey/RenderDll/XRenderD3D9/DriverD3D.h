@@ -68,7 +68,7 @@ struct SGraphicsPipelinePassContext;
 #include <Prey/RenderDll/Common/Renderer.h>
 #include "../Common/OcclQuery.h"
 #include "../Common/Textures/Texture.h"
-#include "../Common/RenderAuxGeom.h"
+#include "../Common/RenderAuxGeomNull.h"
 #include "DeviceInfo.h"
 #include "arkd3dvideoinfo.h"
 #include "ShadowTextureGroupManager.h"

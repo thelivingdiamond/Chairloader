@@ -6,8 +6,8 @@
 #include <Prey/CryRenderer/CryDX.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/Common/Shaders/Shader.h>
-#include <Prey/RenderDll/Common/RenderAuxGeom.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include "RenderAuxGeom.h"
 
 #if defined(ENABLE_RENDER_AUX_GEOM)
 

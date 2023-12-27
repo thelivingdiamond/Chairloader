@@ -42,6 +42,7 @@ set(SOURCE_FILES
 	AuxGeom/D3DRenderAuxGeom.cpp
 	AuxGeom/D3DRenderAuxGeom.h
 	AuxGeom/RenderAuxGeom.cpp
+	AuxGeom/RenderAuxGeom.h
 	AuxGeom/RenderAuxGeomPatch.cpp
 	AuxGeom/RenderAuxGeomPatch.h
 	AuxGeom/TextMessages.cpp
