@@ -229,11 +229,13 @@ void RenderDll::ChairRender::InitRendererModule(CD3D9Renderer* pRenderer)
 	gcpRendD3D = pRenderer;
 
 	WaitForRenderDoc();
-	AuxGeom::InitRenderer();
 
 	// Call callbacks
 	for (IChairRenderListener* i : m_InitRendererModule)
 		i->InitRendererModule(pRenderer);
+
+	// Init AuxGeom after callbacks so they can call SetAuxGeomFactory
+	AuxGeom::InitRenderer();
 }
 
 void RenderDll::ChairRender::InitRenderer()
@@ -456,6 +458,11 @@ RenderCmdBuf RenderDll::ChairRender::QueueCommand(RenderCmdId nCustomCmdId, size
 	pRT->EndCommand(p);
 
 	return buf;
+}
+
+void RenderDll::ChairRender::SetAuxGeomFactory(const AuxGeomFactory& factory)
+{
+	AuxGeom::SetAuxGeomFactory(factory);
 }
 
 void RenderDll::ChairRender::ValidateCanChangeCmds()

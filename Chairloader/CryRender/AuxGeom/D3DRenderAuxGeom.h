@@ -7,6 +7,7 @@
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/Common/Shaders/Shader.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Chairloader/IRenderAuxGeomImplD3D.h>
 #include "RenderAuxGeom.h"
 
 #if defined(ENABLE_RENDER_AUX_GEOM)
@@ -14,7 +15,7 @@
 class CD3D9Renderer;
 class ICrySizer;
 
-class CRenderAuxGeomD3D : public IRenderAuxGeomImpl
+class CRenderAuxGeomD3D final : public IRenderAuxGeomImpl, public IRenderAuxGeomImplD3D
 {
 public:
 	static void InitCustomCommand();
@@ -39,6 +40,7 @@ public:
 	void        FreeMemory();
 
 	CAuxGeomCB* GetRenderAuxGeom(void* jobID = 0);
+	virtual IRenderAuxGeomEx* GetRenderAuxGeomEx(void* jobID = 0) override;
 	int         GetDeviceDataSize();
 	void        ReleaseDeviceObjects();
 	HRESULT     RestoreDeviceObjects();

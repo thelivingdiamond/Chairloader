@@ -1,6 +1,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
+#include <Chairloader/IRenderAuxGeomImplD3D.h>
 #include <detours/detours.h>
 #include "D3DRenderAuxGeom.h"
 #include "Shaders/ShaderCompilingPatch.h"
@@ -15,7 +16,8 @@ bool g_bAuxGeomEnabled = false;
 
 int CV_r_enableauxgeom;
 
-CRenderAuxGeomD3D* s_pRenderAuxGeomD3D = nullptr;
+IChairRender::AuxGeomFactory s_fnAuxGeomFactory;
+IRenderAuxGeomImplD3D* s_pRenderAuxGeomD3D = nullptr;
 
 auto CD3D9Renderer_FX_PipelineShutdown_Hook = CD3D9Renderer::FFX_PipelineShutdown.MakeHook();
 auto CD3D9Renderer_OnD3D11PostCreateDevice_Hook = CD3D9Renderer::FOnD3D11PostCreateDevice.MakeHook();
@@ -23,6 +25,11 @@ auto CD3D9Renderer_EF_RemoveParticlesFromScene_Hook = CD3D9Renderer::FEF_RemoveP
 auto CD3D9Renderer_Set2DMode_Hook = CD3D9Renderer::FSet2DMode.MakeHook();
 auto CD3D9Renderer_GetIRenderAuxGeom_Hook = CD3D9Renderer::FGetIRenderAuxGeom.MakeHook();
 auto CD3D9Renderer_PostLevelUnload_Hook = CD3D9Renderer::FPostLevelUnload.MakeHook();
+
+IRenderAuxGeomImplD3D* DefaultAuxGeomFactory()
+{
+	return CRenderAuxGeomD3D::Create(*gcpRendD3D);
+}
 
 void CD3D9Renderer_FX_PipelineShutdown(CD3D9Renderer* _this, bool bFastShutdown)
 {
@@ -55,7 +62,7 @@ void CD3D9Renderer_EF_RemoveParticlesFromScene(CRenderer* _this)
 		// in case of MT rendering flush render thread CB is flashed (main thread CB gets flushed in SRenderThread::FlushFrame()),
 		// otherwise unified "main-render" tread CB is flashed
 
-		if (CAuxGeomCB* pAuxGeomCB = s_pRenderAuxGeomD3D->GetRenderAuxGeom())
+		if (IRenderAuxGeom* pAuxGeomCB = s_pRenderAuxGeomD3D->GetRenderAuxGeom())
 		{
 			pAuxGeomCB->Commit();
 		}
@@ -111,17 +118,34 @@ void InitAuxGeom()
 	CD3D9Renderer_GetIRenderAuxGeom_Hook.SetHookFunc(&CD3D9Renderer_GetIRenderAuxGeom);
 	CD3D9Renderer_PostLevelUnload_Hook.SetHookFunc(&CD3D9Renderer_PostLevelUnload);
 
-	CRenderAuxGeomD3D::InitCustomCommand();
-
 	REGISTER_CVAR2("r_enableAuxGeom", &CV_r_enableauxgeom, 1, VF_REQUIRE_APP_RESTART, "Enables aux geometry rendering.");
+
+	CRenderAuxGeomD3D::InitCustomCommand();
+}
+
+void SetAuxGeomFactory(const IChairRender::AuxGeomFactory& factory)
+{
+	if (s_pRenderAuxGeomD3D)
+		CryFatalError("IChairRender::SetAuxGeomFactory called after aux geom renderer has been initialized");
+
+	s_fnAuxGeomFactory = factory;
 }
 
 void InitRenderer()
 {
 	if (CV_r_enableauxgeom)
 	{
-		s_pRenderAuxGeomD3D = CRenderAuxGeomD3D::Create(*gcpRendD3D);
-		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeom();
+		if (!s_fnAuxGeomFactory)
+			s_fnAuxGeomFactory = &DefaultAuxGeomFactory;
+
+		s_pRenderAuxGeomD3D = s_fnAuxGeomFactory();
+
+		constexpr int requiredVersion = IRenderAuxGeomImplD3D::INTERFACE_VERSION;
+		int actualVersion = s_pRenderAuxGeomD3D->GetIRenderAuxGeomImplD3DVersion();
+		if (requiredVersion != actualVersion)
+			CryFatalError("IRenderAuxGeomImplD3D version mismatch.\nRequired: {}\nActual: {}", requiredVersion, actualVersion);
+
+		gCL->pAuxGeomEx = s_pRenderAuxGeomD3D->GetRenderAuxGeomEx();
 	}
 }
 

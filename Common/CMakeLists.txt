@@ -76,6 +76,7 @@ set(SOURCE_FILES
 	Chairloader/IChairRender.h
 	Chairloader/IChairXmlUtils.h
 	Chairloader/IRenderAuxGeomEx.h
+	Chairloader/IRenderAuxGeomImplD3D.h
 	Chairloader/pch.h
 	Chairloader/PreyFunction.cpp
 	Chairloader/PreyFunction.h

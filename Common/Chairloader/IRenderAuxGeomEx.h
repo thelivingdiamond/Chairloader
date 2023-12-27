@@ -3,7 +3,8 @@
 
 struct CTexture;
 
-//! Chairloader extensions for IRenderAuxGeom
+//! Chairloader extensions for IRenderAuxGeom.
+//! When changed, IRenderAuxGeomImplD3D::INTERFACE_VERSION must be incremented.
 struct IRenderAuxGeomEx
 {
 	virtual ~IRenderAuxGeomEx() {}

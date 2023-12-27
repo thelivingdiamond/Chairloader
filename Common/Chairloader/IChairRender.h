@@ -3,6 +3,7 @@
 #include <Prey/CryCore/AlignmentTools.h>
 
 class CD3D9Renderer;
+struct IRenderAuxGeomImplD3D;
 
 using RenderCmdId = uint32;
 constexpr RenderCmdId INVALID_RENDER_CMD_ID = -1;
@@ -166,6 +167,9 @@ struct IChairRenderListener
 
 struct IChairRender
 {
+	//! Function that instantiates the Aux Geom Renderer.
+	using AuxGeomFactory = std::function<IRenderAuxGeomImplD3D* ()>;
+
 	virtual ~IChairRender() {}
 
 	//! The custom render command handler.
@@ -197,4 +201,11 @@ struct IChairRender
 	//! @param	nCustomCmdId	The id returned by RegisterRenderCommand.
 	//! @param	nParamBytes		Size of the command data.
 	virtual RenderCmdBuf QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes) = 0;
+
+	//! Sets the factory function for the Aux Geom Renderer.
+	//! Mods can use it to create a custom Aux Geom Renderer instance.
+	//! If multiple mods call it, only the last call will have effect.
+	//! The factory is only ever called once. If this setter is called after
+	//! Aux Geom Renderer has been instantiated, game will crash with a fatal error.
+	virtual void SetAuxGeomFactory(const AuxGeomFactory& factory) = 0;
 };

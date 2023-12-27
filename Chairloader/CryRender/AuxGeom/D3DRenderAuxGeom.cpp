@@ -97,7 +97,8 @@ static void RT_AuxFlush(RenderCmdId, RenderCmdBuf& cmd)
 
 void CRenderAuxGeomD3D::InitCustomCommand()
 {
-	g_nAuxFlushId = gCL->pRender->RegisterRenderCommand("RC_AuxFlush", RT_AuxFlush);
+	// Modders, rename the command
+	g_nAuxFlushId = gCL->pRender->RegisterRenderCommand("Chairloader_AuxFlush", RT_AuxFlush);
 }
 
 void CRenderAuxGeomD3D::ShutdownCustomCommand()
@@ -1703,6 +1704,11 @@ void CRenderAuxGeomD3D::Process()
 CAuxGeomCB* CRenderAuxGeomD3D::GetRenderAuxGeom(void* jobID)
 {
 	return m_auxGeomCBCol.Get(this, jobID);
+}
+
+IRenderAuxGeomEx* CRenderAuxGeomD3D::GetRenderAuxGeomEx(void* jobID)
+{
+	return GetRenderAuxGeom(jobID);
 }
 
 inline const CAuxGeomCB::AuxVertexBuffer& CRenderAuxGeomD3D::GetAuxVertexBuffer() const

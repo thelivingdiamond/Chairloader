@@ -37,6 +37,7 @@ public:
 	RenderCmdId RegisterRenderCommand(const char* name, const CmdHandler& handler) override;
 	bool UnregisterRenderCommand(RenderCmdId nCustomCmdId) override;
 	RenderCmdBuf QueueCommand(RenderCmdId nCustomCmdId, size_t nParamBytes) override;
+	void SetAuxGeomFactory(const AuxGeomFactory& factory) override;
 
 private:
 	using TListenerList = std::vector<IChairRenderListener*>;
