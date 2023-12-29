@@ -75,10 +75,10 @@ class ChairMerger
     void Merge();
     void PostMerge();
 
-    DeployStep GetDeployStep();
-    DeployPhase GetDeployPhase();
-    bool DeployFailed();
-    std::string GetFailedDeployMessage();
+    DeployStep GetDeployStep() { return m_DeployStep; }
+    DeployPhase GetDeployPhase() { return m_DeployPhase; }
+    bool DeployFailed() { return m_bDeployFailed; }
+    std::string GetFailedDeployMessage() { return m_DeployError; }
 
     static bool IsModEnabled(std::string modName);
 
