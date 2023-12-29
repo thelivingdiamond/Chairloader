@@ -67,8 +67,18 @@ class ChairMergerException : public std::runtime_error
 
 class ChairMerger
 {
-  public:
-    ChairMerger();
+public:
+    //! @param  mergerFiles         ChairMerger files directory.
+    //! @param  preyFiles           Source Prey files directory.
+    //! @param  chairloaderPathDir  Chairloader patch directory.
+    //! @param  outputRoot          Where to place output directories.
+    //! @param  gamePath            Game directory.
+    ChairMerger(
+        const fs::path& mergerFiles,
+        const fs::path& preyFiles,
+        const fs::path& chairloaderPathDir,
+        const fs::path& outputRoot,
+        const fs::path& gamePath);
     std::future<void> LaunchAsyncDeploy();
     void AsyncDeploy();
     void PreMerge();
@@ -118,7 +128,7 @@ class ChairMerger
     static void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
 
     //! Copy the chairloader patch files to the output directory
-    static void CopyChairloaderPatchFiles();
+    void CopyChairloaderPatchFiles();
 
     // Member functions
     //! finds the merging policy for a given file in the merging library
@@ -190,17 +200,21 @@ class ChairMerger
 
     void LoadIdNameMap();
 
-    // Static paths
-    static inline fs::path m_OutputPath = "Output";
-    static inline fs::path m_LevelOutputPath = "LevelOutput";
-    static inline fs::path m_LocalizationOutputPath = "LocalizationOutput";
-    static inline fs::path m_PreyFilePath = "PreyFiles";
-    static inline fs::path m_ChairloaderPatchPath = "ChairloaderPatch";
+    // ChairManager files
+    fs::path m_MergerFilesPath;
+    fs::path m_PreyFilePath;
+    fs::path m_ChairloaderPatchPath;
 
-    static inline fs::path m_ModPath = "";
-    static inline fs::path m_LevelFilesPath = "";
-    static inline fs::path m_LocalizationFilesPath = "";
-    static inline fs::path m_PrecacheFilesPath = "";
+    // Temporary output paths
+    fs::path m_OutputPath;
+    fs::path m_LevelOutputPath;
+    fs::path m_LocalizationOutputPath;
+
+    // Game paths
+    fs::path m_ModPath = "";
+    fs::path m_LevelFilesPath = "";
+    fs::path m_LocalizationFilesPath = "";
+    fs::path m_PrecacheFilesPath = "";
 
     static const inline std::map<DeployPhase, std::string> m_DeployPhaseStrings = {
         { DeployPhase::Invalid, "Invalid" }, { DeployPhase::PreMerge, "Pre-Merge" },

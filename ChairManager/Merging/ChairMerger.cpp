@@ -28,15 +28,44 @@ ChairMergerException::ChairMergerException(DeployStep step, DeployPhase phase, s
     m_Messages = std::move(messages);
 }
 
-ChairMerger::ChairMerger()
+ChairMerger::ChairMerger(
+    const fs::path& mergerFiles,
+    const fs::path& preyFiles,
+    const fs::path& chairloaderPathDir,
+    const fs::path& outputRoot,
+    const fs::path& gamePath)
 {
     ChairManager::Get().log(severityLevel::debug, "ChairMerger: Initializing ChairMerger");
     ChairManager::Get().log(severityLevel::debug, "ChairMerger: ChairMerger Initialized");
 
-    m_ModPath = ChairManager::Get().GetGamePath() / "Mods";
-    m_LevelFilesPath = ChairManager::Get().GetGamePath() / "GameSDK" / "Levels";
-    m_LocalizationFilesPath = ChairManager::Get().GetGamePath() / "Localization";
-    m_PrecacheFilesPath = ChairManager::Get().GetGamePath() / "GameSDK" / "Precache";
+    // ChairManager files
+    if (!fs::exists(mergerFiles))
+        throw std::invalid_argument("mergerFiles doesn't exists");
+
+    if (!fs::exists(preyFiles))
+        throw std::invalid_argument("preyFiles doesn't exists");
+
+    if (!fs::exists(chairloaderPathDir))
+        throw std::invalid_argument("chairloaderPathDir doesn't exists");
+
+    m_MergerFilesPath = mergerFiles;
+    m_PreyFilePath = preyFiles;
+    m_ChairloaderPatchPath = chairloaderPathDir;
+
+    // Temporary outputs
+    m_OutputPath = outputRoot / "Output";
+    m_LevelOutputPath = outputRoot / "LevelOutput";
+    m_LocalizationOutputPath = outputRoot / "LocalizationOutput";
+    fs::create_directories(m_OutputPath);
+
+    // Game paths
+    if (!fs::exists(gamePath))
+        throw std::invalid_argument("gamePath doesn't exists");
+
+    m_ModPath = gamePath / "Mods";
+    m_LevelFilesPath = gamePath / "GameSDK" / "Levels";
+    m_LocalizationFilesPath = gamePath / "Localization";
+    m_PrecacheFilesPath = gamePath / "GameSDK" / "Precache";
 
     if (!fs::exists(m_PrecacheFilesPath))
     {
@@ -315,7 +344,7 @@ MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path& file, std::strin
 void ChairMerger::CopyModDataFiles(fs::path sourcePath)
 {
     AddPendingTask(
-        m_MergeThreadPool->enqueue([sourcePath] { RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, { ".xml" }); }));
+        m_MergeThreadPool->enqueue([this, sourcePath] { RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, { ".xml" }); }));
 }
 
 void ChairMerger::ProcessMod(std::shared_ptr<Mod> mod)
@@ -455,7 +484,7 @@ void ChairMerger::LoadPatchFileChecksums()
     m_LocalizationFileChecksums.clear();
     pugi::xml_document doc;
 
-    auto result = doc.load_file("patchChecksums.xml");
+    auto result = doc.load_file((m_MergerFilesPath / "patchChecksums.xml").c_str());
     if (!result)
     {
         ChairManager::Get().overlayLog(severityLevel::error, "ChairMerger: Could not load patch checksums file");
@@ -592,7 +621,7 @@ void ChairMerger::PackLevelFiles()
             const auto levelPath = changedPack.parent_path();
             const auto deployedHash = m_DeployedLevelFileChecksums[changedPack];
             const bool forcePack = m_bForceLevelPack;
-            AddPendingTask(m_MergeThreadPool->enqueue([levelPath, deployedHash, forcePack, &bFailure] {
+            AddPendingTask(m_MergeThreadPool->enqueue([this, levelPath, deployedHash, forcePack, &bFailure] {
                 try
                 {
                     // create the level directory in the level output path
@@ -733,7 +762,7 @@ void ChairMerger::PackLocalizationFiles()
             const auto localizationPath = changedPack.parent_path();
             const auto deployedLocalizationChecksum = m_DeployedLocalizationFileChecksums[changedPack];
             const bool forcePack = m_bForceLocalizationPack;
-            AddPendingTask(m_MergeThreadPool->enqueue([localizationPath, changedPack, deployedLocalizationChecksum,
+            AddPendingTask(m_MergeThreadPool->enqueue([this, localizationPath, changedPack, deployedLocalizationChecksum,
                                                        forcePack, &bFailure] {
                 // patch file path is XXXX_patch.pak
                 // non-patch path is XXXX, so the filename needs to be changed and the extension removed

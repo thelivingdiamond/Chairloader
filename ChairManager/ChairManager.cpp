@@ -1844,7 +1844,16 @@ void ChairManager::Init() {
         createChairloaderConfigFile();
     }
     m_pChairMerger.reset();
-    m_pChairMerger = std::make_unique<ChairMerger>();
+
+    fs::path chairManagerDir = fs::current_path();
+    m_pChairMerger = std::make_unique<ChairMerger>(
+        chairManagerDir,
+        chairManagerDir / "PreyFiles",
+        chairManagerDir / "ChairloaderPatch",
+        chairManagerDir / "Config" / "TempMerger",
+        GetGamePath()
+    );
+
     if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }

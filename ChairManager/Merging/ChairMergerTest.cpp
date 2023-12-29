@@ -26,7 +26,7 @@ class ChairMergerTest : public ::testing::Test
         // remove contents of the output directory
         fs::remove_all(merger->m_OutputPath);
         fs::create_directories(merger->m_OutputPath);
-        merger = std::make_unique<ChairMerger>();
+        // merger = std::make_unique<ChairMerger>(); // TODO 2023-12-29
         merger->m_ModPath = "Testing/Mods";
         merger->m_OutputPath = "Testing/Output";
         merger->m_PreyFilePath = "Testing/PreyFiles";
@@ -327,11 +327,13 @@ TEST_F(ChairMergerTest, ProcessXMLFilePlayerConfig)
 
 TEST_F(ChairMergerTest, CopyModDataFiles)
 {
-    fs::path dataPath = ChairMerger::m_ModPath / exampleMod->modName / "Data";
+    // TODO 2023-12-29
+    FAIL();
+    /*fs::path dataPath = ChairMerger::m_ModPath / exampleMod->modName / "Data";
     merger->CopyModDataFiles(dataPath);
     merger->m_MergeThreadPool->wait();
 
-    EXPECT_TRUE(RecursiveOutputEquivalenceCheck(""));
+    EXPECT_TRUE(RecursiveOutputEquivalenceCheck(""));*/
 }
 
 TEST_F(ChairMergerTest, RecursiveXmlMerge)
