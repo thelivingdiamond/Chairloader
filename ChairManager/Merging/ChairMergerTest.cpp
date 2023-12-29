@@ -8,14 +8,17 @@
 #include <chrono>
 #include <Manager/LuaUtils.h>
 
-
-class ChairMergerTest : public ::testing::Test {
-public:
-    void SetUp() override {
+class ChairMergerTest : public ::testing::Test
+{
+  public:
+    void SetUp() override
+    {
         manager = std::make_unique<ChairManager>();
         manager->GTestInit();
-        for(auto& mod : manager->GetMods()){
-            if(mod.modName == "TheChair.ExampleMod"){
+        for (auto& mod : manager->GetMods())
+        {
+            if (mod.modName == "TheChair.ExampleMod")
+            {
                 exampleMod = std::make_shared<Mod>(mod);
                 break;
             }
@@ -29,82 +32,107 @@ public:
         merger->m_PreyFilePath = "Testing/PreyFiles";
     }
 
-    void TearDown() override {
+    void TearDown() override
+    {
         manager.reset();
         merger.reset();
     }
-protected:
+
+  protected:
     std::unique_ptr<ChairManager> manager;
     std::unique_ptr<ChairMerger> merger;
     std::shared_ptr<Mod> exampleMod;
 
-    bool ProcessXMLFile(fs::path relativePath){
+    bool ProcessXMLFile(fs::path relativePath)
+    {
         merger->ProcessXMLFile("Testing/Mods/TheChair.ExampleMod/Data" / relativePath, exampleMod->modName, false);
         pugi::xml_document outputFile, expectedFile;
-        outputFile.load_file(("Testing/Output" /relativePath).wstring().c_str());
-        expectedFile.load_file(("Testing/Expected"/relativePath).wstring().c_str());
+        outputFile.load_file(("Testing/Output" / relativePath).wstring().c_str());
+        expectedFile.load_file(("Testing/Expected" / relativePath).wstring().c_str());
         return TestXmlFileEquality(outputFile, expectedFile);
     }
 
-    bool TestXmlFileEquality(pugi::xml_document& outputDoc, pugi::xml_document& expectedDoc){
+    bool TestXmlFileEquality(pugi::xml_document& outputDoc, pugi::xml_document& expectedDoc)
+    {
         std::stringstream output, expected;
         outputDoc.save(output, "", pugi::format_raw);
         expectedDoc.save(expected, "", pugi::format_raw);
         return output.str() == expected.str();
     }
 
-    // this function needs to recursively traverse Output/ and Expected/ and compare the files using TestXmlFileEquality, the files are already processed so do not use ProcessXMLFile
-    bool RecursiveOutputEquivalenceCheck(fs::path relativePath){
+    // this function needs to recursively traverse Output/ and Expected/ and compare the files using
+    // TestXmlFileEquality, the files are already processed so do not use ProcessXMLFile
+    bool RecursiveOutputEquivalenceCheck(fs::path relativePath)
+    {
         fs::path outputPath = "Testing/Output" / relativePath;
         fs::path expectedPath = "Testing/Expected" / relativePath;
-        // check against all output files, this only checks that any files that are in the output directory are equivalent to the expected files
-        // this does not check that all expected files are in the output directory
-        if(fs::is_directory(outputPath)){
-            for(auto& entry : fs::directory_iterator(outputPath)){
-                if(!RecursiveOutputEquivalenceCheck(relativePath / entry.path().filename())){
+        // check against all output files, this only checks that any files that are in the output directory are
+        // equivalent to the expected files this does not check that all expected files are in the output directory
+        if (fs::is_directory(outputPath))
+        {
+            for (auto& entry : fs::directory_iterator(outputPath))
+            {
+                if (!RecursiveOutputEquivalenceCheck(relativePath / entry.path().filename()))
+                {
                     return false;
                 }
             }
-        } else if(outputPath.extension() == ".xml"){
+        }
+        else if (outputPath.extension() == ".xml")
+        {
             pugi::xml_document outputFile, expectedFile;
             outputFile.load_file(outputPath.wstring().c_str());
             expectedFile.load_file(expectedPath.wstring().c_str());
             bool equal = TestXmlFileEquality(outputFile, expectedFile);
-            if(!equal){
+            if (!equal)
+            {
                 printf("Failed to find equivalent file for %s\n", expectedPath.string().c_str());
             }
             return equal;
-        } else if(fs::is_regular_file(outputPath)) {
+        }
+        else if (fs::is_regular_file(outputPath))
+        {
             bool equal = fs::exists(outputPath);
-            if(!equal){
+            if (!equal)
+            {
                 printf("Failed to find equivalent file for %s\n", expectedPath.string().c_str());
             }
             return equal;
         }
         return true;
     }
-    bool RecursiveOutputAbsoluteCheck(fs::path relativePath){
+    bool RecursiveOutputAbsoluteCheck(fs::path relativePath)
+    {
         fs::path outputPath = "Testing/Output" / relativePath;
         fs::path expectedPath = "Testing/Expected" / relativePath;
         // check against all the files in the expected directory, this ensures that no files are missing
-        if(fs::is_directory(expectedPath)){
-            for(auto& entry : fs::directory_iterator(expectedPath)){
-                if(!RecursiveOutputAbsoluteCheck(relativePath / entry.path().filename())){
+        if (fs::is_directory(expectedPath))
+        {
+            for (auto& entry : fs::directory_iterator(expectedPath))
+            {
+                if (!RecursiveOutputAbsoluteCheck(relativePath / entry.path().filename()))
+                {
                     return false;
                 }
             }
-        } else if(expectedPath.extension() == ".xml"){
+        }
+        else if (expectedPath.extension() == ".xml")
+        {
             pugi::xml_document outputFile, expectedFile;
             outputFile.load_file(outputPath.wstring().c_str());
             expectedFile.load_file(expectedPath.wstring().c_str());
             bool equal = TestXmlFileEquality(outputFile, expectedFile);
-            if(!equal){
+            if (!equal)
+            {
                 printf("Failed to find equivalent file for %s\n", expectedPath.string().c_str());
             }
             return equal;
-        } else if(fs::is_regular_file(outputPath)) {
+        }
+        else if (fs::is_regular_file(outputPath))
+        {
             bool equal = fs::exists(outputPath);
-            if(!equal){
+            if (!equal)
+            {
                 printf("Failed to find equivalent file for %s\n", expectedPath.string().c_str());
             }
             return equal;
@@ -113,7 +141,8 @@ protected:
     }
 };
 
-TEST_F(ChairMergerTest, ResolveFileWildcardSingleNode) {
+TEST_F(ChairMergerTest, ResolveFileWildcardSingleNode)
+{
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
     pugi::xml_document doc;
@@ -128,10 +157,12 @@ TEST_F(ChairMergerTest, ResolveFileWildcardSingleNode) {
     // print the time it took to run
     printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
     EXPECT_EQ(doc.first_child().attribute("ch:apply_if").as_bool(), true);
-    EXPECT_EQ(doc.first_child().attribute("absolute_unit").value(), std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    EXPECT_EQ(doc.first_child().attribute("absolute_unit").value(),
+              std::string("The quick brown fox fuckin jumped over the lazy dog"));
 }
 
-TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes) {
+TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes)
+{
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
     pugi::xml_document doc;
@@ -144,7 +175,7 @@ TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes) {
         </X>
     )");
     ASSERT_TRUE(exampleMod != nullptr);
-//    auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
+    //    auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
     // profile this function, it is slow
     auto start = std::chrono::high_resolution_clock::now();
     ChairMerger::ResolveFileWildcards(doc.first_child(), exampleMod->modName);
@@ -154,20 +185,24 @@ TEST_F(ChairMergerTest, ResolveFileWildcardMultipleNodes) {
     // print the time it took to run
     printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
     EXPECT_TRUE(doc.first_child().attribute("ch:apply_if").value() == std::string("true"));
-    EXPECT_TRUE(doc.first_child().attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    EXPECT_TRUE(doc.first_child().attribute("absolute_unit").value() ==
+                std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto y = doc.first_child().child("Y");
     EXPECT_TRUE(y.attribute("ch:apply_if").value() == std::string("true"));
-    EXPECT_TRUE(y.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    EXPECT_TRUE(y.attribute("absolute_unit").value() ==
+                std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto z = y.child("Z");
     EXPECT_TRUE(z.attribute("ch:apply_if").value() == std::string("true"));
-    EXPECT_TRUE(z.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    EXPECT_TRUE(z.attribute("absolute_unit").value() ==
+                std::string("The quick brown fox fuckin jumped over the lazy dog"));
     auto z2 = y.child("Z2");
     EXPECT_TRUE(z2.attribute("ch:apply_if").value() == std::string("true"));
-    EXPECT_TRUE(z2.attribute("absolute_unit").value() == std::string("The quick brown fox fuckin jumped over the lazy dog"));
+    EXPECT_TRUE(z2.attribute("absolute_unit").value() ==
+                std::string("The quick brown fox fuckin jumped over the lazy dog"));
 }
 
-
-TEST_F(ChairMergerTest, LuaAttributeResolution){
+TEST_F(ChairMergerTest, LuaAttributeResolution)
+{
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
     pugi::xml_document doc;
@@ -193,7 +228,8 @@ TEST_F(ChairMergerTest, LuaAttributeResolution){
     EXPECT_EQ(y.attribute("absolute_unit").value(), std::string("OUG"));
 }
 
-TEST_F(ChairMergerTest, LuaGlobalFail){
+TEST_F(ChairMergerTest, LuaGlobalFail)
+{
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
     pugi::xml_document doc;
@@ -228,12 +264,11 @@ TEST_F(ChairMergerTest, LuaGlobalFail){
     printf("random_enum_test: %s\n", random_enum_test.c_str());
 }
 
-
-TEST_F(ChairMergerTest, LuaRandomTest){
+TEST_F(ChairMergerTest, LuaRandomTest)
+{
     // start by testing the randomfloat function
     auto f = ChairMerger::RandomFloat(1.5, 3.5);
     ASSERT_TRUE(f >= 1.5 && f <= 3.5);
-
 
     auto wildcard = std::make_shared<AttributeWildcard>();
     wildcard->mod_name = "TheChair.ExampleMod";
@@ -251,44 +286,47 @@ TEST_F(ChairMergerTest, LuaRandomTest){
     // print the time it took to run
     printf("ResolveFileWildcards took %lld microseconds\n", duration.count());
 
-    EXPECT_TRUE(doc.first_child().attribute("random1").as_int() <= 10 && doc.first_child().attribute("random1").as_int() >= 1);
-    EXPECT_TRUE(doc.first_child().attribute("random2").as_int() <= 40 && doc.first_child().attribute("random2").as_int() >= 20);
-    EXPECT_TRUE(doc.first_child().attribute("random3").as_float() <= 3.5f && doc.first_child().attribute("random3").as_float() >= 1.5f);
+    EXPECT_TRUE(doc.first_child().attribute("random1").as_int() <= 10 &&
+                doc.first_child().attribute("random1").as_int() >= 1);
+    EXPECT_TRUE(doc.first_child().attribute("random2").as_int() <= 40 &&
+                doc.first_child().attribute("random2").as_int() >= 20);
+    EXPECT_TRUE(doc.first_child().attribute("random3").as_float() <= 3.5f &&
+                doc.first_child().attribute("random3").as_float() >= 1.5f);
 }
 
-//TEST_F(ChairMergerTest, GetAttributeWildcardValue) {
-//    auto wildcard = std::make_shared<AttributeWildcard>();
-//    wildcard->mod_name = "TheChair.ExampleMod";
-//    auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
-//    pugi::xml_document doc;
-//    doc.load_string(R"(<X ch:apply_if="{{ testBool }}" absolute_unit="{{ testString }}" />)");
-//    wildcard->attribute = doc.child("X").attribute("ch:apply_if");
-//    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
-//    EXPECT_TRUE(wildcard->match_value == "true");
-//    wildcard = std::make_shared<AttributeWildcard>();
-//    wildcard->mod_name = "TheChair.ExampleMod";
-//    wildcard->attribute = doc.child("X").attribute("absolute_unit");
-//    EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
-//    EXPECT_TRUE(wildcard->match_value == "The quick brown fox fuckin jumped over the lazy dog");
-//}
+// TEST_F(ChairMergerTest, GetAttributeWildcardValue) {
+//     auto wildcard = std::make_shared<AttributeWildcard>();
+//     wildcard->mod_name = "TheChair.ExampleMod";
+//     auto variables = ChairManager::Get().GetConfigManager()->getModSpaceBooleanVariables("TheChair.ExampleMod");
+//     pugi::xml_document doc;
+//     doc.load_string(R"(<X ch:apply_if="{{ testBool }}" absolute_unit="{{ testString }}" />)");
+//     wildcard->attribute = doc.child("X").attribute("ch:apply_if");
+//     EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
+//     EXPECT_TRUE(wildcard->match_value == "true");
+//     wildcard = std::make_shared<AttributeWildcard>();
+//     wildcard->mod_name = "TheChair.ExampleMod";
+//     wildcard->attribute = doc.child("X").attribute("absolute_unit");
+//     EXPECT_TRUE(ChairMerger::GetAttributeWildcardValue(wildcard, variables));
+//     EXPECT_TRUE(wildcard->match_value == "The quick brown fox fuckin jumped over the lazy dog");
+// }
 
-
-
-
-TEST_F(ChairMergerTest, ProcessXMLFileArkFactions){
+TEST_F(ChairMergerTest, ProcessXMLFileArkFactions)
+{
     fs::path relativePath = "Ark/ArkFactions.xml";
     std::stringstream output, expected;
     EXPECT_TRUE(ProcessXMLFile(relativePath));
 }
 
-TEST_F(ChairMergerTest, ProcessXMLFilePlayerConfig){
+TEST_F(ChairMergerTest, ProcessXMLFilePlayerConfig)
+{
     fs::path relativePath = "Ark/Player/PlayerConfig.xml";
 
     std::stringstream output, expected;
     EXPECT_TRUE(ProcessXMLFile(relativePath));
 }
 
-TEST_F(ChairMergerTest, CopyModDataFiles){
+TEST_F(ChairMergerTest, CopyModDataFiles)
+{
     fs::path dataPath = ChairMerger::m_ModPath / exampleMod->modName / "Data";
     merger->CopyModDataFiles(dataPath);
     merger->m_MergeThreadPool->wait();
@@ -296,22 +334,24 @@ TEST_F(ChairMergerTest, CopyModDataFiles){
     EXPECT_TRUE(RecursiveOutputEquivalenceCheck(""));
 }
 
-TEST_F(ChairMergerTest, RecursiveXmlMerge){
+TEST_F(ChairMergerTest, RecursiveXmlMerge)
+{
     merger->RecursiveMergeXMLFiles("Testing/Mods/TheChair.ExampleMod/Data", exampleMod->modName, false);
     merger->m_MergeThreadPool->wait();
 
     EXPECT_TRUE(RecursiveOutputEquivalenceCheck(""));
 }
 
-TEST_F(ChairMergerTest, ProcessExampleMod){
+TEST_F(ChairMergerTest, ProcessExampleMod)
+{
     merger->ProcessMod(exampleMod);
     // wait for the threadpool to finish all its tasks
     merger->m_MergeThreadPool->wait();
     EXPECT_TRUE(RecursiveOutputAbsoluteCheck(""));
 }
 
-
-TEST_F(ChairMergerTest, LoadPatchChecksums){
+TEST_F(ChairMergerTest, LoadPatchChecksums)
+{
     merger->LoadPatchFileChecksums();
     EXPECT_TRUE(merger->m_LevelFileChecksums.size() > 0);
     EXPECT_TRUE(merger->m_LocalizationFileChecksums.size() > 0);
@@ -347,8 +387,8 @@ TEST_F(ChairMergerTest, LoadIdNamePairs){
 }
 #endif
 
-
-TEST_F(ChairMergerTest, IdNamePairUsage){
+TEST_F(ChairMergerTest, IdNamePairUsage)
+{
     merger->m_PreyFilePath = "PreyFiles";
 
     // profile this function to see if it's slow
@@ -360,7 +400,7 @@ TEST_F(ChairMergerTest, IdNamePairUsage){
     // print the time it took to run
     printf("LoadIdNameMap took %lld milliseconds\n", duration1.count());
 
-    lua_State * L = luaL_newstate();
+    lua_State* L = luaL_newstate();
     luaL_openlibs(L);
 
     // profile this function to see if it's slow
@@ -416,7 +456,5 @@ TEST_F(ChairMergerTest, IdNamePairUsage){
     // FIXME 2023-07-07: merger->AddIdNameMapToLua(L) was moved to WildcardResolver - tmp64
 
     // check the console to see what the output was
-    //TODO: fetch it off the stack and check it here
+    // TODO: fetch it off the stack and check it here
 }
-
-

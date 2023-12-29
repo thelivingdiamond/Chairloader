@@ -8,20 +8,29 @@
 #include "Manager/SHA256.h"
 #include <fstream>
 
-struct FileChecksum {
+struct FileChecksum
+{
     fs::path path;
     fs::path relativePath;
     SHA256::Digest checksum;
 
     FileChecksum() = default;
 
-    FileChecksum(fs::path filePath, fs::path relativePath) : path(filePath), relativePath(relativePath) {
+    FileChecksum(fs::path filePath, fs::path relativePath)
+        : path(filePath)
+        , relativePath(relativePath)
+    {
         ParseFile(filePath, relativePath);
     }
 
-    FileChecksum(fs::path pathIn, fs::path relativePath, std::string checksumIn) : path(pathIn), checksum(SHA256::fromString(checksumIn)) {}
+    FileChecksum(fs::path pathIn, fs::path relativePath, std::string checksumIn)
+        : path(pathIn)
+        , checksum(SHA256::fromString(checksumIn))
+    {
+    }
 
-    void ParseFile(fs::path pathIn, fs::path relativePathIn){
+    void ParseFile(fs::path pathIn, fs::path relativePathIn)
+    {
         path = pathIn;
         relativePath = relativePathIn;
         std::ifstream inFile;
@@ -52,35 +61,19 @@ struct FileChecksum {
         checksum = hash.digest();
     }
 
-    bool operator==(const FileChecksum &rhs) const {
-        return checksum == rhs.checksum;
-    }
+    bool operator==(const FileChecksum& rhs) const { return checksum == rhs.checksum; }
 
-    bool operator!=(const FileChecksum &rhs) const {
-        return !(rhs == *this);
-    }
+    bool operator!=(const FileChecksum& rhs) const { return !(rhs == *this); }
 
-    bool operator==(const fs::path &rhs) const {
-        return path == rhs;
-    }
+    bool operator==(const fs::path& rhs) const { return path == rhs; }
 
-    bool operator<(const FileChecksum &rhs) const {
-        return path < rhs.path;
-    }
+    bool operator<(const FileChecksum& rhs) const { return path < rhs.path; }
 
-    bool operator>(const FileChecksum &rhs) const {
-        return rhs < *this;
-    }
+    bool operator>(const FileChecksum& rhs) const { return rhs < *this; }
 
-    bool operator<=(const FileChecksum &rhs) const {
-        return !(rhs < *this);
-    }
+    bool operator<=(const FileChecksum& rhs) const { return !(rhs < *this); }
 
-    bool operator>=(const FileChecksum &rhs) const {
-        return !(*this < rhs);
-    }
-
-
+    bool operator>=(const FileChecksum& rhs) const { return !(*this < rhs); }
 };
 
-#endif //CHAIRLOADER_FILECHECKSUM_H
+#endif // CHAIRLOADER_FILECHECKSUM_H
