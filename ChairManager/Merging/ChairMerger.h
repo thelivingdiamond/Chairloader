@@ -107,6 +107,7 @@ public:
 protected:
     FRIEND_TEST(ChairMergerTestBase, ResolveFileWildcards);
     FRIEND_TEST(ChairMergerTestFile, ProcessXMLFile);
+    FRIEND_TEST(ChairMergerTestBase, CopyModDataFiles);
 
     friend class ChairMergerTest;
     friend class ChairManager;

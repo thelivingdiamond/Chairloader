@@ -32,7 +32,15 @@ protected:
     //! Creates the ChairMerger instance for current test.
     void CreateMerger();
 
+    //! Checks that two directories contain equivalent files.
+    //! @param  expected        The directory with expected files.
+    //! @param  dirToCheck      Directory to check with expected.
+    //! @param  expectAllFiles  If false, only files in dirToCheck are checked. If true, return false if any files are missing.
+    bool CheckEqualDirectories(const fs::path& expected, const fs::path& dirToCheck, bool expectAllFiles);
+
 private:
+    std::vector<uint8_t> ReadFile(const fs::path& path);
+
     // IChairManager
     virtual void LogString(severityLevel level, std::string_view str) override;
     virtual void OverlayLogString(severityLevel level, std::string_view str) override;

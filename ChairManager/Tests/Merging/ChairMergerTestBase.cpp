@@ -1,4 +1,5 @@
 #include "Tests/Merging/ChairMergerTestBase.h"
+#include "Tests/XmlTestUtils.h"
 
 void ChairMergerTestBase::SetUp()
 {
@@ -16,7 +17,7 @@ void ChairMergerTestBase::InitTest(const std::string& testName)
     m_TestName = testName;
     m_BaseDir = fs::current_path() / "Testing/ChairMerger";
     m_TestDir = m_BaseDir / fs::u8path(testName);
-    m_TempDir = m_BaseDir / "_temp";
+    m_TempDir = m_TestDir / "_temp";
 
     if (fs::exists(m_TempDir))
         fs::remove_all(m_TempDir);
@@ -76,6 +77,98 @@ void ChairMergerTestBase::CreateMerger()
         static_cast<ILogger*>(this),
         static_cast<IChairManager*>(this)
     );
+}
+
+bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const fs::path& dirToCheck, bool expectAllFiles)
+{
+    if (!fs::exists(expected))
+    {
+        ADD_FAILURE() << "Expected file doesn't exist: " << expected.u8string();
+        return false;
+    }
+
+    if (!fs::exists(dirToCheck))
+    {
+        ADD_FAILURE() << "File doesn't exist: " << dirToCheck.u8string();
+        return false;
+    }
+
+    EXPECT_EQ(fs::is_directory(expected), fs::is_directory(dirToCheck));
+
+    if (fs::is_directory(dirToCheck))
+    {
+        // Check files in the dir
+        bool isOk = true;
+
+        for (auto& entry : fs::directory_iterator(dirToCheck))
+        {
+            fs::path relativePath = entry.path().lexically_relative(dirToCheck);
+            isOk &= CheckEqualDirectories(expected / relativePath, dirToCheck / relativePath, false);
+        }
+
+        if (expectAllFiles)
+        {
+            // Check that all files in expected exist
+            for (auto& entry : fs::recursive_directory_iterator(expected))
+            {
+                fs::path relativePath = entry.path().lexically_relative(expected);
+                fs::path fullPath = dirToCheck / relativePath;
+
+                if (!fs::exists(fullPath))
+                {
+                    ADD_FAILURE() << "File doesn't exist but it is expected: " << fullPath.u8string();
+                    isOk = false;
+                }
+            }
+        }
+
+        return isOk;
+    }
+    else
+    {
+        // Compare the file
+        if (dirToCheck.extension() == "xml")
+        {
+            // Compare XML
+            pugi::xml_document docExpected = XmlTestUtils::LoadDocument(expected);
+            pugi::xml_document docActual = XmlTestUtils::LoadDocument(dirToCheck);
+            return XmlTestUtils::CheckNodesEqual(docExpected, docActual);
+        }
+        else
+        {
+            // Compare data
+            std::vector<uint8_t> expectedData = ReadFile(expected);
+            std::vector<uint8_t> actualData = ReadFile(dirToCheck);
+
+            if (expectedData.size() != actualData.size())
+            {
+                ADD_FAILURE() << "File size mismatch: " << expected.u8string() << " " << dirToCheck.u8string() << ""
+                    << expectedData.size() << " " << actualData.size();
+                return false;
+            }
+
+            if (memcmp(expectedData.data(), actualData.data(), expectedData.size()))
+            {
+                ADD_FAILURE() << "File content mismatch: " << expected.u8string() << " " << dirToCheck.u8string();
+                return false;
+            }
+
+            return true;
+        }
+    }
+}
+
+std::vector<uint8_t> ChairMergerTestBase::ReadFile(const fs::path& path)
+{
+    std::vector<uint8_t> fileData;
+    std::ifstream f;
+    f.exceptions(std::ios::badbit | std::ios::failbit);
+    f.open(path, std::ios::binary);
+    f.seekg(std::ios::end);
+    fileData.resize((size_t)f.tellg());
+    f.seekg(std::ios::beg);
+    f.read((char*)fileData.data(), fileData.size());
+    return fileData;
 }
 
 void ChairMergerTestBase::LogString(severityLevel level, std::string_view str)

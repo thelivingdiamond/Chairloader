@@ -32,3 +32,17 @@ const auto TEST_FILES = testing::Values<std::string>(
 );
 
 INSTANTIATE_TEST_SUITE_P(ChairMerger, ChairMergerTestFile, TEST_FILES);
+
+TEST_F(ChairMergerTestBase, CopyModDataFiles)
+{
+    InitTest("CopyModDataFiles");
+    LoadMods();
+    CreateMerger();
+
+    constexpr char MOD_NAME[] = "Mod1";
+    fs::path modDataDir = m_TestDir / MOD_NAME / "Data";
+    m_pMerger->CopyModDataFiles(modDataDir);
+    m_pMerger->m_MergeThreadPool->wait();
+
+    EXPECT_TRUE(CheckEqualDirectories(m_TestDir / "Expected", m_TempDir / "Output", true));
+}

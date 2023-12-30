@@ -30,7 +30,6 @@ set(SOURCE_FILES
 	Paths.h
 	Merging/ChairMerger.cpp
 	Merging/ChairMerger.h
-	Merging/ChairMergerTest.cpp
 	Merging/XMLMerger2Test.cpp
 	Merging/FileChecksum.h
 	Merging/HashUtils.h
