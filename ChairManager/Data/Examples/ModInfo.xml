@@ -1,9 +1,0 @@
-<Mod
-	modName="TheChair.ExampleMod"
-	displayName="Example Mod"
-	version="1.0"
-	dllName="ExampleMod.dll"
-	hasXML="true"
-	hasLevelXML="false"
-	author="The Chair">
-</Mod>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<AuthorName.ModExample version="1.0.0">
+    <RenameWrench
+        type="bool"
+        description="Whether to rename the wrench">
+        true
+    </RenameWrench>
+    <WrenchName
+        type="string"
+        description="New wrench name">
+        Engineer Gaming
+    </WrenchName>
+</AuthorName.ModExample>
