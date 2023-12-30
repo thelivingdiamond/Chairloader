@@ -1213,6 +1213,7 @@ ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
     m_LogFilePath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManager.log";
+    ChairManagerConfigPath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManagerConfig.xml";
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     m_pGamePath = std::make_unique<GamePath>();
