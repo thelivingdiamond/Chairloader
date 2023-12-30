@@ -1077,11 +1077,11 @@ void ChairManager::DrawLog() {
 
 
 fs::path ChairManager::getConfigPath(std::string &modName) {
-    return fs::path{ (GetGamePath() / "Mods/config" / modName / ".xml").c_str() };
+    return GetGamePath() / "Mods/config" / fs::u8path(modName + ".xml");
 }
 
 fs::path ChairManager::getDefaultConfigPath(std::string &modName) {
-    return fs::path{ (GetGamePath() / "Mods" / modName / modName / "_default.xml").c_str() };
+    return GetGamePath() / "Mods" / modName / fs::u8path(modName + "_default.xml");
 }
 bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
