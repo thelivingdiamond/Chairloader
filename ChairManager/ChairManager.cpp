@@ -1212,6 +1212,7 @@ void ChairManager::loadModInfoFiles() {
 ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
+    fs::create_directory(fs::current_path() / fs::path(RUNTIME_DATA_DIR));
     m_LogFilePath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManager.log";
     ChairManagerConfigPath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManagerConfig.xml";
     packagedChairloaderVersion = new SemanticVersion;
