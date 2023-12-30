@@ -104,21 +104,9 @@ public:
     //! Get the deploy step descriptive string
     static std::string GetDeployStepString(DeployStep step);
 
-  protected:
-    FRIEND_TEST(ChairMergerTest, GetAttributeWildcardValue);
+protected:
     FRIEND_TEST(ChairMergerTestBase, ResolveFileWildcards);
-    FRIEND_TEST(ChairMergerTest, LuaAttributeResolution);
-    FRIEND_TEST(ChairMergerTest, LuaGlobalFail);
-    FRIEND_TEST(ChairMergerTest, LuaRandomTest);
-    FRIEND_TEST(ChairMergerTest, ProcessXMLFileArkFactions);
-    FRIEND_TEST(ChairMergerTest, ProcessXMLFilePlayerConfig);
-    FRIEND_TEST(ChairMergerTest, RecursiveXmlMerge);
-    FRIEND_TEST(ChairMergerTest, ProcessExampleMod);
-    FRIEND_TEST(ChairMergerTest, CopyModDataFiles);
-    FRIEND_TEST(ChairMergerTest, IsLevelFile);
-    FRIEND_TEST(ChairMergerTest, LoadPatchChecksums);
-    FRIEND_TEST(ChairMergerTest, LoadIdNamePairs);
-    FRIEND_TEST(ChairMergerTest, IdNamePairUsage);
+    FRIEND_TEST(ChairMergerTestFile, ProcessXMLFile);
 
     friend class ChairMergerTest;
     friend class ChairManager;
