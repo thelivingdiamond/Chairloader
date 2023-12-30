@@ -1,10 +1,5 @@
-# Crash dumps
-*-Crash-*.dmp
-*-Crash-*.txt
-
 # Generated files
 /Config
-/imgui.ini
 /PreyFiles
 /Preditor.exe
 /*.dll
