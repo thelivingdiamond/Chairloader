@@ -800,6 +800,14 @@ TEST(XMLMerger2Test, ParseSiblingQuery)
 //! Test that reads XML documents from disk, merges them and compares the result
 class XMLMerger2TestFiles : public testing::TestWithParam<std::string>
 {
+protected:
+    static pugi::xml_document LoadOneOf(const fs::path& f1, const fs::path& f2, unsigned options)
+    {
+        if (fs::exists(f1))
+            return XmlTestUtils::LoadDocument(f1, options);
+        else
+            return XmlTestUtils::LoadDocument(f2, options);
+    }
 };
 
 TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
@@ -807,11 +815,16 @@ TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
     std::string testName = GetParam();
     fs::path testDir = fs::current_path() / "Testing/XMLMerger2" / fs::u8path(testName);
 
-    pugi::xml_document docOriginal = XmlTestUtils::LoadDocument(testDir / "01-Original.xml");
-    pugi::xml_document docBase = XmlTestUtils::LoadDocument(testDir / "02-Base.xml");
-    pugi::xml_document docMod = XmlTestUtils::LoadDocument(testDir / "03-Mod.xml");
-    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(testDir / "04-Expected.xml");
-    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml");
+    unsigned options = pugi::parse_default;
+
+    if (testName.find("Localization") != testName.npos)
+        options = pugi::parse_full;
+
+    pugi::xml_document docOriginal = XmlTestUtils::LoadDocument(testDir / "01-Original.xml", options);
+    pugi::xml_document docBase = LoadOneOf(testDir / "02-Base.xml", testDir / "01-Original.xml", options);
+    pugi::xml_document docMod = XmlTestUtils::LoadDocument(testDir / "03-Mod.xml", options);
+    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(testDir / "04-Expected.xml", options);
+    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml", options);
 
     MergingPolicy policy(docMergingPolicy.first_child(), fs::path());
 
@@ -823,7 +836,9 @@ TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
 const auto TEST_FILES = testing::Values<std::string>(
     "Basic",
     "CopySibling",
-    "NodeNotInBaseDocument"
+    "NodeNotInBaseDocument",
+    "Localization",
+    "LocalizationTouchUp"
 );
 
 INSTANTIATE_TEST_SUITE_P(XMLMerger2, XMLMerger2TestFiles, TEST_FILES);
