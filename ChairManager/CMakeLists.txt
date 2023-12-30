@@ -43,6 +43,11 @@ set(SOURCE_FILES
 	CrashHandler.h
 	CrashHandler.cpp
 
+	Tests/Merging/ChairMergerTestBase.cpp
+	Tests/Merging/ChairMergerTestBase.h
+	Tests/Merging/ModMerging.cpp
+	Tests/Merging/Wildcards.cpp
+
 	Tests/XmlTestUtils.cpp
 	Tests/XmlTestUtils.h
 )

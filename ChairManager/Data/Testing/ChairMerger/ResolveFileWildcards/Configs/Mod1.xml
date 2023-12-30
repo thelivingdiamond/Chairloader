@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Mod1 version="1.0.0">
+    <testString type="string">String from mod 1</testString>
+    <testBool type="bool">true</testBool>
+    <testInt type="int">-200</testInt>
+    <testUInt type="uint">4294967295</testUInt>
+    <testInt64 type="int64">-12369420000000000</testInt64>
+    <testUInt64 type="uint64">18446744073709551615</testUInt64>
+    <testFloat type="float">1.25</testFloat>
+    <testXMLNode type="xmlnode">
+        <node1 type="string">I am a child node</node1>
+        <node2 type="string">Important Config Details</node2>
+    </testXMLNode>
+    <testEnum type="enum" display_name="Test Enum Value" description="Hello this is a description">
+        <selected>B</selected>
+        <option name="Option A">A</option>
+        <option name="Option B">B</option>
+        <option name="Option C">C</option>
+    </testEnum>
+    
+    <returnThreshold type="int">42</returnThreshold>
+</Mod1>

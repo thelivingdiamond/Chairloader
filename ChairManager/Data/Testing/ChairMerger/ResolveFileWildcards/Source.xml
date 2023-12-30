@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<A
+    attr1="{{ true }}"
+    attr2="{{ testString }}"
+    attr3="{{ G.Mod2.testString }}">
+    <B
+        attr1="{{ true }}"
+        attr2="{{ testString }}"
+        attr3="{{ G.Mod2.testString }}">
+        <!--<C>
+            <Test type="string">{{ testString }}</Test>
+            <Test type="bool">{{ testBool }}</Test>
+            <Test type="int">{{ testInt }}</Test>
+            <Test type="uint">{{ testUInt }}</Test>
+            <Test type="int64">{{ testInt64 }}</Test>
+            <Test type="uint64">{{ testUInt64 }}</Test>
+            <Test type="float">{{ testFloat }}</Test>
+            <Test type="xmlnode">{{ testXMLNode.node1 }}</Test>
+            <Test type="xmlnode">{{ testXMLNode.node2 }}</Test>
+            <Test type="enum">{{ testEnum }}</Test>
+        </C>-->
+        <C>
+            <Test type="string" value="{{ testString }}" />
+            <Test type="bool" value="{{ testBool }}" />
+            <Test type="int" value="{{ testInt }}" />
+            <Test type="uint" value="{{ testUInt }}" />
+            <Test type="int64" value="{{ testInt64 }}" />
+            <Test type="uint64" value="{{ testUInt64 }}" />
+            <Test type="float" value="{{ testFloat }}" />
+            <Test type="xmlnode" value="{{ testXMLNode.node1 }}" />
+            <Test type="xmlnode" value="{{ testXMLNode.node2 }}" />
+            <Test type="enum" value="{{ testEnum }}" />
+        </C>
+    </B>
+    <D
+        attr1="{{ true }}"
+        attr2="{{ testString }}"
+        attr3="{{ G.Mod2.testString }}" />
+    <Custom
+        attr1="{{ return true }}"
+        attr2="{{ return 'Now\'s your chance to be a' .. ' [hyperlink blocked]' }}"
+        attr3="{{ if returnThreshold > 451 then return 69 else return 420 end }}"
+        attr4="{{ IsModEnabled('Mod2') }}" />
+</A>
