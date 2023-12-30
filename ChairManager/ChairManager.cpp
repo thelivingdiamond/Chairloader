@@ -1212,6 +1212,7 @@ void ChairManager::loadModInfoFiles() {
 ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
+    m_LogFilePath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManager.log";
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     m_pGamePath = std::make_unique<GamePath>();
@@ -1340,7 +1341,7 @@ void ChairManager::SaveMod(Mod *modEntry) {
 void ChairManager::flushFileQueue() {
     std::scoped_lock<std::mutex> lock(logMutex);
     std::ofstream fileStream;
-    fileStream.open("ChairManager.log", std::ios_base::app);
+    fileStream.open(m_LogFilePath, std::ios_base::app);
     if(fileStream.is_open()){
         for(auto & logEntry: fileQueue){
             std::string level;
@@ -1371,7 +1372,7 @@ void ChairManager::flushFileQueue() {
         fileQueue.clear();
         fileStream.close();
     } else {
-        log(severityLevel::error, "Error, could not open ChairManager.log");
+        log(severityLevel::error, "Error, could not open %s", m_LogFilePath.u8string().c_str());
     }
 }
 
@@ -1866,7 +1867,7 @@ void ChairManager::Init() {
         foundMods += std::string(" ") + foundMod.name() + ",";
     }
     log(severityLevel::info, "%s", foundMods);
-    std::ofstream ofs("ChairManager.log", std::fstream::out | std::fstream::trunc);
+    std::ofstream ofs(m_LogFilePath, std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
     ModNameToDisplayName.clear();
