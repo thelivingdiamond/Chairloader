@@ -575,27 +575,6 @@ bool ChairMerger::CheckLocalizationPacksChanged()
     return !m_ChangedLocalizationPacks.empty();
 }
 
-bool ChairMerger::PackFolder7ZipDeprecated(fs::path folder, fs::path output)
-{
-    STARTUPINFOW ChairloaderStartupInfo = { sizeof(ChairloaderStartupInfo) };
-    PROCESS_INFORMATION ChairloaderProcessInfo;
-    fs::path commandRaw = L"7za.exe a " + output.wstring() + L" -tzip " + folder.wstring() + L"\\*";
-    std::wstring command = commandRaw.wstring();
-    command.resize(commandRaw.wstring().size() + 1000);
-    if (CreateProcessW(nullptr, command.data(), nullptr, nullptr, false, CREATE_NO_WINDOW, nullptr, nullptr,
-                       &ChairloaderStartupInfo, &ChairloaderProcessInfo))
-    {
-        WaitForSingleObject(ChairloaderProcessInfo.hProcess, INFINITE);
-        CloseHandle(ChairloaderProcessInfo.hProcess);
-        CloseHandle(ChairloaderProcessInfo.hThread);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 void ChairMerger::PackLevelFiles()
 {
     try

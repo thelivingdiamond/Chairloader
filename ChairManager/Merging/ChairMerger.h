@@ -168,9 +168,6 @@ public:
     //! localization packs if they are different
     bool CheckLocalizationPacksChanged();
 
-    //! old way of packing level files, deprecated
-    static bool PackFolder7ZipDeprecated(fs::path folder, fs::path output);
-
     //! Pack level files into .pak files, then copy them to the game directory. Works in the thread pool
     void PackLevelFiles();
 
