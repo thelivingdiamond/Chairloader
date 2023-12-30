@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mergingPolicy identification_policy="match_attribute">
+    <attribute name="id" priority="0" />
+    <nodeStructure>
+        <_wildcard_ merge_attributes="true">
+            <Y merge_children="true" />
+            <J merge_children="true" />
+            <W merge_node="true" />
+        </_wildcard_>
+    </nodeStructure>
+</mergingPolicy>

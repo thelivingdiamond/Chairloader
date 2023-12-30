@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X hippo="true">
+    <Y>
+        <Z id="1">
+            <A val="4" />
+            <B val="5" />
+            <C val="6" />
+        </Z>
+        <Z id="2">
+            <A val="4" />
+            <B val="5" />
+            <C val="6" />
+        </Z>
+        <Z id="4">
+            <A val="1" />
+            <B val="2" />
+            <C val="3" />
+        </Z>
+    </Y>
+    <W zebra="42">I'm a special zebra</W>
+</X>

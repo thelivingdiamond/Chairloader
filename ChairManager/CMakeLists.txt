@@ -42,6 +42,9 @@ set(SOURCE_FILES
 	LuaUtilsTest.cpp
 	CrashHandler.h
 	CrashHandler.cpp
+
+	Tests/XmlTestUtils.cpp
+	Tests/XmlTestUtils.h
 )
 
 set(INCLUDE_DIRECTORIES

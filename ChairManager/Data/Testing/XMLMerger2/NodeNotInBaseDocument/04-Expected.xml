@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<X hippo="true">
+    <Y>
+        <Z id="1">
+            <A val="4" />
+            <B val="5" />
+            <C val="6" />
+        </Z>
+        <Z id="2">
+            <A val="4" />
+            <B val="5" />
+            <C val="6" />
+        </Z>
+        <Z id="3">
+            <A val="10" />
+            <B val="11" />
+            <C val="12" />
+        </Z>
+        <Z id="4">
+            <A val="10" />
+            <B val="11" />
+            <C val="12" />
+        </Z>
+        <Z id="8" ch:copy_sibling="id=2">
+            <A val="420" />
+            <B val="5" />
+            <C val="6" />
+        </Z>
+    </Y>
+    <W zebra="42">I'm a special zebra</W>
+    <J newStuff="true">
+        <X>This merge target doesnt exist in the base document</X>
+    </J>
+</X>
