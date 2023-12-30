@@ -1125,10 +1125,12 @@ bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDiffe
 
             mod->version = result.child("Mod").attribute("version").as_string();
             mod->author = result.child("Mod").attribute("author").as_string();
-            mod->infoFile = result.child("Mod");
             mod->dllName = result.child("Mod").attribute("dllName").as_string();
             mod->hasXML = result.child("Mod").attribute("hasXML").as_bool();
             mod->hasLevelXML = result.child("Mod").attribute("hasLevelXML").as_bool();
+
+            mod->path = directory;
+
             for(auto & dependency : result.child("Mod").child("Dependencies")){
                 mod->dependencies.emplace_back(dependency.text().get());
             }
@@ -1855,7 +1857,9 @@ void ChairManager::Init() {
         chairManagerDir / "PreyFiles",
         chairManagerDir / "ChairloaderPatch",
         chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
-        GetGamePath()
+        GetGamePath(),
+        this,
+        this
     );
 
     if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
@@ -2484,10 +2488,6 @@ const fs::path &ChairManager::GetGamePath() {
     return m_pGamePath->GetGamePath();
 }
 
-void ChairManager::GTestInit() {
-    Init();
-}
-
 fs::path ChairManager::GetConfigPath()
 {
     return GetGamePath() / "Mods/Config";
@@ -2510,6 +2510,16 @@ std::vector<std::string> ChairManager::GetModNames()
     return list;
 }
 
+std::vector<std::string> ChairManager::GetLegacyModNames()
+{
+    return LegacyModList;
+}
+
+const std::vector<Mod>& ChairManager::GetMods() const
+{
+    return ModList;
+}
+
 std::string ChairManager::GetModDisplayName(const std::string& modName)
 {
     for (const auto& i : GetMods())
@@ -2521,6 +2531,11 @@ std::string ChairManager::GetModDisplayName(const std::string& modName)
     return std::string();
 }
 
+const ModConfig* ChairManager::GetModConfig(const std::string& modName) const
+{
+    return &const_cast<ConfigManager&>(m_ConfigManager).getModConfig(modName);
+}
+
 void ChairManager::LogString(severityLevel level, std::string_view str)
 {
     // scope limiting for mutex
@@ -2528,6 +2543,22 @@ void ChairManager::LogString(severityLevel level, std::string_view str)
         std::scoped_lock<std::mutex> lock(logMutex);
         logRecord.emplace_back(LogEntry(std::string(str), level));
         fileQueue.emplace_back(LogEntry(std::string(str), level));
+    }
+
+    if (level == severityLevel::fatal) {
+        flushFileQueue();
+        throw std::runtime_error(std::string(str));
+    }
+}
+
+void ChairManager::OverlayLogString(severityLevel level, std::string_view str)
+{
+    // scope limiting for mutex
+    {
+        std::scoped_lock<std::mutex> lock(logMutex);
+        logRecord.emplace_back(LogEntry(std::string(str), level));
+        fileQueue.emplace_back(LogEntry(std::string(str), level));
+        overlayQueue.emplace_back(LogEntry(std::string(str), level));
     }
 
     if (level == severityLevel::fatal) {

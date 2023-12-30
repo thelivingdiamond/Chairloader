@@ -106,14 +106,16 @@ public:
 
     GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
 
-    void GTestInit();
-
     // IChairManager
     virtual fs::path GetConfigPath() override;
     virtual fs::path GetModPath(const std::string& modName) override;
     virtual std::vector<std::string> GetModNames() override;
+    virtual std::vector<std::string> GetLegacyModNames() override;
+    virtual const std::vector<Mod>& GetMods() const override;
     virtual std::string GetModDisplayName(const std::string& modName) override;
+    virtual const ModConfig* GetModConfig(const std::string& modName) const override;
     virtual void LogString(severityLevel level, std::string_view str) override;
+    virtual void OverlayLogString(severityLevel level, std::string_view str) override;
 
 private:
     //! DPI
@@ -309,17 +311,7 @@ public:
     template<typename...Args>
     inline void overlayLog(severityLevel level, const char* format, const Args&...args){
         auto message = boost::str((boost::format(format) % ... % args));
-        // scope limiting for mutex
-        {
-            std::scoped_lock<std::mutex> lock(logMutex);
-            logRecord.emplace_back(LogEntry(message, level));
-            fileQueue.emplace_back(LogEntry(message, level));
-            overlayQueue.emplace_back(LogEntry(message, level));
-        }
-        if(level == severityLevel::fatal){
-            flushFileQueue();
-            throw std::runtime_error(message);
-        }
+        OverlayLogString(level, message);
     }
 private:
     //! Install Functions

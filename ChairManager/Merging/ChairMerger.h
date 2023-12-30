@@ -22,6 +22,8 @@ extern "C"
 #include <LuaBridge/LuaBridge.h>
 #include <variant>
 
+struct ILogger;
+struct IChairManager;
 class Mod;
 
 enum class DeployPhase
@@ -70,15 +72,19 @@ class ChairMerger
 public:
     //! @param  mergerFiles         ChairMerger files directory.
     //! @param  preyFiles           Source Prey files directory.
-    //! @param  chairloaderPathDir  Chairloader patch directory.
+    //! @param  chairloaderPatchDir Chairloader patch directory.
     //! @param  outputRoot          Where to place output directories.
     //! @param  gamePath            Game directory.
+    //! @param  pLogger             Logger instance to use.
+    //! @param  pChairManager       Mod manager instance to use.
     ChairMerger(
         const fs::path& mergerFiles,
         const fs::path& preyFiles,
-        const fs::path& chairloaderPathDir,
+        const fs::path& chairloaderPatchDir,
         const fs::path& outputRoot,
-        const fs::path& gamePath);
+        const fs::path& gamePath,
+        ILogger* pLogger,
+        IChairManager* pChairManager);
     std::future<void> LaunchAsyncDeploy();
     void AsyncDeploy();
     void PreMerge();
@@ -90,7 +96,7 @@ public:
     bool DeployFailed() { return m_bDeployFailed; }
     std::string GetFailedDeployMessage() { return m_DeployError; }
 
-    static bool IsModEnabled(std::string modName);
+    bool IsModEnabled(std::string modName);
 
     //! Get the deploy phase descriptive string
     static std::string GetDeployPhaseString(DeployPhase phase);
@@ -100,8 +106,7 @@ public:
 
   protected:
     FRIEND_TEST(ChairMergerTest, GetAttributeWildcardValue);
-    FRIEND_TEST(ChairMergerTest, ResolveFileWildcardSingleNode);
-    FRIEND_TEST(ChairMergerTest, ResolveFileWildcardMultipleNodes);
+    FRIEND_TEST(ChairMergerTestBase, ResolveFileWildcards);
     FRIEND_TEST(ChairMergerTest, LuaAttributeResolution);
     FRIEND_TEST(ChairMergerTest, LuaGlobalFail);
     FRIEND_TEST(ChairMergerTest, LuaRandomTest);
@@ -125,7 +130,7 @@ public:
                                            std::vector<std::string> extensionExclusions);
 
     //! Function to resolve all attribute wildcards in an xml document
-    static void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
+    void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
 
     //! Copy the chairloader patch files to the output directory
     void CopyChairloaderPatchFiles();
@@ -146,10 +151,10 @@ public:
     void ProcessLegacyMod(std::string modName);
 
     //! This function will load, resolve attribute wildcards, and merge a single xml file
-    void ProcessXMLFile(const fs::path& file, std::string modName, bool isLegacy);
+    void ProcessXMLFile(const fs::path& file, const fs::path& modDataDir, std::string modName, bool isLegacy);
 
     //! Recursively descends the directory tree and merges all xml files by putting them in the thread pool
-    void RecursiveMergeXMLFiles(const fs::path& source, std::string modName, bool isLegacy);
+    void RecursiveMergeXMLFiles(const fs::path& source, const fs::path& modDataDir, std::string modName, bool isLegacy);
 
     //! Load the default checksums from the xml file
     void LoadPatchFileChecksums();
@@ -196,6 +201,9 @@ public:
     std::string GetDeployFailedMessage();
 
     void LoadIdNameMap();
+
+    ILogger* m_pLog;
+    IChairManager* m_pModManager;
 
     // ChairManager files
     fs::path m_MergerFilesPath;

@@ -138,6 +138,13 @@ public:
     }
 
     // IChairManager
+    virtual void LogString(severityLevel level, std::string_view str) override
+    {
+        CMAdapter::LogString(level, str);
+    }
+
+    virtual void OverlayLogString(severityLevel level, std::string_view str) override { LogString(level, str); }
+
     virtual fs::path GetConfigPath() override
     {
         return gPreditor->pPaths->GetModsPath() / "config";
@@ -159,9 +166,15 @@ public:
         throw std::logic_error(fmt::format("Mod not found: {}", modName));
     }
 
+    virtual const std::vector<Mod>& GetMods() const override { throw std::logic_error("Not Implemented"); }
+
     virtual std::vector<std::string> GetModNames() override { throw std::logic_error("Not Implemented"); }
 
+    virtual std::vector<std::string> GetLegacyModNames() override { throw std::logic_error("Not Implemented"); }
+
     virtual std::string GetModDisplayName(const std::string& modName) override { throw std::logic_error("Not Implemented"); }
+
+    virtual const ModConfig* GetModConfig(const std::string& modName) const { throw std::logic_error("Not Implemented"); }
 
     virtual bool IsModEnabled(const std::string& modName) override
     {
@@ -174,11 +187,6 @@ public:
         }
 
         return false;
-    }
-
-    virtual void LogString(severityLevel level, std::string_view str) override
-    {
-        CMAdapter::LogString(level, str);
     }
 
 private:

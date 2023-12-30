@@ -98,9 +98,25 @@ std::vector<std::string> Assets::ModManagerWindow::GetModNames()
     return m_ModListTab.GetModNames();
 }
 
+std::vector<std::string> Assets::ModManagerWindow::GetLegacyModNames()
+{
+    // Legacy mods are not supported
+    return std::vector<std::string>();
+}
+
+const std::vector<Mod>& Assets::ModManagerWindow::GetMods() const
+{
+    throw std::logic_error("Not Implemented");
+}
+
 std::string Assets::ModManagerWindow::GetModDisplayName(const std::string& modName)
 {
     return m_ModListTab.GetModDisplayName(modName);
+}
+
+const ModConfig* Assets::ModManagerWindow::GetModConfig(const std::string& modName) const
+{
+    throw std::logic_error("GetModConfig Not Implemented");
 }
 
 bool Assets::ModManagerWindow::IsModEnabled(const std::string& modName)
@@ -111,4 +127,9 @@ bool Assets::ModManagerWindow::IsModEnabled(const std::string& modName)
 void Assets::ModManagerWindow::LogString(severityLevel level, std::string_view str)
 {
     CMAdapter::LogString(level, str);
+}
+
+void Assets::ModManagerWindow::OverlayLogString(severityLevel level, std::string_view str)
+{
+    LogString(level, str);
 }
