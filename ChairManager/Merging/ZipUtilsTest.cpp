@@ -6,7 +6,8 @@
 #include <gtest/gtest.h>
 #include "HashUtils.h"
 
-TEST(ZipUtilsTest, RoundTripTest){
+TEST(ZipUtilsTest, RoundTripTest)
+{
     ZipUtils::CompressFolder("Testing/PreyFiles/Ark", "Testing/Hashing/Ark.pak");
     fs::remove_all("Testing/Hashing/Ark");
     ZipUtils::ExtractFolder("Testing/Hashing/Ark.pak", "Testing/Hashing/Ark");

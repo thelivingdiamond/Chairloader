@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<EntityPrototypeLibrary
+    Name="ArkPickups">
+    <EntityPrototype
+        Name="Weapons.Wrench"
+        Id="{A10FBEF7-CB17-4E50-A4CB-66509C256FC8}"
+        ch:patch_mode="true"
+        ch:apply_if="{{ RenameWrench }}">
+        <Properties
+            ch:patch_mode="true"
+            textDisplayName="{{ WrenchName }}"/>
+    </EntityPrototype>
+</EntityPrototypeLibrary>

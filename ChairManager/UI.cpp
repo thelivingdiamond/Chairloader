@@ -4,6 +4,7 @@
 #include <Manager/ImGuiFontList.h>
 #include "UI.h"
 #include "ChairManager.h"
+#include "Paths.h"
 
 #include "ImGui/imgui_internal.h"
 #include "ImGui/imgui_impl_dx11.h"
@@ -247,6 +248,10 @@ void UI::Render()
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
+    // Set config path
+    static std::string iniPath = (fs::current_path() / RUNTIME_DATA_DIR / "imgui.ini").u8string();
+    io.IniFilename = iniPath.c_str();
+
     ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();
@@ -255,8 +260,6 @@ void UI::Render()
         style.WindowRounding = 4.0f;
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
-
-
 
     const HMONITOR monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
     MONITORINFO info = {};
@@ -269,9 +272,6 @@ void UI::Render()
     float dpiScale = dpi / 96.0f;
     ReloadFonts(dpiScale);
     ImGui::GetStyle().ScaleAllSizes(dpiScale);
-
-
-    ImGui::GetIO().IniFilename = nullptr;
 
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(pd3dDevice, pd3dDeviceContext);
@@ -362,6 +362,10 @@ std::chrono::steady_clock::duration UI::GetNextFrameTimeout()
 {
     //! The time the app will continue to refresh after the user has stopped interacting
     constexpr auto WAIT_DELAY = std::chrono::seconds(2);
+
+    // Return 0 if don't have last update time
+    if (g_LastUpdateTime == std::chrono::steady_clock::time_point())
+        return std::chrono::seconds(0);
 
     auto now = std::chrono::steady_clock::now();
     auto frameDelta = now - g_LastUpdateTime;

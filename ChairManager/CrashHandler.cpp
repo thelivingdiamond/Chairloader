@@ -6,6 +6,7 @@
 #include <DbgHelp.h>
 #include <psapi.h>
 #include "CrashHandler.h"
+#include "Paths.h"
 
 #define CRASHED_APP_NAME "ChairManager"
 #define GITHUB_URL "https://github.com/thelivingdiamond/Chairloader"
@@ -35,6 +36,7 @@ void CrashHandler::HandleFatalError(ChairStackWalker& sw, const char* errorText,
 	localtime_s(&m_CrashTime, &timestamp);
 	strftime(m_szCrashFileName, sizeof(m_szCrashFileName), CRASHED_APP_NAME "-Crash-%Y-%m-%d-%H-%M-%S", &m_CrashTime);
 
+	CreateDirectoryA(RUNTIME_DATA_DIR, nullptr);
 	CreateCrashReport(sw, errorText);
 	CreateMiniDump(pExceptionInfo);
 	ShowCrashDialog(errorText);
@@ -47,7 +49,7 @@ void CrashHandler::HandleFatalError(ChairStackWalker& sw, const char* errorText,
 void CrashHandler::CreateCrashReport(ChairStackWalker& sw, const char* errorText) noexcept
 {
 	char filename[MAX_PATH];
-	snprintf(filename, sizeof(filename), "%s.txt", m_szCrashFileName);
+	snprintf(filename, sizeof(filename), "%s/%s.txt", RUNTIME_DATA_DIR, m_szCrashFileName);
 
 	FILE* file = fopen(filename, "w");
 
@@ -236,7 +238,7 @@ void CrashHandler::ValidateHeap(FILE* file)
 void CrashHandler::CreateMiniDump(PEXCEPTION_POINTERS pExceptionInfo)
 {
 	char filename[MAX_PATH];
-	snprintf(filename, sizeof(filename), "%s.dmp", m_szCrashFileName);
+	snprintf(filename, sizeof(filename), "%s/%s.dmp", RUNTIME_DATA_DIR, m_szCrashFileName);
 	HANDLE hProcess = GetCurrentProcess();
 	HANDLE hMiniDumpFile = CreateFile(filename, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_WRITE_THROUGH, NULL);
 

@@ -24,6 +24,7 @@
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
 #include "Merging/ZipUtils.h"
+#include "Paths.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -1076,11 +1077,11 @@ void ChairManager::DrawLog() {
 
 
 fs::path ChairManager::getConfigPath(std::string &modName) {
-    return fs::path{ (GetGamePath() / "Mods/config" / modName / ".xml").c_str() };
+    return GetGamePath() / "Mods/config" / fs::u8path(modName + ".xml");
 }
 
 fs::path ChairManager::getDefaultConfigPath(std::string &modName) {
-    return fs::path{ (GetGamePath() / "Mods" / modName / modName / "_default.xml").c_str() };
+    return GetGamePath() / "Mods" / modName / fs::u8path(modName + "_default.xml");
 }
 bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
@@ -1211,6 +1212,9 @@ void ChairManager::loadModInfoFiles() {
 ChairManager::ChairManager() {
     assert(!m_spInstance);
     m_spInstance = this;
+    fs::create_directory(fs::current_path() / fs::path(RUNTIME_DATA_DIR));
+    m_LogFilePath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManager.log";
+    ChairManagerConfigPath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManagerConfig.xml";
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     m_pGamePath = std::make_unique<GamePath>();
@@ -1339,7 +1343,7 @@ void ChairManager::SaveMod(Mod *modEntry) {
 void ChairManager::flushFileQueue() {
     std::scoped_lock<std::mutex> lock(logMutex);
     std::ofstream fileStream;
-    fileStream.open("ChairManager.log", std::ios_base::app);
+    fileStream.open(m_LogFilePath, std::ios_base::app);
     if(fileStream.is_open()){
         for(auto & logEntry: fileQueue){
             std::string level;
@@ -1370,7 +1374,7 @@ void ChairManager::flushFileQueue() {
         fileQueue.clear();
         fileStream.close();
     } else {
-        log(severityLevel::error, "Error, could not open ChairManager.log");
+        log(severityLevel::error, "Error, could not open %s", m_LogFilePath.u8string().c_str());
     }
 }
 
@@ -1844,7 +1848,16 @@ void ChairManager::Init() {
         createChairloaderConfigFile();
     }
     m_pChairMerger.reset();
-    m_pChairMerger = std::make_unique<ChairMerger>();
+
+    fs::path chairManagerDir = fs::current_path();
+    m_pChairMerger = std::make_unique<ChairMerger>(
+        chairManagerDir,
+        chairManagerDir / "PreyFiles",
+        chairManagerDir / "ChairloaderPatch",
+        chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
+        GetGamePath()
+    );
+
     if (!ChairloaderConfigFile.load_file((GetGamePath() / "Mods/config/Chairloader.xml").c_str())) {
         throw std::runtime_error("Chairloader config file is corrupted or missing.");
     }
@@ -1856,7 +1869,7 @@ void ChairManager::Init() {
         foundMods += std::string(" ") + foundMod.name() + ",";
     }
     log(severityLevel::info, "%s", foundMods);
-    std::ofstream ofs("ChairManager.log", std::fstream::out | std::fstream::trunc);
+    std::ofstream ofs(m_LogFilePath, std::fstream::out | std::fstream::trunc);
     ofs.close();
     loadModInfoFiles();
     ModNameToDisplayName.clear();

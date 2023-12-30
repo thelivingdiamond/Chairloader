@@ -22,10 +22,10 @@ extern "C"
 #include <LuaBridge/LuaBridge.h>
 #include <variant>
 
-
 class Mod;
 
-enum class DeployPhase {
+enum class DeployPhase
+{
     Invalid,
     PreMerge,
     Merge,
@@ -52,32 +52,43 @@ enum class DeployStep
 
 class ChairMergerException : public std::runtime_error
 {
-public:
+  public:
     ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages);
 
     DeployStep GetDeployStep() const { return m_Step; }
     DeployPhase GetDeployPhase() const { return m_Phase; }
     const std::vector<std::string>& GetMessages() const { return m_Messages; }
 
-private:
+  private:
     DeployStep m_Step;
     DeployPhase m_Phase;
     std::vector<std::string> m_Messages;
 };
 
-class ChairMerger {
+class ChairMerger
+{
 public:
-    ChairMerger();
+    //! @param  mergerFiles         ChairMerger files directory.
+    //! @param  preyFiles           Source Prey files directory.
+    //! @param  chairloaderPathDir  Chairloader patch directory.
+    //! @param  outputRoot          Where to place output directories.
+    //! @param  gamePath            Game directory.
+    ChairMerger(
+        const fs::path& mergerFiles,
+        const fs::path& preyFiles,
+        const fs::path& chairloaderPathDir,
+        const fs::path& outputRoot,
+        const fs::path& gamePath);
     std::future<void> LaunchAsyncDeploy();
     void AsyncDeploy();
     void PreMerge();
     void Merge();
     void PostMerge();
 
-    DeployStep GetDeployStep();
-    DeployPhase GetDeployPhase();
-    bool DeployFailed();
-    std::string GetFailedDeployMessage();
+    DeployStep GetDeployStep() { return m_DeployStep; }
+    DeployPhase GetDeployPhase() { return m_DeployPhase; }
+    bool DeployFailed() { return m_bDeployFailed; }
+    std::string GetFailedDeployMessage() { return m_DeployError; }
 
     static bool IsModEnabled(std::string modName);
 
@@ -87,7 +98,7 @@ public:
     //! Get the deploy step descriptive string
     static std::string GetDeployStepString(DeployStep step);
 
-protected:
+  protected:
     FRIEND_TEST(ChairMergerTest, GetAttributeWildcardValue);
     FRIEND_TEST(ChairMergerTest, ResolveFileWildcardSingleNode);
     FRIEND_TEST(ChairMergerTest, ResolveFileWildcardMultipleNodes);
@@ -104,40 +115,41 @@ protected:
     FRIEND_TEST(ChairMergerTest, LoadIdNamePairs);
     FRIEND_TEST(ChairMergerTest, IdNamePairUsage);
 
-
-
     friend class ChairMergerTest;
     friend class ChairManager;
 
-// Static functions
+    // Static functions
 
     //! Copies all files that don't have the given extensions from the source directory to the destination directory
-    static void RecursiveFileCopyBlacklist(fs::path source, fs::path destination, std::vector<std::string> extensionExclusions);
+    static void RecursiveFileCopyBlacklist(fs::path source, fs::path destination,
+                                           std::vector<std::string> extensionExclusions);
 
     //! Function to resolve all attribute wildcards in an xml document
     static void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
 
     //! Copy the chairloader patch files to the output directory
-    static void CopyChairloaderPatchFiles();
+    void CopyChairloaderPatchFiles();
 
-// Member functions
+    // Member functions
     //! finds the merging policy for a given file in the merging library
     MergingPolicy GetFileMergingPolicy(const fs::path& file, std::string modName);
 
     //! This function will copy all non xml files from the mod directory to the output directory
     void CopyModDataFiles(fs::path sourcePath);
 
-    //! This function will recurse on all xml files in the mod directory and resolve all attribute wildcards before merging, working in the thread pool
+    //! This function will recurse on all xml files in the mod directory and resolve all attribute wildcards before
+    //! merging, working in the thread pool
     void ProcessMod(std::shared_ptr<Mod> mod);
 
-    //! This function will recurse on all xml files in the legacy mod directory and resolve all attribute wildcards before merging, working in the thread pool
+    //! This function will recurse on all xml files in the legacy mod directory and resolve all attribute wildcards
+    //! before merging, working in the thread pool
     void ProcessLegacyMod(std::string modName);
 
     //! This function will load, resolve attribute wildcards, and merge a single xml file
-    void ProcessXMLFile(const fs::path &file, std::string modName, bool isLegacy);
+    void ProcessXMLFile(const fs::path& file, std::string modName, bool isLegacy);
 
     //! Recursively descends the directory tree and merges all xml files by putting them in the thread pool
-    void RecursiveMergeXMLFiles(const fs::path &source, std::string modName, bool isLegacy);
+    void RecursiveMergeXMLFiles(const fs::path& source, std::string modName, bool isLegacy);
 
     //! Load the default checksums from the xml file
     void LoadPatchFileChecksums();
@@ -148,14 +160,13 @@ protected:
     //! sets a given relative localization path as changed relative to the default checksums
     void AddChangedLocalizationPack(fs::path pack);
 
-    //! Checks all level files in the output directory and in the game files and adds them to the changed level packs if they are different
+    //! Checks all level files in the output directory and in the game files and adds them to the changed level packs if
+    //! they are different
     bool CheckLevelPacksChanged();
 
-    //! Checks all localization files in the output directory and in the game files and adds them to the changed localization packs if they are different
+    //! Checks all localization files in the output directory and in the game files and adds them to the changed
+    //! localization packs if they are different
     bool CheckLocalizationPacksChanged();
-
-    //! old way of packing level files, deprecated
-    static bool PackFolder7ZipDeprecated(fs::path folder, fs::path output);
 
     //! Pack level files into .pak files, then copy them to the game directory. Works in the thread pool
     void PackLevelFiles();
@@ -186,40 +197,40 @@ protected:
 
     void LoadIdNameMap();
 
-    // Static paths
-    static inline fs::path m_OutputPath = "Output";
-    static inline fs::path m_LevelOutputPath = "LevelOutput";
-    static inline fs::path m_LocalizationOutputPath = "LocalizationOutput";
-    static inline fs::path m_PreyFilePath = "PreyFiles";
-    static inline fs::path m_ChairloaderPatchPath = "ChairloaderPatch";
+    // ChairManager files
+    fs::path m_MergerFilesPath;
+    fs::path m_PreyFilePath;
+    fs::path m_ChairloaderPatchPath;
 
-    static inline fs::path m_ModPath = "";
-    static inline fs::path m_LevelFilesPath = "";
-    static inline fs::path m_LocalizationFilesPath = "";
-    static inline fs::path m_PrecacheFilesPath = "";
+    // Temporary output paths
+    fs::path m_OutputPath;
+    fs::path m_LevelOutputPath;
+    fs::path m_LocalizationOutputPath;
+
+    // Game paths
+    fs::path m_ModPath = "";
+    fs::path m_LevelFilesPath = "";
+    fs::path m_LocalizationFilesPath = "";
+    fs::path m_PrecacheFilesPath = "";
 
     static const inline std::map<DeployPhase, std::string> m_DeployPhaseStrings = {
-            {DeployPhase::Invalid, "Invalid"},
-            {DeployPhase::PreMerge, "Pre-Merge"},
-            {DeployPhase::Merge, "Merging"},
-            {DeployPhase::PostMerge, "Post-Merge"},
-            {DeployPhase::Done, "Done"},
+        { DeployPhase::Invalid, "Invalid" }, { DeployPhase::PreMerge, "Pre-Merge" },
+        { DeployPhase::Merge, "Merging" },   { DeployPhase::PostMerge, "Post-Merge" },
+        { DeployPhase::Done, "Done" },
     };
     static const inline std::map<DeployStep, std::string> m_DeployStepStrings = {
-            {DeployStep::Invalid,             "Invalid"},
-            {DeployStep::RemovingOldOutput,   "Removing old output"},
-            {DeployStep::CopyingBaseFiles,    "Copying base files"},
-            {DeployStep::LoadingPatchChecksums, "Loading patch checksums"},
-            {DeployStep::MergingLegacyMods,   "Merging legacy mods"},
-            {DeployStep::MergingMods,         "Merging mods"},
-            {DeployStep::PackingLevelPatches, "Packing level patches"},
-            {DeployStep::PackingLocalizationPatches, "Packing localization patches"},
-            {DeployStep::PackingMainPatch,    "Packing main patch"},
-            {DeployStep::CleaningUp,          "Cleaning up"},
-            {DeployStep::Done,                "Done"},
+        { DeployStep::Invalid, "Invalid" },
+        { DeployStep::RemovingOldOutput, "Removing old output" },
+        { DeployStep::CopyingBaseFiles, "Copying base files" },
+        { DeployStep::LoadingPatchChecksums, "Loading patch checksums" },
+        { DeployStep::MergingLegacyMods, "Merging legacy mods" },
+        { DeployStep::MergingMods, "Merging mods" },
+        { DeployStep::PackingLevelPatches, "Packing level patches" },
+        { DeployStep::PackingLocalizationPatches, "Packing localization patches" },
+        { DeployStep::PackingMainPatch, "Packing main patch" },
+        { DeployStep::CleaningUp, "Cleaning up" },
+        { DeployStep::Done, "Done" },
     };
-
-
 
     // a threadpool for merging tasks
     std::unique_ptr<ThreadPool> m_MergeThreadPool;
@@ -264,5 +275,4 @@ protected:
     void WaitForPendingTasks();
 };
 
-
-#endif //CHAIRLOADER_CHAIRMERGER_H
+#endif // CHAIRLOADER_CHAIRMERGER_H

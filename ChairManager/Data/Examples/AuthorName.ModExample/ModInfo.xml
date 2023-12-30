@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Mod
+	modName="AuthorName.ModExample"
+	displayName="Example Mod"
+	version="1.0.0"
+	dllName=""
+	hasXML="true"
+	hasLevelXML="false"
+	author="Example Author">
+</Mod>

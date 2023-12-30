@@ -408,20 +408,3 @@ ChairLoader/PreyDll.dll.gzf
 /_build
 /cmake-build-*/
 /.idea/
-
-# Ignore Output Directories and Files
-ChairManager/English_xml_patch.pak
-ChairManager/Data/LevelOutput/
-ChairManager/Data/LocalizationOutput/
-ChairManager/Data/Output/
-ChairManager/Data/ChairManagerConfig.xml
-ChairManager/Data/patch_chairloader.pak
-ChairManager/Data/Testing/Hashing/Ark.pak
-Preditor/Data/ModToolKitConfig.xml
-ModToolKit/Data/imgui.ini
-ModToolKit/Data/ModToolKitConfig.xml
-ModToolKit/Data/user/Profiles/default/actionmaps.xml
-ModToolKit/Data/user/Profiles/default/attributes.xml
-ModToolKit/Data/user/Profiles/default/profile.xml
-ChairManager/Data/update.zip
-ChairManager/Data/English_xml_patch.pak

@@ -134,8 +134,10 @@ private:
     };
     State m_State = State::Invalid;
 
+
     /* Globals */
-    fs::path ChairManagerConfigPath = R"(.\ChairManagerConfig.xml)";
+    fs::path m_LogFilePath;
+    fs::path ChairManagerConfigPath;
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
     std::vector<std::string> LegacyModList;

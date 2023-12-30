@@ -5,7 +5,8 @@
 #include "HashUtils.h"
 #include <libzippp.h>
 
-SHA256::Digest HashUtils::HashFile(fs::path path) {
+SHA256::Digest HashUtils::HashFile(fs::path path)
+{
     std::ifstream inFile;
     inFile.exceptions(std::ios::failbit | std::ios::badbit);
     inFile.open(path, std::ios::binary);
@@ -34,17 +35,19 @@ SHA256::Digest HashUtils::HashFile(fs::path path) {
     return hash.digest();
 }
 
-SHA256::Digest HashUtils::HashDirectory(fs::path path) {
+SHA256::Digest HashUtils::HashDirectory(fs::path path)
+{
     SHA256 hash;
 
-    for(const auto& entry : fs::recursive_directory_iterator(path))
+    for (const auto& entry : fs::recursive_directory_iterator(path))
     {
         if (entry.is_regular_file())
         {
             std::ifstream inFile;
             inFile.exceptions(std::ios::failbit | std::ios::badbit);
             inFile.open(entry.path(), std::ios::binary);
-            std::string textData = std::string((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
+            std::string textData =
+                std::string((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
             hash.update(textData);
         }
     }
@@ -52,18 +55,20 @@ SHA256::Digest HashUtils::HashDirectory(fs::path path) {
     return hash.digest();
 }
 
-
-SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath) {
+SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath)
+{
     SHA256 hash;
     libzippp::ZipArchive archive(archivePath.string());
     archive.open(libzippp::ZipArchive::ReadOnly);
-    if(!archive.isOpen())
+    if (!archive.isOpen())
         return {};
     std::vector<libzippp::ZipEntry> entries = archive.getEntries();
-    for(auto & entry: entries){
+    for (auto& entry : entries)
+    {
         std::string name = entry.getName();
         auto size = entry.getSize();
-        if(entry.isFile()){
+        if (entry.isFile())
+        {
             std::string textData = entry.readAsText();
             hash.update(textData);
         }
@@ -72,7 +77,8 @@ SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath) {
     return hash.digest();
 }
 
-SHA256::Digest HashUtils::HashBuffer(uint8_t *buffer, uint64_t size) {
+SHA256::Digest HashUtils::HashBuffer(uint8_t* buffer, uint64_t size)
+{
     SHA256 hash;
     hash.update(buffer, size);
     return hash.digest();

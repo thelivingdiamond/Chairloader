@@ -73,7 +73,7 @@ void ConfigManager::loadConfig(const std::string& modName){
     }
     fs::path configPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
     pugi::xml_document doc;
-    auto result = doc.load_file(configPath.string().c_str());
+    auto result = doc.load_file(configPath.string().c_str(), pugi::parse_default | pugi::parse_trim_pcdata);
     if(result){
         // check if the config already exists
         // if so swap it with the new one, otherwise add it

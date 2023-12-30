@@ -5,9 +5,8 @@
 #include <gtest/gtest.h>
 #include <Manager/XMLMerger2.h>
 
-
-
-TEST(XMLMerger2Test, FuseXmlNode) {
+TEST(XMLMerger2Test, FuseXmlNode)
+{
     pugi::xml_document baseDoc, modDoc;
     baseDoc.load_string(R"(
         <X a="1" b="2" c="3">
@@ -40,7 +39,8 @@ TEST(XMLMerger2Test, FuseXmlNode) {
     EXPECT_EQ(baseDoc.first_child().child("Y").child("Z2").attribute("c").value(), std::string("6"));
 }
 
-TEST(XMLMerger2Test, PatchXmlNode) {
+TEST(XMLMerger2Test, PatchXmlNode)
+{
     pugi::xml_document baseDoc, modDoc;
     baseDoc.load_string(R"(
     <X a="1" b="2" c="3">
@@ -75,7 +75,8 @@ TEST(XMLMerger2Test, PatchXmlNode) {
     EXPECT_TRUE(baseDoc.first_child().child("Y").child("Z2").attribute("d").value() == std::string("6"));
 }
 
-TEST(XMLMerger2Test, MergeXmlNodeAttributes) {
+TEST(XMLMerger2Test, MergeXmlNodeAttributes)
+{
     pugi::xml_document baseDoc, modDoc;
     baseDoc.load_string(R"(<X a="1" b="2" c="3" />)");
     modDoc.load_string(R"(<X a="4" b="5" d="6" />)");
@@ -84,10 +85,10 @@ TEST(XMLMerger2Test, MergeXmlNodeAttributes) {
     EXPECT_TRUE(baseDoc.first_child().attribute("b").value() == std::string("5"));
     EXPECT_TRUE(baseDoc.first_child().attribute("c").value() == std::string("3"));
     EXPECT_TRUE(baseDoc.first_child().attribute("d").value() == std::string("6"));
-
 }
 
-TEST(XMLMerger2Test, CheckNodeEquality) {
+TEST(XMLMerger2Test, CheckNodeEquality)
+{
     pugi::xml_document doc1, doc2, doc3, doc4;
     doc1.load_string(R"(
     <X a="2"/>
@@ -107,9 +108,9 @@ TEST(XMLMerger2Test, CheckNodeEquality) {
     EXPECT_FALSE(XMLMerger2::CheckNodeEquality(doc3.first_child(), doc4.first_child()));
 }
 
-
-TEST(XMLMerger2Test, MergeXmlNodeSimple){
-pugi::xml_document baseDoc, modDoc, originalDoc;
+TEST(XMLMerger2Test, MergeXmlNodeSimple)
+{
+    pugi::xml_document baseDoc, modDoc, originalDoc;
     originalDoc.load_string(R"(
     <X a="1" b="2" c="3">
         <Y d="4"/>
@@ -133,7 +134,8 @@ pugi::xml_document baseDoc, modDoc, originalDoc;
     EXPECT_EQ(baseDoc.first_child().child("Y").attribute("d").value(), std::string("7"));
 }
 
-TEST(XMLMerger2Test, MergeXmlNodeApplyIfTrue){
+TEST(XMLMerger2Test, MergeXmlNodeApplyIfTrue)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc;
     originalDoc.load_string(R"(
     <X a="1" b="2" c="3">
@@ -158,7 +160,8 @@ TEST(XMLMerger2Test, MergeXmlNodeApplyIfTrue){
     EXPECT_EQ(baseDoc.first_child().child("Y").attribute("d").value(), std::string("7"));
 }
 
-TEST(XMLMerger2Test, MergeXmlNodeApplyIfFalse){
+TEST(XMLMerger2Test, MergeXmlNodeApplyIfFalse)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc;
     originalDoc.load_string(R"(
     <X a="1" b="2" c="3">
@@ -183,7 +186,8 @@ TEST(XMLMerger2Test, MergeXmlNodeApplyIfFalse){
     EXPECT_EQ(baseDoc.first_child().child("Y").attribute("d").value(), std::string("4"));
 }
 
-TEST(XMLMerger2Test, MergeXmlNodeRemove){
+TEST(XMLMerger2Test, MergeXmlNodeRemove)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc;
     originalDoc.load_string(R"(
     <Parent>
@@ -206,12 +210,14 @@ TEST(XMLMerger2Test, MergeXmlNodeRemove){
     </X>
     </Parent>
     )");
-    XMLMerger2::MergeXmlNode(baseDoc.first_child().first_child(), modDoc.first_child().first_child(), originalDoc.first_child().first_child());
+    XMLMerger2::MergeXmlNode(baseDoc.first_child().first_child(), modDoc.first_child().first_child(),
+                             originalDoc.first_child().first_child());
 
     EXPECT_FALSE(baseDoc.first_child().first_child());
 }
 
-TEST(XMLMerger2Test, MergeXmlNodePatchMode){
+TEST(XMLMerger2Test, MergeXmlNodePatchMode)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc;
     originalDoc.load_string(R"(
     <X a="1" b="2" c="3">
@@ -245,8 +251,8 @@ TEST(XMLMerger2Test, MergeXmlNodePatchMode){
     EXPECT_EQ(baseDoc.first_child().child("Y").child("Z").attribute("g").value(), std::string("420"));
 }
 
-
-TEST(XMLMerger2Test, ResolvePolicyPathWildcards) {
+TEST(XMLMerger2Test, ResolvePolicyPathWildcards)
+{
     pugi::xml_document modDoc, policyDoc;
     modDoc.load_string(R"(
     <Mod>
@@ -270,9 +276,8 @@ TEST(XMLMerger2Test, ResolvePolicyPathWildcards) {
     EXPECT_TRUE(policyDoc.first_child().first_child().first_child().name() == std::string("FunDetail"));
 }
 
-
-
-TEST(XMLMerger2Test, MergeByAttributes) {
+TEST(XMLMerger2Test, MergeByAttributes)
+{
     MergingPolicy policy;
     pugi::xml_document baseDoc, modDoc, originalDoc, policyDoc;
     policyDoc.load_string(R"(
@@ -310,7 +315,7 @@ TEST(XMLMerger2Test, MergeByAttributes) {
 
     policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
-    XMLMerger2::MergeByAttribute(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
+    XMLMerger2::MergeByAttribute(baseDoc.first_child(), modDoc.first_child(), originalDoc.first_child(), policy);
     auto test1Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test1");
     auto test2Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test2");
     auto test3Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test3");
@@ -331,7 +336,8 @@ TEST(XMLMerger2Test, MergeByAttributes) {
     EXPECT_EQ(test3Node.attribute("d").value(), std::string("a"));
 }
 
-TEST(XMLMerger2Test, MergeByTag) {
+TEST(XMLMerger2Test, MergeByTag)
+{
     MergingPolicy policy;
     pugi::xml_document baseDoc, modDoc, originalDoc, policyDoc;
     policyDoc.load_string(R"(
@@ -368,7 +374,7 @@ TEST(XMLMerger2Test, MergeByTag) {
 
     policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
-    XMLMerger2::MergeByTag(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
+    XMLMerger2::MergeByTag(baseDoc.first_child(), modDoc.first_child(), originalDoc.first_child(), policy);
     auto test1Node = baseDoc.first_child().child("Test1");
     auto test2Node = baseDoc.first_child().child("Test2");
     auto test3Node = baseDoc.first_child().child("Test3");
@@ -389,7 +395,8 @@ TEST(XMLMerger2Test, MergeByTag) {
     EXPECT_EQ(test3Node.attribute("d").value(), std::string("a"));
 }
 
-TEST(XMLMerger2Test, MergeByContents) {
+TEST(XMLMerger2Test, MergeByContents)
+{
     MergingPolicy policy;
     pugi::xml_document baseDoc, modDoc, originalDoc, policyDoc;
     policyDoc.load_string(R"(
@@ -426,7 +433,7 @@ TEST(XMLMerger2Test, MergeByContents) {
 
     policy = MergingPolicy(policyDoc.first_child(), "Ark/");
 
-    XMLMerger2::MergeByContents(baseDoc.first_child(), modDoc.first_child(),originalDoc.first_child(), policy);
+    XMLMerger2::MergeByContents(baseDoc.first_child(), modDoc.first_child(), originalDoc.first_child(), policy);
 
     auto test1Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test1");
     auto test2Node = baseDoc.first_child().find_child_by_attribute("Test", "Name", "Test2");
@@ -448,7 +455,8 @@ TEST(XMLMerger2Test, MergeByContents) {
     EXPECT_EQ(test3Node.attribute("d").value(), std::string("a"));
 }
 
-TEST(XMLMerger2Test, MergeBySpreadsheet) {
+TEST(XMLMerger2Test, MergeBySpreadsheet)
+{
     MergingPolicy policy;
     pugi::xml_document baseDoc, modDoc, originalDoc, policyDoc, expectedDoc;
     policyDoc.load_string(R"(
@@ -628,8 +636,8 @@ TEST(XMLMerger2Test, MergeBySpreadsheet) {
     ASSERT_EQ(base.str(), expected.str());
 }
 
-
-TEST(XMLMerger2Test, MergeNodeStructureAttribute){
+TEST(XMLMerger2Test, MergeNodeStructureAttribute)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
     MergingPolicy policy;
 
@@ -767,7 +775,8 @@ TEST(XMLMerger2Test, MergeNodeStructureAttribute){
     ASSERT_EQ(base.str(), expected.str());
 }
 
-TEST(XMLMerger2Test, MergeXMLDocument){
+TEST(XMLMerger2Test, MergeXMLDocument)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
     MergingPolicy policy;
 
@@ -900,7 +909,8 @@ TEST(XMLMerger2Test, MergeXMLDocument){
     ASSERT_EQ(base.str(), expected.str());
 }
 
-TEST(XMLMerger2Test, CopySibling) {
+TEST(XMLMerger2Test, CopySibling)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
     MergingPolicy policy;
 
@@ -1036,7 +1046,8 @@ TEST(XMLMerger2Test, CopySibling) {
     ASSERT_EQ(base.str(), expected.str());
 }
 
-TEST(XMLMerger2Test, ParseSiblingQuery) {
+TEST(XMLMerger2Test, ParseSiblingQuery)
+{
     struct Item
     {
         std::string str;
@@ -1045,8 +1056,8 @@ TEST(XMLMerger2Test, ParseSiblingQuery) {
 
     Item items[] = {
         Item{ "" },
-        Item{ "key=value", {{"key", "value"}}},
-        Item{ "key1=value1;key2=value2", {{"key1", "value1"}, {"key2", "value2"}}},
+        Item{ "key=value", { { "key", "value" } } },
+        Item{ "key1=value1;key2=value2", { { "key1", "value1" }, { "key2", "value2" } } },
     };
 
     for (Item& i : items)
@@ -1056,8 +1067,8 @@ TEST(XMLMerger2Test, ParseSiblingQuery) {
     }
 }
 
-
-TEST(XMLMerger2Test, NodeNotInBaseDocument){
+TEST(XMLMerger2Test, NodeNotInBaseDocument)
+{
     pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
     MergingPolicy policy;
 
