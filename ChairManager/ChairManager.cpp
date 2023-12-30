@@ -24,6 +24,7 @@
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "../Common/Chairloader/SemanticVersion.h"
 #include "Merging/ZipUtils.h"
+#include "Paths.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -1850,7 +1851,7 @@ void ChairManager::Init() {
         chairManagerDir,
         chairManagerDir / "PreyFiles",
         chairManagerDir / "ChairloaderPatch",
-        chairManagerDir / "Config" / "TempMerger",
+        chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
         GetGamePath()
     );
 

@@ -27,6 +27,7 @@ set(SOURCE_FILES
 	ChairWizards/ChairUpdateWizard.h 
 	UpdateURL.h
 	Mod.h
+	Paths.h
 	Merging/ChairMerger.cpp
 	Merging/ChairMerger.h
 	Merging/ChairMergerTest.cpp
