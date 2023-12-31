@@ -57,7 +57,7 @@ ChairMerger::ChairMerger(
         throw std::invalid_argument("chairloaderPatchDir doesn't exists");
 
     m_MergerFilesPath = mergerFiles;
-    m_PreyFilePath = preyFiles;
+    m_PreyFilesPath = preyFiles;
     m_ChairloaderPatchPath = chairloaderPatchDir;
 
     // Temporary outputs
@@ -340,7 +340,7 @@ void ChairMerger::CopyChairloaderPatchFiles()
 
 MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path& file, std::string modName)
 {
-    MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilePath);
+    MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilesPath);
 
     if (policy.policy == MergingPolicy::identification_policy::unknown)
         m_pLog->Log(severityLevel::error, "XMLMerger: File %s not found in merging library",
@@ -388,7 +388,7 @@ void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDi
 
     // now we have the relative path to the file, we can use this to find the original file, and the base file in the
     // output directory
-    fs::path originalFile = m_PreyFilePath / relativePath;
+    fs::path originalFile = m_PreyFilesPath / relativePath;
     fs::path baseFile = m_OutputPath / relativePath;
 
     pugi::xml_document baseDoc, modDoc, originalDoc;
@@ -616,14 +616,14 @@ void ChairMerger::PackLevelFiles()
                 try
                 {
                     // copy over the level directory to the level output path
-                    fs::copy(m_PreyFilePath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
+                    fs::copy(m_PreyFilesPath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error,
                                             "ChairMerger: Could not copy original level directory %s",
-                                            (m_PreyFilePath / "Levels" / levelPath).string());
+                                            (m_PreyFilesPath / "Levels" / levelPath).string());
                     bFailure = true;
                     return;
                 }
@@ -770,7 +770,7 @@ void ChairMerger::PackLocalizationFiles()
                 try
                 {
                     // copy over the vanilla localization patch files to the localization output path
-                    fs::copy(m_PreyFilePath / "Localization" / originalDirectoryPath,
+                    fs::copy(m_PreyFilesPath / "Localization" / originalDirectoryPath,
                              m_LocalizationOutputPath / originalDirectoryPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
@@ -778,7 +778,7 @@ void ChairMerger::PackLocalizationFiles()
                 {
                     m_pLog->Log(severityLevel::error,
                                             "ChairMerger: Could not copy original localization patch %s",
-                                            (m_PreyFilePath / "Localization" / originalDirectoryPath).string());
+                                            (m_PreyFilesPath / "Localization" / originalDirectoryPath).string());
                     bFailure = true;
                     return;
                 }
@@ -941,7 +941,7 @@ void ChairMerger::LoadIdNameMap()
     //    // profile this function to see if it's slow
     //    auto start = std::chrono::high_resolution_clock::now();
 
-    m_NameToIdMap = Manager::NameToIdMap::Create(Manager::NameToIdMap::LIBRARY_FILE_NAME, m_PreyFilePath);
+    m_NameToIdMap = Manager::NameToIdMap::Create(Manager::NameToIdMap::LIBRARY_FILE_NAME, m_PreyFilesPath);
 
     //    auto end = std::chrono::high_resolution_clock::now();
     //    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);

@@ -106,7 +106,7 @@ public:
 
 protected:
     FRIEND_TEST(ChairMergerTestBase, ResolveFileWildcards);
-    FRIEND_TEST(ChairMergerTestFile, ProcessXMLFile);
+    FRIEND_TEST(ChairMergerTestProcessXMLFile, ProcessXMLFile);
     FRIEND_TEST(ChairMergerTestBase, CopyModDataFiles);
 
     friend class ChairMergerTest;
@@ -196,7 +196,7 @@ protected:
 
     // ChairManager files
     fs::path m_MergerFilesPath;
-    fs::path m_PreyFilePath;
+    fs::path m_PreyFilesPath;
     fs::path m_ChairloaderPatchPath;
 
     // Temporary output paths
