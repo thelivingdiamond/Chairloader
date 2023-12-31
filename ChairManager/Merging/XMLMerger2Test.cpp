@@ -838,7 +838,8 @@ const auto TEST_FILES = testing::Values<std::string>(
     "CopySibling",
     "NodeNotInBaseDocument",
     "Localization",
-    "LocalizationTouchUp"
+    "LocalizationTouchUp",
+    "MissingMatchAttribute"
 );
 
 INSTANTIATE_TEST_SUITE_P(XMLMerger2, XMLMerger2TestFiles, TEST_FILES);

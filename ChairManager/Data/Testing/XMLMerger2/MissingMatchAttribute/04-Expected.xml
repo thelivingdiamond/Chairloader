@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Mission>
+    <Objects>
+        <Object
+            Type="Decal"
+            Name="Decal535"
+            Value="origValue">
+        </Object>
+        <Entity
+            Name="Data.Keycard5"
+            EntityId="3026"
+            EntityGuid="4FDA91B7404BPB33"
+            ch:patch_mode="true">
+            <Properties2
+                keycard_Keycard="1333337" />
+            <RenderProxy />
+        </Entity>
+    </Objects>
+</Mission>

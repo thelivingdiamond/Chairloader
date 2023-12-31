@@ -1,0 +1,11 @@
+<Mission>
+    <Objects>
+        <Entity
+            Name="Data.Keycard5"
+            ch:patch_mode="true">
+            <Properties2
+                keycard_Keycard="1333337" />
+            <RenderProxy />
+        </Entity>
+    </Objects>
+</Mission>

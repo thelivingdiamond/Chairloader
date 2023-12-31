@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mergingPolicy identification_policy="match_attribute">
+    <attribute name="Name" priority="0" />
+    <nodeStructure>
+        <Mission merge_attributes="true">
+            <Environment merge_children="true" identification_policy="match_tag" />
+            <ArkLevelProperties merge_children="true" identification_policy="match_tag" />
+            <TimeOfDay merge_children="true" merge_attributes="true" />
+            <MiniMap merge_node="true" />
+            <ArkAutoMap merge_node="true" />
+            <Weapons>
+                <Used merge_children="true" identification_policy="match_attribute">
+                    <attribute name="Name" priority="0" />
+                </Used>
+                <Ammo merge_children="true" identification_policy="match_attribute">
+                    <attribute name="Name" priority="0" />
+                </Ammo>
+            </Weapons>
+            <Objects merge_children="true" identification_policy="match_attribute">
+                <attribute name="EntityGuid" priority="0" />
+                <attribute name="EntityId" priority="1" />
+                <attribute name="Name" priority="2" />
+            </Objects>
+            <encounterRoot merge_children="true" identification_policy="match_attribute">
+                <attribute name="encounterProfileName" priority="0" />
+            </encounterRoot>
+        </Mission>
+    </nodeStructure>
+</mergingPolicy>
