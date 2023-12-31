@@ -409,8 +409,10 @@ pugi::xml_node XMLMerger2::FindNodeByAttributeList(pugi::xml_node &searchNode, p
     if(!matchAllAttributes) {
         for(auto &child: searchNode){
             for (auto &attribute: attributeList) {
-                std::string attributeValue = referenceNode.attribute(attribute.attribute_name.c_str()).value();
-                if (child.attribute(attribute.attribute_name.c_str()).value() == attributeValue) {
+                pugi::xml_attribute referenceAttr = referenceNode.attribute(attribute.attribute_name.c_str());
+                pugi::xml_attribute childAttr = child.attribute(attribute.attribute_name.c_str());
+
+                if (referenceAttr && childAttr && !strcmp(referenceAttr.value(), childAttr.value())) {
                     searchResult = child;
                     break;
                 }
@@ -422,8 +424,10 @@ pugi::xml_node XMLMerger2::FindNodeByAttributeList(pugi::xml_node &searchNode, p
         for(auto &child: searchNode){
             bool found = true;
             for (auto &attribute: attributeList) {
-                std::string attributeValue = referenceNode.attribute(attribute.attribute_name.c_str()).value();
-                if (child.attribute(attribute.attribute_name.c_str()).value() != attributeValue) {
+                pugi::xml_attribute referenceAttr = referenceNode.attribute(attribute.attribute_name.c_str());
+                pugi::xml_attribute childAttr = child.attribute(attribute.attribute_name.c_str());
+
+                if (referenceAttr && childAttr && !strcmp(referenceAttr.value(), childAttr.value())) {
                     found = false;
                     break;
                 }
