@@ -529,9 +529,13 @@ bool ChairMerger::CheckLevelPacksChanged()
     for (auto& levelPack : m_LevelFileChecksums)
     {
         AddPendingTask(m_MergeThreadPool->enqueue([levelPack, this]() {
-            auto existingFile = m_LevelFilesPath / levelPack.first;
+            fs::path existingFile = m_LevelFilesPath / levelPack.first;
+
+            if (!fs::exists(existingFile))
+                return;
+
             bool exists = fs::exists(existingFile);
-            auto checksum = HashUtils::HashUncompressedFile(existingFile);
+            SHA256::Digest checksum = HashUtils::HashUncompressedFile(existingFile);
             m_DeployedLevelFileChecksums[levelPack.first] = checksum;
             if (checksum != levelPack.second || !fs::exists(existingFile) || m_bForceLevelPack)
             {
@@ -556,6 +560,10 @@ bool ChairMerger::CheckLocalizationPacksChanged()
     for (auto& localizationPack : m_LocalizationFileChecksums)
     {
         auto existingFile = m_LocalizationFilesPath / localizationPack.first;
+
+        if (!fs::exists(existingFile))
+            continue;
+
         auto checksum = HashUtils::HashUncompressedFile(existingFile);
         m_DeployedLocalizationFileChecksums[localizationPack.first] = checksum;
         //        auto checksum = SHA256::Digest();
@@ -873,25 +881,36 @@ void ChairMerger::PackMainPatch()
 {
     // at this point level and localization packs are packed and their files moved. We can now pack what is left in the
     // output path
-    auto deployedFileHash = HashUtils::HashUncompressedFile(m_PrecacheFilesPath / "patch_chairloader.pak");
-    auto outputFileHash = HashUtils::HashDirectory(m_OutputPath);
-    if (deployedFileHash == outputFileHash && !m_bForceMainPatchPack)
+    fs::path chairPakPath = m_PrecacheFilesPath / "patch_chairloader.pak";
+
+    if (fs::exists(chairPakPath))
     {
-        m_pLog->Log(severityLevel::info, "ChairMerger: Main patch is up to date, skipping");
-        return;
+        if (!m_bForceMainPatchPack)
+        {
+            SHA256::Digest deployedFileHash = HashUtils::HashUncompressedFile(chairPakPath);
+            SHA256::Digest outputFileHash = HashUtils::HashDirectory(m_OutputPath);
+
+            if (deployedFileHash == outputFileHash)
+            {
+                m_pLog->Log(severityLevel::info, "ChairMerger: Main patch is up to date, skipping");
+                return;
+            }
+        }
+
+        try
+        {
+            fs::remove(chairPakPath);
+        }
+        catch (fs::filesystem_error& e)
+        {
+            m_pLog->Log(severityLevel::error, "ChairMerger: Could not remove old patch file: %s", e.what());
+            SetDeployFailed("Could not remove old patch file: " + std::string(e.what()));
+            return;
+        }
     }
-    try
-    {
-        fs::remove(m_PrecacheFilesPath / "patch_chairloader.pak");
-    }
-    catch (fs::filesystem_error& e)
-    {
-        m_pLog->Log(severityLevel::error, "ChairMerger: Could not remove old patch file: %s", e.what());
-        SetDeployFailed("Could not remove old patch file: " + std::string(e.what()));
-        return;
-    }
+
     std::ofstream(m_OutputPath / MARK_OF_THE_CHAIR).close();
-    ZipUtils::CompressFolder(m_OutputPath, m_PrecacheFilesPath / "patch_chairloader.pak", true);
+    ZipUtils::CompressFolder(m_OutputPath, chairPakPath, true);
     m_pLog->Log(severityLevel::trace, "ChairMerger: Finished packing main patch");
 }
 
