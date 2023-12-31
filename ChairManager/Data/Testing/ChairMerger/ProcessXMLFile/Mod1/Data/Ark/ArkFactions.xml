@@ -1,0 +1,12 @@
+
+<ArkFactions>
+ <Factions>
+  <Faction name="ScriptedNeutralEpicGamer" id="3149325216988038853"/>
+  <Faction name="NewFaction" id="17591291352618367178"/>
+ </Factions>
+ <Dispositions>
+  <Disposition fromFactionId="3149325216988038853" toFactionId="961149214835558814" value="1"/>
+  <Disposition fromFactionId="3149325216988038853" toFactionId="17591291352618367179" value="3"/>
+  <Disposition fromFactionId="3149325216988038853" toFactionId="17591291352618367178" value="2"/>
+ </Dispositions>
+</ArkFactions>

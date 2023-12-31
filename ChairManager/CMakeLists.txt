@@ -30,7 +30,6 @@ set(SOURCE_FILES
 	Paths.h
 	Merging/ChairMerger.cpp
 	Merging/ChairMerger.h
-	Merging/ChairMergerTest.cpp
 	Merging/XMLMerger2Test.cpp
 	Merging/FileChecksum.h
 	Merging/HashUtils.h
@@ -42,6 +41,14 @@ set(SOURCE_FILES
 	LuaUtilsTest.cpp
 	CrashHandler.h
 	CrashHandler.cpp
+
+	Tests/Merging/ChairMergerTestBase.cpp
+	Tests/Merging/ChairMergerTestBase.h
+	Tests/Merging/ModMerging.cpp
+	Tests/Merging/Wildcards.cpp
+
+	Tests/XmlTestUtils.cpp
+	Tests/XmlTestUtils.h
 )
 
 set(INCLUDE_DIRECTORIES

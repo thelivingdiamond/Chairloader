@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <Manager/XMLMerger2.h>
+#include "Tests/XmlTestUtils.h"
 
 TEST(XMLMerger2Test, FuseXmlNode)
 {
@@ -775,277 +776,6 @@ TEST(XMLMerger2Test, MergeNodeStructureAttribute)
     ASSERT_EQ(base.str(), expected.str());
 }
 
-TEST(XMLMerger2Test, MergeXMLDocument)
-{
-    pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
-    MergingPolicy policy;
-
-    baseDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
-    originalDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-             <Z id="4">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
-
-    modDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-             <Z id="4">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-        </Y>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
-
-    expectedDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-        </Y>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
-
-    policyDoc.load_string(R"(
-        <mergingPolicy identification_policy="match_attribute">
-            <attribute name="id" priority="0"/>
-            <nodeStructure>
-                <_wildcard_ merge_attributes="true">
-                    <Y merge_children="true"/>
-                    <W merge_node="true"/>
-                </_wildcard_>
-            </nodeStructure>
-        </mergingPolicy>
-    )");
-
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
-
-    XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
-
-    std::stringstream base, expected;
-    baseDoc.save(base, "", pugi::format_raw);
-    expectedDoc.save(expected, "", pugi::format_raw);
-
-    ASSERT_EQ(base.str(), expected.str());
-}
-
-TEST(XMLMerger2Test, CopySibling)
-{
-    pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
-    MergingPolicy policy;
-
-    baseDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
-    originalDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-             <Z id="4">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
-
-    modDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-             <Z id="8" ch:copy_sibling="id=2">
-                <A val="420"/>
-            </Z>
-        </Y>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
-
-    expectedDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="8" ch:copy_sibling="id=2">
-                <A val="420"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-        </Y>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
-
-    policyDoc.load_string(R"(
-        <mergingPolicy identification_policy="match_attribute">
-            <attribute name="id" priority="0"/>
-            <nodeStructure>
-                <_wildcard_ merge_attributes="true">
-                    <Y merge_children="true"/>
-                    <W merge_node="true"/>
-                </_wildcard_>
-            </nodeStructure>
-        </mergingPolicy>
-    )");
-
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
-
-    XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
-
-    std::stringstream base, expected;
-    baseDoc.save(base, "", pugi::format_raw);
-    expectedDoc.save(expected, "", pugi::format_raw);
-
-    ASSERT_EQ(base.str(), expected.str());
-}
-
 TEST(XMLMerger2Test, ParseSiblingQuery)
 {
     struct Item
@@ -1067,150 +797,49 @@ TEST(XMLMerger2Test, ParseSiblingQuery)
     }
 }
 
-TEST(XMLMerger2Test, NodeNotInBaseDocument)
+//! Test that reads XML documents from disk, merges them and compares the result
+class XMLMerger2TestFiles : public testing::TestWithParam<std::string>
 {
-    pugi::xml_document baseDoc, modDoc, originalDoc, expectedDoc, policyDoc;
-    MergingPolicy policy;
+protected:
+    static pugi::xml_document LoadOneOf(const fs::path& f1, const fs::path& f2, unsigned options)
+    {
+        if (fs::exists(f1))
+            return XmlTestUtils::LoadDocument(f1, options);
+        else
+            return XmlTestUtils::LoadDocument(f2, options);
+    }
+};
 
-    baseDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
-    originalDoc.load_string(R"(
-    <X hippo="false">
-        <Y>
-            <Z id="1">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="2">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-            <Z id="3">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-             <Z id="4">
-                <A val="1"/>
-                <B val="2"/>
-                <C val="3"/>
-            </Z>
-        </Y>
-        <W zebra="27">I'm a zebra</W>
-    </X>
-    )");
+TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
+{
+    std::string testName = GetParam();
+    fs::path testDir = fs::current_path() / "Testing/XMLMerger2" / fs::u8path(testName);
 
-    modDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-             <Z id="8" ch:copy_sibling="id=2">
-                <A val="420"/>
-            </Z>
-        </Y>
-        <J newStuff="true">
-            <X>This merge target doesnt exist in the base document</X>
-        </J>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
+    unsigned options = pugi::parse_default;
 
-    expectedDoc.load_string(R"(
-    <X hippo="true">
-        <Y>
-            <Z id="1">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="2">
-                <A val="4"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-            <Z id="3">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="4">
-                <A val="10"/>
-                <B val="11"/>
-                <C val="12"/>
-            </Z>
-             <Z id="8" ch:copy_sibling="id=2">
-                <A val="420"/>
-                <B val="5"/>
-                <C val="6"/>
-            </Z>
-        </Y>
-        <J newStuff="true">
-            <X>This merge target doesnt exist in the base document</X>
-        </J>
-        <W zebra="42">I'm a special zebra</W>
-    </X>
-    )");
+    if (testName.find("Localization") != testName.npos)
+        options = pugi::parse_full;
 
-    policyDoc.load_string(R"(
-        <mergingPolicy identification_policy="match_attribute">
-            <attribute name="id" priority="0"/>
-            <nodeStructure>
-                <_wildcard_ merge_attributes="true">
-                    <Y merge_children="true"/>
-                    <J merge_children="true"/>
-                    <W merge_node="true"/>
-                </_wildcard_>
-            </nodeStructure>
-        </mergingPolicy>
-    )");
+    pugi::xml_document docOriginal = XmlTestUtils::LoadDocument(testDir / "01-Original.xml", options);
+    pugi::xml_document docBase = LoadOneOf(testDir / "02-Base.xml", testDir / "01-Original.xml", options);
+    pugi::xml_document docMod = XmlTestUtils::LoadDocument(testDir / "03-Mod.xml", options);
+    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(testDir / "04-Expected.xml", options);
+    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml", options);
 
-    policy = MergingPolicy(policyDoc.first_child(), "Ark/");
+    MergingPolicy policy(docMergingPolicy.first_child(), fs::path());
 
-    XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
+    XMLMerger2::MergeXMLDocument(docBase, docMod, docOriginal, policy);
 
-    std::stringstream base, expected;
-
-    auto baseJ = baseDoc.child("X").child("J");
-    auto expectedJ = expectedDoc.child("X").child("J");
-
-    baseJ.print(base, "", pugi::format_raw);
-    expectedJ.print(expected, "", pugi::format_raw);
-
-    ASSERT_EQ(base.str(), expected.str());
+    EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(docExpected, docBase));
 }
+
+const auto TEST_FILES = testing::Values<std::string>(
+    "Basic",
+    "CopySibling",
+    "NodeNotInBaseDocument",
+    "Localization",
+    "LocalizationTouchUp",
+    "MissingMatchAttribute"
+);
+
+INSTANTIATE_TEST_SUITE_P(XMLMerger2, XMLMerger2TestFiles, TEST_FILES);

@@ -14,9 +14,11 @@ struct Mod{
     std::string author;
     std::string dllName;
     int loadOrder = -1;
-    pugi::xml_node infoFile;
-    pugi::xml_node configFile;
     std::vector<std::string> dependencies;
+
+    //! Path to the mod directory (where ModInfo.xml is).
+    fs::path path;
+
     // installed = Mod loader remembers
     // enabled = Mod loader will load
     // deployed = files are ready

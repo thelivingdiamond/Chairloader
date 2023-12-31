@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<A
+    attr1="true"
+    attr2="String from mod 1"
+    attr3="String from mod 2 that has the same name as in mod 1">
+    <B
+        attr1="true"
+        attr2="String from mod 1"
+        attr3="String from mod 2 that has the same name as in mod 1">
+        <!--<C>
+            <Test type="string">String from mod 1</Test>
+            <Test type="bool">true</Test>
+            <Test type="int">-200</Test>
+            <Test type="uint">4294967295</Test>
+            <Test type="int64">-12369420000000000</Test>
+            <Test type="uint64">18446744073709551615</Test>
+            <Test type="float">1.25</Test>
+            <Test type="xmlnode">I am a child node</Test>
+            <Test type="xmlnode">Important Config Details</Test>
+            <Test type="enum">B</Test>
+        </C>-->
+        <C>
+            <Test type="string" value="String from mod 1" />
+            <Test type="bool" value="true" />
+            <Test type="int" value="-200" />
+            <Test type="uint" value="4294967295" />
+            <Test type="int64" value="-12369420000000000" />
+            <Test type="uint64" value="18446744073709551615" />
+            <Test type="float" value="1.25" />
+            <Test type="xmlnode" value="I am a child node" />
+            <Test type="xmlnode" value="Important Config Details" />
+            <Test type="enum" value="B" />
+        </C>
+    </B>
+    <D
+        attr1="true"
+        attr2="String from mod 1"
+        attr3="String from mod 2 that has the same name as in mod 1" />
+    <Custom
+        attr1="true"
+        attr2="Now's your chance to be a [hyperlink blocked]"
+        attr3="420"
+        attr4="true" />
+</A>

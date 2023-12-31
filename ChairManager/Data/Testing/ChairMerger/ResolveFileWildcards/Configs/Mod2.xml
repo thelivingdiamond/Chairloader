@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Mod1 version="1.0.0">
+    <testString type="string">String from mod 2 that has the same name as in mod 1</testString>
+</Mod1>

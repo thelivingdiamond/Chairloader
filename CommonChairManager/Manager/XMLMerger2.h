@@ -10,7 +10,7 @@
 class XMLMerger2 {
 public:
     //! Merge two XML documents together, using the specified merging policy.
-    //! @param  baseDoc     Currently merged document.
+    //! @param  baseDoc     Currently merged document. Merging result will be saved here.
     //! @param  modDoc      Mod document that needs to be merged into base.
     //! @param  originalDoc Original document from Prey.
     //! @param  policy      Merging policy.

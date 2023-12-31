@@ -36,6 +36,7 @@ set(SOURCE_FILES
 	Manager/ConfigManager.cpp
 	Manager/ConfigManager.h
 	Manager/IconsMaterialDesign.h
+	Manager/ILogger.h
 	Manager/ImGuiFontList.cpp
 	Manager/ImGuiFontList.h
 	Manager/LogEntry.h

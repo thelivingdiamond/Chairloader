@@ -5,18 +5,21 @@
 #include <gtest/gtest.h>
 #include <numeric>
 #include "HashUtils.h"
+#include "ZipUtils.h"
 #include "Manager/ThreadPool.h"
+
+static const fs::path g_PreyFiles = "Testing/ChairMerger/_PreyFiles";
 
 TEST(HashUtilsTest, HashFile)
 {
-    auto digest = HashUtils::HashFile("Testing/PreyFiles/Ark/ArkFactions.xml");
+    auto digest = HashUtils::HashFile(g_PreyFiles / "Ark/ArkFactions.xml");
     auto expectedDigest = SHA256::fromString("9FA881B8E5C6D344A8263FFA7B43FB436D6AF54A9DC9DA22EC2C5D5F93422240");
     EXPECT_EQ(digest, expectedDigest);
 }
 
 TEST(HashUtilsTest, HashDirectory)
 {
-    auto digest = HashUtils::HashDirectory("Testing/PreyFiles/Ark");
+    auto digest = HashUtils::HashDirectory(g_PreyFiles / "Ark");
     auto expectedDigest = SHA256::fromString("8af38e6f00847bda16a782f056a399f3f3187a12aa15d3a5c978e2c88c88b98c");
     EXPECT_EQ(digest, expectedDigest);
 }
@@ -32,7 +35,8 @@ TEST(HashUtilsTest, HashUncompressedFile)
 TEST(HashUtilsTest, UncompressedFileDirectoryEquality)
 {
     //    the hash of a directory and the hash of the uncompressed file should be the same
-    auto digest = HashUtils::HashDirectory("Testing/PreyFiles/Ark");
+    ZipUtils::CompressFolder(g_PreyFiles / "Ark", "Testing/Hashing/Ark.pak");
+    auto digest = HashUtils::HashDirectory(g_PreyFiles / "Ark");
     auto uncompressedDigest = HashUtils::HashUncompressedFile("Testing/Hashing/Ark.pak");
 
     EXPECT_EQ(digest, uncompressedDigest);
