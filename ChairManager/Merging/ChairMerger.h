@@ -247,6 +247,9 @@ protected:
     // changed level packs and localization packs
     std::vector<fs::path> m_ChangedLevelPacks, m_ChangedLocalizationPacks;
     std::mutex m_ChangedLevelPacksMutex, m_ChangedLocalizationPacksMutex;
+
+    std::mutex m_DeployedLevelFileChecksumsMutex;
+
     // force all level packs and localization packs to be repacked
     bool m_bForceLevelPack = false;
     bool m_bForceLocalizationPack = false;

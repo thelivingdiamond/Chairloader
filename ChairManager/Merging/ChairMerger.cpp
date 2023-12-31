@@ -536,7 +536,12 @@ bool ChairMerger::CheckLevelPacksChanged()
 
             bool exists = fs::exists(existingFile);
             SHA256::Digest checksum = HashUtils::HashUncompressedFile(existingFile);
-            m_DeployedLevelFileChecksums[levelPack.first] = checksum;
+
+            {
+                std::lock_guard<std::mutex> lock(m_DeployedLevelFileChecksumsMutex);
+                m_DeployedLevelFileChecksums[levelPack.first] = checksum;
+            }
+
             if (checksum != levelPack.second || !fs::exists(existingFile) || m_bForceLevelPack)
             {
                 AddChangedLevelPack(levelPack.first);
