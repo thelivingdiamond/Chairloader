@@ -151,7 +151,8 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
 }
 
 const auto FULL_TEST_NAMES = testing::Values<std::string>(
-    "FullTestMain"
+    "FullTestMain",
+    "FullTestLocalization"
 );
 
 INSTANTIATE_TEST_SUITE_P(ChairMerger, ChairMergerTestFullMerging, FULL_TEST_NAMES);
