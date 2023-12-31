@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ArkFactions>
+    <Factions>
+        <Faction name="NewFactionOverridenByMod2" id="17591291352618367178" />
+        <Faction name="ImFromMod2!" id="45671294789218367178" />
+        <Faction name="{{ testString }}" id="235457568"/>
+        <Faction name="{{ 'Mod 2: ' .. G.Mod1.testString }}" id="78979878"/>
+    </Factions>
+</ArkFactions>
