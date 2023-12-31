@@ -65,16 +65,16 @@ void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
             m_pLevelEditor->OnExitPlayMode();
 
         SetEditor(m_pLevelEditor.get(), EEditMode::Level);
-        m_pSceneEditor.reset();
+        m_pGameEditor.reset();
         pSim->SetSimulationMode(Engine::ESimulationMode::Pause);
         break;
     }
     case EPlayMode::Play:
     {
-        assert(!m_pSceneEditor);
+        assert(!m_pGameEditor);
         m_pLevelEditor->OnEnterPlayMode();
-        m_pSceneEditor = ISceneEditor::CreateGameEditor();
-        SetEditor(m_pSceneEditor.get(), EEditMode::Game);
+        m_pGameEditor = ISceneEditor::CreateGameEditor();
+        SetEditor(m_pGameEditor.get(), EEditMode::Game);
         pSim->SetSimulationMode(Engine::ESimulationMode::Play);
         break;
     }
@@ -148,7 +148,7 @@ void Main::SceneEditorManager::Reset()
     assert(!m_pCurrentEditor);
     assert(m_CurrentMode == EEditMode::None);
 
-    m_pSceneEditor = nullptr;
+    m_pGameEditor = nullptr;
     m_pLevelEditor = nullptr;
     m_NextLoadIsInEditor = false;
 }
@@ -168,8 +168,8 @@ void Main::SceneEditorManager::OnLevelLoad()
     }
     else
     {
-        m_pSceneEditor = ISceneEditor::CreateGameEditor();
-        SetEditor(m_pSceneEditor.get(), EEditMode::Game);
+        m_pGameEditor = ISceneEditor::CreateGameEditor();
+        SetEditor(m_pGameEditor.get(), EEditMode::Game);
     }
 }
 

@@ -30,7 +30,7 @@ public:
 
 private:
     std::unique_ptr<ILevelSceneEditor> m_pLevelEditor;
-    std::unique_ptr<ISceneEditor> m_pSceneEditor;
+    std::unique_ptr<ISceneEditor> m_pGameEditor;
 
     EEditMode m_CurrentMode = EEditMode::None;
     EPlayMode m_CurrentPlayMode = EPlayMode::Edit;
