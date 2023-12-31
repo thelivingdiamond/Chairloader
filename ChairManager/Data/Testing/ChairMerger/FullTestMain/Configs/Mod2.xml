@@ -1,2 +1,4 @@
 <?xml version="1.0"?>
-<Mod2 />
+<Mod2>
+    <testString type="string">String from mod 2</testString>
+</Mod2>
