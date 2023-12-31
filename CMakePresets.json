@@ -32,7 +32,10 @@
     {
       "name": "ninja-vcpkg",
       "configurePreset": "ninja-vcpkg",
-      "description": "Test with Ninja the provided configuration with --config"
+      "description": "Test with Ninja the provided configuration with --config",
+      "output": {
+        "outputOnFailure": true
+      }
     }
   ]
 }
