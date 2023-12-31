@@ -1,0 +1,27 @@
+<Mission>
+    <Objects>
+        <Entity
+            Name="Data.Keycard5"
+            Archetype="ArkPickups.Data.Keycard"
+            Pos="153.1,90.9,693.9"
+            EntityClass="ArkKeycard"
+            EntityId="3026"
+            EntityGuid="4FDA91B7404BPB33"
+            ViewDistRatio="255"
+            CastShadowViewDistRatio="30"
+            CastShadowMinSpec="1"
+            CastSunShadowMinSpec="8"
+            ShadowCasterType="2"
+            Layer="CargoBay_Scripting">
+            <Properties2
+                iCountOverride="0"
+                keycard_Keycard="4349723564917331725" />
+            <RenderProxy />
+        </Entity>
+        <Entity
+            Name="Cardboard_Box_70x35x4"
+            ch:patch_mode="true"
+            Pos="1337,226,420">
+        </Entity>
+    </Objects>
+</Mission>

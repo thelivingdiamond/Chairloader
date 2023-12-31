@@ -1,20 +1,71 @@
 <LevelData SandboxVersion="3.7.0.179">
- <LevelInfo CreationDate="08/01/18" Name="EndGame" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
+ <LevelInfo CreationDate="08/01/18" Name="CargoBay" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
  <SurfaceTypes>
   <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
  </SurfaceTypes>
  <CollisionClasses>
   <CollisionClass type="0" ignore="0"/>
+  <CollisionClass type="0" ignore="65536"/>
+  <CollisionClass type="1024" ignore="0"/>
+  <CollisionClass type="0" ignore="16384"/>
+  <CollisionClass type="4194304" ignore="0"/>
+  <CollisionClass type="0" ignore="4294967295"/>
+  <CollisionClass type="0" ignore="81920"/>
+  <CollisionClass type="16384" ignore="65536"/>
+  <CollisionClass type="65536" ignore="327680"/>
+  <CollisionClass type="8192" ignore="0"/>
+  <CollisionClass type="65536" ignore="262144"/>
  </CollisionClasses>
  <Layers>
-  <Layer Name="Endgame_Lighting_Stage2" Parent="" Id="1" Specs="-1"/>
-  <Layer Name="EndGame_Geo" Parent="" Id="2" Specs="-1"/>
-  <Layer Name="Audio" Parent="" Id="3" Specs="-1"/>
-  <Layer Name="EndGame_Lighting_Backup" Parent="" Id="4" Specs="-1"/>
-  <Layer Name="EndGame_Scripting" Parent="" Id="5" Specs="-1" DefaultLoaded="1"/>
-  <Layer Name="EndGame_Cinematic" Parent="" Id="6" Specs="-1"/>
-  <Layer Name="EndGame_Env" Parent="" Id="7" Specs="-1"/>
-  <Layer Name="Main" Parent="" Id="8" Specs="-1"/>
+  <Layer Name="CargoBay_Cave_Scripting" Parent="" Id="1" Specs="-1"/>
+  <Layer Name="CargoBay_PlayerCollision" Parent="" Id="2" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_04_EngineerSitsOnFloor" Parent="CargoBay_Cinematics" Id="3" Specs="-1"/>
+  <Layer Name="CargoBay_CoralPhase_1" Parent="" Id="4" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="1"/>
+  <Layer Name="CargoBay_Sq_06_SecurityGuardInspectsCorpse" Parent="CargoBay_Cinematics" Id="5" Specs="-1"/>
+  <Layer Name="CargoBay_Cave_CaptureVolumeObjects" Parent="" Id="6" Specs="-1" LoadTokenId="1168710275" LoadTokenValue="1"/>
+  <Layer Name="CargoBay_CoralPhase_2" Parent="" Id="7" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="2"/>
+  <Layer Name="CargoBay_Cave" Parent="" Id="8" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_01_HumanOnCatwalkSignals" Parent="CargoBay_Cinematics" Id="9" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_07B_SecurityGuards_StandGuard_KevinHague" Parent="CargoBay_Cinematics" Id="10" Specs="-1"/>
+  <Layer Name="CargoBay_Geo_GUTs_Loading" Parent="" Id="11" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting_Final" Parent="CargoBay_Lighting" Id="12" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_07D_SecurityGuards_StandGuard_TamikoHayashi" Parent="CargoBay_Cinematics" Id="13" Specs="-1"/>
+  <Layer Name="CargoBay_FX" Parent="" Id="14" Specs="-1"/>
+  <Layer Name="CargoBay_Geo_FuelStorage" Parent="" Id="15" Specs="-1"/>
+  <Layer Name="CargoBay_OccluderGeo" Parent="" Id="16" Specs="-1"/>
+  <Layer Name="CargoBay_ExteriorVista" Parent="" Id="17" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_07C_SecurityGuards_StandGuard_DarcyMaddox" Parent="CargoBay_Cinematics" Id="18" Specs="-1"/>
+  <Layer Name="CargoBay_ShadowShells" Parent="" Id="19" Specs="-1"/>
+  <Layer Name="Main" Parent="" Id="20" Specs="-1"/>
+  <Layer Name="CargoBay_Geo_GUTS_Shaft" Parent="" Id="21" Specs="-1"/>
+  <Layer Name="CargoBay_TechOfficer" Parent="" Id="22" Specs="-1"/>
+  <Layer Name="CargoBay_Geo_One" Parent="" Id="23" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_03_WeaverTurnsCorpseIntoPhantoms" Parent="CargoBay_Cinematics" Id="24" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting_Backup" Parent="CargoBay_Lighting" Id="25" Specs="-1"/>
+  <Layer Name="CargoBay_Nightmare" Parent="" Id="26" Specs="-1"/>
+  <Layer Name="CargoBay_Sidequests" Parent="" Id="27" Specs="-1"/>
+  <Layer Name="CargoBay_Distractions" Parent="" Id="28" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_07A_SecurityGuards_StandGuard_AustinCool" Parent="CargoBay_Cinematics" Id="29" Specs="-1"/>
+  <Layer Name="CargoBay_FX_02" Parent="" Id="30" Specs="-1"/>
+  <Layer Name="CargoBay_DisgruntledEmployee" Parent="" Id="31" Specs="-1"/>
+  <Layer Name="CargoBay_VisAreas" Parent="" Id="32" Specs="-1"/>
+  <Layer Name="CargoBay_Tutorial" Parent="" Id="33" Specs="-1"/>
+  <Layer Name="CargoBay_Sq_05_SarahAndIgweInteract" Parent="CargoBay_Cinematics" Id="34" Specs="-1"/>
+  <Layer Name="CargoBay_Geo_Receiving" Parent="" Id="35" Specs="-1"/>
+  <Layer Name="CargoBay_Scripting" Parent="" Id="36" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting_NPCs" Parent="CargoBay_Lighting" Id="37" Specs="-1"/>
+  <Layer Name="CargoBay_Cinematics" Parent="" Id="38" Specs="-1"/>
+  <Layer Name="CargoBay_CoralPhase_5" Parent="" Id="39" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="5"/>
+  <Layer Name="CargoBay_Geo_Two" Parent="" Id="40" Specs="-1"/>
+  <Layer Name="CargoBay_CoralPhase_3" Parent="" Id="41" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="3"/>
+  <Layer Name="Ark_MetricCameras" Parent="" Id="42" Specs="-1"/>
+  <Layer Name="CargoBay_Apex" Parent="" Id="43" Specs="-1" LoadTokenId="659909599" LoadTokenValue="1"/>
+  <Layer Name="CargoBay_CoralPhase_4" Parent="" Id="44" Specs="-1" LoadTokenId="1570678163" LoadTokenValue="4"/>
+  <Layer Name="CargoBay_Sq_02_HumanIdentifiesCatwalk" Parent="CargoBay_Cinematics" Id="45" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting" Parent="" Id="46" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting_Final_ON" Parent="CargoBay_Lighting" Id="47" Specs="-1"/>
+  <Layer Name="CargoBay_Lighting_Final_OFF" Parent="CargoBay_Lighting" Id="48" Specs="-1"/>
+  <Layer Name="CargoBay_Sound" Parent="" Id="49" Specs="-1"/>
  </Layers>
  <Vegetation />
  <MaterialsLibrary>
@@ -22,14 +73,18 @@
  </MaterialsLibrary>
  <ParticlesLibrary>
   <Library Name="LevelShared"/>
-  <Library Name="Characters"/>
-  <Library Name="PlayerWeapons"/>
-  <Library Name="Player"/>
+  <Library Name="LevelSpecific"/>
   <Library Name="MaterialEffects"/>
+  <Library Name="Interactables"/>
+  <Library Name="PlayerWeapons"/>
+  <Library Name="Characters"/>
+  <Library Name="Screen"/>
+  <Library Name="Player"/>
  </ParticlesLibrary>
  <GameTokensLibraryReferences>
   <Library Name="GT_Global"/>
   <Library Name="GT_GameTime"/>
   <Library Name="GT_GlobalStrings"/>
+  <Library Name="GT_selliott_test1"/>
  </GameTokensLibraryReferences>
 </LevelData>

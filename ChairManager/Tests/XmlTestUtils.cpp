@@ -105,6 +105,7 @@ bool XmlTestUtils::CompareNodes(const pugi::xml_node& lhs, const pugi::xml_node&
         auto childrenr = rhs.children();
         auto itl = childrenl.begin();
         auto itr = childrenr.begin();
+        int index = 0;
 
         for (;;)
         {
@@ -122,7 +123,7 @@ bool XmlTestUtils::CompareNodes(const pugi::xml_node& lhs, const pugi::xml_node&
 
             assert(itl != childrenl.end() && itr != childrenr.end());
 
-            if (!CompareNodes(*itl, *itr, nodePath))
+            if (!CompareNodes(*itl, *itr, fmt::format("{}[{}]", nodePath, index)))
             {
                 // Non-equal children
                 ADD_FAILURE() << nodePath << ": child nodes are not equal";
@@ -131,6 +132,7 @@ bool XmlTestUtils::CompareNodes(const pugi::xml_node& lhs, const pugi::xml_node&
 
             ++itl;
             ++itr;
+            ++index;
         }
     }
 

@@ -125,12 +125,14 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
     {
         for (const fs::directory_entry& i : fs::recursive_directory_iterator(levelsExpectedDir))
         {
-            if (i.is_directory())
+            fs::path curPath = i.path();
+
+            if (!i.is_directory() || curPath.filename() != "level")
                 continue;
 
-            fs::path relativePath = i.path().lexically_relative(levelsExpectedDir);
+            fs::path relativePath = curPath.lexically_relative(levelsExpectedDir);
             relativePath.replace_extension("pak");
-            EXPECT_TRUE(CheckPak(i.path(), m_GameDir / "GameSDK/Levels" / relativePath))
+            EXPECT_TRUE(CheckPak(curPath, m_GameDir / "GameSDK/Levels" / relativePath))
                 << "Level patch pak is incorrect: " << relativePath.u8string();
         }
     }
@@ -152,7 +154,8 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
 
 const auto FULL_TEST_NAMES = testing::Values<std::string>(
     "FullTestMain",
-    "FullTestLocalization"
+    "FullTestLocalization",
+    "FullTestLevels"
 );
 
 INSTANTIATE_TEST_SUITE_P(ChairMerger, ChairMergerTestFullMerging, FULL_TEST_NAMES);
