@@ -42,6 +42,10 @@ Main::SceneEditorManager::SceneEditorManager()
 Main::SceneEditorManager::~SceneEditorManager()
 {
     gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
+
+    // Unpause
+    Engine::ISimulationController* pSim = gPreditor->pEngine->GetSimController();
+    pSim->SetSimulationMode(Engine::ESimulationMode::Play);
 }
 
 void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
@@ -60,12 +64,17 @@ void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
         if (m_CurrentPlayMode == EPlayMode::Play)
             m_pLevelEditor->OnExitPlayMode();
 
+        SetEditor(m_pLevelEditor.get(), EEditMode::Level);
+        m_pSceneEditor.reset();
         pSim->SetSimulationMode(Engine::ESimulationMode::Pause);
         break;
     }
     case EPlayMode::Play:
     {
+        assert(!m_pSceneEditor);
         m_pLevelEditor->OnEnterPlayMode();
+        m_pSceneEditor = ISceneEditor::CreateGameEditor();
+        SetEditor(m_pSceneEditor.get(), EEditMode::Game);
         pSim->SetSimulationMode(Engine::ESimulationMode::Play);
         break;
     }
@@ -73,7 +82,6 @@ void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
     {
         if (m_CurrentPlayMode == EPlayMode::Play)
             m_pLevelEditor->OnExitPlayMode();
-
         pSim->SetSimulationMode(Engine::ESimulationMode::PhysicsAI);
         break;
     }
