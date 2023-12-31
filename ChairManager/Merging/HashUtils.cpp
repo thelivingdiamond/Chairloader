@@ -60,8 +60,10 @@ SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath)
     SHA256 hash;
     libzippp::ZipArchive archive(archivePath.string());
     archive.open(libzippp::ZipArchive::ReadOnly);
+
     if (!archive.isOpen())
-        return {};
+        throw std::runtime_error(fmt::format("failed to open archive {}", archivePath.u8string()));
+
     std::vector<libzippp::ZipEntry> entries = archive.getEntries();
     for (auto& entry : entries)
     {
