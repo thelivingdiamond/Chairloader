@@ -427,7 +427,7 @@ pugi::xml_node XMLMerger2::FindNodeByAttributeList(pugi::xml_node &searchNode, p
                 pugi::xml_attribute referenceAttr = referenceNode.attribute(attribute.attribute_name.c_str());
                 pugi::xml_attribute childAttr = child.attribute(attribute.attribute_name.c_str());
 
-                if (referenceAttr && childAttr && !strcmp(referenceAttr.value(), childAttr.value())) {
+                if (!referenceAttr || !childAttr || strcmp(referenceAttr.value(), childAttr.value())) {
                     found = false;
                     break;
                 }
