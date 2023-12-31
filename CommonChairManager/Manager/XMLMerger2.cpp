@@ -289,11 +289,22 @@ void XMLMerger2::MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_documen
     ResolvePolicyPathWildcards(modDoc.first_child(), policy.nodeStructure.first_child());
 
     // merge the node structure
-    auto baseNode = baseDoc.first_child();
-    auto modNode = modDoc.first_child();
-    auto originalNode = originalDoc.first_child();
+    if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
+    {
+        auto baseNode = baseDoc.child("Workbook");
+        auto modNode = modDoc.child("Workbook");
+        auto originalNode = originalDoc.child("Workbook");
 
-    MergeNodeStructure(baseNode, modNode, originalNode, policy);
+        MergeNodeStructure(baseNode, modNode, originalNode, policy);
+    }
+    else
+    {
+        auto baseNode = baseDoc.first_child();
+        auto modNode = modDoc.first_child();
+        auto originalNode = originalDoc.first_child();
+
+        MergeNodeStructure(baseNode, modNode, originalNode, policy);
+    }
 }
 
 void XMLMerger2::MergeNodeStructure(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy) {

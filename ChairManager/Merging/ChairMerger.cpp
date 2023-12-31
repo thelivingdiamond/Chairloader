@@ -437,7 +437,7 @@ void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDi
     {
         // this is a file that hasn't been merged before, we should copy the original over
         fs::copy_file(originalFile, baseFile, fs::copy_options::overwrite_existing);
-        baseResult = baseDoc.load_file(baseFile.wstring().c_str());
+        baseResult = baseDoc.load_file(baseFile.wstring().c_str(), parseTags);
         if (!baseResult)
         {
             m_pLog->Log(severityLevel::error, "ChairMerger: Could not load base file %s",
