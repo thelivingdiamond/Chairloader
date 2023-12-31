@@ -30,6 +30,8 @@ public:
     virtual void ShowInspectorSelf() override;
     virtual void OnEnterPlayMode() override;
     virtual void OnExitPlayMode() override;
+    virtual bool IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect) override;
+    virtual void DrawSelection(bool isActive) override;
 
 private:
     XmlString m_EntityClassName;
@@ -48,6 +50,9 @@ private:
     //! Sets up the entity.
     //! @param  isExisting  Whether this is th entity found by FindExistingEntity.
     void SetUpEntity(bool isExisting);
+
+    //! Intersects a ray with the entity's OBB.
+    bool IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect);
 };
 
 } // namespace LevelEditor

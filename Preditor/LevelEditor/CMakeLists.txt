@@ -28,6 +28,7 @@ set(SOURCE_FILES
 	ObjectSelectionManager.cpp
 	ObjectSelectionManager.h
 	pch.h
+	RayIntersectInfo.h
 )
 
 add_library(Preditor.LevelEditor STATIC

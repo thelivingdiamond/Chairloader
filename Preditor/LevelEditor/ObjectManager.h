@@ -13,7 +13,7 @@ public:
     ObjectManager();
     ~ObjectManager();
 
-    //! @returns the list of objects.
+    //! @returns the list of objects. Some may be null if they were removed.
     const auto& GetObjects() const { return m_Objects; }
 
     //! @returns an object by ID or nullptr.

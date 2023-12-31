@@ -15,6 +15,8 @@ public:
     LevelEditMode();
     ~LevelEditMode();
 
+    ObjectManager* GetObjectManager() const { return m_pObjectManager.get(); }
+
     // ISceneEditor
     virtual SelectionManager* GetSelection() override;
     virtual IViewportHandler* GetViewport() override;

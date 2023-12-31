@@ -4,10 +4,13 @@
 #include "Components/Transform.h"
 #include "Utils/InspectorHelpers.h"
 
+struct ViewportRaycastInfo;
+
 namespace LevelEditor
 {
 
 class ObjectManager;
+struct RayIntersectInfo;
 
 enum class EObjectType
 {
@@ -104,6 +107,13 @@ public:
 
     //! Called when exiting Play Mode.
     virtual void OnExitPlayMode();
+
+    //! Intersects a ray with this object.
+    //! @returns Whether the object was hit.
+    virtual bool IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect);
+
+    //! Draws the selection outline for this object.
+    virtual void DrawSelection(bool isActive);
 
 protected:
     //! Sets the object type.

@@ -1,5 +1,9 @@
+#include <Prey/CryMath/Cry_GeoIntersect.h>
+#include <Prey/CryRenderer/IRenderAuxGeom.h>
+#include <Preditor/SceneEditor/IViewportHandler.h>
 #include "Components/EntityArchetypeComponent.h"
 #include "Objects/EntityObject.h"
+#include "RayIntersectInfo.h"
 
 LevelEditor::EntityObject::EntityObject()
 {
@@ -132,6 +136,26 @@ void LevelEditor::EntityObject::OnExitPlayMode()
     ApplyTranformToEntity();
 }
 
+bool LevelEditor::EntityObject::IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
+{
+    if (!m_pEntity)
+        return false;
+
+    return IntersectOBB(ray, intersect);
+}
+
+void LevelEditor::EntityObject::DrawSelection(bool isActive)
+{
+    if (!m_pEntity)
+        return;
+
+    ColorB color = isActive ? SELECTION_ACTIVE_COLOR : SELECTION_COLOR;
+
+    AABB aabb;
+    m_pEntity->GetLocalBounds(aabb);
+    gEnv->pAuxGeomRenderer->DrawAABB(aabb, GetTransform()->GetWorldTM(), false, color, eBBD_Faceted);
+}
+
 bool LevelEditor::EntityObject::FindExistingEntity()
 {
     CRY_ASSERT_MESSAGE(!m_pEntity, "Entity already found");
@@ -154,4 +178,25 @@ void LevelEditor::EntityObject::SetUpEntity(bool isExisting)
 {
     // Mark this entity non destroyable.
     m_pEntity->AddFlags(ENTITY_FLAG_UNREMOVABLE);
+}
+
+bool LevelEditor::EntityObject::IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
+{
+    if (!m_pEntity)
+        return false;
+
+    const Matrix34& worldTM = GetTransform()->GetWorldTM();
+    AABB aabb;
+    m_pEntity->GetLocalBounds(aabb);
+
+    OBB obb = OBB::CreateOBBfromAABB(Matrix33(worldTM), aabb);
+    Vec3 hitPos;
+
+    if (Intersect::Ray_OBB(ray.ray, worldTM.GetTranslation(), obb, hitPos) == 0x01)
+    {
+        intersect.hitPosition = hitPos;
+        return true;
+    }
+
+    return false;
 }

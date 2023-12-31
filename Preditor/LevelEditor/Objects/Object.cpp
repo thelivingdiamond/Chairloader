@@ -1,4 +1,7 @@
+#include <Prey/CryMath/Cry_GeoIntersect.h>
+#include <Preditor/SceneEditor/IViewportHandler.h>
 #include "Objects/Object.h"
+#include "RayIntersectInfo.h"
 
 LevelEditor::Object::Object()
 {
@@ -72,6 +75,27 @@ void LevelEditor::Object::OnEnterPlayMode()
 void LevelEditor::Object::OnExitPlayMode()
 {
     m_Components.InvokeOnAll<&Component::OnExitPlayMode>();
+}
+
+bool LevelEditor::Object::IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
+{
+    // Intersect with a small OBB
+    const Matrix34& worldTM = GetTransform()->GetWorldTM();
+    OBB obb = OBB::CreateOBB(Matrix33(worldTM), Vec3(0.25f), Vec3(ZERO));
+
+    Vec3 hitPos;
+    if (Intersect::Ray_OBB(ray.ray, worldTM.GetTranslation(), obb, hitPos) == 0x01)
+    {
+        intersect.hitPosition = hitPos;
+        return true;
+    }
+
+    return false;
+}
+
+void LevelEditor::Object::DrawSelection(bool isActive)
+{
+    // Not implemented
 }
 
 void LevelEditor::Object::SetType(const ObjectTypeInfo& typeInfo)

@@ -132,8 +132,8 @@ const char* LevelEditor::LevelEditMode::GetObjectName(SceneObjectId id)
     if (id == INVALID_SCENE_OBJECT)
         return nullptr;
 
-    IEntity* pEnt = gEnv->pEntitySystem->GetEntity((EntityId)id);
-    return pEnt ? pEnt->GetName() : nullptr;
+    Object* pObject = GetObjectManager()->GetObject(id);
+    return pObject ? pObject->GetName().c_str() : nullptr;
 }
 
 void LevelEditor::LevelEditMode::OnEnabled()
