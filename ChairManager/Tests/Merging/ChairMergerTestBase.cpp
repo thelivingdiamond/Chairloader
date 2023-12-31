@@ -26,6 +26,57 @@ void ChairMergerTestBase::InitTest(const std::string& testName)
 
     fs::create_directories(m_TempDir);
     fs::create_directories(m_GameDir);
+
+    fs::path emptyZip = m_BaseDir / "EmptyZip.zip";
+
+    // Create fake paks in game root
+    constexpr const char* FAKE_PAKS[] = {
+        "Localization/english.pak",
+        "Localization/English_anim.pak",
+        "Localization/English_anim_patch.pak",
+        "Localization/english_patch.pak",
+        "Localization/English_xml.pak",
+        "Localization/English_xml_patch.pak",
+
+        "GameSDK/Levels/Campaign/EndGame/level.pak",
+        "GameSDK/Levels/Campaign/EndGame/TerrainTexture.pak",
+        "GameSDK/Levels/Campaign/Engineering/CargoBay/level.pak",
+        "GameSDK/Levels/Campaign/Engineering/CargoBay/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Engineering/LifeSupport/level.pak",
+        "GameSDK/Levels/Campaign/Engineering/LifeSupport/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Engineering/PowerSource/level.pak",
+        "GameSDK/Levels/Campaign/Engineering/PowerSource/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Executive/Arboretum/level.pak",
+        "GameSDK/Levels/Campaign/Executive/Arboretum/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Executive/Bridge/level.pak",
+        "GameSDK/Levels/Campaign/Executive/Bridge/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Executive/CorporateIT/level.pak",
+        "GameSDK/Levels/Campaign/Executive/CorporateIT/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Executive/CrewFacilities/level.pak",
+        "GameSDK/Levels/Campaign/Executive/CrewFacilities/terraintexture.pak",
+        "GameSDK/Levels/Campaign/PlayerGenderSelect/level.pak",
+        "GameSDK/Levels/Campaign/Research/Lobby/level.pak",
+        "GameSDK/Levels/Campaign/Research/Lobby/TerrainTexture.pak",
+        "GameSDK/Levels/Campaign/Research/Prototype/level.pak",
+        "GameSDK/Levels/Campaign/Research/Prototype/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Research/Psychotronics/level.pak",
+        "GameSDK/Levels/Campaign/Research/Psychotronics/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Research/ShuttleBay/level.pak",
+        "GameSDK/Levels/Campaign/Research/ShuttleBay/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Research/SimulationLabs/level.pak",
+        "GameSDK/Levels/Campaign/Research/SimulationLabs/TerrainTexture.pak",
+        "GameSDK/Levels/Campaign/Research/ZeroG_UtilityTunnels/level.pak",
+        "GameSDK/Levels/Campaign/Research/ZeroG_UtilityTunnels/terraintexture.pak",
+        "GameSDK/Levels/Campaign/Station/Exterior/level.pak",
+        "GameSDK/Levels/Campaign/Station/Exterior/terraintexture.pak",
+    };
+
+    for (const char* fakePakName : FAKE_PAKS)
+    {
+        fs::path fakePak = m_GameDir / fakePakName;
+        fs::create_directories(fakePak.parent_path());
+        fs::copy_file(emptyZip, fakePak);
+    }
 }
 
 void ChairMergerTestBase::LoadMods()
