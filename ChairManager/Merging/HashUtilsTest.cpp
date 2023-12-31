@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <numeric>
 #include "HashUtils.h"
+#include "ZipUtils.h"
 #include "Manager/ThreadPool.h"
 
 static const fs::path g_PreyFiles = "Testing/ChairMerger/_PreyFiles";
@@ -31,17 +32,15 @@ TEST(HashUtilsTest, HashUncompressedFile)
     EXPECT_EQ(digest, expectedDigest);
 }
 
-// TODO 2023-12-31: File is missing
-#if 0
 TEST(HashUtilsTest, UncompressedFileDirectoryEquality)
 {
     //    the hash of a directory and the hash of the uncompressed file should be the same
+    ZipUtils::CompressFolder(g_PreyFiles / "Ark", "Testing/Hashing/Ark.pak");
     auto digest = HashUtils::HashDirectory(g_PreyFiles / "Ark");
     auto uncompressedDigest = HashUtils::HashUncompressedFile("Testing/Hashing/Ark.pak");
 
     EXPECT_EQ(digest, uncompressedDigest);
 }
-#endif
 
 // TEST(HashUtilsTest, HardDrivePerformanceTest20Iterations){
 //     std::vector<uint64_t> durations;
