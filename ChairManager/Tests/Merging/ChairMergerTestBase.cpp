@@ -22,7 +22,10 @@ void ChairMergerTestBase::InitTest(const std::string& testName)
     if (fs::exists(m_TempDir))
         fs::remove_all(m_TempDir);
 
+    m_GameDir = m_TempDir / "Game";
+
     fs::create_directories(m_TempDir);
+    fs::create_directories(m_GameDir);
 }
 
 void ChairMergerTestBase::LoadMods()
@@ -73,7 +76,7 @@ void ChairMergerTestBase::CreateMerger()
         m_BaseDir / "_PreyFiles",
         m_BaseDir / "_ChairloaderPatch",
         m_TempDir,
-        m_BaseDir / "_GamePath",
+        m_GameDir,
         static_cast<ILogger*>(this),
         static_cast<IChairManager*>(this)
     );
@@ -127,7 +130,7 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
     else
     {
         // Compare the file
-        if (dirToCheck.extension() == "xml")
+        if (dirToCheck.extension() == ".xml")
         {
             // Compare XML
             pugi::xml_document docExpected = XmlTestUtils::LoadDocument(expected);
@@ -142,14 +145,14 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
 
             if (expectedData.size() != actualData.size())
             {
-                ADD_FAILURE() << "File size mismatch: " << expected.u8string() << " " << dirToCheck.u8string() << ""
+                ADD_FAILURE() << "File size mismatch: \n" << expected.u8string() << " " << dirToCheck.u8string() << "\n"
                     << expectedData.size() << " " << actualData.size();
                 return false;
             }
 
             if (memcmp(expectedData.data(), actualData.data(), expectedData.size()))
             {
-                ADD_FAILURE() << "File content mismatch: " << expected.u8string() << " " << dirToCheck.u8string();
+                ADD_FAILURE() << "File content mismatch: \n" << expected.u8string() << "\n\n" << dirToCheck.u8string();
                 return false;
             }
 
@@ -164,9 +167,9 @@ std::vector<uint8_t> ChairMergerTestBase::ReadFile(const fs::path& path)
     std::ifstream f;
     f.exceptions(std::ios::badbit | std::ios::failbit);
     f.open(path, std::ios::binary);
-    f.seekg(std::ios::end);
+    f.seekg(0, std::ios::end);
     fileData.resize((size_t)f.tellg());
-    f.seekg(std::ios::beg);
+    f.seekg(0, std::ios::beg);
     f.read((char*)fileData.data(), fileData.size());
     return fileData;
 }

@@ -17,6 +17,7 @@ protected:
     fs::path m_BaseDir; //!< Where common test files are located
     fs::path m_TestDir; //!< Where this test's files are located
     fs::path m_TempDir; //!< Temporary files (e.g. merging results)
+    fs::path m_GameDir; //!< Game directory
     std::unique_ptr<ChairMerger> m_pMerger;
 
     std::vector<Mod> m_Mods;
