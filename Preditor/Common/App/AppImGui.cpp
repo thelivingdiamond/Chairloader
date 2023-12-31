@@ -168,7 +168,7 @@ void AppImGui::InitImGui()
 
 	// Ini path
 	static char iniPath[512];
-	snprintf(iniPath, sizeof(iniPath), "%s/imgui.ini", Application::Get()->GetProgramPath().u8string().c_str());
+	snprintf(iniPath, sizeof(iniPath), "%s/Configs/imgui.ini", Application::Get()->GetProgramPath().u8string().c_str());
 	io.IniFilename = iniPath;
 
 	ImGui::StyleColorsDark();
