@@ -17,6 +17,8 @@ LevelEditor::Object::Object()
 
 LevelEditor::Object::~Object()
 {
+    // Destroy components while the object is still alive
+    m_pTransform.reset();
 }
 
 void LevelEditor::Object::SetName(const std::string& name)
