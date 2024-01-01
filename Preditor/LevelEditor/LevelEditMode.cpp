@@ -1,3 +1,5 @@
+#include <Prey/CryCore/Platform/CryWindows.h>
+#include <Mmsystem.h>
 #include <Prey/Cry3DEngine/I3DEngine.h>
 #include <Prey/CryAction/IActorSystem.h>
 #include <Prey/CryEntitySystem/Entity.h>
@@ -194,6 +196,11 @@ void LevelEditor::LevelEditMode::OnEnterPlayMode()
 {
     CryLog("================= Enter Play Mode =================");
     gPreditor->pViewportWindow->ActivateGameViewport();
+
+    // Play sound at the beginning to inform the user that
+    // play mode is being enabled. It takes so long that the user
+    // may think that the mouse click/key press didn't go through
+    PlaySoundW(L"Windows Message Nudge.wav", nullptr, SND_FILENAME | SND_ASYNC);
 
     // Reset 3d engine effects
     gEnv->p3DEngine->ResetPostEffects();
