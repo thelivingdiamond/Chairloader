@@ -3,6 +3,7 @@
 #include "Utils/AffineParts.h"
 
 LevelEditor::Transform::Transform()
+    : m_ThisItemInParent(this)
 {
     CalcLocalTM();
     CalcWorldTM();
@@ -10,6 +11,17 @@ LevelEditor::Transform::Transform()
 
 LevelEditor::Transform::~Transform()
 {
+    if (m_pParent)
+    {
+        m_pParent->m_Children.remove(m_ThisItemInParent);
+        m_pParent = nullptr;
+    }
+
+    for (Transform& child : m_Children)
+    {
+        CRY_ASSERT(child.GetParent() == this);
+        child.SetParent(nullptr);
+    }
 }
 
 void LevelEditor::Transform::SetPos(const Vec3& pos)
@@ -55,9 +67,64 @@ void LevelEditor::Transform::SetLocalTM(const Matrix34& tm)
 
 void LevelEditor::Transform::SetWorldTM(const Matrix34& tm)
 {
-    // TODO 2023-07-16: Transform hierarchy
-    SetLocalTM(tm);
+    Transform* pParent = GetParent();
+
+    if (pParent)
+    {
+        Matrix34 localTM = pParent->GetWorldTM().GetInverted() * tm;
+        SetLocalTM(localTM);
+    }
+    else
+    {
+        SetLocalTM(tm);
+    }
 }
+
+void LevelEditor::Transform::SetParent(Transform* pNewParent, bool suppressTransform)
+{  
+    if (pNewParent == this)
+    {
+        CryError("Object {}: Attempted to set self as parent", GetObject()->GetName());
+        return;
+    }
+
+    if (m_pParent == pNewParent)
+        return;
+
+    if (m_pParent)
+    {
+        // Remove from the current parent
+        m_pParent->m_Children.remove(m_ThisItemInParent);
+        m_pParent = nullptr;
+    }
+
+    if (pNewParent)
+    {
+        // Add to the foster parent
+        pNewParent->m_Children.add(m_ThisItemInParent);
+        m_pParent = pNewParent;
+
+#ifdef DEBUG_BUILD
+        // Alabama check
+        for (Transform& child : pNewParent->m_Children)
+        {
+            CRY_ASSERT(child.GetParent() == pNewParent);
+        }
+#endif
+    }
+
+#ifdef DEBUG_BUILD
+    // Alabama check
+    for (Transform& child : m_Children)
+    {
+        CRY_ASSERT(child.GetParent() == this);
+    }
+#endif
+
+    if (!suppressTransform)
+        InvalidateTM(ENTITY_XFORM_FROM_PARENT);
+}
+
 
 void LevelEditor::Transform::InvalidateTM(unsigned nWhyFlags)
 {
@@ -67,6 +134,12 @@ void LevelEditor::Transform::InvalidateTM(unsigned nWhyFlags)
     CalcLocalTM();
     CalcWorldTM();
     GetObject()->OnTransformChanged(nWhyFlags);
+
+    for (Transform& child : m_Children)
+    {
+        CRY_ASSERT(child.GetParent() == this);
+        child.InvalidateTM(ENTITY_XFORM_FROM_PARENT);
+    }
 }
 
 void LevelEditor::Transform::Init(XmlNodeRef objectNode)
@@ -165,6 +238,8 @@ void LevelEditor::Transform::CalcLocalTM()
 
 void LevelEditor::Transform::CalcWorldTM()
 {
-    // TODO 2023-07-16: Transform hierarchy
-    m_WMat = m_Mat;
+    if (m_pParent)
+        m_WMat = m_pParent->m_WMat * m_Mat;
+    else
+        m_WMat = m_Mat;
 }

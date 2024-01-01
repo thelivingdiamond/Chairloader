@@ -161,13 +161,7 @@ void LevelEditor::LevelEditMode::ShowHierarchy()
     {
         ImGui::PushID(i);
         Object* pObj = objs[i].get();
-        
-        if (ImGui::Selectable(pObj->GetName().c_str()))
-        {
-            m_pSelection->ClearSelection();
-            m_pSelection->AddToSelection(i);
-        }
-
+        ShowObjectInHierarchy(pObj);
         ImGui::PopID();
     }
 }
@@ -285,6 +279,34 @@ void LevelEditor::LevelEditMode::MovePlayerToSceneCamera()
 
         pClActor->GetEntity()->SetPosRotScale(sceneCam.GetTranslation(), Quat(sceneCam), Vec3(1, 1, 1),
             ENTITY_XFORM_EDITOR | ENTITY_XFORM_POS | ENTITY_XFORM_ROT | ENTITY_XFORM_SCL);
+    }
+}
+
+void LevelEditor::LevelEditMode::ShowObjectInHierarchy(Object* pObj)
+{
+    auto& children = pObj->GetTransform()->GetChildren();
+
+    if (!children.empty())
+    {
+        if (ImGui::TreeNode(pObj->GetName().c_str()))
+        {
+            for (Transform& child : pObj->GetTransform()->GetChildren())
+            {
+                ImGui::PushID(&child);
+                ShowObjectInHierarchy(child.GetObject());
+                ImGui::PopID();
+            }
+
+            ImGui::TreePop();
+        }
+    }
+    else
+    {
+        if (ImGui::Selectable(pObj->GetName().c_str()))
+        {
+            m_pSelection->ClearSelection();
+            m_pSelection->AddToSelection(pObj->GetObjectId());
+        }
     }
 }
 

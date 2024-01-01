@@ -12,6 +12,9 @@ public:
     EditToolManager(ISceneEditor* pEditor);
     ~EditToolManager();
 
+    //! @returns Whether this edit tool manager is the active one.
+    bool IsActive() const { return m_bIsActive; }
+
     //! @returns the editor that owns this tool manager;
     ISceneEditor* GetEditor() const { return m_pEditor; }
 
@@ -35,6 +38,8 @@ public:
 private:
     bool m_bIsActive = false;
     ISceneEditor* m_pEditor = nullptr;
+    std::map<std::string, EditTool*> m_KeyActionToTool;
+
     EditTool* m_pCurTool = nullptr;
     bool m_bPivotCenter = true;
     bool m_bWorldTransform = false;
@@ -48,7 +53,7 @@ private:
     void SetCurrentTool(EditTool* pTool);
 
     //! Adds an key action event handler to switch to the tool.
-    void RegisterToolSelectKey(std::string_view action, std::unique_ptr<EditTool>& pTool);
+    void RegisterToolSelectKey(std::string_view action, EditTool* pTool, bool bAddListener);
 };
 
 } // namespace EditTools

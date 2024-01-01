@@ -71,7 +71,7 @@ void LevelEditor::EntityObject::RespawnEntity()
     }
 }
 
-void LevelEditor::EntityObject::ApplyTranformToEntity(unsigned nWhyFlags)
+void LevelEditor::EntityObject::ApplyTransformToEntity(unsigned nWhyFlags)
 {
     if (m_pEntity)
     {
@@ -126,20 +126,20 @@ void LevelEditor::EntityObject::ShowInspectorSelf()
 
 void LevelEditor::EntityObject::OnTransformChanged(unsigned nWhyFlags)
 {
+    ApplyTransformToEntity();
     Object::OnTransformChanged(nWhyFlags);
-    ApplyTranformToEntity(nWhyFlags);
 }
 
 void LevelEditor::EntityObject::OnEnterPlayMode()
 {
     Object::OnEnterPlayMode();
-    ApplyTranformToEntity();
+    ApplyTransformToEntity();
 }
 
 void LevelEditor::EntityObject::OnExitPlayMode()
 {
     Object::OnExitPlayMode();
-    ApplyTranformToEntity();
+    ApplyTransformToEntity();
 }
 
 bool LevelEditor::EntityObject::IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
