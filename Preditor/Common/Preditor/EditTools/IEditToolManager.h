@@ -30,4 +30,9 @@ struct IEditToolManager
     //! @param  vpSize      Size of the viewport.
     //! @returns action result.
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize) = 0;
+
+    //! Called from the viewport ImGui window context.
+    //! @param  bounds  Viewport bounds.
+    //! @param  camera  Viewport camera.
+    virtual void DrawViewport(const Vec4& bounds, const CCamera& camera) = 0;
 };

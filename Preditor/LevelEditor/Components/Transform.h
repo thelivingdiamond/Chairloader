@@ -25,10 +25,14 @@ public:
     void SetRot(const Quat& rot);
     void SetScale(const Vec3& scale);
     void SetPosRotScale(const Vec3& pos, const Quat& rot, const Vec3& scale);
+    void SetLocalTM(const Matrix34& tm);
     //! @}
     
     //! @returns world-space tranformation matrix.
     const Matrix34& GetWorldTM() const { return m_WMat; }
+
+    //! Sets the world-space tranformation matrix.
+    void SetWorldTM(const Matrix34& tm);
 
     //! Invalidates the transformation matrix.
     //! @param  nWhyFlags   Mask of EEntityXFormFlags. Informs what has changed.

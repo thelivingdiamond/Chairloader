@@ -23,11 +23,12 @@ public:
     void RespawnEntity();
 
     //! Applies the object tranform to the entity.
-    void ApplyTranformToEntity();
+    void ApplyTranformToEntity(unsigned nWhyFlags = 0);
 
     // Object
     virtual void Init(XmlNodeRef objectNode) override;
     virtual void ShowInspectorSelf() override;
+    virtual void OnTransformChanged(unsigned nWhyFlags) override;
     virtual void OnEnterPlayMode() override;
     virtual void OnExitPlayMode() override;
     virtual bool IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect) override;

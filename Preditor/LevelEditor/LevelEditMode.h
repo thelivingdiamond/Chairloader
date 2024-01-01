@@ -7,6 +7,7 @@ namespace LevelEditor
 class ObjectSelectionManager;
 class LevelViewportHandler;
 class ObjectManager;
+class ObjectManipulator;
 
 //! Runtime entity editing.
 class LevelEditMode : public ILevelSceneEditor
@@ -20,7 +21,7 @@ public:
     // ISceneEditor
     virtual SelectionManager* GetSelection() override;
     virtual IViewportHandler* GetViewport() override;
-    virtual IObjectManipulator* GetManipulator() override { return nullptr; } // TODO 2023-06-17
+    virtual IObjectManipulator* GetManipulator() override;
     virtual IEditToolManager* GetToolManager() override { return m_pEditToolManager.get(); }
     virtual UndoBuffer* GetUndoBuffer() override { return nullptr; } // TODO 2023-06-17
     virtual const char* GetObjectName(SceneObjectId id) override;
@@ -41,6 +42,7 @@ private:
     std::unique_ptr<LevelViewportHandler> m_pViewportHandler;
     std::unique_ptr<IEditToolManager> m_pEditToolManager;
     std::unique_ptr<ObjectManager> m_pObjectManager;
+    std::unique_ptr<ObjectManipulator> m_pObjectManipulator;
     ICVar* m_pCanSaveLoad = nullptr;
 
     std::unique_ptr<SInGameEntitySystemListener> m_pEntitySystemListener;

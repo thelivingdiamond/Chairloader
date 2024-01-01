@@ -15,6 +15,8 @@ set(SOURCE_FILES
 	Objects/Object.cpp
 	Objects/Object.h
 
+	Utils/AffineParts.cpp
+	Utils/AffineParts.h
 	Utils/InspectorHelpers.cpp
 	Utils/InspectorHelpers.h
 
@@ -25,6 +27,8 @@ set(SOURCE_FILES
 	LevelViewportHandler.h
 	ObjectManager.cpp
 	ObjectManager.h
+	ObjectManipulator.cpp
+	ObjectManipulator.h
 	ObjectSelectionManager.cpp
 	ObjectSelectionManager.h
 	pch.h

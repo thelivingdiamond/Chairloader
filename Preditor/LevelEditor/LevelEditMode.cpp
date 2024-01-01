@@ -13,6 +13,7 @@
 #include "LevelEditMode.h"
 #include "LevelViewportHandler.h"
 #include "ObjectManager.h"
+#include "ObjectManipulator.h"
 
 // Implements EntitySystemSink for play mode.
 struct LevelEditor::LevelEditMode::SInGameEntitySystemListener : public IEntitySystemSink
@@ -100,6 +101,7 @@ LevelEditor::LevelEditMode::LevelEditMode()
     m_pViewportHandler = std::make_unique<LevelViewportHandler>(this);
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
     m_pObjectManager = std::make_unique<ObjectManager>();
+    m_pObjectManipulator = std::make_unique<ObjectManipulator>(this);
 
     // Disable save/load
     m_pCanSaveLoad = gEnv->pConsole->GetCVar("g_EnableLoadSave");
@@ -125,6 +127,11 @@ SelectionManager* LevelEditor::LevelEditMode::GetSelection()
 IViewportHandler* LevelEditor::LevelEditMode::GetViewport()
 {
     return m_pViewportHandler.get();
+}
+
+IObjectManipulator* LevelEditor::LevelEditMode::GetManipulator()
+{
+    return m_pObjectManipulator.get();
 }
 
 const char* LevelEditor::LevelEditMode::GetObjectName(SceneObjectId id)

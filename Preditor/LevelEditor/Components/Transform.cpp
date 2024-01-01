@@ -1,5 +1,6 @@
 #include "Components/Transform.h"
 #include "Objects/Object.h"
+#include "Utils/AffineParts.h"
 
 LevelEditor::Transform::Transform()
 {
@@ -35,6 +36,27 @@ void LevelEditor::Transform::SetPosRotScale(const Vec3& pos, const Quat& rot, co
     m_Rot = rot;
     m_Scale = scale;
     InvalidateTM(ENTITY_XFORM_POS | ENTITY_XFORM_ROT | ENTITY_XFORM_SCL);
+}
+
+void LevelEditor::Transform::SetLocalTM(const Matrix34& tm)
+{
+    if (tm.IsOrthonormal())
+    {
+        SetPosRotScale(tm.GetTranslation(), Quat(tm), Vec3(1.0f));
+    }
+    else
+    {
+        AffineParts affineParts;
+        affineParts.SpectralDecompose(tm);
+
+        SetPosRotScale(affineParts.pos, affineParts.rot, affineParts.scale);
+    }
+}
+
+void LevelEditor::Transform::SetWorldTM(const Matrix34& tm)
+{
+    // TODO 2023-07-16: Transform hierarchy
+    SetLocalTM(tm);
 }
 
 void LevelEditor::Transform::InvalidateTM(unsigned nWhyFlags)

@@ -186,13 +186,15 @@ void Viewport::SceneViewport::ShowUI()
 
 	if (m_IsInCameraMode)
 	{
-		Vec2 delta = gPreditor->pInput->GetMouse()->GetMouseDelta();
-		Ang3 rot = m_CamInfo.rot;
-		rot.z -= delta.x;
-		rot.x -= delta.y;
-		m_CamInfo.rot = Ang3(Quat(rot)); // Quick and dirty 360 deg wrapping
-
+		ProcessInput();
 		ImGui::SetWindowFocus();
+	}
+
+	if (pEditor)
+	{
+		pEditor->GetToolManager()->DrawViewport(
+			Vec4(imageBounds.x, imageBounds.y, imageBounds.z, imageBounds.w),
+			m_Cam);
 	}
 }
 
@@ -294,69 +296,90 @@ void Viewport::SceneViewport::ShowCameraMenu()
 	}
 }
 
+void Viewport::SceneViewport::ProcessInput()
+{
+	CameraInfo& info = m_CamInfo;
+	float timeDelta = gEnv->pTimer->GetRealFrameTime(); // TODO 2023-08-27: Use custom timer, GetRealFrameTime is unreliable
+
+	// Rotation
+	Vec2 delta = gPreditor->pInput->GetMouse()->GetMouseDelta();
+	Ang3 rot = m_CamInfo.rot;
+	rot.z -= delta.x;
+	rot.x -= delta.y;
+
+	Quat qrot(rot);
+	m_CamInfo.rot = Ang3(qrot); // Quick and dirty 360 deg wrapping
+
+	// Position
+	Vec3 dir = Vec3(ZERO);
+	const Vec3 fwd = Vec3(0, 1, 0);
+	const Vec3 right = Vec3(1, 0, 0);
+	const Vec3 up = Vec3(0, 0, 1);
+
+	if (m_pFwd->IsHeldDown())
+		dir += fwd;
+	if (m_pBkwd->IsHeldDown())
+		dir -= fwd;
+
+	if (m_pRight->IsHeldDown())
+		dir += right;
+	if (m_pLeft->IsHeldDown())
+		dir -= right;
+
+	if (m_pUp->IsHeldDown())
+		dir += up;
+	if (m_pDown->IsHeldDown())
+		dir -= up;
+
+	dir.NormalizeSafe();
+
+	Vec2 speedLimit = Vec2(CV_ed_ViewMinSpeed, CV_ed_ViewMaxSpeed);
+	float accel = CV_ed_ViewAccel;
+
+	if (m_pSpeedUp->IsHeldDown())
+	{
+		speedLimit *= CV_ed_ViewBoostScale;
+		accel *= CV_ed_ViewBoostScale;
+	}
+
+	if (dir != Vec3(ZERO))
+	{
+		m_MoveSpeed += accel * timeDelta;
+		m_MoveSpeed = std::clamp(m_MoveSpeed, speedLimit.x, speedLimit.y);
+	}
+	else
+	{
+		m_MoveSpeed -= accel * timeDelta;
+		m_MoveSpeed = std::max(0.0f, m_MoveSpeed);
+	}
+
+	info.pos += (qrot * dir) * (m_MoveSpeed * timeDelta);
+
+	// Update the matrix
+	// This will not update the FOV, size, etc. They will lag behind by one frame
+	// when rendering the gizmo. But that's not an issue.
+	UpdateCameraMatrix();
+}
+
+void Viewport::SceneViewport::UpdateCameraMatrix()
+{
+	m_Cam.SetMatrix(Matrix34::Create(Vec3(1, 1, 1), Quat(m_CamInfo.rot), m_CamInfo.pos));
+}
+
 void Viewport::SceneViewport::UpdateCamera()
 {
+	const CCamera& viewCam = gEnv->pSystem->GetViewCamera();
 	CameraInfo& info = m_CamInfo;
 
 	if (!info.transformValid)
 	{
 		info.transformValid = true;
 		CopyViewCameraTransform();
-	}
-
-	Quat rotQuat = Quat(info.rot);
-
-	// Positional input
-	{
-		float timeDelta = gEnv->pTimer->GetRealFrameTime();
-
-		Vec3 dir = Vec3(ZERO);
-		const Vec3 fwd = Vec3(0, 1, 0);
-		const Vec3 right = Vec3(1, 0, 0);
-		const Vec3 up = Vec3(0, 0, 1);
-
-		if (m_pFwd->IsHeldDown())
-			dir += fwd;
-		if (m_pBkwd->IsHeldDown())
-			dir -= fwd;
-
-		if (m_pRight->IsHeldDown())
-			dir += right;
-		if (m_pLeft->IsHeldDown())
-			dir -= right;
-
-		if (m_pUp->IsHeldDown())
-			dir += up;
-		if (m_pDown->IsHeldDown())
-			dir -= up;
-
-		dir.NormalizeSafe();
-
-		Vec2 speedLimit = Vec2(CV_ed_ViewMinSpeed, CV_ed_ViewMaxSpeed);
-		float accel = CV_ed_ViewAccel;
-
-		if (m_pSpeedUp->IsHeldDown())
-		{
-			speedLimit *= CV_ed_ViewBoostScale;
-			accel *= CV_ed_ViewBoostScale;
-		}
-
-		if (dir != Vec3(ZERO))
-		{
-			m_MoveSpeed += accel * timeDelta;
-			m_MoveSpeed = std::clamp(m_MoveSpeed, speedLimit.x, speedLimit.y);
-		}
-		else
-		{
-			m_MoveSpeed -= accel * timeDelta;
-			m_MoveSpeed = std::max(0.0f, m_MoveSpeed);
-		}
-
-		info.pos += (rotQuat * dir) * (m_MoveSpeed * timeDelta);
+		UpdateCameraMatrix();
 	}
 
 	Matrix34 camMat;
-	camMat.SetRotation33(Matrix33(rotQuat));
+	camMat.SetRotation33(Matrix33(Quat(info.rot)));
 	camMat.SetTranslation(info.pos);
 	m_Cam.SetMatrixNoUpdate(camMat);
 

@@ -71,12 +71,12 @@ void LevelEditor::EntityObject::RespawnEntity()
     }
 }
 
-void LevelEditor::EntityObject::ApplyTranformToEntity()
+void LevelEditor::EntityObject::ApplyTranformToEntity(unsigned nWhyFlags)
 {
     if (m_pEntity)
     {
         Transform* t = GetTransform();
-        m_pEntity->SetPosRotScale(t->GetPos(), t->GetRot(), t->GetScale(), ENTITY_XFORM_EDITOR);
+        m_pEntity->SetPosRotScale(t->GetPos(), t->GetRot(), t->GetScale(), nWhyFlags | ENTITY_XFORM_EDITOR);
     }
 }
 
@@ -122,6 +122,12 @@ void LevelEditor::EntityObject::ShowInspectorSelf()
 
     if (ImGui::Button("Respawn"))
         RespawnEntity();
+}
+
+void LevelEditor::EntityObject::OnTransformChanged(unsigned nWhyFlags)
+{
+    Object::OnTransformChanged(nWhyFlags);
+    ApplyTranformToEntity(nWhyFlags);
 }
 
 void LevelEditor::EntityObject::OnEnterPlayMode()

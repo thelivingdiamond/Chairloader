@@ -1,6 +1,8 @@
+#include <Preditor/Input/IPreditorInput.h>
 #include "EditTool.h"
 #include "EditToolManager.h"
 #include "SelectTool.h"
+#include "ImGuizmoTool.h"
 
 std::unique_ptr<IEditToolManager> IEditToolManager::CreateInstance(ISceneEditor* pEditor)
 {
@@ -12,6 +14,26 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pEditor = pEditor;
 
     m_pSelectTool = std::make_unique<SelectTool>(this);
+    m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE, Vec3(0.25f));
+    m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE, Vec3(5));
+    m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE, Vec3(0.25f));
+
+    RegisterToolSelectKey("select", m_pSelectTool);
+    RegisterToolSelectKey("move", m_pMoveTool);
+    RegisterToolSelectKey("rotate", m_pRotateTool);
+    RegisterToolSelectKey("scale", m_pScaleTool);
+
+    gPreditor->pInput->FindAction("transform_tools.toggle_pivot")->AddListener([this](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                m_bPivotCenter ^= 1;
+        });
+
+    gPreditor->pInput->FindAction("transform_tools.toggle_tool_space")->AddListener([this](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                m_bWorldTransform ^= 1;
+        });
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
@@ -23,14 +45,25 @@ EditTools::EditToolManager::~EditToolManager()
 
 void EditTools::EditToolManager::ShowSelectionUI()
 {
-    EditTool* tools[] = { m_pSelectTool.get() };
-    const char* names[] = {"Select"};
+    if (ImGui::Button(m_bPivotCenter ? ICON_MD_CENTER_FOCUS_WEAK : ICON_MD_TRIP_ORIGIN))
+        m_bPivotCenter ^= 1;
+    ImGui::SameLine();
+
+    if (ImGui::Button(m_bWorldTransform ? ICON_MD_LANGUAGE : ICON_MD_VIEW_IN_AR))
+        m_bWorldTransform ^= 1;
+    ImGui::SameLine();
+
+    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get(), m_pRotateTool.get(), m_pScaleTool.get() };
+    const char* names[] = { "Select", "Move", "Rotate", "Scale" };
 
     for (size_t i = 0; i < std::size(tools); i++)
     {
         if (ImGui::RadioButton(names[i], tools[i] == m_pCurTool))
             SetCurrentTool(tools[i]);
+        ImGui::SameLine();
     }
+
+    ImGui::NewLine();
 }
 
 void EditTools::EditToolManager::SetEnabled(bool state)
@@ -64,6 +97,17 @@ EEditToolResult EditTools::EditToolManager::OnLeftMouseClick(Vec2 clickPos, Vec2
     return result;
 }
 
+void EditTools::EditToolManager::DrawViewport(const Vec4& bounds, const CCamera& camera)
+{
+    if (!m_bIsActive)
+        return;
+
+    if (m_pCurTool)
+    {
+        m_pCurTool->DrawViewport(bounds, camera);
+    }
+}
+
 void EditTools::EditToolManager::SetCurrentTool(EditTool* pTool)
 {
     // If nullptr, default to select tool
@@ -84,4 +128,15 @@ void EditTools::EditToolManager::SetCurrentTool(EditTool* pTool)
         m_pCurTool = pTool;
         m_pCurTool->SetActive(m_bIsActive);
     }
+}
+
+void EditTools::EditToolManager::RegisterToolSelectKey(std::string_view action, std::unique_ptr<EditTool>& pTool)
+{
+    IKeyActionSet* pActionSet = gPreditor->pInput->GetKeyboard()->FindActionSet("tool_select");
+    IKeyAction* pAction = pActionSet->FindAction(action);
+    pAction->AddListener([this, &pTool](const KeyActionEventArgs& e)
+        {
+            if (e.isPressed)
+                SetCurrentTool(pTool.get());
+        });
 }

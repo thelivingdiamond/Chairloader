@@ -53,6 +53,22 @@
         </Action>
     </ActionSet>
 
+    <!-- Transform Tools -->
+    <ActionSet
+        name="transform_tools"
+        description="Transform Tools"
+        priority="60">
+        <Action name="toggle_pivot" description="Toggle tool pivot between origin and center">
+            <Bind key="z"/>
+        </Action>
+        <Action name="toggle_tool_space" description="Toggle tool space between local and world">
+            <Bind key="x"/>
+        </Action>
+        <Action name="snap" description="Snap To Grid" isModifier="1">
+            <Bind key="lctrl"/>
+        </Action>
+    </ActionSet>
+
     <!-- Tool Selection -->
     <ActionSet
         name="tool_select"

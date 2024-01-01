@@ -6,6 +6,7 @@
 #include <imgui.h>
 #include <imgui_internal.h>
 #include <imgui_impl_win32.h>
+#include <ImGuizmo/ImGuizmo.h>
 #include <App/Application.h>
 #include <Preditor/Main/IUserProjectSettings.h>
 #include <Preditor/Input/IPreditorInput.h>
@@ -173,6 +174,7 @@ void Engine::PreditorImGui::BeginFrame()
         ReloadFontsNow();
 
     ImGui::NewFrame();
+    ImGuizmo::BeginFrame();
 }
 
 void Engine::PreditorImGui::EndFrame()

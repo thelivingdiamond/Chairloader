@@ -79,6 +79,8 @@ private:
 
     void ShowCameraMenu();
 
+    void ProcessInput();
+    void UpdateCameraMatrix();
     void UpdateCamera();
     void CopyViewCameraTransform();
 
