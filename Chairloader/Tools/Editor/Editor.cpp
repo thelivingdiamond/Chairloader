@@ -118,18 +118,6 @@ void Editor::UpdateBeforeSystem()
 		std::abort();
 		break;
 	}
-
-	if (ImGui::Begin("Editor Debug"))
-	{
-		auto pgfw = g_pGame->GetIGameFramework();
-		ArkGame* pGame = g_pGame->m_pArkGame.get();
-		ImGui::Text("IsGameStarted: %d", pgfw->IsGameStarted());
-		ImGui::Text("IsGamePaused: %d", pgfw->IsGamePaused());
-		ImGui::Text("m_pauseRequestStatus: %d", pGame->m_pauseRequestStatus);
-		ImGui::Text("m_saveFileToLoad: %s %lld", pGame->m_saveFileToLoad.c_str(), pGame->m_saveFileToLoad.size());
-		ImGui::Text("Global State: %s", GetSystemGlobalStateName(gEnv->pSystem->GetSystemGlobalState()));
-	}
-	ImGui::End();
 }
 
 void Editor::ShowUI()
