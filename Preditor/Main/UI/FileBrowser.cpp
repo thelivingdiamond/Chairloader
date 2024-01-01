@@ -1,5 +1,6 @@
 #include <boost/core/span.hpp>
 #include <Prey/CrySystem/File/ICryPak.h>
+#include <Prey/CryGame/IGameFramework.h>
 #include <Manager/IconsMaterialDesign.h>
 #include "UI/FileViewers/FileFormats.h"
 #include "UI/FileBrowser.h"
@@ -311,7 +312,15 @@ void Main::FileBrowser::OpenFile(ListItem& file)
     else
     {
         // TODO 2023-06-22
-        FileFormats::Get().OpenHexViewer(file.fullPath);
+        if (file.fileName == "level.pak")
+        {
+            std::string cmd = "map_edit " + file.fullPath.substr(0, file.fullPath.size() - strlen("/level.pak"));
+            gCL->cl->GetFramework()->ExecuteCommandNextFrame(cmd.c_str());
+        }
+        else
+        {
+            FileFormats::Get().OpenHexViewer(file.fullPath);
+        }
     }
 }
 
