@@ -16,8 +16,6 @@ set(SOURCE_FILES
 	PreditorApp.h
 	ProjectCreateStage.cpp
 	ProjectCreateStage.h
-	ProjectHistory.cpp
-	ProjectHistory.h
 	ProjectSelectStage.cpp
 	ProjectSelectStage.h
 )

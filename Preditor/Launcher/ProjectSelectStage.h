@@ -21,7 +21,7 @@ private:
         ImGuiWindowFlags_NoBringToFrontOnFocus;
     static constexpr char WINDOW_TITLE[] = "Project Select";
 
-    std::vector<fs::path> m_History;
+    std::vector<std::string> m_History;
     fs::path m_loadProjectPath;
     void initiateLoadProject(const fs::path& path);
 

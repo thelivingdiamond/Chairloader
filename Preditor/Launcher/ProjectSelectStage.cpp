@@ -3,6 +3,7 @@
 //
 
 #include <Preditor/Main/IProject.h>
+#include <Preditor/FileHistory.h>
 #include <WinShell/WinShell.h>
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
@@ -10,12 +11,11 @@
 #include "PreditorApp.h"
 #include "ImGui/imgui_stdlib.h"
 #include "LoadGameStage.h"
-#include "ProjectHistory.h"
 #include "ProjectCreateStage.h"
 
 ProjectSelectStage::ProjectSelectStage()
 {
-    m_History = ProjectHistory::ReadHistory();
+    m_History = FileHistory::ReadHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH);
 }
 
 void ProjectSelectStage::ShowUI(bool* bOpen)
@@ -56,12 +56,12 @@ void ProjectSelectStage::ShowUI(bool* bOpen)
                 }
                 else
                 {
-                    for (const fs::path& project : m_History)
+                    for (const std::string& project : m_History)
                     {
                         ImGui::TableNextRow();
                         ImGui::TableNextColumn();
-                        if (ImGui::Selectable(project.u8string().c_str()))
-                            initiateLoadProject(project);
+                        if (ImGui::Selectable(project.c_str()))
+                            initiateLoadProject(fs::u8path(project));
                     }
                 }
 
@@ -117,7 +117,7 @@ void ProjectSelectStage::initiateLoadProject(const fs::path& path)
 
     try
     {
-        ProjectHistory::AddToHistory(m_loadProjectPath);
+        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH, m_loadProjectPath.u8string());
         PreditorApp::Get()->GetPahts().SetProjectDirPath(m_loadProjectPath);
         SetStageFinished(std::make_unique<LoadGameStage>(nullptr));
     }

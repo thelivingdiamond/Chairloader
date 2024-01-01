@@ -1,9 +1,9 @@
 #include <WinShell/WinShell.h>
 #include <Manager/ModInfo.h>
 #include <Preditor/Main/IProject.h>
+#include <Preditor/FileHistory.h>
 #include "ProjectCreateStage.h"
 #include "ProjectSelectStage.h"
-#include "ProjectHistory.h"
 
 static const ImVec2 WINDOW_SIZE = ImVec2(800, 0);
 static constexpr ImGuiWindowFlags WINDOW_FLAGS =
@@ -118,7 +118,7 @@ void ProjectCreateStage::CreateProject()
         CopyDefaultFiles(projPath);
         SaveModInfo(projPath);
 
-        ProjectHistory::AddToHistory(projPath);
+        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH, projPath.u8string());
         SetStageFinished(std::make_unique<ProjectSelectStage>());
     }
     catch (const std::exception& e)
