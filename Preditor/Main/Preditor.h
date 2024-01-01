@@ -18,6 +18,9 @@ class Preditor : public IPreditor
 public:
     Preditor();
     ~Preditor();
+
+    //! Adds a level to recent level list.
+    void AddLevelToRecent(const std::string& path);
     
     // IPreditor
     virtual void InitSystem() override;

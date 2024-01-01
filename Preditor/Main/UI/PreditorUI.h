@@ -24,7 +24,12 @@ public:
     //! Shows the UI elements.
     void ShowUI();
 
+    //! Adds a level to recent level list.
+    void AddLevelToRecent(const std::string& path);
+
 private:
+    static constexpr char LEVEL_HISTORY_FILE[] = "RecentLevels.xml";
+
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::shared_ptr<IViewportWindow> m_pViewportWindow;
     std::shared_ptr<SimControlWindow> m_pSimControlWindow;
@@ -36,7 +41,11 @@ private:
     std::shared_ptr<SelectionWindow> m_pSelectionWindow;
     std::weak_ptr<ArkLibraryExplorer> m_pArkLibraryExplorer;
 
+    std::vector<std::string> m_LevelEditHistory;
     bool m_bImGuiDemo = false;
+
+    //! Loads recent level list.
+    void LoadLevelEditHistory();
 
     //! Shows the menu bar for the main window.
     void ShowMainMenuBar();

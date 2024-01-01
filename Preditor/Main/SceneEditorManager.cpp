@@ -4,6 +4,7 @@
 #include <Preditor/SceneEditor/ISceneEditor.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include "SceneEditorManager.h"
+#include "Preditor.h"
 
 static std::map<ESystemEvent, const char*> GetEventNames()
 {
@@ -127,6 +128,14 @@ void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam
 
 void Main::SceneEditorManager::MapEditCmd(IConsoleCmdArgs* pArgs)
 {
+    if (pArgs->GetArgCount() < 2)
+    {
+        CryError("Usage: map_edit <level path>");
+        return;
+    }
+
+    static_cast<Preditor*>(gPreditor->pMain)->AddLevelToRecent(pArgs->GetArg(1));
+
     auto pThis = static_cast<SceneEditorManager*>(gPreditor->pSceneEditorManager);
     std::string mapCmd = "map";
 

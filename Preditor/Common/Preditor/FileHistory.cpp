@@ -11,7 +11,7 @@ std::vector<std::string> FileHistory::ReadHistory(const fs::path& historyFile)
 
     std::vector<std::string> paths;
 
-    for (pugi::xml_node i : doc.child("ProjectHistory").children())
+    for (pugi::xml_node i : doc.child("FileHistory").children())
     {
         paths.push_back(i.text().as_string());
     }
@@ -33,7 +33,7 @@ void FileHistory::AddToHistory(const fs::path& historyFile, const std::string& p
 
     // Save to the file
     pugi::xml_document doc;
-    pugi::xml_node root = doc.append_child("ProjectHistory");
+    pugi::xml_node root = doc.append_child("FileHistory");
     
     for (const std::string& i : existingHistory)
     {

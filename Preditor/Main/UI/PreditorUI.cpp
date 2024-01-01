@@ -1,10 +1,12 @@
 #include <Prey/CrySystem/Profiling.h>
+#include <Prey/CryGame/IGameFramework.h>
 #include <WindowManager/WindowManager.h>
 #include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
+#include <Preditor/FileHistory.h>
 #include "UI/PreditorUI.h"
 #include "UI/FileBrowser.h"
 #include "UI/HierarchyWindow.h"
@@ -67,6 +69,8 @@ Main::PreditorUI::PreditorUI()
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
     m_pHierarchyWindow = WindowManager::Get().Create<HierarchyWindow>();
     m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
+
+    LoadLevelEditHistory();
 }
 
 Main::PreditorUI::~PreditorUI()
@@ -110,6 +114,17 @@ void Main::PreditorUI::ShowUI()
 #endif
 }
 
+void Main::PreditorUI::AddLevelToRecent(const std::string& path)
+{
+    FileHistory::AddToHistory(gPreditor->pPaths->GetUserPath() / LEVEL_HISTORY_FILE, path);
+    LoadLevelEditHistory();
+}
+
+void Main::PreditorUI::LoadLevelEditHistory()
+{
+    m_LevelEditHistory = FileHistory::ReadHistory(gPreditor->pPaths->GetUserPath() / LEVEL_HISTORY_FILE);
+}
+
 void Main::PreditorUI::ShowMainMenuBar()
 {
     if (ImGui::BeginMainMenuBar())
@@ -117,6 +132,34 @@ void Main::PreditorUI::ShowMainMenuBar()
         if (ImGui::BeginMenu("File"))
         {
             gPreditor->pAssetSystem->ShowMainMenu();
+            ImGui::Separator();
+
+            if (ImGui::BeginMenu("Recent Levels"))
+            {
+                if (m_LevelEditHistory.empty())
+                {
+                    ImGui::TextDisabled("No recent levels. Open a level.pak in the file browser.");
+                }
+                else
+                {
+                    for (const std::string& i : m_LevelEditHistory)
+                    {
+                        if (ImGui::MenuItem(i.c_str()))
+                        {
+                            std::string cmd = "map_edit " + i;
+                            gCL->cl->GetFramework()->ExecuteCommandNextFrame(cmd.c_str());
+                        }
+                    }
+                }
+
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::MenuItem("Close Level", nullptr, nullptr, gCL->cl->GetFramework()->IsGameStarted()))
+            {
+                gCL->cl->GetFramework()->ExecuteCommandNextFrame("disconnect");
+            }
+
             ImGui::Separator();
 
             if (ImGui::MenuItem("Quit"))

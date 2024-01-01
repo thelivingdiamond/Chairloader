@@ -27,6 +27,17 @@ Main::Preditor::~Preditor()
     gPreditor->pUserSettings = nullptr;
 }
 
+void Main::Preditor::AddLevelToRecent(const std::string& path)
+{
+    std::string_view pathView = path;
+    std::string_view prefix = "Levels/";
+
+    if (path.size() >= prefix.size() && pathView.substr(0, prefix.size()) == prefix)
+        pathView = pathView.substr(prefix.size());
+
+    m_pUI->AddLevelToRecent(std::string(pathView));
+}
+
 void Main::Preditor::InitSystem()
 {
     m_pAssetSystem = IAssetSystem::CreateInstance();
