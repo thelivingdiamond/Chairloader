@@ -67,6 +67,10 @@ void ChairloaderGui::draw() {
         }
         ImGui::PopStyleColor();
         ImGui::PopStyleVar();
+
+        // Display dock space after the menu
+        ShowDockSpace();
+
         if (!control.hideAll) {
             ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 1.0f);
             ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
@@ -105,12 +109,7 @@ void ChairloaderGui::draw() {
             }
             ImGui::PopStyleColor();
             ImGui::PopStyleVar();
-            ImGui::SetNextWindowPos(ImVec2(0, 0));
-            ImGui::SetNextWindowBgAlpha(0.0);
-            ImGui::SetNextWindowSize(ImGui::GetWindowViewport()->Size);
-            ImGui::Begin("Main Dockspace Window", 0, ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoDecoration);
-            ImGui::DockSpace(ImGui::GetID("Main Dockspace"), ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode | ImGuiDockNodeFlags_NoDockingInCentralNode);
-            ImGui::End();
+
             if (control.showDemoWindow)
                 ImGui::ShowDemoWindow(&control.showDemoWindow);
             if (control.showStyleManager)
@@ -122,6 +121,11 @@ void ChairloaderGui::draw() {
 //            log.drawDisplay();
         }
     }
+    else
+    {
+        // Keep dock space alive even when GUI is hidden
+        ShowDockSpace();
+    }
     auto drawList = ImGui::GetBackgroundDrawList();
     auto screenSize = ImGui::GetIO().DisplaySize;
     drawList->AddLine(ImVec2(0, screenSize.y-1.0f), ImVec2(screenSize.x, screenSize.y - 1.0f), ImColor(0, 0, 0, 255).operator ImU32(),1.0f);
@@ -132,6 +136,12 @@ void ChairloaderGui::update() {
     //auto pAction = reinterpret_cast<CCryAction*>(gCL->GetFramework());
     //if (!pAction->IsInLevelLoad() || !pAction->IsLoadingSaveGame()) {
     //}
+}
+
+void ChairloaderGui::ShowDockSpace()
+{
+    ImGui::SetNextWindowBgAlpha(0.0f);
+    ImGui::DockSpaceOverViewport(nullptr, ImGuiDockNodeFlags_PassthruCentralNode);
 }
 
 //void ChairloaderGui::overlayLog(std::string modName, const char *format, ...) {

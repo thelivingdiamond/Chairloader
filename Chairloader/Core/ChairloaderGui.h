@@ -52,4 +52,6 @@ private:
     chairloaderGuiControl control;
     ProfilerDialog profilerDialog;
     OverlayLogManager overlayLogManager;
+
+    void ShowDockSpace();
 };
