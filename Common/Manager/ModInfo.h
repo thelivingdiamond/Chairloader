@@ -17,6 +17,7 @@ struct ModInfo
     std::string dllName;
     bool hasXML = false;
     bool hasLevelXML = false;
+    bool enableShaderCompiler = false;
 
     //! List of dependencies (mod names).
     std::vector<std::string> deps;

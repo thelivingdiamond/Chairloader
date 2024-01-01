@@ -2,6 +2,7 @@
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderTools.h>
 #include <Chairloader/IChairloaderDll.h>
+#include <Manager/ModInfo.h>
 #include "Lua/LuaModManager.h"
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
@@ -75,7 +76,7 @@ void ChairloaderCore::RegisterMods()
 
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
-		auto modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
+		std::string modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
 
 		if (mod.child("enabled").text().as_bool()) {
 			if (m_InstalledMods.find(modName) != m_InstalledMods.end())
@@ -83,7 +84,25 @@ void ChairloaderCore::RegisterMods()
 
 			m_InstalledMods.insert(modName);
 
-			if (mod.child("dllName"))
+			// Get mod path
+			fs::path fullPath;
+			auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
+
+			if (boost::get<std::string>(&fullPathParam))
+			{
+				// Preditor's main mod is outside of Mods dir.
+				fullPath = fs::u8path(boost::get<std::string>(fullPathParam));
+			}
+			else
+			{
+				fullPath = gChair->GetModsPath() / fs::u8path(modName);
+			}
+
+			// Read ModInfo.xml instead of whatever is in Chairloader config
+			Manager::ModInfo modInfo;
+			modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
+
+			if (!modInfo.dllName.empty())
 			{
 				CryLog("Found DLL mod: {}", modName);
 				m_pModDllManager->RegisterModFromXML(mod);
@@ -92,7 +111,7 @@ void ChairloaderCore::RegisterMods()
 			if (m_pLuaModManager->RegisterModFromXML(mod))
 				CryLog("Found Lua mod: {}", modName);
 
-			if (mod.child("enableShaderCompiler").text().as_bool())
+			if (modInfo.enableShaderCompiler)
 			{
 				CryLog("Found Shader mod: {}", modName);
 				gChair->GetCryRender()->AddShadersMod(modName);

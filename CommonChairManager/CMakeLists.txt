@@ -44,8 +44,6 @@ set(SOURCE_FILES
 	Manager/LuaUtils.h
 	Manager/MergingPolicy.h
 	Manager/ModConfig.h
-	Manager/ModInfo.cpp
-	Manager/ModInfo.h
 	Manager/ModListConfig.cpp
 	Manager/ModListConfig.h
 	Manager/NameToIdMap.h

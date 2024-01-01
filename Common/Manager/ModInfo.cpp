@@ -15,6 +15,7 @@ void Manager::ModInfo::LoadXml(pugi::xml_node node)
     dllName = node.attribute("dllName").as_string();
     hasXML = node.attribute("hasXML").as_bool();
     hasLevelXML = node.attribute("hasLevelXML").as_bool();
+    enableShaderCompiler = node.attribute("enableShaderCompiler").as_bool();
 
     for (pugi::xml_node dep : node.child(DEPS_NODE_NAME)) {
         deps.emplace_back(dep.text().get());
@@ -53,6 +54,7 @@ void Manager::ModInfo::SaveXml(pugi::xml_node node)
     node.append_attribute("dllName").set_value(dllName.c_str());
     node.append_attribute("hasXML").set_value(hasXML);
     node.append_attribute("hasLevelXML").set_value(hasLevelXML);
+    node.append_attribute("enableShaderCompiler").set_value(enableShaderCompiler);
 
     if (!deps.empty())
     {

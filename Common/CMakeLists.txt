@@ -83,6 +83,9 @@ set(SOURCE_FILES
 	Chairloader/ValidateCompiler.h
 	Chairloader/SemanticVersion.h
 
+	Manager/ModInfo.cpp
+	Manager/ModInfo.h
+
 	pugixml/pugiconfig.hpp
 	pugixml/pugixml.cpp
 	pugixml/pugixml.hpp
