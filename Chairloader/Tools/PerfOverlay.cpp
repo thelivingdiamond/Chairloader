@@ -2,10 +2,11 @@
 #include "PerfOverlay.h"
 
 PerfOverlay::PerfOverlay() {
-#ifdef DEBUG_BUILD
-	m_bEnabled = true;
-	m_bFrameTime = true;
-#endif
+	if (gEnv->pSystem->IsDevMode())
+	{
+		m_bEnabled = true;
+		m_bFrameTime = true;
+	}
 }
 
 void PerfOverlay::Update() {
