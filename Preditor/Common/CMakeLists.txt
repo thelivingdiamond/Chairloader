@@ -50,6 +50,7 @@ set(SOURCE_FILES
 
 	Preditor/Environment.h
 	Preditor/IChairloaderToolsPreditor.h
+	Preditor/IntrusiveList.hpp
 	Preditor/ListenerSet.h
 	Preditor/MouseGuard.h
 	Preditor/pch.h

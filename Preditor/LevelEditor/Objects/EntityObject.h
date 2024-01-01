@@ -22,8 +22,8 @@ public:
     //! Respawns the entity.
     void RespawnEntity();
 
-    //! Applies the object tranform to the entity.
-    void ApplyTranformToEntity(unsigned nWhyFlags = 0);
+    //! Applies the object transform to the entity.
+    void ApplyTransformToEntity(unsigned nWhyFlags = 0);
 
     // Object
     virtual void Init(XmlNodeRef objectNode) override;

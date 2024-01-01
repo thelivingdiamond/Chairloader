@@ -31,6 +31,50 @@ void LevelEditor::ObjectManager::CreateLevelObjects(XmlNodeRef objectsNode)
         XmlNodeRef objectNode = objectsNode->getChild(i);
         CreateObject(objectNode);
     }
+
+    // Set up parents
+    for (int i = 0; i < childCount; i++)
+    {
+        Object* pObj = m_Objects[i].get();
+        XmlNodeRef objectNode = objectsNode->getChild(i);
+
+        if (objectNode->isTag("Entity"))
+        {
+            EntityId parentEntId = INVALID_ENTITYID;
+
+            if (objectNode->getAttr("ParentId", parentEntId))
+            {
+                if (parentEntId != INVALID_ENTITYID)
+                {
+                    auto parentObjIt = std::find_if(m_Objects.begin(), m_Objects.end(),
+                        [parentEntId](std::unique_ptr<Object>& pObj) {
+                            return pObj->GetTypeInfo().type == EObjectType::Entity &&
+                                static_cast<EntityObject*>(pObj.get())->GetEntityId() == parentEntId;
+                        });
+
+                    if (parentObjIt != m_Objects.end())
+                    {
+                        Object* pParent = parentObjIt->get();
+                        pObj->GetTransform()->SetParent(pParent->GetTransform(), true);
+                    }
+                    else
+                    {
+                        CryError("Object {}: parent entity id {} not found", pObj->GetName(), parentEntId);
+                    }
+                }
+                else
+                {
+                    CryError("Object {}: parent entity id is invalid");
+                }
+            }
+        }
+    }
+
+    // Invalidate transform after all parents are set
+    for (int i = 0; i < childCount; i++)
+    {
+        m_Objects[i]->GetTransform()->InvalidateTM(ENTITY_XFORM_FROM_PARENT);
+    }
 }
 
 LevelEditor::Object* LevelEditor::ObjectManager::CreateObject(XmlNodeRef objectNode)

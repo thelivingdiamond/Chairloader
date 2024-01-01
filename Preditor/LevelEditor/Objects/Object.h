@@ -70,6 +70,9 @@ public:
     //! @returns the transform component.
     Transform* GetTransform() { return m_pTransform.get(); }
 
+    //! @returns the parent object.
+    Object* GetParent() { return m_pTransform->GetParent() ? m_pTransform->GetParent()->GetObject() : nullptr; }
+
     //! Creates an instance of component and adds it to the object.
     //! The component MUST be saved into a field as it is not owned by Object.
     //! TODO 2023-07-16: Component removal

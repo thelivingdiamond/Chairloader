@@ -1,4 +1,5 @@
 #pragma once
+#include <Preditor/IntrusiveList.hpp>
 #include "Components/Component.h"
 
 namespace LevelEditor
@@ -34,6 +35,15 @@ public:
     //! Sets the world-space tranformation matrix.
     void SetWorldTM(const Matrix34& tm);
 
+    //! @returns the object's parent, if there is one.
+    Transform* GetParent() const { return m_pParent; }
+
+    //! Sets the object's parent.
+    void SetParent(Transform* pNewParent, bool suppressTransform = false);
+
+    //! @returns the object's children.
+    const IntrusiveList<Transform>& GetChildren() const { return m_Children; }
+
     //! Invalidates the transformation matrix.
     //! @param  nWhyFlags   Mask of EEntityXFormFlags. Informs what has changed.
     void InvalidateTM(unsigned nWhyFlags);
@@ -54,6 +64,11 @@ private:
 
     // World transform cache
     Matrix34 m_WMat;
+
+    // Object parenting
+    Transform* m_pParent = nullptr;
+    IntrusiveListItem m_ThisItemInParent;
+    IntrusiveList<Transform> m_Children; //!< The list is non-owning!!
 
     void CalcLocalTM();
     void CalcWorldTM();

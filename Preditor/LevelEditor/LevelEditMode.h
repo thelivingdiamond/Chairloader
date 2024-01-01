@@ -8,6 +8,7 @@ class ObjectSelectionManager;
 class LevelViewportHandler;
 class ObjectManager;
 class ObjectManipulator;
+class Object;
 
 //! Runtime entity editing.
 class LevelEditMode : public ILevelSceneEditor
@@ -52,6 +53,8 @@ private:
 
     //! Moves the player entity to where the scene camera is.
     void MovePlayerToSceneCamera();
+
+    void ShowObjectInHierarchy(Object* pObj);
 
     void ResetEntities(bool isPlayMode);
     void NotifyGameModeChange(bool isPlayMode);
