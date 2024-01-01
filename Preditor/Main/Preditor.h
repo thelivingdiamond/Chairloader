@@ -31,6 +31,7 @@ public:
     virtual void ShowUI() override;
 
 private:
+    PreditorTime m_Time;
     std::unique_ptr<Project> m_pProject;
     std::unique_ptr<UserProjectSettings> m_pUserSettings;
     std::unique_ptr<IAssetSystem> m_pAssetSystem;
@@ -38,6 +39,8 @@ private:
     std::unique_ptr<SceneEditorManager> m_pSceneEditorManager;
     std::unique_ptr<IChairloaderToolsPreditor> m_pChairTools;
     std::unique_ptr<PreditorUI> m_pUI;
+
+    void UpdateTime();
 };
 
 } // namespace

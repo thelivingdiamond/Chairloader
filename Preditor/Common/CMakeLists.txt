@@ -60,6 +60,7 @@ set(SOURCE_FILES
 	Preditor/PreditorConfig.h
 	Preditor/PreditorFonts.h
 	Preditor/PreditorPaths.h
+	Preditor/PreditorTime.h
 )
 
 add_library(Preditor.Common STATIC ${SOURCE_FILES})

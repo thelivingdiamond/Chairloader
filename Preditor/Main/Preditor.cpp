@@ -17,6 +17,7 @@ Main::Preditor::Preditor()
 {
     m_pProject = std::make_unique<Project>(gPreditor->pPaths->GetProjectDirPath());
     m_pUserSettings = std::make_unique<UserProjectSettings>(gPreditor->pPaths->GetUserPath() / IUserProjectSettings::FILE_NAME);
+    gPreditor->pTime = &m_Time;
     gPreditor->pProject = m_pProject.get();
     gPreditor->pUserSettings = m_pUserSettings.get();
 }
@@ -75,6 +76,7 @@ void Main::Preditor::ShutdownSystem()
 
 void Main::Preditor::Update()
 {
+    UpdateTime();
     gPreditor->pAssetSystem->Update();
     gPreditor->pInput->Update();
     m_pUserSettings->Update();
@@ -83,4 +85,14 @@ void Main::Preditor::Update()
 void Main::Preditor::ShowUI()
 {
     m_pUI->ShowUI();
+}
+
+void Main::Preditor::UpdateTime()
+{
+    CTimeValue nCurrentTime = gEnv->pTimer->GetAsyncTime();
+    m_Time.nTimeDelta = nCurrentTime - m_Time.nTime;
+    m_Time.nTime = nCurrentTime;
+
+    m_Time.flTime = m_Time.nTime.GetSeconds();
+    m_Time.flTimeDelta = m_Time.nTimeDelta.GetSeconds();
 }

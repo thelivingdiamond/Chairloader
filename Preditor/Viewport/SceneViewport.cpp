@@ -299,7 +299,7 @@ void Viewport::SceneViewport::ShowCameraMenu()
 void Viewport::SceneViewport::ProcessInput()
 {
 	CameraInfo& info = m_CamInfo;
-	float timeDelta = gEnv->pTimer->GetRealFrameTime(); // TODO 2023-08-27: Use custom timer, GetRealFrameTime is unreliable
+	float timeDelta = gPreditor->pTime->flTimeDelta;
 
 	// Rotation
 	Vec2 delta = gPreditor->pInput->GetMouse()->GetMouseDelta();

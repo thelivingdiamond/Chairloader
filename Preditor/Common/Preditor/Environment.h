@@ -1,5 +1,6 @@
 #pragma once
 #include <Preditor/PreditorFonts.h>
+#include <Preditor/PreditorTime.h>
 
 // Common
 class PreditorConfig;
@@ -30,6 +31,7 @@ struct SPreditorEnvironment
 	const PreditorPaths* pPaths;
 
 	// Main
+	const PreditorTime* pTime;
 	IPreditor* pMain;
 	IProject* pProject;
 	IUserProjectSettings* pUserSettings;
