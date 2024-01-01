@@ -1,8 +1,25 @@
 #include <Preditor/Input/IPreditorInput.h>
+#include <Preditor/SceneEditor/ISceneEditor.h>
+#include <Preditor/SceneEditor/ISceneEditorManager.h>
 #include "EditTool.h"
 #include "EditToolManager.h"
 #include "SelectTool.h"
 #include "ImGuizmoTool.h"
+
+static EditTools::EditToolManager* GetToolManager()
+{
+    ISceneEditor* pSceneEditor = gPreditor->pSceneEditorManager->GetEditor();
+    if (!pSceneEditor)
+        return nullptr;
+
+    IEditToolManager* pIEditToolMgr = pSceneEditor->GetToolManager();
+    if (!pIEditToolMgr)
+        return nullptr;
+
+    auto pEditToolMgr = static_cast<EditTools::EditToolManager*>(pIEditToolMgr);
+    CRY_ASSERT(pEditToolMgr->IsActive());
+    return pEditToolMgr;
+}
 
 std::unique_ptr<IEditToolManager> IEditToolManager::CreateInstance(ISceneEditor* pEditor)
 {
@@ -18,25 +35,40 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE, Vec3(5));
     m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE, Vec3(0.25f));
 
-    RegisterToolSelectKey("select", m_pSelectTool);
-    RegisterToolSelectKey("move", m_pMoveTool);
-    RegisterToolSelectKey("rotate", m_pRotateTool);
-    RegisterToolSelectKey("scale", m_pScaleTool);
-
-    gPreditor->pInput->FindAction("transform_tools.toggle_pivot")->AddListener([this](const KeyActionEventArgs& e)
-        {
-            if (e.isPressed)
-                m_bPivotCenter ^= 1;
-        });
-
-    gPreditor->pInput->FindAction("transform_tools.toggle_tool_space")->AddListener([this](const KeyActionEventArgs& e)
-        {
-            if (e.isPressed)
-                m_bWorldTransform ^= 1;
-        });
-
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
+
+    static bool bActionListenersRegistered = false;
+
+    RegisterToolSelectKey("select", m_pSelectTool.get(), !bActionListenersRegistered);
+    RegisterToolSelectKey("move", m_pMoveTool.get(), !bActionListenersRegistered);
+    RegisterToolSelectKey("rotate", m_pRotateTool.get(), !bActionListenersRegistered);
+    RegisterToolSelectKey("scale", m_pScaleTool.get(), !bActionListenersRegistered);
+
+    if (!bActionListenersRegistered)
+    {
+        gPreditor->pInput->FindAction("transform_tools.toggle_pivot")->AddListener([](const KeyActionEventArgs& e)
+            {
+                EditToolManager* pToolMgr = GetToolManager();
+
+                if (e.isPressed && pToolMgr)
+                {
+                    pToolMgr->m_bPivotCenter ^= 1;
+                }
+            });
+
+        gPreditor->pInput->FindAction("transform_tools.toggle_tool_space")->AddListener([](const KeyActionEventArgs& e)
+            {
+                EditToolManager* pToolMgr = GetToolManager();
+
+                if (e.isPressed && pToolMgr)
+                {
+                    pToolMgr->m_bWorldTransform ^= 1;
+                }
+            });
+
+        bActionListenersRegistered = true;
+    }
 }
 
 EditTools::EditToolManager::~EditToolManager()
@@ -130,13 +162,23 @@ void EditTools::EditToolManager::SetCurrentTool(EditTool* pTool)
     }
 }
 
-void EditTools::EditToolManager::RegisterToolSelectKey(std::string_view action, std::unique_ptr<EditTool>& pTool)
+void EditTools::EditToolManager::RegisterToolSelectKey(std::string_view action, EditTool* pTool, bool bAddListener)
 {
-    IKeyActionSet* pActionSet = gPreditor->pInput->GetKeyboard()->FindActionSet("tool_select");
-    IKeyAction* pAction = pActionSet->FindAction(action);
-    pAction->AddListener([this, &pTool](const KeyActionEventArgs& e)
-        {
-            if (e.isPressed)
-                SetCurrentTool(pTool.get());
-        });
+    // Save to the map
+    m_KeyActionToTool[std::string(action)] = pTool;
+
+    if (bAddListener)
+    {
+        IKeyActionSet* pActionSet = gPreditor->pInput->GetKeyboard()->FindActionSet("tool_select");
+        IKeyAction* pAction = pActionSet->FindAction(action);
+        ListenerId listenerId = pAction->AddListener([actionName = std::string(action)](const KeyActionEventArgs& e)
+            {
+                EditToolManager* pToolMgr = GetToolManager();
+                if (e.isPressed)
+                {
+                    auto it = pToolMgr->m_KeyActionToTool.find(actionName);
+                    pToolMgr->SetCurrentTool(it->second);
+                }
+            });
+    }
 }
