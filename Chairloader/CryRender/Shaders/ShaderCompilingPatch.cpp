@@ -1,4 +1,3 @@
-#ifdef RENDERDLL_SHADER_COMPILER
 #include <Prey/CrySystem/ICmdLine.h>
 #include <Prey/RenderDll/Common/CommonRender.h>
 #include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
@@ -111,7 +110,7 @@ bool GetShaderModsRegistered()
 
 void InitHooks()
 {
-	CryWarning("Enabling expreimental shader compiler!");
+	CryWarning("Enabling experimental shader compiler!");
 
 	g_CShaderMan_mfInit_Hook.SetHookFunc(&CShaderMan_mfInit_Hook);
 	g_CShaderMan_mfInitLookups_Hook.SetHookFunc(&CShaderMan_mfInitLookups_Hook);
@@ -129,14 +128,3 @@ void ShutdownRenderer()
 }
 
 }
-#else
-
-namespace RenderDll::Shaders
-{
-void AddShadersMod(const std::string& name) {}
-bool GetShaderModsRegistered() { return false; }
-void InitHooks() {}
-void ShutdownRenderer() {}
-}
-
-#endif

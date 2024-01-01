@@ -2,37 +2,11 @@ set(SOURCE_FILES)
 
 # Options
 option(RENDERDLL_DEBUG_MARKERS "Enables section markers for GPU profilers like RenderDoc" OFF)
-option(RENDERDLL_SHADER_COMPILER "Restores engine's shader compiler. Unstable.'" OFF)
 
 set(RENDERDLL_DEFS)
 
 if(RENDERDLL_DEBUG_MARKERS)
 	set(RENDERDLL_DEFS ${RENDERDLL_DEFS} RENDERDLL_DEBUG_MARKERS)
-endif()
-
-if(RENDERDLL_SHADER_COMPILER)
-	set(RENDERDLL_DEFS ${RENDERDLL_DEFS} RENDERDLL_SHADER_COMPILER)
-	set(SOURCE_FILES
-		${SOURCE_FILES}
-		lzss/lzss.cpp
-		lzss/lzss.h
-		
-		Shaders/D3DHWShaderCompiling.cpp
-		Shaders/Parser.cpp
-		Shaders/Parser.h
-		Shaders/ParserBin.cpp
-		Shaders/ResFile.cpp
-		Shaders/ResLookupDataMan.cpp
-		Shaders/ShaderCompilingPatch.cpp
-		Shaders/ShaderCompilingPatch.h
-		Shaders/ShaderManBin.cpp
-	)
-else()
-	set(SOURCE_FILES
-		${SOURCE_FILES}
-		Shaders/ShaderCompilingPatch.cpp
-		Shaders/ShaderCompilingPatch.h
-	)
 endif()
 
 set(SOURCE_FILES
@@ -46,6 +20,19 @@ set(SOURCE_FILES
 	AuxGeom/RenderAuxGeomPatch.cpp
 	AuxGeom/RenderAuxGeomPatch.h
 	AuxGeom/TextMessages.cpp
+
+	lzss/lzss.cpp
+	lzss/lzss.h
+
+	Shaders/D3DHWShaderCompiling.cpp
+	Shaders/Parser.cpp
+	Shaders/Parser.h
+	Shaders/ParserBin.cpp
+	Shaders/ResFile.cpp
+	Shaders/ResLookupDataMan.cpp
+	Shaders/ShaderCompilingPatch.cpp
+	Shaders/ShaderCompilingPatch.h
+	Shaders/ShaderManBin.cpp
 	
 	ChairloaderCryRender.cpp
 	ChairloaderCryRender.h
@@ -58,7 +45,11 @@ set(SOURCE_FILES
 
 add_library(Chairloader.CryRender STATIC ${SOURCE_FILES})
 
-target_compile_definitions(Chairloader.CryRender PRIVATE ${RENDERDLL_DEFS})
+target_compile_definitions(Chairloader.CryRender PRIVATE
+	${RENDERDLL_DEFS}
+	RENDERDLL_SHADER_COMPILER
+)
+
 target_include_directories(Chairloader.CryRender PRIVATE .)
 
 target_link_libraries(Chairloader.CryRender PUBLIC
