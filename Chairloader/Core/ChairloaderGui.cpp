@@ -124,9 +124,7 @@ void ChairloaderGui::draw() {
     }
     auto drawList = ImGui::GetBackgroundDrawList();
     auto screenSize = ImGui::GetIO().DisplaySize;
-    auto color =  ImColor(ImGui::GetColorU32(ImGuiCol_Border)).operator ImVec4();
-    color.w = 0.5f;
-    drawList->AddLine(ImVec2(0, screenSize.y-1.0f), ImVec2(screenSize.x, screenSize.y - 1.0f), ImColor(color).operator ImU32(),1.0f);
+    drawList->AddLine(ImVec2(0, screenSize.y-1.0f), ImVec2(screenSize.x, screenSize.y - 1.0f), ImColor(0, 0, 0, 255).operator ImU32(),1.0f);
 }
 
 void ChairloaderGui::update() {
