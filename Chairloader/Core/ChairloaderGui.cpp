@@ -7,10 +7,32 @@
 #include "ChairloaderGui.h"
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
+#include "LogManager.h"
 
 ChairloaderGui::ChairloaderGui() {
     ImGui::GetStyle().Alpha = 0.8f;
     gCL->gui = this;
+
+    std::string hideGuiKey = ChairloaderCore::Get()->GetKeyStrHideGui();
+    std::string logMsg;
+
+    if (gEnv->pSystem->IsDevMode())
+    {
+        // Enable GUI for developers
+        m_bIsEnabled = true;
+        logMsg = fmt::format(
+            "Chairloader Developer Mode is enabled. "
+            "Press {} to hide the menu. "
+            "Press ~ to open the console", hideGuiKey);
+    }
+    else
+    {
+        // Most players don't need to use the GUI very often, hide it
+        m_bIsEnabled = false;
+        logMsg = fmt::format("Chairloader is active. Press {} to open the menu", hideGuiKey);
+    }
+
+    LogManager::Get().AddMessage(logMsg.data(), logMsg.size(), true);
 }
 
 

@@ -45,10 +45,6 @@ private:
     bool m_bIsEnabled = true;
     bool persistentLogOverlay = true;
 
-    bool g_PresentHooked;
-    bool g_ShowMenu;
-    bool g_bInitialised;
-
     chairloaderGuiControl control;
     ProfilerDialog profilerDialog;
     OverlayLogManager overlayLogManager;
