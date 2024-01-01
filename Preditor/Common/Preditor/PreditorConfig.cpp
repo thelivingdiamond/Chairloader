@@ -55,10 +55,6 @@ void PreditorConfig::FillEnvPaths()
     m_PreditorRoot = Application::Get()->GetProgramPath();
     m_PreyFiles = m_PreditorRoot / "PreyFiles";
 
-    if (!fs::exists(m_PreyFiles))
-        throw std::runtime_error("PreyFiles directory is missing.");
-
-    // TODO: Un-comment once extraction mode is used. Remove the previous check.
-    // if (!fs::exists(m_PreyFiles / "FilesExtracted.dat"))
-    // 	throw std::runtime_error("File cache is invalid. Run ChairManager.");
+    if (!fs::exists(m_PreyFiles / "FilesExtracted.dat"))
+        throw std::runtime_error("File cache is invalid. Run ChairManager.");
 }
