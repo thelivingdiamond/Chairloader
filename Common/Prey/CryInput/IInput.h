@@ -208,6 +208,11 @@ enum EKeyId
 	eKI_Orbis_RotZ_KeyD = 0x419,
 	eKI_Orbis_RotZ_KeyU = 0x41A,
 	eKI_Orbis_Touch = 0x41B,
+
+	//! Steam Controller reserves a range
+	eKI_SteamControllerBegin = 0x1000,
+	eKI_SteamControllerEnd = eKI_SteamControllerBegin + 42,
+
 	eKI_SYS_Commit = 0x2000,
 	eKI_SYS_ConnectDevice = 0x2001,
 	eKI_SYS_DisconnectDevice = 0x2002,
@@ -396,96 +401,98 @@ struct SFFOutputEvent;
 class IInputDevice
 {
 public:
-	virtual ~IInputDevice() {};
-	virtual const char *GetDeviceName() = 0;
-	virtual EInputDeviceType GetDeviceType() = 0;
-	virtual unsigned __int64 GetDeviceId() = 0;
-	virtual int GetDeviceIndex() = 0;
+	virtual ~IInputDevice() {}
+	virtual const char* GetDeviceName() const = 0;
+	virtual EInputDeviceType GetDeviceType() const = 0;
+	virtual uint64_t GetDeviceId() const = 0;
+	virtual int GetDeviceIndex() const = 0;
 	virtual bool Init() = 0;
 	virtual void PostInit() = 0;
-	virtual void Update(bool) = 0;
-	virtual bool SetForceFeedback(IFFParams) = 0;
-	virtual bool InputState(const TKeyName *, EInputState) = 0;
-	virtual bool SetExclusiveMode(bool) = 0;
+	virtual void Update(bool bFocus) = 0;
+	virtual bool SetForceFeedback(IFFParams params) = 0;
+	virtual bool InputState(const TKeyName& keyName, EInputState state) = 0;
+	virtual bool SetExclusiveMode(bool value) = 0;
 	virtual void ClearKeyState() = 0;
-	virtual void ClearAnalogKeyState(std::vector<SInputSymbol *> *) = 0;
-	virtual const char *GetKeyName(const SInputEvent *) = 0;
-    virtual const char *GetKeyName(const EKeyId) = 0;
-	virtual char GetInputCharAscii(const SInputEvent *) = 0;
-	virtual const wchar_t *GetOSKeyName(const SInputEvent *) = 0;
-	virtual SInputSymbol *LookupSymbol(EKeyId) = 0;
-	virtual const SInputSymbol *GetSymbolByName(const char *) = 0;
-	virtual bool IsOfDeviceType(EInputDeviceType) = 0;
-	virtual void Enable(bool) = 0;
-	virtual bool IsEnabled() = 0;
-	virtual bool IsConnected() = 0;
+	virtual void ClearAnalogKeyState(std::vector<SInputSymbol*>& clearedSymbols) = 0;
+	virtual const char* GetKeyName(const SInputEvent& event) const = 0;
+	virtual const char* GetKeyName(const EKeyId keyId) const = 0;
+	virtual char GetInputCharAscii(const SInputEvent& event) = 0;
+	virtual const wchar_t* GetOSKeyName(const SInputEvent& event) = 0;
+	virtual SInputSymbol* LookupSymbol(EKeyId id) const = 0;
+	virtual const SInputSymbol* GetSymbolByName(const char* name) const = 0;
+	virtual bool IsOfDeviceType(EInputDeviceType type) const = 0;
+	virtual void Enable(bool enable) = 0;
+	virtual bool IsEnabled() const = 0;
+	virtual bool IsConnected() const = 0;
 	virtual void OnLanguageChange() = 0;
-	virtual void SetDeadZone(float) = 0;
+	virtual void SetDeadZone(float fThreshold) = 0;
 	virtual void RestoreDefaultDeadZone() = 0;
-	virtual void ClearBufferedKeyState() = 0;
-	virtual bool IsSteamInputDevice() = 0;
-	virtual bool ShowBindingsPanel() = 0;
-	virtual bool IsSteamInBigPictureMode() = 0;
-	virtual unsigned int GetSteamActionOrigin(const char *const) = 0;
-	virtual const char *GetGlyphFromActionOrigin(unsigned int) = 0;
-	virtual void ActivateSteamActionSet(const char *const) = 0;
+	virtual void ClearBufferedKeyState() {}
+	virtual bool IsSteamInputDevice() const { return false; }
+	virtual bool ShowBindingsPanel() const { return false; }
+	virtual bool IsSteamInBigPictureMode() const { return false; }
+	virtual unsigned GetSteamActionOrigin(const char* const _szActionName) const { return 0; }
+	virtual const char* GetGlyphFromActionOrigin(unsigned _actionOrigin) const { return nullptr; }
+	virtual void ActivateSteamActionSet(const char* const _szActionSetName) {}
 };
 
+// IInput
+// Header:  _unknown/IInput.h
+// Include: Prey/CryInput/IInput.h
 struct IInput
-{
-public:
-	virtual ~IInput() = 0;
-	virtual void AddEventListener(IInputEventListener *) = 0;
-	virtual void RemoveEventListener(IInputEventListener *) = 0;
-	virtual void AddConsoleEventListener(IInputEventListener *) = 0;
-	virtual void RemoveConsoleEventListener(IInputEventListener *) = 0;
-	virtual bool AddTouchEventListener(ITouchEventListener *, const char *) = 0;
-	virtual void RemoveTouchEventListener(ITouchEventListener *) = 0;
-	virtual void SetExclusiveListener(IInputEventListener *) = 0;
-	virtual IInputEventListener *GetExclusiveListener() = 0;
-	virtual bool AddInputDevice(IInputDevice *) = 0;
-	virtual void EnableEventPosting(bool) = 0;
-	virtual bool IsEventPostingEnabled() = 0;
-	virtual void PostInputEvent(const SInputEvent *, bool) = 0;
-	virtual void PostTouchEvent(const STouchEvent *, bool) = 0;
-	virtual void ProcessKey(unsigned int, bool, wchar_t, bool) = 0;
-	virtual void ForceFeedbackEvent(const SFFOutputEvent *) = 0;
-	virtual void ForceFeedbackSetDeviceIndex(int) = 0;
+{ // Size=8 (0x8)
+	virtual ~IInput();
+	virtual void AddEventListener(IInputEventListener* pListener) = 0;
+	virtual void RemoveEventListener(IInputEventListener* pListener) = 0;
+	virtual void AddConsoleEventListener(IInputEventListener* pListener) = 0;
+	virtual void RemoveConsoleEventListener(IInputEventListener* pListener) = 0;
+	virtual bool AddTouchEventListener(ITouchEventListener* pListener, const char* name) = 0;
+	virtual void RemoveTouchEventListener(ITouchEventListener* pListener) = 0;
+	virtual void SetExclusiveListener(IInputEventListener* pListener) = 0;
+	virtual IInputEventListener* GetExclusiveListener() = 0;
+	virtual bool AddInputDevice(IInputDevice* pDevice) = 0;
+	virtual void EnableEventPosting(bool bEnable) = 0;
+	virtual bool IsEventPostingEnabled() const = 0;
+	virtual void PostInputEvent(const SInputEvent& event, bool bForce) = 0;
+	virtual void PostTouchEvent(const STouchEvent& event, bool bForce) = 0;
+	virtual void ProcessKey(unsigned key, bool pressed, wchar_t unicode, bool repeat) = 0;
+	virtual void ForceFeedbackEvent(const SFFOutputEvent& event) = 0;
+	virtual void ForceFeedbackSetDeviceIndex(int index) = 0;
 	virtual bool Init() = 0;
 	virtual void PostInit() = 0;
-	virtual void Update(bool) = 0;
+	virtual void Update(bool bFocus) = 0;
 	virtual void ShutDown() = 0;
-	virtual void SetExclusiveMode(EInputDeviceType, bool, void *) = 0;
-	virtual bool InputState(const TKeyName *, EInputState) = 0;
-	virtual const char *GetKeyName(const SInputEvent *) = 0;
-    virtual const char *GetKeyName(EKeyId) = 0;
-	virtual char GetInputCharAscii(const SInputEvent *) = 0;
-	virtual SInputSymbol *LookupSymbol(EInputDeviceType, int, EKeyId) = 0;
-	virtual const SInputSymbol *LookupSymbolByName(EInputDeviceType, int, const char *) = 0;
-	virtual const SInputSymbol *GetSymbolByName(const char *) = 0;
-	virtual const wchar_t *GetOSKeyName(const SInputEvent *) = 0;
+	virtual void SetExclusiveMode(EInputDeviceType deviceType, bool exclusive, void* pUser) = 0;
+	virtual bool InputState(const TKeyName& keyName, EInputState state) = 0;
+	virtual const char* GetKeyName(const SInputEvent& event) const = 0;
+	virtual const char* GetKeyName(EKeyId keyId) const = 0;
+	virtual char GetInputCharAscii(const SInputEvent& event) = 0;
+	virtual SInputSymbol* LookupSymbol(EInputDeviceType deviceType, int deviceIndex, EKeyId keyId) = 0;
+	virtual const SInputSymbol* LookupSymbolByName(EInputDeviceType deviceType, int deviceIndex, const char* name) const = 0;
+	virtual const SInputSymbol* GetSymbolByName(const char* name) const = 0;
+	virtual const wchar_t* GetOSKeyName(const SInputEvent& event) = 0;
 	virtual void ClearKeyState() = 0;
 	virtual void ClearAnalogKeyState() = 0;
 	virtual void RetriggerKeyState() = 0;
 	virtual bool Retriggering() = 0;
-	virtual bool HasInputDeviceOfType(EInputDeviceType) = 0;
+	virtual bool HasInputDeviceOfType(EInputDeviceType type) = 0;
 	virtual bool HasGamepadConnected() = 0;
 	virtual void RefreshDevices() = 0;
-	virtual int GetModifiers() = 0;
-	virtual void EnableDevice(EInputDeviceType, bool) = 0;
-	virtual void SetDeadZone(float) = 0;
+	virtual int GetModifiers() const = 0;
+	virtual void EnableDevice(EInputDeviceType deviceType, bool enable) = 0;
+	virtual void SetDeadZone(float fThreshold) = 0;
 	virtual void RestoreDefaultDeadZone() = 0;
-	virtual IInputDevice *GetDevice(unsigned __int64) = 0;
-	virtual IInputDevice *GetDevice(unsigned __int16, EInputDeviceType) = 0;
-	virtual unsigned int GetPlatformFlags() = 0;
-	virtual bool SetBlockingInput(const SInputBlockData *) = 0;
-	virtual bool RemoveBlockingInput(const SInputBlockData *) = 0;
-	virtual bool HasBlockingInput(const SInputBlockData *) = 0;
-	virtual int GetNumBlockingInputs() = 0;
+	virtual IInputDevice* GetDevice(uint16_t id, EInputDeviceType deviceType) = 0;
+	virtual IInputDevice* GetDevice(uint64_t deviceId) = 0;
+	virtual unsigned GetPlatformFlags() const = 0;
+	virtual bool SetBlockingInput(const SInputBlockData& inputBlockData) = 0;
+	virtual bool RemoveBlockingInput(const SInputBlockData& inputBlockData) = 0;
+	virtual bool HasBlockingInput(const SInputBlockData& inputBlockData) const = 0;
+	virtual int GetNumBlockingInputs() const = 0;
 	virtual void ClearBlockingInputs() = 0;
-	virtual bool ShouldBlockInputEventPosting(const EKeyId, const EInputDeviceType, const unsigned __int8) = 0;
-	virtual IKinectInput *GetKinectInput() = 0;
-	virtual INaturalPointInput *GetNaturalPointInput() = 0;
-	virtual bool GrabInput(bool) = 0;
-	virtual IInputDevice *GetSteamInputDevice() = 0;
+	virtual bool ShouldBlockInputEventPosting(const EKeyId keyId, const EInputDeviceType deviceType, const uint8_t deviceIndex) const = 0;
+	virtual IKinectInput* GetKinectInput() = 0;
+	virtual INaturalPointInput* GetNaturalPointInput() = 0;
+	virtual bool GrabInput(bool bGrab) = 0;
+	virtual IInputDevice* GetSteamInputDevice() = 0;
 };

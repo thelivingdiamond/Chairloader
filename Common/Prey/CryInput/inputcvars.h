@@ -43,3 +43,4 @@ public:
 	static inline auto FBitNotCInputCVars = PreyFunction<void(CInputCVars *const _this)>(0x9DAEC0);
 };
 
+inline PreyGlobal<CInputCVars*> g_pInputCVars(0x2767F50);

@@ -14,6 +14,8 @@ set(SOURCE_FILES
 	SteamAPI/ArkSteamRewardSystem.h
 	SteamAPI/ChairSteamAPI.cpp
 	SteamAPI/ChairSteamAPI.h
+	SteamAPI/SteamInputDevice.cpp
+	SteamAPI/SteamInputDevice.h
 	
 	ArkFixedRewardSystem.cpp
 	ArkFixedRewardSystem.h

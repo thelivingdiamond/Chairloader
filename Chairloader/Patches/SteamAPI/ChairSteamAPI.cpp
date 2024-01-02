@@ -1,8 +1,13 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Prey/CryInput/dxinput.h>
+#include <Prey/CryInput/inputcvars.h>
+#include <Prey/CryGame/Game.h>
+#include <Prey/GameDll/ui/UIManager.h>
 #include <mem.h>
 #include "SteamAPI/ArkSteamDlcSystem.h"
 #include "SteamAPI/ArkSteamRewardSystem.h"
 #include "SteamAPI/ChairSteamAPI.h"
+#include "SteamAPI/SteamInputDevice.h"
 
 //! Steam App ID file name.
 constexpr char STEAM_APP_ID_FILE[] = "steam_appid.txt";
@@ -12,6 +17,49 @@ constexpr int STEAM_APP_ID = 480490;
 
 //! Used in steam_api_chairloader.cpp only in Chairloader.
 IChairSteamAPI* g_pIChairSteamAPI = nullptr;
+
+static auto g_CDXInput_AddInputDevice_Hook = CDXInput::FAddInputDevice.MakeHook();
+
+bool CDXInput_AddInputDevice_Hook(CBaseInput* const _this, IInputDevice* pDevice)
+{
+    if (pDevice->GetDeviceType() == eIDT_Gamepad)
+    {
+        // Init Steam Controller before any other gamepad
+        static bool bTriedToInitSteamController = false;
+        static bool bSteamControllerInited = false;
+
+        if (!bTriedToInitSteamController)
+        {
+            // Try to initialize Steam Controller in this call
+            bTriedToInitSteamController = true;
+            bool useSteamController = (*g_pInputCVars)->i_useSteamController;
+
+            if (gCL->pSteamAPI && useSteamController)
+            {
+                if (g_CDXInput_AddInputDevice_Hook.InvokeOrig(_this, new SteamInputDevice(*_this)))
+                {
+                    // Successfully initialized Steam Controller
+                    bSteamControllerInited = true;
+                }
+                else
+                {
+                    // Failed to init, use DirectInput
+                    CryLog("Failed to initialize SteamController. Using DXInput instead.");
+                }
+            }
+        }
+
+        if (bSteamControllerInited)
+        {
+            // Skip all other gamepads if have SteamController
+            delete pDevice;
+            return true;
+        }
+    }
+
+    // Continue normally
+    return g_CDXInput_AddInputDevice_Hook.InvokeOrig(_this, pDevice);
+}
 
 std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
 {
@@ -211,5 +259,12 @@ bool ChairSteamAPI::InitSteam()
     }
 
     CryLog("Steam AppID = {}", SteamUtils()->GetAppID());
+
+    if (!m_bIsGog)
+    {
+        // Steam Controller support
+        g_CDXInput_AddInputDevice_Hook.SetHookFunc(&CDXInput_AddInputDevice_Hook);
+    }
+
     return true;
 }
