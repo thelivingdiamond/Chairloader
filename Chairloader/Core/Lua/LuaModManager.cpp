@@ -112,6 +112,7 @@ bool LuaModManager::RegisterModFromXML(const Manager::ModInfo& modInfo, int load
     // Create the entry. It may be removed if something fails during loading
     auto modEntry = std::make_unique<LuaMod>();
     modEntry->modName = modInfo.modName;
+    modEntry->loadOrder = loadOrder;
     m_ModsByName[modInfo.modName] = modEntry.get();
     m_Mods.emplace_back(std::move(modEntry));
     return true;
@@ -168,6 +169,9 @@ void LuaModManager::Init()
 void LuaModManager::RegisterMods()
 {
     std::vector<LuaMod*> brokenMods;
+
+    // Sort mods by load order
+    std::sort(m_Mods.begin(), m_Mods.end(), [](const auto& lhs, const auto& rhs) { return lhs->loadOrder < rhs->loadOrder; });
 
     for (auto& mod : m_Mods)
     {

@@ -46,6 +46,7 @@ private:
     struct LuaMod
     {
         std::string modName;
+        int loadOrder = 0;
         SmartScriptTable modTable;
         SmartScriptTable exportTable;
         bool isTableRegistered = false;
