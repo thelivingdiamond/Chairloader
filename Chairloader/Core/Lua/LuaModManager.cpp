@@ -3,6 +3,7 @@
 #include <Prey/CryEntitySystem/EntitySystem.h>
 #include <Prey/CryEntitySystem/EntityScript.h>
 #include <Prey/CryEntitySystem/ScriptBind_Entity.h>
+#include <Manager/ModInfo.h>
 #include "Lua/LuaModManager.h"
 #include "Lua/ScriptBind_Chairloader.h"
 
@@ -101,18 +102,17 @@ void LuaModManager::PostGameInit()
     }
 }
 
-bool LuaModManager::RegisterModFromXML(pugi::xml_node modNode)
+bool LuaModManager::RegisterModFromXML(const Manager::ModInfo& modInfo, int loadOrder)
 {
-    auto modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(modNode, "modName"));
-    std::string mainPath = GetMainPath(modName);
+    std::string mainPath = GetMainPath(modInfo.modName);
 
     if (!gEnv->pCryPak->IsFileExist(mainPath.c_str()))
         return false;
 
     // Create the entry. It may be removed if something fails during loading
     auto modEntry = std::make_unique<LuaMod>();
-    modEntry->modName = modName;
-    m_ModsByName[modName] = modEntry.get();
+    modEntry->modName = modInfo.modName;
+    m_ModsByName[modInfo.modName] = modEntry.get();
     m_Mods.emplace_back(std::move(modEntry));
     return true;
 }

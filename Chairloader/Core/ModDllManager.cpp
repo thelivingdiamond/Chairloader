@@ -1,6 +1,7 @@
 #include <boost/algorithm/string.hpp>
 #include <Chairloader/IChairloaderDll.h>
 #include <Prey/CryCore/Platform/CryWindows.h>
+#include <Manager/ModInfo.h>
 #include "ModDllManager.h"
 #include "ChairloaderConfigManager.h"
 
@@ -10,32 +11,24 @@ void ModDllManager::SetHotReloadEnabled(bool state)
 	m_bHotReload = state;
 }
 
-void ModDllManager::RegisterModFromXML(pugi::xml_node xmlNode)
+void ModDllManager::RegisterModFromXML(const Manager::ModInfo& modInfo, int loadOrder, const fs::path& fullPath)
 {
 	ModuleInfo info;
-	info.modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "modName"));
-	info.loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(xmlNode, "loadOrder"));
+	info.modName = modInfo.modName;
+	info.loadOrder = loadOrder;
 
-	auto fullPathParam = gCL->conf->getNodeConfigValue(xmlNode, "fullPath");
-
-	if (boost::get<std::string>(&fullPathParam))
-	{
-		// Preditor's main mod is outside of Mods dir.
-		info.modDirPath = fs::u8path(boost::get<std::string>(fullPathParam));
-	}
+	if (!fullPath.empty())
+		info.modDirPath = fullPath;
 	else
-	{
 		info.modDirPath = gChair->GetModsPath() / fs::u8path(info.modName);
-	}
 
-	fs::path dllName = fs::u8path(boost::get<std::string>(gCL->conf->getNodeConfigValue(xmlNode, "dllName")));
+	fs::path dllName = fs::u8path(modInfo.dllName);
 
 	if (dllName.is_relative())
 		info.sourceDllPath = info.modDirPath / dllName;
 	else
 		info.sourceDllPath = dllName;
 	
-
 	gCL->conf->loadModConfigFile(info.modName);
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }

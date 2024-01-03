@@ -4,6 +4,11 @@
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IModDllManager.h>
 
+namespace Manager
+{
+struct ModInfo;
+}
+
 //! This class manages DLL loading in call dispatch for mods.
 //! Note:
 //!     "mod" is short for "modification". It's a directory in Mods with ModInfo.xml.
@@ -16,7 +21,7 @@ public:
 
 	//! Adds the mod DLL for a mod as defined in the config.
 	//! Loads the mod's config.
-	void RegisterModFromXML(pugi::xml_node xmlNode);
+	void RegisterModFromXML(const Manager::ModInfo& modInfo, int loadOrder, const fs::path& fullPath);
 
 	//! Registers a mod interface without DLL. Only calls callbacks. Doesn't support reloading.
 	void RegisterRawMod(const char* name, IChairloaderMod* pMod, bool asFirst = false) override;

@@ -102,14 +102,18 @@ void ChairloaderCore::RegisterMods()
 			Manager::ModInfo modInfo;
 			modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
 
+			int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
+
 			if (!modInfo.dllName.empty())
 			{
 				CryLog("Found DLL mod: {}", modName);
-				m_pModDllManager->RegisterModFromXML(mod);
+				m_pModDllManager->RegisterModFromXML(modInfo, loadOrder, fullPath);
 			}
 
-			if (m_pLuaModManager->RegisterModFromXML(mod))
+			if (m_pLuaModManager->RegisterModFromXML(modInfo, loadOrder))
+			{
 				CryLog("Found Lua mod: {}", modName);
+			}
 
 			if (modInfo.enableShaderCompiler)
 			{

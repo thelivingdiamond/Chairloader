@@ -5,6 +5,11 @@
 class CEntityScript;
 class ScriptBind_Chairloader;
 
+namespace Manager
+{
+struct ModInfo;
+}
+
 //! Manager for mods that use custom Lua scripts.
 class LuaModManager : NoCopy
 {
@@ -17,7 +22,7 @@ public:
 
     //! Tries to add a mod to the manager. Checks if it has Lua scripts.
     //! @returns true if it was registered.
-    bool RegisterModFromXML(pugi::xml_node modNode);
+    bool RegisterModFromXML(const Manager::ModInfo& modInfo, int loadOrder);
 
     //! Hooks the entity's script table.
     void HookEntityTable(CEntityScript* pEntityScript);
