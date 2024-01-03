@@ -55,14 +55,14 @@ SHA256::Digest HashUtils::HashDirectory(fs::path path)
     return hash.digest();
 }
 
-SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath)
+bool HashUtils::HashUncompressedFile(const fs::path& archivePath, SHA256::Digest& outHash)
 {
     SHA256 hash;
     libzippp::ZipArchive archive(archivePath.string());
     archive.open(libzippp::ZipArchive::ReadOnly);
 
     if (!archive.isOpen())
-        throw std::runtime_error(fmt::format("failed to open archive {}", archivePath.u8string()));
+        return false;
 
     std::vector<libzippp::ZipEntry> entries = archive.getEntries();
     for (auto& entry : entries)
@@ -76,7 +76,8 @@ SHA256::Digest HashUtils::HashUncompressedFile(const fs::path& archivePath)
         }
     }
     archive.close();
-    return hash.digest();
+    outHash = hash.digest();
+    return true;
 }
 
 SHA256::Digest HashUtils::HashBuffer(uint8_t* buffer, uint64_t size)

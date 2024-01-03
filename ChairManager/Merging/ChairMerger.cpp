@@ -534,8 +534,10 @@ bool ChairMerger::CheckLevelPacksChanged()
             if (!fs::exists(existingFile))
                 return;
 
-            bool exists = fs::exists(existingFile);
-            SHA256::Digest checksum = HashUtils::HashUncompressedFile(existingFile);
+            SHA256::Digest checksum;
+
+            if (!HashUtils::HashUncompressedFile(existingFile, checksum))
+                return;
 
             {
                 std::lock_guard<std::mutex> lock(m_DeployedLevelFileChecksumsMutex);
@@ -569,7 +571,10 @@ bool ChairMerger::CheckLocalizationPacksChanged()
         if (!fs::exists(existingFile))
             continue;
 
-        auto checksum = HashUtils::HashUncompressedFile(existingFile);
+        SHA256::Digest checksum;
+        if (!HashUtils::HashUncompressedFile(existingFile, checksum))
+            continue;
+
         m_DeployedLocalizationFileChecksums[localizationPack.first] = checksum;
         //        auto checksum = SHA256::Digest();
         //        if(false) {
@@ -892,7 +897,11 @@ void ChairMerger::PackMainPatch()
     {
         if (!m_bForceMainPatchPack)
         {
-            SHA256::Digest deployedFileHash = HashUtils::HashUncompressedFile(chairPakPath);
+            SHA256::Digest deployedFileHash;
+
+            if (!HashUtils::HashUncompressedFile(chairPakPath, deployedFileHash))
+                throw std::runtime_error(fmt::format("Failed to hash {}", chairPakPath.u8string()));
+
             SHA256::Digest outputFileHash = HashUtils::HashDirectory(m_OutputPath);
 
             if (deployedFileHash == outputFileHash)

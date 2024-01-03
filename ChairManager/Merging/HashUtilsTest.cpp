@@ -26,7 +26,8 @@ TEST(HashUtilsTest, HashDirectory)
 
 TEST(HashUtilsTest, HashUncompressedFile)
 {
-    auto digest = HashUtils::HashUncompressedFile("Testing/Hashing/level.pak");
+    SHA256::Digest digest;
+    ASSERT_TRUE(HashUtils::HashUncompressedFile("Testing/Hashing/level.pak", digest));
     auto expectedDigest = SHA256::fromString("532439abc6f2dfd937c4ee2ec4f014f0da6d21d26c74af853c9b47ec63f91a3a");
 
     EXPECT_EQ(digest, expectedDigest);
@@ -37,8 +38,9 @@ TEST(HashUtilsTest, UncompressedFileDirectoryEquality)
     //    the hash of a directory and the hash of the uncompressed file should be the same
     ZipUtils::CompressFolder(g_PreyFiles / "Ark", "Testing/Hashing/Ark.pak");
     auto digest = HashUtils::HashDirectory(g_PreyFiles / "Ark");
-    auto uncompressedDigest = HashUtils::HashUncompressedFile("Testing/Hashing/Ark.pak");
+    SHA256::Digest uncompressedDigest;
 
+    ASSERT_TRUE(HashUtils::HashUncompressedFile("Testing/Hashing/Ark.pak", uncompressedDigest));
     EXPECT_EQ(digest, uncompressedDigest);
 }
 
