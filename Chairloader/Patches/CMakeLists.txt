@@ -21,6 +21,8 @@ set(SOURCE_FILES
 	ArkFixedRewardSystem.h
 	ChairloaderPatches.cpp
 	ChairloaderPatches.h
+	ConsoleEventPatch.cpp
+	ConsoleEventPatch.h
 )
 
 add_library(Chairloader.Patches STATIC ${SOURCE_FILES})

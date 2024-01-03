@@ -7,6 +7,7 @@
 #include "Lua/LuaWarnPatch.h"
 #include "SteamAPI/ChairSteamAPI.h"
 #include "ChairloaderPatches.h"
+#include "ConsoleEventPatch.h"
 
 auto g_CleanupVibrationAtExit = PreyFunction<void()>(0x9D85C0);
 FunctionHook<void()> g_CleanupVibrationAtExit_Hook;
@@ -73,6 +74,11 @@ void ChairloaderPatches::InitSystem()
 		HookTransaction tr;
 		g_CleanupVibrationAtExit_Hook.InstallHook(g_CleanupVibrationAtExit.Get(), &CleanupVibrationAtExit_Hook);
 		tr.CommitOrDie();
+	}
+
+	if (gEnv->pSystem->IsDevMode())
+	{
+		ConsoleEventPatch::InitHooks();
 	}
 }
 

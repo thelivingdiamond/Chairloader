@@ -5,11 +5,51 @@
 namespace NFlowSystemUtils
 {
 
-// Header: MadeUp
-// _unknown/NFlowSystemUtils__Wrapper_bool_.h
-template <typename T> struct Wrapper // Id=8000F56 Size=8
+//! This class helps define IFlowGraph by declaring typed virtual functions corresponding to TFlowSystemDataTypes.
+template<typename T>
+struct Wrapper;
+
+template<>
+struct Wrapper<SFlowSystemVoid>
 {
-	const T &value;
+	explicit Wrapper(const SFlowSystemVoid& v) : value(v) {}
+	const SFlowSystemVoid& value;
+};
+template<>
+struct Wrapper<int>
+{
+	explicit Wrapper(const int& v) : value(v) {}
+	const int& value;
+};
+template<>
+struct Wrapper<float>
+{
+	explicit Wrapper(const float& v) : value(v) {}
+	const float& value;
+};
+template<>
+struct Wrapper<EntityId>
+{
+	explicit Wrapper(const EntityId& v) : value(v) {}
+	const EntityId& value;
+};
+template<>
+struct Wrapper<Vec3>
+{
+	explicit Wrapper(const Vec3& v) : value(v) {}
+	const Vec3& value;
+};
+template<>
+struct Wrapper<string>
+{
+	explicit Wrapper(const string& v) : value(v) {}
+	const string& value;
+};
+template<>
+struct Wrapper<bool>
+{
+	explicit Wrapper(const bool& v) : value(v) {}
+	const bool& value;
 };
 
 } // namespace NFlowSystemUtils
