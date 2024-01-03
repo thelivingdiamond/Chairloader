@@ -4,6 +4,7 @@
 class DevConsoleDialog;
 class FileBrowser;
 class ModReloading;
+class DebugMenu;
 
 class ChairloaderToolsPreditor : public IChairloaderToolsPreditor
 {
@@ -23,4 +24,5 @@ private:
 	bool m_bDrawDevConsole = true;
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 	std::unique_ptr<FileBrowser> m_pFileBrowser;
+	std::unique_ptr<DebugMenu> m_pDebugMenu;
 };

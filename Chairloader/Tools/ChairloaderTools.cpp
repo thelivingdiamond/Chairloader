@@ -9,6 +9,7 @@
 #include "FileBrowser.h"
 #include "PerfOverlay.h"
 #include "LocalizationUtil.h"
+#include "DebugMenu.h"
 #include <Chairloader/IChairloaderCore.h>
 #include <Prey/CrySystem/ILocalizationManager.h>
 #include <Prey/CrySystem/LocalizedStringManager.h>
@@ -41,6 +42,11 @@ void ChairloaderTools::InitGame()
 		m_pPlayerManager = std::make_unique<PlayerManager>();
 		m_pWorldManager = std::make_unique<WorldManager>();
         m_pSignalSystemManager = std::make_unique<SignalSystemManager>();
+	}
+
+	if (gEnv->pSystem->IsDevMode())
+	{
+		m_pDebugMenu = std::make_unique<DebugMenu>();
 	}
 
 	if (m_bEnableEditor)
@@ -80,6 +86,9 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 			m_pWorldManager->Draw();
             m_pSignalSystemManager->Draw();
 		}
+
+		if (m_pDebugMenu)
+			m_pDebugMenu->ShowMenu();
 
 		if (m_bEnableEditor)
 		{

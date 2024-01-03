@@ -12,6 +12,8 @@ set(SHARED_SOURCE_FILES
 
 	ChairToolsUtils.cpp
 	ChairToolsUtils.h
+	DebugMenu.cpp
+	DebugMenu.h
 	DevConsoleDialog.cpp
 	DevConsoleDialog.h
 	FileBrowser.cpp
