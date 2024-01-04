@@ -85,74 +85,6 @@ bool SteamInputDevice::Init()
         return false;
 
     m_bInitialized = true;
-    m_DigitalActions.resize(std::size(g_DigitalActions));
-
-    int nextKeyId = eKI_SteamControllerBegin;
-
-    for (size_t actionIdx = 0; actionIdx < std::size(g_DigitalActions); actionIdx++)
-    {
-        DigitalAction& action = m_DigitalActions[actionIdx];
-        ControllerDigitalActionHandle_t hAction = SteamController()->GetDigitalActionHandle(g_DigitalActions[actionIdx]);
-
-        if (!hAction)
-        {
-            CryError("[SteamController] Failed to bind digital action handle '{}'[{}]", g_DigitalActions[actionIdx], actionIdx);
-            continue;
-        }
-
-        action.hAction = hAction;
-        action.pSymbol = MapSymbol(actionIdx, (EKeyId)nextKeyId, { g_DigitalActions[actionIdx] }, SInputSymbol::Button, 0);
-        nextKeyId++;
-
-        m_Actions[g_DigitalActions[actionIdx]] = ActionByName{ (unsigned)actionIdx, false };
-    }
-
-    m_AnalogActions.resize(std::size(g_AnalogActions));
-
-    for (size_t actionIdx = 0; actionIdx < std::size(g_AnalogActions); actionIdx++)
-    {
-        const AnalogActionName& name = g_AnalogActions[actionIdx];
-        AnalogAction& action = m_AnalogActions[actionIdx];
-        ControllerAnalogActionHandle_t hAction = SteamController()->GetAnalogActionHandle(name.main);
-
-        if (!hAction)
-        {
-            CryError("[SteamController] Failed to bind analog action handle '{}'[{}]", name.main, actionIdx);
-            continue;
-        }
-
-        action.hAction = hAction;
-
-        if (name.x && name.y)
-        {
-            action.pSymbolX = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.x }, name.type, 0);
-            nextKeyId++;
-            action.pSymbolY = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.y }, name.type, 0);
-            nextKeyId++;
-        }
-        else
-        {
-            action.pSymbolX = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.main }, name.type, 0);
-            nextKeyId++;
-        }
-
-        m_Actions[g_DigitalActions[actionIdx]] = ActionByName{ (unsigned)actionIdx, true };
-    }
-
-    m_ActionSets.resize(std::size(g_ActionSets));
-
-    for (size_t actionSetIdx = 0; actionSetIdx < std::size(g_ActionSets); actionSetIdx++)
-    {
-        m_ActionSets[actionSetIdx] = SteamController()->GetActionSetHandle(g_ActionSets[actionSetIdx]);
-
-        if (!m_ActionSets[actionSetIdx])
-        {
-            CryError("[SteamController] Failed to initialize ActionSet '{}'[{}]", g_ActionSets[actionSetIdx], actionSetIdx);
-            continue;
-        }
-    }
-
-    m_hCurrentActionSet = m_ActionSets[0];
     return true;
 }
 
@@ -167,8 +99,15 @@ void SteamInputDevice::Update(bool bFocus)
 
     if (SteamController()->GetConnectedControllers(m_hConnectedControllers) > 0)
     {
-        m_hCurrentController = m_hConnectedControllers[0];
+        SetController(m_hConnectedControllers[0]);
     }
+    else
+    {
+        SetController(NULL_CONTROLLER);
+    }
+
+    if (m_hCurrentController == NULL_CONTROLLER)
+        return;
 
     SInputEvent inputEvent = {};
     inputEvent.deviceType = eIDT_Gamepad;
@@ -206,7 +145,7 @@ void SteamInputDevice::Update(bool bFocus)
 
     for (DigitalAction& action : m_DigitalActions)
     {
-        if (!action.hAction || !action.pSymbol)
+        if (action.hAction == NULL_ACTION || !action.pSymbol)
             continue;
 
         ControllerDigitalActionData_t data = SteamController()->GetDigitalActionData(m_hCurrentController, action.hAction);
@@ -242,7 +181,7 @@ void SteamInputDevice::Update(bool bFocus)
 
     for (AnalogAction& action : m_AnalogActions)
     {
-        if (!action.hAction)
+        if (action.hAction == NULL_ACTION)
             continue;
 
         ControllerAnalogActionData_t data = SteamController()->GetAnalogActionData(m_hCurrentController, action.hAction);
@@ -297,12 +236,12 @@ void SteamInputDevice::ClearKeyState()
 
 bool SteamInputDevice::IsOfDeviceType(EInputDeviceType type) const
 {
-    return type == eIDT_Gamepad && m_hCurrentController != 0;
+    return type == eIDT_Gamepad && m_hCurrentController != NULL_CONTROLLER;
 }
 
 bool SteamInputDevice::IsConnected() const
 {
-    return m_hCurrentController != 0;
+    return m_hCurrentController != NULL_CONTROLLER;
 }
 
 void SteamInputDevice::ClearBufferedKeyState()
@@ -326,9 +265,12 @@ bool SteamInputDevice::IsSteamInBigPictureMode() const
 
 unsigned SteamInputDevice::GetSteamActionOrigin(const char* const _szActionName) const
 {
+    if (m_hCurrentController == NULL_CONTROLLER || !_szActionName)
+        return 0;
+
     // Split action set from action
     std::string_view actionSetName;
-    std::string_view fullActionName = _szActionName ? _szActionName : "";
+    std::string_view fullActionName = _szActionName;
     size_t sep = fullActionName.find(':');
 
     if (sep != fullActionName.npos)
@@ -341,7 +283,7 @@ unsigned SteamInputDevice::GetSteamActionOrigin(const char* const _szActionName)
     }
 
     // Find action set
-    ControllerActionSetHandle_t hActionSet = 0;
+    ControllerActionSetHandle_t hActionSet = NULL_ACTION_SET;
 
     for (size_t i = 0; i < std::size(g_ActionSets); i++)
     {
@@ -351,7 +293,7 @@ unsigned SteamInputDevice::GetSteamActionOrigin(const char* const _szActionName)
         }
     }
 
-    if (!hActionSet)
+    if (hActionSet == NULL_ACTION_SET)
     {
         CryWarning("[SteamController] Attempted to lookup an origin for an invalid action set [{}]", actionSetName);
         return 0;
@@ -404,20 +346,121 @@ const char* SteamInputDevice::GetGlyphFromActionOrigin(unsigned _actionOrigin) c
 
 void SteamInputDevice::ActivateSteamActionSet(const char* const _szActionSetName)
 {
-    for (size_t i = 0; i < std::size(g_ActionSets); i++)
-    {
-        if (!strcmp(g_ActionSets[i], _szActionSetName))
-        {
-            m_hCurrentActionSet = m_ActionSets[i];
+    m_CurrentActionSetName = _szActionSetName;
 
-            for (DigitalAction& action : m_DigitalActions)
+    if (m_hCurrentController != NULL_CONTROLLER)
+    {
+        for (size_t i = 0; i < std::size(g_ActionSets); i++)
+        {
+            if (!strcmp(g_ActionSets[i], _szActionSetName))
             {
-                action.isReset = true;
+                m_hCurrentActionSet = m_ActionSets[i];
+
+                for (DigitalAction& action : m_DigitalActions)
+                {
+                    action.isReset = true;
+                }
+
+                CInputDevice::ClearKeyState();
+                return;
+            }
+        }
+    }
+}
+
+void SteamInputDevice::SetController(ControllerHandle_t hController)
+{
+    if (m_hCurrentController == hController)
+        return;
+
+    m_hCurrentController = hController;
+
+    if (hController != NULL_CONTROLLER)
+    {
+        // Init digital actions
+        m_DigitalActions.resize(std::size(g_DigitalActions));
+
+        int nextKeyId = eKI_SteamControllerBegin;
+
+        for (size_t actionIdx = 0; actionIdx < std::size(g_DigitalActions); actionIdx++)
+        {
+            DigitalAction& action = m_DigitalActions[actionIdx];
+            ControllerDigitalActionHandle_t hAction = SteamController()->GetDigitalActionHandle(g_DigitalActions[actionIdx]);
+
+            if (!hAction)
+            {
+                CryError("[SteamController] Failed to bind digital action handle '{}'[{}]", g_DigitalActions[actionIdx], actionIdx);
+                continue;
             }
 
-            CInputDevice::ClearKeyState();
-            return;
+            action.hAction = hAction;
+            action.pSymbol = MapSymbol(actionIdx, (EKeyId)nextKeyId, { g_DigitalActions[actionIdx] }, SInputSymbol::Button, 0);
+            nextKeyId++;
+
+            m_Actions[g_DigitalActions[actionIdx]] = ActionByName{ (unsigned)actionIdx, false };
         }
+
+        // Init analog actions
+        m_AnalogActions.resize(std::size(g_AnalogActions));
+
+        for (size_t actionIdx = 0; actionIdx < std::size(g_AnalogActions); actionIdx++)
+        {
+            const AnalogActionName& name = g_AnalogActions[actionIdx];
+            AnalogAction& action = m_AnalogActions[actionIdx];
+            ControllerAnalogActionHandle_t hAction = SteamController()->GetAnalogActionHandle(name.main);
+
+            if (!hAction)
+            {
+                CryError("[SteamController] Failed to bind analog action handle '{}'[{}]", name.main, actionIdx);
+                continue;
+            }
+
+            action.hAction = hAction;
+
+            if (name.x && name.y)
+            {
+                action.pSymbolX = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.x }, name.type, 0);
+                nextKeyId++;
+                action.pSymbolY = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.y }, name.type, 0);
+                nextKeyId++;
+            }
+            else
+            {
+                action.pSymbolX = MapSymbol(actionIdx, (EKeyId)nextKeyId, { name.main }, name.type, 0);
+                nextKeyId++;
+            }
+
+            m_Actions[g_DigitalActions[actionIdx]] = ActionByName{ (unsigned)actionIdx, true };
+        }
+
+        // Init action sets
+        m_ActionSets.resize(std::size(g_ActionSets));
+
+        for (size_t actionSetIdx = 0; actionSetIdx < std::size(g_ActionSets); actionSetIdx++)
+        {
+            m_ActionSets[actionSetIdx] = SteamController()->GetActionSetHandle(g_ActionSets[actionSetIdx]);
+
+            if (!m_ActionSets[actionSetIdx])
+            {
+                CryError("[SteamController] Failed to initialize ActionSet '{}'[{}]", g_ActionSets[actionSetIdx], actionSetIdx);
+                continue;
+            }
+        }
+
+        m_hCurrentActionSet = m_ActionSets[0];
+
+        // Update action set
+        ActivateSteamActionSet(m_CurrentActionSetName.c_str());
+
+        CryLog("[SteamController] Active controller: {}", hController);
+    }
+    else
+    {
+        CryLog("[SteamController] Controller disconnected");
+        m_DigitalActions.clear();
+        m_AnalogActions.clear();
+        m_ActionSets.clear();
+        m_hCurrentActionSet = NULL_ACTION_SET;
     }
 }
 
