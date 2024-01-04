@@ -28,6 +28,10 @@ public:
                         Option& option = m_Options.emplace_back();
                         option.label = listChild.attribute("label").as_string();
                         option.value = listChild.attribute("value").as_string();
+
+                        if (option.label.empty())
+                            option.label = option.value;
+
                         ReadSubActions(listChild.child("subactions"), option.subActions);
                     }
                     else
