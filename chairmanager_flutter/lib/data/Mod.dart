@@ -1,4 +1,4 @@
-import 'package:xml/xml.dart';
+import 'package:xml/xml.dart' as xml;
 
 class Mod {
   Mod({
@@ -33,4 +33,26 @@ class Mod {
   bool operator >(Mod other) {
     return loadOrder > other.loadOrder;
   }
+
+
+  bool isEmpty() {
+    return modName == "";
+  }
+
+  // create a toXml method
+  xml.XmlElement toXml() {
+    // the first element should be named after the modName and have an attribute type="xmlnode"
+    var modElement = xml.XmlElement(xml.XmlName.fromString(modName), [xml.XmlAttribute(xml.XmlName.fromString("type"), "xmlnode")]);
+    // then for each property, create an element with the name of the property and the value of the property, and an attribute indicating the type of the property, i.e. type="string"
+    // modName
+    modElement.children.add(xml.XmlElement(xml.XmlName.fromString("modName"), [xml.XmlAttribute(xml.XmlName.fromString("type"), "string")], [xml.XmlText(modName)]));
+    // loadOrder
+    modElement.children.add(xml.XmlElement(xml.XmlName.fromString("loadOrder"), [xml.XmlAttribute(xml.XmlName.fromString("type"), "int")], [xml.XmlText(loadOrder.toString())]));
+    // enabled
+    modElement.children.add(xml.XmlElement(xml.XmlName.fromString("enabled"), [xml.XmlAttribute(xml.XmlName.fromString("type"), "bool")], [xml.XmlText(enabled.toString())]));
+    // legacy
+    modElement.children.add(xml.XmlElement(xml.XmlName.fromString("legacy"), [xml.XmlAttribute(xml.XmlName.fromString("type"), "bool")], [xml.XmlText(isLegacy.toString())]));
+    return modElement;
+  }
+
 }
