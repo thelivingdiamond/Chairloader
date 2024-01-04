@@ -26,16 +26,20 @@ public:
     virtual void ActivateSteamActionSet(const char* const _szActionSetName) override;
 
 private:
+    static constexpr ControllerHandle_t NULL_CONTROLLER = 0;
+    static constexpr ControllerActionSetHandle_t NULL_ACTION_SET = 0;
+    static constexpr uint64 NULL_ACTION = 0;
+
     struct DigitalAction
     {
-        ControllerDigitalActionHandle_t hAction = 0;
+        ControllerDigitalActionHandle_t hAction = NULL_ACTION;
         SInputSymbol* pSymbol = nullptr;
         bool isReset = false;
     };
 
     struct AnalogAction
     {
-        ControllerAnalogActionHandle_t hAction = 0;
+        ControllerAnalogActionHandle_t hAction = NULL_ACTION;
         SInputSymbol* pSymbolX = nullptr;
         SInputSymbol* pSymbolY = nullptr;
     };
@@ -52,15 +56,20 @@ private:
     std::map<std::string, ActionByName, std::less<>> m_Actions;
 
     ControllerHandle_t m_hConnectedControllers[STEAM_CONTROLLER_MAX_COUNT] = {};
-    ControllerHandle_t m_hCurrentController = 0;
-    ControllerActionSetHandle_t m_hCurrentActionSet = 0;
+    ControllerHandle_t m_hCurrentController = NULL_CONTROLLER;
+    ControllerActionSetHandle_t m_hCurrentActionSet = NULL_ACTION_SET;
     EControllerActionOrigin m_nCurrentActionOrigin = k_EControllerActionOrigin_None;
+
+    std::string m_CurrentActionSetName;
 
     float m_basicLeftMotorRumble = 0.0f, m_basicRightMotorRumble = 0.0f;
     float m_frameLeftMotorRumble = 0.0f, m_frameRightMotorRumble = 0.0f;
     float m_fVibrationTimer = 0.0f;
 
     bool m_bInitialized = false;
+
+    //! Sets the controller handle and updates actions.
+    void SetController(ControllerHandle_t hController);
 
     float GetClampedLeftMotorAccumulatedVibration() const { return clamp_tpl(m_basicLeftMotorRumble + m_frameLeftMotorRumble, 0.0f, 65535.0f); }
     float GetClampedRightMotorAccumulatedVibration() const { return clamp_tpl(m_basicRightMotorRumble + m_frameRightMotorRumble, 0.0f, 65535.0f); }
