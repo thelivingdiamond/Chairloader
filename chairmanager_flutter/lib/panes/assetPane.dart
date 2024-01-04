@@ -4,28 +4,26 @@ import 'dart:io';
 import 'package:chairmanager_flutter/data/Mod.dart';
 import 'package:chairmanager_flutter/panes/paneThemes.dart';
 import 'package:chairmanager_flutter/states/AssetPanePersistentState.dart';
-import 'package:chairmanager_flutter/states/ModManager.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart' as material;
 
 import 'package:chairmanager_flutter/log/log.dart';
 
 
-class AssetPane extends ConsumerStatefulWidget {
+class AssetPane extends StatefulWidget {
   const AssetPane({super.key});
 
   @override
-  ConsumerState<AssetPane> createState() => _AssetPaneState();
+  State<AssetPane> createState() => _AssetPaneState();
 }
 
-class _AssetPaneState extends ConsumerState<AssetPane> {
+class _AssetPaneState extends State<AssetPane> {
 
 
   @override
   void initState() {
     super.initState();
-    ref.read(assetPanePersistentStateProvider.notifier).addListener((state){setState(() {});});
+    // ref.read(assetPanePersistentStateProvider.notifier).addListener((state){setState(() {});});
   }
 
   @override
@@ -48,14 +46,14 @@ class _AssetPaneState extends ConsumerState<AssetPane> {
                 ),
                 child: const Text("Asset Viewer", style: titleStyle,),
               ),
-              Container(
-                child: Text("Currently Selected Directory: ${ref.watch(assetPanePersistentStateProvider).selectedDirectory.path} \nCurrently Selected File: ${ref.watch(assetPanePersistentStateProvider).selectedFile.path}"),
-              ),
-              Text("Index: ${ref.watch(assetPanePersistentStateProvider).index}"),
-              Text("Directory Expansion Map: ${ref.watch(assetPanePersistentStateProvider).directoryExpansionMap}"),
+              // Container(
+              //   child: Text("Currently Selected Directory: ${ref.watch(assetPanePersistentStateProvider).selectedDirectory.path} \nCurrently Selected File: ${ref.watch(assetPanePersistentStateProvider).selectedFile.path}"),
+              // ),
+              // Text("Index: ${ref.watch(assetPanePersistentStateProvider).index}"),
+              // Text("Directory Expansion Map: ${ref.watch(assetPanePersistentStateProvider).directoryExpansionMap}"),
               Expanded(
                 child: TabView(
-                  currentIndex: ref.watch(assetPanePersistentStateProvider).index,
+                  currentIndex: /*ref.watch(assetPanePersistentStateProvider).index,*/ 0,
                   closeButtonVisibility: CloseButtonVisibilityMode.never,
                   tabs: (){
                     List<Tab> tabs = [];
@@ -74,12 +72,12 @@ class _AssetPaneState extends ConsumerState<AssetPane> {
                                 onItemExpandToggle: (item, isOpen) async {
                                   final value = item.value;
                                   if(value is Directory) {
-                                      if (ref.watch(assetPanePersistentStateProvider).directoryExpansionMap[value] != null) {
-                                        ref.read(assetPanePersistentStateProvider.notifier).directoryExpansionMap.update(value, (value) => isOpen);
-                                      } else {
-                                        ref.read(assetPanePersistentStateProvider.notifier).directoryExpansionMap[value] = isOpen;
-                                      }
-                                      logger.d("Directory Expansion Map: ${ref.watch(assetPanePersistentStateProvider).directoryExpansionMap}");
+                                      // if (ref.watch(assetPanePersistentStateProvider).directoryExpansionMap[value] != null) {
+                                      //   ref.read(assetPanePersistentStateProvider.notifier).directoryExpansionMap.update(value, (value) => isOpen);
+                                      // } else {
+                                      //   ref.read(assetPanePersistentStateProvider.notifier).directoryExpansionMap[value] = isOpen;
+                                      // }
+                                      // logger.d("Directory Expansion Map: ${ref.watch(assetPanePersistentStateProvider).directoryExpansionMap}");
                                   }
                                 },
                                 onSelectionChanged: (item) async {
@@ -97,42 +95,42 @@ class _AssetPaneState extends ConsumerState<AssetPane> {
                                   // }
                                 },
                                 items: [
-                                  DirectoryView(
-                                      Directory(r"C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairManager\Data\PreyFiles"),
-                                      0,
-                                      (p1){
-                                        return ref.watch(assetPanePersistentStateProvider).directoryExpansionMap[p1] ?? false;
-                                      },
-                                      (p1){
-                                        return ref.watch(assetPanePersistentStateProvider).selectedDirectory == p1;
-                                      },
-                                      (p1){
-                                        return ref.watch(assetPanePersistentStateProvider).selectedFile == p1;
-                                      },
-                                  ),
+                                  // DirectoryView(
+                                  //     Directory(r"C:\Users\theli\Documents\Modding\Prey Modding\Learning2Hack\ChairLoader\ChairManager\Data\PreyFiles"),
+                                  //     0,
+                                  //     (p1){
+                                  //       return ref.watch(assetPanePersistentStateProvider).directoryExpansionMap[p1] ?? false;
+                                  //     },
+                                  //     (p1){
+                                  //       return ref.watch(assetPanePersistentStateProvider).selectedDirectory == p1;
+                                  //     },
+                                  //     (p1){
+                                  //       return ref.watch(assetPanePersistentStateProvider).selectedFile == p1;
+                                  //     },
+                                  // ),
 
                                 ],
                               )
                           ),
                         )
                     );
-                    for (Mod mod in ref.watch(modManagerProvider).mods) {
-                      // only add the mod if it matches the filter text
-                      // if (mod.modName.toLowerCase().contains(filter_text.toLowerCase())) {
-                      tabs.add(
-                          Tab(
-                            text: Text(mod.modName),
-                            body: Container(
-                              decoration: BoxDecoration(
-                                color: tileColor,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Placeholder(),
-                            ),
-                          )
-                      );
-                      // }
-                    }
+                    // for (Mod mod in ref.watch(modManagerProvider).mods) {
+                    //   // only add the mod if it matches the filter text
+                    //   // if (mod.modName.toLowerCase().contains(filter_text.toLowerCase())) {
+                    //   tabs.add(
+                    //       Tab(
+                    //         text: Text(mod.modName),
+                    //         body: Container(
+                    //           decoration: BoxDecoration(
+                    //             color: tileColor,
+                    //             borderRadius: BorderRadius.circular(8),
+                    //           ),
+                    //           child: Placeholder(),
+                    //         ),
+                    //       )
+                    //   );
+                    //   // }
+                    // }
                     return tabs;
                   }(),
                   onChanged: (v) {
@@ -141,7 +139,7 @@ class _AssetPaneState extends ConsumerState<AssetPane> {
                     //   ref.read(assetPanePersistentStateProvider.notifier).selectedDirectory = Directory("");
                     //   ref.read(assetPanePersistentStateProvider.notifier).directoryExpansionMap = HashMap<Directory, bool>();
                     // }
-                    ref.read(assetPanePersistentStateProvider.notifier).index = v;
+                    // ref.read(assetPanePersistentStateProvider.notifier).index = v;
                   },
                 ),
               )

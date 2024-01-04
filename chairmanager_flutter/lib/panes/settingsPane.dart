@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../states/SettingsController.dart';
-import '../states/SettingsManager.dart';
 
 
 class SettingsPane extends StatefulWidget {
