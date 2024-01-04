@@ -326,9 +326,12 @@ bool SteamInputDevice::IsSteamInBigPictureMode() const
 
 unsigned SteamInputDevice::GetSteamActionOrigin(const char* const _szActionName) const
 {
+    if (!m_hCurrentController || !_szActionName)
+        return 0;
+
     // Split action set from action
     std::string_view actionSetName;
-    std::string_view fullActionName = _szActionName ? _szActionName : "";
+    std::string_view fullActionName = _szActionName;
     size_t sep = fullActionName.find(':');
 
     if (sep != fullActionName.npos)
