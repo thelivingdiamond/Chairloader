@@ -19,6 +19,8 @@ set(SOURCE_FILES
 	
 	ArkFixedRewardSystem.cpp
 	ArkFixedRewardSystem.h
+	ArkPlayerCheats.cpp
+	ArkPlayerCheats.h
 	ChairloaderPatches.cpp
 	ChairloaderPatches.h
 	ConsoleEventPatch.cpp

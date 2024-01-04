@@ -8,6 +8,7 @@
 #include "SteamAPI/ChairSteamAPI.h"
 #include "ChairloaderPatches.h"
 #include "ConsoleEventPatch.h"
+#include "ArkPlayerCheats.h"
 
 auto g_CleanupVibrationAtExit = PreyFunction<void()>(0x9D85C0);
 FunctionHook<void()> g_CleanupVibrationAtExit_Hook;
@@ -78,13 +79,17 @@ void ChairloaderPatches::InitSystem()
 
 	if (gEnv->pSystem->IsDevMode())
 	{
+		ArkPlayerCheats::InitHooks();
 		ConsoleEventPatch::InitHooks();
 	}
 }
 
 void ChairloaderPatches::InitGame()
 {
-    
+	if (gEnv->pSystem->IsDevMode())
+	{
+		ArkPlayerCheats::InitGame();
+	}
 }
 
 void ChairloaderPatches::MainUpdate(unsigned updateFlags)
