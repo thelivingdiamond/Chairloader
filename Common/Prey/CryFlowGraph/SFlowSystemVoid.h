@@ -6,13 +6,14 @@
 
 class ICrySizer;
 
-// Header: MadeUp
-// _unknown/SFlowSystemVoid.h
-struct SFlowSystemVoid // Id=8000F5D Size=1
+//! This is a special type which means "no input data".
+struct SFlowSystemVoid
 {
-#if 0
-	void Serialize(TSerialize arg0);
-	void GetMemoryUsage(ICrySizer *arg0) const;
-#endif
+	void Serialize(TSerialize ser) {}
+	void GetMemoryUsage(ICrySizer* pSizer) const {}
 };
 
+inline bool operator==(const SFlowSystemVoid& a, const SFlowSystemVoid& b)
+{
+	return true;
+}

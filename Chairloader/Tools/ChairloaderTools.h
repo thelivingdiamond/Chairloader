@@ -5,6 +5,7 @@ class DevConsoleDialog;
 class FileBrowser;
 class PerfOverlay;
 class LocalizationUtil;
+class DebugMenu;
 
 class EntityManager;
 class PlayerManager;
@@ -30,6 +31,7 @@ private:
 	std::unique_ptr<DevConsoleDialog> m_pDevConsole;
 	std::unique_ptr<FileBrowser> m_pFileBrowser;
 	std::unique_ptr<PerfOverlay> m_pPerfOverlay;
+	std::unique_ptr<DebugMenu> m_pDebugMenu;
 
 	// Trainer
 	bool m_bEnableTrainer = false;

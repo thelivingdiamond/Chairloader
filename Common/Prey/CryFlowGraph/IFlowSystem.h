@@ -7,6 +7,10 @@
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryFlowGraph/SFlowSystemVoid.h>
+#include <Prey/CryFlowGraph/NFlowSystemUtils__IFlowSystemTyped.h>
+#include <Prey/CryFlowGraph/NFlowSystemUtils__Wrapper.h>
+#include <Prey/CryFlowGraph/IFlowNodeIterator.h>
+#include <Prey/CryFlowGraph/IFlowEdgeIterator.h>
 #include <Chairloader/PreyFunction.h>
 
 typedef uint8  TFlowPortId;
@@ -22,8 +26,219 @@ static const TFlowGraphId InvalidFlowGraphId = ~TFlowGraphId(0);
 static const TFlowSystemContainerId InvalidContainerId = ~TFlowSystemContainerId(0);
 
 
+//! By adding types to this list, we can extend the flow system to handle new data types.
+//! Important: If types need to be added, add them at the end, otherwise it breaks serialization.
+//! \note CFlowData::ConfigureInputPort must be updated simultaneously.
+//! \see CFlowData::ConfigureInputPort.
+typedef boost::mpl::vector<
+    SFlowSystemVoid,
+    int,
+    float,
+    EntityId,
+    Vec3,
+    string,
+    bool
+    > TFlowSystemDataTypes;
+
+//! Default conversion uses C++ rules.
+template<class From, class To>
+struct SFlowSystemConversion
+{
+	static ILINE bool ConvertValue(const From& from, To& to)
+	{
+		to = (To)from;
+		return true;
+	}
+};
+
+#define FLOWSYSTEM_NO_CONVERSION(T)                                                   \
+  template<> struct SFlowSystemConversion<T, T> {                                     \
+    static ILINE bool ConvertValue(const T &from, T & to) { to = from; return true; } \
+  }
+FLOWSYSTEM_NO_CONVERSION(SFlowSystemVoid);
+FLOWSYSTEM_NO_CONVERSION(int);
+FLOWSYSTEM_NO_CONVERSION(float);
+FLOWSYSTEM_NO_CONVERSION(EntityId);
+FLOWSYSTEM_NO_CONVERSION(Vec3);
+FLOWSYSTEM_NO_CONVERSION(string);
+FLOWSYSTEM_NO_CONVERSION(bool);
+#undef FLOWSYSTEM_NO_CONVERSION
+
+//! Specialization for converting to bool to avoid compiler warnings.
+template<class From>
+struct SFlowSystemConversion<From, bool>
+{
+	static ILINE bool ConvertValue(const From& from, bool& to)
+	{
+		to = (from != 0);
+		return true;
+	}
+};
+//! "Void" conversion needs some help.
+//! Converting from void to anything yields default value of type.
+template<class To>
+struct SFlowSystemConversion<SFlowSystemVoid, To>
+{
+	static ILINE bool ConvertValue(SFlowSystemVoid, To& to)
+	{
+		to = To();
+		return true;
+	}
+};
+template<>
+struct SFlowSystemConversion<SFlowSystemVoid, bool>
+{
+	static ILINE bool ConvertValue(const SFlowSystemVoid& from, bool& to)
+	{
+		to = false;
+		return true;
+	}
+};
+template<>
+struct SFlowSystemConversion<SFlowSystemVoid, Vec3>
+{
+	static ILINE bool ConvertValue(const SFlowSystemVoid& from, Vec3& to)
+	{
+		to = Vec3(0, 0, 0);
+		return true;
+	}
+};
+template<>
+struct SFlowSystemConversion<Vec3, SFlowSystemVoid>
+{
+	static ILINE bool ConvertValue(const Vec3& from, SFlowSystemVoid&)
+	{
+		return true;
+	}
+};
+
+//! Converting to void is trivial - just lose the value info.
+template<class From>
+struct SFlowSystemConversion<From, SFlowSystemVoid>
+{
+	static ILINE bool ConvertValue(const From& from, SFlowSystemVoid&)
+	{
+		return true;
+	}
+};
+
+//! Vec3 conversions.
+template<class To>
+struct SFlowSystemConversion<Vec3, To>
+{
+	static ILINE bool ConvertValue(const Vec3& from, To& to)
+	{
+		return SFlowSystemConversion<float, To>::ConvertValue(from.x, to);
+	}
+};
+template<class From>
+struct SFlowSystemConversion<From, Vec3>
+{
+	static ILINE bool ConvertValue(const From& from, Vec3& to)
+	{
+		float temp;
+		if (!SFlowSystemConversion<From, float>::ConvertValue(from, temp))
+			return false;
+		to.x = to.y = to.z = temp;
+		return true;
+	}
+};
+template<>
+struct SFlowSystemConversion<Vec3, bool>
+{
+	static ILINE bool ConvertValue(const Vec3& from, bool& to)
+	{
+		to = from.GetLengthSquared() > 0;
+		return true;
+	}
+};
+
+#define FLOWSYSTEM_STRING_CONVERSION(type, fmt)                   \
+  template<>                                                      \
+  struct SFlowSystemConversion<type, string>                      \
+  {                                                               \
+    static ILINE bool ConvertValue(const type &from, string & to) \
+    {                                                             \
+      to.Format(fmt, from);                                       \
+      return true;                                                \
+    }                                                             \
+  };                                                              \
+  template<>                                                      \
+  struct SFlowSystemConversion<string, type>                      \
+  {                                                               \
+    static ILINE bool ConvertValue(const string &from, type & to) \
+    {                                                             \
+      return 1 == sscanf(from.c_str(), fmt, &to);                 \
+    }                                                             \
+  };
+
+FLOWSYSTEM_STRING_CONVERSION(int, "%d");
+FLOWSYSTEM_STRING_CONVERSION(float, "%g");
+FLOWSYSTEM_STRING_CONVERSION(EntityId, "%u");
+
+#undef FLOWSYSTEM_STRING_CONVERSION
+
+template<>
+struct SFlowSystemConversion<bool, string>
+{
+	static ILINE bool ConvertValue(const bool& from, string& to)
+	{
+		to.Format("%s", from ? "true" : "false");
+		return true;
+	}
+};
+
+template<>
+struct SFlowSystemConversion<string, bool>
+{
+	//! Leaves 'to' unchanged in case of error.
+	static ILINE bool ConvertValue(const string& from, bool& to)
+	{
+		int to_i;
+		if (1 == sscanf(from.c_str(), "%d", &to_i))
+		{
+			to = !!to_i;
+			return true;
+		}
+		if (0 == stricmp(from.c_str(), "true"))
+		{
+			to = true;
+			return true;
+		}
+		if (0 == stricmp(from.c_str(), "false"))
+		{
+			to = false;
+			return true;
+		}
+		return false;
+	}
+};
+
+template<>
+struct SFlowSystemConversion<Vec3, string>
+{
+	static ILINE bool ConvertValue(const Vec3& from, string& to)
+	{
+		to.Format("%g,%g,%g", from.x, from.y, from.z);
+		return true;
+	}
+};
+
+template<>
+struct SFlowSystemConversion<string, Vec3>
+{
+	static ILINE bool ConvertValue(const string& from, Vec3& to)
+	{
+		return 3 == sscanf(from.c_str(), "%g,%g,%g", &to.x, &to.y, &to.z);
+	}
+};
+
+typedef boost::make_variant_over<TFlowSystemDataTypes>::type TFlowInputDataVariant;
+
 struct SInputPortConfig;
 struct SOutputPortConfig;
+struct SFlowNodeActivationListener;
+struct ICustomAction;
 
 enum EHyperNodeFlags
 {
@@ -37,6 +252,45 @@ enum EHyperNodeFlags
     EHYPER_NODE_UNREMOVEABLE  = 0x0400,    // Node cannot be deleted by user
 };
 
+template<class T>
+struct DefaultInitialized
+{
+	T operator()() const { return T(); }
+};
+
+template<>
+struct DefaultInitialized<Vec3>
+{
+	Vec3 operator()() const { return Vec3(ZERO); }
+};
+
+template<class Iter>
+struct DefaultInitializedForTag
+{
+	bool operator()(int tag, TFlowInputDataVariant& v) const
+	{
+		if (tag == boost::mpl::distance<typename boost::mpl::begin<TFlowSystemDataTypes>::type, Iter>::type::value)
+		{
+			DefaultInitialized<typename boost::mpl::deref<Iter>::type> create;
+			v = create();
+			return true;
+		}
+		else
+		{
+			DefaultInitializedForTag<typename boost::mpl::next<Iter>::type> create;
+			return create(tag, v);
+		}
+	}
+};
+
+template<>
+struct DefaultInitializedForTag<typename boost::mpl::end<TFlowSystemDataTypes>::type>
+{
+	bool operator()(int tag, TFlowInputDataVariant& v) const
+	{
+		return false;
+	}
+};
 
 // Header: MadeUp
 // _unknown/SFlowNodeConfig.h
@@ -157,93 +411,377 @@ struct IFlowNodeFactory // Id=8001C5D Size=8
 
 // Header: Exact
 // CryEngine/crycommon/iflowsystem.h
-class TFlowInputData // Id=8001C01 Size=32
+class TFlowInputData
 {
+	class IsSameType
+	{
+		class StrictlyEqual : public boost::static_visitor<bool>
+		{
+		public:
+			template<typename T, typename U>
+			bool operator()(const T&, const U&) const
+			{
+				return false; // cannot compare different types
+			}
+
+			template<typename T>
+			bool operator()(const T&, const T&) const
+			{
+				return true;
+			}
+		};
+
+	public:
+		bool operator()(const TFlowInputData& a, const TFlowInputData& b) const
+		{
+			return boost::apply_visitor(StrictlyEqual(), a.m_variant, b.m_variant);
+		}
+	};
+
+	template<typename Ref>
+	class IsSameTypeExpl
+	{
+		class StrictlyEqual : public boost::static_visitor<bool>
+		{
+		public:
+			template<typename T>
+			bool operator()(const T&) const
+			{
+				return false; // cannot compare different types
+			}
+
+			bool operator()(const Ref&) const
+			{
+				return true;
+			}
+		};
+
+	public:
+		bool operator()(const TFlowInputData& a) const
+		{
+			return boost::apply_visitor(StrictlyEqual(), a.m_variant);
+		}
+	};
+
+	class IsEqual
+	{
+		class StrictlyEqual : public boost::static_visitor<bool>
+		{
+		public:
+			template<typename T, typename U>
+			bool operator()(const T&, const U&) const
+			{
+				return false; // cannot compare different types
+			}
+
+			template<typename T>
+			bool operator()(const T& lhs, const T& rhs) const
+			{
+				return lhs == rhs;
+			}
+		};
+
+	public:
+		bool operator()(const TFlowInputData& a, const TFlowInputData& b) const
+		{
+			return boost::apply_visitor(StrictlyEqual(), a.m_variant, b.m_variant);
+		}
+	};
+
+	class ExtractType : public boost::static_visitor<EFlowDataTypes>
+	{
+	public:
+		template<typename T>
+		EFlowDataTypes operator()(const T& value) const
+		{
+			return (EFlowDataTypes) boost::mpl::find<TFlowSystemDataTypes, T>::type::pos::value;
+		}
+	};
+
+	template<typename To>
+	class ConvertType_Get : public boost::static_visitor<bool>
+	{
+	public:
+		ConvertType_Get(To& to_) : to(to_) {}
+
+		template<typename From>
+		bool operator()(const From& from) const
+		{
+			return SFlowSystemConversion<From, To>::ConvertValue(from, to);
+		}
+
+		To& to;
+	};
+
+	template<typename From>
+	class ConvertType_Set : public boost::static_visitor<bool>
+	{
+	public:
+		ConvertType_Set(const From& from_) : from(from_) {}
+
+		template<typename To>
+		bool operator()(To& to) const
+		{
+			return SFlowSystemConversion<From, To>::ConvertValue(from, to);
+		}
+
+		const From& from;
+	};
+
+	class ConvertType_SetFlexi : public boost::static_visitor<bool>
+	{
+	public:
+		ConvertType_SetFlexi(TFlowInputData& to_) : to(to_) {}
+
+		template<typename From>
+		bool operator()(const From& from) const
+		{
+			return boost::apply_visitor(ConvertType_Set<From>(from), to.m_variant);
+		}
+
+		TFlowInputData& to;
+	};
+
+	class WriteType : public boost::static_visitor<void>
+	{
+	public:
+		WriteType(TSerialize ser, bool userFlag) : m_ser(ser), m_userFlag(userFlag) {}
+
+		template<class T>
+		void operator()(T& v)
+		{
+			int tag = boost::mpl::find<TFlowSystemDataTypes, T>::type::pos::value;
+			m_ser.Value("tag", tag);
+			m_ser.Value("ud", m_userFlag);
+			m_ser.Value("v", v);
+		}
+
+	private:
+		TSerialize m_ser;
+		bool       m_userFlag;
+	};
+
+	class LoadType : public boost::static_visitor<void>
+	{
+	public:
+		LoadType(TSerialize ser) : m_ser(ser) {}
+
+		template<class T>
+		void operator()(T& v)
+		{
+			m_ser.Value("v", v);
+		}
+
+	private:
+		TSerialize m_ser;
+	};
+
+	class MemStatistics : public boost::static_visitor<void>
+	{
+	public:
+		MemStatistics(ICrySizer* pSizer) : m_pSizer(pSizer) {}
+
+		template<class T>
+		void operator()(T& v)
+		{
+			// m_pSizer->AddObject(v);
+		}
+
+	private:
+		ICrySizer* m_pSizer;
+	};
+
 public:
-    class IsSameType // Id=8001C02 Size=1
-    {
-    public:
-        class StrictlyEqual : public boost::static_visitor<bool> // Id=8001C03 Size=1
-        {
-        public:
-        };
+	TFlowInputData()
+		: m_variant()
+		, m_userFlag(false)
+		, m_locked(false)
+	{}
 
-#if 0
-        bool operator()(TFlowInputData const &arg0, TFlowInputData const &arg1) const;
-#endif
-    };
+	TFlowInputData(const TFlowInputData& rhs)
+		: m_variant(rhs.m_variant)
+		, m_userFlag(rhs.m_userFlag)
+		, m_locked(rhs.m_locked)
+	{}
 
-    class IsEqual // Id=8001C05 Size=1
-    {
-    public:
-        class StrictlyEqual : public boost::static_visitor<bool> // Id=8001C06 Size=1
-        {
-        public:
-        };
+	template<typename T>
+	explicit TFlowInputData(const T& v, bool locked = false)
+		: m_variant(v)
+		, m_userFlag(false)
+		, m_locked(locked)
+	{}
 
-#if 0
-        bool operator()(TFlowInputData const &arg0, TFlowInputData const &arg1) const;
-#endif
-    };
+	template<typename T>
+	static TFlowInputData CreateDefaultInitialized(bool locked = false)
+	{
+		DefaultInitialized<T> create;
+		return TFlowInputData(create(), locked);
+	}
 
-    class ExtractType : public boost::static_visitor<EFlowDataTypes> // Id=8001C07 Size=1
-    {
-    public:
-    };
+	static TFlowInputData CreateDefaultInitializedForTag(int tag, bool locked = false)
+	{
+		TFlowInputDataVariant v;
+		DefaultInitializedForTag<boost::mpl::begin<TFlowSystemDataTypes>::type> create;
+		create(tag, v);
+		return TFlowInputData(v, locked);
+	}
 
-    class ConvertType_SetFlexi : public boost::static_visitor<bool> // Id=8001C09 Size=8
-    {
-    public:
-        TFlowInputData &to;
-    };
+	TFlowInputData& operator=(const TFlowInputData& rhs)
+	{
+		if (this != &rhs)
+		{
+			m_variant = rhs.m_variant;
+			m_userFlag = rhs.m_userFlag;
+			m_locked = rhs.m_locked;
+		}
+		return *this;
+	}
 
-    class WriteType : public boost::static_visitor<void> // Id=8001C0A Size=24
-    {
-    public:
-        TSerialize m_ser;
-        bool m_userFlag;
-    };
+	bool operator==(const TFlowInputData& rhs) const
+	{
+		IsEqual isEqual;
+		return isEqual(*this, rhs);
+	}
 
-    class LoadType : public boost::static_visitor<void> // Id=8001C0B Size=16
-    {
-    public:
-        TSerialize m_ser;
-    };
+	bool operator!=(const TFlowInputData& rhs) const
+	{
+		IsEqual isEqual;
+		return !isEqual(*this, rhs);
+	}
 
-    class MemStatistics : public boost::static_visitor<void> // Id=8001C0C Size=8
-    {
-    public:
-        ICrySizer *m_pSizer;
-    };
+	bool SetDefaultForTag(int tag)
+	{
+		DefaultInitializedForTag<boost::mpl::begin<TFlowSystemDataTypes>::type> set;
+		return set(tag, m_variant);
+	}
 
-    boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<7>,SFlowSystemVoid,boost::mpl::l_item<boost::mpl::long_<6>,int,boost::mpl::l_item<boost::mpl::long_<5>,float,boost::mpl::l_item<boost::mpl::long_<4>,unsigned int,boost::mpl::l_item<boost::mpl::long_<3>,Vec3,boost::mpl::l_item<boost::mpl::long_<2>,string,boost::mpl::l_item<boost::mpl::long_<1>,bool,boost::mpl::l_end>>>>>>>>> m_variant;
-    bool m_userFlag : 1;
-    bool m_locked : 1;
+	template<typename T>
+	bool Set(const T& value)
+	{
+		IsSameTypeExpl<T> isSameType;
+		if (IsLocked() && !isSameType(*this))
+		{
+			return false;
+		}
+		else
+		{
+			m_variant = value;
+			return true;
+		}
+	}
 
-    TFlowInputData(TFlowInputData const &rhs);
-    TFlowInputData &operator=(TFlowInputData const &rhs) { return FoperatorEq(this,rhs); }
-    bool SetValueWithConversion(TFlowInputData const &value) { return FSetValueWithConversion(this,value); }
-    void Serialize(TSerialize ser) { FSerialize(this,ser); }
+	template<typename T>
+	bool SetValueWithConversion(const T& value)
+	{
+		IsSameTypeExpl<T> isSameType;
+		if (IsLocked() && !isSameType(*this))
+		{
+			return boost::apply_visitor(ConvertType_Set<T>(value), m_variant);
+		}
+		else
+		{
+			m_variant = value;
+			return true;
+		}
+	}
 
-#if 0
-    static TFlowInputData CreateDefaultInitializedForTag(int arg0, bool arg1);
-	bool operator==(TFlowInputData const &arg0) const;
-	bool operator!=(TFlowInputData const &arg0) const;
-	bool SetDefaultForTag(int arg0);
-	EFlowDataTypes GetType() const;
-	bool IsUserFlagSet() const;
-	void SetUserFlag(bool arg0);
-	void ClearUserFlag();
-	bool IsLocked() const;
-	void SetLocked();
-	void SetUnlocked();
-	void GetMemoryStatistics(ICrySizer *arg0) const;
-	void GetMemoryUsage(ICrySizer *arg0) const;
-#endif
+	bool SetValueWithConversion(const TFlowInputData& value)
+	{
+		IsSameType isSameType;
+		if (IsLocked() && !isSameType(*this, value))
+		{
+			return boost::apply_visitor(ConvertType_SetFlexi(*this), value.m_variant);
+		}
+		else
+		{
+			m_variant = value.m_variant;
+			return true;
+		}
+	}
 
-    static inline auto FoperatorEq = PreyFunction<TFlowInputData &(TFlowInputData *const _this, TFlowInputData const &rhs)>(0x34A240);
-    static inline auto FSetValueWithConversion = PreyFunction<bool(TFlowInputData *const _this, TFlowInputData const &value)>(0x415180);
-    static inline auto FSerialize = PreyFunction<void(TFlowInputData *const _this, TSerialize ser)>(0x2AF660);
+	template<typename T> T*       GetPtr()       { return boost::get<T>(&m_variant); }
+	template<typename T> const T* GetPtr() const { return boost::get<const T>(&m_variant); }
+
+	template<typename T>
+	bool GetValueWithConversion(T& value) const
+	{
+		IsSameTypeExpl<T> isSameType;
+		if (isSameType(*this))
+		{
+			value = *GetPtr<T>();
+			return true;
+		}
+		else
+		{
+			return boost::apply_visitor(ConvertType_Get<T>(value), m_variant);
+		}
+	}
+
+	EFlowDataTypes GetType() const         { return boost::apply_visitor(ExtractType(), m_variant); }
+
+	bool           IsUserFlagSet() const   { return m_userFlag; }
+	void           SetUserFlag(bool value) { m_userFlag = value; }
+	void           ClearUserFlag()         { m_userFlag = false; }
+
+	bool           IsLocked() const        { return m_locked; }
+	void           SetLocked()             { m_locked = true; }
+	void           SetUnlocked()           { m_locked = false; }
+
+	void           Serialize(TSerialize ser)
+	{
+		// MEMSTAT_CONTEXT(EMemStatContextTypes::MSC_Other, 0, "Configurable variant serialization");
+
+		if (ser.IsWriting())
+		{
+			WriteType visitor(ser, IsUserFlagSet());
+			boost::apply_visitor(visitor, m_variant);
+		}
+		else
+		{
+			int tag = -2; // should be safe
+			ser.Value("tag", tag);
+
+			SetDefaultForTag(tag);
+
+			bool ud = m_userFlag;
+			ser.Value("ud", ud);
+			m_userFlag = ud;
+
+			LoadType visitor(ser);
+			boost::apply_visitor(visitor, m_variant);
+		}
+	}
+
+	template<class Visitor>
+	void Visit(Visitor& visitor)
+	{
+		boost::apply_visitor(visitor, m_variant);
+	}
+
+	template<class Visitor>
+	void Visit(Visitor& visitor) const
+	{
+		boost::apply_visitor(visitor, m_variant);
+	}
+
+	void GetMemoryStatistics(ICrySizer* pSizer) const
+	{
+		MemStatistics visitor(pSizer);
+		boost::apply_visitor(visitor, m_variant);
+	}
+
+	void GetMemoryUsage(ICrySizer* pSizer) const
+	{
+		GetMemoryStatistics(pSizer);
+	}
+
+private:
+	friend struct SEqualFlowInputData;
+
+	TFlowInputDataVariant m_variant;
+
+	bool                  m_userFlag : 1;
+	bool                  m_locked   : 1;
 };
 
 // Header: MadeUp
@@ -274,27 +812,6 @@ struct SOutputPortConfig // Id=8001C41 Size=32
 #endif
 };
 
-
-// Header: Exact
-// CryEngine/crycommon/iflowsystem.h
-template <typename T> struct DefaultInitializedForTag/*<boost::mpl::v_iter<boost::mpl::vector7<SFlowSystemVoid,int,float,unsigned int,Vec3,string,bool>,2>>*/ // Id=80036A5 Size=1
-{
-#if 0
-    bool operator()(int tag, boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<7>,SFlowSystemVoid,boost::mpl::l_item<boost::mpl::long_<6>,int,boost::mpl::l_item<boost::mpl::long_<5>,float,boost::mpl::l_item<boost::mpl::long_<4>,unsigned int,boost::mpl::l_item<boost::mpl::long_<3>,Vec3,boost::mpl::l_item<boost::mpl::long_<2>,string,boost::mpl::l_item<boost::mpl::long_<1>,bool,boost::mpl::l_end>>>>>>>>> &v) const;
-#endif
-};
-
-#if 0
-// Header: Exact
-// CryEngine/crycommon/iflowsystem.h
-template <typename T> struct DefaultInitializedForTag/*<boost::mpl::v_iter<boost::mpl::vector7<SFlowSystemVoid,int,float,unsigned int,Vec3,string,bool>,5>>*/ // Id=80036AB Size=1
-{
-#if 0
-    bool operator()(int tag, boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<7>,SFlowSystemVoid,boost::mpl::l_item<boost::mpl::long_<6>,int,boost::mpl::l_item<boost::mpl::long_<5>,float,boost::mpl::l_item<boost::mpl::long_<4>,unsigned int,boost::mpl::l_item<boost::mpl::long_<3>,Vec3,boost::mpl::l_item<boost::mpl::long_<2>,string,boost::mpl::l_item<boost::mpl::long_<1>,bool,boost::mpl::l_end>>>>>>>>> &v) const;
-#endif
-};
-#endif
-
 struct IFlowNodeTypeIterator // Id=8001C5F Size=8
 {
     struct SNodeType // Id=8001C60 Size=16
@@ -316,10 +833,21 @@ struct SFlowAddress // Id=8000F55 Size=4
     uint8_t port;
     bool isOutput;
 
-#if 0
-    bool operator==(SFlowAddress const &arg0) const;
-	bool operator!=(SFlowAddress const &arg0) const;
-#endif
+    SFlowAddress(TFlowNodeId node, TFlowPortId port, bool isOutput)
+    {
+        this->node = node;
+        this->port = port;
+        this->isOutput = isOutput;
+}
+    SFlowAddress()
+    {
+        node = InvalidFlowNodeId;
+        port = InvalidFlowPortId;
+        isOutput = true;
+    }
+
+    bool operator==(const SFlowAddress& n) const { return node == n.node && port == n.port && isOutput == n.isOutput; }
+    bool operator!=(const SFlowAddress& n) const { return !(*this == n); }
 };
 
 // Header: MadeUp
@@ -433,3 +961,190 @@ struct IFlowSystem // Id=8000F51 Size=8
     virtual void Serialize(TSerialize arg0) = 0;
 };
 
+// Header: MadeUp
+// _unknown/IFlowGraph.h
+struct IFlowGraph : public NFlowSystemUtils::IFlowSystemTyped // Id=8000F53 Size=8
+{
+	enum EFlowGraphType
+	{
+		eFGT_Default = 0,
+		eFGT_UIAction = 1,
+		eFGT_Module = 2,
+		eFGT_CustomAction = 3,
+		eFGT_MaterialFx = 4,
+		eFGT_GlobalAction = 5,
+	};
+
+	struct SGraphToken // Id=8001C48 Size=24
+	{
+		int id;
+		string name;
+		EFlowDataTypes type;
+	};
+
+	virtual void AddRef() = 0;
+	virtual void Release() = 0;
+	virtual _smart_ptr<IFlowGraph> Clone() = 0;
+	virtual void Clear() = 0;
+	virtual _smart_ptr<IFlowNodeIterator> CreateNodeIterator() = 0;
+	virtual _smart_ptr<IFlowEdgeIterator> CreateEdgeIterator() = 0;
+	virtual void SetGraphEntity(unsigned arg0, int arg1) = 0;
+	virtual unsigned GetGraphEntity(int arg0) const = 0;
+	virtual void SetEnabled(bool arg0) = 0;
+	virtual bool IsEnabled() const = 0;
+	virtual void SetActive(bool arg0) = 0;
+	virtual bool IsActive() const = 0;
+	virtual void UnregisterFromFlowSystem() = 0;
+	virtual void SetType(IFlowGraph::EFlowGraphType arg0) = 0;
+	virtual IFlowGraph::EFlowGraphType GetType() const = 0;
+	virtual void Update() = 0;
+	virtual bool SerializeXML(XmlNodeRef const& arg0, bool arg1) = 0;
+	virtual void Serialize(TSerialize arg0) = 0;
+	virtual void PostSerialize() = 0;
+	virtual void InitializeValues() = 0;
+	virtual void PrecacheResources() = 0;
+	virtual void EnsureSortedEdges() = 0;
+	virtual SFlowAddress ResolveAddress(const char* arg0, bool arg1) = 0;
+	virtual uint16_t ResolveNode(const char* arg0) = 0;
+	virtual uint16_t CreateNode(uint16_t arg0, const char* arg1, void* arg2) = 0;
+	virtual uint16_t CreateNode(const char* arg0, const char* arg1, void* arg2) = 0;
+	virtual IFlowNodeData* GetNodeData(uint16_t arg0) = 0;
+	virtual bool SetNodeName(uint16_t arg0, const char* arg1) = 0;
+	virtual const char* GetNodeName(uint16_t arg0) = 0;
+	virtual uint16_t GetNodeTypeId(uint16_t arg0) = 0;
+	virtual const char* GetNodeTypeName(uint16_t arg0) = 0;
+	virtual void RemoveNode(const char* arg0) = 0;
+	virtual void RemoveNode(uint16_t arg0) = 0;
+	virtual void SetUserData(uint16_t arg0, XmlNodeRef const& arg1) = 0;
+	virtual XmlNodeRef GetUserData(uint16_t arg0) = 0;
+	virtual bool LinkNodes(SFlowAddress arg0, SFlowAddress arg1) = 0;
+	virtual void UnlinkNodes(SFlowAddress arg0, SFlowAddress arg1) = 0;
+	virtual void RegisterFlowNodeActivationListener(SFlowNodeActivationListener* arg0) = 0;
+	virtual void RemoveFlowNodeActivationListener(SFlowNodeActivationListener* arg0) = 0;
+	virtual bool NotifyFlowNodeActivationListeners(uint16_t arg0, uint8_t arg1, uint16_t arg2, uint8_t arg3, const char* arg4) = 0;
+	virtual void SetEntityId(uint16_t arg0, unsigned arg1) = 0;
+	virtual unsigned GetEntityId(uint16_t arg0) = 0;
+	virtual _smart_ptr<IFlowGraph> GetClonedFlowGraph() const = 0;
+	virtual void GetNodeConfiguration(uint16_t arg0, SFlowNodeConfig& arg1) = 0;
+	virtual void SetRegularlyUpdated(uint16_t arg0, bool arg1) = 0;
+	virtual void RequestFinalActivation(uint16_t arg0) = 0;
+	virtual void ActivateNode(uint16_t arg0) = 0;
+	virtual void ActivatePortAny(SFlowAddress arg0, TFlowInputData const& arg1) = 0;
+	virtual void ActivatePortCString(SFlowAddress arg0, const char* arg1) = 0;
+	virtual bool SetInputValue(uint16_t arg0, uint8_t arg1, TFlowInputData const& arg2) = 0;
+	virtual bool IsOutputConnected(SFlowAddress arg0) = 0;
+	virtual TFlowInputData const* GetInputValue(uint16_t arg0, uint8_t arg1) = 0;
+	virtual bool GetActivationInfo(const char* arg0, IFlowNode::SActivationInfo& arg1) = 0;
+	virtual void SetSuspended(bool arg0) = 0;
+	virtual bool IsSuspended() const = 0;
+	virtual void SetCustomAction(ICustomAction* arg0) = 0;
+	virtual ICustomAction* GetCustomAction() const = 0;
+	virtual void GetMemoryUsage(ICrySizer* arg0) const = 0;
+	virtual void RemoveGraphTokens(bool arg0) = 0;
+	virtual bool UpdateGraphToken(int arg0, const char* arg1, EFlowDataTypes arg2) = 0;
+	virtual bool LoadGraphToken(int arg0, const char* arg1, EFlowDataTypes arg2) = 0;
+	virtual int CloneGraphToken(IFlowGraph::SGraphToken const& arg0) = 0;
+	virtual uint64_t GetGraphTokenCount() const = 0;
+	virtual IFlowGraph::SGraphToken const* GetGraphToken(uint64_t arg0) const = 0;
+	virtual unsigned GetGraphId() const = 0;
+	virtual void OnNodeConfigReload(IFlowNodeData& arg0) = 0;
+	virtual void SetOwningModule(IFlowGraphModule* arg0) = 0;
+	virtual IFlowGraphModule* GetOwningModule() const = 0;
+	virtual void FixCreatePhantomRequestEntityIdOutput(SFlowAddress arg0, unsigned arg1) = 0;
+	virtual ~IFlowGraph() {};
+
+	template<class T>
+	ILINE void ActivatePort(const SFlowAddress output, const T& value)
+	{
+		DoActivatePort(output, NFlowSystemUtils::Wrapper<T>(value));
+	}
+	ILINE void ActivatePort(SFlowAddress output, const TFlowInputData& value)
+	{
+		ActivatePortAny(output, value);
+	}
+
+#if 0
+	void ActivatePort(SFlowAddress arg0, TFlowInputData const& arg1);
+#endif
+};
+
+ILINE bool IsPortActive(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    return pActInfo->pInputPorts[nPort].IsUserFlagSet();
+}
+
+ILINE EFlowDataTypes GetPortType(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    return (EFlowDataTypes)pActInfo->pInputPorts[nPort].GetType();
+}
+
+ILINE const TFlowInputData& GetPortAny(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    return pActInfo->pInputPorts[nPort];
+}
+
+ILINE bool GetPortBool(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    bool* p_x = (pActInfo->pInputPorts[nPort].GetPtr<bool>());
+    return (p_x != 0) ? *p_x : 0;
+}
+
+ILINE int GetPortInt(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    int x = *(pActInfo->pInputPorts[nPort].GetPtr<int>());
+    return x;
+}
+
+ILINE EntityId GetPortEntityId(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    EntityId x = *(pActInfo->pInputPorts[nPort].GetPtr<EntityId>());
+    return x;
+}
+
+ILINE float GetPortFloat(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    float x = *(pActInfo->pInputPorts[nPort].GetPtr<float>());
+    return x;
+}
+
+ILINE Vec3 GetPortVec3(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    Vec3 x = *(pActInfo->pInputPorts[nPort].GetPtr<Vec3>());
+    return x;
+}
+
+ILINE const string& GetPortString(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    const string* p_x = (pActInfo->pInputPorts[nPort].GetPtr<string>());
+
+    if (p_x)
+    {
+        return *p_x;
+    }
+    else
+    {
+        const static string empty("");
+        return empty;
+    }
+}
+
+ILINE bool IsBoolPortActive(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    if (IsPortActive(pActInfo, nPort) && GetPortBool(pActInfo, nPort))
+        return true;
+    else
+        return false;
+}
+
+template<class T>
+ILINE void ActivateOutput(IFlowNode::SActivationInfo* pActInfo, int nPort, const T& value)
+{
+    SFlowAddress addr(pActInfo->myID, nPort, true);
+    pActInfo->pGraph->ActivatePort(addr, value);
+}
+
+ILINE bool IsOutputConnected(IFlowNode::SActivationInfo* pActInfo, int nPort)
+{
+    SFlowAddress addr(pActInfo->myID, nPort, true);
+    return pActInfo->pGraph->IsOutputConnected(addr);
+}

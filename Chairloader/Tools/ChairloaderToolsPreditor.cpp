@@ -2,6 +2,7 @@
 #include "DevConsoleDialog.h"
 #include "FileBrowser.h"
 #include "ChairToolsUtils.h"
+#include "DebugMenu.h"
 #include "Editor/ModReloading.h"
 
 std::unique_ptr<IChairloaderToolsPreditor> IChairloaderToolsPreditor::CreateInstance(IChairToPreditor* pChair)
@@ -15,6 +16,7 @@ ChairloaderToolsPreditor::ChairloaderToolsPreditor(IChairToPreditor* pChair)
 	m_pModReloading = std::make_unique<ModReloading>();
 	m_pDevConsole = std::make_unique<DevConsoleDialog>();
 	m_pFileBrowser = std::make_unique<FileBrowser>();
+	m_pDebugMenu = std::make_unique<DebugMenu>();
 }
 
 void ChairloaderToolsPreditor::Update()
@@ -25,6 +27,7 @@ void ChairloaderToolsPreditor::Update()
 		m_pDevConsole->Show(&m_bDrawDevConsole);
 
 	m_pFileBrowser->Draw();
+	m_pDebugMenu->ShowMenu();
 }
 
 void ChairloaderToolsPreditor::ShowWindowMenu()

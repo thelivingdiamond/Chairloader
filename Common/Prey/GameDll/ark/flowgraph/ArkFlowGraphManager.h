@@ -31,7 +31,7 @@ public:
 	void RegisterRemoteEvent(unsigned _graphID, uint16_t _nodeID) { FRegisterRemoteEvent(this,_graphID,_nodeID); }
 	void UnregisterRemoteEvent(unsigned _graphID, uint16_t _nodeID) { FUnregisterRemoteEvent(this,_graphID,_nodeID); }
 	void OnLevelUnload() { FOnLevelUnload(this); }
-	void Reset(bool ) { FReset(this,); }
+	void Reset(bool unnamed) { FReset(this, unnamed); }
 	static void OnConsoleEvent(IConsoleCmdArgs *_pCmdArgs) { FOnConsoleEvent(_pCmdArgs); }
 	void ExecuteConsoleEvent(string const &_eventName) const { FExecuteConsoleEvent(this,_eventName); }
 	void ExecuteRemoteEvent(string const &_eventName) const { FExecuteRemoteEvent(this,_eventName); }

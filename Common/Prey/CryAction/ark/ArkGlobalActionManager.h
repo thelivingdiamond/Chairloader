@@ -5,7 +5,7 @@
 #include "IArkGlobalActionManager.h"
 #include <Prey/CryCore/StdAfx.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/CryFlowGraph/IFlowGraph.h>
+#include <Prey/CryFlowGraph/IFlowSystem.h>
 
 class ArkGlobalAction : public IArkGlobalAction // Id=8004665 Size=24
 {
