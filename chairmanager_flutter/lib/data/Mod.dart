@@ -1,3 +1,4 @@
+import 'package:chairmanager_flutter/data/ModConfig.dart';
 import 'package:xml/xml.dart' as xml;
 
 class Mod {
@@ -10,7 +11,16 @@ class Mod {
     required this.loadOrder,
     required this.isLegacy,
     required this.enabled,
-  });
+  }) {
+    // if the modName is empty, then this is an empty mod
+    if (modName == "") {
+      return;
+    }
+    // otherwise, load the config file
+    if(!isLegacy){
+      config = ModConfig(modName: modName);
+    }
+  }
 
   Mod.empty() : modName = "", displayName = "", author = "", version = "", dllName = "", loadOrder = -1, isLegacy = false, enabled = false;
 
@@ -22,8 +32,8 @@ class Mod {
   bool enabled;
   bool isLegacy = false;
   int loadOrder = -1;
-  XmlDocument infoFile = XmlDocument();
-  XmlDocument? configFile;
+  ModConfig? config;
+
   List<String> dependencies = [];
   // < operator
   bool operator <(Mod other) {

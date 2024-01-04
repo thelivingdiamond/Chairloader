@@ -2,29 +2,34 @@ import 'dart:math';
 
 import 'package:chairmanager_flutter/data/Mod.dart';
 import 'package:chairmanager_flutter/panes/paneThemes.dart';
-import 'package:chairmanager_flutter/states/ModManager.dart';
+import 'package:chairmanager_flutter/states/ModListState.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:xml/xml.dart';
 
+import '../data/ModConfig.dart';
 
-class ConfigPane extends ConsumerStatefulWidget {
+
+class ConfigPane extends StatefulWidget {
   const ConfigPane({super.key});
 
   @override
-  ConsumerState<ConfigPane> createState() => _ConfigPaneState();
+  State<ConfigPane> createState() => _ConfigPaneState();
 }
 
-class _ConfigPaneState extends ConsumerState<ConfigPane> {
+class _ConfigPaneState extends State<ConfigPane> {
   int _index = 0;
   String filter_text = "";
   TextEditingController filter_controller = TextEditingController();
+  ScrollPosController scrollPosController = ScrollPosController();
 
 
   @override
   Widget build(BuildContext context) {
+    ModListController modListController = Get.find();
     return
       Container(
         decoration: BoxDecoration(
@@ -45,47 +50,55 @@ class _ConfigPaneState extends ConsumerState<ConfigPane> {
               child: const Text("Mod Configs", style: titleStyle,),
             ),
             Expanded(
-              child:
-              TabView(
-                currentIndex: _index,
-                tabs: (){
-                  List<Tab> tabs = [];
-                  for (Mod mod in ref.watch(modManagerProvider).mods) {
-                    // only add the mod if it matches the filter text
-                    // if (mod.modName.toLowerCase().contains(filter_text.toLowerCase())) {
-                    tabs.add(_buildTabFromMod(mod, (){setState(() {
-                      // force a rebuild
-                    });},filterText: filter_text));
-                    // }
-                  }
-                  return tabs;
-                }(),
-                onChanged: (v) {
-                  setState(() {
-                    _index = v;
-                  });
-                },
-                closeButtonVisibility: CloseButtonVisibilityMode.never,
-                // put a filter box in the header
-                header: SizedBox(
-                  width: max(50, min(150, MediaQuery.of(context).size.width / 5)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextBox(
-                          controller: filter_controller,
-                          onChanged: (v) {
-                            setState(() {
-                              filter_text = v;
-                            });
-                          },
+                child: Obx(() =>
+                    TabView(
+                      currentIndex: _index,
+                      scrollController: scrollPosController,
+                      showScrollButtons: true,
+                      tabWidthBehavior: TabWidthBehavior.sizeToContent,
+                      tabs: (){
+                        List<Tab> tabs = [];
+                        //TODO: convert to getX mod list
+                        for (Mod mod in modListController.mods) {
+                          // only add the mod if it matches the filter text
+                          // if (mod.modName.toLowerCase().contains(filter_text.toLowerCase())) {
+                          if(mod.config != null && mod.config!.entries.isNotEmpty){
+                            tabs.add(_buildTabFromMod(mod, (){setState(() {
+                              // force a rebuild
+                            });},filterText: filter_text));
+
+                          }
+                          // }
+                        }
+                        return tabs;
+                      }(),
+                      onChanged: (v) {
+                        setState(() {
+                          _index = v;
+                        });
+                      },
+                      closeButtonVisibility: CloseButtonVisibilityMode.never,
+                      // put a filter box in the header
+                      header: SizedBox(
+                        width: max(50, min(150, MediaQuery.of(context).size.width / 5)),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextBox(
+                                controller: filter_controller,
+                                onChanged: (v) {
+                                  setState(() {
+                                    filter_text = v;
+                                  });
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
+                )
             ),
           ],
         ),
@@ -96,7 +109,10 @@ class _ConfigPaneState extends ConsumerState<ConfigPane> {
 
 Tab _buildTabFromMod(Mod mod, Function onChanged, {String? filterText}) {
   return Tab(
-    text: Text(mod.modName),
+    text: Tooltip(
+      child: Text(mod.displayName.isEmpty ? mod.modName : mod.displayName),
+      message: mod.displayName.isEmpty ? mod.modName : mod.displayName,
+    ),
     body: Container(
       decoration: const BoxDecoration(
         color: tileColor,
@@ -153,344 +169,36 @@ class ModConfigTabBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child:  mod.configFile != null ? TreeView(
-          shrinkWrap: false,
-          itemExtent: 36,
-          items: (){
-            List<TreeViewItem> items = [];
-            for(XmlNode node in mod.configFile!.children){
-              if(node.nodeType == XmlNodeType.ELEMENT) {
-                final item = recursiveTreeViewItemFromXmlNode(node as XmlElement, onChanged, context, filterText: filterText);
-                if(item != null){
-                  items.add(item);
-                }
-              }
-            }
-            if(items.isEmpty){
-              items.add(TreeViewItem(
-                content: const Text("No Matching Nodes Found"),
-              ));
-            }
-            return items;
-          }(),
-        ) : const Center(
-          child: Text("No Config File Found"),
-        ),
-    );
-  }
-}
-
-
-
-
-class RecursiveXmlTreeItem extends StatelessWidget {
-  const RecursiveXmlTreeItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-
-
-TreeViewItem? recursiveTreeViewItemFromXmlNode(XmlNode node, Function onChanged, BuildContext context, {String? filterText}){
-  // print("Recursing");
-  if(node.nodeType != XmlNodeType.ELEMENT){
-    return null;
-  }
-
-  final element = node as XmlElement;
-
-  final type = node.getAttribute("type");
-  final displayName = node.getAttribute("display_name");
-  final description = node.getAttribute("description");
-  final name = element.name.local;
-
-
-  final matchFilter = filterText == null || filterText.isEmpty || name.toLowerCase().contains(filterText.toLowerCase()) || (displayName != null && displayName.toLowerCase().contains(filterText.toLowerCase()));
-
-  List<TreeViewItem?> children = [];
-  if(node.children.isNotEmpty){
-    for(XmlNode child in node.children){
-      if(child.nodeType == XmlNodeType.ELEMENT) {
-        final item = recursiveTreeViewItemFromXmlNode(child as XmlElement, onChanged, context, filterText: filterText);
-        if(item != null){
-          children.add(item);
-        }
-      }
-    }
-  }
-
-  List<TreeViewItem> nonNullChildren = [];
-  for(TreeViewItem? child in children){
-    if(child != null){
-      nonNullChildren.add(child);
-    }
-  }
-
-  if(!matchFilter && nonNullChildren.isEmpty){
-    return null;
-  }
-
-
-
-  switch(type){
-    case "string":
-      return TreeViewItem(
-        content:
-        // Row(
-        //   children: [
-        //     Text(displayName ?? name),
-        //     const SizedBox(width: 8),
-        //     Expanded( child:
-        TextBox(
-          controller: TextEditingController(text: element.innerText),
-          onChanged: (v) {
-            element.innerText = v;
-          },
-          prefix: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-        ),
-        //     ),
-        //   ],
-        // ),
-        children: nonNullChildren,
-      );
-    case "bool":
-      return TreeViewItem(
-        content:
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              color: FluentTheme.of(context).accentColor,
-              child: Text(displayName ?? name),
-            ),
-            const SizedBox(width: 8),
-            Checkbox(
-              checked: element.innerText == "true",
-              onChanged: (v) {
-                element.innerText == "true" ? element.innerText = "false" : element.innerText = "true";
+      child: (){
+        if(mod.config != null){
+          return TreeView(
+            // padding: const EdgeInsets.all(8),
+            onItemExpandToggle: (item, expanded) {
+              if (item.value is ConfigEntry) {
+                (item.value as ConfigEntry).uiExpanded.value = expanded;
+                item.expanded = expanded;
                 onChanged();
-              },
-            ),
-          ],
-        ),
-        // leading: const Icon(material.Icons.check_box),
-        children: nonNullChildren,
-      );
-    case "int":
-      return TreeViewItem(
-        content:  NumberBox<int>(
-          value: (){
-            try{
-              return int.parse(element.innerText);
-            }catch(e){
-              return 0;
-            }
-          }(),
-          onChanged: (v){
-            element.innerText = v.toString();
-            onChanged();
-          },
-          inputFormatters: [
-            // allow a leading minus sign and numbers
-            FilteringTextInputFormatter.allow(RegExp(r'^-?\d+')),
-          ],
-          allowExpressions: true,
-          clearButton: false,
-          leadingIcon: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-          mode: SpinButtonPlacementMode.inline,
-        ),
-        // leading: const Icon(material.Icons.numbers),
-        children: nonNullChildren,
-      );
-    case "uint":
-      return TreeViewItem(
-        content: NumberBox<int>(
-          value: (){
-            try{
-              return int.parse(element.innerText);
-            }catch(e){
-              return 0;
-            }
-          }(),
-          onChanged: (v){
-            element.innerText = v?.abs().toString() ?? "0";
-            onChanged();
-          },
-          inputFormatters: [
-            // allow a leading minus sign and numbers
-            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-          ],
-          clearButton: false,
-          leadingIcon: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-          mode: SpinButtonPlacementMode.inline,
-        ),
-        // leading: const Icon(material.Icons.numbers),
-        children: nonNullChildren,
-      );
-    case "int64":
-      return TreeViewItem(
-        content: TextBox(
-          controller: TextEditingController(text: element.innerText),
-          onChanged: (v) {
-            element.innerText = v;
-          },
-          inputFormatters: [
-            // allow a leading minus sign and numbers
-            FilteringTextInputFormatter.allow(RegExp(r'^-?\d+')),
-          ],
-          onEditingComplete: () {
-            onChanged();
-          },
-          prefix: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-        ),
-        // leading: const Icon(material.Icons.arrow_right),
-        children: nonNullChildren,
-      );
-    case "uint64":
-      return TreeViewItem(
-        content: TextBox(
-          controller: TextEditingController(text: element.innerText),
-          onChanged: (v) {
-            element.innerText = v;
-          },
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-          ],
-          onEditingComplete: () {
-            onChanged();
-          },
-          prefix: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-        ),
-        // leading: const Icon(material.Icons.arrow_right),
-        children: nonNullChildren,
-      );
-    case "float":
-      return TreeViewItem(
-        content: NumberBox<double>(
-          value: (){
-            try{
-              return double.parse(element.innerText);
-            }catch(e){
-              return 0.0;
-            }
-          }(),
-          onChanged: (v){
-            element.innerText = v.toString();
-            onChanged();
-          },
-          inputFormatters: [
-            // allow a leading minus sign and numbers and a single decimal point
-            FilteringTextInputFormatter.allow(RegExp(r'^-?\d+\.?\d*')),
-          ],
-          allowExpressions: true,
-          clearButton: false,
-          leadingIcon: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            color: FluentTheme.of(context).accentColor,
-            child: Text(displayName ?? name),
-          ),
-          mode: SpinButtonPlacementMode.inline,
-        ),
-        // leading: const Icon(material.Icons.looks_5),
-        children: nonNullChildren,
-      );
-    case "xmlnode":
-      return TreeViewItem(
-        content: Text(displayName ?? name),
-        // leading: const Icon(material.Icons.looks_6),
-        children: nonNullChildren,
-        // expanded: filterText == null || filterText.isNotEmpty,
-        expanded: true,
-      );
-    case "enum":
-    // the selected value is stored in the <selected> child node
-    // all possible values are stored in <option> child nodes
-    // this xml library requires that we cast nodes to elements if we want to access their attributes and names
-      String selected = "";
-      List<ComboBoxItem<String>> options = [];
-      for(XmlNode node in element.children){
-        if(node is XmlElement){
-          if(node.name.local == "selected"){
-            selected = node.innerText;
-          }else if(node.name.local == "option"){
-            // see if there is a name attribute, if not, use the text
-            String name = node.getAttributeNode("name")?.value ?? node.innerText;
-            final item = ComboBoxItem<String>(value: node.innerText, onTap: (){},child: Text(name));
-            options.add(item);
-          }
+              }
+              return Future<void>.value();
+            },
+            onItemInvoked: (item, _) {
+              if (item.value is ConfigEntry) {
+                (item.value as ConfigEntry).uiExpanded.value = !(item.value as ConfigEntry).uiExpanded.value;
+                item.expanded = !(item.value as ConfigEntry).uiExpanded.value;
+                onChanged();
+              }
+              return Future<void>.value();
+            },
+            items: [
+              for(ConfigEntry entry in mod.config!.entries)
+                entry.toTreeView(context, onChanged, index: mod.config!.entries.indexOf(entry)),
+            ],
+          );
+        } else {
+          return const Text("This mod does not have a config file");
         }
-      }
-      return TreeViewItem(
-        content:
-        Container(
-            alignment: Alignment.centerLeft,
-            child:
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  color: FluentTheme.of(context).accentColor,
-                  child: Text(displayName ?? name),
-                ),
-                const SizedBox(width: 8,),
-                Expanded(
-                  child:
-                OverflowBox(
-                  maxHeight: double.infinity,
-                  child:
-                  ComboboxFormField(items: options,
-                    // alignment: Alignment.centerLeft,
-                    placeholder: Text("Select a value", style: TextStyle(color: FluentTheme.of(context).disabledColor),),
-                    value: selected,
-                    onChanged: (v){
-                      // find the selected node and set its text
-                      for(XmlNode node in element.children){
-                        if(node is XmlElement){
-                          if(node.name.local == "selected"){
-                            node.innerText = v ?? "";
-                          }
-                        }
-                      }
-                      onChanged();
-                    },),
-                ),
-                ),
-              ],
-            )
-        ),
-        // leading: const Icon(material.Icons.looks_6),
-      );
-    default:
-      return TreeViewItem(
-        content: Text(displayName ?? name),
-        // leading: const Icon(material.Icons.more_horiz),
-        children: nonNullChildren,
-      );
+      }(),
+    );
   }
 }
 
