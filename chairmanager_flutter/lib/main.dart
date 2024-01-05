@@ -77,6 +77,7 @@ class MyApp extends StatelessWidget {
           navigationPaneTheme:  NavigationPaneThemeData(
             backgroundColor: Color.fromARGB(255, 30, 30, 30),
             highlightColor: material.Colors.deepPurple.toAccentColor(),
+
             // backgroundColor: Colors.transparent,
           ),
           buttonTheme: ButtonThemeData(
@@ -313,7 +314,7 @@ class _HomeState extends State<Home> with WindowListener{
                                         checked: /*ref.watch(settingsManagerProvider.notifier).mooncrashMode,*/ false,
                                         onChanged: (v) {
                                           Flyout.of(context).setState(() {
-                                            // ref.read(settingsManagerProvider.notifier).mooncrashMode = v;
+                                            logger.dd("Mooncrash Support Coming Soon™");
                                           });
                                         },
                                         // thumb: Container(

@@ -86,7 +86,7 @@ class _LogPaneState extends State<LogPane> {
             ],
           ),
           // current working directory
-          Text("Current Working Directory: ${Directory.current.path.toString()}"),
+          // Text("Current Working Directory: ${Directory.current.path.toString()}"),
           // Row(
           //   children: [
           //     Button(child: const Text("Info Bar"), onPressed: (){
