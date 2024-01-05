@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chairmanager_flutter/states/ModListState.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
@@ -21,14 +22,14 @@ class ModConfig {
   final String modName;
   late File configFile;
   late File defaultConfigFile;
+  var dirty = false.obs;
 
-  void loadConfig() async{
+  void loadConfig({Function? callback}) async{
     // if the config file doesn't exist, create it from the default config file
-    if(!await defaultConfigFile.exists()) {
-      logger.v("Default config file for $modName does not exist!");
-      return;
-    }
     if (!await configFile.exists()) {
+      if(!await defaultConfigFile.exists()){
+        return;
+      }
       await configFile.create();
       await configFile.writeAsString(await defaultConfigFile.readAsString());
       logger.i("Created config file for $modName");
@@ -38,10 +39,38 @@ class ModConfig {
     var configDocument = xml.XmlDocument.parse(configString);
     var configElement = configDocument.rootElement;
     // then for each child of the root element, create a ConfigEntry from it
+    entries.clear();
     for (var child in configElement.childElements) {
-      entries.add(ConfigEntry.fromXml(child));
+      entries.add(ConfigEntry.fromXml(child, onChanged: (){
+        dirty.value = true;
+        // logger.v("Config for $modName is dirty");
+      }));
     }
     logger.v("Loaded config for $modName");
+    callback?.call();
+    dirty.value = false;
+  }
+
+  void saveConfig({Function? callback}) async{
+    // if the config file doesn't exist, create it from the default config file
+    ModListController modListController = Get.find();
+    // create a new xml document
+    var configDocument = xml.XmlDocument([
+      xml.XmlProcessing('xml', 'version="1.0" encoding="utf-8"'),
+      xml.XmlElement(xml.XmlName.fromString(modName), [
+        xml.XmlAttribute(xml.XmlName.fromString("version"), modListController.getMod(modName).version),
+      ])
+    ]);
+    var configElement = configDocument.rootElement;
+    // then save our config entries to the config file
+    for (var entry in entries) {
+      configElement.children.add(entry.toXml());
+    }
+    // then save the config file
+    await configFile.writeAsString(configDocument.toXmlString(pretty: true, indent: "  "), mode:FileMode.writeOnly);
+    logger.v("Saved config for $modName");
+    callback?.call();
+    dirty.value = false;
   }
 }
 
@@ -121,8 +150,29 @@ class ConfigEntry {
     this.displayName,
     this.description,
     this.children,
-  });
+    this.onChanged,
+  }){
+    if( type == ConfigEntryType.xmlNode && children != null){
+      uiExpanded.value = true;
+    }
+    if(type == ConfigEntryType.string){
+      controller = TextEditingController(text: value.value.toString());
+      controller!.addListener(() {
+        // if(value.value != controller!.text){
+        // }
+        value.value = controller!.text;
+        onChanged?.call();
+      });
+    } else if (type == ConfigEntryType.unsignedInt64){
+      controller = TextEditingController(text: value.value.toString());
+      controller!.addListener(() {
+        value.value = BigInt.parse(controller!.text).toUnsigned(64);
+        onChanged?.call();
+      });
+    }
+  }
 
+  TextEditingController? controller;
   final String name;
   final ConfigEntryType type;
   dynamic value;
@@ -130,6 +180,13 @@ class ConfigEntry {
   final String? displayName;
   final List<ConfigEntry>? children;
   var uiExpanded = false.obs;
+
+  Function? onChanged;
+
+
+
+
+
   // 	<name type="uint" display_name="YYY percent" description="Important number for stuff">4294967295</testUInt>
   // create a toXml method
   xml.XmlElement toXml() {
@@ -155,28 +212,24 @@ class ConfigEntry {
       case ConfigEntryType.unsignedInt64:
       case ConfigEntryType.float:
       case ConfigEntryType.string:
-        entryElement.innerText = value.toString();
+        entryElement.innerText = value.value.toString();
         break;
       case ConfigEntryType.enum_:
-        entryElement = value.toXml(entryElement);
+        entryElement = value.value.toXml(entryElement);
         break;
       case ConfigEntryType.xmlNode:
-        for (var child in children!) {
-          entryElement.children.add(child.toXml());
+        if (children != null) {
+          for (var child in children!) {
+            entryElement.children.add(child.toXml());
+          }
         }
         break;
-    }
-    // then for each child, call toXml on it and add it to the children of the entryElement
-    if (children != null) {
-      for (var child in children!) {
-        entryElement.children.add(child.toXml());
-      }
     }
     return entryElement;
   }
 
   // create a fromXml method
-  static ConfigEntry fromXml(xml.XmlElement element) {
+  static ConfigEntry fromXml(xml.XmlElement element, {Function? onChanged}) {
     // the first element should be named after the modName and have an attribute type="xmlnode", display_name="display_name", description="description"
     var name = element.name.toString();
     final typeString = element.getAttribute("type");
@@ -188,33 +241,33 @@ class ConfigEntry {
     dynamic value;
     switch (type) {
       case ConfigEntryType.bool:
-        value = valueString == "true";
+        value = (valueString == "true").obs;
         break;
       case ConfigEntryType.int:
       case ConfigEntryType.unsignedInt:
       case ConfigEntryType.int64:
-        value = int.parse(valueString);
+        value = int.parse(valueString).obs;
         break;
       case ConfigEntryType.unsignedInt64:
-        value = BigInt.parse(valueString).toUnsigned(64);
+        value = BigInt.parse(valueString).toUnsigned(64).obs;
         break;
       case ConfigEntryType.float:
-        value = double.parse(valueString);
+        value = double.parse(valueString).obs;
         break;
       case ConfigEntryType.string:
-        value = valueString;
+        value = valueString.obs;
         break;
       case ConfigEntryType.enum_:
-        value = ConfigEnumValue.fromXml(element);
+        value = ConfigEnumValue.fromXml(element).obs;
         break;
       case ConfigEntryType.xmlNode:
-        value = null;
+        value = null.obs;
         break;
     }
     // then for each child, call toXml on it and add it to the children of the entryElement
     var children = <ConfigEntry>[];
     for (var child in element.childElements) {
-      children.add(fromXml(child));
+      children.add(fromXml(child, onChanged: onChanged));
     }
     return ConfigEntry(
       name: name,
@@ -223,6 +276,7 @@ class ConfigEntry {
       displayName: displayName,
       description: description,
       children: children,
+      onChanged: onChanged,
     );
   }
 
@@ -248,10 +302,10 @@ class ConfigEntry {
             child:
             Checkbox(
               content: const Text(""),
-              checked: value as bool,
+              checked: (value as RxBool).value,
               onChanged: (value) {
-                this.value = value ?? false;
-                updateUI();
+                this.value.value = value ?? false;
+                onChanged?.call();
               },
             )
                 // ),
@@ -263,10 +317,13 @@ class ConfigEntry {
         inputWidget = Flexible(
             flex: 4,
             child:NumberBox(
-              value: value as int,
+              value: (value as RxInt).value,
               onChanged: (value) {
-                this.value = value;
-                // updateUI();
+                if(value != null && value != this.value.value){
+                  onChanged?.call();
+                }
+                this.value.value = value;
+                // onChanged?.call();
               },
               mode: SpinButtonPlacementMode.none,
             ));
@@ -275,23 +332,23 @@ class ConfigEntry {
         inputWidget = Flexible(
             flex: 4,
             child: NumberBox(
-              value: value as double,
+              value: (value as RxDouble).value,
+              smallChange: 0.1,
               onChanged: (value) {
-                this.value = value;
+                if(value != null && value != this.value.value){
+                  onChanged?.call();
+                }
+                this.value.value = value;
                 // updateUI();
               },
-              mode: SpinButtonPlacementMode.none,
+              mode: SpinButtonPlacementMode.inline,
             ));
         break;
       case ConfigEntryType.unsignedInt64:
         inputWidget = Flexible(
             flex: 4,
             child: TextBox(
-              controller: TextEditingController(text: value.toString()),
-              onChanged: (value) {
-                this.value = value;
-                // updateUI();
-              },
+              controller: controller!,
               inputFormatters: [
                 TextInputFormatter.withFunction((oldValue, newValue) => FilteringTextInputFormatter.digitsOnly.formatEditUpdate(oldValue, newValue))
               ],
@@ -302,11 +359,10 @@ class ConfigEntry {
             fit: FlexFit.tight,
             flex: 4,
             child: TextBox(
-              controller: TextEditingController(text: value.toString()),
-              onChanged: (value) {
-                this.value = value;
-                // updateUI();
-              },
+              controller: controller!,
+              // onEditingComplete: () {
+              //   value.value = controller!.text;
+              // },
               maxLines: 4,
               minLines: 1,
             ));
@@ -315,26 +371,28 @@ class ConfigEntry {
         inputWidget = Flexible(
           fit: FlexFit.tight,
           flex: 4,
-            child: ComboBox(
+            child: Obx( () =>ComboBox(
           items: (){
             var items = <ComboBoxItem>[];
-            for (var option in (value as ConfigEnumValue).options) {
+            for (var option in (value.value as ConfigEnumValue).options) {
               items.add(ComboBoxItem(
-                  value: option.value,
+                  value: option.value.value,
                   child: Tooltip(
-                    message: option.description ?? option.displayName ?? option.value,
-                    child: Text(option.displayName ?? option.value),
+                    message: option.description ?? option.displayName ?? option.value.value,
+                    child: Text(option.displayName ?? option.value.value),
                   )
               ));
             }
             return items;
           }(),
-          value: (value as ConfigEnumValue).selected,
-          onChanged: (value) {
-            (this.value as ConfigEnumValue).selected = value as String;
-            updateUI();
+          value: (value.value as ConfigEnumValue).selected.value,
+          onChanged: (val) {
+            if(val != (value.value as ConfigEnumValue).selected.value){
+              onChanged?.call();
+            }
+            (value.value as ConfigEnumValue).selected.value = val as String;
           },
-        ));
+        )));
     //TODO: implement enum
       case ConfigEntryType.xmlNode:
         return TreeViewItem(
@@ -348,7 +406,7 @@ class ConfigEntry {
                     Text("${displayName ?? name}: ", style: FluentTheme.of(context).typography.body,),
                     Container(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: Icon(material.Icons.folder)
+                        child: const Icon(material.Icons.folder)
                     )
                   ]
               )
@@ -375,7 +433,7 @@ class ConfigEntry {
         ) : null,
         content:
         Tooltip(
-            message: "${displayName ?? name}${description != null ? ":\n$description" : ""}",
+            message: "${displayName ?? name}: '${configEntryTypeToString(type)}'${description != null ? "\n$description" : ""}",
             child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 32),
                 child: Row(
@@ -397,7 +455,7 @@ class ConfigEnumValue {
     required this.options,
   });
 
-  String selected;
+  RxString selected;
   final List<ConfigEnumOption> options;
 
   // create a toXml method, but this one returns a list of xml.XmlElement instead of just one, bc of selected and each option
@@ -407,7 +465,7 @@ class ConfigEnumValue {
     // then it must return a list of nodes, one for each option, with the optional name and description of the option,  and the value of the option in the text of the node
     // the selected node
     var selectedElement = xml.XmlElement(xml.XmlName.fromString("selected"), []);
-    selectedElement.innerText = selected;
+    selectedElement.innerText = selected.value;
     parentElement.children.add(selectedElement);
     // the options
     for (var option in options) {
@@ -427,7 +485,7 @@ class ConfigEnumValue {
       options.add(ConfigEnumOption.fromXml(optionElement));
     }
     return ConfigEnumValue(
-      selected: selected,
+      selected: selected.obs,
       options: options,
     );
   }
@@ -440,7 +498,7 @@ class ConfigEnumOption {
     this.displayName,
   });
 
-  final String value;
+  final RxString value;
   final String? displayName;
   final String? description;
 
@@ -457,7 +515,7 @@ class ConfigEnumOption {
           xml.XmlName.fromString("description"), description!));
     }
     // set the text of the element to the value
-    entryElement.innerText = value;
+    entryElement.innerText = value.value;
     return entryElement;
   }
 
@@ -469,7 +527,7 @@ class ConfigEnumOption {
     // then for the value of the entry, it depends on the type. This goes inside the text of the element
     var value = element.innerText;
     return ConfigEnumOption(
-      value: value,
+      value: value.obs,
       displayName: displayName,
       description: description,
     );

@@ -11,25 +11,23 @@ import 'package:get/get.dart';
 import 'package:xml/xml.dart';
 
 import '../data/ModConfig.dart';
+import '../log/log.dart';
+import '../states/ConfigController.dart';
 
 
-class ConfigPane extends StatefulWidget {
+class ConfigPane extends StatelessWidget {
   const ConfigPane({super.key});
 
-  @override
-  State<ConfigPane> createState() => _ConfigPaneState();
-}
-
-class _ConfigPaneState extends State<ConfigPane> {
-  int _index = 0;
-  String filter_text = "";
-  TextEditingController filter_controller = TextEditingController();
-  ScrollPosController scrollPosController = ScrollPosController();
+  // int _index = 0;
+  // // String filter_text = "";
+  // // TextEditingController filter_controller = TextEditingController();
+  // ScrollPosController scrollPosController scrollPosController= ScrollPosController();
 
 
   @override
   Widget build(BuildContext context) {
     ModListController modListController = Get.find();
+    ConfigController configController = Get.find();
     return
       Container(
         decoration: BoxDecoration(
@@ -50,56 +48,93 @@ class _ConfigPaneState extends State<ConfigPane> {
               child: const Text("Mod Configs", style: titleStyle,),
             ),
             Expanded(
-                child: Obx(() =>
-                    TabView(
-                      currentIndex: _index,
-                      scrollController: scrollPosController,
-                      showScrollButtons: true,
-                      tabWidthBehavior: TabWidthBehavior.sizeToContent,
-                      tabs: (){
-                        List<Tab> tabs = [];
-                        //TODO: convert to getX mod list
-                        for (Mod mod in modListController.mods) {
-                          // only add the mod if it matches the filter text
-                          // if (mod.modName.toLowerCase().contains(filter_text.toLowerCase())) {
-                          if(mod.config != null && mod.config!.entries.isNotEmpty){
-                            tabs.add(_buildTabFromMod(mod, (){setState(() {
-                              // force a rebuild
-                            });},filterText: filter_text));
-
-                          }
-                          // }
+              child: Obx(() =>
+                  TabView(
+                    currentIndex: configController.tabIndex.value,
+                    scrollController: configController.tabScrollPosController.value,
+                    showScrollButtons: true,
+                    tabWidthBehavior: TabWidthBehavior.sizeToContent,
+                    closeButtonVisibility: CloseButtonVisibilityMode.never,
+                    tabs: (){
+                      List<Tab> tabs = [];
+                      configController.indexToModName.clear();
+                      for (Mod mod in modListController.mods) {
+                        if(mod.config == null){
+                          continue;
                         }
-                        return tabs;
-                      }(),
-                      onChanged: (v) {
-                        setState(() {
-                          _index = v;
-                        });
-                      },
-                      closeButtonVisibility: CloseButtonVisibilityMode.never,
-                      // put a filter box in the header
-                      header: SizedBox(
-                        width: max(50, min(150, MediaQuery.of(context).size.width / 5)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextBox(
-                                controller: filter_controller,
-                                onChanged: (v) {
-                                  setState(() {
-                                    filter_text = v;
-                                  });
-                                },
+                        if(mod.config!.entries.isEmpty){
+                          continue;
+                        }
+                        tabs.add(
+                            Tab(
+                              text: Obx( () => Tooltip(
+                                message: mod.displayName.isEmpty ? mod.modName : mod.displayName,
+                                child: Text(
+                                  "${mod.displayName.isEmpty ? mod.modName : mod.displayName}"
+                                      "${mod.config!.dirty.value ? " *" : ""}",
+                                  style: FluentTheme.of(context).typography.bodyStrong,
+                                ),
+                              )
                               ),
+                              body: Container(
+                                decoration: const BoxDecoration(
+                                  color: tileColor,
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
+                                ),
+                                child: ModConfigTabBody(mod: mod, onChanged: (){}),
+                              ),
+                            ));
+                        configController.indexToModName[tabs.length-1] = mod.modName;
+                      }
+                      return tabs;
+                    }(),
+                    onChanged: (v) {
+                      configController.tabIndex.value = v;
+                      // configController.tabScrollPosController.value.jumpTo(0);
+                    },
+                    // put some save button and reload button here
+                    header: Container(
+                      height: 35,
+                      child: Row(
+                        children: [
+                          Tooltip(
+                            message: "Save Config",
+                            child: FilledButton(
+                                onPressed:() {
+                                  Mod mod = modListController.getMod(configController.getCurrentModName());
+                                  mod.config?.saveConfig(callback: (){
+                                    logger.ii("Saved config for ${mod.modName}");
+                                  });
+
+                                },
+                              style:  modListController.getMod(configController.getCurrentModName()).config!.dirty.value ? ButtonStyle(
+                                backgroundColor: ButtonState.resolveWith((states) => states.isHovering ? material.Colors.deepPurpleAccent : material.Colors.deepPurple.toAccentColor()),
+                              ) :
+                              ButtonStyle(
+                                backgroundColor: ButtonState.resolveWith((states) => states.isHovering ? material.Colors.deepPurpleAccent : material.Colors.transparent),
+                              ),
+                                child: Icon(material.Icons.save, size: 20, color: modListController.getMod(configController.getCurrentModName()).config!.dirty.value ? Colors.white : material.Colors.grey,),
                             ),
-                            const SizedBox(width: 8),
-                          ],
-                        ),
+                          ),
+                          // reload config button
+                          Tooltip(
+                            message: "Reload Config",
+                            child: IconButton(
+                                icon: const Icon(material.Icons.refresh, size: 25,),
+                                onPressed:() {
+                                  Mod mod = modListController.getMod(configController.getCurrentModName());
+                                  mod.config?.loadConfig(callback: (){
+                                    logger.ii("Reloaded config for ${mod.modName}");
+                                  });
+                                }
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                )
-            ),
+                  ),
+              ),
+            )
           ],
         ),
       );
@@ -107,91 +142,48 @@ class _ConfigPaneState extends State<ConfigPane> {
 }
 
 
-Tab _buildTabFromMod(Mod mod, Function onChanged, {String? filterText}) {
-  return Tab(
-    text: Tooltip(
-      child: Text(mod.displayName.isEmpty ? mod.modName : mod.displayName),
-      message: mod.displayName.isEmpty ? mod.modName : mod.displayName,
-    ),
-    body: Container(
-      decoration: const BoxDecoration(
-        color: tileColor,
-        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
-      ),
-      child: ModConfigTabBody(mod: mod, onChanged: onChanged, filterText: filterText,),
-    ),
-  );
-}
-
-XmlDocument doc = XmlDocument.parse("""
-<TheChair.ExampleMod version="1.0.0">
-	<testString type="string" display_name="Test String">The quick brown fox jumped over the lazy dog</testString>
-	<testBool type="bool" description="This is a test boolean">true</testBool>
-	<testInt type="int" display_name="XXX Value">-200</testInt>
-	<testUInt type="uint" display_name="YYY percent" description="Important number for stuff">4294967295</testUInt>
-	<testInt64 type="int64">-12369420000000000</testInt64>
-	<testUInt64 type="uint64">18446744073709551615</testUInt64>
-	<testFloat type="float">68.7199936</testFloat>
-	<testXMLNode type="xmlnode">
-		<node1 type="string" display_name="Child Node 1">I am a child node</node1>
-		<node2 type="string" display_name="Child Node 2">Important Config Details</node2>
-	</testXMLNode>
-	<testEnum type="enum" display_name="Test Enum Value" description="Hello this is a description">
-		<selected></selected>
-		<option name="Option A" description="Description of this option">A</option>
-		<option name="Option B" description="Description of this option">B</option>
-		<option name="Option C" description="Description of this option">C</option>
-	</testEnum>
-	<testEnum1 type="enum" display_name="Test Enum Value" description="Hello this is a description">
-		<selected></selected>
-		<option name="Option A" description="Description of this option">A</option>
-		<option name="Option B" description="Description of this option">B</option>
-		<option name="Option C" description="Description of this option">C</option>
-	</testEnum1>
-	<testEnum2 type="enum" display_name="Test Enum Value" description="Hello this is a description">
-		<selected></selected>
-		<option name="Option A" description="Description of this option">A</option>
-		<option name="Option B" description="Description of this option">B</option>
-		<option name="Option C" description="Description of this option">C</option>
-	</testEnum2>
-</TheChair.ExampleMod>
-""");
-
 
 
 class ModConfigTabBody extends StatelessWidget {
-  const ModConfigTabBody({super.key, required this.mod, required this.onChanged, this.filterText});
+  const ModConfigTabBody({super.key, required this.mod, required this.onChanged});
 
   final Mod mod;
   final Function onChanged;
-  final String? filterText;
 
   @override
   Widget build(BuildContext context) {
+    ConfigController configController = Get.find();
     return Container(
       child: (){
         if(mod.config != null){
-          return TreeView(
-            // padding: const EdgeInsets.all(8),
-            onItemExpandToggle: (item, expanded) {
-              if (item.value is ConfigEntry) {
-                (item.value as ConfigEntry).uiExpanded.value = expanded;
-                item.expanded = expanded;
-                onChanged();
-              }
-              return Future<void>.value();
-            },
-            onItemInvoked: (item, _) {
-              if (item.value is ConfigEntry) {
-                (item.value as ConfigEntry).uiExpanded.value = !(item.value as ConfigEntry).uiExpanded.value;
-                item.expanded = !(item.value as ConfigEntry).uiExpanded.value;
-                onChanged();
-              }
-              return Future<void>.value();
-            },
-            items: [
-              for(ConfigEntry entry in mod.config!.entries)
-                entry.toTreeView(context, onChanged, index: mod.config!.entries.indexOf(entry)),
+          return Column(
+            children: [
+              // Divider(),
+              Expanded(child: Obx( () => TreeView(
+                // padding: const EdgeInsets.all(8),
+                onItemExpandToggle: (item, expanded) {
+                  if (item.value is ConfigEntry) {
+                    (item.value as ConfigEntry).uiExpanded.value = expanded;
+                    item.expanded = expanded;
+                  }
+                  return Future<void>.value();
+                },
+                onItemInvoked: (item, _) {
+                  if (item.value is ConfigEntry) {
+                    (item.value as ConfigEntry).uiExpanded.value = !(item.value as ConfigEntry).uiExpanded.value;
+                    item.expanded = !(item.value as ConfigEntry).uiExpanded.value;
+                    onChanged();
+                  }
+                  return Future<void>.value();
+                },
+                items: [
+                  for(ConfigEntry entry in mod.config!.entries)
+                    entry.toTreeView(context, onChanged, index: mod.config!.entries.indexOf(entry)),
+                ],
+                // scrollController: configController.treeScrollPosController.value,
+                narrowSpacing: configController.narrowSpacing.value,
+
+              ))),
             ],
           );
         } else {
