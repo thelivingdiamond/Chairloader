@@ -1,5 +1,6 @@
 import 'package:chairmanager_flutter/data/ModConfig.dart';
 import 'package:xml/xml.dart' as xml;
+import 'package:get/get.dart';
 
 class Mod {
   Mod({
@@ -22,14 +23,14 @@ class Mod {
     }
   }
 
-  Mod.empty() : modName = "", displayName = "", author = "", version = "", dllName = "", loadOrder = -1, isLegacy = false, enabled = false;
+  Mod.empty() : modName = "", displayName = "", author = "", version = "", dllName = "", loadOrder = -1, isLegacy = false, enabled = false.obs;
 
   final String modName;
   final String displayName;
   final String author;
   final String version;
   final String dllName;
-  bool enabled;
+  RxBool enabled;
   bool isLegacy = false;
   int loadOrder = -1;
   ModConfig? config;

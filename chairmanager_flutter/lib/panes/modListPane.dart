@@ -4,32 +4,23 @@ import 'package:chairmanager_flutter/data/Mod.dart';
 import 'package:chairmanager_flutter/log/log.dart';
 import 'package:chairmanager_flutter/panes/paneThemes.dart';
 import 'package:chairmanager_flutter/panes/settingsPane.dart';
+import 'package:chairmanager_flutter/states/ModListPaneController.dart';
 import 'package:chairmanager_flutter/states/ModListState.dart';
+import 'package:chairmanager_flutter/states/PathController.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
 
-class ModListPane extends StatefulWidget {
+class ModListPane extends StatelessWidget {
   const ModListPane({super.key,});
-
-
-  @override
-  State<ModListPane> createState() => _ModListPaneState();
-}
-
-class _ModListPaneState extends State<ModListPane> {
-  // Mod? _selectedMod;
-
-  final FlyoutController _controller = FlyoutController();
-  Offset _mousePosition = Offset.zero;
-
-  int _testIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     ModListController modList = Get.find();
+    PathController pathController = Get.find();
+    ModListPaneController paneController = Get.find();
     return Container(
         margin: const EdgeInsets.all(10),
         child: Row(
@@ -44,9 +35,7 @@ class _ModListPaneState extends State<ModListPane> {
                     margin: const EdgeInsets.only(right: 5),
                     child: MouseRegion(
                         onHover:(PointerEvent details){
-                          setState(() {
-                            _mousePosition = details.position;
-                          });
+                          paneController.mousePosition.value = details.position;
                         },
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -69,16 +58,16 @@ class _ModListPaneState extends State<ModListPane> {
                                         Tooltip(
                                           message: "Save Mod List",
                                           child: FilledButton(
-                                              child: Icon(material.Icons.save, size: 20, color: modList.dirty.value ? Colors.white : material.Colors.grey,),
-                                              onPressed: () {
-                                                modList.saveModListToConfig();
-                                              },
+                                            onPressed: () {
+                                              modList.saveModListToConfig();
+                                            },
                                             style: modList.dirty.value ? ButtonStyle(
                                               backgroundColor: ButtonState.resolveWith((states) => states.isHovering ? material.Colors.deepPurpleAccent : material.Colors.deepPurple.toAccentColor()),
                                             ) :
                                             ButtonStyle(
                                               backgroundColor: ButtonState.resolveWith((states) => states.isHovering ? material.Colors.deepPurpleAccent : material.Colors.transparent),
                                             ),
+                                            child: Icon(material.Icons.save, size: 20, color: modList.dirty.value ? Colors.white : material.Colors.grey,),
                                           ),
                                         ),
                                         const SizedBox(width: 5,),
@@ -114,12 +103,12 @@ class _ModListPaneState extends State<ModListPane> {
                                         ),
                                         const SizedBox(width: 5,),
                                         FlyoutTarget(
-                                            controller: _controller,
+                                            controller: paneController.flyoutController,
                                             child: IconButton(
                                               icon: const Icon(material.Icons.more_vert, size: 20),
                                               onPressed: () {
-                                                _controller.showFlyout(
-                                                  position: _mousePosition,
+                                                paneController.flyoutController.showFlyout(
+                                                  position: paneController.mousePosition.value,
                                                   autoModeConfiguration: FlyoutAutoConfiguration(
                                                     preferredMode: FlyoutPlacementMode.bottomCenter,
                                                   ),
@@ -130,12 +119,12 @@ class _ModListPaneState extends State<ModListPane> {
                                                   builder: (context) {
                                                     return MenuFlyout(items: [
                                                       MenuFlyoutItem(
-                                                        leading: const Icon(material.Icons.toggle_on_outlined),
-                                                        text: const Text('Toggle All Mods'),
-                                                        onPressed: (){
-                                                          modList.toggleAllMods();
-                                                          Flyout.of(context).close;
-                                                        }
+                                                          leading: const Icon(material.Icons.toggle_on_outlined),
+                                                          text: const Text('Toggle All Mods'),
+                                                          onPressed: (){
+                                                            modList.toggleAllMods();
+                                                            Flyout.of(context).close;
+                                                          }
                                                       ),
                                                     ]);
                                                   },
@@ -152,14 +141,16 @@ class _ModListPaneState extends State<ModListPane> {
                             Flexible(
                               //TODO: getX mod list
                               // child: Container(),
-                              child: ListView.builder(itemCount: modList.mods.length, itemBuilder: (context, i){
+                              child: Obx( () => ListView.builder(
+                                itemCount: modList.mods.length,
+                                itemBuilder: (context, i){
                                 final mod = modList.mods[i];
                                 return ModListTile(
                                   shouldHaveBottomDragTarget: i == modList.mods.length - 1 ? true : null,
-                                  controller: _controller,
+                                  controller: paneController.flyoutController,
                                   menuPressed: (){
-                                    _controller.showFlyout(
-                                      position: _mousePosition,
+                                    paneController.flyoutController.showFlyout(
+                                      position: paneController.mousePosition.value,
                                       builder: (context){
                                         return MenuFlyout(
                                           items: [
@@ -176,11 +167,10 @@ class _ModListPaneState extends State<ModListPane> {
                                   },
                                   mod: modList.mods[i],
                                   updateUI: (){
-                                    setState(() {});
                                   },
                                 );
-                              }
-                              ),
+                              },
+                              )),
                             ),
                           ],
                         )
@@ -225,15 +215,35 @@ class _ModListPaneState extends State<ModListPane> {
                                           onPressed: !modList.selectedMod.value.isEmpty() ?() {
                                             // Process.run('explorer.exe', ['/select,','${ref.watch(modManagerProvider).mods[0].modPath}']); // highlight/select the file/folder
                                             // Process.run('explorer.exe', ['${ref.watch(modManagerProvider).mods[0].modPath}']); // open the file/folder
-                                            Process.run('explorer.exe', [r'C:\Users\theli\Documents']);
+
+                                            if(modList.selectedMod.value.isLegacy){
+                                              Process.run('explorer.exe', [
+                                                '${pathController
+                                                    .modDirPath}\\Legacy\\${modList
+                                                    .selectedMod.value.modName}'
+                                              ]);
+                                            } else {
+                                              Process.run('explorer.exe', [
+                                                '${pathController
+                                                    .modDirPath}\\${modList
+                                                    .selectedMod.value.modName}'
+                                              ]);
+                                            }
+
+                                            // open the file/folder
                                           } : null,
                                         ),
                                       ),
                                       Tooltip(
                                         message : "Open mod config file",
                                         child: IconButton(icon: const Icon(material.Icons.settings_applications, size: 30),
-                                          onPressed: !modList.selectedMod.value.isEmpty() ? () {
-                                            Process.run('explorer.exe', [r'C:\Users\theli\Documents']);
+                                          onPressed: !modList.selectedMod.value.isEmpty() && !modList.selectedMod.value.isLegacy ? () {
+                                          if(!modList.selectedMod.value.isLegacy) {
+                                            Process.run('explorer.exe', [
+                                              (modList.selectedMod.value.config!
+                                                  .configFile.parent.path)
+                                            ]);
+                                          }
                                           } : null,
                                         ),
                                       ),
@@ -253,34 +263,70 @@ class _ModListPaneState extends State<ModListPane> {
                                 const Divider(),
                                 ...(){
                                   List<Widget> widgets = [];
-                                  if(!modList.selectedMod.value.isEmpty()){
-                                    widgets = [
-                                      Container(
-                                          padding: const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            modList.selectedMod.value.displayName,
-                                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                                          )
-                                      ),
-                                      Container(
-                                          padding: const EdgeInsets.only(left: 10),
-                                          child: Text(modList.selectedMod.value.modName,
-                                            style: const TextStyle(fontSize: 16),
-                                          )
-                                      ),
-                                      Container(
-                                          padding: const EdgeInsets.only(left: 10, top: 5),
-                                          child: Text("Author: ${modList.selectedMod.value.author}",
-                                            style: const TextStyle(fontSize: 16),
-                                          )
-                                      ),
-                                      Container(
-                                          padding: const EdgeInsets.only(left: 10, top: 5),
-                                          child: Text("Version: ${modList.selectedMod.value.version}",
-                                            style: const TextStyle(fontSize: 16),
-                                          )
-                                      ),
-                                    ];
+                                  if(!modList.selectedMod.value.isEmpty()) {
+                                    if (modList.selectedMod.value.isLegacy) {
+                                      widgets = [
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10),
+                                            child: Text(
+                                                modList.selectedMod.value.modName,
+                                                style: FluentTheme.of(context).typography.title
+                                            )
+                                        ),
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, top: 5),
+                                            child: const Text("Legacy Mod",
+                                              style: TextStyle(
+                                                  fontSize: 16),
+                                            )
+                                        )
+                                      ];
+                                    } else {
+                                      widgets = [
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10),
+                                            child: Text(
+                                              modList.selectedMod.value
+                                                  .displayName.isEmpty ? modList
+                                                  .selectedMod.value.modName :
+                                              modList.selectedMod.value.displayName,
+                                              style: FluentTheme.of(context).typography.title,
+                                            )
+                                        ),
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10),
+                                            child: Text(
+                                              modList.selectedMod.value.modName,
+                                              style: FluentTheme.of(context).typography.subtitle,
+                                            )
+                                        ),
+                                        Divider(),
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, top: 5),
+                                            child: Text(
+                                              "Author: ${modList.selectedMod
+                                                  .value.author}",
+                                              style: const TextStyle(
+                                                  fontSize: 16),
+                                            )
+                                        ),
+                                        Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, top: 5),
+                                            child: Text(
+                                              "Version: ${modList.selectedMod
+                                                  .value.version}",
+                                              style: const TextStyle(
+                                                  fontSize: 16),
+                                            )
+                                        ),
+                                      ];
+                                    }
                                   }
 
                                   return widgets;
@@ -468,31 +514,21 @@ class ModListTileBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ModListController modList = Get.find();
-    return ListTile(
+    return Obx( () => ListTile(
       tileColor: (){
         return ButtonState.resolveWith((states) {
           if (states.contains(ButtonStates.hovering)) {
             return FluentTheme.of(context).activeColor.withAlpha(40);
-          }
-          if(modList.isModSelected(mod)){
+          } else if(modList.selectedMod.value == mod){
             return FluentTheme.of(context).activeColor.withAlpha(20);
+          } else {
+            return tileColor;
           }
-          return tileColor;
         });
       }(),
-      leading:
-      Row(
+      leading: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // Container(
-          //   width: 10,
-          //   height: 50,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(5),
-          //     color: modList.isModSelected(mod) ? FluentTheme.of(context).accentColor.withAlpha(100) : null,
-          //   ),
-          //   padding: const EdgeInsets.only(right: 10),
-          // ),
           Container(
             child: Button(onPressed: menuPressed,
               style: ButtonStyle(backgroundColor: ButtonState.all(Colors.transparent), /*border: ButtonState.all(BorderSide.none)*/),
@@ -501,12 +537,13 @@ class ModListTileBase extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10,),
-          Checkbox(checked: mod.enabled, onChanged: (v){
+          Checkbox(checked: mod.enabled.value, onChanged: (v){
             modList.enableMod(mod, v ?? false);
             updateUI?.call();
           },),
         ],
       ),
+      semanticLabel: modList.selectedMod.value.modName,
       trailing: Row(
         children: [
           Container(
@@ -538,9 +575,9 @@ class ModListTileBase extends StatelessWidget {
         style: TextStyle(color: FluentTheme.of(context).inactiveColor),
       ),
       onPressed: (){
-        modList.selectMod(mod);
-        updateUI?.call();
+        modList.selectedMod.value = mod;
+        // updateUI?.call();
       },
-    );
+    ));
   }
 }

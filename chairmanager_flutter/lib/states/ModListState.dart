@@ -12,9 +12,7 @@ import './PathController.dart';
 
 class ModListController extends GetxController {
   RxList<Mod> mods = <Mod>[].obs;
-  var selectedMod = Mod
-      .empty()
-      .obs;
+  var selectedMod = Mod.empty().obs;
 
   ModListController();
   var dirty = false.obs;
@@ -122,7 +120,7 @@ class ModListController extends GetxController {
   }
 
   void enableMod(Mod mod, bool enabled) {
-    mod.enabled = enabled;
+    mod.enabled.value = enabled;
     if (ignoreDirty) return;
     dirty.value = true;
     timerStart.value = true;
@@ -130,7 +128,7 @@ class ModListController extends GetxController {
 
   void enableAllMods(bool enabled) {
     for (var mod in mods) {
-      mod.enabled = enabled;
+      mod.enabled.value = enabled;
     }
     if (ignoreDirty) return;
     dirty.value = true;
@@ -142,7 +140,7 @@ class ModListController extends GetxController {
     // if all mods are disabled, enable all mods
     var anyEnabled = false;
     for (var mod in mods) {
-      if(mod.enabled) {
+      if(mod.enabled.value) {
         anyEnabled = true;
         break;
       }
@@ -170,7 +168,7 @@ class ModListController extends GetxController {
           if(modName != null && enabled != null && loadOrder != null) {
             var mod = getMod(modName);
             if(!mod.isEmpty()) {
-              mod.enabled = enabled == "true";
+              mod.enabled.value = enabled == "true";
               mod.loadOrder = int.parse(loadOrder);
             }
           }
@@ -275,7 +273,7 @@ class ModListController extends GetxController {
         displayName: displayName ?? "",
         dllName: dllName ?? "",
         // TODO: read the enabled state from Chairloader.xml when that's implemented
-        enabled: true,
+        enabled: true.obs,
         // TODO: read the load order from Chairloader.xml when that's implemented
         loadOrder: -1,
         isLegacy: false,
@@ -300,7 +298,7 @@ class ModListController extends GetxController {
           dllName: "",
           loadOrder: -1,
           // TODO: read the enabled state from Chairloader.xml when that's implemented
-          enabled: true,
+          enabled: true.obs,
           // TODO: read the load order for legacy mods from somewhere when we do that eventually
           isLegacy: true,
         );

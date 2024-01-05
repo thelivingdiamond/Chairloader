@@ -7,6 +7,7 @@ import 'package:chairmanager_flutter/panes/logPane.dart';
 import 'package:chairmanager_flutter/panes/settingsPane.dart';
 import 'package:chairmanager_flutter/states/ConfigController.dart';
 import 'package:chairmanager_flutter/states/LogState.dart';
+import 'package:chairmanager_flutter/states/ModListPaneController.dart';
 import 'package:chairmanager_flutter/states/ModListState.dart';
 import 'package:chairmanager_flutter/states/PathController.dart';
 import 'package:chairmanager_flutter/states/SettingsController.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
     Get.put(ModListController());
     Get.put(LogController());
     Get.put(ConfigController());
+    Get.put(ModListPaneController());
     return  AnimatedFluentTheme(
       data: FluentThemeData.dark().copyWith(
           brightness: Brightness.dark,
