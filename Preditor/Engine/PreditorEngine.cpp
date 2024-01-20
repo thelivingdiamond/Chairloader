@@ -28,6 +28,7 @@
 #include "HardwareMousePatch.h"
 #include "RendererGlobals.h"
 #include "SimulationController.h"
+#include "LevelEditorPatch.h"
 
 namespace Engine
 {
@@ -593,6 +594,7 @@ void Engine::PreditorEngine::ApplyFullPatches()
 	GameViewportPatch::InitHooks();
 	MainWindowResizePatch::InitHooks();
 	HardwareMousePatch::InitHooks();
+	LevelEditorPatch::InitHooks();
 
 	uint8_t* dllBase = (uint8_t*)m_hPreyDll.get();
 

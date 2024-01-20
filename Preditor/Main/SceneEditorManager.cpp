@@ -91,6 +91,26 @@ void Main::SceneEditorManager::SetPlayMode(EPlayMode playMode)
     m_CurrentPlayMode = playMode;
 }
 
+void Main::SceneEditorManager::OnLevelLoad()
+{
+    assert(!m_pCurrentEditor);
+    assert(m_CurrentMode == EEditMode::None);
+
+    if (m_NextLoadIsInEditor)
+    {
+        m_pLevelEditor = ILevelSceneEditor::CreateLevelEditor();
+        SetEditor(m_pLevelEditor.get(), EEditMode::Level);
+
+        // Pause the engine
+        gPreditor->pEngine->GetSimController()->SetSimulationMode(Engine::ESimulationMode::Pause);
+    }
+    else
+    {
+        m_pGameEditor = ISceneEditor::CreateGameEditor();
+        SetEditor(m_pGameEditor.get(), EEditMode::Game);
+    }
+}
+
 void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
 {
     // Debug print
@@ -110,7 +130,7 @@ void Main::SceneEditorManager::OnSystemEvent(ESystemEvent event, UINT_PTR wparam
     case ESYSTEM_EVENT_LEVEL_LOAD_END:
     {
         m_LoadingMouseGuard.SetIncremented(false);
-        OnLevelLoad();
+        OnLevelLoadEnd();
         break;
     }
     case ESYSTEM_EVENT_LEVEL_UNLOAD:
@@ -162,24 +182,8 @@ void Main::SceneEditorManager::Reset()
     m_NextLoadIsInEditor = false;
 }
 
-void Main::SceneEditorManager::OnLevelLoad()
+void Main::SceneEditorManager::OnLevelLoadEnd()
 {
-    assert(!m_pCurrentEditor);
-    assert(m_CurrentMode == EEditMode::None);
-
-    if (m_NextLoadIsInEditor)
-    {
-        m_pLevelEditor = ILevelSceneEditor::CreateLevelEditor();
-        SetEditor(m_pLevelEditor.get(), EEditMode::Level);
-
-        // Pause the engine
-        gPreditor->pEngine->GetSimController()->SetSimulationMode(Engine::ESimulationMode::Pause);
-    }
-    else
-    {
-        m_pGameEditor = ISceneEditor::CreateGameEditor();
-        SetEditor(m_pGameEditor.get(), EEditMode::Game);
-    }
 }
 
 void Main::SceneEditorManager::SetEditor(ISceneEditor* pEditor, EEditMode editMode)

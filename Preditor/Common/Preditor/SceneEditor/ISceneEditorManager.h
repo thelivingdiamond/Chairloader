@@ -20,4 +20,7 @@ struct ISceneEditorManager
 
     //! @returns current scene editor.
     virtual ISceneEditor* GetEditor() = 0;
+
+    //! Called when CLevelSystem::LoadLevel is called.
+    virtual void OnLevelLoad() = 0;
 };

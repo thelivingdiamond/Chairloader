@@ -33,6 +33,12 @@ void LevelEditor::EntityObject::RespawnEntity()
         m_pEntity = nullptr;
     }
 
+    if (!m_pEntityClass)
+    {
+        CryError("[{}] Can't respawn entity: class is null", GetName());
+        return;
+    }
+
     // Make sure ID is not used
     if (m_EntityId != INVALID_ENTITYID && pEntSystem->IsIDUsed(m_EntityId))
     {

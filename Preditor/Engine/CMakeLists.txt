@@ -11,6 +11,8 @@ set(SOURCE_FILES
 	GameViewportPatch.h
 	HardwareMousePatch.cpp
 	HardwareMousePatch.h
+	LevelEditorPatch.cpp
+	LevelEditorPatch.h
 	MainWindowResizePatch.cpp
 	MainWindowResizePatch.h
 	pch.h

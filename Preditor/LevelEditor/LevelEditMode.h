@@ -32,6 +32,7 @@ public:
     virtual void ShowInspector() override;
 
     // ILevelSceneEditor
+    virtual void LoadEntities() override;
     virtual void OnEnterPlayMode() override;
     virtual void OnExitPlayMode() override;
 
@@ -47,9 +48,6 @@ private:
     ICVar* m_pCanSaveLoad = nullptr;
 
     std::unique_ptr<SInGameEntitySystemListener> m_pEntitySystemListener;
-
-    //! Loads current level data.
-    void LoadLevel();
 
     //! Moves the player entity to where the scene camera is.
     void MovePlayerToSceneCamera();

@@ -24,6 +24,7 @@ public:
     virtual EPlayMode GetPlayMode() override { return m_CurrentPlayMode; }
     virtual void SetPlayMode(EPlayMode playMode) override;
     virtual ISceneEditor* GetEditor() override { return m_pCurrentEditor; }
+    virtual void OnLevelLoad() override;
 
     // ISystemEventListener
     virtual void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
@@ -47,7 +48,7 @@ private:
     void Reset();
 
     //! ESYSTEM_EVENT_LEVEL_LOAD_END event handler.
-    void OnLevelLoad();
+    void OnLevelLoadEnd();
 
     //! Sets the editor instance.
     void SetEditor(ISceneEditor* pEditor, EEditMode editMode);

@@ -182,10 +182,10 @@ struct ILevelSystem :
 	virtual void              AddListener(ILevelSystemListener* pListener) = 0;
 	virtual void              RemoveListener(ILevelSystemListener* pListener) = 0;
 
-	virtual ILevelInfo*       GetCurrentLevel() const = 0;
-	virtual ILevelInfo*       LoadLevel(const char* levelName) = 0;
+	virtual ILevel*           GetCurrentLevel() const = 0;
+	virtual ILevel*           LoadLevel(const char* levelName) = 0;
 	virtual void              UnLoadLevel() = 0;
-	virtual ILevelInfo*       SetEditorLoadedLevel(const char* levelName, bool bReadLevelInfoMetaData = false) = 0;
+	virtual ILevel*           SetEditorLoadedLevel(const char* levelName, bool bReadLevelInfoMetaData = false) = 0;
 	virtual bool              IsLevelLoaded() = 0;
 	virtual void              PrepareNextLevel(const char* levelName) = 0;
 

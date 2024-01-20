@@ -102,14 +102,11 @@ LevelEditor::LevelEditMode::LevelEditMode()
     m_pSelection = std::make_unique<ObjectSelectionManager>(this);
     m_pViewportHandler = std::make_unique<LevelViewportHandler>(this);
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
-    m_pObjectManager = std::make_unique<ObjectManager>();
     m_pObjectManipulator = std::make_unique<ObjectManipulator>(this);
 
     // Disable save/load
     m_pCanSaveLoad = gEnv->pConsole->GetCVar("g_EnableLoadSave");
     m_pCanSaveLoad->Set(false);
-
-    LoadLevel();
 }
 
 LevelEditor::LevelEditMode::~LevelEditMode()
@@ -192,6 +189,17 @@ void LevelEditor::LevelEditMode::ShowInspector()
     }
 }
 
+void LevelEditor::LevelEditMode::LoadEntities()
+{
+    // Load entity XML
+    std::string missionXmlPath = gEnv->p3DEngine->GetLevelFilePath("mission_mission0.xml");
+    XmlNodeRef missionXml = gEnv->pSystem->LoadXmlFromFile(missionXmlPath.c_str());
+
+    // Init object manager
+    m_pObjectManager = std::make_unique<ObjectManager>();
+    m_pObjectManager->CreateLevelObjects(missionXml->findChild("Objects"));
+}
+
 void LevelEditor::LevelEditMode::OnEnterPlayMode()
 {
     CryLog("================= Enter Play Mode =================");
@@ -248,13 +256,6 @@ void LevelEditor::LevelEditMode::OnExitPlayMode()
     m_pObjectManager->InvokeOnAll<&Object::OnExitPlayMode>();
 
     NotifyGameModeChange(false);
-}
-
-void LevelEditor::LevelEditMode::LoadLevel()
-{
-    std::string missionXmlPath = gEnv->p3DEngine->GetLevelFilePath("mission_mission0.xml");
-    XmlNodeRef missionXml = gEnv->pSystem->LoadXmlFromFile(missionXmlPath.c_str());
-    m_pObjectManager->CreateLevelObjects(missionXml->findChild("Objects"));
 }
 
 void LevelEditor::LevelEditMode::MovePlayerToSceneCamera()
