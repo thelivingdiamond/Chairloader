@@ -1,12 +1,16 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	Components/AreaProxyComponent.cpp
+	Components/AreaProxyComponent.h
 	Components/Component.cpp
 	Components/Component.h
 	Components/ComponentList.cpp
 	Components/ComponentList.h
 	Components/EntityArchetypeComponent.cpp
 	Components/EntityArchetypeComponent.h
+	Components/EntityProxyComponent.cpp
+	Components/EntityProxyComponent.h
 	Components/Transform.cpp
 	Components/Transform.h
 

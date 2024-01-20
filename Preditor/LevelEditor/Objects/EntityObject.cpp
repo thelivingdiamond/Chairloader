@@ -2,6 +2,7 @@
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include <Preditor/SceneEditor/IViewportHandler.h>
 #include "Components/EntityArchetypeComponent.h"
+#include "Components/AreaProxyComponent.h"
 #include "Objects/EntityObject.h"
 #include "RayIntersectInfo.h"
 
@@ -160,6 +161,12 @@ void LevelEditor::EntityObject::Init(XmlNodeRef objectNode)
     }
 
     m_SpawnInfo.LoadFromXml(objectNode);
+
+    if (objectNode->findChild("Area"))
+    {
+        m_pAreaProxy = AddComponent<AreaProxyComponent>();
+        m_pAreaProxy->LoadFromXml(objectNode);
+    }
 }
 
 void LevelEditor::EntityObject::ShowInspectorSelf()

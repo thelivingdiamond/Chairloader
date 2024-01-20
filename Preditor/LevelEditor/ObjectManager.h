@@ -5,6 +5,7 @@ namespace LevelEditor
 {
 
 class Object;
+class Transform;
 
 //! List of level objects.
 class ObjectManager : NoCopy

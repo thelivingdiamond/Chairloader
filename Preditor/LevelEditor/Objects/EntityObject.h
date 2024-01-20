@@ -6,6 +6,8 @@ namespace LevelEditor
 
 class EntityArchetypeComponent;
 
+class AreaProxyComponent;
+
 //! Object type for entities.
 class EntityObject : public Object
 {
@@ -89,6 +91,9 @@ private:
     EntityGUID m_EntityGuid = 0;
     XmlNodeRef m_XmlData;
     EntitySpawnInfo m_SpawnInfo;
+
+    // Proxies
+    std::unique_ptr<AreaProxyComponent> m_pAreaProxy;
 
     std::unique_ptr<EntityArchetypeComponent> m_pArchetype;
     IEntity* m_pEntity = nullptr;
