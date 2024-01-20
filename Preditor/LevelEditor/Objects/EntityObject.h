@@ -35,22 +35,63 @@ public:
     virtual void DrawSelection(bool isActive) override;
 
 private:
+    struct EntitySpawnInfo
+    {
+        bool bGoodOccluder = false;
+        bool bOutdoorOnly = false;
+        bool bNoDecals = false;
+        bool bDynamicDistanceShadows = false;
+        int castShadowMinSpec = CONFIG_LOW_SPEC;
+
+        void LoadFromXml(const XmlNodeRef& entityNode)
+        {
+            entityNode->getAttr("CastShadowMinSpec", castShadowMinSpec);
+            entityNode->getAttr("DynamicDistanceShadows", bDynamicDistanceShadows);
+            entityNode->getAttr("GoodOccluder", bGoodOccluder);
+            entityNode->getAttr("OutdoorOnly", bOutdoorOnly);
+            entityNode->getAttr("NoDecals", bNoDecals);
+        }
+
+        uint32 GetFlags()
+        {
+            uint32 f = 0;
+
+            static const ICVar* const pObjShadowCastSpec = gEnv->pConsole->GetCVar("e_ObjShadowCastSpec");
+            if (castShadowMinSpec <= pObjShadowCastSpec->GetIVal())
+                f |= ENTITY_FLAG_CASTSHADOW;
+
+            if (bGoodOccluder)
+                f |= ENTITY_FLAG_GOOD_OCCLUDER;
+
+            if (bOutdoorOnly)
+                f |= ENTITY_FLAG_OUTDOORONLY;
+
+            if (bNoDecals)
+                f |= ENTITY_FLAG_NO_DECALNODE_DECALS;
+
+            return f;
+        }
+
+        uint32 GetFlagsExtended()
+        {
+            uint32 f = 0;
+
+            if (bDynamicDistanceShadows)
+                f |= ENTITY_FLAG_EXTENDED_DYNAMIC_DISTANCE_SHADOWS;
+
+            return f;
+        }
+    };
+
     XmlString m_EntityClassName;
     IEntityClass* m_pEntityClass = nullptr;
     EntityId m_EntityId = INVALID_ENTITYID;
     EntityGUID m_EntityGuid = 0;
     XmlNodeRef m_XmlData;
+    EntitySpawnInfo m_SpawnInfo;
 
     std::unique_ptr<EntityArchetypeComponent> m_pArchetype;
     IEntity* m_pEntity = nullptr;
-
-    //! Finds the entity spawned by hte engine during loading.
-    //! @returns whether it was found.
-    bool FindExistingEntity();
-
-    //! Sets up the entity.
-    //! @param  isExisting  Whether this is th entity found by FindExistingEntity.
-    void SetUpEntity(bool isExisting);
 
     //! Intersects a ray with the entity's OBB.
     bool IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect);

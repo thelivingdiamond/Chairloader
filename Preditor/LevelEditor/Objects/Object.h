@@ -56,6 +56,12 @@ public:
     //! @returns the type info.
     const ObjectTypeInfo& GetTypeInfo() const { return *m_pTypeInfo; }
 
+    //! @returns Whether the object is of this type.
+    bool IsType(EObjectType type) const { return m_pTypeInfo->type == type; }
+
+    //! @returns Whether this object is an entity.
+    bool IsEntity() const { return IsType(EObjectType::Entity); }
+
     //! @returns the object name.
     const std::string& GetName() const { return m_ObjectName; }
     void SetName(const std::string& name);

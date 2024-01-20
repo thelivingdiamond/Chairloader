@@ -75,6 +75,16 @@ void LevelEditor::ObjectManager::CreateLevelObjects(XmlNodeRef objectsNode)
     {
         m_Objects[i]->GetTransform()->InvalidateTM(ENTITY_XFORM_FROM_PARENT);
     }
+
+    // Spawn entities
+    for (int i = 0; i < childCount; i++)
+    {
+        // Only check root entities
+        if (m_Objects[i]->GetTransform()->GetParent())
+            continue;
+
+        SpawnEntityRecursive(*m_Objects[i]->GetTransform());
+    }
 }
 
 LevelEditor::Object* LevelEditor::ObjectManager::CreateObject(XmlNodeRef objectNode)
@@ -109,4 +119,20 @@ void LevelEditor::ObjectManager::InitObject(size_t idx, XmlNodeRef objectNode)
     Object* pObj = m_Objects[idx].get();
     pObj->InternalInit((SceneObjectId)idx);
     pObj->Init(objectNode);
+}
+
+void LevelEditor::ObjectManager::SpawnEntityRecursive(Transform& tr)
+{
+    Object* pObj = tr.GetObject();
+
+    if (pObj->IsEntity())
+    {
+        static_cast<EntityObject*>(pObj)->RespawnEntity();
+    }
+
+    // Recurse into children
+    for (Transform& childTr : tr.GetChildren())
+    {
+        SpawnEntityRecursive(childTr);
+    }
 }

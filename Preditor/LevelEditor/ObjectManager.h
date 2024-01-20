@@ -57,6 +57,9 @@ private:
 
     //! Initializes a freshly created object.
     void InitObject(size_t idx, XmlNodeRef objectNode);
+
+    //! Recursively spawns entity objects.
+    void SpawnEntityRecursive(Transform& tr);
 };
 
 } // namespace LevelEditor

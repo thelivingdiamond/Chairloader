@@ -55,26 +55,72 @@ void LevelEditor::EntityObject::RespawnEntity()
     if (m_pArchetype)
         params.pArchetype = m_pArchetype->GetArchetype();
 
-    // params.sLayerName
+    // TODO 2024-01-20: params.sLayerName
     params.entityNode = m_XmlData;
 
     params.sName = GetName().c_str();
+
     params.nFlags = 0;
+    params.nFlags |= ENTITY_FLAG_UNREMOVABLE; // Level entities can't be removed
+    params.nFlags |= m_SpawnInfo.GetFlags();
+
+    params.nFlagsExtended = 0;
+    params.nFlagsExtended |= m_SpawnInfo.GetFlagsExtended();
+
     params.vPosition = GetTransform()->GetPos();
     params.qRotation = GetTransform()->GetRot();
+
+    // TODO 2024-01-20: Set legacy entity flags
 
     // Spawn the entity
     CRY_ASSERT(!m_pEntity);
     m_pEntity = pEntSystem->SpawnEntity(params);
 
-    if (m_pEntity)
-    {
-        SetUpEntity(false);
-    }
-    else
+    if (!m_pEntity)
     {
         CryError("[{}] Failed to spawn the entity", GetName());
+        return;
     }
+
+    // Save new EntityId
+    m_EntityId = m_pEntity->GetId();
+
+    // TODO 2024-01-20: Copy properties
+    // TODO 2024-01-20: Init light
+    // TODO 2024-01-20: Set parent
+    // TODO 2024-01-20: Update attachments
+
+    // Now initialize entity
+    if (!gEnv->pEntitySystem->InitEntity(m_pEntity, params))
+    {
+        CryError("[{}] Failed to initialize the entity", GetName());
+        m_pEntity = nullptr;
+        return;
+    }
+
+    // Set parent
+    if (Transform* pParentTr = GetTransform()->GetParent())
+    {
+        if (pParentTr->GetObject()->IsEntity())
+        {
+            IEntity* pParentEnt = static_cast<EntityObject*>(pParentTr->GetObject())->GetEntity();
+            CRY_ASSERT_MESSAGE(pParentEnt, "Parent entity must be initialized");
+            pParentEnt->AttachChild(m_pEntity);
+        }
+        else
+        {
+            CryError("[{}] Object parent {} is not an entity", GetName(), pParentTr->GetObject()->GetName());
+        }
+    }
+
+    // TODO 2024-01-20: Update entity links
+    ApplyTransformToEntity();
+    // TODO 2024-01-20: Update visibility
+    // TODO 2024-01-20: Apply material
+    // TODO 2024-01-20: Update render flags
+    // TODO 2024-01-20: Update bounding box
+    // TODO 2024-01-20: Init flow graph
+    // TODO 2024-01-20: Set physics state
 }
 
 void LevelEditor::EntityObject::ApplyTransformToEntity(unsigned nWhyFlags)
@@ -113,11 +159,7 @@ void LevelEditor::EntityObject::Init(XmlNodeRef objectNode)
         }
     }
 
-    if (!FindExistingEntity())
-    {
-        CryWarning("[{}] Respawning missing entity", GetName());
-        RespawnEntity();
-    }
+    m_SpawnInfo.LoadFromXml(objectNode);
 }
 
 void LevelEditor::EntityObject::ShowInspectorSelf()
@@ -166,30 +208,6 @@ void LevelEditor::EntityObject::DrawSelection(bool isActive)
     AABB aabb;
     m_pEntity->GetLocalBounds(aabb);
     gEnv->pAuxGeomRenderer->DrawAABB(aabb, GetTransform()->GetWorldTM(), false, color, eBBD_Faceted);
-}
-
-bool LevelEditor::EntityObject::FindExistingEntity()
-{
-    CRY_ASSERT_MESSAGE(!m_pEntity, "Entity already found");
-    m_pEntity = gEnv->pEntitySystem->GetEntity(m_EntityId);
-
-    if (m_pEntity)
-    {
-        // Found it
-        SetUpEntity(true);
-        return true;
-    }
-    else
-    {
-        CryError("[{}] Failed to find entity {}", GetName(), GetEntityId());
-        return false;
-    }
-}
-
-void LevelEditor::EntityObject::SetUpEntity(bool isExisting)
-{
-    // Mark this entity non destroyable.
-    m_pEntity->AddFlags(ENTITY_FLAG_UNREMOVABLE);
 }
 
 bool LevelEditor::EntityObject::IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
