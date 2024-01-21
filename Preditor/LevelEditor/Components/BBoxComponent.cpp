@@ -20,6 +20,32 @@ void LevelEditor::BBoxComponent::SetLocalBounds(const AABB& localBounds)
     UpdateWorldBounds();
 }
 
+bool LevelEditor::BBoxComponent::Intersect(const Ray& ray, Vec3& hitPoint)
+{
+    // Intersect with world AABB first (cheaper)
+    Vec3 hitPointInThisFunc;
+    if (!IntersectAABB(ray, hitPointInThisFunc))
+        return false;
+
+    // Intersect with more precise OBB
+    if (!IntersectOBB(ray, hitPointInThisFunc))
+        return false;
+
+    hitPoint = hitPointInThisFunc;
+    return true;
+}
+
+bool LevelEditor::BBoxComponent::IntersectAABB(const Ray& ray, Vec3& hitPoint)
+{
+    return Intersect::Ray_AABB(ray, m_WorldBounds, hitPoint) != 0x00;
+}
+
+bool LevelEditor::BBoxComponent::IntersectOBB(const Ray& ray, Vec3& hitPoint)
+{
+    Vec3 worldPos = GetObject()->GetTransform()->GetWorldTM().GetTranslation();
+    return Intersect::Ray_OBB(ray, worldPos, m_WorldObb, hitPoint) == 0x01;
+}
+
 void LevelEditor::BBoxComponent::OnTransformChanged(unsigned nWhyFlags)
 {
     UpdateWorldBounds();
@@ -32,5 +58,7 @@ void LevelEditor::BBoxComponent::RenderAuxGeom()
 
 void LevelEditor::BBoxComponent::UpdateWorldBounds()
 {
-    m_WorldBounds.SetTransformedAABB(GetObject()->GetTransform()->GetWorldTM(), m_LocalBounds);
+    const Matrix34& tm = GetObject()->GetTransform()->GetWorldTM();
+    m_WorldBounds.SetTransformedAABB(tm, m_LocalBounds);
+    m_WorldObb = OBB::CreateOBBfromAABB(Matrix33(tm), m_LocalBounds);
 }

@@ -97,9 +97,6 @@ private:
 
     std::unique_ptr<EntityArchetypeComponent> m_pArchetype;
     IEntity* m_pEntity = nullptr;
-
-    //! Intersects a ray with the entity's OBB.
-    bool IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect);
 };
 
 } // namespace LevelEditor

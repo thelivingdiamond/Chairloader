@@ -134,6 +134,9 @@ protected:
     //! @param  typeInfo    Type info instance. Must be a static/global.
     void SetType(const ObjectTypeInfo& typeInfo);
 
+    //! Intersects a ray with the objects's OBB.
+    bool IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect);
+
 private:
     const ObjectTypeInfo* m_pTypeInfo = nullptr;
     SceneObjectId m_ObjectId = INVALID_SCENE_OBJECT;

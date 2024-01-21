@@ -85,18 +85,7 @@ void LevelEditor::Object::OnExitPlayMode()
 
 bool LevelEditor::Object::IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
 {
-    // Intersect with a small OBB
-    const Matrix34& worldTM = GetTransform()->GetWorldTM();
-    OBB obb = OBB::CreateOBB(Matrix33(worldTM), Vec3(0.25f), Vec3(ZERO));
-
-    Vec3 hitPos;
-    if (Intersect::Ray_OBB(ray.ray, worldTM.GetTranslation(), obb, hitPos) == 0x01)
-    {
-        intersect.hitPosition = hitPos;
-        return true;
-    }
-
-    return false;
+    return IntersectOBB(ray, intersect);
 }
 
 void LevelEditor::Object::DrawSelection(bool isActive)
@@ -108,6 +97,11 @@ void LevelEditor::Object::SetType(const ObjectTypeInfo& typeInfo)
 {
     typeInfo.Validate();
     m_pTypeInfo = &typeInfo;
+}
+
+bool LevelEditor::Object::IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
+{
+    return GetBBox()->Intersect(ray.ray, intersect.hitPosition);
 }
 
 void LevelEditor::Object::InternalInit(SceneObjectId id)

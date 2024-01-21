@@ -203,9 +203,6 @@ void LevelEditor::EntityObject::OnExitPlayMode()
 
 bool LevelEditor::EntityObject::IntersectRay(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
 {
-    if (!m_pEntity)
-        return false;
-
     return IntersectOBB(ray, intersect);
 }
 
@@ -219,25 +216,4 @@ void LevelEditor::EntityObject::DrawSelection(bool isActive)
     AABB aabb;
     m_pEntity->GetLocalBounds(aabb);
     gEnv->pAuxGeomRenderer->DrawAABB(aabb, GetTransform()->GetWorldTM(), false, color, eBBD_Faceted);
-}
-
-bool LevelEditor::EntityObject::IntersectOBB(const ViewportRaycastInfo& ray, RayIntersectInfo& intersect)
-{
-    if (!m_pEntity)
-        return false;
-
-    const Matrix34& worldTM = GetTransform()->GetWorldTM();
-    AABB aabb;
-    m_pEntity->GetLocalBounds(aabb);
-
-    OBB obb = OBB::CreateOBBfromAABB(Matrix33(worldTM), aabb);
-    Vec3 hitPos;
-
-    if (Intersect::Ray_OBB(ray.ray, worldTM.GetTranslation(), obb, hitPos) == 0x01)
-    {
-        intersect.hitPosition = hitPos;
-        return true;
-    }
-
-    return false;
 }

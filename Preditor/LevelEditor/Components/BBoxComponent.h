@@ -27,6 +27,26 @@ public:
     //! Sets the bounding box color.
     void SetBoundsColor(const ColorB& c) { m_BoundsColor = c; }
 
+    //! Intersects a world-space ray with the oriented bounding box.
+    //! AABB is checked first as an optimization.
+    //! @param  ray         Ray to intersect with.
+    //! @param  hitPoint    [out] Output hit position. Only set if returns true.
+    //! @returns Whether the ray intersects with the bounding box.
+    bool Intersect(const Ray& ray, Vec3& hitPoint);
+
+    //! Intersects a world-space ray with the world-space AABB.
+    //! @param  ray         Ray to intersect with.
+    //! @param  hitPoint    [out] Output hit position. Only set if returns true.
+    //! @returns Whether the ray intersects with the bounding box or starts inside the AABB.
+    bool IntersectAABB(const Ray& ray, Vec3& hitPoint);
+
+    //! Intersects a world-space ray with the the oriented bounding box.
+    //! AABB is not checked.
+    //! @param  ray         Ray to intersect with.
+    //! @param  hitPoint    [out] Output hit position. Only set if returns true.
+    //! @returns Whether the ray intersects with the bounding box.
+    bool IntersectOBB(const Ray& ray, Vec3& hitPoint);
+
 protected:
     // Component
     virtual void OnTransformChanged(unsigned nWhyFlags) override;
@@ -38,8 +58,11 @@ private:
     //! BBox in object local space.
     AABB m_LocalBounds = AABB(Vec3(ZERO));
 
-    //! BBox on world space.
+    //! BBox in world space.
     AABB m_WorldBounds = AABB(Vec3(ZERO));
+
+    //! OBB in world space.
+    OBB m_WorldObb = OBB::CreateOBBfromAABB(Quat(IDENTITY), AABB(Vec3(ZERO)));
 
     //! Bounding box color when rendering.
     ColorB m_BoundsColor = ColorB(0, 255, 0);
