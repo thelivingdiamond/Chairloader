@@ -31,7 +31,7 @@ void LevelEditor::ObjectManipulator::SetObjectWorldTM(SceneObjectId id, const Ma
 
     if (!pObject)
     {
-        CryError("SetObjectWorldTM called with invalid entity id {}", id);
+        CryError("SetObjectWorldTM called with invalid object id {}", id);
         return;
     }
 
@@ -40,6 +40,14 @@ void LevelEditor::ObjectManipulator::SetObjectWorldTM(SceneObjectId id, const Ma
 
 void LevelEditor::ObjectManipulator::GetObjectLocalBounds(SceneObjectId id, AABB& aabb)
 {
-    // TODO 2023-01-01: Implement this
-    aabb = AABB::RESET;
+    Object* pObject = m_pEditor->GetObjectManager()->GetObject(id);
+
+    if (!pObject)
+    {
+        CryError("GetObjectLocalBounds called with invalid object id {}", id);
+        aabb = AABB::RESET;
+        return;
+    }
+    
+    aabb = pObject->GetBBox()->GetLocalBounds();
 }
