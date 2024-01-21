@@ -3,6 +3,8 @@ set(SOURCE_FILES
 
 	Components/AreaProxyComponent.cpp
 	Components/AreaProxyComponent.h
+	Components/BBoxComponent.cpp
+	Components/BBoxComponent.h
 	Components/Component.cpp
 	Components/Component.h
 	Components/ComponentList.cpp
@@ -21,9 +23,13 @@ set(SOURCE_FILES
 
 	Utils/AffineParts.cpp
 	Utils/AffineParts.h
+	Utils/AuxGeomComponent.cpp
+	Utils/AuxGeomComponent.h
 	Utils/InspectorHelpers.cpp
 	Utils/InspectorHelpers.h
 
+	AuxGeomManager.cpp
+	AuxGeomManager.h
 	GlobalLevel.h
 	LevelEditMode.cpp
 	LevelEditMode.h

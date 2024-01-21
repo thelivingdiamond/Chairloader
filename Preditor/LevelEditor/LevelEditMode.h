@@ -4,6 +4,7 @@
 namespace LevelEditor
 {
 
+class AuxGeomManager;
 class ObjectSelectionManager;
 class LevelViewportHandler;
 class ObjectManager;
@@ -40,6 +41,7 @@ private:
     struct SInGameEntitySystemListener;
 
     GlobalLevel m_Global;
+    std::unique_ptr<AuxGeomManager> m_pAuxGeomManager;
     std::unique_ptr<ObjectSelectionManager> m_pSelection;
     std::unique_ptr<LevelViewportHandler> m_pViewportHandler;
     std::unique_ptr<IEditToolManager> m_pEditToolManager;

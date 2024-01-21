@@ -119,7 +119,11 @@ void LevelEditor::EntityObject::RespawnEntity()
     // TODO 2024-01-20: Update visibility
     // TODO 2024-01-20: Apply material
     // TODO 2024-01-20: Update render flags
-    // TODO 2024-01-20: Update bounding box
+
+    AABB entityLocalBounds;
+    m_pEntity->GetLocalBounds(entityLocalBounds);
+    GetBBox()->SetLocalBounds(entityLocalBounds);
+
     // TODO 2024-01-20: Init flow graph
     // TODO 2024-01-20: Set physics state
 }

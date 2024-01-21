@@ -2,6 +2,7 @@
 #include <Preditor/SceneEditor/Common.h>
 #include "Components/ComponentList.h"
 #include "Components/Transform.h"
+#include "Components/BBoxComponent.h"
 #include "Utils/InspectorHelpers.h"
 
 struct ViewportRaycastInfo;
@@ -76,6 +77,9 @@ public:
     //! @returns the transform component.
     Transform* GetTransform() { return m_pTransform.get(); }
 
+    //! @returns The bounding box component.
+    BBoxComponent* GetBBox() { return m_pBBox.get(); }
+
     //! @returns the parent object.
     Object* GetParent() { return m_pTransform->GetParent() ? m_pTransform->GetParent()->GetObject() : nullptr; }
 
@@ -138,6 +142,7 @@ private:
 
     ComponentList m_Components;
     std::unique_ptr<Transform> m_pTransform;
+    std::unique_ptr<BBoxComponent> m_pBBox;
 
     //! Called when the object is instantiated by ObjectManager.
     void InternalInit(SceneObjectId id);

@@ -18,6 +18,7 @@ LevelEditor::Object::Object()
 LevelEditor::Object::~Object()
 {
     // Destroy components while the object is still alive
+    m_pBBox.reset();
     m_pTransform.reset();
 }
 
@@ -37,6 +38,9 @@ void LevelEditor::Object::Init(XmlNodeRef objectNode)
 
     m_pTransform = AddComponent<Transform>();
     m_pTransform->Init(objectNode);
+
+    m_pBBox = AddComponent<BBoxComponent>();
+    m_pBBox->SetLocalBounds(AABB(0.125f)); // Default BBox - 25x25x25 cm with center in 0,0,0
 }
 
 void LevelEditor::Object::ShowInspector()

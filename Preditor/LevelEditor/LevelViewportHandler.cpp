@@ -10,6 +10,7 @@
 #include "LevelViewportHandler.h"
 #include "ObjectManager.h"
 #include "RayIntersectInfo.h"
+#include "AuxGeomManager.h"
 
 static Vec3 g_LastRaycastHit = ZERO;
 
@@ -86,6 +87,7 @@ SceneObjectId LevelEditor::LevelViewportHandler::Raycast(const ViewportRaycastIn
 void LevelEditor::LevelViewportHandler::DrawAuxGeom()
 {
     // gEnv->pAuxGeomRenderer->DrawSphere(g_LastRaycastHit, 0.05f, ColorB(255, 0, 0, 255));
+    gLevel->pAuxGeomManager->RenderAuxGeom();
 	DrawSelectedObjects();
 }
 

@@ -16,6 +16,7 @@
 #include "LevelViewportHandler.h"
 #include "ObjectManager.h"
 #include "ObjectManipulator.h"
+#include "AuxGeomManager.h"
 
 // Implements EntitySystemSink for play mode.
 struct LevelEditor::LevelEditMode::SInGameEntitySystemListener : public IEntitySystemSink
@@ -99,6 +100,7 @@ LevelEditor::LevelEditMode::LevelEditMode()
     gLevel = &m_Global;
     m_Global.pEditor = this;
 
+    m_pAuxGeomManager = std::make_unique<AuxGeomManager>();
     m_pSelection = std::make_unique<ObjectSelectionManager>(this);
     m_pViewportHandler = std::make_unique<LevelViewportHandler>(this);
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
@@ -111,6 +113,12 @@ LevelEditor::LevelEditMode::LevelEditMode()
 
 LevelEditor::LevelEditMode::~LevelEditMode()
 {
+    // Destroy objects while LevelEditMode is still alive
+    m_pObjectManager.reset();
+
+    // AuxGeomManager must be destroyed after all AuxGeomComponent instances.
+    m_pAuxGeomManager.reset();
+
     // Allow save/load
     m_pCanSaveLoad->Set(true);
 
