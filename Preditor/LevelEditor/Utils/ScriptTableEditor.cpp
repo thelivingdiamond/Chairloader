@@ -11,10 +11,134 @@ enum class LevelEditor::ScriptTableEditor::EVarType
     Table,
 };
 
-/*class LevelEditor::ScriptTableEditor::VarValue
+class LevelEditor::ScriptTableEditor::ConvertTypeVisitor : public boost::static_visitor<bool>
 {
 public:
-};*/
+    ConvertTypeVisitor(EVarType type, ScalarValue& convertedValue)
+        : m_ConvertedValue(convertedValue)
+    {
+        m_Type = type;
+    }
+
+    bool operator()(std::nullptr_t) const
+    {
+        // Return default value
+        switch (m_Type)
+        {
+        case EVarType::None:
+            m_ConvertedValue = nullptr;
+            return true;
+        case EVarType::Int:
+            m_ConvertedValue = int(0);
+            return true;
+        case EVarType::Bool:
+            m_ConvertedValue = false;
+            return true;
+        case EVarType::Float:
+            m_ConvertedValue = float(0.0f);
+            return true;
+        case EVarType::Vec3:
+            m_ConvertedValue = Vec3(ZERO);
+            return true;
+        case EVarType::String:
+            m_ConvertedValue = std::string();
+            return true;
+        }
+
+        return false;
+    }
+
+    bool operator()(int inValue) const
+    {
+        return NumericConvert(inValue);
+    }
+
+    bool operator()(bool inValue) const
+    {
+        return NumericConvert(inValue);
+    }
+
+    bool operator()(float inValue) const
+    {
+        return NumericConvert(inValue);
+    }
+
+    bool operator()(const Vec3& value) const
+    {
+        if (m_Type == EVarType::Vec3)
+        {
+            m_ConvertedValue = value;
+            return true;
+        }
+
+        return false;
+    }
+
+    bool operator()(const std::string& value) const
+    {
+        if (m_Type == EVarType::String)
+        {
+            m_ConvertedValue = value;
+            return true;
+        }
+
+        return false;
+    }
+
+private:
+    EVarType m_Type;
+    ScalarValue& m_ConvertedValue;
+
+    //! Converts between numeric types (int, float, bool).
+    template <typename T>
+    bool NumericConvert(T inValue) const
+    {
+        switch (m_Type)
+        {
+        case EVarType::Int:
+            m_ConvertedValue = int(inValue);
+            return true;
+        case EVarType::Bool:
+            m_ConvertedValue = bool(inValue);
+            return true;
+        case EVarType::Float:
+            m_ConvertedValue = float(inValue);
+            return true;
+        }
+
+        return false;
+    }
+};
+
+class LevelEditor::ScriptTableEditor::GetValueAnyVisitor : public boost::static_visitor<bool>
+{
+public:
+    GetValueAnyVisitor(ScriptAnyValue& value)
+        : m_Value(value)
+    {
+    }
+
+    template <typename T>
+    bool operator()(const T& inValue) const
+    {
+        m_Value = ScriptAnyValue(inValue);
+        return true;
+    }
+
+    bool operator()(std::nullptr_t) const
+    {
+        return false;
+    }
+
+    bool operator()(const std::string& inValue) const
+    {
+        m_Value = ScriptAnyValue(inValue.c_str());
+        return true;
+    }
+
+private:
+    ScriptAnyValue& m_Value;
+};
 
 class LevelEditor::ScriptTableEditor::Variable
 {
@@ -117,6 +241,44 @@ public:
             // Unknown type
             return false;
         }
+    }
+
+    //! Gets all values and stores them into a table.
+    void GetTable(SmartScriptTable& pTable) const
+    {
+        CRY_ASSERT(m_Type == EVarType::Table);
+
+        for (const auto& [key, value] : m_Table)
+        {
+            if (value.m_Type == EVarType::Table)
+            {
+                SmartScriptTable pSubTable(pTable->GetScriptSystem());
+                value.GetTable(pSubTable);
+                pTable->SetValueAny(key.c_str(), ScriptAnyValue(pSubTable));
+            }
+            else
+            {
+                ScriptAnyValue valueAny;
+                
+                if (value.TryGetValue(valueAny))
+                {
+                    pTable->SetValueAny(key.c_str(), valueAny);
+                }
+                else
+                {
+                    pTable->SetValueAny(key.c_str(), ScriptAnyValue(ANY_TNIL));
+                }
+            }
+        }
+    }
+
+    //! Tries to get the scalar value.
+    bool TryGetValue(ScriptAnyValue& value) const
+    {
+        if (m_Type == EVarType::Table)
+            return false;
+
+        return boost::apply_visitor(GetValueAnyVisitor(value), m_CurrentScalarValue);
     }
 
     bool ShowUI(const char* name)
@@ -248,105 +410,6 @@ private:
     std::map<std::string, Variable, std::less<>> m_Table;
 };
 
-class LevelEditor::ScriptTableEditor::ConvertTypeVisitor : public boost::static_visitor<bool>
-{
-public:
-    ConvertTypeVisitor(EVarType type, ScalarValue& convertedValue)
-        : m_ConvertedValue(convertedValue)
-    {
-        m_Type = type;
-    }
-
-    bool operator()(std::nullptr_t) const
-    {
-        // Return default value
-        switch (m_Type)
-        {
-        case EVarType::None:
-            m_ConvertedValue = nullptr;
-            return true;
-        case EVarType::Int:
-            m_ConvertedValue = int(0);
-            return true;
-        case EVarType::Bool:
-            m_ConvertedValue = false;
-            return true;
-        case EVarType::Float:
-            m_ConvertedValue = float(0.0f);
-            return true;
-        case EVarType::Vec3:
-            m_ConvertedValue = Vec3(ZERO);
-            return true;
-        case EVarType::String:
-            m_ConvertedValue = std::string();
-            return true;
-        }
-
-        return false;
-    }
-
-    bool operator()(int inValue) const
-    {
-        return NumericConvert(inValue);
-    }
-
-    bool operator()(bool inValue) const
-    {
-        return NumericConvert(inValue);
-    }
-
-    bool operator()(float inValue) const
-    {
-        return NumericConvert(inValue);
-    }
-
-    bool operator()(const Vec3& value) const
-    {
-        if (m_Type == EVarType::Vec3)
-        {
-            m_ConvertedValue = value;
-            return true;
-        }
-
-        return false;
-    }
-
-    bool operator()(const std::string& value) const
-    {
-        if (m_Type == EVarType::String)
-        {
-            m_ConvertedValue = value;
-            return true;
-        }
-
-        return false;
-    }
-
-private:
-    EVarType m_Type;
-    ScalarValue& m_ConvertedValue;
-
-    //! Converts between numeric types (int, float, bool).
-    template <typename T>
-    bool NumericConvert(T inValue) const
-    {
-        switch (m_Type)
-        {
-        case EVarType::Int:
-            m_ConvertedValue = int(inValue);
-            return true;
-        case EVarType::Bool:
-            m_ConvertedValue = bool(inValue);
-            return true;
-        case EVarType::Float:
-            m_ConvertedValue = float(inValue);
-            return true;
-        }
-
-        return false;
-    }
-};
-
 LevelEditor::ScriptTableEditor::ScriptTableEditor()
 {
 }
@@ -358,6 +421,14 @@ LevelEditor::ScriptTableEditor::~ScriptTableEditor()
 void LevelEditor::ScriptTableEditor::Clear()
 {
     m_pValue.reset();
+}
+
+void LevelEditor::ScriptTableEditor::GetTable(SmartScriptTable& pTable)
+{
+    if (!m_pValue)
+        return;
+
+    m_pValue->GetTable(pTable);
 }
 
 void LevelEditor::ScriptTableEditor::SetTable(const SmartScriptTable& pTable, bool isDefault)
@@ -433,6 +504,9 @@ bool LevelEditor::ScriptTableEditor::TryParseScalar(const ScriptAnyValue& inValu
     case ANY_TUSERDATA:
     case ANY_THANDLE:
         // Can't be edited
+        return false;
+    default:
+        CRY_ASSERT(false);
         return false;
     }
 }

@@ -55,6 +55,65 @@ void LevelEditor::EntityScriptComponent::SetEntityClass(IEntityClass* pClass)
     m_bInitialized = true;
 }
 
+void LevelEditor::EntityScriptComponent::LoadEntityProperties()
+{
+    IScriptTable* pScriptTable = GetObject()->GetEntity()->GetScriptTable();
+
+    if (!pScriptTable)
+        return;
+
+    IScriptSystem* pScriptSystem = gEnv->pScriptSystem;
+    SmartScriptTable pPropTable(pScriptSystem, true);
+
+    if (m_pProperties && pScriptTable->GetValue(PROPERTIES_TABLE, pPropTable))
+    {
+        m_pProperties->SetTable(pPropTable, false);
+    }
+
+    if (m_pProperties2 && pScriptTable->GetValue(PROPERTIES2_TABLE, pPropTable))
+    {
+        m_pProperties2->SetTable(pPropTable, false);
+    }
+}
+
+void LevelEditor::EntityScriptComponent::ApplyEntityProperties(bool notifyEntity)
+{
+    IEntity* pEntity = GetObject()->GetEntity();
+    IScriptTable* pScriptTable = pEntity->GetScriptTable();
+
+    if (!pScriptTable)
+        return;
+
+    IScriptSystem* pScriptSystem = gEnv->pScriptSystem;
+
+    auto fnSetProperties = [&](ScriptTableEditor* pProps, const char* name)
+    {
+        if (pProps)
+        {
+            SmartScriptTable pPropTable(pScriptSystem);
+            pProps->GetTable(pPropTable);
+            pScriptTable->SetValue(name, pPropTable);
+        }
+    };
+
+    fnSetProperties(m_pProperties.get(), PROPERTIES_TABLE);
+    fnSetProperties(m_pProperties2.get(), PROPERTIES2_TABLE);
+
+    if (notifyEntity)
+    {
+        if (m_hOnPropertyChangedFunc)
+        {
+            if (IScriptTable* pScriptTable = pEntity->GetScriptTable())
+            {
+                Script::CallMethod(pScriptTable, m_hOnPropertyChangedFunc);
+            }
+        }
+
+        SEntityEvent entityEvent(ENTITY_EVENT_EDITOR_PROPERTY_CHANGED);
+        pEntity->SendEvent(entityEvent);
+    }
+}
+
 void LevelEditor::EntityScriptComponent::ShowInspector()
 {
     if (!m_bInitialized)
@@ -91,14 +150,5 @@ void LevelEditor::EntityScriptComponent::OnPropertyChanged()
     if (!pEntity)
         return;
 
-    if (m_hOnPropertyChangedFunc)
-    {
-        if (IScriptTable* pScriptTable = pEntity->GetScriptTable())
-        {
-            Script::CallMethod(pScriptTable, m_hOnPropertyChangedFunc);
-        }
-    }
-
-    SEntityEvent entityEvent(ENTITY_EVENT_EDITOR_PROPERTY_CHANGED);
-    pEntity->SendEvent(entityEvent);
+    ApplyEntityProperties(true);
 }

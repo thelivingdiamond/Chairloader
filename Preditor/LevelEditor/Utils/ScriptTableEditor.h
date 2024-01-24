@@ -15,6 +15,9 @@ public:
     //! Removes all variables.
     void Clear();
 
+    //! Gets all values and stores them into a table.
+    void GetTable(SmartScriptTable& pTable);
+
     //! Creates variables for a table and set the values.
     //! Old values are not cleared.
     void SetTable(const SmartScriptTable& pTable, bool isDefault);
@@ -24,8 +27,9 @@ public:
 
 private:
     enum class EVarType;
-    class Variable;
     class ConvertTypeVisitor;
+    class GetValueAnyVisitor;
+    class Variable;
 
     //! Variant with non-recursive values.
     using ScalarValue = boost::variant<

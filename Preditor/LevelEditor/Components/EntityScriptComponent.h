@@ -16,6 +16,13 @@ public:
     //! Sets a new entity class.
     void SetEntityClass(IEntityClass* pClass);
 
+    //! Loads properties from the entity.
+    void LoadEntityProperties();
+
+    //! Applies all proeprties to the entity.
+    //! @param  notifyEntity    Send entity event that properties have changed.
+    void ApplyEntityProperties(bool notifyEntity);
+
     // EntityComponent
     virtual void ShowInspector() override;
 
