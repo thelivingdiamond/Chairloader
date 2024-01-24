@@ -2,6 +2,7 @@
 #include <Prey/CryRenderer/IRenderAuxGeom.h>
 #include <Preditor/SceneEditor/IViewportHandler.h>
 #include "Components/EntityArchetypeComponent.h"
+#include "Components/EntityScriptComponent.h"
 #include "Components/AreaProxyComponent.h"
 #include "Objects/EntityObject.h"
 #include "RayIntersectInfo.h"
@@ -163,6 +164,9 @@ void LevelEditor::EntityObject::Init(XmlNodeRef objectNode)
             CryError("[{}] Archetype not found: {}", GetName(), archetypeName);
         }
     }
+
+    m_pScript = AddComponent<EntityScriptComponent>();
+    m_pScript->SetEntityClass(m_pEntityClass);
 
     m_SpawnInfo.LoadFromXml(objectNode);
 

@@ -5,6 +5,7 @@ namespace LevelEditor
 {
 
 class EntityArchetypeComponent;
+class EntityScriptComponent;
 
 class AreaProxyComponent;
 
@@ -96,6 +97,7 @@ private:
     std::unique_ptr<AreaProxyComponent> m_pAreaProxy;
 
     std::unique_ptr<EntityArchetypeComponent> m_pArchetype;
+    std::unique_ptr<EntityScriptComponent> m_pScript;
     IEntity* m_pEntity = nullptr;
 };
 

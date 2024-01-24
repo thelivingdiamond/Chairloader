@@ -1,11 +1,11 @@
 #pragma once
-#include "Components/Component.h"
+#include "Components/EntityComponent.h"
 
 namespace LevelEditor
 {
 
 //! Component for entities with an archetype.
-class EntityArchetypeComponent : public Component
+class EntityArchetypeComponent : public EntityComponent
 {
 public:
     EntityArchetypeComponent();

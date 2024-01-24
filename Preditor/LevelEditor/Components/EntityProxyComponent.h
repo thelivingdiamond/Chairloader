@@ -1,11 +1,10 @@
 #pragma once
-#include "Components/Component.h"
-#include "Objects/EntityObject.h"
+#include "Components/EntityComponent.h"
 
 namespace LevelEditor
 {
 
-class EntityProxyComponent : public Component
+class EntityProxyComponent : public EntityComponent
 {
 public:
     //! @returns The entity proxy pointer, if it exists.
@@ -19,9 +18,6 @@ public:
 
     //! Loads the proxy data from entity XML node.
     virtual void LoadFromXml(const XmlNodeRef& entityNode);
-
-    // Component
-    EntityObject* GetObject() const { return static_cast<EntityObject*>(Component::GetObject()); }
 
 protected:
     EntityProxyComponent(EEntityProxy proxyType);

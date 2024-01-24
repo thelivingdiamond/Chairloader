@@ -11,8 +11,12 @@ set(SOURCE_FILES
 	Components/ComponentList.h
 	Components/EntityArchetypeComponent.cpp
 	Components/EntityArchetypeComponent.h
+	Components/EntityComponent.cpp
+	Components/EntityComponent.h
 	Components/EntityProxyComponent.cpp
 	Components/EntityProxyComponent.h
+	Components/EntityScriptComponent.cpp
+	Components/EntityScriptComponent.h
 	Components/Transform.cpp
 	Components/Transform.h
 
@@ -27,6 +31,8 @@ set(SOURCE_FILES
 	Utils/AuxGeomComponent.h
 	Utils/InspectorHelpers.cpp
 	Utils/InspectorHelpers.h
+	Utils/ScriptTableEditor.cpp
+	Utils/ScriptTableEditor.h
 
 	AuxGeomManager.cpp
 	AuxGeomManager.h

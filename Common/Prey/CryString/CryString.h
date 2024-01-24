@@ -302,6 +302,9 @@ public:
 
 	_Self  Left(size_type count) const;
 	_Self  Right(size_type count) const;
+
+	std::string_view AsStringView() const { return std::string_view(data(), size()); }
+
 	//////////////////////////////////////////////////////////////////////////
 
 	// public utilities.
@@ -2376,7 +2379,7 @@ typedef CryStringLocalT<wchar_t> wstring;
 template <typename T>
 inline std::basic_string_view<T> format_as(const CryStringT<T>& str)
 {
-	return std::basic_string_view<T>(str.data(), str.size());
+	return str.AsStringView();
 }
 
 #else // !defined(NOT_USE_CRY_STRING)

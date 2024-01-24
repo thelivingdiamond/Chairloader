@@ -3,7 +3,7 @@
 
 LevelEditor::BBoxComponent::BBoxComponent()
 {
-    SetAuxGeomEnabled(true);
+    SetAuxGeomEnabled(false);
 }
 
 LevelEditor::BBoxComponent::~BBoxComponent()
