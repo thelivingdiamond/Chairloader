@@ -16,6 +16,9 @@ public:
     //! Sets a new entity class.
     void SetEntityClass(IEntityClass* pClass);
 
+    //! Loads properties from XML.
+    void LoadFromXml(const XmlNodeRef& entityNode);
+
     //! Loads properties from the entity.
     void LoadEntityProperties();
 
@@ -37,7 +40,7 @@ private:
     bool m_bInitialized = false;
 
     //! Lua function to call on the entity when a property is changed.
-    HSCRIPTFUNCTION m_hOnPropertyChangedFunc;
+    HSCRIPTFUNCTION m_hOnPropertyChangedFunc = nullptr;
 
     //! Entity properties and edit UI
     //! @{

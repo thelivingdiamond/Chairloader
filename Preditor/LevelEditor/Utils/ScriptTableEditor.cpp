@@ -281,6 +281,76 @@ public:
         return boost::apply_visitor(GetValueAnyVisitor(value), m_CurrentScalarValue);
     }
 
+    void LoadFromXml(const XmlNodeRef& pXml)
+    {
+        CRY_ASSERT(m_Type == EVarType::Table);
+        int numAttrs = pXml->getNumAttributes();
+
+        for (int i = 0; i < numAttrs; i++)
+        {
+            const char* key = nullptr;
+            const char* value = nullptr;
+
+            if (!pXml->getAttributeByIndex(i, &key, &value))
+                continue;
+
+            auto prop = m_Table.find(key);
+
+            if (prop == m_Table.end())
+                continue;
+
+            switch (prop->second.m_Type)
+            {
+            case EVarType::Int:
+                prop->second.m_CurrentScalarValue = int(std::atoi(value));
+                break;
+            case EVarType::Bool:
+            {
+                bool bValue = (stricmp(value, "true") == 0) || (stricmp(value, "1") == 0);
+                prop->second.m_CurrentScalarValue = bValue;
+                break;
+            }
+            case EVarType::Float:
+                prop->second.m_CurrentScalarValue = float(std::atof(value));
+                break;
+            case EVarType::Vec3:
+            {
+                Vec3 vec;
+                pXml->getAttr(key, vec);
+                prop->second.m_CurrentScalarValue = vec;
+                break;
+            }
+            case EVarType::String:
+                prop->second.m_CurrentScalarValue = std::string(value);
+                break;
+            case EVarType::Table:
+                CryWarning("Trying to set property {} to {}, which is a table", key, value);
+                break;
+            }
+        }
+
+        int numChildren = pXml->getChildCount();
+
+        for (int i = 0; i < numChildren; i++)
+        {
+            XmlNodeRef pChildXml = pXml->getChild(i);
+            SmartScriptTable pChildTable;
+
+            auto prop = m_Table.find(pChildXml->getTag());
+
+            if (prop == m_Table.end())
+                continue;
+
+            if (prop->second.m_Type != EVarType::Table)
+            {
+                CryWarning("Trying to set sub-table {}, which is not a table", pChildXml->getTag());
+                continue;
+            }
+
+            prop->second.LoadFromXml(pChildXml);
+        }
+    }
+
     bool ShowUI(const char* name)
     {
         bool changed = false;
@@ -437,6 +507,14 @@ void LevelEditor::ScriptTableEditor::SetTable(const SmartScriptTable& pTable, bo
         m_pValue = std::make_unique<Variable>();
 
     m_pValue->TrySetValue(pTable, isDefault);
+}
+
+void LevelEditor::ScriptTableEditor::LoadFromXml(const XmlNodeRef& pXml)
+{
+    if (!m_pValue)
+        return;
+
+    m_pValue->LoadFromXml(pXml);
 }
 
 bool LevelEditor::ScriptTableEditor::ShowUI(const char* name)

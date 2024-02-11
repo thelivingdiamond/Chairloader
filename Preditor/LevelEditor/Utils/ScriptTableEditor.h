@@ -22,6 +22,9 @@ public:
     //! Old values are not cleared.
     void SetTable(const SmartScriptTable& pTable, bool isDefault);
 
+    //! Loads values from XML. Properties must have already been created by SetTable.
+    void LoadFromXml(const XmlNodeRef& pXml);
+
     //! Shows the UI.
     bool ShowUI(const char* name);
 

@@ -55,6 +55,26 @@ void LevelEditor::EntityScriptComponent::SetEntityClass(IEntityClass* pClass)
     m_bInitialized = true;
 }
 
+void LevelEditor::EntityScriptComponent::LoadFromXml(const XmlNodeRef& entityNode)
+{
+    auto fnLoad = [&](const char* nodeName, ScriptTableEditor* pTable)
+        {
+            XmlNodeRef pPropNode = entityNode->findChild(nodeName);
+            
+            if (pPropNode && pTable)
+            {
+                pTable->LoadFromXml(pPropNode);
+            }
+            else if (pPropNode && !pTable)
+            {
+                CryError("[{}] Entity has {} in XML but not in Lua class", GetObject()->GetName(), nodeName);
+            }
+        };
+
+    fnLoad("Properties", m_pProperties.get());
+    fnLoad("Properties2", m_pProperties2.get());
+}
+
 void LevelEditor::EntityScriptComponent::LoadEntityProperties()
 {
     IScriptTable* pScriptTable = GetObject()->GetEntity()->GetScriptTable();
