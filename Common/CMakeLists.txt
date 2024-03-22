@@ -74,6 +74,7 @@ set(SOURCE_FILES
 	Chairloader/IChairLogger.h
 	Chairloader/IChairloaderMod.h
 	Chairloader/IChairRender.h
+	Chairloader/IChairSceneEditor.h
 	Chairloader/IChairXmlUtils.h
 	Chairloader/IRenderAuxGeomEx.h
 	Chairloader/IRenderAuxGeomImplD3D.h

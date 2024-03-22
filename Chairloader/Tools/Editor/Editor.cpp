@@ -72,7 +72,9 @@ Editor* Editor::Get()
 Editor::Editor()
 {
 	assert(!g_pEditor);
+	assert(!gCL->pSceneEditor);
 	g_pEditor = this;
+	gCL->pSceneEditor = this;
 	m_pView = std::make_unique<EditorView>();
 
 	gEnv->pConsole->ExecuteString("g_pauseOnLoseFocus 0");
@@ -83,7 +85,9 @@ Editor::Editor()
 
 Editor::~Editor()
 {
+	assert(gCL->pSceneEditor == this);
 	assert(g_pEditor == this);
+	gCL->pSceneEditor = nullptr;
 	g_pEditor = nullptr;
 	gEnv->pSystem->GetISystemEventDispatcher()->RemoveListener(this);
 }

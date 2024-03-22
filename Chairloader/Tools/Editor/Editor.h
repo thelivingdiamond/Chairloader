@@ -1,11 +1,12 @@
 #pragma once
+#include <Chairloader/IChairSceneEditor.h>
 #include "Components/EntityHierarchy.h"
 #include "Components/EntityInspector.h"
 #include "Editor/ModReloading.h"
 
 class EditorView;
 
-class Editor : public ISystemEventListener
+class Editor : public ISystemEventListener, public IChairSceneEditor
 {
 public:
 	static void InitHooks();
@@ -13,7 +14,7 @@ public:
 	Editor();
 	~Editor();
 
-	bool IsInEditor() { return m_bInEditor; }
+	bool IsInEditor() const { return m_bInEditor; }
 
 	void UpdateBeforeSystem();
 	void ShowUI();
@@ -22,6 +23,10 @@ public:
 
 	// ISystemEventListener
 	void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
+
+	// IChairSceneEditor
+	virtual EChairSceneEditor GetEditorType() const { return EChairSceneEditor::InGameEditor; }
+	virtual bool IsInSceneView() const { return IsInEditor(); }
 
 private:
 	enum class State

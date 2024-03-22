@@ -31,6 +31,7 @@ public:
     virtual bool IsFocused() override { return ManagedWindow::IsFocused(); }
     virtual ViewportRaycastInfo GetRayForMouse(Vec2 mousePos, Vec2 vpSize) override;
     virtual Matrix34 GetSceneCameraTransform() override;
+    virtual bool IsInSceneViewport() override;
     virtual void ActivateSceneViewport() override;
     virtual void ActivateGameViewport() override;
 

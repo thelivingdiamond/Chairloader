@@ -130,6 +130,11 @@ Matrix34 Viewport::ViewportWindow::GetSceneCameraTransform()
 	return m_pSceneViewport->GetCameraTransform();
 }
 
+bool Viewport::ViewportWindow::IsInSceneViewport()
+{
+	return m_pSceneViewport && m_pCurrentViewport == m_pSceneViewport.get();
+}
+
 void Viewport::ViewportWindow::ActivateSceneViewport()
 {
 	if (m_pSceneViewport->CanActivate())

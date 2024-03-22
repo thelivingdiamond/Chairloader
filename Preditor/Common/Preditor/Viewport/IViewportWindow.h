@@ -25,6 +25,9 @@ struct IViewportWindow
     //! @returns scene viewport camera transform matrix.
     virtual Matrix34 GetSceneCameraTransform() = 0;
 
+    //! @returns Whether the scene viewport is currently active.
+    virtual bool IsInSceneViewport() = 0;
+
     //! Activates the scene viewport.
     virtual void ActivateSceneViewport() = 0;
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <Chairloader/IChairSceneEditor.h>
 #include <Preditor/Main/IPreditor.h>
 
 struct IChairloaderToolsPreditor;
@@ -13,7 +14,7 @@ class Project;
 class UserProjectSettings;
 class SceneEditorManager;
 
-class Preditor : public IPreditor
+class Preditor : public IPreditor, public IChairSceneEditor
 {
 public:
     Preditor();
@@ -29,6 +30,10 @@ public:
     virtual void ShutdownSystem() override;
     virtual void Update() override;
     virtual void ShowUI() override;
+
+    // IChairSceneEditor
+    virtual EChairSceneEditor GetEditorType() const { return EChairSceneEditor::Preditor; }
+    virtual bool IsInSceneView() const;
 
 private:
     PreditorTime m_Time;

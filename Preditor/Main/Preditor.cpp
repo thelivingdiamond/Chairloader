@@ -2,6 +2,7 @@
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/Input/IPreditorInput.h>
+#include <Preditor/Viewport/IViewportWindow.h>
 #include "Project/Project.h"
 #include "Project/UserProjectSettings.h"
 #include "UI/PreditorUI.h"
@@ -41,6 +42,8 @@ void Main::Preditor::AddLevelToRecent(const std::string& path)
 
 void Main::Preditor::InitSystem()
 {
+    CRY_ASSERT(!gCL->pSceneEditor);
+    gCL->pSceneEditor = this;
     m_pAssetSystem = IAssetSystem::CreateInstance();
     gPreditor->pAssetSystem = m_pAssetSystem.get();
     m_pAssetSystem->InitSystem();
@@ -71,6 +74,8 @@ void Main::Preditor::ShutdownGame()
 
 void Main::Preditor::ShutdownSystem()
 {
+    CRY_ASSERT(gCL->pSceneEditor == this);
+    gCL->pSceneEditor = nullptr;
     gPreditor->pAssetSystem = nullptr;
 }
 
@@ -85,6 +90,11 @@ void Main::Preditor::Update()
 void Main::Preditor::ShowUI()
 {
     m_pUI->ShowUI();
+}
+
+bool Main::Preditor::IsInSceneView() const
+{
+    return gPreditor->pViewportWindow->IsInSceneViewport();
 }
 
 void Main::Preditor::UpdateTime()

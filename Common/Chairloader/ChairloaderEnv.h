@@ -9,6 +9,7 @@ struct IRenderAuxGeomEx;
 struct IChairRender;
 struct IChairXmlUtils;
 struct IChairSteamAPI;
+struct IChairSceneEditor;
 
 struct ChairloaderGlobalEnvironment {
 	IChairloader* cl;
@@ -19,6 +20,7 @@ struct ChairloaderGlobalEnvironment {
 	IChairRender* pRender;
 	IChairXmlUtils* pXmlUtils;
 	IChairSteamAPI* pSteamAPI; //!< NULL if not Steam version
+	IChairSceneEditor* pSceneEditor; //!< NULL if editor not enabled
 };
 
 extern ChairloaderGlobalEnvironment* gCL;
