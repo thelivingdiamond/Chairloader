@@ -306,7 +306,7 @@ SShaderBin* CShaderManBin::chair_GetBinShader(const char* szName, bool bInclude,
 			const char* matName = 0;
 			if (m_pCEF && m_pCEF->m_pCurInputResources)
 				matName = m_pCEF->m_pCurInputResources->m_szMaterialName;
-			CryWarning("Error: Shader \"%s\" doesn't exist (used in material \"%s\")", nameFile, matName != 0 ? matName : "$unknown$");
+			CryWarning("Error: Shader \"{}\" doesn't exist (used in material \"{}\")", nameFile, matName != 0 ? matName : "$unknown$");
 		}
 	}
 
