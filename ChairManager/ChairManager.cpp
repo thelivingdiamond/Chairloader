@@ -742,7 +742,7 @@ void ChairManager::DrawModList() {
         }
         if(ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
             static int installType = 0;
-            ImGui::RadioButton("Chairloader Mod (.zip, .7z)", &installType, 0);
+            ImGui::RadioButton("Chairloader Mod (.zip)", &installType, 0);
             ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
 
             if(ImGui::Button("Select File")){
@@ -2284,7 +2284,7 @@ void ChairManager::OpenInstallModDialog(bool isLegacy)
     if (!m_bInstallLegacyMod)
     {
         fileDialogOpts.title = "Choose Mod File...";
-        fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip; *.7z)", "*.zip;*.7z" });
+        fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip)", "*.zip" });
     }
     else
     {
