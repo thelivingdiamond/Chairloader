@@ -283,6 +283,8 @@ void UI::Render()
     auto pModManager = std::make_unique<ChairManager>();
     bIsRunning = true;
 
+    InitFrameTimeout();
+
     while (bIsRunning)
     {
         std::chrono::steady_clock::duration msgTimeout = GetNextFrameTimeout();
@@ -358,20 +360,19 @@ void UI::ReloadFonts(float dpiScale)
     fontList.LoadFile(root / "Fonts/FontList.xml", root, &g_FontLogger, dpiScale);
 }
 
+void UI::InitFrameTimeout()
+{
+    auto now = std::chrono::steady_clock::now();
+    g_LastUpdateTime = now;
+    g_LastInteractionTime = now;
+}
+
 std::chrono::steady_clock::duration UI::GetNextFrameTimeout()
 {
     //! The time the app will continue to refresh after the user has stopped interacting
     constexpr auto WAIT_DELAY = std::chrono::seconds(2);
 
     auto now = std::chrono::steady_clock::now();
-
-    // Return 0 if don't have last update time
-    if (g_LastUpdateTime == std::chrono::steady_clock::time_point())
-    {
-        g_LastUpdateTime = now;
-        return std::chrono::seconds(0);
-    }
-
     auto frameDelta = now - g_LastUpdateTime;
     g_LastUpdateTime = now;
 
