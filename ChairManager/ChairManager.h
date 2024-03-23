@@ -344,8 +344,8 @@ private:
     std::string m_customArgs;
     bool m_bLoadChairloader = true,
         m_bLoadEditor = false,
-        m_bDevMode = true,
-        m_bTrainer = true,
+        m_bDevMode = false,
+        m_bTrainer = false,
         m_bNoRandom = false;
     void launchGame();
 
