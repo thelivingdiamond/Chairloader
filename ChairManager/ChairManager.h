@@ -336,7 +336,6 @@ private:
     std::string m_githubETag;
 
     //! Chairloader Launch Options
-    std::wstring m_chairloaderLaunchOptions;
     std::string m_customArgs;
     bool m_bLoadChairloader = true,
         m_bLoadEditor = false,

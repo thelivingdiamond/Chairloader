@@ -2385,33 +2385,49 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 
 void ChairManager::launchGame() {
     log(severityLevel::info, "Launching game");
+
+    // Collect arguments
+    std::vector<std::wstring> args;
+
+    if (!m_bLoadChairloader) {
+        args.push_back(L"-nochair");
+    }
+    if (m_bLoadEditor) {
+        args.push_back(L"-editor");
+    }
+    if (m_bDevMode) {
+        args.push_back(L"-devmode");
+    }
+    if (m_bNoRandom) {
+        args.push_back(L"-norandom");
+    }
+    if (m_bTrainer) {
+        args.push_back(L"-trainer");
+    }
+
+    // Assemble command line
     fs::path exePath = GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameExePath();
-    m_chairloaderLaunchOptions = fs::path(m_customArgs + " ").wstring();
-    // bool m_bLoadChairloader -nochair
-    //        m_bLoadEditor -editor
-    //        m_bDevMode -devmode
-    //        m_bNoRandom -norandom
-    if(!m_bLoadChairloader){
-        m_chairloaderLaunchOptions += L" -nochair";
+    std::wstring cmdLine = exePath.wstring();
+
+    for (const std::wstring& i : args)
+        cmdLine += L" " + i;
+
+    if (!m_customArgs.empty())
+    {
+        std::wstring customArgsWide;
+        Unicode::Convert(customArgsWide, m_customArgs);
+        cmdLine += L" " + customArgsWide;
     }
-    if(m_bLoadEditor){
-        m_chairloaderLaunchOptions += L" -editor";
-    }
-    if(m_bDevMode){
-        m_chairloaderLaunchOptions += L" -devmode";
-    }
-    if(m_bNoRandom){
-        m_chairloaderLaunchOptions += L" -norandom";
-    }
-    if(m_bTrainer){
-        m_chairloaderLaunchOptions += L" -trainer";
-    }
-    // launch the game
-    fs::path command = exePath.wstring() + m_chairloaderLaunchOptions;
-    log(severityLevel::trace, "Launching game with command: %s", command.u8string().c_str());
+    
+    // Launch the game
+    std::string cmdLineUtf8;
+    Unicode::Convert(cmdLineUtf8, cmdLine);
+    log(severityLevel::trace, "Launching game with command: %s", cmdLineUtf8.c_str());
+
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
     PROCESS_INFORMATION pi;
-    if(CreateProcessW(nullptr, command.wstring().data(), nullptr, nullptr, false, DETACHED_PROCESS, nullptr, nullptr, &si, &pi)){
+
+    if(CreateProcessW(nullptr, cmdLine.data(), nullptr, nullptr, false, DETACHED_PROCESS, nullptr, nullptr, &si, &pi)){
         log(severityLevel::info, "Game launched successfully");
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
