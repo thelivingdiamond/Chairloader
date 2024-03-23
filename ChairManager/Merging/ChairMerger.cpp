@@ -537,7 +537,12 @@ bool ChairMerger::CheckLevelPacksChanged()
             SHA256::Digest checksum;
 
             if (!HashUtils::HashUncompressedFile(existingFile, checksum))
+            {
+                AddChangedLevelPack(levelPack.first);
+                m_pLog->Log(severityLevel::trace, "ChairMerger: Level pack %s failed to hash. Repacking.",
+                    levelPack.first.string());
                 return;
+            }
 
             {
                 std::lock_guard<std::mutex> lock(m_DeployedLevelFileChecksumsMutex);
@@ -573,11 +578,15 @@ bool ChairMerger::CheckLocalizationPacksChanged()
 
         SHA256::Digest checksum;
         if (!HashUtils::HashUncompressedFile(existingFile, checksum))
+        {
+            AddChangedLocalizationPack(localizationPack.first);
+            m_pLog->Log(severityLevel::trace, "ChairMerger: Localization pack %s failed to hash. Repacking.",
+                localizationPack.first.string());
             continue;
+        }
 
         m_DeployedLocalizationFileChecksums[localizationPack.first] = checksum;
-        //        auto checksum = SHA256::Digest();
-        //        if(false) {
+
         if (checksum != localizationPack.second || !fs::exists(existingFile) || m_bForceLocalizationPack)
         {
             AddChangedLocalizationPack(localizationPack.first);
@@ -588,7 +597,6 @@ bool ChairMerger::CheckLocalizationPacksChanged()
         {
             AddChangedLocalizationPack(localizationPack.first);
         }
-        //        }
     }
     return !m_ChangedLocalizationPacks.empty();
 }
