@@ -70,12 +70,17 @@ public:
 
 
     bool DeployForInstallWizard(std::string& errorMessage){
+        // This is called from a worker thread.
+        // I hate this.
         Init();
         m_pChairMerger->m_bForceMainPatchPack = true;
         RunAsyncDeploy();
         m_DeployTaskFuture.get();
+        bool failed = m_pChairMerger->m_bDeployFailed;
         errorMessage = m_pChairMerger->GetDeployFailedMessage();
-        return !m_pChairMerger->m_bDeployFailed;
+        m_pChairMerger->SetDeployStep(DeployStep::Invalid);
+        m_pChairMerger->SetDeployPhase(DeployPhase::Invalid);
+        return !failed;
     }
 
 
