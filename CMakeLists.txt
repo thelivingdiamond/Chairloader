@@ -143,7 +143,7 @@ function(cl_version_info target_name file_name file_description)
 	endif()
 
 	set(in_file_path "${CMAKE_SOURCE_DIR}/CommonChairManager/version_info.rc.in")
-	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/version_info.rc")
+	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}/version_info.rc")
 
 	configure_file(
 		${in_file_path}
