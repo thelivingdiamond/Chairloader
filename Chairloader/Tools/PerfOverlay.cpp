@@ -1,16 +1,20 @@
 #include <Prey/CrySystem/ITimer.h>
 #include "PerfOverlay.h"
+#include "ChairToolsUtils.h"
 
 PerfOverlay::PerfOverlay() {
-	if (gEnv->pSystem->IsDevMode())
-	{
-		m_bEnabled = true;
-		m_bFrameTime = true;
-	}
+	REGISTER_CVAR2("ch_perf_overlay", &m_Enabled, 0, VF_DUMPTOCHAIR, "Show FPS counter");
+	REGISTER_CVAR2("ch_perf_overlay_frametime", &m_ShowFrameTime, 0, VF_DUMPTOCHAIR, "Show frame time with FPS counter");
+}
+
+PerfOverlay::~PerfOverlay()
+{
+	gEnv->pConsole->UnregisterVariable("ch_perf_overlay");
+	gEnv->pConsole->UnregisterVariable("ch_perf_overlay_frametime");
 }
 
 void PerfOverlay::Update() {
-	if (!m_bEnabled) {
+	if (!m_Enabled) {
 		return;
 	}
 
@@ -27,7 +31,7 @@ void PerfOverlay::Update() {
 
 		ImGui::Text("FPS: %5.1f", 1.0f / m_LastFrameTime);
 
-		if (m_bFrameTime) {
+		if (m_ShowFrameTime) {
 			ImGui::Text("Frametime: %6.3f ms", m_LastFrameTime * 1000.0);
 		}
 	}
@@ -36,17 +40,16 @@ void PerfOverlay::Update() {
 }
 
 void PerfOverlay::ShowMenu() {
-	// TODO: Should save these somewhere
-	ImGui::MenuItem("Enable overlay", nullptr, &m_bEnabled);
-	ImGui::BeginDisabled(!m_bEnabled);
-	ImGui::MenuItem("Show frame time", nullptr, &m_bFrameTime);
+	ChairToolsUtils::MenuItemCVar("Enable overlay", nullptr, &m_Enabled);
+	ImGui::BeginDisabled(!m_Enabled);
+	ChairToolsUtils::MenuItemCVar("Show frame time", nullptr, &m_ShowFrameTime);
 	ImGui::EndDisabled();
 }
 
 void PerfOverlay::SetEnabled(bool state) {
-	m_bEnabled = state;
+	m_Enabled = state;
 }
 
 void PerfOverlay::SetFrameTimeVisible(bool state) {
-	m_bFrameTime = state;
+	m_ShowFrameTime = state;
 }

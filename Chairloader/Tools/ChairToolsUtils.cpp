@@ -38,6 +38,19 @@ ImFont* ChairToolsUtils::GetFont(IChairloaderImGui::EFont font)
 #endif
 }
 
+bool ChairToolsUtils::MenuItemCVar(const char* label, const char* shortcut, int* p_selected, bool enabled)
+{
+	bool selected = *p_selected;
+
+	if (ImGui::MenuItem(label, shortcut, &selected, enabled))
+	{
+		*p_selected = selected;
+		return true;
+	}
+
+	return false;
+}
+
 #ifdef PREDITOR
 void ChairToolsUtils::SetIChairToPreditor(IChairToPreditor* pChair)
 {

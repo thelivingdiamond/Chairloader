@@ -1,8 +1,9 @@
 #pragma once
 
-class PerfOverlay {
+class PerfOverlay : NoCopy {
 public:
 	PerfOverlay();
+	~PerfOverlay();
 
 	void Update();
 	void ShowMenu();
@@ -12,7 +13,7 @@ public:
 private:
 	const std::string modName = "PerfOverlay";
 	static constexpr float FILTER_K = 0.2f;
-	bool m_bEnabled = false;
-	bool m_bFrameTime = false;
+	int m_Enabled = 0;
+	int m_ShowFrameTime = 0;
 	float m_LastFrameTime = 0;
 };
