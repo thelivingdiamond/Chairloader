@@ -2,6 +2,12 @@
 
 static constexpr char TAB_STRING[] = "    ";
 
+static bool IsAsciiDigit(char c)
+{
+	// Used instead of isdigit because isdigit may reference the locale
+	return c >= '0' && c <= '9';
+}
+
 ConsoleColorParser::ConsoleColorParser()
 {
 	m_Str.reserve(RESERVE_SIZE);
@@ -16,68 +22,84 @@ void ConsoleColorParser::ProcessLine(const char* line)
 
 	m_Str.clear();
 
-	while (*strIn) {
-		switch (*strIn) {
-		case '$':
-			if (!isEscape) {
-				isColor = true;
-				break;
-			}
-			[[fallthrough]];
-		case '\\':
-			if ((isEscape = !isEscape)) {
-				break;
-			}
-		case 'n':
-			if (isEscape) {
-				[[fallthrough]];
+	for (; *strIn != '\0'; strIn++)
+	{
+		// Handle control characters
+		switch (*strIn)
+		{
 		case '\n':
 			Commit(color);
 			color = 0;
-			isEscape = false;
-			break;
-			}
 			[[fallthrough]];
-		case 'r':
-			if (isEscape) {
-				[[fallthrough]];
 		case '\r':
 			// Not supported
-			//ClearLine(position);
-			isEscape = false;
-			break;
-			}
+			// ClearLine(position);
 			[[fallthrough]];
-		case 't':
-			if (isEscape) {
-				[[fallthrough]];
-		case '\t':
-			m_Str.insert(m_Str.end(), std::begin(TAB_STRING), std::end(TAB_STRING) - 1);
+		case '\0':
+			// Don't print null-terminators. They will mess something up.
+			// But it must still eat the escape.
+			if (isEscape)
+				m_Str.push_back('\\');
 			isEscape = false;
-			break;
-			}
-			[[fallthrough]];
-		default:
-			if (isColor) {
-				if (isdigit(*strIn)) {
-					Commit(color);
-					color = *strIn - '0';
-				}
-
-				isColor = false;
-			}
-			else {
-				if (isEscape && (*strIn != '\\')) {
-					m_Str.push_back('\\');
-				}
-				if (*strIn) {
-					m_Str.push_back(*strIn);
-				}
-			}
-			isEscape = false;
-			break;
+			continue;
 		}
-		strIn++;
+
+		// Handle escaped characters
+		if (isEscape)
+		{
+			// Disable escape
+			isEscape = false;
+
+			// Only some characters can be escaped
+			// Others will be printed as-is with backslash
+			switch (*strIn)
+			{
+			case '$':
+				m_Str.push_back('$');
+				continue;
+			default:
+				m_Str.push_back('\\');
+				m_Str.push_back(*strIn);
+				continue;
+			}
+			continue;
+		}
+
+		// Handle special characters
+		switch (*strIn)
+		{
+		case '$':
+			isColor = true;
+			continue;
+		case '\\':
+			isEscape = true;
+			continue;
+		}
+
+		// Handle color-codes
+		if (isColor)
+		{
+			if (IsAsciiDigit(*strIn))
+			{
+				// Commit with the old color
+				Commit(color);
+
+				// Next text will use the new color
+				color = *strIn - '0';
+			}
+			else
+			{
+				// Not a color code. Print as-is
+				m_Str.push_back('$');
+				m_Str.push_back(*strIn);
+			}
+
+			isColor = false;
+			continue;
+		}
+
+		// Print non-special characters
+		m_Str.push_back(*strIn);
 	}
 
 	Commit(color);
