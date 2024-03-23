@@ -23,6 +23,7 @@ public:
 	//-------------------------------------------
 	void PreInitGame() override;
 	void InitGame() override;
+	void PreShutdown() override;
 	void ShutdownGame() override;
 
 	//-------------------------------------------

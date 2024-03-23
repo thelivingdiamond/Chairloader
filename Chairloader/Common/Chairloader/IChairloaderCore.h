@@ -31,6 +31,9 @@ struct IChairloaderCore : public IChairloaderModule
 	//! Game initialization.
 	virtual void InitGame() = 0;
 
+	//! Called before any other module or mod is shut down.
+	virtual void PreShutdown() = 0;
+
 	//! @returns whether the mod is installed and enabled.
 	virtual bool IsModInstalled(const std::string& modName) = 0;
 

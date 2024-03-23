@@ -353,6 +353,7 @@ void Chairloader::ShutdownGame()
 	gRenDev->m_pRT->SyncMainWithRender();
 	m_pRender->SetRenderThreadIsIdle(true);
 
+	m_pCore->PreShutdown();
 	m_pCore->GetDllManager()->CallShutdownGame();
 	m_pTools->ShutdownGame();
 	m_pRender->ShutdownGame();

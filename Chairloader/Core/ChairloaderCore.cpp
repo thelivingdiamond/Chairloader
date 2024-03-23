@@ -137,10 +137,15 @@ void ChairloaderCore::InitGame()
 	m_pLuaModManager->PostGameInit();
 }
 
+void ChairloaderCore::PreShutdown()
+{
+	// Save cvars before any of them are unregistered
+	m_pCVarManager->ShutdownGame();
+}
+
 void ChairloaderCore::ShutdownGame()
 {
 	m_pLuaModManager = nullptr;
-    m_pCVarManager->ShutdownGame();
 	m_pGui = nullptr;
 	ChairImGui::Get().ShutdownGame();
 }
