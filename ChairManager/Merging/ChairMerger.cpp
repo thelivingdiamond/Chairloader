@@ -384,75 +384,88 @@ void ChairMerger::ProcessLegacyMod(std::string modName)
 void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDir, std::string modName, bool isLegacy)
 {
     fs::path relativePath = file.lexically_relative(modDataDir);
-    auto policy = GetFileMergingPolicy(relativePath, modName);
 
-    // now we have the relative path to the file, we can use this to find the original file, and the base file in the
-    // output directory
-    fs::path originalFile = m_PreyFilesPath / relativePath;
-    fs::path baseFile = m_OutputPath / relativePath;
-
-    pugi::xml_document baseDoc, modDoc, originalDoc;
-    auto parseTags = pugi::parse_default;
-    if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
+    try
     {
-        parseTags = pugi::parse_full;
-    }
+        auto policy = GetFileMergingPolicy(relativePath, modName);
 
-    pugi::xml_parse_result baseResult = baseDoc.load_file(baseFile.wstring().c_str(), parseTags);
-    pugi::xml_parse_result modResult = modDoc.load_file(file.wstring().c_str(), parseTags);
-    pugi::xml_parse_result originalResult = originalDoc.load_file(originalFile.wstring().c_str(), parseTags);
+        // now we have the relative path to the file, we can use this to find the original file, and the base file in the
+        // output directory
+        fs::path originalFile = m_PreyFilesPath / relativePath;
+        fs::path baseFile = m_OutputPath / relativePath;
 
-    if (!modResult)
-    {
-        m_pLog->Log(severityLevel::error, "ChairMerger: Could not load mod file %s",
-                                file.u8string().c_str());
-        m_pLog->Log(severityLevel::error, "ChairMerger: Description: %s", modResult.description());
-        m_pLog->Log(severityLevel::error, "ChairMerger: Offset: %lld", modResult.offset);
-        throw std::runtime_error(fmt::format("Could not load {}", file.u8string()));
-    }
-    // resolve attribute wildcards on non legacy files
-    if (!isLegacy)
-        ResolveFileWildcards(modDoc.first_child(), modName);
+        pugi::xml_document baseDoc, modDoc, originalDoc;
+        auto parseTags = pugi::parse_default;
+        if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
+        {
+            parseTags = pugi::parse_full;
+        }
 
-    // Create the output directory
-    if (!fs::exists(baseFile.parent_path()))
-        fs::create_directories(baseFile.parent_path());
+        pugi::xml_parse_result baseResult = baseDoc.load_file(baseFile.wstring().c_str(), parseTags);
+        pugi::xml_parse_result modResult = modDoc.load_file(file.wstring().c_str(), parseTags);
+        pugi::xml_parse_result originalResult = originalDoc.load_file(originalFile.wstring().c_str(), parseTags);
 
-    if (!originalResult)
-    {
-        // this is a new file, we have to just copy it over, even if base exists
-        modDoc.save_file(baseFile.wstring().c_str(), "\t", pugi::format_default, pugi::encoding_utf8);
-        return;
-    }
+        if (!modResult)
+        {
+            m_pLog->Log(severityLevel::error, "ChairMerger: Could not load mod file %s",
+                file.u8string().c_str());
+            m_pLog->Log(severityLevel::error, "ChairMerger: Description: %s", modResult.description());
+            m_pLog->Log(severityLevel::error, "ChairMerger: Offset: %lld", modResult.offset);
+            throw std::runtime_error(fmt::format("Could not load {}", file.u8string()));
+        }
+        // resolve attribute wildcards on non legacy files
+        if (!isLegacy)
+            ResolveFileWildcards(modDoc.first_child(), modName);
 
-    // if we have an original result, we can actually do some merging
-    if (policy.policy == MergingPolicy::identification_policy::overwrite ||
-        policy.policy == MergingPolicy::identification_policy::unknown)
-    {
-        fs::copy_file(file, baseFile, fs::copy_options::overwrite_existing);
-        return;
-    }
+        // Create the output directory
+        if (!fs::exists(baseFile.parent_path()))
+            fs::create_directories(baseFile.parent_path());
 
-    if (!baseResult)
-    {
-        // this is a file that hasn't been merged before, we should copy the original over
-        fs::copy_file(originalFile, baseFile, fs::copy_options::overwrite_existing);
-        baseResult = baseDoc.load_file(baseFile.wstring().c_str(), parseTags);
+        if (!originalResult)
+        {
+            // this is a new file, we have to just copy it over, even if base exists
+            modDoc.save_file(baseFile.wstring().c_str(), "\t", pugi::format_default, pugi::encoding_utf8);
+            return;
+        }
+
+        // if we have an original result, we can actually do some merging
+        if (policy.policy == MergingPolicy::identification_policy::overwrite ||
+            policy.policy == MergingPolicy::identification_policy::unknown)
+        {
+            fs::copy_file(file, baseFile, fs::copy_options::overwrite_existing);
+            return;
+        }
+
         if (!baseResult)
         {
-            m_pLog->Log(severityLevel::error, "ChairMerger: Could not load base file %s",
-                                    baseFile.u8string().c_str());
-            m_pLog->Log(severityLevel::error, "ChairMerger: Description: %s", baseResult.description());
-            m_pLog->Log(severityLevel::error, "ChairMerger: Offset: %lld", baseResult.offset);
-            throw std::runtime_error(fmt::format("Could not load base file {}", baseFile.u8string()));
+            // this is a file that hasn't been merged before, we should copy the original over
+            fs::copy_file(originalFile, baseFile, fs::copy_options::overwrite_existing);
+            baseResult = baseDoc.load_file(baseFile.wstring().c_str(), parseTags);
+            if (!baseResult)
+            {
+                m_pLog->Log(severityLevel::error, "ChairMerger: Could not load base file %s",
+                    baseFile.u8string().c_str());
+                m_pLog->Log(severityLevel::error, "ChairMerger: Description: %s", baseResult.description());
+                m_pLog->Log(severityLevel::error, "ChairMerger: Offset: %lld", baseResult.offset);
+                throw std::runtime_error(fmt::format("Could not load base file {}", baseFile.u8string()));
+            }
         }
+
+        XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
+
+        baseDoc.save_file(baseFile.wstring().c_str());
+
+        // we are done
     }
-
-    XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
-
-    baseDoc.save_file(baseFile.wstring().c_str());
-
-    // we are done
+    catch (const std::exception& e)
+    {
+        throw std::runtime_error(fmt::format(
+            "{}\n    File: {}\n    Mod: {}",
+            e.what(),
+            relativePath.u8string(),
+            modName
+        ));
+    }
 }
 
 void ChairMerger::RecursiveMergeXMLFiles(const fs::path& source, const fs::path& modDataDir, std::string modName, bool isLegacy)
