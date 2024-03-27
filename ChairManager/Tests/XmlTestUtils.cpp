@@ -4,7 +4,7 @@
 pugi::xml_document XmlTestUtils::LoadDocument(const fs::path& path, unsigned parseOptions)
 {
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(path.c_str());
+    pugi::xml_parse_result result = doc.load_file(path.c_str(), parseOptions);
 
     if (!result)
     {

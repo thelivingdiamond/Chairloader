@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+    xmlns:html="http://www.w3.org/TR/REC-html40">
+    <Worksheet ss:Name="Sheet1">
+        <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="655" x:FullColumns="1"
+            x:FullRows="1" ss:StyleID="s64">
+            <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="13.5"/>
+            <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="195" />
+            <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="366.75" />
+            <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="258.75" />
+            <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="160.5" />
+            <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="99" />
+            <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s67">
+                <Cell ss:Index="2" ss:StyleID="s68">
+                    <Data ss:Type="String">KEY</Data>
+                </Cell>
+                <Cell ss:StyleID="s69">
+                    <Data ss:Type="String">ORIGINAL TEXT</Data>
+                </Cell>
+                <Cell ss:StyleID="s69">
+                    <Data ss:Type="String">TRANSLATED TEXT</Data>
+                </Cell>
+                <Cell ss:StyleID="s69">
+                    <Data ss:Type="String">LOCKED</Data>
+                </Cell>
+                <Cell ss:StyleID="s69">
+                    <Data ss:Type="String">CHARACTER LIMIT</Data>
+                </Cell>
+            </Row>
+            <Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s67">
+                <Cell ss:StyleID="s70" />
+                <Cell ss:StyleID="s70" />
+                <Cell ss:StyleID="s71">
+                    <Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data>
+                </Cell>
+                <Cell ss:StyleID="s71">
+                    <Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data>
+                </Cell>
+                <Cell ss:StyleID="s71">
+                    <Data ss:Type="String">set to &quot;LOCKED&quot; if this string is final.</Data>
+                </Cell>
+                <Cell ss:StyleID="s71">
+                    <Data ss:Type="String">Character limit for translated text.</Data>
+                </Cell>
+            </Row>
+            <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s73">
+                <Cell ss:StyleID="s74" />
+            </Row>
+            <Row>
+                <Cell ss:Index="2" >
+                    <Data ss:Type="String">i_defaultPickup</Data>
+                </Cell>
+                <Cell>
+                    <Data ss:Type="String">Pickup</Data>
+                </Cell>
+                <Cell ss:StyleID="s85">
+                    <Data ss:Type="String">Some other thing</Data>
+                </Cell>
+                <Cell>
+                    <Data ss:Type="String">LOCKED</Data>
+                </Cell>
+            </Row>
+        </Table>
+    </Worksheet>
+</Workbook>

@@ -112,6 +112,13 @@
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="258.75"/>
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="160.5"/>
    <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="99"/>
+   <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s66">
+    <Cell ss:StyleID="s67"><Data ss:Type="String">KEY</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">LOCKED</Data></Cell>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+   </Row>
    <Row>
     <Cell><Data ss:Type="String">i_note</Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="String">Note</Data></Cell>
