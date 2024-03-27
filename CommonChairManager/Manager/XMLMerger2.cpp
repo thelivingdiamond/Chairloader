@@ -6,7 +6,423 @@
 #include "XMLMerger2.h"
 #include <gtest/gtest.h>
 
+namespace
+{
 
+class LocalizationMergingException : public std::runtime_error
+{
+public:
+    LocalizationMergingException(const std::string& message, int rowIndex = -1, int cellIndex = -1)
+        : std::runtime_error(FormatMsg(message, rowIndex, cellIndex))
+    {
+    }
+
+private:
+    std::string FormatMsg(const std::string& message, int rowIndex, int cellIndex)
+    {
+        std::string outMsg = "Localization error: " + message;
+
+        if (rowIndex != -1)
+            outMsg += fmt::format("\n    Row: {}", rowIndex + 1);
+        if (cellIndex != -1)
+            outMsg += fmt::format("\n    Cell: {}", cellIndex + 1);
+
+        return outMsg;
+    }
+};
+
+class LocalizationTable
+{
+public:
+    //! Name of the key column.
+    static constexpr char KEY_NAME[] = "key";
+
+    using ColumnNameList = std::vector<std::string>;
+    using Row = std::vector<std::string>;
+    using RowList = std::vector<Row>;
+
+    //! The names of the columns.
+    ColumnNameList columnNames;
+
+    //! Rows of the table.
+    RowList rows;
+
+    //! Index of the key column.
+    int keyColumnIdx = -1;
+
+    //! Reads a table into this object. May only be called once.
+    void ReadTable(const pugi::xml_node& rootNode)
+    {
+        const pugi::xml_node tableNode = rootNode.child("Workbook").child("Worksheet").child("Table");
+        if (!tableNode)
+            throw LocalizationMergingException("Workbook.Worksheet.Table node not found");
+
+        bool foundFirstRow = false;
+        int rowIdx = 0;
+
+        for (const pugi::xml_node& row : tableNode.children("Row"))
+        {
+            // Read contents
+            Row rowData;
+            rowData.reserve(columnNames.size()); // Can't resize because column count is unknown until first row is read
+
+            int colIdx = 0;
+
+            for (const pugi::xml_node& cell : row.children("Cell"))
+            {
+                int excelIndex = colIdx + 1; // 1-based
+                excelIndex = cell.attribute("ss:Index").as_int(excelIndex);
+                excelIndex--; // Back to 0-based
+                
+                if (columnNames.size() != 0 && excelIndex >= columnNames.size())
+                {
+                    // Too many cells in this row. Skip the rest of the cells.
+                    break;
+                }
+
+                if (excelIndex < colIdx)
+                    throw LocalizationMergingException("Invalid cell index", rowIdx, colIdx);
+
+                if (excelIndex > colIdx)
+                {
+                    // Skip columns
+                    for (; colIdx < excelIndex; colIdx++)
+                    {
+                        rowData.emplace_back();
+                    }
+                }
+
+                std::string value = cell.child("Data").text().as_string();
+                rowData.emplace_back(std::move(value));
+                colIdx++;
+            }
+
+            if (foundFirstRow)
+            {
+                // Check that the row isn't empty
+                bool isEmpty = true;
+                for (const std::string& i : rowData)
+                {
+                    if (!i.empty())
+                    {
+                        isEmpty = false;
+                        break;
+                    }
+                }
+
+                if (!isEmpty)
+                {
+                    // Add empty columns at the end
+                    assert(rowData.size() <= columnNames.size());
+                    rowData.resize(columnNames.size());
+
+                    // Add the data row
+                    rows.emplace_back(std::move(rowData));
+                }
+            }
+            else
+            {
+                // Parse column names
+                ParseFirstRow(std::move(rowData));
+
+                if (columnNames.empty())
+                    throw LocalizationMergingException("Table has no columns defined");
+
+                foundFirstRow = true;
+            }
+
+            rowIdx++;
+        }
+
+        if (!foundFirstRow)
+            throw LocalizationMergingException("Table has no rows");
+    }
+
+private:
+    //! Parses column names from the first row.
+    void ParseFirstRow(Row&& row)
+    {
+        assert(columnNames.empty());
+        int colIdx = 0;
+        columnNames = std::move(row);
+
+        for (std::string& colName : columnNames)
+        {
+            // Convert to lower-case (because CryEngine ignores case when comparing)
+            for (char& c : colName)
+            {
+                if (c >= 'A' && c <= 'Z')
+                {
+                    c = c - 'A' + 'a';
+                }
+            }
+
+            if (colName == KEY_NAME)
+            {
+                // Found the key
+                if (keyColumnIdx != -1)
+                    throw LocalizationMergingException("Table has multiple key columns", 0, colIdx);
+                keyColumnIdx = colIdx;
+            }
+
+            colIdx++;
+        }
+
+        if (keyColumnIdx == -1)
+            throw LocalizationMergingException("Table has no key column", 0);
+    }
+};
+
+//! Helper class for Excel spreadsheets merging, which are used by the localization system.
+class LocalizationMerger
+{
+public:
+    //! Reads column names and contents from the base node.
+    void ReadBaseSheet(const pugi::xml_node& spreadsheet)
+    {
+        m_CurrentTable.ReadTable(spreadsheet);
+        assert(m_CurrentTable.keyColumnIdx != -1);
+    }
+
+    //! Merges a spreadsheet into the current table.
+    void MergeSheet(const pugi::xml_node& spreadsheet)
+    {
+        LocalizationTable modTable;
+        modTable.ReadTable(spreadsheet);
+        assert(modTable.keyColumnIdx != -1);
+
+        // Create new columns and the column map
+        ColumnMap colMap = MergeColumns(modTable);
+
+        for (const LocalizationTable::Row& modRow : modTable.rows)
+        {
+            const std::string& key = modRow[modTable.keyColumnIdx];
+            int baseRowIdx = FindRowByKey(key);
+
+            if (baseRowIdx == -1)
+            {
+                // Create new row
+                baseRowIdx = (int)m_CurrentTable.rows.size();
+                m_CurrentTable.rows.emplace_back();
+                m_CurrentTable.rows[baseRowIdx].resize(m_CurrentTable.columnNames.size());
+                m_CurrentTable.rows[baseRowIdx][m_CurrentTable.keyColumnIdx] = key;
+            }
+
+            // Replace all non-empty columns in the row
+            LocalizationTable::Row& currentRow = m_CurrentTable.rows[baseRowIdx];
+
+            for (size_t modColIdx = 0; modColIdx < modRow.size(); modColIdx++)
+            {
+                const std::string& modColValue = modRow[modColIdx];
+                int currentColIdx = colMap[modColIdx];
+
+                if (modColIdx == modTable.keyColumnIdx)
+                {
+                    // Key must match. If not, programming bug
+                    assert(currentRow[currentColIdx] == modColValue);
+                }
+
+                if (modColValue.empty())
+                {
+                    // Skip this column since it has no value
+                    continue;
+                }
+
+                // Overwrite the value
+                currentRow[currentColIdx] = modColValue;
+            }
+        }
+    }
+
+    //! Exports the internal state into an Excel XML spreadsheet.
+    pugi::xml_document ExportExcelXml() const
+    {
+        // Based on https://en.wikipedia.org/wiki/Microsoft_Office_XML_formats
+        // and real Office XML files.
+        pugi::xml_document doc;
+
+        // XML declaration
+        pugi::xml_node xmlDecl = doc.append_child(pugi::node_declaration);
+        xmlDecl.set_name("xml");
+        xmlDecl.append_attribute("version").set_value("1.0");
+        xmlDecl.append_attribute("encoding").set_value("utf-8");
+
+        // Excel processing instruction
+        pugi::xml_node excelPi = doc.append_child(pugi::node_pi);
+        excelPi.set_name("mso-application");
+        // pugixml doesn't add this attribute for some reason.
+        // But it works without it.
+        // excelPi.append_attribute("progid").set_value("Excel.Sheet");
+
+        // Workbook
+        pugi::xml_node workbook = doc.append_child("Workbook");
+        workbook.append_attribute("xmlns").set_value("urn:schemas-microsoft-com:office:spreadsheet");
+        workbook.append_attribute("xmlns:o").set_value("urn:schemas-microsoft-com:office:office");
+        workbook.append_attribute("xmlns:x").set_value("urn:schemas-microsoft-com:office:excel");
+        workbook.append_attribute("xmlns:ss").set_value("urn:schemas-microsoft-com:office:spreadsheet");
+        workbook.append_attribute("xmlns:html").set_value("http://www.w3.org/TR/REC-html40");
+
+        // Worksheet
+        pugi::xml_node worksheet = workbook.append_child("Worksheet");
+        worksheet.append_attribute("ss:Name").set_value("Sheet1");
+
+        // Table
+        pugi::xml_node table = worksheet.append_child("Table");
+
+        // Columns
+        for (size_t i = 0; i < m_CurrentTable.columnNames.size(); i++)
+        {
+            table.append_child("Column");
+        }
+
+        // Column names row
+        {
+            pugi::xml_node row = table.append_child("Row");
+
+            for (const std::string& colName : m_CurrentTable.columnNames)
+            {
+                pugi::xml_node cell = row.append_child("Cell");
+
+                if (!colName.empty())
+                {
+                    pugi::xml_node dataNode = cell.append_child("Data");
+                    dataNode.append_attribute("ss:Type").set_value("String");
+                    dataNode.text().set(colName.c_str());
+                }
+            }
+        }
+
+        // Chairloader watermark
+        // Size check because the watermark can't go into the key column
+        // And key column always exists
+        // (file wiht only key column doesn't make sense but just in case)
+        if (m_CurrentTable.columnNames.size() > 1)
+        {
+            // Find first non-key column
+            // It must exist unless there is only one column
+            size_t watermarkCol = 0;
+            while (watermarkCol == m_CurrentTable.keyColumnIdx)
+            {
+                watermarkCol++;
+                assert(watermarkCol < m_CurrentTable.columnNames.size());
+            }
+
+            // Watermark row
+            pugi::xml_node row = table.append_child("Row");
+            for (size_t i = 0; i < m_CurrentTable.columnNames.size(); i++)
+            {
+                pugi::xml_node cell = row.append_child("Cell");
+
+                if (i == watermarkCol)
+                {
+                    // TODO 2024-03-26: Put version and timestamp here
+                    // But it will break unit-tests since they compare files directly
+                    pugi::xml_node dataNode = cell.append_child("Data");
+                    dataNode.append_attribute("ss:Type").set_value("String");
+                    dataNode.text().set("File generated by Chairloader");
+                }
+            }
+        }
+
+        // Rows
+        for (const LocalizationTable::Row& rowData : m_CurrentTable.rows)
+        {
+            pugi::xml_node row = table.append_child("Row");
+
+            // Cells
+            assert(rowData.size() == m_CurrentTable.columnNames.size());
+
+            for (const std::string& cellData : rowData)
+            {
+                pugi::xml_node cell = row.append_child("Cell");
+
+                if (!cellData.empty())
+                {
+                    pugi::xml_node dataNode = cell.append_child("Data");
+                    dataNode.append_attribute("ss:Type").set_value("String");
+                    dataNode.text().set(cellData.c_str());
+                }
+            }
+        }
+
+        return doc;
+    }
+
+private:
+    //! Maps a column index in mod table to the current table.
+    using ColumnMap = std::vector<int>;
+
+    LocalizationTable m_CurrentTable;
+
+    //! Creates new columns if needs to.
+    //! @returns The map of column indices in mod table to the current table's.
+    ColumnMap MergeColumns(const LocalizationTable& modTable)
+    {
+        ColumnMap colMap;
+        colMap.resize(modTable.columnNames.size());
+
+        size_t oldColumnCount = m_CurrentTable.columnNames.size();
+
+        // Create column mapping. Add new columns if have to.
+        for (size_t i = 0; i < colMap.size(); i++)
+        {
+            int modColIdxInCurrentTable = FindColumnByName(modTable.columnNames[i]);
+
+            if (modColIdxInCurrentTable == -1)
+            {
+                // Make a new column
+                modColIdxInCurrentTable = (int)m_CurrentTable.columnNames.size();
+                m_CurrentTable.columnNames.emplace_back();
+            }
+
+            colMap[i] = modColIdxInCurrentTable;
+        }
+
+        size_t newColumnCount = m_CurrentTable.columnNames.size();
+
+        if (newColumnCount != oldColumnCount)
+        {
+            // Resize all rows to add the new columns
+            for (LocalizationTable::Row& modRow : m_CurrentTable.rows)
+            {
+                assert(modRow.size() == oldColumnCount);
+                modRow.resize(newColumnCount);
+            }
+        }
+
+        return colMap;
+    }
+
+    int FindRowByKey(const std::string& key)
+    {
+        // Linear search.
+        // This makes merging O(n^2) but there's only a few hundred rows in a table
+        int keyColumnIdx = m_CurrentTable.keyColumnIdx;
+
+        for (size_t i = 0; i < m_CurrentTable.rows.size(); i++)
+        {
+            const LocalizationTable::Row& modRow = m_CurrentTable.rows[i];
+
+            if (modRow[keyColumnIdx] == key)
+                return (int)i;
+        }
+
+        return -1;
+    }
+
+    int FindColumnByName(const std::string& name)
+    {
+        for (size_t i = 0; i < m_CurrentTable.columnNames.size(); i++)
+        {
+            if (m_CurrentTable.columnNames[i] == name)
+                return (int)i;
+        }
+
+        return -1;
+    }
+};
+
+} // namespace
 
 // Alternatively called Node Emulsification, Unification, or Coalescence
 void XMLMerger2::FuseXMLNode(pugi::xml_node baseNode, pugi::xml_node modNode) {
@@ -244,43 +660,32 @@ void XMLMerger2::MergeByContents(pugi::xml_node baseNode, pugi::xml_node modNode
 }
 
 void XMLMerger2::MergeBySpreadsheet(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy) {
+    LocalizationMerger locMerger;
 
-    // get the table nodes
-    auto modTableNode = modNode.child("Worksheet").child("Table");
-    auto baseTableNode = baseNode.child("Worksheet").child("Table");
-    auto originalTableNode = originalNode.child("Worksheet").child("Table");
-
-    // cache the base and original nodes in a map
-    std::map<std::string, pugi::xml_node> baseNodes;
-    std::map<std::string, pugi::xml_node> originalNodes;
-    for(auto &baseRow : baseTableNode.children("Row")) {
-        baseNodes[baseRow.child("Cell").child("Data").text().get()] = baseRow;
+    try
+    {
+        locMerger.ReadBaseSheet(baseNode);
     }
-    for(auto &originalRow : originalTableNode.children("Row")) {
-        originalNodes[originalRow.child("Cell").child("Data").text().get()] = originalRow;
+    catch (const std::exception& e)
+    {
+        throw std::runtime_error(fmt::format("{}\n    While reading base file", e.what()));
     }
 
-    // iterate through the mod table and merge the nodes
-    for(auto & modRow : modTableNode.children("Row")){
-        auto key = std::string(modRow.child("Cell").child("Data").text().get());
-        // check for original and base child
-        if(!key.empty()) {
-            pugi::xml_node originalCandidate, baseCandidate;
-            if (originalNodes.find(key) != originalNodes.end()) {
-                originalCandidate = originalNodes[key];
-            }
-            if (baseNodes.find(key) != baseNodes.end()) {
-                baseCandidate = baseNodes[key];
-            }
+    try
+    {
+        locMerger.MergeSheet(modNode);
+    }
+    catch (const std::exception& e)
+    {
+        throw std::runtime_error(fmt::format("{}\n    While merging mod file", e.what()));
+    }
 
-            if (baseCandidate) {
-                // merge the row
-                MergeXmlNode(baseCandidate, modRow, originalCandidate);
-            } else {
-                // append the row
-                AppendXmlNode(baseTableNode, modRow);
-            }
-        }
+    baseNode.remove_children();
+    pugi::xml_document newDoc = locMerger.ExportExcelXml();
+
+    for (const pugi::xml_node& i : newDoc.children())
+    {
+        baseNode.append_copy(i);
     }
 }
 
@@ -291,11 +696,8 @@ void XMLMerger2::MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_documen
     // merge the node structure
     if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
     {
-        auto baseNode = baseDoc.child("Workbook");
-        auto modNode = modDoc.child("Workbook");
-        auto originalNode = originalDoc.child("Workbook");
-
-        MergeNodeStructure(baseNode, modNode, originalNode, policy);
+        // Localization merging expects original documents
+        MergeNodeStructure(baseDoc, modDoc, originalDoc, policy);
     }
     else
     {
