@@ -1,387 +1,80 @@
-<?xml version="1.0"?>
-<?mso-application progid="Excel.Sheet"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?mso-application?>
 <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
-	<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
-		<Title>Ui Items Loc Strings</Title>
-		<Author>Susan Kath</Author>
-		<LastAuthor>Susan Kath</LastAuthor>
-		<LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
-		<Created>2002-06-17T19:14:00Z</Created>
-		<LastSaved>2017-03-23T21:33:23Z</LastSaved>
-		<Company>Arkane Studios</Company>
-		<Version>16.00</Version>
-	</DocumentProperties>
-	<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
-		<AllowPNG />
-	</OfficeDocumentSettings>
-	<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
-		<WindowHeight>13260</WindowHeight>
-		<WindowWidth>27000</WindowWidth>
-		<WindowTopX>0</WindowTopX>
-		<WindowTopY>0</WindowTopY>
-		<TabRatio>274</TabRatio>
-		<RefModeR1C1 />
-		<ProtectStructure>False</ProtectStructure>
-		<ProtectWindows>False</ProtectWindows>
-		<DisplayInkNotes>False</DisplayInkNotes>
-	</ExcelWorkbook>
-	<Styles>
-		<Style ss:ID="Default" ss:Name="Normal">
-			<Alignment ss:Vertical="Bottom" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s26" ss:Name="Good">
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000" />
-			<Interior ss:Color="#C6EFCE" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s62" ss:Name="Normal 2">
-			<Alignment ss:Vertical="Bottom" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s63">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-		</Style>
-		<Style ss:ID="s64">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-		</Style>
-		<Style ss:ID="s66">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-		</Style>
-		<Style ss:ID="s67">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
-			<Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s68">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
-			<Interior ss:Color="#FF0000" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s69">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1" />
-			<Interior ss:Color="#666699" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s70">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
-			<Interior ss:Color="#666699" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s72">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s73">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s75">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Interior ss:Color="#C5D9F1" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s76">
-			<Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Interior ss:Color="#C5D9F1" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s78">
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-		</Style>
-		<Style ss:ID="s81" ss:Parent="s26">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Bold="1" />
-			<Interior ss:Color="#FFFF00" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s83" ss:Parent="s26">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Bold="1" />
-			<Interior ss:Color="#FFFF00" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s84">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-		</Style>
-		<Style ss:ID="s85">
-			<Alignment ss:Vertical="Bottom" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s86">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
-			<Interior ss:Color="#F4B084" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s87">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Interior ss:Color="#F4B084" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s88" ss:Parent="s26">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000" ss:Bold="1" />
-		</Style>
-		<Style ss:ID="s89">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
-		</Style>
-		<Style ss:ID="s90" ss:Parent="s26">
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000" ss:Bold="1" />
-		</Style>
-		<Style ss:ID="s91">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Italic="1" />
-		</Style>
-		<Style ss:ID="s92">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-		</Style>
-		<Style ss:ID="s93">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders>
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-		</Style>
-		<Style ss:ID="s94">
-			<Alignment ss:Vertical="Top" />
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s95">
-			<Alignment ss:Vertical="Top" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s96">
-			<Alignment ss:Horizontal="Left" ss:Vertical="Bottom" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" />
-		</Style>
-		<Style ss:ID="s97">
-			<Borders>
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
-			<Interior ss:Color="#F4B084" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s98">
-			<Interior ss:Color="#F4B084" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s99">
-			<Alignment ss:Vertical="Bottom" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s100">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Size="9" ss:Color="#000000" />
-		</Style>
-		<Style ss:ID="s101">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s103" ss:Parent="s62">
-			<Alignment ss:Horizontal="Left" ss:Vertical="Bottom" />
-			<Borders>
-				<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-				<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A5A5A5" />
-			</Borders>
-			<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" />
-			<Interior />
-		</Style>
-		<Style ss:ID="s104" ss:Parent="s62">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Interior />
-		</Style>
-		<Style ss:ID="s105" ss:Parent="s62">
-			<Alignment ss:Vertical="Bottom" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-			<NumberFormat />
-			<Protection />
-		</Style>
-		<Style ss:ID="s106" ss:Parent="s62">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Font ss:FontName="Arial" x:Family="Swiss" />
-			<Interior />
-		</Style>
-		<Style ss:ID="s108">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Interior />
-		</Style>
-		<Style ss:ID="s109">
-			<Alignment ss:Vertical="Top" ss:WrapText="1" />
-			<Borders />
-			<Interior ss:Color="#FFFFFF" ss:Pattern="Solid" />
-		</Style>
-		<Style ss:ID="s110">
-			<Alignment ss:Vertical="Center" />
-			<Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" />
-		</Style>
-	</Styles>
 	<Worksheet ss:Name="Sheet1">
-		<Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="655" x:FullColumns="1" x:FullRows="1" ss:StyleID="s63">
-			<Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="195" />
-			<Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="366.75" />
-			<Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="258.75" />
-			<Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="160.5" />
-			<Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="99" />
-			<Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s66">
-				<Cell ss:StyleID="s67">
-					<Data ss:Type="String">KEY</Data>
+		<Table>
+			<Column />
+			<Column />
+			<Column />
+			<Column />
+			<Column />
+			<Row>
+				<Cell>
+					<Data ss:Type="String">key</Data>
 				</Cell>
-				<Cell ss:StyleID="s68">
-					<Data ss:Type="String">ORIGINAL TEXT</Data>
+				<Cell>
+					<Data ss:Type="String">original text</Data>
 				</Cell>
-				<Cell ss:StyleID="s68">
-					<Data ss:Type="String">TRANSLATED TEXT</Data>
+				<Cell>
+					<Data ss:Type="String">translated text</Data>
 				</Cell>
-				<Cell ss:StyleID="s68">
-					<Data ss:Type="String">LOCKED</Data>
+				<Cell>
+					<Data ss:Type="String">locked</Data>
 				</Cell>
-				<Cell ss:StyleID="s68">
-					<Data ss:Type="String">CHARACTER LIMIT</Data>
+				<Cell>
+					<Data ss:Type="String">character limit</Data>
 				</Cell>
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="s66">
-				<Cell ss:StyleID="s69" />
-				<Cell ss:StyleID="s70">
+			<Row>
+				<Cell />
+				<Cell>
+					<Data ss:Type="String">File generated by Chairloader</Data>
+				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+			</Row>
+			<Row>
+				<Cell />
+				<Cell>
+					<Data ss:Type="String">File generated by Chairloader</Data>
+				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+			</Row>
+			<Row>
+				<Cell />
+				<Cell>
 					<Data ss:Type="String">This contains original text meant for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data>
 				</Cell>
-				<Cell ss:StyleID="s70">
+				<Cell>
 					<Data ss:Type="String">This contains text for subtitles. Use descriptive expressions like &lt;frantic laughter&gt; and ## for a new line.</Data>
 				</Cell>
-				<Cell ss:StyleID="s70">
+				<Cell>
 					<Data ss:Type="String">set to "LOCKED" if this string is final.</Data>
 				</Cell>
-				<Cell ss:StyleID="s70">
+				<Cell>
 					<Data ss:Type="String">Character limit for translated text.</Data>
 				</Cell>
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
-				<Cell ss:StyleID="s73" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s75">
-				<Cell ss:StyleID="s76">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Object interaction</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="Default">
-				<Cell ss:StyleID="s78" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="18.75" ss:StyleID="s81">
-				<Cell ss:StyleID="s83">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">PICKUPS</Data>
 				</Cell>
-			</Row>
-			<Row ss:StyleID="Default">
-				<Cell ss:StyleID="s78" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -390,42 +83,45 @@
 				<Cell>
 					<Data ss:Type="String">Pickup</Data>
 				</Cell>
-				<Cell ss:StyleID="s84">
+				<Cell>
 					<Data ss:Type="String">Pickup</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_o2bottle</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">O2 Bottle</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">O2 Bottle</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_o2bottleempty</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">O2 Bottle (Empty)</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">O2 Bottle (Empty)</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_o2bottleDesc</Data>
 				</Cell>
@@ -438,6 +134,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -452,6 +149,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -466,8 +164,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_psychoscopeDesc</Data>
 				</Cell>
@@ -480,6 +179,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -494,20 +194,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_zerogsuit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Artax Propulsion System</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Artax Propulsion System</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -522,8 +224,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_zerogsuitDesc</Data>
 				</Cell>
@@ -536,20 +239,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weaponkit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Weapon Upgrade Kit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Weapon Upgrade Kit</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -564,8 +269,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="48.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponkitDesc</Data>
 				</Cell>
@@ -578,6 +284,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -592,8 +299,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="33">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_sparepartsDesc</Data>
 				</Cell>
@@ -606,6 +314,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -620,21 +329,18 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:Index="3" ss:StyleID="s84" />
-			</Row>
-			<Row>
-				<Cell ss:Index="3" ss:StyleID="s84" />
-			</Row>
-			<Row>
-				<Cell ss:StyleID="s86">
+				<Cell>
 					<Data ss:Type="String">Data items</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:Index="29">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_trackingchip</Data>
 				</Cell>
@@ -647,8 +353,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_trackingchipDesc</Data>
 				</Cell>
@@ -661,6 +368,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -675,8 +383,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_transcribeDesc</Data>
 				</Cell>
@@ -689,6 +398,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -703,6 +413,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -717,12 +428,13 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
 					<Data ss:Type="String">i_note</Data>
 				</Cell>
-				<Cell ss:StyleID="s73">
+				<Cell>
 					<Data ss:Type="String">Note</Data>
 				</Cell>
 				<Cell>
@@ -731,6 +443,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -745,6 +458,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -759,6 +473,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -773,6 +488,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -787,6 +503,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -801,6 +518,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -815,6 +533,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -829,34 +548,33 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row ss:Index="44">
-				<Cell ss:StyleID="s86">
-					<Data ss:Type="String">Consumables</Data>
-				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s86" />
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell>
+					<Data ss:Type="String">Consumables</Data>
+				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:Index="47">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_arkhypopsi</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Psi Hypo</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Psi Hypo</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_arkhypopsiDesc</Data>
 				</Cell>
@@ -869,22 +587,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_medkit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Medkit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Medkit</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_medkitDesc</Data>
 				</Cell>
@@ -897,22 +617,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_neuromod</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Neuromod</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Neuromod</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_neuromodDesc</Data>
 				</Cell>
@@ -925,22 +647,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_suitpatchkit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Suit Repair Kit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Suit Repair Kit</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_suitpatchkitDesc</Data>
 				</Cell>
@@ -953,28 +677,33 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" />
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
-				<Cell ss:StyleID="s88">
-					<Data ss:Type="String">Pharmas</Data>
-				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
+					<Data ss:Type="String">Pharmas</Data>
+				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
+			</Row>
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntihazard</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Skinsulators</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Skinsulators</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiHazardDesc</Data>
 				</Cell>
@@ -987,22 +716,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiPhysicalDamage</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Durashells</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Durashells</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiPhysicalDamageDesc</Data>
 				</Cell>
@@ -1015,22 +746,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaRepairBoost</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Mech-techs</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Mech-techs</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaRepairBoostDesc</Data>
 				</Cell>
@@ -1043,22 +776,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaStrengthBoost</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brawnies</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brawnies</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaSpeedBoostDesc</Data>
 				</Cell>
@@ -1071,8 +806,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaStrengthBoostDesc</Data>
 				</Cell>
@@ -1085,6 +821,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1099,8 +836,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaDispersionDesc</Data>
 				</Cell>
@@ -1113,22 +851,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiBleed</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Coagulating Gel</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Coagulating Gel</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiBleedDesc</Data>
 				</Cell>
@@ -1141,22 +881,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiBurn</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Dermaweb Skin Graft</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Dermaweb Skin Graft</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiBurnDesc</Data>
 				</Cell>
@@ -1169,22 +911,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiConcussion</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brained Pills</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brained Pills</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiConcussionDesc</Data>
 				</Cell>
@@ -1197,22 +941,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiCripple</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Skeletal Repair Kit</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Skeletal Repair Kit</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiCrippleDesc</Data>
 				</Cell>
@@ -1225,22 +971,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_pharmaAntiRad</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Anti-Rad</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Anti-Rad</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="13.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaAntiRadDesc</Data>
 				</Cell>
@@ -1253,8 +1001,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="18">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaburstpowers</Data>
 				</Cell>
@@ -1267,8 +1016,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmaburstpowersdesc</Data>
 				</Cell>
@@ -1281,8 +1031,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmastamina</Data>
 				</Cell>
@@ -1295,8 +1046,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pharmastaminadesc</Data>
 				</Cell>
@@ -1306,12 +1058,17 @@
 				<Cell>
 					<Data ss:Type="String">Liquid capsules which increase stamina regeneration rate for 1 minute.</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5" />
-			<Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s89">
-				<Cell ss:StyleID="s90">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Food</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1326,8 +1083,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodbananaDesc</Data>
 				</Cell>
@@ -1340,6 +1098,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1354,8 +1113,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodBananaBunchDesc</Data>
 				</Cell>
@@ -1368,6 +1128,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1382,8 +1143,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodappleDesc</Data>
 				</Cell>
@@ -1396,6 +1158,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1410,8 +1173,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodchampagneDesc</Data>
 				</Cell>
@@ -1424,6 +1188,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1438,8 +1203,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodBourbonDesc</Data>
 				</Cell>
@@ -1452,6 +1218,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1466,8 +1233,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodDuckBeerDesc</Data>
 				</Cell>
@@ -1480,6 +1248,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1494,8 +1263,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodGinDesc</Data>
 				</Cell>
@@ -1508,6 +1278,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1522,8 +1293,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodMoonShineDesc</Data>
 				</Cell>
@@ -1536,6 +1308,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1550,8 +1323,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodBigBangCandyDesc</Data>
 				</Cell>
@@ -1564,6 +1338,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1578,8 +1353,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodGlucassistDesc</Data>
 				</Cell>
@@ -1592,6 +1368,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1606,8 +1383,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodSunDriedTomatoJerkyDesc</Data>
 				</Cell>
@@ -1620,6 +1398,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1634,8 +1413,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodVeggieBlendDesc</Data>
 				</Cell>
@@ -1648,6 +1428,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1662,8 +1443,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodGrowthFormulaDesc</Data>
 				</Cell>
@@ -1676,6 +1458,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -1690,8 +1473,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodBananaPuddingDesc</Data>
 				</Cell>
@@ -1704,8 +1488,8 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="113" ss:AutoFitHeight="0" ss:Height="25.5" />
 			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodDimSum</Data>
@@ -1719,8 +1503,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodDimSumDesc</Data>
 				</Cell>
@@ -1733,19 +1518,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s91">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s63" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:Index="4" ss:StyleID="s63" />
-			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodUdonNoodlePack</Data>
 				</Cell>
 				<Cell>
@@ -1754,12 +1530,13 @@
 				<Cell>
 					<Data ss:Type="String">Udon Noodles</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodUdonNoodlePackDesc</Data>
 				</Cell>
 				<Cell>
@@ -1768,12 +1545,13 @@
 				<Cell>
 					<Data ss:Type="String">A bowl of dehydrated udon noodles by TranStar Kitchens. Read your fortune at the bottom of every bowl.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodBliniCakes</Data>
 				</Cell>
 				<Cell>
@@ -1782,12 +1560,13 @@
 				<Cell>
 					<Data ss:Type="String">Russian Blinis</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodBliniCakesDesc</Data>
 				</Cell>
 				<Cell>
@@ -1796,12 +1575,13 @@
 				<Cell>
 					<Data ss:Type="String">A box of traditional Russian Blini Cakes by TranStar Kitchens.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodCrispyFrites</Data>
 				</Cell>
 				<Cell>
@@ -1810,12 +1590,13 @@
 				<Cell>
 					<Data ss:Type="String">Crispy Frites</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodCrispyFritesDesc</Data>
 				</Cell>
 				<Cell>
@@ -1824,12 +1605,13 @@
 				<Cell>
 					<Data ss:Type="String">A box of crispy freeze-dried frites sprinkled with spicy 'cosmic dust' by TranStar Kitchens.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodFishSticks</Data>
 				</Cell>
 				<Cell>
@@ -1838,12 +1620,13 @@
 				<Cell>
 					<Data ss:Type="String">Captain Spree's Fish Sticks</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodFishSticksDesc</Data>
 				</Cell>
 				<Cell>
@@ -1852,12 +1635,13 @@
 				<Cell>
 					<Data ss:Type="String">A box of Captain Spree's Fish Sticks by TranStar Kitchens. Made with 100% Skeksis Eel meat. &lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points and %PSIRestored% Psi points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodLemonPieSlice</Data>
 				</Cell>
 				<Cell>
@@ -1866,12 +1650,13 @@
 				<Cell>
 					<Data ss:Type="String">Shaker Lemon Pie</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodLemonPieSliceDesc</Data>
 				</Cell>
 				<Cell>
@@ -1880,20 +1665,13 @@
 				<Cell>
 					<Data ss:Type="String">A slice of Will Mitchell's homemade shaker lemon pie.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:Index="4" ss:StyleID="s63" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:Index="4" ss:StyleID="s63" />
-			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodSpiraliteCookies</Data>
 				</Cell>
 				<Cell>
@@ -1902,12 +1680,13 @@
 				<Cell>
 					<Data ss:Type="String">Spiralite Cookies</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodSpiraliteCookiesDesc</Data>
 				</Cell>
 				<Cell>
@@ -1916,12 +1695,13 @@
 				<Cell>
 					<Data ss:Type="String">A box of galaxy-shaped Spiralite cookies by TranStar Kitchens.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodGreenTea</Data>
 				</Cell>
 				<Cell>
@@ -1930,12 +1710,13 @@
 				<Cell>
 					<Data ss:Type="String">Cold Mountain Green Tea</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodGreenTeaDesc</Data>
 				</Cell>
 				<Cell>
@@ -1944,12 +1725,13 @@
 				<Cell>
 					<Data ss:Type="String">A refreshing can of cold-brew green tea by TranStar Kitchens.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodPopStar</Data>
 				</Cell>
 				<Cell>
@@ -1958,12 +1740,13 @@
 				<Cell>
 					<Data ss:Type="String">PopStar</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodPopStarDesc</Data>
 				</Cell>
 				<Cell>
@@ -1972,20 +1755,13 @@
 				<Cell>
 					<Data ss:Type="String">A can of PopStar energy drink by TranStar Kitchens.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:Index="4" ss:StyleID="s63" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:Index="4" ss:StyleID="s63" />
-			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodLemon</Data>
 				</Cell>
 				<Cell>
@@ -1994,12 +1770,13 @@
 				<Cell>
 					<Data ss:Type="String">Moonshade Lemon</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodLemonDesc</Data>
 				</Cell>
 				<Cell>
@@ -2008,12 +1785,13 @@
 				<Cell>
 					<Data ss:Type="String">A lemon engineered to thrive in conditions aboard Talos I.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodTomato</Data>
 				</Cell>
 				<Cell>
@@ -2022,12 +1800,13 @@
 				<Cell>
 					<Data ss:Type="String">Jamon Tomato</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodTomatoDesc</Data>
 				</Cell>
 				<Cell>
@@ -2036,12 +1815,13 @@
 				<Cell>
 					<Data ss:Type="String">A tomato engineered to taste like Iberian cured ham and thrive in conditions aboard Talos I.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodBluePomegranate</Data>
 				</Cell>
 				<Cell>
@@ -2050,12 +1830,13 @@
 				<Cell>
 					<Data ss:Type="String">Skyking Pomegranate</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodBluePomegranateDesc</Data>
 				</Cell>
 				<Cell>
@@ -2064,12 +1845,13 @@
 				<Cell>
 					<Data ss:Type="String">A blue pomegranate engineered to thrive in conditions aboard Talos I.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodCaviar</Data>
 				</Cell>
 				<Cell>
@@ -2078,12 +1860,13 @@
 				<Cell>
 					<Data ss:Type="String">Ossetra Caviar</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodCaviarDesc</Data>
 				</Cell>
 				<Cell>
@@ -2092,12 +1875,13 @@
 				<Cell>
 					<Data ss:Type="String">A tin of fine Caspian caviar shipped from Earthside.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodJelliedEels</Data>
 				</Cell>
 				<Cell>
@@ -2106,63 +1890,55 @@
 				<Cell>
 					<Data ss:Type="String">Jellied Eels</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s91">
-				<Cell ss:StyleID="s92">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodJelliedEelsDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s93">
+				<Cell>
 					<Data ss:Type="String">A tin of jellied Siskak Eels.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points and %PSIRestored% Psi points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s93">
+				<Cell>
 					<Data ss:Type="String">A tin of jellied Siskak Eels.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points and %PSIRestored% Psi points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s91">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s63" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" ss:StyleID="s91">
-				<Cell ss:StyleID="s64" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s84" />
-				<Cell ss:StyleID="s63" />
-			</Row>
-			<Row ss:StyleID="s91">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_foodSkeksisUnagiRollz</Data>
 				</Cell>
-				<Cell ss:StyleID="s84">
+				<Cell>
 					<Data ss:Type="String">Siskak Unagi Rollz</Data>
 				</Cell>
-				<Cell ss:StyleID="s84">
+				<Cell>
 					<Data ss:Type="String">Siskak Unagi Rollz</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodSkeksisUnagiRollzDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s84">
+				<Cell>
 					<Data ss:Type="String">A box of frozen unagi rolls by TranStar Kitchens. Made with 100% Siskak Eel meat.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points and %PSIRestored% Psi points.</Data>
 				</Cell>
-				<Cell ss:StyleID="s84">
+				<Cell>
 					<Data ss:Type="String">A box of frozen unagi rolls by TranStar Kitchens. Made with 100% Siskak Eel meat.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points and %PSIRestored% Psi points.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2177,8 +1953,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodKafeKarskDesc</Data>
 				</Cell>
@@ -2191,6 +1968,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2205,8 +1983,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_foodVodkaDesc</Data>
 				</Cell>
@@ -2219,17 +1998,16 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" />
-			<Row>
-				<Cell ss:Index="3" ss:StyleID="s84" />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s86">
+				<Cell>
 					<Data ss:Type="String">Crafting ingredients</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2244,8 +2022,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientDescription</Data>
 				</Cell>
@@ -2258,8 +2037,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="162">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientExotic</Data>
 				</Cell>
@@ -2272,8 +2052,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientExoticDesc</Data>
 				</Cell>
@@ -2286,6 +2067,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2300,8 +2082,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientMineralDesc</Data>
 				</Cell>
@@ -2314,6 +2097,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2328,8 +2112,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientOrganicDesc</Data>
 				</Cell>
@@ -2342,6 +2127,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2356,8 +2142,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingIngredientSyntheticDesc</Data>
 				</Cell>
@@ -2370,8 +2157,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="171">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingScrap</Data>
 				</Cell>
@@ -2384,6 +2172,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2398,6 +2187,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2412,8 +2202,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingScrapExoticDesc</Data>
 				</Cell>
@@ -2426,6 +2217,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2440,8 +2232,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingScrapMineralDesc</Data>
 				</Cell>
@@ -2454,6 +2247,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2468,8 +2262,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingScrapOrganicDesc</Data>
 				</Cell>
@@ -2482,6 +2277,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2496,8 +2292,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_craftingScrapSyntheticDesc</Data>
 				</Cell>
@@ -2510,15 +2307,18 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="182">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Recycler Junk</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:Index="184">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_AlienOrganSmall</Data>
 				</Cell>
@@ -2531,8 +2331,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_AlienOrganSmallDesc</Data>
 				</Cell>
@@ -2545,6 +2346,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2559,6 +2361,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2573,6 +2376,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2587,8 +2391,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_BaseballGloveDesc</Data>
 				</Cell>
@@ -2601,6 +2406,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2615,8 +2421,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_BiohazardWasteDesc</Data>
 				</Cell>
@@ -2629,6 +2436,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2643,6 +2451,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2657,6 +2466,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2671,6 +2481,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2685,6 +2496,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2699,6 +2511,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2713,6 +2526,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2727,8 +2541,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_CompostDesc</Data>
 				</Cell>
@@ -2741,6 +2556,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2755,6 +2571,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2769,6 +2586,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2783,6 +2601,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2797,6 +2616,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2811,6 +2631,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2825,6 +2646,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2839,6 +2661,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2853,6 +2676,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2867,6 +2691,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2881,6 +2706,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2895,6 +2721,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2909,6 +2736,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2923,6 +2751,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2937,6 +2766,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2951,6 +2781,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2965,6 +2796,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2979,6 +2811,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -2993,6 +2826,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3007,6 +2841,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3021,6 +2856,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3035,8 +2871,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_Flowers_Adesc</Data>
 				</Cell>
@@ -3049,6 +2886,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3063,8 +2901,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_Flowers_Bdesc</Data>
 				</Cell>
@@ -3077,6 +2916,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3091,6 +2931,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3105,6 +2946,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3119,8 +2961,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_Flowers_Ddesc</Data>
 				</Cell>
@@ -3133,6 +2976,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3147,6 +2991,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3161,6 +3006,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3175,8 +3021,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_MimicTumorDesc</Data>
 				</Cell>
@@ -3189,6 +3036,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3203,8 +3051,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_PetriDishSampleDesc</Data>
 				</Cell>
@@ -3217,6 +3066,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3231,6 +3081,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3245,6 +3096,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3259,6 +3111,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3273,6 +3126,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3287,6 +3141,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3301,6 +3156,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3315,6 +3171,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3329,6 +3186,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3343,8 +3201,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_TyphonCortexDesc</Data>
 				</Cell>
@@ -3357,6 +3216,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3371,8 +3231,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_TyphonGanglionDesc</Data>
 				</Cell>
@@ -3385,6 +3246,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3399,8 +3261,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_TyphonPlasmaDesc</Data>
 				</Cell>
@@ -3413,12 +3276,13 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_UsedCigar</Data>
 				</Cell>
-				<Cell ss:StyleID="s64">
+				<Cell>
 					<Data ss:Type="String">junk_UsedCigar</Data>
 				</Cell>
 				<Cell>
@@ -3427,8 +3291,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">junk_UsedCigarDesc</Data>
 				</Cell>
@@ -3441,9 +3306,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:StyleID="s84">
-				<Cell ss:StyleID="s64">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">junk_WireSpool</Data>
 				</Cell>
 				<Cell>
@@ -3452,9 +3318,10 @@
 				<Cell>
 					<Data ss:Type="String">Frayed Wire</Data>
 				</Cell>
-				<Cell ss:StyleID="s63">
+				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3469,57 +3336,63 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="255">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Ammo</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
-				<Cell ss:StyleID="s94">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_AmmoGoo</Data>
 				</Cell>
-				<Cell ss:StyleID="s95">
+				<Cell>
 					<Data ss:Type="String">GLOO Canister</Data>
 				</Cell>
-				<Cell ss:StyleID="s95">
+				<Cell>
 					<Data ss:Type="String">GLOO Canister</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoGooDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s96">
+				<Cell>
 					<Data ss:Type="String">A canister of compressed incapacitant foam. Refills the GLOO Cannon. </Data>
 				</Cell>
-				<Cell ss:StyleID="s96">
+				<Cell>
 					<Data ss:Type="String">A canister of compressed incapacitant foam. Refills the GLOO Cannon. </Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_AmmoLaser</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Q-Beam Cells</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Q-Beam Cells</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoLaserDesc</Data>
 				</Cell>
@@ -3532,22 +3405,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_Ammoshotgunshells</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Shotgun Shells</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Shotgun Shells</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoshotgunshellsDesc</Data>
 				</Cell>
@@ -3560,6 +3435,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3574,22 +3450,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_ammotoygun</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">FlexiFoam Bolts</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">FlexiFoam Bolts</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoToyGunDesc</Data>
 				</Cell>
@@ -3602,22 +3480,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_ammoPistolBullets</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">9mm Bullets</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">9mm Bullets</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoPistolBulletsDesc</Data>
 				</Cell>
@@ -3630,22 +3510,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_ammostungun</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Disruptor Batteries</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Disruptor Batteries</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AmmoStungunDesc</Data>
 				</Cell>
@@ -3658,98 +3540,93 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="36.75">
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25" ss:StyleID="Default">
-				<Cell ss:StyleID="s97">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Weapons</Data>
 				</Cell>
-				<Cell ss:StyleID="s98" />
-				<Cell ss:StyleID="s98" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weaponshotgun</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Shotgun</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Shotgun</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_weaponshotgunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Throne S4 Tactical Pump Shotgun is designed to be used by security forces for maximum efficacy in close quarters.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified: %basedamage%)</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Throne S4 Tactical Pump Shotgun is designed to be used by security forces for maximum efficacy in close quarters.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified: %basedamage%)</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weapongoogun</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">GLOO Cannon</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">GLOO Cannon</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
-				<Cell ss:StyleID="s85">
-					<Data ss:Type="String">i_weapongoogunDesc</Data>
-				</Cell>
-				<Cell ss:StyleID="s99">
-					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
-				</Cell>
-				<Cell ss:StyleID="s99">
-					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
-				</Cell>
-				<Cell>
-					<Data ss:Type="String">LOCKED</Data>
-				</Cell>
-				<Cell>
-					<Data ss:Type="String" />
-				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
+					<Data ss:Type="String">i_weapongoogunDesc</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">LOCKED</Data>
+				</Cell>
+				<Cell />
+			</Row>
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_weaponinstalaser</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Q-Beam</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Q-Beam</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponinstalaserDesc</Data>
 				</Cell>
@@ -3762,36 +3639,39 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weaponwrench</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Wrench</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Wrench</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="36">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponwrenchDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s100">
+				<Cell>
 					<Data ss:Type="String">Hephaestus "Heffy" Twist and Loop Handle Industrial Wrench. A flexible and indispensable tool for various engineering jobs. Also an effective improvised bludgeon. &lt;br&gt;&lt;br&gt;Damage: %quickhitfinal%-%chargedhitfinal% (Unmodified: %quickhitbase%-%chargedhitbase%)</Data>
 				</Cell>
-				<Cell ss:StyleID="s100">
+				<Cell>
 					<Data ss:Type="String">Hephaestus "Heffy" Twist and Loop Handle Industrial Wrench. A flexible and indispensable tool for various engineering jobs. Also an effective improvised bludgeon. &lt;br&gt;&lt;br&gt;Damage: %quickhitfinal%-%chargedhitfinal% (Unmodified: %quickhitbase%-%chargedhitbase%)</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_wrenchFocusDesc</Data>
 				</Cell>
@@ -3804,22 +3684,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weaponstungun</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Disruptor Stun Gun</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Disruptor Stun Gun</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="105.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponStungunDesc</Data>
 				</Cell>
@@ -3832,22 +3714,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weapontoygun</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Huntress Boltcaster</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Huntress Boltcaster</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponToyGunDesc</Data>
 				</Cell>
@@ -3860,8 +3744,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_toygunFocusDesc</Data>
 				</Cell>
@@ -3874,6 +3759,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3885,6 +3771,8 @@
 				<Cell>
 					<Data ss:Type="String">Dual Wrenches</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3896,34 +3784,38 @@
 				<Cell>
 					<Data ss:Type="String">A pair of wrenches.</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_weaponpistol</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Silenced Pistol</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Silenced Pistol</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponpistoldesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s101">
+				<Cell>
 					<Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an integrated noise suppressor.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified: %basedamage%)&lt;br&gt;&lt;br&gt;</Data>
 				</Cell>
-				<Cell ss:StyleID="s101">
+				<Cell>
 					<Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an integrated noise suppressor.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified: %basedamage%)&lt;br&gt;&lt;br&gt;</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3938,8 +3830,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="51">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_pistol_goldendesc</Data>
 				</Cell>
@@ -3952,11 +3845,16 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="293" ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s89">
-				<Cell ss:StyleID="s90">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Charges</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -3971,8 +3869,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponrecyclegrenadeDesc</Data>
 				</Cell>
@@ -3985,8 +3884,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_recyclerFocusDesc</Data>
 				</Cell>
@@ -3999,6 +3899,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4013,8 +3914,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponEMPgrenadeDesc</Data>
 				</Cell>
@@ -4027,8 +3929,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_empFocusDesc</Data>
 				</Cell>
@@ -4041,6 +3944,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4055,8 +3959,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponnullwavetransmitterdesc</Data>
 				</Cell>
@@ -4069,8 +3974,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_nullwaveFocusDesc</Data>
 				</Cell>
@@ -4083,6 +3989,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4097,8 +4004,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponluregrenadeDesc</Data>
 				</Cell>
@@ -4111,8 +4019,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_lureFocusDesc</Data>
 				</Cell>
@@ -4125,8 +4034,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponpreordershotgun</Data>
 				</Cell>
@@ -4139,8 +4049,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="33.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_weaponpreordershotgundesc</Data>
 				</Cell>
@@ -4153,12 +4064,16 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="11.25" />
-			<Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s89">
-				<Cell ss:StyleID="s90">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Broken Weapons</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4173,8 +4088,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_brokengoogunDesc</Data>
 				</Cell>
@@ -4187,6 +4103,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4201,8 +4118,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_brokenlaserDesc</Data>
 				</Cell>
@@ -4215,6 +4133,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4229,8 +4148,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_brokenshotgunDesc</Data>
 				</Cell>
@@ -4243,6 +4163,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4257,8 +4178,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_brokenpistolDesc</Data>
 				</Cell>
@@ -4271,6 +4193,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4285,8 +4208,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_brokenwrenchDesc</Data>
 				</Cell>
@@ -4299,6 +4223,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4313,6 +4238,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4327,15 +4253,18 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="323">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Fabrication Plans</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:Index="326" ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanweaponpreordershotgun</Data>
 				</Cell>
@@ -4348,8 +4277,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="29.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanweaponpreordershotgundesc</Data>
 				</Cell>
@@ -4362,8 +4292,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanammoGoogun</Data>
 				</Cell>
@@ -4376,20 +4307,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanammogoogunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s103">
+				<Cell>
 					<Data ss:Type="String">A canister of compressed incapacitant foam. Refills the GLOO Cannon. </Data>
 				</Cell>
-				<Cell ss:StyleID="s103">
+				<Cell>
 					<Data ss:Type="String">A canister of compressed incapacitant foam. Refills the GLOO Cannon. </Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4404,20 +4337,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanammolaserDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A cluster of energy cells used to power the prototype Q-Beam weapon.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A cluster of energy cells used to power the prototype Q-Beam weapon.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4432,20 +4367,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanammostungunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Battery packs for the Disruptor stun gun.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Battery packs for the Disruptor stun gun.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4460,20 +4397,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanammoshotgunshellsDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A case of high-velocity 12-gauge shotgun shells.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A case of high-velocity 12-gauge shotgun shells.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4488,22 +4427,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanammoToyGunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">FlexiFoam bolts for the Huntress Boltcaster.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">FlexiFoam bolts for the Huntress Boltcaster.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanammoPistol</Data>
 				</Cell>
@@ -4516,22 +4457,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanammoPistolDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A box of 9mm bullets.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A box of 9mm bullets.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="341" ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponStungun</Data>
 				</Cell>
@@ -4544,22 +4487,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="30">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponStungunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">The Disruptor immobilizes security threats by delivering a short range electric current which is able to knock out human targets and temporarily disrupt electronic devices.</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">The Disruptor immobilizes security threats by delivering a short range electric current which is able to knock out human targets and temporarily disrupt electronic devices.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponToyGun</Data>
 				</Cell>
@@ -4572,20 +4517,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponToyGunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Yea, verily, any who wouldst challenge thee shall be slain in hasty fashion, when the Huntress lets fly her FlexiFoam bolts with truest aim! (No fabricating during work shifts.)</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Yea, verily, any who wouldst challenge thee shall be slain in hasty fashion, when the Huntress lets fly her FlexiFoam bolts with truest aim! (No fabricating during work shifts.)</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4600,20 +4547,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponWrenchDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Hephaestus "Heffy" Twist and Loop Handle Industrial Wrench. A flexible and indispensable tool for various engineering jobs. Also an effective improvised bludgeon.</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">Hephaestus "Heffy" Twist and Loop Handle Industrial Wrench. A flexible and indispensable tool for various engineering jobs. Also an effective improvised bludgeon.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4628,20 +4577,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponInstalaserDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">The TS-QPB-S11 Quasiparticle Beam is a prototype directed energy weapon. A stream of volatile quasiparticles causes rapidly cascading excitations in energetic systems of matter to the point of rupture.</Data>
 				</Cell>
-				<Cell ss:StyleID="s99">
+				<Cell>
 					<Data ss:Type="String">The TS-QPB-S11 Quasiparticle Beam is a prototype directed energy weapon. A stream of volatile quasiparticles causes rapidly cascading excitations in energetic systems of matter to the point of rupture.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4656,22 +4607,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponGoogunDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s105">
+				<Cell>
 					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
 				</Cell>
-				<Cell ss:StyleID="s105">
+				<Cell>
 					<Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponNullwave</Data>
 				</Cell>
@@ -4684,20 +4637,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponNullwaveDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental device developed in the Psychotronics lab which discharges a Psi-nullifying pulse when detonated. Can be thrown or attached to surfaces.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental device developed in the Psychotronics lab which discharges a Psi-nullifying pulse when detonated. Can be thrown or attached to surfaces.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4712,34 +4667,37 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponPistolDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an integrated noise suppressor.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an integrated noise suppressor.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponrecyclegrenadeDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A dangerous prototype device that attracts all objects within a short radius and recycles them into material fragments. Can be thrown or attached to surfaces.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A dangerous prototype device that attracts all objects within a short radius and recycles them into material fragments. Can be thrown or attached to surfaces.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4754,6 +4712,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4768,8 +4727,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="13.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponShotgunDesc</Data>
 				</Cell>
@@ -4782,6 +4742,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4796,22 +4757,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponEMPGrenadesDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Releases an electromagnetic pulse when detonated. Can be thrown or attached to surfaces.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Releases an electromagnetic pulse when detonated. Can be thrown or attached to surfaces.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponLureGrenades</Data>
 				</Cell>
@@ -4824,25 +4787,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanWeaponLureGrenadesDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental device developed in the Psychotronics lab which releases a psycholuminescent 'nightlight' that attracts Typhon organisms. Can be thrown or attached to surfaces.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental device developed in the Psychotronics lab which releases a psycholuminescent 'nightlight' that attracts Typhon organisms. Can be thrown or attached to surfaces.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row>
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4857,22 +4817,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiRadDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A container of pills that remove accumulated radiation and radiation sickness.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A container of pills that remove accumulated radiation and radiation sickness.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiCripple</Data>
 				</Cell>
@@ -4885,9 +4847,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiCrippleDesc</Data>
 				</Cell>
 				<Cell>
@@ -4899,6 +4862,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4913,20 +4877,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiConcussionDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Pills that clear your mind and remove the effects of concussion trauma.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Pills that clear your mind and remove the effects of concussion trauma.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4941,20 +4907,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiBurnDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A web of synthetic skin used to heal burn trauma.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A web of synthetic skin used to heal burn trauma.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4969,20 +4937,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiBleedDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">A gel that closes wounds and stops hemorrhage trauma.</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">A gel that closes wounds and stops hemorrhage trauma.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -4997,34 +4967,37 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaRepairBoostDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Mech-techs.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Mech-techs.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_FabplanpharmaStrengthEnhancer</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brawnies Fabrication Plan</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Brawnies Fabrication Plan</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5039,6 +5012,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5053,20 +5027,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntihazardDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Skinsulators.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Skinsulators.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5081,20 +5057,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanpharmaAntiPhysicalDamageDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Durashells.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A fabrication license for Durashells.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5109,6 +5087,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5123,6 +5102,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5137,6 +5117,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5151,13 +5132,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
 				<Cell>
 					<Data ss:Type="String">i_fabplanBigNullwaveTransmitter</Data>
 				</Cell>
@@ -5170,48 +5147,52 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanBigNullwaveTransmitterDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Developed by Alex and Morgan Yu to hijack the neural signal being transmitted by the Typhon Coral.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Developed by Alex and Morgan Yu to hijack the neural signal being transmitted by the Typhon Coral.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanfertilizer</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Dr. Howard's Growth Formula</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Dr. Howard's Growth Formula</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanFertilizerDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental growth formula developed by Dr. Julian Howard intended to increase yield and efficacy of TranStar's engineered fruit.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">An experimental growth formula developed by Dr. Julian Howard intended to increase yield and efficacy of TranStar's engineered fruit.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5226,20 +5207,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanhypopsiDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A psychostimulant that increases the psychic potential of an individual when injected.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A psychostimulant that increases the psychic potential of an individual when injected.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5254,48 +5237,52 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanmedkitDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">An auto-diagnosing first aid kit to recover from minor injuries.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">An auto-diagnosing first aid kit to recover from minor injuries.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplanmorganstationkey</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Morgan's Arming Key Fabrication Plan</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Morgan's Arming Key Fabrication Plan</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanmorganstationkeyDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">Morgan Yu's Arming Key. Used to prime the Talos I Superforge reactor for self-destruct. Must be used in conjunction with Alex Yu's Arming Key.</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">Morgan Yu's Arming Key. Used to prime the Talos I Superforge reactor for self-destruct. Must be used in conjunction with Alex Yu's Arming Key.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5310,20 +5297,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanneuromodDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A device invented by TranStar that modifies a subject's brain in order to impart new skills, knowledge, and paranormal abilities. </Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A device invented by TranStar that modifies a subject's brain in order to impart new skills, knowledge, and paranormal abilities. </Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5338,22 +5327,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_fabplano2bottleDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A portable tank of oxygen used to resupply TranStar uniforms.</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">A portable tank of oxygen used to resupply TranStar uniforms.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanO2fuse</Data>
 				</Cell>
@@ -5366,20 +5357,22 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanoxygenfuseDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Component for controling air mixture and delivery throughout Talos I.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">Component for controling air mixture and delivery throughout Talos I.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5394,36 +5387,39 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
-					<Data ss:Type="String">i_fabplansuitpatchkitDesc</Data>
-				</Cell>
-				<Cell ss:StyleID="s106">
-					<Data ss:Type="String">A kit that repairs damage to suit integrity.</Data>
-				</Cell>
-				<Cell ss:StyleID="s106">
-					<Data ss:Type="String">A kit that repairs damage to suit integrity.</Data>
-				</Cell>
-				<Cell>
-					<Data ss:Type="String">LOCKED</Data>
-				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
+					<Data ss:Type="String">i_fabplansuitpatchkitDesc</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">A kit that repairs damage to suit integrity.</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">A kit that repairs damage to suit integrity.</Data>
+				</Cell>
+				<Cell>
+					<Data ss:Type="String">LOCKED</Data>
+				</Cell>
+				<Cell />
+			</Row>
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanturret</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Portable Turret Fabrication Plan</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Portable Turret Fabrication Plan</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanturretDesc</Data>
 				</Cell>
@@ -5436,6 +5432,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5450,36 +5447,39 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanweaponkitDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A programmable weapon modification device. Requires Gunsmith or Lab Tech ability for advanced upgrades.</Data>
 				</Cell>
-				<Cell ss:StyleID="s104">
+				<Cell>
 					<Data ss:Type="String">A programmable weapon modification device. Requires Gunsmith or Lab Tech ability for advanced upgrades.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanzerogDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">A propulsion module for microgravity maneuvering which can be attached to your TranStar uniform. Also assists with jumps in normal gravity.</Data>
 				</Cell>
-				<Cell ss:StyleID="s106">
+				<Cell>
 					<Data ss:Type="String">A propulsion module for microgravity maneuvering which can be attached to your TranStar uniform. Also assists with jumps in normal gravity.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanZerog</Data>
 				</Cell>
@@ -5492,22 +5492,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanCoralScanMod</Data>
 				</Cell>
-				<Cell ss:StyleID="s101">
+				<Cell>
 					<Data ss:Type="String">[O] Coral Detector 64Si Fabrication Plan</Data>
 				</Cell>
-				<Cell ss:StyleID="s101">
+				<Cell>
 					<Data ss:Type="String">[O] Coral Detector 64Si Fabrication Plan</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWrenchCritMod</Data>
 				</Cell>
@@ -5520,8 +5522,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWaterPressureRegulatorDesc</Data>
 				</Cell>
@@ -5534,8 +5537,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_fabplanWaterPressureRegulator</Data>
 				</Cell>
@@ -5548,9 +5552,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanTreasureHuntMod_Good</Data>
 				</Cell>
 				<Cell>
@@ -5562,12 +5567,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-				<Cell>
-					<Data ss:Type="String" />
-				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanTreasureHuntMod_Bad</Data>
 				</Cell>
 				<Cell>
@@ -5579,12 +5582,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-				<Cell>
-					<Data ss:Type="String" />
-				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanTreasureHuntMod_GoodDesc</Data>
 				</Cell>
 				<Cell>
@@ -5596,12 +5597,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-				<Cell>
-					<Data ss:Type="String" />
-				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanTreasureHuntMod_BadDesc</Data>
 				</Cell>
 				<Cell>
@@ -5613,12 +5612,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
-				<Cell>
-					<Data ss:Type="String" />
-				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanalexstationkey</Data>
 				</Cell>
 				<Cell>
@@ -5630,9 +5627,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">i_fabplanalexstationkeyDesc</Data>
 				</Cell>
 				<Cell>
@@ -5644,16 +5642,18 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5" />
-			<Row ss:Index="423">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Interactive Objects</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:Index="425">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_container_cabinet</Data>
 				</Cell>
@@ -5666,6 +5666,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5680,6 +5681,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5694,6 +5696,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5708,6 +5711,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5722,6 +5726,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5736,6 +5741,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5750,6 +5756,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5764,6 +5771,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5778,6 +5786,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5792,6 +5801,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5806,6 +5816,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5820,6 +5831,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5834,6 +5846,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5848,6 +5861,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5862,6 +5876,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5876,6 +5891,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5890,6 +5906,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5904,6 +5921,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5918,6 +5936,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5932,8 +5951,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="446">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_defaultbook</Data>
 				</Cell>
@@ -5946,8 +5966,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="448">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_PlantFlowerA</Data>
 				</Cell>
@@ -5960,6 +5981,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5974,6 +5996,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -5988,6 +6011,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6002,6 +6026,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6016,8 +6041,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="454">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_PressurizedTank</Data>
 				</Cell>
@@ -6030,6 +6056,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6044,18 +6071,25 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="457">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Chipsets</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s108">
-				<Cell ss:StyleID="s88">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Suit Mods</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6070,8 +6104,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetBacklashBuffDesc</Data>
 				</Cell>
@@ -6084,8 +6119,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetEMPShielding</Data>
 				</Cell>
@@ -6098,8 +6134,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetEMPShieldingDesc</Data>
 				</Cell>
@@ -6112,6 +6149,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6126,8 +6164,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetDecreaseTraumaChanceDesc</Data>
 				</Cell>
@@ -6140,6 +6179,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6154,8 +6194,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFallDamagesNPCsDesc</Data>
 				</Cell>
@@ -6168,6 +6209,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6182,8 +6224,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFlashlightDurationDesc</Data>
 				</Cell>
@@ -6196,6 +6239,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6210,8 +6254,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetHeavyMachineryDesc</Data>
 				</Cell>
@@ -6224,6 +6269,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6238,8 +6284,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetimprovedstaminaDesc</Data>
 				</Cell>
@@ -6252,6 +6299,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6266,8 +6314,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetLaserShieldDesc</Data>
 				</Cell>
@@ -6280,6 +6329,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6294,8 +6344,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetLastChanceDesc</Data>
 				</Cell>
@@ -6308,6 +6359,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6322,8 +6374,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetLeverageAssistDesc</Data>
 				</Cell>
@@ -6336,6 +6389,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6347,8 +6401,10 @@
 				<Cell>
 					<Data ss:Type="String">THIS IS CUT</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetLowHealthBenefitDesc</Data>
 				</Cell>
@@ -6358,6 +6414,8 @@
 				<Cell>
 					<Data ss:Type="String">THIS IS CUT</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6372,8 +6430,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetNeverDrunkDesc</Data>
 				</Cell>
@@ -6386,6 +6445,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6400,8 +6460,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetOnRobotDeathDesc</Data>
 				</Cell>
@@ -6414,8 +6475,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPhysicalDamageShield</Data>
 				</Cell>
@@ -6428,8 +6490,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPhysicalDamageShieldDesc</Data>
 				</Cell>
@@ -6442,6 +6505,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6456,8 +6520,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPlayerNotRecyclableDesc</Data>
 				</Cell>
@@ -6470,6 +6535,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6481,8 +6547,10 @@
 				<Cell>
 					<Data ss:Type="String">IM A BUG DELETE ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPropulsionDurationDesc</Data>
 				</Cell>
@@ -6492,6 +6560,8 @@
 				<Cell>
 					<Data ss:Type="String">IM A BUG DELETE ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6503,8 +6573,10 @@
 				<Cell>
 					<Data ss:Type="String">IM A BUG DELETE ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPropulsionRechargeDesc</Data>
 				</Cell>
@@ -6514,6 +6586,8 @@
 				<Cell>
 					<Data ss:Type="String">IM A BUG DELETE ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6528,8 +6602,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPropulsionUpgrade_IDesc</Data>
 				</Cell>
@@ -6542,6 +6617,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6556,8 +6632,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPropulsionUpgrade_IIDesc</Data>
 				</Cell>
@@ -6570,6 +6647,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6584,8 +6662,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReduceSpaceCrashDamageDesc</Data>
 				</Cell>
@@ -6598,6 +6677,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6612,8 +6692,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetResistElectricDesc</Data>
 				</Cell>
@@ -6626,6 +6707,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6640,8 +6722,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetResistEtherDesc</Data>
 				</Cell>
@@ -6654,6 +6737,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6668,8 +6752,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetResistFireDesc</Data>
 				</Cell>
@@ -6682,6 +6767,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6696,8 +6782,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetResistRadDesc</Data>
 				</Cell>
@@ -6710,6 +6797,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6724,8 +6812,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSlidingReduceDamageDesc</Data>
 				</Cell>
@@ -6738,6 +6827,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6752,8 +6842,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSneakyStepDesc</Data>
 				</Cell>
@@ -6766,6 +6857,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6780,8 +6872,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSneakAttackRestoreHealthDesc</Data>
 				</Cell>
@@ -6794,8 +6887,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="13.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetStatuesque</Data>
 				</Cell>
@@ -6805,8 +6899,10 @@
 				<Cell>
 					<Data ss:Type="String">THIS IS CUT</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetStatuesqueDesc</Data>
 				</Cell>
@@ -6816,6 +6912,8 @@
 				<Cell>
 					<Data ss:Type="String">THIS IS CUT</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6830,8 +6928,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSuitIntegrityBuffDesc</Data>
 				</Cell>
@@ -6844,22 +6943,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetWrenchKnockback</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">Impact Amp S-390</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">Impact Amp S-390</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetWrenchKnockbackDesc</Data>
 				</Cell>
@@ -6872,8 +6973,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="26.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRecyclerLootBonus</Data>
 				</Cell>
@@ -6886,8 +6988,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRecyclerLootLimiter</Data>
 				</Cell>
@@ -6900,8 +7003,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRecyclerLootBonusDesc</Data>
 				</Cell>
@@ -6914,8 +7018,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRecyclerLootLimiterDesc</Data>
 				</Cell>
@@ -6928,11 +7033,16 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
-				<Cell ss:StyleID="s88">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Scope Mods</Data>
 				</Cell>
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -6947,8 +7057,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetBuffControlPowersDesc</Data>
 				</Cell>
@@ -6961,8 +7072,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetBuffDamagePowers</Data>
 				</Cell>
@@ -6975,8 +7087,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetBuffDamagePowersDesc</Data>
 				</Cell>
@@ -6989,8 +7102,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetCanScanCoral</Data>
 				</Cell>
@@ -7003,8 +7117,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetCanScanCoralDesc</Data>
 				</Cell>
@@ -7017,6 +7132,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7031,8 +7147,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="16.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetCritChancePistolDesc</Data>
 				</Cell>
@@ -7045,6 +7162,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7059,8 +7177,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="18">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetCritChanceShotgunDesc</Data>
 				</Cell>
@@ -7073,6 +7192,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7087,8 +7207,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetCritChanceWrenchDesc</Data>
 				</Cell>
@@ -7101,6 +7222,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7115,8 +7237,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetDecreaseScanningTimeDesc</Data>
 				</Cell>
@@ -7129,6 +7252,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7143,8 +7267,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetDetectEliteMimicsDesc</Data>
 				</Cell>
@@ -7157,6 +7282,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7171,6 +7297,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7185,34 +7312,37 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Chipsetelectrostaticbuff</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">[O] Electrostatic Amp +6qw5</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">[O] Electrostatic Amp +6qw5</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetelectrostaticbuffDesc</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">Boosts the amount of damage done by Electrostatic Burst.</Data>
 				</Cell>
-				<Cell ss:StyleID="s109">
+				<Cell>
 					<Data ss:Type="String">Boosts the amount of damage done by Electrostatic Burst.</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7227,8 +7357,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetEnhancedPSIDesc</Data>
 				</Cell>
@@ -7241,8 +7372,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFearBomb</Data>
 				</Cell>
@@ -7255,8 +7387,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFearBombDesc</Data>
 				</Cell>
@@ -7269,8 +7402,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFearResistance</Data>
 				</Cell>
@@ -7283,8 +7417,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFearResistanceDesc</Data>
 				</Cell>
@@ -7297,8 +7432,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFreePsiCast</Data>
 				</Cell>
@@ -7311,8 +7447,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetFreePsiCastDesc</Data>
 				</Cell>
@@ -7325,6 +7462,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7339,8 +7477,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetHealthRegenDesc</Data>
 				</Cell>
@@ -7353,6 +7492,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7367,8 +7507,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetIncreaseScanningRangeDesc</Data>
 				</Cell>
@@ -7381,8 +7522,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Chipsetkineticblastbuff</Data>
 				</Cell>
@@ -7395,8 +7537,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="13.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetkineticblastbuffDesc</Data>
 				</Cell>
@@ -7409,6 +7552,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7423,8 +7567,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">I_ChipsetMarkedEnemiesDamageDesc</Data>
 				</Cell>
@@ -7437,6 +7582,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7451,8 +7597,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">I_ChipsetMechTechsDesc</Data>
 				</Cell>
@@ -7465,6 +7612,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7479,8 +7627,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetNullwaveShieldDesc</Data>
 				</Cell>
@@ -7493,8 +7642,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Chipsetpsychoshockbuff</Data>
 				</Cell>
@@ -7507,8 +7657,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15.75">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetpsychoshockbuffDesc</Data>
 				</Cell>
@@ -7521,6 +7672,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7535,8 +7687,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="17.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPowersCooldownDesc</Data>
 				</Cell>
@@ -7549,8 +7702,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPSIAttackReflect</Data>
 				</Cell>
@@ -7563,8 +7717,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPSIAttackReflectDesc</Data>
 				</Cell>
@@ -7577,8 +7732,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPsiRegen</Data>
 				</Cell>
@@ -7591,8 +7747,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPsiRegenDesc</Data>
 				</Cell>
@@ -7605,8 +7762,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPsychoshockResist</Data>
 				</Cell>
@@ -7619,8 +7777,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetPsychoshockResistDesc</Data>
 				</Cell>
@@ -7633,8 +7792,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostEnergy</Data>
 				</Cell>
@@ -7647,8 +7807,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostEnergyDesc</Data>
 				</Cell>
@@ -7661,8 +7822,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostMorph</Data>
 				</Cell>
@@ -7675,8 +7837,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostMorphDesc</Data>
 				</Cell>
@@ -7689,8 +7852,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostTelepathic</Data>
 				</Cell>
@@ -7703,8 +7867,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetReducePsiCostTelepathicDesc</Data>
 				</Cell>
@@ -7717,8 +7882,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRegenPsiInCoral</Data>
 				</Cell>
@@ -7731,8 +7897,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetRegenPsiInCoralDesc</Data>
 				</Cell>
@@ -7745,8 +7912,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSneakAttackRestoresPSI</Data>
 				</Cell>
@@ -7759,8 +7927,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSneakAttackRestoresPSIDesc</Data>
 				</Cell>
@@ -7773,8 +7942,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSpendHealthAsPSI</Data>
 				</Cell>
@@ -7787,8 +7957,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetSpendHealthAsPSIDesc</Data>
 				</Cell>
@@ -7801,8 +7972,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="14.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Chipsetthermalblastbuff</Data>
 				</Cell>
@@ -7815,8 +7987,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_ChipsetthermalblastbuffDesc</Data>
 				</Cell>
@@ -7829,14 +8002,16 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15" ss:Span="3" />
-			<Row ss:Index="592">
-				<Cell ss:StyleID="s86">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">Mission Items</Data>
 				</Cell>
-				<Cell ss:StyleID="s87" />
-				<Cell ss:StyleID="s87" />
+				<Cell />
+				<Cell />
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7851,8 +8026,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_AirCircCompdesc</Data>
 				</Cell>
@@ -7865,6 +8041,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7879,8 +8056,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_LeitnerConnectdesc</Data>
 				</Cell>
@@ -7893,6 +8071,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7907,8 +8086,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Thermosdesc</Data>
 				</Cell>
@@ -7921,22 +8101,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_bignullwavetransmitter</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Prototype Nullwave Transmitter</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Prototype Nullwave Transmitter</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_BigNullwaveTransmitterdesc</Data>
 				</Cell>
@@ -7949,6 +8131,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7963,6 +8146,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7977,6 +8161,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -7991,8 +8176,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_CookingAwarddesc</Data>
 				</Cell>
@@ -8005,6 +8191,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8019,6 +8206,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8033,6 +8221,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8047,8 +8236,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_CommunicationDevicedesc</Data>
 				</Cell>
@@ -8061,6 +8251,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8075,8 +8266,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_MikhailaFathersRingdesc</Data>
 				</Cell>
@@ -8089,6 +8281,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8103,8 +8296,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_MikhailasThumbDrivedesc</Data>
 				</Cell>
@@ -8117,6 +8311,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8131,8 +8326,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_MMGrowthFormuladesc</Data>
 				</Cell>
@@ -8145,6 +8341,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8159,8 +8356,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_Superfruitdesc</Data>
 				</Cell>
@@ -8173,22 +8371,24 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_oxygenfuse</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Air Mixture Regulator</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Air Mixture Regulator</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_OxygenFusedesc</Data>
 				</Cell>
@@ -8201,6 +8401,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8215,8 +8416,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_QuantumTransmogrifierdesc</Data>
 				</Cell>
@@ -8229,6 +8431,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8240,6 +8443,8 @@
 				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8251,6 +8456,8 @@
 				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8262,6 +8469,8 @@
 				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8273,20 +8482,23 @@
 				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_gutsemcoil</Data>
 				</Cell>
-				<Cell ss:StyleID="s110">
+				<Cell>
 					<Data ss:Type="String">Emission Dampening Coil</Data>
 				</Cell>
-				<Cell ss:StyleID="s110">
+				<Cell>
 					<Data ss:Type="String">Emission Dampening Coil</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8301,8 +8513,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_MikhailasMedicinedesc</Data>
 				</Cell>
@@ -8315,6 +8528,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8329,8 +8543,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_SelfdestructKeyAlexdesc</Data>
 				</Cell>
@@ -8343,9 +8558,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_morganstationkey</Data>
 				</Cell>
 				<Cell>
@@ -8357,8 +8573,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_SelfdestructKeyMorgan</Data>
 				</Cell>
@@ -8371,8 +8588,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_SelfdestructKeyMorgandesc</Data>
 				</Cell>
@@ -8385,6 +8603,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8399,8 +8618,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="38.25">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_WaterPressureRegulatordesc</Data>
 				</Cell>
@@ -8413,6 +8633,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8427,8 +8648,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_WeddingRingdesc</Data>
 				</Cell>
@@ -8441,6 +8663,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8455,8 +8678,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_YellowTulipsdesc</Data>
 				</Cell>
@@ -8469,66 +8693,63 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="640">
-				<Cell ss:StyleID="s85">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">loc_15373294129887565902</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">loc_15373294129887565903</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">DELETE ME BUG ME</Data>
 				</Cell>
+				<Cell />
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
-			</Row>
-			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_Photo</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Photo</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">Photo</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
-				<Cell ss:StyleID="s85" />
-				<Cell ss:StyleID="Default" />
-				<Cell ss:StyleID="Default" />
-			</Row>
-			<Row>
-				<Cell ss:StyleID="s85">
+				<Cell>
 					<Data ss:Type="String">i_transcribebroken</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">TranScribe (Broken)</Data>
 				</Cell>
-				<Cell ss:StyleID="Default">
+				<Cell>
 					<Data ss:Type="String">TranScribe (Broken)</Data>
 				</Cell>
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8543,6 +8764,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8557,9 +8779,10 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="15">
-				<Cell ss:StyleID="s110">
+			<Row>
+				<Cell>
 					<Data ss:Type="String">ui_FullAccessCard</Data>
 				</Cell>
 				<Cell>
@@ -8571,6 +8794,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8585,6 +8809,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8599,6 +8824,7 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 			<Row>
 				<Cell>
@@ -8613,8 +8839,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_switch</Data>
 				</Cell>
@@ -8627,8 +8854,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:AutoFitHeight="0" ss:Height="25.5">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">i_alexstationkey</Data>
 				</Cell>
@@ -8641,8 +8869,9 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
-			<Row ss:Index="655">
+			<Row>
 				<Cell>
 					<Data ss:Type="String">ui_Colon</Data>
 				</Cell>
@@ -8655,34 +8884,8 @@
 				<Cell>
 					<Data ss:Type="String">LOCKED</Data>
 				</Cell>
+				<Cell />
 			</Row>
 		</Table>
-		<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-			<PageSetup>
-				<Layout x:Orientation="Landscape" />
-				<Header x:Margin="0.51181102362204722" x:Data="&amp;LTime restriction sample script" />
-				<Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P" />
-				<PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0" x:Top="0.98425196850393704" />
-			</PageSetup>
-			<Print>
-				<ValidPrinterInfo />
-				<PaperSizeIndex>9</PaperSizeIndex>
-				<Scale>70</Scale>
-				<HorizontalResolution>600</HorizontalResolution>
-				<VerticalResolution>600</VerticalResolution>
-			</Print>
-			<Zoom>145</Zoom>
-			<PageBreakZoom>60</PageBreakZoom>
-			<Selected />
-			<Panes>
-				<Pane>
-					<Number>3</Number>
-					<ActiveRow>10</ActiveRow>
-					<ActiveCol>3</ActiveCol>
-				</Pane>
-			</Panes>
-			<ProtectObjects>False</ProtectObjects>
-			<ProtectScenarios>False</ProtectScenarios>
-		</WorksheetOptions>
 	</Worksheet>
 </Workbook>
