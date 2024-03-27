@@ -15,7 +15,6 @@ public:
     //! @returns Whether the nodes are identical.
     //! @{
     static bool CheckNodesEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs);
-    static bool CheckNodesEqual(const pugi::xml_document& lhs, const pugi::xml_document& rhs) { return CheckNodesEqual(lhs.first_child(), rhs.first_child()); }
     //! @}
 
 private:

@@ -824,11 +824,12 @@ TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
     pugi::xml_document docBase = LoadOneOf(testDir / "02-Base.xml", testDir / "01-Original.xml", options);
     pugi::xml_document docMod = XmlTestUtils::LoadDocument(testDir / "03-Mod.xml", options);
     pugi::xml_document docExpected = XmlTestUtils::LoadDocument(testDir / "04-Expected.xml", options);
-    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml", options);
+    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml");
 
     MergingPolicy policy(docMergingPolicy.first_child(), fs::path());
 
     XMLMerger2::MergeXMLDocument(docBase, docMod, docOriginal, policy);
+    // docBase.save_file(fmt::format("D:/test_{}.xml", testName).c_str());
 
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(docExpected, docBase));
 }
@@ -838,6 +839,8 @@ const auto TEST_FILES = testing::Values<std::string>(
     "CopySibling",
     "NodeNotInBaseDocument",
     "Localization",
+    "LocalizationBasic",
+    "LocalizationIndex",
     "LocalizationTouchUp",
     "MissingMatchAttribute"
 );
