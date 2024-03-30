@@ -545,7 +545,12 @@ bool ChairMerger::CheckLevelPacksChanged()
             fs::path existingFile = m_LevelFilesPath / levelPack.first;
 
             if (!fs::exists(existingFile))
+            {
+                AddChangedLevelPack(levelPack.first);
+                m_pLog->Log(severityLevel::trace, "ChairMerger: Level pack %s doesn't exist. Repacking.",
+                    levelPack.first.string());
                 return;
+            }
 
             SHA256::Digest checksum;
 
@@ -587,7 +592,12 @@ bool ChairMerger::CheckLocalizationPacksChanged()
         auto existingFile = m_LocalizationFilesPath / localizationPack.first;
 
         if (!fs::exists(existingFile))
+        {
+            AddChangedLocalizationPack(localizationPack.first);
+            m_pLog->Log(severityLevel::trace, "ChairMerger: Localization pack %s doesn't exist. Repacking.",
+                localizationPack.first.string());
             continue;
+        }
 
         SHA256::Digest checksum;
         if (!HashUtils::HashUncompressedFile(existingFile, checksum))
