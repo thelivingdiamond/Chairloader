@@ -6,6 +6,7 @@
 constexpr const wchar_t* WHIPLASH_PATHS[] = {
     L"Whiplash\\Binaries\\Danielle\\x64\\Release\\PreyDll.dll",
     L"Whiplash\\Binaries\\Danielle\\x64-Epic\\Release\\PreyDll.dll",
+    L"Whiplash\\Binaries\\Danielle\\Gaming.Desktop.x64\\Release\\PreyDll.dll",
 };
 
 ChairloaderLoader g_Loader;
