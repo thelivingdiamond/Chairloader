@@ -1,6 +1,7 @@
 #include <detours/detours.h>
 #include <mem.h>
 #include <Chairloader/SemanticVersion.h>
+#include <Prey/CryCore/Platform/WindowsUtils.h>
 #include <Prey/CrySystem/System.h>
 #include <Prey/CrySystem/File/ICryPak.h>
 #include <Prey/CrySystem/CryPak.h>
@@ -270,33 +271,6 @@ bool CCryPak_OpenPackCommon_Hook(CCryPak* const _this, const char* szBindRoot, c
 	return g_CCryPak_OpenPackCommon_Hook.InvokeOrig(_this, szBindRoot, szFullPath, nPakFlags, pData);
 }
 
-// Returns the last Win32 error, in string format. Returns an empty string if there is no error.
-// https://stackoverflow.com/questions/1387064/how-to-get-the-error-message-from-the-error-code-returned-by-getlasterror
-// I hate WinAPI
-std::string GetLastErrorAsString()
-{
-	// Get the error message ID, if any.
-	DWORD errorMessageID = ::GetLastError();
-	if (errorMessageID == 0) {
-		return std::string(); //No error message has been recorded
-	}
-
-	LPSTR messageBuffer = nullptr;
-
-	// Ask Win32 to give us the string version of that message ID.
-	// The parameters we pass in, tell Win32 to create the buffer that holds the message for us (because we don't yet know how long the message string will be).
-	size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL, errorMessageID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&messageBuffer, 0, NULL);
-
-	// Copy the error message into a std::string.
-	std::string message(messageBuffer, size);
-
-	// Free the Win32's string's buffer.
-	LocalFree(messageBuffer);
-
-	return message;
-}
-
 } // namespace
 } // namespace Engine
 
@@ -363,7 +337,7 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 
 	if (!hPreyDll)
 	{
-		std::string err = GetLastErrorAsString();
+		std::string err = WindowsErrorToString(::GetLastError());
 		throw std::runtime_error("Failed to load PreyDll.dll\n" + err);
 	}
 
@@ -375,7 +349,7 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 
 		if (!hChairDll)
 		{
-			std::string err = GetLastErrorAsString();
+			std::string err = WindowsErrorToString(::GetLastError());
 			throw std::runtime_error("Failed to load Chairloader.dll\n" + err);
 		}
 
