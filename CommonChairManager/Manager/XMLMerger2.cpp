@@ -31,6 +31,7 @@ private:
     }
 };
 
+//! Stores a localization Excel table.
 class LocalizationTable
 {
 public:
@@ -66,11 +67,11 @@ public:
             Row rowData;
             rowData.reserve(columnNames.size()); // Can't resize because column count is unknown until first row is read
 
-            int colIdx = 0;
+            int cellIdx = 0;
 
             for (const pugi::xml_node& cell : row.children("Cell"))
             {
-                int excelIndex = colIdx + 1; // 1-based
+                int excelIndex = cellIdx + 1; // 1-based
                 excelIndex = cell.attribute("ss:Index").as_int(excelIndex);
                 excelIndex--; // Back to 0-based
                 
@@ -80,13 +81,13 @@ public:
                     break;
                 }
 
-                if (excelIndex < colIdx)
-                    throw LocalizationMergingException("Invalid cell index", rowIdx, colIdx);
+                if (excelIndex < cellIdx)
+                    throw LocalizationMergingException("Invalid cell index", rowIdx, cellIdx);
 
-                if (excelIndex > colIdx)
+                if (excelIndex > cellIdx)
                 {
                     // Skip columns
-                    for (; colIdx < excelIndex; colIdx++)
+                    for (; cellIdx < excelIndex; cellIdx++)
                     {
                         rowData.emplace_back();
                     }
@@ -94,7 +95,7 @@ public:
 
                 std::string value = cell.child("Data").text().as_string();
                 rowData.emplace_back(std::move(value));
-                colIdx++;
+                cellIdx++;
             }
 
             if (foundFirstRow)
@@ -211,25 +212,25 @@ public:
             // Replace all non-empty columns in the row
             LocalizationTable::Row& currentRow = m_CurrentTable.rows[baseRowIdx];
 
-            for (size_t modColIdx = 0; modColIdx < modRow.size(); modColIdx++)
+            for (size_t modCellIdx = 0; modCellIdx < modRow.size(); modCellIdx++)
             {
-                const std::string& modColValue = modRow[modColIdx];
-                int currentColIdx = colMap[modColIdx];
+                const std::string& modCellValue = modRow[modCellIdx];
+                int currentCellIdx = colMap[modCellIdx];
 
-                if (modColIdx == modTable.keyColumnIdx)
+                if (modCellIdx == modTable.keyColumnIdx)
                 {
                     // Key must match. If not, programming bug
-                    assert(currentRow[currentColIdx] == modColValue);
+                    assert(currentRow[currentCellIdx] == modCellValue);
                 }
 
-                if (modColValue.empty())
+                if (modCellValue.empty())
                 {
                     // Skip this column since it has no value
                     continue;
                 }
 
                 // Overwrite the value
-                currentRow[currentColIdx] = modColValue;
+                currentRow[currentCellIdx] = modCellValue;
             }
         }
     }
@@ -294,12 +295,12 @@ public:
 
         // Chairloader watermark
         // Size check because the watermark can't go into the key column
-        // And key column always exists
-        // (file wiht only key column doesn't make sense but just in case)
-        if (m_CurrentTable.columnNames.size() > 1)
+        // So there needs to be at least two columns
+        // (file with only key column doesn't make sense but just in case)
+        if (m_CurrentTable.columnNames.size() >= 2)
         {
             // Find first non-key column
-            // It must exist unless there is only one column
+            // It must exist due to the condition above
             size_t watermarkCol = 0;
             while (watermarkCol == m_CurrentTable.keyColumnIdx)
             {
