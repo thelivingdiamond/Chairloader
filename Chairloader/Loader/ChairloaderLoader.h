@@ -1,4 +1,6 @@
 #pragma once
+#include "GameModuleInfo.h"
+#include "GameVersionInfo.h"
 
 enum class EChairloaderInitResult
 {
@@ -28,13 +30,16 @@ private:
     static constexpr char CHAIRLOADER_DLL_NAME[] = "Chairloader.dll";
 
     //! The Game DLL module.
-    HMODULE m_hGameDll = nullptr;
+    GameModuleInfo m_GameDllInfo;
 
     //! The Chairloader DLL module.
     HMODULE m_hChairDll = nullptr;
 
     //! The list of command line arguments.
     std::vector<std::string> m_CmdLineArgs;
+
+    //! The list of versions supported by Chairloader.
+    std::vector<GameVersionInfo> m_SupportedVersions;
 
     //! Finds the loaded Game DLL.
     bool FindGameDll();
@@ -47,6 +52,12 @@ private:
 
     //! Checks whether Chairloader DLL is enabled.
     bool IsChairloaderEnabled();
+
+    //! Reads the list of supported versions.
+    bool ReadSupportedVersions(std::string& outError);
+
+    //! Checks if the current Game DLL is supported.
+    bool IsVersionSupported();
 
     //! Loads the Chairloader DLL. Can either fully succeed or fully fail.
     bool LoadChairloader(std::string& outError);

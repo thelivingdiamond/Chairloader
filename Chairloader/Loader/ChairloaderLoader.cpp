@@ -41,6 +41,21 @@ EChairloaderInitResult ChairloaderLoader::Init()
             return EChairloaderInitResult::Skipped;
         }
 
+        if (!ReadSupportedVersions(errorText))
+        {
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load the list of supported versions:\n{}", errorText);
+            return EChairloaderInitResult::Failed;
+        }
+
+        if (!IsVersionSupported())
+        {
+            ShowMsgBox(
+                MB_OK | MB_ICONERROR,
+                "Currently running version of the game is not supported.\n"
+                "Patch the game in Chairloader Mod Manager.");
+            return EChairloaderInitResult::Failed;
+        }
+
         if (!LoadChairloader(errorText))
         {
             ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load {}:\n{}", CHAIRLOADER_DLL_NAME, errorText);
@@ -58,10 +73,10 @@ EChairloaderInitResult ChairloaderLoader::Init()
 
 void ChairloaderLoader::Shutdown()
 {
-    if (m_hGameDll)
+    if (m_GameDllInfo)
     {
         // Not loaded by this DLL - not unloaded too
-        m_hGameDll = nullptr;
+        m_GameDllInfo.SetHandle(nullptr);
     }
 
     if (m_hChairDll)
@@ -73,12 +88,12 @@ void ChairloaderLoader::Shutdown()
 
 bool ChairloaderLoader::FindGameDll()
 {
-    CRY_ASSERT(!m_hGameDll);
+    CRY_ASSERT(!m_GameDllInfo);
     HMODULE hModule = GetModuleHandle(GAME_DLL_NAME);
 
     if (hModule)
     {
-        m_hGameDll = hModule;
+        m_GameDllInfo.SetHandle(hModule);
         return true;
     }
 
@@ -87,11 +102,11 @@ bool ChairloaderLoader::FindGameDll()
 
 bool ChairloaderLoader::IsWhiplash()
 {
-    CRY_ASSERT(m_hGameDll);
+    CRY_ASSERT(m_GameDllInfo);
 
     // Check if the loaded PreyDll.dll is from Mooncrash.
     wchar_t preyDllPath[MAX_PATH] = {};
-    int pathLen = GetModuleFileNameW(m_hGameDll, preyDllPath, std::size(preyDllPath));
+    int pathLen = GetModuleFileNameW(m_GameDllInfo.hModule, preyDllPath, std::size(preyDllPath));
 
     // Convert slashes to backslashes (just in case)
     for (wchar_t& c : preyDllPath)
@@ -143,9 +158,36 @@ bool ChairloaderLoader::IsChairloaderEnabled()
     return true;
 }
 
+bool ChairloaderLoader::ReadSupportedVersions(std::string& outError)
+{
+    CRY_ASSERT(m_SupportedVersions.empty());
+
+    // Only one version is supported at the moment
+    m_SupportedVersions.push_back(GameVersionInfo{
+        "EGS-2021-08-18",
+        "BuildTime: Aug 18 2021 20:20:55",
+        0x1D8CBB8,
+    });
+
+    outError = "";
+    return true;
+}
+
+bool ChairloaderLoader::IsVersionSupported()
+{
+    for (const GameVersionInfo& versionInfo : m_SupportedVersions)
+    {
+        bool isSupported = m_GameDllInfo.CompareTestString(versionInfo.testString, versionInfo.testStringOffset);
+        if (isSupported)
+            return true;
+    }
+
+    return false;
+}
+
 bool ChairloaderLoader::LoadChairloader(std::string& outError)
 {
-    CRY_ASSERT(m_hGameDll);
+    CRY_ASSERT(m_GameDllInfo);
     CRY_ASSERT(!m_hChairDll);
     HMODULE hChairDll = LoadLibraryExA(CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     
