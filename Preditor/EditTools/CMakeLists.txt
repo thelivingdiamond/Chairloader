@@ -1,5 +1,7 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+	CursorTool.cpp
+	CursorTool.h
 	EditTool.cpp
 	EditTool.h
 	EditToolManager.cpp

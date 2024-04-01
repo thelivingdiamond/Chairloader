@@ -1,3 +1,4 @@
+#pragma once
 #include <ImGuizmo/ImGuizmo.h>
 #include "EditTool.h"
 

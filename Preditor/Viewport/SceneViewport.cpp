@@ -5,6 +5,7 @@
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/EditTools/IEditToolManager.h>
+#include <Preditor/SceneEditor/I3DCursor.h>
 #include <Preditor/SceneEditor/ISceneEditor.h>
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
 #include <Preditor/SceneEditor/IViewportHandler.h>
@@ -409,7 +410,10 @@ void Viewport::SceneViewport::DrawAuxGeom()
 	ISceneEditor* pEditor = gPreditor->pSceneEditorManager->GetEditor();
 
 	if (pEditor)
+	{
+		gPreditor->pSceneEditorManager->Get3DCursor()->DrawAuxGeom(); // Check pEditor to make sure a level is open
 		pEditor->GetViewport()->DrawAuxGeom();
+	}
 }
 
 void Viewport::SceneViewport::DrawViewCameraFrustum()
