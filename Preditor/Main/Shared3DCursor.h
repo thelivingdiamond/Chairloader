@@ -6,6 +6,9 @@ namespace Main
 class Shared3DCursor final : public I3DCursor
 {
 public:
+    Shared3DCursor();
+    ~Shared3DCursor();
+
     void MoveToOrigin();
     void MoveToPlayer();
     void MoveToCamera();
@@ -17,6 +20,8 @@ public:
     virtual void DrawAuxGeom() override;
 
 private:
+    std::vector<Vec3> m_UnitCircle;
+    std::vector<Vec3> m_TempCircle;
     Vec3 m_Pos = ZERO;
 };
 
