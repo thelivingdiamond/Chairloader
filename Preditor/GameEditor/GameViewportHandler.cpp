@@ -35,7 +35,7 @@ EEditToolResult GameEditor::GameViewportHandler::OnLeftMouseClick(Vec2 clickPos,
     return EEditToolResult::Passthrough;
 }
 
-SceneObjectId GameEditor::GameViewportHandler::Raycast(const ViewportRaycastInfo& rc)
+ViewportRaycastHit GameEditor::GameViewportHandler::Raycast(const ViewportRaycastInfo& rc)
 {
 	if (m_bPhysicsRaycast)
 	{
@@ -45,12 +45,19 @@ SceneObjectId GameEditor::GameViewportHandler::Raycast(const ViewportRaycastInfo
 
 		if (gEnv->pPhysicalWorld->RayWorldIntersection(rc.ray.origin, rc.ray.direction, ent_all, rwiFlags, &hit, 1, nullptr, nullptr))
 		{
+			ViewportRaycastHit vpHit;
+			vpHit.isHit = true;
+			vpHit.distance = hit.dist;
+			vpHit.hitPos = hit.pt;
+
 			int type = hit.pCollider->GetiForeignData();
 			if (type == PHYS_FOREIGN_ID_ENTITY)
 			{
 				IEntity* pEntity = (IEntity*)hit.pCollider->GetForeignData(PHYS_FOREIGN_ID_ENTITY);
-				return pEntity->GetId();
+				vpHit.objectId = (SceneObjectId)pEntity->GetId();
 			}
+
+			return vpHit;
 		}
 	}
 	else
@@ -132,11 +139,16 @@ SceneObjectId GameEditor::GameViewportHandler::Raycast(const ViewportRaycastInfo
 			// IPersistantDebug* pd = gEnv->pGame->GetIGameFramework()->GetIPersistantDebug();
 			// pd->Begin("GameRaycast", false);
 			// pd->AddSphere(hitPoint, 0.05f, ColorF(1, 0, 0, 1), 15);
-			return pHitEnt->GetId();
+			ViewportRaycastHit hit;
+			hit.isHit = true;
+			hit.objectId = (SceneObjectId)pHitEnt->GetId();
+			hit.distance = currentDist;
+			hit.hitPos = hitPoint;
+			return hit;
 		}
 	}
 
-    return INVALID_SCENE_OBJECT;
+    return ViewportRaycastHit();
 }
 
 void GameEditor::GameViewportHandler::DrawAuxGeom()

@@ -15,7 +15,7 @@ public:
     // IViewportHandler
     virtual void ShowViewportControls() override;
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize) override;
-    virtual SceneObjectId Raycast(const ViewportRaycastInfo& rc) override;
+    virtual ViewportRaycastHit Raycast(const ViewportRaycastInfo& rc) override;
     virtual void DrawAuxGeom() override;
 
 private:

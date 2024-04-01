@@ -31,8 +31,9 @@ EEditToolResult LevelEditor::LevelViewportHandler::OnLeftMouseClick(Vec2 clickPo
     return EEditToolResult::Passthrough;
 }
 
-SceneObjectId LevelEditor::LevelViewportHandler::Raycast(const ViewportRaycastInfo& rc)
+ViewportRaycastHit LevelEditor::LevelViewportHandler::Raycast(const ViewportRaycastInfo& rc)
 {
+    ViewportRaycastHit hit;
     auto& objects = m_pEditor->GetObjectManager()->GetObjects();
 
     // Raycast to the world
@@ -48,7 +49,12 @@ SceneObjectId LevelEditor::LevelViewportHandler::Raycast(const ViewportRaycastIn
     Vec3 raycastEnd = rc.ray.origin + rc.ray.direction;
 
     if (gEnv->pPhysicalWorld->RayWorldIntersection(worldRWI, "LevelViewportRWI"))
+    {
         raycastEnd = worldHit.pt;
+        hit.isHit = true;
+        hit.distance = worldHit.dist;
+        hit.hitPos = raycastEnd;
+    }
 
     ViewportRaycastInfo rayInfo = rc;
     Object* pHitObject = nullptr;
@@ -78,9 +84,14 @@ SceneObjectId LevelEditor::LevelViewportHandler::Raycast(const ViewportRaycastIn
     // CryLog("Hit: {} {} {}", raycastEnd.x, raycastEnd.y, raycastEnd.z);
 
     if (pHitObject)
-        return pHitObject->GetObjectId();
+    {
+        hit.isHit = true;
+        hit.objectId = pHitObject->GetObjectId();
+        hit.distance = (raycastEnd - rayInfo.ray.origin).len();
+        hit.hitPos = raycastEnd;
+    }
 
-    return INVALID_SCENE_OBJECT;
+    return hit;
 }
 
 void LevelEditor::LevelViewportHandler::DrawAuxGeom()
