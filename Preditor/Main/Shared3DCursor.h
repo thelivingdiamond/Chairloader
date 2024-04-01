@@ -15,7 +15,7 @@ public:
 
     // I3DCursor
     virtual const Vec3& GetPos() const override { return m_Pos; }
-    virtual void SetPos(const Vec3& newPos) override { m_Pos = newPos; }
+    virtual void SetPos(const Vec3& newPos) override;
     virtual void ShowMenu() override;
     virtual void DrawAuxGeom() override;
 

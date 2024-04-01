@@ -44,6 +44,12 @@ void Main::Shared3DCursor::MoveToCamera()
     SetPos(cameraTm.GetTranslation());
 }
 
+void Main::Shared3DCursor::SetPos(const Vec3& newPos)
+{
+    m_Pos = newPos;
+    CryLog("[3D Cursor] Vec3({:.3f}, {:.3f}, {:.3f})", newPos.x, newPos.y, newPos.z);
+}
+
 void Main::Shared3DCursor::ShowMenu()
 {
     if (ImGui::BeginMenu("3D Cursor: Move To..."))
