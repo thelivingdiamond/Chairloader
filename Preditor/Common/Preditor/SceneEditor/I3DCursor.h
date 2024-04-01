@@ -10,6 +10,9 @@ struct I3DCursor
     //! Sets the cursor position.
     virtual void SetPos(const Vec3& newPos) = 0;
 
+    //! Shows the menu for the menu bar.
+    virtual void ShowMenu() = 0;
+
     //! Draws the cursor using aux geom.
     virtual void DrawAuxGeom() = 0;
 };

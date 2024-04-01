@@ -5,6 +5,8 @@
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/Engine/IPreditorEngine.h>
+#include <Preditor/SceneEditor/I3DCursor.h>
+#include <Preditor/SceneEditor/ISceneEditorManager.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
 #include <Preditor/FileHistory.h>
 #include "UI/PreditorUI.h"
@@ -164,6 +166,12 @@ void Main::PreditorUI::ShowMainMenuBar()
 
             if (ImGui::MenuItem("Quit"))
                 gEnv->pSystem->Quit();
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Edit", gPreditor->pSceneEditorManager->GetMode() != EEditMode::None))
+        {
+            gPreditor->pSceneEditorManager->Get3DCursor()->ShowMenu();
             ImGui::EndMenu();
         }
 
