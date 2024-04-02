@@ -4,6 +4,7 @@
 /ChairManager.exe
 /Preditor.exe
 /*.dll
+/*.old
 
 # Temporary files
 /temp

@@ -17,6 +17,29 @@ static std::mutex progress_mutex, error_mutex;
 static bool m_bIsDownloading = false, m_bIsInstalling = false;
 static std::string m_szError = "";
 
+static void TryRenameToOld(const fs::path& filePath)
+{
+    fs::path oldFile = filePath;
+    oldFile.replace_extension(fs::u8path(oldFile.extension().u8string() + ".old"));
+
+    // Remove the old file
+    std::error_code ec;
+    fs::remove(oldFile, ec);
+    if (ec)
+        ChairManager::Get().log(severityLevel::error, "Failed to remove %s: %s", oldFile.u8string().c_str(), ec.message().c_str());
+
+    // Rename
+    fs::rename(filePath, oldFile, ec);
+    if (ec)
+    {
+        ChairManager::Get().log(
+            severityLevel::error,
+            "Failed to rename %s to %s: %s",
+            filePath.u8string().c_str(),
+            oldFile.u8string().c_str(),
+            ec.message().c_str());
+    }
+}
 
 void setError(std::string szError) {
     std::lock_guard<std::mutex> lock(error_mutex);
@@ -81,12 +104,18 @@ void UpdateHandler::downloadUpdate() {
 
 void UpdateHandler::installUpdate() {
     // rename our executable to chairloader.old
-    try {
-        fs::rename("ChairManager.exe", "ChairManager.exe.old");
-    } catch (std::exception &e) {
-        // not a fatal error
-        ChairManager::Get().log(severityLevel::error, "Failed to rename ChairManager.exe: %s", e.what());
+    TryRenameToOld("ChairManager.exe");
+    TryRenameToOld("Preditor.exe");
+    
+    // Rename all DLLs to .old
+    for (const fs::directory_entry& i : fs::directory_iterator("."))
+    {
+        fs::path p = i.path();
+
+        if (p.extension() == ".dll")
+            TryRenameToOld(p);
     }
+
     // extract the zip file
     std::wstring commandArgs = L".\\7za.exe x update.zip -o.\\ -y";
     STARTUPINFOW si = {sizeof(STARTUPINFO)};
