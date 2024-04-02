@@ -325,6 +325,14 @@ void ChairInstallWizard::StartExtract()
 	// Clear old log
 	m_InstallLog.clear();
 
+	// See if extraction is needed
+	if (fs::exists(fs::absolute("PreyFiles") / PREDITOR_FILES_EXTRACTED))
+	{
+		// Files already extracted, skip
+		StartDeploy();
+		return;
+	}
+
 	m_State = State::Extract;
 	m_ExtractFuture = std::async(std::launch::async, [&]() { ExtractAsyncTask(); });
 }

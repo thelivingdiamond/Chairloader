@@ -1,4 +1,5 @@
 #include <Preditor/PreditorConfig.h>
+#include <Manager/PreditorFiles.h>
 #include <App/Application.h>
 
 PreditorConfig::PreditorConfig()
@@ -55,6 +56,6 @@ void PreditorConfig::FillEnvPaths()
     m_PreditorRoot = Application::Get()->GetProgramPath();
     m_PreyFiles = m_PreditorRoot / "PreyFiles";
 
-    if (!fs::exists(m_PreyFiles / "FilesExtracted.dat"))
+    if (!fs::exists(m_PreyFiles / PREDITOR_FILES_EXTRACTED))
         throw std::runtime_error("File cache is invalid. Run ChairManager.");
 }
