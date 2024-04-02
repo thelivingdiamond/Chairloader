@@ -339,6 +339,7 @@ private:
     SemanticVersion* packagedChairloaderVersion;
     SemanticVersion* installedChairloaderVersion;
     std::string m_githubETag;
+    bool m_bShowUpdatePopup = false;
 
     //! Chairloader Launch Options
     std::string m_customArgs;
@@ -356,4 +357,7 @@ private:
 
     //! Opens the file select dialog for mod installation.
     void OpenInstallModDialog(bool isLegacy);
+
+    //! Checks if an update is available.
+    bool IsUpdateAvailable();
 };
