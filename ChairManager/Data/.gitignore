@@ -1,8 +1,10 @@
 # Generated files
 /Config
 /PreyFiles
+/ChairManager.exe
 /Preditor.exe
 /*.dll
+/*.old
 
 # Temporary files
 /temp

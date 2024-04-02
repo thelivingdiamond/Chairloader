@@ -203,6 +203,10 @@ void ChairManager::SwitchToInstallWizard()
             VersionCheck::getInstalledChairloaderVersion().String().c_str(),
             VersionCheck::getPackagedChairloaderVersion().String().c_str(),
             VersionCheck::getLatestChairloaderVersion().String().c_str());
+
+        if (IsUpdateAvailable())
+            m_bShowUpdatePopup = true;
+
         m_State = State::MainWindow;
     }
 }
@@ -223,7 +227,6 @@ void ChairManager::DrawInstallWizard(bool* pbIsOpen)
 
 void ChairManager::DrawMainWindow(bool* pbIsOpen)
 {
-    static bool m_bShowUpdatePopup;
     m_pGameVersion->Update();
 
     ImGuiWindowFlags windowFlags =
@@ -334,7 +337,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         m_bShowUpdatePopup = false;
     }
     if(ImGui::BeginPopupModal("Check for Updates", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize)){
-        if(VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion()){
+        if(IsUpdateAvailable()){
             ImGui::Text("Chairloader is out of date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
             ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
@@ -2293,6 +2296,11 @@ void ChairManager::OpenInstallModDialog(bool isLegacy)
     }
 
     WinShell::ImShowFileOpenDialog("ChooseModFile", fileDialogOpts);
+}
+
+bool ChairManager::IsUpdateAvailable()
+{
+    return VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion();
 }
 
 void ChairManager::SwitchToUninstallWizard() {
