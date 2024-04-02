@@ -1,6 +1,7 @@
 #pragma once
 #include <Preditor/SceneEditor/Common.h>
 
+struct I3DCursor;
 struct ISceneEditor;
 
 //! Manages different edit modes.
@@ -20,4 +21,7 @@ struct ISceneEditorManager
 
     //! @returns current scene editor.
     virtual ISceneEditor* GetEditor() = 0;
+
+    //! @returns The 3D Cursor. It is shared between editor modes.
+    virtual I3DCursor* Get3DCursor() = 0;
 };

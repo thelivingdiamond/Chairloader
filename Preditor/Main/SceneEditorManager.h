@@ -1,6 +1,7 @@
 #pragma once
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
 #include <Preditor/MouseGuard.h>
+#include "Shared3DCursor.h"
 
 struct ILevelSceneEditor;
 
@@ -24,11 +25,13 @@ public:
     virtual EPlayMode GetPlayMode() override { return m_CurrentPlayMode; }
     virtual void SetPlayMode(EPlayMode playMode) override;
     virtual ISceneEditor* GetEditor() override { return m_pCurrentEditor; }
+    virtual Shared3DCursor* Get3DCursor() override { return &m_3DCursor; }
 
     // ISystemEventListener
     virtual void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
 
 private:
+    Shared3DCursor m_3DCursor;
     std::unique_ptr<ILevelSceneEditor> m_pLevelEditor;
     std::unique_ptr<ISceneEditor> m_pGameEditor;
 

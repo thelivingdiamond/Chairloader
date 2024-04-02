@@ -23,6 +23,21 @@ struct ViewportRaycastInfo
     uint8_t sceneMask = 0;
 };
 
+struct ViewportRaycastHit
+{
+    //! Whether something was hit.
+    bool isHit = false;
+
+    //! ID of the object that was hit. May be invalid if hit the world.
+    SceneObjectId objectId = INVALID_SCENE_OBJECT;
+
+    //! Distance to the object that was hit.
+    float distance = INFINITY;
+
+    //! Hit position in world-space.
+    Vec3 hitPos = ZERO;
+};
+
 struct IViewportHandler
 {
     virtual ~IViewportHandler() {}
@@ -37,7 +52,7 @@ struct IViewportHandler
     virtual EEditToolResult OnLeftMouseClick(Vec2 clickPos, Vec2 vpSize) = 0;
 
     //! Casts a ray and finds an object.
-    virtual SceneObjectId Raycast(const ViewportRaycastInfo& rc) = 0;
+    virtual ViewportRaycastHit Raycast(const ViewportRaycastInfo& rc) = 0;
 
     //! Aux geom calls before rendering the world.
     virtual void DrawAuxGeom() = 0;

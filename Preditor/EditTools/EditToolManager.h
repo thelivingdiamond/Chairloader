@@ -48,6 +48,7 @@ private:
     std::unique_ptr<EditTool> m_pMoveTool;
     std::unique_ptr<EditTool> m_pRotateTool;
     std::unique_ptr<EditTool> m_pScaleTool;
+    std::unique_ptr<EditTool> m_pCursorTool;
 
     //! Changes the active tool to a different one.
     void SetCurrentTool(EditTool* pTool);

@@ -34,10 +34,11 @@ EEditToolResult EditTools::SelectTool::OnLeftMouseClick(Vec2 clickPos, Vec2 vpSi
     }
 
     ViewportRaycastInfo rc = gPreditor->pViewportWindow->GetRayForMouse(clickPos, vpSize);
+    ViewportRaycastHit hit = pEditor->GetViewport()->Raycast(rc);
     SceneObjectId activeObjId = pSel->GetActiveObject();
-    SceneObjectId objId = pEditor->GetViewport()->Raycast(rc);
+    SceneObjectId objId = hit.objectId;
 
-    if (objId != INVALID_SCENE_OBJECT)
+    if (hit.objectId != INVALID_SCENE_OBJECT)
     {
         if (append)
         {

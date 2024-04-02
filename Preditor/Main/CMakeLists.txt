@@ -34,6 +34,8 @@ set(SOURCE_FILES
 	Preditor.h
 	SceneEditorManager.cpp
 	SceneEditorManager.h
+	Shared3DCursor.cpp
+	Shared3DCursor.h
 )
 
 add_library(Preditor.Main STATIC

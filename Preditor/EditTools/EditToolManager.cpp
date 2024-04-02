@@ -5,6 +5,7 @@
 #include "EditToolManager.h"
 #include "SelectTool.h"
 #include "ImGuizmoTool.h"
+#include "CursorTool.h"
 
 static EditTools::EditToolManager* GetToolManager()
 {
@@ -34,6 +35,7 @@ EditTools::EditToolManager::EditToolManager(ISceneEditor* pEditor)
     m_pMoveTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::TRANSLATE, Vec3(0.25f));
     m_pRotateTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::ROTATE, Vec3(5));
     m_pScaleTool = std::make_unique<ImGuizmoTool>(this, ImGuizmo::OPERATION::SCALE, Vec3(0.25f));
+    m_pCursorTool = std::make_unique<CursorTool>(this);
 
     // Start with select tool
     SetCurrentTool(m_pSelectTool.get());
@@ -85,8 +87,8 @@ void EditTools::EditToolManager::ShowSelectionUI()
         m_bWorldTransform ^= 1;
     ImGui::SameLine();
 
-    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get(), m_pRotateTool.get(), m_pScaleTool.get() };
-    const char* names[] = { "Select", "Move", "Rotate", "Scale" };
+    EditTool* tools[] = { m_pSelectTool.get(), m_pMoveTool.get(), m_pRotateTool.get(), m_pScaleTool.get(), m_pCursorTool.get() };
+    const char* names[] = { "Select", "Move", "Rotate", "Scale", "3D Cursor"};
 
     for (size_t i = 0; i < std::size(tools); i++)
     {
