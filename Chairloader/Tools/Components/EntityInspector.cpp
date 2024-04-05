@@ -5,6 +5,7 @@
 #include <Prey/CryScriptSystem/IScriptSystem.h>
 #include <Prey/CryEntitySystem/Entity.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>
+#include <EditorControls.h>
 #include "EntityInspector.h"
 
 void EntityInspector::ShowContents(EntityId entityId)
@@ -77,59 +78,21 @@ void EntityInspector::OnEntityChanged(EntityId entityId)
 
 void EntityInspector::InspectTransform(IEntity* pEnt) {
     if (BeginInspector("Transform")) {
-        static bool m_bHighPrecision;
         Vec3 pos = pEnt->GetPos();
-        Ang3 angles = RAD2DEG(Ang3(pEnt->GetRotation()));
         Quat rot = pEnt->GetRotation();
         Vec3 scale = pEnt->GetScale();
 
-        ImGui::Checkbox("High precision", &m_bHighPrecision);
-        const char* format = m_bHighPrecision ? "%.8f" : "%.2f";
-        ImGui::InputFloat3("Position", &pos.x, format);
-        if(ImGui::IsItemDeactivatedAfterEdit()){
-            pEnt->SetPos(pos);
-        }
-        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", pos.x, pos.y, pos.z).c_str());
-        }
-        ImGui::InputFloat3("Rotation (PRY)", &angles.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
-            pEnt->SetRotation(Quat(DEG2RAD(angles)));
-        }
-        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
-        }
-        ImGui::InputFloat4("Rotation (Quat)", &rot.v.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
-            pEnt->SetRotation(rot);
-        }
-        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
-            ImGui::OpenPopup("Copy Rotation");
-//            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
-        }
-        if(ImGui::BeginPopup("Copy Rotation")){
-            if(ImGui::MenuItem("Copy as Quat (XYZW)")){
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
-            }
-            if(ImGui::MenuItem("Copy as Quat (WXYZ)")){
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.v.x, rot.v.y, rot.v.z, rot.w).c_str());
-            }
-            if(ImGui::MenuItem("Copy as P,R,Y")){
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
-            }
-            ImGui::EndPopup();
-        }
-        ImGui::InputFloat3("Scale", &scale.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
-            pEnt->SetScale(scale);
-        }
-        if(ImGui::IsItemClicked(ImGuiMouseButton_Right)){
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", scale.x, scale.y, scale.z).c_str());
-        }
+        ImGui::Text("Tip: Right-Click to copy");
 
-        if (scale.x != scale.y || scale.x != scale.z) {
-            ImGui::TextWrapped("Note: non-uniform scaling is not supported well");
-        }
+        if (EditorControls::DragVec3("Position", &pos))
+            pEnt->SetPos(pos);
+
+        if (EditorControls::DragQuat("Rotation (PRY)", &rot))
+            pEnt->SetRotation(rot);
+
+        if (EditorControls::DragVec3("Scale", &scale))
+            pEnt->SetScale(scale);
+
         if (ImGui::Button("TP to player") && ArkPlayer::GetInstancePtr())
             pEnt->SetPos(ArkPlayer::GetInstance().GetEntity()->GetPos());
         if(ImGui::Button("TP player to entity") && ArkPlayer::GetInstancePtr())

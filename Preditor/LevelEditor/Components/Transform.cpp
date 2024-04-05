@@ -1,3 +1,4 @@
+#include <EditorControls.h>
 #include "Components/Transform.h"
 #include "Objects/Object.h"
 #include "Utils/AffineParts.h"
@@ -176,54 +177,19 @@ void LevelEditor::Transform::ShowInspector()
     if (Inspector::Begin("Transform"))
     {
         Vec3 pos = GetPos();
-        Ang3 angles = RAD2DEG(Ang3(GetRot()));
+        Quat rot = GetRot();
         Vec3 scale = GetScale();
 
-        static bool highPrecision = false;
-        ImGui::Checkbox("High precision", &highPrecision);
-        const char* format = highPrecision ? "%.8f" : "%.2f";
+        ImGui::Text("Tip: Right-Click to copy");
 
-        ImGui::InputFloat3("Position", &pos.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
+        if (EditorControls::DragVec3("Position", &pos))
             SetPos(pos);
-        }
-        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", pos.x, pos.y, pos.z).c_str());
-        }
 
-        ImGui::InputFloat3("Rotation (PRY)", &angles.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
-            SetRot(Quat(DEG2RAD(angles)));
-        }
-        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
-        }
+        if (EditorControls::DragQuat("Rotation (PRY)", &rot))
+            SetRot(rot);
 
-        if (ImGui::BeginPopup("Copy Rotation")) {
-            Quat rot = GetRot();
-
-            if (ImGui::MenuItem("Copy as Quat (XYZW)"))
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.w, rot.v.x, rot.v.y, rot.v.z).c_str());
-
-            if (ImGui::MenuItem("Copy as Quat (WXYZ)"))
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f},{:.8f}", rot.v.x, rot.v.y, rot.v.z, rot.w).c_str());
-
-            if (ImGui::MenuItem("Copy as P,R,Y"))
-                ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", angles.x, angles.y, angles.z).c_str());
-
-            ImGui::EndPopup();
-        }
-        ImGui::InputFloat3("Scale", &scale.x, format);
-        if (ImGui::IsItemDeactivatedAfterEdit()) {
+        if (EditorControls::DragVec3("Scale", &scale))
             SetScale(scale);
-        }
-        if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-            ImGui::SetClipboardText(fmt::format("{:.8f},{:.8f},{:.8f}", scale.x, scale.y, scale.z).c_str());
-        }
-
-        if (scale.x != scale.y || scale.x != scale.z) {
-            ImGui::TextWrapped("Note: non-uniform scaling is not supported well");
-        }
 
         Inspector::End();
     }

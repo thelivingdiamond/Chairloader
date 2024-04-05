@@ -20,6 +20,8 @@ set(SOURCE_FILES
 	BackupDxState.h
 	ConsoleColorParser.cpp
 	ConsoleColorParser.h
+	EditorControls.cpp
+	EditorControls.h
 	GUIUtils.h
 	imgui_widget_flamegraph.cpp
 	imgui_widget_flamegraph.h

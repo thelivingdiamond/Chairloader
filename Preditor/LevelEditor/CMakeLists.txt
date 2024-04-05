@@ -45,6 +45,7 @@ target_include_directories(Preditor.LevelEditor PRIVATE
 
 target_link_libraries(Preditor.LevelEditor
 	Preditor.Common
+	Chairloader.Common.Preditor
 )
 
 target_precompile_headers(Preditor.LevelEditor PRIVATE pch.h)
