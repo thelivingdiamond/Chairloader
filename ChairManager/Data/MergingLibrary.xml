@@ -391,6 +391,20 @@
                     <_wildcard_ merge_children="true"/>
                 </nodeStructure>
             </mergingPolicy>
+            <Packages.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <attribute name="id" priority="1"/>
+                    <attribute name="signalID" priority="2"/>
+                    <nodeStructure>
+                        <packages merge_children="true">
+                            <package merge_children="true">
+                                <signal merge_attributes="true" />
+                            </package>
+                        </packages>
+                    </nodeStructure>
+                </mergingPolicy>
+            </Packages.xml>
         </SignalSystem>
         <Vision>
             <VisionCones.xml>
