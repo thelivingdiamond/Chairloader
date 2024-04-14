@@ -70,8 +70,19 @@
 	
 	<!-- Localization -->
 	<!-- Patch is extracted to the same dir, overwriting base files. -->
-	<!-- ChairManager builds the patched patched pak from this directory. -->
-	<!-- Patch may not exist in the EGS version -->
-	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml"/>
+	<!-- ChairManager builds the updated _patch pak from this directory. -->
+	<!-- All files are optional since not all languages may be installed. -->
+	<Pak path="../Localization/English_xml.pak" root="Localization/English_xml" isOptional="true"/>
 	<Pak path="../Localization/English_xml_patch.pak" root="Localization/English_xml" isOptional="true"/>
+	<Pak path="../Localization/German_xml.pak" root="Localization/German_xml" isOptional="true"/>
+	<Pak path="../Localization/brazilian_portuguese_xml.pak" root="Localization/brazilian_portuguese_xml" isOptional="true"/>
+	<Pak path="../Localization/chineses_xml.pak" root="Localization/chineses_xml" isOptional="true"/>
+	<Pak path="../Localization/chineset_xml.pak" root="Localization/chineset_xml" isOptional="true"/>
+	<Pak path="../Localization/french_xml.pak" root="Localization/french_xml" isOptional="true"/>
+	<Pak path="../Localization/italian_xml.pak" root="Localization/italian_xml" isOptional="true"/>
+	<Pak path="../Localization/japanese_xml.pak" root="Localization/japanese_xml" isOptional="true"/>
+	<Pak path="../Localization/latin_american_spanish_xml.pak" root="Localization/latin_american_spanish_xml" isOptional="true"/>
+	<Pak path="../Localization/polish_xml.pak" root="Localization/polish_xml" isOptional="true"/>
+	<Pak path="../Localization/russian_xml.pak" root="Localization/russian_xml" isOptional="true"/>
+	<Pak path="../Localization/spanish_xml.pak" root="Localization/spanish_xml" isOptional="true"/>
 </ExtractList>
