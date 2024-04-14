@@ -382,6 +382,18 @@
                     </nodeStructure>
                 </mergingPolicy>
             </Traumas.xml>
+            <AbilitiesPDALayout.xml>
+                <mergingPolicy identification_policy="match_attribute">
+                    <attribute name="name" priority="0"/>
+                    <nodeStructure>
+                        <ArkAbilityPDA>
+                            <Categories merge_children="true">
+                                <ArkAbilityCategory merge_children="true" />
+                            </Categories>
+                        </ArkAbilityPDA>
+                    </nodeStructure>
+                </mergingPolicy>
+            </AbilitiesPDALayout.xml>
         </Player>
         <SignalSystem>
             <mergingPolicy identification_policy="match_attribute">
