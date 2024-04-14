@@ -50,6 +50,6 @@ set_target_properties(Preditor.Launcher PROPERTIES
 	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/ChairManager/Data"
 )
 
-cl_version_info(Preditor.Launcher "Preditor.exe" "Modding toolkit for Prey (2017)")
+cl_version_info(Preditor.Launcher "Preditor.exe" "Preditor")
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
