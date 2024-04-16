@@ -5,6 +5,8 @@
 # CMake build directories
 /_build
 /_build_*
+/.build
+/.build_*
 
 # CLion
 /cmake-build-*
@@ -19,3 +21,8 @@
 
 # Preditor generated files
 /.user
+
+# Built binaries
+/*.dll
+/*.lib
+/*.pdb
