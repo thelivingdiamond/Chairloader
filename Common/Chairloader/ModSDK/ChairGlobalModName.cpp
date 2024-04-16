@@ -4,7 +4,7 @@
 
 #include "ChairGlobalModName.h"
 
-std::string ChairGlobalModName;
+static std::string ChairGlobalModName;
 
 std::string& ChairGetGlobalModName() {
     return ChairGlobalModName;

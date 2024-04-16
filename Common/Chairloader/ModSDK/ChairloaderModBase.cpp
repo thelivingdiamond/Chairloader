@@ -5,6 +5,7 @@
 #include <detours/detours.h>
 #include <Chairloader/IChairloaderImGui.h>
 #include <Chairloader/ModSDK/ChairloaderModBase.h>
+#include <Chairloader/ModSDK/ChairGlobalModName.h>
 #include <Chairloader/Hooks/HookTransaction.h>
 
 ChairloaderGlobalEnvironment* gCL = nullptr;
@@ -35,6 +36,7 @@ void ChairloaderModBase::InitSystem(const ModInitInfo& initInfo, ModDllInfo& dll
 	gCL = initInfo.pChair->GetChairloaderEnvironment();
 	CryAssertSetGlobalFlagAddress(gCL->cl->GetAssertFlagAddress());
 	ModuleInitIChairLogger(dllInfoEx.logTag);
+	ChairSetGlobalModName(dllInfoEx.modName);
 	m_ModuleBase = gCL->cl->GetPreyDllBase();
 
 	// Install hooks
@@ -69,6 +71,16 @@ void ChairloaderModBase::ShutdownSystem(bool isHotUnloading)
 	HookTransaction hookTr;
 	PreyFunctionSystem::RemoveHooks();
 	hookTr.Commit(); // No use dying when shutting down
+}
+
+void* ChairloaderModBase::QueryInterface(const char* ifaceName)
+{
+	return nullptr;
+}
+
+void ChairloaderModBase::Connect(const std::vector<IChairloaderMod*>& mods)
+{
+	// Do nothing.
 }
 
 void ChairloaderModBase::InitImGui()
