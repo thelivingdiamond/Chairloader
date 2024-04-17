@@ -67,7 +67,7 @@ public:
     // virtual void* QueryInterface(const char *ifaceName) override;
 
     //! Called after CSystem::Init, after all engine modules and mods have been initialized. Allows your mod to get interfaces from other mods.
-    // virtual void Connect(const std::vector<IChairloaderMod*>& mods) override; 
+    // virtual void Connect(const std::vector<IChairloaderMod*>& mods) override;
 
 private:
     // Put private stuff here

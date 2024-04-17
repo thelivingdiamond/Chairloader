@@ -37,14 +37,11 @@ static bool ArkPlayer_HasAbility_Hook(ArkPlayer* _this, uint64_t _abilityID)
 // Mod Interface Example
 // Define an interface like this in a header file.
 // Then inherit ModMain from that interface.
-struct IModName
+struct IModName : public IModInterface
 {
     static constexpr char IFACE_NAME[] = "IModName001";
     static constexpr int VERSION = 1;
 
-    virtual ~IModName() {}
-
-    //! @returns The interface version. Incremented when new methods are added.
     virtual int GetInterfaceVersion() = 0;
 
     //! Does something mod-specific.
