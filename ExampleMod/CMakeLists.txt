@@ -60,4 +60,4 @@ endfunction()
 add_subdirectory(CommonMod)
 
 # Mods
-add_subdirectory(ExampleMod) # CHANGE ME
+add_subdirectory(Src)
