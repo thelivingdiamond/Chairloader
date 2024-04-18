@@ -1,3 +1,7 @@
+if (Detours_FOUND)
+	return()
+endif()
+
 find_path(DETOURS_INCLUDE_DIR detours/detours.h)
 get_filename_component(DETOURS_INSTALL_DIR ${DETOURS_INCLUDE_DIR} DIRECTORY)
 set(DETOURS_RELEASE_DIR ${DETOURS_INSTALL_DIR}/lib)

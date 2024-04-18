@@ -1,65 +1,25 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(Chairloader C CXX)
+project(Chairloader)
 set(CHAIRLOADER TRUE)
 
-if((NOT MSVC) OR (MSVC_TOOLSET_VERSION LESS 141))
-	message(FATAL_ERROR "Chairloader must be built using Visual Studio 2017 or newer")
-endif()
-
-if (NOT (CMAKE_SIZEOF_VOID_P EQUAL 8))
-	message(FATAL_ERROR "Chairloader must be built for x64")
-endif()
-
+# Search for libraries in ExampleMod's CMake
 list(APPEND CMAKE_MODULE_PATH
 	"${CMAKE_CURRENT_LIST_DIR}/ExampleMod/CMake"
 )
 
-# Set C++ version
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# Shared compiler config for Chairloader and mods
+include(ExampleMod/CMake/CompilerConfig.cmake)
 
 # Enable project folders in VS
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# Create DebugChair configuration
-# Debug CRT and Release CRT have different ABIs.
-# Since Prey was linked with Release CRT, Chairloader must use it even in Debug.
-# 
-# vcpkg is hardcoded to use debug libraries for Debug and release for everything else.
-# DebugChair is added to solve that. Debug is hidden to reduce confusion.
-set(CMAKE_C_FLAGS_DEBUGCHAIR ${CMAKE_CXX_FLAGS_DEBUG} CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_DEBUGCHAIR ${CMAKE_CXX_FLAGS_DEBUG} CACHE STRING "" FORCE)
-set(CMAKE_EXE_LINKER_FLAGS_DEBUGCHAIR ${CMAKE_EXE_LINKER_FLAGS_DEBUG} CACHE STRING "" FORCE)
-set(CMAKE_SHARED_LINKER_FLAGS_DEBUGCHAIR ${CMAKE_SHARED_LINKER_FLAGS_DEBUG} CACHE STRING "" FORCE)
-
-set(CMAKE_CONFIGURATION_TYPES DebugChair Release)
-set(CMAKE_CONFIGURATION_TYPES "${CMAKE_CONFIGURATION_TYPES}" CACHE STRING "Reset the configurations to what we need" FORCE)
-
-set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
-set(CMAKE_MAP_IMPORTED_CONFIG_DEBUGCHAIR Release)
-
-# Compiler and linker flags
-# Use Windows subsystem for DLLs
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
-
-# Edit and Continue in Debug
-string(REPLACE "/Zi" "/ZI" CMAKE_CXX_FLAGS_DEBUGCHAIR "${CMAKE_CXX_FLAGS_DEBUGCHAIR}")
-
-# PDBs and optimizations in Release
-set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /debug")   # Generate PDB
-set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /OPT:REF") # Remove unreferenced functions and data
-set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /OPT:ICF") # Identical COMDAT folding
-
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi /Gy")
-set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
-set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
-
-# Compile definitions
-add_compile_definitions(
-	$<IF:$<CONFIG:DebugChair>,DEBUG_BUILD,RELEASE_BUILD>
-)
+# Chairloader Version
+set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
+set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
+set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
+set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Game path
 set(PREY_DLL_DIR "" CACHE PATH "(optional) Path to the game binaries directory (where Prey.exe/.dll are) to automatically install built binaries")
@@ -84,13 +44,6 @@ if(PREY_DLL_DIR)
 	endif()
 	
 endif()
-
-# Chairloader Version
-set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
-set(_CHAIRLOADER_VERSION_MINOR 1)  # Increment when new features are added
-set(_CHAIRLOADER_VERSION_PATCH 0)  # Increment when bug fixes are made
-set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
-set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
 
 # Macros and functions
 
@@ -158,27 +111,36 @@ endfunction()
 find_package(Boost REQUIRED COMPONENTS program_options json)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
-find_package(libzip REQUIRED)
-find_package(pugixml REQUIRED)
 find_package(GTest REQUIRED)
+find_package(libzip REQUIRED)
 find_package(libzippp CONFIG REQUIRED)
 find_package(Lua REQUIRED)
+find_package(pugixml REQUIRED)
+find_package(unofficial-curlpp CONFIG REQUIRED)
+
 find_path(LUABRIDGE_INCLUDE_DIRS "LuaBridge/List.h")
+
+add_subdirectory(ThirdParty/StackWalker)
 
 # Enable CTest
 enable_testing()
 
-
-find_package(unofficial-curlpp CONFIG REQUIRED)
-
-# Project libraries
-add_subdirectory(Common)
+# Projects
+add_subdirectory(BinDiff)
 add_subdirectory(Chairloader)
+add_subdirectory(ChairManager)
+add_subdirectory(Common)
+add_subdirectory(CommonChairManager)
+add_subdirectory(Preditor)
 
 # Example Mod
+# It is meant to be a standalone project so this mess of CMake code builds it as part of Chairloader
+
+# Unset ExampleMod's variables (in case they were ever set before)
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
 
+# Set correct ExampleMod variables
 set(CHAIRLOADER_COMMON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Common" CACHE PATH "")
 
 if(PREY_PATH)
@@ -191,15 +153,6 @@ unset(CMAKE_FOLDER)
 
 unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(EXAMPLE_MOD_DLL_PATH CACHE)
-
-# Since ModToolKit interfaces with PreyDll.dll, everything must use Release ABI
-# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-add_subdirectory(ThirdParty/StackWalker)
-add_subdirectory(CommonChairManager)
-#add_subdirectory(ChairLoaderXMLLoader)
-add_subdirectory(ChairManager)
-add_subdirectory(BinDiff)
-add_subdirectory(Preditor)
 
 # Set default VS project
 set(VS_STARTUP_PROJECT "Chairloader.Dll")

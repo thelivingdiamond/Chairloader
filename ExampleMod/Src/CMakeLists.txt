@@ -1,5 +1,4 @@
 set(MOD_NAME ExampleMod) # CHANGE ME
-set(MOD_PREFIX EXAMPLE_MOD) # CHANGE ME
 
 set(SOURCE_FILES
 	CMakeLists.txt
@@ -14,6 +13,6 @@ target_link_libraries(${MOD_NAME}
 )
 
 target_precompile_headers(${MOD_NAME} PRIVATE pch.h)
-mod_output_dir(${MOD_NAME} ${MOD_PREFIX})
+mod_output_dir(${MOD_NAME} MOD)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
