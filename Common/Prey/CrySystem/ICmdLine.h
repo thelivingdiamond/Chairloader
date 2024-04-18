@@ -69,5 +69,7 @@ public:
 	//! \param name Name of the argument to find, excluding any '+' or '-'
 	//! \return Pointer to a ICmdLineArg class containing the specified argument, or NULL if the argument was not found.
 	virtual const ICmdLineArg* FindArg(const ECmdLineArgType ArgType, const char* name, bool caseSensitive = false) const = 0;
+
+	virtual const char* GetCommandLine() const = 0;
 	// </interfuscator:shuffle>
 };

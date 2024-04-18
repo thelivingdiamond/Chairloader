@@ -9,6 +9,7 @@
 #include "ChairloaderPatches.h"
 #include "ConsoleEventPatch.h"
 #include "ArkPlayerCheats.h"
+#include "LocalizationPatch.h"
 
 auto g_CleanupVibrationAtExit = PreyFunction<void()>(0x9D85C0);
 FunctionHook<void()> g_CleanupVibrationAtExit_Hook;
@@ -68,6 +69,7 @@ void ChairloaderPatches::InitSystem()
 	LuaDbgRes::InitSystem();
 	LuaWarnPatch::InitSystem();
 	m_pSteamAPI = ChairSteamAPI::CreateInstance();
+	LocalizationPatch::InitSystem(m_pSteamAPI.get());
 
 	{
 		// CleanupVibrationAtExit_Hook is called after Chairloader is shut down and

@@ -25,6 +25,8 @@ set(SOURCE_FILES
 	ChairloaderPatches.h
 	ConsoleEventPatch.cpp
 	ConsoleEventPatch.h
+	LocalizationPatch.cpp
+	LocalizationPatch.h
 )
 
 add_library(Chairloader.Patches STATIC ${SOURCE_FILES})
