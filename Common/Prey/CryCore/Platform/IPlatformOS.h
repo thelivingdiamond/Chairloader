@@ -37,7 +37,6 @@ enum class EArkFirstPartyEnvironment {
 	Production = 3
 };
 
-class CStreamingInstallBase;
 struct SRichPresenceData;
 
 struct IVirtualKeyboardEvents
@@ -133,6 +132,33 @@ struct SStreamingInstallProgress
 	uint64 m_installedSize;  //!< In bytes.
 	EState m_state;
 	float  m_progress;       //!< [0..1].
+};
+
+struct SStreamingInstallProgress;
+
+// CStreamingInstallBase
+// Header:  CryEngine/crycommon/iplatformos.h
+class CStreamingInstallBase
+{ // Size=8 (0x8)
+public:
+	virtual ~CStreamingInstallBase();
+	virtual void QueryChunkProgress(const unsigned chunkID, SStreamingInstallProgress* pProgress) const;
+	virtual void QueryLevelProgress(const char* sLevelName, SStreamingInstallProgress* pProgress) const;
+	virtual void SwitchPriorityTo(const char* sLevelName);
+	virtual bool IsFileAvailable(const char* sFileName) const;
+	virtual bool IsPakRequiredForLevel(const char* sPakFileName, const char* sLevelName) const;
+	virtual unsigned GetPakSortIndex(const char* sPakFileName) const;
+	virtual void CheckForChunkCompletionPostResume();
+	virtual void SetPaused(bool _bPaused);
+
+	static inline auto FQueryChunkProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const unsigned chunkID, SStreamingInstallProgress * pProgress)>(0xD7F810);
+	static inline auto FQueryLevelProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const char* sLevelName, SStreamingInstallProgress * pProgress)>(0xD7F810);
+	static inline auto FSwitchPriorityTo = PreyFunction<void(CStreamingInstallBase* const _this, const char* sLevelName)>(0xA13080);
+	static inline auto FIsFileAvailable = PreyFunction<bool(const CStreamingInstallBase* const _this, const char* sFileName)>(0x1B933B0);
+	static inline auto FIsPakRequiredForLevel = PreyFunction<bool(const CStreamingInstallBase* const _this, const char* sPakFileName, const char* sLevelName)>(0x1B933B0);
+	static inline auto FGetPakSortIndex = PreyFunction<unsigned(const CStreamingInstallBase* const _this, const char* sPakFileName)>(0x158AEF0);
+	static inline auto FCheckForChunkCompletionPostResume = PreyFunction<void(CStreamingInstallBase* const _this)>(0xA13080);
+	static inline auto FSetPaused = PreyFunction<void(CStreamingInstallBase* const _this, bool _bPaused)>(0xA13080);
 };
 
 //! Interface platform OS (Operating System) functionality.
@@ -558,7 +584,7 @@ struct IPlatformOS
 	// <interfuscator:shuffle>
 	virtual ~IPlatformOS() {}
 
-	virtual unsigned int InitLanguageInfo(unsigned int) = 0;
+	virtual unsigned InitLanguageInfo(unsigned _languagesWithData) = 0;
 
 	//! Tick with each frame to determine if there are any system messages requiring handling.
 	virtual void Tick(float realFrameTime) = 0;
@@ -714,7 +740,7 @@ struct IPlatformOS
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const = 0;
 
 	//! Returns the user ID of the first signed in user, or Unknown_User if no one is signed in.
-	virtual int GetFirstSignedInUser() const = 0;
+	virtual unsigned GetFirstSignedInUser() const = 0;
 
 	//! Returns the user's PII (Personally Identifiable Information).
 	//! On first request it will start the act of retrieval, after which the caller can poll or wait for eET_PIIRetrieved.

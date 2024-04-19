@@ -2,6 +2,7 @@
 // Created by theli on 12/26/2022.
 //
 
+#include <Prey/CryCore/Platform/IPlatformOS.h>
 #include <Prey/CrySystem/ILocalizationManager.h>
 #include <Prey/CrySystem/LocalizedStringManager.h>
 #include "LocalizationUtil.h"
@@ -34,54 +35,80 @@ void LocalizationUtil::draw() {
             ImGui::Text("This is for in-game localization only.\nWhile we would love to offer multiple languages for chairloader, we don't have the people needed to translate it.");
             ImGui::Text("Current Language: %s", gEnv->pConsole->GetCVar("g_language")->GetString());
             ImGui::Text("Current Audio Language: %s", gEnv->pConsole->GetCVar("g_languageAudio")->GetString());
-            // check that the index is within bounds
-            if(m_CurrentTextItem < 0 || m_CurrentTextItem >= items.size()) {
-                m_CurrentTextItem = 0;
-                CryError("Invalid language index");
-            }
-            if (ImGui::Combo("Language", &m_CurrentTextItem, items.data(), items.size())) {
-                const char* language = locman->LanguageNameFromID((ELanguageID) m_CurrentTextItem);
-                gEnv->pConsole->GetCVar("g_language")->Set(items_internal[m_CurrentTextItem]);
-            }
-            // check that the index is within bounds
-            if(m_CurrentAudioItem < 0 || m_CurrentAudioItem >= items.size()) {
-                m_CurrentAudioItem = 0;
-                CryError("Invalid audio language index");
-            }
+            
+            ShowLanguageComboBox("Language", "g_language", &m_CurrentTextItem);
+
             // yellow text
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.9f, 0.3f, 1.0f));
             ImGui::Text("Changing the audio language while in game may have unintended consequences. \nIt is recommended to set the audio language before loading into a level.");
             ImGui::PopStyleColor();
-            if (ImGui::Combo("Audio Language", &m_CurrentAudioItem, items.data(), items.size())) {
-                const char* language = locman->LanguageNameFromID((ELanguageID) m_CurrentAudioItem);
-                gEnv->pConsole->GetCVar("g_languageAudio")->Set(items_internal[m_CurrentAudioItem]);
-            }
+
+            ShowLanguageComboBox("Audio Language", "g_languageAudio", &m_CurrentAudioItem);
         }
         ImGui::End();
     }
 }
 
-void LocalizationUtil::InitGame() {
-    auto locman = (CLocalizedStringsManager*)gEnv->pSystem->GetLocalizationManager();
-    // Set all localizations to be available
-    //TODO: check for available languages first
-    locman->m_availableLocalizations |=
-            ( (1 << eLID_English)
-              | (1 << eLID_French)
-              | (1 << eLID_Italian)
-              | (1 << eLID_German)
-              | (1 << eLID_Spanish)
-              | (1 << eLID_Latin_American_Spanish)
-              | (1 << eLID_Brazilian_Portuguese)
-              | (1 << eLID_Russian)
-              | (1 << eLID_Polish)
-              | (1 << eLID_Japanese)
-              | (1 << eLID_Traditional_Chinese)
-              | (1 << eLID_Simplified_Chinese));
+void LocalizationUtil::SetLangCVar(const char* cvarName, int selectedItemIdx)
+{
+    selectedItemIdx = std::clamp(selectedItemIdx, 0, (int)(std::size(items_internal) - 1));
+    ELanguageID newLangId;
 
+    if (selectedItemIdx == DEFAULT_LANG_IDX) {
+        newLangId = gEnv->pSystem->GetPlatformOS()->GetSystemLanguageID();
+    }
+    else {
+        newLangId = (ELanguageID)(selectedItemIdx - 1);
+    }
+
+    const char* language = gEnv->pSystem->GetLocalizationManager()->LanguageNameFromID(newLangId);
+    gEnv->pConsole->GetCVar(cvarName)->Set(language);
+}
+
+void LocalizationUtil::ShowLanguageComboBox(const char* label, const char* cvarName, int* pSelectedItemIdx)
+{
+    // Clamp the value
+    *pSelectedItemIdx = std::clamp(*pSelectedItemIdx, 0, (int)(std::size(items_internal) - 1));
+
+    auto locman = static_cast<CLocalizedStringsManager*>(gEnv->pSystem->GetLocalizationManager());
+    ELanguageID systemLangId = gEnv->pSystem->GetPlatformOS()->GetSystemLanguageID();
+    std::string defaultLangString = fmt::format("System Language ({})", items[(int)systemLangId + 1]);
+    items[0] = defaultLangString.c_str();
+
+    if (ImGui::BeginCombo(label, items[*pSelectedItemIdx]))
+    {
+        for (int i = 0; i < (int)std::size(items_internal); i++)
+        {
+            ImGui::PushID(i);
+            bool isAvailable = i == DEFAULT_LANG_IDX
+                ? true
+                : locman->m_availableLocalizations & (1 << (i - 1));
+
+            if (ImGui::Selectable(items[i], i == *pSelectedItemIdx, isAvailable ? 0 : ImGuiSelectableFlags_Disabled))
+            {
+                *pSelectedItemIdx = i;
+                SetLangCVar(cvarName, i);
+            }
+
+            ImGui::PopID();
+        }
+
+        ImGui::EndCombo();
+    }
+
+    // Points to temporary defaultLangString. Reset to nullptr to avoid dangling.
+    items[0] = nullptr;
+}
+
+void LocalizationUtil::InitGame() {
     REGISTER_CVAR2("ch_textLanguage", &m_CurrentTextItem, 0, VF_DUMPTOCHAIR, "Storing the text language for the localization utility, do not change this value!");
     REGISTER_CVAR2("ch_audioLanguage", &m_CurrentAudioItem, 0, VF_DUMPTOCHAIR, "Storing the audio language for the localization utility, do not change this value!");
+    
     // set the language
-    gEnv->pConsole->GetCVar("g_language")->Set(items_internal[m_CurrentTextItem]);
-    gEnv->pConsole->GetCVar("g_languageAudio")->Set(items_internal[m_CurrentAudioItem]);
+    // But if the user didn't set one explicitly, don't set it at all
+    if (m_CurrentTextItem != DEFAULT_LANG_IDX)
+        SetLangCVar("g_language", m_CurrentTextItem);
+    
+    if (m_CurrentTextItem != DEFAULT_LANG_IDX)
+        SetLangCVar("g_languageAudio", m_CurrentAudioItem);
 }
