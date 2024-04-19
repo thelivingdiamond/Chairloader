@@ -1,34 +1,14 @@
 {
   "$artifacts": "Map of build targets and their build artifacts to where to copy them to.",
   "artifacts": {
-    "Chairloader/Dll": {
+    "Src/Chairloader/Dll": {
       "Chairloader.dll": "Release/Chairloader.dll",
       "Chairloader.pdb": "Release/Chairloader.pdb"
     },
 
-    "Chairloader/Loader": {
+    "Src/Chairloader/Loader": {
       "mswsock.dll": "Release/mswsock.dll",
       "mswsock.pdb": "Release/mswsock.pdb"
-    },
-
-    "ChairManager": {
-      "ChairManager.exe": "ChairManager.exe",
-      "ChairManager.pdb": "ChairManager.pdb",
-      "boost_json-vc143-mt-x64-1_82.dll": "boost_json-vc143-mt-x64-1_82.dll",
-      "bz2.dll": "bz2.dll",
-      "curlpp.dll": "curlpp.dll",
-      "gtest.dll": "gtest.dll",
-      "libcurl.dll": "libcurl.dll",
-      "libzippp.dll": "libzippp.dll",
-      "lua.dll": "lua.dll",
-      "zip.dll": "zip.dll",
-      "zlib1.dll": "zlib1.dll"
-    },
-
-    "Preditor/Launcher": {
-      "Preditor.exe": "Preditor.exe",
-      "Preditor.pdb": "Preditor.pdb",
-      "boost_program_options-vc143-mt-x64-1_82.dll": "boost_program_options-vc143-mt-x64-1_82.dll"
     }
   },
 
@@ -48,6 +28,20 @@
     "chairloader_default.xml",
     "MergingLibrary.xml",
     "patchChecksums.xml",
-    "VariableLibrary.xml"
+    "VariableLibrary.xml",
+
+    "boost_json-vc143-mt-x64-1_82.dll",
+    "boost_program_options-vc143-mt-x64-1_82.dll",
+    "bz2.dll",
+    "ChairManager.exe",
+    "ChairManager.pdb",
+    "curlpp.dll",
+    "gtest.dll",
+    "libcurl.dll",
+    "libcurl.dll",
+    "libzippp.dll",
+    "lua.dll",
+    "zip.dll",
+    "zlib1.dll"
   ]
 }
