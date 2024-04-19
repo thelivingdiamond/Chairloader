@@ -20,5 +20,6 @@ private:
         Windows,
     };
 
+    static unsigned FindInstalledLanguages();
     static ELanguageID GetLanguageIdFromLocale(const char* locale, ELocaleType localeType);
 };

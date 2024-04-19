@@ -1,6 +1,7 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/PlatformOS/PlatformOS_PC.h>
 #include <Prey/CrySystem/ICmdLine.h>
+#include <Prey/CrySystem/File/ICryPak.h>
 #include <Chairloader/SteamAPI/IChairSteamAPI.h>
 #include "LocalizationPatch.h"
 
@@ -51,6 +52,10 @@ void LocalizationPatch::InitSystem(IChairSteamAPI* pSteamApi)
 
 unsigned LocalizationPatch::InitLanguageInfo_Hook(CPlatformOS_PC* const _this, unsigned _languagesWithData)
 {
+    // Default _languagesWithData contains all languages.
+    // Custom FindInstalledLanguages will actually check which ones are installed
+    unsigned installedLangs = FindInstalledLanguages();
+
     const char* cmdLine = gEnv->pSystem->GetICmdLine()->GetCommandLine();
     ELocaleType localeType = ELocaleType::None;
 
@@ -60,7 +65,8 @@ unsigned LocalizationPatch::InitLanguageInfo_Hook(CPlatformOS_PC* const _this, u
         // EGS locale - use original handler
         return g_CPlatformOS_PC_InitLanguageInfo_Hook.InvokeOrig(_this, _languagesWithData);
     }
-    else if (g_pSteamApi)
+    
+    if (g_pSteamApi)
     {
         // Steam/Galaxy API is available. Use it.
         const char* gameLang = g_pSteamApi->GetContext().SteamApps()->GetCurrentGameLanguage();
@@ -113,15 +119,52 @@ unsigned LocalizationPatch::InitLanguageInfo_Hook(CPlatformOS_PC* const _this, u
     }
 
     // See if the language is supported
-    if ((_languagesWithData & (1 << _this->m_languageId)) == 0)
+    if ((installedLangs & (1 << _this->m_languageId)) == 0)
     {
         CryWarning("Language {} ({}) is not installed. Defaulting to English", _this->m_systemLanguage, (int)_this->m_languageId);
         _this->m_languageId = eLID_English;
         _this->m_systemLanguage = "en";
     }
 
-    _this->m_supportedLanguages = _languagesWithData & (1 << _this->m_languageId);
-    return _this->m_supportedLanguages;
+    _this->m_supportedLanguages = installedLangs;
+    return installedLangs;
+}
+
+unsigned LocalizationPatch::FindInstalledLanguages()
+{
+    ILocalizationManager* pLocMan = gEnv->pSystem->GetLocalizationManager();
+    unsigned installedLangs = 1 << eLID_English; // Assume English is always available
+    fs::path locPath = fs::u8path(gEnv->pCryPak->GetLocalizationFolder());
+
+    for (int i = 0; i < ePILID_MAX_OR_INVALID; i++)
+    {
+        // List of files to check
+        const char* langName = pLocMan->LanguageNameFromID((ELanguageID)i);
+        std::string filesToCheck[] = {
+            fmt::format("{}.pak", langName),        // Audio
+            fmt::format("{}_xml.pak", langName),    // Text
+        };
+
+        // Check that all files exist
+        bool allExists = true;
+
+        for (const std::string& pakName : filesToCheck)
+        {
+            fs::path path = locPath / fs::u8path(pakName);
+            if (!fs::exists(path))
+            {
+                allExists = false;
+                break;
+            }
+        }
+
+        if (allExists)
+        {
+            installedLangs |= 1 << i;
+        }
+    }
+
+    return installedLangs;
 }
 
 ELanguageID LocalizationPatch::GetLanguageIdFromLocale(const char* locale, ELocaleType localeType)
