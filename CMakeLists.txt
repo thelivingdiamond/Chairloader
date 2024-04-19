@@ -150,13 +150,13 @@ add_subdirectory(Src/Preditor)
 
 # Unset ExampleMod's variables (in case they were ever set before)
 unset(CHAIRLOADER_COMMON_PATH CACHE)
-unset(EXAMPLE_MOD_DLL_PATH CACHE)
+unset(MOD_DLL_PATH CACHE)
 
 # Set correct ExampleMod variables
 set(CHAIRLOADER_COMMON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Common" CACHE PATH "")
 
 if(PREY_PATH)
-	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
+	set(MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
 endif()
 
 set(CMAKE_FOLDER "Example Mod")
@@ -164,7 +164,7 @@ add_subdirectory(ExampleMod)
 unset(CMAKE_FOLDER)
 
 unset(CHAIRLOADER_COMMON_PATH CACHE)
-unset(EXAMPLE_MOD_DLL_PATH CACHE)
+unset(MOD_DLL_PATH CACHE)
 
 # Set default VS project
 set(VS_STARTUP_PROJECT "Chairloader.Dll")
