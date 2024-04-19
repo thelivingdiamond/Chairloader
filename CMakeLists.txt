@@ -167,4 +167,4 @@ unset(CHAIRLOADER_COMMON_PATH CACHE)
 unset(MOD_DLL_PATH CACHE)
 
 # Set default VS project
-set(VS_STARTUP_PROJECT "Chairloader.Dll")
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "Chairloader.Dll")
