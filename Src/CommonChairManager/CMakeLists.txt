@@ -69,15 +69,15 @@ set(SOURCE_FILES
 
 add_library(CommonChairManager STATIC
 	${SOURCE_FILES}
-	../Common/pugixml/pugixml.hpp
-	../Common/pugixml/pugiconfig.hpp
-	../Common/pugixml/pugixml.cpp
+	${CMAKE_SOURCE_DIR}/Common/pugixml/pugixml.hpp
+	${CMAKE_SOURCE_DIR}/Common/pugixml/pugiconfig.hpp
+	${CMAKE_SOURCE_DIR}/Common/pugixml/pugixml.cpp
 )
 
 target_include_directories(CommonChairManager PUBLIC
 	.
 	ImGui
-	../Common/pugixml
+	${CMAKE_SOURCE_DIR}/Common/pugixml
 )
 
 target_link_libraries(CommonChairManager PUBLIC

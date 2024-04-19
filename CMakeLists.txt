@@ -95,7 +95,7 @@ function(cl_version_info target_name file_name file_description)
 		set(is_prerelease 0)
 	endif()
 
-	set(in_file_path "${CMAKE_SOURCE_DIR}/CommonChairManager/version_info.rc.in")
+	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/CommonChairManager/version_info.rc.in")
 	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}/version_info.rc")
 
 	configure_file(
@@ -126,12 +126,12 @@ add_subdirectory(ThirdParty/StackWalker)
 enable_testing()
 
 # Projects
-add_subdirectory(BinDiff)
-add_subdirectory(Chairloader)
-add_subdirectory(ChairManager)
 add_subdirectory(Common)
-add_subdirectory(CommonChairManager)
-add_subdirectory(Preditor)
+add_subdirectory(Src/BinDiff)
+add_subdirectory(Src/Chairloader)
+add_subdirectory(Src/ChairManager)
+add_subdirectory(Src/CommonChairManager)
+add_subdirectory(Src/Preditor)
 
 # Example Mod
 # It is meant to be a standalone project so this mess of CMake code builds it as part of Chairloader

@@ -33,11 +33,11 @@ set(SOURCE_FILES
 
 set(SOURCE_FILES_WINDOW_MANAGER
 	# WindowManager needs ImGui
-	../../Common/WindowManager/IManagedWindow.h
-	../../Common/WindowManager/ManagedWindow.cpp
-	../../Common/WindowManager/ManagedWindow.h
-	../../Common/WindowManager/WindowManager.cpp
-	../../Common/WindowManager/WindowManager.h
+	${CMAKE_SOURCE_DIR}/Common/WindowManager/IManagedWindow.h
+	${CMAKE_SOURCE_DIR}/Common/WindowManager/ManagedWindow.cpp
+	${CMAKE_SOURCE_DIR}/Common/WindowManager/ManagedWindow.h
+	${CMAKE_SOURCE_DIR}/Common/WindowManager/WindowManager.cpp
+	${CMAKE_SOURCE_DIR}/Common/WindowManager/WindowManager.h
 )
 
 #-----------------------------------------------------------
@@ -62,4 +62,4 @@ target_link_libraries(Chairloader.Common.Preditor PUBLIC
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/../../Common" FILES ${SOURCE_FILES_WINDOW_MANAGER})
+source_group(TREE "${CMAKE_SOURCE_DIR}/Common" FILES ${SOURCE_FILES_WINDOW_MANAGER})

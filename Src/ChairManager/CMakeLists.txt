@@ -90,7 +90,7 @@ target_link_libraries(ChairManager ${LINK_LIBRARIES})
 target_precompile_headers(ChairManager PRIVATE pch.h)
 
 set_target_properties(ChairManager PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Data"
+	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
 )
 
 cl_version_info(ChairManager "ChairManager.exe" "Chairloader Mod Manager")
@@ -109,12 +109,12 @@ target_link_libraries(ChairManager.Tests ${LINK_LIBRARIES})
 target_precompile_headers(ChairManager.Tests PRIVATE pch.h)
 
 set_target_properties(ChairManager.Tests PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Data"
+	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
 )
 
 cl_version_info(ChairManager.Tests "ChairManager.Tests.exe" "Chairloader Mod Manager Tests")
 
 gtest_discover_tests(
 	ChairManager.Tests
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Data
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Data
 )
