@@ -1,10 +1,13 @@
 # Generated files
+*.exe
+*.dll
+*.pdb
+*.old
 /Config
 /PreyFiles
-/ChairManager.exe
-/Preditor.exe
-/*.dll
-/*.old
 
 # Temporary files
 /temp
+
+# Required by ChairManager
+!7za.exe
