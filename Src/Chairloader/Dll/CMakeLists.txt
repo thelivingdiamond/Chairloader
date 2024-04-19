@@ -29,7 +29,7 @@ target_link_libraries(Chairloader.Dll PRIVATE
 )
 
 set_target_properties(Chairloader.Dll PROPERTIES OUTPUT_NAME "Chairloader")
-cl_output_dir(Chairloader.Dll)
+cl_output_to_game_dir(Chairloader.Dll)
 cl_set_debug_path(Chairloader.Dll)
 
 cl_version_info(Chairloader.Dll "Chairloader.dll" "Chairloader Mod Loader")

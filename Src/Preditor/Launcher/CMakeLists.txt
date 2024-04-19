@@ -50,6 +50,7 @@ set_target_properties(Preditor.Launcher PROPERTIES
 	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
 )
 
+cl_output_to_data(Preditor.Launcher)
 cl_version_info(Preditor.Launcher "Preditor.exe" "Preditor")
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

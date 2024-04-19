@@ -47,20 +47,32 @@ endif()
 
 # Macros and functions
 
+# Sets target's output directory to the argument.
+# @param targetName Name of the target.
+# @param outPath	Output directory path.
+function(cl_set_output_dir targetName outPath)
+	set_target_properties(${targetName} PROPERTIES
+		RUNTIME_OUTPUT_DIRECTORY ${outPath}
+		RUNTIME_OUTPUT_DIRECTORY_DEBUGCHAIR ${outPath}
+		RUNTIME_OUTPUT_DIRECTORY_RELEASE ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY_DEBUGCHAIR ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY_RELEASE ${outPath}
+	)
+endfunction()
+
 # Sets target's output directory to the game binaries dir.
 # @param targetName Name of the target.
-function(cl_output_dir targetName)
+function(cl_output_to_game_dir targetName)
 	if(PREY_DLL_DIR)
-		set(out_path "${PREY_DLL_DIR}")
-		set_target_properties(${targetName} PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
-		)
+		cl_set_output_dir(${targetName} "${PREY_DLL_DIR}")
 	endif()
+endfunction()
+
+# Sets target's output directory to the Data dir.
+# @param targetName Name of the target.
+function(cl_output_to_data targetName)
+	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
 endfunction()
 
 # Sets target's debugger command and workdir to the game.

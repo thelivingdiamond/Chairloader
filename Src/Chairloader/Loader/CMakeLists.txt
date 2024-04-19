@@ -24,7 +24,7 @@ set_target_properties(Chairloader.Loader PROPERTIES
 
 target_precompile_headers(Chairloader.Loader PRIVATE pch.h)
 
-cl_output_dir(Chairloader.Loader)
+cl_output_to_game_dir(Chairloader.Loader)
 cl_set_debug_path(Chairloader.Loader)
 
 cl_version_info(Chairloader.Loader "mswsock.dll" "Chairloader Mod Loader Loader")

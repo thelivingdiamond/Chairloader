@@ -93,6 +93,7 @@ set_target_properties(ChairManager PROPERTIES
 	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
 )
 
+cl_output_to_data(ChairManager)
 cl_version_info(ChairManager "ChairManager.exe" "Chairloader Mod Manager")
 
 #-------------------------------------------------------------------------
@@ -118,3 +119,5 @@ gtest_discover_tests(
 	ChairManager.Tests
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Data
 )
+
+cl_output_to_data(ChairManager.Tests)
