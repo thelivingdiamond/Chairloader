@@ -41,6 +41,8 @@
     "libcurl.dll",
     "libzippp.dll",
     "lua.dll",
+    "Preditor.exe",
+    "Preditor.pdb",
     "zip.dll",
     "zlib1.dll"
   ]
