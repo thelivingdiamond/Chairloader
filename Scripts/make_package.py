@@ -7,7 +7,7 @@ import json
 import zipfile
 from pathlib import Path, PurePath
 
-CHAIRMANAGER_FILES_PATH = PurePath('ChairManager/Data')
+CHAIRMANAGER_FILES_PATH = PurePath('Data')
 CONFIG_NAME = PurePath('_PackageConfig.json')
 
 
