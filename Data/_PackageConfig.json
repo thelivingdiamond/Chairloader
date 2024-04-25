@@ -1,0 +1,49 @@
+{
+  "$artifacts": "Map of build targets and their build artifacts to where to copy them to.",
+  "artifacts": {
+    "Src/Chairloader/Dll": {
+      "Chairloader.dll": "Release/Chairloader.dll",
+      "Chairloader.pdb": "Release/Chairloader.pdb"
+    },
+
+    "Src/Chairloader/Loader": {
+      "mswsock.dll": "Release/mswsock.dll",
+      "mswsock.pdb": "Release/mswsock.pdb"
+    }
+  },
+
+  "$file_list": "List of files to copy to the output archive",
+  "file_list": [
+    "Preditor/ActionSets.xml",
+    "Preditor/ExtractList.xml",
+    "Preditor/KeyDbgLayout.xml",
+    "Preditor/KeyMap.xml",
+    "Preditor/LookingGlassReferenceLibrary.xml",
+    "Preditor/Project.gitignore",
+    "ChairloaderPatch",
+    "Examples",
+    "Fonts",
+    "Versions",
+    "7za.exe",
+    "chairloader_default.xml",
+    "MergingLibrary.xml",
+    "patchChecksums.xml",
+    "VariableLibrary.xml",
+
+    "boost_json-vc143-mt-x64-1_82.dll",
+    "boost_program_options-vc143-mt-x64-1_82.dll",
+    "bz2.dll",
+    "ChairManager.exe",
+    "ChairManager.pdb",
+    "curlpp.dll",
+    "gtest.dll",
+    "libcurl.dll",
+    "libcurl.dll",
+    "libzippp.dll",
+    "lua.dll",
+    "Preditor.exe",
+    "Preditor.pdb",
+    "zip.dll",
+    "zlib1.dll"
+  ]
+}

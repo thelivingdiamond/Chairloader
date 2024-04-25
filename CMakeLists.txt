@@ -47,20 +47,32 @@ endif()
 
 # Macros and functions
 
+# Sets target's output directory to the argument.
+# @param targetName Name of the target.
+# @param outPath	Output directory path.
+function(cl_set_output_dir targetName outPath)
+	set_target_properties(${targetName} PROPERTIES
+		RUNTIME_OUTPUT_DIRECTORY ${outPath}
+		RUNTIME_OUTPUT_DIRECTORY_DEBUGCHAIR ${outPath}
+		RUNTIME_OUTPUT_DIRECTORY_RELEASE ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY_DEBUGCHAIR ${outPath}
+		LIBRARY_OUTPUT_DIRECTORY_RELEASE ${outPath}
+	)
+endfunction()
+
 # Sets target's output directory to the game binaries dir.
 # @param targetName Name of the target.
-function(cl_output_dir targetName)
+function(cl_output_to_game_dir targetName)
 	if(PREY_DLL_DIR)
-		set(out_path "${PREY_DLL_DIR}")
-		set_target_properties(${targetName} PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
-			RUNTIME_OUTPUT_DIRECTORY_RELEASE ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_DEBUGCHAIR ${out_path}
-			LIBRARY_OUTPUT_DIRECTORY_RELEASE ${out_path}
-		)
+		cl_set_output_dir(${targetName} "${PREY_DLL_DIR}")
 	endif()
+endfunction()
+
+# Sets target's output directory to the Data dir.
+# @param targetName Name of the target.
+function(cl_output_to_data targetName)
+	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
 endfunction()
 
 # Sets target's debugger command and workdir to the game.
@@ -95,7 +107,7 @@ function(cl_version_info target_name file_name file_description)
 		set(is_prerelease 0)
 	endif()
 
-	set(in_file_path "${CMAKE_SOURCE_DIR}/CommonChairManager/version_info.rc.in")
+	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/Common.Private/version_info.rc.in")
 	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}/version_info.rc")
 
 	configure_file(
@@ -126,25 +138,26 @@ add_subdirectory(ThirdParty/StackWalker)
 enable_testing()
 
 # Projects
-add_subdirectory(BinDiff)
-add_subdirectory(Chairloader)
-add_subdirectory(ChairManager)
 add_subdirectory(Common)
-add_subdirectory(CommonChairManager)
-add_subdirectory(Preditor)
+add_subdirectory(Src/Chairloader)
+add_subdirectory(Src/ChairManager)
+add_subdirectory(Src/ChairManager.Common)
+add_subdirectory(Src/Common.Private)
+add_subdirectory(Src/Preditor)
+add_subdirectory(Src/Tools)
 
 # Example Mod
 # It is meant to be a standalone project so this mess of CMake code builds it as part of Chairloader
 
 # Unset ExampleMod's variables (in case they were ever set before)
 unset(CHAIRLOADER_COMMON_PATH CACHE)
-unset(EXAMPLE_MOD_DLL_PATH CACHE)
+unset(MOD_DLL_PATH CACHE)
 
 # Set correct ExampleMod variables
 set(CHAIRLOADER_COMMON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Common" CACHE PATH "")
 
 if(PREY_PATH)
-	set(EXAMPLE_MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
+	set(MOD_DLL_PATH "${PREY_PATH}/Mods/TheChair.ExampleMod" CACHE PATH "")
 endif()
 
 set(CMAKE_FOLDER "Example Mod")
@@ -152,7 +165,7 @@ add_subdirectory(ExampleMod)
 unset(CMAKE_FOLDER)
 
 unset(CHAIRLOADER_COMMON_PATH CACHE)
-unset(EXAMPLE_MOD_DLL_PATH CACHE)
+unset(MOD_DLL_PATH CACHE)
 
 # Set default VS project
-set(VS_STARTUP_PROJECT "Chairloader.Dll")
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "Chairloader.Dll")
