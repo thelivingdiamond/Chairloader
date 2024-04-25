@@ -11,6 +11,8 @@ set(SOURCE_FILES
 	Manager/LuaUtils.h
 	Manager/MergingPolicy.h
 	Manager/ModConfig.h
+	Manager/ModInfo.cpp
+	Manager/ModInfo.h
 	Manager/ModListConfig.cpp
 	Manager/ModListConfig.h
 	Manager/NameToIdMap.h
@@ -27,6 +29,7 @@ set(SOURCE_FILES
 	Manager/XMLMerger2.cpp
 	Manager/XMLMerger2.h
 
+	GUIUtils.h
 	pch.h
 	version_info.rc.in
 )

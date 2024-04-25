@@ -5,12 +5,14 @@
 #include <iostream>
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
+#include <Chairloader/SemanticVersion.h>
 #include <Manager/GamePath.h>
 #include <Manager/XMLMerger2.h>
 #include <Manager/PreditorFiles.h>
 #include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <WinShell/WinShell.h>
+#include <GUIUtils.h>
 #include "ChairManager.h"
 #include "UI.h"
 #include "ChairWizards/GamePathDialog.h"
@@ -18,11 +20,9 @@
 #include "winver.h"
 #include "ChairWizards/ChairInstallWizard.h"
 #include "ChairWizards/ChairUninstallWizard.h"
-#include "../Chairloader/Common/GUIUtils.h" // TODO: That's horrible (TRUE LOL)
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
-#include "../Common/Chairloader/SemanticVersion.h"
 #include "Merging/ZipUtils.h"
 #include "Paths.h"
 

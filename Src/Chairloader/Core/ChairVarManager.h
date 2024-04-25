@@ -5,7 +5,7 @@
 #ifndef CHAIRLOADER_CHAIRVARMANAGER_H
 #define CHAIRLOADER_CHAIRVARMANAGER_H
 
-#include "../Common/Chairloader/IChairVarManager.h"
+#include <Chairloader/IChairVarManager.h>
 #include <pugixml.hpp>
 
 class ChairVarManager: public IChairVarManager {

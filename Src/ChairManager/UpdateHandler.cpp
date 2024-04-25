@@ -6,9 +6,9 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 #include <curlpp/Infos.hpp>
+#include <Chairloader/SemanticVersion.h>
 #include "ChairManager.h"
 #include "UpdateURL.h"
-#include "../Common/Chairloader/SemanticVersion.h"
 #include "UpdateHandler.h"
 #include "BinaryVersionCheck.h"
 

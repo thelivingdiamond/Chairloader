@@ -2,6 +2,7 @@
 // Created by theli on 9/2/2022.
 //
 #include <boost/json.hpp>
+#include <Chairloader/SemanticVersion.h>
 #include <Manager/GamePath.h>
 #include "BinaryVersionCheck.h"
 #include <Windows.h>
@@ -14,7 +15,6 @@
 #include <curlpp/Info.hpp>
 #include <curlpp/Infos.hpp>
 #include "UpdateURL.h"
-#include "../Common/Chairloader/SemanticVersion.h"
 
 static std::string m_latestVersion;
 

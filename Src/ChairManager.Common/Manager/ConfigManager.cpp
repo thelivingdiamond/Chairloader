@@ -4,8 +4,7 @@
 
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
-// #include "ChairManager.h"
-#include "../Chairloader/Common/GUIUtils.h"
+#include <GUIUtils.h>
 
 // init needs to
 // - load all config files

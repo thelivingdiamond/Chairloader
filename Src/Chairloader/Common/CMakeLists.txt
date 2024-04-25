@@ -22,7 +22,6 @@ set(SOURCE_FILES
 	ConsoleColorParser.h
 	EditorControls.cpp
 	EditorControls.h
-	GUIUtils.h
 	imgui_widget_flamegraph.cpp
 	imgui_widget_flamegraph.h
 	ImGuiDoubleBuffering.h
@@ -48,6 +47,7 @@ target_include_directories(Chairloader.Common PUBLIC .)
 
 target_link_libraries(Chairloader.Common PUBLIC
 	Common
+	Common.Private
 	Chairloader.ImGui
 )
 

@@ -1,11 +1,11 @@
 #include <Manager/GamePath.h>
 #include <Manager/PreditorFiles.h>
 #include <Prey/CryString/UnicodeFunctions.h>
+#include <Chairloader/SemanticVersion.h>
 #include "ChairInstallWizard.h"
 #include "../GameVersion.h"
 #include "../ChairManager.h"
 #include "../BinaryVersionCheck.h"
-#include "../../Common/Chairloader/SemanticVersion.h"
 
 static const ImVec2 DEFAULT_WINDOW_SIZE = { 600, 400 };
 static ImVec2 WINDOW_SIZE = DEFAULT_WINDOW_SIZE;
