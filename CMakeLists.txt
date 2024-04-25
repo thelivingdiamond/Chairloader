@@ -144,7 +144,7 @@ add_subdirectory(Src/ChairManager)
 add_subdirectory(Src/ChairManager.Common)
 add_subdirectory(Src/Common.Private)
 add_subdirectory(Src/Preditor)
-add_subdirectory(Src/Tools/BinDiff)
+add_subdirectory(Src/Tools)
 
 # Example Mod
 # It is meant to be a standalone project so this mess of CMake code builds it as part of Chairloader

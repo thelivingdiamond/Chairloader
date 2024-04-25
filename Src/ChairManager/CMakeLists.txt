@@ -1,3 +1,5 @@
+set(CMAKE_FOLDER "ChairManager")
+
 set(SOURCE_FILES
 	CMakeLists.txt
 	#ImGuiStandalone
