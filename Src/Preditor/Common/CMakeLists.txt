@@ -76,7 +76,7 @@ target_precompile_headers(Preditor.Common PUBLIC Preditor/pch.h)
 target_link_libraries(Preditor.Common PUBLIC
 	Boost::program_options
 	Common
-	CommonChairManager
+	ChairManager.Common
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

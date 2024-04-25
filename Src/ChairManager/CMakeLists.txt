@@ -59,7 +59,7 @@ set(INCLUDE_DIRECTORIES
 
 set(LINK_LIBRARIES
 	version.lib
-	CommonChairManager
+	ChairManager.Common
 	libzip::zip
 	ZLIB::ZLIB
 	unofficial::curlpp::curlpp

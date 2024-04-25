@@ -3,7 +3,7 @@
 //
 #pragma once
 #include <mutex>
-#include "ModConfig.h"
+#include <Manager/ModConfig.h>
 
 
 /*

@@ -107,7 +107,7 @@ function(cl_version_info target_name file_name file_description)
 		set(is_prerelease 0)
 	endif()
 
-	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/CommonChairManager/version_info.rc.in")
+	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/Common.Private/version_info.rc.in")
 	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}/version_info.rc")
 
 	configure_file(
@@ -142,7 +142,8 @@ add_subdirectory(Common)
 add_subdirectory(Src/BinDiff)
 add_subdirectory(Src/Chairloader)
 add_subdirectory(Src/ChairManager)
-add_subdirectory(Src/CommonChairManager)
+add_subdirectory(Src/ChairManager.Common)
+add_subdirectory(Src/Common.Private)
 add_subdirectory(Src/Preditor)
 
 # Example Mod
