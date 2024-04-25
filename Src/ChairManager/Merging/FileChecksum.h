@@ -5,7 +5,7 @@
 #ifndef CHAIRLOADER_FILECHECKSUM_H
 #define CHAIRLOADER_FILECHECKSUM_H
 
-#include "Manager/SHA256.h"
+#include <SHA256/SHA256.h>
 #include <fstream>
 
 struct FileChecksum

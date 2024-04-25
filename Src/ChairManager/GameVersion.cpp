@@ -1,5 +1,5 @@
 #include <zlib.h>
-#include <Manager/BinDiff.h>
+#include <BinDiff/BinDiff.h>
 #include <Manager/GamePath.h>
 #include "GameVersion.h"
 #include "ChairManager.h"

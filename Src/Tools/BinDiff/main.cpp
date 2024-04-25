@@ -2,7 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <chrono>
-#include <Manager/BinDiff.h>
+#include <BinDiff/BinDiff.h>
 #include <Prey/CryCore/Platform/platform_impl.inl>
 
 // TODO 2023-08-25: Remove this

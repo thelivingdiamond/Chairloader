@@ -1,10 +1,12 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	# BinDiff
+	BinDiff/BinDiff.cpp
+	BinDiff/BinDiff.h
+
 	# ChairManager
 	Manager/AttributeWildcard.h
-	Manager/BinDiff.cpp
-	Manager/BinDiff.h
 	Manager/ILogger.h
 	Manager/LogEntry.h
 	Manager/LuaUtils.cpp
@@ -17,8 +19,6 @@ set(SOURCE_FILES
 	Manager/ModListConfig.h
 	Manager/NameToIdMap.h
 	Manager/PreditorFiles.h
-	Manager/SHA256.cpp
-	Manager/SHA256.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
 	Manager/IChairManager.h
@@ -28,6 +28,10 @@ set(SOURCE_FILES
 	Manager/PugiUtils.h
 	Manager/XMLMerger2.cpp
 	Manager/XMLMerger2.h
+
+	# SHA256
+	SHA256/SHA256.cpp
+	SHA256/SHA256.h
 
 	GUIUtils.h
 	pch.h

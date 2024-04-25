@@ -4,7 +4,7 @@
 #include <ostream>
 #include <istream>
 #include <functional>
-#include "SHA256.h"
+#include <SHA256/SHA256.h>
 
 namespace BinDiff
 {

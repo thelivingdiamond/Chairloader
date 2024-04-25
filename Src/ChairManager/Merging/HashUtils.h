@@ -5,7 +5,7 @@
 #ifndef CHAIRLOADER_HASHUTILS_H
 #define CHAIRLOADER_HASHUTILS_H
 
-#include <Manager/SHA256.h>
+#include <SHA256/SHA256.h>
 
 namespace HashUtils
 {
