@@ -3,7 +3,7 @@
 //
 
 #include <gtest/gtest.h>
-#include <Manager/XMLMerger2.h>
+#include <ChairMerger/XMLMerger2.h>
 #include "Tests/XmlTestUtils.h"
 
 TEST(XMLMerger2Test, FuseXmlNode)

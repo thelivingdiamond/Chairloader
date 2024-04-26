@@ -1,7 +1,7 @@
 #include <Manager/IChairManager.h>
 #include <Manager/ModListConfig.h>
-#include <Manager/WildcardResolver.h>
 #include <Manager/ModConfig.h>
+#include <ChairMerger/WildcardResolver.h>
 #include "Merging/Mergers/AssetMerger.h"
 #include "Merging/Sources/ChairloaderMergeSource.h"
 #include "Merging/Sources/ImportMergeSource.h"

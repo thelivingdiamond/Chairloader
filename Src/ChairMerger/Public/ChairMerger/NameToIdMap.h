@@ -1,5 +1,5 @@
 #pragma once
-#include <Manager/LuaUtils.h>
+#include <ChairMerger/LuaUtils.h>
 
 namespace Manager
 {

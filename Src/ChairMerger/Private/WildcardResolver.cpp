@@ -1,6 +1,6 @@
 #include <regex>
 #include <Manager/IChairManager.h>
-#include "WildcardResolver.h"
+#include <ChairMerger/WildcardResolver.h>
 
 WildcardResolver::WildcardResolver(IChairManager* pChair, std::mt19937& rng, const std::string& modName)
     : m_pLuaState(nullptr, nullptr)

@@ -4,8 +4,8 @@
 
 #ifndef CHAIRLOADER_CHAIRMERGER_H
 #define CHAIRLOADER_CHAIRMERGER_H
-#include <Manager/MergingPolicy.h>
-#include <Manager/AttributeWildcard.h>
+#include <ChairMerger/MergingPolicy.h>
+#include <ChairMerger/AttributeWildcard.h>
 #include <gtest/gtest.h>
 #include <thread>
 #include <Manager/ThreadPool.h>

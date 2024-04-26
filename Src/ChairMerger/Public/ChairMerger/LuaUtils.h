@@ -14,8 +14,9 @@ extern "C"
 #include <lualib.h>
 }
 
-#include <LuaBridge/LuaBridge.h>
 #include <variant>
+#include <LuaBridge/LuaBridge.h>
+#include <ChairMerger/Export.h>
 
 
 namespace LuaUtils {
@@ -31,11 +32,11 @@ namespace LuaUtils {
         return false;
     }
 
-    void AddXmlNodeAsVariables(lua_State *luaState, pugi::xml_node node, std::string modName, bool bGlobal = true);
+    void CHAIRMERGER_EXPORT AddXmlNodeAsVariables(lua_State *luaState, pugi::xml_node node, std::string modName, bool bGlobal = true);
 
-    void CreateModNameTable(lua_State *luaState, std::string modName);
+    void CHAIRMERGER_EXPORT CreateModNameTable(lua_State *luaState, std::string modName);
 
-    std::string EvaulateWildcardExpression(std::string modName, std::string wildcardExpression);
+    std::string CHAIRMERGER_EXPORT EvaulateWildcardExpression(std::string modName, std::string wildcardExpression);
 
 
     static inline const std::string SandboxString =
@@ -89,7 +90,7 @@ result = tostring(f())
         return name;
     }
 
-    void AddVariableWithPath(lua_State *luaState, std::string path, std::string value, char delimiter = '.');
+    void CHAIRMERGER_EXPORT AddVariableWithPath(lua_State *luaState, std::string path, std::string value, char delimiter = '.');
 };
 
 

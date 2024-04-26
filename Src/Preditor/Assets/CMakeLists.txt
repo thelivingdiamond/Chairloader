@@ -62,6 +62,7 @@ target_include_directories(Preditor.Assets PRIVATE
 )
 
 target_link_libraries(Preditor.Assets
+	ChairMerger
 	Preditor.Common
 	${LUA_LIBRARIES}
 )

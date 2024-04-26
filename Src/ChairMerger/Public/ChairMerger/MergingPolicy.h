@@ -3,10 +3,11 @@
 #include <boost/algorithm/string.hpp>
 #include <pugixml.hpp>
 #include <filesystem>
+#include <ChairMerger/Export.h>
 
 constexpr char MERGING_LIBRARY_FILE_NAME[] = "MergingLibrary.xml";
 
-struct MergingPolicy{
+struct CHAIRMERGER_EXPORT MergingPolicy{
     //! tags used to determine when and which operations to perform
     enum node_tags {
         none = 0,

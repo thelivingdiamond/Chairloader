@@ -55,13 +55,12 @@ set(SOURCE_FILES
 
 set(INCLUDE_DIRECTORIES
 	.
-	${LUABRIDGE_INCLUDE_DIRS}
-	${LUA_INCLUDE_DIR}
 )
 
 set(LINK_LIBRARIES
 	version.lib
 	ChairManager.Common
+	ChairMerger
 	libzip::zip
 	ZLIB::ZLIB
 	unofficial::curlpp::curlpp

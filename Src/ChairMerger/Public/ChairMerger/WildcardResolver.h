@@ -1,12 +1,13 @@
 #pragma once
 #include <random>
-#include <Manager/AttributeWildcard.h>
-#include <Manager/LuaUtils.h>
+#include <ChairMerger/AttributeWildcard.h>
+#include <ChairMerger/Export.h>
+#include <ChairMerger/LuaUtils.h>
 #include <Manager/ModConfig.h>
 
 struct IChairManager;
 
-class WildcardResolver
+class CHAIRMERGER_EXPORT WildcardResolver
 {
 public:
     WildcardResolver(IChairManager* pChair, std::mt19937& rng, const std::string& modName);

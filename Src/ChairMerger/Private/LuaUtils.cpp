@@ -2,7 +2,7 @@
 // Created by theli on 4/18/2023.
 //
 
-#include "LuaUtils.h"
+#include <ChairMerger/LuaUtils.h>
 
 
 

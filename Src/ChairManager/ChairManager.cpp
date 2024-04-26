@@ -6,8 +6,8 @@
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
 #include <Chairloader/SemanticVersion.h>
+#include <ChairMerger/XMLMerger2.h>
 #include <Manager/GamePath.h>
-#include <Manager/XMLMerger2.h>
 #include <Manager/PreditorFiles.h>
 #include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>

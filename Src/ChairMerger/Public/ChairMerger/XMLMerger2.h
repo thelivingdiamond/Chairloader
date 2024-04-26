@@ -4,10 +4,10 @@
 
 #ifndef CHAIRLOADER_XMLMERGER2_H
 #define CHAIRLOADER_XMLMERGER2_H
-#include "MergingPolicy.h"
-#include "AttributeWildcard.h"
+#include <ChairMerger/Export.h>
+#include <ChairMerger/MergingPolicy.h>
 
-class XMLMerger2 {
+class CHAIRMERGER_EXPORT XMLMerger2 {
 public:
     //! Merge two XML documents together, using the specified merging policy.
     //! @param  baseDoc     Currently merged document. Merging result will be saved here.

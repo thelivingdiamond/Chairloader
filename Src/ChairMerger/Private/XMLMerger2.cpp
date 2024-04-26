@@ -3,7 +3,7 @@
 //
 
 #include <sstream>
-#include "XMLMerger2.h"
+#include <ChairMerger/XMLMerger2.h>
 #include <gtest/gtest.h>
 
 namespace

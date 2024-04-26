@@ -6,10 +6,10 @@
 #include "ChairMerger.h"
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
-#include <Manager/XMLMerger2.h>
-#include <Manager/LuaUtils.h>
-#include <Manager/WildcardResolver.h>
-#include <Manager/NameToIdMap.h>
+#include <ChairMerger/XMLMerger2.h>
+#include <ChairMerger/LuaUtils.h>
+#include <ChairMerger/WildcardResolver.h>
+#include <ChairMerger/NameToIdMap.h>
 #include <Manager/PreditorFiles.h>
 #include <Manager/ILogger.h>
 #include <Manager/IChairManager.h>

@@ -1,6 +1,6 @@
-#include <Manager/MergingPolicy.h>
-#include <Manager/XMLMerger2.h>
-#include <Manager/WildcardResolver.h>
+#include <ChairMerger/MergingPolicy.h>
+#include <ChairMerger/XMLMerger2.h>
+#include <ChairMerger/WildcardResolver.h>
 #include "Merging/Mergers/XmlAssetMerger.h"
 #include "Merging/Sources/AssetMergeSource.h"
 #include "Merging/AssetMergeSystem.h"
