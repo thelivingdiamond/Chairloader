@@ -3,9 +3,9 @@
 //
 
 #include <regex>
-#include "ChairMerger.h"
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
+#include <ChairMerger/ChairMerger.h>
 #include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/LuaUtils.h>
 #include <ChairMerger/WildcardResolver.h>
@@ -14,9 +14,9 @@
 #include <Manager/ILogger.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ModConfig.h>
-#include "Mod.h"
-#include "ZipUtils.h"
-#include "HashUtils.h"
+#include "../../ChairManager/Mod.h" // TODO 2024-04-26: Fix this bs
+#include <ChairMerger/ZipUtils.h>
+#include <ChairMerger/HashUtils.h>
 
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;

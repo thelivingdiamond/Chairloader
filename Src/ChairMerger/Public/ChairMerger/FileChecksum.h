@@ -5,10 +5,11 @@
 #ifndef CHAIRLOADER_FILECHECKSUM_H
 #define CHAIRLOADER_FILECHECKSUM_H
 
-#include <SHA256/SHA256.h>
 #include <fstream>
+#include <SHA256/SHA256.h>
+#include <ChairMerger/Export.h>
 
-struct FileChecksum
+struct CHAIRMERGER_EXPORT FileChecksum
 {
     fs::path path;
     fs::path relativePath;

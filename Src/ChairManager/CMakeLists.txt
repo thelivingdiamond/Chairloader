@@ -30,16 +30,6 @@ set(SOURCE_FILES
 	UpdateURL.h
 	Mod.h
 	Paths.h
-	Merging/ChairMerger.cpp
-	Merging/ChairMerger.h
-	Merging/XMLMerger2Test.cpp
-	Merging/FileChecksum.h
-	Merging/HashUtils.h
-	Merging/HashUtils.cpp
-	Merging/HashUtilsTest.cpp
-	Merging/ZipUtils.h
-	Merging/ZipUtils.cpp
-	Merging/ZipUtilsTest.cpp
 	LuaUtilsTest.cpp
 	CrashHandler.h
 	CrashHandler.cpp
@@ -49,8 +39,11 @@ set(SOURCE_FILES
 	Tests/Merging/ModMerging.cpp
 	Tests/Merging/Wildcards.cpp
 
+	Tests/HashUtilsTest.cpp
+	Tests/XMLMerger2Test.cpp
 	Tests/XmlTestUtils.cpp
 	Tests/XmlTestUtils.h
+	Tests/ZipUtilsTest.cpp
 )
 
 set(INCLUDE_DIRECTORIES

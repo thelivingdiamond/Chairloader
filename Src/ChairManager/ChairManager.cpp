@@ -7,9 +7,10 @@
 #include <curlpp/cURLpp.hpp>
 #include <Chairloader/SemanticVersion.h>
 #include <ChairMerger/XMLMerger2.h>
+#include <ChairMerger/ChairMerger.h>
+#include <ChairMerger/ZipUtils.h>
 #include <Manager/GamePath.h>
 #include <Manager/PreditorFiles.h>
-#include <Merging/ChairMerger.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <WinShell/WinShell.h>
 #include <GUIUtils.h>
@@ -23,7 +24,6 @@
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
-#include "Merging/ZipUtils.h"
 #include "Paths.h"
 
 static std::string ErrorMessage;

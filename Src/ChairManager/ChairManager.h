@@ -7,6 +7,7 @@
 //#include <archive_entry.h>
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_stdlib.h"
+#include <ChairMerger/ChairMerger.h>
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
@@ -18,7 +19,6 @@
 #include "BinaryVersionCheck.h"
 #include <boost/format.hpp>
 #include "Mod.h"
-#include "Merging/ChairMerger.h"
 
 
 class GamePathDialog;

@@ -1,8 +1,8 @@
 #pragma once
 #include <gtest/gtest.h>
+#include <ChairMerger/ChairMerger.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
-#include "Merging/ChairMerger.h"
 #include "Mod.h"
 
 class ChairMergerTestBase : public ::testing::Test, private IChairManager

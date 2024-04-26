@@ -4,8 +4,8 @@
 
 #include <gtest/gtest.h>
 #include <numeric>
-#include "HashUtils.h"
-#include "ZipUtils.h"
+#include <ChairMerger/HashUtils.h>
+#include <ChairMerger/ZipUtils.h>
 #include "Manager/ThreadPool.h"
 
 static const fs::path g_PreyFiles = "Testing/ChairMerger/_PreyFiles";

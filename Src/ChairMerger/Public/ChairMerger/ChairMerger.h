@@ -4,8 +4,9 @@
 
 #ifndef CHAIRLOADER_CHAIRMERGER_H
 #define CHAIRLOADER_CHAIRMERGER_H
-#include <ChairMerger/MergingPolicy.h>
 #include <ChairMerger/AttributeWildcard.h>
+#include <ChairMerger/Export.h>
+#include <ChairMerger/MergingPolicy.h>
 #include <gtest/gtest.h>
 #include <thread>
 #include <Manager/ThreadPool.h>
@@ -52,7 +53,7 @@ enum class DeployStep
     Done,
 };
 
-class ChairMergerException : public std::runtime_error
+class CHAIRMERGER_EXPORT ChairMergerException : public std::runtime_error
 {
   public:
     ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages);
@@ -67,7 +68,7 @@ class ChairMergerException : public std::runtime_error
     std::vector<std::string> m_Messages;
 };
 
-class ChairMerger
+class CHAIRMERGER_EXPORT ChairMerger
 {
 public:
     //! @param  mergerFiles         ChairMerger files directory.

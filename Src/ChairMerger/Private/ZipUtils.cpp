@@ -2,7 +2,7 @@
 // Created by theli on 4/3/2023.
 //
 
-#include "ZipUtils.h"
+#include <ChairMerger/ZipUtils.h>
 #include <libzippp.h>
 
 void ZipUtils::ExtractFolder(const fs::path& zipPath, const fs::path& outPath)
