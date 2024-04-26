@@ -9,6 +9,7 @@ set(SOURCE_FILES
 	Private/ChairMerger.cpp
 	Private/DllMain.cpp
 	Private/HashUtils.cpp
+	Private/HashUtils.h
 	Private/LuaUtils.cpp
 	Private/README.md
 	Private/WildcardResolver.cpp
@@ -18,7 +19,6 @@ set(SOURCE_FILES
 	Public/ChairMerger/AttributeWildcard.h
 	Public/ChairMerger/ChairMerger.h
 	Public/ChairMerger/FileChecksum.h
-	Public/ChairMerger/HashUtils.h
 	Public/ChairMerger/LuaUtils.h
 	Public/ChairMerger/MergingPolicy.h
 	Public/ChairMerger/NameToIdMap.h

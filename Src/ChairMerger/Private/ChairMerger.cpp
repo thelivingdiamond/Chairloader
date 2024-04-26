@@ -16,7 +16,7 @@
 #include <Manager/ModConfig.h>
 #include "../../ChairManager/Mod.h" // TODO 2024-04-26: Fix this bs
 #include <ChairMerger/ZipUtils.h>
-#include <ChairMerger/HashUtils.h>
+#include "HashUtils.h"
 
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;

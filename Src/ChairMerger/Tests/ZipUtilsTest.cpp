@@ -2,10 +2,9 @@
 // Created by theli on 4/3/2023.
 //
 
-#include <ChairMerger/HashUtils.h>
 #include <ChairMerger/ZipUtils.h>
 #include <gtest/gtest.h>
-
+#include "HashUtils.h"
 
 static const fs::path g_PreyFiles = "Testing/ChairMerger/_PreyFiles";
 

@@ -2,8 +2,8 @@
 // Created by theli on 4/2/2023.
 //
 #include <sstream>
-#include <ChairMerger/HashUtils.h>
 #include <libzippp.h>
+#include "HashUtils.h"
 
 SHA256::Digest HashUtils::HashFile(fs::path path)
 {
