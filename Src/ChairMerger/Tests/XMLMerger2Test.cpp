@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <ChairMerger/XMLMerger2.h>
-#include "Tests/XmlTestUtils.h"
+#include "XmlTestUtils.h"
 
 TEST(XMLMerger2Test, FuseXmlNode)
 {

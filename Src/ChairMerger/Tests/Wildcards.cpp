@@ -1,5 +1,5 @@
-#include "Tests/Merging/ChairMergerTestBase.h"
-#include "Tests/XmlTestUtils.h"
+#include "ChairMergerTestBase.h"
+#include "XmlTestUtils.h"
 
 TEST_F(ChairMergerTestBase, ResolveFileWildcards)
 {

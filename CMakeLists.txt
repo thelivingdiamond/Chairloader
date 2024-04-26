@@ -75,6 +75,10 @@ endfunction()
 # @param targetName Name of the target.
 function(cl_output_to_data targetName)
 	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
+
+	set_target_properties(${targetName} PROPERTIES
+		VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
+	)
 endfunction()
 
 # Sets target's debugger command and workdir to the game.

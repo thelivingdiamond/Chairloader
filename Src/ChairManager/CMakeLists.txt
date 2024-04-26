@@ -33,17 +33,6 @@ set(SOURCE_FILES
 	LuaUtilsTest.cpp
 	CrashHandler.h
 	CrashHandler.cpp
-
-	Tests/Merging/ChairMergerTestBase.cpp
-	Tests/Merging/ChairMergerTestBase.h
-	Tests/Merging/ModMerging.cpp
-	Tests/Merging/Wildcards.cpp
-
-	Tests/HashUtilsTest.cpp
-	Tests/XMLMerger2Test.cpp
-	Tests/XmlTestUtils.cpp
-	Tests/XmlTestUtils.h
-	Tests/ZipUtilsTest.cpp
 )
 
 set(INCLUDE_DIRECTORIES
@@ -83,35 +72,5 @@ target_include_directories(ChairManager PRIVATE ${INCLUDE_DIRECTORIES})
 target_link_libraries(ChairManager ${LINK_LIBRARIES})
 target_precompile_headers(ChairManager PRIVATE pch.h)
 
-set_target_properties(ChairManager PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
-)
-
 cl_output_to_data(ChairManager)
 cl_version_info(ChairManager "ChairManager.exe" "Chairloader Mod Manager")
-
-#-------------------------------------------------------------------------
-# ChairManager.Tests (test executable, linked in console mode)
-#-------------------------------------------------------------------------
-add_executable(ChairManager.Tests ${SOURCE_FILES})
-target_include_directories(ChairManager.Tests PRIVATE ${INCLUDE_DIRECTORIES})
-
-target_compile_definitions(ChairManager.Tests PRIVATE
-	CHAIRMANAGER_TESTS
-)
-
-target_link_libraries(ChairManager.Tests ${LINK_LIBRARIES})
-target_precompile_headers(ChairManager.Tests PRIVATE pch.h)
-
-set_target_properties(ChairManager.Tests PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
-)
-
-cl_version_info(ChairManager.Tests "ChairManager.Tests.exe" "Chairloader Mod Manager Tests")
-
-gtest_discover_tests(
-	ChairManager.Tests
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Data
-)
-
-cl_output_to_data(ChairManager.Tests)

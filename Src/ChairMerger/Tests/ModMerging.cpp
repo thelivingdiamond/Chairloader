@@ -1,6 +1,6 @@
 #include <libzippp.h>
-#include "Tests/Merging/ChairMergerTestBase.h"
-#include "Tests/XmlTestUtils.h"
+#include "ChairMergerTestBase.h"
+#include "XmlTestUtils.h"
 
 class ChairMergerTestProcessXMLFile
     : public ChairMergerTestBase

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Tests/XmlTestUtils.h"
+#include "XmlTestUtils.h"
 
 pugi::xml_document XmlTestUtils::LoadDocument(const fs::path& path, unsigned parseOptions)
 {

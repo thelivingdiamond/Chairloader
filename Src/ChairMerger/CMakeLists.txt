@@ -27,9 +27,7 @@ set(SOURCE_FILES
 	Public/ChairMerger/ZipUtils.h
 )
 
-add_library(ChairMerger SHARED
-	${SOURCE_FILES}
-)
+add_library(ChairMerger SHARED ${SOURCE_FILES})
 
 cl_output_to_data(ChairMerger)
 cl_version_info(ChairMerger "ChairMerger.dll" "Chairloader Mod Merger")
@@ -53,3 +51,5 @@ target_link_libraries(ChairMerger PUBLIC
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
+
+add_subdirectory(Tests)

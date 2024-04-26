@@ -3,7 +3,7 @@
 #include <ChairMerger/ChairMerger.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
-#include "Mod.h"
+#include "../../ChairManager/Mod.h" // TODO 2024-04-26: Fix this
 
 class ChairMergerTestBase : public ::testing::Test, private IChairManager
 {
