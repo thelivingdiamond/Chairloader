@@ -3,6 +3,7 @@ set(SOURCE_FILES
 	ChairMergerTestBase.cpp
 	ChairMergerTestBase.h
 	HashUtilsTest.cpp
+	LuaUtilsTest.cpp
 	main.cpp
 	ModMerging.cpp
 	pch.h
