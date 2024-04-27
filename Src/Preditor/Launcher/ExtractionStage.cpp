@@ -280,7 +280,7 @@ void ExtractionStage::ExtractPak(const pugi::xml_node node)
 			FileMap filesToExtract = FilterFiles(node, allFiles);
 			ThrowIfCancelling();
 
-			if (filesToExtract.empty())
+			if (filesToExtract.empty() && !node.attribute("isOptional").as_bool())
 				throw std::runtime_error("No valid files found in the pak");
 
 			// Pre-allocate the buffer outside the loop

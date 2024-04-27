@@ -16,14 +16,24 @@ WildcardResolver::~WildcardResolver()
 {
 }
 
+void WildcardResolver::AddModConfig(const std::string& modName, const pugi::xml_node& configNode)
+{
+    LuaUtils::AddXmlNodeAsVariables(m_pLuaState.get(), configNode, modName);
+}
+
 void WildcardResolver::AddModConfig(const ModConfig& modConfig)
 {
-    LuaUtils::AddXmlNodeAsVariables(m_pLuaState.get(), modConfig.configNode, modConfig.modName);
+    AddModConfig(modConfig.modName, modConfig.configNode);
+}
+
+void WildcardResolver::AddGlobalModConfig(const std::string& modName, const pugi::xml_node& configNode)
+{
+    LuaUtils::AddXmlNodeAsVariables(m_pLuaState.get(), configNode, modName, false);
 }
 
 void WildcardResolver::AddGlobalModConfig(const ModConfig& modConfig)
 {
-    LuaUtils::AddXmlNodeAsVariables(m_pLuaState.get(), modConfig.configNode, modConfig.modName, false);
+    AddGlobalModConfig(modConfig.modName, modConfig.configNode);
 }
 
 void WildcardResolver::AddIdNameMap(const std::map<std::string, uint64_t>& nameMap)

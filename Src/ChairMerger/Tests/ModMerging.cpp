@@ -19,7 +19,12 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
     fs::path modDataDir = m_TestDir / MOD_NAME / "Data";
     fs::path modFilePath = modDataDir / relativePath;
 
-    m_pMerger->ProcessXMLFile(modFilePath, modDataDir, MOD_NAME, false);
+    ChairMerger::Mod mod;
+    mod.type = ChairMerger::EModType::Native;
+    mod.modName = MOD_NAME;
+    mod.dataPath = modDataDir;
+
+    m_pMerger->ProcessXMLFile(mod, modFilePath);
 
     pugi::xml_document docOutput = XmlTestUtils::LoadDocument(m_TempDir / "Output" / relativePath);
     pugi::xml_document docExpected = XmlTestUtils::LoadDocument(m_TestDir / "Expected" / relativePath);

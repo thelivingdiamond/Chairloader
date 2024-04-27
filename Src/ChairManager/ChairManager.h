@@ -27,10 +27,10 @@ class GamePath;
 class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
+class ChairMerger;
 struct SemanticVersion;
 enum class DeployStep;
 class ChairMerger;
-
 
 class ChairManager final : public IChairManager {
 public:
@@ -69,19 +69,7 @@ public:
 
 
 
-    bool DeployForInstallWizard(std::string& errorMessage){
-        // This is called from a worker thread.
-        // I hate this.
-        Init();
-        m_pChairMerger->m_bForceMainPatchPack = true;
-        RunAsyncDeploy();
-        m_DeployTaskFuture.get();
-        bool failed = m_pChairMerger->m_bDeployFailed;
-        errorMessage = m_pChairMerger->GetDeployFailedMessage();
-        m_pChairMerger->SetDeployStep(DeployStep::Invalid);
-        m_pChairMerger->SetDeployPhase(DeployPhase::Invalid);
-        return !failed;
-    }
+    bool DeployForInstallWizard(std::string& errorMessage);
 
 
 
@@ -123,6 +111,8 @@ public:
     virtual void OverlayLogString(severityLevel level, std::string_view str) override;
 
 private:
+    struct MergerTask;
+
     //! DPI
     bool updateDPIScaling;
     float dpiScale = 1.0f;
@@ -179,7 +169,8 @@ private:
 
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
-    std::future<void> m_DeployTaskFuture;
+    std::unique_ptr<MergerTask> m_pMergerTask;
+    ChairMerger::Settings m_MergerSettings;
     ImVec2 modalInitPos {0,0};
     bool initPosSet = false;
 
@@ -266,13 +257,8 @@ private:
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
 
-
-    /// XML Merging V3
-    std::unique_ptr<ChairMerger> m_pChairMerger;
-
     //! config manager
     ConfigManager m_ConfigManager;
-
 
     // Load Order
     std::map<int, std::string> loadOrder;

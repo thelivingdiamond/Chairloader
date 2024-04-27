@@ -14,9 +14,11 @@ public:
     ~WildcardResolver();
 
     //! Adds a mod config to Lua as a new global table.
+    void AddModConfig(const std::string& modName, const pugi::xml_node& configNode);
     void AddModConfig(const ModConfig& modConfig);
 
     //! Adds a mod config properties as global variables.
+    void AddGlobalModConfig(const std::string& modName, const pugi::xml_node& configNode);
     void AddGlobalModConfig(const ModConfig& modConfig);
 
     //! Adds an Name -> Id map to the Lua.

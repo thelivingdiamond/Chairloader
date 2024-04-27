@@ -14,7 +14,6 @@
 #include <Manager/ILogger.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ModConfig.h>
-#include "../../ChairManager/Mod.h" // TODO 2024-04-26: Fix this bs
 #include <ChairMerger/ZipUtils.h>
 #include "HashUtils.h"
 
@@ -34,7 +33,6 @@ ChairMergerException::ChairMergerException(DeployStep step, DeployPhase phase, s
 ChairMerger::ChairMerger(
     const fs::path& mergerFiles,
     const fs::path& preyFiles,
-    const fs::path& chairloaderPatchDir,
     const fs::path& outputRoot,
     const fs::path& gamePath,
     ILogger* pLogger,
@@ -53,12 +51,8 @@ ChairMerger::ChairMerger(
     if (!fs::exists(preyFiles))
         throw std::invalid_argument("preyFiles doesn't exists");
 
-    if (!fs::exists(chairloaderPatchDir))
-        throw std::invalid_argument("chairloaderPatchDir doesn't exists");
-
     m_MergerFilesPath = mergerFiles;
     m_PreyFilesPath = preyFiles;
-    m_ChairloaderPatchPath = chairloaderPatchDir;
 
     // Temporary outputs
     m_OutputPath = outputRoot / "Output";
@@ -95,6 +89,12 @@ ChairMerger::ChairMerger(
     }
 
     m_RandomGenerator = std::mt19937(std::random_device()());
+}
+
+void ChairMerger::SetMods(std::vector<Mod>&& mods)
+{
+    CRY_ASSERT_MESSAGE(m_Mods.empty(), "ChairMerger instance may only be used once");
+    m_Mods = std::move(mods);
 }
 
 std::future<void> ChairMerger::LaunchAsyncDeploy()
@@ -174,11 +174,7 @@ void ChairMerger::PreMerge()
         SetDeployFailed("Failed to clear output directory: " + std::string(e.what()));
         return;
     }
-    // Copy over the chairloader patch files
-    SetDeployStep(DeployStep::CopyingBaseFiles);
-    CopyChairloaderPatchFiles();
-    if (m_bDeployFailed)
-        return;
+
     // load the patch file checksums
     SetDeployStep(DeployStep::LoadingPatchChecksums);
     LoadPatchFileChecksums();
@@ -194,31 +190,17 @@ void ChairMerger::Merge()
 {
     // profile merge task
     auto now = std::chrono::high_resolution_clock::now();
-    if (m_bForceVanillaPack)
+    if (m_Settings.m_bForceVanillaPack)
         return;
-    // merge the legacy mods
+
     SetDeployPhase(DeployPhase::Merge);
-    SetDeployStep(DeployStep::MergingLegacyMods);
-    for (auto& legacyMod : m_pModManager->GetLegacyModNames())
-    {
-        ProcessLegacyMod(legacyMod);
-        WaitForPendingTasks();
-        m_pLog->Log(severityLevel::trace, "Finished merging legacy mod: %s", legacyMod);
-    }
-
-    if (m_bDeployFailed)
-        return;
-
-    // merge the registered mods
     SetDeployStep(DeployStep::MergingMods);
-    for (auto& mod : m_pModManager->GetMods())
+
+    for (const Mod& mod : m_Mods)
     {
-        if (mod.enabled)
-        {
-            ProcessMod(std::make_shared<Mod>(mod));
-            WaitForPendingTasks();
-            m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", mod.modName);
-        }
+        ProcessMod(mod);
+        WaitForPendingTasks();
+        m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", mod.modName);
     }
 
     auto end = std::chrono::high_resolution_clock::now();
@@ -301,44 +283,32 @@ void ChairMerger::RecursiveFileCopyBlacklist(fs::path source, fs::path destinati
 }
 
 //! Function to resolve all attribute wildcards in an xml document
-void ChairMerger::ResolveFileWildcards(pugi::xml_node docNode, std::string modName)
+void ChairMerger::ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode)
 {
-    WildcardResolver wr(m_pModManager, m_RandomGenerator, modName);
+    if (mod.type != EModType::Native)
+    {
+        // Wildcards not supported by the mod
+        return;
+    }
+
+    WildcardResolver wr(m_pModManager, m_RandomGenerator, mod.modName);
 
     // add the config variables to the lua state
-    for (auto& mod : m_pModManager->GetMods())
+    for (const Mod& otherMod : m_Mods)
     {
-        // TODO 2023-07-07: Check if mod is enabled. Disabled mods shouldn't influence other mods.
-        auto& config = *m_pModManager->GetModConfig(mod.modName);
-        wr.AddModConfig(config);
+        if (otherMod.config.first_child())
+            wr.AddModConfig(otherMod.modName, otherMod.config.first_child());
     }
 
     // TODO: add local mod config variables in a way to ignore g.modName
-    auto& curModConfig = *m_pModManager->GetModConfig(modName);
-    wr.AddGlobalModConfig(curModConfig);
+    if (mod.config.first_child())
+        wr.AddGlobalModConfig(mod.modName, mod.config.first_child());
 
     wr.AddIdNameMap(m_NameToIdMap);
     wr.ResolveDocumentWildcards(docNode);
 }
 
-void ChairMerger::CopyChairloaderPatchFiles()
-{
-    if (fs::exists(m_ChairloaderPatchPath))
-    {
-        try
-        {
-            fs::copy(m_ChairloaderPatchPath, m_OutputPath,
-                     fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-        }
-        catch (fs::filesystem_error& e)
-        {
-            m_pLog->Log(severityLevel::error, "ChairMerger: Could not copy chairloader patch files: %s",
-                                    e.what());
-        }
-    }
-}
-
-MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path& file, std::string modName)
+MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path& file)
 {
     MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilesPath);
 
@@ -355,39 +325,24 @@ void ChairMerger::CopyModDataFiles(fs::path sourcePath)
         m_MergeThreadPool->enqueue([this, sourcePath] { RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, { ".xml" }); }));
 }
 
-void ChairMerger::ProcessMod(std::shared_ptr<Mod> mod)
+void ChairMerger::ProcessMod(const Mod& mod)
 {
-    m_pLog->Log(severityLevel::debug, "ChairMerger: Processing mod %s", mod->modName.c_str());
-
-    fs::path dataPath = mod->path / "Data";
+    m_pLog->Log(severityLevel::debug, "ChairMerger: Processing mod %s", mod.modName);
 
     // Copy all files from the mod's Data folder to the output folder
-    CopyModDataFiles(dataPath);
+    CopyModDataFiles(mod.dataPath);
 
     // Merge all XML files from the mod's Data folder
-    RecursiveMergeXMLFiles(dataPath, dataPath, mod->modName, false);
+    RecursiveMergeXMLFiles(mod, mod.dataPath);
 }
 
-void ChairMerger::ProcessLegacyMod(std::string modName)
+void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
 {
-    m_pLog->Log(severityLevel::debug, "ChairMerger: Processing legacy mod %s", modName.c_str());
-
-    fs::path dataPath = m_ModPath / "Legacy" / modName;
-
-    // Copy all files from the mod's Data folder to the output folder
-    CopyModDataFiles(dataPath);
-
-    // Merge all XML files from the mod's Data folder
-    RecursiveMergeXMLFiles(dataPath, dataPath, modName, true);
-}
-
-void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDir, std::string modName, bool isLegacy)
-{
-    fs::path relativePath = file.lexically_relative(modDataDir);
+    fs::path relativePath = file.lexically_relative(mod.dataPath);
 
     try
     {
-        auto policy = GetFileMergingPolicy(relativePath, modName);
+        auto policy = GetFileMergingPolicy(relativePath);
 
         // now we have the relative path to the file, we can use this to find the original file, and the base file in the
         // output directory
@@ -414,8 +369,7 @@ void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDi
             throw std::runtime_error(fmt::format("Could not load {}", file.u8string()));
         }
         // resolve attribute wildcards on non legacy files
-        if (!isLegacy)
-            ResolveFileWildcards(modDoc.first_child(), modName);
+        ResolveFileWildcards(mod, modDoc.first_child());
 
         // Create the output directory
         if (!fs::exists(baseFile.parent_path()))
@@ -463,29 +417,32 @@ void ChairMerger::ProcessXMLFile(const fs::path& file, const fs::path& modDataDi
             "{}\n    File: {}\n    Mod: {}",
             e.what(),
             relativePath.u8string(),
-            modName
+            mod.modName
         ));
     }
 }
 
-void ChairMerger::RecursiveMergeXMLFiles(const fs::path& source, const fs::path& modDataDir, std::string modName, bool isLegacy)
+void ChairMerger::RecursiveMergeXMLFiles(const Mod& mod, const fs::path& source)
 {
-    if (fs::exists(source) && fs::is_directory(source))
+    if (!fs::exists(source))
+        return;
+
+    if (!fs::is_directory(source))
+        throw std::runtime_error(fmt::format("Mod {}: not a directory: {}", mod.modName, source.u8string()));
+
+    for (auto& file : fs::directory_iterator(source))
     {
-        for (auto& file : fs::directory_iterator(source))
+        if (fs::is_directory(file))
         {
-            if (fs::is_directory(file))
+            RecursiveMergeXMLFiles(mod, file);
+        }
+        else
+        {
+            if (file.path().extension() == ".xml")
             {
-                RecursiveMergeXMLFiles(file.path(), modDataDir, modName, isLegacy);
-            }
-            else
-            {
-                if (file.path().extension() == ".xml")
-                {
-                    // Toss the file into the thread pool
-                    AddPendingTask(m_MergeThreadPool->enqueue(
-                        [this, file, modDataDir, modName, isLegacy] { ProcessXMLFile(file, modDataDir, modName, isLegacy); }));
-                }
+                // Toss the file into the thread pool
+                AddPendingTask(m_MergeThreadPool->enqueue(
+                    [this, file, &mod] { ProcessXMLFile(mod, file); }));
             }
         }
     }
@@ -567,7 +524,7 @@ bool ChairMerger::CheckLevelPacksChanged()
                 m_DeployedLevelFileChecksums[levelPack.first] = checksum;
             }
 
-            if (checksum != levelPack.second || !fs::exists(existingFile) || m_bForceLevelPack)
+            if (checksum != levelPack.second || !fs::exists(existingFile) || m_Settings.m_bForceLevelPack)
             {
                 AddChangedLevelPack(levelPack.first);
                 m_pLog->Log(severityLevel::trace, "ChairMerger: Level pack %s has changed",
@@ -610,7 +567,7 @@ bool ChairMerger::CheckLocalizationPacksChanged()
 
         m_DeployedLocalizationFileChecksums[localizationPack.first] = checksum;
 
-        if (checksum != localizationPack.second || !fs::exists(existingFile) || m_bForceLocalizationPack)
+        if (checksum != localizationPack.second || !fs::exists(existingFile) || m_Settings.m_bForceLocalizationPack)
         {
             AddChangedLocalizationPack(localizationPack.first);
             m_pLog->Log(severityLevel::debug, "ChairMerger: Localization pack %s has changed",
@@ -648,7 +605,7 @@ void ChairMerger::PackLevelFiles()
             // directory
             const auto levelPath = changedPack.parent_path();
             const auto deployedHash = m_DeployedLevelFileChecksums[changedPack];
-            const bool forcePack = m_bForceLevelPack;
+            const bool forcePack = m_Settings.m_bForceLevelPack;
             AddPendingTask(m_MergeThreadPool->enqueue([this, levelPath, deployedHash, forcePack, &bFailure] {
                 try
                 {
@@ -789,7 +746,7 @@ void ChairMerger::PackLocalizationFiles()
             // localization directory
             const auto localizationPath = changedPack.parent_path();
             const auto deployedLocalizationChecksum = m_DeployedLocalizationFileChecksums[changedPack];
-            const bool forcePack = m_bForceLocalizationPack;
+            const bool forcePack = m_Settings.m_bForceLocalizationPack;
             AddPendingTask(m_MergeThreadPool->enqueue([this, localizationPath, changedPack, deployedLocalizationChecksum,
                                                        forcePack, &bFailure] {
                 // patch file path is XXXX_patch.pak
@@ -926,7 +883,7 @@ void ChairMerger::PackMainPatch()
 
     if (fs::exists(chairPakPath))
     {
-        if (!m_bForceMainPatchPack)
+        if (!m_Settings.m_bForceMainPatchPack)
         {
             SHA256::Digest deployedFileHash;
 

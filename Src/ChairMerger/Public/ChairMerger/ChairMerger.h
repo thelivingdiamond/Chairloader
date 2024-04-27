@@ -4,6 +4,7 @@
 
 #ifndef CHAIRLOADER_CHAIRMERGER_H
 #define CHAIRLOADER_CHAIRMERGER_H
+#include <boost/core/span.hpp>
 #include <ChairMerger/AttributeWildcard.h>
 #include <ChairMerger/Export.h>
 #include <ChairMerger/MergingPolicy.h>
@@ -25,7 +26,6 @@ extern "C"
 
 struct ILogger;
 struct IChairManager;
-class Mod;
 
 enum class DeployPhase
 {
@@ -40,10 +40,8 @@ enum class DeployStep
     Invalid,
     // Pre Merge
     RemovingOldOutput,
-    CopyingBaseFiles,
     LoadingPatchChecksums,
     // Merge
-    MergingLegacyMods,
     MergingMods,
     // Post Merge
     PackingLevelPatches,
@@ -71,9 +69,51 @@ class CHAIRMERGER_EXPORT ChairMergerException : public std::runtime_error
 class CHAIRMERGER_EXPORT ChairMerger
 {
 public:
+    enum class EModType
+    {
+        None,
+
+        //! Just a folder with mod files. XMLs will be merged without wildcards.
+        Folder,
+
+        //! Native Chairloader mod
+        Native,
+
+        //! Legacy mod (folder with PAK contents)
+        Legacy,
+    };
+
+    struct Mod
+    {
+        //! Mod type.
+        EModType type = EModType::None;
+
+        //! The mod name. Used for logging and enabled mod checks.
+        std::string modName;
+
+        //! Path to the Data folder.
+        fs::path dataPath;
+
+        //! Mod config. Only used in native mods.
+        pugi::xml_document config;
+
+        Mod() = default;
+        Mod(Mod&&) noexcept = default;
+        Mod& operator=(Mod&&) noexcept = default;
+    };
+
+    struct Settings
+    {
+        // force all level packs and localization packs to be repacked
+        bool m_bForceLevelPack = false;
+        bool m_bForceLocalizationPack = false;
+        bool m_bForceMainPatchPack = false;
+
+        bool m_bForceVanillaPack = false;
+    };
+
     //! @param  mergerFiles         ChairMerger files directory.
     //! @param  preyFiles           Source Prey files directory.
-    //! @param  chairloaderPatchDir Chairloader patch directory.
     //! @param  outputRoot          Where to place output directories.
     //! @param  gamePath            Game directory.
     //! @param  pLogger             Logger instance to use.
@@ -81,11 +121,17 @@ public:
     ChairMerger(
         const fs::path& mergerFiles,
         const fs::path& preyFiles,
-        const fs::path& chairloaderPatchDir,
         const fs::path& outputRoot,
         const fs::path& gamePath,
         ILogger* pLogger,
         IChairManager* pChairManager);
+
+    //! Sets the mod list for merging.
+    void SetMods(std::vector<Mod>&& mods);
+
+    //! Sets the merging settings.
+    void SetSettings(const Settings& settings) { m_Settings = settings; }
+
     std::future<void> LaunchAsyncDeploy();
     void AsyncDeploy();
     void PreMerge();
@@ -120,31 +166,24 @@ protected:
                                            std::vector<std::string> extensionExclusions);
 
     //! Function to resolve all attribute wildcards in an xml document
-    void ResolveFileWildcards(pugi::xml_node docNode, std::string modName);
-
-    //! Copy the chairloader patch files to the output directory
-    void CopyChairloaderPatchFiles();
+    void ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode);
 
     // Member functions
     //! finds the merging policy for a given file in the merging library
-    MergingPolicy GetFileMergingPolicy(const fs::path& file, std::string modName);
+    MergingPolicy GetFileMergingPolicy(const fs::path& file);
 
     //! This function will copy all non xml files from the mod directory to the output directory
     void CopyModDataFiles(fs::path sourcePath);
 
     //! This function will recurse on all xml files in the mod directory and resolve all attribute wildcards before
     //! merging, working in the thread pool
-    void ProcessMod(std::shared_ptr<Mod> mod);
-
-    //! This function will recurse on all xml files in the legacy mod directory and resolve all attribute wildcards
-    //! before merging, working in the thread pool
-    void ProcessLegacyMod(std::string modName);
+    void ProcessMod(const Mod& mod);
 
     //! This function will load, resolve attribute wildcards, and merge a single xml file
-    void ProcessXMLFile(const fs::path& file, const fs::path& modDataDir, std::string modName, bool isLegacy);
+    void ProcessXMLFile(const Mod& mod, const fs::path& file);
 
     //! Recursively descends the directory tree and merges all xml files by putting them in the thread pool
-    void RecursiveMergeXMLFiles(const fs::path& source, const fs::path& modDataDir, std::string modName, bool isLegacy);
+    void RecursiveMergeXMLFiles(const Mod& mod, const fs::path& source);
 
     //! Load the default checksums from the xml file
     void LoadPatchFileChecksums();
@@ -198,7 +237,6 @@ protected:
     // ChairManager files
     fs::path m_MergerFilesPath;
     fs::path m_PreyFilesPath;
-    fs::path m_ChairloaderPatchPath;
 
     // Temporary output paths
     fs::path m_OutputPath;
@@ -211,6 +249,9 @@ protected:
     fs::path m_LocalizationFilesPath = "";
     fs::path m_PrecacheFilesPath = "";
 
+    //! Mods for merging
+    std::vector<Mod> m_Mods;
+
     static const inline std::map<DeployPhase, std::string> m_DeployPhaseStrings = {
         { DeployPhase::Invalid, "Invalid" }, { DeployPhase::PreMerge, "Pre-Merge" },
         { DeployPhase::Merge, "Merging" },   { DeployPhase::PostMerge, "Post-Merge" },
@@ -219,9 +260,7 @@ protected:
     static const inline std::map<DeployStep, std::string> m_DeployStepStrings = {
         { DeployStep::Invalid, "Invalid" },
         { DeployStep::RemovingOldOutput, "Removing old output" },
-        { DeployStep::CopyingBaseFiles, "Copying base files" },
         { DeployStep::LoadingPatchChecksums, "Loading patch checksums" },
-        { DeployStep::MergingLegacyMods, "Merging legacy mods" },
         { DeployStep::MergingMods, "Merging mods" },
         { DeployStep::PackingLevelPatches, "Packing level patches" },
         { DeployStep::PackingLocalizationPatches, "Packing localization patches" },
@@ -239,7 +278,7 @@ protected:
     std::mutex m_DeployStateMutex;
     DeployStep m_DeployStep = DeployStep::Invalid;
     DeployPhase m_DeployPhase = DeployPhase::Invalid;
-    bool m_bDeployFailed = false;
+    bool m_bDeployFailed = false; // TODO 2024-04-26: Get rid of this, use exceptions instead
     std::string m_DeployError;
 
     // checksums of the vanilla files
@@ -251,12 +290,7 @@ protected:
 
     std::mutex m_DeployedLevelFileChecksumsMutex;
 
-    // force all level packs and localization packs to be repacked
-    bool m_bForceLevelPack = false;
-    bool m_bForceLocalizationPack = false;
-    bool m_bForceMainPatchPack = false;
-
-    bool m_bForceVanillaPack = false;
+    Settings m_Settings;
 
     //! List of pending tasks on the thread pool.
     std::vector<std::future<void>> m_PendingTasks;

@@ -125,12 +125,32 @@ void ChairMergerTestBase::CreateMerger()
     m_pMerger = std::make_unique<ChairMerger>(
         fs::current_path(),
         m_BaseDir / "_PreyFiles",
-        m_BaseDir / "_ChairloaderPatch",
         m_TempDir,
         m_GameDir,
         static_cast<ILogger*>(this),
         static_cast<IChairManager*>(this)
     );
+
+    std::vector<ChairMerger::Mod> modsForMerging;
+
+    // Chairloader patch
+    {
+        ChairMerger::Mod& m = modsForMerging.emplace_back();
+        m.type = ChairMerger::EModType::Folder;
+        m.modName = "Chairloader";
+        m.dataPath = m_BaseDir / "_ChairloaderPatch";
+    }
+
+    for (Mod& i : m_Mods)
+    {
+        ChairMerger::Mod& j = modsForMerging.emplace_back();
+        j.type = ChairMerger::EModType::Native;
+        j.modName = i.modName;
+        j.dataPath = i.path / "Data";
+        j.config.reset(*GetModConfig(i.modName)->configDoc);
+    }
+
+    m_pMerger->SetMods(std::move(modsForMerging));
 }
 
 bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const fs::path& dirToCheck, bool expectAllFiles)
