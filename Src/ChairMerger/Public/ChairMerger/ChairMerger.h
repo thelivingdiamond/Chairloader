@@ -123,8 +123,7 @@ public:
         const fs::path& preyFiles,
         const fs::path& outputRoot,
         const fs::path& gamePath,
-        ILogger* pLogger,
-        IChairManager* pChairManager);
+        ILogger* pLogger);
 
     //! Sets the mod list for merging.
     void SetMods(std::vector<Mod>&& mods);
@@ -142,8 +141,6 @@ public:
     DeployPhase GetDeployPhase() { return m_DeployPhase; }
     bool DeployFailed() { return m_bDeployFailed; }
     std::string GetFailedDeployMessage() { return m_DeployError; }
-
-    bool IsModEnabled(std::string modName);
 
     //! Get the deploy phase descriptive string
     static std::string GetDeployPhaseString(DeployPhase phase);
@@ -232,7 +229,6 @@ protected:
     void LoadIdNameMap();
 
     ILogger* m_pLog;
-    IChairManager* m_pModManager;
 
     // ChairManager files
     fs::path m_MergerFilesPath;
@@ -296,8 +292,6 @@ protected:
     std::vector<std::future<void>> m_PendingTasks;
 
     // Random Number Generator
-    static int Random(int min, int max);
-    static float RandomFloat(float min, float max);
     static std::mt19937 m_RandomGenerator;
 
     static std::map<std::string, uint64_t> m_NameToIdMap;

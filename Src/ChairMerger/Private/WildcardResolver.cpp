@@ -2,10 +2,11 @@
 #include <Manager/IChairManager.h>
 #include <ChairMerger/WildcardResolver.h>
 
-WildcardResolver::WildcardResolver(IChairManager* pChair, std::mt19937& rng, const std::string& modName)
+WildcardResolver::WildcardResolver(ILogger* pLogger, const Callbacks& callbacks, std::mt19937& rng, const std::string& modName)
     : m_pLuaState(nullptr, nullptr)
 {
-    m_pChair = pChair;
+    m_pLog = pLogger;
+    m_Callbacks = callbacks;
     m_pRng = &rng;
     m_ModName = modName;
     InitLuaState();
@@ -69,7 +70,7 @@ void WildcardResolver::AddLuaFuncs()
     luabridge::getGlobalNamespace(L).addFunction("IsModEnabled",
         std::function([this](std::string modName)
         {
-            return m_pChair->IsModEnabled(modName);
+            return m_Callbacks.fnIsModEnabled && m_Callbacks.fnIsModEnabled(modName);
         }));
 
     luabridge::getGlobalNamespace(L).addFunction("Random",
@@ -135,7 +136,7 @@ bool WildcardResolver::GetAttributeWildcardValue(AttributeWildcard& wildcard)
 
     if (!std::regex_search(value, match, re))
     {
-        m_pChair->Log(severityLevel::warning, "Could not find wildcard value in %s", value.c_str());
+        m_pLog->Log(severityLevel::warning, "Could not find wildcard value in %s", value.c_str());
         wildcard.type = AttributeWildcard::wildcard_type::none;
         return false;
     }
@@ -189,12 +190,12 @@ bool WildcardResolver::GetAttributeWildcardValue(AttributeWildcard& wildcard)
             wildcard.has_match_value = true;
         }
         else {
-            m_pChair->Log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
+            m_pLog->Log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
         }
     }
     else
     {
-        m_pChair->Log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
+        m_pLog->Log(severityLevel::error, "Error evaluating lua expression: %s", wildcardName.c_str());
     }
 
     return wildcard.has_match_value;

@@ -35,11 +35,9 @@ ChairMerger::ChairMerger(
     const fs::path& preyFiles,
     const fs::path& outputRoot,
     const fs::path& gamePath,
-    ILogger* pLogger,
-    IChairManager* pChairManager)
+    ILogger* pLogger)
 {
     m_pLog = pLogger;
-    m_pModManager = pChairManager;
 
     m_pLog->Log(severityLevel::debug, "ChairMerger: Initializing ChairMerger");
     m_pLog->Log(severityLevel::debug, "ChairMerger: ChairMerger Initialized");
@@ -235,11 +233,6 @@ void ChairMerger::PostMerge()
                             std::chrono::duration_cast<std::chrono::duration<double>>(end - now).count());
 }
 
-bool ChairMerger::IsModEnabled(std::string modName)
-{
-    return m_pModManager->IsModEnabled(modName);
-}
-
 std::string ChairMerger::GetDeployPhaseString(DeployPhase phase)
 {
     return m_DeployPhaseStrings.at(phase);
@@ -291,7 +284,19 @@ void ChairMerger::ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode)
         return;
     }
 
-    WildcardResolver wr(m_pModManager, m_RandomGenerator, mod.modName);
+    WildcardResolver::Callbacks callbacks;
+    callbacks.fnIsModEnabled = [this](const std::string& modName)
+    {
+        for (const Mod& mod : m_Mods)
+        {
+            if (mod.modName == modName)
+                return true;
+        }
+
+        return false;
+    };
+
+    WildcardResolver wr(m_pLog, callbacks, m_RandomGenerator, mod.modName);
 
     // add the config variables to the lua state
     for (const Mod& otherMod : m_Mods)
@@ -969,18 +974,6 @@ void ChairMerger::LoadIdNameMap()
     //    m_pLog->Log(severityLevel::trace, "ChairMerger: Loaded id name map in %llu milliseconds",
     //    elapsed.count());
     // TODO: Load from mods
-}
-
-int ChairMerger::Random(int min, int max)
-{
-    std::uniform_int_distribution<int> distribution(min, max);
-    return distribution(m_RandomGenerator);
-}
-
-float ChairMerger::RandomFloat(float min, float max)
-{
-    std::uniform_real_distribution<float> distribution(min, max);
-    return distribution(m_RandomGenerator);
 }
 
 void ChairMerger::AddPendingTask(std::future<void>&& future)

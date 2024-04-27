@@ -3,6 +3,7 @@
 #include <ChairMerger/AttributeWildcard.h>
 #include <ChairMerger/Export.h>
 #include <ChairMerger/LuaUtils.h>
+#include <Manager/ILogger.h>
 #include <Manager/ModConfig.h>
 
 struct IChairManager;
@@ -10,7 +11,12 @@ struct IChairManager;
 class CHAIRMERGER_EXPORT WildcardResolver
 {
 public:
-    WildcardResolver(IChairManager* pChair, std::mt19937& rng, const std::string& modName);
+    struct Callbacks
+    {
+        std::function<bool(const std::string& modName)> fnIsModEnabled;
+    };
+
+    WildcardResolver(ILogger* pLogger, const Callbacks& callbacks, std::mt19937& rng, const std::string& modName);
     ~WildcardResolver();
 
     //! Adds a mod config to Lua as a new global table.
@@ -30,7 +36,8 @@ public:
     void ResolveDocumentWildcards(pugi::xml_node docNode);
 
 private:
-    IChairManager* m_pChair = nullptr;
+    ILogger* m_pLog = nullptr;
+    Callbacks m_Callbacks;
     std::mt19937* m_pRng = nullptr;
     std::string m_ModName;
     std::unique_ptr<lua_State, decltype(&lua_close)> m_pLuaState;

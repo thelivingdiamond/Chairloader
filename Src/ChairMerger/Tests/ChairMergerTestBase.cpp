@@ -127,8 +127,7 @@ void ChairMergerTestBase::CreateMerger()
         m_BaseDir / "_PreyFiles",
         m_TempDir,
         m_GameDir,
-        static_cast<ILogger*>(this),
-        static_cast<IChairManager*>(this)
+        static_cast<ILogger*>(this)
     );
 
     std::vector<ChairMerger::Mod> modsForMerging;

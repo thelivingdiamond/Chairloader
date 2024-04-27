@@ -2212,7 +2212,6 @@ void ChairManager::RunAsyncDeploy() {
         chairManagerDir / "PreyFiles",
         chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
         GetGamePath(),
-        this,
         this
     );
 
