@@ -18,6 +18,7 @@ set(SOURCE_FILES
 
 	Public/ChairMerger/AttributeWildcard.h
 	Public/ChairMerger/ChairMerger.h
+	Public/ChairMerger/ChairMergerSettings.h
 	Public/ChairMerger/FileChecksum.h
 	Public/ChairMerger/LuaUtils.h
 	Public/ChairMerger/MergingPolicy.h

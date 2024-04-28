@@ -6,6 +6,7 @@
 #define CHAIRLOADER_CHAIRMERGER_H
 #include <boost/core/span.hpp>
 #include <ChairMerger/AttributeWildcard.h>
+#include <ChairMerger/ChairMergerSettings.h>
 #include <ChairMerger/Export.h>
 #include <ChairMerger/MergingPolicy.h>
 #include <gtest/gtest.h>
@@ -103,16 +104,6 @@ public:
         Mod& operator=(Mod&&) noexcept = default;
     };
 
-    struct Settings
-    {
-        // force all level packs and localization packs to be repacked
-        bool m_bForceLevelPack = false;
-        bool m_bForceLocalizationPack = false;
-        bool m_bForceMainPatchPack = false;
-
-        bool m_bForceVanillaPack = false;
-    };
-
     //! @param  mergerFiles         ChairMerger files directory.
     //! @param  preyFiles           Source Prey files directory.
     //! @param  outputRoot          Where to place output directories.
@@ -130,7 +121,7 @@ public:
     void SetMods(std::vector<Mod>&& mods);
 
     //! Sets the merging settings.
-    void SetSettings(const Settings& settings) { m_Settings = settings; }
+    void SetSettings(const ChairMergerSettings& settings) { m_Settings = settings; }
 
     //! Runs the deploying in blocking mode.
     void Deploy();
@@ -295,7 +286,7 @@ protected:
 
     std::mutex m_DeployedLevelFileChecksumsMutex;
 
-    Settings m_Settings;
+    ChairMergerSettings m_Settings;
 
     //! List of pending tasks on the thread pool.
     std::vector<std::future<void>> m_PendingTasks;

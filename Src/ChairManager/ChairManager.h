@@ -7,7 +7,7 @@
 //#include <archive_entry.h>
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_stdlib.h"
-#include <ChairMerger/ChairMerger.h>
+#include <ChairMerger/ChairMergerSettings.h>
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
@@ -170,7 +170,7 @@ private:
     void SwitchToDeployScreen();
     void DrawDeployScreen(bool* pbIsOpen);
     std::unique_ptr<MergerTask> m_pMergerTask;
-    ChairMerger::Settings m_MergerSettings;
+    ChairMergerSettings m_MergerSettings;
     ImVec2 modalInitPos {0,0};
     bool initPosSet = false;
 

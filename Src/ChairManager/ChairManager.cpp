@@ -2214,7 +2214,7 @@ std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWiza
 
     if (forInstallWizard)
     {
-        ChairMerger::Settings settings;
+        ChairMergerSettings settings;
         settings.m_bForceMainPatchPack = true;
         pMerger->SetSettings(settings);
     }
