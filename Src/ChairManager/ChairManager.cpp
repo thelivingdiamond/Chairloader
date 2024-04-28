@@ -2164,13 +2164,8 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     }
 }
 
-void ChairManager::RunAsyncDeploy() {
-    if (m_pMergerTask)
-    {
-        overlayLog(severityLevel::error, "Mods are already being deployed");
-        return;
-    }
-
+std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWizard)
+{
     fs::path chairManagerDir = fs::current_path();
     std::vector<ChairMerger::Mod> modsForMerging;
 
@@ -2182,30 +2177,32 @@ void ChairManager::RunAsyncDeploy() {
         patchMod.dataPath = chairManagerDir / "ChairloaderPatch";
     }
 
-    // Legacy mods
-    for (const std::string& modName : LegacyModList)
+    if (!forInstallWizard)
     {
-        ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
-        mergedMod.type = ChairMerger::EModType::Legacy;
-        mergedMod.modName = "Chairloader";
-        mergedMod.dataPath = GetGamePath() / "Mods/Legacy" / modName;
+        // Legacy mods
+        for (const std::string& modName : LegacyModList)
+        {
+            ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
+            mergedMod.type = ChairMerger::EModType::Legacy;
+            mergedMod.modName = "Chairloader";
+            mergedMod.dataPath = GetGamePath() / "Mods/Legacy" / modName;
+        }
+
+        // Native mods
+        for (const Mod& mod : ModList)
+        {
+            if (!mod.enabled)
+                continue;
+
+            ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
+            mergedMod.type = ChairMerger::EModType::Native;
+            mergedMod.modName = mod.modName;
+            mergedMod.dataPath = mod.path / "Data";
+            mergedMod.config.reset(*GetConfigManager()->getModConfig(mod.modName).configDoc);
+        }
     }
 
-    // Native mods
-    for (const Mod& mod : ModList)
-    {
-        if (!mod.enabled)
-            continue;
-
-        ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
-        mergedMod.type = ChairMerger::EModType::Native;
-        mergedMod.modName = mod.modName;
-        mergedMod.dataPath = mod.path / "Data";
-        mergedMod.config.reset(*GetConfigManager()->getModConfig(mod.modName).configDoc);
-    }
-
-    m_pMergerTask = std::make_unique<MergerTask>();
-    m_pMergerTask->pMerger = std::make_unique<ChairMerger>(
+    std::unique_ptr<ChairMerger> pMerger = std::make_unique<ChairMerger>(
         chairManagerDir,
         chairManagerDir / "PreyFiles",
         chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
@@ -2213,7 +2210,31 @@ void ChairManager::RunAsyncDeploy() {
         this
     );
 
-    m_pMergerTask->pMerger->SetMods(std::move(modsForMerging));
+    pMerger->SetMods(std::move(modsForMerging));
+
+    if (forInstallWizard)
+    {
+        ChairMerger::Settings settings;
+        settings.m_bForceMainPatchPack = true;
+        pMerger->SetSettings(settings);
+    }
+    else
+    {
+        pMerger->SetSettings(m_MergerSettings);
+    }
+
+    return pMerger;
+}
+
+void ChairManager::RunAsyncDeploy() {
+    if (m_pMergerTask)
+    {
+        overlayLog(severityLevel::error, "Mods are already being deployed");
+        return;
+    }
+
+    m_pMergerTask = std::make_unique<MergerTask>();
+    m_pMergerTask->pMerger = CreateChairMerger(false);
     m_pMergerTask->future = m_pMergerTask->pMerger->DeployAsync();
 }
 
@@ -2331,15 +2352,10 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 
 bool ChairManager::DeployForInstallWizard(std::string& errorMessage) {
     // This is called from a worker thread.
-    // I hate this.
-    m_MergerSettings.m_bForceMainPatchPack = true;
-    RunAsyncDeploy();
-    m_MergerSettings.m_bForceMainPatchPack = false;
-    m_pMergerTask->future.get();
-    bool failed = m_pMergerTask->pMerger->DeployFailed();
-    errorMessage = m_pMergerTask->pMerger->GetDeployFailedMessage();
-    m_pMergerTask.reset();
-    return !failed;
+    std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true);
+    pMerger->Deploy();
+    errorMessage = pMerger->GetDeployFailedMessage();
+    return !pMerger->DeployFailed();
 }
 
 void ChairManager::launchGame() {

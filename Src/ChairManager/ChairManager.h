@@ -339,6 +339,7 @@ private:
     void removeStartupCinematics();
     void restoreStartupCinematics();
 
+    std::unique_ptr<ChairMerger> CreateChairMerger(bool forInstallWizard);
     void RunAsyncDeploy();
 
     //! Opens the file select dialog for mod installation.
