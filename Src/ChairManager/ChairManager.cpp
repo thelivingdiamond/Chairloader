@@ -2101,8 +2101,6 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
                 ImGui::CloseCurrentPopup();
                 m_pMergerTask.reset();
                 m_State = State::MainWindow;
-                task.pMerger->m_DeployStep = DeployStep::Invalid;
-                task.pMerger->m_DeployPhase = DeployPhase::Invalid;
             }
         }
         ImGui::EndPopup();
@@ -2338,7 +2336,7 @@ bool ChairManager::DeployForInstallWizard(std::string& errorMessage) {
     RunAsyncDeploy();
     m_MergerSettings.m_bForceMainPatchPack = false;
     m_pMergerTask->future.get();
-    bool failed = m_pMergerTask->pMerger->m_bDeployFailed;
+    bool failed = m_pMergerTask->pMerger->DeployFailed();
     errorMessage = m_pMergerTask->pMerger->GetDeployFailedMessage();
     m_pMergerTask.reset();
     return !failed;

@@ -10,6 +10,7 @@
 #include <ChairMerger/MergingPolicy.h>
 #include <gtest/gtest.h>
 #include <thread>
+#include <Manager/SynchronizedData.h>
 #include <Manager/ThreadPool.h>
 #include "FileChecksum.h"
 #include <random>
@@ -140,10 +141,10 @@ public:
     //! No non-const methods may be called during that time.
     std::future<void> DeployAsync();
 
-    DeployStep GetDeployStep() const { return m_DeployStep; }
-    DeployPhase GetDeployPhase() const { return m_DeployPhase; }
-    bool DeployFailed() const { return m_bDeployFailed; }
-    std::string GetFailedDeployMessage() { return m_DeployError; }
+    DeployStep GetDeployStep() const;
+    DeployPhase GetDeployPhase() const;
+    bool DeployFailed() const;
+    std::string GetDeployFailedMessage() const;
 
     //! Get the deploy phase descriptive string
     static std::string GetDeployPhaseString(DeployPhase phase);
@@ -158,6 +159,14 @@ protected:
 
     friend class ChairMergerTest;
     friend class ChairManager;
+
+    struct DeployState
+    {
+        DeployStep step = DeployStep::Invalid;
+        DeployPhase phase = DeployPhase::Invalid;
+        bool failed = false; // TODO 2024-04-26: Get rid of this, use exceptions instead
+        std::string error;
+    };
 
     // Static functions
 
@@ -230,9 +239,6 @@ protected:
     //! Clear a deploy failure, thread safe
     void ClearDeployFailed();
 
-    //! Get the failure message
-    std::string GetDeployFailedMessage();
-
     void LoadIdNameMap();
 
     ILogger* m_pLog;
@@ -278,11 +284,7 @@ protected:
     std::unique_ptr<pugi::xml_document> m_MergingPolicyDoc;
 
     // deploy progress tracking
-    std::mutex m_DeployStateMutex;
-    DeployStep m_DeployStep = DeployStep::Invalid;
-    DeployPhase m_DeployPhase = DeployPhase::Invalid;
-    bool m_bDeployFailed = false; // TODO 2024-04-26: Get rid of this, use exceptions instead
-    std::string m_DeployError;
+    SynchronizedData<DeployState> m_DeployState;
 
     // checksums of the vanilla files
     std::map<fs::path, SHA256::Digest> m_LevelFileChecksums, m_LocalizationFileChecksums;

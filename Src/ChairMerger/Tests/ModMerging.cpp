@@ -111,7 +111,7 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
 
     m_pMerger->Deploy();
 
-    ASSERT_FALSE(m_pMerger->DeployFailed()) << "Deploy failed: " << m_pMerger->GetFailedDeployMessage();
+    ASSERT_FALSE(m_pMerger->DeployFailed()) << "Deploy failed: " << m_pMerger->GetDeployFailedMessage();
 
     fs::path expectedDir = m_TestDir / "Expected";
     fs::path mainExpectedDir = expectedDir / "Main";

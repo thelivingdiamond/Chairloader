@@ -19,6 +19,7 @@ set(SOURCE_FILES
 	Manager/IChairManager.h
 	Manager/ThreadPool.h
 	Manager/PugiUtils.h
+	Manager/SynchronizedData.h
 
 	# SHA256
 	SHA256/SHA256.cpp

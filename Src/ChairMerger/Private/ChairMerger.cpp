@@ -102,19 +102,19 @@ void ChairMerger::Deploy()
         ClearDeployFailed();
         auto now = std::chrono::high_resolution_clock::now();
         PreMerge();
-        if (m_bDeployFailed)
+        if (m_DeployState.GetData().failed)
             return;
         Merge();
-        if (m_bDeployFailed)
+        if (m_DeployState.GetData().failed)
             return;
         PostMerge();
-        if (m_bDeployFailed)
+        if (m_DeployState.GetData().failed)
             return;
         SetDeployPhase(DeployPhase::Done);
         SetDeployStep(DeployStep::Done);
         auto end = std::chrono::high_resolution_clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - now);
-        if (!m_bDeployFailed)
+        if (!m_DeployState.GetData().failed)
         {
             m_pLog->Log(severityLevel::info, "ChairMerger: Finished merging in %.1f seconds",
                                     elapsed.count() / 1000.0f);
@@ -150,6 +150,30 @@ void ChairMerger::Deploy()
 std::future<void> ChairMerger::DeployAsync()
 {
     return std::async(std::launch::async, &ChairMerger::Deploy, this);
+}
+
+DeployStep ChairMerger::GetDeployStep() const
+{
+    auto lock = m_DeployState.GetScopedLock();
+    return m_DeployState.GetData().step;
+}
+
+DeployPhase ChairMerger::GetDeployPhase() const
+{
+    auto lock = m_DeployState.GetScopedLock();
+    return m_DeployState.GetData().phase;
+}
+
+bool ChairMerger::DeployFailed() const
+{
+    auto lock = m_DeployState.GetScopedLock();
+    return m_DeployState.GetData().failed;
+}
+
+std::string ChairMerger::GetDeployFailedMessage() const
+{
+    auto lock = m_DeployState.GetScopedLock();
+    return m_DeployState.GetData().error;
 }
 
 std::string ChairMerger::GetDeployPhaseString(DeployPhase phase)
@@ -219,7 +243,7 @@ void ChairMerger::PreMerge()
     SetDeployStep(DeployStep::LoadingPatchChecksums);
     LoadPatchFileChecksums();
     LoadIdNameMap();
-    if (m_bDeployFailed)
+    if (m_DeployState.GetData().failed)
         return;
     auto end = std::chrono::high_resolution_clock::now();
     m_pLog->Log(severityLevel::debug, "Pre-Merge took %f seconds",
@@ -258,15 +282,15 @@ void ChairMerger::PostMerge()
     // Pack and Copy the level files
     SetDeployStep(DeployStep::PackingLevelPatches);
     PackLevelFiles();
-    if (m_bDeployFailed)
+    if (m_DeployState.GetData().failed)
         return;
     SetDeployStep(DeployStep::PackingLocalizationPatches);
     PackLocalizationFiles();
-    if (m_bDeployFailed)
+    if (m_DeployState.GetData().failed)
         return;
     SetDeployStep(DeployStep::PackingMainPatch);
     PackMainPatch();
-    if (m_bDeployFailed)
+    if (m_DeployState.GetData().failed)
         return;
     SetDeployStep(DeployStep::CleaningUp);
 
@@ -932,34 +956,28 @@ void ChairMerger::SerializeLevelPacks()
 
 void ChairMerger::SetDeployStep(DeployStep step)
 {
-    std::lock_guard<std::mutex> lock(m_DeployStateMutex);
-    m_DeployStep = step;
+    auto lock = m_DeployState.GetScopedLock();
+    m_DeployState.GetData().step = step;
 }
 
 void ChairMerger::SetDeployPhase(DeployPhase phase)
 {
-    std::lock_guard<std::mutex> lock(m_DeployStateMutex);
-    m_DeployPhase = phase;
+    auto lock = m_DeployState.GetScopedLock();
+    m_DeployState.GetData().phase = phase;
 }
 
 void ChairMerger::SetDeployFailed(std::string error)
 {
-    std::lock_guard<std::mutex> lock(m_DeployStateMutex);
-    m_bDeployFailed = true;
-    m_DeployError = error;
+    auto lock = m_DeployState.GetScopedLock();
+    m_DeployState.GetData().failed = true;
+    m_DeployState.GetData().error = error;
 }
 
 void ChairMerger::ClearDeployFailed()
 {
-    std::lock_guard<std::mutex> lock(m_DeployStateMutex);
-    m_bDeployFailed = false;
-    m_DeployError.clear();
-}
-
-std::string ChairMerger::GetDeployFailedMessage()
-{
-    std::lock_guard<std::mutex> lock(m_DeployStateMutex);
-    return m_DeployError;
+    auto lock = m_DeployState.GetScopedLock();
+    m_DeployState.GetData().failed = false;
+    m_DeployState.GetData().error.clear();
 }
 
 void ChairMerger::LoadIdNameMap()
