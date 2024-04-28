@@ -2216,7 +2216,7 @@ void ChairManager::RunAsyncDeploy() {
     );
 
     m_pMergerTask->pMerger->SetMods(std::move(modsForMerging));
-    m_pMergerTask->future = m_pMergerTask->pMerger->LaunchAsyncDeploy();
+    m_pMergerTask->future = m_pMergerTask->pMerger->DeployAsync();
 }
 
 void ChairManager::OpenInstallModDialog(bool isLegacy)

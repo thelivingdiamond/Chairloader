@@ -109,7 +109,7 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
     LoadMods();
     CreateMerger();
 
-    m_pMerger->LaunchAsyncDeploy().get();
+    m_pMerger->Deploy();
 
     ASSERT_FALSE(m_pMerger->DeployFailed()) << "Deploy failed: " << m_pMerger->GetFailedDeployMessage();
 

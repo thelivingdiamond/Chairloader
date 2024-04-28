@@ -131,15 +131,18 @@ public:
     //! Sets the merging settings.
     void SetSettings(const Settings& settings) { m_Settings = settings; }
 
-    std::future<void> LaunchAsyncDeploy();
-    void AsyncDeploy();
-    void PreMerge();
-    void Merge();
-    void PostMerge();
+    //! Runs the deploying in blocking mode.
+    void Deploy();
 
-    DeployStep GetDeployStep() { return m_DeployStep; }
-    DeployPhase GetDeployPhase() { return m_DeployPhase; }
-    bool DeployFailed() { return m_bDeployFailed; }
+    //! Starts an async task that calls Deploy().
+    //! A convinience wrapper for std::async(..., Deploy);
+    //! This instance must exist until the task finishes.
+    //! No non-const methods may be called during that time.
+    std::future<void> DeployAsync();
+
+    DeployStep GetDeployStep() const { return m_DeployStep; }
+    DeployPhase GetDeployPhase() const { return m_DeployPhase; }
+    bool DeployFailed() const { return m_bDeployFailed; }
     std::string GetFailedDeployMessage() { return m_DeployError; }
 
     //! Get the deploy phase descriptive string
@@ -161,6 +164,10 @@ protected:
     //! Copies all files that don't have the given extensions from the source directory to the destination directory
     static void RecursiveFileCopyBlacklist(fs::path source, fs::path destination,
                                            std::vector<std::string> extensionExclusions);
+
+    void PreMerge();
+    void Merge();
+    void PostMerge();
 
     //! Function to resolve all attribute wildcards in an xml document
     void ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode);

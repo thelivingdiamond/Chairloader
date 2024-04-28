@@ -95,12 +95,7 @@ void ChairMerger::SetMods(std::vector<Mod>&& mods)
     m_Mods = std::move(mods);
 }
 
-std::future<void> ChairMerger::LaunchAsyncDeploy()
-{
-    return std::async(std::launch::async, &ChairMerger::AsyncDeploy, this);
-}
-
-void ChairMerger::AsyncDeploy()
+void ChairMerger::Deploy()
 {
     try
     {
@@ -149,6 +144,53 @@ void ChairMerger::AsyncDeploy()
         std::string errorMsg = e.what();
         m_pLog->Log(severityLevel::error, "Merging failed: %s", e.what());
         SetDeployFailed(errorMsg);
+    }
+}
+
+std::future<void> ChairMerger::DeployAsync()
+{
+    return std::async(std::launch::async, &ChairMerger::Deploy, this);
+}
+
+std::string ChairMerger::GetDeployPhaseString(DeployPhase phase)
+{
+    return m_DeployPhaseStrings.at(phase);
+}
+
+std::string ChairMerger::GetDeployStepString(DeployStep step)
+{
+    return m_DeployStepStrings.at(step);
+}
+
+void ChairMerger::RecursiveFileCopyBlacklist(fs::path source, fs::path destination, std::vector<std::string> exclusions)
+{
+    if (fs::exists(source) && fs::is_directory(source))
+    {
+        for (auto& file : fs::directory_iterator(source))
+        {
+            if (fs::is_directory(file))
+            {
+                RecursiveFileCopyBlacklist(file.path(), destination / file.path().filename(), exclusions);
+            }
+            else
+            {
+                bool shouldCopy = true;
+                for (auto& exclusion : exclusions)
+                {
+                    if (file.path().extension() == exclusion)
+                    {
+                        shouldCopy = false;
+                        break;
+                    }
+                }
+                if (shouldCopy)
+                {
+                    auto destinationPath = destination / file.path().filename();
+                    fs::create_directories(destinationPath.parent_path());
+                    fs::copy_file(file.path(), destinationPath, fs::copy_options::overwrite_existing);
+                }
+            }
+        }
     }
 }
 
@@ -231,48 +273,6 @@ void ChairMerger::PostMerge()
     auto end = std::chrono::high_resolution_clock::now();
     m_pLog->Log(severityLevel::debug, "Post-Merge took %f seconds",
                             std::chrono::duration_cast<std::chrono::duration<double>>(end - now).count());
-}
-
-std::string ChairMerger::GetDeployPhaseString(DeployPhase phase)
-{
-    return m_DeployPhaseStrings.at(phase);
-}
-
-std::string ChairMerger::GetDeployStepString(DeployStep step)
-{
-    return m_DeployStepStrings.at(step);
-}
-
-void ChairMerger::RecursiveFileCopyBlacklist(fs::path source, fs::path destination, std::vector<std::string> exclusions)
-{
-    if (fs::exists(source) && fs::is_directory(source))
-    {
-        for (auto& file : fs::directory_iterator(source))
-        {
-            if (fs::is_directory(file))
-            {
-                RecursiveFileCopyBlacklist(file.path(), destination / file.path().filename(), exclusions);
-            }
-            else
-            {
-                bool shouldCopy = true;
-                for (auto& exclusion : exclusions)
-                {
-                    if (file.path().extension() == exclusion)
-                    {
-                        shouldCopy = false;
-                        break;
-                    }
-                }
-                if (shouldCopy)
-                {
-                    auto destinationPath = destination / file.path().filename();
-                    fs::create_directories(destinationPath.parent_path());
-                    fs::copy_file(file.path(), destinationPath, fs::copy_options::overwrite_existing);
-                }
-            }
-        }
-    }
 }
 
 //! Function to resolve all attribute wildcards in an xml document
