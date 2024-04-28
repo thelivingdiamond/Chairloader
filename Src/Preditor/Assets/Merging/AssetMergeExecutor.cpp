@@ -1,7 +1,7 @@
 #include <Manager/IChairManager.h>
 #include <Manager/ModListConfig.h>
-#include <Manager/WildcardResolver.h>
 #include <Manager/ModConfig.h>
+#include <ChairMerger/WildcardResolver.h>
 #include "Merging/Mergers/AssetMerger.h"
 #include "Merging/Sources/ChairloaderMergeSource.h"
 #include "Merging/Sources/ImportMergeSource.h"
@@ -249,7 +249,13 @@ Assets::AssetMergeExecutor::~AssetMergeExecutor()
 
 std::unique_ptr<WildcardResolver> Assets::AssetMergeExecutor::CreateWildcardResolver(const std::string& modName)
 {
-    auto wr = std::make_unique<WildcardResolver>(m_pModSystem.get(), m_Rng, modName);
+    WildcardResolver::Callbacks cb;
+    cb.fnIsModEnabled = [this](const std::string& modName)
+    {
+        return m_pModSystem->IsModEnabled(modName);
+    };
+
+    auto wr = std::make_unique<WildcardResolver>(m_pModSystem.get(), cb, m_Rng, modName);
     wr->AddIdNameMap(m_pSys->GetNameToIdMap());
     return wr;
 }

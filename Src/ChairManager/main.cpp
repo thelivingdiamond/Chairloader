@@ -15,7 +15,6 @@
 // TODO 2023-08-25: Remove this
 struct ChairloaderGlobalEnvironment* gCL;
 
-#ifndef CHAIRMANAGER_TESTS
 #define ERROR_TEXT "Unhandled exception on main thread:\n"
 
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow) {
@@ -44,22 +43,3 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	WinShell::CloseAllDialogs();
 	return 0;
 }
-
-#else
-
-int main(int argc, char** argv)
-{
-	testing::InitGoogleTest(&argc, argv);
-
-	if (argc == 1333337)
-	{
-		// Fake call to the rest of the program.
-		// Otherwise linker strips everything.
-		// Hopefully, no one passes this many arguments.
-		UI::Render();
-	}
-
-	return RUN_ALL_TESTS();
-}
-
-#endif // ifndef CHAIRMANAGER_TESTS

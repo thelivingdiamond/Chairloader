@@ -1,4 +1,4 @@
-#include <Manager/WildcardResolver.h>
+#include <ChairMerger/WildcardResolver.h>
 #include "Merging/Sources/ModMergeSource.h"
 #include "Merging/AssetMergeExecutor.h"
 

@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.20)
 project(Chairloader)
 set(CHAIRLOADER TRUE)
 
+include(GenerateExportHeader)
+
 # Search for libraries in ExampleMod's CMake
 list(APPEND CMAKE_MODULE_PATH
 	"${CMAKE_CURRENT_LIST_DIR}/ExampleMod/CMake"
@@ -73,6 +75,10 @@ endfunction()
 # @param targetName Name of the target.
 function(cl_output_to_data targetName)
 	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
+
+	set_target_properties(${targetName} PROPERTIES
+		VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
+	)
 endfunction()
 
 # Sets target's debugger command and workdir to the game.
@@ -107,8 +113,9 @@ function(cl_version_info target_name file_name file_description)
 		set(is_prerelease 0)
 	endif()
 
+	set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}")
 	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/Common.Private/version_info.rc.in")
-	set(out_file_path "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}/version_info.rc")
+	set(out_file_path "${generated_dir}/version_info.rc")
 
 	configure_file(
 		${in_file_path}
@@ -117,6 +124,24 @@ function(cl_version_info target_name file_name file_description)
 	)
 
 	target_sources(${target_name} PRIVATE ${out_file_path})
+	source_group(TREE ${generated_dir} PREFIX "Generated" FILES ${out_file_path})
+endfunction()
+
+# Generates a header file with TARGET_NAME_API macro for DLL import/export
+function(cl_generate_export_header target_name include_dir macro_prefix)
+	set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}")
+	set(out_include_path "${generated_dir}/include")
+	set(out_header_path "${out_include_path}/${include_dir}/Export.h")
+
+	generate_export_header(
+		${target_name}
+		BASE_NAME ${macro_prefix}
+		EXPORT_FILE_NAME ${out_header_path}
+	)
+
+	target_include_directories(${target_name} PUBLIC ${out_include_path})
+	target_sources(${target_name} PUBLIC ${out_header_path})
+	source_group(TREE ${generated_dir} PREFIX "Generated" FILES ${out_header_path})
 endfunction()
 
 # Third-party libraries
@@ -142,6 +167,7 @@ add_subdirectory(Common)
 add_subdirectory(Src/Chairloader)
 add_subdirectory(Src/ChairManager)
 add_subdirectory(Src/ChairManager.Common)
+add_subdirectory(Src/ChairMerger)
 add_subdirectory(Src/Common.Private)
 add_subdirectory(Src/Preditor)
 add_subdirectory(Src/Tools)

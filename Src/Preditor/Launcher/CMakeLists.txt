@@ -46,10 +46,6 @@ target_link_libraries(Preditor.Launcher
 
 set_target_properties(Preditor.Launcher PROPERTIES OUTPUT_NAME "Preditor")
 
-set_target_properties(Preditor.Launcher PROPERTIES
-	VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
-)
-
 cl_output_to_data(Preditor.Launcher)
 cl_version_info(Preditor.Launcher "Preditor.exe" "Preditor")
 

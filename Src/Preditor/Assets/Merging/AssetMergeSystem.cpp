@@ -1,5 +1,5 @@
-#include <Manager/MergingPolicy.h>
-#include <Manager/NameToIdMap.h>
+#include <ChairMerger/MergingPolicy.h>
+#include <ChairMerger/NameToIdMap.h>
 #include "Mergers/SymlinkAssetMerger.h"
 #include "Mergers/XmlAssetMerger.h"
 #include "Merging/AssetMergeExecutor.h"

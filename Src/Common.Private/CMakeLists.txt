@@ -6,28 +6,20 @@ set(SOURCE_FILES
 	BinDiff/BinDiff.h
 
 	# ChairManager
-	Manager/AttributeWildcard.h
 	Manager/ILogger.h
 	Manager/LogEntry.h
-	Manager/LuaUtils.cpp
-	Manager/LuaUtils.h
-	Manager/MergingPolicy.h
 	Manager/ModConfig.h
 	Manager/ModInfo.cpp
 	Manager/ModInfo.h
 	Manager/ModListConfig.cpp
 	Manager/ModListConfig.h
-	Manager/NameToIdMap.h
 	Manager/PreditorFiles.h
 	Manager/GamePath.cpp
 	Manager/GamePath.h
 	Manager/IChairManager.h
 	Manager/ThreadPool.h
-	Manager/WildcardResolver.cpp
-	Manager/WildcardResolver.h
 	Manager/PugiUtils.h
-	Manager/XMLMerger2.cpp
-	Manager/XMLMerger2.h
+	Manager/SynchronizedData.h
 
 	# SHA256
 	SHA256/SHA256.cpp
