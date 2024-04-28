@@ -6,6 +6,7 @@ set(SOURCE_FILES
 	MergingProcess.png
 	MergingProcess.svg
 
+	Private/CApi.cpp
 	Private/ChairMerger.cpp
 	Private/DllMain.cpp
 	Private/HashUtils.cpp
@@ -17,6 +18,7 @@ set(SOURCE_FILES
 	Private/ZipUtils.cpp
 
 	Public/ChairMerger/AttributeWildcard.h
+	Public/ChairMerger/CApi.h
 	Public/ChairMerger/ChairMerger.h
 	Public/ChairMerger/ChairMergerSettings.h
 	Public/ChairMerger/FileChecksum.h
