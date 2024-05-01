@@ -420,31 +420,29 @@ void ChairManager::DrawModList() {
                             selectedMod = ModList.at(0).modName;
                         }
                         int i = 0;
-                        for (auto &ModEntry: ModList) {
+                        for (Mod &ModEntry: ModList) {
+                            ImGui::PushID(&ModEntry);
                             ImGui::TableNextRow();
                             ImGui::TableNextColumn();
+
                             if (ModEntry.installed && verifyDependenciesEnabled(ModEntry.modName)) {
-                                ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
+                                ImGui::Checkbox("##Enable", &ModEntry.enabled);
                             } else {
                                 ImGui::BeginDisabled();
-                                ImGui::Checkbox(("##" + ModEntry.modName + "Enable").c_str(), &ModEntry.enabled);
+                                ImGui::Checkbox("##Enable", &ModEntry.enabled);
                                 ImGui::EndDisabled();
                             }
                             checkboxColumnSize = ImGui::GetColumnWidth();
                             ImGui::TableNextColumn();
                             ImVec2 SelectableSize = {0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0};
-//                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 4.0f);
-
-
-//                    ImGui::PushStyleColor(ImGuiCol_TextSelectedBg, ImColor(0,0,0,0).operator ImU32());
                             auto storedpos = ImGui::GetCursorPosY() + (4 * dpiScale);
                             ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
-                            if (ImGui::Selectable(("##Selectable" + ModEntry.modName).c_str(),
+                            if (ImGui::Selectable("##Selectable",
                                                   selectedMod == ModEntry.modName, 0,
                                                   ImVec2{ImGui::GetColumnWidth(), ImGui::GetFrameHeight() - 2.0f * dpiScale}))
                                 selectedMod = ModEntry.modName;
                             if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-                                ImGui::OpenPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str());
+                                ImGui::OpenPopup("Mod Actions");
                             }
                             ImGui::SetCursorPosY(storedpos);
                             if(!verifyDependenciesEnabled(ModEntry.modName))
@@ -503,7 +501,7 @@ void ChairManager::DrawModList() {
                                 }
 
                             }
-                            if (ImGui::BeginPopup((ModEntry.displayName + " Mod Actions##ModActions" + ModEntry.modName).c_str())) {
+                            if (ImGui::BeginPopup("Mod Actions")) {
                                 ImGui::Text("%s:", ModEntry.displayName.c_str());
                                 ImGui::BeginDisabled();
                                 bool hasDll = !ModEntry.dllName.empty();
@@ -512,7 +510,7 @@ void ChairManager::DrawModList() {
                                 ImGui::Checkbox("Has XML", &ModEntry.hasXML);
                                 ImGui::EndDisabled();
                                 if (ModEntry.installed) {
-                                    if (ImGui::Button(("Uninstall" + std::string("##") + ModEntry.modName).c_str())) {
+                                    if (ImGui::Button("Uninstall")) {
                                         UninstallMod(ModEntry.modName);
                                     }
                                     if (ModEntry.enabled) {
@@ -523,23 +521,21 @@ void ChairManager::DrawModList() {
                                             EnableMod(ModEntry.modName, true);
                                     }
                                 } else {
-                                    if (ImGui::Button(("Install" + std::string("##") + ModEntry.modName).c_str())) {
+                                    if (ImGui::Button("Install")) {
                                         InstallMod(ModEntry.modName);
                                     }
-                                    if (ImGui::Button(("Delete" + std::string("##") + ModEntry.modName).c_str())) {
+                                    if (ImGui::Button("Delete")) {
                                         showDeleteConfirmation = true;
                                     }
                                 }
                                 ImGui::EndPopup();
                             }
                             if (showDeleteConfirmation) {
-                                ImGui::OpenPopup(
-                                        ("Delete Confirmation" + std::string("##") + ModEntry.modName).c_str());
+                                ImGui::OpenPopup("Delete Confirmation");
                                 showDeleteConfirmation = false;
                             }
 
-                            if (ImGui::BeginPopupModal(
-                                    ("Delete Confirmation" + std::string("##") + ModEntry.modName).c_str())) {
+                            if (ImGui::BeginPopupModal("Delete Confirmation")) {
                                 ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.",
                                             ModEntry.modName.c_str());
                                 if (ImGui::Button("Delete")) {
@@ -567,14 +563,14 @@ void ChairManager::DrawModList() {
                             if (selectedMod == ModEntry.modName) {
                                 try {
                                     if (ModEntry.loadOrder > 0) {
-                                        if (ImGui::ArrowButton(("##" + ModEntry.modName + "Up").c_str(), ImGuiDir_Up)) {
+                                        if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
                                             std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
                                             std::sort(ModList.begin(), ModList.end());
                                         }
                                         ImGui::SameLine();
                                     }
                                     if (ModEntry.loadOrder < ModList.size() - 1) {
-                                        if (ImGui::ArrowButton(("##" + ModEntry.modName + "Down").c_str(),
+                                        if (ImGui::ArrowButton("##Down",
                                                                ImGuiDir_Down)) {
                                             std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
                                             std::sort(ModList.begin(), ModList.end());
@@ -586,6 +582,8 @@ void ChairManager::DrawModList() {
                                 }
                             }
                             i++;
+
+                            ImGui::PopID();
                         }
                         //TODO: add ability to reorder legacy mods...
                         ImGui::EndTable();
