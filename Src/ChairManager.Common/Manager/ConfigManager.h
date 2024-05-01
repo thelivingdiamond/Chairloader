@@ -17,6 +17,9 @@
 
 struct IChairManager;
 
+//! Preditor projects have this prefix in their modName.
+constexpr char PREDITOR_MOD_PREFIX[] = "preditor:";
+
 //! the purpose of this class is to load, edit, and manage config files for mods
 class ConfigManager {
 public:
@@ -69,4 +72,6 @@ private:
 
     std::vector<std::pair<std::string, bool>> getModVariableSpace(pugi::xml_node node, const std::set<std::string>& allowedTypes);
 
+    fs::path GetModConfigPath(std::string_view modName);
+    fs::path GetModDefaultConfigPath(std::string_view modName);
 };

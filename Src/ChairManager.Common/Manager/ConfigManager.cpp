@@ -2,6 +2,7 @@
 // Created by theli on 9/13/2022.
 //
 
+#include <boost/algorithm/string/predicate.hpp>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
 #include <GUIUtils.h>
@@ -39,7 +40,7 @@ ModConfig &ConfigManager::operator[](const char *modName) {
 
 bool ConfigManager::isConfigPresent(const std::string& modName){
     try {
-        fs::path cfgPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
+        fs::path cfgPath = GetModConfigPath(modName);
         return fs::exists(cfgPath);
     } catch (fs::filesystem_error& e) {
         m_pChair->Log(severityLevel::error, "Error checking for config file: %s", e.what());
@@ -49,8 +50,8 @@ bool ConfigManager::isConfigPresent(const std::string& modName){
 
 void ConfigManager::copyDefaultConfig(const std::string& modName){
     try{
-        fs::path cfgPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
-        fs::path defaultCfgPath = m_pChair->GetModPath(modName) / fs::u8path(modName + "_default.xml");
+        fs::path cfgPath = GetModConfigPath(modName);
+        fs::path defaultCfgPath = GetModDefaultConfigPath(modName);
 
         if(fs::exists(defaultCfgPath)){
             fs::copy_file(defaultCfgPath, cfgPath, fs::copy_options::overwrite_existing);
@@ -426,4 +427,32 @@ std::vector<std::pair<std::string, bool>> variables;
         variables.insert(variables.end(), childVariables.begin(), childVariables.end());
     }
     return variables;
+}
+
+fs::path ConfigManager::GetModConfigPath(std::string_view modName)
+{
+    fs::path configDir = m_pChair->GetConfigPath();
+    std::string_view prefix = PREDITOR_MOD_PREFIX;
+
+    if (boost::algorithm::starts_with(modName, prefix))
+    {
+        // Is a Preditor mod
+        modName = modName.substr(prefix.size());
+    }
+
+    return configDir / fs::u8path(std::string(modName) + ".xml");
+}
+
+fs::path ConfigManager::GetModDefaultConfigPath(std::string_view modName)
+{
+    fs::path modPath = m_pChair->GetModPath(std::string(modName));
+    std::string_view prefix = PREDITOR_MOD_PREFIX;
+
+    if (boost::algorithm::starts_with(modName, prefix))
+    {
+        // Is a Preditor mod
+        modName = modName.substr(prefix.size());
+    }
+
+    return modPath / fs::u8path(std::string(modName) + "_default.xml");
 }

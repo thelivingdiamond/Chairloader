@@ -241,6 +241,7 @@ private:
     bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
     void LoadModsFromConfig();
     void DetectNewMods();
+    void DetectPreditorProjects();
     void loadModInfoFiles();
     void FindMod(Mod* modEntry);
     bool verifyDependencies(std::string modName);

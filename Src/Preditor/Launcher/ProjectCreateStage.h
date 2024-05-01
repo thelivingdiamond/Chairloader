@@ -1,8 +1,6 @@
 #pragma once
 #include <App/AppStage.h>
-
-//! Name of the project history file.
-static constexpr char PROJECT_HISTORY_FILE_PATH[] = "Preditor/ProjectHistory.xml";
+#include <Manager/PreditorFiles.h>
 
 class ProjectCreateStage : public AppStage
 {

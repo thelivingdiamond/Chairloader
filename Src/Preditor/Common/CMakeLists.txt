@@ -50,8 +50,6 @@ set(SOURCE_FILES
 	Preditor/Viewport/IViewportWindow.h
 
 	Preditor/Environment.h
-	Preditor/FileHistory.cpp
-	Preditor/FileHistory.h
 	Preditor/IChairloaderToolsPreditor.h
 	Preditor/IntrusiveList.hpp
 	Preditor/ListenerSet.h

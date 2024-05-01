@@ -6,6 +6,8 @@ set(SOURCE_FILES
 	BinDiff/BinDiff.h
 
 	# ChairManager
+	Manager/FileHistory.cpp
+	Manager/FileHistory.h
 	Manager/ILogger.h
 	Manager/LogEntry.h
 	Manager/ModConfig.h

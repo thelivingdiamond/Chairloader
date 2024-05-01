@@ -1,7 +1,7 @@
 #include <WinShell/WinShell.h>
+#include <Manager/FileHistory.h>
 #include <Manager/ModInfo.h>
 #include <Preditor/Main/IProject.h>
-#include <Preditor/FileHistory.h>
 #include "ProjectCreateStage.h"
 #include "ProjectSelectStage.h"
 
@@ -118,7 +118,7 @@ void ProjectCreateStage::CreateProject()
         CopyDefaultFiles(projPath);
         SaveModInfo(projPath);
 
-        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH, projPath.u8string());
+        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PREDITOR_PROJECT_HISTORY_FILE_PATH, projPath.u8string());
         SetStageFinished(std::make_unique<ProjectSelectStage>());
     }
     catch (const std::exception& e)

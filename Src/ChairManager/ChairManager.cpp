@@ -4,11 +4,13 @@
 
 #include <iostream>
 #include <sstream>
+#include <boost/algorithm/string/predicate.hpp>
 #include <curlpp/cURLpp.hpp>
 #include <Chairloader/SemanticVersion.h>
 #include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/ChairMerger.h>
 #include <ChairMerger/ZipUtils.h>
+#include <Manager/FileHistory.h>
 #include <Manager/GamePath.h>
 #include <Manager/PreditorFiles.h>
 #include <boost/algorithm/string/predicate.hpp>
@@ -527,8 +529,12 @@ void ChairManager::DrawModList() {
                                     if (ImGui::Button("Install")) {
                                         InstallMod(ModEntry.modName);
                                     }
-                                    if (ImGui::Button("Delete")) {
-                                        showDeleteConfirmation = true;
+
+                                    if (!ModEntry.isPreditorProject)
+                                    {
+                                        if (ImGui::Button("Delete")) {
+                                            showDeleteConfirmation = true;
+                                        }
                                     }
                                 }
                                 ImGui::EndPopup();
@@ -544,7 +550,6 @@ void ChairManager::DrawModList() {
                                 if (ImGui::Button("Delete")) {
                                     if (!ModEntry.modName.empty()) {
                                         modNameForDeletion = ModEntry.modName;
-
                                     }
                                     ImGui::CloseCurrentPopup();
                                 }
@@ -1170,9 +1175,21 @@ bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDiffe
 
 void ChairManager::LoadModsFromConfig() {
     for(auto &PrevMod : ModListNode){
-        fs::path modPath = GetGamePath() / "Mods" / PrevMod.name();
+        fs::path modPath;
+
+        if (pugi::xml_node fullPathNode = PrevMod.child("fullPath"))
+            modPath = fs::u8path(fullPathNode.text().as_string());
+        else
+            modPath = GetGamePath() / "Mods" / PrevMod.name();
+
         Mod mod;
         if(LoadModInfoFile(modPath, &mod, false)) {
+            if (boost::algorithm::starts_with(PrevMod.name(), PREDITOR_MOD_PREFIX))
+            {
+                mod.modName = PREDITOR_MOD_PREFIX + mod.modName;
+                mod.displayName = "[Preditor] " + mod.displayName;
+            }
+
             FindMod(&mod);
             log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
             log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
@@ -1200,6 +1217,47 @@ void ChairManager::DetectNewMods() {
             }
         }
     }
+
+    std::sort(ModList.begin(), ModList.end());
+    serializeLoadOrder();
+}
+
+void ChairManager::DetectPreditorProjects()
+{
+    std::vector<std::string> history = FileHistory::ReadHistory(PREDITOR_PROJECT_HISTORY_FILE_PATH);
+
+    for (const std::string& projectPathStr : history)
+    {
+        Mod mod;
+        fs::path projectPath = fs::u8path(projectPathStr);
+
+        if (!fs::is_directory(projectPath))
+            continue;
+
+        if (!LoadModInfoFile(projectPath, &mod, true))
+        {
+            log(severityLevel::info, "Invalid Preditor project: '%s'", projectPathStr);
+            continue;
+        }
+
+        // See if the same directory was already added
+        bool foundDir = std::find_if(ModList.begin(), ModList.end(), [&](const Mod& i) { return fs::equivalent(i.path, projectPath); }) != ModList.end();
+        if (foundDir)
+        {
+            log(severityLevel::info, "Preditor project aready added: '%s'", projectPathStr);
+            continue;
+        }
+
+        // Add prefix to differentiate from actually installed mods
+        mod.modName = PREDITOR_MOD_PREFIX + mod.modName;
+        mod.displayName = "[Preditor] " + mod.displayName;
+        mod.isPreditorProject = true;
+
+        FindMod(&mod);
+        log(severityLevel::info, "Preditor project found: '%s' - '%s'", mod.modName, projectPathStr);
+        ModList.emplace_back(mod);
+    }
+
     std::sort(ModList.begin(), ModList.end());
     serializeLoadOrder();
 }
@@ -1210,6 +1268,7 @@ void ChairManager::loadModInfoFiles() {
     // load previously loaded (assumedly) valid config
     LoadModsFromConfig();
     DetectNewMods();
+    DetectPreditorProjects();
     overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
 //    serializeLoadOrder();
     try {
@@ -1355,6 +1414,13 @@ void ChairManager::SaveMod(Mod *modEntry) {
         node = modNode.append_child("hasXML");
         node.append_attribute("type").set_value("string");
         node.text().set(modEntry->hasXML);
+        // fullPath
+        if (modEntry->isPreditorProject)
+        {
+            node = modNode.append_child("fullPath");
+            node.append_attribute("type").set_value("string");
+            node.text().set(modEntry->path.u8string().c_str());
+        }
         saveChairloaderConfigFile();
     } else {
         log(severityLevel::error, "Cannot save mod %s: must be installed first", modEntry->modName);
