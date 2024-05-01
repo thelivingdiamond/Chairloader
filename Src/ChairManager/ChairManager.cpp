@@ -406,6 +406,9 @@ void ChairManager::DrawModList() {
             if(ImGui::BeginTabBar("Mod List Bar")) {
                 float checkboxColumnSize = 0.0f;
                 if(ImGui::BeginTabItem("Mods")) {
+                    std::string modNameForDeletion; // If not empty, will be removed after all mods are displayed.
+                    bool sortModList = false; // If true, mod list will be sorted after iteration
+
                     if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
                                                          ImGuiTableFlags_NoBordersInBody)) {
                         ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed);
@@ -540,10 +543,7 @@ void ChairManager::DrawModList() {
                                             ModEntry.modName.c_str());
                                 if (ImGui::Button("Delete")) {
                                     if (!ModEntry.modName.empty()) {
-                                        log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(),
-                                            ModEntry.modName);
-                                        fs::remove_all(GetGamePath() / "Mods" / ModEntry.modName);
-                                        ModList.erase(std::find(ModList.begin(), ModList.end(), ModEntry.modName));
+                                        modNameForDeletion = ModEntry.modName;
 
                                     }
                                     ImGui::CloseCurrentPopup();
@@ -565,7 +565,7 @@ void ChairManager::DrawModList() {
                                     if (ModEntry.loadOrder > 0) {
                                         if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
                                             std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
-                                            std::sort(ModList.begin(), ModList.end());
+                                            sortModList = true;
                                         }
                                         ImGui::SameLine();
                                     }
@@ -573,7 +573,7 @@ void ChairManager::DrawModList() {
                                         if (ImGui::ArrowButton("##Down",
                                                                ImGuiDir_Down)) {
                                             std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
-                                            std::sort(ModList.begin(), ModList.end());
+                                            sortModList = true;
                                         }
                                     }
                                 } catch (const std::exception &exc) {
@@ -588,6 +588,20 @@ void ChairManager::DrawModList() {
                         //TODO: add ability to reorder legacy mods...
                         ImGui::EndTable();
                     }
+
+                    if (!modNameForDeletion.empty())
+                    {
+                        log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(), modNameForDeletion);
+                        fs::remove_all(GetGamePath() / "Mods" / modNameForDeletion);
+                        ModList.erase(std::find(ModList.begin(), ModList.end(), modNameForDeletion));
+                        modNameForDeletion.clear();
+                    }
+
+                    if (sortModList)
+                    {
+                        std::sort(ModList.begin(), ModList.end());
+                    }
+
                     ImGui::EndTabItem();
                 }
                 if (!LegacyModList.empty()) {
