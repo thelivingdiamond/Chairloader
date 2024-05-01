@@ -1,6 +1,7 @@
 #include <Prey/CrySystem/Profiling.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <WindowManager/WindowManager.h>
+#include <Manager/FileHistory.h>
 #include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
@@ -8,7 +9,6 @@
 #include <Preditor/SceneEditor/I3DCursor.h>
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
 #include <Preditor/IChairloaderToolsPreditor.h>
-#include <Preditor/FileHistory.h>
 #include "UI/PreditorUI.h"
 #include "UI/FileBrowser.h"
 #include "UI/HierarchyWindow.h"

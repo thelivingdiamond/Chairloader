@@ -27,6 +27,10 @@ struct Mod{
             deployed = false,
             hasXML = false,
             hasLevelXML = false;
+
+    //! The mod is a Preditor project outside of Mods directory.
+    bool isPreditorProject = false;
+
     bool operator<( Mod& b ) const {
         return this->loadOrder < b.loadOrder;
     }

@@ -2,8 +2,8 @@
 // Created by theli on 10/28/2022.
 //
 
+#include <Manager/FileHistory.h>
 #include <Preditor/Main/IProject.h>
-#include <Preditor/FileHistory.h>
 #include <WinShell/WinShell.h>
 #include "ProjectSelectStage.h"
 #include "ImGui/imgui.h"
@@ -15,7 +15,7 @@
 
 ProjectSelectStage::ProjectSelectStage()
 {
-    m_History = FileHistory::ReadHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH);
+    m_History = FileHistory::ReadHistory(gPreditor->pConfig->GetPreditorRoot() / PREDITOR_PROJECT_HISTORY_FILE_PATH);
 }
 
 void ProjectSelectStage::ShowUI(bool* bOpen)
@@ -117,7 +117,7 @@ void ProjectSelectStage::initiateLoadProject(const fs::path& path)
 
     try
     {
-        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PROJECT_HISTORY_FILE_PATH, m_loadProjectPath.u8string());
+        FileHistory::AddToHistory(gPreditor->pConfig->GetPreditorRoot() / PREDITOR_PROJECT_HISTORY_FILE_PATH, m_loadProjectPath.u8string());
         PreditorApp::Get()->GetPahts().SetProjectDirPath(m_loadProjectPath);
         SetStageFinished(std::make_unique<LoadGameStage>(nullptr));
     }

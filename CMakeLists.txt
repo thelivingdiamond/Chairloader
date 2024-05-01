@@ -140,7 +140,7 @@ function(cl_generate_export_header target_name include_dir macro_prefix)
 	)
 
 	target_include_directories(${target_name} PUBLIC ${out_include_path})
-	target_sources(${target_name} PUBLIC ${out_header_path})
+	target_sources(${target_name} PRIVATE ${out_header_path})
 	source_group(TREE ${generated_dir} PREFIX "Generated" FILES ${out_header_path})
 endfunction()
 
