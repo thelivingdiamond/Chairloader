@@ -1,5 +1,0 @@
-# Ignore CMake build directory
-/build
-/_build
-/cmake-build-*/
-/.idea/
