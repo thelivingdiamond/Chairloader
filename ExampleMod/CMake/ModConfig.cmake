@@ -9,7 +9,7 @@ add_compile_definitions(
 # @param    mod_target  Mod target name.
 # @param    mod_prefix  Mod prefix for variable name.
 function(mod_output_dir mod_target mod_prefix)
-	set("${mod_prefix}_DLL_PATH" "" CACHE PATH "Where to put the DLL")
+	set("${mod_prefix}_DLL_PATH" "${CMAKE_SOURCE_DIR}" CACHE PATH "Where to put the DLL")
 	set(mod_dll_path ${${mod_prefix}_DLL_PATH})
 	if (mod_dll_path)
 		set_target_properties(${mod_target} PROPERTIES
