@@ -102,7 +102,7 @@ void LoadGameStage::ShowUI(bool* bOpen)
 		ImGui::SetNextWindowSize(ImVec2(480, 200));
 		if (ImGui::Begin("Initialization Failed###LoadGameStage", bOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings))
 		{
-			ImGui::TextWrapped("The Mod Toolkit failed to load.\n\n%s", m_ErrorText.c_str());
+			ImGui::TextWrapped("Preditor failed to load.\n\n%s", m_ErrorText.c_str());
 
 			if (ImGui::Button("Quit"))
 				*bOpen = false;
