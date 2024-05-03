@@ -3,7 +3,7 @@
 // Hard-coded names
 #define _PRODUCTNAME "Chairloader"
 #define _COMPANYNAME "thelivingdiamond"
-#define _LEGALCOPYRIGHT "Copyright (C) 2022 thelivingdiamond"
+#define _LEGALCOPYRIGHT "Copyright (C) @current_year@ thelivingdiamond"
 
 // Names set in CMake
 #define _FILEDESCRIPTION "@file_description@"

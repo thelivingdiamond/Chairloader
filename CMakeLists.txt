@@ -113,6 +113,8 @@ function(cl_version_info target_name file_name file_description)
 		set(is_prerelease 0)
 	endif()
 
+	string(TIMESTAMP current_year "%Y" UTC)
+
 	set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated/${target_name}")
 	set(in_file_path "${CMAKE_SOURCE_DIR}/Src/Common.Private/version_info.rc.in")
 	set(out_file_path "${generated_dir}/version_info.rc")
