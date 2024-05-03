@@ -63,6 +63,5 @@ set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${RELEASE_
 #------------------------------------------------------------------------
 # Add custom debug macro (_DEBUG is not available since linking with Releas libs)
 add_compile_definitions(
-	$<IF:$<CONFIG:Debug>,DEBUG_BUILD,RELEASE_BUILD>
+	$<IF:$<OR:$<CONFIG:Debug>,$<CONFIG:DebugChair>>,DEBUG_BUILD,RELEASE_BUILD>
 )
-
