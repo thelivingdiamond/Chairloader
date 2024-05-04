@@ -623,9 +623,9 @@ protected:
     static pugi::xml_document LoadOneOf(const fs::path& f1, const fs::path& f2, unsigned options)
     {
         if (fs::exists(f1))
-            return XmlTestUtils::LoadDocument(f1, options);
+            return XmlUtils::LoadDocument(f1, options);
         else
-            return XmlTestUtils::LoadDocument(f2, options);
+            return XmlUtils::LoadDocument(f2, options);
     }
 };
 
@@ -639,11 +639,11 @@ TEST_P(XMLMerger2TestFiles, MergeXMLDocument)
     if (testName.find("Localization") != testName.npos)
         options = pugi::parse_full;
 
-    pugi::xml_document docOriginal = XmlTestUtils::LoadDocument(testDir / "01-Original.xml", options);
+    pugi::xml_document docOriginal = XmlUtils::LoadDocument(testDir / "01-Original.xml", options);
     pugi::xml_document docBase = LoadOneOf(testDir / "02-Base.xml", testDir / "01-Original.xml", options);
-    pugi::xml_document docMod = XmlTestUtils::LoadDocument(testDir / "03-Mod.xml", options);
-    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(testDir / "04-Expected.xml", options);
-    pugi::xml_document docMergingPolicy = XmlTestUtils::LoadDocument(testDir / "MergingPolicy.xml");
+    pugi::xml_document docMod = XmlUtils::LoadDocument(testDir / "03-Mod.xml", options);
+    pugi::xml_document docExpected = XmlUtils::LoadDocument(testDir / "04-Expected.xml", options);
+    pugi::xml_document docMergingPolicy = XmlUtils::LoadDocument(testDir / "MergingPolicy.xml");
 
     MergingPolicy policy(docMergingPolicy.first_child(), fs::path());
 

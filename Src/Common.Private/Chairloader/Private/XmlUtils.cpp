@@ -12,7 +12,7 @@ std::string XmlErrorStack::GetStackFrame() const
     if (m_Index != -1)
         s += fmt::format("[{}]", m_Index);
 
-    if (!m_IdKey.empty() && !m_IdValue.empty())
+    if (!m_IdKey.empty())
         s += fmt::format(" [{} = {}]", m_IdKey, m_IdValue);
 
     return s;
@@ -52,6 +52,32 @@ void XmlErrorStack::ThrowException(std::string_view msg) const
 //---------------------------------------------------------------------------------
 // XmlUtils
 //---------------------------------------------------------------------------------
+pugi::xml_document XmlUtils::LoadDocument(const fs::path& path, unsigned parseOptions)
+{
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_file(path.c_str(), parseOptions);
+
+    if (!result)
+    {
+        throw std::runtime_error(fmt::format(
+            "Failed to read XML document.\n"
+            "Path: {}\n"
+            "Offset: {}\n"
+            "{}",
+            path.u8string(), result.offset, result.description()
+        ));
+    }
+
+    return doc;
+}
+
+std::tuple<pugi::xml_document, XmlErrorStack> XmlUtils::LoadDocumentWithStack(const fs::path& path, unsigned parseOptions)
+{
+    pugi::xml_document doc = LoadDocument(path, parseOptions);
+    XmlErrorStack errorStack(path);
+    return std::make_tuple(std::move(doc), std::move(errorStack));
+}
+
 pugi::xml_node XmlUtils::GetRequiredNode(const XmlErrorStack& errorStack, const pugi::xml_node& parent, const char* name)
 {
     pugi::xml_node node = parent.child(name);

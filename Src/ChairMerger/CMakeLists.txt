@@ -24,6 +24,7 @@ set(SOURCE_FILES
 	Private/README.md
 	Private/WildcardResolver.cpp
 	Private/XMLMerger2.cpp
+	Private/XmlValidator.cpp
 	Private/ZipUtils.cpp
 
 	Public/ChairMerger/AttributeWildcard.h
@@ -38,6 +39,7 @@ set(SOURCE_FILES
 	Public/ChairMerger/NameToIdMap.h
 	Public/ChairMerger/WildcardResolver.h
 	Public/ChairMerger/XMLMerger2.h
+	Public/ChairMerger/XmlValidator.h
 	Public/ChairMerger/ZipUtils.h
 )
 

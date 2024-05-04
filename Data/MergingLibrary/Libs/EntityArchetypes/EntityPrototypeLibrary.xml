@@ -61,7 +61,7 @@
                             <Attribute name="CastSunShadowMinSpec" type="int" required="true" />
                             <Attribute name="LodRatio" type="int" required="true" />
                             <Attribute name="ViewDistRatio" type="int" required="true" />
-                            <Attribute name="CastShadowViewDistRatio" type="int" required="true" />
+                            <Attribute name="CastShadowViewDistRatio" type="int" />
                             <Attribute name="HiddenInGame" type="intBool" required="true" />
                             <Attribute name="GlobalInSegmentedWorld" type="intBool" required="true" />
                             <Attribute name="RecvWind" type="intBool" required="true" />

@@ -33,8 +33,8 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
     m_pMerger->ProcessXMLFile(mod, &modXmlCache, relativePath);
     m_pMerger->m_pBaseFileCache->ExportModifiedFiles(m_pMerger->m_OutputPath);
 
-    pugi::xml_document docOutput = XmlTestUtils::LoadDocument(m_TempDir / "Output" / relativePath);
-    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(m_TestDir / "Expected" / relativePath);
+    pugi::xml_document docOutput = XmlUtils::LoadDocument(m_TempDir / "Output" / relativePath);
+    pugi::xml_document docExpected = XmlUtils::LoadDocument(m_TestDir / "Expected" / relativePath);
 
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(docExpected, docOutput));
 }

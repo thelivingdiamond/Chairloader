@@ -203,8 +203,8 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
         if (dirToCheck.extension() == ".xml")
         {
             // Compare XML
-            pugi::xml_document docExpected = XmlTestUtils::LoadDocument(expected);
-            pugi::xml_document docActual = XmlTestUtils::LoadDocument(dirToCheck);
+            pugi::xml_document docExpected = XmlUtils::LoadDocument(expected);
+            pugi::xml_document docActual = XmlUtils::LoadDocument(dirToCheck);
             return XmlTestUtils::CheckNodesEqual(docExpected, docActual);
         }
         else
