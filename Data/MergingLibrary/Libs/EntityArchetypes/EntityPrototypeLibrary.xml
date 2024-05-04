@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*">
+    <Node name="EntityPrototypeLibrary">
+        <Attributes allowUnknown="false">
+            <!-- The list of attributes allowed on this node -->
+            <Attribute name="Name" type="string" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <!-- This node acts like a dictionary -->
+            <!-- Keys are child attributes -->
+            <!-- Values are child nodes themselves.-->
+            <PrimaryKey>
+                <ChildAttribute name="Name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <!-- Add additional constraints on child nodes for validation -->
+            <UniqueAttribute name="Id" />
+            <UniqueAttribute name="ArchetypeId" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <!-- The list of allowed child nodes. Unknown nodes are not allowed. -->
+            <!-- If need to support unknown nodes, use regex node name or set recursive. -->
+            <Node name="EntityPrototype">
+                <Attributes>
+                    <Attribute name="Name" type="string" required="true" readOnly="true" comment="Archetype name in the library" />
+                    <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                    <Attribute name="Library" type="string" required="true" readOnly="true" />
+                    <Attribute name="Class" type="string" required="true" />
+                    <Attribute name="Description" type="string" />
+                    <Attribute name="ArchetypeId" type="uint64" required="true" readOnly="true" />
+                </Attributes>
+
+                <!-- This node acts like a dictionary with keys being the child node names -->
+                <Collection type="nodeDict" />
+    
+                <ChildNodes>
+                    <Node name="Properties(2?)" nameRegex="true" recursive="true">
+                        <!-- recursive="true" applies the same rules to all unknown child nodes -->
+
+                        <!-- Attributes and child nodes depend on particular entity class so allow everything -->
+                        <Attributes allowUnknown="true" />
+                        
+                        <Collection type="nodeDict" />
+                    </Node>
+
+                    <Node name="ObjectVars">
+                        <Attributes>
+                            <Attribute name="OutdoorOnly" type="intBool" required="true" />
+                            <Attribute name="CastShadow" type="intBool" required="true" />
+                            <Attribute name="CastShadowMinspec" type="intBool" required="true" />
+                            <Attribute name="DynamicDistanceShadows" type="intBool" required="true" />
+                            <Attribute name="ShadowCasterType" type="intBool" required="true" />
+                            <Attribute name="CastSunShadowMinSpec" type="int" required="true" />
+                            <Attribute name="LodRatio" type="int" required="true" />
+                            <Attribute name="ViewDistRatio" type="int" required="true" />
+                            <Attribute name="CastShadowViewDistRatio" type="int" required="true" />
+                            <Attribute name="HiddenInGame" type="intBool" required="true" />
+                            <Attribute name="GlobalInSegmentedWorld" type="intBool" required="true" />
+                            <Attribute name="RecvWind" type="intBool" required="true" />
+                            <Attribute name="RenderNearest" type="intBool" required="true" />
+                            <Attribute name="NoStaticDecals" type="intBool" required="true" />
+                            <Attribute name="CreatedThroughPool" type="intBool" required="true" />
+                            <Attribute name="SceneIndex" type="int" required="true" />
+                            <Attribute name="HiddenInProbes" type="intBool" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

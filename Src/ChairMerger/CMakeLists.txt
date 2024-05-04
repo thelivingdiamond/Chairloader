@@ -12,6 +12,8 @@ set(SOURCE_FILES
 	Private/HashUtils.cpp
 	Private/HashUtils.h
 	Private/LuaUtils.cpp
+	Private/MergingLibrary3.cpp
+	Private/MergingPolicy3.cpp
 	Private/README.md
 	Private/WildcardResolver.cpp
 	Private/XMLMerger2.cpp
@@ -23,7 +25,9 @@ set(SOURCE_FILES
 	Public/ChairMerger/ChairMergerSettings.h
 	Public/ChairMerger/FileChecksum.h
 	Public/ChairMerger/LuaUtils.h
+	Public/ChairMerger/MergingLibrary3.h
 	Public/ChairMerger/MergingPolicy.h
+	Public/ChairMerger/MergingPolicy3.h
 	Public/ChairMerger/NameToIdMap.h
 	Public/ChairMerger/WildcardResolver.h
 	Public/ChairMerger/XMLMerger2.h

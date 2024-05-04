@@ -20,6 +20,13 @@ pugi::xml_document XmlTestUtils::LoadDocument(const fs::path& path, unsigned par
     return doc;
 }
 
+std::tuple<pugi::xml_document, XmlErrorStack> XmlTestUtils::LoadDocumentWithErrorStack(const fs::path& path, unsigned parseOptions)
+{
+    pugi::xml_document doc = LoadDocument(path, parseOptions);
+    XmlErrorStack errorStack(path);
+    return std::make_tuple(std::move(doc), std::move(errorStack));
+}
+
 bool XmlTestUtils::CheckNodesEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs)
 {
     bool result = CompareNodes(lhs, rhs, "");
