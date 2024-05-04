@@ -182,7 +182,7 @@ TEST(MergingPolicy3, LoadFromXml)
 {
     MergingPolicy3 expected = CreateExpectedNode();
 
-    auto [policyXml, errorStack] = XmlTestUtils::LoadDocumentWithErrorStack("Testing/MergingPolicy3/LoadFromXml.xml");
+    auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     MergingPolicy3 actual;
     actual.LoadXmlNode(policyXml.first_child().first_child(), errorStack);
 
@@ -193,7 +193,7 @@ TEST(FileMergingPolicy3, LoadFromXml)
 {
     MergingPolicy3 expectedNode = CreateExpectedNode();
 
-    auto [policyXml, errorStack] = XmlTestUtils::LoadDocumentWithErrorStack("Testing/MergingPolicy3/LoadFromXml.xml");
+    auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     FileMergingPolicy3 actual;
     actual.LoadXmlNode(policyXml.first_child(), errorStack);
 

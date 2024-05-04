@@ -1,32 +1,6 @@
 #include <gtest/gtest.h>
 #include "XmlTestUtils.h"
 
-pugi::xml_document XmlTestUtils::LoadDocument(const fs::path& path, unsigned parseOptions)
-{
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file(path.c_str(), parseOptions);
-
-    if (!result)
-    {
-        throw std::runtime_error(fmt::format(
-            "Failed to read XML document.\n"
-            "Path: {}\n"
-            "Offset: {}\n"
-            "{}",
-            path.u8string(), result.offset, result.description()
-        ));
-    }
-
-    return doc;
-}
-
-std::tuple<pugi::xml_document, XmlErrorStack> XmlTestUtils::LoadDocumentWithErrorStack(const fs::path& path, unsigned parseOptions)
-{
-    pugi::xml_document doc = LoadDocument(path, parseOptions);
-    XmlErrorStack errorStack(path);
-    return std::make_tuple(std::move(doc), std::move(errorStack));
-}
-
 bool XmlTestUtils::CheckNodesEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs)
 {
     bool result = CompareNodes(lhs, rhs, "");

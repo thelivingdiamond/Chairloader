@@ -10,6 +10,9 @@ public:
         m_NodeName = rootNodeName;
     }
 
+    XmlErrorStack(const char* rootNodeName)
+        : XmlErrorStack(std::string(rootNodeName)) {}
+
     XmlErrorStack(const fs::path& filePath)
         : XmlErrorStack(fmt::format("file {}", filePath.u8string())) {}
 
@@ -20,12 +23,19 @@ public:
     bool IsRoot() const { return m_pParent == nullptr; }
 
     //! Creates a child stack entry.
+    //! @{
     XmlErrorStack GetChild(std::string&& nodeName) const
     {
         XmlErrorStack child(this);
         child.m_NodeName = nodeName;
         return child;
     }
+
+    XmlErrorStack GetChild(const pugi::xml_node& childNode) const
+    {
+        return GetChild(childNode.name());
+    }
+    //! @}
 
     //! Sets the node ID.
     //! @{
@@ -77,6 +87,14 @@ private:
 class XmlUtils
 {
 public:
+    //! Loads an XML document from file. Throws on error.
+    //! @param  path            Path to the file.
+    //! @param  parseOptions    Options to load_file.
+    //! @{
+    static pugi::xml_document LoadDocument(const fs::path& path, unsigned parseOptions = pugi::parse_default);
+    static std::tuple<pugi::xml_document, XmlErrorStack> LoadDocumentWithStack(const fs::path& path, unsigned parseOptions = pugi::parse_default);
+    //! @}
+
     //! Gets a named node from the parent. If not found, throws an exception.
     static pugi::xml_node GetRequiredNode(const XmlErrorStack& errorStack, const pugi::xml_node& parent, const char* name);
 
