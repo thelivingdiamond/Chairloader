@@ -8,6 +8,7 @@ set(SOURCE_FILES
 	HashUtilsTest.cpp
 	LuaUtilsTest.cpp
 	main.cpp
+	MergingPolicy3Test.cpp
 	ModMerging.cpp
 	pch.h
 	Wildcards.cpp

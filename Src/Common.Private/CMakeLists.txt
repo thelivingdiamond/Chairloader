@@ -5,6 +5,10 @@ set(SOURCE_FILES
 	BinDiff/BinDiff.cpp
 	BinDiff/BinDiff.h
 
+	# Chairloader
+	Chairloader/Private/XmlUtils.cpp
+	Chairloader/Private/XmlUtils.h
+
 	# ChairManager
 	Manager/FileHistory.cpp
 	Manager/FileHistory.h
