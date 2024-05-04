@@ -20,6 +20,42 @@ void MergingPolicy3::SetNodeName(std::string_view nodeName, bool isRegex)
     }
 }
 
+const MergingPolicy3::Attribute* MergingPolicy3::FindAttribute(std::string_view name) const
+{
+    for (const Attribute& attr : m_Attributes)
+    {
+        if (attr.name == name)
+            return &attr;
+    }
+
+    return nullptr;
+}
+
+const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
+{
+    // Check exact nodes
+    for (const MergingPolicy3& i : m_ChildNodes)
+    {
+        if (i.GetNodeName() == name)
+            return &i;
+    }
+
+    // Check regex
+    std::string nameAsStr(name);
+
+    for (const MergingPolicy3& i : m_ChildNodesRegex)
+    {
+        if (std::regex_match(nameAsStr, i.m_NodeNameRegex))
+            return &i;
+    }
+
+    // Recursive if not found
+    if (m_IsRecursive)
+        return this;
+
+    return nullptr;
+}
+
 void MergingPolicy3::AppendNode(const MergingPolicy3& node)
 {
     GetCollectionForNewNode(node).emplace_back(node);
@@ -242,7 +278,7 @@ void FileMergingPolicy3::SetFileName(std::string_view fileName, bool isRegex)
 
     if (isRegex)
     {
-        m_FileNameRegex = std::regex(m_FileName);
+        m_FileNameRegex = std::regex(m_FileName, std::regex_constants::ECMAScript | std::regex_constants::icase);
         m_IsFileNameRegex = true;
     }
     else

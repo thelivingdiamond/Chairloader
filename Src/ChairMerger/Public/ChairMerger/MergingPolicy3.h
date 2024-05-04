@@ -38,7 +38,7 @@ public:
         bool readOnly = false;
 
         //! Comment describing the attribute.
-        string comment;
+        std::string comment;
     };
 
     //! Defines the type of the collection and how child nodes should be merged.
@@ -93,6 +93,14 @@ public:
 
     //! @returns The list of child nodes that use regex.
     const std::vector<MergingPolicy3>& GetChildNodesRegex() const { return m_ChildNodesRegex; }
+
+    //! Finds an attribute in the policy.
+    //! @returns Attribute or nullptr if not found.
+    const Attribute* FindAttribute(std::string_view name) const;
+
+    //! Finds the policy for a child node.
+    //! @returns Policy or nullptr if not found.
+    const MergingPolicy3* FindChildNode(std::string_view name) const;
 
     //! Adds a new node to the end.
     //! @{
