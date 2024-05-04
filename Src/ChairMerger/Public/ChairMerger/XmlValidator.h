@@ -3,6 +3,7 @@
 
 class XmlErrorStack;
 class MergingPolicy3;
+class XmlTypeLibrary;
 
 //! Validates XML files using the merging policy.
 class CHAIRMERGER_EXPORT XmlValidator
@@ -32,16 +33,22 @@ public:
     };
 
     //! Validates a node that is matches the policy.
-    //! @param  node    Node to validate
-    //! @param  policy  Merging policy.
-    //! @param  recurse Whether to validate children.
-    static Result ValidateNode(const pugi::xml_node& node, const MergingPolicy3& policy, bool recurse = true);
+    //! @param  node        Node to validate
+    //! @param  policy      Merging policy.
+    //! @param  pTypeLib    Type library for type validation.
+    //! @param  recurse     Whether to validate children.
+    static Result ValidateNode(
+        const pugi::xml_node& node,
+        const MergingPolicy3& policy,
+        const XmlTypeLibrary* pTypeLib = nullptr,
+        bool recurse = true);
 
 private:
     static void ValidateNodeInternal(
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,
+        const XmlTypeLibrary* pTypeLib,
         Result& result,
         bool recurse);
 
@@ -50,6 +57,7 @@ private:
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,
+        const XmlTypeLibrary* pTypeLib,
         Result& result);
 
     //! Validates that all children match the collection type.

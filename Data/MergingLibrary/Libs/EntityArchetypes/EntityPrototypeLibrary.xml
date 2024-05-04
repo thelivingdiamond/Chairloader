@@ -35,7 +35,7 @@
                     <Attribute name="Library" type="string" required="true" readOnly="true" />
                     <Attribute name="Class" type="string" required="true" />
                     <Attribute name="Description" type="string" />
-                    <Attribute name="ArchetypeId" type="uint64" required="true" readOnly="true" />
+                    <Attribute name="ArchetypeId" type="ArchetypeIdDef" required="true" readOnly="true" />
                 </Attributes>
 
                 <!-- This node acts like a dictionary with keys being the child node names -->
@@ -55,20 +55,20 @@
                         <Attributes>
                             <Attribute name="OutdoorOnly" type="intBool" required="true" />
                             <Attribute name="CastShadow" type="intBool" required="true" />
-                            <Attribute name="CastShadowMinspec" type="intBool" required="true" />
+                            <Attribute name="CastShadowMinspec" type="int32" required="true" />
                             <Attribute name="DynamicDistanceShadows" type="intBool" required="true" />
-                            <Attribute name="ShadowCasterType" type="intBool" required="true" />
-                            <Attribute name="CastSunShadowMinSpec" type="int" required="true" />
-                            <Attribute name="LodRatio" type="int" required="true" />
-                            <Attribute name="ViewDistRatio" type="int" required="true" />
-                            <Attribute name="CastShadowViewDistRatio" type="int" />
+                            <Attribute name="ShadowCasterType" type="int32" required="true" />
+                            <Attribute name="CastSunShadowMinSpec" type="int32" required="true" />
+                            <Attribute name="LodRatio" type="int32" required="true" />
+                            <Attribute name="ViewDistRatio" type="int32" required="true" />
+                            <Attribute name="CastShadowViewDistRatio" type="int32" />
                             <Attribute name="HiddenInGame" type="intBool" required="true" />
                             <Attribute name="GlobalInSegmentedWorld" type="intBool" required="true" />
                             <Attribute name="RecvWind" type="intBool" required="true" />
                             <Attribute name="RenderNearest" type="intBool" required="true" />
                             <Attribute name="NoStaticDecals" type="intBool" required="true" />
                             <Attribute name="CreatedThroughPool" type="intBool" required="true" />
-                            <Attribute name="SceneIndex" type="int" required="true" />
+                            <Attribute name="SceneIndex" type="int32" required="true" />
                             <Attribute name="HiddenInProbes" type="intBool" required="true" />
                         </Attributes>
                     </Node>

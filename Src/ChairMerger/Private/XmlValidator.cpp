@@ -1,18 +1,29 @@
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
+#include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 
-XmlValidator::Result XmlValidator::ValidateNode(const pugi::xml_node& node, const MergingPolicy3& policy, bool recurse)
+XmlValidator::Result XmlValidator::ValidateNode(
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlTypeLibrary* pTypeLib,
+    bool recurse)
 {
     Result result;
     XmlErrorStack errorStack(node.name());
-    ValidateNodeInternal(node, policy, errorStack, result, recurse);
+    ValidateNodeInternal(node, policy, errorStack, pTypeLib, result, recurse);
     return result;
 }
 
-void XmlValidator::ValidateNodeInternal(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result, bool recurse)
+void XmlValidator::ValidateNodeInternal(
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    const XmlTypeLibrary* pTypeLib,
+    Result& result,
+    bool recurse)
 {
-    ValidateAttributes(node, policy, errorStack, result);
+    ValidateAttributes(node, policy, errorStack, pTypeLib, result);
     ValidateCollection(node, policy, errorStack, result);
     ValidateConstraints(node, policy, errorStack, result);
 
@@ -56,7 +67,7 @@ void XmlValidator::ValidateNodeInternal(const pugi::xml_node& node, const Mergin
 
             if (childPolicy)
             {
-                ValidateNodeInternal(childNode, *childPolicy, childErrorStack, result, true);
+                ValidateNodeInternal(childNode, *childPolicy, childErrorStack, pTypeLib, result, true);
             }
             else
             {
@@ -68,7 +79,12 @@ void XmlValidator::ValidateNodeInternal(const pugi::xml_node& node, const Mergin
     }
 }
 
-void XmlValidator::ValidateAttributes(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result)
+void XmlValidator::ValidateAttributes(
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    const XmlTypeLibrary* pTypeLib,
+    Result& result)
 {
     // Check existing attributes
     for (const pugi::xml_attribute nodeAttr : node.attributes())
@@ -83,7 +99,17 @@ void XmlValidator::ValidateAttributes(const pugi::xml_node& node, const MergingP
             continue;
         }
 
-        // TODO 2024-05-04: Validate value using the type
+        if (pTypeLib)
+        {
+            const IXmlType* pType = pTypeLib->FindType(policyAttr->type);
+            if (!pType)
+                errorStack.ThrowException(fmt::format("Unknown type {} in the merging policy", policyAttr->type));
+
+            std::string_view value = nodeAttr.as_string();
+            bool isValid = pType->ValidateValue(value);
+            if (!isValid)
+                AddError(result, errorStack, fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName()), nodeAttr.name());
+        }
     }
 
     // Check if any required attributes are missing
