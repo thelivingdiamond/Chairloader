@@ -4,6 +4,7 @@
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingLibrary3.h>
+#include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 
 namespace po = boost::program_options;
@@ -58,6 +59,9 @@ int main(int argc, char** argv)
         MergingLibrary3 mergingLibrary;
         mergingLibrary.LoadFromPath(mergingLibraryPath);
 
+        // Load type library
+        XmlTypeLibrary typeLib;
+
         // Process XMLs
         fs::path xmlDir = fs::u8path(vm["xml-dir"].as<std::string>());
         
@@ -90,7 +94,10 @@ int main(int argc, char** argv)
                 }
 
                 stats.checked++;
-                XmlValidator::Result result = XmlValidator::ValidateNode(xmlDoc.first_child(), filePolicy->GetRootNode());
+                XmlValidator::Result result = XmlValidator::ValidateNode(
+                    xmlDoc.first_child(),
+                    filePolicy->GetRootNode(),
+                    &typeLib);
 
                 if (!result)
                 {
