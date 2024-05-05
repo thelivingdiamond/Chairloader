@@ -50,6 +50,11 @@ public:
         m_IdKey = std::move(key);
         m_IdValue = value;
     }
+
+    void SetId(std::pair<std::string, std::string>&& kvPair)
+    {
+        SetId(std::move(kvPair.first), std::move(kvPair.second));
+    }
     //! @}
 
     //! Sets the node ID.

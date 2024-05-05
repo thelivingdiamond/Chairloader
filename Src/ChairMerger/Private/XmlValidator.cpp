@@ -39,29 +39,7 @@ void XmlValidator::ValidateNodeInternal(
             // Add key if available
             if (policy.GetCollection().type == MergingPolicy3::ECollectionType::Dict)
             {
-                const MergingPolicy3::Collection& collection = policy.GetCollection();
-
-                // Key name
-                std::string keyName;
-
-                for (size_t i = 0; i < collection.keyChildAttributes.size(); i++)
-                {
-                    if (i != 0)
-                        keyName += ',';
-                    keyName += collection.keyChildAttributes[i];
-                }
-
-                // Key value
-                std::string keyValue;
-
-                for (size_t i = 0; i < collection.keyChildAttributes.size(); i++)
-                {
-                    if (i != 0)
-                        keyValue += ',';
-                    keyValue += childNode.attribute(collection.keyChildAttributes[i].c_str()).as_string("<not set>");
-                }
-
-                childErrorStack.SetId(std::move(keyName), std::move(keyValue));
+                childErrorStack.SetId(policy.GetCollection().GetKeyValuePair(childNode));
             }
 
             const MergingPolicy3* childPolicy = policy.FindChildNode(childNode.name());

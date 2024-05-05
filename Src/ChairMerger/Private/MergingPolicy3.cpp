@@ -2,6 +2,40 @@
 #include <ChairMerger/MergingPolicy3.h>
 
 //---------------------------------------------------------------------------------
+// MergingPolicy3::Collection
+//---------------------------------------------------------------------------------
+std::string MergingPolicy3::Collection::GetKeyString() const
+{
+    std::string keyName;
+
+    for (size_t i = 0; i < keyChildAttributes.size(); i++)
+    {
+        if (i != 0)
+            keyName += ',';
+
+        keyName += keyChildAttributes[i];
+    }
+
+    return keyName;
+}
+
+std::pair<std::string, std::string> MergingPolicy3::Collection::GetKeyValuePair(const pugi::xml_node& node) const
+{
+    std::string keyName = GetKeyString();
+    std::string keyValue;
+
+    for (size_t i = 0; i < keyChildAttributes.size(); i++)
+    {
+        if (i != 0)
+            keyValue += ',';
+
+        keyValue += node.attribute(keyChildAttributes[i].c_str()).as_string("<not set>");
+    }
+
+    return std::make_pair(std::move(keyName), std::move(keyValue));
+}
+
+//---------------------------------------------------------------------------------
 // MergingPolicy3
 //---------------------------------------------------------------------------------
 void MergingPolicy3::SetNodeName(std::string_view nodeName, bool isRegex)

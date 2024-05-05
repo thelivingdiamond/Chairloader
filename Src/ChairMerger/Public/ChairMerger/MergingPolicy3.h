@@ -55,6 +55,12 @@ public:
 
         //! Use these child attributes as part of the key. They must be present in all children.
         std::vector<std::string> keyChildAttributes;
+
+        //! Combines all keys into a comma-separated string.
+        std::string GetKeyString() const;
+
+        //! Combines all keys and values into a pair of comma-separated strings.
+        std::pair<std::string, std::string> GetKeyValuePair(const pugi::xml_node& node) const;
     };
 
     //! Defines additional constraints on immediate children.
