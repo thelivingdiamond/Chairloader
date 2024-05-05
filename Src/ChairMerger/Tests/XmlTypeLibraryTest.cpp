@@ -15,36 +15,44 @@ TEST(XmlTypeLibraryTest, ValueValidation)
         { "int8",  "123",               true  },
         { "int8",  "-123",              true  },
         { "int8",  "asdf",              false },
+        { "int8",  "123asdf",           false },
         { "int16", "",                  false },
         { "int16", "12345",             true  },
         { "int16", "-12345",            true  },
         { "int16", "asdf",              false },
+        { "int16", "123asdf",           false },
         { "int32", "",                  false },
         { "int32", "1234567890",        true  },
         { "int32", "-1234567890",       true  },
         { "int32", "asdf",              false },
+        { "int32", "123asdf",           false },
         { "int64", "",                  false },
         { "int64", "1234567890123456",  true  },
         { "int64", "-1234567890123456", true  },
         { "int64", "asdf",              false },
+        { "int64", "123asdf",           false },
         
         // Unsigned integers
         { "uint8",  "",                  false },
         { "uint8",  "123",               true  },
         { "uint8",  "-123",              false },
-        { "uint8", "asdf",              false },
+        { "uint8",  "asdf",              false },
+        { "uint8",  "123asdf",           false },
         { "uint16", "",                  false },
         { "uint16", "12345",             true  },
         { "uint16", "-12345",            false },
         { "uint16", "asdf",              false },
+        { "uint16", "123asdf",           false },
         { "uint32", "",                  false },
         { "uint32", "1234567890",        true  },
         { "uint32", "-1234567890",       false },
         { "uint32", "asdf",              false },
+        { "uint32", "123asdf",           false },
         { "uint64", "",                  false },
         { "uint64", "1234567890123456",  true  },
         { "uint64", "-1234567890123456", false },
         { "uint64", "asdf",              false },
+        { "uint64", "123asdf",           false },
 
         // Float
         { "float", "",           false },
@@ -53,6 +61,7 @@ TEST(XmlTypeLibraryTest, ValueValidation)
         { "float", "1.234e4",    true  },
         { "float", "-1.234e4",   true  },
         { "float", "asdf",       false },
+        { "float", "123asdf",    false },
 
         // String
         { "string", "",          false },
@@ -64,11 +73,12 @@ TEST(XmlTypeLibraryTest, ValueValidation)
         { "boolInt", "1",  true },
         { "boolInt", "2",  false },
         { "boolInt", "-1", false },
+        { "boolInt", "0asdf", false },
 
         // Bool (string)
         { "boolString", "",      false },
-        { "boolString", "false", true },
-        { "boolString", "true",  true },
+        { "boolString", "false", true  },
+        { "boolString", "true",  true  },
         { "boolString", "maybe", false },
 
         // GUID
