@@ -58,9 +58,8 @@ public:
     // BaseXmlType
     virtual bool ValidateValue(std::string_view value) const
     {
-        // Allow empty values
         if (value.empty())
-            return true;
+            return false;
 
         T number{};
         std::from_chars_result result = std::from_chars(
@@ -83,7 +82,7 @@ public:
     // BaseXmlType
     virtual bool ValidateValue(std::string_view value) const
     {
-        return true;
+        return !value.empty();
     }
 };
 
@@ -100,7 +99,7 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         if (value.empty())
-            return true;
+            return false;
 
         return std::regex_match(std::string(value), m_Regex);
     }
@@ -121,7 +120,7 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         if (value.empty())
-            return true;
+            return false;
 
         uint32_t number{};
         std::from_chars_result result = std::from_chars(
@@ -148,7 +147,7 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         if (value.empty())
-            return true;
+            return false;
 
         return value == "true" || value == "false";
     }
@@ -193,8 +192,8 @@ XmlTypeLibrary::XmlTypeLibrary()
     // Other
     RegisterType(std::make_unique<NumericXmlType<double>>("float"));
     RegisterType(std::make_unique<StringXmlType>("string"));
-    RegisterType(std::make_unique<IntBoolXmlType>("intBool"));
-    RegisterType(std::make_unique<StringBoolXmlType>("stringBool"));
+    RegisterType(std::make_unique<IntBoolXmlType>("boolInt"));
+    RegisterType(std::make_unique<StringBoolXmlType>("boolString"));
     RegisterType(std::make_unique<AnyBoolXmlType>("bool"));
 
     // Special

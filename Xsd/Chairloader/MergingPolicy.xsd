@@ -54,6 +54,12 @@
                                     </xs:documentation></xs:annotation>
                                 </xs:attribute>
 
+                                <xs:attribute name="allowEmpty" type="xs:boolean" default="false">
+                                    <xs:annotation><xs:documentation>
+                                        Whether the attribute may be empty.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
                                 <xs:attribute name="readOnly" type="xs:boolean" default="false">
                                     <xs:annotation><xs:documentation>
                                         If true, mods won't be able to change the value of this attribute on existing nodes.

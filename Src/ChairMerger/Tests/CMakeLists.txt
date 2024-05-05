@@ -15,6 +15,7 @@ set(SOURCE_FILES
 	XMLMerger2Test.cpp
 	XmlTestUtils.cpp
 	XmlTestUtils.h
+	XmlTypeLibraryTest.cpp
 	ZipUtilsTest.cpp
 )
 
