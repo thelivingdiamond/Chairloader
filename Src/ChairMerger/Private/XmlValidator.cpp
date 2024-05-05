@@ -99,8 +99,14 @@ void XmlValidator::ValidateAttributes(
 
             continue;
         }
-
-        if (pTypeLib)
+        
+        if (nodeAttr.as_string()[0] == '\0')
+        {
+            // Attribute is empty
+            if (!policyAttr->allowEmpty)
+                AddError(result, errorStack, "Attribute can't be empty", nodeAttr.name());
+        }
+        else if (pTypeLib)
         {
             const IXmlType* pType = pTypeLib->FindType(policyAttr->type);
             if (!pType)

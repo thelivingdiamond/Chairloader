@@ -34,6 +34,9 @@ public:
         //! Whether the attribute must be present.
         bool required = false;
 
+        //! Whether the attribute may be empty.
+        bool allowEmpty = false;
+
         //! If true, mods won't be able to change the value of this attribute on existing nodes.
         bool readOnly = false;
 
