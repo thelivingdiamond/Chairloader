@@ -62,12 +62,12 @@ public:
             return false;
 
         T number{};
-        std::from_chars_result result = std::from_chars(
-            value.data(),
-            value.data() + value.size(),
-            number);
+        const char* begin = value.data();
+        const char* end = value.data() + value.size();
 
-        return result.ec == std::errc();
+        std::from_chars_result result = std::from_chars(begin, end, number);
+
+        return result.ec == std::errc() && result.ptr == end;
     }
 };
 
@@ -119,19 +119,7 @@ public:
     // BaseXmlType
     virtual bool ValidateValue(std::string_view value) const
     {
-        if (value.empty())
-            return false;
-
-        uint32_t number{};
-        std::from_chars_result result = std::from_chars(
-            value.data(),
-            value.data() + value.size(),
-            number);
-
-        if (result.ec != std::errc())
-            return false;
-
-        return number == 0 || number == 1;
+        return value == "0" || value == "1";
     }
 };
 
