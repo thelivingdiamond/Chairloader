@@ -21,6 +21,7 @@
 
         <ChildConstraints>
             <!-- Add additional constraints on child nodes for validation -->
+            <UniqueAttribute name="Name" />
             <UniqueAttribute name="Id" />
             <UniqueAttribute name="ArchetypeId" />
         </ChildConstraints>

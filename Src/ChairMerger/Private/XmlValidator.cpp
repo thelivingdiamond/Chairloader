@@ -1,3 +1,4 @@
+#include <boost/algorithm/string/join.hpp>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
@@ -122,7 +123,9 @@ void XmlValidator::ValidateAttributes(
 
 void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result)
 {
-    switch (policy.GetCollection().type)
+    const MergingPolicy3::Collection& collection = policy.GetCollection();
+
+    switch (collection.type)
     {
     case MergingPolicy3::ECollectionType::None:
     {
@@ -140,16 +143,62 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
     case MergingPolicy3::ECollectionType::Dict:
     {
         // Validate that primary key is present on all children
+        // And it's unique
+        std::set<std::vector<std::string>> uniqueKeys;
         int i = 0;
+
         for (const pugi::xml_node childNode : node.children())
         {
             XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
             childErrorStack.SetIndex(i);
 
-            for (const std::string& keyAttrName : policy.GetCollection().keyChildAttributes)
+            std::vector<std::string> fullKey; // All key values for this node
+            fullKey.resize(collection.keyChildAttributes.size() + (collection.keyChildName ? 1 : 0));
+            size_t curKeyIdx = 0; // Index of the next key to be filled
+
+            if (collection.keyChildName)
             {
-                if (!childNode.attribute(keyAttrName.c_str()))
+                // Add child name to the key
+                fullKey[curKeyIdx] = childNode.name();
+                curKeyIdx++;
+            }
+
+            for (const std::string& keyAttrName : collection.keyChildAttributes)
+            {
+                const pugi::xml_attribute keyAttr = childNode.attribute(keyAttrName.c_str());
+
+                if (!keyAttr)
+                {
                     AddError(result, childErrorStack, "Key attribute is missing", keyAttrName);
+                }
+                else
+                {
+                    fullKey[curKeyIdx] = keyAttr.as_string();
+                    curKeyIdx++;
+                }
+            }
+
+            if (curKeyIdx == fullKey.size())
+            {
+                // All keys were added.
+                // curKeyIdx will be less than size if one of the attributes is missing, which has its own error
+                auto it = uniqueKeys.find(fullKey);
+
+                if (it == uniqueKeys.end())
+                {
+                    // Add the key
+                    uniqueKeys.emplace(std::move(fullKey));
+                }
+                else
+                {
+                    // Duplicate key
+                    std::string fullKeyString = boost::algorithm::join(fullKey, ", ");
+
+                    AddError(
+                        result,
+                        childErrorStack,
+                        fmt::format("Duplicate key value '{}'", fullKeyString));
+                }
             }
 
             i++;
