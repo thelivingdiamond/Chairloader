@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<SignalGroups>
+    <Group
+        id="622222"
+        name="SignalGroup2">
+        <Signal
+            id="566666" />
+    </Group>
+    <Group
+        id="633333"
+        name="SignalGroup3FromMod">
+        <Signal
+            id="511111" />
+        <Signal
+            id="522222" />
+        <Signal
+            id="577777" />
+    </Group>
+</SignalGroups>
