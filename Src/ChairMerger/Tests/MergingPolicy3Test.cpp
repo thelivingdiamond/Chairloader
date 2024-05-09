@@ -86,7 +86,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalInput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         positiveSignalValue.GetAttributes().push_back(attr);
@@ -94,7 +94,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalOutput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         positiveSignalValue.GetAttributes().push_back(attr);
@@ -116,7 +116,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalInput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         negativeSignalValue.GetAttributes().push_back(attr);
@@ -124,7 +124,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalOutput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         negativeSignalValue.GetAttributes().push_back(attr);
@@ -153,7 +153,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalInput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         anySignalValue.GetAttributes().push_back(attr);
@@ -161,7 +161,7 @@ static MergingPolicy3 CreateExpectedNode()
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalOutput";
-                        attr.type = "ArkUniqueIdRef";
+                        attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
                         anySignalValue.GetAttributes().push_back(attr);

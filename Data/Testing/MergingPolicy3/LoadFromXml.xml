@@ -26,23 +26,23 @@
                 <ChildNodes>
                     <Node name="PositiveSignalValue">
                         <Attributes>
-                            <Attribute name="signalInput" type="ArkUniqueIdRef" readOnly="true" required="true" />
-                            <Attribute name="signalOutput" type="ArkUniqueIdRef" readOnly="true"  required="true" />
+                            <Attribute name="signalInput" type="uint64" readOnly="true" required="true" />
+                            <Attribute name="signalOutput" type="uint64" readOnly="true"  required="true" />
                             <Attribute name="scale" type="float" />
                         </Attributes>
                     </Node>
                     <Node name="NegativeSignalValue">
                         <Attributes>
-                            <Attribute name="signalInput" type="ArkUniqueIdRef" readOnly="true" required="true" />
-                            <Attribute name="signalOutput" type="ArkUniqueIdRef" readOnly="true"  required="true" />
+                            <Attribute name="signalInput" type="uint64" readOnly="true" required="true" />
+                            <Attribute name="signalOutput" type="uint64" readOnly="true"  required="true" />
                             <Attribute name="scale" type="float" />
                             <Attribute name="offset" type="float" />
                         </Attributes>
                     </Node>
                     <Node name=".*SignalValue" nameRegex="true" recursive="true">
                         <Attributes>
-                            <Attribute name="signalInput" type="ArkUniqueIdRef" readOnly="true" required="true" />
-                            <Attribute name="signalOutput" type="ArkUniqueIdRef" readOnly="true"  required="true" />
+                            <Attribute name="signalInput" type="uint64" readOnly="true" required="true" />
+                            <Attribute name="signalOutput" type="uint64" readOnly="true"  required="true" />
                         </Attributes>
                     </Node>
                 </ChildNodes>
