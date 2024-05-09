@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<XmlTypeLibrary>
+    <!-- Special -->
+    <RegExType name="GuidWithBraces" regex="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
+    <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+
+    <!-- Aliases -->
+    <!-- <AliasType name="AliasName" baseType="uint64" /> -->
+
+    <!-- IDs -->
+    <!-- Automatically makes aliases for TypeName and TypeNameDef -->
+    <IDType name="ArkUniqueId" baseType="uint64" />
+    <IDType name="ArchetypeId" baseType="uint64" />
+</XmlTypeLibrary>
