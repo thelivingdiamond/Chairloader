@@ -1,8 +1,8 @@
 #pragma once
 #include <ChairMerger/Export.h>
+#include <ChairMerger/MergingPolicy3.h>
 
 class XmlErrorStack;
-class MergingPolicy3;
 class XmlTypeLibrary;
 
 //! Validates XML files using the merging policy.
@@ -21,7 +21,7 @@ public:
         std::string message;
     };
 
-    struct Result
+    struct CHAIRMERGER_EXPORT Result
     {
         //! The XML is valid.
         bool isValid = true;
@@ -30,6 +30,9 @@ public:
         std::vector<ValidationError> errors;
 
         explicit operator bool() const { return isValid; }
+
+        //! Converts the result into a string.
+        std::string ToString(std::string_view indent = std::string_view()) const;
     };
 
     //! Validates a node that is matches the policy.
@@ -42,6 +45,13 @@ public:
         const MergingPolicy3& policy,
         const XmlTypeLibrary* pTypeLib = nullptr,
         bool recurse = true);
+
+    //! Validates the attribute value.
+    //! @returns Error text pr empty string if no error.
+    static std::string ValidateAttribute(
+        const pugi::xml_attribute& nodeAttr,
+        const MergingPolicy3::Attribute& policyAttr,
+        const XmlTypeLibrary* pTypeLib = nullptr);
 
 private:
     static void ValidateNodeInternal(

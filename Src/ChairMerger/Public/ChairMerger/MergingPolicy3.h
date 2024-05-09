@@ -60,7 +60,7 @@ public:
         std::string GetKeyString() const;
 
         //! Combines all keys and values into a pair of comma-separated strings.
-        std::pair<std::string, std::string> GetKeyValuePair(const pugi::xml_node& node) const;
+        std::pair<std::string, std::string> GetKeyValuePair(const pugi::xml_node& childNode) const;
     };
 
     //! Defines additional constraints on immediate children.
