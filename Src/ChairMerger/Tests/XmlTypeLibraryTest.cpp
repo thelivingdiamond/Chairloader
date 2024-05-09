@@ -95,6 +95,7 @@ TEST(XmlTypeLibraryTest, ValueValidation)
     };
 
     XmlTypeLibrary typeLib;
+    typeLib.LoadTypesFromFile("XmlTypeLibrary.xml");
 
     for (const TestCase& test : testCases)
     {

@@ -24,6 +24,7 @@ TEST(MainMergingLibraryTest, TestMerging)
 {
     fs::path testFilesPath = "Testing/MergingLibrary3";
     XmlTypeLibrary typeLibrary;
+    typeLibrary.LoadTypesFromFile("XmlTypeLibrary.xml");
     MergingLibrary3 mergingLibrary;
     mergingLibrary.LoadFromPath("MergingLibrary");
 

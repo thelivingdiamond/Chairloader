@@ -25,6 +25,12 @@ public:
     //! @returns Type or nullptr if not found.
     const IXmlType* FindType(std::string_view typeName) const;
 
+    //! Loads additional types from a file.
+    //! @{
+    void LoadTypesFromFile(const fs::path& filePath);
+    void LoadTypesFromXml(const pugi::xml_node& node);
+    //! @}
+
 private:
     std::map<std::string, std::unique_ptr<IXmlType>, std::less<>> m_Types;
 

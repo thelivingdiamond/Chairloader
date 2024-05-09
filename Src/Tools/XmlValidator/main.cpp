@@ -32,6 +32,7 @@ int main(int argc, char** argv)
     {
         desc.add_options()
             ("help", "produce help message")
+            ("type-lib", po::value<std::string>()->required(), "path to the type library")
             ("merging-lib", po::value<std::string>()->required(), "path to the merging library")
             ("xml-dir", po::value<std::string>()->required(), "path to the XML file directory");
 
@@ -60,7 +61,9 @@ int main(int argc, char** argv)
         mergingLibrary.LoadFromPath(mergingLibraryPath);
 
         // Load type library
+        fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
         XmlTypeLibrary typeLib;
+        typeLib.LoadTypesFromFile(typeLibPath);
 
         // Process XMLs
         fs::path xmlDir = fs::u8path(vm["xml-dir"].as<std::string>());

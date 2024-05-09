@@ -1,4 +1,5 @@
 #include <charconv>
+#include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 
 namespace
@@ -183,16 +184,6 @@ XmlTypeLibrary::XmlTypeLibrary()
     RegisterType(std::make_unique<IntBoolXmlType>("boolInt"));
     RegisterType(std::make_unique<StringBoolXmlType>("boolString"));
     RegisterType(std::make_unique<AnyBoolXmlType>("bool"));
-
-    // Special
-    RegisterType(std::make_unique<RegexXmlType>("GuidWithBraces", R"(\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\})"));
-    RegisterType(std::make_unique<RegexXmlType>("GuidNoBraces", R"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"));
-
-    // Aliases for IDs
-    RegisterAlias("ArkUniqueIdRef", "uint64");
-    RegisterAlias("ArkUniqueIdDef", "uint64");
-    RegisterAlias("ArchetypeIdRef", "uint64");
-    RegisterAlias("ArchetypeIdDef", "uint64");
 }
 
 XmlTypeLibrary::~XmlTypeLibrary()
@@ -207,6 +198,41 @@ const IXmlType* XmlTypeLibrary::FindType(std::string_view typeName) const
         return it->second.get();
     else
         return nullptr;
+}
+
+void XmlTypeLibrary::LoadTypesFromFile(const fs::path& filePath)
+{
+    pugi::xml_document doc = XmlUtils::LoadDocument(filePath);
+    LoadTypesFromXml(doc.first_child());
+}
+
+void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node)
+{
+    for (pugi::xml_node typeNode : node)
+    {
+        std::string name = typeNode.attribute("name").as_string();
+        if (name.empty())
+            throw std::runtime_error("Name is empty");
+
+        if (!strcmp(typeNode.name(), "RegExType"))
+        {
+            RegisterType(std::make_unique<RegexXmlType>(name, typeNode.attribute("regex").as_string()));
+        }
+        else if (!strcmp(typeNode.name(), "AliasType"))
+        {
+            RegisterAlias(name, typeNode.attribute("baseType").as_string());
+        }
+        else if (!strcmp(typeNode.name(), "IDType"))
+        {
+            std::string baseType = typeNode.attribute("baseType").as_string();
+            RegisterAlias(name, baseType);
+            RegisterAlias(name + "Def", baseType);
+        }
+        else
+        {
+            throw std::runtime_error(fmt::format("Unknown node {}", typeNode.name()));
+        }
+    }
 }
 
 void XmlTypeLibrary::RegisterType(std::unique_ptr<IXmlType>&& ptr)
