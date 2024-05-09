@@ -5,10 +5,15 @@
     <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
 
     <!-- Aliases -->
-    <!-- <AliasType name="AliasName" baseType="uint64" /> -->
+    <AliasType name="ArkUniqueId" baseType="uint64" />
 
     <!-- IDs -->
     <!-- Automatically makes aliases for TypeName and TypeNameDef -->
-    <IDType name="ArkUniqueId" baseType="uint64" />
     <IDType name="ArchetypeId" baseType="uint64" />
+
+    <!-- Signal System -->
+    <IDType name="ArkSignalId" baseType="ArkUniqueId" />
+    <IDType name="ArkSignalGroupId" baseType="ArkUniqueId" />
+    <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
+    <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
 </XmlTypeLibrary>

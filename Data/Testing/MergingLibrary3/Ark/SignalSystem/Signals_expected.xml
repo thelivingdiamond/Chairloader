@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<signals>
+    <signal
+        name="signal 1"
+        id="111111"
+        notes="" />
+    <signal
+        name="signal 2"
+        id="222222"
+        notes="" />
+    <signal
+        name="signal 3"
+        id="333333"
+        notes="Signal from mod" />
+</signals>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<packages>
+    <package
+        name="Package2"
+        id="922">
+        <signal
+            signalID="833"
+            value="1.5" />
+        <signal
+            signalID="844"
+            value="8" />
+    </package>
+    <package
+        name="Package3FromMod"
+        id="933">
+        <signal
+            signalID="811"
+            value="987.85" />
+        <signal
+            signalID="822"
+            value="45.5" />
+    </package>
+</packages>
