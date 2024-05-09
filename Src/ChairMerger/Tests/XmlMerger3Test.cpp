@@ -23,9 +23,11 @@ protected:
         return policy;
     }
 
-    XmlTypeLibrary LoadTypeLib()
+    std::unique_ptr<XmlTypeLibrary> LoadTypeLib()
     {
-        return XmlTypeLibrary();
+        auto lib = std::make_unique<XmlTypeLibrary>();
+        lib->LoadTypesFromFile("XmlTypeLibrary.xml");
+        return lib;
     }
 
     std::string ReadFileToString(const fs::path& path)
@@ -69,7 +71,7 @@ TEST_P(XmlMerger3SuccessTest, Success)
     fs::path expectedPath = testDir / "3_Expected.xml";
 
     XmlValidator::Result validationResult;
-    XmlTypeLibrary typeLibrary = LoadTypeLib();
+    std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
 
     pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath);
@@ -77,16 +79,16 @@ TEST_P(XmlMerger3SuccessTest, Success)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Validate base
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), &typeLibrary);
+    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
     ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
 
     // Merge
     XmlMergerContext context;
-    context.pTypeLib = &typeLibrary;
+    context.pTypeLib = pTypeLibrary.get();
     XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
 
     // Validate output
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), &typeLibrary);
+    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
     ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
     // Compare with expected
@@ -103,7 +105,7 @@ TEST_P(XmlMerger3FailTest, Fail)
     fs::path errorPath = testDir / "3_Error.txt";
 
     XmlValidator::Result validationResult;
-    XmlTypeLibrary typeLibrary = LoadTypeLib();
+    std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
 
     pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath);
@@ -112,7 +114,7 @@ TEST_P(XmlMerger3FailTest, Fail)
     ASSERT_NE("", expectedError);
 
     // Validate base
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), &typeLibrary);
+    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
     ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
 
     EXPECT_ANY_THROW({
@@ -120,7 +122,7 @@ TEST_P(XmlMerger3FailTest, Fail)
         {
             // Merge
             XmlMergerContext context;
-            context.pTypeLib = &typeLibrary;
+            context.pTypeLib = pTypeLibrary.get();
             XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
         }
         catch (const std::exception& e)
