@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2Mod">
+    <A aAttr1="aVal1Mod" aAttr2="aVal2" modAttr="modAttrValue">
+        <B bAttr1="bVal1Mod" bAttr2="bVal2Mod">
+            <C notChanged="asdf"/>
+        </B>
+    </A>
+</Root>

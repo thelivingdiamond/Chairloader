@@ -5,11 +5,13 @@ set(SOURCE_FILES
 	HashUtilsTest.cpp
 	LuaUtilsTest.cpp
 	main.cpp
+	MainMergingLibraryTest.cpp
 	MergingPolicy3Test.cpp
 	ModMerging.cpp
 	pch.h
 	Wildcards.cpp
 	XMLMerger2Test.cpp
+	XmlMerger3Test.cpp
 	XmlTestUtils.cpp
 	XmlTestUtils.h
 	XmlTypeLibraryTest.cpp

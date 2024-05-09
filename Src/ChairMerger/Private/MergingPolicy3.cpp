@@ -19,7 +19,7 @@ std::string MergingPolicy3::Collection::GetKeyString() const
     return keyName;
 }
 
-std::pair<std::string, std::string> MergingPolicy3::Collection::GetKeyValuePair(const pugi::xml_node& node) const
+std::pair<std::string, std::string> MergingPolicy3::Collection::GetKeyValuePair(const pugi::xml_node& childNode) const
 {
     std::string keyName = GetKeyString();
     std::string keyValue;
@@ -29,7 +29,7 @@ std::pair<std::string, std::string> MergingPolicy3::Collection::GetKeyValuePair(
         if (i != 0)
             keyValue += ',';
 
-        keyValue += node.attribute(keyChildAttributes[i].c_str()).as_string("<not set>");
+        keyValue += childNode.attribute(keyChildAttributes[i].c_str()).as_string("<not set>");
     }
 
     return std::make_pair(std::move(keyName), std::move(keyValue));
@@ -171,6 +171,9 @@ void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErro
             attr.readOnly = childNode.attribute("readOnly").as_bool(false);
             attr.comment = childNode.attribute("comment").as_string();
 
+            if (attr.readOnly && !attr.required)
+                curErrorStack.ThrowException("Read-only attribute must be required");
+
             m_Attributes.emplace_back(attr);
         }
         else
@@ -248,6 +251,12 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
         {
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
         }
+    }
+
+    if (m_Collection.type == ECollectionType::Dict)
+    {
+        if (!m_Collection.keyChildName && m_Collection.keyChildAttributes.empty())
+            errorStack.ThrowException("Dict collection has no primary key defined");
     }
 }
 

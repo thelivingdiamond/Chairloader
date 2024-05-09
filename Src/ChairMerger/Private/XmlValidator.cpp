@@ -16,6 +16,29 @@ XmlValidator::Result XmlValidator::ValidateNode(
     return result;
 }
 
+std::string XmlValidator::ValidateAttribute(const pugi::xml_attribute& nodeAttr, const MergingPolicy3::Attribute& policyAttr, const XmlTypeLibrary* pTypeLib)
+{
+    if (nodeAttr.as_string()[0] == '\0')
+    {
+        // Attribute is empty
+        if (!policyAttr.allowEmpty)
+            return "Attribute can't be empty";
+    }
+    else if (pTypeLib)
+    {
+        const IXmlType* pType = pTypeLib->FindType(policyAttr.type);
+        if (!pType)
+            throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policyAttr.type));
+
+        std::string_view value = nodeAttr.as_string();
+        bool isValid = pType->ValidateValue(value);
+        if (!isValid)
+            return fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName());
+    }
+
+    return std::string();
+}
+
 void XmlValidator::ValidateNodeInternal(
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
@@ -77,24 +100,11 @@ void XmlValidator::ValidateAttributes(
 
             continue;
         }
-        
-        if (nodeAttr.as_string()[0] == '\0')
-        {
-            // Attribute is empty
-            if (!policyAttr->allowEmpty)
-                AddError(result, errorStack, "Attribute can't be empty", nodeAttr.name());
-        }
-        else if (pTypeLib)
-        {
-            const IXmlType* pType = pTypeLib->FindType(policyAttr->type);
-            if (!pType)
-                errorStack.ThrowException(fmt::format("Unknown type {} in the merging policy", policyAttr->type));
 
-            std::string_view value = nodeAttr.as_string();
-            bool isValid = pType->ValidateValue(value);
-            if (!isValid)
-                AddError(result, errorStack, fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName()), nodeAttr.name());
-        }
+        std::string attrError = ValidateAttribute(nodeAttr, *policyAttr, pTypeLib);
+
+        if (!attrError.empty())
+            AddError(result, errorStack, attrError, nodeAttr.name());
     }
 
     // Check if any required attributes are missing
@@ -245,4 +255,34 @@ void XmlValidator::AddError(Result& result, const XmlErrorStack& errorStack, std
     error.message = message;
     result.errors.push_back(std::move(error));
     result.isValid = false;
+}
+
+std::string XmlValidator::Result::ToString(std::string_view indent) const
+{
+    if (isValid)
+        return "Valid";
+
+    std::string str;
+
+    for (auto& error : errors)
+    {
+        // Path
+        str += indent;
+        for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
+        {
+            str += fmt::format("> {} ", *it);
+        }
+
+        // Attribute
+        if (!error.attributeName.empty())
+            str += fmt::format("| (attr = {})", error.attributeName);
+
+        str += fmt::format("\n");
+
+        // Message
+        str += indent;
+        str += fmt::format("    {}\n", error.message);
+    }
+
+    return str;
 }

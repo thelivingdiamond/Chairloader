@@ -1,0 +1,1 @@
+This node can't have child nodes since it has no collection defined

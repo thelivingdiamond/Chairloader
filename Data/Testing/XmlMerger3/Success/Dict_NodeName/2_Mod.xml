@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Root rootAttr2="rootVal2Mod">
+    <A aAttr1="aVal1Mod" />
+    <AA aaAttr2="aaVal2Mod" />
+</Root>

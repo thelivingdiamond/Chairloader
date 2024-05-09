@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Root rootAttr2="rootVal2Mod">
+    <A aAttr2="Text Val">
+        <B bAttr1="bVal1Mod" bAttr2="bVal2Mod" />
+    </A>
+</Root>

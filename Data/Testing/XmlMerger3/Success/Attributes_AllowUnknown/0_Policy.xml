@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Root">
+        <Attributes allowUnknown="false">
+            <Attribute name="rootAttr1" type="string" />
+            <Attribute name="rootAttr2" type="string" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="A">
+                <Attributes allowUnknown="true">
+                    <Attribute name="aAttr1" type="string" />
+                    <Attribute name="aAttr2" type="string" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+    
+                <ChildNodes>
+                    <Node name="B">
+                        <Attributes>
+                            <Attribute name="bAttr1" type="string" />
+                            <Attribute name="bAttr2" type="string" />
+                        </Attributes>
+        
+                        <Collection type="nodeDict" />
+            
+                        <ChildNodes>
+                            <Node name="C">
+                                <Attributes>
+                                    <Attribute name="notChanged" type="string" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

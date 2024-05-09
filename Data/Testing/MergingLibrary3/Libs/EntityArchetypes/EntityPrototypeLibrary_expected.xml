@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<EntityPrototypeLibrary
+    Name="TestArchetypeLibrary">
+    <EntityPrototype
+        Name="Test.TestArchetype"
+        Id="{6B5FBD56-0F53-4CCE-BE02-4CBBBBD20B9D}"
+        Library="TestArchetypeLibrary"
+        Class="TestClass"
+        Description="An interesting description"
+        ArchetypeId="12345678">
+        <Properties
+            prop1="mod1"
+            prop2="test2"
+            prop3="test3"
+            prop4="mod4">
+            <SubProp1
+                prop1="test1"
+                prop2="mod2"
+                prop3="mod3"
+                prop4="test4"
+                modProp="modNewProp" />
+            <SubProp2
+                prop1="test1"
+                prop2="test2"
+                prop3="test3"
+                prop4="test4">
+                <SubProp2
+                    prop1="test1"
+                    prop2="mod2"
+                    prop3="test3"
+                    prop4="test4" />
+            </SubProp2>
+            <SubProp3
+                prop1="mod1"
+                prop2="test2"
+                prop3="test3"
+                prop4="test4" />
+        </Properties>
+        <ObjectVars
+            OutdoorOnly="0"
+            CastShadow="1"
+            CastShadowMinspec="1"
+            DynamicDistanceShadows="0"
+            ShadowCasterType="0"
+            CastSunShadowMinSpec="8"
+            LodRatio="543"
+            ViewDistRatio="432"
+            HiddenInGame="1"
+            GlobalInSegmentedWorld="1"
+            RecvWind="1"
+            RenderNearest="0"
+            NoStaticDecals="0"
+            CreatedThroughPool="0"
+            SceneIndex="0"
+            HiddenInProbes="0" />
+    </EntityPrototype>
+    <EntityPrototype
+        Name="Test.ModArchetype"
+        Id="{780A0CC1-9AB1-4A62-965D-18569F28343B}"
+        Library="TestArchetypeLibrary"
+        Class="ModClass"
+        Description="An interesting mod description"
+        ArchetypeId="53467">
+        <Properties
+            prop1="modNew1"
+            prop2="modNew2"
+            prop3="modNew3"
+            prop4="modNew4">
+            <SubProp1
+                prop1="modNew1"
+                prop2="modNew2"
+                prop3="modNew3"
+                prop4="modNew4" />
+            <SubProp2
+                prop1="modNew1"
+                prop2="modNew2"
+                prop3="modNew3"
+                prop4="modNew4"
+                modProp="modNewProp">
+                <SubProp2
+                    prop1="modNew1"
+                    prop2="modNew2"
+                    prop3="modNew3"
+                    prop4="modNew4" />
+            </SubProp2>
+            <SubProp3
+                prop1="modNew1"
+                prop2="modNew2"
+                prop3="modNew3"
+                prop4="modNew4" />
+        </Properties>
+        <ObjectVars
+            OutdoorOnly="1"
+            CastShadow="0"
+            CastShadowMinspec="2"
+            DynamicDistanceShadows="1"
+            ShadowCasterType="2"
+            CastSunShadowMinSpec="4"
+            LodRatio="1000"
+            ViewDistRatio="10"
+            HiddenInGame="1"
+            GlobalInSegmentedWorld="0"
+            RecvWind="0"
+            RenderNearest="0"
+            NoStaticDecals="0"
+            CreatedThroughPool="0"
+            SceneIndex="2"
+            HiddenInProbes="0" />
+    </EntityPrototype>
+</EntityPrototypeLibrary>
