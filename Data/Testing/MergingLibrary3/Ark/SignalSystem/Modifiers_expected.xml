@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<modifiers>
+    <modifier
+        name="Modifier1"
+        id="11111">
+        <rule
+            ch:index="1000">
+            <inputFilters />
+            <outputEffects>
+                <effect
+                    signalID="9999"
+                    scale="123" />
+            </outputEffects>
+        </rule>
+    </modifier>
+    <modifier
+        name="Modifier2"
+        id="22222">
+        <rule
+            ch:index="1000">
+            <inputFilters>
+                <matchingKey
+                    signalID="8888" />
+            </inputFilters>
+            <outputEffects>
+                <effect
+                    signalID="7777"
+                    scale="0.5" />
+            </outputEffects>
+        </rule>
+        <rule
+            ch:index="2000">
+            <inputFilters>
+                <matchingKey
+                    signalID="7878" />
+            </inputFilters>
+            <outputEffects>
+                <effect
+                    signalID="9898"
+                    scale="99999" />
+            </outputEffects>
+        </rule>
+        <rule
+            ch:index="2050">
+            <inputFilters>
+                <matchingKey
+                    signalID="45456" />
+            </inputFilters>
+            <outputEffects>
+                <effect
+                    signalID="64654"
+                    scale="789" />
+            </outputEffects>
+        </rule>
+    </modifier>
+    <modifier
+        name="Modifier3Mod"
+        id="33333">
+        <rule
+            ch:index="1000">
+            <inputFilters />
+            <outputEffects>
+                <effect
+                    signalID="9999"
+                    scale="123" />
+            </outputEffects>
+        </rule>
+    </modifier>
+</modifiers>

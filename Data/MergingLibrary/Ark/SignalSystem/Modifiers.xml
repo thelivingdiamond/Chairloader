@@ -23,12 +23,19 @@
                     <Attribute name="id" type="ArkSignalModifierIdDef" required="true" readOnly="true" />
                 </Attributes>
 
-                <Collection type="nodeDict" />
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
 
                 <ChildNodes>
-                    <!-- FIXME 2024-05-09: Waiting for array support -->
                     <Node name="rule">
-                        <Attributes />
+                        <Attributes>
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
                         <Collection type="nodeDict" />
 
                         <ChildNodes>
