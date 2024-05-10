@@ -357,12 +357,9 @@ void CryLogAssert(const char* _pszCondition, const char* _pszFile, unsigned int 
 
 bool CryAssert(const char* _pszCondition, const char* _pszFile, unsigned int _uiLine, bool* _pbIgnore)
 {
-	if (!gEnv)
-	{
-		return false;
-	}
+	SSystemGlobalEnvironment* pEnv = gEnv;
 
-	if (!gEnv->bNoAssertDialog && !gEnv->bIgnoreAllAsserts)
+	if (!pEnv || !pEnv->bNoAssertDialog && !pEnv->bIgnoreAllAsserts)
 	{
 		SCryAssertInfo assertInfo;
 
@@ -372,20 +369,25 @@ bool CryAssert(const char* _pszCondition, const char* _pszFile, unsigned int _ui
 		assertInfo.uiLine = _uiLine;
 		assertInfo.btnChosen = SCryAssertInfo::BUTTON_CONTINUE;
 
-		gEnv->pSystem->SetAssertVisible(true);
+		if (pEnv)
+			pEnv->pSystem->SetAssertVisible(true);
 		RegistryReadUInt32(gs_strRegSubKey, gs_strRegXValue, &assertInfo.uiX, 10);
 		RegistryReadUInt32(gs_strRegSubKey, gs_strRegYValue, &assertInfo.uiY, 10);
 
 		CCursorShowerWithStack cursorShowerWithStack;
-		cursorShowerWithStack.StoreCurrentAndShow();
+		if (pEnv)
+			cursorShowerWithStack.StoreCurrentAndShow();
 
 		DialogBoxIndirectParam(GetModuleHandle(NULL), (DLGTEMPLATE*)&g_dialogRC, GetDesktopWindow(), DlgProc, (LPARAM)&assertInfo);
 
-		cursorShowerWithStack.RevertToPrevious();
+		if (pEnv)
+			cursorShowerWithStack.RevertToPrevious();
 
 		RegistryWriteUInt32(gs_strRegSubKey, gs_strRegXValue, assertInfo.uiX);
 		RegistryWriteUInt32(gs_strRegSubKey, gs_strRegYValue, assertInfo.uiY);
-		gEnv->pSystem->SetAssertVisible(false);
+
+		if (pEnv)
+			pEnv->pSystem->SetAssertVisible(false);
 
 		switch (assertInfo.btnChosen)
 		{
@@ -393,7 +395,8 @@ bool CryAssert(const char* _pszCondition, const char* _pszFile, unsigned int _ui
 			*_pbIgnore = true;
 			break;
 		case SCryAssertInfo::BUTTON_IGNORE_ALL:
-			gEnv->bIgnoreAllAsserts = true;
+			if (pEnv)
+				pEnv->bIgnoreAllAsserts = true;
 			break;
 		case SCryAssertInfo::BUTTON_BREAK:
 			return true;
@@ -402,9 +405,9 @@ bool CryAssert(const char* _pszCondition, const char* _pszFile, unsigned int _ui
 			return true;
 		}
 	}
-	if (gEnv)
+	if (pEnv)
 	{
-		gEnv->pSystem->OnAssert(_pszCondition, gs_szMessage, _pszFile, _uiLine);
+		pEnv->pSystem->OnAssert(_pszCondition, gs_szMessage, _pszFile, _uiLine);
 	}
 	return false;
 }
