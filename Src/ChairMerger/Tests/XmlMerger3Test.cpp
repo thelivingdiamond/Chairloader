@@ -103,6 +103,7 @@ TEST_P(XmlMerger3FailTest, Fail)
     fs::path basePath = testDir / "1_Base.xml";
     fs::path modPath = testDir / "2_Mod.xml";
     fs::path errorPath = testDir / "3_Error.txt";
+    fs::path skipValidationPath = testDir / "4_SkipValidation.txt";
 
     XmlValidator::Result validationResult;
     std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
@@ -114,8 +115,11 @@ TEST_P(XmlMerger3FailTest, Fail)
     ASSERT_NE("", expectedError);
 
     // Validate base
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
-    ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
+    if (!fs::exists(skipValidationPath))
+    {
+        validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
+        ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
+    }
 
     EXPECT_ANY_THROW({
         try
@@ -142,7 +146,8 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_NodeName",
         "Dict_Key1",
         "Dict_Key2",
-        "Dict_Append"));
+        "Dict_Append",
+        "Array"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,
@@ -155,4 +160,11 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_InvalidChildName",
         "Dict_InvalidNewNode",
         "Dict_MissingKeyAttr1",
-        "Dict_MissingKeyAttr2"));
+        "Dict_MissingKeyAttr2",
+        "Array_MissingIndex",
+        "Array_MissingIndexInBase",
+        "Array_InvalidIndex",
+        "Array_InvalidIndexInBase",
+        "Array_UnsortedBase1",
+        "Array_UnsortedBase2",
+        "Array_InvalidNewNode"));

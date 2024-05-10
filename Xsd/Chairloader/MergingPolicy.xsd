@@ -127,6 +127,21 @@
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
+
+                        <!-- <ArrayIndexAttribute> -->
+                        <xs:element name="ChildIndexAttribute" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    If an array, specifies the attrbute with the index in the child nodes.
+                                </xs:documentation></xs:annotation>
+
+                                <xs:attribute name="name" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:all>
 
                     <!-- <Collection> - Attributes -->

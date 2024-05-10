@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A
+        ch:index="1000"
+        aAttr1="aVal1_1"
+        aAttr2="aVal2_1" />
+    <A
+        ch:index="2000"
+        aAttr1="aVal1_2"
+        aAttr2="aVal2_2" />
+    <A
+        ch:index="1999"
+        aAttr1="aVal1_3"
+        aAttr2="aVal2_3" />
+    <A
+        ch:index="4000"
+        aAttr1="aVal1_4"
+        aAttr2="aVal2_4" />
+</Root>
