@@ -18,7 +18,7 @@ public:
         //! Key-value dictionary with arbitrary key.
         Dict,
 
-        //! An ordered list of nodes, with no particular key.
+        //! An ordered list of nodes with a separate integer index attribute.
         Array,
     };
 
@@ -55,6 +55,9 @@ public:
 
         //! Use these child attributes as part of the key. They must be present in all children.
         std::vector<std::string> keyChildAttributes;
+
+        //! Name of the index attribute.
+        std::string arrayIndexAttr;
 
         //! Combines all keys into a comma-separated string.
         std::string GetKeyString() const;
@@ -126,6 +129,7 @@ private:
 
     static constexpr char XML_NODE_COLLECTION[] = "Collection";
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";
+    static constexpr char XML_NODE_CHILD_INDEX_ATTR[] = "ChildIndexAttribute";
     static constexpr char XML_NODE_CHILD_NAME[] = "ChildName";
     static constexpr char XML_NODE_CHILD_ATTRIBUTE[] = "ChildAttribute";
 

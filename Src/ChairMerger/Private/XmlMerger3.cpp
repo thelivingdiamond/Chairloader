@@ -1,3 +1,4 @@
+#include <charconv>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlMerger3.h>
@@ -67,6 +68,9 @@ void XmlMerger3::PatchNode(
     }
     case MergingPolicy3::ECollectionType::Dict:
         MergeChildrenDict(context, baseNode, modNode, policy, modErrorStack);
+        break;
+    case MergingPolicy3::ECollectionType::Array:
+        MergeChildrenArray(context, baseNode, modNode, policy, modErrorStack);
         break;
     default:
         throw std::logic_error("Not implemented");
@@ -169,16 +173,91 @@ void XmlMerger3::MergeChildrenDict(
         }
         else
         {
-            // This is a new node. Validate it.
-            XmlValidator::Result validationResult = XmlValidator::ValidateNode(childModNode, *pChildPolicy, context.pTypeLib);
+            // This is a new node
+            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
+            baseNode.append_copy(childModNode);
+        }
 
-            if (!validationResult)
-            {
-                std::string validationError = validationResult.ToString("  ");
-                childModErrorStack.ThrowException("Mod node failed validation when appending a new node\n" + validationError);
-            }
+        i++;
+    }
+}
 
-            // Node is valid. Append it.
+void XmlMerger3::MergeChildrenArray(
+    const XmlMergerContext& context,
+    pugi::xml_node& baseNode,
+    const pugi::xml_node& modNode,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& modErrorStack)
+{
+    const MergingPolicy3::Collection& collection = policy.GetCollection();
+    CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Array);
+    CRY_ASSERT(!collection.arrayIndexAttr.empty());
+
+    int i = 0;
+
+    VerifyArrayNodeIsSorted(baseNode, policy, modErrorStack);
+
+    // Merge nodes
+    for (const pugi::xml_node childModNode : modNode)
+    {
+        XmlErrorStack childModErrorStack = modErrorStack.GetChild(childModNode);
+        childModErrorStack.SetIndex(i);
+
+        // TODO 2024-05-09: ch:apply_if
+
+        // Find index attribute
+        pugi::xml_attribute childIndexAttr = childModNode.attribute(collection.arrayIndexAttr.c_str());
+        if (!childIndexAttr)
+        {
+            childModErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}' is missing for an array element",
+                collection.arrayIndexAttr));
+        }
+
+        childModErrorStack.SetId("array index", std::string(childIndexAttr.as_string()));
+
+        // Get index value
+        ArrayIndex childModNodeIndex;
+        if (!TryParseArrayIndex(childIndexAttr, childModNodeIndex))
+        {
+            childModErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}'='{}' is invalid for an array element",
+                collection.arrayIndexAttr,
+                childIndexAttr.as_string()));
+        }
+
+        // Find the policy for the node
+        const MergingPolicy3* pChildPolicy = policy.FindChildNode(childModNode.name());
+        if (!pChildPolicy)
+        {
+            childModErrorStack.ThrowException(fmt::format(
+                "Node {} can't be a child of {} (merging policy not found)",
+                childModNode.name(),
+                baseNode.name()));
+        }
+
+        // Find a node
+        auto [childBaseNode, foundExactBaseNode] = FindBaseNodeByIndex(
+            baseNode,
+            childModNodeIndex,
+            policy,
+            modErrorStack);
+
+        if (foundExactBaseNode)
+        {
+            // Merge the node
+            MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack);
+        }
+        else if (childBaseNode)
+        {
+            // Append befor the found node
+            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
+            baseNode.insert_copy_before(childModNode, childBaseNode);
+        }
+        else
+        {
+            // Append to the end
+            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
             baseNode.append_copy(childModNode);
         }
 
@@ -243,4 +322,148 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
 
     // Not found
     return pugi::xml_node();
+}
+
+std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
+    pugi::xml_node& parentBaseNode,
+    ArrayIndex index,
+    const MergingPolicy3& parentPolicy,
+    const XmlErrorStack& errorStack)
+{
+    const MergingPolicy3::Collection& collection = parentPolicy.GetCollection();
+    CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Array);
+    CRY_ASSERT(!collection.arrayIndexAttr.empty());
+
+    int i = 0;
+    pugi::xml_node resultXmlNode;
+
+    bool exact = false;
+
+    for (const pugi::xml_node childBaseNode : parentBaseNode)
+    {
+        XmlErrorStack childBaseErrorStack = errorStack.GetChild(childBaseNode);
+        childBaseErrorStack.SetIndex(i);
+
+        // Find index attribute
+        pugi::xml_attribute childIndexAttr = childBaseNode.attribute(collection.arrayIndexAttr.c_str());
+        if (!childIndexAttr)
+        {
+            childBaseErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}' is missing for an array element IN THE BASE NODE. "
+                "Base XML is invalid. This is not supposed to happen",
+                collection.arrayIndexAttr));
+        }
+
+        // Get index value
+        ArrayIndex childBaseNodeIndex;
+        if (!TryParseArrayIndex(childIndexAttr, childBaseNodeIndex))
+        {
+            childBaseErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}'='{}' is invalid for an array element IN THE BASE NODE. "
+                "Base XML is invalid. This is not supposed to happen",
+                collection.arrayIndexAttr,
+                childIndexAttr.as_string()));
+        }
+
+        if (index == childBaseNodeIndex)
+        {
+            // Found exact match
+            resultXmlNode = childBaseNode;
+            exact = true;
+            break;
+        }
+
+        if (index < childBaseNodeIndex)
+        {
+            // First node that doesn't satisfy the condition
+            resultXmlNode = childBaseNode;
+            break;
+        }
+
+        i++;
+    }
+
+    return std::make_pair(resultXmlNode, exact);
+}
+
+void XmlMerger3::VerifyArrayNodeIsSorted(
+    const pugi::xml_node& baseNode,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& modErrorStack)
+{
+    const MergingPolicy3::Collection& collection = policy.GetCollection();
+    CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Array);
+    CRY_ASSERT(!collection.arrayIndexAttr.empty());
+
+    ArrayIndex prevBaseIdx = std::numeric_limits<ArrayIndex>::min();
+    int i = 0;
+
+    for (const pugi::xml_node childBaseNode : baseNode)
+    {
+        XmlErrorStack childBaseErrorStack = modErrorStack.GetChild(childBaseNode);
+        childBaseErrorStack.SetIndex(i);
+
+        // Find index attribute
+        pugi::xml_attribute childIndexAttr = childBaseNode.attribute(collection.arrayIndexAttr.c_str());
+        if (!childIndexAttr)
+        {
+            childBaseErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}' is missing for an array element IN THE BASE NODE. "
+                "Base XML is invalid. This is not supposed to happen",
+                collection.arrayIndexAttr));
+        }
+
+        // Get index value
+        ArrayIndex childBaseNodeIndex;
+        if (!TryParseArrayIndex(childIndexAttr, childBaseNodeIndex))
+        {
+            childBaseErrorStack.ThrowException(fmt::format(
+                "Index attribute '{}'='{}' is invalid for an array element IN THE BASE NODE. "
+                "Base XML is invalid. This is not supposed to happen",
+                collection.arrayIndexAttr,
+                childIndexAttr.as_string()));
+        }
+
+        // Validate
+        if (!(childBaseNodeIndex > prevBaseIdx))
+        {
+            childBaseErrorStack.ThrowException(fmt::format(
+                "Base node is not sorted. Prev index = {}, current index = {}. "
+                "Base XML is invalid. This is not supposed to happen",
+                prevBaseIdx, childBaseNodeIndex));
+        }
+
+        prevBaseIdx = childBaseNodeIndex;
+        i++;
+    }
+}
+
+void XmlMerger3::ValidateNewNode(
+    const XmlMergerContext& context,
+    const pugi::xml_node& childModNode,
+    const MergingPolicy3& childModPolicy,
+    const XmlErrorStack& childModErrorStack)
+{
+    XmlValidator::Result validationResult = XmlValidator::ValidateNode(childModNode, childModPolicy, context.pTypeLib);
+
+    if (!validationResult)
+    {
+        std::string validationError = validationResult.ToString("  ");
+        childModErrorStack.ThrowException("Mod node failed validation when inserting a new node\n" + validationError);
+    }
+}
+
+bool XmlMerger3::TryParseArrayIndex(std::string_view str, ArrayIndex& outValue)
+{
+    outValue = INVALID_INDEX;
+
+    if (str.empty())
+        return false;
+
+    const char* begin = str.data();
+    const char* end = str.data() + str.size();
+
+    std::from_chars_result result = std::from_chars(begin, end, outValue);
+
+    return result.ec == std::errc() && result.ptr == end;
 }
