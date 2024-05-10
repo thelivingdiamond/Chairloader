@@ -27,6 +27,7 @@
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "Paths.h"
+#include "PreyFilesPatchProgressDialog.h"
 
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
@@ -825,6 +826,15 @@ void ChairManager::DrawDLLSettings() {
         m_pGameVersion->ShowInstalledVersion();
         ImGui::PopID();
 
+        ImGui::BeginDisabled(m_pXmlPatchDialog != nullptr);
+        if (ImGui::Button("Force-refresh base patches"))
+        {
+            m_pXmlPatchDialog = std::make_unique<PreyFilesPatchProgressDialog>(this);
+            m_pXmlPatchDialog->Start();
+            ImGui::OpenPopup("XML Patch Progress");
+        }
+        ImGui::EndDisabled();
+
         if (m_pGamePathDialog)
         {
             GamePathDialog::Result result = m_pGamePathDialog->ShowModal("Change Game Path");
@@ -840,6 +850,16 @@ void ChairManager::DrawDLLSettings() {
             else if (result == GamePathDialog::Result::Cancel)
             {
                 m_pGamePathDialog.reset();
+            }
+        }
+
+        if (m_pXmlPatchDialog)
+        {
+            if (ImGui::BeginPopupModal("XML Patch Progress"))
+            {
+                if (!m_pXmlPatchDialog->ShowUI())
+                    m_pXmlPatchDialog.reset();
+                ImGui::EndPopup();
             }
         }
 
