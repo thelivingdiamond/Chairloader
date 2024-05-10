@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A
+        ch:index="-1000"
+        aAttr1="aVal1_-1_Mod"
+        aAttr2="aVal2_-1_Mod" />
+    <A
+        ch:index="1000"
+        aAttr1="aVal1_1"
+        aAttr2="aVal2_1" />
+    <A
+        ch:index="2000"
+        aAttr1="aVal1_2_Mod"
+        aAttr2="aVal2_2" />
+    <A
+        ch:index="2500"
+        aAttr1="aVal1_2.5_Mod"
+        aAttr2="aVal2_2.5_Mod" />
+    <A
+        ch:index="3000"
+        aAttr1="aVal1_3"
+        aAttr2="aVal2_3" />
+    <A
+        ch:index="4000"
+        aAttr1="aVal1_4"
+        aAttr2="aVal2_4" />
+    <A
+        ch:index="8000"
+        aAttr1="aVal1_8_Mod"
+        aAttr2="aVal2_8_Mod" />
+</Root>

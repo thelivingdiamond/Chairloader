@@ -213,6 +213,7 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
     }
 
     bool foundPrimaryKey = false;
+    bool foundArrayIndex = false;
 
     for (const pugi::xml_node childNode : node)
     {
@@ -247,6 +248,18 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
                 i++;
             }
         }
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_INDEX_ATTR, &foundArrayIndex))
+        {
+            XmlErrorStack indexErrorStack = errorStack.GetChild(XML_NODE_PRIMARY_KEY);
+
+            if (m_Collection.type != ECollectionType::Array)
+                indexErrorStack.ThrowException("Index attribute may only be set for an array");
+
+            m_Collection.arrayIndexAttr = XmlUtils::GetRequiredAttr(indexErrorStack, childNode, "name").as_string();
+
+            if (m_Collection.arrayIndexAttr.empty())
+                indexErrorStack.ThrowException("Index attribute may not be empty");
+        }
         else
         {
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
@@ -257,6 +270,10 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
     {
         if (!m_Collection.keyChildName && m_Collection.keyChildAttributes.empty())
             errorStack.ThrowException("Dict collection has no primary key defined");
+    }
+    else if (m_Collection.type == ECollectionType::Array)
+    {
+        XmlUtils::ThrowMissingNodeIfFalse(errorStack, XML_NODE_CHILD_INDEX_ATTR, foundArrayIndex);
     }
 }
 

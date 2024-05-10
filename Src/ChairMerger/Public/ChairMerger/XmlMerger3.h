@@ -55,6 +55,10 @@ public:
         const XmlErrorStack& modErrorStack);
 
 private:
+    using ArrayIndex = int32_t;
+
+    static constexpr ArrayIndex INVALID_INDEX = std::numeric_limits<ArrayIndex>::max();
+
     //! Merges the attributes of mod node into the base node.
     //! @param  context     Merger context.
     //! @param  baseNode        Base node. Will be modified.
@@ -77,6 +81,15 @@ private:
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
 
+    //! Merges the children of mod node with the children of base node.
+    //! Expects that policy is an array.
+    static void MergeChildrenArray(
+        const XmlMergerContext& context,
+        pugi::xml_node& baseNode,
+        const pugi::xml_node& modNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& modErrorStack);
+
     //! Tries to find a child mod node in the parent base node.
     //! @param  parentBaseNode  Base node that contains children of the same type as childModNode.
     //! @param  childModNode    Child mod node.
@@ -88,4 +101,41 @@ private:
         const pugi::xml_node& childModNode,
         const MergingPolicy3& parentPolicy,
         const XmlErrorStack& childModErrorStack);
+
+    //! Tries to find a child node thath as index equal to the parameter or the one after it.
+    //! @param  parentBaseNode  Base node (an array). Must be sorted ASC.
+    //! @param  index           Index of the node to look for.
+    //! @param  parentPolicy    Merging policy for the base node.
+    //! @param  errorStack      Error stack.
+    //! @returns If true, found the eact match. If not, the node after. If null, all base nodes are < than index.
+    static std::pair<pugi::xml_node, bool> FindBaseNodeByIndex(
+        pugi::xml_node& parentBaseNode,
+        ArrayIndex index,
+        const MergingPolicy3& parentPolicy,
+        const XmlErrorStack& errorStack);
+
+    //! Checks that the node's children have index and are sorted ASC (strict).
+    static void VerifyArrayNodeIsSorted(
+        const pugi::xml_node& baseNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& modErrorStack);
+
+    //! Validates the node when it is being inserted instead of merged.
+    static void ValidateNewNode(
+        const XmlMergerContext& context,
+        const pugi::xml_node& childModNode,
+        const MergingPolicy3& childModPolicy,
+        const XmlErrorStack& childModErrorStack);
+
+    //! Tries to parse a string into an index.
+    //! @param  str         Input string.
+    //! @param  outValue    [out] Parsed value.
+    //! @returns Whether parsed successfully.
+    //! @{
+    static bool TryParseArrayIndex(std::string_view str, ArrayIndex& outValue);
+    static bool TryParseArrayIndex(const pugi::xml_attribute& attr, ArrayIndex& outValue)
+    {
+        return TryParseArrayIndex(attr.as_string(), outValue);
+    }
+    //! @}
 };

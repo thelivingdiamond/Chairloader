@@ -131,7 +131,21 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
     }
     case MergingPolicy3::ECollectionType::Array:
     {
-        // No validation required
+        // Check that index attribute exists in all children
+        int i = 0;
+
+        for (pugi::xml_node childNode : node.children())
+        {
+            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+            childErrorStack.SetIndex(i);
+
+            pugi::xml_attribute indexAttr = childNode.attribute(collection.arrayIndexAttr.c_str());
+            if (!indexAttr)
+                AddError(result, childErrorStack, "Index attribute is missing for an array element");
+
+            i++;
+        }
+
         break;
     }
     case MergingPolicy3::ECollectionType::Dict:
