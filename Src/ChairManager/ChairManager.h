@@ -31,6 +31,7 @@ class ChairMerger;
 struct SemanticVersion;
 enum class DeployStep;
 class ChairMerger;
+class PreyFilesPatchProgressDialog;
 
 class ChairManager final : public IChairManager {
 public:
@@ -321,6 +322,8 @@ private:
     static inline ChairManager* m_spInstance = nullptr;
 
     std::unique_ptr<GamePath> m_pGamePath;
+
+    std::unique_ptr<PreyFilesPatchProgressDialog> m_pXmlPatchDialog;
 
     //! Chairloader version checking
     SemanticVersion* packagedChairloaderVersion;

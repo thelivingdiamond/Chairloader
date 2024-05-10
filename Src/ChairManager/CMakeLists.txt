@@ -29,6 +29,8 @@ set(SOURCE_FILES
 	Mod.h
 	Paths.h
 	pch.h
+	PreyFilesPatchProgressDialog.cpp 
+	PreyFilesPatchProgressDialog.h
 	UpdateHandler.cpp 
 	UpdateHandler.h
 	UpdateURL.h
