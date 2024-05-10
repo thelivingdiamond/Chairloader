@@ -90,6 +90,9 @@ void PreyFilePatcher::PatchDirectory(
             continue;
         }
 
+        // Not validating original file. It nay have old patches, which will be incompatible
+        // with potentially updated merging policy.
+
         // Patch
         auto [xmlDoc, errorStack] = XmlUtils::LoadDocumentWithStack(fullPath);
         PatchDocument(xmlDoc, *pFilePolicy, errorStack);

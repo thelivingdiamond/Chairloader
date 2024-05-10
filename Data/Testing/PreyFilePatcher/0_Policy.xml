@@ -17,7 +17,7 @@
         <ChildNodes>
             <Node name="A">
                 <Attributes>
-                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" />
+                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                     <Attribute name="aAttr1" type="string" required="true" />
                     <Attribute name="aAttr2" type="string" />
                 </Attributes>
