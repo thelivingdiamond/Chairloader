@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Root">
+        <Attributes />
+
+        <Patches>
+            <AddChildIndex name="ch:index" />
+        </Patches>
+
+        <Collection type="array">
+            <ChildIndexAttribute name="ch:index" />
+        </Collection>
+
+        <ChildNodes>
+            <Node name="A">
+                <Attributes>
+                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" />
+                    <Attribute name="aAttr1" type="string" required="true" />
+                    <Attribute name="aAttr2" type="string" />
+                </Attributes>
+
+                <Patches>
+                    <RemoveAttribute name="ch:someOldAttr" />
+                </Patches>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
