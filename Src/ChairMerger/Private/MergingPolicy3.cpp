@@ -120,6 +120,7 @@ void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack
     m_ChildConstraints = ChildConstraints();
 
     bool foundAttributes = false;
+    bool foundPatches = false;
     bool foundCollection = false;
     bool foundChildConstraints = false;
     bool foundChildNodes = false;
@@ -128,6 +129,8 @@ void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack
     {
         if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_ATTRIBUTES, &foundAttributes))
             LoadXmlAttributes(childNode, errorStack);
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_PATCHES, &foundPatches))
+            LoadXmlPatches(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_COLLECTION, &foundCollection))
             LoadXmlCollection(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_CONSTRAINTS, &foundChildConstraints))
@@ -175,6 +178,37 @@ void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErro
                 curErrorStack.ThrowException("Read-only attribute must be required");
 
             m_Attributes.emplace_back(attr);
+        }
+        else
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
+        }
+
+        i++;
+    }
+}
+
+void MergingPolicy3::LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
+{
+    XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_PATCHES);
+    int i = 0;
+    bool foundAddChildIndex = false;
+
+    for (const pugi::xml_node childNode : node)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        childErrorStack.SetIndex(i);
+
+        if (!strcmp(childNode.name(), XML_NODE_REMOVE_ATTR))
+        {
+            std::string attrName = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "name").as_string();
+            m_Patches.removeAttr.emplace_back(std::move(attrName));
+        }
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_ADD_CHILD_INDEX, &foundAddChildIndex))
+        {
+            m_Patches.addChildIndex = true;
+            m_Patches.childIndexAttr = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "name").as_string();
+            m_Patches.childIndexIncrement = childNode.attribute("increment").as_int(1000);
         }
         else
         {

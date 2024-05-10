@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <xs:schema
-        xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
-        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
-        elementFormDefault="qualified">
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    elementFormDefault="qualified">
     <xs:annotation><xs:documentation>
         This file defines the data model of a particular XML file and how this file should be merged.
     </xs:documentation></xs:annotation>
@@ -81,6 +81,54 @@
                             If false, causes an error if an attribute is not listed here.
                         </xs:documentation></xs:annotation>
                     </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- <Patches> -->
+            <xs:element name="Patches" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:annotation><xs:documentation>
+                        Additional patches for the original file that must be applied for merging to work.
+                    </xs:documentation></xs:annotation>
+
+                    <xs:sequence>
+                        <!-- <RemoveAttribute> -->
+                        <xs:element name="RemoveAttribute" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    Removes an attribute from this element. Used to remove patched attributes that were added
+                                    in previous merging policy versions.
+                                </xs:documentation></xs:annotation>
+
+                                <xs:attribute name="name" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+
+                        <!-- <AddChildIndex> -->
+                        <xs:element name="AddChildIndex" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    Adds an index attribute to all children.
+                                </xs:documentation></xs:annotation>
+
+                                <xs:attribute name="name" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
+                                <xs:attribute name="increment" type="xs:int" default="1000">
+                                    <xs:annotation><xs:documentation>
+                                        Per-element index increment.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
                 </xs:complexType>
             </xs:element>
 
