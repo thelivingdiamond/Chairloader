@@ -12,6 +12,7 @@ set(SOURCE_FILES
 	MergingPolicy3Test.cpp
 	ModMerging.cpp
 	pch.h
+	PreyFilePatcherTest.cpp
 	Wildcards.cpp
 	XMLMerger2Test.cpp
 	XmlMerger3Test.cpp

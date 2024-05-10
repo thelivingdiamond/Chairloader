@@ -44,6 +44,22 @@ public:
         std::string comment;
     };
 
+    //! Additional patches for the original file that must be applied for merging to work.
+    struct Patches
+    {
+        //! Whether to add child index.
+        bool addChildIndex = false;
+
+        //! Index attribute name.
+        std::string childIndexAttr;
+
+        //! Per-element increment.
+        int childIndexIncrement = 0;
+
+        //! The list of attributes to be removed.
+        std::vector<std::string> removeAttr;
+    };
+
     //! Defines the type of the collection and how child nodes should be merged.
     struct Collection
     {
@@ -92,6 +108,10 @@ public:
     bool IsAllowingUnknownAttributes() const { return m_AllowUnknownAttributes; }
     void SetAllowUnknownAttributes(bool state) { m_AllowUnknownAttributes = state; }
 
+    //! @returns Patches.
+    const Patches& GetPatches() const { return m_Patches; }
+    Patches& GetPatches() { return m_Patches; }
+
     //! @returns The collection properties.
     const Collection& GetCollection() const { return m_Collection; }
     Collection& GetCollection() { return m_Collection; }
@@ -127,6 +147,10 @@ private:
     static constexpr char XML_NODE_ATTRIBUTES[] = "Attributes";
     static constexpr char XML_NODE_ATTRIBUTE[] = "Attribute";
 
+    static constexpr char XML_NODE_PATCHES[] = "Patches";
+    static constexpr char XML_NODE_REMOVE_ATTR[] = "RemoveAttribute";
+    static constexpr char XML_NODE_ADD_CHILD_INDEX[] = "AddChildIndex";
+
     static constexpr char XML_NODE_COLLECTION[] = "Collection";
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";
     static constexpr char XML_NODE_CHILD_INDEX_ATTR[] = "ChildIndexAttribute";
@@ -145,6 +169,7 @@ private:
 
     std::vector<Attribute> m_Attributes;
     bool m_AllowUnknownAttributes = false;
+    Patches m_Patches;
     Collection m_Collection;
     ChildConstraints m_ChildConstraints;
 
@@ -154,6 +179,7 @@ private:
     std::vector<MergingPolicy3>& GetCollectionForNewNode(const MergingPolicy3& node);
 
     void LoadXmlAttributes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlCollection(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildConstraints(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildNodes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
