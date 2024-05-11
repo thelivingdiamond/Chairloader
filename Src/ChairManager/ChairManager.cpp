@@ -2276,7 +2276,14 @@ std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWiza
             mergedMod.type = ChairMerger::EModType::Native;
             mergedMod.modName = mod.modName;
             mergedMod.dataPath = mod.path / "Data";
-            mergedMod.config.reset(*GetConfigManager()->getModConfig(mod.modName).configDoc);
+
+            ModConfig& modConfig = GetConfigManager()->getModConfig(mod.modName);
+
+            // May be null if config fails to load
+            if (modConfig.configDoc)
+                mergedMod.config.reset(*modConfig.configDoc);
+            else
+                Log(severityLevel::error, "Mod '%s' config is null!", mod.modName);
         }
     }
 
