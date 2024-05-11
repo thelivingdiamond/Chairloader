@@ -71,7 +71,7 @@ void ConfigManager::loadConfig(const std::string& modName){
     if(!isConfigPresent(modName)){
         copyDefaultConfig(modName);
     }
-    fs::path configPath = m_pChair->GetConfigPath() / fs::u8path(modName + ".xml");
+    fs::path configPath = GetModConfigPath(modName);
     pugi::xml_document doc;
     auto result = doc.load_file(configPath.string().c_str(), pugi::parse_default | pugi::parse_trim_pcdata);
     if(result){
