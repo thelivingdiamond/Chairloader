@@ -147,7 +147,9 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_Key1",
         "Dict_Key2",
         "Dict_Append",
-        "Array"));
+        "Array",
+        "Array_ApplyIf",
+        "Dict_ApplyIf"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,

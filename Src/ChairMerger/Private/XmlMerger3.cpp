@@ -4,10 +4,9 @@
 #include <ChairMerger/XmlMerger3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
+#include "MetaAttributes.h"
 
 // TODO 2024-05-07: Handle node text value. And validate it, too
-// TODO 2024-05-09: Allow unknown attributes - meta-attrbiute on mod node
-// TODO 2024-05-09: Allow empty attributes - meta-attrbiute on mod node
 
 void XmlMerger3::MergeDocument(
     const XmlMergerContext& context,
@@ -35,7 +34,10 @@ void XmlMerger3::MergeNode(
     const MergingPolicy3& policy,
     const XmlErrorStack& modErrorStack)
 {
-    // TODO 2024-05-05: ch:apply_if must be true or not set
+    MetaAttributes meta(modNode);
+
+    if (!meta.GetApplyNode())
+        throw std::logic_error("Root node may not have ch:apply_if=false");
 
     // TODO 2024-05-05: Other methods
     PatchNode(context, baseNode, modNode, policy, modErrorStack);
@@ -93,6 +95,12 @@ void XmlMerger3::MergeAttributes(
         if (!pPolicyAttr)
         {
             // New attribute
+            if (MetaAttributes::IsKnownMetaAttr(modAttr))
+            {
+                // Skip meta-attributes
+                continue;
+            }
+
             if (!policy.IsAllowingUnknownAttributes())
                 modErrorStack.ThrowException(fmt::format("Unknown attribute '{}' in mod node", attrName));
         }
@@ -151,7 +159,11 @@ void XmlMerger3::MergeChildrenDict(
         childModErrorStack.SetIndex(i);
         childModErrorStack.SetId(collection.GetKeyValuePair(childModNode));
 
-        // TODO 2024-05-05: ch:apply_if
+        if (!MetaAttributes::CheckApplyIf(childModNode))
+        {
+            // Skip this node - it's disabled
+            continue;
+        }
 
         // Find the policy for the node
         const MergingPolicy3* pChildPolicy = policy.FindChildNode(childModNode.name());
@@ -174,8 +186,9 @@ void XmlMerger3::MergeChildrenDict(
         else
         {
             // This is a new node
-            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
-            baseNode.append_copy(childModNode);
+            pugi::xml_node addedNode = baseNode.append_copy(childModNode);
+            MetaAttributes::StripNode(addedNode);
+            ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
         }
 
         i++;
@@ -203,7 +216,11 @@ void XmlMerger3::MergeChildrenArray(
         XmlErrorStack childModErrorStack = modErrorStack.GetChild(childModNode);
         childModErrorStack.SetIndex(i);
 
-        // TODO 2024-05-09: ch:apply_if
+        if (!MetaAttributes::CheckApplyIf(childModNode))
+        {
+            // Skip this node - it's disabled
+            continue;
+        }
 
         // Find index attribute
         pugi::xml_attribute childIndexAttr = childModNode.attribute(collection.arrayIndexAttr.c_str());
@@ -250,15 +267,17 @@ void XmlMerger3::MergeChildrenArray(
         }
         else if (childBaseNode)
         {
-            // Append befor the found node
-            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
-            baseNode.insert_copy_before(childModNode, childBaseNode);
+            // Append before the found node
+            pugi::xml_node addedNode = baseNode.insert_copy_before(childModNode, childBaseNode);
+            MetaAttributes::StripNode(addedNode);
+            ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
         }
         else
         {
             // Append to the end
-            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
-            baseNode.append_copy(childModNode);
+            pugi::xml_node addedNode = baseNode.append_copy(childModNode);
+            MetaAttributes::StripNode(addedNode);
+            ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
         }
 
         i++;
