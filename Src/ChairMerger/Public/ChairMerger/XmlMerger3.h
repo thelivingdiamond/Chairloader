@@ -2,6 +2,7 @@
 #include <ChairMerger/Export.h>
 
 class MergingPolicy3;
+class MetaAttributes;
 class FileMergingPolicy3;
 class XmlErrorStack;
 class XmlTypeLibrary;
