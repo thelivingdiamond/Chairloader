@@ -21,6 +21,8 @@ set(SOURCE_FILES
 	Private/LuaUtils.cpp
 	Private/MergingLibrary3.cpp
 	Private/MergingPolicy3.cpp
+	Private/MetaAttributes.cpp
+	Private/MetaAttributes.h
 	Private/PreyFilePatcher.cpp
 	Private/README.md
 	Private/WildcardResolver.cpp
