@@ -51,6 +51,12 @@
 		<Type>GOG</Type>
 	</Version>
 	
+	<Version>
+		<SHA256>874cb35311c6ff5c952704e9a1ee1ceb653fba79de944ee5a21de812c40cf7b7</SHA256>
+		<ReleaseDate>2023-06-08</ReleaseDate>
+		<Type>GOG</Type>
+	</Version>
+	
 	<!-- EGS -->
 	
 	<!-- MS Store/Xbox Game Pass -->

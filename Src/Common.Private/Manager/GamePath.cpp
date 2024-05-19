@@ -19,11 +19,11 @@ constexpr char EPIC_GAME_DLL_PATH[] = "Binaries/Danielle/x64-Epic/Release/PreyDl
 constexpr char EPIC_GAME_DLL_PDB_PATH[] = "Binaries/Danielle/x64-Epic/Release/PreyDll.pdb";
 constexpr char EPIC_GAME_DLL_BACKUP_PATH[] = "Binaries/Danielle/x64-Epic/Release/PreyDll.dll.chairloader_backup";
 
-constexpr char GOG_GAME_BIN_DIR[] = "Binaries/Danielle/x64/Release";
-constexpr char GOG_GAME_EXE_PATH[] = "Binaries/Danielle/x64/Release/Prey.exe";
-constexpr char GOG_GAME_DLL_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll";
-constexpr char GOG_GAME_DLL_PDB_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.pdb";
-constexpr char GOG_GAME_DLL_BACKUP_PATH[] = "Binaries/Danielle/x64/Release/PreyDll.dll.chairloader_backup";
+constexpr char GOG_GAME_BIN_DIR[] = "Binaries/Danielle/x64-GOG/Release";
+constexpr char GOG_GAME_EXE_PATH[] = "Binaries/Danielle/x64-GOG/Release/Prey.exe";
+constexpr char GOG_GAME_DLL_PATH[] = "Binaries/Danielle/x64-GOG/Release/PreyDll.dll";
+constexpr char GOG_GAME_DLL_PDB_PATH[] = "Binaries/Danielle/x64-GOG/Release/PreyDll.pdb";
+constexpr char GOG_GAME_DLL_BACKUP_PATH[] = "Binaries/Danielle/x64-GOG/Release/PreyDll.dll.chairloader_backup";
 
 constexpr char MICRO_GAME_BIN_DIR[] = "Binaries/Danielle/Gaming.Desktop.x64/Release";
 constexpr char MICRO_GAME_EXE_PATH[] = "Binaries/Danielle/Gaming.Desktop.x64/Release/Prey.exe";
@@ -192,7 +192,6 @@ GamePath::GamePlatform GamePath::DeduceGamePlatform(const fs::path &path) {
     if (fs::exists(path / STEAM_GAME_EXE_PATH)) {
         return GamePlatform::Steam;
     }
-    // TODO: if Steam path = Gog then gog is redundant
     if (fs::exists(path / GOG_GAME_EXE_PATH)) {
         return GamePlatform::Gog;
     }
