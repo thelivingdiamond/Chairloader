@@ -49,6 +49,7 @@
 		<SHA256>c77a084b60ff5793d4e99868d01fa140544b3d501e2b9beb242b7d887e794196</SHA256>
 		<ReleaseDate>2019-07-03</ReleaseDate>
 		<Type>GOG</Type>
+		<IsOutdated>true</IsOutdated>
 	</Version>
 	
 	<Version>
