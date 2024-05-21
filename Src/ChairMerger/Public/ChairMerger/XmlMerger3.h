@@ -73,6 +73,19 @@ private:
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
 
+    //! Merges the text of mod node into the base node.
+    //! @param  context     Merger context.
+    //! @param  baseNode        Base node. Will be modified.
+    //! @param  modNode         Mod node.
+    //! @param  policy          Merging policy for the node.
+    //! @param  modErrorStack   XML error stack for the mod node.
+    static void MergeText(
+        const XmlMergerContext& context,
+        pugi::xml_node& baseNode,
+        const pugi::xml_node& modNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& modErrorStack);
+
     //! Merges the children of mod node with the children of base node.
     //! Expects that policy is a dicitonary.
     static void MergeChildrenDict(
@@ -103,7 +116,7 @@ private:
         const MergingPolicy3& parentPolicy,
         const XmlErrorStack& childModErrorStack);
 
-    //! Tries to find a child node thath as index equal to the parameter or the one after it.
+    //! Tries to find a child node that has index equal to the parameter or the one after it.
     //! @param  parentBaseNode  Base node (an array). Must be sorted ASC.
     //! @param  index           Index of the node to look for.
     //! @param  parentPolicy    Merging policy for the base node.
@@ -114,6 +127,15 @@ private:
         ArrayIndex index,
         const MergingPolicy3& parentPolicy,
         const XmlErrorStack& errorStack);
+
+    //! Tries to find a text node in the parent.
+    //! @param  parentBaseNode  Parent node.
+    //! @param  errorStack      Error stack.
+    //! @param  isMod           Is this a mode node. Affects error messages.
+    static pugi::xml_node FindTextNode(
+        const pugi::xml_node& parentBaseNode,
+        const XmlErrorStack& errorStack,
+        bool isMod);
 
     //! Checks that the node's children have index and are sorted ASC (strict).
     static void VerifyArrayNodeIsSorted(
