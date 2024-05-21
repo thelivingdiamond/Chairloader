@@ -143,6 +143,7 @@ INSTANTIATE_TEST_SUITE_P(
     testing::Values(
         "Attributes",
         "Attributes_AllowUnknown",
+        "Attributes_Text",
         "Dict_NodeName",
         "Dict_Key1",
         "Dict_Key2",
@@ -159,6 +160,9 @@ INSTANTIATE_TEST_SUITE_P(
         "Attributes_Unknown",
         "Attributes_ReadOnlyChanged",
         "Attributes_InvalidValue",
+        "Attributes_Text_NotEmpty",
+        "Attributes_Text_InvalidValue",
+        "Attributes_Text_Duplicate",
         "Dict_InvalidChildName",
         "Dict_InvalidNewNode",
         "Dict_MissingKeyAttr1",

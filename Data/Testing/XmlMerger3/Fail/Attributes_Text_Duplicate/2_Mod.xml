@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Root>
+    <A>
+        Test value 1
+        <AA />
+        Test value 2
+    </A>
+</Root>

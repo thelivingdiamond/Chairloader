@@ -171,6 +171,7 @@ add_subdirectory(Src/ChairManager)
 add_subdirectory(Src/ChairManager.Common)
 add_subdirectory(Src/ChairMerger)
 add_subdirectory(Src/Common.Private)
+add_subdirectory(Src/Common.Private.Tests)
 add_subdirectory(Src/Preditor)
 add_subdirectory(Src/Tools)
 

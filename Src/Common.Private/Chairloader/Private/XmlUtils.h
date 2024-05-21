@@ -26,6 +26,7 @@ public:
     //! @{
     XmlErrorStack GetChild(std::string&& nodeName) const
     {
+        CRY_ASSERT(!nodeName.empty());
         XmlErrorStack child(this);
         child.m_NodeName = nodeName;
         return child;
@@ -119,5 +120,11 @@ public:
     {
         if (!isFound)
             ThrowMissingNode(errorStack, name);
+    }
+
+    //! Checks if the node is a text node.
+    static bool IsTextNode(const pugi::xml_node& node)
+    {
+        return node.type() == pugi::node_pcdata || node.type() == pugi::node_cdata;
     }
 };

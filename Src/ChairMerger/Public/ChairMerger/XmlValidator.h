@@ -47,11 +47,21 @@ public:
         bool recurse = true);
 
     //! Validates the attribute value.
-    //! @returns Error text pr empty string if no error.
+    //! @returns Error text or empty string if no error.
     static std::string ValidateAttribute(
         const pugi::xml_attribute& nodeAttr,
         const MergingPolicy3::Attribute& policyAttr,
         const XmlTypeLibrary* pTypeLib = nullptr);
+
+    //! Validates a plain-text node.
+    //! @returns Error text or empty string if no error.
+    static std::string ValidateTextNode(
+        const pugi::xml_node& node,
+        const MergingPolicy3& policy,
+        const XmlTypeLibrary* pTypeLib = nullptr);
+
+    //! Checks if a node has child non-text nodes.
+    static bool NodeHasChildElements(const pugi::xml_node& node);
 
 private:
     static void ValidateNodeInternal(
@@ -64,6 +74,14 @@ private:
 
     //! Validates attributes and adds errors to the result.
     static void ValidateAttributes(
+        const pugi::xml_node& node,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack,
+        const XmlTypeLibrary* pTypeLib,
+        Result& result);
+
+    //! Validates text value and adds errors to the result.
+    static void ValidateText(
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,

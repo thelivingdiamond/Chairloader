@@ -112,6 +112,8 @@ void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack
     errorStack.SetId("name", GetNodeName());
 
     SetRecursive(node.attribute("recursive").as_bool(false));
+    SetTextType(node.attribute("textType").as_string(""));
+    SetEmptyTextAllowed(node.attribute("allowEmptyText").as_bool(false));
 
     // Reset fields
     m_AllowUnknownAttributes = false;

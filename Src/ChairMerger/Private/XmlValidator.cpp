@@ -1,4 +1,5 @@
 #include <boost/algorithm/string/join.hpp>
+#include <Chairloader/Private/StringUtils.h>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
@@ -16,7 +17,10 @@ XmlValidator::Result XmlValidator::ValidateNode(
     return result;
 }
 
-std::string XmlValidator::ValidateAttribute(const pugi::xml_attribute& nodeAttr, const MergingPolicy3::Attribute& policyAttr, const XmlTypeLibrary* pTypeLib)
+std::string XmlValidator::ValidateAttribute(
+    const pugi::xml_attribute& nodeAttr,
+    const MergingPolicy3::Attribute& policyAttr,
+    const XmlTypeLibrary* pTypeLib)
 {
     if (nodeAttr.as_string()[0] == '\0')
     {
@@ -39,6 +43,43 @@ std::string XmlValidator::ValidateAttribute(const pugi::xml_attribute& nodeAttr,
     return std::string();
 }
 
+std::string XmlValidator::ValidateTextNode(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlTypeLibrary* pTypeLib)
+{
+    CRY_ASSERT(XmlUtils::IsTextNode(node));
+
+    if (policy.GetTextType().empty())
+        return "Plain-text is not allowed in this node";
+
+    std::string_view value = TrimStringView(node.value());
+
+    if (!policy.IsEmptyTextAllowed() && value.empty())
+        return "Plain-text can't be empty";
+
+    if (pTypeLib)
+    {
+        const IXmlType* pType = pTypeLib->FindType(policy.GetTextType());
+        if (!pType)
+            throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policy.GetTextType()));
+
+        bool isValid = pType->ValidateValue(value);
+        if (!isValid)
+            return fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName());
+    }
+
+    return std::string();
+}
+
+bool XmlValidator::NodeHasChildElements(const pugi::xml_node& node)
+{
+    for (const pugi::xml_node childNode : node.children())
+    {
+        if (!XmlUtils::IsTextNode(childNode))
+            return true;
+    }
+
+    return false;
+}
+
 void XmlValidator::ValidateNodeInternal(
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
@@ -48,14 +89,19 @@ void XmlValidator::ValidateNodeInternal(
     bool recurse)
 {
     ValidateAttributes(node, policy, errorStack, pTypeLib, result);
+    ValidateText(node, policy, errorStack, pTypeLib, result);
     ValidateCollection(node, policy, errorStack, result);
     ValidateConstraints(node, policy, errorStack, result);
 
     if (recurse)
     {
         int i = 0;
+
         for (const pugi::xml_node childNode : node.children())
         {
+            if (childNode.type() != pugi::node_element)
+                continue;
+
             XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
             childErrorStack.SetIndex(i);
 
@@ -115,6 +161,44 @@ void XmlValidator::ValidateAttributes(
     }
 }
 
+void XmlValidator::ValidateText(
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    const XmlTypeLibrary* pTypeLib,
+    Result& result)
+{
+    pugi::xml_node textNode;
+
+    for (const pugi::xml_node childNode : node.children())
+    {
+        if (XmlUtils::IsTextNode(childNode))
+        {
+            if (textNode)
+                errorStack.ThrowException("Duplicate plain-text node");
+
+            textNode = childNode;
+
+            if (policy.GetTextType().empty())
+                errorStack.ThrowException("Plain-text is not allowed in this node");
+
+            std::string error = ValidateTextNode(childNode, policy, pTypeLib);
+
+            if (!error.empty())
+                AddError(result, errorStack, error);
+        }
+        else if (childNode.type() != pugi::node_element)
+        {
+            errorStack.ThrowException(fmt::format("Unexpected node type {}", (int)childNode.type()));
+        }
+    }
+
+    if (!policy.GetTextType().empty() && !policy.IsEmptyTextAllowed() && (!textNode || textNode.value()[0] == '\0'))
+    {
+        errorStack.ThrowException("Plain-text can't be empty");
+    }
+}
+
 void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result)
 {
     const MergingPolicy3::Collection& collection = policy.GetCollection();
@@ -124,7 +208,7 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
     case MergingPolicy3::ECollectionType::None:
     {
         // There must be no children
-        bool hasChildren = node.children().begin() != node.children().end();
+        bool hasChildren = NodeHasChildElements(node);
         if (hasChildren)
             AddError(result, errorStack, "Collection type is not defined. Node must not have any children in that case.");
         break;
@@ -136,6 +220,9 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
 
         for (pugi::xml_node childNode : node.children())
         {
+            if (childNode.type() != pugi::node_element)
+                continue;
+
             XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
             childErrorStack.SetIndex(i);
 
@@ -157,6 +244,9 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
 
         for (const pugi::xml_node childNode : node.children())
         {
+            if (childNode.type() != pugi::node_element)
+                continue;
+
             XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
             childErrorStack.SetIndex(i);
 
@@ -227,6 +317,9 @@ void XmlValidator::ValidateConstraints(const pugi::xml_node& node, const Merging
     int i = 0;
     for (const pugi::xml_node childNode : node.children())
     {
+        if (childNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
         childErrorStack.SetIndex(i);
 

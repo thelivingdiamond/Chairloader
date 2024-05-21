@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Root>
+    <A>Mod value 1</A>
+    <B></B>
+    <C>
+        Test value 3
+    </C>
+    <D>99999</D>
+</Root>

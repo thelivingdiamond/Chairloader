@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Root>
+    <A>
+        Test value 1
+
+        <AA />
+    </A>
+    <B></B>
+    <C>
+        Test value 3
+    </C>
+    <D>456</D>
+</Root>

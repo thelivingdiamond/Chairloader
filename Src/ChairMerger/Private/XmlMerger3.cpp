@@ -56,6 +56,7 @@ void XmlMerger3::PatchNode(
 
     // Merge attributes
     MergeAttributes(context, baseNode, modNode, policy, modErrorStack);
+    MergeText(context, baseNode, modNode, policy, modErrorStack);
 
     // Merge children
     switch (collection.type)
@@ -63,7 +64,7 @@ void XmlMerger3::PatchNode(
     case MergingPolicy3::ECollectionType::None:
     {
         // No children allowed
-        bool hasChildren = modNode.children().begin() != modNode.children().end();
+        bool hasChildren = XmlValidator::NodeHasChildElements(modNode);
         if (hasChildren)
             modErrorStack.ThrowException("This node can't have child nodes since it has no collection defined");
         break;
@@ -140,6 +141,30 @@ void XmlMerger3::MergeAttributes(
     }
 }
 
+void XmlMerger3::MergeText(
+    const XmlMergerContext& context,
+    pugi::xml_node& baseNode,
+    const pugi::xml_node& modNode,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& modErrorStack)
+{
+    const pugi::xml_node modTextNode = FindTextNode(modNode, modErrorStack, true);
+    if (!modTextNode)
+        return;
+
+    // Validate
+    std::string error = XmlValidator::ValidateTextNode(modTextNode, policy, context.pTypeLib);
+
+    if (!error.empty())
+        modErrorStack.ThrowException(fmt::format("Text validation failure: {}", error));
+
+    // Apply
+    const pugi::xml_node baseTextNode = FindTextNode(baseNode, modErrorStack, false);
+    baseTextNode.parent().insert_copy_after(modTextNode, baseTextNode);
+    baseTextNode.parent().remove_child(baseTextNode);
+    // baseTextNode no longer valid
+}
+
 void XmlMerger3::MergeChildrenDict(
     const XmlMergerContext& context,
     pugi::xml_node& baseNode,
@@ -153,8 +178,11 @@ void XmlMerger3::MergeChildrenDict(
 
     int i = 0;
 
-    for (const pugi::xml_node childModNode : modNode)
+    for (const pugi::xml_node childModNode : modNode.children())
     {
+        if (childModNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childModErrorStack = modErrorStack.GetChild(childModNode);
         childModErrorStack.SetIndex(i);
         childModErrorStack.SetId(collection.GetKeyValuePair(childModNode));
@@ -211,8 +239,11 @@ void XmlMerger3::MergeChildrenArray(
     VerifyArrayNodeIsSorted(baseNode, policy, modErrorStack);
 
     // Merge nodes
-    for (const pugi::xml_node childModNode : modNode)
+    for (const pugi::xml_node childModNode : modNode.children())
     {
+        if (childModNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childModErrorStack = modErrorStack.GetChild(childModNode);
         childModErrorStack.SetIndex(i);
 
@@ -312,6 +343,9 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
     // Iterate through all base child nodes and find the first one that matches
     for (pugi::xml_node childBaseNode : parentBaseNode.children())
     {
+        if (childBaseNode.type() != pugi::node_element)
+            continue;
+
         bool allEqual = true;
 
         if (collection.keyChildName)
@@ -358,8 +392,11 @@ std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
 
     bool exact = false;
 
-    for (const pugi::xml_node childBaseNode : parentBaseNode)
+    for (const pugi::xml_node childBaseNode : parentBaseNode.children())
     {
+        if (childBaseNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childBaseErrorStack = errorStack.GetChild(childBaseNode);
         childBaseErrorStack.SetIndex(i);
 
@@ -405,6 +442,29 @@ std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
     return std::make_pair(resultXmlNode, exact);
 }
 
+pugi::xml_node XmlMerger3::FindTextNode(const pugi::xml_node& parentBaseNode, const XmlErrorStack& errorStack, bool isMod)
+{
+    pugi::xml_node result;
+
+    for (pugi::xml_node child : parentBaseNode.children())
+    {
+        if (!XmlUtils::IsTextNode(child))
+            continue;
+
+        if (result)
+        {
+            errorStack.ThrowException(isMod
+                ? "Duplicate text node in mod"
+                : "Duplicate text node IN THE BASE NODE"
+                  "Base XML is invalid. This is not supposed to happen");
+        }
+
+        result = child;
+    }
+
+    return result;
+}
+
 void XmlMerger3::VerifyArrayNodeIsSorted(
     const pugi::xml_node& baseNode,
     const MergingPolicy3& policy,
@@ -417,8 +477,11 @@ void XmlMerger3::VerifyArrayNodeIsSorted(
     ArrayIndex prevBaseIdx = std::numeric_limits<ArrayIndex>::min();
     int i = 0;
 
-    for (const pugi::xml_node childBaseNode : baseNode)
+    for (const pugi::xml_node childBaseNode : baseNode.children())
     {
+        if (childBaseNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childBaseErrorStack = modErrorStack.GetChild(childBaseNode);
         childBaseErrorStack.SetIndex(i);
 
