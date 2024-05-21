@@ -6,6 +6,9 @@ set(SOURCE_FILES
 	BinDiff/BinDiff.h
 
 	# Chairloader
+	Chairloader/Private/GTestMain.inl
+	Chairloader/Private/StringUtils.cpp
+	Chairloader/Private/StringUtils.h
 	Chairloader/Private/XmlUtils.cpp
 	Chairloader/Private/XmlUtils.h
 

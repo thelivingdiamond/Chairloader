@@ -111,6 +111,14 @@ public:
     bool IsAllowingUnknownAttributes() const { return m_AllowUnknownAttributes; }
     void SetAllowUnknownAttributes(bool state) { m_AllowUnknownAttributes = state; }
 
+    //! @returns If specified, the node may have text contents of the specified type. If empty, text is not allowed.
+    const std::string& GetTextType() const { return m_TextType; }
+    void SetTextType(std::string_view textType) { m_TextType = textType; }
+
+    //! @returns If text is allowed and false, if text is empty, causes a validation error.
+    bool IsEmptyTextAllowed() const { return m_TextAllowEmpty; }
+    void SetEmptyTextAllowed(bool state) { m_TextAllowEmpty = state; }
+
     //! @returns Patches.
     const Patches& GetPatches() const { return m_Patches; }
     Patches& GetPatches() { return m_Patches; }
@@ -169,6 +177,9 @@ private:
     std::regex m_NodeNameRegex;
     bool m_IsNodeNameRegex = false;
     bool m_IsRecursive = false;
+
+    std::string m_TextType;
+    bool m_TextAllowEmpty = false;
 
     std::vector<Attribute> m_Attributes;
     bool m_AllowUnknownAttributes = false;
