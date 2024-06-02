@@ -19,7 +19,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Chairloader Version
 set(_CHAIRLOADER_VERSION_MAJOR 1)  # Increment when breaking changes are made
 set(_CHAIRLOADER_VERSION_MINOR 2)  # Increment when new features are added
-set(_CHAIRLOADER_VERSION_PATCH 1)  # Increment when bug fixes are made
+set(_CHAIRLOADER_VERSION_PATCH 2)  # Increment when bug fixes are made
 set(_CHAIRLOADER_VERSION_BUILD 0)  # UNUSED
 set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alpha")
 
