@@ -463,6 +463,9 @@ bool ExtractionStage::IsModdedPak(const fs::path& pakPath)
 		}
 	}
 
+	// TODO 2024-06-02: Disabled because causes a false-positive in GOG-2023-06-08
+	// TODO 2024-06-02: Figure out a better way other than timestamp checking
+#if 0
 	// Open as ZIP
 	// It probably passes the string into std::ifstream, which takes it in local encoding.
 	// So, fs::path::string is used.
@@ -492,6 +495,7 @@ bool ExtractionStage::IsModdedPak(const fs::path& pakPath)
 			return true;
 		}
 	}
+#endif
 
 	return false;
 }
