@@ -9,6 +9,9 @@
 #include "SteamAPI/ChairSteamAPI.h"
 #include "SteamAPI/SteamInputDevice.h"
 
+//! Added in new Steam API versions
+using FindOrCreateUserInterfacePtr = void* (*)(HSteamUser user, const char* ifaceName);
+
 //! Steam App ID file name.
 constexpr char STEAM_APP_ID_FILE[] = "steam_appid.txt";
 
@@ -18,6 +21,7 @@ constexpr int STEAM_APP_ID = 480490;
 //! Used in steam_api_chairloader.cpp only in Chairloader.
 IChairSteamAPI* g_pIChairSteamAPI = nullptr;
 
+static FindOrCreateUserInterfacePtr g_pfnFindOrCreateUserInterface = nullptr;
 static auto g_CDXInput_AddInputDevice_Hook = CDXInput::FAddInputDevice.MakeHook();
 
 bool CDXInput_AddInputDevice_Hook(CBaseInput* const _this, IInputDevice* pDevice)
@@ -157,12 +161,12 @@ void ChairSteamAPI::LoadFuncs()
 {
     std::vector<std::string> errorFuncList;
 
-    auto fnGetFunc = [&](auto& pFuncStorage, const char* name)
+    auto fnGetFunc = [&](auto& pFuncStorage, const char* name, bool required = true)
     {
         using FuncT = typename std::remove_reference_t<decltype(pFuncStorage)>;
         pFuncStorage = (FuncT)GetProcAddress((HMODULE)m_hModule, name);
 
-        if (!pFuncStorage)
+        if (!pFuncStorage && required)
             errorFuncList.push_back(name);
     };
 
@@ -174,14 +178,27 @@ void ChairSteamAPI::LoadFuncs()
         fnGetFunc(m_pIsSteamRunning, "SteamAPI_IsSteamRunning");
         fnGetFunc(m_pGetHSteamUserCurrent, "Steam_GetHSteamUserCurrent");
         fnGetFunc(m_pGetSteamInstallPath, "SteamAPI_GetSteamInstallPath");
+        fnGetFunc(m_pGetHSteamPipe, "SteamAPI_GetHSteamPipe");
+        fnGetFunc(m_pCreateInterface, "SteamInternal_CreateInterface");
+    }
+    else
+    {
+        // GOG-2023-06-08 uses a newer version of Steam API
+        // It replaces SteamAPI_GetHSteamPipe and SteamInternal_CreateInterface with SteamInternal_FindOrCreateUserInterface
+        fnGetFunc(m_pGetHSteamPipe, "SteamAPI_GetHSteamPipe", false);
+        fnGetFunc(m_pCreateInterface, "SteamInternal_CreateInterface", false);
+        fnGetFunc(m_pFindOrCreateUserInterface, "SteamInternal_FindOrCreateUserInterface", false);
+
+        if (!(m_pGetHSteamPipe && m_pCreateInterface) && !m_pFindOrCreateUserInterface)
+        {
+            errorFuncList.push_back("SteamInternal_CreateInterface or SteamInternal_FindOrCreateUserInterface");
+        }
     }
 
     // IChairSteamAPI funcs available in GOG wrapper
     fnGetFunc(m_pGetHSteamUser, "SteamAPI_GetHSteamUser");
     fnGetFunc(m_pRegisterCallback, "SteamAPI_RegisterCallback");
     fnGetFunc(m_pUnregisterCallback, "SteamAPI_UnregisterCallback");
-    fnGetFunc(m_pGetHSteamPipe, "SteamAPI_GetHSteamPipe");
-    fnGetFunc(m_pCreateInterface, "SteamInternal_CreateInterface");
 
     // Internal funcs
     fnGetFunc(m_pInit, "SteamAPI_Init");
@@ -237,15 +254,38 @@ bool ChairSteamAPI::InitSteam()
     assert(!g_pIChairSteamAPI);
     g_pIChairSteamAPI = this;
 
-    // SteamInternal_ContextInit takes a base pointer for the equivalent of
-    // struct { void (*pFn)(void* pCtx); uintp counter; CSteamAPIContext ctx; }
-    // Do not change layout of 2 + sizeof... or add non-pointer aligned data!
-    // NOTE: declaring "static CSteamAPIConext" creates a large function
-    // which queries the initialization status of the object. We know that
-    // it is pointer-aligned and fully memset with zeros, so just alias a
-    // static buffer of the appropriate size and call it a CSteamAPIContext.
-    static void* s_CallbackCounterAndContext[2 + sizeof(CSteamAPIContext) / sizeof(void*)] = { (void*)&SteamInternal_OnContextInit, 0 };
-    m_pContext = (CSteamAPIContext*)m_pContextInit(s_CallbackCounterAndContext);
+    if (m_pGetHSteamPipe && m_pCreateInterface)
+    {
+        // Using old Steam API
+
+        // SteamInternal_ContextInit takes a base pointer for the equivalent of
+        // struct { void (*pFn)(void* pCtx); uintp counter; CSteamAPIContext ctx; }
+        // Do not change layout of 2 + sizeof... or add non-pointer aligned data!
+        // NOTE: declaring "static CSteamAPIConext" creates a large function
+        // which queries the initialization status of the object. We know that
+        // it is pointer-aligned and fully memset with zeros, so just alias a
+        // static buffer of the appropriate size and call it a CSteamAPIContext.
+        static void* s_CallbackCounterAndContext[2 + sizeof(CSteamAPIContext) / sizeof(void*)] = { (void*)&SteamInternal_OnContextInit, 0 };
+        m_pContext = (CSteamAPIContext*)m_pContextInit(s_CallbackCounterAndContext);
+    }
+    else if (m_pFindOrCreateUserInterface)
+    {
+        // Using new Steam API
+        auto fnFindInterface = [](const char* ver) -> void*
+        {
+            auto* pThis = static_cast<ChairSteamAPI*>(g_pIChairSteamAPI);
+            return pThis->m_pFindOrCreateUserInterface(pThis->GetHSteamUser(), ver);
+        };
+
+        // Not using m_pContextInit since it no longer initializes CSteamAPIContext
+        static CSteamAPIContext ctx;
+        ctx.InitViaFindInterface(fnFindInterface);
+        m_pContext = &ctx;
+    }
+    else
+    {
+        CryFatalError("Invalid Steam API functions");
+    }
 
     if (!m_pContext)
     {
@@ -256,6 +296,18 @@ bool ChairSteamAPI::InitSteam()
 
         g_pIChairSteamAPI = nullptr;
         return false;
+    }
+
+    if (!SteamApps() || !SteamUserStats() || !SteamUtils())
+    {
+        if (!SteamApps())
+            CryError("Missing SteamApps");
+        if (!SteamUserStats())
+            CryError("Missing SteamUserStats");
+        if (!SteamUtils())
+            CryError("Missing SteamUtils");
+
+        CryFatalError("Required Steam API functions are missing. Check the log for details.");
     }
 
     CryLog("Steam AppID = {}", SteamUtils()->GetAppID());

@@ -27,6 +27,9 @@ public:
 	//! Destroyed after CSystem::Shutdown
 	~Chairloader();
 
+	//! Called just after the DLL has been loaded.
+	void DllAttach();
+
 	//! Called during CSystem::Init, before any engine modules.
 	void InitSystem(CSystem* pSystem);
 

@@ -10,6 +10,7 @@
 S_API HSteamUser SteamAPI_GetHSteamUser();
 S_API void * S_CALLTYPE SteamInternal_ContextInit( void *pContextInitData );
 S_API void * S_CALLTYPE SteamInternal_CreateInterface( const char *ver );
+S_API void * S_CALLTYPE SteamInternal_FindOrCreateUserInterface( HSteamUser hSteamUser, const char *pszVersion );
 
 #if !defined( STEAM_API_EXPORTS )
 
@@ -168,6 +169,44 @@ inline bool CSteamAPIContext::Init()
 	return true;
 }
 
+inline bool CSteamAPIContext::InitViaFindInterface(void* (*pfnFindInterface)(const char* ver))
+{
+	auto fnGetInterface = [&](auto*& pIface, const char* ver)
+	{
+		if (pIface)
+			return;
+
+		using T = typename std::remove_reference_t<decltype(pIface)>;
+		pIface = static_cast<T>(pfnFindInterface(ver));
+	};
+
+	fnGetInterface(m_pSteamUser, STEAMUSER_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamFriends, STEAMFRIENDS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamUtils, STEAMUTILS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamMatchmaking, STEAMMATCHMAKING_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamMatchmakingServers, STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamUserStats, STEAMUSERSTATS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamApps, STEAMAPPS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamNetworking, STEAMNETWORKING_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamRemoteStorage, STEAMREMOTESTORAGE_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamScreenshots, STEAMSCREENSHOTS_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamHTTP, STEAMHTTP_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamUnifiedMessages, STEAMUNIFIEDMESSAGES_INTERFACE_VERSION);
+	fnGetInterface(m_pController, STEAMCONTROLLER_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamUGC, STEAMUGC_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamAppList, STEAMAPPLIST_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamMusic, STEAMMUSIC_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamMusicRemote, STEAMMUSICREMOTE_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamHTMLSurface, STEAMHTMLSURFACE_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamInventory, STEAMINVENTORY_INTERFACE_VERSION);
+	fnGetInterface(m_pSteamVideo, STEAMVIDEO_INTERFACE_VERSION);
+
+	// Try newer versions for some of those. I checked - interfaces are still compatible
+	fnGetInterface(m_pSteamUtils, "SteamUtils010");
+	fnGetInterface(m_pSteamUserStats, "STEAMUSERSTATS_INTERFACE_VERSION012");
+
+	return true;
+}
 
 //-----------------------------------------------------------------------------
 // The following macros are implementation details, not intended for public use

@@ -118,6 +118,7 @@ public:
 	CSteamAPIContext() { Clear(); }
 	void Clear();
 	bool Init();
+	bool InitViaFindInterface(void* (*pfnFindInterface)(const char* ver));
 	ISteamClient*		SteamClient() const					{ return m_pSteamClient; }
 	ISteamUser*			SteamUser() const					{ return m_pSteamUser; }
 	ISteamFriends*		SteamFriends() const				{ return m_pSteamFriends; }

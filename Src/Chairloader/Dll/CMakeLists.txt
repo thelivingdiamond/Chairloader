@@ -9,12 +9,14 @@ set(SOURCE_FILES
 	Chairloader.cpp
 	Chairloader.h
 	dllmain.cpp
-	WinConsole.cpp
-	WinConsole.h
 	ImportantClass.h
 	ImportantClass.cpp
 	LuaDebugger.rc
 	LuaDebuggerResource.h
+	SavePathPatch.cpp
+	SavePathPatch.h
+	WinConsole.cpp
+	WinConsole.h
 )
 
 add_library(Chairloader.Dll SHARED ${SOURCE_FILES})

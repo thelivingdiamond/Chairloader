@@ -56,6 +56,7 @@ private:
     decltype(&SteamAPI_GetSteamInstallPath) m_pGetSteamInstallPath = nullptr;
     decltype(&SteamAPI_GetHSteamPipe) m_pGetHSteamPipe = nullptr;
     decltype(&SteamInternal_CreateInterface) m_pCreateInterface = nullptr;
+    decltype(&SteamInternal_FindOrCreateUserInterface) m_pFindOrCreateUserInterface = nullptr;
     //! @}
     
     //! DLL function pointers (used internally)
