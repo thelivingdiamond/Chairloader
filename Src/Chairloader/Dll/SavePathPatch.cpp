@@ -38,6 +38,7 @@ void SavePathPatch::ApplyPatch()
         break;
     case GamePath::GamePlatform::Microsoft:
         patchedString = "Arkane Studios/Prey_MS";
+        break;
     default:
         patchedString = "Arkane Studios/Prey";
         break;
