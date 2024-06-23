@@ -15,6 +15,12 @@ SPreditorEnvironment gPreditorEnv;
 SPreditorEnvironment* gPreditor = &gPreditorEnv;
 ChairloaderGlobalEnvironment* gCL = nullptr;
 
+extern "C"
+{
+    DLL_EXPORT unsigned long NvOptimusEnablement = 1;
+    DLL_EXPORT int AmdPowerXpressRequestHighPerformance = 1;
+}
+
 PreditorApp::PreditorApp()
 {
     gPreditor->pPaths = &m_Paths;
