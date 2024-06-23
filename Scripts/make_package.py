@@ -66,6 +66,11 @@ if output_dir_path.exists():
     shutil.rmtree(output_dir_path)
 output_dir_path.mkdir(exist_ok=False)
 
+# List data
+print(f'All files in Data')
+for i in os.listdir(args.repo_path / CHAIRMANAGER_FILES_PATH):
+    print(f'- {i}')
+
 # Copy artifacts
 for target_name, files in config['artifacts'].items():
     target_name: str
