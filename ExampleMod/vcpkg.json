@@ -2,7 +2,7 @@
   "name": "example-mod",
   "version-string": "0.1.0",
   "description": "An interesting description",
-  "builtin-baseline": "3f6e8e9c09e28a0eae4b37cceb2982ca2518278c",
+  "builtin-baseline": "f7423ee180c4b7f40d43402c2feb3859161ef625",
   "$deps_": "Please, keep sorted alphabetically",
   "$boost": "Don't include the whole Boost!",
   "dependencies": [
