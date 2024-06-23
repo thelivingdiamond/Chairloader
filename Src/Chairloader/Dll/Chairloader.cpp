@@ -11,6 +11,7 @@
 #include <Chairloader/IModDllManager.h>
 #include <Chairloader/IPreditorToChair.h>
 #include "ImportantClass.h"
+#include "SavePathPatch.h"
 #include <mem.h>
 #include "Chairloader.h"
 #include <Chairloader/IChairVarManager.h>
@@ -214,6 +215,12 @@ Chairloader::~Chairloader()
 
 	FreeConsole();
 	gChair = nullptr;
+}
+
+void Chairloader::DllAttach()
+{
+	// This must run very early. The string is used in CEngineConfig, which is called in RunGame.
+	SavePathPatch::ApplyPatch();
 }
 
 void Chairloader::InitSystem(CSystem* pSystem)
