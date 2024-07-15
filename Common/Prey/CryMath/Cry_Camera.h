@@ -21,6 +21,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryMath/Cry_XOptimise.h>
+#include <Prey/Cry3DEngine/CryPodArray.h>
 
 #define DEFAULT_NEAR 0.25f
 #define DEFAULT_FAR  1024.0f
@@ -302,8 +303,7 @@ public:
 		uint16 x1, y1, x2, y2;
 	};
 	ScissorInfo m_ScissorInfo;
-	//class PodArray<CCamera>* m_pMultiCamera;  //!< Maybe used for culling instead of this camera.
-	void *m_pMultiCamera;  //!< Maybe used for culling instead of this camera.
+	class PodArray<CCamera>* m_pMultiCamera;  //!< Maybe used for culling instead of this camera.
 
 	Vec3               m_OccPosition; //!< Position for calculate occlusions (needed for portals rendering).
 	inline const Vec3& GetOccPos() const { return(m_OccPosition); }

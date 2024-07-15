@@ -44,10 +44,10 @@ struct ILog : public IMiniLog
 	virtual bool SetFileName(const char* command = NULL) = 0;
 
 	//! Get the filename used to log to disk.
-	virtual const char* GetFileName() const = 0;
+	virtual const char* GetFileName() = 0;
 
 	//! Get the filename where the current log backup was copied to on disk.
-	virtual const char* GetBackupFileName() const = 0;
+	virtual const char* GetBackupFileName() = 0;
 
 	//! All the following functions will be removed are here just to be able to compile the project.
 
@@ -80,7 +80,7 @@ struct ILog : public IMiniLog
 	//! In the console 'log_Verbosity 4' command can be used.
 	virtual void     SetVerbosity(int verbosity) = 0;
 
-	virtual int      GetVerbosityLevel() const = 0;
+	virtual int      GetVerbosityLevel() = 0;
 
 	virtual void     AddCallback(ILogCallback* pCallback) = 0;
 	virtual void     RemoveCallback(ILogCallback* pCallback) = 0;

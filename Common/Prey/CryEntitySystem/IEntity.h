@@ -458,7 +458,7 @@ struct SEntityEvent
 
 	EEntityEvent event;     //!< Any event from EEntityEvent enum.
 	INT_PTR      nParam[4]; //!< Event parameters.
-	float        fParam[3];
+	float        fParam[2];
 };
 
 //! Updates policy defines in which cases to call entity update function every frame.
@@ -669,7 +669,7 @@ struct IEntity
 	virtual const char* GetName() const = 0;
 
 	//! Returns textual description of entity for logging.
-	virtual string GetEntityTextDescription() const = 0;
+	virtual const char* GetEntityTextDescription() const = 0;
 
 	//! Serializes entity parameters to/from XML.
 	virtual void SerializeXML(XmlNodeRef& entityNode, bool bLoading) = 0;
@@ -782,7 +782,7 @@ struct IEntity
 	//! Check if the entity is active now.
 	virtual bool IsActive() const = 0;
 
-	virtual bool IsFromPool() = 0;
+	virtual bool IsFromPool() const = 0;
 
 	//! Activates entity, if entity is active it will be updated every frame.
 	virtual void PrePhysicsActivate(bool bActive) = 0;
@@ -889,7 +889,7 @@ struct IEntity
 	virtual void             UpdateSlotPhysics(int slot) = 0;
 
 	virtual void             SetPhysicsState(XmlNodeRef& physicsState) = 0;
-	virtual bool			 HasPhysicsState() = 0;
+	virtual bool			 HasPhysicsState() const = 0;
 
 	// Custom entity material.
 
@@ -1026,6 +1026,7 @@ struct IEntity
 	virtual int SetParticleEmitter(int nSlot, IParticleEmitter* pEmitter, bool bSerialize = false) = 0;
 
 	virtual int SetBreakableGlass(int, IArkGlass *) = 0;
+    virtual IArkGlass* GetBreakableGlass(int _nSlot) = 0;
 
 	//! Loads a light source to the specified slot, or to next available slot.
 	//! \return Slot id where the light source was loaded, or -1 if loading failed.
@@ -1046,7 +1047,7 @@ struct IEntity
 
 	//! Gets pointer to the first entity link.
 	virtual IEntityLink* GetEntityLinks() = 0;
-	virtual IEntityLink* AddEntityLink(const char* sLinkName, EntityId entityId, EntityGUID entityGuid = 0) = 0;
+	virtual IEntityLink* AddEntityLink(const char* sLinkName, EntityId entityId) = 0;
 	virtual void         RemoveEntityLink(IEntityLink* pLink) = 0;
 	virtual void         RemoveAllEntityLinks() = 0;
 	//////////////////////////////////////////////////////////////////////////
@@ -1073,7 +1074,7 @@ struct IEntity
 	virtual void ResetKeepAliveCounter() = 0;
 	virtual bool IsKeptAlive() const = 0;
 
-	virtual const char *GetDisplayName() = 0;
+	virtual const char *GetDisplayName() const = 0;
 	virtual void SetDisplayName(const char *) = 0;
 
 	//! LiveCreate entity manipulation.

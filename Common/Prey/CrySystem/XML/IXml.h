@@ -154,7 +154,7 @@ public:
 	virtual int getNumAttributes() const = 0;
 
 	//! Return attribute key and value by attribute index.
-	virtual bool getAttributeByIndex(int index, const char** key, const char** value) = 0;
+	virtual bool getAttributeByIndex(int index, const char** key, const char** value) const = 0;
 
 	//! Copy attributes to this node from a given node.
 	virtual void copyAttributes(XmlNodeRef fromNode) = 0;
@@ -174,7 +174,7 @@ public:
 	virtual bool getAttr(const char *key, int &value) const = 0;
 	virtual bool getAttr(const char *key, unsigned int &value) const = 0;
 	virtual bool getAttr(const char *key, int64 &value) const = 0;
-	virtual bool getAttr(const char *key, uint64 &value, bool useHexFormat = true) const = 0;
+	virtual bool getAttr(const char *key, uint64 &value) const = 0;
 	virtual bool getAttr(const char *key, float &value) const = 0;
 	virtual bool getAttr(const char *key, double &value) const = 0;
 	virtual bool getAttr(const char *key, Vec2 &value) const = 0;
@@ -224,11 +224,11 @@ public:
 	virtual void _xPathFindNodes(std::function<void(XmlNodeRef)>, const char *tag) = 0;
 	virtual XmlNodeRef ensureChild(const char *) = 0;
 	virtual XmlNodeRef getRoot() = 0;
-	virtual void xPathIDFromAttribute(const char *, CryStackStringT<char, 512> *) = 0;
+	virtual void xPathIDFromAttribute(const char* _idAttributeName, CryStackStringT<char, 512>& _xpathOut) = 0;
 	virtual bool MatchesXPath(const char *) = 0;
-	virtual int findChildIndex(const XmlNodeRef *) = 0;
-	virtual XmlNodeRef findChild( const char *) = 0;
-	virtual XmlNodeRef findChildWithAttibuteValue(const char *, const char *) = 0;
+	virtual int findChildIndex(const XmlNodeRef& inChild) const = 0;
+	virtual XmlNodeRef findChild(const char* tag) const = 0;
+	virtual XmlNodeRef findChildWithAttibuteValue(const char *attibute, const char *value) const = 0;
 
 	//! Get parent XML node.
 	virtual XmlNodeRef getParent() const = 0;
@@ -267,7 +267,7 @@ public:
 	virtual void setAttr(const char* key, int value) = 0;
 	virtual void setAttr(const char* key, unsigned int value) = 0;
 	virtual void setAttr(const char* key, int64 value) = 0;
-	virtual void setAttr(const char* key, uint64 value, bool useHexFormat = true) = 0;
+	virtual void setAttr(const char* key, uint64 value) = 0;
 	virtual void setAttr(const char* key, float value) = 0;
 	virtual void setAttr(const char* key, double value) = 0;
 	virtual void setAttr(const char* key, const Vec2& value) = 0;
@@ -286,7 +286,7 @@ public:
 	//! Remove all node attributes.
 	virtual void removeAllAttributes() = 0;
 
-	virtual bool getAttrHex(const char *key, uint64 &value) = 0;
+	virtual bool getAttrHex(const char *key, uint64 &value) const = 0;
 
 	// </interfuscator:shuffle>
 
@@ -304,7 +304,7 @@ public:
 	virtual void deleteChildAt(int nIndex) = 0;
 
 	//! Return XML of this node and sub nodes into tmpBuffer without XML checks (much faster).
-	//virtual XmlString getXMLUnsafe(int level, char* tmpBuffer, uint32 sizeOfTmpBuffer) const { return getXML(level); }
+	virtual XmlString getXMLUnsafe(int level, char* tmpBuffer, uint32 sizeOfTmpBuffer) const = 0;
 
 	//! Save in small memory chunks.
 	//virtual bool saveToFile(const char* fileName, size_t chunkSizeBytes, FILE* file = NULL) = 0;
@@ -557,7 +557,7 @@ struct IXmlParser
 	virtual void Release() = 0;
 
 	//! Parse xml file.
-	virtual XmlNodeRef ParseFile(const char* filename, bool bCleanPools) = 0;
+	virtual XmlNodeRef ParseFile(const char* filename, bool bCleanPools, bool bAllowUseFilesystem = false) = 0;
 
 	//! Parse xml from memory buffer.
 	virtual XmlNodeRef ParseBuffer(const char* buffer, int nBufLen, bool bCleanPools) = 0;
@@ -617,7 +617,7 @@ struct IXmlUtils
 	virtual ~IXmlUtils(){}
 
 	//! Load xml file, returns 0 if load failed.
-	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bEnablePatching = true) = 0;
+	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bEnablePatching = true, bool bAllowUseFilesystem = false) = 0;
 
 	//! Load xml from memory buffer, returns 0 if load failed.
 	virtual XmlNodeRef LoadXmlFromBuffer(const char* buffer, size_t size, bool bReuseStrings = false) = 0;
@@ -670,7 +670,7 @@ struct IXmlUtils
 	//! Set to NULL to clear an existing transform and disable further patching.
 	virtual void SetXMLPatcher(XmlNodeRef* pPatcher) = 0;
 
-	virtual void GetMemoryUsage(ICrySizer *) = 0;
+	// virtual void GetMemoryUsage(ICrySizer *) = 0;
 	// </interfuscator:shuffle>
 #endif
 };

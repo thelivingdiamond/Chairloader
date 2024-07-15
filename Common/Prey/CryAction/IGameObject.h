@@ -264,9 +264,8 @@ public:
 	// A one off call to never enable the physics aspect, this needs to be done *before* the BindToNetwork (typically in the GameObject's Init function)
 	virtual void                  DontSyncPhysics() = 0;
 
-	virtual IGameObjectSystem::ExtensionID GetExtensionId(const char *extension) = 0;
+	virtual IGameObjectSystem::ExtensionID GetExtensionId(const char *extension) const = 0;
 	// query extension. returns 0 if extension is not there.
-	virtual IGameObjectExtension* QueryExtension(const char* extension) const = 0;
 	virtual IGameObjectExtension* QueryExtension(IGameObjectSystem::ExtensionID id) const = 0;
 
 	// set extension parameters
@@ -314,12 +313,13 @@ public:
 	// enable/disable auto-disabling of physics
 	virtual void SetAutoDisablePhysicsMode(EAutoDisablePhysicsMode mode) = 0;
 	// for debugging updates
+    virtual void ForceReevaluateUpdateActivation() = 0;
 	virtual bool ShouldUpdate() = 0;
 
 	virtual bool CheckShouldAIUpdate() = 0;
 	virtual unsigned int GetAiActivationMode() = 0;
 	virtual void SetCloseDistThreshold(float) = 0;
-	virtual float GetCloseDistThresholdSq() = 0;
+	virtual float GetCloseDistThresholdSq() const = 0;
 	virtual void SetCurrDistFromPlayerSq(float) = 0;
 
 	// register a partial update in the netcode without actually serializing - useful only for working around other bugs

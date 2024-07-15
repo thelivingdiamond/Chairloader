@@ -15,14 +15,14 @@ struct StubSmartPtrIface
 struct SAnimationContext;
 
 template <typename T>
-class ArkFlowNodeDialogTrigger;
+class [[sv::ignore]] ArkFlowNodeDialogTrigger;
 
-struct IMaterial : detail::StubSmartPtrIface {};
-struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
-struct SCrySessionID : detail::StubSmartPtrIface {};
-struct IRenderMesh : detail::StubSmartPtrIface {};
+struct [[sv::ignore]] IMaterial : detail::StubSmartPtrIface {};
+struct [[sv::ignore]] ISaveGameThumbnail : detail::StubSmartPtrIface {};
+struct [[sv::ignore]] SCrySessionID : detail::StubSmartPtrIface {};
+struct [[sv::ignore]] IRenderMesh : detail::StubSmartPtrIface {};
 
-class IAction : public detail::StubSmartPtrIface
+class [[sv::ignore]] IAction : public detail::StubSmartPtrIface
 {
 public:
 	enum class EStatus
@@ -39,7 +39,7 @@ public:
 
 using ArkMaterialAnimationChannel = EMaterialParamFloat;
 
-struct ArkMaterialAnimationKeyframe // Id=8014239 Size=36
+struct [[sv::ignore]] ArkMaterialAnimationKeyframe // Id=8014239 Size=36
 {
 	int m_subMaterialSlot;
 	ArkMaterialAnimationChannel m_channel;
@@ -50,18 +50,18 @@ struct ArkMaterialAnimationKeyframe // Id=8014239 Size=36
 	bool m_bIsFloat;
 };
 
-struct MaterialParameterRamp {
+struct [[sv::ignore]] MaterialParameterRamp {
 	void* pad[9];
 };
 
 template<class CONTEXT>
-class TAction : public IAction
+class [[sv::ignore]] TAction : public IAction
 {
 };
 
 // Header: Exact
 // CryEngine/cryaction/icrymannequin.h
-class CFragmentCache // Id=8004878 Size=72
+class [[sv::ignore]] CFragmentCache // Id=8004878 Size=72
 {
 public:
 	struct SCacheAnims // Id=8004879 Size=4
@@ -80,7 +80,7 @@ public:
 
 // Header: MadeUp
 // _unknown/ArkMaterialParamOverride.h
-class ArkMaterialParamOverride // Id=8015FEF Size=16
+class [[sv::ignore]] ArkMaterialParamOverride // Id=8015FEF Size=16
 {
 public:
 	string m_paramName;
@@ -90,7 +90,7 @@ public:
 struct IUIEventDispatchFct;
 
 template <typename T>
-struct SUIEventReceiverDispatcher : public IUIEventListener // Id=8005C4D Size=40
+struct [[sv::ignore]] SUIEventReceiverDispatcher : public IUIEventListener // Id=8005C4D Size=40
 {
 	using TFunctionMap = std::map<unsigned int, IUIEventDispatchFct*>;
 
@@ -103,7 +103,7 @@ struct SUIEventReceiverDispatcher : public IUIEventListener // Id=8005C4D Size=4
 };
 
 template <typename T>
-struct SUIEventSenderDispatcher // Id=801BBBE Size=24
+struct [[sv::ignore]] SUIEventSenderDispatcher // Id=801BBBE Size=24
 {
 	using TEventMap = std::map<T, unsigned int>;
 
@@ -115,7 +115,7 @@ struct SUIEventSenderDispatcher // Id=801BBBE Size=24
 #endif
 };
 
-struct SMannequinItemParams
+struct [[sv::ignore]] SMannequinItemParams
 {
 	struct FragmentIDs;
 	struct TagIDs;
@@ -124,18 +124,18 @@ struct SMannequinItemParams
 	struct Fragments;
 };
 
-class ArkOffMeshLinkHelper
+class [[sv::ignore]] ArkOffMeshLinkHelper
 {
 	void* pad[6];
 };
 
 template<ENavigationIDTag T>
-struct TNavigationID
+struct [[sv::ignore]] TNavigationID
 {
 	uint32 id;
 };
 
-class ArkNpcMovementDesire
+class [[sv::ignore]] ArkNpcMovementDesire
 {
 	void* pad[30];
 };
