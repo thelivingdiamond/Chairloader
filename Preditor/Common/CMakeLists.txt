@@ -20,6 +20,9 @@ set(SOURCE_FILES
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
 
+	Preditor/FGE/IFlowgraphEditor.h
+	Preditor/FGE/IPreditorFlowgraph.h
+
 	Preditor/Input/Common.h
 	Preditor/Input/IKeyAction.h
 	Preditor/Input/IKeyActionSet.h

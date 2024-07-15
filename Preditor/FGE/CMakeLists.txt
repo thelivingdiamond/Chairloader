@@ -5,10 +5,17 @@ set(SOURCE_FILES
 	Flowgraph.h
 	FlowgraphEditor.cpp
 	FlowgraphEditor.h
+	FlowgraphTab.cpp
+	FlowgraphTab.h
+	FlowgraphWindow.cpp
+	FlowgraphWindow.h
 	IChairFlowgraph.h
 	Node.cpp
 	Node.h
+	pch.h
 	Pin.h
+	PreditorFlowgraph.cpp
+	PreditorFlowgraph.h
 	UniqueID.h
 )
 

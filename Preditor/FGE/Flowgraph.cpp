@@ -14,7 +14,7 @@
 #include <Windows.h>
 // #include "../LookingGlass.h"
 
-Node* FlowGraph::getNode(int64_t id)
+Node* FGE::Flowgraph::getNode(int64_t id)
 {
     if (m_Nodes.find(id) != m_Nodes.end())
     {
@@ -23,7 +23,7 @@ Node* FlowGraph::getNode(int64_t id)
     return nullptr;
 }
 
-Pin* FlowGraph::getPin(int64_t id)
+Pin* FGE::Flowgraph::getPin(int64_t id)
 {
     if (m_pPins.find(id) != m_pPins.end())
     {
@@ -32,7 +32,7 @@ Pin* FlowGraph::getPin(int64_t id)
     return nullptr;
 }
 
-Edge* FlowGraph::getEdge(int64_t id)
+Edge* FGE::Flowgraph::getEdge(int64_t id)
 {
     if (m_Edges.find(id) != m_Edges.end())
     {
@@ -41,282 +41,7 @@ Edge* FlowGraph::getEdge(int64_t id)
     return nullptr;
 }
 
-void FlowGraph::draw()
-{
-    if (m_bShowNodeList)
-    {
-        if (ImGui::BeginChild("Node List", ImVec2(ImGui::GetContentRegionAvail().x * 0.2f, 0), false))
-        {
-            ImGui::Text("Node List");
-            ImGui::Separator();
-            if (ImGui::BeginTable("Node List", 2, 0, ImGui::GetContentRegionAvail()))
-            {
-                ImGui::TableSetupColumn("ID", ImGuiTableColumnFlags_WidthFixed);
-                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
-                //            ImGui::TableHeadersRow();
-                for (auto& node : m_Nodes)
-                {
-                    ImGui::TableNextRow();
-                    ImGui::TableSetColumnIndex(0);
-                    if (ImGui::Selectable(std::to_string(node.second.ID).c_str(),
-                                          ImNodes::IsNodeSelected(node.second.ID), ImGuiSelectableFlags_SpanAllColumns))
-                    {
-                        if ((ImGui::IsKeyDown(ImGui::GetKeyIndex(ImGuiKey_LeftShift)) ||
-                             ImGui::IsKeyDown(ImGui::GetKeyIndex(ImGuiKey_RightShift))))
-                        {
-                            if (ImNodes::IsNodeSelected(node.second.ID))
-                            {
-                                const int num_selected = ImNodes::NumSelectedNodes();
-                                if (num_selected > 0)
-                                {
-                                    static std::vector<int> selected_nodes;
-                                    selected_nodes.resize(static_cast<size_t>(num_selected));
-                                    ImNodes::GetSelectedNodes(selected_nodes.data());
-                                    ImNodes::ClearNodeSelection();
-                                    for (int i = 0; i < num_selected; ++i)
-                                    {
-                                        if (selected_nodes[i] != node.second.ID)
-                                        {
-                                            ImNodes::SelectNode(selected_nodes[i]);
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                ImNodes::SelectNode(node.second.ID);
-                            }
-                        }
-                        else
-                        {
-                            if (ImNodes::NumSelectedNodes() >= 1)
-                            {
-                                ImNodes::ClearNodeSelection();
-                                ImNodes::SelectNode(node.second.ID);
-                            }
-                            else
-                            {
-                                if (ImNodes::IsNodeSelected(node.second.ID))
-                                {
-                                    ImNodes::ClearNodeSelection();
-                                }
-                                else
-                                {
-                                    ImNodes::SelectNode(node.second.ID);
-                                }
-                            }
-                        }
-                    }
-                    if (ImGui::IsItemClicked(ImGuiMouseButton_Left) &&
-                        ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-                    {
-                        ImNodes::EditorContextMoveToNode(node.second.ID);
-                    }
-                    ImGui::TableSetColumnIndex(1);
-                    ImGui::Text("%s", node.second.Name.c_str());
-                }
-                ImGui::EndTable();
-            }
-            //        if(ImGui::BeginTable("Command History", 2, 0, {0, 200})) {
-            //            ImGui::TableSetupColumn("Command", ImGuiTableColumnFlags_WidthFixed);
-            //            ImGui::TableSetupColumn("Time", ImGuiTableColumnFlags_WidthFixed);
-            //            ImGui::TableHeadersRow();
-            ////            for (auto& command : m_CommandHistory) {
-            ////                ImGui::TableNextRow();
-            ////                ImGui::TableSetColumnIndex(0);
-            ////                ImGui::Text("%lld", std::get<Node>(command.m_StoredObject).ID);
-            ////                ImGui::TableSetColumnIndex(1);
-            ////                ImGui::Text("%d", command.m_Operation);
-            ////            }
-            //            ImGui::EndTable();
-            //        }
-        }
-        ImGui::EndChild();
-        ImGui::SameLine();
-    }
-    ImGui::BeginGroup();
-    static ImVec2 toolbarItemSize{ 30, 30 };
-    if (ImGui::BeginChild(("Toolbar##" + m_Name).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, toolbarItemSize.y),
-                          false, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse))
-    {
-        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-        if (ImGui::Button(ICON_MD_MENU "##Toolbar", toolbarItemSize))
-        {
-            ImGui::OpenPopup("Toolbar Menu");
-        }
-        if (ImGui::IsItemHovered())
-        {
-            ImGui::SetTooltip("Menu");
-        }
-        ImGui::SameLine();
-        if (!m_bShowNodeList)
-        {
-            if (ImGui::Button(ICON_MD_ARROW_FORWARD "##Toolbar", toolbarItemSize))
-            {
-                m_bShowNodeList = true;
-            }
-            if (ImGui::IsItemHovered())
-            {
-                ImGui::SetTooltip("Show Node List");
-            }
-        }
-        else
-        {
-            if (ImGui::Button(ICON_MD_ARROW_BACK "##Toolbar", toolbarItemSize))
-            {
-                m_bShowNodeList = false;
-            }
-            if (ImGui::IsItemHovered())
-            {
-                ImGui::SetTooltip("Hide Node List");
-            }
-        }
-        ImGui::SameLine();
-        if (ImGui::Button(ICON_MD_UNDO "##Toolbar", toolbarItemSize))
-        {
-            //            undo();
-        }
-        if (ImGui::IsItemHovered())
-        {
-            ImGui::SetTooltip("Undo");
-        }
-        ImGui::SameLine();
-        if (ImGui::Button(ICON_MD_REDO "##Toolbar", toolbarItemSize))
-        {
-            //            redo();
-        }
-        if (ImGui::IsItemHovered())
-        {
-            ImGui::SetTooltip("Undo");
-        }
-        ImGui::SameLine();
-        if (ImGui::Button(ICON_MD_SAVE "##Toolbar", toolbarItemSize))
-        {
-            saveXML();
-        }
-        if (ImGui::IsItemHovered())
-        {
-            ImGui::SetTooltip("Save");
-        }
-        ImGui::SameLine();
-        if (ImGui::Button(ICON_MD_CENTER_FOCUS_WEAK "##Toolbar", toolbarItemSize))
-        {
-            m_bResetPan = true;
-            m_ResetPos = { 0, 0 };
-        }
-        if (ImGui::IsItemHovered())
-        {
-            ImGui::SetTooltip("Reset Pan");
-        }
-        ImGui::PopStyleColor();
-        if (ImGui::BeginPopup("Toolbar Menu"))
-        {
-            if (ImGui::MenuItem("Save"))
-            {
-                saveXML();
-            }
-            if (ImGui::MenuItem("Save As"))
-            {
-                //            saveAs();
-            }
-            if (ImGui::MenuItem("Load"))
-            {
-                //            load();
-            }
-            ImGui::Separator();
-            ImGui::MenuItem("Show Node List", nullptr, &m_bShowNodeList);
-            ImGui::Separator();
-            if (ImGui::BeginMenu("Graph Tokens", !m_Tokens.empty()))
-            {
-                for (auto& token : m_Tokens)
-                {
-                    ImGui::MenuItem(token.second.m_Name.c_str());
-                }
-                ImGui::EndMenu();
-            }
-            ImGui::EndPopup();
-        }
-    }
-    ImGui::EndChild();
-    ImNodes::EditorContextSet(m_Context);
-    ImNodes::BeginNodeEditor();
-    ImNodes::MiniMap(0.25f, ImNodesMiniMapLocation_TopRight);
-    if (m_bResetPan)
-    {
-        ImNodes::EditorContextResetPanning(m_ResetPos);
-        m_bResetPan = false;
-    }
-    for (auto& node : m_Nodes)
-    {
-        node.second.draw();
-    }
-    for (auto& edge : m_Edges)
-    {
-        edge.second.draw();
-    }
-    if (ImNodes::IsEditorHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-    {
-        FlowgraphEditor::setShowNodePopup(true);
-    }
-    ImNodes::EndNodeEditor();
-    ImGui::EndGroup();
-    update();
-}
-
-void FlowGraph::drawTab()
-{
-    m_bDraw = true;
-    if (ImGui::Begin(m_Name.c_str(), &m_bDraw))
-    {
-        if (m_bFirstDraw)
-        {
-            m_bFirstDraw = false;
-            auto node = FlowgraphEditor::getInstance()->getDockNode();
-            ImGui::DockContextQueueDock(ImGui::GetCurrentContext(), node->HostWindow, node->CentralNode,
-                                        ImGui::GetCurrentWindow(), ImGuiDir_None, 1.0f, false);
-        }
-
-        if (ImGui::IsWindowFocused(ImGuiFocusedFlags_DockHierarchy))
-        {
-            FlowgraphEditor::getInstance()->setCurrentFlowgraph(this);
-        }
-        draw();
-    }
-    ImGui::End();
-    if (!m_bDraw)
-    {
-        // TODO: show a popup to ask if the user wants to save the changes
-        // then remove the flowgraph from the editor
-        ImGui::OpenPopup(("Close Flowgraph##" + m_Name + m_Path.u8string()).c_str());
-        ImVec2 screenSize = { (float)GetSystemMetrics(SM_CXSCREEN), (float)GetSystemMetrics(SM_CYSCREEN) };
-        ImGui::SetNextWindowPos({ screenSize.x / 2, screenSize.y / 2 }, ImGuiCond_Always, { 0.5f, 0.5f });
-    }
-    if (ImGui::BeginPopupModal(("Close Flowgraph##" + m_Name + m_Path.u8string()).c_str(), nullptr,
-                               ImGuiWindowFlags_AlwaysAutoResize))
-    {
-        ImGui::Text("Do you want to save the changes?");
-        if (ImGui::Button("Yes"))
-        {
-            saveXML();
-            ImGui::CloseCurrentPopup();
-            FlowgraphEditor::getInstance()->removeFlowgraph(this);
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("No"))
-        {
-            ImGui::CloseCurrentPopup();
-            FlowgraphEditor::getInstance()->removeFlowgraph(this);
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Cancel"))
-        {
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::EndPopup();
-    }
-}
-
-void FlowGraph::update()
+void FGE::Flowgraph::update()
 {
     ImNodes::EditorContextSet(m_Context);
     //! handle edge creation
@@ -418,7 +143,7 @@ void FlowGraph::update()
     }
 }
 
-bool FlowGraph::loadXML(fs::path path)
+bool FGE::Flowgraph::loadXML(fs::path path)
 {
     if (!fs::exists(path))
     {
@@ -500,7 +225,7 @@ bool FlowGraph::loadXML(fs::path path)
     return true;
 }
 
-bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id)
+bool FGE::Flowgraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id)
 {
     if (id < 0)
     {
@@ -524,7 +249,7 @@ bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, 
     return false;
 }
 
-bool FlowGraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id)
+bool FGE::Flowgraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id)
 {
     auto proto = FlowgraphEditor::getInstance()->getPrototypes().find(protoClass);
     if (proto != FlowgraphEditor::getInstance()->getPrototypes().end())
@@ -534,7 +259,7 @@ bool FlowGraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, 
     return false;
 }
 
-bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id,
+bool FGE::Flowgraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, ImVec2 pos, int64_t id,
                         std::map<std::string, std::string>& defaultInputs)
 {
     if (id < 0)
@@ -559,7 +284,7 @@ bool FlowGraph::addNode(std::string name, std::shared_ptr<PrototypeNode> proto, 
     return false;
 }
 
-bool FlowGraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id,
+bool FGE::Flowgraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id,
                         std::map<std::string, std::string>& defaultInputs)
 {
     auto proto = FlowgraphEditor::getInstance()->getPrototypes().find(protoClass);
@@ -570,7 +295,7 @@ bool FlowGraph::addNode(std::string name, PrototypeNode::NodeClass& protoClass, 
     return false;
 }
 
-bool FlowGraph::removeNode(int64_t id)
+bool FGE::Flowgraph::removeNode(int64_t id)
 {
     auto node = getNode(id);
     if (node)
@@ -603,7 +328,7 @@ bool FlowGraph::removeNode(int64_t id)
     return false;
 }
 
-bool FlowGraph::addEdge(int64_t startPin, int64_t endPin, int64_t id)
+bool FGE::Flowgraph::addEdge(int64_t startPin, int64_t endPin, int64_t id)
 {
     if (id < 0)
     {
@@ -628,7 +353,7 @@ bool FlowGraph::addEdge(int64_t startPin, int64_t endPin, int64_t id)
     return false;
 }
 
-bool FlowGraph::removeEdge(int64_t id)
+bool FGE::Flowgraph::removeEdge(int64_t id)
 {
     if (m_Edges.find(id) != m_Edges.end())
     {
@@ -642,13 +367,13 @@ bool FlowGraph::removeEdge(int64_t id)
     return false;
 }
 
-void FlowGraph::resetPanning(ImVec2 pos)
+void FGE::Flowgraph::resetPanning(ImVec2 pos)
 {
     m_bResetPan = true;
     m_ResetPos = pos;
 }
 
-bool FlowGraph::addCommentBox(std::string name, ImVec2 pos, std::string comment, int64_t id)
+bool FGE::Flowgraph::addCommentBox(std::string name, ImVec2 pos, std::string comment, int64_t id)
 {
     if (addNode(name, FlowgraphEditor::getInstance()->getPrototypes().at("_commentbox"), pos, id))
     {
@@ -665,7 +390,7 @@ bool FlowGraph::addCommentBox(std::string name, ImVec2 pos, std::string comment,
     return false;
 }
 
-void FlowGraph::drawSelectedNodeProperties()
+void FGE::Flowgraph::drawSelectedNodeProperties()
 {
     const int num_selected = ImNodes::NumSelectedNodes();
     if (num_selected == 1)
@@ -697,7 +422,7 @@ void FlowGraph::drawSelectedNodeProperties()
     }
 }
 
-void FlowGraph::drawNodeProperties(Node& node)
+void FGE::Flowgraph::drawNodeProperties(Node& node)
 {
     ImGui::Text("Node Properties");
     ImGui::Separator();
@@ -799,19 +524,19 @@ void FlowGraph::drawNodeProperties(Node& node)
     ImGui::EndChild();
 }
 
-FlowGraph::FlowGraph()
+FGE::Flowgraph::Flowgraph()
 {
     m_Context = ImNodes::EditorContextCreate();
 }
 
-FlowGraph::~FlowGraph() {}
+FGE::Flowgraph::~Flowgraph() {}
 
-void FlowGraph::AddCommand(FlowGraph::FlowGraphCommand command)
+void FGE::Flowgraph::AddCommand(FGE::Flowgraph::FlowGraphCommand command)
 {
     m_CommandHistory.push_back(command);
 }
 
-bool FlowGraphXMLFile::loadFromXmlFile(fs::path path)
+bool FGE::FlowgraphXmlFile::loadFromXmlFile(fs::path path)
 {
     m_FilePlace = parseFilePlace(path);
     if (!fs::exists(path))
@@ -826,7 +551,7 @@ bool FlowGraphXMLFile::loadFromXmlFile(fs::path path)
     return false;
 }
 
-FilePlace FlowGraphXMLFile::parseFilePlace(fs::path path)
+FGE::FilePlace FGE::FlowgraphXmlFile::parseFilePlace(fs::path path)
 {
     if (path.wstring().find(L"PreyFiles\\Levels") != wstring::npos)
     {
@@ -847,7 +572,7 @@ FilePlace FlowGraphXMLFile::parseFilePlace(fs::path path)
     return FilePlace::Unknown;
 }
 
-FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
+FGE::FlowgraphXmlFile::FlowgraphXmlFile(fs::path path)
 {
     m_Path = path;
     m_FilePlace = parseFilePlace(m_Path);
@@ -882,10 +607,10 @@ FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
                 if (object.child("FlowGraph"))
                 {
                     m_FlowGraphs.emplace_back(
-                        std::make_shared<FlowGraphFromXML>(object, m_Path, object.attribute("Name").as_string(), this));
-                    m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::Entity;
+                        std::make_shared<FlowgraphFromXml>(object, m_Path, object.attribute("Name").as_string(), this));
+                    m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::Entity;
                     m_FlowGraphs.back()->m_FileInfo =
-                        FlowGraphFromXML::EntityFileInfo{ object.attribute("Name").as_string(),
+                        FGE::FlowgraphFromXml::EntityFileInfo{ object.attribute("Name").as_string(),
                                                           object.attribute("EntityId").as_ullong() };
                 }
             }
@@ -895,16 +620,16 @@ FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
             auto graph = m_Document.first_child();
             m_RelativeLevelPath = (L"flowgraphobjectlists" / m_Path.filename());
             m_FlowGraphs.emplace_back(
-                std::make_shared<FlowGraphFromXML>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
-            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::FlowgraphObjectList;
+                std::make_shared<FlowgraphFromXml>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
+            m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::FlowgraphObjectList;
         }
         else if (m_Path.parent_path().filename() == "FlowgraphModules")
         {
             auto graph = m_Document.first_child();
             m_RelativeLevelPath = (L"FlowgraphModules" / m_Path.filename());
             m_FlowGraphs.emplace_back(
-                std::make_shared<FlowGraphFromXML>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
-            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::FlowgraphModule;
+                std::make_shared<FlowgraphFromXml>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
+            m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::FlowgraphModule;
         }
     }
     else if (m_FilePlace == FilePlace::Libs)
@@ -914,27 +639,27 @@ FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
         {
             auto graph = m_Document.first_child();
             m_FlowGraphs.emplace_back(
-                std::make_shared<FlowGraphFromXML>(graph, m_Path, m_Path.filename().u8string(), this));
-            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::GlobalAction;
+                std::make_shared<FlowgraphFromXml>(graph, m_Path, m_Path.filename().u8string(), this));
+            m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::GlobalAction;
         }
         else if (m_Path.parent_path().filename() == "UIActions")
         {
             auto graph = m_Document.first_child();
             m_FlowGraphs.emplace_back(
-                std::make_shared<FlowGraphFromXML>(graph, m_Path, m_Path.filename().u8string(), this));
-            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::UIAction;
+                std::make_shared<FlowgraphFromXml>(graph, m_Path, m_Path.filename().u8string(), this));
+            m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::UIAction;
         }
         else if (m_Path.parent_path().filename() == "FlowgraphModules")
         {
             auto graph = m_Document.first_child();
             m_FlowGraphs.emplace_back(
-                std::make_shared<FlowGraphFromXML>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
-            m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::FlowgraphModule;
+                std::make_shared<FlowgraphFromXml>(graph, m_Path, graph.attribute("moduleName").as_string(), this));
+            m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::FlowgraphModule;
         }
         //        auto graph = m_Document.first_child();
-        //        m_FlowGraphs.emplace_back(std::make_shared<FlowGraphFromXML>(graph, m_Path,
+        //        m_FlowGraphs.emplace_back(std::make_shared<FlowgraphFromXml>(graph, m_Path,
         //        graph.attribute("moduleName").as_string(), this)); m_FlowGraphs.back()->m_FlowGraphType =
-        //        FlowGraphFromXML::FlowGraphType::Unknown;
+        //        FGE::FlowgraphFromXml::FlowGraphType::Unknown;
         // TODO: prefabs
     }
     else if (m_FilePlace == FilePlace::Prefabs)
@@ -948,13 +673,13 @@ FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
             {
                 if (object.child("FlowGraph"))
                 {
-                    m_FlowGraphs.emplace_back(std::make_shared<FlowGraphFromXML>(
+                    m_FlowGraphs.emplace_back(std::make_shared<FlowgraphFromXml>(
                         object, m_Path,
                         prefab.attribute("Name").as_string() + std::string("/") + object.attribute("Name").as_string(),
                         this));
-                    m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::PrefabObject;
+                    m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::PrefabObject;
                     m_FlowGraphs.back()->m_FileInfo =
-                        FlowGraphFromXML::PrefabObjectFileInfo{ object.attribute("Name").as_string() };
+                        FGE::FlowgraphFromXml::PrefabObjectFileInfo{ object.attribute("Name").as_string() };
                 }
             }
         }
@@ -963,12 +688,12 @@ FlowGraphXMLFile::FlowGraphXMLFile(fs::path path)
     {
         auto graph = m_Document.first_child();
         m_FlowGraphs.emplace_back(
-            std::make_shared<FlowGraphFromXML>(graph, m_Path, m_Path.filename().u8string(), this));
-        m_FlowGraphs.back()->m_FlowGraphType = FlowGraphFromXML::FlowGraphType::Unknown;
+            std::make_shared<FlowgraphFromXml>(graph, m_Path, m_Path.filename().u8string(), this));
+        m_FlowGraphs.back()->m_FlowGraphType = FGE::FlowgraphFromXml::FlowGraphType::Unknown;
     }
 }
 
-bool FlowGraphXMLFile::saveToXmlFile(fs::path path)
+bool FGE::FlowgraphXmlFile::saveToXmlFile(fs::path path)
 {
     if (!fs::exists(path.parent_path()))
     {
@@ -980,12 +705,12 @@ bool FlowGraphXMLFile::saveToXmlFile(fs::path path)
     return result;
 }
 
-void FlowGraphXMLFile::exportXmlFile()
+void FGE::FlowgraphXmlFile::exportXmlFile()
 {
     saveToXmlFile("./Export" / m_RelativePath);
 }
 
-FlowGraphFromXML::FlowGraphFromXML(pugi::xml_node& node, fs::path path, std::string name, FlowGraphXMLFile* parent)
+FGE::FlowgraphFromXml::FlowgraphFromXml(pugi::xml_node& node, fs::path path, std::string name, FlowgraphXmlFile* parent)
 {
     m_Name = name;
     m_Path = path;
@@ -1009,12 +734,12 @@ FlowGraphFromXML::FlowGraphFromXML(pugi::xml_node& node, fs::path path, std::str
         }
         else
         {
-            CryError("FlowGraphFromXML::FlowGraphFromXML: Could not find FlowGraph or Graph node");
+            CryError("FGE::FlowgraphFromXml::FlowgraphFromXml: Could not find FlowGraph or Graph node");
         }
     }
 }
 
-bool FlowGraphFromXML::loadXML(pugi::xml_node& RootNodeIn)
+bool FGE::FlowgraphFromXml::loadXML(pugi::xml_node& RootNodeIn)
 {
     m_Nodes.clear();
     m_Edges.clear();
@@ -1202,7 +927,7 @@ bool FlowGraphFromXML::loadXML(pugi::xml_node& RootNodeIn)
     return true;
 }
 
-bool FlowGraphFromXML::saveXML()
+bool FGE::FlowgraphFromXml::saveXML()
 {
     auto Nodes = m_RootNode.child("Nodes");
     auto Edges = m_RootNode.child("Edges");
@@ -1215,7 +940,7 @@ bool FlowGraphFromXML::saveXML()
         }
         if (!Flowgraph)
         {
-            CryError("FlowGraphFromXML::saveXML: Could not find FlowGraph or Graph node");
+            CryError("FGE::FlowgraphFromXml::saveXML: Could not find FlowGraph or Graph node");
             return false;
         }
         Nodes = Flowgraph.child("Nodes");
@@ -1272,7 +997,7 @@ bool FlowGraphFromXML::saveXML()
     return true;
 }
 
-void FlowGraphFromXML::draw()
+void FGE::FlowgraphFromXml::draw()
 {
     // TODO 2023-07-23: LookingGlass refactoring
     /*if (m_FlowGraphType == FlowGraphType::Entity) {
@@ -1284,10 +1009,10 @@ void FlowGraphFromXML::draw()
         LookingGlass::Get()->setContext(LookingGlass::LookingGlassContext::None);
     }*/
 
-    FlowGraph::draw();
+    FGE::Flowgraph::draw();
 }
 
-void FlowGraph::UndoLastCommand()
+void FGE::Flowgraph::UndoLastCommand()
 {
     // find the last command that was not undone
     for (int i = m_CommandHistory.size() - 1; i >= 0; i--)
@@ -1300,7 +1025,7 @@ void FlowGraph::UndoLastCommand()
         }
     }
 }
-void FlowGraph::RedoLastCommand()
+void FGE::Flowgraph::RedoLastCommand()
 {
     // find the last command that was undone
     for (int i = m_CommandHistory.size() - 1; i >= 0; i--)
@@ -1314,7 +1039,7 @@ void FlowGraph::RedoLastCommand()
     }
 }
 
-void FlowGraph::refreshUnknownNodes()
+void FGE::Flowgraph::refreshUnknownNodes()
 {
     for (auto& node : m_Nodes)
     {
@@ -1330,7 +1055,7 @@ void FlowGraph::refreshUnknownNodes()
     }
 }
 
-void FlowGraph::refreshNodesOfClass(PrototypeNode::NodeClass nodeClass)
+void FGE::Flowgraph::refreshNodesOfClass(PrototypeNode::NodeClass nodeClass)
 {
     for (auto& node : m_Nodes)
     {
@@ -1345,7 +1070,7 @@ void FlowGraph::refreshNodesOfClass(PrototypeNode::NodeClass nodeClass)
     }
 }
 
-void FlowGraph::FlowGraphCommand::undo()
+void FGE::Flowgraph::FlowGraphCommand::undo()
 {
     /*switch(m_Operation){
         case FlowGraphCommand::CommandOperation::ADD_NODE:
@@ -1374,4 +1099,4 @@ void FlowGraph::FlowGraphCommand::undo()
     }*/
 }
 
-void FlowGraph::FlowGraphCommand::redo() {}
+void FGE::Flowgraph::FlowGraphCommand::redo() {}

@@ -1,85 +1,47 @@
 //
 // Created by theli on 9/25/2022.
 //
-
-#ifndef CHAIRLOADER_FLOWGRAPHEDITOR_H
-#define CHAIRLOADER_FLOWGRAPHEDITOR_H
-
-struct Node;
+#pragma once
+#include <future>
 #include <pugixml.hpp>
-#include <Prey/CryFlowGraph/IFlowSystem.h>
-#include <filesystem>
-#include "ImGui/imgui.h"
+#include <Preditor/FGE/IFlowgraphEditor.h>
+#include <WindowManager/ManagedWindow.h>
 #include "ImNodes/imnodes.h"
 
 #include "Flowgraph.h"
-#include "App/AppModule.h"
-#include <future>
 
 class ImGuiDockNode;
 class IFlowNode;
+struct Node;
 
-class FlowgraphEditor : public AppModule
+namespace FGE
 {
-  public:
-    FlowgraphEditor();
+class PreditorFlowgraph;
+}
+
+class FlowgraphEditor : public ManagedWindow, public IFlowgraphEditor
+{
+public:
+    FlowgraphEditor(FGE::PreditorFlowgraph* pMainFG);
     ~FlowgraphEditor() override;
 
-    void Init() override;
-    void ShowUI() override;
-    void Update() override;
-
-    static FlowgraphEditor* getInstance() { return m_pFlowgraphEditorInstance; }
     ImGuiDockNode* getDockNode() { return m_DockNode; }
+    void setShowNodePopup(bool bShow) { m_bShowNodePopup = bShow; }
 
-    void setCurrentFlowgraph(FlowGraph* flowgraph) { p_CurrentFlowGraph = flowgraph; }
-    void removeFlowgraph(FlowGraph* flowgraph);
+    // IFlowgraphEditor
+    virtual ManagedWindow* GetWindow() override { return this; }
 
-    std::map<PrototypeNode::NodeClass, std::shared_ptr<PrototypeNode>>& getPrototypes() { return m_PrototypeNodes; }
-    void addUnknownPrototype(PrototypeNode::NodeClass nodeClass);
-    void addPinToPrototype(PrototypeNode::NodeClass nodeClass, PrototypePin pin);
+protected:
+    // ManagedWindow
+    virtual void ShowContents() override;
 
-    static void setShowNodePopup(bool bShow) { m_bShowNodePopup = bShow; }
-
-  private:
-    enum class UIState
-    {
-        Initialization,
-        Editor,
-    };
-    UIState m_UIState = UIState::Initialization;
-    enum class InitializationState
-    {
-        None,
-        LoadingPrototypes,
-        SearchingDocuments,
-        LoadingFlowgraphs,
-        Done,
-        COUNT,
-    };
-
-    bool m_bDraw = true;
-    std::map<PrototypeNode::NodeClass, std::shared_ptr<PrototypeNode>> m_PrototypeNodes;
-    std::vector<fs::path> m_BaseGameFlowgraphPaths;
-    std::vector<std::shared_ptr<FlowGraphXMLFile>> m_BaseGameFlowgaphs;
+private:
+    FGE::PreditorFlowgraph* m_pMainFG = nullptr;
+    bool m_IsFirstShow = true; //!< Whether the window is appearing for the first time.
     std::vector<FlowGraph*> m_FlowGraphs;
     FlowGraph* p_CurrentFlowGraph = nullptr;
 
-    void loadPrototypes();
-    void searchXmlDocuments(fs::path path);
-    bool findGraphNodes(pugi::xml_node& node);
-    void loadXmlDocuments();
-
-    std::mutex m_InitStatusMutex;
-    std::string m_InitStatus;
-    InitializationState m_InitState = InitializationState::None;
-    void initAsync();
-    std::future<void> m_InitFuture;
-    float m_LoadingProgress = 1;
-    fs::path m_CurrentLoadingFile;
-
     // XML Load and save
-    static inline FlowgraphEditor* m_pFlowgraphEditorInstance = nullptr;
     static inline bool m_bShowNodePopup = false;
     void DrawNodeEditorTabs();
     void DrawNodeGraphList();
@@ -87,5 +49,3 @@ class FlowgraphEditor : public AppModule
     static const inline std::string m_DockspaceName = "FlowgraphEditorDockspace";
     ImGuiDockNode* m_DockNode;
 };
-
-#endif // CHAIRLOADER_FLOWGRAPHEDITOR_H

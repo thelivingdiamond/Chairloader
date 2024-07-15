@@ -8,6 +8,7 @@
 
 struct PrototypeNode
 {
+    // TODO 2023-08-13: Capitalize
     enum class nodeCategory
     {
         NONE,
@@ -52,11 +53,10 @@ struct PrototypeNode
         UNKNOWN,
         COUNT,
     };
-    using NodeClass = std::string;
     std::string Description;
     std::vector<PrototypePin> ProtoInputs;
     std::vector<PrototypePin> ProtoOutputs;
-    NodeClass Class;
+    PrototypeNodeClass Class;
     nodeCategory Category = nodeCategory::NONE;
     unsigned mFlags = 0;
 

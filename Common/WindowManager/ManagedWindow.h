@@ -30,6 +30,9 @@ public:
 	void SetTitle(std::string_view title);
 	const std::string& GetTitle() const { return m_Title; }
 
+	//! @returns the title with ID.
+	const std::string& GetFullTitle() const { return m_FullTitle; }
+
 	//! Sets the title of the window.
 	//! Sets persistent ID of the window. Such windows can be save to the .ini.
 	void SetPersistentID(std::string_view id);

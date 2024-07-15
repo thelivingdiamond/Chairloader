@@ -1,10 +1,6 @@
 //
 // Created by theli on 10/5/2022.
 //
-
-#ifndef CHAIRLOADER_FLOWGRAPH_H
-#define CHAIRLOADER_FLOWGRAPH_H
-
 #pragma once
 
 #include "Node.h"
@@ -15,14 +11,15 @@
 #include "IChairFlowgraph.h"
 #include <ImNodes/ImNodes.h>
 
-struct FlowGraph : public IChairFlowgraph
+namespace FGE
 {
-    FlowGraph();
-    ~FlowGraph();
+
+struct Flowgraph : public IChairFlowgraph
+{
+    Flowgraph();
+    ~Flowgraph();
     ImNodesEditorContext* m_Context;
 
-    virtual void draw();
-    void drawTab();
     void update();
 
     // TODO: add gametokens
@@ -62,11 +59,11 @@ struct FlowGraph : public IChairFlowgraph
     //! add a node from a prototype with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
     bool addNode(std::string name, std::shared_ptr<PrototypeNode>, ImVec2 pos, int64_t id,
-                 std::map<std::string, std::string>& defaultInputs);
+        std::map<std::string, std::string>& defaultInputs);
     //! add a node from a prototype class name with default inputs (for XML loading)
     /// \returns true if the node was added successfully, false if the node already exists or other error
     bool addNode(std::string name, PrototypeNode::NodeClass& protoClass, ImVec2 pos, int64_t id,
-                 std::map<std::string, std::string>& defaultInputs);
+        std::map<std::string, std::string>& defaultInputs);
 
     //! add a comment box node
     /// \returns true if the node was added successfully, false if the node already exists or other error
@@ -110,7 +107,7 @@ struct FlowGraph : public IChairFlowgraph
         };
         std::variant<Node, Edge> m_StoredObject;
         CommandOperation m_Operation;
-        FlowGraph* m_pFlowgraph;
+        Flowgraph* m_pFlowgraph;
         bool m_bIsUndone = false;
         void undo();
         void redo();
@@ -121,8 +118,6 @@ struct FlowGraph : public IChairFlowgraph
     void UndoLastCommand();
     void RedoLastCommand();
 };
-
-#endif // CHAIRLOADER_FLOWGRAPH_H
 
 enum class FilePlace
 {
@@ -135,12 +130,12 @@ enum class FilePlace
     COUNT
 };
 
-class FlowGraphXMLFile;
+class FlowgraphXmlFile;
 
-class FlowGraphFromXML : public FlowGraph
+class FlowgraphFromXml : public Flowgraph
 {
-  public:
-    FlowGraphFromXML(pugi::xml_node& node, fs::path path, std::string name, FlowGraphXMLFile* parent);
+public:
+    FlowgraphFromXml(pugi::xml_node& node, fs::path path, std::string name, FlowgraphXmlFile* parent);
     FilePlace m_FilePlace;
 
     enum class FlowGraphType
@@ -182,12 +177,12 @@ class FlowGraphFromXML : public FlowGraph
     {
     };
     std::variant<EntityFileInfo, FlowgraphModuleFileInfo, FlowgraphObjectListFileInfo, GlobalActionFileInfo,
-                 UIActionFileInfo, PrefabObjectFileInfo, UnknownFileInfo>
+        UIActionFileInfo, PrefabObjectFileInfo, UnknownFileInfo>
         m_FileInfo;
     FlowGraphType m_FlowGraphType;
     pugi::xml_node m_RootNode;
     std::string m_FlowGraphName;
-    FlowGraphXMLFile* m_pParent;
+    FlowgraphXmlFile* m_pParent;
 
     bool loadXML(pugi::xml_node& node);
     bool saveXML() override;
@@ -195,9 +190,9 @@ class FlowGraphFromXML : public FlowGraph
     void draw() override;
 };
 
-class FlowGraphXMLFile : public FlowGraph
+class FlowgraphXmlFile : public Flowgraph
 {
-  public:
+public:
     fs::path m_RelativePath;
     FilePlace m_FilePlace;
 
@@ -205,12 +200,14 @@ class FlowGraphXMLFile : public FlowGraph
     fs::path m_LevelName;
     fs::path m_RelativeLevelPath;
 
-    std::vector<std::shared_ptr<FlowGraphFromXML>> m_FlowGraphs;
+    std::vector<std::shared_ptr<FlowgraphFromXml>> m_FlowGraphs;
     pugi::xml_document m_Document; // super important document object that all the child flowgraph nodes will use
-    FlowGraphXMLFile() = default;
-    FlowGraphXMLFile(fs::path path);
+    FlowgraphXmlFile() = default;
+    FlowgraphXmlFile(fs::path path);
     FilePlace parseFilePlace(fs::path path);
     bool loadFromXmlFile(fs::path path);
     bool saveToXmlFile(fs::path path);
     void exportXmlFile();
 };
+
+}
