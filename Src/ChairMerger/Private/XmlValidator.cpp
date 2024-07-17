@@ -6,21 +6,21 @@
 #include <ChairMerger/XmlValidator.h>
 
 XmlValidator::Result XmlValidator::ValidateNode(
+    const Context& context,
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
-    const XmlTypeLibrary* pTypeLib,
     bool recurse)
 {
     Result result;
     XmlErrorStack errorStack(node.name());
-    ValidateNodeInternal(node, policy, errorStack, pTypeLib, result, recurse);
+    ValidateNodeInternal(context, node, policy, errorStack, result, recurse);
     return result;
 }
 
 std::string XmlValidator::ValidateAttribute(
+    const Context& context,
     const pugi::xml_attribute& nodeAttr,
-    const MergingPolicy3::Attribute& policyAttr,
-    const XmlTypeLibrary* pTypeLib)
+    const MergingPolicy3::Attribute& policyAttr)
 {
     if (nodeAttr.as_string()[0] == '\0')
     {
@@ -28,9 +28,9 @@ std::string XmlValidator::ValidateAttribute(
         if (!policyAttr.allowEmpty)
             return "Attribute can't be empty";
     }
-    else if (pTypeLib)
+    else if (context.pTypeLib)
     {
-        const IXmlType* pType = pTypeLib->FindType(policyAttr.type);
+        const IXmlType* pType = context.pTypeLib->FindType(policyAttr.type);
         if (!pType)
             throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policyAttr.type));
 
@@ -43,7 +43,10 @@ std::string XmlValidator::ValidateAttribute(
     return std::string();
 }
 
-std::string XmlValidator::ValidateTextNode(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlTypeLibrary* pTypeLib)
+std::string XmlValidator::ValidateTextNode(
+    const Context& context,
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy)
 {
     CRY_ASSERT(XmlUtils::IsTextNode(node));
 
@@ -55,9 +58,9 @@ std::string XmlValidator::ValidateTextNode(const pugi::xml_node& node, const Mer
     if (!policy.IsEmptyTextAllowed() && value.empty())
         return "Plain-text can't be empty";
 
-    if (pTypeLib)
+    if (context.pTypeLib)
     {
-        const IXmlType* pType = pTypeLib->FindType(policy.GetTextType());
+        const IXmlType* pType = context.pTypeLib->FindType(policy.GetTextType());
         if (!pType)
             throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policy.GetTextType()));
 
@@ -81,15 +84,15 @@ bool XmlValidator::NodeHasChildElements(const pugi::xml_node& node)
 }
 
 void XmlValidator::ValidateNodeInternal(
+    const Context& context,
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack,
-    const XmlTypeLibrary* pTypeLib,
     Result& result,
     bool recurse)
 {
-    ValidateAttributes(node, policy, errorStack, pTypeLib, result);
-    ValidateText(node, policy, errorStack, pTypeLib, result);
+    ValidateAttributes(context, node, policy, errorStack, result);
+    ValidateText(context, node, policy, errorStack, result);
     ValidateCollection(node, policy, errorStack, result);
     ValidateConstraints(node, policy, errorStack, result);
 
@@ -115,7 +118,7 @@ void XmlValidator::ValidateNodeInternal(
 
             if (childPolicy)
             {
-                ValidateNodeInternal(childNode, *childPolicy, childErrorStack, pTypeLib, result, true);
+                ValidateNodeInternal(context, childNode, *childPolicy, childErrorStack, result, true);
             }
             else
             {
@@ -128,10 +131,10 @@ void XmlValidator::ValidateNodeInternal(
 }
 
 void XmlValidator::ValidateAttributes(
+    const Context& context,
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack,
-    const XmlTypeLibrary* pTypeLib,
     Result& result)
 {
     // Check existing attributes
@@ -147,7 +150,7 @@ void XmlValidator::ValidateAttributes(
             continue;
         }
 
-        std::string attrError = ValidateAttribute(nodeAttr, *policyAttr, pTypeLib);
+        std::string attrError = ValidateAttribute(context, nodeAttr, *policyAttr);
 
         if (!attrError.empty())
             AddError(result, errorStack, attrError, nodeAttr.name());
@@ -162,10 +165,10 @@ void XmlValidator::ValidateAttributes(
 }
 
 void XmlValidator::ValidateText(
+    const Context& context,
     const pugi::xml_node& node,
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack,
-    const XmlTypeLibrary* pTypeLib,
     Result& result)
 {
     pugi::xml_node textNode;
@@ -182,7 +185,7 @@ void XmlValidator::ValidateText(
             if (policy.GetTextType().empty())
                 errorStack.ThrowException("Plain-text is not allowed in this node");
 
-            std::string error = ValidateTextNode(childNode, policy, pTypeLib);
+            std::string error = ValidateTextNode(context, childNode, policy);
 
             if (!error.empty())
                 AddError(result, errorStack, error);

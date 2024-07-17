@@ -9,6 +9,15 @@ class XmlTypeLibrary;
 class CHAIRMERGER_EXPORT XmlValidator
 {
 public:
+    enum class ENodeType
+    {
+        //! File to be used by Prey
+        Prey,
+
+        //! Base node used during merging.
+        MergingBase,
+    };
+
     struct ValidationError
     {
         //! Path to the node
@@ -35,57 +44,66 @@ public:
         std::string ToString(std::string_view indent = std::string_view()) const;
     };
 
+    struct Context
+    {
+        //! Node type.
+        ENodeType nodeType = ENodeType::Prey;
+
+        //! Optional type library for type validation.
+        const XmlTypeLibrary* pTypeLib = nullptr;
+    };
+
     //! Validates a node that is matches the policy.
     //! @param  node        Node to validate
     //! @param  policy      Merging policy.
     //! @param  pTypeLib    Type library for type validation.
     //! @param  recurse     Whether to validate children.
     static Result ValidateNode(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
-        const XmlTypeLibrary* pTypeLib = nullptr,
         bool recurse = true);
 
     //! Validates the attribute value.
     //! @returns Error text or empty string if no error.
     static std::string ValidateAttribute(
+        const Context& context,
         const pugi::xml_attribute& nodeAttr,
-        const MergingPolicy3::Attribute& policyAttr,
-        const XmlTypeLibrary* pTypeLib = nullptr);
+        const MergingPolicy3::Attribute& policyAttr);
 
     //! Validates a plain-text node.
     //! @returns Error text or empty string if no error.
     static std::string ValidateTextNode(
+        const Context& context,
         const pugi::xml_node& node,
-        const MergingPolicy3& policy,
-        const XmlTypeLibrary* pTypeLib = nullptr);
+        const MergingPolicy3& policy);
 
     //! Checks if a node has child non-text nodes.
     static bool NodeHasChildElements(const pugi::xml_node& node);
 
 private:
     static void ValidateNodeInternal(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,
-        const XmlTypeLibrary* pTypeLib,
         Result& result,
         bool recurse);
 
     //! Validates attributes and adds errors to the result.
     static void ValidateAttributes(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,
-        const XmlTypeLibrary* pTypeLib,
         Result& result);
 
     //! Validates text value and adds errors to the result.
     static void ValidateText(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,
-        const XmlTypeLibrary* pTypeLib,
         Result& result);
 
     //! Validates that all children match the collection type.

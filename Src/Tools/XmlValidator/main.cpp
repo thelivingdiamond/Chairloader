@@ -97,10 +97,15 @@ int main(int argc, char** argv)
                 }
 
                 stats.checked++;
+
+                XmlValidator::Context context;
+                context.nodeType = XmlValidator::ENodeType::MergingBase;
+                context.pTypeLib = &typeLib;
+
                 XmlValidator::Result result = XmlValidator::ValidateNode(
+                    context,
                     xmlDoc.first_child(),
-                    filePolicy->GetRootNode(),
-                    &typeLib);
+                    filePolicy->GetRootNode());
 
                 if (!result)
                 {

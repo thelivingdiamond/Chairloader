@@ -79,7 +79,11 @@ TEST_P(XmlMerger3SuccessTest, Success)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Validate base
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
+    XmlValidator::Context valCtx;
+    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.pTypeLib = pTypeLibrary.get();
+
+    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
     ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
 
     // Merge
@@ -88,7 +92,7 @@ TEST_P(XmlMerger3SuccessTest, Success)
     XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
 
     // Validate output
-    validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
+    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
     ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
     // Compare with expected
@@ -117,7 +121,11 @@ TEST_P(XmlMerger3FailTest, Fail)
     // Validate base
     if (!fs::exists(skipValidationPath))
     {
-        validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), pTypeLibrary.get());
+        XmlValidator::Context valCtx;
+        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.pTypeLib = pTypeLibrary.get();
+
+        validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
         ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
     }
 

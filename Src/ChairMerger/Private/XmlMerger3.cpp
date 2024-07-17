@@ -127,7 +127,10 @@ void XmlMerger3::MergeAttributes(
         else
         {
             // Validate value
-            std::string attrError = XmlValidator::ValidateAttribute(modAttr, *pPolicyAttr, context.pTypeLib);
+            XmlValidator::Context valCtx;
+            valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+            valCtx.pTypeLib = context.pTypeLib;
+            std::string attrError = XmlValidator::ValidateAttribute(valCtx, modAttr, *pPolicyAttr);
 
             if (!attrError.empty())
                 modErrorStack.ThrowException(fmt::format("Attribute {}: {}", attrName, attrError));
@@ -153,7 +156,10 @@ void XmlMerger3::MergeText(
         return;
 
     // Validate
-    std::string error = XmlValidator::ValidateTextNode(modTextNode, policy, context.pTypeLib);
+    XmlValidator::Context valCtx;
+    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.pTypeLib = context.pTypeLib;
+    std::string error = XmlValidator::ValidateTextNode(valCtx, modTextNode, policy);
 
     if (!error.empty())
         modErrorStack.ThrowException(fmt::format("Text validation failure: {}", error));
@@ -526,7 +532,10 @@ void XmlMerger3::ValidateNewNode(
     const MergingPolicy3& childModPolicy,
     const XmlErrorStack& childModErrorStack)
 {
-    XmlValidator::Result validationResult = XmlValidator::ValidateNode(childModNode, childModPolicy, context.pTypeLib);
+    XmlValidator::Context valCtx;
+    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.pTypeLib = context.pTypeLib;
+    XmlValidator::Result validationResult = XmlValidator::ValidateNode(valCtx, childModNode, childModPolicy);
 
     if (!validationResult)
     {

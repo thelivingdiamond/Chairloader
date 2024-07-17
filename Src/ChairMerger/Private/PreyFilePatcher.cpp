@@ -90,7 +90,7 @@ void PreyFilePatcher::PatchDirectory(
             continue;
         }
 
-        // Not validating original file. It nay have old patches, which will be incompatible
+        // Not validating original file. It may have old patches, which will be incompatible
         // with potentially updated merging policy.
 
         // Patch
@@ -98,10 +98,14 @@ void PreyFilePatcher::PatchDirectory(
         PatchDocument(xmlDoc, *pFilePolicy, errorStack);
 
         // Validate
+        XmlValidator::Context context;
+        context.nodeType = XmlValidator::ENodeType::MergingBase;
+        context.pTypeLib = pTypeLib;
+
         XmlValidator::Result validationResult = XmlValidator::ValidateNode(
+            context,
             xmlDoc.first_child(),
-            pFilePolicy->GetRootNode(),
-            pTypeLib);
+            pFilePolicy->GetRootNode());
 
         if (!validationResult)
         {

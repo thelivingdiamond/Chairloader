@@ -30,7 +30,11 @@ TEST(PreyFilePatcherTest, PatchNode)
     PreyFilePatcher::PatchDocument(baseDoc, policy, errorStack);
 
     // Validate output
-    XmlValidator::Result validationResult = XmlValidator::ValidateNode(baseDoc.first_child(), policy.GetRootNode(), &typeLibrary);
+    XmlValidator::Context valCtx;
+    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.pTypeLib = &typeLibrary;
+
+    XmlValidator::Result validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
     ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
     // Compare with expected
