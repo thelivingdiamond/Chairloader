@@ -122,3 +122,13 @@ void XmlUtils::ThrowMissingNode(const XmlErrorStack& errorStack, std::string_vie
 {
     errorStack.ThrowException(fmt::format("Required node '{}' not found", name));
 }
+
+pugi::xml_attribute XmlUtils::GetOrAddAttribute(pugi::xml_node node, const char* name)
+{
+    pugi::xml_attribute attr = node.attribute(name);
+
+    if (!attr)
+        attr = node.append_attribute(name);
+
+    return attr;
+}

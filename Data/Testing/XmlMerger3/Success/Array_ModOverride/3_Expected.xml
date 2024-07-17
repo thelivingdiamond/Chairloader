@@ -4,7 +4,7 @@
         ch:index="-1000"
         aAttr1="aVal1_-1_Mod"
         aAttr2="aVal2_-1_Mod"
-        ch:arrayMod="Chairloader.TestMod" />
+        ch:arrayMod="Chairloader.TestMod1" />
     <A
         ch:index="1000"
         aAttr1="aVal1_1"
@@ -17,9 +17,14 @@
         ch:arrayMod="__prey__" />
     <A
         ch:index="2500"
-        aAttr1="aVal1_2.5_Mod"
-        aAttr2="aVal2_2.5_Mod"
-        ch:arrayMod="Chairloader.TestMod" />
+        aAttr1="aVal1_2.5_Mod2"
+        aAttr2="aVal2_2.5_Mod2"
+        ch:arrayMod="Chairloader.TestMod1" />
+    <A
+        ch:index="2600"
+        aAttr1="aVal1_2.5_Mod2"
+        aAttr2="aVal2_2.5_Mod2"
+        ch:arrayMod="Chairloader.TestMod2" />
     <A
         ch:index="3000"
         aAttr1="aVal1_3"
@@ -34,5 +39,10 @@
         ch:index="8000"
         aAttr1="aVal1_8_Mod"
         aAttr2="aVal2_8_Mod"
-        ch:arrayMod="Chairloader.TestMod" />
+        ch:arrayMod="Chairloader.TestMod1" />
+    <A
+        ch:index="8000"
+        aAttr1="aVal1_2.5_Mod2"
+        aAttr2="aVal2_2.5_Mod2"
+        ch:arrayMod="Chairloader.TestMod2" />
 </Root>

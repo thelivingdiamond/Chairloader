@@ -5,6 +5,8 @@ class MetaAttributes
 public:
     static constexpr char PREFIX[] = "ch:";
     static constexpr char APPLY_IF[] = "ch:apply_if";
+    static constexpr char ARRAY_SOURCE[] = "ch:arrayMod";
+    static constexpr char ARRAY_SOURCE_PREY[] = "__prey__";
 
     //! Gets the node's apply_if attribute.
     //! @param  node    The node.

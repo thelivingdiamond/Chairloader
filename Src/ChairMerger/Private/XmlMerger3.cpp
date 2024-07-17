@@ -242,7 +242,7 @@ void XmlMerger3::MergeChildrenArray(
 
     int i = 0;
 
-    VerifyArrayNodeIsSorted(baseNode, policy, modErrorStack);
+    PreprocessArrayNode(baseNode, policy, modErrorStack);
 
     // Merge nodes
     for (const pugi::xml_node childModNode : modNode.children())
@@ -291,9 +291,12 @@ void XmlMerger3::MergeChildrenArray(
         }
 
         // Find a node
+        std::string_view childModNodeSource = childModNode.attribute(MetaAttributes::ARRAY_SOURCE).as_string(MetaAttributes::ARRAY_SOURCE_PREY);
+
         auto [childBaseNode, foundExactBaseNode] = FindBaseNodeByIndex(
             baseNode,
             childModNodeIndex,
+            childModNodeSource,
             policy,
             modErrorStack);
 
@@ -302,18 +305,31 @@ void XmlMerger3::MergeChildrenArray(
             // Merge the node
             MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack);
         }
-        else if (childBaseNode)
-        {
-            // Append before the found node
-            pugi::xml_node addedNode = baseNode.insert_copy_before(childModNode, childBaseNode);
-            MetaAttributes::StripNode(addedNode);
-            ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
-        }
         else
         {
-            // Append to the end
-            pugi::xml_node addedNode = baseNode.append_copy(childModNode);
+            if (childModNodeSource != MetaAttributes::ARRAY_SOURCE_PREY)
+            {
+                childModErrorStack.ThrowException(fmt::format(
+                    "Base array node {}:{} not found",
+                    childModNodeSource,
+                    childModNodeIndex));
+            }
+
+            pugi::xml_node addedNode;
+
+            if (childBaseNode)
+            {
+                // Append before the found node
+                addedNode = baseNode.insert_copy_before(childModNode, childBaseNode);
+            }
+            else
+            {
+                // Append to the end
+                addedNode = baseNode.append_copy(childModNode);
+            }
+
             MetaAttributes::StripNode(addedNode);
+            XmlUtils::GetOrAddAttribute(addedNode, MetaAttributes::ARRAY_SOURCE).set_value(context.modName.c_str());
             ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
         }
 
@@ -386,6 +402,7 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
 std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
     pugi::xml_node& parentBaseNode,
     ArrayIndex index,
+    std::string_view source,
     const MergingPolicy3& parentPolicy,
     const XmlErrorStack& errorStack)
 {
@@ -429,10 +446,17 @@ std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
 
         if (index == childBaseNodeIndex)
         {
-            // Found exact match
-            resultXmlNode = childBaseNode;
-            exact = true;
-            break;
+            // Found exact match by index so check the source
+            std::string_view childBaseNodeSource = childBaseNode.attribute(MetaAttributes::ARRAY_SOURCE).as_string(MetaAttributes::ARRAY_SOURCE_PREY);
+
+            if (childBaseNodeSource == source)
+            {
+                resultXmlNode = childBaseNode;
+                exact = true;
+                break;
+            }
+
+            // Source is different. Next check will return the item to insert before of.
         }
 
         if (index < childBaseNodeIndex)
@@ -471,8 +495,8 @@ pugi::xml_node XmlMerger3::FindTextNode(const pugi::xml_node& parentBaseNode, co
     return result;
 }
 
-void XmlMerger3::VerifyArrayNodeIsSorted(
-    const pugi::xml_node& baseNode,
+void XmlMerger3::PreprocessArrayNode(
+    pugi::xml_node& baseNode,
     const MergingPolicy3& policy,
     const XmlErrorStack& modErrorStack)
 {
@@ -483,7 +507,7 @@ void XmlMerger3::VerifyArrayNodeIsSorted(
     ArrayIndex prevBaseIdx = std::numeric_limits<ArrayIndex>::min();
     int i = 0;
 
-    for (const pugi::xml_node childBaseNode : baseNode.children())
+    for (pugi::xml_node childBaseNode : baseNode.children())
     {
         if (childBaseNode.type() != pugi::node_element)
             continue;
@@ -520,6 +544,10 @@ void XmlMerger3::VerifyArrayNodeIsSorted(
                 "Base XML is invalid. This is not supposed to happen",
                 prevBaseIdx, childBaseNodeIndex));
         }
+
+        // Set source if not set
+        if (!childBaseNode.attribute(MetaAttributes::ARRAY_SOURCE))
+            childBaseNode.append_attribute(MetaAttributes::ARRAY_SOURCE).set_value(MetaAttributes::ARRAY_SOURCE_PREY);
 
         prevBaseIdx = childBaseNodeIndex;
         i++;

@@ -9,6 +9,9 @@ class XmlTypeLibrary;
 
 struct XmlMergerContext
 {
+    //! Name of the mod being merged.
+    std::string modName;
+
     //! Optional type library for validation.
     const XmlTypeLibrary* pTypeLib = nullptr;
 };
@@ -125,6 +128,7 @@ private:
     static std::pair<pugi::xml_node, bool> FindBaseNodeByIndex(
         pugi::xml_node& parentBaseNode,
         ArrayIndex index,
+        std::string_view source,
         const MergingPolicy3& parentPolicy,
         const XmlErrorStack& errorStack);
 
@@ -138,8 +142,9 @@ private:
         bool isMod);
 
     //! Checks that the node's children have index and are sorted ASC (strict).
-    static void VerifyArrayNodeIsSorted(
-        const pugi::xml_node& baseNode,
+    //! Adds array source attribute.
+    static void PreprocessArrayNode(
+        pugi::xml_node& baseNode,
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
 

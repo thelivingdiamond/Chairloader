@@ -127,4 +127,8 @@ public:
     {
         return node.type() == pugi::node_pcdata || node.type() == pugi::node_cdata;
     }
+
+    //! Finds an attribute in the node. If it doesn't exist, appends it.
+    //! @returns The attribute.
+    static pugi::xml_attribute GetOrAddAttribute(pugi::xml_node node, const char* name);
 };
