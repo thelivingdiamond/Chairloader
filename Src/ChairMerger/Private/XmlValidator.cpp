@@ -4,6 +4,7 @@
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
+#include "MetaAttributes.h"
 
 XmlValidator::Result XmlValidator::ValidateNode(
     const Context& context,
@@ -144,7 +145,11 @@ void XmlValidator::ValidateAttributes(
 
         if (!policyAttr)
         {
-            if (!policy.IsAllowingUnknownAttributes())
+            bool allowAttr = false;
+            allowAttr |= policy.IsAllowingUnknownAttributes();
+            allowAttr |= context.nodeType == ENodeType::MergingBase && MetaAttributes::IsKnownMetaAttr(nodeAttr);
+
+            if (!allowAttr)
                 AddError(result, errorStack, "Unknown attribute", nodeAttr.name());
 
             continue;

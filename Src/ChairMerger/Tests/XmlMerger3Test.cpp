@@ -63,19 +63,39 @@ protected:
 
 TEST_P(XmlMerger3SuccessTest, Success)
 {
+    std::vector<std::pair<std::string, fs::path>> modPaths;
     std::string testName = GetParam();
     fs::path testDir = m_TestDir / fs::u8path(testName);
     fs::path policyPath = testDir / "0_Policy.xml";
     fs::path basePath = testDir / "1_Base.xml";
-    fs::path modPath = testDir / "2_Mod.xml";
     fs::path expectedPath = testDir / "3_Expected.xml";
+
+    fs::path singleModPath = testDir / "2_Mod.xml";
+
+    if (fs::exists(singleModPath))
+    {
+        // Only use single mod
+        modPaths.push_back(std::make_pair("Chairloader.TestMod", singleModPath));
+    }
+    else
+    {
+        // Merge multiple mods
+        for (int i = 1; i < 100; i++)
+        {
+            fs::path modPath = testDir / fmt::format("2_Mod{}.xml", i);
+            
+            if (!fs::exists(modPath))
+                break;
+
+            modPaths.push_back(std::make_pair(fmt::format("Chairloader.TestMod{}", i), modPath));
+        }
+    }
 
     XmlValidator::Result validationResult;
     std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
 
     pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath);
-    pugi::xml_document modDoc = XmlUtils::LoadDocument(modPath);
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Validate base
@@ -87,9 +107,14 @@ TEST_P(XmlMerger3SuccessTest, Success)
     ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
 
     // Merge
-    XmlMergerContext context;
-    context.pTypeLib = pTypeLibrary.get();
-    XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
+    for (auto& i : modPaths)
+    {
+        pugi::xml_document modDoc = XmlUtils::LoadDocument(i.second);
+        XmlMergerContext context;
+        context.modName = i.first;
+        context.pTypeLib = pTypeLibrary.get();
+        XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
+    }
 
     // Validate output
     validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
@@ -158,6 +183,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_Append",
         "Array",
         "Array_ApplyIf",
+        "Array_ModOverride",
         "Dict_ApplyIf"));
 
 INSTANTIATE_TEST_SUITE_P(
@@ -177,6 +203,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_MissingKeyAttr2",
         "Array_MissingIndex",
         "Array_MissingIndexInBase",
+        "Array_UnknownMod",
         "Array_InvalidIndex",
         "Array_InvalidIndexInBase",
         "Array_UnsortedBase1",
