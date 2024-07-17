@@ -55,7 +55,7 @@ jobs:
         buildPreset: 'ninja-vcpkg'
         buildPresetAdditionalArgs: "[`--config`, `${{matrix.buildType}}`]"
         testPreset: 'ninja-vcpkg'
-        testPresetAdditionalArgs: "[`--config`, `${{matrix.buildType}}`]"
+        testPresetAdditionalArgs: "[`--build-config`, `${{matrix.buildType}}`]"
       env:
         VCPKG_FORCE_SYSTEM_BINARIES: 1
 
