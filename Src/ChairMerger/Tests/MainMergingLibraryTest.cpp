@@ -60,6 +60,7 @@ TEST(MainMergingLibraryTest, TestMerging)
 
         // Merge
         XmlMergerContext context;
+        context.modName = "Chairloader.TestMod";
         context.pTypeLib = &typeLibrary;
         XmlMerger3::MergeDocument(context, baseDoc, modDoc, *pPolicy);
 

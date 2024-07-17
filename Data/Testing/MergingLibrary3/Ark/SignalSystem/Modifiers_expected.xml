@@ -41,7 +41,8 @@
             </outputEffects>
         </rule>
         <rule
-            ch:index="2050">
+            ch:index="2050"
+            ch:arrayMod="Chairloader.TestMod">
             <inputFilters>
                 <matchingKey
                     signalID="45456" />
