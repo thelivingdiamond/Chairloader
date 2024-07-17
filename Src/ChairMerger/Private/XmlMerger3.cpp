@@ -328,6 +328,9 @@ void XmlMerger3::MergeChildrenArray(
                 addedNode = baseNode.append_copy(childModNode);
             }
 
+            if (context.modName.empty())
+                childModErrorStack.ThrowException("Mod name is empty in context (logic error)");
+
             MetaAttributes::StripNode(addedNode);
             XmlUtils::GetOrAddAttribute(addedNode, MetaAttributes::ARRAY_SOURCE).set_value(context.modName.c_str());
             ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
@@ -544,10 +547,6 @@ void XmlMerger3::PreprocessArrayNode(
                 "Base XML is invalid. This is not supposed to happen",
                 prevBaseIdx, childBaseNodeIndex));
         }
-
-        // Set source if not set
-        if (!childBaseNode.attribute(MetaAttributes::ARRAY_SOURCE))
-            childBaseNode.append_attribute(MetaAttributes::ARRAY_SOURCE).set_value(MetaAttributes::ARRAY_SOURCE_PREY);
 
         prevBaseIdx = childBaseNodeIndex;
         i++;
