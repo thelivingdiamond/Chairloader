@@ -38,22 +38,6 @@ std::pair<std::string, std::string> MergingPolicy3::Collection::GetKeyValuePair(
 //---------------------------------------------------------------------------------
 // MergingPolicy3
 //---------------------------------------------------------------------------------
-void MergingPolicy3::SetNodeName(std::string_view nodeName, bool isRegex)
-{
-    m_NodeName = nodeName;
-
-    if (isRegex)
-    {
-        m_NodeNameRegex = std::regex(m_NodeName);
-        m_IsNodeNameRegex = true;
-    }
-    else
-    {
-        m_NodeNameRegex = std::regex();
-        m_IsNodeNameRegex = false;
-    }
-}
-
 const MergingPolicy3::Attribute* MergingPolicy3::FindAttribute(std::string_view name) const
 {
     for (const Attribute& attr : m_Attributes)
@@ -68,19 +52,16 @@ const MergingPolicy3::Attribute* MergingPolicy3::FindAttribute(std::string_view 
 const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
 {
     // Check exact nodes
-    for (const MergingPolicy3& i : m_ChildNodes)
-    {
-        if (i.GetNodeName() == name)
-            return &i;
-    }
+    if (auto it = m_ChildNodes.find(name); it != m_ChildNodes.end())
+        return &it->second;
 
     // Check regex
     std::string nameAsStr(name);
 
-    for (const MergingPolicy3& i : m_ChildNodesRegex)
+    for (const auto& [regex, node] : m_ChildNodesRegex)
     {
-        if (std::regex_match(nameAsStr, i.m_NodeNameRegex))
-            return &i;
+        if (std::regex_match(nameAsStr, regex))
+            return &node;
     }
 
     // Recursive if not found
@@ -90,27 +71,20 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
     return nullptr;
 }
 
-void MergingPolicy3::AppendNode(const MergingPolicy3& node)
+void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const MergingPolicy3& node)
 {
-    GetCollectionForNewNode(node).emplace_back(node);
+    if (isRegex)
+    {
+        m_ChildNodesRegex.emplace_back(std::regex(std::string(name)), node);
+    }
+    else
+    {
+        m_ChildNodes.emplace(std::string(name), node);
+    }
 }
 
-void MergingPolicy3::AppendNode(MergingPolicy3&& node)
+void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
-    GetCollectionForNewNode(node).emplace_back(std::move(node));
-}
-
-void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack, int indexInParent)
-{
-    XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_NAME);
-    errorStack.SetIndex(indexInParent);
-
-    SetNodeName(
-        XmlUtils::GetRequiredAttr(errorStack, node, "name").as_string(),
-        node.attribute("nameRegex").as_bool(false));
-
-    errorStack.SetId("name", GetNodeName());
-
     SetRecursive(node.attribute("recursive").as_bool(false));
     SetTextType(node.attribute("textType").as_string(""));
     SetEmptyTextAllowed(node.attribute("allowEmptyText").as_bool(false));
@@ -144,14 +118,6 @@ void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack
     }
 
     XmlUtils::ThrowMissingNodeIfFalse(errorStack, XML_NODE_ATTRIBUTES, foundAttributes);
-}
-
-std::vector<MergingPolicy3>& MergingPolicy3::GetCollectionForNewNode(const MergingPolicy3& node)
-{
-    if (node.IsNodeNameRegex())
-        return m_ChildNodesRegex;
-    else
-        return m_ChildNodes;
 }
 
 void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
@@ -347,12 +313,19 @@ void MergingPolicy3::LoadXmlChildNodes(const pugi::xml_node& node, const XmlErro
     {
         if (!strcmp(childNode.name(), XML_NODE_NAME))
         {
+            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+            childErrorStack.SetIndex(i);
+
+            std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+            childErrorStack.SetId("name", name);
+            bool isRegex = childNode.attribute("nameRegex").as_bool(false);
+
             if (m_Collection.type == ECollectionType::None)
-                errorStack.ThrowException("Child nodes are not allowed if collection is not set");
+                childErrorStack.ThrowException("Child nodes are not allowed if collection is not set");
 
             MergingPolicy3 item;
-            item.LoadXmlNode(childNode, errorStack, i);
-            AppendNode(std::move(item));
+            item.LoadXmlNode(childNode, childErrorStack);
+            AppendNode(name, isRegex, item);
         }
 
         i++;

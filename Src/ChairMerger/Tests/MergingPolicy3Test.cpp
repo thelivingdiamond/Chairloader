@@ -24,20 +24,30 @@ static void ExpectEqualsChildConstraints(const MergingPolicy3::ChildConstraints&
     EXPECT_THAT(expected.uniqueAttributes, testing::ContainerEq(actual.uniqueAttributes));
 }
 
-static void ExpectEqualsMergingPolicy3List(const std::vector<MergingPolicy3>& expected, const std::vector<MergingPolicy3>& actual)
+static void ExpectEqualsMergingPolicy3List(const MergingPolicy3::ChildNodeMap& expected, const MergingPolicy3::ChildNodeMap& actual)
+{
+    ASSERT_EQ(expected.size(), actual.size());
+
+    for (const auto& [name, node] : expected)
+    {
+        auto it = actual.find(name);
+        ASSERT_NE(actual.end(), it);
+        ExpectEqualsMergingPolicy3(node, it->second);
+    }
+}
+
+static void ExpectEqualsMergingPolicy3List(const MergingPolicy3::RegexChildNodeList& expected, const MergingPolicy3::RegexChildNodeList& actual)
 {
     ASSERT_EQ(expected.size(), actual.size());
 
     for (size_t i = 0; i < expected.size(); i++)
     {
-        ExpectEqualsMergingPolicy3(expected.at(i), actual.at(i));
+        ExpectEqualsMergingPolicy3(expected[i].second, actual[i].second);
     }
 }
 
 static void ExpectEqualsMergingPolicy3(const MergingPolicy3& expected, const MergingPolicy3& actual)
 {
-    EXPECT_EQ(expected.GetNodeName(), actual.GetNodeName());
-    EXPECT_EQ(expected.IsNodeNameRegex(), actual.IsNodeNameRegex());
     EXPECT_EQ(expected.IsRecursive(), actual.IsRecursive());
 
     ASSERT_EQ(expected.GetAttributes().size(), actual.GetAttributes().size());
@@ -59,14 +69,11 @@ static MergingPolicy3 CreateExpectedNode()
 {
     MergingPolicy3 expected;
     {
-        expected.SetNodeName("RootNodeName");
         expected.GetCollection().type = MergingPolicy3::ECollectionType::Dict;
         expected.GetCollection().keyChildName = true;
 
         MergingPolicy3 testNode1;
         {
-            testNode1.SetNodeName("TestNode1");
-
             {
                 MergingPolicy3::Attribute attr;
                 attr.name = "testValue";
@@ -81,8 +88,6 @@ static MergingPolicy3 CreateExpectedNode()
             {
                 MergingPolicy3 positiveSignalValue;
                 {
-                    positiveSignalValue.SetNodeName("PositiveSignalValue");
-
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalInput";
@@ -106,13 +111,11 @@ static MergingPolicy3 CreateExpectedNode()
                         positiveSignalValue.GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode(positiveSignalValue);
+                    testNode1.AppendNode("PositiveSignalValue", false, positiveSignalValue);
                 }
 
                 MergingPolicy3 negativeSignalValue;
                 {
-                    negativeSignalValue.SetNodeName("NegativeSignalValue");
-
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "signalInput";
@@ -142,12 +145,11 @@ static MergingPolicy3 CreateExpectedNode()
                         negativeSignalValue.GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode(negativeSignalValue);
+                    testNode1.AppendNode("NegativeSignalValue", false, negativeSignalValue);
                 }
 
                 MergingPolicy3 anySignalValue;
                 {
-                    anySignalValue.SetNodeName(".*SignalValue", true);
                     anySignalValue.SetRecursive(true);
 
                     {
@@ -167,11 +169,11 @@ static MergingPolicy3 CreateExpectedNode()
                         anySignalValue.GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode(anySignalValue);
+                    testNode1.AppendNode(".*SignalValue", true, anySignalValue);
                 }
             }
 
-            expected.AppendNode(testNode1);
+            expected.AppendNode("TestNode1", false, testNode1);
         }
     }
 

@@ -92,12 +92,8 @@ public:
         std::vector<std::string> uniqueAttributes;
     };
 
-    //! @returns The node name. It might be a regex text.
-    const std::string& GetNodeName() const { return m_NodeName; }
-    void SetNodeName(std::string_view nodeName, bool isRegex = false);
-
-    //! @returns Whether the node name is a regular expression.
-    bool IsNodeNameRegex() const { return m_IsNodeNameRegex; }
+    using ChildNodeMap = std::map<std::string, MergingPolicy3, std::less<>>;
+    using RegexChildNodeList = std::vector<std::pair<std::regex, MergingPolicy3>>;
 
     //! @returns Whether this policy applies to all unknown child nodes.
     bool IsRecursive() const { return m_IsRecursive; }
@@ -132,10 +128,10 @@ public:
     ChildConstraints GetChildConstraints() { return m_ChildConstraints; }
 
     //! @returns The list of child nodes without regex.
-    const std::vector<MergingPolicy3>& GetChildNodes() const { return m_ChildNodes; }
+    const ChildNodeMap& GetChildNodes() const { return m_ChildNodes; }
 
     //! @returns The list of child nodes that use regex.
-    const std::vector<MergingPolicy3>& GetChildNodesRegex() const { return m_ChildNodesRegex; }
+    const RegexChildNodeList& GetChildNodesRegex() const { return m_ChildNodesRegex; }
 
     //! Finds an attribute in the policy.
     //! @returns Attribute or nullptr if not found.
@@ -147,12 +143,11 @@ public:
 
     //! Adds a new node to the end.
     //! @{
-    void AppendNode(const MergingPolicy3& node);
-    void AppendNode(MergingPolicy3&& node);
+    void AppendNode(std::string_view name, bool isRegex, const MergingPolicy3& node);
     //! @}
 
     //! Loads data from XML.
-    void LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack, int indexInParent = -1);
+    void LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& errorStack);
 
 private:
     static constexpr char XML_NODE_ATTRIBUTES[] = "Attributes";
@@ -173,9 +168,6 @@ private:
 
     static constexpr char XML_NODE_CHILD_NODES[] = "ChildNodes";
 
-    std::string m_NodeName;
-    std::regex m_NodeNameRegex;
-    bool m_IsNodeNameRegex = false;
     bool m_IsRecursive = false;
 
     std::string m_TextType;
@@ -187,10 +179,8 @@ private:
     Collection m_Collection;
     ChildConstraints m_ChildConstraints;
 
-    std::vector<MergingPolicy3> m_ChildNodes;
-    std::vector<MergingPolicy3> m_ChildNodesRegex;
-
-    std::vector<MergingPolicy3>& GetCollectionForNewNode(const MergingPolicy3& node);
+    ChildNodeMap m_ChildNodes;
+    RegexChildNodeList m_ChildNodesRegex;
 
     void LoadXmlAttributes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
