@@ -2,6 +2,23 @@
 #include <ChairMerger/MergingPolicy3.h>
 
 //---------------------------------------------------------------------------------
+// MergingPolicyAllocator
+//---------------------------------------------------------------------------------
+MergingPolicyAllocator::MergingPolicyAllocator()
+{
+}
+
+MergingPolicyAllocator::~MergingPolicyAllocator()
+{
+}
+
+MergingPolicy3* MergingPolicyAllocator::AllocateEmptyPolicy()
+{
+    return m_PolicyPool.emplace_back(std::make_unique<MergingPolicy3>()).get();
+}
+
+
+//---------------------------------------------------------------------------------
 // MergingPolicy3::Collection
 //---------------------------------------------------------------------------------
 std::string MergingPolicy3::Collection::GetKeyString() const
@@ -53,7 +70,7 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
 {
     // Check exact nodes
     if (auto it = m_ChildNodes.find(name); it != m_ChildNodes.end())
-        return &it->second;
+        return it->second;
 
     // Check regex
     std::string nameAsStr(name);
@@ -61,7 +78,7 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
     for (const auto& [regex, node] : m_ChildNodesRegex)
     {
         if (std::regex_match(nameAsStr, regex))
-            return &node;
+            return node;
     }
 
     // Recursive if not found
@@ -71,7 +88,7 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
     return nullptr;
 }
 
-void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const MergingPolicy3& node)
+void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, MergingPolicy3* node)
 {
     if (isRegex)
     {
@@ -83,7 +100,7 @@ void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const Mergi
     }
 }
 
-void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& errorStack)
+void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
     SetRecursive(node.attribute("recursive").as_bool(false));
     SetTextType(node.attribute("textType").as_string(""));
@@ -112,7 +129,7 @@ void MergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_CONSTRAINTS, &foundChildConstraints))
             LoadXmlChildConstraints(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_NODES, &foundChildNodes))
-            LoadXmlChildNodes(childNode, errorStack);
+            LoadXmlChildNodes(pAlloc, childNode, errorStack);
         else
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
     }
@@ -304,7 +321,7 @@ void MergingPolicy3::LoadXmlChildConstraints(const pugi::xml_node& node, const X
     }
 }
 
-void MergingPolicy3::LoadXmlChildNodes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
+void MergingPolicy3::LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
 {
     XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_CHILD_NODES);
     int i = 0;
@@ -323,8 +340,8 @@ void MergingPolicy3::LoadXmlChildNodes(const pugi::xml_node& node, const XmlErro
             if (m_Collection.type == ECollectionType::None)
                 childErrorStack.ThrowException("Child nodes are not allowed if collection is not set");
 
-            MergingPolicy3 item;
-            item.LoadXmlNode(childNode, childErrorStack);
+            MergingPolicy3* item = pAlloc->AllocateEmptyPolicy();
+            item->LoadXmlNode(pAlloc, childNode, childErrorStack);
             AppendNode(name, isRegex, item);
         }
 
@@ -369,5 +386,5 @@ void FileMergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorS
     SetRecursive(node.attribute("recursive").as_bool(false));
 
     const pugi::xml_node rootNode = XmlUtils::GetRequiredNode(errorStack, node, MergingPolicy3::XML_NODE_NAME);
-    m_RootNode.LoadXmlNode(rootNode, errorStack);
+    m_RootNode.LoadXmlNode(&m_Alloc, rootNode, errorStack);
 }

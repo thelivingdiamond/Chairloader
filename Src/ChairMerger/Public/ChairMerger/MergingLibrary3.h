@@ -4,7 +4,7 @@
 
 class XmlErrorStack;
 
-class CHAIRMERGER_EXPORT MergingLibrary3
+class CHAIRMERGER_EXPORT MergingLibrary3 : boost::noncopyable
 {
 public:
     //! Loads merging library from a file or directory.
@@ -21,8 +21,8 @@ public:
     const FileMergingPolicy3* FindPolicyForFile(const fs::path& relPath) const;
 
 private:
-    std::map<std::string, FileMergingPolicy3, std::less<>> m_FileMergingPolicy;
-    std::map<std::string, std::vector<FileMergingPolicy3>, std::less<>> m_DirMergingPolicy;
+    std::map<std::string, FileMergingPolicy3Ptr, std::less<>> m_FileMergingPolicy;
+    std::map<std::string, std::vector<FileMergingPolicy3Ptr>, std::less<>> m_DirMergingPolicy;
 
     void AddFile(const fs::path& filePath, const fs::path& relPath);
     void AddNode(const pugi::xml_node& node, const XmlErrorStack& errorStack, const fs::path& relPath);

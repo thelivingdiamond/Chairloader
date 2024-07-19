@@ -43,8 +43,8 @@ const FileMergingPolicy3* MergingLibrary3::FindPolicyForFile(const fs::path& rel
 
     if (itExact != m_FileMergingPolicy.end())
     {
-        CRY_ASSERT(!itExact->second.IsRegexName());
-        return &itExact->second;
+        CRY_ASSERT(!itExact->second->IsRegexName());
+        return itExact->second.get();
     }
 
     // Find match via directory name
@@ -59,15 +59,15 @@ const FileMergingPolicy3* MergingLibrary3::FindPolicyForFile(const fs::path& rel
         {
             std::string relPathInDir = NormalizePath(relPath.lexically_relative(dirPath).u8string());
 
-            for (const FileMergingPolicy3& policy : itDir->second)
+            for (const FileMergingPolicy3Ptr& policy : itDir->second)
             {
-                CRY_ASSERT(policy.IsRegexName());
+                CRY_ASSERT(policy->IsRegexName());
 
-                if (!isDirectParent && !policy.IsRecursive())
+                if (!isDirectParent && !policy->IsRecursive())
                     continue;
 
-                if (policy.MatchFileName(relPathInDir))
-                    return &policy;
+                if (policy->MatchFileName(relPathInDir))
+                    return policy.get();
             }
         }
 
@@ -86,11 +86,11 @@ void MergingLibrary3::AddFile(const fs::path& filePath, const fs::path& relPath)
 void MergingLibrary3::AddNode(const pugi::xml_node& node, const XmlErrorStack& errorStack, const fs::path& relPath)
 {
     CheckPathRelative(relPath);
-    FileMergingPolicy3 filePolicy;
-    filePolicy.LoadXmlNode(node, errorStack);
+    FileMergingPolicy3Ptr filePolicy = std::make_unique<FileMergingPolicy3>();
+    filePolicy->LoadXmlNode(node, errorStack);
 
 
-    if (filePolicy.IsRegexName())
+    if (filePolicy->IsRegexName())
     {
         std::string relPathNorm = NormalizePath(relPath.parent_path().u8string());
         auto& policyList = m_DirMergingPolicy[relPathNorm];
