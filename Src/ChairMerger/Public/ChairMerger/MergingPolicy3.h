@@ -2,7 +2,36 @@
 #include <regex>
 #include <ChairMerger/Export.h>
 
+class MergingPolicy3;
 class XmlErrorStack;
+
+//! MergingPolicy3 doesn't own its own children.
+//! If you have recursive policies (that actually reference the type by name, not related to MergingPolicy3::IsRecursive()),
+//! you'll get an ownership cycle. This prevents us from using std::shared_ptr or non-pointers.
+//! Instead, all policies are owned either by FileMergingPolicy or by XmlTypeLibrary.
+//! This interface allows MergingPolicy3 to allocate new policies when parsing XML files.
+struct IMergingPolicyAllocator
+{
+    virtual ~IMergingPolicyAllocator() = default;
+    virtual MergingPolicy3* AllocateEmptyPolicy() = 0;
+};
+
+//! @see IMergingPolicyAllocator.
+class CHAIRMERGER_EXPORT MergingPolicyAllocator : public IMergingPolicyAllocator
+{
+public:
+    MergingPolicyAllocator();
+    MergingPolicyAllocator(MergingPolicyAllocator&&) noexcept = default;
+    ~MergingPolicyAllocator();
+
+    MergingPolicyAllocator& operator=(MergingPolicyAllocator&&) noexcept = default;
+
+    // IMergingPolicyAllocator
+    virtual MergingPolicy3* AllocateEmptyPolicy();
+
+private:
+    std::vector<std::unique_ptr<MergingPolicy3>> m_PolicyPool;
+};
 
 //! Defines the data model of a named node.
 class CHAIRMERGER_EXPORT MergingPolicy3
@@ -92,8 +121,15 @@ public:
         std::vector<std::string> uniqueAttributes;
     };
 
-    using ChildNodeMap = std::map<std::string, MergingPolicy3, std::less<>>;
-    using RegexChildNodeList = std::vector<std::pair<std::regex, MergingPolicy3>>;
+    using ChildNodeMap = std::map<std::string, MergingPolicy3*, std::less<>>;
+    using RegexChildNodeList = std::vector<std::pair<std::regex, MergingPolicy3*>>;
+
+    MergingPolicy3() = default;
+    MergingPolicy3(const MergingPolicy3&) = delete;
+    MergingPolicy3(MergingPolicy3&&) noexcept = default;
+
+    MergingPolicy3& operator=(const MergingPolicy3&) = default;
+    MergingPolicy3& operator=(MergingPolicy3&&) noexcept = default;
 
     //! @returns Whether this policy applies to all unknown child nodes.
     bool IsRecursive() const { return m_IsRecursive; }
@@ -141,13 +177,13 @@ public:
     //! @returns Policy or nullptr if not found.
     const MergingPolicy3* FindChildNode(std::string_view name) const;
 
-    //! Adds a new node to the end.
+    //! Adds a new node to the end. Node must be owned by something else.
     //! @{
-    void AppendNode(std::string_view name, bool isRegex, const MergingPolicy3& node);
+    void AppendNode(std::string_view name, bool isRegex, MergingPolicy3* node);
     //! @}
 
     //! Loads data from XML.
-    void LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& errorStack);
+    void LoadXmlNode(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& errorStack);
 
 private:
     static constexpr char XML_NODE_ATTRIBUTES[] = "Attributes";
@@ -186,13 +222,35 @@ private:
     void LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlCollection(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildConstraints(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
-    void LoadXmlChildNodes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
 };
 
-class CHAIRMERGER_EXPORT FileMergingPolicy3
+class CHAIRMERGER_EXPORT FileMergingPolicy3 : boost::noncopyable
 {
 public:
     static constexpr char XML_NODE_NAME[] = "MergingPolicy";
+
+    FileMergingPolicy3() = default;
+    FileMergingPolicy3(FileMergingPolicy3&& other) noexcept
+    {
+        *this = std::move(other);
+    }
+
+    FileMergingPolicy3& operator=(FileMergingPolicy3&& other) noexcept
+    {
+        // Why can't MSVC generate this on its own? Idk.
+        if (&other != this)
+        {
+            other.m_FileName = std::move(m_FileName);
+            other.m_FileNameRegex = std::move(m_FileNameRegex);
+            other.m_IsFileNameRegex = std::move(m_IsFileNameRegex);
+            other.m_IsRecursive = std::move(m_IsRecursive);
+            other.m_Alloc = std::move(m_Alloc);
+            other.m_RootNode = std::move(m_RootNode);
+        }
+
+        return *this;
+    }
 
     //! Checks if the input file name matches this policy file.
     bool MatchFileName(const std::string& name) const;
@@ -220,5 +278,8 @@ private:
     std::regex m_FileNameRegex;
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
+    MergingPolicyAllocator m_Alloc;
     MergingPolicy3 m_RootNode;
 };
+
+using FileMergingPolicy3Ptr = std::unique_ptr<FileMergingPolicy3>;

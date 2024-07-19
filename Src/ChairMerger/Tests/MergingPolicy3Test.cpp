@@ -2,6 +2,21 @@
 #include <ChairMerger/MergingPolicy3.h>
 #include "XmlTestUtils.h"
 
+namespace
+{
+
+class TestAlloc : public IMergingPolicyAllocator
+{
+public:
+    // IMergingPolicyAllocator
+    virtual MergingPolicy3* AllocateEmptyPolicy() = 0;
+
+private:
+    std::vector<std::unique_ptr<MergingPolicy3>> m_PolicyPool;
+};
+
+} // namespace
+
 static void ExpectEqualsMergingPolicy3(const MergingPolicy3& expected, const MergingPolicy3& actual);
 
 static void ExpectEqualsAttribute(const MergingPolicy3::Attribute& expected, const MergingPolicy3::Attribute& actual)
@@ -32,7 +47,7 @@ static void ExpectEqualsMergingPolicy3List(const MergingPolicy3::ChildNodeMap& e
     {
         auto it = actual.find(name);
         ASSERT_NE(actual.end(), it);
-        ExpectEqualsMergingPolicy3(node, it->second);
+        ExpectEqualsMergingPolicy3(*node, *it->second);
     }
 }
 
@@ -42,7 +57,7 @@ static void ExpectEqualsMergingPolicy3List(const MergingPolicy3::RegexChildNodeL
 
     for (size_t i = 0; i < expected.size(); i++)
     {
-        ExpectEqualsMergingPolicy3(expected[i].second, actual[i].second);
+        ExpectEqualsMergingPolicy3(*expected[i].second, *actual[i].second);
     }
 }
 
@@ -65,28 +80,28 @@ static void ExpectEqualsMergingPolicy3(const MergingPolicy3& expected, const Mer
     ExpectEqualsMergingPolicy3List(expected.GetChildNodesRegex(), actual.GetChildNodesRegex());
 }
 
-static MergingPolicy3 CreateExpectedNode()
+static MergingPolicy3* CreateExpectedNode(IMergingPolicyAllocator* pAlloc)
 {
-    MergingPolicy3 expected;
+    MergingPolicy3* expected = pAlloc->AllocateEmptyPolicy();
     {
-        expected.GetCollection().type = MergingPolicy3::ECollectionType::Dict;
-        expected.GetCollection().keyChildName = true;
+        expected->GetCollection().type = MergingPolicy3::ECollectionType::Dict;
+        expected->GetCollection().keyChildName = true;
 
-        MergingPolicy3 testNode1;
+        MergingPolicy3* testNode1 = pAlloc->AllocateEmptyPolicy();
         {
             {
                 MergingPolicy3::Attribute attr;
                 attr.name = "testValue";
                 attr.type = "string";
-                testNode1.GetAttributes().push_back(attr);
+                testNode1->GetAttributes().push_back(attr);
             }
             {
-                testNode1.GetCollection().type = MergingPolicy3::ECollectionType::Dict;
-                testNode1.GetCollection().keyChildAttributes.push_back("signalInput");
-                testNode1.GetCollection().keyChildAttributes.push_back("signalOutput");
+                testNode1->GetCollection().type = MergingPolicy3::ECollectionType::Dict;
+                testNode1->GetCollection().keyChildAttributes.push_back("signalInput");
+                testNode1->GetCollection().keyChildAttributes.push_back("signalOutput");
             }
             {
-                MergingPolicy3 positiveSignalValue;
+                MergingPolicy3* positiveSignalValue = pAlloc->AllocateEmptyPolicy();
                 {
                     {
                         MergingPolicy3::Attribute attr;
@@ -94,7 +109,7 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        positiveSignalValue.GetAttributes().push_back(attr);
+                        positiveSignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
@@ -102,19 +117,19 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        positiveSignalValue.GetAttributes().push_back(attr);
+                        positiveSignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "scale";
                         attr.type = "float";
-                        positiveSignalValue.GetAttributes().push_back(attr);
+                        positiveSignalValue->GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode("PositiveSignalValue", false, positiveSignalValue);
+                    testNode1->AppendNode("PositiveSignalValue", false, positiveSignalValue);
                 }
 
-                MergingPolicy3 negativeSignalValue;
+                MergingPolicy3* negativeSignalValue = pAlloc->AllocateEmptyPolicy();
                 {
                     {
                         MergingPolicy3::Attribute attr;
@@ -122,7 +137,7 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        negativeSignalValue.GetAttributes().push_back(attr);
+                        negativeSignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
@@ -130,27 +145,27 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        negativeSignalValue.GetAttributes().push_back(attr);
+                        negativeSignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "scale";
                         attr.type = "float";
-                        negativeSignalValue.GetAttributes().push_back(attr);
+                        negativeSignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
                         attr.name = "offset";
                         attr.type = "float";
-                        negativeSignalValue.GetAttributes().push_back(attr);
+                        negativeSignalValue->GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode("NegativeSignalValue", false, negativeSignalValue);
+                    testNode1->AppendNode("NegativeSignalValue", false, negativeSignalValue);
                 }
 
-                MergingPolicy3 anySignalValue;
+                MergingPolicy3* anySignalValue = pAlloc->AllocateEmptyPolicy();
                 {
-                    anySignalValue.SetRecursive(true);
+                    anySignalValue->SetRecursive(true);
 
                     {
                         MergingPolicy3::Attribute attr;
@@ -158,7 +173,7 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        anySignalValue.GetAttributes().push_back(attr);
+                        anySignalValue->GetAttributes().push_back(attr);
                     }
                     {
                         MergingPolicy3::Attribute attr;
@@ -166,14 +181,14 @@ static MergingPolicy3 CreateExpectedNode()
                         attr.type = "uint64";
                         attr.readOnly = "true";
                         attr.required = "true";
-                        anySignalValue.GetAttributes().push_back(attr);
+                        anySignalValue->GetAttributes().push_back(attr);
                     }
 
-                    testNode1.AppendNode(".*SignalValue", true, anySignalValue);
+                    testNode1->AppendNode(".*SignalValue", true, anySignalValue);
                 }
             }
 
-            expected.AppendNode("TestNode1", false, testNode1);
+            expected->AppendNode("TestNode1", false, testNode1);
         }
     }
 
@@ -182,18 +197,20 @@ static MergingPolicy3 CreateExpectedNode()
 
 TEST(MergingPolicy3, LoadFromXml)
 {
-    MergingPolicy3 expected = CreateExpectedNode();
+    MergingPolicyAllocator allocator;
+    MergingPolicy3* expected = CreateExpectedNode(&allocator);
 
     auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
-    MergingPolicy3 actual;
-    actual.LoadXmlNode(policyXml.first_child().first_child(), errorStack);
+    MergingPolicy3* actual = allocator.AllocateEmptyPolicy();
+    actual->LoadXmlNode(&allocator, policyXml.first_child().first_child(), errorStack);
 
-    ExpectEqualsMergingPolicy3(expected, actual);
+    ExpectEqualsMergingPolicy3(*expected, *actual);
 }
 
 TEST(FileMergingPolicy3, LoadFromXml)
 {
-    MergingPolicy3 expectedNode = CreateExpectedNode();
+    MergingPolicyAllocator allocator;
+    MergingPolicy3* expectedNode = CreateExpectedNode(&allocator);
 
     auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     FileMergingPolicy3 actual;
@@ -202,5 +219,5 @@ TEST(FileMergingPolicy3, LoadFromXml)
     EXPECT_EQ(actual.GetFileName(), R"((In)?validRegex\.xml)");
     EXPECT_EQ(actual.IsRegexName(), true);
     EXPECT_EQ(actual.IsRecursive(), true);
-    ExpectEqualsMergingPolicy3(expectedNode, actual.GetRootNode());
+    ExpectEqualsMergingPolicy3(*expectedNode, actual.GetRootNode());
 }
