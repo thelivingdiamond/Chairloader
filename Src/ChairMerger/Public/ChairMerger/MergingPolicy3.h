@@ -241,12 +241,12 @@ public:
         // Why can't MSVC generate this on its own? Idk.
         if (&other != this)
         {
-            other.m_FileName = std::move(m_FileName);
-            other.m_FileNameRegex = std::move(m_FileNameRegex);
-            other.m_IsFileNameRegex = std::move(m_IsFileNameRegex);
-            other.m_IsRecursive = std::move(m_IsRecursive);
-            other.m_Alloc = std::move(m_Alloc);
-            other.m_RootNode = std::move(m_RootNode);
+            m_FileName = std::move(other.m_FileName);
+            m_FileNameRegex = std::move(other.m_FileNameRegex);
+            m_IsFileNameRegex = std::move(other.m_IsFileNameRegex);
+            m_IsRecursive = std::move(other.m_IsRecursive);
+            m_Alloc = std::move(other.m_Alloc);
+            m_RootNode = std::move(other.m_RootNode);
         }
 
         return *this;
