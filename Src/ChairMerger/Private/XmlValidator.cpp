@@ -31,7 +31,7 @@ std::string XmlValidator::ValidateAttribute(
     }
     else if (context.pTypeLib)
     {
-        const IXmlType* pType = context.pTypeLib->FindType(policyAttr.type);
+        const IXmlValueType* pType = context.pTypeLib->FindValueType(policyAttr.type);
         if (!pType)
             throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policyAttr.type));
 
@@ -61,7 +61,7 @@ std::string XmlValidator::ValidateTextNode(
 
     if (context.pTypeLib)
     {
-        const IXmlType* pType = context.pTypeLib->FindType(policy.GetTextType());
+        const IXmlValueType* pType = context.pTypeLib->FindValueType(policy.GetTextType());
         if (!pType)
             throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policy.GetTextType()));
 

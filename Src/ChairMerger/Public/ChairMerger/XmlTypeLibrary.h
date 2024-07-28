@@ -3,9 +3,9 @@
 
 class XmlErrorStack;
 
-struct CHAIRMERGER_EXPORT IXmlType
+struct CHAIRMERGER_EXPORT IXmlValueType
 {
-    virtual ~IXmlType() {}
+    virtual ~IXmlValueType() {}
 
     //! @returns The type name.
     virtual const std::string& GetName() const = 0;
@@ -25,7 +25,7 @@ public:
 
     //! Finds a type by its name.
     //! @returns Type or nullptr if not found.
-    const IXmlType* FindType(std::string_view typeName) const;
+    const IXmlValueType* FindValueType(std::string_view typeName) const;
 
     //! Loads additional types from a file.
     //! @{
@@ -36,10 +36,10 @@ public:
 private:
     static constexpr char XML_NODE_VALUETYPES[] = "ValueTypes";
 
-    std::map<std::string, std::unique_ptr<IXmlType>, std::less<>> m_Types;
+    std::map<std::string, std::unique_ptr<IXmlValueType>, std::less<>> m_Types;
 
     //! Registers a new type.
-    void RegisterType(std::unique_ptr<IXmlType>&& ptr);
+    void RegisterType(std::unique_ptr<IXmlValueType>&& ptr);
 
     //! Registers a type alias. Acts like a separate type but actually calls an existing one.
     void RegisterAlias(std::string_view newName, std::string_view existingName);
