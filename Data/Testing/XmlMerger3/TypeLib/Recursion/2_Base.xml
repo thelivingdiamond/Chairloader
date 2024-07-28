@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Root>
+    <A aAttr1="aVal1_1" aAttr2="aVal2_1">
+        <B bAttr1="bVal1_2" bAttr2="bVal2_2">
+            <A aAttr1="aVal1_3" aAttr2="aVal2_3">
+                <B bAttr1="bVal1_4" bAttr2="bVal2_4" />
+            </A>
+        </B>
+    </A>
+</Root>

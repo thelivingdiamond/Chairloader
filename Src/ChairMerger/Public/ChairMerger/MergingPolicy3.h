@@ -4,6 +4,7 @@
 
 class MergingPolicy3;
 class XmlErrorStack;
+class XmlTypeLibrary;
 
 //! MergingPolicy3 doesn't own its own children.
 //! If you have recursive policies (that actually reference the type by name, not related to MergingPolicy3::IsRecursive()),
@@ -121,8 +122,8 @@ public:
         std::vector<std::string> uniqueAttributes;
     };
 
-    using ChildNodeMap = std::map<std::string, MergingPolicy3*, std::less<>>;
-    using RegexChildNodeList = std::vector<std::pair<std::regex, MergingPolicy3*>>;
+    using ChildNodeMap = std::map<std::string, const MergingPolicy3*, std::less<>>;
+    using RegexChildNodeList = std::vector<std::pair<std::regex, const MergingPolicy3*>>;
 
     MergingPolicy3() = default;
     MergingPolicy3(const MergingPolicy3&) = delete;
@@ -179,11 +180,11 @@ public:
 
     //! Adds a new node to the end. Node must be owned by something else.
     //! @{
-    void AppendNode(std::string_view name, bool isRegex, MergingPolicy3* node);
+    void AppendNode(std::string_view name, bool isRegex, const MergingPolicy3* node);
     //! @}
 
     //! Loads data from XML.
-    void LoadXmlNode(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& errorStack);
+    void LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& errorStack);
 
 private:
     static constexpr char XML_NODE_ATTRIBUTES[] = "Attributes";
@@ -203,6 +204,7 @@ private:
     static constexpr char XML_NODE_UNIQUE_ATTRIBUTE[] = "UniqueAttribute";
 
     static constexpr char XML_NODE_CHILD_NODES[] = "ChildNodes";
+    static constexpr char XML_NODE_NODE_BY_TYPE[] = "NodeByType";
 
     bool m_IsRecursive = false;
 
@@ -222,7 +224,7 @@ private:
     void LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlCollection(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildConstraints(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
-    void LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
 };
 
 class CHAIRMERGER_EXPORT FileMergingPolicy3 : boost::noncopyable
@@ -271,7 +273,7 @@ public:
     MergingPolicy3& GetRootNode() { return m_RootNode; }
 
     //! Loads data from XML.
-    void LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlNode(XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
 
 private:
     std::string m_FileName;

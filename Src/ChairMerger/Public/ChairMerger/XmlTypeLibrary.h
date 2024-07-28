@@ -1,6 +1,8 @@
 #pragma once
 #include <ChairMerger/Export.h>
+#include <ChairMerger/MergingPolicy3.h>
 
+class MergingPolicy3;
 class XmlErrorStack;
 
 struct CHAIRMERGER_EXPORT IXmlValueType
@@ -23,9 +25,13 @@ public:
     XmlTypeLibrary();
     ~XmlTypeLibrary();
 
-    //! Finds a type by its name.
+    //! Finds a value type by its name.
     //! @returns Type or nullptr if not found.
     const IXmlValueType* FindValueType(std::string_view typeName) const;
+
+    //! Finds a node type by its name.
+    //! @returns Type or nullptr if not found.
+    const MergingPolicy3* FindNodeType(std::string_view typeName) const;
 
     //! Loads additional types from a file.
     //! @{
@@ -35,8 +41,12 @@ public:
 
 private:
     static constexpr char XML_NODE_VALUETYPES[] = "ValueTypes";
+    static constexpr char XML_NODE_NODETYPES[] = "NodeTypes";
+    static constexpr char XML_NODE_NODETYPE[] = "NodeType";
 
-    std::map<std::string, std::unique_ptr<IXmlValueType>, std::less<>> m_Types;
+    MergingPolicyAllocator m_NodeTypeAllocator;
+    std::map<std::string, std::unique_ptr<IXmlValueType>, std::less<>> m_ValueTypes;
+    std::map<std::string, MergingPolicy3*, std::less<>> m_NodeTypes;
 
     //! Registers a new type.
     void RegisterType(std::unique_ptr<IXmlValueType>&& ptr);
@@ -45,4 +55,5 @@ private:
     void RegisterAlias(std::string_view newName, std::string_view existingName);
 
     void LoadXmlValueTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack);
+    void LoadXmlNodeTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack);
 };

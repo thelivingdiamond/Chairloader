@@ -15,11 +15,11 @@ protected:
         m_TestDir = "Testing/XmlMerger3";
     }
 
-    FileMergingPolicy3 LoadFilePolicy(const fs::path& path)
+    FileMergingPolicy3 LoadFilePolicy(const fs::path& path, XmlTypeLibrary* pTypeLib = nullptr)
     {
         FileMergingPolicy3 policy;
         auto [policyDoc, errorStack] = XmlUtils::LoadDocumentWithStack(path);
-        policy.LoadXmlNode(policyDoc.first_child(), errorStack);
+        policy.LoadXmlNode(pTypeLib, policyDoc.first_child(), errorStack);
         return policy;
     }
 
@@ -58,6 +58,17 @@ protected:
     XmlMerger3FailTest()
     {
         m_TestDir = m_TestDir / "Fail";
+    }
+};
+
+class XmlMerger3TypeLibTest
+    : public XmlMerger3Test
+    , public testing::WithParamInterface<std::string>
+{
+protected:
+    XmlMerger3TypeLibTest()
+    {
+        m_TestDir = m_TestDir / "TypeLib";
     }
 };
 
@@ -171,6 +182,71 @@ TEST_P(XmlMerger3FailTest, Fail)
     });
 }
 
+TEST_P(XmlMerger3TypeLibTest, TypeLib)
+{
+    std::vector<std::pair<std::string, fs::path>> modPaths;
+    std::string testName = GetParam();
+    fs::path testDir = m_TestDir / fs::u8path(testName);
+    fs::path typeLibPath = testDir / "0_TypeLib.xml";
+    fs::path policyPath = testDir / "1_Policy.xml";
+    fs::path basePath = testDir / "2_Base.xml";
+    fs::path expectedPath = testDir / "4_Expected.xml";
+
+    fs::path singleModPath = testDir / "3_Mod.xml";
+
+    if (fs::exists(singleModPath))
+    {
+        // Only use single mod
+        modPaths.push_back(std::make_pair("Chairloader.TestMod", singleModPath));
+    }
+    else
+    {
+        // Merge multiple mods
+        for (int i = 1; i < 100; i++)
+        {
+            fs::path modPath = testDir / fmt::format("3_Mod{}.xml", i);
+
+            if (!fs::exists(modPath))
+                break;
+
+            modPaths.push_back(std::make_pair(fmt::format("Chairloader.TestMod{}", i), modPath));
+        }
+    }
+
+    XmlValidator::Result validationResult;
+    std::unique_ptr<XmlTypeLibrary> pTypeLibrary = std::make_unique<XmlTypeLibrary>();
+    pTypeLibrary->LoadTypesFromFile(typeLibPath);
+    FileMergingPolicy3 policy = LoadFilePolicy(policyPath, pTypeLibrary.get());
+
+    pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath);
+    pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
+
+    // Validate base
+    XmlValidator::Context valCtx;
+    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.pTypeLib = pTypeLibrary.get();
+
+    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
+    ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
+
+    // Merge
+    for (auto& i : modPaths)
+    {
+        pugi::xml_document modDoc = XmlUtils::LoadDocument(i.second);
+        XmlMergerContext context;
+        context.modName = i.first;
+        context.pTypeLib = pTypeLibrary.get();
+        XmlMerger3::MergeDocument(context, baseDoc, modDoc, policy);
+    }
+
+    // Validate output
+    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
+    ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
+
+    // Compare with expected
+    EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, baseDoc));
+}
+
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,
     XmlMerger3SuccessTest,
@@ -210,3 +286,9 @@ INSTANTIATE_TEST_SUITE_P(
         "Array_UnsortedBase1",
         "Array_UnsortedBase2",
         "Array_InvalidNewNode"));
+
+INSTANTIATE_TEST_SUITE_P(
+    XmlMerger3,
+    XmlMerger3TypeLibTest,
+    testing::Values(
+        "Recursion"));

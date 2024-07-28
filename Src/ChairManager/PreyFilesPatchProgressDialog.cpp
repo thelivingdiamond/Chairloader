@@ -29,13 +29,13 @@ void PreyFilesPatchProgressDialog::Start()
             m_ProgressText.GetData() = msg;
         };
 
-        fnCallback("Loading merging library");
-        MergingLibrary3 mergingLib;
-        mergingLib.LoadFromPath(mergingLibPath);
-
         fnCallback("Loading XML type library");
         XmlTypeLibrary xmlTypeLib;
         xmlTypeLib.LoadTypesFromFile(xmlTypesPath);
+
+        fnCallback("Loading merging library");
+        MergingLibrary3 mergingLib(&xmlTypeLib);
+        mergingLib.LoadFromPath(mergingLibPath);
 
         PreyFilePatcher::PatchDirectory(
             preyFilesPath,

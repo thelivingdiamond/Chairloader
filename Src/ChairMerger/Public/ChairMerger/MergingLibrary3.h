@@ -3,10 +3,14 @@
 #include <ChairMerger/MergingPolicy3.h>
 
 class XmlErrorStack;
+class XmlTypeLibrary;
 
 class CHAIRMERGER_EXPORT MergingLibrary3 : boost::noncopyable
 {
 public:
+    MergingLibrary3(XmlTypeLibrary* pTypeLib);
+    ~MergingLibrary3();
+
     //! Loads merging library from a file or directory.
     void LoadFromPath(const fs::path& path);
 
@@ -21,6 +25,7 @@ public:
     const FileMergingPolicy3* FindPolicyForFile(const fs::path& relPath) const;
 
 private:
+    XmlTypeLibrary* m_pTypeLib = nullptr;
     std::map<std::string, FileMergingPolicy3Ptr, std::less<>> m_FileMergingPolicy;
     std::map<std::string, std::vector<FileMergingPolicy3Ptr>, std::less<>> m_DirMergingPolicy;
 

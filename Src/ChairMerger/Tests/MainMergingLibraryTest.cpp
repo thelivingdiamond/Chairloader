@@ -25,7 +25,7 @@ TEST(MainMergingLibraryTest, TestMerging)
     fs::path testFilesPath = "Testing/MergingLibrary3";
     XmlTypeLibrary typeLibrary;
     typeLibrary.LoadTypesFromFile("XmlTypeLibrary.xml");
-    MergingLibrary3 mergingLibrary;
+    MergingLibrary3 mergingLibrary(&typeLibrary);
     mergingLibrary.LoadFromPath("MergingLibrary");
 
     for (const fs::directory_entry& dirEnt : fs::recursive_directory_iterator(testFilesPath))

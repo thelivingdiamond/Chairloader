@@ -1,6 +1,15 @@
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingLibrary3.h>
 
+MergingLibrary3::MergingLibrary3(XmlTypeLibrary* pTypeLib)
+{
+    m_pTypeLib = pTypeLib;
+}
+
+MergingLibrary3::~MergingLibrary3()
+{
+}
+
 void MergingLibrary3::LoadFromPath(const fs::path& path)
 {
     CheckFileExists(path);
@@ -87,7 +96,7 @@ void MergingLibrary3::AddNode(const pugi::xml_node& node, const XmlErrorStack& e
 {
     CheckPathRelative(relPath);
     FileMergingPolicy3Ptr filePolicy = std::make_unique<FileMergingPolicy3>();
-    filePolicy->LoadXmlNode(node, errorStack);
+    filePolicy->LoadXmlNode(m_pTypeLib, node, errorStack);
 
 
     if (filePolicy->IsRegexName())

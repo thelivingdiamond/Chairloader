@@ -54,16 +54,16 @@ int main(int argc, char** argv)
 
     try
     {
-        // Load merging library
-        fs::path mergingLibraryPath = fs::u8path(vm["merging-lib"].as<std::string>());
-        fmt::println("Merging library: {}", mergingLibraryPath.u8string());
-        MergingLibrary3 mergingLibrary;
-        mergingLibrary.LoadFromPath(mergingLibraryPath);
-
         // Load type library
         fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
         XmlTypeLibrary typeLib;
         typeLib.LoadTypesFromFile(typeLibPath);
+
+        // Load merging library
+        fs::path mergingLibraryPath = fs::u8path(vm["merging-lib"].as<std::string>());
+        fmt::println("Merging library: {}", mergingLibraryPath.u8string());
+        MergingLibrary3 mergingLibrary(&typeLib);
+        mergingLibrary.LoadFromPath(mergingLibraryPath);
 
         // Process XMLs
         fs::path xmlDir = fs::u8path(vm["xml-dir"].as<std::string>());

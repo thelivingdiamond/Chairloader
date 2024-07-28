@@ -202,7 +202,7 @@ TEST(MergingPolicy3, LoadFromXml)
 
     auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     MergingPolicy3* actual = allocator.AllocateEmptyPolicy();
-    actual->LoadXmlNode(&allocator, policyXml.first_child().first_child(), errorStack);
+    actual->LoadXmlNode(&allocator, nullptr, policyXml.first_child().first_child(), errorStack);
 
     ExpectEqualsMergingPolicy3(*expected, *actual);
 }
@@ -214,7 +214,7 @@ TEST(FileMergingPolicy3, LoadFromXml)
 
     auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     FileMergingPolicy3 actual;
-    actual.LoadXmlNode(policyXml.first_child(), errorStack);
+    actual.LoadXmlNode(nullptr, policyXml.first_child(), errorStack);
 
     EXPECT_EQ(actual.GetFileName(), R"((In)?validRegex\.xml)");
     EXPECT_EQ(actual.IsRegexName(), true);
