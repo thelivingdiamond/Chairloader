@@ -19,55 +19,62 @@
     <!-- <XmlTypeLibrary> -->
     <xs:element name="XmlTypeLibrary">
         <xs:complexType>
-            <xs:choice maxOccurs="unbounded">
-                <!-- <AliasType> -->
-                <xs:element name="AliasType">
-                    <xs:annotation><xs:documentation>
-                        Alias to an existing or built-in type.
-                    </xs:documentation></xs:annotation>
-
-                    <xs:complexType><xs:complexContent><xs:extension base="ValueType">
-                        <xs:attribute name="baseType" type="xs:string">
-                            <xs:annotation><xs:documentation>
-                                Name of the type that this alises to.
-                            </xs:documentation></xs:annotation>
-                        </xs:attribute>
-                    </xs:extension></xs:complexContent></xs:complexType>
+            <xs:sequence>
+                <!-- <ValueTypes> -->
+                <xs:element name="ValueTypes" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <!-- <AliasType> -->
+                            <xs:element name="AliasType">
+                                <xs:annotation><xs:documentation>
+                                    Alias to an existing or built-in type.
+                                </xs:documentation></xs:annotation>
+            
+                                <xs:complexType><xs:complexContent><xs:extension base="ValueType">
+                                    <xs:attribute name="baseType" type="xs:string">
+                                        <xs:annotation><xs:documentation>
+                                            Name of the type that this alises to.
+                                        </xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension></xs:complexContent></xs:complexType>
+                            </xs:element>
+            
+                            <!-- <RegExType> -->
+                            <xs:element name="RegExType">
+                                <xs:annotation><xs:documentation>
+                                    Validates the type using a regular expression.
+                                </xs:documentation></xs:annotation>
+            
+                                <xs:complexType><xs:complexContent><xs:extension base="ValueType">
+                                    <xs:attribute name="regex" type="xs:string">
+                                        <xs:annotation><xs:documentation>
+                                            The regular expression for validation.
+                                        </xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension></xs:complexContent></xs:complexType>
+                            </xs:element>
+                                
+                            <!-- <IDType> -->
+                            <xs:element name="IDType">
+                                <xs:annotation><xs:documentation>
+                                    Defines two types named "Example" and "ExampleDef".
+                                    "ExampleDef" is considered a definition of an object with that ID.
+                                    "Example" is considered a reference to an object. The object is defined
+                                    in a different file using "ExampleDef" type.
+                                </xs:documentation></xs:annotation>
+            
+                                <xs:complexType><xs:complexContent><xs:extension base="ValueType">
+                                    <xs:attribute name="baseType" type="xs:string">
+                                        <xs:annotation><xs:documentation>
+                                            Base type for the ID.
+                                        </xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension></xs:complexContent></xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
                 </xs:element>
-
-                <!-- <RegExType> -->
-                <xs:element name="RegExType">
-                    <xs:annotation><xs:documentation>
-                        Validates the type using a regular expression.
-                    </xs:documentation></xs:annotation>
-
-                    <xs:complexType><xs:complexContent><xs:extension base="ValueType">
-                        <xs:attribute name="regex" type="xs:string">
-                            <xs:annotation><xs:documentation>
-                                The regular expression for validation.
-                            </xs:documentation></xs:annotation>
-                        </xs:attribute>
-                    </xs:extension></xs:complexContent></xs:complexType>
-                </xs:element>
-                    
-                <!-- <IDType> -->
-                <xs:element name="IDType">
-                    <xs:annotation><xs:documentation>
-                        Defines two types named "Example" and "ExampleDef".
-                        "ExampleDef" is considered a definition of an object with that ID.
-                        "Example" is considered a reference to an object. The object is defined
-                        in a different file using "ExampleDef" type.
-                    </xs:documentation></xs:annotation>
-
-                    <xs:complexType><xs:complexContent><xs:extension base="ValueType">
-                        <xs:attribute name="baseType" type="xs:string">
-                            <xs:annotation><xs:documentation>
-                                Base type for the ID.
-                            </xs:documentation></xs:annotation>
-                        </xs:attribute>
-                    </xs:extension></xs:complexContent></xs:complexType>
-                </xs:element>
-            </xs:choice>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 </xs:schema>

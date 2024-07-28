@@ -3,20 +3,22 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../Xsd/Chairloader/XmlTypeLibrary.xsd">
-    <!-- Special -->
-    <RegExType name="GuidWithBraces" regex="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
-    <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+    <ValueTypes>
+        <!-- Special -->
+        <RegExType name="GuidWithBraces" regex="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
+        <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
 
-    <!-- Aliases -->
-    <AliasType name="ArkUniqueId" baseType="uint64" />
+        <!-- Aliases -->
+        <AliasType name="ArkUniqueId" baseType="uint64" />
 
-    <!-- IDs -->
-    <!-- Automatically makes aliases for TypeName and TypeNameDef -->
-    <IDType name="ArchetypeId" baseType="uint64" />
+        <!-- IDs -->
+        <!-- Automatically makes aliases for TypeName and TypeNameDef -->
+        <IDType name="ArchetypeId" baseType="uint64" />
 
-    <!-- Signal System -->
-    <IDType name="ArkSignalId" baseType="ArkUniqueId" />
-    <IDType name="ArkSignalGroupId" baseType="ArkUniqueId" />
-    <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
-    <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
+        <!-- Signal System -->
+        <IDType name="ArkSignalId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalGroupId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
+    </ValueTypes>
 </XmlTypeLibrary>

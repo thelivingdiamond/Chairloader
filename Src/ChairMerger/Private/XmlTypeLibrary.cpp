@@ -202,35 +202,21 @@ const IXmlType* XmlTypeLibrary::FindType(std::string_view typeName) const
 
 void XmlTypeLibrary::LoadTypesFromFile(const fs::path& filePath)
 {
-    pugi::xml_document doc = XmlUtils::LoadDocument(filePath);
-    LoadTypesFromXml(doc.first_child());
+    auto [doc, errorStack] = XmlUtils::LoadDocumentWithStack(filePath);
+    LoadTypesFromXml(doc.first_child(), errorStack);
 }
 
-void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node)
+void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
-    for (pugi::xml_node typeNode : node)
-    {
-        std::string name = typeNode.attribute("name").as_string();
-        if (name.empty())
-            throw std::runtime_error("Name is empty");
+    bool foundValueTypes = false;
 
-        if (!strcmp(typeNode.name(), "RegExType"))
+    for (pugi::xml_node childNode : node)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+
+        if (XmlUtils::EqualsOnceOrThrow(childErrorStack, childNode, XML_NODE_VALUETYPES, &foundValueTypes))
         {
-            RegisterType(std::make_unique<RegexXmlType>(name, typeNode.attribute("regex").as_string()));
-        }
-        else if (!strcmp(typeNode.name(), "AliasType"))
-        {
-            RegisterAlias(name, typeNode.attribute("baseType").as_string());
-        }
-        else if (!strcmp(typeNode.name(), "IDType"))
-        {
-            std::string baseType = typeNode.attribute("baseType").as_string();
-            RegisterAlias(name, baseType);
-            RegisterAlias(name + "Def", baseType);
-        }
-        else
-        {
-            throw std::runtime_error(fmt::format("Unknown node {}", typeNode.name()));
+            LoadXmlValueTypes(childNode, childErrorStack);
         }
     }
 }
@@ -252,4 +238,33 @@ void XmlTypeLibrary::RegisterAlias(std::string_view newName, std::string_view ex
         throw std::logic_error(fmt::format("Base type {} for alias {} not found", existingName, newName));
 
     RegisterType(std::make_unique<AliasXmlType>(newName, pExisting));
+}
+
+void XmlTypeLibrary::LoadXmlValueTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack)
+{
+    for (pugi::xml_node childNode : node)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+
+        std::string name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+
+        if (!strcmp(childNode.name(), "RegExType"))
+        {
+            RegisterType(std::make_unique<RegexXmlType>(name, childNode.attribute("regex").as_string()));
+        }
+        else if (!strcmp(childNode.name(), "AliasType"))
+        {
+            RegisterAlias(name, childNode.attribute("baseType").as_string());
+        }
+        else if (!strcmp(childNode.name(), "IDType"))
+        {
+            std::string baseType = childNode.attribute("baseType").as_string();
+            RegisterAlias(name, baseType);
+            RegisterAlias(name + "Def", baseType);
+        }
+        else
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
+        }
+    }
 }
