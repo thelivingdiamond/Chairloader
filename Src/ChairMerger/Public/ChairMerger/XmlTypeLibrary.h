@@ -1,6 +1,8 @@
 #pragma once
 #include <ChairMerger/Export.h>
 
+class XmlErrorStack;
+
 struct CHAIRMERGER_EXPORT IXmlType
 {
     virtual ~IXmlType() {}
@@ -28,10 +30,12 @@ public:
     //! Loads additional types from a file.
     //! @{
     void LoadTypesFromFile(const fs::path& filePath);
-    void LoadTypesFromXml(const pugi::xml_node& node);
+    void LoadTypesFromXml(const pugi::xml_node& node, const XmlErrorStack& errorStack);
     //! @}
 
 private:
+    static constexpr char XML_NODE_VALUETYPES[] = "ValueTypes";
+
     std::map<std::string, std::unique_ptr<IXmlType>, std::less<>> m_Types;
 
     //! Registers a new type.
@@ -39,4 +43,6 @@ private:
 
     //! Registers a type alias. Acts like a separate type but actually calls an existing one.
     void RegisterAlias(std::string_view newName, std::string_view existingName);
+
+    void LoadXmlValueTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack);
 };
