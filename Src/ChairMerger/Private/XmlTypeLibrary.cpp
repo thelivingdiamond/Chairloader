@@ -5,7 +5,7 @@
 namespace
 {
 
-class BaseXmlType : public IXmlType
+class BaseXmlType : public IXmlValueType
 {
 public:
     BaseXmlType(std::string_view name)
@@ -13,7 +13,7 @@ public:
     {
     }
 
-    // IXmlType
+    // IXmlValueType
     virtual const std::string& GetName() const { return m_Name; }
     virtual const std::string& GetFullName() const { return m_Name; }
 
@@ -24,7 +24,7 @@ private:
 class AliasXmlType : public BaseXmlType
 {
 public:
-    AliasXmlType(std::string_view name, const IXmlType* pBaseType)
+    AliasXmlType(std::string_view name, const IXmlValueType* pBaseType)
         : BaseXmlType(name)
         , m_pBaseType(pBaseType)
     {
@@ -43,7 +43,7 @@ public:
     }
 
 private:
-    const IXmlType* m_pBaseType = nullptr;
+    const IXmlValueType* m_pBaseType = nullptr;
     std::string m_FullName;
 };
 
@@ -190,7 +190,7 @@ XmlTypeLibrary::~XmlTypeLibrary()
 {
 }
 
-const IXmlType* XmlTypeLibrary::FindType(std::string_view typeName) const
+const IXmlValueType* XmlTypeLibrary::FindValueType(std::string_view typeName) const
 {
     auto it = m_Types.find(typeName);
 
@@ -221,7 +221,7 @@ void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlError
     }
 }
 
-void XmlTypeLibrary::RegisterType(std::unique_ptr<IXmlType>&& ptr)
+void XmlTypeLibrary::RegisterType(std::unique_ptr<IXmlValueType>&& ptr)
 {
     auto it = m_Types.find(ptr->GetName());
     if (it != m_Types.end())
@@ -232,7 +232,7 @@ void XmlTypeLibrary::RegisterType(std::unique_ptr<IXmlType>&& ptr)
 
 void XmlTypeLibrary::RegisterAlias(std::string_view newName, std::string_view existingName)
 {
-    const IXmlType* pExisting = FindType(existingName);
+    const IXmlValueType* pExisting = FindValueType(existingName);
 
     if (!pExisting)
         throw std::logic_error(fmt::format("Base type {} for alias {} not found", existingName, newName));

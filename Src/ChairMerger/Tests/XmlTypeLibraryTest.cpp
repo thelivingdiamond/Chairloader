@@ -99,7 +99,7 @@ TEST(XmlTypeLibraryTest, ValueValidation)
 
     for (const TestCase& test : testCases)
     {
-        const IXmlType* pType = typeLib.FindType(test.typeName);
+        const IXmlValueType* pType = typeLib.FindValueType(test.typeName);
         ASSERT_NE(nullptr, pType) << "Type not found: " << test.typeName;
 
         bool isValid = pType->ValidateValue(test.value);
