@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <xs:schema
-    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
     elementFormDefault="qualified">
     <xs:annotation><xs:documentation>
         Node type the data model of a particular XML node and how it should be merged.
@@ -243,34 +243,9 @@
                     </xs:documentation></xs:annotation>
 
                     <!-- <ChildNodes> - Child nodes -->
-                    <xs:choice maxOccurs="unbounded">
+                    <xs:sequence>
                         <xs:element name="Node" type="Node" minOccurs="0" maxOccurs="unbounded" />
-                        <xs:element name="NodeByType" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                                <xs:annotation><xs:documentation>
-                                    References a predefined node type instead of defining a new one.
-                                </xs:documentation></xs:annotation>
-                                
-                                <xs:attribute name="name" type="xs:string" use="required">
-                                    <xs:annotation><xs:documentation>
-                                        Name of the node.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-
-                                <xs:attribute name="type" type="xs:string" use="required">
-                                    <xs:annotation><xs:documentation>
-                                        Name of the node type.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-                                
-                                <xs:attribute name="nameRegex" type="xs:boolean" default="false">
-                                    <xs:annotation><xs:documentation>
-                                        If true, name will be interpreted as a regular expression.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:choice>
+                    </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:sequence>

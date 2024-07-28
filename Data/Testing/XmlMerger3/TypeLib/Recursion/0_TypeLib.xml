@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<XmlTypeLibrary
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/XmlTypeLibrary.xsd">
+    <NodeTypes>
+        <NodeType name="TypeA">
+            <Attributes>
+                <Attribute name="aAttr1" type="string" />
+                <Attribute name="aAttr2" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="B" type="TypeB" />
+            </ChildNodes>
+        </NodeType>
+        <NodeType name="TypeB">
+            <Attributes>
+                <Attribute name="bAttr1" type="string" />
+                <Attribute name="bAttr2" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="A" type="TypeA" />
+            </ChildNodes>
+        </NodeType>
+    </NodeTypes>
+</XmlTypeLibrary>

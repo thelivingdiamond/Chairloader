@@ -8,7 +8,7 @@ static FileMergingPolicy3 LoadFilePolicy(const fs::path& path)
 {
     FileMergingPolicy3 policy;
     auto [policyDoc, errorStack] = XmlUtils::LoadDocumentWithStack(path);
-    policy.LoadXmlNode(policyDoc.first_child(), errorStack);
+    policy.LoadXmlNode(nullptr, policyDoc.first_child(), errorStack);
     return policy;
 }
 

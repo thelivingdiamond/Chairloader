@@ -1,5 +1,6 @@
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
+#include <ChairMerger/XmlTypeLibrary.h>
 
 //---------------------------------------------------------------------------------
 // MergingPolicyAllocator
@@ -88,7 +89,7 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
     return nullptr;
 }
 
-void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, MergingPolicy3* node)
+void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const MergingPolicy3* node)
 {
     if (isRegex)
     {
@@ -100,7 +101,7 @@ void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, MergingPoli
     }
 }
 
-void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& errorStack)
+void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
     SetRecursive(node.attribute("recursive").as_bool(false));
     SetTextType(node.attribute("textType").as_string(""));
@@ -129,7 +130,7 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, const pugi::xm
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_CONSTRAINTS, &foundChildConstraints))
             LoadXmlChildConstraints(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_CHILD_NODES, &foundChildNodes))
-            LoadXmlChildNodes(pAlloc, childNode, errorStack);
+            LoadXmlChildNodes(pAlloc, pTypeLib, childNode, errorStack);
         else
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
     }
@@ -321,28 +322,46 @@ void MergingPolicy3::LoadXmlChildConstraints(const pugi::xml_node& node, const X
     }
 }
 
-void MergingPolicy3::LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
+void MergingPolicy3::LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
 {
     XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_CHILD_NODES);
     int i = 0;
 
     for (const pugi::xml_node childNode : node)
     {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        childErrorStack.SetIndex(i);
+
+        std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+        childErrorStack.SetId("name", name);
+
+        if (m_Collection.type == ECollectionType::None)
+            childErrorStack.ThrowException("Child nodes are not allowed if collection is not set");
+
+        bool isRegex = childNode.attribute("nameRegex").as_bool(false);
+
         if (!strcmp(childNode.name(), XML_NODE_NAME))
         {
-            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
-            childErrorStack.SetIndex(i);
-
-            std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
-            childErrorStack.SetId("name", name);
-            bool isRegex = childNode.attribute("nameRegex").as_bool(false);
-
-            if (m_Collection.type == ECollectionType::None)
-                childErrorStack.ThrowException("Child nodes are not allowed if collection is not set");
-
             MergingPolicy3* item = pAlloc->AllocateEmptyPolicy();
-            item->LoadXmlNode(pAlloc, childNode, childErrorStack);
+            item->LoadXmlNode(pAlloc, pTypeLib, childNode, childErrorStack);
             AppendNode(name, isRegex, item);
+        }
+        else if (!strcmp(childNode.name(), XML_NODE_NODE_BY_TYPE))
+        {
+            if (!pTypeLib)
+                childErrorStack.ThrowException("Can't use NodeByType since no type library is available");
+
+            std::string_view typeName = XmlUtils::GetRequiredAttr(errorStack, childNode, "type").as_string();
+            const MergingPolicy3* item = pTypeLib->FindNodeType(typeName);
+
+            if (!item)
+                childErrorStack.ThrowException(fmt::format("Node type '{}' not found", typeName));
+
+            AppendNode(name, isRegex, item);
+        }
+        else
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
         }
 
         i++;
@@ -376,7 +395,10 @@ void FileMergingPolicy3::SetFileName(std::string_view fileName, bool isRegex)
     }
 }
 
-void FileMergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
+void FileMergingPolicy3::LoadXmlNode(
+    XmlTypeLibrary* pTypeLib,
+    const pugi::xml_node& node,
+    const XmlErrorStack& parentErrorStack)
 {
     XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_NAME);
 
@@ -386,5 +408,5 @@ void FileMergingPolicy3::LoadXmlNode(const pugi::xml_node& node, const XmlErrorS
     SetRecursive(node.attribute("recursive").as_bool(false));
 
     const pugi::xml_node rootNode = XmlUtils::GetRequiredNode(errorStack, node, MergingPolicy3::XML_NODE_NAME);
-    m_RootNode.LoadXmlNode(&m_Alloc, rootNode, errorStack);
+    m_RootNode.LoadXmlNode(&m_Alloc, pTypeLib, rootNode, errorStack);
 }

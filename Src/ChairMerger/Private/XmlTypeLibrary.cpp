@@ -192,10 +192,20 @@ XmlTypeLibrary::~XmlTypeLibrary()
 
 const IXmlValueType* XmlTypeLibrary::FindValueType(std::string_view typeName) const
 {
-    auto it = m_Types.find(typeName);
+    auto it = m_ValueTypes.find(typeName);
 
-    if (it != m_Types.end())
+    if (it != m_ValueTypes.end())
         return it->second.get();
+    else
+        return nullptr;
+}
+
+const MergingPolicy3* XmlTypeLibrary::FindNodeType(std::string_view typeName) const
+{
+    auto it = m_NodeTypes.find(typeName);
+
+    if (it != m_NodeTypes.end())
+        return it->second;
     else
         return nullptr;
 }
@@ -210,7 +220,7 @@ void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlError
 {
     bool foundValueTypes = false;
 
-    for (pugi::xml_node childNode : node)
+    for (const pugi::xml_node childNode : node)
     {
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
 
@@ -218,16 +228,24 @@ void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlError
         {
             LoadXmlValueTypes(childNode, childErrorStack);
         }
+        else if (XmlUtils::EqualsOnceOrThrow(childErrorStack, childNode, XML_NODE_NODETYPES, &foundValueTypes))
+        {
+            LoadXmlNodeTypes(childNode, childErrorStack);
+        }
+        else
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
+        }
     }
 }
 
 void XmlTypeLibrary::RegisterType(std::unique_ptr<IXmlValueType>&& ptr)
 {
-    auto it = m_Types.find(ptr->GetName());
-    if (it != m_Types.end())
+    auto it = m_ValueTypes.find(ptr->GetName());
+    if (it != m_ValueTypes.end())
         throw std::logic_error(fmt::format("Type {} is already registered", ptr->GetName()));
 
-    m_Types.emplace(ptr->GetName(), std::move(ptr));
+    m_ValueTypes.emplace(ptr->GetName(), std::move(ptr));
 }
 
 void XmlTypeLibrary::RegisterAlias(std::string_view newName, std::string_view existingName)
@@ -242,11 +260,12 @@ void XmlTypeLibrary::RegisterAlias(std::string_view newName, std::string_view ex
 
 void XmlTypeLibrary::LoadXmlValueTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
-    for (pugi::xml_node childNode : node)
+    for (const pugi::xml_node childNode : node)
     {
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
 
         std::string name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+        childErrorStack.SetId("name", name);
 
         if (!strcmp(childNode.name(), "RegExType"))
         {
@@ -266,5 +285,38 @@ void XmlTypeLibrary::LoadXmlValueTypes(const pugi::xml_node& node, const XmlErro
         {
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
         }
+    }
+}
+
+void XmlTypeLibrary::LoadXmlNodeTypes(const pugi::xml_node& node, const XmlErrorStack& errorStack)
+{
+    // Go over all node types and allocate them first.
+    // This allows recursive types: loading code can then reference them
+    for (const pugi::xml_node childNode : node)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+
+        if (strcmp(childNode.name(), XML_NODE_NODETYPE))
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
+        }
+
+        std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+        childErrorStack.SetId("name", name);
+        
+        if (m_NodeTypes.find(name) != m_NodeTypes.end())
+            childErrorStack.ThrowException(fmt::format("Duplicate node type '{}'", name));
+
+        m_NodeTypes.emplace(std::string(name), m_NodeTypeAllocator.AllocateEmptyPolicy());
+    }
+
+    // Now load the types
+    for (const pugi::xml_node childNode : node)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+
+        auto it = m_NodeTypes.find(name);
+        it->second->LoadXmlNode(&m_NodeTypeAllocator, this, childNode, childErrorStack);
     }
 }
