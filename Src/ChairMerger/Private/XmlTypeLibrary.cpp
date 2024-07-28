@@ -219,6 +219,7 @@ void XmlTypeLibrary::LoadTypesFromFile(const fs::path& filePath)
 void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
     bool foundValueTypes = false;
+    bool foundNodeTypes = false;
 
     for (const pugi::xml_node childNode : node)
     {
@@ -228,7 +229,7 @@ void XmlTypeLibrary::LoadTypesFromXml(const pugi::xml_node& node, const XmlError
         {
             LoadXmlValueTypes(childNode, childErrorStack);
         }
-        else if (XmlUtils::EqualsOnceOrThrow(childErrorStack, childNode, XML_NODE_NODETYPES, &foundValueTypes))
+        else if (XmlUtils::EqualsOnceOrThrow(childErrorStack, childNode, XML_NODE_NODETYPES, &foundNodeTypes))
         {
             LoadXmlNodeTypes(childNode, childErrorStack);
         }
