@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <xs:schema
-    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MergingPolicy.xsd"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     elementFormDefault="qualified">
     <xs:annotation><xs:documentation>
         This file defines the data model of a particular XML file and how this file should be merged.
