@@ -59,7 +59,7 @@ const FileMergingPolicy3* MergingLibrary3::FindPolicyForFile(const fs::path& rel
     // Find match via directory name
     bool isDirectParent = true;
 
-    for (fs::path dirPath = relPath.parent_path(); dirPath.has_parent_path(); dirPath = dirPath.parent_path())
+    for (fs::path dirPath = relPath.parent_path(); !dirPath.empty(); dirPath = dirPath.parent_path())
     {
         std::string dirPathStr = NormalizePath(dirPath.u8string());
         auto itDir = m_DirMergingPolicy.find(dirPathStr);
