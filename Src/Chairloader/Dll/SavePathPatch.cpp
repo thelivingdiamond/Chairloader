@@ -15,6 +15,13 @@ static void EarlyFatalError(std::string_view format, const Args& ...args)
 
 void SavePathPatch::ApplyPatch()
 {
+    if (GetModuleHandleA("Preditor.exe"))
+    {
+        // Ignore Preditor. It's EXE is located in a different place.
+        // It overrides the save path anyway.
+        return;
+    }
+
     // Find EXE path
     std::vector<wchar_t> pathBuf(512);
     DWORD pathLen = GetModuleFileNameW(GetModuleHandleW(nullptr), pathBuf.data(), pathBuf.size());
