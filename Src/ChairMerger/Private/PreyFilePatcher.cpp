@@ -4,6 +4,7 @@
 #include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlValidator.h>
+#include "MetaAttributes.h"
 
 static char nibbleToHex(uint8_t val)
 {
@@ -20,6 +21,14 @@ void PreyFilePatcher::PatchNode(
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack)
 {
+    if (policy.GetCollection().type == MergingPolicy3::ECollectionType::ReplaceOnly &&
+        node.children().begin() != node.children().end())
+    {
+        // Use can only replace all children in this node.
+        // Pre-set the action to replaceChildren for ease of use
+        XmlUtils::GetOrAddAttribute(node, MetaAttributes::ACTION).set_value("replaceChildren");
+    }
+
     const MergingPolicy3::Patches& patches = policy.GetPatches();
 
     // RemoveAttribute
