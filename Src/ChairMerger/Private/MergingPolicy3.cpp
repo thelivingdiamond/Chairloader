@@ -240,6 +240,10 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
     {
         m_Collection.type = ECollectionType::Array;
     }
+    else if (typeStr == "replaceOnly")
+    {
+        m_Collection.type = ECollectionType::ReplaceOnly;
+    }
     else
     {
         errorStack.ThrowException(fmt::format("Unknown type '{}'", typeStr));

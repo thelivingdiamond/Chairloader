@@ -99,11 +99,18 @@ void XmlMerger3::PatchNode(
     switch (collection.type)
     {
     case MergingPolicy3::ECollectionType::None:
+    case MergingPolicy3::ECollectionType::ReplaceOnly:
     {
         // No children allowed
         bool hasChildren = XmlValidator::NodeHasChildElements(modNode);
         if (hasChildren)
-            modErrorStack.ThrowException("This node can't have child nodes since it has no collection defined");
+        {
+            if (collection.type == MergingPolicy3::ECollectionType::None)
+                modErrorStack.ThrowException("This node can't have child nodes since it has no collection defined");
+            else if (collection.type == MergingPolicy3::ECollectionType::ReplaceOnly)
+                modErrorStack.ThrowException(fmt::format("Set {}=\"replace\" to replace attributes and children", MetaAttributes::ACTION));
+        }
+
         break;
     }
     case MergingPolicy3::ECollectionType::Dict:

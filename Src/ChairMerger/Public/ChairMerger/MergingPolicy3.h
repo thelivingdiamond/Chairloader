@@ -42,7 +42,7 @@ public:
 
     enum class ECollectionType
     {
-        //! Invalid type.
+        //! No child nodes are allowed.
         None,
         
         //! Key-value dictionary with arbitrary key.
@@ -50,6 +50,9 @@ public:
 
         //! An ordered list of nodes with a separate integer index attribute.
         Array,
+
+        //! Child nodes are allowed but the whole node must be replaced
+        ReplaceOnly,
     };
 
     //! Defines a known/allowed attribute.
