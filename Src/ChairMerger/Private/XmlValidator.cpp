@@ -332,6 +332,11 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
 
         break;
     }
+    case MergingPolicy3::ECollectionType::ReplaceOnly:
+    {
+        // No special checks
+        break;
+    }
     default:
         throw std::logic_error("Unknown collection type");
     }
