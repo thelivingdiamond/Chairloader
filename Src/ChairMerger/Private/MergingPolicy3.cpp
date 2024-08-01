@@ -180,6 +180,7 @@ void MergingPolicy3::LoadXmlPatches(const pugi::xml_node& node, const XmlErrorSt
     XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_PATCHES);
     int i = 0;
     bool foundAddChildIndex = false;
+    bool foundAddEntityGuid = false;
 
     for (const pugi::xml_node childNode : node)
     {
@@ -196,6 +197,17 @@ void MergingPolicy3::LoadXmlPatches(const pugi::xml_node& node, const XmlErrorSt
             m_Patches.addChildIndex = true;
             m_Patches.childIndexAttr = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "name").as_string();
             m_Patches.childIndexIncrement = childNode.attribute("increment").as_int(1000);
+        }
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_ADD_ENTITY_GUID, &foundAddEntityGuid))
+        {
+            m_Patches.addEntityGuid = true;
+            m_Patches.addEntityGuidName = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "guidName").as_string();
+            m_Patches.addEntityGuidFlagName = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "flagName").as_string();
+
+            for (const pugi::xml_node hashAttrNode : childNode)
+            {
+                m_Patches.addEntityGuidHash.push_back(hashAttrNode.text().as_string());
+            }
         }
         else
         {
