@@ -419,6 +419,34 @@ void FileMergingPolicy3::LoadXmlNode(
 
     SetRecursive(node.attribute("recursive").as_bool(false));
 
-    const pugi::xml_node rootNode = XmlUtils::GetRequiredNode(errorStack, node, MergingPolicy3::XML_NODE_NAME);
-    m_RootNode.LoadXmlNode(&m_Alloc, pTypeLib, rootNode, errorStack);
+    const pugi::xml_node rootNode = node.child("Node");
+    const pugi::xml_node rootNodeByType = node.child("NodeByType");
+
+    if (rootNode && rootNodeByType)
+        errorStack.ThrowException("Only one of Node or NodeByType must be specified");
+    else if (!rootNode && !rootNodeByType)
+        errorStack.ThrowException("One of Node or NodeByType must be specified");
+
+    if (rootNode)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(rootNode);
+        MergingPolicy3* item = m_Alloc.AllocateEmptyPolicy();
+        item->LoadXmlNode(&m_Alloc, pTypeLib, rootNode, errorStack);
+        m_RootNode = item;
+    }
+    else if (rootNodeByType)
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(rootNodeByType);
+
+        if (!pTypeLib)
+            childErrorStack.ThrowException("Can't use NodeByType since no type library is available");
+
+        std::string_view typeName = XmlUtils::GetRequiredAttr(errorStack, rootNodeByType, "type").as_string();
+        const MergingPolicy3* item = pTypeLib->FindNodeType(typeName);
+
+        if (!item)
+            childErrorStack.ThrowException(fmt::format("Node type '{}' not found", typeName));
+
+        m_RootNode = item;
+    }
 }

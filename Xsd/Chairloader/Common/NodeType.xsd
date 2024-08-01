@@ -270,31 +270,7 @@
                     <!-- <ChildNodes> - Child nodes -->
                     <xs:choice maxOccurs="unbounded">
                         <xs:element name="Node" type="Node" minOccurs="0" maxOccurs="unbounded" />
-                        <xs:element name="NodeByType" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                                <xs:annotation><xs:documentation>
-                                    References a predefined node type instead of defining a new one.
-                                </xs:documentation></xs:annotation>
-                                
-                                <xs:attribute name="name" type="xs:string" use="required">
-                                    <xs:annotation><xs:documentation>
-                                        Name of the node.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-
-                                <xs:attribute name="type" type="xs:string" use="required">
-                                    <xs:annotation><xs:documentation>
-                                        Name of the node type.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-                                
-                                <xs:attribute name="nameRegex" type="xs:boolean" default="false">
-                                    <xs:annotation><xs:documentation>
-                                        If true, name will be interpreted as a regular expression.
-                                    </xs:documentation></xs:annotation>
-                                </xs:attribute>
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="NodeByType" type="NodeByType" minOccurs="0" maxOccurs="unbounded" />
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
@@ -336,5 +312,29 @@
                 </xs:attribute>
             </xs:extension>
         </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NodeByType">
+        <xs:annotation><xs:documentation>
+            References a predefined node type instead of defining a new one.
+        </xs:documentation></xs:annotation>
+        
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation><xs:documentation>
+                Name of the node.
+            </xs:documentation></xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="type" type="xs:string" use="required">
+            <xs:annotation><xs:documentation>
+                Name of the node type.
+            </xs:documentation></xs:annotation>
+        </xs:attribute>
+        
+        <xs:attribute name="nameRegex" type="xs:boolean" default="false">
+            <xs:annotation><xs:documentation>
+                If true, name will be interpreted as a regular expression.
+            </xs:documentation></xs:annotation>
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>

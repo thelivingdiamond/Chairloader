@@ -276,8 +276,7 @@ public:
     void SetFileName(std::string_view fileName, bool isRegex);
 
     //! @returns The root node.
-    const MergingPolicy3& GetRootNode() const { return m_RootNode; }
-    MergingPolicy3& GetRootNode() { return m_RootNode; }
+    const MergingPolicy3& GetRootNode() const { return *m_RootNode; }
 
     //! Loads data from XML.
     void LoadXmlNode(XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
@@ -288,7 +287,7 @@ private:
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
     MergingPolicyAllocator m_Alloc;
-    MergingPolicy3 m_RootNode;
+    const MergingPolicy3* m_RootNode = nullptr;
 };
 
 using FileMergingPolicy3Ptr = std::unique_ptr<FileMergingPolicy3>;
