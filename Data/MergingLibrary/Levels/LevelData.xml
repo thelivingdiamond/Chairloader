@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/leveldata\.xml"
+    recursive="true">
+    <Node name="LevelData">
+        <Attributes>
+            <Attribute name="SandboxVersion" type="string" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="LevelInfo">
+                <Attributes>
+                    <Attribute name="CreationDate" type="string" required="true" />
+                    <Attribute name="Name" type="string" required="true" />
+                    <Attribute name="HeightmapSize" type="int32" required="true" />
+                    <Attribute name="HeightmapUnitSize" type="float" required="true" />
+                    <Attribute name="HeightmapMaxHeight" type="float" required="true" />
+                    <Attribute name="WaterLevel" type="float" required="true" />
+                    <Attribute name="TerrainSectorSizeInMeters" type="float" required="true" />
+                    <Attribute name="CreationDate" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="SurfaceTypes">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="SurfaceType">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="SurfaceTypeID" type="int32" required="true" />
+                            <Attribute name="DetailTexture" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="DetailScaleX" type="float" required="true" />
+                            <Attribute name="DetailScaleY" type="float" required="true" />
+                            <Attribute name="DetailMaterial" type="string" required="true" />
+                            <Attribute name="ProjectAxis" type="int32" required="true" />
+                            <Attribute name="Bumpmap" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="ProjAxis" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="CollisionClasses">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="CollisionClass">
+                        <Attributes>
+                            <Attribute name="type" type="uint32" required="true" />
+                            <Attribute name="ignore" type="uint32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Layers">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                    <UniqueAttribute name="Id" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Layer">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Parent" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                            <Attribute name="Specs" type="int32" required="true" />
+                            <Attribute name="DefaultLoaded" type="boolInt" />
+                            <Attribute name="LoadTokenId" type="GameTokenId" />
+                            <Attribute name="LoadTokenValue" type="string" />
+                            <Attribute name="Physics" type="boolInt" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Vegetation">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="GUID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="GUID" />
+                    <UniqueAttribute name="Id" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Object">
+                        <Attributes>
+                            <Attribute name="GUID" type="GuidWithBraces" required="true" readOnly="true" />
+                            <Attribute name="Size" type="float" required="true" />
+                            <Attribute name="SizeVar" type="float" required="true" />
+                            <Attribute name="RandomRotation" type="boolInt" required="true" />
+                            <Attribute name="RotationRangeToTerrainNormal" type="int32" required="true" />
+                            <Attribute name="AlignToTerrain" type="boolInt" required="true" />
+                            <Attribute name="AlignToTerrainCoefficient" type="float" required="true" />
+                            <Attribute name="UseTerrainColor" type="boolInt" required="true" />
+                            <Attribute name="AllowIndoor" type="boolInt" required="true" />
+                            <Attribute name="Bending" type="int32" required="true" />
+                            <Attribute name="Hideable" type="boolInt" required="true" />
+                            <Attribute name="PlayerHideable" type="boolInt" required="true" />
+                            <Attribute name="GrowOnBrushes" type="boolInt" required="true" />
+                            <Attribute name="GrowOnTerrain" type="boolInt" required="true" />
+                            <Attribute name="AutoMerged" type="boolInt" required="true" />
+                            <Attribute name="Stiffness" type="float" required="true" />
+                            <Attribute name="Damping" type="float" required="true" />
+                            <Attribute name="Variance" type="float" required="true" />
+                            <Attribute name="AirResistance" type="float" required="true" />
+                            <Attribute name="Pickable" type="boolInt" required="true" />
+                            <Attribute name="AIRadius" type="float" required="true" />
+                            <Attribute name="Brightness" type="float" required="true" />
+                            <Attribute name="Density" type="float" required="true" />
+                            <Attribute name="ElevationMin" type="float" required="true" />
+                            <Attribute name="ElevationMax" type="float" required="true" />
+                            <Attribute name="SlopeMin" type="float" required="true" />
+                            <Attribute name="SlopeMax" type="float" required="true" />
+                            <Attribute name="CastShadow" type="boolInt" required="true" />
+                            <Attribute name="CastShadowMinSpec" type="int32" required="true" />
+                            <Attribute name="RecvShadow" type="boolInt" required="true" />
+                            <Attribute name="DynamicDistanceShadows" type="boolInt" required="true" />
+                            <Attribute name="CastSunShadowMinSpec" type="int32" required="true" />
+                            <Attribute name="AlphaBlend" type="boolInt" required="true" />
+                            <Attribute name="SpriteDistRatio" type="float" required="true" />
+                            <Attribute name="LodDistRatio" type="float" required="true" />
+                            <Attribute name="MaxViewDistRatio" type="float" required="true" />
+                            <Attribute name="Material" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="MinSpec" type="int32" required="true" />
+                            <Attribute name="Frozen" type="boolInt" required="true" />
+                            <Attribute name="Layer_Wet" type="int32" required="true" />
+                            <Attribute name="Object" type="string" required="true" />
+                            <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                            <Attribute name="FileName" type="string" required="true" />
+                            <Attribute name="Hidden" type="boolInt" required="true" />
+                            <Attribute name="Index" type="int32" required="true" />
+                            <Attribute name="Category" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="MaterialsLibrary">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Library">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="ParticlesLibrary">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Library">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="GameTokensLibraryReferences">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Library">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

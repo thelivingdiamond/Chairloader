@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/lensflarelist\.xml"
+    recursive="true">
+    <Node name="LensFlareList">
+        <Attributes>
+            <Attribute name="Version" type="int32" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="LensFlare">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/gametokens/.*\.xml"
+    recursive="true">
+    <Node name="GameTokensLibrary">
+        <Attributes>
+            <Attribute name="Name" type="string" required="true" />
+            <Attribute name="LevelName" type="string" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="Id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="Name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="GameToken">
+                <Attributes>
+                    <Attribute name="Id" type="GameTokenId" required="true" readOnly="true" />
+                    <Attribute name="Name" type="GameTokenName" required="true" readOnly="true" />
+                    <Attribute name="Flags" type="uint32" />
+                    <Attribute name="Type" type="string" required="true" />
+                    <Attribute name="Value" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="Description" type="string" allowEmpty="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

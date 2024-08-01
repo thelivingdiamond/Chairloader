@@ -7,13 +7,27 @@
         <!-- Special -->
         <RegExType name="GuidWithBraces" regex="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
         <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        
+        <RegExType name="uint64_hex" regex="[0-9a-fA-F]{1,16}" />
+        
+        <RegExType name="Vec2" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*" />
+        <RegExType name="Vec3" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+)" />
+        <RegExType name="Vec4" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+),\s*([\d\.+e-]+)" />
+        <AliasType name="Quat" baseType="Vec4" />
 
         <!-- Aliases -->
         <AliasType name="ArkUniqueId" baseType="uint64" />
 
         <!-- IDs -->
         <!-- Automatically makes aliases for TypeName and TypeNameDef -->
+        <IDType name="ArchetypeName" baseType="string" /> <!-- Archetype with library name -->
+        <IDType name="LocalArchetypeName" baseType="string" /> <!-- Archetype without library name -->
         <IDType name="ArchetypeId" baseType="uint64" />
+        <IDType name="GameTokenId" baseType="int32" />
+        <IDType name="GameTokenName" baseType="string" />
+        <IDType name="ArkLocationId" baseType="string" />
+        <IDType name="EntityId" baseType="uint16" />
+        <IDType name="EntityGuid" baseType="uint64_hex" />
 
         <!-- Signal System -->
         <IDType name="ArkSignalId" baseType="ArkUniqueId" />
@@ -21,4 +35,182 @@
         <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
         <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
     </ValueTypes>
+
+    <NodeTypes>
+        <NodeType name="EntityPrototype">
+            <Attributes>
+                <Attribute name="Name" type="LocalArchetypeNameDef" required="true" readOnly="true" comment="Archetype name in the library" />
+                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                <Attribute name="Library" type="string" required="true" readOnly="true" />
+                <Attribute name="Class" type="string" required="true" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+                <Attribute name="ArchetypeId" type="ArchetypeIdDef" required="true" readOnly="true" />
+            </Attributes>
+
+            <!-- This node acts like a dictionary with keys being the child node names -->
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Properties(2?)" nameRegex="true" recursive="true">
+                    <!-- recursive="true" applies the same rules to all unknown child nodes -->
+
+                    <!-- Attributes and child nodes depend on particular entity class so allow everything -->
+                    <Attributes allowUnknown="true" />
+                    
+                    <Collection type="nodeDict" />
+                </Node>
+
+                <Node name="ObjectVars">
+                    <Attributes>
+                        <Attribute name="OutdoorOnly" type="boolInt" required="true" />
+                        <Attribute name="CastShadow" type="boolInt" required="true" />
+                        <Attribute name="CastShadowMinspec" type="int32" required="true" />
+                        <Attribute name="DynamicDistanceShadows" type="boolInt" required="true" />
+                        <Attribute name="ShadowCasterType" type="int32" required="true" />
+                        <Attribute name="CastSunShadowMinSpec" type="int32" required="true" />
+                        <Attribute name="LodRatio" type="int32" required="true" />
+                        <Attribute name="ViewDistRatio" type="int32" required="true" />
+                        <Attribute name="CastShadowViewDistRatio" type="int32" />
+                        <Attribute name="HiddenInGame" type="boolInt" required="true" />
+                        <Attribute name="GlobalInSegmentedWorld" type="boolInt" required="true" />
+                        <Attribute name="RecvWind" type="boolInt" required="true" />
+                        <Attribute name="RenderNearest" type="boolInt" required="true" />
+                        <Attribute name="NoStaticDecals" type="boolInt" required="true" />
+                        <Attribute name="CreatedThroughPool" type="boolInt" required="true" />
+                        <Attribute name="SceneIndex" type="int32" required="true" />
+                        <Attribute name="HiddenInProbes" type="boolInt" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <NodeType name="FlowGraph">
+            <Attributes>
+                <Attribute name="isModule" type="boolInt" />
+                <Attribute name="moduleName" type="string" />
+                <Attribute name="isObjectList" type="boolInt" />
+                <Attribute name="objectListClass" type="string" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+                <Attribute name="Group" type="string" allowEmpty="true" />
+                <Attribute name="enabled" type="boolInt" />
+                <Attribute name="MultiPlayer" type="string" />
+            </Attributes>
+            
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Nodes">
+                    <Attributes/>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Node">
+                            <Attributes>
+                                <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" />
+                                <Attribute name="Class" type="string" required="true" />
+                                <Attribute name="pos" type="Vec3" required="true" />
+                                <Attribute name="GraphEntity" type="boolInt" />
+                                <Attribute name="EntityGUID" type="GuidWithBraces" />
+                                <Attribute name="EntityGUID_64" type="EntityGuid" />
+                                <Attribute name="InHideMask" type="uint32" />
+                                <Attribute name="OutHideMask" type="uint32" />
+                            </Attributes>
+
+                            <Collection type="nodeDict" />
+
+                            <ChildNodes>
+                                <Node name="Inputs">
+                                    <!-- Attributes depends on a particular node type -->
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="entityId" type="EntityId" />
+                                    </Attributes>
+                                </Node>
+
+                                <Node name="Outputs">
+                                    <Attributes />
+
+                                    <Collection type="dict">
+                                        <PrimaryKey>
+                                            <ChildAttribute name="Name" />
+                                        </PrimaryKey>
+                                    </Collection>
+
+                                    <ChildNodes>
+                                        <Node name="Output">
+                                            <Attributes>
+                                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                            </Attributes>
+                                        </Node>
+                                    </ChildNodes>
+                                </Node>
+
+                                <Node name="CommentBox">
+                                    <Attributes>
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Edges">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="nodeIn" />
+                            <ChildAttribute name="nodeOut" />
+                            <ChildAttribute name="portIn" />
+                            <ChildAttribute name="portOut" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Edge">
+                            <Attributes>
+                                <Attribute name="nodeIn" type="int32" required="true" readOnly="true" />
+                                <Attribute name="nodeOut" type="int32" required="true" readOnly="true" />
+                                <Attribute name="portIn" type="string" required="true" readOnly="true" />
+                                <Attribute name="portOut" type="string" required="true" readOnly="true" />
+                                <Attribute name="enabled" type="boolInt" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="GraphTokens">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildConstraints>
+                        <UniqueAttribute name="Id" />
+                        <UniqueAttribute name="Name" />
+                    </ChildConstraints>
+
+                    <ChildNodes>
+                        <Node name="Token">
+                            <Attributes>
+                                <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Type" type="int32" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+    </NodeTypes>
 </XmlTypeLibrary>
