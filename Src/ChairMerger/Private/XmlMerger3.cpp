@@ -34,13 +34,50 @@ void XmlMerger3::MergeNode(
     const MergingPolicy3& policy,
     const XmlErrorStack& modErrorStack)
 {
-    MetaAttributes meta(modNode);
+    MetaAttributes meta;
+    meta.ParseNode(modNode, modErrorStack);
 
     if (!meta.GetApplyNode())
-        throw std::logic_error("Root node may not have ch:apply_if=false");
+        throw std::runtime_error("Root node may not have ch:apply_if=false");
 
-    // TODO 2024-05-05: Other methods
-    PatchNode(context, baseNode, modNode, policy, modErrorStack);
+    switch (meta.GetAction())
+    {
+    case MetaAttributes::EAction::Patch:
+    {
+        PatchNode(context, baseNode, modNode, policy, modErrorStack);
+        break;
+    }
+    case MetaAttributes::EAction::Delete:
+    {
+        pugi::xml_node baseParentNode = baseNode.parent();
+        baseParentNode.remove_child(baseNode);
+        baseNode = pugi::xml_node();
+        break;
+    }
+    case MetaAttributes::EAction::Replace:
+    {
+        // Validate mod node
+        ValidateNewNode(context, modNode, policy, modErrorStack);
+
+        // Clear the base node
+        baseNode.remove_attributes();
+        baseNode.remove_children();
+
+        // Insert attributes from mod node
+        for (const pugi::xml_attribute attr : modNode.attributes())
+        {
+            baseNode.append_attribute(attr.name()).set_value(attr.as_string());
+        }
+
+        // Insert children from mod node
+        for (const pugi::xml_node node : modNode.children())
+        {
+            baseNode.append_copy(node);
+        }
+
+        break;
+    }
+    }    
 }
 
 // Alternatively called Node Emulsification, Unification, or Coalescence

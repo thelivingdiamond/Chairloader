@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A keyAttr1="keyVal1" ch:action="delete" />
+</Root>
