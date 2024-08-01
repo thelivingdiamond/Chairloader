@@ -13,9 +13,10 @@
     <!-- <MergingPolicy> -->
     <xs:element name="MergingPolicy">
         <xs:complexType>
-            <xs:all>
-                <xs:element name="Node" type="Node" minOccurs="1" maxOccurs="1"/>
-            </xs:all>
+            <xs:choice>
+                <xs:element name="Node" type="Node" maxOccurs="1"/>
+                <xs:element name="NodeByType" type="NodeByType" maxOccurs="1"/>
+            </xs:choice>
             
             <xs:attribute name="fileNameRegex" type="xs:string">
                 <xs:annotation><xs:documentation>
