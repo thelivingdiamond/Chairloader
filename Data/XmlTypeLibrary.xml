@@ -28,6 +28,7 @@
         <IDType name="ArkLocationId" baseType="string" />
         <IDType name="EntityId" baseType="uint16" />
         <IDType name="EntityGuid" baseType="uint64_hex" />
+        <IDType name="VoiceId" baseType="uint64_hex" />
 
         <!-- Signal System -->
         <IDType name="ArkSignalId" baseType="ArkUniqueId" />
