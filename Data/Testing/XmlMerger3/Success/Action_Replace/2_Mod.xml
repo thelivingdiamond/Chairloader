@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A keyAttr1="keyVal1" aAttr1="aVal1_Replaced" ch:action="replace">
+        <B bAttr1="bVal1_Replaced" bAttr2="bVal2_Replaced" />
+    </A>
+</Root>

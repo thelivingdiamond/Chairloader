@@ -1,14 +1,17 @@
+#include <Chairloader/Private/XmlUtils.h>
 #include "MetaAttributes.h"
 
 //! All supported meta attributes
 static const std::set<std::string, std::less<>> g_MetaAttrs = {
     MetaAttributes::APPLY_IF,
     MetaAttributes::ARRAY_SOURCE,
+    MetaAttributes::ACTION,
 };
 
 //! Meta attributes that must not be stripped
 static const std::set<std::string, std::less<>> g_RetainMetaAttrs = {
-    MetaAttributes::ARRAY_SOURCE,
+    MetaAttributes::ARRAY_SOURCE, // Used when merging next mods
+    MetaAttributes::ACTION, // Kept as a reference for debugging.
 };
 
 bool MetaAttributes::CheckApplyIf(const pugi::xml_node& node)
@@ -32,7 +35,7 @@ bool MetaAttributes::IsKnownMetaAttr(std::string_view attrName)
     return g_MetaAttrs.find(attrName) != g_MetaAttrs.end();
 }
 
-void MetaAttributes::ParseNode(const pugi::xml_node& node)
+void MetaAttributes::ParseNode(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
     m_Apply = CheckApplyIf(node);
 
@@ -40,5 +43,19 @@ void MetaAttributes::ParseNode(const pugi::xml_node& node)
     {
         // Node is disabled. No further parsing as other attributes may be invalid.
         return;
+    }
+
+    if (pugi::xml_attribute action = node.attribute(ACTION))
+    {
+        std::string_view val = action.as_string();
+
+        if (val == "patch")
+            m_Action = EAction::Patch;
+        else if (val == "delete")
+            m_Action = EAction::Delete;
+        else if (val == "replace")
+            m_Action = EAction::Replace;
+        else
+            errorStack.ThrowException(fmt::format("Invalid {} value '{}'. Allowed are: patch, delete, replace", ACTION, val));
     }
 }

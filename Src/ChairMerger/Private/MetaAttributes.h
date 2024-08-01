@@ -1,5 +1,7 @@
 #pragma once
 
+class XmlErrorStack;
+
 class MetaAttributes
 {
 public:
@@ -7,6 +9,19 @@ public:
     static constexpr char APPLY_IF[] = "ch:apply_if";
     static constexpr char ARRAY_SOURCE[] = "ch:arrayMod";
     static constexpr char ARRAY_SOURCE_PREY[] = "__prey__";
+    static constexpr char ACTION[] = "ch:action";
+
+    enum class EAction
+    {
+        //! Node will be merged via normal algorithms.
+        Patch,
+
+        //! Node will be removed if it was found.
+        Delete,
+
+        //! Entire node will be replaced.
+        Replace,
+    };
 
     //! Gets the node's apply_if attribute.
     //! @param  node    The node.
@@ -23,15 +38,18 @@ public:
     //! @}
 
     MetaAttributes() = default;
-    explicit MetaAttributes(const pugi::xml_node& node) { ParseNode(node); }
 
     //! Parses a node's attributes.
     //! @param  node    The node.
-    void ParseNode(const pugi::xml_node& node);
+    void ParseNode(const pugi::xml_node& node, const XmlErrorStack& errorStack);
 
     //! @returns Whether this mod node should be applied.
     bool GetApplyNode() const { return m_Apply; }
 
+    //! @returns The action for the node.
+    EAction GetAction() const { return m_Action.value_or(EAction::Patch); }
+
 private:
     bool m_Apply = false;
+    std::optional<EAction> m_Action;
 };
