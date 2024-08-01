@@ -102,10 +102,10 @@ int main(int argc, char** argv)
                 context.nodeType = XmlValidator::ENodeType::MergingBase;
                 context.pTypeLib = &typeLib;
 
-                XmlValidator::Result result = XmlValidator::ValidateNode(
+                XmlValidator::Result result = XmlValidator::ValidateDocument(
                     context,
-                    xmlDoc.first_child(),
-                    filePolicy->GetRootNode());
+                    xmlDoc,
+                    *filePolicy);
 
                 if (!result)
                 {

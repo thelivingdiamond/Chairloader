@@ -58,6 +58,16 @@ public:
     //! @param  policy      Merging policy.
     //! @param  pTypeLib    Type library for type validation.
     //! @param  recurse     Whether to validate children.
+    static Result ValidateDocument(
+        const Context& context,
+        const pugi::xml_document& doc,
+        const FileMergingPolicy3& policy);
+
+    //! Validates a node that is matches the policy.
+    //! @param  node        Node to validate
+    //! @param  policy      Merging policy.
+    //! @param  pTypeLib    Type library for type validation.
+    //! @param  recurse     Whether to validate children.
     static Result ValidateNode(
         const Context& context,
         const pugi::xml_node& node,
