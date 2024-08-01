@@ -43,8 +43,9 @@ void XmlMerger3::MergeNode(
     switch (meta.GetAction())
     {
     case MetaAttributes::EAction::Patch:
+    case MetaAttributes::EAction::ReplaceChildren:
     {
-        PatchNode(context, baseNode, modNode, policy, modErrorStack);
+        PatchNode(context, baseNode, modNode, meta, policy, modErrorStack);
         break;
     }
     case MetaAttributes::EAction::Delete:
@@ -86,6 +87,7 @@ void XmlMerger3::PatchNode(
     const XmlMergerContext& context,
     pugi::xml_node& baseNode,
     const pugi::xml_node& modNode,
+    const MetaAttributes& modNodeMeta,
     const MergingPolicy3& policy,
     const XmlErrorStack& modErrorStack)
 {
@@ -95,32 +97,76 @@ void XmlMerger3::PatchNode(
     MergeAttributes(context, baseNode, modNode, policy, modErrorStack);
     MergeText(context, baseNode, modNode, policy, modErrorStack);
 
-    // Merge children
-    switch (collection.type)
+    if (modNodeMeta.GetAction() == MetaAttributes::EAction::ReplaceChildren)
     {
-    case MergingPolicy3::ECollectionType::None:
-    case MergingPolicy3::ECollectionType::ReplaceOnly:
-    {
-        // No children allowed
-        bool hasChildren = XmlValidator::NodeHasChildElements(modNode);
-        if (hasChildren)
-        {
-            if (collection.type == MergingPolicy3::ECollectionType::None)
-                modErrorStack.ThrowException("This node can't have child nodes since it has no collection defined");
-            else if (collection.type == MergingPolicy3::ECollectionType::ReplaceOnly)
-                modErrorStack.ThrowException(fmt::format("Set {}=\"replace\" to replace attributes and children", MetaAttributes::ACTION));
-        }
+        // Remove children
+        baseNode.remove_children();
 
-        break;
+        // Insert children from mod node
+        int i = 0;
+
+        for (const pugi::xml_node childModNode : modNode.children())
+        {
+            if (childModNode.type() != pugi::node_element)
+                continue;
+
+            XmlErrorStack childModErrorStack = modErrorStack.GetChild(childModNode);
+            childModErrorStack.SetIndex(i);
+
+            // Find the policy for the node
+            const MergingPolicy3* pChildPolicy = policy.FindChildNode(childModNode.name());
+            if (!pChildPolicy)
+            {
+                childModErrorStack.ThrowException(fmt::format(
+                    "Node {} can't be a child of {} (merging policy not found)",
+                    childModNode.name(),
+                    baseNode.name()));
+            }
+
+            // Validate the node
+            ValidateNewNode(context, childModNode, *pChildPolicy, childModErrorStack);
+
+            // Insert it
+            baseNode.append_copy(childModNode);
+
+            i++;
+        }
     }
-    case MergingPolicy3::ECollectionType::Dict:
-        MergeChildrenDict(context, baseNode, modNode, policy, modErrorStack);
-        break;
-    case MergingPolicy3::ECollectionType::Array:
-        MergeChildrenArray(context, baseNode, modNode, policy, modErrorStack);
-        break;
-    default:
-        throw std::logic_error("Not implemented");
+    else
+    {
+        CRY_ASSERT(modNodeMeta.GetAction() == MetaAttributes::EAction::Patch);
+
+        // Merge children
+        switch (collection.type)
+        {
+        case MergingPolicy3::ECollectionType::None:
+        case MergingPolicy3::ECollectionType::ReplaceOnly:
+        {
+            // No children allowed
+            bool hasChildren = XmlValidator::NodeHasChildElements(modNode);
+            if (hasChildren)
+            {
+                if (collection.type == MergingPolicy3::ECollectionType::None)
+                {
+                    modErrorStack.ThrowException("This node can't have child nodes since it has no collection defined");
+                }
+                else if (collection.type == MergingPolicy3::ECollectionType::ReplaceOnly)
+                {
+                    modErrorStack.ThrowException(fmt::format("Set {}=\"replaceChildren\" to replace children but merge attributes", MetaAttributes::ACTION));
+                }
+            }
+
+            break;
+        }
+        case MergingPolicy3::ECollectionType::Dict:
+            MergeChildrenDict(context, baseNode, modNode, policy, modErrorStack);
+            break;
+        case MergingPolicy3::ECollectionType::Array:
+            MergeChildrenArray(context, baseNode, modNode, policy, modErrorStack);
+            break;
+        default:
+            throw std::logic_error("Not implemented");
+        }
     }
 }
 

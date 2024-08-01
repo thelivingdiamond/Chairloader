@@ -55,6 +55,7 @@ public:
         const XmlMergerContext& context,
         pugi::xml_node& baseNode,
         const pugi::xml_node& modNode,
+        const MetaAttributes& modNodeMeta,
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
 

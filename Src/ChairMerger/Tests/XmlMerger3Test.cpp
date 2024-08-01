@@ -263,7 +263,8 @@ INSTANTIATE_TEST_SUITE_P(
         "Array_ModOverride",
         "Dict_ApplyIf",
         "Action_Delete",
-        "Action_Replace"));
+        "Action_Replace",
+        "Action_ReplaceChildren"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,
