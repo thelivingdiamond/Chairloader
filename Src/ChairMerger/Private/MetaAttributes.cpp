@@ -55,7 +55,9 @@ void MetaAttributes::ParseNode(const pugi::xml_node& node, const XmlErrorStack& 
             m_Action = EAction::Delete;
         else if (val == "replace")
             m_Action = EAction::Replace;
+        else if (val == "replaceChildren")
+            m_Action = EAction::ReplaceChildren;
         else
-            errorStack.ThrowException(fmt::format("Invalid {} value '{}'. Allowed are: patch, delete, replace", ACTION, val));
+            errorStack.ThrowException(fmt::format("Invalid {} value '{}'. Allowed are: patch, delete, replace, replaceChildren", ACTION, val));
     }
 }

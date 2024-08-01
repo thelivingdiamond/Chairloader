@@ -21,6 +21,9 @@ public:
 
         //! Entire node will be replaced.
         Replace,
+
+        //! All chidlren node will be replaced, attributes are merged.
+        ReplaceChildren,
     };
 
     //! Gets the node's apply_if attribute.
