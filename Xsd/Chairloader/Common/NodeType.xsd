@@ -11,7 +11,7 @@
     <!-- Type of a collection. -->
     <xs:simpleType name="CollectionType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="(dict|nodeDict|array)"/>
+            <xs:pattern value="(dict|nodeDict|array|replaceOnly)"/>
         </xs:restriction>
     </xs:simpleType>
 
