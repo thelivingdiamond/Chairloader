@@ -1,0 +1,719 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/mission_.*\.xml"
+    recursive="true">
+    <Node name="Mission">
+        <Attributes>
+            <Attribute name="Name" type="string" required="true" />
+            <Attribute name="Description" type="string" required="true" allowEmpty="true" />
+            <Attribute name="Time" type="string" required="true" />
+            <Attribute name="PlayerEquipPack" type="string" required="true" allowEmpty="true" />
+            <Attribute name="Script" type="string" required="true" allowEmpty="true" />
+            <Attribute name="CGFCount" type="int32" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Environment">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="SunShadows">
+                        <Attributes>
+                            <Attribute name="CascadeCount" type="int32" required="true" />
+                            <Attribute name="FirstCachedCascade" type="int32" required="true" />
+                            <Attribute name="DynamicDistance" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="LookingGlass">
+                        <Attributes>
+                            <Attribute name="Enabled" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Fog">
+                        <Attributes>
+                            <Attribute name="ViewDistance" type="float" required="true" />
+                            <Attribute name="ViewDistanceLowSpec" type="int32" required="true" />
+                            <Attribute name="LDRGlobalDensMult" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Terrain">
+                        <Attributes>
+                            <Attribute name="DetailLayersViewDistRatio" type="float" required="true" />
+                            <Attribute name="Scene" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="EnvState">
+                        <Attributes>
+                            <Attribute name="WindVector" type="Vec3" required="true" />
+                            <Attribute name="BreezeGeneration" type="boolInt" required="true" />
+                            <Attribute name="BreezeStrength" type="float" required="true" />
+                            <Attribute name="BreezeMovementSpeed" type="float" required="true" />
+                            <Attribute name="BreezeVariation" type="float" required="true" />
+                            <Attribute name="BreezeLifeTime" type="float" required="true" />
+                            <Attribute name="BreezeCount" type="int32" required="true" />
+                            <Attribute name="BreezeSpawnRadius" type="float" required="true" />
+                            <Attribute name="BreezeSpread" type="string" required="true" /> <!-- Actually a float but with 'f' suffix -->
+                            <Attribute name="BreezeRadius" type="float" required="true" />
+                            <Attribute name="BreezeAwakeThreshold" type="float" required="true" />
+                            <Attribute name="ConsoleMergedMeshesPool" type="int32" required="true" />
+                            <Attribute name="ShowTerrainSurface" type="bool" required="true" />
+                            <Attribute name="SunShadowsMinSpec" type="int32" required="true" />
+                            <Attribute name="SunShadowsAdditionalCascadeMinSpec" type="int32" required="true" />
+                            <Attribute name="SunShadowsClipPlaneRange" type="float" required="true" />
+                            <Attribute name="SunShadowsClipPlaneRangeShift" type="string" required="true" /> <!-- Actually a float but with 'f' suffix -->
+                            <Attribute name="UseLayersActivation" type="boolInt" required="true" />
+                            <Attribute name="SunLinkedToTOD" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="VolumetricFog">
+                        <Attributes>
+                            <Attribute name="Enable" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="VolFogShadows">
+                        <Attributes>
+                            <Attribute name="Enable" type="boolInt" required="true" />
+                            <Attribute name="EnableForClouds" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="CloudShadows">
+                        <Attributes>
+                            <Attribute name="CloudShadowTexture" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="CloudShadowSpeed" type="Vec3" required="true" />
+                            <Attribute name="CloudShadowTiling" type="boolInt" required="true" />
+                            <Attribute name="CloudShadowBrightness" type="float" required="true" />
+                            <Attribute name="CloudShadowInvert" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="ParticleLighting">
+                        <Attributes>
+                            <Attribute name="AmbientMul" type="float" required="true" />
+                            <Attribute name="LightsMul" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="SkyBox">
+                        <Attributes>
+                            <Attribute name="UseEarthSkyBox" type="boolInt" required="true" />
+                            <Attribute name="Material" type="string" required="true" />
+                            <Attribute name="MaterialLowSpec" type="string" required="true" />
+                            <Attribute name="Angle" type="float" required="true" />
+                            <Attribute name="Stretching" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Ocean">
+                        <Attributes>
+                            <Attribute name="Material" type="string" required="true" />
+                            <Attribute name="CausticDepth" type="float" required="true" />
+                            <Attribute name="CausticIntensity" type="float" required="true" />
+                            <Attribute name="CausticsTilling" type="boolInt" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="OceanAnimation">
+                        <Attributes>
+                            <Attribute name="WindDirection" type="float" required="true" />
+                            <Attribute name="WindSpeed" type="float" required="true" />
+                            <Attribute name="WavesSpeed" type="float" required="true" />
+                            <Attribute name="WavesAmount" type="float" required="true" />
+                            <Attribute name="WavesSize" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Moon">
+                        <Attributes>
+                            <Attribute name="Latitude" type="float" required="true" />
+                            <Attribute name="Longitude" type="float" required="true" />
+                            <Attribute name="Size" type="float" required="true" />
+                            <Attribute name="Texture" type="string" required="true" allowEmpty="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="DynTexSource">
+                        <Attributes>
+                            <Attribute name="Width" type="int32" required="true" />
+                            <Attribute name="Height" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Total_Illumination_v2">
+                        <Attributes>
+                            <Attribute name="Active" type="boolInt" required="true" />
+                            <Attribute name="IntegrationMode" type="int32" required="true" />
+                            <Attribute name="InjectionMultiplier" type="float" required="true" />
+                            <Attribute name="SkyColorMultiplier" type="float" required="true" />
+                            <Attribute name="UseTODSkyColor" type="float" required="true" />
+                            <Attribute name="PortalsDeform" type="boolInt" required="true" />
+                            <Attribute name="PortalsInject" type="boolInt" required="true" />
+                            <Attribute name="DiffuseAmplifier" type="float" required="true" />
+                            <Attribute name="SpecularAmplifier" type="float" required="true" />
+                            <Attribute name="NumberOfBounces" type="int32" required="true" />
+                            <Attribute name="Saturation" type="float" required="true" />
+                            <Attribute name="PropagationBooster" type="float" required="true" />
+                            <Attribute name="DiffuseBias" type="float" required="true" />
+                            <Attribute name="DiffuseConeWidth" type="float" required="true" />
+                            <Attribute name="ConeMaxLength" type="float" required="true" />
+                            <Attribute name="UpdateLighting" type="boolInt" required="true" />
+                            <Attribute name="UpdateGeometry" type="boolInt" required="true" />
+                            <Attribute name="MinNodeSize" type="int32" required="true" />
+                            <Attribute name="SkipNonGILights" type="boolInt" required="true" />
+                            <Attribute name="LowSpecMode" type="boolInt" required="true" />
+                            <Attribute name="HalfresKernel" type="boolInt" required="true" />
+                            <Attribute name="UseLightProbes" type="boolInt" required="true" />
+                            <Attribute name="VoxelizaionLODRatio" type="float" required="true" />
+                            <Attribute name="VoxelPoolResolution" type="int32" required="true" />
+                            <Attribute name="SSAOAmount" type="float" required="true" />
+                            <Attribute name="ObjectsMaxViewDistance" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Color_Grading">
+                        <Attributes>
+                            <Attribute name="LevelColorGradient" type="string" required="true" allowEmpty="true" />
+                        </Attributes>
+                    </Node>
+                    
+                    <Node name="Lighting">
+                        <Attributes>
+                            <Attribute name="SunRotation" type="float" required="true" />
+                            <Attribute name="SunHeight" type="float" required="true" />
+                            <Attribute name="Algorithm" type="int32" required="true" />
+                            <Attribute name="Lighting" type="boolInt" required="true" />
+                            <Attribute name="Shadows" type="boolInt" required="true" />
+                            <Attribute name="ShadowIntensity" type="int32" required="true" />
+                            <Attribute name="ILQuality" type="int32" required="true" />
+                            <Attribute name="HemiSamplQuality" type="int32" required="true" />
+                            <Attribute name="Longitude" type="float" required="true" />
+                            <Attribute name="Elevation" type="float" required="true" />
+                            <Attribute name="DawnTime" type="int32" required="true" />
+                            <Attribute name="DawnDuration" type="float" required="true" />
+                            <Attribute name="DuskTime" type="int32" required="true" />
+                            <Attribute name="DuskDuration" type="float" required="true" />
+                            <Attribute name="SceneIndex" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkLevelProperties">
+                <Attributes/>
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Group">
+                        <Attributes>
+                            <Attribute name="Location" type="ArkLocationId" required="true" />
+                            <Attribute name="HelmetOn" type="boolInt" required="true" />
+                            <Attribute name="AllowSaveGameToken" type="GameTokenId" required="true" />
+                            <Attribute name="SafeBoundsMax" type="Vec3" />
+                            <Attribute name="SafeBoundsMin" type="Vec3" />
+                            <Attribute name="PlayerWarningBuffer" type="int32" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="TimeOfDay">
+                <Attributes>
+                    <Attribute name="Time" type="float" required="true" />
+                    <Attribute name="TimeStart" type="float" />
+                    <Attribute name="TimeEnd" type="float" />
+                    <Attribute name="TimeAnimSpeed" type="float" />
+                    <Attribute name="TimePaused" type="float" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Variable">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                        
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Spline">
+                                <Attributes>
+                                    <Attribute name="Keys" type="string" required="true" allowEmpty="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="MiniMap">
+                <Attributes>
+                    <Attribute name="CenterX" type="float" required="true" />
+                    <Attribute name="CenterY" type="float" required="true" />
+                    <Attribute name="ExtendsX" type="float" required="true" />
+                    <Attribute name="ExtendsY" type="float" required="true" />
+                    <Attribute name="TexWidth" type="int32" required="true" />
+                    <Attribute name="TexHeight" type="int32" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkAutoMap">
+                <Attributes>
+                    <Attribute name="PixelsPerMeter" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Weapons">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Used">
+                        <Attributes />
+                    </Node>
+                    <Node name="Ammo">
+                        <Attributes />
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Objects">
+                <Attributes />
+
+                <Patches>
+                    <AddEntityGuid guidName="EntityGuid" flagName="ch:fakeGuid">
+                        <HashAttr>Name</HashAttr>
+                        <HashAttr>Type</HashAttr>
+                        <HashAttr>Archetype</HashAttr>
+                        <HashAttr>Layer</HashAttr>
+                        <HashAttr>EntityId</HashAttr>
+                        <HashAttr>Pos</HashAttr>
+                        <HashAttr>Rotate</HashAttr>
+                        <HashAttr>Scale</HashAttr>
+                    </AddEntityGuid>
+                </Patches>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="EntityGuid" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="EntityGuid" />
+                    <UniqueAttribute name="EntityId" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Object">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" allowEmpty="true" />
+                            <Attribute name="Type" type="string" required="true" />
+                            <Attribute name="Pos" type="Vec3" />
+                            <Attribute name="Rotate" type="Quat" />
+                            <Attribute name="Scale" type="Vec3" required="true" />
+
+                            <!-- Type: Decal -->
+                            <Attribute name="Material" type="string" />
+                            <Attribute name="ProjectionType" type="int32" />
+                            <Attribute name="Deferred" type="boolInt" />
+                            <Attribute name="ViewDistRatio" type="float" />
+                            <Attribute name="SortPriority" type="int32" />
+                            <Attribute name="ProjectionDepth" type="float" />
+                            <Attribute name="PoofOnCollision" type="boolInt" />
+                            
+                            <!-- Type: Portal -->
+                            <Attribute name="Height" type="float" />
+                            <Attribute name="DisplayFilled" type="boolInt" />
+                            <Attribute name="DisplayFilledAlways" type="boolInt" />
+                            <Attribute name="AffectedBySun" type="boolInt" />
+                            <Attribute name="IgnoreSkyColor" type="boolInt" />
+                            <Attribute name="IgnoreGI" type="boolInt" />
+                            <Attribute name="ViewDistRatio" type="float" />
+                            <Attribute name="SkyOnly" type="boolInt" />
+                            <Attribute name="OceanIsVisible" type="boolInt" />
+                            <Attribute name="UseDeepness" type="boolInt" />
+                            <Attribute name="DoubleSide" type="boolInt" />
+                            <Attribute name="LightBlending" type="boolInt" />
+                            <Attribute name="LightBlendValue" type="float" />
+
+                            <!-- Type: ArkMapProbe -->
+                            <Attribute name="ProbeDepth" type="float" />
+                            <Attribute name="Color" type="Vec3" />
+                            <Attribute name="DebugInspectorIndex" type="int32" />
+
+                            <!-- Type: OccluderPlane/OccluderArea -->
+                            <Attribute name="CullDistRatio" type="float" />
+
+                            <!-- Chairloader -->
+                            <Attribute name="EntityGuid" type="EntityGuidDef" required="true" readOnly="true" />
+                            <Attribute name="ch:fakeGuid" type="bool" generated="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <!-- Type: VisArea -->
+                            <Node name="Points">
+                                <Attributes />
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Point">
+                                        <Attributes>
+                                            <Attribute name="Pos" type="Vec3" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Entity">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" allowEmpty="true" />
+                            <Attribute name="Layer" type="string" required="true" />
+                            <Attribute name="HiddenInGame" type="boolInt" />
+
+                            <Attribute name="Pos" type="Vec3" />
+                            <Attribute name="Rotate" type="Quat" />
+                            <Attribute name="Scale" type="Vec3" />
+                            <Attribute name="AttachmentType" type="string" />
+                            <Attribute name="AttachmentTarget" type="string" />
+
+                            <Attribute name="Archetype" type="ArchetypeName" />
+                            <Attribute name="EntityClass" type="string" required="true" />
+                            <Attribute name="EntityId" type="EntityIdDef" required="true" />
+                            <Attribute name="EntityGuid" type="EntityGuidDef" required="true" />
+                            <Attribute name="ch:fakeGuid" type="bool" generated="true" />
+                            <Attribute name="ParentId" type="EntityId" />
+
+                            <Attribute name="CastShadowViewDistRatio" type="float" />
+                            <Attribute name="CastShadowMinSpec" type="int32" required="true" />
+                            <Attribute name="CastSunShadowMinSpec" type="int32" required="true" />
+                            <Attribute name="ShadowCasterType" type="int32" required="true" />
+                            <Attribute name="NoDecals" type="boolInt" />
+                            <Attribute name="HiddenInNodes" type="boolInt" />
+                            <Attribute name="ViewDistRatio" type="float" />
+                            <Attribute name="LodRatio" type="float" />
+                            <Attribute name="MinSpec" type="int32" />
+                            <Attribute name="InHideMask" type="uint32" />
+                            <Attribute name="OutHideMask" type="uint32" />
+                            <Attribute name="SceneMask" type="uint32" />
+                            <Attribute name="OutdoorOnly" type="boolInt" />
+                            <Attribute name="SkipMetricsLogging" type="boolInt" />
+
+                            <Attribute name="Material" type="string" />
+                            <Attribute name="Geometry" type="string" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="EntityLinks">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="TargetId" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Link">
+                                        <Attributes>
+                                            <Attribute name="TargetId" type="EntityId" required="true" readOnly="true" />
+                                            <Attribute name="Name" type="string" required="true" allowEmpty="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="RenderProxy">
+                                <Attributes />
+                            </Node>
+
+                            <Node name="Area">
+                                <Attributes>
+                                    <Attribute name="Id" type="int32" required="true" />
+                                    <Attribute name="Group" type="int32" required="true" />
+                                    <Attribute name="Proximity" type="int32" required="true" />
+                                    <Attribute name="Priority" type="int32" required="true" />
+                                    <Attribute name="DontDisableInvisible" type="boolInt" />
+                                    <Attribute name="Gravity" type="float" />
+                                    <Attribute name="BoxMin" type="Vec3" />
+                                    <Attribute name="BoxMax" type="Vec3" />
+                                    <Attribute name="Height" type="float" />
+                                    <Attribute name="VolumeRadius" type="float" />
+                                    <Attribute name="SphereCenter" type="Vec3" />
+                                    <Attribute name="SphereRadius" type="float" />
+                                    <Attribute name="AreaSolidFileName" type="string" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="SoundData">
+                                        <Attributes />
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="Side\d" nameRegex="true">
+                                                <Attributes>
+                                                    <Attribute name="ObstructSound" type="boolInt" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="Points">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+                        
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Point">
+                                                <Attributes>
+                                                    <Attribute name="Pos" type="Vec3" required="true" />
+                                                    <Attribute name="ObstructSound" type="boolInt" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="BezierPoints">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+                        
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Point">
+                                                <Attributes>
+                                                    <Attribute name="Pos" type="Vec3" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="Entities">
+                                        <Attributes />
+
+                                        <Collection type="dict">
+                                            <PrimaryKey>
+                                                <ChildAttribute name="Id" />
+                                            </PrimaryKey>
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Entity">
+                                                <Attributes>
+                                                    <Attribute name="Id" type="EntityId" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="PhysicsState">
+                                <Attributes>
+                                    <Attribute name="awake" type="boolInt" />
+                                    <Attribute name="pos" type="Vec3" required="true" />
+                                    <Attribute name="numjoints" type="int32" required="true" />
+                                    <Attribute name="offsPivot" type="Vec3" />
+                                </Attributes>
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="joint">
+                                        <Attributes>
+                                            <Attribute name="q" type="Vec3" />
+                                            <Attribute name="qext" type="Vec3" />
+                                            <Attribute name="q0changed" type="boolInt" />
+                                            <Attribute name="quat0" type="Quat" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="ClipVolume">
+                                <Attributes>
+                                    <Attribute name="GeometryFileName" type="string" required="true" />
+                                    <Attribute name="SceneMask" type="int32" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="Rope">
+                                <Attributes>
+                                    <Attribute name="flags" type="int32" required="true" />
+                                    <Attribute name="radius" type="float" required="true" />
+                                    <Attribute name="anchor_radius" type="float" required="true" />
+                                    <Attribute name="num_seg" type="int32" required="true" />
+                                    <Attribute name="num_sides" type="int32" required="true" />
+                                    <Attribute name="texu" type="float" required="true" />
+                                    <Attribute name="texv" type="float" required="true" />
+                                    <Attribute name="ph_num_seg" type="int32" required="true" />
+                                    <Attribute name="ph_sub_vtxs" type="int32" required="true" />
+                                    <Attribute name="mass" type="float" required="true" />
+                                    <Attribute name="friction" type="float" required="true" />
+                                    <Attribute name="friction_pull" type="float" required="true" />
+                                    <Attribute name="wind" type="Vec3" required="true" />
+                                    <Attribute name="wind_var" type="float" required="true" />
+                                    <Attribute name="air_resist" type="float" required="true" />
+                                    <Attribute name="water_resist" type="float" required="true" />
+                                    <Attribute name="joint_lim" type="float" required="true" />
+                                    <Attribute name="max_force" type="float" required="true" />
+                                    <Attribute name="tension" type="float" required="true" />
+                                    <Attribute name="max_iters" type="int32" required="true" />
+                                    <Attribute name="max_time_step" type="float" required="true" />
+                                    <Attribute name="stiffness" type="float" required="true" />
+                                    <Attribute name="hardness" type="float" required="true" />
+                                    <Attribute name="damping" type="float" required="true" />
+                                    <Attribute name="sleepSpeed" type="float" required="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Points">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+                        
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Point">
+                                                <Attributes>
+                                                    <Attribute name="Pos" type="Vec3" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <NodeByType name="FlowGraph" type="FlowGraph" />
+
+                            <Node name="Properties(2?)" nameRegex="true" recursive="true">
+                                <!-- Attributes and child nodes depend on particular entity class so allow everything -->
+                                <Attributes allowUnknown="true" />
+                                <Collection type="nodeDict" />
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="encounterRoot">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="encounterProfileName" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="encounterProfile">
+                        <Attributes>
+                            <Attribute name="encounterProfileName" type="string" required="true" readOnly="true" />
+                            <Attribute name="encounterProfileInitPopTarget" type="int32" required="true" />
+                            <Attribute name="encounterProfileRepopTarget" type="int32" required="true" />
+                            <Attribute name="encounterProfileRepopThresh" type="int32" required="true" />
+                            <Attribute name="encounterProfileRepopStrategy" type="int32" required="true" />
+                            <Attribute name="encounterProfileTimeBeforeRepop" type="int32" required="true" />
+                        </Attributes>
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="encounterName" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="encounter">
+                                <Attributes>
+                                    <Attribute name="encounterName" type="string" required="true" readOnly="true" />
+                                    <Attribute name="encounterIsHighPriority" type="boolInt" required="true" />
+                                </Attributes>
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="encounterTableEntry">
+                                        <Attributes>
+                                            <Attribute name="encounterTableEntrySpawnerEntityId" type="EntityId" required="true" />
+                                            <Attribute name="encounterTableEntryIsActive" type="boolInt" required="true" />
+                                            <Attribute name="encounterTableEntrySpawnFirst" type="boolInt" required="true" />
+                                            <Attribute name="encounterTableEntryCanRespawn" type="boolInt" required="true" />
+                                            <Attribute name="encounterTableEntrySpawnChance" type="float" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

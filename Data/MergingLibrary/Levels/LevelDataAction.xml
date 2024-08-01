@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/leveldataaction\.xml"
+    recursive="true">
+    <Node name="LevelDataAction">
+        <Attributes>
+            <Attribute name="SandboxVersion" type="string" required="true" />
+        </Attributes>
+        
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Missions">
+                <Attributes/>
+                
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+        
+                <ChildNodes>
+                    <Node name="Mission">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="File" type="string" required="true" />
+                            <Attribute name="CGFCount" type="int32" required="true" />
+                            <Attribute name="ProgressBarRange" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

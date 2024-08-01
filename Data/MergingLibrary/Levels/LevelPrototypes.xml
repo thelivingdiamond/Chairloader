@@ -2,33 +2,27 @@
 <MergingPolicy
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
-    fileNameRegex=".*">
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/levelprototypes\.xml"
+    recursive="true">
     <Node name="EntityPrototypeLibrary">
-        <Attributes allowUnknown="false">
-            <!-- The list of attributes allowed on this node -->
+        <Attributes>
             <Attribute name="Name" type="string" required="true" />
         </Attributes>
 
         <Collection type="dict">
-            <!-- This node acts like a dictionary -->
-            <!-- Keys are child attributes -->
-            <!-- Values are child nodes themselves.-->
             <PrimaryKey>
                 <ChildAttribute name="Name" />
             </PrimaryKey>
         </Collection>
 
         <ChildConstraints>
-            <!-- Add additional constraints on child nodes for validation -->
             <UniqueAttribute name="Name" />
             <UniqueAttribute name="Id" />
             <UniqueAttribute name="ArchetypeId" />
         </ChildConstraints>
 
         <ChildNodes>
-            <!-- The list of allowed child nodes. Unknown nodes are not allowed. -->
-            <!-- If need to support unknown nodes, use regex node name or set recursive. -->
             <NodeByType name="EntityPrototype" type="EntityPrototype" />
         </ChildNodes>
     </Node>

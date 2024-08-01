@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/moviedata_TODO\.xml"
+    recursive="true">
+    <Node name="MovieData">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="SequenceData">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Sequence">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="SequenceVersion" type="int32" required="true" />
+                            <Attribute name="Flags" type="int32" required="true" />
+                            <Attribute name="StartTime" type="float" required="true" />
+                            <Attribute name="EndTime" type="float" required="true" />
+                            <Attribute name="ID" type="int32" required="true" />
+                            <Attribute name="ConversationID" type="string" required="true" />
+                        </Attributes>
+                        
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Nodes">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Id" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildConstraints>
+                                    <UniqueAttribute name="Name" />
+                                </ChildConstraints>
+
+                                <ChildNodes>
+                                    <Node name="Node">
+                                        <Attributes>
+                                            <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                                            <Attribute name="Type" type="string" required="true" />
+                                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                            <Attribute name="Flags" type="int32" required="true" />
+                                            <Attribute name="paramIdVersion" type="int32" required="true" />
+                                            <Attribute name="EntityGUID" type="string" required="true" />
+                                            <Attribute name="debugArchetypeName" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
