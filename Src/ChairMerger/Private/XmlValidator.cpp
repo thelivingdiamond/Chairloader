@@ -6,6 +6,26 @@
 #include <ChairMerger/XmlValidator.h>
 #include "MetaAttributes.h"
 
+XmlValidator::Result XmlValidator::ValidateDocument(
+    const Context& context,
+    const pugi::xml_document& doc,
+    const FileMergingPolicy3& policy)
+{
+    Result result;
+    const pugi::xml_node rootNode = doc.first_child();
+    XmlErrorStack errorStack(rootNode.name());
+
+    if (rootNode.name() != policy.GetRootNodeName())
+    {
+        AddError(result, errorStack, fmt::format(
+            "Root node name mismatch (expected: '{}', actual: '{}')",
+            policy.GetRootNodeName(), rootNode.name()));
+    }
+
+    ValidateNodeInternal(context, rootNode, policy.GetRootNode(), errorStack, result, true);
+    return result;
+}
+
 XmlValidator::Result XmlValidator::ValidateNode(
     const Context& context,
     const pugi::xml_node& node,

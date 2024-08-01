@@ -34,7 +34,7 @@ private:
     std::vector<std::unique_ptr<MergingPolicy3>> m_PolicyPool;
 };
 
-//! Defines the data model of a named node.
+//! Defines the data model of a node type.
 class CHAIRMERGER_EXPORT MergingPolicy3
 {
 public:
@@ -275,6 +275,9 @@ public:
     const std::string& GetFileName() const { return m_FileName; }
     void SetFileName(std::string_view fileName, bool isRegex);
 
+    //! @returns The root node name.
+    const std::string& GetRootNodeName() const { return m_RootNodeName; }
+
     //! @returns The root node.
     const MergingPolicy3& GetRootNode() const { return *m_RootNode; }
 
@@ -287,6 +290,7 @@ private:
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
     MergingPolicyAllocator m_Alloc;
+    std::string m_RootNodeName;
     const MergingPolicy3* m_RootNode = nullptr;
 };
 

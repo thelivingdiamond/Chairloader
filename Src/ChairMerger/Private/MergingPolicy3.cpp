@@ -430,6 +430,7 @@ void FileMergingPolicy3::LoadXmlNode(
     if (rootNode)
     {
         XmlErrorStack childErrorStack = errorStack.GetChild(rootNode);
+        m_RootNodeName = XmlUtils::GetRequiredAttr(childErrorStack, rootNode, "name").as_string();
         MergingPolicy3* item = m_Alloc.AllocateEmptyPolicy();
         item->LoadXmlNode(&m_Alloc, pTypeLib, rootNode, errorStack);
         m_RootNode = item;
@@ -437,6 +438,7 @@ void FileMergingPolicy3::LoadXmlNode(
     else if (rootNodeByType)
     {
         XmlErrorStack childErrorStack = errorStack.GetChild(rootNodeByType);
+        m_RootNodeName = XmlUtils::GetRequiredAttr(childErrorStack, rootNodeByType, "name").as_string();
 
         if (!pTypeLib)
             childErrorStack.ThrowException("Can't use NodeByType since no type library is available");
