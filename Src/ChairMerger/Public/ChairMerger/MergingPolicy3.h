@@ -91,6 +91,12 @@ public:
 
         //! The list of attributes to be removed.
         std::vector<std::string> removeAttr;
+
+        //! Whether to add entity guid.
+        bool addEntityGuid = false;
+        std::string addEntityGuidName;
+        std::string addEntityGuidFlagName;
+        std::vector<std::string> addEntityGuidHash;
     };
 
     //! Defines the type of the collection and how child nodes should be merged.
@@ -193,6 +199,7 @@ private:
     static constexpr char XML_NODE_PATCHES[] = "Patches";
     static constexpr char XML_NODE_REMOVE_ATTR[] = "RemoveAttribute";
     static constexpr char XML_NODE_ADD_CHILD_INDEX[] = "AddChildIndex";
+    static constexpr char XML_NODE_ADD_ENTITY_GUID[] = "AddEntityGuid";
 
     static constexpr char XML_NODE_COLLECTION[] = "Collection";
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";

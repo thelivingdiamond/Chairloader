@@ -1,8 +1,19 @@
+#include <SHA256/SHA256.h>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlValidator.h>
+
+static char nibbleToHex(uint8_t val)
+{
+    return val >= 0xA ? (val + 'A' - 0xA) : (val + '0');
+}
+
+static uint8_t hexToNibble(char c)
+{
+    return c >= 'A' ? (c - 'A' + 0xA) : (c - '0');
+}
 
 void PreyFilePatcher::PatchNode(
     pugi::xml_node node,
@@ -29,6 +40,80 @@ void PreyFilePatcher::PatchNode(
             childNode.prepend_attribute(patches.childIndexAttr.c_str()).set_value(index);
 
             i++;
+        }
+    }
+
+    // AddEntityGuid
+    if (patches.addEntityGuid)
+    {
+        std::set<std::string> generatedGuids;
+        int i = 0;
+
+        for (pugi::xml_node childNode : node.children())
+        {
+            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+            childErrorStack.SetIndex(i);
+
+            pugi::xml_attribute guidAttr = childNode.attribute(patches.addEntityGuidName.c_str());
+            pugi::xml_attribute flagAttr = childNode.attribute(patches.addEntityGuidFlagName.c_str());
+
+            if (!guidAttr || flagAttr)
+            {
+                // Create the attributes if they don't exist
+                if (!guidAttr)
+                    guidAttr = childNode.append_attribute(patches.addEntityGuidName.c_str());
+                if (!flagAttr)
+                    flagAttr = childNode.append_attribute(patches.addEntityGuidFlagName.c_str());
+
+                // Set the flag
+                flagAttr.set_value(true);
+
+                // Generate hash string
+                std::string hashString;
+
+                for (const std::string& hashAttrName : patches.addEntityGuidHash)
+                {
+                    hashString += childNode.attribute(hashAttrName.c_str()).as_string();
+                    hashString += '|';
+                }
+
+                // Hash
+                SHA256 sha;
+                sha.update(hashString);
+                SHA256::Digest hash = sha.digest();
+
+                // Take first 16 chars
+                constexpr size_t HASH_LEN = 16;
+                std::string guid(HASH_LEN, '.');
+
+                for (size_t i = 0; i < HASH_LEN; i++)
+                {
+                    uint8_t val;
+
+                    if (i % 2 == 0)
+                        val = hash[i / 2] & 0x0F;
+                    else
+                        val = hash[i / 2] >> 4;
+
+                    guid[i] = nibbleToHex(val);
+                }
+
+                // Check for collisions
+                int collisionCount = 0;
+
+                while (generatedGuids.find(guid) != generatedGuids.end())
+                {
+                    if (collisionCount >= 16)
+                        childErrorStack.ThrowException(fmt::format("Hash collision: '{}'", guid));
+                    collisionCount++;
+
+                    uint8_t val = hexToNibble(guid[guid.size() - 1]);
+                    guid[guid.size() - 1] = nibbleToHex(val + 1);
+                }
+
+                generatedGuids.insert(guid);
+                guidAttr.set_value(guid.c_str());
+            }
         }
     }
 
@@ -107,15 +192,19 @@ void PreyFilePatcher::PatchDirectory(
             xmlDoc.first_child(),
             pFilePolicy->GetRootNode());
 
-        if (!validationResult)
-        {
-            std::string validationError = validationResult.ToString("  ");
-            errorStack.ThrowException("Validation failed after patching. This is a Chairloader bug.\n" + validationError);
-        }
-
         // Save
         const char* indent = "    ";
         unsigned formatFlags = pugi::format_indent | pugi::format_indent_attributes;
+
+        if (!validationResult)
+        {
+            std::string validationError = validationResult.ToString("  ");
+            fs::path failPath = fullPath;
+            failPath.replace_extension(".fail.xml");
+            xmlDoc.save_file(failPath.c_str(), indent, formatFlags);
+            errorStack.ThrowException("Validation failed after patching. This is a Chairloader bug.\n" + validationError);
+        }
+
         xmlDoc.save_file(fullPath.c_str(), indent, formatFlags);
     }
 }

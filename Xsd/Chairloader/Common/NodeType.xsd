@@ -134,6 +134,31 @@
                                 </xs:attribute>
                             </xs:complexType>
                         </xs:element>
+
+                        <!-- <AddEntityGuid> -->
+                        <xs:element name="AddEntityGuid" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    Adds a GUID attribute if it doesn't exist.
+                                </xs:documentation></xs:annotation>
+
+                                <xs:sequence>
+                                    <xs:element name="HashAttr" minOccurs="1" maxOccurs="unbounded" />
+                                </xs:sequence>
+
+                                <xs:attribute name="guidName" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the GUID attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
+                                <xs:attribute name="flagName" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the GUID attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
