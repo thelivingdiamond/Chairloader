@@ -1,5 +1,5 @@
 #pragma once
-#include <regex>
+#include <boost/regex.hpp>
 #include <ChairMerger/Export.h>
 
 class MergingPolicy3;
@@ -132,7 +132,7 @@ public:
     };
 
     using ChildNodeMap = std::map<std::string, const MergingPolicy3*, std::less<>>;
-    using RegexChildNodeList = std::vector<std::pair<std::regex, const MergingPolicy3*>>;
+    using RegexChildNodeList = std::vector<std::pair<boost::regex, const MergingPolicy3*>>;
 
     MergingPolicy3() = default;
     MergingPolicy3(const MergingPolicy3&) = delete;
@@ -289,7 +289,7 @@ public:
 
 private:
     std::string m_FileName;
-    std::regex m_FileNameRegex;
+    boost::regex m_FileNameRegex;
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
     MergingPolicyAllocator m_Alloc;

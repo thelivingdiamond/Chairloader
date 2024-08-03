@@ -78,7 +78,7 @@ const MergingPolicy3* MergingPolicy3::FindChildNode(std::string_view name) const
 
     for (const auto& [regex, node] : m_ChildNodesRegex)
     {
-        if (std::regex_match(nameAsStr, regex))
+        if (boost::regex_match(nameAsStr, regex))
             return node;
     }
 
@@ -93,7 +93,7 @@ void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const Mergi
 {
     if (isRegex)
     {
-        m_ChildNodesRegex.emplace_back(std::regex(std::string(name)), node);
+        m_ChildNodesRegex.emplace_back(boost::regex(std::string(name)), node);
     }
     else
     {
@@ -390,7 +390,7 @@ void MergingPolicy3::LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, XmlTypeL
 bool FileMergingPolicy3::MatchFileName(const std::string& name) const
 {
     if (m_IsFileNameRegex)
-        return std::regex_match(name, m_FileNameRegex);
+        return boost::regex_match(name, m_FileNameRegex);
     else
         return m_FileName == name;
 }
@@ -401,12 +401,12 @@ void FileMergingPolicy3::SetFileName(std::string_view fileName, bool isRegex)
 
     if (isRegex)
     {
-        m_FileNameRegex = std::regex(m_FileName, std::regex_constants::ECMAScript | std::regex_constants::icase);
+        m_FileNameRegex = boost::regex(m_FileName, boost::regex_constants::ECMAScript | boost::regex_constants::icase);
         m_IsFileNameRegex = true;
     }
     else
     {
-        m_FileNameRegex = std::regex();
+        m_FileNameRegex = boost::regex();
         m_IsFileNameRegex = false;
     }
 }
