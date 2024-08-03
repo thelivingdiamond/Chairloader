@@ -12,6 +12,7 @@
     "boost-format",
     "boost-json",
     "boost-program-options",
+    "boost-regex",
     "boost-variant",
     "curlpp",
     "detours",

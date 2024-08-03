@@ -1,4 +1,5 @@
 #include <charconv>
+#include <boost/regex.hpp>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 
@@ -93,7 +94,7 @@ public:
     RegexXmlType(std::string_view name, const std::string& regex)
         : BaseXmlType(name)
     {
-        m_Regex = std::regex(regex);
+        m_Regex = boost::regex(regex);
     }
 
     // BaseXmlType
@@ -102,11 +103,11 @@ public:
         if (value.empty())
             return false;
 
-        return std::regex_match(std::string(value), m_Regex);
+        return boost::regex_match(std::string(value), m_Regex);
     }
 
 private:
-    std::regex m_Regex;
+    boost::regex m_Regex;
 };
 
 class IntBoolXmlType : public BaseXmlType

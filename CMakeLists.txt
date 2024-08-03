@@ -147,7 +147,7 @@ function(cl_generate_export_header target_name include_dir macro_prefix)
 endfunction()
 
 # Third-party libraries
-find_package(Boost REQUIRED COMPONENTS program_options json)
+find_package(Boost CONFIG REQUIRED COMPONENTS json program_options regex)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest REQUIRED)
