@@ -1,6 +1,8 @@
 #include <iostream>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/program_options.hpp>
+#include <taskflow/algorithm/for_each.hpp>
+#include <taskflow/taskflow.hpp>
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingLibrary3.h>
@@ -16,6 +18,14 @@ struct ValidationStats
     int valid = 0;
     int failed = 0;
     int missing = 0;
+};
+
+struct ExecutorOutput
+{
+    ValidationStats stats;
+    std::map<fs::path, XmlValidator::Result> results;
+    std::map<fs::path, std::string> exceptionList;
+    std::set<fs::path> missingPolicyList;
 };
 
 // TODO 2024-05-04: Remove this
@@ -67,11 +77,11 @@ int main(int argc, char** argv)
         MergingLibrary3 mergingLibrary(&typeLib);
         mergingLibrary.LoadFromPath(mergingLibraryPath);
 
-        // Process XMLs
+        // Find all XML files
         fs::path xmlDir = fs::u8path(vm["xml-dir"].as<std::string>());
-        
-        ValidationStats stats;
-        std::vector<fs::path> missingPolicyList;
+        std::vector<fs::path> xmlFileList;
+        xmlFileList.reserve(5000);
+        fmt::println("Collecting XML file list...");
 
         for (const fs::directory_entry& dirEnt : fs::recursive_directory_iterator(xmlDir))
         {
@@ -83,8 +93,22 @@ int main(int argc, char** argv)
             if (!boost::algorithm::iequals(xmlFullPath.extension().u8string(), ".xml"))
                 continue;
 
-            fs::path xmlRelPath = xmlFullPath.lexically_relative(xmlDir);
-            stats.total++;
+            xmlFileList.push_back(xmlFullPath.lexically_relative(xmlDir));
+        }
+
+        fmt::println("Processing {} files", xmlFileList.size());
+
+        // Process XMLs
+        tf::Executor executor;
+        tf::Taskflow taskflow;
+        std::vector<ExecutorOutput> executorOutputs(executor.num_workers());
+
+        auto fnProcessXmlFile = [&xmlFileList, &xmlDir, &executorOutputs, &executor, &mergingLibrary, &typeLib](size_t fileIdx) {
+            const fs::path& xmlRelPath = xmlFileList[fileIdx];
+            fs::path xmlFullPath = xmlDir / xmlRelPath;
+            ExecutorOutput& output = executorOutputs[executor.this_worker_id()];
+
+            output.stats.total++;
 
             try
             {
@@ -93,12 +117,12 @@ int main(int argc, char** argv)
 
                 if (!filePolicy)
                 {
-                    missingPolicyList.push_back(xmlRelPath);
-                    stats.missing++;
-                    continue;
+                    output.missingPolicyList.insert(xmlRelPath);
+                    output.stats.missing++;
+                    return;
                 }
 
-                stats.checked++;
+                output.stats.checked++;
 
                 XmlValidator::Context context;
                 context.nodeType = XmlValidator::ENodeType::MergingBase;
@@ -110,64 +134,128 @@ int main(int argc, char** argv)
                     *filePolicy);
 
                 if (!result)
-                {
-                    fmt::println(LINES);
-                    fmt::println("- VALIDATION FAILURE: {}", xmlRelPath.u8string());
-                    fmt::println(LINES);
-
-                    for (auto& error : result.errors)
-                    {
-                        // Path
-                        for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
-                        {
-                            fmt::print("> {} ", *it);
-                        }
-
-                        // Attribute
-                        if (!error.attributeName.empty())
-                            fmt::print("| (attr = {})", error.attributeName);
-
-                        fmt::println("");
-
-                        // Message
-                        fmt::println("    {}", error.message);
-                    }
-
-                    stats.failed++;
-                }
+                    output.stats.failed++;
                 else
-                {
-                    stats.valid++;
-                }
+                    output.stats.valid++;
+
+                output.results.emplace(xmlRelPath, std::move(result));
             }
             catch (const std::exception& e)
             {
-                fmt::println("Error while processing {}: {}", xmlRelPath.u8string(), e.what());
-                stats.failed++;
+                output.exceptionList.emplace(xmlRelPath, e.what());
+                output.stats.failed++;
+            }
+        };
+
+        taskflow.for_each_index((size_t)0, xmlFileList.size(), (size_t)1, fnProcessXmlFile, tf::DynamicPartitioner(64));
+        executor.run(taskflow).wait();
+
+        // Record processing time here so printing doesn't count
+        auto endTime = std::chrono::steady_clock::now();
+
+        // Combine results
+        ExecutorOutput combinedOutput;
+
+        for (const ExecutorOutput& i : executorOutputs)
+        {
+            combinedOutput.stats.total += i.stats.total;
+            combinedOutput.stats.checked += i.stats.checked;
+            combinedOutput.stats.valid += i.stats.valid;
+            combinedOutput.stats.failed += i.stats.failed;
+            combinedOutput.stats.missing += i.stats.missing;
+
+            for (auto& [k, v] : i.results)
+            {
+                combinedOutput.results.emplace(k, std::move(v));
+            }
+
+            for (auto& [k, v] : i.exceptionList)
+            {
+                combinedOutput.exceptionList.emplace(k, std::move(v));
+            }
+
+            for (auto& k : i.missingPolicyList)
+            {
+                combinedOutput.missingPolicyList.emplace(k);
             }
         }
 
-        // Show results
-        if (!missingPolicyList.empty())
+        // Print results
+        for (const auto& [xmlRelPath, result] : combinedOutput.results)
+        {
+            if (result)
+                continue;
+
+            fmt::println(LINES);
+            fmt::println("- VALIDATION FAILURE: {}", xmlRelPath.u8string());
+            fmt::println(LINES);
+
+            for (auto& error : result.errors)
+            {
+                // Path
+                for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
+                {
+                    fmt::print("> {} ", *it);
+                }
+
+                // Attribute
+                if (!error.attributeName.empty())
+                    fmt::print("| (attr = {})", error.attributeName);
+
+                fmt::println("");
+
+                // Message
+                fmt::println("    {}", error.message);
+            }
+        }
+
+        // Print exceptions
+        if (!combinedOutput.exceptionList.empty())
         {
             constexpr size_t MAX_PRINT = 5;
+            size_t i = 0;
+            fmt::println(LINES);
+            fmt::println("The following files failed with exception:");
+
+            for (const auto& [xmlRelPath, msg] : combinedOutput.exceptionList)
+            {
+                if (i >= MAX_PRINT)
+                {
+                    fmt::println("    and {} more", combinedOutput.exceptionList.size() - MAX_PRINT);
+                    break;
+                }
+
+                fmt::println("    {}) {}: {}", i + 1, xmlRelPath.u8string(), msg);
+                i++;
+            }
+        }
+
+        // Print missing
+        if (!combinedOutput.missingPolicyList.empty())
+        {
+            constexpr size_t MAX_PRINT = 5;
+            size_t i = 0;
             fmt::println(LINES);
             fmt::println("The following files are missing the merging policy:");
 
-            for (size_t i = 0; i < missingPolicyList.size() && i < MAX_PRINT; i++)
+            for (const fs::path& xmlRelPath : combinedOutput.missingPolicyList)
             {
-                fmt::println("    {}) {}", i + 1, missingPolicyList[i].u8string());
-            }
+                if (i >= MAX_PRINT)
+                {
+                    fmt::println("    and {} more", combinedOutput.missingPolicyList.size() - MAX_PRINT);
+                    break;
+                }
 
-            if (missingPolicyList.size() > MAX_PRINT)
-                fmt::println("    and {} more", missingPolicyList.size() - MAX_PRINT);
+                fmt::println("    {}) {}", i + 1, xmlRelPath.u8string());
+                i++;
+            }
         }
 
         fmt::println(LINES);
         fmt::println("Total: {:>5} | Checked: {:>5} | Valid: {:>5} | Failed: {:>5} | Missing: {:>5}",
-            stats.total, stats.checked, stats.valid, stats.failed, stats.missing);
+            combinedOutput.stats.total, combinedOutput.stats.checked, combinedOutput.stats.valid,
+            combinedOutput.stats.failed, combinedOutput.stats.missing);
 
-        auto endTime = std::chrono::steady_clock::now();
         auto timeElapsed = endTime - startTime;
         fmt::println("Time elapsed: {:.3f} s", std::chrono::duration_cast<std::chrono::milliseconds>(timeElapsed).count() / 1000.0);
     }
