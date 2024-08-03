@@ -54,6 +54,8 @@ int main(int argc, char** argv)
 
     try
     {
+        auto startTime = std::chrono::steady_clock::now();
+
         // Load type library
         fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
         XmlTypeLibrary typeLib;
@@ -164,6 +166,10 @@ int main(int argc, char** argv)
         fmt::println(LINES);
         fmt::println("Total: {:>5} | Checked: {:>5} | Valid: {:>5} | Failed: {:>5} | Missing: {:>5}",
             stats.total, stats.checked, stats.valid, stats.failed, stats.missing);
+
+        auto endTime = std::chrono::steady_clock::now();
+        auto timeElapsed = endTime - startTime;
+        fmt::println("Time elapsed: {:.3f} s", std::chrono::duration_cast<std::chrono::milliseconds>(timeElapsed).count() / 1000.0);
     }
     catch (const std::exception& e)
     {
