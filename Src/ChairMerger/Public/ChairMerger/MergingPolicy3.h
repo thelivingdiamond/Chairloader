@@ -258,6 +258,7 @@ public:
             m_IsFileNameRegex = std::move(other.m_IsFileNameRegex);
             m_IsRecursive = std::move(other.m_IsRecursive);
             m_Alloc = std::move(other.m_Alloc);
+            m_RootNodeName = std::move(other.m_RootNodeName);
             m_RootNode = std::move(other.m_RootNode);
         }
 
