@@ -131,4 +131,45 @@ public:
     //! Finds an attribute in the node. If it doesn't exist, appends it.
     //! @returns The attribute.
     static pugi::xml_attribute GetOrAddAttribute(pugi::xml_node node, const char* name);
+
+    template <typename T, typename TMap>
+    static bool TryGetEnumAttribute(const pugi::xml_attribute& attr, const TMap& nameToEnumMap, T& outValue)
+    {
+        auto it = nameToEnumMap.find(std::string_view(attr.as_string()));
+
+        if (it == nameToEnumMap.end())
+            return false;
+       
+        outValue = it->second;
+        return true;
+    }
+
+    template <typename T, typename TMap>
+    static T GetEnumAttribute(const XmlErrorStack& errorStack, const pugi::xml_attribute& attr, const TMap& nameToEnumMap)
+    {
+        T val{};
+        bool isOk = TryGetEnumAttribute(attr, nameToEnumMap, val);
+
+        if (isOk)
+            return val;
+
+        errorStack.ThrowException(fmt::format(
+            "Invalid attribute value {}='{}'. Allowed values: {}",
+            attr.name(), attr.as_string(), GetEnumAttributeAllowedValues(nameToEnumMap)));
+    }
+
+    template <typename TMap>
+    static std::string GetEnumAttributeAllowedValues(const TMap& nameToEnumMap)
+    {
+        std::string result;
+
+        for (auto& kv : nameToEnumMap)
+        {
+            if (!result.empty())
+                result += ", ";
+            result += kv.first;
+        }
+
+        return result;
+    }
 };

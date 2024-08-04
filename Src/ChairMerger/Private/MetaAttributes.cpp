@@ -14,6 +14,13 @@ static const std::set<std::string, std::less<>> g_RetainMetaAttrs = {
     MetaAttributes::ACTION, // Kept as a reference for debugging.
 };
 
+static const std::map<std::string, MetaAttributes::EAction, std::less<>> g_ActionValues = {
+    { "patch", MetaAttributes::EAction::Patch },
+    { "delete", MetaAttributes::EAction::Delete },
+    { "replace", MetaAttributes::EAction::Replace },
+    { "replaceChildren", MetaAttributes::EAction::ReplaceChildren },
+};
+
 bool MetaAttributes::CheckApplyIf(const pugi::xml_node& node)
 {
     return node.attribute(APPLY_IF).as_bool(true);
@@ -35,6 +42,24 @@ bool MetaAttributes::IsKnownMetaAttr(std::string_view attrName)
     return g_MetaAttrs.find(attrName) != g_MetaAttrs.end();
 }
 
+std::map<std::string, std::string> MetaAttributes::ValidateNode(const pugi::xml_node& node)
+{
+    std::map<std::string, std::string> result;
+
+    if (pugi::xml_attribute action = node.attribute(ACTION))
+    {
+        EAction val{};
+        if (!XmlUtils::TryGetEnumAttribute(action, g_ActionValues, val))
+        {
+            result.emplace(action.name(), fmt::format(
+                "Invalid attribute value {}='{}'. Allowed values: {}",
+                action.name(), action.as_string(), XmlUtils::GetEnumAttributeAllowedValues(g_ActionValues)));
+        }
+    }
+
+    return result;
+}
+
 void MetaAttributes::ParseNode(const pugi::xml_node& node, const XmlErrorStack& errorStack)
 {
     m_Apply = CheckApplyIf(node);
@@ -47,17 +72,6 @@ void MetaAttributes::ParseNode(const pugi::xml_node& node, const XmlErrorStack& 
 
     if (pugi::xml_attribute action = node.attribute(ACTION))
     {
-        std::string_view val = action.as_string();
-
-        if (val == "patch")
-            m_Action = EAction::Patch;
-        else if (val == "delete")
-            m_Action = EAction::Delete;
-        else if (val == "replace")
-            m_Action = EAction::Replace;
-        else if (val == "replaceChildren")
-            m_Action = EAction::ReplaceChildren;
-        else
-            errorStack.ThrowException(fmt::format("Invalid {} value '{}'. Allowed are: patch, delete, replace, replaceChildren", ACTION, val));
+        m_Action = XmlUtils::GetEnumAttribute<EAction>(errorStack, action, g_ActionValues);
     }
 }

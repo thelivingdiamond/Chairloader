@@ -16,6 +16,9 @@ public:
 
         //! Base node used during merging.
         MergingBase,
+
+        //! Mod file
+        Mod,
     };
 
     struct ValidationError

@@ -15,7 +15,7 @@
             <Node name="A">
                 <Attributes>
                     <Attribute name="aAttr1" type="string" />
-                    <Attribute name="aAttr2" type="string" />
+                    <Attribute name="aAttr2" type="string" required="true" />
                 </Attributes>
 
                 <Collection type="nodeDict" />

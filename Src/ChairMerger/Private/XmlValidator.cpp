@@ -167,7 +167,8 @@ void XmlValidator::ValidateAttributes(
         {
             bool allowAttr = false;
             allowAttr |= policy.IsAllowingUnknownAttributes();
-            allowAttr |= context.nodeType == ENodeType::MergingBase && MetaAttributes::IsKnownMetaAttr(nodeAttr);
+            allowAttr |= (context.nodeType == ENodeType::MergingBase || context.nodeType == ENodeType::Mod)
+                && MetaAttributes::IsKnownMetaAttr(nodeAttr);
 
             if (!allowAttr)
                 AddError(result, errorStack, "Unknown attribute", nodeAttr.name());
@@ -181,11 +182,25 @@ void XmlValidator::ValidateAttributes(
             AddError(result, errorStack, attrError, nodeAttr.name());
     }
 
-    // Check if any required attributes are missing
-    for (const MergingPolicy3::Attribute& policyAttr : policy.GetAttributes())
+    if (context.nodeType == ENodeType::Prey || context.nodeType == ENodeType::MergingBase)
     {
-        if (policyAttr.required && !node.attribute(policyAttr.name.c_str()))
-            AddError(result, errorStack, "Required attribute is missing", policyAttr.name);
+        // Check if any required attributes are missing
+        for (const MergingPolicy3::Attribute& policyAttr : policy.GetAttributes())
+        {
+            if (policyAttr.required && !node.attribute(policyAttr.name.c_str()))
+                AddError(result, errorStack, "Required attribute is missing", policyAttr.name);
+        }
+    }
+
+    if (context.nodeType == ENodeType::Mod)
+    {
+        // Check meta-attributes
+        std::map<std::string, std::string> metaResults = MetaAttributes::ValidateNode(node);
+
+        for (const auto& [attr, error] : metaResults)
+        {
+            AddError(result, errorStack, error, attr);
+        }
     }
 }
 
