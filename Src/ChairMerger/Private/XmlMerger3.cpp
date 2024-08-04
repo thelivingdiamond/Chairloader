@@ -38,7 +38,12 @@ void XmlMerger3::MergeNode(
     meta.ParseNode(modNode, modErrorStack);
 
     if (!meta.GetApplyNode())
-        throw std::runtime_error("Root node may not have ch:apply_if=false");
+        modErrorStack.ThrowException("Root node may not have ch:apply_if=false");
+
+    if (strcmp(baseNode.name(), modNode.name()))
+    {
+        modErrorStack.ThrowException(fmt::format("Node name mismatch. Base: '{}'. Mod: '{}'", baseNode.name(), modNode.name()));
+    }
 
     switch (meta.GetAction())
     {

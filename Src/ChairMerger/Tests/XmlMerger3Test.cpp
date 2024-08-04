@@ -281,6 +281,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_InvalidNewNode",
         "Dict_MissingKeyAttr1",
         "Dict_MissingKeyAttr2",
+        "Dict_NodeNameMismatch",
         "Array_MissingIndex",
         "Array_MissingIndexInBase",
         "Array_UnknownMod",
