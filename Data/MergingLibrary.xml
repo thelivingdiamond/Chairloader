@@ -150,7 +150,7 @@
             </Objectives>
             <AudioLogs.xml>
                 <mergingPolicy identification_policy="match_attribute">
-                    <attribute name="id" priority="0"/>
+                    <attribute name="ID" priority="0"/>
                     <nodeStructure>
                         <ArkAudioLogLibrary>
                             <AudioLogs merge_children="true"/>
