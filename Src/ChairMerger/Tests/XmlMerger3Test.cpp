@@ -102,7 +102,6 @@ TEST_P(XmlMerger3SuccessTest, Success)
         }
     }
 
-    XmlValidator::Result validationResult;
     std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
 
@@ -110,17 +109,28 @@ TEST_P(XmlMerger3SuccessTest, Success)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Validate base
-    XmlValidator::Context valCtx;
-    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
-    valCtx.pTypeLib = pTypeLibrary.get();
+    {
+        XmlValidator::Context valCtx;
+        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.pTypeLib = pTypeLibrary.get();
 
-    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
-    ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
+        XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
+        ASSERT_TRUE(validationResult) << "Base file is invalid:\n" << validationResult.ToString("  ");
+    }
 
     // Merge
     for (auto& i : modPaths)
     {
         pugi::xml_document modDoc = XmlUtils::LoadDocument(i.second);
+
+        // Validate mod node
+        XmlValidator::Context valCtx;
+        valCtx.nodeType = XmlValidator::ENodeType::Mod;
+        valCtx.pTypeLib = pTypeLibrary.get();
+
+        XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, modDoc, policy);
+        ASSERT_TRUE(validationResult) << "Mod failed validation:\n" << validationResult.ToString("  ");
+
         XmlMergerContext context;
         context.modName = i.first;
         context.pTypeLib = pTypeLibrary.get();
@@ -128,8 +138,14 @@ TEST_P(XmlMerger3SuccessTest, Success)
     }
 
     // Validate output
-    validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
-    ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
+    {
+        XmlValidator::Context valCtx;
+        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.pTypeLib = pTypeLibrary.get();
+
+        XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
+        ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
+    }
 
     // Compare with expected
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, baseDoc));

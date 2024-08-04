@@ -40,6 +40,9 @@ public:
     static bool IsKnownMetaAttr(const pugi::xml_attribute& attr) { return IsKnownMetaAttr(attr.name()); }
     //! @}
 
+    //! Validates meta-attributes on a node.
+    static std::map<std::string, std::string> ValidateNode(const pugi::xml_node& node);
+
     MetaAttributes() = default;
 
     //! Parses a node's attributes.
