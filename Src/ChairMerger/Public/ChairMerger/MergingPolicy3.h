@@ -85,21 +85,21 @@ public:
     {
         //! Whether to add child index.
         bool addChildIndex = false;
-
-        //! Index attribute name.
-        std::string childIndexAttr;
-
-        //! Per-element increment.
-        int childIndexIncrement = 0;
-
-        //! The list of attributes to be removed.
-        std::vector<std::string> removeAttr;
+        std::string childIndexAttr; //!< Index attribute name.
+        int childIndexIncrement = 0; //!< Per-element increment.
+        std::vector<std::string> removeAttr; //!< The list of attributes to be removed.
 
         //! Whether to add entity guid.
         bool addEntityGuid = false;
         std::string addEntityGuidName;
         std::string addEntityGuidFlagName;
         std::vector<std::string> addEntityGuidHash;
+
+        //! Whether to copy serialize.xml to entity nodes.
+        bool addEntitySerialize = false;
+        std::string addEntitySerializeIdAttrName;
+        std::string addEntitySerializeAttrName;
+        std::string addEntitySerializeFilePath;
     };
 
     //! Defines the type of the collection and how child nodes should be merged.
@@ -203,6 +203,7 @@ private:
     static constexpr char XML_NODE_REMOVE_ATTR[] = "RemoveAttribute";
     static constexpr char XML_NODE_ADD_CHILD_INDEX[] = "AddChildIndex";
     static constexpr char XML_NODE_ADD_ENTITY_GUID[] = "AddEntityGuid";
+    static constexpr char XML_NODE_ADD_ENTITY_SERIALIZE[] = "AddEntitySerialize";
 
     static constexpr char XML_NODE_COLLECTION[] = "Collection";
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";

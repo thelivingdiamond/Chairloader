@@ -18,12 +18,14 @@ public:
 
     //! Patches a node recursively using the policy.
     static void PatchNode(
+        const fs::path& xmlFilePath,
         pugi::xml_node node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack);
 
     //! Patches an XML document using the merging policy.
     static void PatchDocument(
+        const fs::path& xmlFilePath,
         pugi::xml_document& doc,
         const FileMergingPolicy3& policy,
         const XmlErrorStack& parentErrorStack);
