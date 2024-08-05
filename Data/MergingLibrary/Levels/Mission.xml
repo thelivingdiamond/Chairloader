@@ -307,6 +307,11 @@
                         <HashAttr>Rotate</HashAttr>
                         <HashAttr>Scale</HashAttr>
                     </AddEntityGuid>
+
+                    <AddEntitySerialize
+                        idAttrName="EntityId"
+                        serializeAttrName="ch:serialize"
+                        filePath="../serialize.xml" />
                 </Patches>
 
                 <Collection type="dict">
@@ -429,6 +434,8 @@
 
                             <Attribute name="Material" type="string" />
                             <Attribute name="Geometry" type="string" />
+
+                            <Attribute name="ch:serialize" type="bool" generated="true" />
                         </Attributes>
 
                         <Collection type="nodeDict" />

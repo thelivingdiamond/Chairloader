@@ -162,6 +162,33 @@
                                 </xs:attribute>
                             </xs:complexType>
                         </xs:element>
+
+                        <!-- <AddEntitySerialize> -->
+                        <xs:element name="AddEntitySerialize" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    Adds a GUID attribute if it doesn't exist.
+                                </xs:documentation></xs:annotation>
+
+                                <xs:attribute name="idAttrName" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the ID attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
+                                <xs:attribute name="serializeAttrName" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Name of the serialize attribute.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
+                                <xs:attribute name="filePath" type="xs:string" use="required">
+                                    <xs:annotation><xs:documentation>
+                                        Relative path to the serialization file.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

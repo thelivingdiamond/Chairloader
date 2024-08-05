@@ -17,6 +17,7 @@ static uint8_t hexToNibble(char c)
 }
 
 void PreyFilePatcher::PatchNode(
+    const fs::path& xmlFilePath,
     pugi::xml_node node,
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack)
@@ -126,6 +127,36 @@ void PreyFilePatcher::PatchNode(
         }
     }
 
+    if (patches.addEntitySerialize)
+    {
+        fs::path serializePath = xmlFilePath / fs::u8path(patches.addEntitySerializeFilePath);
+        pugi::xml_document serializeDoc = XmlUtils::LoadDocument(serializePath);
+
+        for (const pugi::xml_node& serializeNode : serializeDoc.child("EntitySerialization"))
+        {
+            std::string_view serEntityId = serializeNode.attribute("id").as_string();
+
+            if (serEntityId.empty())
+                errorStack.ThrowException(fmt::format("{} contains empty id", patches.addEntitySerializeFilePath));
+
+            // Find the entity
+            for (pugi::xml_node childNode : node.children())
+            {
+                std::string_view entityId = childNode.attribute(patches.addEntitySerializeIdAttrName.c_str()).as_string();
+
+                if (entityId == serEntityId)
+                {
+                    // Set it as serializable
+                    pugi::xml_attribute serAttr = XmlUtils::GetOrAddAttribute(childNode, patches.addEntitySerializeAttrName.c_str());
+                    serAttr.set_value(true);
+                    break;
+                }
+            }
+
+            // If not found - not an error. Some IDs are actually missing.
+        }
+    }
+
     // Recurse down
     int i = 0;
 
@@ -143,20 +174,21 @@ void PreyFilePatcher::PatchNode(
                 node.name()));
         }
 
-        PatchNode(childNode, *pChildPolicy, childErrorStack);
+        PatchNode(xmlFilePath, childNode, *pChildPolicy, childErrorStack);
 
         i++;
     }
 }
 
 void PreyFilePatcher::PatchDocument(
+    const fs::path& xmlFilePath,
     pugi::xml_document& doc,
     const FileMergingPolicy3& policy,
     const XmlErrorStack& parentErrorStack)
 {
     pugi::xml_node node = doc.first_child();
     XmlErrorStack errorStack = parentErrorStack.GetChild(node);
-    PatchNode(node, policy.GetRootNode(), errorStack);
+    PatchNode(xmlFilePath, node, policy.GetRootNode(), errorStack);
 }
 
 void PreyFilePatcher::PatchDirectory(
@@ -189,7 +221,7 @@ void PreyFilePatcher::PatchDirectory(
 
         // Patch
         auto [xmlDoc, errorStack] = XmlUtils::LoadDocumentWithStack(fullPath);
-        PatchDocument(xmlDoc, *pFilePolicy, errorStack);
+        PatchDocument(fullPath, xmlDoc, *pFilePolicy, errorStack);
 
         // Validate
         XmlValidator::Context context;
