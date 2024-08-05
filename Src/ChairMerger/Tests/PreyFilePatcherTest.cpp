@@ -27,7 +27,7 @@ TEST(PreyFilePatcherTest, PatchNode)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Patch
-    PreyFilePatcher::PatchDocument(baseDoc, policy, errorStack);
+    PreyFilePatcher::PatchDocument(basePath, baseDoc, policy, errorStack);
 
     // Validate output
     XmlValidator::Context valCtx;
