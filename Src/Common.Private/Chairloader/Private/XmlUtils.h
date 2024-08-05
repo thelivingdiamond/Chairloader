@@ -135,6 +135,9 @@ public:
     template <typename T, typename TMap>
     static bool TryGetEnumAttribute(const pugi::xml_attribute& attr, const TMap& nameToEnumMap, T& outValue)
     {
+        if (!attr)
+            return false;
+
         auto it = nameToEnumMap.find(std::string_view(attr.as_string()));
 
         if (it == nameToEnumMap.end())

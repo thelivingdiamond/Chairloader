@@ -11,7 +11,10 @@
     <!-- Type of a collection. -->
     <xs:simpleType name="CollectionType">
         <xs:restriction base="xs:string">
-            <xs:pattern value="(dict|nodeDict|array|replaceOnly)"/>
+            <xs:enumeration value="dict" />
+            <xs:enumeration value="nodeDict" />
+            <xs:enumeration value="array" />
+            <xs:enumeration value="replaceOnly" />
         </xs:restriction>
     </xs:simpleType>
 

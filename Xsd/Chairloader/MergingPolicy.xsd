@@ -30,6 +30,21 @@
                     If true, merging policy will apply to all subfolders. Regex will be matched with filename relative to current folder.
                 </xs:documentation></xs:annotation>
             </xs:attribute>
+            
+            <xs:attribute name="method" default="merge">
+                <xs:annotation><xs:documentation>
+                    If true, merging policy will apply to all subfolders. Regex will be matched with filename relative to current folder.
+                </xs:documentation></xs:annotation>
+
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="readOnly" />
+                        <xs:enumeration value="merge" />
+                        <xs:enumeration value="replace" />
+                        <xs:enumeration value="localization" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>

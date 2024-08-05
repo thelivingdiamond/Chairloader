@@ -6,8 +6,6 @@
 #include <ChairMerger/XmlValidator.h>
 #include "MetaAttributes.h"
 
-// TODO 2024-05-07: Handle node text value. And validate it, too
-
 void XmlMerger3::MergeDocument(
     const XmlMergerContext& context,
     pugi::xml_document& baseDoc,
@@ -22,6 +20,17 @@ void XmlMerger3::MergeDocument(
 
     if (!modNode)
         throw std::runtime_error("Mod document is missing main node");
+
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+        throw std::runtime_error("This file can't be modified by mods");
+
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
+        throw std::logic_error("Can't use MergeDocument when replacing");
+
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        throw std::logic_error("Use MergeLocalizationDocument instead");
+
+    CRY_ASSERT(policy.GetMethod() == FileMergingPolicy3::EMethod::Merge);
 
     XmlErrorStack modErrorStack(modNode.name());
     MergeNode(context, baseNode, modNode, policy.GetRootNode(), modErrorStack);

@@ -240,6 +240,21 @@ private:
 class CHAIRMERGER_EXPORT FileMergingPolicy3 : boost::noncopyable
 {
 public:
+    enum class EMethod
+    {
+        //! This file can't be merged.
+        ReadOnly,
+
+        //! The file will be merged.
+        Merge,
+
+        //! The entire file will be replaced.
+        Replace,
+
+        //! Special merging for localization files.
+        Localization,
+    };
+
     static constexpr char XML_NODE_NAME[] = "MergingPolicy";
 
     FileMergingPolicy3() = default;
@@ -257,6 +272,7 @@ public:
             m_FileNameRegex = std::move(other.m_FileNameRegex);
             m_IsFileNameRegex = std::move(other.m_IsFileNameRegex);
             m_IsRecursive = std::move(other.m_IsRecursive);
+            m_Method = std::move(other.m_Method);
             m_Alloc = std::move(other.m_Alloc);
             m_RootNodeName = std::move(other.m_RootNodeName);
             m_RootNode = std::move(other.m_RootNode);
@@ -279,6 +295,9 @@ public:
     const std::string& GetFileName() const { return m_FileName; }
     void SetFileName(std::string_view fileName, bool isRegex);
 
+    //! @returns The merging method for this file.
+    EMethod GetMethod() const { return m_Method; }
+
     //! @returns The root node name.
     const std::string& GetRootNodeName() const { return m_RootNodeName; }
 
@@ -293,6 +312,7 @@ private:
     boost::regex m_FileNameRegex;
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
+    EMethod m_Method = EMethod::ReadOnly;
     MergingPolicyAllocator m_Alloc;
     std::string m_RootNodeName;
     const MergingPolicy3* m_RootNode = nullptr;
