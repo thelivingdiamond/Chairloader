@@ -1,0 +1,697 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+    <Title>Ui Items Loc Strings</Title>
+    <Author>Susan Kath</Author>
+    <LastAuthor>Susan Kath</LastAuthor>
+    <LastPrinted>2003-10-30T09:38:41Z</LastPrinted>
+    <Created>2002-06-17T19:14:00Z</Created>
+    <LastSaved>2017-03-23T21:33:23Z</LastSaved>
+    <Company>Arkane Studios</Company>
+    <Version>16.00</Version>
+  </DocumentProperties>
+  <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+    <AllowPNG />
+  </OfficeDocumentSettings>
+  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+    <WindowHeight>13260</WindowHeight>
+    <WindowWidth>27000</WindowWidth>
+    <WindowTopX>0</WindowTopX>
+    <WindowTopY>0</WindowTopY>
+    <TabRatio>274</TabRatio>
+    <RefModeR1C1 />
+    <ProtectStructure>False</ProtectStructure>
+    <ProtectWindows>False</ProtectWindows>
+    <DisplayInkNotes>False</DisplayInkNotes>
+  </ExcelWorkbook>
+  <Styles>
+    <Style ss:ID="Default" ss:Name="Normal">
+      <Alignment ss:Vertical="Bottom" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s26" ss:Name="Good">
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000" />
+      <Interior ss:Color="#C6EFCE" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s62" ss:Name="Normal 2">
+      <Alignment ss:Vertical="Bottom" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s63">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+    </Style>
+    <Style ss:ID="s64">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+    </Style>
+    <Style ss:ID="s66">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+    </Style>
+    <Style ss:ID="s67">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
+      <Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s68">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
+      <Interior ss:Color="#FF0000" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s69">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#FFFFFF" ss:Bold="1" />
+      <Interior ss:Color="#666699" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s70">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Courier New" x:Family="Modern" ss:Color="#FFFFFF" ss:Bold="1" />
+      <Interior ss:Color="#666699" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s72">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s73">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior ss:Color="#FFCC00" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s75">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s76">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s78">
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+    </Style>
+    <Style ss:ID="s81" ss:Parent="s26">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Bold="1" />
+      <Interior ss:Color="#FFFF00" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s83" ss:Parent="s26">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="14" ss:Bold="1" />
+      <Interior ss:Color="#FFFF00" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s84">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+    </Style>
+    <Style ss:ID="s85">
+      <Alignment ss:Vertical="Bottom" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s86">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
+      <Interior ss:Color="#F4B084" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s87">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Interior ss:Color="#F4B084" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s88" ss:Parent="s26">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000"
+        ss:Bold="1" />
+    </Style>
+    <Style ss:ID="s89">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
+    </Style>
+    <Style ss:ID="s90" ss:Parent="s26">
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#008000"
+        ss:Bold="1" />
+    </Style>
+    <Style ss:ID="s91">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Italic="1" />
+    </Style>
+    <Style ss:ID="s92">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+    </Style>
+    <Style ss:ID="s93">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders>
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+    </Style>
+    <Style ss:ID="s94">
+      <Alignment ss:Vertical="Top" />
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s95">
+      <Alignment ss:Vertical="Top" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s96">
+      <Alignment ss:Horizontal="Left" ss:Vertical="Bottom" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" />
+    </Style>
+    <Style ss:ID="s97">
+      <Borders>
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1" />
+      <Interior ss:Color="#F4B084" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s98">
+      <Interior ss:Color="#F4B084" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s99">
+      <Alignment ss:Vertical="Bottom" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s100">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Size="9" ss:Color="#000000" />
+    </Style>
+    <Style ss:ID="s101">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s103" ss:Parent="s62">
+      <Alignment ss:Horizontal="Left" ss:Vertical="Bottom" />
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+        <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+          ss:Color="#A5A5A5" />
+      </Borders>
+      <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" />
+      <Interior />
+    </Style>
+    <Style ss:ID="s104" ss:Parent="s62">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Interior />
+    </Style>
+    <Style ss:ID="s105" ss:Parent="s62">
+      <Alignment ss:Vertical="Bottom" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+      <NumberFormat />
+      <Protection />
+    </Style>
+    <Style ss:ID="s106" ss:Parent="s62">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Font ss:FontName="Arial" x:Family="Swiss" />
+      <Interior />
+    </Style>
+    <Style ss:ID="s108">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Interior />
+    </Style>
+    <Style ss:ID="s109">
+      <Alignment ss:Vertical="Top" ss:WrapText="1" />
+      <Borders />
+      <Interior ss:Color="#FFFFFF" ss:Pattern="Solid" />
+    </Style>
+    <Style ss:ID="s110">
+      <Alignment ss:Vertical="Center" />
+      <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" />
+    </Style>
+  </Styles>
+  <Worksheet ss:Name="Sheet1">
+    <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="655" x:FullColumns="1"
+      x:FullRows="1" ss:StyleID="s63">
+      <Column ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="195" />
+      <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="366.75" />
+      <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="258.75" />
+      <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="160.5" />
+      <Column ss:StyleID="s63" ss:AutoFitWidth="0" ss:Width="99" />
+      <Row ss:AutoFitHeight="0" ss:Height="51" ss:StyleID="s66">
+        <Cell ss:StyleID="s67"><Data ss:Type="String">KEY</Data></Cell>
+        <Cell ss:StyleID="s68"><Data ss:Type="String">ORIGINAL TEXT</Data></Cell>
+        <Cell ss:StyleID="s68"><Data ss:Type="String">TRANSLATED TEXT</Data></Cell>
+        <Cell ss:StyleID="s68"><Data ss:Type="String">LOCKED</Data></Cell>
+        <Cell ss:StyleID="s68"><Data ss:Type="String">CHARACTER LIMIT</Data></Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell>
+          <Data ss:Type="String">i_medkitDesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An auto-diagnosing first aid kit to recover from minor
+            injuries.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An auto-diagnosing first aid kit designed for recovery from
+            physical injuries.&lt;br&gt;&lt;br&gt;Restores %HealthRestored% health points.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">junk_CompostBananaPeelDesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A decaying banana peel. </Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A decaying Sunburst banana peel.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="51">
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_weaponshotgunDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">Throne S4 Tactical Pump Shotgun is designed to be used by security
+            forces for maximum efficacy in close quarters.&lt;br&gt;&lt;br&gt;Firepower:
+            %finaldamage% (Unmodified: %basedamage%)</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">The Throne S4 Tactical Pump Shotgun is designed to be used by
+            security forces for maximum efficacy in close quarters.&lt;br&gt;&lt;br&gt;Firepower:
+            %finaldamage% (Unmodified: %basedamage%)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="51">
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_weapongoogunDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly
+            stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">The Gelifoam Lattice Organism Obstruction Cannon fires a quickly
+            stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String"></Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="36">
+        <Cell>
+          <Data ss:Type="String">i_weaponwrenchDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s100">
+          <Data ss:Type="String">Hephaestus &quot;Heffy&quot; Twist and Loop Handle Industrial
+            Wrench. A flexible and indispensable tool for various engineering jobs. Also an
+            effective improvised bludgeon. &lt;br&gt;&lt;br&gt;Damage:
+            %quickhitfinal%-%chargedhitfinal% (Unmodified: %quickhitbase%-%chargedhitbase%)</Data>
+        </Cell>
+        <Cell ss:StyleID="s100">
+          <Data ss:Type="String">The Hephaestus &quot;Heffy&quot; Twist and Loop Handle Industrial
+            Wrench. A flexible and indispensable tool for various engineering jobs. Also an
+            effective improvised bludgeon. &lt;br&gt;&lt;br&gt;Damage:
+            %quickhitfinal%-%chargedhitfinal% (Unmodified: %quickhitbase%-%chargedhitbase%)</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="51">
+        <Cell>
+          <Data ss:Type="String">ui_toygunFocusDesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A toy gun that is harmless, but still useful for distracting
+            enemies and remotely trigger buttons and screens.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A toy gun that is harmless, but still useful for distracting
+            enemies and remotely triggering buttons and screens.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="38.25">
+        <Cell>
+          <Data ss:Type="String">i_weaponpistoldesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s101">
+          <Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an
+            integrated noise suppressor.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified:
+            %basedamage%)&lt;br&gt;&lt;br&gt;</Data>
+        </Cell>
+        <Cell ss:StyleID="s101">
+          <Data ss:Type="String">The Throne PPN light duty pistol fires 9mm rounds and features an
+            integrated noise suppressor. It is the standard issue weapon for all TranStar security
+            personnel.&lt;br&gt;&lt;br&gt;Firepower: %finaldamage% (Unmodified:
+            %basedamage%)&lt;br&gt;&lt;br&gt;</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_fabplanWeaponWrenchDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">Hephaestus &quot;Heffy&quot; Twist and Loop Handle Industrial
+            Wrench. A flexible and indispensable tool for various engineering jobs. Also an
+            effective improvised bludgeon.</Data>
+        </Cell>
+        <Cell ss:StyleID="s99">
+          <Data ss:Type="String">The Hephaestus &quot;Heffy&quot; Twist and Loop Handle Industrial
+            Wrench. A flexible and indispensable tool for various engineering jobs. Also an
+            effective improvised bludgeon.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell>
+          <Data ss:Type="String">i_fabplanWeaponGoogunDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s105">
+          <Data ss:Type="String">The Gelifoam Lattice Organism Obstructor fires a quickly
+            stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+        </Cell>
+        <Cell ss:StyleID="s105">
+          <Data ss:Type="String">The Gelifoam Lattice Organism Obstruction Cannon fires a quickly
+            stabilizing stream of incapacitant foam that can block or subdue targets.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_fabplanWeaponPistolDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">Throne PPN light duty pistol fires 9mm rounds and features an
+            integrated noise suppressor.</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">The Throne PPN light duty pistol fires 9mm rounds and features an
+            integrated noise suppressor.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="13.5">
+        <Cell>
+          <Data ss:Type="String">i_fabplanWeaponShotgunDesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Throne S4 Tactical Pump Shotgun is designed to be used by security
+            forces for maximum efficacy in close quarters.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">The Throne S4 Tactical Pump Shotgun is designed to be used by
+            security forces for maximum efficacy in close quarters.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">i_fabplanpharmaAntiRad</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Anti-Rad Pharma Fabrication Plan</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Anti-Rad Fabrication Plan</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">i_fabplanHypopsi</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psi Hypo Fabrication Plan</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Psi Hypo Fabrication Plan</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_fabplanhypopsiDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">A psychostimulant that increases the psychic potential of an
+            individual when injected.</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">A psychoactive stimulant that restores the psychic potential of an
+            individual upon injection.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row>
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_fabplanmedkitDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">An auto-diagnosing first aid kit to recover from minor injuries.</Data>
+        </Cell>
+        <Cell ss:StyleID="Default">
+          <Data ss:Type="String">An auto-diagnosing first aid kit designed for recovery from
+            physical injuries.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell ss:StyleID="s85">
+          <Data ss:Type="String">i_fabplanoxygenfuseDesc</Data>
+        </Cell>
+        <Cell ss:StyleID="s104">
+          <Data ss:Type="String">Component for controling air mixture and delivery throughout Talos
+            I.</Data>
+        </Cell>
+        <Cell ss:StyleID="s104">
+          <Data ss:Type="String">A component for controlling air mixture and delivery throughout
+            Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell>
+          <Data ss:Type="String">i_OxygenFusedesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Component for controling air mixture and delivery throughout Talos
+            I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A component for controlling air mixture and delivery throughout
+            Talos I.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="38.25">
+        <Cell>
+          <Data ss:Type="String">i_QuantumTransmogrifierdesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An experimental device that injects psychoactive particles into the
+            water supply.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">An experimental device built to inject psychoactive particles into
+            the Talos I water supply.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+      <Row ss:AutoFitHeight="0" ss:Height="25.5">
+        <Cell>
+          <Data ss:Type="String">i_YellowTulipsdesc</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Did you know yellow tulips signify hope?</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">A bunch of Yellow Tulip cuttings. Signifies hope.</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">LOCKED</Data>
+        </Cell>
+      </Row>
+    </Table>
+    <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+      <PageSetup>
+        <Layout x:Orientation="Landscape" />
+        <Header x:Margin="0.51181102362204722"
+          x:Data="&amp;LTime restriction sample script" />
+        <Footer x:Margin="0.51181102362204722" x:Data="Page &amp;P" />
+        <PageMargins x:Bottom="0.98425196850393704" x:Left="0" x:Right="0"
+          x:Top="0.98425196850393704" />
+      </PageSetup>
+      <Print>
+        <ValidPrinterInfo />
+        <PaperSizeIndex>9</PaperSizeIndex>
+        <Scale>70</Scale>
+        <HorizontalResolution>600</HorizontalResolution>
+        <VerticalResolution>600</VerticalResolution>
+      </Print>
+      <Zoom>145</Zoom>
+      <PageBreakZoom>60</PageBreakZoom>
+      <Selected />
+      <Panes>
+        <Pane>
+          <Number>3</Number>
+          <ActiveRow>10</ActiveRow>
+          <ActiveCol>3</ActiveCol>
+        </Pane>
+      </Panes>
+      <ProtectObjects>False</ProtectObjects>
+      <ProtectScenarios>False</ProtectScenarios>
+    </WorksheetOptions>
+  </Worksheet>
+</Workbook>
