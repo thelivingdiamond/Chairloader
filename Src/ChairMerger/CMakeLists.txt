@@ -18,6 +18,8 @@ set(SOURCE_FILES
 	Private/DllMain.cpp
 	Private/HashUtils.cpp
 	Private/HashUtils.h
+	Private/LocalizationMerger.cpp
+	Private/LocalizationMerger.h
 	Private/LuaUtils.cpp
 	Private/MergingLibrary3.cpp
 	Private/MergingPolicy3.cpp
