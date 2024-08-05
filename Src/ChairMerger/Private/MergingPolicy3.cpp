@@ -2,6 +2,13 @@
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 
+static const std::map<std::string, FileMergingPolicy3::EMethod, std::less<>> g_MethodValues = {
+    { "readOnly", FileMergingPolicy3::EMethod::ReadOnly },
+    { "merge", FileMergingPolicy3::EMethod::Merge },
+    { "replace", FileMergingPolicy3::EMethod::Replace },
+    { "localization", FileMergingPolicy3::EMethod::Localization },
+};
+
 //---------------------------------------------------------------------------------
 // MergingPolicyAllocator
 //---------------------------------------------------------------------------------
@@ -422,6 +429,9 @@ void FileMergingPolicy3::LoadXmlNode(
         SetFileName(fileNameRegexAttr.as_string(), true);
 
     SetRecursive(node.attribute("recursive").as_bool(false));
+
+    if (!XmlUtils::TryGetEnumAttribute(node.attribute("method"), g_MethodValues, m_Method))
+        m_Method = EMethod::Merge;
 
     const pugi::xml_node rootNode = node.child("Node");
     const pugi::xml_node rootNodeByType = node.child("NodeByType");

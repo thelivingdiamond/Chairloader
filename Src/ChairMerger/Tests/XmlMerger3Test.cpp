@@ -305,7 +305,8 @@ INSTANTIATE_TEST_SUITE_P(
         "Array_InvalidIndexInBase",
         "Array_UnsortedBase1",
         "Array_UnsortedBase2",
-        "Array_InvalidNewNode"));
+        "Array_InvalidNewNode",
+        "Method_ReadOnly"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,
