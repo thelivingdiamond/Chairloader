@@ -50,6 +50,17 @@ protected:
     }
 };
 
+class XmlMerger3SuccessLocTest
+    : public XmlMerger3Test
+    , public testing::WithParamInterface<std::string>
+{
+protected:
+    XmlMerger3SuccessLocTest()
+    {
+        m_TestDir = m_TestDir / "Success";
+    }
+};
+
 class XmlMerger3FailTest
     : public XmlMerger3Test
     , public testing::WithParamInterface<std::string>
@@ -145,6 +156,57 @@ TEST_P(XmlMerger3SuccessTest, Success)
 
         XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
         ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
+    }
+
+    // Compare with expected
+    EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, baseDoc));
+}
+
+TEST_P(XmlMerger3SuccessLocTest, SuccessLoc)
+{
+    std::vector<std::pair<std::string, fs::path>> modPaths;
+    std::string testName = GetParam();
+    fs::path testDir = m_TestDir / fs::u8path(testName);
+    fs::path policyPath = testDir / "0_Policy.xml";
+    fs::path basePath = testDir / "1_Base.xml";
+    fs::path expectedPath = testDir / "3_Expected.xml";
+
+    fs::path singleModPath = testDir / "2_Mod.xml";
+
+    if (fs::exists(singleModPath))
+    {
+        // Only use single mod
+        modPaths.push_back(std::make_pair("Chairloader.TestMod", singleModPath));
+    }
+    else
+    {
+        // Merge multiple mods
+        for (int i = 1; i < 100; i++)
+        {
+            fs::path modPath = testDir / fmt::format("2_Mod{}.xml", i);
+
+            if (!fs::exists(modPath))
+                break;
+
+            modPaths.push_back(std::make_pair(fmt::format("Chairloader.TestMod{}", i), modPath));
+        }
+    }
+
+    std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
+    FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
+
+    pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath, XmlMerger3::LOCALIZATION_PARSE_OPTIONS);
+    pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath, XmlMerger3::LOCALIZATION_PARSE_OPTIONS);
+
+    // Merge
+    for (auto& i : modPaths)
+    {
+        pugi::xml_document modDoc = XmlUtils::LoadDocument(i.second);
+
+        XmlMergerContext context;
+        context.modName = i.first;
+        context.pTypeLib = pTypeLibrary.get();
+        XmlMerger3::MergeLocalizationDocument(context, baseDoc, modDoc, policy);
     }
 
     // Compare with expected
@@ -281,6 +343,13 @@ INSTANTIATE_TEST_SUITE_P(
         "Action_Delete",
         "Action_Replace",
         "Action_ReplaceChildren"));
+
+INSTANTIATE_TEST_SUITE_P(
+    XmlMerger3,
+    XmlMerger3SuccessLocTest,
+    testing::Values(
+        "Method_Localization",
+        "Method_LocalizationTouchUp"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,

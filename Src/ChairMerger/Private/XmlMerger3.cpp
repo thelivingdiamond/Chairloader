@@ -5,6 +5,7 @@
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 #include "MetaAttributes.h"
+#include "LocalizationMerger.h"
 
 void XmlMerger3::MergeDocument(
     const XmlMergerContext& context,
@@ -181,6 +182,44 @@ void XmlMerger3::PatchNode(
         default:
             throw std::logic_error("Not implemented");
         }
+    }
+}
+
+void XmlMerger3::MergeLocalizationDocument(
+    const XmlMergerContext& context,
+    pugi::xml_document& baseDoc,
+    const pugi::xml_document& modDoc,
+    const FileMergingPolicy3& policy)
+{
+    if (policy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
+        throw std::logic_error("Merging method must be Localization");
+
+    LocalizationMerger locMerger;
+
+    try
+    {
+        locMerger.ReadBaseSheet(baseDoc);
+    }
+    catch (const std::exception& e)
+    {
+        throw std::runtime_error(fmt::format("{}\n    While reading base file", e.what()));
+    }
+
+    try
+    {
+        locMerger.MergeSheet(modDoc);
+    }
+    catch (const std::exception& e)
+    {
+        throw std::runtime_error(fmt::format("{}\n    While merging mod file", e.what()));
+    }
+
+    baseDoc.remove_children();
+    pugi::xml_document newDoc = locMerger.ExportExcelXml();
+
+    for (const pugi::xml_node& i : newDoc.children())
+    {
+        baseDoc.append_copy(i);
     }
 }
 
