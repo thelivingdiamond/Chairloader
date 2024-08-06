@@ -59,6 +59,9 @@ void PreyFilePatcher::PatchNode(
         std::set<std::string> generatedGuids;
         int i = 0;
 
+        // xmlFilePath looks like Levels/Campaign/EndGame/level/mission_mission0.xml
+        std::string levelName = xmlFilePath.parent_path().parent_path().filename().u8string();
+
         for (pugi::xml_node childNode : node.children())
         {
             XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
@@ -79,12 +82,12 @@ void PreyFilePatcher::PatchNode(
                 flagAttr.set_value(true);
 
                 // Generate hash string
-                std::string hashString;
+                std::string hashString = levelName;
 
                 for (const std::string& hashAttrName : patches.addEntityGuidHash)
                 {
-                    hashString += childNode.attribute(hashAttrName.c_str()).as_string();
                     hashString += '|';
+                    hashString += childNode.attribute(hashAttrName.c_str()).as_string();
                 }
 
                 // Hash
