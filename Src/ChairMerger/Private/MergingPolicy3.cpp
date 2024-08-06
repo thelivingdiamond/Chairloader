@@ -189,6 +189,7 @@ void MergingPolicy3::LoadXmlPatches(const pugi::xml_node& node, const XmlErrorSt
     bool foundAddChildIndex = false;
     bool foundAddEntityGuid = false;
     bool foundAddEntitySerialize = false;
+    bool foundReplaceEntityIDs = false;
 
     for (const pugi::xml_node childNode : node)
     {
@@ -223,6 +224,10 @@ void MergingPolicy3::LoadXmlPatches(const pugi::xml_node& node, const XmlErrorSt
             m_Patches.addEntitySerializeIdAttrName = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "idAttrName").as_string();
             m_Patches.addEntitySerializeAttrName = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "serializeAttrName").as_string();
             m_Patches.addEntitySerializeFilePath = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "filePath").as_string();
+        }
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_REPLACE_ENTITY_IDS, &foundReplaceEntityIDs))
+        {
+            m_Patches.replaceEntityIDs = true;
         }
         else
         {

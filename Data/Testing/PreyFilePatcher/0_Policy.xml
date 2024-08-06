@@ -26,6 +26,79 @@
                     <RemoveAttribute name="ch:someOldAttr" />
                 </Patches>
             </Node>
+            <Node name="Mission">
+                <Attributes>
+                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    <Attribute name="linkedEntity" type="EntityId" required="true" />
+                </Attributes>
+
+                <Patches>
+                    <ReplaceEntityIDs />
+                </Patches>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Objects">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="EntityGuid" />
+                            </PrimaryKey>
+                        </Collection>
+        
+                        <ChildConstraints>
+                            <UniqueAttribute name="EntityGuid" />
+                            <UniqueAttribute name="EntityId" />
+                        </ChildConstraints>
+
+                        <ChildNodes>
+                            <Node name="Object">
+                                <Attributes>
+                                    <Attribute name="EntityGuid" type="EntityGuidDef" required="true" readOnly="true" />
+                                </Attributes>
+        
+                                <Collection type="nodeDict" />
+        
+                                <ChildNodes>
+                                </ChildNodes>
+                            </Node>
+        
+                            <Node name="Entity">
+                                <Attributes>
+                                    <Attribute name="EntityId" type="EntityIdDef" required="true" />
+                                    <Attribute name="EntityGuid" type="EntityGuidDef" required="true" />
+                                    <Attribute name="ch:fakeGuid" type="bool" generated="true" />
+                                </Attributes>
+        
+                                <Collection type="nodeDict" />
+        
+                                <ChildNodes>
+                                    <Node name="EntityLinks">
+                                        <Attributes />
+        
+                                        <Collection type="dict">
+                                            <PrimaryKey>
+                                                <ChildAttribute name="TargetId" />
+                                            </PrimaryKey>
+                                        </Collection>
+        
+                                        <ChildNodes>
+                                            <Node name="Link">
+                                                <Attributes>
+                                                    <Attribute name="TargetId" type="EntityId" required="true" readOnly="true" />
+                                                    <Attribute name="Name" type="string" required="true" allowEmpty="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
         </ChildNodes>
     </Node>
 </MergingPolicy>

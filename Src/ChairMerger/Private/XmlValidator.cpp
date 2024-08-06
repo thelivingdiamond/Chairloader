@@ -1,4 +1,5 @@
 #include <boost/algorithm/string/join.hpp>
+#include <boost/algorithm/string.hpp>
 #include <Chairloader/Private/StringUtils.h>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
@@ -59,9 +60,15 @@ std::string XmlValidator::ValidateAttribute(
             throw std::runtime_error(fmt::format("Unknown type {} in the merging policy", policyAttr.type));
 
         std::string_view value = nodeAttr.as_string();
-        bool isValid = pType->ValidateValue(value);
-        if (!isValid)
-            return fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName());
+
+        // Finalizer expressions can't be validated at this point
+        // TODO 2024-08-06: At least validate syntax with a regex
+        if (context.nodeType != ENodeType::Prey && !boost::starts_with(value, "$("))
+        {
+            bool isValid = pType->ValidateValue(value);
+            if (!isValid)
+                return fmt::format("Invalid value '{}' for type {}", value, pType->GetFullName());
+        }
     }
 
     return std::string();

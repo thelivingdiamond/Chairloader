@@ -127,7 +127,7 @@
 
                             <ChildNodes>
                                 <Node name="Inputs">
-                                    <!-- Attributes depends on a particular node type -->
+                                    <!-- Attributes depend on a particular flowgraph node type -->
                                     <Attributes allowUnknown="true">
                                         <Attribute name="entityId" type="EntityId" />
                                     </Attributes>

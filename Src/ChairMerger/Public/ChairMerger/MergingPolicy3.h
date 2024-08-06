@@ -100,6 +100,9 @@ public:
         std::string addEntitySerializeIdAttrName;
         std::string addEntitySerializeAttrName;
         std::string addEntitySerializeFilePath;
+
+        //! Whether to replace all Entity IDs with Entity GUID finalizer expressions.
+        bool replaceEntityIDs = false;
     };
 
     //! Defines the type of the collection and how child nodes should be merged.
@@ -204,6 +207,7 @@ private:
     static constexpr char XML_NODE_ADD_CHILD_INDEX[] = "AddChildIndex";
     static constexpr char XML_NODE_ADD_ENTITY_GUID[] = "AddEntityGuid";
     static constexpr char XML_NODE_ADD_ENTITY_SERIALIZE[] = "AddEntitySerialize";
+    static constexpr char XML_NODE_REPLACE_ENTITY_IDS[] = "ReplaceEntityIDs";
 
     static constexpr char XML_NODE_COLLECTION[] = "Collection";
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";

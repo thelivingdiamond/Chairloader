@@ -36,4 +36,11 @@ public:
         const MergingLibrary3& policyLib,
         const XmlTypeLibrary* pTypeLib,
         const ProgressCallback& callback);
+
+private:
+    static void PatchEntityIds(
+        pugi::xml_node node,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack,
+        const std::map<int, std::string>& entityGuidMap);
 };

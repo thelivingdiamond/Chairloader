@@ -1,3 +1,4 @@
+#include <boost/algorithm/string.hpp>
 #include <SHA256/SHA256.h>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
@@ -25,7 +26,7 @@ void PreyFilePatcher::PatchNode(
     if (policy.GetCollection().type == MergingPolicy3::ECollectionType::ReplaceOnly &&
         node.children().begin() != node.children().end())
     {
-        // Use can only replace all children in this node.
+        // User can only replace all children in this node.
         // Pre-set the action to replaceChildren for ease of use
         XmlUtils::GetOrAddAttribute(node, MetaAttributes::ACTION).set_value("replaceChildren");
     }
@@ -181,6 +182,42 @@ void PreyFilePatcher::PatchNode(
 
         i++;
     }
+
+    // ReplaceEntityIDs
+    // Process after AddEntityGuid in child nodes
+    if (patches.replaceEntityIDs)
+    {
+        // Preload all entity GUIDs
+        std::map<int, std::string> entityGuidMap;
+        XmlErrorStack objectsErrorStack = errorStack.GetChild("Objects");
+        int j = -1;
+
+        for (const pugi::xml_node& entityNode : node.child("Objects").children())
+        {
+            j++;
+
+            if (strcmp(entityNode.name(), "Entity"))
+                continue;
+
+            XmlErrorStack entityErrorStack = objectsErrorStack.GetChild(entityNode);
+            entityErrorStack.SetIndex(j);
+
+            std::string entityGuid = XmlUtils::GetRequiredAttr(entityErrorStack, entityNode, "EntityGuid").as_string();
+            entityErrorStack.SetId("EntityGuid", entityGuid);
+
+            int entityId = XmlUtils::GetRequiredAttr(entityErrorStack, entityNode, "EntityId").as_int(-9999);
+            if (entityId == -9999)
+                entityErrorStack.ThrowException("Invalid EntityId");
+
+            if (entityGuidMap.find(entityId) != entityGuidMap.end())
+                entityErrorStack.ThrowException(fmt::format("Duplicate EntityId {}", entityId));
+
+            entityGuidMap.emplace(entityId, std::move(entityGuid));
+        }
+
+        // Go over all nodes. If found an attribute with type EntityId, replace it
+        PatchEntityIds(node, policy, errorStack, entityGuidMap);
+    }
 }
 
 void PreyFilePatcher::PatchDocument(
@@ -250,5 +287,81 @@ void PreyFilePatcher::PatchDirectory(
         }
 
         xmlDoc.save_file(fullPath.c_str(), indent, formatFlags);
+    }
+}
+
+void PreyFilePatcher::PatchEntityIds(
+    pugi::xml_node node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    const std::map<int, std::string>& entityGuidMap)
+{
+    // Check attributes
+    for (pugi::xml_attribute attr : node.attributes())
+    {
+        const MergingPolicy3::Attribute* policyAttr = policy.FindAttribute(attr.name());
+        if (!policyAttr)
+            continue;
+
+        if (policyAttr->type != "EntityId")
+            continue;
+
+        if (boost::starts_with(attr.as_string(), "$(EntityId"))
+        {
+            // Already patched
+            continue;
+        }
+
+        // Find entity guid
+        int entityId = attr.as_int(-9999);
+        if (entityId == -9999)
+            errorStack.ThrowException(fmt::format("Invalid EntityId '{}'", attr.as_string()));
+
+        if (entityId == 0)
+        {
+            // Null entity reference
+            continue;
+        }
+
+        auto it = entityGuidMap.find(entityId);
+        if (it == entityGuidMap.end())
+        {
+            /*
+            [error] XML patching failed: Unknown EntityId '453'
+              at encounterTableEntry[0]
+              at encounter[2]
+              at encounterProfile[2]
+              at encounterRoot[7]
+              at Mission
+              at file Levels\Campaign\Research\Prototype\level\mission_mission0.xml
+            */
+            // Unknown entity id. Not an error: some Prey files actually have invalid references
+            // Leave the reference as-is in such case.
+            continue;
+        }
+
+        attr.set_value(fmt::format("$(EntityId:{})", it->second).c_str());
+    }
+
+    // Recurse down
+    int i = 0;
+
+    for (pugi::xml_node childNode : node.children())
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        childErrorStack.SetIndex(i);
+
+        const MergingPolicy3* pChildPolicy = policy.FindChildNode(childNode.name());
+        if (!pChildPolicy)
+        {
+            childErrorStack.ThrowException(fmt::format(
+                "Node {} can't be a child of {} (merging policy not found)",
+                childNode.name(),
+                node.name()));
+        }
+
+        PatchEntityIds(childNode, *pChildPolicy, childErrorStack, entityGuidMap);
+
+        i++;
     }
 }

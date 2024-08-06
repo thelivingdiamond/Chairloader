@@ -189,6 +189,16 @@
                                 </xs:attribute>
                             </xs:complexType>
                         </xs:element>
+
+                        <!-- ReplaceEntityIDs -->
+                        <xs:element name="ReplaceEntityIDs" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:annotation><xs:documentation>
+                                    Replaces Entity IDs with a finalizer expression and Entity GUID.
+                                    Uses types in the policy to detect Entity IDs.
+                                </xs:documentation></xs:annotation>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

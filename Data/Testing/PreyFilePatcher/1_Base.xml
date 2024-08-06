@@ -15,4 +15,22 @@
         ch:someOldAttr="4000"
         aAttr1="aVal1_4"
         aAttr2="aVal2_4" />
+    <Mission linkedEntity="2">
+        <Objects>
+            <Object EntityGuid="000" />
+            <Entity EntityGuid="111" EntityId="1" />
+            <Entity EntityGuid="222" EntityId="3">
+                <EntityLinks>
+                    <Link Name="SomeName" TargetId="2" />
+                </EntityLinks>
+            </Entity>
+            <Entity EntityGuid="333" EntityId="2">
+                <EntityLinks>
+                    <Link Name="SomeName1" TargetId="3" />
+                    <Link Name="SomeName2" TargetId="1" />
+                    <Link Name="InvalidLink" TargetId="10" />
+                </EntityLinks>
+            </Entity>
+        </Objects>
+    </Mission>
 </Root>

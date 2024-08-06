@@ -15,6 +15,10 @@
             <Attribute name="CGFCount" type="int32" required="true" />
         </Attributes>
 
+        <Patches>
+            <ReplaceEntityIDs />
+        </Patches>
+
         <Collection type="nodeDict" />
 
         <ChildNodes>
