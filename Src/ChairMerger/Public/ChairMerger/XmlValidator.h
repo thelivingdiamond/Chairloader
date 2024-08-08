@@ -9,7 +9,7 @@ class XmlTypeLibrary;
 class CHAIRMERGER_EXPORT XmlValidator
 {
 public:
-    enum class ENodeType
+    enum class EMode
     {
         //! File to be used by Prey
         Prey,
@@ -49,8 +49,8 @@ public:
 
     struct Context
     {
-        //! Node type.
-        ENodeType nodeType = ENodeType::Prey;
+        //! Validation mode.
+        EMode mode = EMode::Prey;
 
         //! Optional type library for type validation.
         const XmlTypeLibrary* pTypeLib = nullptr;

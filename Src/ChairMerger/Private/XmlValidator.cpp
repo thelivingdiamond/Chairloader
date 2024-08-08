@@ -47,7 +47,7 @@ std::string XmlValidator::ValidateAttribute(
     const pugi::xml_attribute& nodeAttr,
     const MergingPolicy3::Attribute& policyAttr)
 {
-    if (context.nodeType == ENodeType::Prey && policyAttr.generated)
+    if (context.mode == EMode::Prey && policyAttr.generated)
         return "Generate attributes are not allowed";
 
     if (nodeAttr.as_string()[0] == '\0')
@@ -66,7 +66,7 @@ std::string XmlValidator::ValidateAttribute(
 
         // Finalizer expressions can't be validated at this point
         // TODO 2024-08-06: At least validate syntax with a regex
-        if (context.nodeType != ENodeType::Prey && !boost::starts_with(value, "$("))
+        if (context.mode != EMode::Prey && !boost::starts_with(value, "$("))
         {
             bool isValid = pType->ValidateValue(value);
             if (!isValid)
@@ -180,7 +180,7 @@ void XmlValidator::ValidateAttributes(
         {
             bool allowAttr = false;
             allowAttr |= policy.IsAllowingUnknownAttributes();
-            allowAttr |= (context.nodeType == ENodeType::MergingBase || context.nodeType == ENodeType::Mod)
+            allowAttr |= (context.mode == EMode::MergingBase || context.mode == EMode::Mod)
                 && MetaAttributes::IsKnownMetaAttr(nodeAttr);
 
             if (!allowAttr)
@@ -195,7 +195,7 @@ void XmlValidator::ValidateAttributes(
             AddError(result, errorStack, attrError, nodeAttr.name());
     }
 
-    if (context.nodeType == ENodeType::Prey || context.nodeType == ENodeType::MergingBase)
+    if (context.mode == EMode::Prey || context.mode == EMode::MergingBase)
     {
         // Check if any required attributes are missing
         for (const MergingPolicy3::Attribute& policyAttr : policy.GetAttributes())
@@ -205,7 +205,7 @@ void XmlValidator::ValidateAttributes(
         }
     }
 
-    if (context.nodeType == ENodeType::Mod)
+    if (context.mode == EMode::Mod)
     {
         // Check meta-attributes
         std::map<std::string, std::string> metaResults = MetaAttributes::ValidateNode(node);
@@ -306,7 +306,7 @@ void XmlValidator::ValidateCollection(
 
                 if (!keyAttr)
                 {
-                    if (context.nodeType != ENodeType::Prey)
+                    if (context.mode != EMode::Prey)
                         AddError(result, childErrorStack, "Key attribute is missing", keyAttrName);
                 }
                 else
@@ -358,7 +358,7 @@ void XmlValidator::ValidateCollection(
             childErrorStack.SetIndex(i);
 
             pugi::xml_attribute indexAttr = childNode.attribute(collection.arrayIndexAttr.c_str());
-            if (!indexAttr && context.nodeType != ENodeType::Prey)
+            if (!indexAttr && context.mode != EMode::Prey)
                 AddError(result, childErrorStack, "Index attribute is missing for an array element");
 
             i++;

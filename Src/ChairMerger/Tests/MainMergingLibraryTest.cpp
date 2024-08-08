@@ -52,7 +52,7 @@ TEST(MainMergingLibraryTest, TestMerging)
 
         // Validate input
         XmlValidator::Context valCtx;
-        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = &typeLibrary;
 
         validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), pPolicy->GetRootNode());

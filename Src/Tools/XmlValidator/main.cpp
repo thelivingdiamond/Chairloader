@@ -68,14 +68,14 @@ int main(int argc, char** argv)
         auto startTime = std::chrono::steady_clock::now();
 
 
-        XmlValidator::ENodeType validationMode;
+        XmlValidator::EMode validationMode;
 
         if (vm["mode"].as<std::string>() == "prey")
-            validationMode = XmlValidator::ENodeType::Prey;
+            validationMode = XmlValidator::EMode::Prey;
         else if (vm["mode"].as<std::string>() == "mergingBase")
-            validationMode = XmlValidator::ENodeType::MergingBase;
+            validationMode = XmlValidator::EMode::MergingBase;
         else if (vm["mode"].as<std::string>() == "mod")
-            validationMode = XmlValidator::ENodeType::Mod;
+            validationMode = XmlValidator::EMode::Mod;
         else
             throw std::runtime_error("Invalid --mode");
 
@@ -138,7 +138,7 @@ int main(int argc, char** argv)
                 output.stats.checked++;
 
                 XmlValidator::Context context;
-                context.nodeType = validationMode;
+                context.mode = validationMode;
                 context.pTypeLib = &typeLib;
 
                 XmlValidator::Result result = XmlValidator::ValidateDocument(

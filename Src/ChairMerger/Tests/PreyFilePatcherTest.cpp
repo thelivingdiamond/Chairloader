@@ -31,7 +31,7 @@ TEST(PreyFilePatcherTest, PatchNode)
 
     // Validate output
     XmlValidator::Context valCtx;
-    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.mode = XmlValidator::EMode::MergingBase;
     valCtx.pTypeLib = &typeLibrary;
 
     XmlValidator::Result validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());

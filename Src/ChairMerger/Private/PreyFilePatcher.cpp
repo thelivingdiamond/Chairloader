@@ -265,7 +265,7 @@ void PreyFilePatcher::PatchDirectory(
 
         // Validate
         XmlValidator::Context context;
-        context.nodeType = XmlValidator::ENodeType::MergingBase;
+        context.mode = XmlValidator::EMode::MergingBase;
         context.pTypeLib = pTypeLib;
 
         XmlValidator::Result validationResult = XmlValidator::ValidateNode(

@@ -122,7 +122,7 @@ TEST_P(XmlMerger3SuccessTest, Success)
     // Validate base
     {
         XmlValidator::Context valCtx;
-        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = pTypeLibrary.get();
 
         XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
@@ -136,7 +136,7 @@ TEST_P(XmlMerger3SuccessTest, Success)
 
         // Validate mod node
         XmlValidator::Context valCtx;
-        valCtx.nodeType = XmlValidator::ENodeType::Mod;
+        valCtx.mode = XmlValidator::EMode::Mod;
         valCtx.pTypeLib = pTypeLibrary.get();
 
         XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, modDoc, policy);
@@ -151,7 +151,7 @@ TEST_P(XmlMerger3SuccessTest, Success)
     // Validate output
     {
         XmlValidator::Context valCtx;
-        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = pTypeLibrary.get();
 
         XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
@@ -236,7 +236,7 @@ TEST_P(XmlMerger3FailTest, Fail)
     if (!fs::exists(skipValidationPath))
     {
         XmlValidator::Context valCtx;
-        valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+        valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = pTypeLibrary.get();
 
         validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
@@ -301,7 +301,7 @@ TEST_P(XmlMerger3TypeLibTest, TypeLib)
 
     // Validate base
     XmlValidator::Context valCtx;
-    valCtx.nodeType = XmlValidator::ENodeType::MergingBase;
+    valCtx.mode = XmlValidator::EMode::MergingBase;
     valCtx.pTypeLib = pTypeLibrary.get();
 
     validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
