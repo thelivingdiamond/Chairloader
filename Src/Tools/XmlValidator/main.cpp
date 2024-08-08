@@ -44,7 +44,8 @@ int main(int argc, char** argv)
             ("help", "produce help message")
             ("type-lib", po::value<std::string>()->required(), "path to the type library")
             ("merging-lib", po::value<std::string>()->required(), "path to the merging library")
-            ("xml-dir", po::value<std::string>()->required(), "path to the XML file directory");
+            ("xml-dir", po::value<std::string>()->required(), "path to the XML file directory")
+            ("mode", po::value<std::string>()->required(), "validation mode: prey, mergingBase, mod");
 
         po::store(po::parse_command_line(argc, argv, desc), vm);
 
@@ -65,6 +66,18 @@ int main(int argc, char** argv)
     try
     {
         auto startTime = std::chrono::steady_clock::now();
+
+
+        XmlValidator::ENodeType validationMode;
+
+        if (vm["mode"].as<std::string>() == "prey")
+            validationMode = XmlValidator::ENodeType::Prey;
+        else if (vm["mode"].as<std::string>() == "mergingBase")
+            validationMode = XmlValidator::ENodeType::MergingBase;
+        else if (vm["mode"].as<std::string>() == "mod")
+            validationMode = XmlValidator::ENodeType::Mod;
+        else
+            throw std::runtime_error("Invalid --mode");
 
         // Load type library
         fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
@@ -103,7 +116,7 @@ int main(int argc, char** argv)
         tf::Taskflow taskflow;
         std::vector<ExecutorOutput> executorOutputs(executor.num_workers());
 
-        auto fnProcessXmlFile = [&xmlFileList, &xmlDir, &executorOutputs, &executor, &mergingLibrary, &typeLib](size_t fileIdx) {
+        auto fnProcessXmlFile = [validationMode , &xmlFileList, &xmlDir, &executorOutputs, &executor, &mergingLibrary, &typeLib](size_t fileIdx) {
             const fs::path& xmlRelPath = xmlFileList[fileIdx];
             fs::path xmlFullPath = xmlDir / xmlRelPath;
             ExecutorOutput& output = executorOutputs[executor.this_worker_id()];
@@ -125,7 +138,7 @@ int main(int argc, char** argv)
                 output.stats.checked++;
 
                 XmlValidator::Context context;
-                context.nodeType = XmlValidator::ENodeType::MergingBase;
+                context.nodeType = validationMode;
                 context.pTypeLib = &typeLib;
 
                 XmlValidator::Result result = XmlValidator::ValidateDocument(

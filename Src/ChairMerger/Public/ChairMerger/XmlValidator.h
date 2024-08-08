@@ -121,6 +121,7 @@ private:
 
     //! Validates that all children match the collection type.
     static void ValidateCollection(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,

@@ -47,6 +47,9 @@ std::string XmlValidator::ValidateAttribute(
     const pugi::xml_attribute& nodeAttr,
     const MergingPolicy3::Attribute& policyAttr)
 {
+    if (context.nodeType == ENodeType::Prey && policyAttr.generated)
+        return "Generate attributes are not allowed";
+
     if (nodeAttr.as_string()[0] == '\0')
     {
         // Attribute is empty
@@ -124,7 +127,7 @@ void XmlValidator::ValidateNodeInternal(
 {
     ValidateAttributes(context, node, policy, errorStack, result);
     ValidateText(context, node, policy, errorStack, result);
-    ValidateCollection(node, policy, errorStack, result);
+    ValidateCollection(context, node, policy, errorStack, result);
     ValidateConstraints(node, policy, errorStack, result);
 
     if (recurse)
@@ -197,7 +200,7 @@ void XmlValidator::ValidateAttributes(
         // Check if any required attributes are missing
         for (const MergingPolicy3::Attribute& policyAttr : policy.GetAttributes())
         {
-            if (policyAttr.required && !node.attribute(policyAttr.name.c_str()))
+            if (!policyAttr.generated && policyAttr.required && !node.attribute(policyAttr.name.c_str()))
                 AddError(result, errorStack, "Required attribute is missing", policyAttr.name);
         }
     }
@@ -252,7 +255,12 @@ void XmlValidator::ValidateText(
     }
 }
 
-void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result)
+void XmlValidator::ValidateCollection(
+    const Context& context,
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    Result& result)
 {
     const MergingPolicy3::Collection& collection = policy.GetCollection();
 
@@ -264,28 +272,6 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
         bool hasChildren = NodeHasChildElements(node);
         if (hasChildren)
             AddError(result, errorStack, "Collection type is not defined. Node must not have any children in that case.");
-        break;
-    }
-    case MergingPolicy3::ECollectionType::Array:
-    {
-        // Check that index attribute exists in all children
-        int i = 0;
-
-        for (pugi::xml_node childNode : node.children())
-        {
-            if (childNode.type() != pugi::node_element)
-                continue;
-
-            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
-            childErrorStack.SetIndex(i);
-
-            pugi::xml_attribute indexAttr = childNode.attribute(collection.arrayIndexAttr.c_str());
-            if (!indexAttr)
-                AddError(result, childErrorStack, "Index attribute is missing for an array element");
-
-            i++;
-        }
-
         break;
     }
     case MergingPolicy3::ECollectionType::Dict:
@@ -320,7 +306,8 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
 
                 if (!keyAttr)
                 {
-                    AddError(result, childErrorStack, "Key attribute is missing", keyAttrName);
+                    if (context.nodeType != ENodeType::Prey)
+                        AddError(result, childErrorStack, "Key attribute is missing", keyAttrName);
                 }
                 else
                 {
@@ -351,6 +338,28 @@ void XmlValidator::ValidateCollection(const pugi::xml_node& node, const MergingP
                         fmt::format("Duplicate key value '{}'", fullKeyString));
                 }
             }
+
+            i++;
+        }
+
+        break;
+    }
+    case MergingPolicy3::ECollectionType::Array:
+    {
+        // Check that index attribute exists in all children
+        int i = 0;
+
+        for (pugi::xml_node childNode : node.children())
+        {
+            if (childNode.type() != pugi::node_element)
+                continue;
+
+            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+            childErrorStack.SetIndex(i);
+
+            pugi::xml_attribute indexAttr = childNode.attribute(collection.arrayIndexAttr.c_str());
+            if (!indexAttr && context.nodeType != ENodeType::Prey)
+                AddError(result, childErrorStack, "Index attribute is missing for an array element");
 
             i++;
         }

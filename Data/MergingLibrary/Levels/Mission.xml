@@ -371,7 +371,7 @@
                             <Attribute name="CullDistRatio" type="float" />
 
                             <!-- Chairloader -->
-                            <Attribute name="EntityGuid" type="EntityGuidDef" required="true" readOnly="true" />
+                            <Attribute name="EntityGuid" type="EntityGuidDef" required="true" readOnly="true" generated="true" />
                             <Attribute name="ch:fakeGuid" type="bool" generated="true" />
                         </Attributes>
 
