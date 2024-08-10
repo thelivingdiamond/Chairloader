@@ -48,7 +48,7 @@ std::string XmlValidator::ValidateAttribute(
     const MergingPolicy3::Attribute& policyAttr)
 {
     if (context.mode == EMode::Prey && policyAttr.generated)
-        return "Generate attributes are not allowed";
+        return "Generated attributes are not allowed";
 
     if (nodeAttr.as_string()[0] == '\0')
     {
@@ -66,7 +66,7 @@ std::string XmlValidator::ValidateAttribute(
 
         // Finalizer expressions can't be validated at this point
         // TODO 2024-08-06: At least validate syntax with a regex
-        if (context.mode != EMode::Prey && !boost::starts_with(value, "$("))
+        if (context.mode == EMode::Prey || !boost::starts_with(value, "$("))
         {
             bool isValid = pType->ValidateValue(value);
             if (!isValid)
