@@ -55,7 +55,7 @@ TEST(MainMergingLibraryTest, TestMerging)
         valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = &typeLibrary;
 
-        validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), pPolicy->GetRootNode());
+        validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
         ASSERT_TRUE(validationResult) << "Input file is invalid:\n" << validationResult.ToString("  ");
 
         // Merge
@@ -65,7 +65,7 @@ TEST(MainMergingLibraryTest, TestMerging)
         XmlMerger3::MergeDocument(context, baseDoc, modDoc, *pPolicy);
 
         // Validate output
-        validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), pPolicy->GetRootNode());
+        validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
         ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
         // Compare with expected

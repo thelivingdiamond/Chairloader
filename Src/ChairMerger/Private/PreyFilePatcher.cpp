@@ -270,10 +270,10 @@ void PreyFilePatcher::PatchDirectory(
         context.mode = XmlValidator::EMode::MergingBase;
         context.pTypeLib = pTypeLib;
 
-        XmlValidator::Result validationResult = XmlValidator::ValidateNode(
+        XmlValidator::Result validationResult = XmlValidator::ValidateDocument(
             context,
-            xmlDoc.first_child(),
-            pFilePolicy->GetRootNode());
+            xmlDoc,
+            *pFilePolicy);
 
         // Save
         const char* indent = "    ";

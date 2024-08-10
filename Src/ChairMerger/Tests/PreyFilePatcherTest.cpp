@@ -34,7 +34,7 @@ TEST(PreyFilePatcherTest, PatchNode)
     valCtx.mode = XmlValidator::EMode::MergingBase;
     valCtx.pTypeLib = &typeLibrary;
 
-    XmlValidator::Result validationResult = XmlValidator::ValidateNode(valCtx, baseDoc.first_child(), policy.GetRootNode());
+    XmlValidator::Result validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, policy);
     ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
     // Compare with expected
