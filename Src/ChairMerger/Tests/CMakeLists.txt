@@ -14,6 +14,7 @@ set(SOURCE_FILES
 	pch.h
 	PreyFilePatcherTest.cpp
 	Wildcards.cpp
+	XmlFinalizerTest.cpp
 	XMLMerger2Test.cpp
 	XmlMerger3Test.cpp
 	XmlTestUtils.cpp

@@ -32,7 +32,7 @@ public:
     static bool CheckApplyIf(const pugi::xml_node& node);
 
     //! Removes all meta-attributes from a node.
-    static void StripNode(pugi::xml_node node);
+    static void StripNode(pugi::xml_node node, bool finalize = false);
 
     //! Checks if the attribute is a known meta-attribute.
     //! @{

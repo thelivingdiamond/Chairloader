@@ -26,11 +26,11 @@ bool MetaAttributes::CheckApplyIf(const pugi::xml_node& node)
     return node.attribute(APPLY_IF).as_bool(true);
 }
 
-void MetaAttributes::StripNode(pugi::xml_node node)
+void MetaAttributes::StripNode(pugi::xml_node node, bool finalize)
 {
     for (const std::string& metaAttr : g_MetaAttrs)
     {
-        if (g_RetainMetaAttrs.find(metaAttr) != g_RetainMetaAttrs.end())
+        if (!finalize && g_RetainMetaAttrs.find(metaAttr) != g_RetainMetaAttrs.end())
             continue;
 
         node.remove_attribute(metaAttr.c_str());

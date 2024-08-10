@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Root>
+    <A
+        ch:index="1000"
+        aAttr1="aVal1_1"
+        aAttr2="aVal2_1"
+        ch:arrayMod="Chairloader.TestMod"
+        ch:action="replaceChildren" />
+    <A
+        ch:index="2000"
+        aAttr1="aVal1_2"
+        aAttr2="aVal2_2" />
+    <A
+        ch:index="3000"
+        aAttr1="aVal1_3"
+        aAttr2="aVal2_3" />
+    <A
+        ch:index="4000"
+        aAttr1="aVal1_4"
+        aAttr2="aVal2_4"
+        ch:arrayMod="Chairloader.TestMod" />
+    <Mission
+        ch:index="5000"
+        linkedEntity="$(EntityId:333)">
+        <Objects>
+            <Object EntityGuid="000" />
+            <Entity EntityGuid="111" EntityId="1" />
+            <Entity EntityGuid="222" EntityId="3">
+                <EntityLinks>
+                    <Link Name="SomeName" TargetId="$(EntityId:333)" />
+                </EntityLinks>
+            </Entity>
+            <Entity EntityGuid="333" EntityId="2">
+                <EntityLinks>
+                    <Link Name="SomeName1" TargetId="$(EntityId:222)" />
+                    <Link Name="SomeName2" TargetId="$(EntityId:111)" />
+                    <Link Name="InvalidLink" TargetId="10" />
+                    <Link Name="LinkToNewEntity" TargetId="$(EntityId:444)" />
+                </EntityLinks>
+            </Entity>
+            <Entity EntityGuid="444" Name="SomeNewEntityFromMod" />
+        </Objects>
+    </Mission>
+</Root>
