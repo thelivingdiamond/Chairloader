@@ -9,11 +9,13 @@
 
 static char nibbleToHex(uint8_t val)
 {
+    CRY_ASSERT(val <= 0xF);
     return val >= 0xA ? (val + 'A' - 0xA) : (val + '0');
 }
 
 static uint8_t hexToNibble(char c)
 {
+    CRY_ASSERT((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F'));
     return c >= 'A' ? (c - 'A' + 0xA) : (c - '0');
 }
 
@@ -122,7 +124,7 @@ void PreyFilePatcher::PatchNode(
                     collisionCount++;
 
                     uint8_t val = hexToNibble(guid[guid.size() - 1]);
-                    guid[guid.size() - 1] = nibbleToHex(val + 1);
+                    guid[guid.size() - 1] = nibbleToHex((val + 1) & 0xF);
                 }
 
                 generatedGuids.insert(guid);
