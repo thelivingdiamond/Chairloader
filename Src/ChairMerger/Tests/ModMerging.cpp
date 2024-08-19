@@ -1,6 +1,7 @@
 #include <libzippp.h>
 #include "ChairMergerTestBase.h"
 #include "XmlTestUtils.h"
+#include "Cache/DiskXmlCache.h"
 
 class ChairMergerTestProcessXMLFile
     : public ChairMergerTestBase
@@ -24,7 +25,10 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
     mod.modName = MOD_NAME;
     mod.dataPath = modDataDir;
 
+    m_pMerger->m_pBaseFileCache = std::make_unique<DiskXmlCache>();
+    m_pMerger->m_pBaseFileCache->SetRootDir(m_pMerger->m_PreyFilesPath);
     m_pMerger->ProcessXMLFile(mod, modFilePath);
+    m_pMerger->m_pBaseFileCache->ExportModifiedFiles(m_pMerger->m_OutputPath);
 
     pugi::xml_document docOutput = XmlTestUtils::LoadDocument(m_TempDir / "Output" / relativePath);
     pugi::xml_document docExpected = XmlTestUtils::LoadDocument(m_TestDir / "Expected" / relativePath);

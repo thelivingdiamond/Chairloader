@@ -6,6 +6,13 @@ set(SOURCE_FILES
 	MergingProcess.png
 	MergingProcess.svg
 
+	Private/Cache/BaseXmlCache.cpp
+	Private/Cache/BaseXmlCache.h
+	Private/Cache/DiskXmlCache.cpp
+	Private/Cache/DiskXmlCache.h
+	Private/Cache/IXmlCache.h
+	Private/Cache/MemoryXmlCache.cpp
+	Private/Cache/MemoryXmlCache.h
 	Private/CApi.cpp
 	Private/ChairMerger.cpp
 	Private/DllMain.cpp

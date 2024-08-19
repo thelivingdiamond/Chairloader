@@ -29,6 +29,8 @@ extern "C"
 struct ILogger;
 struct IChairManager;
 
+class DiskXmlCache;
+
 enum class DeployPhase
 {
     Invalid,
@@ -116,6 +118,8 @@ public:
         const fs::path& outputRoot,
         const fs::path& gamePath,
         ILogger* pLogger);
+
+    ~ChairMerger();
 
     //! Sets the mod list for merging.
     void SetMods(std::vector<Mod>&& mods);
@@ -242,6 +246,9 @@ protected:
     fs::path m_OutputPath;
     fs::path m_LevelOutputPath;
     fs::path m_LocalizationOutputPath;
+
+    // In-memory cache for merged files
+    std::unique_ptr<DiskXmlCache> m_pBaseFileCache;
 
     // Game paths
     fs::path m_ModPath = "";
