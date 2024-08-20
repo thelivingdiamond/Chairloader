@@ -38,6 +38,21 @@ void DiskXmlCache::ExportModifiedFiles(const fs::path& outRootDir)
     }
 }
 
+void DiskXmlCache::GetAllFileList(std::vector<fs::path>& outList)
+{
+    std::shared_lock mapLock(m_FileMapMutex);
+    outList.clear();
+
+    for (const fs::directory_entry& dirEnt : fs::recursive_directory_iterator(m_RootDir))
+    {
+        if (!dirEnt.is_directory())
+        {
+            fs::path relPath = dirEnt.path().lexically_relative(m_RootDir);
+            outList.push_back(relPath);
+        }
+    }
+}
+
 bool DiskXmlCache::LoadDocument(const fs::path& relPath, const std::string& relPathNorm, pugi::xml_document& outDoc)
 {
     pugi::xml_document doc;

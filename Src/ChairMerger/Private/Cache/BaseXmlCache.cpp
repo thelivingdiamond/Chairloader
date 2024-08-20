@@ -67,8 +67,28 @@ IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForWriting(
     return EOpenResult::Success;
 }
 
+void BaseXmlCache::GetCachedFileList(std::vector<fs::path>& outList)
+{
+    std::shared_lock mapLock(m_FileMapMutex);
+    outList.clear();
+
+    for (const auto& i : m_FileMap)
+    {
+        outList.push_back(i.second->relPath);
+    }
+}
+
+void BaseXmlCache::GetAllFileList(std::vector<fs::path>& outList)
+{
+    // By default, return cached files
+    GetCachedFileList(outList);
+}
+
 std::string BaseXmlCache::NormalizePath(const fs::path& path)
 {
+    if (!path.is_relative())
+        throw std::invalid_argument("Path must be relative");
+
     std::string pathStr = path.u8string();
 
     for (char& c : pathStr)

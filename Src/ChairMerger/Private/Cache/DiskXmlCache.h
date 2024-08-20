@@ -16,6 +16,9 @@ public:
     //! Saves all modified files to the directory.
     void ExportModifiedFiles(const fs::path& outRootDir);
 
+    // BaseXmlCache
+    virtual void GetAllFileList(std::vector<fs::path>& outList) override;
+
 protected:
     virtual bool LoadDocument(const fs::path& relPath, const std::string& relPathNorm, pugi::xml_document& outDoc) override;
 

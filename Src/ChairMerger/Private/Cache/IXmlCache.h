@@ -4,7 +4,6 @@
 //! An in-memory cache of XML files. May be backed by disk storage.
 struct IXmlCache
 {
-public:
     using UniqueLock = std::unique_lock<std::shared_mutex>;
     using SharedLock = std::shared_lock<std::shared_mutex>;
 
@@ -81,6 +80,12 @@ public:
         ThrowForResult(result);
         return *pDoc;
     }
+
+    //! Gets the list of currently cached files. They are guaranteed to be valid XMLs. Includes new files.
+    virtual void GetCachedFileList(std::vector<fs::path>& outList) = 0;
+
+    //! Gets the list of all files. Some of them may not actually be XMLs.
+    virtual void GetAllFileList(std::vector<fs::path>& outList) = 0;
 
     static void ThrowForResult(EOpenResult result)
     {

@@ -100,6 +100,15 @@ void ChairMerger::SetMods(std::vector<Mod>&& mods)
 {
     CRY_ASSERT_MESSAGE(m_Mods.empty(), "ChairMerger instance may only be used once");
     m_Mods = std::move(mods);
+
+    // Init caches
+    m_ModXmlCaches.resize(m_Mods.size());
+
+    for (size_t i = 0; i < m_Mods.size(); i++)
+    {
+        m_ModXmlCaches[i] = std::make_unique<DiskXmlCache>();
+        static_cast<DiskXmlCache*>(m_ModXmlCaches[i].get())->SetRootDir(m_Mods[i].dataPath);
+    }
 }
 
 void ChairMerger::Deploy()
@@ -270,11 +279,11 @@ void ChairMerger::Merge()
     m_pBaseFileCache = std::make_unique<DiskXmlCache>();
     m_pBaseFileCache->SetRootDir(m_PreyFilesPath);
 
-    for (const Mod& mod : m_Mods)
+    for (size_t i = 0; i < m_Mods.size(); i++)
     {
-        ProcessMod(mod);
+        ProcessMod(i);
         WaitForPendingTasks();
-        m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", mod.modName);
+        m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", m_Mods[i].modName);
     }
 
     // Save files to disk
@@ -368,21 +377,29 @@ void ChairMerger::CopyModDataFiles(fs::path sourcePath)
         m_MergeThreadPool->enqueue([this, sourcePath] { RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, { ".xml" }); }));
 }
 
-void ChairMerger::ProcessMod(const Mod& mod)
+void ChairMerger::ProcessMod(size_t modIdx)
 {
-    m_pLog->Log(severityLevel::debug, "ChairMerger: Processing mod %s", mod.modName);
+    m_pLog->Log(severityLevel::debug, "ChairMerger: Processing mod %s", m_Mods[modIdx].modName);
 
     // Copy all files from the mod's Data folder to the output folder
-    CopyModDataFiles(mod.dataPath);
+    CopyModDataFiles(m_Mods[modIdx].dataPath);
 
     // Merge all XML files from the mod's Data folder
-    RecursiveMergeXMLFiles(mod, mod.dataPath);
+    std::vector<fs::path> fileList;
+    m_ModXmlCaches[modIdx]->GetAllFileList(fileList);
+
+    for (const fs::path& fileRelPath : fileList)
+    {
+        if (fileRelPath.extension() == ".xml")
+        {
+            AddPendingTask(m_MergeThreadPool->enqueue(
+                [this, fileRelPath, modIdx] { ProcessXMLFile(m_Mods[modIdx], m_ModXmlCaches[modIdx].get(), fileRelPath); }));
+        }
+    }
 }
 
-void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
+void ChairMerger::ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const fs::path& relativePath)
 {
-    fs::path relativePath = file.lexically_relative(mod.dataPath);
-
     try
     {
         auto policy = GetFileMergingPolicy(relativePath);
@@ -397,21 +414,19 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
         IXmlCache::UniqueLock baseXmlLock;
         pugi::xml_document& baseDoc = m_pBaseFileCache->OpenXmlForWriting(relativePath, baseXmlLock, parseTags);
 
+        pugi::xml_document modDoc;
+
+        {
+            // Make a copy of the cache document. It will be modified when resolving wildcards.
+            IXmlCache::SharedLock modXmlLock;
+            const pugi::xml_document& modDocFromCache = pModXmlCache->OpenXmlForReading(relativePath, modXmlLock, parseTags);
+            modDoc.reset(modDocFromCache);
+        }
+
         const pugi::xml_document* originalDoc = nullptr;
         IXmlCache::SharedLock originalXmlLock;
         IXmlCache::EOpenResult originalResult = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
 
-        pugi::xml_document modDoc;
-        pugi::xml_parse_result modResult = modDoc.load_file(file.wstring().c_str(), parseTags);
-
-        if (!modResult)
-        {
-            m_pLog->Log(severityLevel::error, "ChairMerger: Could not load mod file %s",
-                file.u8string().c_str());
-            m_pLog->Log(severityLevel::error, "ChairMerger: Description: %s", modResult.description());
-            m_pLog->Log(severityLevel::error, "ChairMerger: Offset: %lld", modResult.offset);
-            throw std::runtime_error(fmt::format("Could not load {}", file.u8string()));
-        }
         // resolve attribute wildcards on non legacy files
         ResolveFileWildcards(mod, modDoc.first_child());
 
@@ -442,32 +457,6 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
             relativePath.u8string(),
             mod.modName
         ));
-    }
-}
-
-void ChairMerger::RecursiveMergeXMLFiles(const Mod& mod, const fs::path& source)
-{
-    if (!fs::exists(source))
-        return;
-
-    if (!fs::is_directory(source))
-        throw std::runtime_error(fmt::format("Mod {}: not a directory: {}", mod.modName, source.u8string()));
-
-    for (auto& file : fs::directory_iterator(source))
-    {
-        if (fs::is_directory(file))
-        {
-            RecursiveMergeXMLFiles(mod, file);
-        }
-        else
-        {
-            if (file.path().extension() == ".xml")
-            {
-                // Toss the file into the thread pool
-                AddPendingTask(m_MergeThreadPool->enqueue(
-                    [this, file, &mod] { ProcessXMLFile(mod, file); }));
-            }
-        }
     }
 }
 

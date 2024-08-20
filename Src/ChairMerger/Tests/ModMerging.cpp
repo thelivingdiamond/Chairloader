@@ -25,9 +25,12 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
     mod.modName = MOD_NAME;
     mod.dataPath = modDataDir;
 
+    DiskXmlCache modXmlCache;
+    modXmlCache.SetRootDir(mod.dataPath);
+
     m_pMerger->m_pBaseFileCache = std::make_unique<DiskXmlCache>();
     m_pMerger->m_pBaseFileCache->SetRootDir(m_pMerger->m_PreyFilesPath);
-    m_pMerger->ProcessXMLFile(mod, modFilePath);
+    m_pMerger->ProcessXMLFile(mod, &modXmlCache, relativePath);
     m_pMerger->m_pBaseFileCache->ExportModifiedFiles(m_pMerger->m_OutputPath);
 
     pugi::xml_document docOutput = XmlTestUtils::LoadDocument(m_TempDir / "Output" / relativePath);

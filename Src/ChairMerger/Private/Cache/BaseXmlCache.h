@@ -22,6 +22,9 @@ public:
         unsigned parseFlags = pugi::parse_default,
         unsigned formatFlags = pugi::format_default) override;
 
+    virtual void GetCachedFileList(std::vector<fs::path>& outList) override;
+    virtual void GetAllFileList(std::vector<fs::path>& outList) override;
+
 protected:
     struct FileEntry
     {
