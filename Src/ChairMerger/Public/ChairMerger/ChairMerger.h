@@ -247,8 +247,9 @@ protected:
     fs::path m_LevelOutputPath;
     fs::path m_LocalizationOutputPath;
 
-    // In-memory cache for merged files
-    std::unique_ptr<DiskXmlCache> m_pBaseFileCache;
+    // In-memory caches for different files
+    std::unique_ptr<DiskXmlCache> m_pBaseFileCache; //!< Merging base cache
+    std::unique_ptr<DiskXmlCache> m_pOriginalFileCache; //!< Original file cache
 
     // Game paths
     fs::path m_ModPath = "";

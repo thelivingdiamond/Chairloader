@@ -88,6 +88,8 @@ ChairMerger::ChairMerger(
     }
 
     m_RandomGenerator = std::mt19937(std::random_device()());
+    m_pOriginalFileCache = std::make_unique<DiskXmlCache>();
+    m_pOriginalFileCache->SetRootDir(m_PreyFilesPath);
 }
 
 ChairMerger::~ChairMerger()
@@ -392,13 +394,15 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
 
         // now we have the relative path to the file, we can use this to find the original file, and the base file in the
         // output directory
-        IXmlCache::UniqueLock xmlLock;
-        pugi::xml_document& baseDoc = m_pBaseFileCache->OpenXmlForWriting(relativePath, xmlLock, parseTags);
-        fs::path originalFile = m_PreyFilesPath / relativePath;
+        IXmlCache::UniqueLock baseXmlLock;
+        pugi::xml_document& baseDoc = m_pBaseFileCache->OpenXmlForWriting(relativePath, baseXmlLock, parseTags);
 
-        pugi::xml_document modDoc, originalDoc;
+        const pugi::xml_document* originalDoc = nullptr;
+        IXmlCache::SharedLock originalXmlLock;
+        IXmlCache::EOpenResult originalResult = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
+
+        pugi::xml_document modDoc;
         pugi::xml_parse_result modResult = modDoc.load_file(file.wstring().c_str(), parseTags);
-        pugi::xml_parse_result originalResult = originalDoc.load_file(originalFile.wstring().c_str(), parseTags);
 
         if (!modResult)
         {
@@ -411,7 +415,7 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
         // resolve attribute wildcards on non legacy files
         ResolveFileWildcards(mod, modDoc.first_child());
 
-        if (!originalResult)
+        if (originalResult == IXmlCache::EOpenResult::NotFound)
         {
             // this is a new file, we have to just copy it over, even if base exists
             baseDoc = std::move(modDoc);
@@ -426,7 +430,7 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, const fs::path& file)
             return;
         }
 
-        XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
+        XMLMerger2::MergeXMLDocument(baseDoc, modDoc, *originalDoc, policy);
 
         // we are done
     }
