@@ -411,20 +411,20 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const 
 
         // now we have the relative path to the file, we can use this to find the original file, and the base file in the
         // output directory
-        IXmlCache::UniqueLock baseXmlLock;
+        IXmlCache::WriteLock baseXmlLock;
         pugi::xml_document& baseDoc = m_pBaseFileCache->OpenXmlForWriting(relativePath, baseXmlLock, parseTags);
 
         pugi::xml_document modDoc;
 
         {
             // Make a copy of the cache document. It will be modified when resolving wildcards.
-            IXmlCache::SharedLock modXmlLock;
+            IXmlCache::ReadLock modXmlLock;
             const pugi::xml_document& modDocFromCache = pModXmlCache->OpenXmlForReading(relativePath, modXmlLock, parseTags);
             modDoc.reset(modDocFromCache);
         }
 
         const pugi::xml_document* originalDoc = nullptr;
-        IXmlCache::SharedLock originalXmlLock;
+        IXmlCache::ReadLock originalXmlLock;
         IXmlCache::EOpenResult originalResult = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
 
         // resolve attribute wildcards on non legacy files

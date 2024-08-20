@@ -11,7 +11,7 @@ BaseXmlCache::~BaseXmlCache()
 IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForReading(
     const fs::path& relPath,
     const pugi::xml_document** ppOutDocument,
-    SharedLock& lock,
+    ReadLock& lock,
     unsigned parseFlags)
 {
     if (lock.owns_lock())
@@ -28,7 +28,7 @@ IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForReading(
         return initResult;
 
     // Lock the file entry
-    lock = SharedLock(it->second->mutex, std::defer_lock);
+    lock = ReadLock(it->second->mutex, std::defer_lock);
 
     if (!lock.try_lock())
         return EOpenResult::Locked;
@@ -40,7 +40,7 @@ IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForReading(
 IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForWriting(
     const fs::path& relPath,
     pugi::xml_document** ppOutDocument,
-    UniqueLock& lock,
+    WriteLock& lock,
     unsigned parseFlags,
     unsigned formatFlags)
 {
@@ -58,7 +58,7 @@ IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForWriting(
         return initResult;
 
     // Lock the file entry
-    lock = UniqueLock(it->second->mutex, std::defer_lock);
+    lock = WriteLock(it->second->mutex, std::defer_lock);
 
     if (!lock.try_lock())
         return EOpenResult::Locked;

@@ -4,8 +4,8 @@
 //! An in-memory cache of XML files. May be backed by disk storage.
 struct IXmlCache
 {
-    using UniqueLock = std::unique_lock<std::shared_mutex>;
-    using SharedLock = std::shared_lock<std::shared_mutex>;
+    using ReadLock = std::shared_lock<std::shared_mutex>;
+    using WriteLock = std::unique_lock<std::shared_mutex>;
 
     enum class EOpenResult
     {
@@ -35,7 +35,7 @@ struct IXmlCache
     virtual EOpenResult TryOpenXmlForReading(
         const fs::path& relPath,
         const pugi::xml_document** ppOutDocument,
-        SharedLock& lock,
+        ReadLock& lock,
         unsigned parseFlags = pugi::parse_default) = 0;
 
     //! Opens an XML file for writing. If already open for reading or writing, throws.
@@ -45,7 +45,7 @@ struct IXmlCache
     virtual EOpenResult TryOpenXmlForWriting(
         const fs::path& relPath,
         pugi::xml_document** ppOutDocument,
-        UniqueLock& lock,
+        WriteLock& lock,
         unsigned parseFlags = pugi::parse_default,
         unsigned formatFlags = pugi::format_default) = 0;
 
@@ -56,7 +56,7 @@ struct IXmlCache
     //! @param  parseFlags  XML parse flags.
     virtual const pugi::xml_document& OpenXmlForReading(
         const fs::path& relPath,
-        SharedLock& lock,
+        ReadLock& lock,
         unsigned parseFlags = pugi::parse_default)
     {
         const pugi::xml_document* pDoc = nullptr;
@@ -71,7 +71,7 @@ struct IXmlCache
     //! @param  parseFlags  XML parse flags.
     virtual pugi::xml_document& OpenXmlForWriting(
         const fs::path& relPath,
-        UniqueLock& lock,
+        WriteLock& lock,
         unsigned parseFlags = pugi::parse_default,
         unsigned formatFlags = pugi::format_default)
     {

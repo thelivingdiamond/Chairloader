@@ -12,13 +12,13 @@ public:
     virtual EOpenResult TryOpenXmlForReading(
         const fs::path& relPath,
         const pugi::xml_document** ppOutDocument,
-        SharedLock& lock,
+        ReadLock& lock,
         unsigned parseFlags = pugi::parse_default) override;
 
     virtual EOpenResult TryOpenXmlForWriting(
         const fs::path& relPath,
         pugi::xml_document** ppOutDocument,
-        UniqueLock& lock,
+        WriteLock& lock,
         unsigned parseFlags = pugi::parse_default,
         unsigned formatFlags = pugi::format_default) override;
 
