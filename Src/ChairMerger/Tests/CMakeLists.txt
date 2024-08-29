@@ -1,5 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
+
+	Cache/MemoryXmlCacheTest.cpp
+
 	ChairMergerTestBase.cpp
 	ChairMergerTestBase.h
 	HashUtilsTest.cpp

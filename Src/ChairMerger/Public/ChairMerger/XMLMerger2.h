@@ -14,7 +14,7 @@ public:
     //! @param  modDoc      Mod document that needs to be merged into base.
     //! @param  originalDoc Original document from Prey.
     //! @param  policy      Merging policy.
-    static void MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, MergingPolicy policy);
+    static void MergeXMLDocument(pugi::xml_document &baseDoc, const pugi::xml_document &modDoc, const pugi::xml_document &originalDoc, MergingPolicy policy);
 
     //! Merge two XML nodes together, using the specified merging policy.
     static void MergeNodeStructure(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy);

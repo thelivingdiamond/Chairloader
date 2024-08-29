@@ -690,7 +690,7 @@ void XMLMerger2::MergeBySpreadsheet(pugi::xml_node baseNode, pugi::xml_node modN
     }
 }
 
-void XMLMerger2::MergeXMLDocument(pugi::xml_document &baseDoc, pugi::xml_document &modDoc, pugi::xml_document &originalDoc, MergingPolicy policy) {
+void XMLMerger2::MergeXMLDocument(pugi::xml_document &baseDoc, const pugi::xml_document& modDoc, const pugi::xml_document& originalDoc, MergingPolicy policy) {
     // resolve policy path wildcards
     ResolvePolicyPathWildcards(modDoc.first_child(), policy.nodeStructure.first_child());
 

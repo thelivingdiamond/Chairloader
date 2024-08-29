@@ -28,6 +28,9 @@ extern "C"
 
 struct ILogger;
 struct IChairManager;
+struct IXmlCache;
+
+class DiskXmlCache;
 
 enum class DeployPhase
 {
@@ -117,6 +120,8 @@ public:
         const fs::path& gamePath,
         ILogger* pLogger);
 
+    ~ChairMerger();
+
     //! Sets the mod list for merging.
     void SetMods(std::vector<Mod>&& mods);
 
@@ -181,13 +186,10 @@ protected:
 
     //! This function will recurse on all xml files in the mod directory and resolve all attribute wildcards before
     //! merging, working in the thread pool
-    void ProcessMod(const Mod& mod);
+    void ProcessMod(size_t modIdx);
 
     //! This function will load, resolve attribute wildcards, and merge a single xml file
-    void ProcessXMLFile(const Mod& mod, const fs::path& file);
-
-    //! Recursively descends the directory tree and merges all xml files by putting them in the thread pool
-    void RecursiveMergeXMLFiles(const Mod& mod, const fs::path& source);
+    void ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const fs::path& relativePath);
 
     //! Load the default checksums from the xml file
     void LoadPatchFileChecksums();
@@ -243,6 +245,10 @@ protected:
     fs::path m_LevelOutputPath;
     fs::path m_LocalizationOutputPath;
 
+    // In-memory caches for different files
+    std::unique_ptr<DiskXmlCache> m_pBaseFileCache; //!< Merging base cache
+    std::unique_ptr<DiskXmlCache> m_pOriginalFileCache; //!< Original file cache
+
     // Game paths
     fs::path m_ModPath = "";
     fs::path m_LevelFilesPath = "";
@@ -251,6 +257,7 @@ protected:
 
     //! Mods for merging
     std::vector<Mod> m_Mods;
+    std::vector<std::unique_ptr<IXmlCache>> m_ModXmlCaches;
 
     static const inline std::map<DeployPhase, std::string> m_DeployPhaseStrings = {
         { DeployPhase::Invalid, "Invalid" }, { DeployPhase::PreMerge, "Pre-Merge" },
