@@ -176,4 +176,5 @@ std::string XmlFinalizer3::ExpandFinalizerExpression(
 
 void XmlFinalizer3::ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg)
 {
+    errorStack.ThrowException(fmt::format("Error in finalizer expression \"{}\": {}", expression, msg));
 }

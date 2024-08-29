@@ -44,5 +44,5 @@ private:
         const XmlErrorStack& errorStack,
         std::string_view expression);
 
-    static void ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg);
+    [[noreturn]] static void ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg);
 };
