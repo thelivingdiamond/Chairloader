@@ -129,6 +129,7 @@ private:
 
     //! Validates that all children satisfy the constraints.
     static void ValidateConstraints(
+        const Context& context,
         const pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack,

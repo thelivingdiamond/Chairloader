@@ -128,7 +128,7 @@ void XmlValidator::ValidateNodeInternal(
     ValidateAttributes(context, node, policy, errorStack, result);
     ValidateText(context, node, policy, errorStack, result);
     ValidateCollection(context, node, policy, errorStack, result);
-    ValidateConstraints(node, policy, errorStack, result);
+    ValidateConstraints(context, node, policy, errorStack, result);
 
     if (recurse)
     {
@@ -316,7 +316,8 @@ void XmlValidator::ValidateCollection(
                 }
             }
 
-            if (curKeyIdx == fullKey.size())
+            // Mods may have duplicate keys to apply different patches
+            if (context.mode != EMode::Mod && curKeyIdx == fullKey.size())
             {
                 // All keys were added.
                 // curKeyIdx will be less than size if one of the attributes is missing, which has its own error
@@ -376,7 +377,12 @@ void XmlValidator::ValidateCollection(
     }
 }
 
-void XmlValidator::ValidateConstraints(const pugi::xml_node& node, const MergingPolicy3& policy, const XmlErrorStack& errorStack, Result& result)
+void XmlValidator::ValidateConstraints(
+    const Context& context,
+    const pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack,
+    Result& result)
 {
     const MergingPolicy3::ChildConstraints& constraints = policy.GetChildConstraints();
     std::vector<std::set<std::string, std::less<>>> uniqueValues(constraints.uniqueAttributes.size());
@@ -405,11 +411,16 @@ void XmlValidator::ValidateConstraints(const pugi::xml_node& node, const Merging
 
             if (it != uniqueValues[uniqueAttrIdx].end())
             {
-                AddError(
-                    result,
-                    childErrorStack,
-                    fmt::format("Duplicate unique attribute value '{}'", value),
-                    constraints.uniqueAttributes[uniqueAttrIdx]);
+                // Mods may have duplicates to apply different patches to the same node
+                // Base file validation will catch errors instead
+                if (context.mode != EMode::Mod)
+                {
+                    AddError(
+                        result,
+                        childErrorStack,
+                        fmt::format("Duplicate unique attribute value '{}'", value),
+                        constraints.uniqueAttributes[uniqueAttrIdx]);
+                }
             }
             else
             {
