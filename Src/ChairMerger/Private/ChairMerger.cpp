@@ -13,6 +13,7 @@
 #include <ChairMerger/XmlFinalizer3.h>
 #include <ChairMerger/XmlMerger3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
+#include <ChairMerger/XmlValidator.h>
 #include <Manager/PreditorFiles.h>
 #include <Manager/ILogger.h>
 #include <Manager/IChairManager.h>
@@ -24,6 +25,30 @@
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;
 std::map<std::string, uint64_t> ChairMerger::m_NameToIdMap;
+
+static void PrintValidationResult(const XmlValidator::Result& result, ILogger* pLog)
+{
+    for (auto& error : result.errors)
+    {
+        // Path
+        std::string path;
+        for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
+        {
+            path += "> ";
+            path += *it;
+            path += " ";
+        }
+
+        // Attribute
+        if (!error.attributeName.empty())
+            path += fmt::format("| (attr = {})", error.attributeName);
+
+        pLog->Log(severityLevel::warning, "%s", path);
+
+        // Message
+        pLog->Log(severityLevel::info, "    %s", error.message);
+    }
+}
 
 ChairMergerException::ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages)
     : std::runtime_error(fmt::format("Merging error when {} during {}", ChairMerger::GetDeployStepString(step),
@@ -418,6 +443,9 @@ void ChairMerger::ProcessXMLFile(
 {
     try
     {
+        if (mod.type == EModType::Legacy)
+            throw std::logic_error("Legacy mods are not supported yet");
+
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
             throw std::runtime_error("This file can't be modified by mods");
 
@@ -454,6 +482,23 @@ void ChairMerger::ProcessXMLFile(
         CRY_ASSERT(fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge ||
             fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Localization);
 
+        // Validate mod file
+        {
+            XmlValidator::Context valCtx;
+            valCtx.pTypeLib = m_pTypeLib.get();
+            valCtx.mode = XmlValidator::EMode::Mod;
+
+            XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, modDoc, fileMergingPolicy);
+
+            if (!result)
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::error, "Validation failure of mod file %s:%s", mod.modName, relativePath.u8string());
+                PrintValidationResult(result, m_pLog);
+                throw std::runtime_error("Mod file failed validation. Check the log for details.");
+            }
+        }
+
         XmlMergerContext context;
         context.modName = mod.modName;
         context.pTypeLib = m_pTypeLib.get();
@@ -465,6 +510,23 @@ void ChairMerger::ProcessXMLFile(
         else
         {
             XmlMerger3::MergeDocument(context, baseDoc, modDoc, fileMergingPolicy);
+        }
+
+        // Validate base file after merging
+        {
+            XmlValidator::Context valCtx;
+            valCtx.pTypeLib = m_pTypeLib.get();
+            valCtx.mode = XmlValidator::EMode::MergingBase;
+
+            XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, baseDoc, fileMergingPolicy);
+
+            if (!result)
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::error, "Validation failure of base file after merging %s:%s", mod.modName, relativePath.u8string());
+                PrintValidationResult(result, m_pLog);
+                throw std::runtime_error("Mod file failed validation. Check the log for details.");
+            }
         }
 
         // we are done

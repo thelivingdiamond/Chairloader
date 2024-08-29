@@ -239,6 +239,7 @@ protected:
     void LoadIdNameMap();
 
     ILogger* m_pLog;
+    std::mutex m_LogMutex;
     std::unique_ptr<XmlTypeLibrary> m_pTypeLib;
     std::unique_ptr<MergingLibrary3> m_pMergingLibrary;
 
