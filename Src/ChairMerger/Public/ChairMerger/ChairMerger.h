@@ -8,7 +8,6 @@
 #include <ChairMerger/AttributeWildcard.h>
 #include <ChairMerger/ChairMergerSettings.h>
 #include <ChairMerger/Export.h>
-#include <ChairMerger/MergingPolicy.h>
 #include <gtest/gtest.h>
 #include <thread>
 #include <Manager/SynchronizedData.h>
@@ -31,6 +30,9 @@ struct IChairManager;
 struct IXmlCache;
 
 class DiskXmlCache;
+class MergingLibrary3;
+class XmlTypeLibrary;
+class FileMergingPolicy3;
 
 enum class DeployPhase
 {
@@ -166,9 +168,8 @@ protected:
 
     // Static functions
 
-    //! Copies all files that don't have the given extensions from the source directory to the destination directory
-    static void RecursiveFileCopyBlacklist(fs::path source, fs::path destination,
-                                           std::vector<std::string> extensionExclusions);
+    //! Copies all files that don't have merging policy from the source directory to the destination directory
+    void RecursiveFileCopyNonXml(fs::path source, fs::path destination);
 
     void PreMerge();
     void Merge();
@@ -176,10 +177,6 @@ protected:
 
     //! Function to resolve all attribute wildcards in an xml document
     void ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode);
-
-    // Member functions
-    //! finds the merging policy for a given file in the merging library
-    MergingPolicy GetFileMergingPolicy(const fs::path& file);
 
     //! This function will copy all non xml files from the mod directory to the output directory
     void CopyModDataFiles(fs::path sourcePath);
@@ -189,7 +186,17 @@ protected:
     void ProcessMod(size_t modIdx);
 
     //! This function will load, resolve attribute wildcards, and merge a single xml file
-    void ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const fs::path& relativePath);
+    void ProcessXMLFile(
+        const Mod& mod,
+        IXmlCache* pModXmlCache,
+        const fs::path& relativePath,
+        const FileMergingPolicy3& fileMergingPolicy);
+
+    //! Finalizes files after all mods have been merged.
+    void FinalizeFiles();
+
+    //! Finalizes a single file
+    void FinalizeFile(const fs::path& relPath);
 
     //! Load the default checksums from the xml file
     void LoadPatchFileChecksums();
@@ -217,9 +224,6 @@ protected:
     //! Pack the main patch file into a .pak file, then copy it to the game directory
     void PackMainPatch();
 
-    //! Serialize the ids of all levels in the output directory
-    void SerializeLevelPacks();
-
     //! Set the current deploy step, thread safe
     void SetDeployStep(DeployStep step);
 
@@ -235,6 +239,8 @@ protected:
     void LoadIdNameMap();
 
     ILogger* m_pLog;
+    std::unique_ptr<XmlTypeLibrary> m_pTypeLib;
+    std::unique_ptr<MergingLibrary3> m_pMergingLibrary;
 
     // ChairManager files
     fs::path m_MergerFilesPath;
@@ -278,8 +284,6 @@ protected:
 
     // a threadpool for merging tasks
     std::unique_ptr<ThreadPool> m_MergeThreadPool;
-    // the merging library
-    std::unique_ptr<pugi::xml_document> m_MergingPolicyDoc;
 
     // deploy progress tracking
     SynchronizedData<DeployState> m_DeployState;

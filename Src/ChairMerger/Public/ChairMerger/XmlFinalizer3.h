@@ -7,7 +7,7 @@ class XmlErrorStack;
 
 struct XmlFinalizerContext
 {
-    std::map<std::string, int> entityIdMap; //!< Maps EntityGuid to EntityId
+    std::map<std::string, int> entityIdMap; //!< Maps EntityGuid to EntityId. Filled by the finalizer.
 };
 
 //! Finalizes an XML file and converts it into a file compatible with Prey.

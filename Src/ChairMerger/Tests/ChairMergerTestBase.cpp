@@ -156,7 +156,7 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
 {
     if (!fs::exists(expected))
     {
-        ADD_FAILURE() << "Expected file doesn't exist: " << expected.u8string();
+        ADD_FAILURE() << "Unexpected file: " << expected.u8string();
         return false;
     }
 

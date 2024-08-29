@@ -7,6 +7,11 @@ struct IXmlCache
     using ReadLock = std::shared_lock<std::shared_mutex>;
     using WriteLock = std::unique_lock<std::shared_mutex>;
 
+    //! If those flags are set, file will not be loaded from disk or created.
+    //! The cached file will always be used.
+    static constexpr unsigned DONT_PARSE = 0xFFFF'FFFF;
+    static constexpr unsigned DONT_FORMAT = 0xFFFF'FFFF;
+
     enum class EOpenResult
     {
         //! File has been sucessfully opened.
