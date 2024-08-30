@@ -230,6 +230,10 @@ void PreyFilePatcher::PatchDocument(
 {
     pugi::xml_node node = doc.first_child();
     XmlErrorStack errorStack = parentErrorStack.GetChild(node);
+
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        throw std::logic_error("Localization files can't be patched");
+
     PatchNode(xmlFilePath, node, policy.GetRootNode(), errorStack);
 }
 
@@ -255,6 +259,12 @@ void PreyFilePatcher::PatchDirectory(
         if (!pFilePolicy)
         {
             // File not supported. Skip.
+            continue;
+        }
+
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        {
+            // Localization can't be patched
             continue;
         }
 

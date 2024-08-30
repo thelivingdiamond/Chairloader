@@ -483,6 +483,7 @@ void ChairMerger::ProcessXMLFile(
             fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Localization);
 
         // Validate mod file
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
         {
             XmlValidator::Context valCtx;
             valCtx.pTypeLib = m_pTypeLib.get();
@@ -513,6 +514,7 @@ void ChairMerger::ProcessXMLFile(
         }
 
         // Validate base file after merging
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
         {
             XmlValidator::Context valCtx;
             valCtx.pTypeLib = m_pTypeLib.get();
@@ -564,6 +566,12 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
 
         const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(relPath);
         CRY_ASSERT(pFilePolicy);
+
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        {
+            // Localization files don't need finalization
+            return;
+        }
 
         XmlFinalizerContext context;
         XmlFinalizer3::FinalizeDocument(context, doc, *pFilePolicy);
