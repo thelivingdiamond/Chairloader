@@ -25,16 +25,36 @@
         <IDType name="ArchetypeId" baseType="uint64" />
         <IDType name="GameTokenId" baseType="int32" />
         <IDType name="GameTokenName" baseType="string" />
-        <IDType name="ArkLocationId" baseType="string" />
         <IDType name="EntityId" baseType="uint16" />
         <IDType name="EntityGuid" baseType="uint64_hex" />
         <IDType name="VoiceId" baseType="uint64_hex" />
 
-        <!-- Signal System -->
+        <!-- Ark / Signal System -->
         <IDType name="ArkSignalId" baseType="ArkUniqueId" />
         <IDType name="ArkSignalGroupId" baseType="ArkUniqueId" />
         <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
         <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Campaign -->
+        <IDType name="ArkCharacterId" baseType="ArkUniqueId" />
+        <IDType name="ArkCharacterGroupId" baseType="ArkUniqueId" />
+        <IDType name="ArkLocationId" baseType="ArkUniqueId" />
+        <IDType name="ArkEmailId" baseType="ArkUniqueId" />
+        <IDType name="ArkKeyCodeId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveDescId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveTaskId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveClueId" baseType="ArkUniqueId" />
+        <IDType name="ArkSecurityStationId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Dialog -->
+        <IDType name="ArkDialogVoiceId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogResponseRuleId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Player -->
+        <IDType name="ArkAbilityId" baseType="ArkUniqueId" />
+        <IDType name="ArkPlayerStatName" baseType="string" />
+        <IDType name="ArkTraumaId" baseType="string" />
     </ValueTypes>
 
     <NodeTypes>
@@ -209,6 +229,35 @@
                                 <Attribute name="Type" type="int32" required="true" />
                             </Attributes>
                         </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <NodeType name="ParticleNode">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Params">
+                    <!-- Allow unknown because too many attributes and all use complex syntax -->
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="Childs">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="Particles" type="ParticleNode" />
                     </ChildNodes>
                 </Node>
             </ChildNodes>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkHacking">
+        <Attributes>
+            <Attribute name="timeForPhaseIn" type="float" required="true" />
+            <Attribute name="cursorPhaseIn" type="float" required="true" />
+            <Attribute name="timeForInitialization" type="float" required="true" />
+            <Attribute name="timeForResult" type="float" required="true" />
+            <Attribute name="failSignalDelay" type="float" required="true" />
+            <Attribute name="maxVelocity" type="float" required="true" />
+            <Attribute name="friction" type="float" required="true" />
+            <Attribute name="failureSignalPackage" type="ArkSignalPackageId" required="true" />
+            <Attribute name="inactiveRadius" type="float" required="true" />
+            <Attribute name="activeRadius" type="float" required="true" />
+            <Attribute name="gridStepHeight" type="float" required="true" />
+            <Attribute name="gridStepWidth" type="float" required="true" />
+            <Attribute name="bDrawGrid" type="boolString" required="true" />
+            <Attribute name="keyboardAcceleration" type="float" required="true" />
+            <Attribute name="gamepadAcceleration" type="float" required="true" />
+            <Attribute name="elasticity" type="float" required="true" />
+            <Attribute name="collisionSignalPackage" type="float" required="true" />
+            <Attribute name="failCollisions" type="int32" required="true" />
+            <Attribute name="stunTime" type="float" required="true" />
+            <Attribute name="obstacleBufferDistance" type="float" required="true" />
+            <Attribute name="pathObstacleVariance" type="float" required="true" />
+            <Attribute name="pathObstacleNormalVariance" type="float" required="true" />
+            <Attribute name="targetFriction" type="float" required="true" />
+            <Attribute name="obstacleGridSize" type="float" required="true" />
+            <Attribute name="superStunTime" type="float" required="true" />
+            <Attribute name="stunElasticity" type="float" required="true" />
+            <Attribute name="superStunForce" type="float" required="true" />
+            <Attribute name="collideForce" type="float" required="true" />
+            <Attribute name="invalidInputStunForce" type="float" required="true" />
+            <Attribute name="invalidInputStunTime" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="HackingAbilities">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="HackingAbility">
+                        <Attributes>
+                            <Attribute name="id" type="ArkAbilityId" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="DifficultyLevels">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="DifficultyLevel">
+                        <Attributes>
+                            <Attribute name="minTravelDistance" type="float" required="true" />
+                            <Attribute name="maxTravelDistance" type="float" required="true" />
+                            <Attribute name="timePerPuzzle" type="float" required="true" />
+                            <Attribute name="chainLength" type="int32" required="true" />
+                            <Attribute name="pathObstacles" type="int32" required="true" />
+                            <Attribute name="pathStunObstacles" type="int32" required="true" />
+                            <Attribute name="otherStunObstacles" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="ObstacleTypes">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ObstacleDesc">
+                        <Attributes>
+                            <Attribute name="minWidth" type="int32" required="true" />
+                            <Attribute name="maxWidth" type="int32" required="true" />
+                            <Attribute name="minHeight" type="int32" required="true" />
+                            <Attribute name="maxHeight" type="int32" required="true" />
+                            <Attribute name="count" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
