@@ -18,6 +18,7 @@ struct ValidationStats
     int valid = 0;
     int failed = 0;
     int missing = 0;
+    int skipped = 0;
 };
 
 struct ExecutorOutput
@@ -135,6 +136,13 @@ int main(int argc, char** argv)
                     return;
                 }
 
+                if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+                {
+                    // Can't validate localization files
+                    output.stats.skipped++;
+                    return;
+                }
+
                 output.stats.checked++;
 
                 XmlValidator::Context context;
@@ -176,6 +184,7 @@ int main(int argc, char** argv)
             combinedOutput.stats.valid += i.stats.valid;
             combinedOutput.stats.failed += i.stats.failed;
             combinedOutput.stats.missing += i.stats.missing;
+            combinedOutput.stats.skipped += i.stats.skipped;
 
             for (auto& [k, v] : i.results)
             {
@@ -265,9 +274,9 @@ int main(int argc, char** argv)
         }
 
         fmt::println(LINES);
-        fmt::println("Total: {:>5} | Checked: {:>5} | Valid: {:>5} | Failed: {:>5} | Missing: {:>5}",
+        fmt::println("Total: {:>5} | Checked: {:>5} | Valid: {:>5} | Failed: {:>5} | Missing: {:>5} | Skipped: {:>5}",
             combinedOutput.stats.total, combinedOutput.stats.checked, combinedOutput.stats.valid,
-            combinedOutput.stats.failed, combinedOutput.stats.missing);
+            combinedOutput.stats.failed, combinedOutput.stats.missing, combinedOutput.stats.skipped);
 
         auto timeElapsed = endTime - startTime;
         fmt::println("Time elapsed: {:.3f} s", std::chrono::duration_cast<std::chrono::milliseconds>(timeElapsed).count() / 1000.0);
