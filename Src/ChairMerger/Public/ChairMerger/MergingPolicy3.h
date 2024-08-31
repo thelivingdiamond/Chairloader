@@ -114,6 +114,9 @@ public:
         //! Use the child node name as part of the key.
         bool keyChildName = false;
 
+        //! Allow duplicate keys. Should only be used when original Prey file contains an error.
+        bool allowDuplicates = false;
+
         //! Use these child attributes as part of the key. They must be present in all children.
         std::vector<std::string> keyChildAttributes;
 

@@ -269,6 +269,8 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
         errorStack.ThrowException(fmt::format("Unknown type '{}'", typeStr));
     }
 
+    m_Collection.allowDuplicates = node.attribute("allowDuplicates").as_bool(false);
+
     bool foundPrimaryKey = false;
     bool foundArrayIndex = false;
 

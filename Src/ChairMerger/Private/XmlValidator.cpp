@@ -231,13 +231,19 @@ void XmlValidator::ValidateText(
         if (XmlUtils::IsTextNode(childNode))
         {
             if (textNode)
-                errorStack.ThrowException("Duplicate plain-text node");
+            {
+                AddError(result, errorStack, "Duplicate plain-text node");
+                return;
+            }
 
             textNode = childNode;
 
             if (policy.GetTextType().empty())
-                errorStack.ThrowException("Plain-text is not allowed in this node");
-
+            {
+                AddError(result, errorStack, "Plain-text is not allowed in this node");
+                return;
+            }
+            
             std::string error = ValidateTextNode(context, childNode, policy);
 
             if (!error.empty())
@@ -251,7 +257,7 @@ void XmlValidator::ValidateText(
 
     if (!policy.GetTextType().empty() && !policy.IsEmptyTextAllowed() && (!textNode || textNode.value()[0] == '\0'))
     {
-        errorStack.ThrowException("Plain-text can't be empty");
+        AddError(result, errorStack, "Plain-text can't be empty");
     }
 }
 
@@ -317,7 +323,7 @@ void XmlValidator::ValidateCollection(
             }
 
             // Mods may have duplicate keys to apply different patches
-            if (context.mode != EMode::Mod && curKeyIdx == fullKey.size())
+            if (context.mode != EMode::Mod && !collection.allowDuplicates && curKeyIdx == fullKey.size())
             {
                 // All keys were added.
                 // curKeyIdx will be less than size if one of the attributes is missing, which has its own error
