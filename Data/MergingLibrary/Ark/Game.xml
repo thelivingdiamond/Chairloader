@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Game">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Collision">
+                <Attributes>
+                    <Attribute name="defaultDamagePackage" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="noDamagePackage" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="psiLiftNpcHeadBumpDamagePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="speedThreshold" type="float" required="true" />
+                    <Attribute name="playerThrownSpeedThreshold" type="float" required="true" />
+                    <Attribute name="speedPercentage" type="float" required="true" />
+                    <Attribute name="selfDamagingSpeedThreshold" type="float" required="true" />
+                    <Attribute name="timeBeforeAllowingSameCollision" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Leverages">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="name" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Archetype">
+                                <Attributes>
+                                    <Attribute name="name" type="ArchetypeName" required="true" readOnly="true" />
+                                </Attributes>
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Leverage">
+                                        <Attributes>
+                                            <Attribute name="package" type="ArkSignalPackageId" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="SelfDamagingClasses">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="name" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Class">
+                                <Attributes>
+                                    <Attribute name="name" type="EntityClass" required="true" readOnly="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkDifficultyLevels">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Levels">
+                        <Attributes />
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Level">
+                                <Attributes>
+                                    <Attribute name="Level" type="int32" required="true" readOnly="true" />
+                                    <Attribute name="VisualAttentionScalar" type="float" required="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Modifiers">
+                                        <Attributes />
+
+                                        <Collection type="dict">
+                                            <PrimaryKey>
+                                                <ChildAttribute name="ModifierId" />
+                                            </PrimaryKey>
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="SignalModifier">
+                                                <Attributes>
+                                                    <Attribute name="ModifierId" type="ArkSignalModifierId" required="true" readOnly="true" />
+                                                    <Attribute name="IsInbound" type="boolString" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="GlassBreakingClasses">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Class">
+                        <Attributes>
+                            <Attribute name="name" type="EntityClass" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="NonGlassBreakingClasses">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Class">
+                        <Attributes>
+                            <Attribute name="name" type="EntityClass" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="GlassBreakingAudio">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="controlId" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Entry">
+                        <Attributes>
+                            <Attribute name="controlId" type="string" required="true" readOnly="true" />
+                            <Attribute name="sizeThreshold" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="LevelIntro">
+                <Attributes>
+                    <Attribute name="blackDuration" type="float" />
+                    <Attribute name="fadeOutDuration" type="float" />
+                </Attributes>
+            </Node>
+
+            <Node name="QuickLoad">
+                <Attributes>
+                    <Attribute name="blackDuration" type="float" />
+                    <Attribute name="fadeOutDuration" type="float" />
+                </Attributes>
+            </Node>
+
+            <Node name="CaptureVolumeWhiteList">
+                <Attributes />
+
+                <!-- Allow duplicates because "ArkPhysicsProps.Boxes-Crates.Crate_B" -->
+                <!-- occurs three times in the original file -->
+                <Collection type="dict" allowDuplicates="true">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Archetype">
+                        <Attributes>
+                            <Attribute name="name" type="ArchetypeName" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

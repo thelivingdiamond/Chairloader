@@ -14,6 +14,7 @@
         <RegExType name="Vec3" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+)" />
         <RegExType name="Vec4" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+),\s*([\d\.+e-]+)" />
         <AliasType name="Quat" baseType="Vec4" />
+        <AliasType name="Ang3" baseType="Vec3" />
 
         <!-- Aliases -->
         <AliasType name="ArkUniqueId" baseType="uint64" />
@@ -40,8 +41,11 @@
         <IDType name="ArkDisruptionProfileId" baseType="ArkUniqueId" />
         <IDType name="ArkLightDisruptionProfileId" baseType="ArkUniqueId" />
         <IDType name="ArkGameNoiseTypeId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameNoiseLoudnessId" baseType="ArkUniqueId" />
         <IDType name="ArkTipId" baseType="ArkUniqueId" />
         <IDType name="ArkEmotionId" baseType="ArkUniqueId" />
+        <IDType name="ArkEntitlementId" baseType="ArkUniqueId" />
+        <IDType name="ArkEntitlementUnlockId" baseType="ArkUniqueId" />
 
         <!-- Ark / AI -->
         <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
@@ -89,6 +93,12 @@
         <IDType name="ArkPlayerStatName" baseType="string" />
         <IDType name="ArkTraumaId" baseType="string" />
         <IDType name="ArkGameMetricId" baseType="string" />
+        
+        <!-- Ark / VisualEffects -->
+        <IDType name="ArkMaterialAnimationId" baseType="ArkUniqueId" />
+        
+        <!-- Ark / Items -->
+        <IDType name="ArkFabricationPlanId" baseType="ArkUniqueId" />
     </ValueTypes>
 
     <NodeTypes>
