@@ -45,7 +45,7 @@
                             <Attribute name="NpcUseColdown" type="float" required="true" />
                             <Attribute name="MinHeightDifference" type="float" required="true" />
                             <Attribute name="MaxHeightDifference" type="float" required="true" />
-                            <Attribute name="UseableByTag" type="ArkMetaTag" required="true" />
+                            <Attribute name="UseableByTag" type="ArkMetaTagId" required="true" />
                         </Attributes>
 
                         <Collection type="nodeDict" />

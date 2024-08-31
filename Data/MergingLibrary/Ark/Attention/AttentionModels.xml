@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="AttentionModels">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="AttentionModel">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Simple">
+                        <Attributes />
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="AttentionTimeout">
+                                <Attributes>
+                                    <Attribute name="seconds" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Complex">
+                        <Attributes />
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="AttentionLevels">
+                                <Attributes />
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="AttentionLevel">
+                                        <Attributes>
+                                            <Attribute name="minimum" type="float" required="true" />
+                                            <Attribute name="maximum" type="float" required="true" />
+                                            <Attribute name="drainRate" type="float" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="Hearing">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Increases">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Increase">
+                                                <Attributes>
+                                                    <Attribute name="noiseTypeId" type="ArkGameNoiseTypeId" required="true" />
+                                                    <Attribute name="gain" type="float" required="true" />
+                                                    <Attribute name="minimumAttentionLevel" type="int32" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="Vision">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="AccumulationRates">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="AccumulationRate">
+                                                <Attributes>
+                                                    <Attribute name="attentionLevelIndex" type="int32" required="true" />
+                                                    <Attribute name="value" type="float" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="OnDamaged">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Increase">
+                                        <Attributes>
+                                            <Attribute name="minimumAttentionLevel" type="int32" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="Room">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="StartRoomGains">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Gain">
+                                                <Attributes>
+                                                    <Attribute name="attentionLevelIndex" type="int32" required="true" />
+                                                    <Attribute name="value" type="float" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="StartContainerGains">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="Gain">
+                                                <Attributes>
+                                                    <Attribute name="attentionLevelIndex" type="int32" required="true" />
+                                                    <Attribute name="value" type="float" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="ContinueRoomAccumulationRates">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="AccumulationRate">
+                                                <Attributes>
+                                                    <Attribute name="attentionLevelIndex" type="int32" required="true" />
+                                                    <Attribute name="value" type="float" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="ContinueContainerAccumulationRates">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="AccumulationRate">
+                                                <Attributes>
+                                                    <Attribute name="attentionLevelIndex" type="int32" required="true" />
+                                                    <Attribute name="value" type="float" required="true" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="Proxy">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="FollowTime">
+                                        <Attributes>
+                                            <Attribute name="seconds" type="float" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="Surprise">
+                                <Attributes>
+                                    <Attribute name="fromLevel" type="int32" required="true" />
+                                    <Attribute name="toLevel" type="int32" required="true" />
+                                    <Attribute name="timeSeconds" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="AttentionTarget">
+                        <Attributes />
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="RelativeClosenessToSwitch">
+                                <Attributes>
+                                    <Attribute name="scalar" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="SimpleDamageTimer">
+                                <Attributes>
+                                    <Attribute name="timer" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="ComplexDamageTimer">
+                                <Attributes>
+                                    <Attribute name="timer" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

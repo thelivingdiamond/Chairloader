@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkCameraShakeLibrary">
+        <Attributes/>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="CameraShakes">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkCameraShake_Procedural">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkCameraShakeIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Channel" type="ArkCameraShakeChannelId" required="true" />
+                            <Attribute name="InnerRadius" type="float" required="true" />
+                            <Attribute name="OuterRadius" type="float" required="true" />
+                            <Attribute name="UIHorizontalAmplitude" type="float" required="true" />
+                            <Attribute name="UIVerticalAmplitude" type="float" required="true" />
+                            <Attribute name="RampInDuration" type="float" required="true" />
+                            <Attribute name="HoldDuration" type="float" required="true" />
+                            <Attribute name="RampOutDuration" type="float" required="true" />
+                            <Attribute name="VerticalFrequency" type="float" required="true" />
+                            <Attribute name="PitchAmplitude" type="float" required="true" />
+                            <Attribute name="HorizontalFrequency" type="float" required="true" />
+                            <Attribute name="YawAmplitude" type="float" required="true" />
+                            <Attribute name="forceFeedback" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="ArkCameraShake_Animated">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkCameraShakeIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Channel" type="ArkCameraShakeChannelId" required="true" />
+                            <Attribute name="InnerRadius" type="float" required="true" />
+                            <Attribute name="OuterRadius" type="float" required="true" />
+                            <Attribute name="UIHorizontalAmplitude" type="float" required="true" />
+                            <Attribute name="UIVerticalAmplitude" type="float" required="true" />
+                            <Attribute name="RampInDuration" type="float" required="true" />
+                            <Attribute name="HoldDuration" type="float" required="true" />
+                            <Attribute name="RampOutDuration" type="float" required="true" />
+                            <Attribute name="VerticalFrequency" type="float" required="true" />
+                            <Attribute name="PitchAmplitude" type="float" />
+                            <Attribute name="HorizontalFrequency" type="float" required="true" />
+                            <Attribute name="YawAmplitude" type="float" />
+                            <Attribute name="forceFeedback" type="string" />
+                            <Attribute name="Animation" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Channels">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkCameraShakeChannel">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkCameraShakeChannelIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

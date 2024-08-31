@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="NoiseAttentionParams">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="FootfallNoises" type="NoiseTypeList" />
+            <NodeByType name="CallForHelpNoises" type="NoiseTypeList" />
+            <NodeByType name="DangerNoises" type="NoiseTypeList" />
+            <NodeByType name="FrightfulNoises" type="NoiseTypeList" />
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

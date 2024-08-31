@@ -3,13 +3,13 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
-    <Node name="ArkSecurityStations">
+    <Node name="ArkWorkstations">
         <Attributes />
 
         <Collection type="nodeDict" />
 
         <ChildNodes>
-            <Node name="SecurityStations">
+            <Node name="Workstations">
                 <Attributes />
 
                 <Collection type="dict">
@@ -19,13 +19,15 @@
                 </Collection>
 
                 <ChildNodes>
-                    <Node name="ArkSecurityStation">
+                    <Node name="ArkWorkstation">
                         <Attributes>
-                            <Attribute name="ID" type="ArkSecurityStationIdDef" required="true" readOnly="true" />
+                            <Attribute name="ID" type="ArkWorkstationIdDef" required="true" readOnly="true" />
                             <Attribute name="Name" type="string" required="true" />
-                            <Attribute name="Location" type="ArkLocationId" required="true" />
+                            <Attribute name="Location" type="ArkLocationId" />
                             <Attribute name="User" type="ArkCharacterId" required="true" />
-                            <Attribute name="PersonnelTitle" type="string" /> <!-- Only used in Mooncrash but works in the base game -->
+                            <Attribute name="UseEmployeeMode" type="boolString" />
+                            <Attribute name="WorkstationTitle" type="string" />
+                            <Attribute name="UtilitiesTitle" type="string" />
                         </Attributes>
 
                         <Collection type="nodeDict" />
@@ -47,14 +49,14 @@
                                 <ChildNodes>
                                     <Node name="Email">
                                         <Attributes>
-                                            <Attribute name="Value" type="ArkEmailId" required="true" />
+                                            <Attribute name="value" type="ArkEmailId" required="true" />
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>
                                     </Node>
                                 </ChildNodes>
                             </Node>
 
-                            <Node name="Personnel">
+                            <Node name="Downloads">
                                 <Attributes />
 
                                 <Patches>
@@ -66,9 +68,14 @@
                                 </Collection>
 
                                 <ChildNodes>
-                                    <Node name="Character">
+                                    <Node name="Download">
                                         <Attributes>
-                                            <Attribute name="Value" type="ArkCharacterId" required="true" />
+                                            <Attribute name="ID" type="ArkWorkstationDownloadIdDef" required="true" />
+                                            <Attribute name="Name" type="string" required="true" />
+                                            <Attribute name="Label" type="string" required="true" />
+                                            <Attribute name="Description" type="string" />
+                                            <Attribute name="Duration" type="float" />
+                                            <Attribute name="Hidden" type="boolString" />
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>
                                     </Node>

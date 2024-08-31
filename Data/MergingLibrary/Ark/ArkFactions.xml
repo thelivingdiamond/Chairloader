@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkFactions">
+        <Attributes/>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Factions">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Faction">
+                        <Attributes>
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                            <Attribute name="id" type="ArkFactionIdDef" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Dispositions">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="fromFactionId" />
+                        <ChildAttribute name="toFactionId" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Disposition">
+                        <Attributes>
+                            <Attribute name="fromFactionId" type="ArkFactionId" required="true" readOnly="true" />
+                            <Attribute name="toFactionId" type="ArkFactionId" required="true" readOnly="true" />
+                            <Attribute name="value" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

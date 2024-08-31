@@ -3,13 +3,12 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
-    <Node name="ArkSecurityStations">
+    <Node name="ArkLocations">
         <Attributes />
-
         <Collection type="nodeDict" />
 
         <ChildNodes>
-            <Node name="SecurityStations">
+            <Node name="Locations">
                 <Attributes />
 
                 <Collection type="dict">
@@ -19,21 +18,23 @@
                 </Collection>
 
                 <ChildNodes>
-                    <Node name="ArkSecurityStation">
+                    <Node name="ArkLocation">
                         <Attributes>
-                            <Attribute name="ID" type="ArkSecurityStationIdDef" required="true" readOnly="true" />
+                            <Attribute name="ID" type="ArkLocationIdDef" required="true" readOnly="true" />
                             <Attribute name="Name" type="string" required="true" />
-                            <Attribute name="Location" type="ArkLocationId" required="true" />
-                            <Attribute name="User" type="ArkCharacterId" required="true" />
-                            <Attribute name="PersonnelTitle" type="string" /> <!-- Only used in Mooncrash but works in the base game -->
+                            <Attribute name="Label" type="string" required="true" />
+                            <Attribute name="LevelName" type="string" />
+                            <Attribute name="Cooldown" type="float" />
+                            <Attribute name="StationMapIndex" type="int32" />
+                            <Attribute name="Tip" type="ArkTipId" />
+                            <Attribute name="ScreenshotPath" type="string" />
+                            <Attribute name="RichPresence" type="string" />
                         </Attributes>
 
                         <Collection type="nodeDict" />
 
                         <ChildNodes>
-                            <NodeByType name="Utilities" type="ArkWorkstationUtilityList" />
-                            
-                            <Node name="Emails">
+                            <Node name="Floors">
                                 <Attributes />
 
                                 <Patches>
@@ -45,31 +46,32 @@
                                 </Collection>
 
                                 <ChildNodes>
-                                    <Node name="Email">
+                                    <Node name="ArkMapFloor">
                                         <Attributes>
-                                            <Attribute name="Value" type="ArkEmailId" required="true" />
+                                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                            <Attribute name="Label" type="string" required="true" />
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>
                                     </Node>
                                 </ChildNodes>
                             </Node>
 
-                            <Node name="Personnel">
+                            <Node name="Transitions">
                                 <Attributes />
 
-                                <Patches>
-                                    <AddChildIndex name="ch:index" />
-                                </Patches>
-
-                                <Collection type="array">
-                                    <ChildIndexAttribute name="ch:index" />
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="ConnectionA" />
+                                        <ChildAttribute name="ConnectionB" />
+                                    </PrimaryKey>
                                 </Collection>
 
                                 <ChildNodes>
-                                    <Node name="Character">
+                                    <Node name="ArkTransition">
                                         <Attributes>
-                                            <Attribute name="Value" type="ArkCharacterId" required="true" />
-                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                            <Attribute name="ConnectionA" type="ArkLocationId" required="true" readOnly="true" />
+                                            <Attribute name="ConnectionB" type="ArkLocationId" required="true" readOnly="true" />
+                                            <Attribute name="Cost" type="int32" required="true" />
                                         </Attributes>
                                     </Node>
                                 </ChildNodes>

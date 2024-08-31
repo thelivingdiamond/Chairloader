@@ -31,7 +31,15 @@
         <IDType name="VoiceId" baseType="uint64_hex" />
 
         <!-- Ark -->
-        <IDType name="ArkMetaTag" baseType="ArkUniqueId" />
+        <IDType name="ArkMetaTagId" baseType="ArkUniqueId" />
+        <IDType name="ArkCameraShakeId" baseType="ArkUniqueId" />
+        <IDType name="ArkCameraShakeChannelId" baseType="ArkUniqueId" />
+        <IDType name="ArkEventDrivenAchievementId" baseType="ArkUniqueId" />
+        <IDType name="ArkFactionId" baseType="ArkUniqueId" />
+        <IDType name="ArkDisruptionProfileId" baseType="ArkUniqueId" />
+        <IDType name="ArkLightDisruptionProfileId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameNoiseTypeId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipId" baseType="ArkUniqueId" />
 
         <!-- Ark / AI -->
         <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
@@ -47,12 +55,25 @@
         <IDType name="ArkCharacterGroupId" baseType="ArkUniqueId" />
         <IDType name="ArkLocationId" baseType="ArkUniqueId" />
         <IDType name="ArkEmailId" baseType="ArkUniqueId" />
+        <IDType name="ArkKeyCardId" baseType="ArkUniqueId" />
         <IDType name="ArkKeyCodeId" baseType="ArkUniqueId" />
         <IDType name="ArkObjectiveId" baseType="ArkUniqueId" />
         <IDType name="ArkObjectiveDescId" baseType="ArkUniqueId" />
         <IDType name="ArkObjectiveTaskId" baseType="ArkUniqueId" />
         <IDType name="ArkObjectiveClueId" baseType="ArkUniqueId" />
         <IDType name="ArkSecurityStationId" baseType="ArkUniqueId" />
+        <IDType name="ArkAudioLogId" baseType="ArkUniqueId" />
+        <IDType name="ArkAudioLogCollectionId" baseType="ArkUniqueId" />
+        <IDType name="ArkNoteId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameStateConditionId" baseType="ArkUniqueId" />
+        <IDType name="ArkTutorialId" baseType="ArkUniqueId" />
+        <IDType name="ArkLoreEntryId" baseType="ArkUniqueId" />
+        <IDType name="ArkPoiId" baseType="ArkUniqueId" />
+        <IDType name="ArkStationPathId" baseType="ArkUniqueId" />
+        <IDType name="ArkStationAirlockId" baseType="ArkUniqueId" />
+        <IDType name="ArkWorkstationId" baseType="ArkUniqueId" />
+        <IDType name="ArkButtonUtilityId" baseType="ArkUniqueId" />
+        <IDType name="ArkWorkstationDownloadId" baseType="ArkUniqueId" />
 
         <!-- Ark / Dialog -->
         <IDType name="ArkDialogVoiceId" baseType="ArkUniqueId" />
@@ -62,6 +83,7 @@
         <IDType name="ArkAbilityId" baseType="ArkUniqueId" />
         <IDType name="ArkPlayerStatName" baseType="string" />
         <IDType name="ArkTraumaId" baseType="string" />
+        <IDType name="ArkGameMetricId" baseType="string" />
     </ValueTypes>
 
     <NodeTypes>
@@ -288,6 +310,261 @@
                     <Attributes>
                         <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
                         <Attribute name="factor" type="float" required="true"/>
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- NoiseTypeList -->
+        <NodeType name="NoiseTypeList">
+            <Attributes />
+    
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="id" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="NoiseType">
+                    <Attributes>
+                        <Attribute name="id" type="ArkGameNoiseTypeId" required="true" readOnly="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkGameStateConditionGroup -->
+        <NodeType name="ArkGameStateConditionGroup">
+            <Attributes>
+                <Attribute name="And" type="boolString" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Conditions">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="ArkConditionGroup" type="ArkGameStateConditionGroup" />
+
+                        <!-- ArkNotCondition -->
+                        <Node name="ArkNotCondition">
+                            <Attributes>
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+
+                            <Collection type="nodeDict" />
+
+                            <ChildNodes>
+                                <NodeByType name="ConditionGroup" type="ArkGameStateConditionGroup" />
+                            </ChildNodes>
+                        </Node>
+
+                        <!-- ArkWeaponDurabilityCondition -->
+                        <Node name="ArkWeaponDurabilityCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkHasItemCondition -->
+                        <Node name="ArkHasItemCondition">
+                            <Attributes>
+                                <Attribute name="Archetype" type="ArchetypeName" required="true" />
+                                <Attribute name="Quantity" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkHealthAmountCondition -->
+                        <Node name="ArkHealthAmountCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="float" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkPsiAmountCondition -->
+                        <Node name="ArkPsiAmountCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="float" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkConditionExecutedCondition -->
+                        <Node name="ArkConditionExecutedCondition">
+                            <Attributes>
+                                <Attribute name="GameStateCondition" type="ArkGameStateConditionId" required="true" />
+                                <Attribute name="Count" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTutorialOnCooldownCondition -->
+                        <Node name="ArkTutorialOnCooldownCondition">
+                            <Attributes>
+                                <Attribute name="Tutorial" type="ArkTutorialId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkLookingAtNearCondition -->
+                        <Node name="ArkLookingAtNearCondition">
+                            <Attributes>
+                                <Attribute name="CheckIsAlive" type="boolString" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkLookingAtFarCondition -->
+                        <Node name="ArkLookingAtFarCondition">
+                            <Attributes>
+                                <Attribute name="CheckIsAlive" type="boolString" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkInteractedWithCondition -->
+                        <Node name="ArkInteractedWithCondition">
+                            <Attributes>
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkObjectiveCondition -->
+                        <Node name="ArkObjectiveCondition">
+                            <Attributes>
+                                <Attribute name="State" type="string" required="true" />
+                                <Attribute name="Objective" type="ArkObjectiveId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkGainedItemCondition -->
+                        <Node name="ArkGainedItemCondition">
+                            <Attributes>
+                                <Attribute name="Quantity" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkAcquiredChipsetCondition -->
+                        <Node name="ArkAcquiredChipsetCondition">
+                            <Attributes>
+                                <!-- No other attrbutes for some reason -->
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTraumaActiveCondition -->
+                        <Node name="ArkTraumaActiveCondition">
+                            <Attributes>
+                                <Attribute name="Trauma" type="ArkTraumaId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTraumaActiveCondition -->
+                        <Node name="ArkDifficultyOptionCondition">
+                            <Attributes>
+                                <Attribute name="DifficultyOption" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkWorkstationUtilityList -->
+        <NodeType name="ArkWorkstationUtilityList">
+            <Attributes />
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkButtonUtility">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkButtonUtilityIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Label" type="string" required="true" />
+                        <Attribute name="Enabled" type="boolString" required="true" />
+                        <Attribute name="Hidden" type="boolString" />
+                        <Attribute name="NoDefaultButton" type="boolString" />
+                        <Attribute name="Description" type="string" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Buttons">
+                            <Attributes />
+
+                            <Patches>
+                                <AddChildIndex name="ch:index" />
+                            </Patches>
+
+                            <Collection type="array">
+                                <ChildIndexAttribute name="ch:index" />
+                            </Collection>
+
+                            <ChildNodes>
+                                <Node name="Button">
+                                    <Attributes>
+                                        <Attribute name="ID" type="ArkUniqueId" required="true" readOnly="true" />
+                                        <Attribute name="Name" type="string" required="true" />
+                                        <Attribute name="Label" type="string" required="true" />
+                                        <Attribute name="Enabled" type="boolString" required="true" />
+                                        <Attribute name="Hidden" type="boolString" />
+                                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ArkKeypadUtility">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkButtonUtilityIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Label" type="string" required="true" />
+                        <Attribute name="Enabled" type="boolString" required="true" />
+                        <Attribute name="Hidden" type="boolString" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                     </Attributes>
                 </Node>
             </ChildNodes>

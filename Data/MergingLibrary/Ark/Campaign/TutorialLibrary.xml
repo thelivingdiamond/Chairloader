@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkTutorialLibrary">
+        <Attributes>
+            <Attribute name="ContextualDisplayTime" type="float" />
+            <Attribute name="NagDisplayTime" type="float" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Tutorials">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkCardTutorial">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTutorialIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Cooldown" type="float" required="true" />
+                            <Attribute name="Body" type="string" required="true" />
+                            <Attribute name="Title" type="string" required="true" />
+                            <Attribute name="Image" type="string" required="true" />
+                            <Attribute name="AudioTrigger" type="string" required="true" />
+                            
+                            <Attribute name="Delay" type="float" />
+                            <Attribute name="BodyPC" type="string" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="ArkContextualTutorial">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTutorialIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Cooldown" type="float" required="true" />
+                            <Attribute name="Body" type="string" required="true" />
+
+                            <Attribute name="Title" type="string" />
+                            <Attribute name="Image" type="string" />
+                            <Attribute name="BodyPC" type="string" />
+                            <Attribute name="ActionMap" type="string" />
+                            <Attribute name="ActionId" type="string" />
+                            <Attribute name="ActionIdPC" type="string" />
+                            <Attribute name="TutorialPrompt" type="boolString" />
+                            <Attribute name="AudioTrigger" type="string" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="ArkNagTutorial">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTutorialIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Cooldown" type="float" required="true" />
+                            <Attribute name="Body" type="string" required="true" />
+                            
+                            <Attribute name="Duration" type="float" />
+                            <Attribute name="BodyPC" type="string" />
+                            <Attribute name="AudioTrigger" type="string" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

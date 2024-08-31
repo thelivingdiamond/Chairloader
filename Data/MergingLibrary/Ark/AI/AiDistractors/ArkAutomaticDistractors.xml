@@ -80,7 +80,7 @@
                             <Attribute name="Name" type="string" required="true" readOnly="true" />
                             <Attribute name="DistractionID" type="ArkDistractorId" required="true" readOnly="true" />
                             <Attribute name="Lifetime" type="float" required="true" />
-                            <Attribute name="MetaTag" type="ArkMetaTag" required="true" />
+                            <Attribute name="MetaTag" type="ArkMetaTagId" required="true" />
                         </Attributes>
                     </Node>
                 </ChildNodes>
