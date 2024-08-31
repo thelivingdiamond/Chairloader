@@ -22,12 +22,19 @@
         <!-- Automatically makes aliases for TypeName and TypeNameDef -->
         <IDType name="ArchetypeName" baseType="string" /> <!-- Archetype with library name -->
         <IDType name="LocalArchetypeName" baseType="string" /> <!-- Archetype without library name -->
+        <IDType name="EntityClass" baseType="string" /> <!-- Entity class (defined in Lua) -->
         <IDType name="ArchetypeId" baseType="uint64" />
         <IDType name="GameTokenId" baseType="int32" />
         <IDType name="GameTokenName" baseType="string" />
         <IDType name="EntityId" baseType="uint16" />
         <IDType name="EntityGuid" baseType="uint64_hex" />
         <IDType name="VoiceId" baseType="uint64_hex" />
+
+        <!-- Ark -->
+        <IDType name="ArkMetaTag" baseType="ArkUniqueId" />
+
+        <!-- Ark / AI -->
+        <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
 
         <!-- Ark / Signal System -->
         <IDType name="ArkSignalId" baseType="ArkUniqueId" />
@@ -58,12 +65,13 @@
     </ValueTypes>
 
     <NodeTypes>
+        <!-- EntityPrototype -->
         <NodeType name="EntityPrototype">
             <Attributes>
                 <Attribute name="Name" type="LocalArchetypeNameDef" required="true" readOnly="true" comment="Archetype name in the library" />
                 <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
                 <Attribute name="Library" type="string" required="true" readOnly="true" />
-                <Attribute name="Class" type="string" required="true" />
+                <Attribute name="Class" type="EntityClass" required="true" />
                 <Attribute name="Description" type="string" allowEmpty="true" />
                 <Attribute name="ArchetypeId" type="ArchetypeIdDef" required="true" readOnly="true" />
             </Attributes>
@@ -105,6 +113,7 @@
             </ChildNodes>
         </NodeType>
 
+        <!-- FlowGraph -->
         <NodeType name="FlowGraph">
             <Attributes>
                 <Attribute name="isModule" type="boolInt" />
@@ -234,6 +243,7 @@
             </ChildNodes>
         </NodeType>
 
+        <!-- ParticleNode -->
         <NodeType name="ParticleNode">
             <Attributes>
                 <Attribute name="Name" type="string" required="true" readOnly="true" />
@@ -259,6 +269,26 @@
                     <ChildNodes>
                         <NodeByType name="Particles" type="ParticleNode" />
                     </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- AISignalFactorList -->
+        <NodeType name="AISignalFactorList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="id" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="signal">
+                    <Attributes>
+                        <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
+                        <Attribute name="factor" type="float" required="true"/>
+                    </Attributes>
                 </Node>
             </ChildNodes>
         </NodeType>

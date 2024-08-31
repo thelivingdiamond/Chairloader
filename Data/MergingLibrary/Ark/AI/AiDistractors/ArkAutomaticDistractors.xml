@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="AutoDistractions">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="_MimicDistraction">
+                <Attributes>
+                    <Attribute name="DistractionID" type="ArkDistractorId" />
+                </Attributes>
+            </Node>
+
+            <Node name="Archetypes">
+                <Attributes />
+
+                <!-- Allow duplicates because a node is specified twice -->
+                <!-- 'Poltergeist, ArkInteractiveProps.Industrial.Drill_Press, 243995946782051482' -->
+                <Collection type="dict" allowDuplicates="true">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                        <ChildAttribute name="Archetype" />
+                        <ChildAttribute name="DistractionID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArchtypeDistraction">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Archetype" type="ArchetypeName" required="true" readOnly="true" />
+                            <Attribute name="DistractionID" type="ArkDistractorId" required="true" readOnly="true" />
+                            <Attribute name="Lifetime" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="EntityClasses">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                        <ChildAttribute name="DistractionID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="EntityDistraction">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="EntityClass" type="EntityClass" required="true" />
+                            <Attribute name="MinMass" type="float" required="true" />
+                            <Attribute name="MaxMass" type="float" required="true" />
+                            <Attribute name="DistractionID" type="ArkDistractorId" required="true" readOnly="true" />
+                            <Attribute name="Lifetime" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="MetaTags">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                        <ChildAttribute name="DistractionID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="MetaTagDistraction">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="DistractionID" type="ArkDistractorId" required="true" readOnly="true" />
+                            <Attribute name="Lifetime" type="float" required="true" />
+                            <Attribute name="MetaTag" type="ArkMetaTag" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

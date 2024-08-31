@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml">
+    <Node name="SignalReceivers">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Imports">
+                <Attributes />
+        
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+        
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="File">
+                        <Attributes>
+                            <Attribute name="file" type="string" required="true" readOnly="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="SignalData">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="signal">
+                        <Attributes>
+                            <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
+                            <Attribute name="does_damage" type="boolString" required="true" />
+                            <Attribute name="is_bump_signal" type="boolString" />
+                            <Attribute name="is_critical" type="boolString" />
+                            <Attribute name="is_emp" type="boolString" />
+                            <Attribute name="is_fear" type="boolString" />
+                            <Attribute name="is_fire" type="boolString" />
+                            <Attribute name="is_flare" type="boolString" />
+                            <Attribute name="is_grenadeattached" type="boolString" />
+                            <Attribute name="is_laser" type="boolString" />
+                            <Attribute name="is_mindcontrol" type="boolString" />
+                            <Attribute name="is_nullwave" type="boolString" />
+                            <Attribute name="is_playerpower" type="boolString" />
+                            <Attribute name="is_recycle_begin" type="boolString" />
+                            <Attribute name="is_stun" type="boolString" />
+                            <Attribute name="is_stungun" type="boolString" />
+                            <Attribute name="is_collision" type="boolString" />
+                            <Attribute name="is_remote_manipulation" type="boolString" />
+                            <Attribute name="is_psychic" type="boolString" />
+                            <Attribute name="is_break_mimicry" type="boolString" />
+                            <Attribute name="block_hit_react" type="boolString" />
+                            <Attribute name="callback_luaCallbackFunc" type="string" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="PlayerDispositionFactors">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="Friendly" type="AISignalFactorList" />
+                    <NodeByType name="Neutral" type="AISignalFactorList" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="DispositionFactors">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="Friendly" type="AISignalFactorList" />
+                    <NodeByType name="Neutral" type="AISignalFactorList" />
+                    <NodeByType name="Hostile" type="AISignalFactorList" />
+                    <NodeByType name="Enslaved" type="AISignalFactorList" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="ShotgunSignalAccumulator">
+                <Attributes>
+                    <Attribute name="signalId" type="ArkSignalId" required="true" />
+                    <Attribute name="time" type="float" required="true" />
+                    <Attribute name="threshold" type="float" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
