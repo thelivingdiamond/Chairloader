@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkAttentionManagerDebug">
+        <Attributes>
+            <Attribute name="attentionLevel0ColorR" type="uint8" required="true" />
+            <Attribute name="attentionLevel0ColorG" type="uint8" required="true" />
+            <Attribute name="attentionLevel0ColorB" type="uint8" required="true" />
+            <Attribute name="attentionLevel1ColorR" type="uint8" required="true" />
+            <Attribute name="attentionLevel1ColorG" type="uint8" required="true" />
+            <Attribute name="attentionLevel1ColorB" type="uint8" required="true" />
+            <Attribute name="attentionLevel2ColorR" type="uint8" required="true" />
+            <Attribute name="attentionLevel2ColorG" type="uint8" required="true" />
+            <Attribute name="attentionLevel2ColorB" type="uint8" required="true" />
+            <Attribute name="attentionLevel3ColorR" type="uint8" required="true" />
+            <Attribute name="attentionLevel3ColorG" type="uint8" required="true" />
+            <Attribute name="attentionLevel3ColorB" type="uint8" required="true" />
+            <Attribute name="attentionLevel4ColorR" type="uint8" required="true" />
+            <Attribute name="attentionLevel4ColorG" type="uint8" required="true" />
+            <Attribute name="attentionLevel4ColorB" type="uint8" required="true" />
+            <Attribute name="attentionMeterLevelRadius" type="float" required="true" />
+            <Attribute name="attentionMeterLevelHeight" type="float" required="true" />
+            <Attribute name="attentionMeterValueRadius" type="float" required="true" />
+            <Attribute name="attentionMeterValueHeight" type="float" required="true" />
+            <Attribute name="attentionMeterAngularWidth" type="float" required="true" />
+            <Attribute name="attentionMeterVerticalOffset" type="float" required="true" />
+            <Attribute name="attentionMeterBackgroundAlpha" type="float" required="true" />
+            <Attribute name="bAttentionMeterDrawInFront" type="boolString" required="true" />
+            <Attribute name="attentionValueVerticalOffset" type="float" required="true" />
+            <Attribute name="attentionValueFontSize" type="float" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

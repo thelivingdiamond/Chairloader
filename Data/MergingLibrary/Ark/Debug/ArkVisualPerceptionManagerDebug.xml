@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkVisualPerceptionManager">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Debug">
+                <Attributes>
+                    <Attribute name="perceiverBoundsColorR" type="uint8" required="true" />
+                    <Attribute name="perceiverBoundsColorG" type="uint8" required="true" />
+                    <Attribute name="perceiverBoundsColorB" type="uint8" required="true" />
+                    <Attribute name="simplePerceivableBoundsColorR" type="uint8" required="true" />
+                    <Attribute name="simplePerceivableBoundsColorG" type="uint8" required="true" />
+                    <Attribute name="simplePerceivableBoundsColorB" type="uint8" required="true" />
+                    <Attribute name="complexPerceivableBoundsColorR" type="uint8" required="true" />
+                    <Attribute name="complexPerceivableBoundsColorG" type="uint8" required="true" />
+                    <Attribute name="complexPerceivableBoundsColorB" type="uint8" required="true" />
+                    <Attribute name="visionConeLongitudeCount" type="float" required="true" />
+                    <Attribute name="visionConeLattitudinalIncrement" type="float" required="true" />
+                    <Attribute name="visionConeLineColorR" type="uint8" required="true" />
+                    <Attribute name="visionConeLineColorG" type="uint8" required="true" />
+                    <Attribute name="visionConeLineColorB" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeLineColorR" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeLineColorG" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeLineColorB" type="uint8" required="true" />
+                    <Attribute name="visionConeAcuteLineColorR" type="uint8" required="true" />
+                    <Attribute name="visionConeAcuteLineColorG" type="uint8" required="true" />
+                    <Attribute name="visionConeAcuteLineColorB" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeAcuteLineColorR" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeAcuteLineColorG" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeAcuteLineColorB" type="uint8" required="true" />
+                    <Attribute name="visionConeXRayLineColorR" type="uint8" required="true" />
+                    <Attribute name="visionConeXRayLineColorG" type="uint8" required="true" />
+                    <Attribute name="visionConeXRayLineColorB" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeXRayLineColorR" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeXRayLineColorG" type="uint8" required="true" />
+                    <Attribute name="secondaryVisionConeXRayLineColorB" type="uint8" required="true" />
+                    <Attribute name="eyePositionRadius" type="float" required="true" />
+                    <Attribute name="visionMagnitudeFontSize" type="float" required="true" />
+                    <Attribute name="visionMagnitudeColorR" type="uint8" required="true" />
+                    <Attribute name="visionMagnitudeColorG" type="uint8" required="true" />
+                    <Attribute name="visionMagnitudeColorB" type="uint8" required="true" />
+                    <Attribute name="bVisionMagnitudeFixedSize" type="boolString" required="true" />
+                    <Attribute name="visionConeSampleGridSize" type="float" required="true" />
+                    <Attribute name="visionConeSamplePointRadius" type="float" required="true" />
+                    <Attribute name="visionConeSamplePointDisplacement" type="float" required="true" />
+                    <Attribute name="visionConeSamplePointColorR" type="uint8" required="true" />
+                    <Attribute name="visionConeSamplePointColorG" type="uint8" required="true" />
+                    <Attribute name="visionConeSamplePointColorB" type="uint8" required="true" />
+                    <Attribute name="bDrawShadedVisionConeSamplePoint" type="boolString" required="true" />
+                    <Attribute name="dropoffChartLocationX" type="float" required="true" />
+                    <Attribute name="dropoffChartLocationY" type="float" required="true" />
+                    <Attribute name="dropoffChartSecondaryLocationX" type="float" required="true" />
+                    <Attribute name="dropoffChartSecondaryLocationY" type="float" required="true" />
+                    <Attribute name="dropoffChartWidth" type="float" required="true" />
+                    <Attribute name="dropoffChartHeight" type="float" required="true" />
+                    <Attribute name="dropoffChartXMajorDataUnits" type="float" required="true" />
+                    <Attribute name="dropoffChartYMajorDataUnits" type="float" required="true" />
+                    <Attribute name="dropoffChartXMinorDataUnits" type="float" required="true" />
+                    <Attribute name="dropoffChartYMinorDataUnits" type="float" required="true" />
+                    <Attribute name="dropoffChartAxisColorR" type="uint8" required="true" />
+                    <Attribute name="dropoffChartAxisColorG" type="uint8" required="true" />
+                    <Attribute name="dropoffChartAxisColorB" type="uint8" required="true" />
+                    <Attribute name="dropoffChartLineColorR" type="uint8" required="true" />
+                    <Attribute name="dropoffChartLineColorG" type="uint8" required="true" />
+                    <Attribute name="dropoffChartLineColorB" type="uint8" required="true" />
+                    <Attribute name="dropoffChartSampleTickColorR" type="uint8" required="true" />
+                    <Attribute name="dropoffChartSampleTickColorG" type="uint8" required="true" />
+                    <Attribute name="dropoffChartSampleTickColorB" type="uint8" required="true" />
+                    <Attribute name="dropoffChartAxisThickness" type="float" required="true" />
+                    <Attribute name="dropoffChartLineThickness" type="float" required="true" />
+                    <Attribute name="dropoffChartSampleTickThickness" type="float" required="true" />
+                    <Attribute name="dropoffChartAxisMajorTickLength" type="float" required="true" />
+                    <Attribute name="dropoffChartAxisMinorTickLength" type="float" required="true" />
+                    <Attribute name="dropoffChartSampleTickLength" type="float" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
