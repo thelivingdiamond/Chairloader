@@ -51,10 +51,14 @@
                     <ChildIndexAttribute name="ch:index" />
                 </Collection>
 
+                <ChildConstraints>
+                    <UniqueAttribute name="id" />
+                </ChildConstraints>
+
                 <ChildNodes>
                     <Node name="HackingAbility">
                         <Attributes>
-                            <Attribute name="id" type="ArkAbilityId" required="true" />
+                            <Attribute name="id" type="ArkAbilityId" required="true" readOnly="true" />
                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                         </Attributes>
                     </Node>

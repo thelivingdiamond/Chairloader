@@ -67,6 +67,10 @@
                                     <ChildIndexAttribute name="ch:index" />
                                 </Collection>
 
+                                <ChildConstraints>
+                                    <UniqueAttribute name="ID" />
+                                </ChildConstraints>
+
                                 <ChildNodes>
                                     <Node name="Download">
                                         <Attributes>

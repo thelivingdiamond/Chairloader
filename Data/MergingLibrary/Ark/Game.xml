@@ -94,6 +94,10 @@
                             <ChildIndexAttribute name="ch:index" />
                         </Collection>
 
+                        <ChildConstraints>
+                            <UniqueAttribute name="Level" />
+                        </ChildConstraints>
+
                         <ChildNodes>
                             <Node name="Level">
                                 <Attributes>
