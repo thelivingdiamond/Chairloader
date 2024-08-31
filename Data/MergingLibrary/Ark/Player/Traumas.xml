@@ -28,7 +28,7 @@
                             <Attribute name="Duration" type="float" required="true" />
                             <Attribute name="Label" type="string" required="true" />
                             <Attribute name="HowToRemove" type="string" required="true" />
-                            <Attribute name="SuitVO" type="ArkDialogResponseRuleId" />
+                            <Attribute name="SuitVO" type="ArkConversationId" />
                             <Attribute name="AccumulateSignal" type="ArkSignalId" />
                             <Attribute name="DoesStack" type="boolString" required="true" />
                             <Attribute name="RemoveOnDrain" type="boolString" required="true" />

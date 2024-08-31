@@ -28,6 +28,7 @@
         <IDType name="GameTokenName" baseType="string" />
         <IDType name="EntityId" baseType="uint16" />
         <IDType name="EntityGuid" baseType="uint64_hex" />
+        <IDType name="DialogId" baseType="uint64_hex" />
         <IDType name="VoiceId" baseType="uint64_hex" />
 
         <!-- Ark -->
@@ -40,6 +41,7 @@
         <IDType name="ArkLightDisruptionProfileId" baseType="ArkUniqueId" />
         <IDType name="ArkGameNoiseTypeId" baseType="ArkUniqueId" />
         <IDType name="ArkTipId" baseType="ArkUniqueId" />
+        <IDType name="ArkEmotionId" baseType="ArkUniqueId" />
 
         <!-- Ark / AI -->
         <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
@@ -76,8 +78,11 @@
         <IDType name="ArkWorkstationDownloadId" baseType="ArkUniqueId" />
 
         <!-- Ark / Dialog -->
+        <IDType name="ArkDialogId" baseType="ArkUniqueId" />
         <IDType name="ArkDialogVoiceId" baseType="ArkUniqueId" />
-        <IDType name="ArkDialogResponseRuleId" baseType="ArkUniqueId" />
+        <IDType name="ArkConversationId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogResponseSetId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogResponseId" baseType="ArkUniqueId" />
 
         <!-- Ark / Player -->
         <IDType name="ArkAbilityId" baseType="ArkUniqueId" />
@@ -566,6 +571,37 @@
                         <Attribute name="Hidden" type="boolString" />
                         <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                     </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkDialogVoiceList -->
+        <NodeType name="ArkDialogVoiceList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="ID" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkDialogVoice">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkDialogVoiceIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Description" type="string" required="true" />
+                        <Attribute name="Abstract" type="boolString" required="true" />
+                        <Attribute name="FaceFX" type="boolString" required="true" />
+                        <Attribute name="Sex" type="string" />
+                        <Attribute name="Effect" type="string" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <NodeByType name="Voices" type="ArkDialogVoiceList" />
+                    </ChildNodes>
                 </Node>
             </ChildNodes>
         </NodeType>

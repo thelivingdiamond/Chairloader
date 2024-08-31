@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkNpcSpeakerEventData">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="onDeath">
+                <Attributes />
+            </Node>
+            <Node name="onNpcMineAttached">
+                <Attributes />
+            </Node>
+            <Node name="onNpcFlee">
+                <Attributes />
+            </Node>
+            <Node name="onPlayerUsePower">
+                <Attributes />
+            </Node>
+            <Node name="onTakeDamage">
+                <Attributes />
+            </Node>
+            <Node name="onGainedAttentionOnTarget">
+                <Attributes />
+            </Node>
+            <Node name="onNewTarget">
+                <Attributes />
+            </Node>
+            <Node name="onTargetDead">
+                <Attributes />
+            </Node>
+            <Node name="onLostTarget">
+                <Attributes />
+            </Node>
+            <Node name="onFallDown">
+                <Attributes />
+            </Node>
+            <Node name="onStandUp">
+                <Attributes />
+            </Node>
+            <Node name="onAttack">
+                <Attributes />
+            </Node>
+            <Node name="onUsePower">
+                <Attributes />
+            </Node>
+            <Node name="onUsed">
+                <Attributes />
+            </Node>
+            <Node name="onOuchSmall">
+                <Attributes />
+            </Node>
+            <Node name="onOuchBig">
+                <Attributes />
+            </Node>
+            <Node name="onWakeUpFromDormant">
+                <Attributes />
+            </Node>
+            <Node name="onPlayerApproach">
+                <Attributes />
+            </Node>
+            <Node name="onPlayerApproachNear">
+                <Attributes />
+            </Node>
+            <Node name="onPlayerApproachFar">
+                <Attributes />
+            </Node>
+            <Node name="onPlayerLoiter">
+                <Attributes />
+            </Node>
+            <Node name="onNonHostileAIApproach">
+                <Attributes />
+            </Node>
+            <Node name="onConversationTrigger">
+                <Attributes />
+            </Node>
+            <Node name="onLostAttentionOnTarget">
+                <Attributes />
+            </Node>
+            <Node name="onHuntStart">
+                <Attributes />
+            </Node>
+            <Node name="onHuntGaveUp">
+                <Attributes />
+            </Node>
+            <Node name="whileSearching">
+                <Attributes />
+            </Node>
+            <Node name="whileWandering">
+                <Attributes />
+            </Node>
+            <Node name="whilePatrolling">
+                <Attributes />
+            </Node>
+            <Node name="onDefeatedPlayer">
+                <Attributes />
+            </Node>
+            <Node name="onNpcFireLaserSinged">
+                <Attributes />
+            </Node>
+            <Node name="onBumpedPlayerRanged">
+                <Attributes />
+            </Node>
+            <Node name="onBumpedPlayerTouch">
+                <Attributes />
+            </Node>
+            <Node name="onOperatorCharge">
+                <Attributes />
+            </Node>
+            <Node name="onOperatorExploding">
+                <Attributes />
+            </Node>
+            <Node name="onBroken">
+                <Attributes />
+            </Node>
+            <Node name="onBrokenRepeat">
+                <Attributes />
+            </Node>
+            <Node name="onRepaired">
+                <Attributes />
+            </Node>
+            <Node name="onMovingToDistractor">
+                <Attributes />
+            </Node>
+            <Node name="onStartDistractor">
+                <Attributes />
+            </Node>
+            <Node name="onFinishDistractor">
+                <Attributes />
+            </Node>
+            <Node name="onNpcBumpSignal">
+                <Attributes />
+            </Node>
+            <Node name="onNpcGlood">
+                <Attributes />
+            </Node>
+            <Node name="onNpcKOdByTazer">
+                <Attributes />
+            </Node>
+            <Node name="onNpcImmolatedDeath">
+                <Attributes />
+            </Node>
+            <Node name="onNpcFearHit">
+                <Attributes />
+            </Node>
+            <Node name="onNpcNullWaveHit">
+                <Attributes />
+            </Node>
+            <Node name="onNpcEmpHit">
+                <Attributes />
+            </Node>
+            <Node name="onNpcFlareHit">
+                <Attributes />
+            </Node>
+            <Node name="onNpcLiftStartHit">
+                <Attributes />
+            </Node>
+            <Node name="onNpcLiftHeld">
+                <Attributes />
+            </Node>
+            <Node name="onNpcFalling">
+                <Attributes />
+            </Node>
+            <Node name="onNpcPlayerMindControlled">
+                <Attributes />
+            </Node>
+            <Node name="onNpcTelepathMindControlled">
+                <Attributes />
+            </Node>
+            <Node name="onNpcRemoteManipulated">
+                <Attributes />
+            </Node>
+            <Node name="onNpcGrabbedByMimic">
+                <Attributes />
+            </Node>
+            <Node name="onNpcErrorOffNavMesh">
+                <Attributes />
+            </Node>
+            <Node name="onNightmareArrived">
+                <Attributes />
+            </Node>
+            <Node name="onCorruptHumanApproachSlow">
+                <Attributes />
+            </Node>
+            <Node name="onCorruptHumanApproachFast">
+                <Attributes />
+            </Node>
+            <Node name="onCorruptRemovedByPlayer">
+                <Attributes />
+            </Node>
+            <Node name="onDiagnoseFail">
+                <Attributes />
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

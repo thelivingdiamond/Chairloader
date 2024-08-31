@@ -24,7 +24,7 @@
                             <Attribute name="ID" type="ArkAudioLogIdDef" required="true" readOnly="true" />
                             <Attribute name="Name" type="string" required="true" />
                             <Attribute name="Label" type="string" required="true" />
-                            <Attribute name="Conversation" type="ArkDialogResponseRuleId" required="true" />
+                            <Attribute name="Conversation" type="ArkConversationId" required="true" />
                             <Attribute name="From" type="ArkCharacterId" />
                             <Attribute name="Date" type="string" />
                             <Attribute name="KeyCode" type="ArkKeyCodeId" />
