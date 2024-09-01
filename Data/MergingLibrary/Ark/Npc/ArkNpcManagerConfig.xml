@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkNpcManagerConfig">
+        <Attributes>
+            <Attribute name="bLoadsOnLevelStart" type="boolString" required="true" />
+            <Attribute name="musicStateUpdateFrequency" type="float" required="true" />
+            <Attribute name="timeBetweenCombatReactionAnimations" type="float" required="true" />
+            <Attribute name="timeBetweenNoticeAnimations" type="float" required="true" />
+            <Attribute name="timeBetweenCombatStartStingers" type="float" required="true" />
+            <Attribute name="combatStartAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToUnknownMusicTrigger" type="string" required="true" />
+            <Attribute name="ascendingToUnknownStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToUnknownStingerCooldown" type="float" required="true" />
+            <Attribute name="ascendingToNoticedMusicTrigger" type="string" required="true" />
+            <Attribute name="ascendingToNoticedStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToNoticedStingerCooldown" type="float" required="true" />
+            <Attribute name="ascendingToCuriousMusicTrigger" type="string" required="true" />
+            <Attribute name="ascendingToCuriousStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToCuriousStingerCooldown" type="float" required="true" />
+            <Attribute name="ascendingToInterestedMusicTrigger" type="string" required="true" />
+            <Attribute name="ascendingToInterestedStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToInterestedStingerCooldown" type="float" required="true" />
+            <Attribute name="ascendingToKnownMusicTrigger" type="string" required="true" />
+            <Attribute name="ascendingToKnownStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ascendingToKnownStingerCooldown" type="float" required="true" />
+            <Attribute name="descendingToKnownMusicTrigger" type="string" required="true" />
+            <Attribute name="descendingToKnownStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="descendingToKnownStingerCooldown" type="float" required="true" />
+            <Attribute name="descendingToInterestedMusicTrigger" type="string" required="true" />
+            <Attribute name="descendingToInterestedStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="descendingToInterestedStingerCooldown" type="float" required="true" />
+            <Attribute name="descendingToCuriousMusicTrigger" type="string" required="true" />
+            <Attribute name="descendingToCuriousStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="descendingToCuriousStingerCooldown" type="float" required="true" />
+            <Attribute name="descendingToNoticedMusicTrigger" type="string" required="true" />
+            <Attribute name="descendingToNoticedStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="descendingToNoticedStingerCooldown" type="float" required="true" />
+            <Attribute name="descendingToUnknownMusicTrigger" type="string" required="true" />
+            <Attribute name="descendingToUnknownStingerTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="descendingToUnknownStingerCooldown" type="float" required="true" />
+            <Attribute name="cancelUnknownMusicTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="cancelNoticedMusicTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="cancelCuriousMusicTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="cancelInterestedMusicTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="cancelKnownMusicTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="bUseCombatantValidation" type="boolString" required="true" />
+            <Attribute name="minValidateCombatantsTime" type="float" required="true" />
+            <Attribute name="maxValidateCombatantsTime" type="float" required="true" />
+            <Attribute name="requiredCombatPointsForCombatMusic" type="int32" required="true" />
+            <Attribute name="bustPlayerThroughAttentionMinAttentionLevel" type="int32" required="true" />
+            <Attribute name="bustPlayerBySeeingMimicMinAttentionLevel" type="int32" required="true" />
+            <Attribute name="unbustPlayerMinAttentionLevel" type="int32" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="value" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="DisallowedMusicContributorTag">
+                <Attributes>
+                    <Attribute name="value" type="ArkMetaTagId" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

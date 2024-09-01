@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkTurretControllerConfig">
+        <Attributes>
+            <Attribute name="avoidOwnerRadius" type="float" required="true" />
+            <Attribute name="approximateTurretRadius" type="float" required="true" />
+            <Attribute name="ownerHalfHeight" type="float" required="true" />
+            <Attribute name="stuckTestMaxTime" type="float" required="true" />
+            <Attribute name="stuckTestMinDistance" type="float" required="true" />
+            <Attribute name="adjustedMinMoveSpeed" type="float" required="true" />
+            <Attribute name="minTimeBetweenTraces" type="float" required="true" />
+            <Attribute name="formationResetHoldDist" type="float" required="true" />
+            <Attribute name="maxStuckTimeAllowed" type="float" required="true" />
+            <Attribute name="maxTimeOutOfRangeAllowed" type="float" required="true" />
+            <Attribute name="expectedTurretHeight" type="float" required="true" />
+            <Attribute name="turretTooCloseRadius" type="float" required="true" />
+            <Attribute name="targetPositionTooCloseTime" type="float" required="true" />
+            <Attribute name="maxNumOwnerPosListEntries" type="float" required="true" />
+            <Attribute name="breakDistance" type="float" required="true" />
+            <Attribute name="startRecoveryDistance" type="float" required="true" />
+            <Attribute name="lerpMaxSpeed" type="float" required="true" />
+            <Attribute name="lerpObstructedMaxSpeed" type="float" required="true" />
+            <Attribute name="lerpAcceleration" type="float" required="true" />
+            <Attribute name="lerpObstructedAcceleration" type="float" required="true" />
+            <Attribute name="turretFloatAmplitude" type="float" required="true" />
+            <Attribute name="turretFloatSpeed" type="float" required="true" />
+            <Attribute name="turretDropStunDuration" type="float" required="true" />
+            <Attribute name="turretFloatMaxNoiseAngle" type="float" required="true" />
+            <Attribute name="turretFloatNoiseAngleSpeed" type="float" required="true" />
+            <Attribute name="distBetweenLastOwnerLocations" type="float" required="true" />
+            <Attribute name="rotatingToPointGiveUpDistance" type="float" required="true" />
+            <Attribute name="returningToPointGiveUpDistance" type="float" required="true" />
+            <Attribute name="followPathHeightAdjustment" type="float" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

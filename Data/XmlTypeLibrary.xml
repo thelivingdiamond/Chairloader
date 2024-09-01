@@ -615,5 +615,97 @@
                 </Node>
             </ChildNodes>
         </NodeType>
+
+        <!-- ArkNpcAbilityPrereq_CooldownInterval -->
+        <NodeType name="ArkNpcAbilityPrereq_CooldownInterval">
+            <Attributes>
+                <Attribute name="minimum" type="float" required="true" />
+                <Attribute name="maximum" type="float" required="true" />
+            </Attributes>
+        </NodeType>
+        
+
+        <!-- ArkNpcAbilityPrereq_Modifiers -->
+        <NodeType name="ArkNpcAbilityPrereq_Modifiers">
+            <Attributes />
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkNpcAbilityPrereqModifier_AddIfDifficultyEqual">
+                    <Attributes>
+                        <Attribute name="value" type="int32" required="true" />
+                        <Attribute name="modifier" type="float" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkNpcAbilityPrereq_ContextCooldown -->
+        <NodeType name="ArkNpcAbilityPrereq_ContextCooldown">
+            <Attributes>
+                <Attribute name="contextId" type="int32" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="CooldownInterval" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                <NodeByType name="Modifiers" type="ArkNpcAbilityPrereq_Modifiers" />
+
+                <Node name="ContextIds">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Element">
+                            <Attributes>
+                                <Attribute name="value" type="int32" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+        
+        <!-- ArkNpcAbilityPrereq_IsSomething -->
+        <NodeType name="ArkNpcAbilityPrereq_IsSomething">
+            <Attributes>
+                <Attribute name="bNegate" type="boolString" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkNpcGameEffectBlackList -->
+        <NodeType name="ArkNpcGameEffectBlackList">
+            <Attributes />
+            
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="className" />
+                    <ChildAttribute name="archetypeName" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkBlackListItem">
+                    <Attributes>
+                        <Attribute name="className" type="EntityClass" required="true" readOnly="true" allowEmpty="true" />
+                        <Attribute name="archetypeName" type="ArchetypeName" required="true" readOnly="true" allowEmpty="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>

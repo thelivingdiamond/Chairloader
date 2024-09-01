@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="NpcAbilityContexts">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="NpcAbilityContext">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="abilityId" type="int32" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Prereqs">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildName />
+                                <ChildAttribute name="requiredTag" /> <!-- ArkNpcAbilityPrereq_TargetHasMetaTag -->
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <NodeByType name="ArkNpcAbilityPrereq_GlobalContextGroupCooldown" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                            <NodeByType name="ArkNpcAbilityPrereq_ContextGroupCooldown" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                            <NodeByType name="ArkNpcAbilityPrereq_GlobalContextCooldown" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                            <NodeByType name="ArkNpcAbilityPrereq_ContextCooldown" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                            
+                            <NodeByType name="ArkNpcAbilityPrereq_IsFrozenInGloo" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsPsiSuppressed" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsIgnoringRangedAbilities" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsHitReacting" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsOnGround" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsTargetPlayer" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsTargetReachable" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsTargetInSyncedAnimation" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_CanJump" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsInRangedRole" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsInMeleeRole" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsEtherFormRestricted" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsRegainingLoS" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_CanCorrupt" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_IsInZeroG" type="ArkNpcAbilityPrereq_IsSomething" />
+                            <NodeByType name="ArkNpcAbilityPrereq_AreaHasMaxNumCystoids" type="ArkNpcAbilityPrereq_IsSomething" />
+
+                            <Node name="ArkNpcAbilityPrereq_MinTargetDistance">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MaxTargetDistance">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MinTargetDistanceCapsule">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MaxTargetDistanceCapsule">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MaxAngleToTarget">
+                                <Attributes>
+                                    <Attribute name="angle" type="float" required="true" />
+                                    <Attribute name="bUseHeadDirection" type="boolString" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasFiringLineOfSight">
+                                <Attributes>
+                                    <Attribute name="firingStartAttachmentName" type="string" required="true" />
+                                    <Attribute name="requiredTimeWithLineOfSight" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_PercentChanceFromBehindTarget">
+                                <Attributes>
+                                    <Attribute name="thresholdAngle" type="float" required="true" />
+                                    <Attribute name="percentChance" type="float" required="true" />
+                                    <Attribute name="percentChanceVsNpc" type="float" required="true" />
+                                    <Attribute name="retryPeriod" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasHitReactShiftLocation">
+                                <Attributes>
+                                    <Attribute name="minShiftDistance" type="float" required="true" />
+                                    <Attribute name="maxShiftDistance" type="float" required="true" />
+                                    <Attribute name="searchHeight" type="float" required="true" />
+                                    <Attribute name="maxNumberOfLoSChecks" type="int32" required="true" />
+                                    <Attribute name="backwardsAvoidShiftAngle" type="float" required="true" />
+                                    <Attribute name="pointAttemptPartitions" type="int32" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasThermogenesisPosition">
+                                <Attributes>
+                                    <Attribute name="downTraceCheckDistance" type="float" required="true" />
+                                    <Attribute name="spawnDistanceInFrontOfPlayer" type="float" required="true" />
+                                    <Attribute name="distanceFromObstacle" type="float" required="true" />
+                                    <Attribute name="aboveFloorDelta" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="ArkNpcAbilityPrereq_GlobalAbilityCooldown">
+                                <Attributes>
+                                    <Attribute name="abilityId" type="int32" required="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <NodeByType name="CooldownInterval" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                                    <NodeByType name="Modifiers" type="ArkNpcAbilityPrereq_Modifiers" />
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="ArkNpcAbilityPrereq_AbilityCooldown">
+                                <Attributes>
+                                    <Attribute name="abilityId" type="int32" required="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <NodeByType name="CooldownInterval" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                                    <NodeByType name="Modifiers" type="ArkNpcAbilityPrereq_Modifiers" />
+                                </ChildNodes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasGameEffect">
+                                <Attributes>
+                                    <Attribute name="bShouldHaveGameEffect" type="boolString" required="true" />
+                                    <Attribute name="requiredGameEffectId" type="int32" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="ArkNpcAbilityPrereq_Never">
+                                <Attributes />
+                            </Node>
+
+                            <Node name="ArkNpcAbilityPrereq_DoesNotHaveActiveDoppelganger">
+                                <Attributes />
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasSpaceForDoppelgangers">
+                                <Attributes>
+                                    <Attribute name="spawnPointSearchArc" type="float" required="true" />
+                                    <Attribute name="searchHeight" type="float" required="true" />
+                                    <Attribute name="minSearchRangeMin" type="float" required="true" />
+                                    <Attribute name="minSearchRangeMax" type="float" required="true" />
+                                    <Attribute name="maxSearchRangeMin" type="float" required="true" />
+                                    <Attribute name="maxSearchRangeMax" type="float" required="true" />
+                                    <Attribute name="expectedDistanceToTargetMin" type="float" required="true" />
+                                    <Attribute name="expectedDistanceToTargetMax" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_IsUsingUnreachableTargeting">
+                                <Attributes>
+                                    <Attribute name="bShouldBeInUnreachableTargeting" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEnoughNearbyNpcs">
+                                <Attributes>
+                                    <Attribute name="checkRadius" type="float" required="true" />
+                                    <Attribute name="checkHeight" type="float" required="true" />
+                                    <Attribute name="requiredTag" type="ArkMetaTagId" required="true" readOnly="true" />
+                                    <Attribute name="bMustBeReachable" type="boolString" required="true" />
+                                    <Attribute name="minNumberOfNpcs" type="int32" required="true" />
+                                    <Attribute name="disqualifyingGameEffectId" type="int32" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_WithinArcToTarget">
+                                <Attributes>
+                                    <Attribute name="bUseHeadDirection" type="boolString" required="true" />
+                                    <Attribute name="minAngleToTargetDegrees" type="float" required="true" />
+                                    <Attribute name="maxAngleToTargetDegrees" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MinTargetDeltaHeight">
+                                <Attributes>
+                                    <Attribute name="deltaHeight" type="float" required="true" />
+                                    <Attribute name="sourceBoneName" type="string" required="true" />
+                                    <Attribute name="bUseTargetAttackPos" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MaxTargetDeltaHeight">
+                                <Attributes>
+                                    <Attribute name="deltaHeight" type="float" required="true" />
+                                    <Attribute name="sourceBoneName" type="string" required="true" />
+                                    <Attribute name="bUseTargetAttackPos" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasMeleeLineOfSight">
+                                <Attributes>
+                                    <Attribute name="meleeStartAttachmentName" type="string" required="true" />
+                                    <Attribute name="requiredTimeWithLineOfSight" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasLineOfSight">
+                                <Attributes>
+                                    <Attribute name="requiredTimeWithLineOfSight" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_CanSidestep">
+                                <Attributes>
+                                    <Attribute name="traceDistance" type="float" required="true" />
+                                    <Attribute name="traceHeightBias" type="float" required="true" />
+                                    <Attribute name="traceRadius" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_LookedAtForLongEnough">
+                                <Attributes>
+                                    <Attribute name="requiredTimeLookedAt" type="float" required="true" />
+                                    <Attribute name="lookAtConeAngle" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasHitReacted">
+                                <Attributes>
+                                    <Attribute name="time" type="float" required="true" />
+                                    <Attribute name="bStagger" type="boolString" required="true" />
+                                    <Attribute name="bKnockDown" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEnergyAoELineOfSight">
+                                <Attributes>
+                                    <Attribute name="requiredTimeWithLineOfSight" type="float" required="true" />
+                                    <Attribute name="firingStartAttachmentName" type="string" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_LostLineOfSight">
+                                <Attributes>
+                                    <Attribute name="requiredTimeWithoutLoS" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasNearbyProp">
+                                <Attributes>
+                                    <Attribute name="minDistanceFromTarget" type="float" required="true" />
+                                    <Attribute name="maxDistanceFromTarget" type="float" required="true" />
+                                    <Attribute name="minMass" type="float" required="true" />
+                                    <Attribute name="maxMass" type="float" required="true" />
+                                    <Attribute name="minHeight" type="float" required="true" />
+                                    <Attribute name="maxHeight" type="float" required="true" />
+                                    <Attribute name="clusterMaxDistance" type="float" required="true" />
+                                    <Attribute name="clusterMaxMass" type="float" required="true" />
+                                    <Attribute name="clusterMaxMassDifference" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasPhysicalRangedLineOfSight">
+                                <Attributes>
+                                    <Attribute name="firingStartAttachmentName" type="string" required="true" />
+                                    <Attribute name="requiredTimeWithLineOfSight" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_WithinNavMeshAllowedDistance">
+                                <Attributes>
+                                    <Attribute name="minDistance" type="float" required="true" />
+                                    <Attribute name="failRetryTime" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasCollisionCapsuleClearance">
+                                <Attributes>
+                                    <Attribute name="capsuleDistance" type="float" required="true" />
+                                    <Attribute name="capsuleRadius" type="float" required="true" />
+                                    <Attribute name="startingHeight" type="float" required="true" />
+                                    <Attribute name="targetOffset" type="float" required="true" />
+                                    <Attribute name="jointName" type="string" required="true" />
+                                    <Attribute name="bAllowRigidBody" type="boolString" required="true" />
+                                    <Attribute name="bAllowBreakable" type="boolString" required="true" />
+                                    <Attribute name="bAllowPermeable" type="boolString" required="true" />
+                                    <Attribute name="bAllowTransparent" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_IsOnSlope">
+                                <Attributes>
+                                    <Attribute name="minDegree" type="float" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_NightmareCrouchHeightMin">
+                                <Attributes>
+                                    <Attribute name="height" type="float" required="true" />
+                                    <Attribute name="testHorizontal" type="float" required="true" />
+                                    <Attribute name="testDown" type="float" required="true" />
+                                    <Attribute name="testUp" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_MaxNumberOfCombatants">
+                                <Attributes>
+                                    <Attribute name="maxNumberOfCombatants" type="int32" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_TargetHasMetaTag">
+                                <Attributes>
+                                    <Attribute name="requiredTag" type="ArkMetaTagId" required="true" readOnly="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_TargetIsCorrupted">
+                                <Attributes>
+                                    <Attribute name="bShouldBeCorrupted" type="boolString" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEnoughCorruptedNpcs">
+                                <Attributes>
+                                    <Attribute name="requiredNumCorruptedNpcsInclusive" type="int32" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEnoughControlledTurrets">
+                                <Attributes>
+                                    <Attribute name="requiredNumTurretsInclusive" type="int32" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HealthPercent">
+                                <Attributes>
+                                    <Attribute name="minHealthPercent" type="float" required="true" />
+                                    <Attribute name="maxHealthPercent" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEMPBlastPosition">
+                                <Attributes>
+                                    <Attribute name="zeroGUpAddition" type="float" required="true" />
+                                    <Attribute name="spawnDistanceInFrontOfPlayer" type="float" required="true" />
+                                    <Attribute name="distanceFromObstacle" type="float" required="true" />
+                                    <Attribute name="bOnlyUseLastSeenTargetPos" type="boolString" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasEnoughAmmo">
+                                <Attributes>
+                                    <Attribute name="requiredAmmo" type="int32" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="ArkNpcAbilityPrereq_HasPistolPointedAtTarget">
+                                <Attributes>
+                                    <Attribute name="requiredAngle" type="float" required="true" />
+                                    <Attribute name="bulletSpawnAttachment" type="string" required="true" />
+                                    <Attribute name="bNegate" type="boolString" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
