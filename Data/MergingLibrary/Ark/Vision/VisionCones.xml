@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="VisionCones">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="VisionCone">
+                <Attributes>
+                    <Attribute name="id" type="ArkVisionConeIdDef" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="forwardRadius" type="float" required="true" />
+                    <Attribute name="meridianRadius" type="float" required="true" />
+                    <Attribute name="horizontalSemiangle" type="float" required="true" />
+                    <Attribute name="upSemiangle" type="float" required="true" />
+                    <Attribute name="downSemiangle" type="float" required="true" />
+                    <Attribute name="nearDistance" type="float" required="true" />
+                    <Attribute name="nearMagnitude" type="float" required="true" />
+                    <Attribute name="midDistance" type="float" required="true" />
+                    <Attribute name="midMagnitude" type="float" required="true" />
+                    <Attribute name="farDistance" type="float" required="true" />
+                    <Attribute name="farMagnitude" type="float" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

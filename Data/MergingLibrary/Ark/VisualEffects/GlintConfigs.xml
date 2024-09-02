@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="GlintConfigs">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="Id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="Name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="Config">
+                <Attributes>
+                    <Attribute name="Id" type="ArkGlintConfigIdDef" required="true" readOnly="true" />
+                    <Attribute name="Name" type="string" required="true" readOnly="true" />
+                    <Attribute name="color" type="Vec3" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

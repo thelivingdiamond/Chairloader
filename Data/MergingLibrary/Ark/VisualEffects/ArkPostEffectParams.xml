@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkPostEffectParams">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="Id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="Name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="Param">
+                <Attributes>
+                    <Attribute name="Id" type="ArkUniqueId" required="true" readOnly="true" />
+                    <Attribute name="Name" type="string" required="true" readOnly="true" />
+                    <Attribute name="ParamName" type="string" required="true" />
+
+                    <!-- Type of 'Value' depends on 'Type' -->
+                    <!-- This is like 3 layers of schemas -->
+                    <Attribute name="Type" type="string" required="true" />
+                    <Attribute name="Value" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="pickerPrefix" type="string" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

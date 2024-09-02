@@ -43,9 +43,12 @@
         <IDType name="ArkGameNoiseTypeId" baseType="ArkUniqueId" />
         <IDType name="ArkGameNoiseLoudnessId" baseType="ArkUniqueId" />
         <IDType name="ArkTipId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipLockId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipSequenceId" baseType="ArkUniqueId" />
         <IDType name="ArkEmotionId" baseType="ArkUniqueId" />
         <IDType name="ArkEntitlementId" baseType="ArkUniqueId" />
         <IDType name="ArkEntitlementUnlockId" baseType="ArkUniqueId" />
+        <IDType name="ArkRemoteEventId" baseType="ArkUniqueId" />
 
         <!-- Ark / AI -->
         <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
@@ -99,13 +102,21 @@
         <IDType name="ArkStatModifierPackageId" baseType="ArkUniqueId" />
         <IDType name="ArkSignalFXId" baseType="ArkUniqueId" />
         
+        <!-- Ark / Vision -->
+        <IDType name="ArkVisionConeId" baseType="ArkUniqueId" />
+        
         <!-- Ark / VisualEffects -->
         <IDType name="ArkMaterialAnimationId" baseType="ArkUniqueId" />
         <IDType name="ArkPostEffectId" baseType="ArkUniqueId" />
         <IDType name="ArkPostEffectParamId" baseType="ArkUniqueId" />
+        <IDType name="ArkCharacterEffectId" baseType="ArkUniqueId" />
+        <IDType name="ArkGlintConfigId" baseType="ArkUniqueId" />
         
         <!-- Ark / Items -->
         <IDType name="ArkFabricationPlanId" baseType="ArkUniqueId" />
+
+        <!-- Ark / WeaponMods -->
+        <IDType name="ArkWeaponModifierId" baseType="ArkUniqueId" />
     </ValueTypes>
 
     <NodeTypes>
@@ -896,6 +907,7 @@
             </ChildNodes>
         </NodeType>
 
+        <!-- ArkPsiBlastProperties -->
         <NodeType name="ArkPsiBlastProperties">
             <Attributes>
                 <Attribute name="Radius" type="float" required="true" />
@@ -922,6 +934,116 @@
                 <Attribute name="KillPreExplosionParticleEffect" type="boolString" />
                 <Attribute name="MaxBlastCount" type="int32" />
             </Attributes>
+        </NodeType>
+
+        <!-- CurveParam -->
+        <NodeType name="CurveParam">
+            <Attributes>
+                <Attribute name="Duration" type="float" />
+                <Attribute name="Curve" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkMaterialAnimationKeysArray -->
+        <NodeType name="ArkMaterialAnimationKeysArray">
+            <Attributes />
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Keys">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Key">
+                            <Attributes>
+                                <Attribute name="Time" type="float" required="true" />
+                                <Attribute name="Value" type="float" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkMaterialAnimationRgbKeysArray -->
+        <NodeType name="ArkMaterialAnimationRgbKeysArray">
+            <Attributes />
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="RgbKeys">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="RgbKey">
+                            <Attributes>
+                                <Attribute name="Time" type="float" required="true" />
+                                <Attribute name="Red" type="float" required="true" />
+                                <Attribute name="Green" type="float" required="true" />
+                                <Attribute name="Blue" type="float" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArlSignalModifierList -->
+        <NodeType name="ArlSignalModifierList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="ModifierId" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="SignalModifier">
+                    <Attributes>
+                        <Attribute name="ModifierId" type="ArkSignalModifierId" required="true" readOnly="true" />
+                        <Attribute name="IsInbound" type="boolString" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkStatModifierList -->
+        <NodeType name="ArkStatModifierList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="StatName" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="StatModifier">
+                    <Attributes>
+                        <Attribute name="StatName" type="ArkPlayerStatName" required="true" readOnly="true" />
+                        <Attribute name="Modifier" type="float" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
         </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>

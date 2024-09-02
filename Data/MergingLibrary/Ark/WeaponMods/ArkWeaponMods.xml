@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkWeaponModifiers">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="WeaponModifiers">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkWeaponModifier">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkWeaponModifierIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Label" type="string" required="true" />
+                            <Attribute name="DefaultSummary" type="string" required="true" />
+                            <Attribute name="Description" type="string" required="true" />
+                            <Attribute name="InstallWeapon" type="EntityClass" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="WeaponModLevels">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Level" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ModLevel">
+                                        <Attributes>
+                                            <Attribute name="Level" type="int32" required="true" readOnly="true" />
+                                            <Attribute name="Summary" type="string" required="true" />
+                                            <Attribute name="FanfareText" type="string" required="true" />
+                                            <Attribute name="TagState" type="string" allowEmpty="true" />
+                                            <Attribute name="Prereq" type="ArkAbilityId" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <NodeByType name="SignalModifiers" type="ArlSignalModifierList" />
+                                            <NodeByType name="StatModifiers" type="ArkStatModifierList" />
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

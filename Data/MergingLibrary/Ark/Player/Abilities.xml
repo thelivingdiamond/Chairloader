@@ -41,6 +41,9 @@
                         <Collection type="nodeDict" />
 
                         <ChildNodes>
+                            <NodeByType name="SignalModifiers" type="ArlSignalModifierList" />
+                            <NodeByType name="StatModifiers" type="ArkStatModifierList" />
+
                             <Node name="Prereqs">
                                 <Attributes />
 
@@ -54,44 +57,6 @@
                                     <Node name="Prereq">
                                         <Attributes>
                                             <Attribute name="value" type="ArkAbilityId" required="true" readOnly="true" />
-                                        </Attributes>
-                                    </Node>
-                                </ChildNodes>
-                            </Node>
-                            
-                            <Node name="SignalModifiers">
-                                <Attributes />
-
-                                <Collection type="dict">
-                                    <PrimaryKey>
-                                        <ChildAttribute name="ModifierId" />
-                                    </PrimaryKey>
-                                </Collection>
-
-                                <ChildNodes>
-                                    <Node name="SignalModifier">
-                                        <Attributes>
-                                            <Attribute name="ModifierId" type="ArkSignalModifierId" required="true" readOnly="true" />
-                                            <Attribute name="IsInbound" type="boolString" required="true" />
-                                        </Attributes>
-                                    </Node>
-                                </ChildNodes>
-                            </Node>
-                            
-                            <Node name="StatModifiers">
-                                <Attributes />
-
-                                <Collection type="dict">
-                                    <PrimaryKey>
-                                        <ChildAttribute name="StatName" />
-                                    </PrimaryKey>
-                                </Collection>
-
-                                <ChildNodes>
-                                    <Node name="StatModifier">
-                                        <Attributes>
-                                            <Attribute name="StatName" type="ArkPlayerStatName" required="true" readOnly="true" />
-                                            <Attribute name="Modifier" type="float" required="true" />
                                         </Attributes>
                                     </Node>
                                 </ChildNodes>
