@@ -140,6 +140,13 @@ int main(int argc, char** argv)
                     return;
                 }
 
+                if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Replace)
+                {
+                    // Don't validate files tagged as "replace"
+                    output.stats.skipped++;
+                    return;
+                }
+
                 if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
                 {
                     // Can't validate localization files
