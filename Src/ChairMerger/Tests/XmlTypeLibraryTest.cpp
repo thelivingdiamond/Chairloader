@@ -62,6 +62,8 @@ TEST(XmlTypeLibraryTest, ValueValidation)
         { "float", "-1.234e4",   true  },
         { "float", "asdf",       false },
         { "float", "123asdf",    false },
+        { "float", "123456.05f", true  },
+        { "float", "-1.234e4f",  true  },
 
         // String
         { "string", "",          false },
