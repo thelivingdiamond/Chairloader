@@ -168,6 +168,9 @@ void PreyFilePatcher::PatchNode(
 
     for (pugi::xml_node childNode : node.children())
     {
+        if (XmlUtils::IsTextNode(childNode))
+            continue;
+
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
         childErrorStack.SetIndex(i);
 
