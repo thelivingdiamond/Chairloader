@@ -40,8 +40,8 @@
                             <Attribute name="MaxDistractDistance" type="float" required="true" />
                             <Attribute name="MaxDistractDistanceVertical" type="float" required="true" />
                             <Attribute name="MaxDistractionAngleDegreesOffForward" type="float" required="true" />
-                            <Attribute name="MinDuration" type="string" required="true" /> <!-- Actually a float, but one node has '0.0f' -->
-                            <Attribute name="MaxDuration" type="string" required="true" /> <!-- Actually a float, but one node has '0.0f' -->
+                            <Attribute name="MinDuration" type="float" required="true" />
+                            <Attribute name="MaxDuration" type="float" required="true" />
                             <Attribute name="NpcUseColdown" type="float" required="true" />
                             <Attribute name="MinHeightDifference" type="float" required="true" />
                             <Attribute name="MaxHeightDifference" type="float" required="true" />

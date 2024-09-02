@@ -66,7 +66,7 @@
                             <Attribute name="BreezeLifeTime" type="float" required="true" />
                             <Attribute name="BreezeCount" type="int32" required="true" />
                             <Attribute name="BreezeSpawnRadius" type="float" required="true" />
-                            <Attribute name="BreezeSpread" type="string" required="true" /> <!-- Actually a float but with 'f' suffix -->
+                            <Attribute name="BreezeSpread" type="float" required="true" />
                             <Attribute name="BreezeRadius" type="float" required="true" />
                             <Attribute name="BreezeAwakeThreshold" type="float" required="true" />
                             <Attribute name="ConsoleMergedMeshesPool" type="int32" required="true" />
@@ -74,7 +74,7 @@
                             <Attribute name="SunShadowsMinSpec" type="int32" required="true" />
                             <Attribute name="SunShadowsAdditionalCascadeMinSpec" type="int32" required="true" />
                             <Attribute name="SunShadowsClipPlaneRange" type="float" required="true" />
-                            <Attribute name="SunShadowsClipPlaneRangeShift" type="string" required="true" /> <!-- Actually a float but with 'f' suffix -->
+                            <Attribute name="SunShadowsClipPlaneRangeShift" type="float" required="true" />
                             <Attribute name="UseLayersActivation" type="boolInt" required="true" />
                             <Attribute name="SunLinkedToTOD" type="int32" required="true" />
                         </Attributes>
