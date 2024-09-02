@@ -194,7 +194,7 @@ int main(int argc, char** argv)
             }
         };
 
-        taskflow.for_each_index((size_t)0, xmlFileList.size(), (size_t)1, fnProcessXmlFile, tf::DynamicPartitioner(64));
+        taskflow.for_each_index((size_t)0, xmlFileList.size(), (size_t)1, fnProcessXmlFile, tf::DynamicPartitioner(4));
         executor.run(taskflow).wait();
 
         // Record processing time here so printing doesn't count
