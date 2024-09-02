@@ -34,6 +34,7 @@
                             <PrimaryKey>
                                 <ChildName />
                                 <ChildAttribute name="requiredTag" /> <!-- ArkNpcAbilityPrereq_TargetHasMetaTag -->
+                                <ChildAttribute name="abilityId" /> <!-- ArkNpcAbilityPrereq_GlobalAbilityCooldown -->
                             </PrimaryKey>
                         </Collection>
 

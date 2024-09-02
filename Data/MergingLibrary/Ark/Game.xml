@@ -103,6 +103,7 @@
                                 <Attributes>
                                     <Attribute name="Level" type="int32" required="true" readOnly="true" />
                                     <Attribute name="VisualAttentionScalar" type="float" required="true" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                 </Attributes>
 
                                 <Collection type="nodeDict" />

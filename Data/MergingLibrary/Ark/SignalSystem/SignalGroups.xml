@@ -12,6 +12,10 @@
             </PrimaryKey>
         </Collection>
 
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
         <ChildNodes>
             <Node name="Group">
                 <Attributes>
@@ -24,10 +28,6 @@
                         <ChildAttribute name="id" />
                     </PrimaryKey>
                 </Collection>
-
-                <ChildConstraints>
-                    <UniqueAttribute name="name" />
-                </ChildConstraints>
 
                 <ChildNodes>
                     <Node name="Signal">

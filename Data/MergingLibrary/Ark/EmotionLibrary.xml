@@ -13,7 +13,7 @@
 
                 <Collection type="dict">
                     <PrimaryKey>
-                        <ChildAttribute name="id" />
+                        <ChildAttribute name="ID" />
                     </PrimaryKey>
                 </Collection>
 

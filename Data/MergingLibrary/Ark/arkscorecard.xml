@@ -20,10 +20,6 @@
                     <ChildIndexAttribute name="ch:index" />
                 </Collection>
 
-                <ChildConstraints>
-                    <UniqueAttribute name="Name" />
-                </ChildConstraints>
-
                 <ChildNodes>
                     <Node name="GameMetric">
                         <Attributes>

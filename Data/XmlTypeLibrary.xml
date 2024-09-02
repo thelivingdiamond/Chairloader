@@ -360,6 +360,7 @@
         <NodeType name="ArkGameStateConditionGroup">
             <Attributes>
                 <Attribute name="And" type="boolString" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
             </Attributes>
 
             <Collection type="nodeDict" />
