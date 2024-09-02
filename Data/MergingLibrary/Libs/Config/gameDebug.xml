@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="DebugLayout">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="pages">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="page">
+                        <Attributes>
+                            <Attribute name="label" type="string" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+        
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="attribute">
+                                <Attributes>
+                                    <Attribute name="action" type="string" allowEmpty="true" />
+                                    <Attribute name="label" type="string" required="true" />
+                                    <Attribute name="setOnChange" type="boolString" />
+                                    <Attribute name="SetOnChange" type="boolString" />
+                                    <Attribute name="closeMenu" type="boolString" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <!-- Allow text type because "Objective cheats:" has an error -->
+                                    <Node name="list" textType="string" allowEmptyText="true">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+                        
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="option">
+                                                <Attributes>
+                                                    <Attribute name="label" type="string" />
+                                                    <Attribute name="value" type="string" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+
+                                                <Collection type="nodeDict" />
+
+                                                <ChildNodes>
+                                                    <Node name="subactions">
+                                                        <Attributes />
+
+                                                        <Patches>
+                                                            <AddChildIndex name="ch:index" />
+                                                        </Patches>
+                                
+                                                        <Collection type="array">
+                                                            <ChildIndexAttribute name="ch:index" />
+                                                        </Collection>
+
+                                                        <ChildNodes>
+                                                            <Node name="subaction">
+                                                                <Attributes>
+                                                                    <Attribute name="action" type="string" />
+                                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                                </Attributes>
+                                                            </Node>
+                                                        </ChildNodes>
+                                                    </Node>
+                                                </ChildNodes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="slider">
+                                        <Attributes>
+                                            <Attribute name="min" type="float" required="true" />
+                                            <Attribute name="max" type="float" required="true" />
+                                            <Attribute name="decimals" type="int32" required="true" />
+                                            <Attribute name="unit" type="float" required="true" />
+                                        </Attributes>
+                                    </Node>
+
+                                    <Node name="datalist">
+                                        <Attributes>
+                                            <Attribute name="path" type="string" required="true" />
+                                            <Attribute name="xpath" type="string" required="true" />
+                                            <Attribute name="id" type="string" required="true" />
+                                            <Attribute name="label" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+
+                                    <Node name="subactions">
+                                        <Attributes />
+
+                                        <Patches>
+                                            <AddChildIndex name="ch:index" />
+                                        </Patches>
+
+                                        <Collection type="array">
+                                            <ChildIndexAttribute name="ch:index" />
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="subaction">
+                                                <Attributes>
+                                                    <Attribute name="action" type="string" />
+                                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

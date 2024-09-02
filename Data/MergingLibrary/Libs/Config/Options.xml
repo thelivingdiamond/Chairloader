@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*Options\.xml">
+    <Node name="ArkOptionLayout">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Pages">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkOptionLayoutPage">
+                        <Attributes>
+                            <Attribute name="Label" type="string" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="SubPages">
+                                <Attributes />
+                
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+                
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ArkOptionLayoutSubPage">
+                                        <Attributes>
+                                            <Attribute name="Label" type="string" required="true" allowEmpty="true" />
+                                            <Attribute name="LabelPS4" type="string" />
+                                            <Attribute name="Warning" type="string" />
+                                            <Attribute name="Keybinds" type="boolString" />
+                                            <Attribute name="Platform" type="string" />
+                                            <Attribute name="RequiresApply" type="boolString" />
+                                            <Attribute name="WriteConfigFile" type="boolString" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="Attributes">
+                                                <Attributes />
+                                
+                                                <Patches>
+                                                    <AddChildIndex name="ch:index" />
+                                                </Patches>
+                                
+                                                <Collection type="array">
+                                                    <ChildIndexAttribute name="ch:index" />
+                                                </Collection>
+
+                                                <ChildNodes>
+                                                    <Node name="ArkOptionAttribute">
+                                                        <Attributes>
+                                                            <Attribute name="Action" type="string" required="true" />
+                                                            <Attribute name="Label" type="string" required="true" />
+                                                            <Attribute name="SetOnChange" type="boolString" />
+                                                            <Attribute name="HideOnFrontend" type="boolString" />
+                                                            <Attribute name="HideFromProfile" type="boolString" />
+                                                            <Attribute name="HideInGame" type="boolString" />
+                                                            <Attribute name="HideForSteamController" type="boolString" />
+                                                            <Attribute name="WriteConfigFile" type="boolString" />
+                                                            <Attribute name="WaitForTextureReload" type="boolString" />
+                                                            <Attribute name="Hidden" type="boolString" />
+                                                            <Attribute name="Default" type="string" />
+                                                            <Attribute name="Platform" type="string" />
+                                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                        </Attributes>
+
+                                                        <Collection type="nodeDict" />
+
+                                                        <ChildNodes>
+                                                            <Node name="Widget">
+                                                                <Attributes />
+                                                                <Collection type="nodeDict" />
+
+                                                                <ChildNodes>
+                                                                    <!-- ArkOptionList -->
+                                                                    <Node name="ArkOptionList">
+                                                                        <Attributes />
+                                                                        <Collection type="nodeDict" />
+
+                                                                        <ChildNodes>
+                                                                            <Node name="Options">
+                                                                                <Attributes />
+
+                                                                                <Patches>
+                                                                                    <AddChildIndex name="ch:index" />
+                                                                                </Patches>
+
+                                                                                <Collection type="array">
+                                                                                    <ChildIndexAttribute name="ch:index" />
+                                                                                </Collection>
+
+                                                                                <ChildNodes>
+                                                                                    <Node name="ArkDifficultyOption">
+                                                                                        <Attributes>
+                                                                                            <Attribute name="Label" type="string" />
+                                                                                            <Attribute name="label" type="string" />
+                                                                                            <Attribute name="Value" type="string" />
+                                                                                            <Attribute name="value" type="string" />
+                                                                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                                                        </Attributes>
+                                                                                    </Node>
+
+                                                                                    <Node name="ArkOption">
+                                                                                        <Attributes>
+                                                                                            <Attribute name="Label" type="string" required="true" />
+                                                                                            <Attribute name="Value" type="string" required="true" />
+                                                                                            <Attribute name="Hidden" type="boolString" />
+                                                                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                                                        </Attributes>
+                                                                                    </Node>
+                                                                                </ChildNodes>
+                                                                            </Node>
+                                                                        </ChildNodes>
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionDropDown -->
+                                                                    <Node name="ArkOptionDropDown">
+                                                                        <Attributes />
+                                                                        <Collection type="nodeDict" />
+
+                                                                        <ChildNodes>
+                                                                            <Node name="Options">
+                                                                                <Attributes />
+
+                                                                                <Patches>
+                                                                                    <AddChildIndex name="ch:index" />
+                                                                                </Patches>
+
+                                                                                <Collection type="array">
+                                                                                    <ChildIndexAttribute name="ch:index" />
+                                                                                </Collection>
+
+                                                                                <ChildNodes>
+                                                                                    <Node name="ArkOption">
+                                                                                        <Attributes>
+                                                                                            <Attribute name="Label" type="string" required="true" />
+                                                                                            <Attribute name="Value" type="string" required="true" />
+                                                                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                                                        </Attributes>
+                                                                                    </Node>
+                                                                                </ChildNodes>
+                                                                            </Node>
+                                                                        </ChildNodes>
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionToggle -->
+                                                                    <Node name="ArkOptionToggle">
+                                                                        <Attributes />
+                                                                        <Collection type="nodeDict" />
+
+                                                                        <ChildNodes>
+                                                                            <Node name="Option0">
+                                                                                <Attributes>
+                                                                                    <Attribute name="Label" type="string" />
+                                                                                    <Attribute name="label" type="string" />
+                                                                                    <Attribute name="Value" type="string" />
+                                                                                    <Attribute name="value" type="string" />
+                                                                                </Attributes>
+                                                                            </Node>
+                                                                            <Node name="Option1">
+                                                                                <Attributes>
+                                                                                    <Attribute name="Label" type="string" />
+                                                                                    <Attribute name="label" type="string" />
+                                                                                    <Attribute name="Value" type="string" />
+                                                                                    <Attribute name="value" type="string" />
+                                                                                </Attributes>
+                                                                            </Node>
+                                                                        </ChildNodes>
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionSlider -->
+                                                                    <Node name="ArkOptionSlider">
+                                                                        <Attributes>
+                                                                            <Attribute name="Min" type="float" required="true" />
+                                                                            <Attribute name="Max" type="float" required="true" />
+                                                                            <Attribute name="Decimals" type="int32" required="true" />
+                                                                            <Attribute name="Unit" type="float" required="true" />
+                                                                            <Attribute name="Normalize" type="boolString" required="true" />
+                                                                        </Attributes>
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionTextLanguage -->
+                                                                    <Node name="ArkOptionTextLanguage">
+                                                                        <Attributes />
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionAudioLanguage -->
+                                                                    <Node name="ArkOptionAudioLanguage">
+                                                                        <Attributes />
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionControlMap -->
+                                                                    <Node name="ArkOptionControlMap">
+                                                                        <Attributes />
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionMonitor -->
+                                                                    <Node name="ArkOptionMonitor">
+                                                                        <Attributes />
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionResolution -->
+                                                                    <Node name="ArkOptionResolution">
+                                                                        <Attributes />
+                                                                    </Node>
+
+                                                                    <!-- ArkOptionButton -->
+                                                                    <Node name="ArkOptionButton">
+                                                                        <Attributes />
+                                                                    </Node>
+                                                                </ChildNodes>
+                                                            </Node>
+
+                                                            <Node name="Subactions">
+                                                                <Attributes />
+
+                                                                <Collection type="dict">
+                                                                    <PrimaryKey>
+                                                                        <ChildAttribute name="Action" />
+                                                                    </PrimaryKey>
+                                                                </Collection>
+
+                                                                <ChildNodes>
+                                                                    <Node name="ArkOptionSubAction">
+                                                                        <Attributes>
+                                                                            <Attribute name="Action" type="string" required="true" readOnly="true" />
+                                                                        </Attributes>
+                                                                    </Node>
+                                                                </ChildNodes>
+                                                            </Node>
+                                                        </ChildNodes>
+                                                    </Node>
+                                                </ChildNodes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

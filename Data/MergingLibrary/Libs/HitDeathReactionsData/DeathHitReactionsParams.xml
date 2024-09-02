@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*HitDeathReactions.*\.xml">
+    <Node name="DeathHitReactionsParams">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="HitDeathReactionsConfig">
+                <Attributes allowUnknown="true" />
+            </Node>
+
+            <Node name="HitReactionParams">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <NodeByType name="HitReactionParam" type="HitDeathReactionsParams" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="DeathReactionParams">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <NodeByType name="DeathReactionParam" type="HitDeathReactionsParams" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="CollisionReactionParams">
+                <Attributes />
+                <Collection type="replaceOnly" />
+
+                <ChildNodes>
+                    <Node name="CollisionReaction">
+                        <Attributes allowUnknown="true" />
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="TagMap">
+                <Attributes />
+
+                <Collection type="replaceOnly" />
+
+                <ChildNodes>
+                    <NodeByType name="Tag" type="HitDeathReactionsParams" />
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

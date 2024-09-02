@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="AITargetStimulusConfig">
+        <Attributes>
+            <Attribute name="version" type="int32" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="Config">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Stimuli">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="name" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Stimulus">
+                                <Attributes>
+                                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                                    <Attribute name="hostileOnly" type="boolInt" />
+                                    <Attribute name="peak" type="float" />
+                                    <Attribute name="attack" type="float" />
+                                    <Attribute name="decay" type="float" />
+                                    <Attribute name="sustain" type="float" />
+                                    <Attribute name="release" type="float" />
+                                    <Attribute name="ignore" type="float" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Modifiers">
+                                        <Attributes />
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="Distance">
+                                                <Attributes>
+                                                    <Attribute name="limit" type="float" />
+                                                    <Attribute name="value" type="float" />
+                                                </Attributes>
+                                            </Node>
+
+                                            <Node name="DistanceIgnore">
+                                                <Attributes>
+                                                    <Attribute name="limit" type="float" />
+                                                    <Attribute name="value" type="float" />
+                                                </Attributes>
+                                            </Node>
+
+                                            <Node name="ClassThreat">
+                                                <Attributes>
+                                                    <Attribute name="value" type="float" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

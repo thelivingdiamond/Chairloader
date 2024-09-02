@@ -184,6 +184,27 @@
             <Collection type="nodeDict" />
 
             <ChildNodes>
+                <Node name="ModuleInputsOutputs">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                            <ChildAttribute name="Input" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Port">
+                            <Attributes>
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Input" type="boolInt" required="true" readOnly="true" />
+                                <Attribute name="Type" type="int32" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
                 <Node name="Nodes">
                     <Attributes/>
 
@@ -205,6 +226,7 @@
                                 <Attribute name="EntityGUID_64" type="EntityGuid" />
                                 <Attribute name="InHideMask" type="uint32" />
                                 <Attribute name="OutHideMask" type="uint32" />
+                                <Attribute name="flags" type="uint32" />
                             </Attributes>
 
                             <Collection type="nodeDict" />
@@ -1042,6 +1064,309 @@
                         <Attribute name="StatName" type="ArkPlayerStatName" required="true" readOnly="true" />
                         <Attribute name="Modifier" type="float" required="true" />
                     </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ActionMap -->
+        <NodeType name="ActionMap">
+            <Attributes>
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+            </Attributes>
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="name" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="action">
+                    <Attributes>
+                        <Attribute name="name" type="string" required="true" readOnly="true" />
+                        <Attribute name="onPress" type="boolInt" />
+                        <Attribute name="onRelease" type="boolInt" />
+                        <Attribute name="onHold" type="boolInt" />
+                        <Attribute name="noModifiers" type="boolInt" />
+                        <Attribute name="retriggerable" type="boolInt" />
+                        <Attribute name="holdTriggerDelay" type="float" />
+                        <Attribute name="holdRepeatDelay" type="float" />
+                        <Attribute name="releaseTriggerThreshold" type="float" />
+                        <Attribute name="keyboard" type="string" />
+                        <Attribute name="xboxpad" type="string" />
+                        <Attribute name="ps4pad" type="string" />
+                        <Attribute name="steam" type="string" />
+                    </Attributes>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildName />
+                            <ChildAttribute name="device" />
+                            <ChildAttribute name="input" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="rebind">
+                            <Attributes>
+                                <Attribute name="device" type="string" required="true" readOnly="true" />
+                                <Attribute name="input" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name=".*" nameRegex="true">
+                            <Attributes>
+                                <Attribute name="input" type="string" />
+                                <Attribute name="onPress" type="boolInt" />
+                                <Attribute name="onRelease" type="boolInt" />
+                                <Attribute name="onHold" type="boolInt" />
+                                <Attribute name="noModifiers" type="boolInt" />
+                                <Attribute name="retriggerable" type="boolInt" />
+                                <Attribute name="holdTriggerDelay" type="float" />
+                                <Attribute name="holdRepeatDelay" type="float" />
+                                <Attribute name="pressTriggerDelayRepeatOverride" type="float" />
+                                <Attribute name="releaseTriggerDelayRepeatOverride" type="float" />
+                                <Attribute name="inputsToBlock" type="string" />
+                                <Attribute name="inputBlockTime" type="float" />
+                                <Attribute name="useAnalogCompare" type="boolInt" />
+                                <Attribute name="analogCompareVal" type="float" />
+                                <Attribute name="analogCompareOp" type="string" />
+                            </Attributes>
+                            <Collection type="dict">
+                                <PrimaryKey>
+                                    <ChildAttribute name="input" />
+                                </PrimaryKey>
+                            </Collection>
+
+                            <ChildNodes>
+                                <Node name="inputdata">
+                                    <Attributes>
+                                        <Attribute name="input" type="string" required="true" readOnly="true" />
+                                        <Attribute name="useAnalogCompare" type="boolInt" />
+                                        <Attribute name="analogCompareVal" type="float" />
+                                        <Attribute name="analogCompareOp" type="string" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- FlareItem -->
+        <NodeType name="LestFlareItem">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="Type" type="string" required="true" />
+                <Attribute name="Enable" type="boolInt" required="true" />
+                <Attribute name="Id" type="GuidWithBraces" />
+                <Attribute name="Library" type="string" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <!-- Using an array because some sub-lens flares have duplicate names -->
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="FlareItem" type="LestFlareItem" />
+                
+                <Node name="Params">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name=".*" nameRegex="true">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+        
+        <!-- GameToken -->
+        <NodeType name="GameToken">
+            <Attributes>
+                <Attribute name="Id" type="GameTokenId" required="true" readOnly="true" />
+                <Attribute name="Name" type="GameTokenName" required="true" readOnly="true" />
+                <Attribute name="Flags" type="uint32" />
+                <Attribute name="Type" type="string" required="true" />
+                <Attribute name="Value" type="string" required="true" allowEmpty="true" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- GameTokensLibrary -->
+        <NodeType name="GameTokensLibrary">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" />
+                <Attribute name="LevelName" type="string" />
+            </Attributes>
+    
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="Id" />
+                </PrimaryKey>
+            </Collection>
+    
+            <ChildConstraints>
+                <UniqueAttribute name="Name" />
+            </ChildConstraints>
+    
+            <ChildNodes>
+                <NodeByType name="GameToken" type="GameToken" />
+            </ChildNodes>
+        </NodeType>
+
+        <!-- HitDeathReactionsParams -->
+        <NodeType name="HitDeathReactionsParams">
+            <Attributes allowUnknown="true">
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <Collection type="replaceOnly" />
+
+            <ChildNodes>
+                <Node name="SetTags">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Tag">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedSignals">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Signal">
+                            <Attributes>
+                                <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
+                                <Attribute name="minValue" type="float" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedHitTypes">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="HitType">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedParts">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Part">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedStances">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Stance">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedProjectiles">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Projectile">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedWeapons">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Weapon">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ValidationSection">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <NodeByType name="Validation" type="HitDeathReactionsParams" />
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ReactionAnim">
+                    <Attributes>
+                        <Attribute name="additive" type="boolInt" />
+                        <Attribute name="layer" type="int32" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="AnimNames">
+                            <Attributes />
+                            <Collection type="replaceOnly" />
+
+                            <ChildNodes>
+                                <Node name="AnimName">
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="name" type="string" required="true" readOnly="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
                 </Node>
             </ChildNodes>
         </NodeType>
