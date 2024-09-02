@@ -107,11 +107,17 @@ int main(int argc, char** argv)
                 continue;
 
             fs::path xmlFullPath = dirEnt.path();
+            fs::path relPath = xmlFullPath.lexically_relative(xmlDir);
 
             if (!boost::algorithm::iequals(xmlFullPath.extension().u8string(), ".xml"))
-                continue;
+            {
+                // Check that the file is not found in the library
+                // Some XMLs have extension different from .xml
+                if (!mergingLibrary.FindPolicyForFile(relPath))
+                    continue;
+            }
 
-            xmlFileList.push_back(xmlFullPath.lexically_relative(xmlDir));
+            xmlFileList.push_back(relPath);
         }
 
         fmt::println("Processing {} files", xmlFileList.size());
