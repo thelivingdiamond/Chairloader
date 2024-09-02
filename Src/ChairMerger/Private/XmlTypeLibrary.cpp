@@ -63,6 +63,12 @@ public:
         if (value.empty())
             return false;
 
+        if (std::is_floating_point_v<T> && value[value.size() - 1] == 'f')
+        {
+            // Remove 'f' suffix
+            value.remove_suffix(1);
+        }
+
         T number{};
         const char* begin = value.data();
         const char* end = value.data() + value.size();
