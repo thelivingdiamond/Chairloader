@@ -149,10 +149,19 @@ int main(int argc, char** argv)
 
                 output.stats.checked++;
 
+                std::string patchError;
+
                 if (applyPatches)
                 {
-                    XmlErrorStack errorStack("FILE");
-                    PreyFilePatcher::PatchDocument(xmlFullPath, xmlDoc, *filePolicy, errorStack);
+                    try
+                    {
+                        XmlErrorStack errorStack("FILE");
+                        PreyFilePatcher::PatchDocument(xmlFullPath, xmlDoc, *filePolicy, errorStack);
+                    }
+                    catch (const std::exception& e)
+                    {
+                        patchError = e.what();
+                    }
                 }
 
                 XmlValidator::Context context;
@@ -163,6 +172,13 @@ int main(int argc, char** argv)
                     context,
                     xmlDoc,
                     *filePolicy);
+
+                if (!patchError.empty())
+                {
+                    auto& err = result.errors.emplace_back(XmlValidator::ValidationError());
+                    err.path.push_back("Patch");
+                    err.message = patchError;
+                }
 
                 if (!result)
                     output.stats.failed++;
