@@ -13,15 +13,17 @@ static const fs::path g_PreyFiles = "Testing/ChairMerger/_PreyFiles";
 TEST(HashUtilsTest, HashFile)
 {
     auto digest = HashUtils::HashFile(g_PreyFiles / "Ark/ArkFactions.xml");
-    auto expectedDigest = SHA256::fromString("9FA881B8E5C6D344A8263FFA7B43FB436D6AF54A9DC9DA22EC2C5D5F93422240");
-    EXPECT_EQ(digest, expectedDigest);
+    std::string digestStr = SHA256::toString(digest.data());
+    std::string expectedDigestStr = "9fa881b8e5c6d344a8263ffa7b43fb436d6af54a9dc9da22ec2c5d5f93422240";
+    EXPECT_EQ(digestStr, expectedDigestStr);
 }
 
 TEST(HashUtilsTest, HashDirectory)
 {
-    auto digest = HashUtils::HashDirectory(g_PreyFiles / "Ark");
-    auto expectedDigest = SHA256::fromString("8af38e6f00847bda16a782f056a399f3f3187a12aa15d3a5c978e2c88c88b98c");
-    EXPECT_EQ(digest, expectedDigest);
+    auto digest = HashUtils::HashDirectory(g_PreyFiles);
+    std::string digestStr = SHA256::toString(digest.data());
+    std::string expectedDigestStr = "e725f5a933387c69d20f6e4add3fdf65a7c9760b464cc268037718780c00eef8";
+    EXPECT_EQ(digestStr, expectedDigestStr);
 }
 
 TEST(HashUtilsTest, HashUncompressedFile)

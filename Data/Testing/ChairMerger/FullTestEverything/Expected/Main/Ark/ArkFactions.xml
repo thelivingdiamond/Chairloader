@@ -17,10 +17,10 @@
   <Faction name="PlayerControlledHuman" id="17591291352664927822"/>
   <Faction name="Cook" id="9469288860550636126"/>
   <Faction name="PlayerAsMimic" id="17937592727507003218"/>
-  <Faction name="ScriptedNeutralEpicGamer" id="3149325216988038853"/>
-  <Faction name="NewFactionOverridenByMod2" id="17591291352618367178"/>
+  <Faction name="ScriptedNeutral" id="3149325216988038853"/>
+  <Faction name="NewFaction" id="17591291352618367178"/>
   <Faction name="String from mod 1" id="123456789"/>
-  <Faction name="ImFromMod2!" id="45671294789218367178"/>
+  <Faction name="ImFromMod2!" id="8777806641799263946"/>
   <Faction name="String from mod 2" id="235457568"/>
   <Faction name="Mod 2: String from mod 1" id="78979878"/>
  </Factions>

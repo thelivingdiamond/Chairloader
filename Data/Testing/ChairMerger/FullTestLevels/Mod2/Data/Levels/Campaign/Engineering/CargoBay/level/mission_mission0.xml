@@ -2,7 +2,7 @@
     <Objects>
         <Entity
             Name="Data.Keycard5"
-            ch:patch_mode="true">
+            EntityGuid="4FDA91B7404BEB33">
             <Properties2
                 keycard_Keycard="1333337" />
             <RenderProxy />

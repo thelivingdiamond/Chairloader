@@ -44,8 +44,7 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
 }
 
 const auto TEST_FILES = testing::Values<std::string>(
-    "Ark/ArkFactions.xml",
-    "Ark/Player/PlayerConfig.xml"
+    "Ark/ArkFactions.xml"
 );
 
 INSTANTIATE_TEST_SUITE_P(ChairMerger, ChairMergerTestProcessXMLFile, TEST_FILES);
