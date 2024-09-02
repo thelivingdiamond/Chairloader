@@ -296,13 +296,20 @@ void XmlValidator::ValidateCollection(
             childErrorStack.SetIndex(i);
 
             std::vector<std::string> fullKey; // All key values for this node
-            fullKey.resize(collection.keyChildAttributes.size() + (collection.keyChildName ? 1 : 0));
+            fullKey.resize(collection.keyChildAttributes.size() + (collection.keyChildName ? 1 : 0) + (collection.keyChildText ? 1 : 0));
             size_t curKeyIdx = 0; // Index of the next key to be filled
 
             if (collection.keyChildName)
             {
                 // Add child name to the key
                 fullKey[curKeyIdx] = childNode.name();
+                curKeyIdx++;
+            }
+
+            if (collection.keyChildText)
+            {
+                // Add child text to the key
+                fullKey[curKeyIdx] = childNode.text().as_string("__undefined__");
                 curKeyIdx++;
             }
 

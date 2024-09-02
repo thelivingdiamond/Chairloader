@@ -333,6 +333,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Attributes_AllowUnknown",
         "Attributes_Text",
         "Dict_NodeName",
+        "Dict_NodeText",
         "Dict_Key1",
         "Dict_Key2",
         "Dict_Append",

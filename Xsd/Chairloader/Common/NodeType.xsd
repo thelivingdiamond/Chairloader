@@ -229,6 +229,14 @@
                                             </xs:documentation></xs:annotation>
                                         </xs:complexType>
                                     </xs:element>
+                                    
+                                    <xs:element name="ChildText" minOccurs="0" maxOccurs="1">
+                                        <xs:complexType>
+                                            <xs:annotation><xs:documentation>
+                                                Use the child node text as part of the key.
+                                            </xs:documentation></xs:annotation>
+                                        </xs:complexType>
+                                    </xs:element>
 
                                     <xs:element name="ChildAttribute" minOccurs="0" maxOccurs="unbounded">
                                         <xs:complexType>

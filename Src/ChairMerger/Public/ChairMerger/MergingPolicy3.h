@@ -114,6 +114,9 @@ public:
         //! Use the child node name as part of the key.
         bool keyChildName = false;
 
+        //! Use the child node text as part of the key.
+        bool keyChildText = false;
+
         //! Allow duplicate keys. Should only be used when original Prey file contains an error.
         bool allowDuplicates = false;
 
@@ -216,6 +219,7 @@ private:
     static constexpr char XML_NODE_PRIMARY_KEY[] = "PrimaryKey";
     static constexpr char XML_NODE_CHILD_INDEX_ATTR[] = "ChildIndexAttribute";
     static constexpr char XML_NODE_CHILD_NAME[] = "ChildName";
+    static constexpr char XML_NODE_CHILD_TEXT[] = "ChildText";
     static constexpr char XML_NODE_CHILD_ATTRIBUTE[] = "ChildAttribute";
 
     static constexpr char XML_NODE_CHILD_CONSTRAINTS[] = "ChildConstraints";

@@ -323,7 +323,7 @@ void XmlMerger3::MergeChildrenDict(
 {
     const MergingPolicy3::Collection& collection = policy.GetCollection();
     CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Dict);
-    CRY_ASSERT(collection.keyChildName || !collection.keyChildAttributes.empty());
+    CRY_ASSERT(collection.keyChildName || collection.keyChildText || !collection.keyChildAttributes.empty());
 
     int i = 0;
 
@@ -518,6 +518,9 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
 
         if (collection.keyChildName)
             allEqual &= childModNodeName == childBaseNode.name();
+
+        if (collection.keyChildText)
+            allEqual &= !!!strcmp(childModNode.text().as_string(), childBaseNode.text().as_string()); // !!! to shut up the analyzer
 
         for (size_t i = 0; i < childModKeyValues.size() && allEqual; i++)
         {

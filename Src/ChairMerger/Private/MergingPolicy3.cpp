@@ -300,6 +300,10 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
                 {
                     m_Collection.keyChildName = true;
                 }
+                else if (XmlUtils::EqualsOnceOrThrow(errorStack, keyNode, XML_NODE_CHILD_TEXT, &m_Collection.keyChildText))
+                {
+                    m_Collection.keyChildText = true;
+                }
                 else if (!strcmp(keyNode.name(), XML_NODE_CHILD_ATTRIBUTE))
                 {
                     std::string attrName = XmlUtils::GetRequiredAttr(keyErrorStack, keyNode, "name").as_string();
@@ -333,7 +337,7 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
 
     if (m_Collection.type == ECollectionType::Dict)
     {
-        if (!m_Collection.keyChildName && m_Collection.keyChildAttributes.empty())
+        if (!m_Collection.keyChildName && !m_Collection.keyChildText && m_Collection.keyChildAttributes.empty())
             errorStack.ThrowException("Dict collection has no primary key defined");
     }
     else if (m_Collection.type == ECollectionType::Array)
