@@ -91,11 +91,18 @@
         <!-- Ark / Player -->
         <IDType name="ArkAbilityId" baseType="ArkUniqueId" />
         <IDType name="ArkPlayerStatName" baseType="string" />
-        <IDType name="ArkTraumaId" baseType="string" />
-        <IDType name="ArkGameMetricId" baseType="string" />
+        <IDType name="ArkTraumaId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameMetricId" baseType="ArkUniqueId" />
+        <IDType name="ArkResearchTopicId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalReceiverId" baseType="ArkUniqueId" />
+        <IDType name="ArkPackageSignalRampId" baseType="ArkUniqueId" />
+        <IDType name="ArkStatModifierPackageId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalFXId" baseType="ArkUniqueId" />
         
         <!-- Ark / VisualEffects -->
         <IDType name="ArkMaterialAnimationId" baseType="ArkUniqueId" />
+        <IDType name="ArkPostEffectId" baseType="ArkUniqueId" />
+        <IDType name="ArkPostEffectParamId" baseType="ArkUniqueId" />
         
         <!-- Ark / Items -->
         <IDType name="ArkFabricationPlanId" baseType="ArkUniqueId" />
@@ -706,6 +713,214 @@
                     </Attributes>
                 </Node>
             </ChildNodes>
+        </NodeType>
+
+        <!-- ArkInputLegendItem -->
+        <NodeType name="ArkInputLegendItem">
+            <Attributes>
+                <Attribute name="Label" type="string" required="true" />
+                <Attribute name="ControlScheme" type="string" />
+                <Attribute name="Action" type="string" />
+                <Attribute name="ActionMap" type="string" />
+                <Attribute name="Hold" type="boolString" />
+                <Attribute name="ComboString" type="string" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="ActionList">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="ArkInputAction">
+                            <Attributes>
+                                <Attribute name="Action" type="string" required="true" readOnly="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkInputLegend -->
+        <NodeType name="ArkInputLegend">
+            <Attributes>
+                <Attribute name="ActionMap" type="string" />
+                <Attribute name="actionMap" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Items">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="ArkInputLegendItem" type="ArkInputLegendItem" />
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkPlayerZeroGMode -->
+        <NodeType name="ArkPlayerZeroGMode">
+            <Attributes>
+                <Attribute name="minDragSpeed" type="float" required="true" />
+                <Attribute name="maxDragSpeed" type="float" required="true" />
+                <Attribute name="drag" type="float" required="true" />
+                <Attribute name="maxSpeedStat" type="string" required="true" />
+                <Attribute name="baseAccel_UD" type="float" required="true" />
+                <Attribute name="baseAccel_LR" type="float" required="true" />
+                <Attribute name="baseAccel_FB" type="float" required="true" />
+                <Attribute name="velocityLerp" type="float" required="true" />
+                <Attribute name="baseDecel" type="float" required="true" />
+                <Attribute name="counterThrustAngle" type="float" required="true" />
+                <Attribute name="counterThrustSpeed" type="float" required="true" />
+                <Attribute name="brakingRatio" type="float" required="true" />
+                <Attribute name="yawpitchFactor" type="float" required="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkPsiPowerPropertiesCommon -->
+        <NodeType name="ArkPsiPowerPropertiesCommon">
+            <Attributes>
+                <Attribute name="DisplayName" type="string" required="true" />
+                <Attribute name="PsiCost" type="int32" required="true" />
+                <Attribute name="Description" type="string" />
+                <Attribute name="PickerLabel" type="string" required="true" />
+                <Attribute name="InterruptsMimicGrabSequence" type="boolString" />
+                <Attribute name="CostReductionStat" type="ArkPlayerStatName" />
+                <Attribute name="PersistentPostProcessVFX" type="ArkPostEffectId" allowEmpty="true" />
+                <Attribute name="NoiseId" type="ArkGameNoiseTypeId" />
+                <Attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" />
+                <Attribute name="ExecutionAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="TargetHighlightColorAlpha" type="float" />
+                <Attribute name="TargetHighlightColor" type="Vec3" />
+                <Attribute name="ExecutionPlayerEffect" type="string" />
+                <Attribute name="PostProcessVFX" type="ArkPostEffectId" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="ModalLegend" type="ArkInputLegend" />
+
+                <Node name="ActiveBlacklist">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Power" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="BlacklistEntry">
+                            <Attributes>
+                                <Attribute name="Power" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkPsiPowerTargetingComponentProperties -->
+        <NodeType name="ArkPsiPowerTargetingComponentProperties">
+            <Attributes>
+                <Attribute name="MaxRange" type="float" />
+                <Attribute name="MinRange" type="float" />
+                <Attribute name="TargetParticleEffect" type="string" />
+                <Attribute name="TargetParticleEffectAttachment" type="string" />
+                <Attribute name="TargetParticleLightEffect" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="ValidTargetMetaTags">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="MetaTag">
+                            <Attributes>
+                                <Attribute name="value" type="ArkMetaTagId" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ValidTargetClasses">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Class">
+                            <Attributes>
+                                <Attribute name="value" type="EntityClass" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <NodeType name="ArkPsiBlastProperties">
+            <Attributes>
+                <Attribute name="Radius" type="float" required="true" />
+                <Attribute name="TriggerRadius" type="float" />
+                <Attribute name="DelaySec" type="float" required="true" />
+                <Attribute name="DurationSec" type="float" />
+                <Attribute name="SignalPackageId" type="ArkSignalPackageId" allowEmpty="true" />
+                <Attribute name="ExplosionSignalPackageId" type="ArkSignalPackageId" />
+                <Attribute name="StopDelayAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="ExplosionAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StartPersistentAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StopPersistentAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StartDelayAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="PreExplosionParticleEffect" type="string" />
+                <Attribute name="ExplosionParticleEffect" type="string" required="true" />
+                <Attribute name="ExplosionDelaySec" type="float" />
+                <Attribute name="UpdateIntervalSec" type="float" />
+                <Attribute name="NoiseId" type="ArkGameNoiseTypeId" required="true" />
+                <Attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" required="true" />
+                <Attribute name="FalloffRadius" type="float" required="true" />
+                <Attribute name="FalloffScale" type="float" />
+                <Attribute name="CameraShake" type="ArkCameraShakeId" />
+                <Attribute name="Force" type="float" />
+                <Attribute name="KillPreExplosionParticleEffect" type="boolString" />
+                <Attribute name="MaxBlastCount" type="int32" />
+            </Attributes>
         </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>

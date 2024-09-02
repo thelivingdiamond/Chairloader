@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkResearchTopics">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Topics">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkResearchTopic">
+                        <Attributes>
+                            <Attribute name="id" type="ArkResearchTopicIdDef" required="true" readOnly="true" />
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                            <Attribute name="loreScansRequired" type="int32" required="true" />
+                            <Attribute name="label" type="string" required="true" />
+                            <Attribute name="lore" type="ArkLoreEntryId" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="AbilityGroups">
+                                <Attributes />
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+        
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ArkResearchTopicAbilityGroup">
+                                        <Attributes>
+                                            <Attribute name="scansRequired" type="int32" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="Abilities">
+                                                <Attributes />
+
+                                                <Collection type="dict">
+                                                    <PrimaryKey>
+                                                        <ChildAttribute name="value" />
+                                                    </PrimaryKey>
+                                                </Collection>
+
+                                                <ChildNodes>
+                                                    <Node name="Ability">
+                                                        <Attributes>
+                                                            <Attribute name="value" type="ArkAbilityId" required="true" readOnly="true" />
+                                                        </Attributes>
+                                                    </Node>
+                                                </ChildNodes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="MetaTags">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="value" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Tag">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArkMetaTagId" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

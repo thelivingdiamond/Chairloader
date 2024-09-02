@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkFocusModeComponentProperties">
+        <Attributes>
+            <Attribute name="MouseSensitivity" type="float" required="true" />
+            <Attribute name="MouseRotationSpeed" type="float" required="true" />
+            <Attribute name="MouseRotationDamping" type="float" required="true" />
+            <Attribute name="ControllerAbsoluteDeadzone" type="float" required="true" />
+            <Attribute name="ControllerDeltaDeadzone" type="float" required="true" />
+            <Attribute name="ControllerInactiveStickDeadzone" type="float" required="true" />
+            <Attribute name="DefaultPostProcessEffect" type="ArkPostEffectId" required="true" />
+            <Attribute name="FocusParticleEffectPath" type="string" required="true" />
+            <Attribute name="ExitFromFocusParticleEffectPath" type="string" required="true" />
+            <Attribute name="PsiParticleEffectPath" type="string" required="true" />
+            <Attribute name="ExitFromPsiParticleEffectPath" type="string" required="true" />
+            <Attribute name="FocusToPsiParticleEffectPath" type="string" required="true" />
+            <Attribute name="PsiToFocusParticleEffectPath" type="string" required="true" />
+            <Attribute name="NoPowersAudioTrigger" type="string" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="SelectPowerLegend" type="ArkInputLegend" />
+            <NodeByType name="SelectWeaponLegend" type="ArkInputLegend" />
+
+            <Node name="NoPowersStrings">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="String">
+                        <Attributes>
+                            <Attribute name="value" type="string" required="true" allowEmpty="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
