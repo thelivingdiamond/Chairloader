@@ -243,6 +243,9 @@ private:
     void LoadXmlCollection(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildConstraints(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+
+    void ValidateCollection(const XmlErrorStack& errorStack);
+    void ValidateConstraints(const XmlErrorStack& errorStack);
 };
 
 class CHAIRMERGER_EXPORT FileMergingPolicy3 : boost::noncopyable

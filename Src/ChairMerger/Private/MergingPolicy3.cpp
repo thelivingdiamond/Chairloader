@@ -142,6 +142,9 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary
             XmlUtils::ThrowUnknownNode(errorStack, childNode);
     }
 
+    ValidateCollection(errorStack);
+    ValidateConstraints(errorStack);
+
     XmlUtils::ThrowMissingNodeIfFalse(errorStack, XML_NODE_ATTRIBUTES, foundAttributes);
 }
 
@@ -403,6 +406,126 @@ void MergingPolicy3::LoadXmlChildNodes(IMergingPolicyAllocator* pAlloc, XmlTypeL
         }
 
         i++;
+    }
+}
+
+void MergingPolicy3::ValidateCollection(const XmlErrorStack& errorStack)
+{
+    if (m_Collection.type == ECollectionType::Dict)
+    {
+        // Check that each key attribute is present in at least one node
+        for (const std::string& attr : m_Collection.keyChildAttributes)
+        {
+            bool isFound = false;
+
+            for (const auto& i : m_ChildNodes)
+            {
+                for (const Attribute& j : i.second->m_Attributes)
+                {
+                    if (j.name == attr)
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!isFound)
+            {
+                // Check regex
+                for (const auto& i : m_ChildNodesRegex)
+                {
+                    for (const Attribute& j : i.second->m_Attributes)
+                    {
+                        if (j.name == attr)
+                        {
+                            isFound = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (!isFound)
+                errorStack.ThrowException(fmt::format("Key attribute '{}' not found in any child", attr));
+        }
+    }
+    else if (m_Collection.type == ECollectionType::Array)
+    {
+        // Check that array attribute is present in at all nodes
+        for (const auto& i : m_ChildNodes)
+        {
+            bool isFound = false;
+
+            for (const Attribute& j : i.second->m_Attributes)
+            {
+                if (j.name == m_Collection.arrayIndexAttr)
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+
+            if (!isFound)
+                errorStack.ThrowException(fmt::format("Array attribute '{}' not found in node '{}'", m_Collection.arrayIndexAttr, i.first));
+        }
+
+        for (const auto& i : m_ChildNodesRegex)
+        {
+            bool isFound = false;
+
+            for (const Attribute& j : i.second->m_Attributes)
+            {
+                if (j.name == m_Collection.arrayIndexAttr)
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+
+            if (!isFound)
+                errorStack.ThrowException(fmt::format("Array attribute '{}' not found in regex node '{}'", m_Collection.arrayIndexAttr, i.first.str()));
+        }
+    }
+}
+
+void MergingPolicy3::ValidateConstraints(const XmlErrorStack& errorStack)
+{
+    // Check that each unique attribute is present in at least one node
+    for (const std::string& attr : m_ChildConstraints.uniqueAttributes)
+    {
+        bool isFound = false;
+
+        for (const auto& i : m_ChildNodes)
+        {
+            for (const Attribute& j : i.second->m_Attributes)
+            {
+                if (j.name == attr)
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isFound)
+        {
+            // Check regex
+            for (const auto& i : m_ChildNodesRegex)
+            {
+                for (const Attribute& j : i.second->m_Attributes)
+                {
+                    if (j.name == attr)
+                    {
+                        isFound = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!isFound)
+            errorStack.ThrowException(fmt::format("Unique attribute '{}' not found in any child", attr));
     }
 }
 
