@@ -312,14 +312,15 @@ void XmlValidator::ValidateCollection(
 
                 if (!keyAttr)
                 {
-                    if (context.mode != EMode::Prey)
-                        AddError(result, childErrorStack, "Key attribute is missing", keyAttrName);
+                    // It's OK if missing. Some nodes may not have the attribute.
+                    fullKey[curKeyIdx] = "__undefined__";
                 }
                 else
                 {
                     fullKey[curKeyIdx] = keyAttr.as_string();
-                    curKeyIdx++;
                 }
+
+                curKeyIdx++;
             }
 
             // Mods may have duplicate keys to apply different patches
