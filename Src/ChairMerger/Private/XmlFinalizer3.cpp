@@ -12,8 +12,8 @@ void XmlFinalizer3::FinalizeDocument(
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
         throw std::logic_error("This file can't be modified by mods and so can't be finalized");
 
-    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
-        throw std::logic_error("Localization files don't need finalization");
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+        throw std::logic_error("Excel files don't need finalization");
 
     pugi::xml_node node = document.first_child();
     XmlErrorStack modErrorStack(node.name());

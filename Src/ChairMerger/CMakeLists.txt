@@ -16,10 +16,10 @@ set(SOURCE_FILES
 	Private/CApi.cpp
 	Private/ChairMerger.cpp
 	Private/DllMain.cpp
+	Private/ExcelMerger.cpp
+	Private/ExcelMerger.h
 	Private/HashUtils.cpp
 	Private/HashUtils.h
-	Private/LocalizationMerger.cpp
-	Private/LocalizationMerger.h
 	Private/LuaUtils.cpp
 	Private/MergingLibrary3.cpp
 	Private/MergingPolicy3.cpp

@@ -1,21 +1,18 @@
 #pragma once
 
-class LocalizationMergingException : public std::runtime_error
+class ExcelMergingException : public std::runtime_error
 {
 public:
-    LocalizationMergingException(const std::string& message, int rowIndex = -1, int cellIndex = -1);
+    ExcelMergingException(const std::string& message, int rowIndex = -1, int cellIndex = -1);
 
 private:
     std::string FormatMsg(const std::string& message, int rowIndex, int cellIndex);
 };
 
 //! Stores a localization Excel table.
-class LocalizationTable
+class ExcelTable
 {
 public:
-    //! Name of the key column.
-    static constexpr char KEY_NAME[] = "key";
-
     using ColumnNameList = std::vector<std::string>;
     using Row = std::vector<std::string>;
     using RowList = std::vector<Row>;
@@ -30,17 +27,19 @@ public:
     int keyColumnIdx = -1;
 
     //! Reads a table into this object. May only be called once.
-    void ReadTable(const pugi::xml_node& rootNode);
+    void ReadTable(std::string_view keyName, const pugi::xml_node& rootNode);
 
 private:
     //! Parses column names from the first row.
-    void ParseFirstRow(Row&& row);
+    void ParseFirstRow(std::string_view keyName, Row&& row);
 };
 
 //! Helper class for Excel spreadsheets merging, which are used by the localization system.
-class LocalizationMerger
+class ExcelMerger
 {
 public:
+    ExcelMerger(std::string_view keyName) { m_KeyName = keyName; }
+
     //! Reads column names and contents from the base node.
     void ReadBaseSheet(const pugi::xml_node& spreadsheet);
 
@@ -54,11 +53,12 @@ private:
     //! Maps a column index in mod table to the current table.
     using ColumnMap = std::vector<int>;
 
-    LocalizationTable m_CurrentTable;
+    std::string m_KeyName;
+    ExcelTable m_CurrentTable;
 
     //! Creates new columns if needs to.
     //! @returns The map of column indices in mod table to the current table's.
-    ColumnMap MergeColumns(const LocalizationTable& modTable);
+    ColumnMap MergeColumns(const ExcelTable& modTable);
 
     int FindRowByKey(const std::string& key);
 

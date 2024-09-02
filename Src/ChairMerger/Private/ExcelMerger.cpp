@@ -1,11 +1,11 @@
-#include "LocalizationMerger.h"
+#include "ExcelMerger.h"
 
-LocalizationMergingException::LocalizationMergingException(const std::string& message, int rowIndex, int cellIndex)
+ExcelMergingException::ExcelMergingException(const std::string& message, int rowIndex, int cellIndex)
     : std::runtime_error(FormatMsg(message, rowIndex, cellIndex))
 {
 }
 
-std::string LocalizationMergingException::FormatMsg(const std::string& message, int rowIndex, int cellIndex)
+std::string ExcelMergingException::FormatMsg(const std::string& message, int rowIndex, int cellIndex)
 {
     std::string outMsg = "Localization error: " + message;
 
@@ -17,11 +17,11 @@ std::string LocalizationMergingException::FormatMsg(const std::string& message, 
     return outMsg;
 }
 
-void LocalizationTable::ReadTable(const pugi::xml_node& rootNode)
+void ExcelTable::ReadTable(std::string_view keyName, const pugi::xml_node& rootNode)
 {
     const pugi::xml_node tableNode = rootNode.child("Workbook").child("Worksheet").child("Table");
     if (!tableNode)
-        throw LocalizationMergingException("Workbook.Worksheet.Table node not found");
+        throw ExcelMergingException("Workbook.Worksheet.Table node not found");
 
     bool foundFirstRow = false;
     int rowIdx = 0;
@@ -47,7 +47,7 @@ void LocalizationTable::ReadTable(const pugi::xml_node& rootNode)
             }
 
             if (excelIndex < cellIdx)
-                throw LocalizationMergingException("Invalid cell index", rowIdx, cellIdx);
+                throw ExcelMergingException("Invalid cell index", rowIdx, cellIdx);
 
             if (excelIndex > cellIdx)
             {
@@ -89,10 +89,10 @@ void LocalizationTable::ReadTable(const pugi::xml_node& rootNode)
         else
         {
             // Parse column names
-            ParseFirstRow(std::move(rowData));
+            ParseFirstRow(keyName, std::move(rowData));
 
             if (columnNames.empty())
-                throw LocalizationMergingException("Table has no columns defined");
+                throw ExcelMergingException("Table has no columns defined");
 
             foundFirstRow = true;
         }
@@ -101,10 +101,10 @@ void LocalizationTable::ReadTable(const pugi::xml_node& rootNode)
     }
 
     if (!foundFirstRow)
-        throw LocalizationMergingException("Table has no rows");
+        throw ExcelMergingException("Table has no rows");
 }
 
-void LocalizationTable::ParseFirstRow(Row&& row)
+void ExcelTable::ParseFirstRow(std::string_view keyName, Row&& row)
 {
     assert(columnNames.empty());
     int colIdx = 0;
@@ -121,11 +121,11 @@ void LocalizationTable::ParseFirstRow(Row&& row)
             }
         }
 
-        if (colName == KEY_NAME)
+        if (colName == keyName)
         {
             // Found the key
             if (keyColumnIdx != -1)
-                throw LocalizationMergingException("Table has multiple key columns", 0, colIdx);
+                throw ExcelMergingException("Table has multiple key columns", 0, colIdx);
             keyColumnIdx = colIdx;
         }
 
@@ -133,25 +133,25 @@ void LocalizationTable::ParseFirstRow(Row&& row)
     }
 
     if (keyColumnIdx == -1)
-        throw LocalizationMergingException("Table has no key column", 0);
+        throw ExcelMergingException("Table has no key column", 0);
 }
 
-void LocalizationMerger::ReadBaseSheet(const pugi::xml_node& spreadsheet)
+void ExcelMerger::ReadBaseSheet(const pugi::xml_node& spreadsheet)
 {
-    m_CurrentTable.ReadTable(spreadsheet);
+    m_CurrentTable.ReadTable(m_KeyName, spreadsheet);
     assert(m_CurrentTable.keyColumnIdx != -1);
 }
 
-void LocalizationMerger::MergeSheet(const pugi::xml_node& spreadsheet)
+void ExcelMerger::MergeSheet(const pugi::xml_node& spreadsheet)
 {
-    LocalizationTable modTable;
-    modTable.ReadTable(spreadsheet);
+    ExcelTable modTable;
+    modTable.ReadTable(m_KeyName, spreadsheet);
     assert(modTable.keyColumnIdx != -1);
 
     // Create new columns and the column map
     ColumnMap colMap = MergeColumns(modTable);
 
-    for (const LocalizationTable::Row& modRow : modTable.rows)
+    for (const ExcelTable::Row& modRow : modTable.rows)
     {
         const std::string& key = modRow[modTable.keyColumnIdx];
         int baseRowIdx = FindRowByKey(key);
@@ -166,7 +166,7 @@ void LocalizationMerger::MergeSheet(const pugi::xml_node& spreadsheet)
         }
 
         // Replace all non-empty columns in the row
-        LocalizationTable::Row& currentRow = m_CurrentTable.rows[baseRowIdx];
+        ExcelTable::Row& currentRow = m_CurrentTable.rows[baseRowIdx];
 
         for (size_t modCellIdx = 0; modCellIdx < modRow.size(); modCellIdx++)
         {
@@ -191,7 +191,7 @@ void LocalizationMerger::MergeSheet(const pugi::xml_node& spreadsheet)
     }
 }
 
-pugi::xml_document LocalizationMerger::ExportExcelXml() const
+pugi::xml_document ExcelMerger::ExportExcelXml() const
 {
     // Based on https://en.wikipedia.org/wiki/Microsoft_Office_XML_formats
     // and real Office XML files.
@@ -281,7 +281,7 @@ pugi::xml_document LocalizationMerger::ExportExcelXml() const
     }
 
     // Rows
-    for (const LocalizationTable::Row& rowData : m_CurrentTable.rows)
+    for (const ExcelTable::Row& rowData : m_CurrentTable.rows)
     {
         pugi::xml_node row = table.append_child("Row");
 
@@ -304,7 +304,7 @@ pugi::xml_document LocalizationMerger::ExportExcelXml() const
     return doc;
 }
 
-LocalizationMerger::ColumnMap LocalizationMerger::MergeColumns(const LocalizationTable& modTable)
+ExcelMerger::ColumnMap ExcelMerger::MergeColumns(const ExcelTable& modTable)
 {
     ColumnMap colMap;
     colMap.resize(modTable.columnNames.size());
@@ -331,7 +331,7 @@ LocalizationMerger::ColumnMap LocalizationMerger::MergeColumns(const Localizatio
     if (newColumnCount != oldColumnCount)
     {
         // Resize all rows to add the new columns
-        for (LocalizationTable::Row& modRow : m_CurrentTable.rows)
+        for (ExcelTable::Row& modRow : m_CurrentTable.rows)
         {
             assert(modRow.size() == oldColumnCount);
             modRow.resize(newColumnCount);
@@ -341,7 +341,7 @@ LocalizationMerger::ColumnMap LocalizationMerger::MergeColumns(const Localizatio
     return colMap;
 }
 
-int LocalizationMerger::FindRowByKey(const std::string& key)
+int ExcelMerger::FindRowByKey(const std::string& key)
 {
     // Linear search.
     // This makes merging O(n^2) but there's only a few hundred rows in a table
@@ -349,7 +349,7 @@ int LocalizationMerger::FindRowByKey(const std::string& key)
 
     for (size_t i = 0; i < m_CurrentTable.rows.size(); i++)
     {
-        const LocalizationTable::Row& modRow = m_CurrentTable.rows[i];
+        const ExcelTable::Row& modRow = m_CurrentTable.rows[i];
 
         if (modRow[keyColumnIdx] == key)
             return (int)i;
@@ -358,7 +358,7 @@ int LocalizationMerger::FindRowByKey(const std::string& key)
     return -1;
 }
 
-int LocalizationMerger::FindColumnByName(const std::string& name)
+int ExcelMerger::FindColumnByName(const std::string& name)
 {
     for (size_t i = 0; i < m_CurrentTable.columnNames.size(); i++)
     {

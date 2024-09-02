@@ -19,8 +19,8 @@ struct XmlMergerContext
 class CHAIRMERGER_EXPORT XmlMerger3
 {
 public:
-    //! Use this when loading localization files.
-    static constexpr unsigned LOCALIZATION_PARSE_OPTIONS = pugi::parse_full;
+    //! Use this when loading Excel 2003 files.
+    static constexpr unsigned EXCEL_PARSE_OPTIONS = pugi::parse_full;
 
     //! Merges a mod document into the base document.
     //! @param  context     Merger context.
@@ -62,13 +62,13 @@ public:
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
 
-    //! Merges a mod localization spreasheet into the base spreadsheet.
-    //! XMLs must be loaded with LOCALIZATION_PARSE_OPTIONS.
+    //! Merges a mod Excel spreasheet into the base spreadsheet.
+    //! XMLs must be loaded with EXCEL_PARSE_OPTIONS.
     //! @param  context     Merger context.
     //! @param  baseDoc     Base document. Will be modified.
     //! @param  modDoc      Mod document.
     //! @param  policy      Merging policy for the file.
-    static void MergeLocalizationDocument(
+    static void MergeExcelDocument(
         const XmlMergerContext& context,
         pugi::xml_document& baseDoc,
         const pugi::xml_document& modDoc,

@@ -5,7 +5,7 @@
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 #include "MetaAttributes.h"
-#include "LocalizationMerger.h"
+#include "ExcelMerger.h"
 
 void XmlMerger3::MergeDocument(
     const XmlMergerContext& context,
@@ -28,7 +28,7 @@ void XmlMerger3::MergeDocument(
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
         throw std::logic_error("Can't use MergeDocument when replacing");
 
-    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         throw std::logic_error("Use MergeLocalizationDocument instead");
 
     CRY_ASSERT(policy.GetMethod() == FileMergingPolicy3::EMethod::Merge);
@@ -185,20 +185,20 @@ void XmlMerger3::PatchNode(
     }
 }
 
-void XmlMerger3::MergeLocalizationDocument(
+void XmlMerger3::MergeExcelDocument(
     const XmlMergerContext& context,
     pugi::xml_document& baseDoc,
     const pugi::xml_document& modDoc,
     const FileMergingPolicy3& policy)
 {
-    if (policy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
-        throw std::logic_error("Merging method must be Localization");
+    if (policy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
+        throw std::logic_error("Merging method must be Excel2003");
 
-    LocalizationMerger locMerger;
+    ExcelMerger excelMerger(policy.GetExcelKeyColName());
 
     try
     {
-        locMerger.ReadBaseSheet(baseDoc);
+        excelMerger.ReadBaseSheet(baseDoc);
     }
     catch (const std::exception& e)
     {
@@ -207,7 +207,7 @@ void XmlMerger3::MergeLocalizationDocument(
 
     try
     {
-        locMerger.MergeSheet(modDoc);
+        excelMerger.MergeSheet(modDoc);
     }
     catch (const std::exception& e)
     {
@@ -215,7 +215,7 @@ void XmlMerger3::MergeLocalizationDocument(
     }
 
     baseDoc.remove_children();
-    pugi::xml_document newDoc = locMerger.ExportExcelXml();
+    pugi::xml_document newDoc = excelMerger.ExportExcelXml();
 
     for (const pugi::xml_node& i : newDoc.children())
     {

@@ -266,8 +266,8 @@ public:
         //! The entire file will be replaced.
         Replace,
 
-        //! Special merging for localization files.
-        Localization,
+        //! Special merging for Excel 2003 XML spreadsheets files.
+        Excel2003,
     };
 
     static constexpr char XML_NODE_NAME[] = "MergingPolicy";
@@ -288,6 +288,7 @@ public:
             m_IsFileNameRegex = std::move(other.m_IsFileNameRegex);
             m_IsRecursive = std::move(other.m_IsRecursive);
             m_Method = std::move(other.m_Method);
+            m_ExcelKeyColName = std::move(other.m_ExcelKeyColName);
             m_Alloc = std::move(other.m_Alloc);
             m_RootNodeName = std::move(other.m_RootNodeName);
             m_RootNode = std::move(other.m_RootNode);
@@ -313,6 +314,9 @@ public:
     //! @returns The merging method for this file.
     EMethod GetMethod() const { return m_Method; }
 
+    //! @returns The Excel 2003 key column name.
+    const std::string& GetExcelKeyColName() const { return m_ExcelKeyColName; }
+
     //! @returns The root node name.
     const std::string& GetRootNodeName() const { return m_RootNodeName; }
 
@@ -328,6 +332,8 @@ private:
     bool m_IsFileNameRegex = false;
     bool m_IsRecursive = false;
     EMethod m_Method = EMethod::ReadOnly;
+    std::string m_ExcelKeyColName;
+
     MergingPolicyAllocator m_Alloc;
     std::string m_RootNodeName;
     const MergingPolicy3* m_RootNode = nullptr;

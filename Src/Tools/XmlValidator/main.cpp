@@ -153,9 +153,9 @@ int main(int argc, char** argv)
                     return;
                 }
 
-                if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+                if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
                 {
-                    // Can't validate localization files
+                    // Can't validate Excel files
                     output.stats.skipped++;
                     return;
                 }

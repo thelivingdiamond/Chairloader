@@ -451,8 +451,8 @@ void ChairMerger::ProcessXMLFile(
 
         auto parseTags = pugi::parse_default;
 
-        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
-            parseTags = XmlMerger3::LOCALIZATION_PARSE_OPTIONS;
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+            parseTags = XmlMerger3::EXCEL_PARSE_OPTIONS;
 
         // now we have the relative path to the file, we can use this to find the original file, and the base file in the
         // output directory
@@ -480,10 +480,10 @@ void ChairMerger::ProcessXMLFile(
         }
 
         CRY_ASSERT(fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge ||
-            fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Localization);
+            fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003);
 
         // Validate mod file
-        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
         {
             XmlValidator::Context valCtx;
             valCtx.pTypeLib = m_pTypeLib.get();
@@ -504,9 +504,9 @@ void ChairMerger::ProcessXMLFile(
         context.modName = mod.modName;
         context.pTypeLib = m_pTypeLib.get();
 
-        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         {
-            XmlMerger3::MergeLocalizationDocument(context, baseDoc, modDoc, fileMergingPolicy);
+            XmlMerger3::MergeExcelDocument(context, baseDoc, modDoc, fileMergingPolicy);
         }
         else
         {
@@ -514,7 +514,7 @@ void ChairMerger::ProcessXMLFile(
         }
 
         // Validate base file after merging
-        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Localization)
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
         {
             XmlValidator::Context valCtx;
             valCtx.pTypeLib = m_pTypeLib.get();
@@ -567,7 +567,7 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
         const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(relPath);
         CRY_ASSERT(pFilePolicy);
 
-        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         {
             // Localization files don't need finalization
             return;

@@ -41,9 +41,15 @@
                         <xs:enumeration value="readOnly" />
                         <xs:enumeration value="merge" />
                         <xs:enumeration value="replace" />
-                        <xs:enumeration value="localization" />
+                        <xs:enumeration value="excel2003" />
                     </xs:restriction>
                 </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="excelKeyColName" type="xs:string">
+                <xs:annotation><xs:documentation>
+                    Key column name for Excel 2003 method.
+                </xs:documentation></xs:annotation>
             </xs:attribute>
         </xs:complexType>
     </xs:element>

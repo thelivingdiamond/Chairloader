@@ -195,8 +195,8 @@ TEST_P(XmlMerger3SuccessLocTest, SuccessLoc)
     std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
 
-    pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath, XmlMerger3::LOCALIZATION_PARSE_OPTIONS);
-    pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath, XmlMerger3::LOCALIZATION_PARSE_OPTIONS);
+    pugi::xml_document baseDoc = XmlUtils::LoadDocument(basePath, XmlMerger3::EXCEL_PARSE_OPTIONS);
+    pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath, XmlMerger3::EXCEL_PARSE_OPTIONS);
 
     // Merge
     for (auto& i : modPaths)
@@ -206,7 +206,7 @@ TEST_P(XmlMerger3SuccessLocTest, SuccessLoc)
         XmlMergerContext context;
         context.modName = i.first;
         context.pTypeLib = pTypeLibrary.get();
-        XmlMerger3::MergeLocalizationDocument(context, baseDoc, modDoc, policy);
+        XmlMerger3::MergeExcelDocument(context, baseDoc, modDoc, policy);
     }
 
     // Compare with expected

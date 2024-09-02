@@ -16,8 +16,8 @@ XmlValidator::Result XmlValidator::ValidateDocument(
     const pugi::xml_node rootNode = doc.first_child();
     XmlErrorStack errorStack(rootNode.name());
 
-    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
-        throw std::logic_error("Localization files can't be validated");
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+        throw std::logic_error("Excel files can't be validated");
 
     if (rootNode.name() != policy.GetRootNodeName())
     {

@@ -5,7 +5,7 @@
 #include <sstream>
 #include <ChairMerger/XMLMerger2.h>
 #include <gtest/gtest.h>
-#include "LocalizationMerger.h"
+#include "ExcelMerger.h"
 
 // Alternatively called Node Emulsification, Unification, or Coalescence
 void XMLMerger2::FuseXMLNode(pugi::xml_node baseNode, pugi::xml_node modNode) {
@@ -243,7 +243,7 @@ void XMLMerger2::MergeByContents(pugi::xml_node baseNode, pugi::xml_node modNode
 }
 
 void XMLMerger2::MergeBySpreadsheet(pugi::xml_node baseNode, pugi::xml_node modNode, pugi::xml_node originalNode, MergingPolicy policy) {
-    LocalizationMerger locMerger;
+    ExcelMerger locMerger("key");
 
     try
     {

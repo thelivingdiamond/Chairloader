@@ -3,7 +3,8 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
-    method="localization">
+    method="excel2003"
+    excelKeyColName="key">
     <!-- Not actually validated -->
     <Node name="Workbook">
         <Attributes />

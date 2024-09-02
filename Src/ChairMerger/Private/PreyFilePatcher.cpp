@@ -234,7 +234,7 @@ void PreyFilePatcher::PatchDocument(
     pugi::xml_node node = doc.first_child();
     XmlErrorStack errorStack = parentErrorStack.GetChild(node);
 
-    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Localization)
+    if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         throw std::logic_error("Localization files can't be patched");
 
     PatchNode(xmlFilePath, node, policy.GetRootNode(), errorStack);
@@ -265,7 +265,7 @@ void PreyFilePatcher::PatchDirectory(
             continue;
         }
 
-        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Localization)
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         {
             // Localization can't be patched
             continue;

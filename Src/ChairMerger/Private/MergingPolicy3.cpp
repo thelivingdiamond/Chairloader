@@ -6,7 +6,7 @@ static const std::map<std::string, FileMergingPolicy3::EMethod, std::less<>> g_M
     { "readOnly", FileMergingPolicy3::EMethod::ReadOnly },
     { "merge", FileMergingPolicy3::EMethod::Merge },
     { "replace", FileMergingPolicy3::EMethod::Replace },
-    { "localization", FileMergingPolicy3::EMethod::Localization },
+    { "excel2003", FileMergingPolicy3::EMethod::Excel2003 },
 };
 
 //---------------------------------------------------------------------------------
@@ -575,8 +575,18 @@ void FileMergingPolicy3::LoadXmlNode(
 
     SetRecursive(node.attribute("recursive").as_bool(false));
 
-    if (!XmlUtils::TryGetEnumAttribute(node.attribute("method"), g_MethodValues, m_Method))
+    if (pugi::xml_attribute methodAttr = node.attribute("method"))
+        m_Method = XmlUtils::GetEnumAttribute<EMethod>(errorStack, methodAttr, g_MethodValues);
+    else
         m_Method = EMethod::Merge;
+
+    if (m_Method == EMethod::Excel2003)
+    {
+        if (pugi::xml_attribute excelKeyColNameAttr = node.attribute("excelKeyColName"))
+            m_ExcelKeyColName = excelKeyColNameAttr.as_string();
+        else
+            errorStack.ThrowException("excelKeyColName must be set");
+    }
 
     const pugi::xml_node rootNode = node.child("Node");
     const pugi::xml_node rootNodeByType = node.child("NodeByType");
