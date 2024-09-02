@@ -6,6 +6,7 @@
 #include <Prey/CryCore/Platform/platform_impl.inl>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingLibrary3.h>
+#include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 
@@ -46,7 +47,8 @@ int main(int argc, char** argv)
             ("type-lib", po::value<std::string>()->required(), "path to the type library")
             ("merging-lib", po::value<std::string>()->required(), "path to the merging library")
             ("xml-dir", po::value<std::string>()->required(), "path to the XML file directory")
-            ("mode", po::value<std::string>()->required(), "validation mode: prey, mergingBase, mod");
+            ("mode", po::value<std::string>()->required(), "validation mode: prey, mergingBase, mod")
+            ("patch", "apply patches prior to validation");
 
         po::store(po::parse_command_line(argc, argv, desc), vm);
 
@@ -79,6 +81,8 @@ int main(int argc, char** argv)
             validationMode = XmlValidator::EMode::Mod;
         else
             throw std::runtime_error("Invalid --mode");
+
+        bool applyPatches = vm.count("patch") != 0;
 
         // Load type library
         fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
@@ -117,7 +121,7 @@ int main(int argc, char** argv)
         tf::Taskflow taskflow;
         std::vector<ExecutorOutput> executorOutputs(executor.num_workers());
 
-        auto fnProcessXmlFile = [validationMode , &xmlFileList, &xmlDir, &executorOutputs, &executor, &mergingLibrary, &typeLib](size_t fileIdx) {
+        auto fnProcessXmlFile = [validationMode, &xmlFileList, &xmlDir, &executorOutputs, &executor, &mergingLibrary, &typeLib, applyPatches](size_t fileIdx) {
             const fs::path& xmlRelPath = xmlFileList[fileIdx];
             fs::path xmlFullPath = xmlDir / xmlRelPath;
             ExecutorOutput& output = executorOutputs[executor.this_worker_id()];
@@ -145,8 +149,14 @@ int main(int argc, char** argv)
 
                 output.stats.checked++;
 
+                if (applyPatches)
+                {
+                    XmlErrorStack errorStack("FILE");
+                    PreyFilePatcher::PatchDocument(xmlFullPath, xmlDoc, *filePolicy, errorStack);
+                }
+
                 XmlValidator::Context context;
-                context.mode = validationMode;
+                context.mode = applyPatches ? XmlValidator::EMode::MergingBase : validationMode;
                 context.pTypeLib = &typeLib;
 
                 XmlValidator::Result result = XmlValidator::ValidateDocument(
