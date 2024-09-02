@@ -104,6 +104,9 @@ void MergingPolicy3::AppendNode(std::string_view name, bool isRegex, const Mergi
     }
     else
     {
+        if (m_ChildNodes.find(name) != m_ChildNodes.end())
+            throw std::invalid_argument(fmt::format("Node '{}' already exists", name));
+
         m_ChildNodes.emplace(std::string(name), node);
     }
 }
