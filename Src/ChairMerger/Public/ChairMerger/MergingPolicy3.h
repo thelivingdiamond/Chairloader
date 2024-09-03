@@ -40,6 +40,8 @@ class CHAIRMERGER_EXPORT MergingPolicy3
 public:
     static constexpr char XML_NODE_NAME[] = "Node";
 
+    using XsdAliases = std::vector<std::string>;
+
     enum class ECollectionType
     {
         //! No child nodes are allowed.
@@ -162,6 +164,10 @@ public:
     bool IsAllowingUnknownAttributes() const { return m_AllowUnknownAttributes; }
     void SetAllowUnknownAttributes(bool state) { m_AllowUnknownAttributes = state; }
 
+    //! @returns If true, any node name will be allowed without XSD validation.
+    bool IsAllowingAnyChildrenInXsd() const { return m_AllowAnyChildrenInXsd; }
+    void SetAllowAnyChildrenInXsd(bool state) { m_AllowAnyChildrenInXsd = state; }
+
     //! @returns If specified, the node may have text contents of the specified type. If empty, text is not allowed.
     const std::string& GetTextType() const { return m_TextType; }
     void SetTextType(std::string_view textType) { m_TextType = textType; }
@@ -169,6 +175,10 @@ public:
     //! @returns If text is allowed and false, if text is empty, causes a validation error.
     bool IsEmptyTextAllowed() const { return m_TextAllowEmpty; }
     void SetEmptyTextAllowed(bool state) { m_TextAllowEmpty = state; }
+
+    //! @returns XSD aliases.
+    const XsdAliases& GetXsdAliases() const { return m_XsdAliases; }
+    XsdAliases& GetXsdAliases() { return m_XsdAliases; }
 
     //! @returns Patches.
     const Patches& GetPatches() const { return m_Patches; }
@@ -208,6 +218,9 @@ private:
     static constexpr char XML_NODE_ATTRIBUTES[] = "Attributes";
     static constexpr char XML_NODE_ATTRIBUTE[] = "Attribute";
 
+    static constexpr char XML_NODE_XSD_ALIASES[] = "XsdAliases";
+    static constexpr char XML_NODE_ALIAS[] = "Alias";
+
     static constexpr char XML_NODE_PATCHES[] = "Patches";
     static constexpr char XML_NODE_REMOVE_ATTR[] = "RemoveAttribute";
     static constexpr char XML_NODE_ADD_CHILD_INDEX[] = "AddChildIndex";
@@ -232,9 +245,11 @@ private:
 
     std::string m_TextType;
     bool m_TextAllowEmpty = false;
+    bool m_AllowAnyChildrenInXsd = false;
 
     std::vector<Attribute> m_Attributes;
     bool m_AllowUnknownAttributes = false;
+    XsdAliases m_XsdAliases;
     Patches m_Patches;
     Collection m_Collection;
     ChildConstraints m_ChildConstraints;
@@ -243,6 +258,7 @@ private:
     RegexChildNodeList m_ChildNodesRegex;
 
     void LoadXmlAttributes(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlXsdAliases(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlPatches(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlCollection(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
     void LoadXmlChildConstraints(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);

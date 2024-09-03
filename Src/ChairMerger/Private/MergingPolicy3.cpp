@@ -116,6 +116,7 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary
     SetRecursive(node.attribute("recursive").as_bool(false));
     SetTextType(node.attribute("textType").as_string(""));
     SetEmptyTextAllowed(node.attribute("allowEmptyText").as_bool(false));
+    SetAllowAnyChildrenInXsd(node.attribute("allowAnyChildrenInXsd").as_bool(false));
 
     // Reset fields
     m_AllowUnknownAttributes = false;
@@ -124,6 +125,7 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary
     m_ChildConstraints = ChildConstraints();
 
     bool foundAttributes = false;
+    bool foundXsdAliases = false;
     bool foundPatches = false;
     bool foundCollection = false;
     bool foundChildConstraints = false;
@@ -133,6 +135,8 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary
     {
         if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_ATTRIBUTES, &foundAttributes))
             LoadXmlAttributes(childNode, errorStack);
+        else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_XSD_ALIASES, &foundXsdAliases))
+            LoadXmlXsdAliases(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_PATCHES, &foundPatches))
             LoadXmlPatches(childNode, errorStack);
         else if (XmlUtils::EqualsOnceOrThrow(errorStack, childNode, XML_NODE_COLLECTION, &foundCollection))
@@ -181,6 +185,35 @@ void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErro
                 curErrorStack.ThrowException("Read-only attribute must be required");
 
             m_Attributes.emplace_back(attr);
+        }
+        else
+        {
+            XmlUtils::ThrowUnknownNode(errorStack, childNode);
+        }
+
+        i++;
+    }
+}
+
+void MergingPolicy3::LoadXmlXsdAliases(const pugi::xml_node& node, const XmlErrorStack& parentErrorStack)
+{
+    XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_ATTRIBUTES);
+
+    int i = 0;
+
+    for (const pugi::xml_node childNode : node)
+    {
+        if (!strcmp(childNode.name(), XML_NODE_ALIAS))
+        {
+            XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+            childErrorStack.SetIndex(i);
+
+            std::string alias = childNode.text().as_string();
+
+            if (alias.empty())
+                childErrorStack.ThrowException("XSD alias can't be empty");
+
+            m_XsdAliases.push_back(std::move(alias));
         }
         else
         {

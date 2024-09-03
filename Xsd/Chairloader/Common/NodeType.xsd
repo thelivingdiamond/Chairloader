@@ -93,6 +93,26 @@
                 </xs:complexType>
             </xs:element>
 
+            <!-- <XsdAliases> -->
+            <xs:element name="XsdAliases" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:annotation><xs:documentation>
+                        Additional node names that will be added to XSD.
+                    </xs:documentation></xs:annotation>
+
+                    <xs:sequence>
+                        <!-- <Alias> -->
+                        <xs:element name="Alias" minOccurs="0" maxOccurs="unbounded">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
             <!-- <Patches> -->
             <xs:element name="Patches" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
@@ -352,6 +372,12 @@
         <xs:attribute name="allowEmptyText" type="xs:boolean" default="false">
             <xs:annotation><xs:documentation>
                 If text is allowed and false, if text is empty, causes a validation error.
+            </xs:documentation></xs:annotation>
+        </xs:attribute>
+
+        <xs:attribute name="allowAnyChildrenInXsd" type="xs:boolean" default="false">
+            <xs:annotation><xs:documentation>
+                If true, any node name will be allowed without XSD validation.
             </xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:complexType>
