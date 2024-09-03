@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
     method="excel2003"
-    excelKeyColName="AI state">
+    excelKeyColName="ai state">
     <!-- Not actually validated -->
     <Node name="Workbook">
         <Attributes />
