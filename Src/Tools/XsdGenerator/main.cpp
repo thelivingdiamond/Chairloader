@@ -144,7 +144,7 @@ void CreateTypeForPolicy(
     // Child nodes
     pugi::xml_node choice;
 
-    for (auto& [childNodeName, childNodePolicy] : policy.GetChildNodes())
+    auto fnAddNode = [&](const std::string& childNodeName, const MergingPolicy3& childNodePolicy)
     {
         if (!choice)
         {
@@ -157,7 +157,7 @@ void CreateTypeForPolicy(
         element.append_attribute("minOccurs").set_value("0");
         element.append_attribute("maxOccurs").set_value("unbounded");
 
-        auto it = nodeTypeMap.find(childNodePolicy);
+        auto it = nodeTypeMap.find(&childNodePolicy);
 
         if (it != nodeTypeMap.end())
         {
@@ -168,11 +168,41 @@ void CreateTypeForPolicy(
         {
             // Node
             pugi::xml_node elementType = element.append_child();
-            CreateTypeForPolicy(nodeTypeMap, *childNodePolicy, &policy.GetCollection(), elementType);
+            CreateTypeForPolicy(nodeTypeMap, childNodePolicy, &policy.GetCollection(), elementType);
+        }
+    };
+
+    // Named child nodes
+    for (auto& [childNodeName, childNodePolicy] : policy.GetChildNodes())
+    {
+        if (childNodeName.empty())
+            throw std::logic_error("Attribute can't be empty");
+
+        fnAddNode(childNodeName, *childNodePolicy);
+
+        // Aliases
+        for (const std::string& aliasName : childNodePolicy->GetXsdAliases())
+        {
+            fnAddNode(aliasName, *childNodePolicy);
         }
     }
 
-    // TODO 2024-09-03: Regex nodes
+    // Regex child nodes
+    for (auto& [childNodeRegex, childNodePolicy] : policy.GetChildNodesRegex())
+    {
+        // Aliases
+        for (const std::string& aliasName : childNodePolicy->GetXsdAliases())
+        {
+            fnAddNode(aliasName, *childNodePolicy);
+        }
+    }
+
+    if (policy.IsAllowingAnyChildrenInXsd())
+    {
+        pugi::xml_node any = choice.append_child("xs:any");
+        any.append_attribute("processContents").set_value("skip");
+        any.append_attribute("minOccurs").set_value("0");
+    }
 
     // Attributes
     for (const MergingPolicy3::Attribute& attr : policy.GetAttributes())
@@ -199,8 +229,15 @@ void CreateTypeForPolicy(
 
             if (it != pParentCollection->keyChildAttributes.end())
             {
-                attribute.append_attribute("use").set_value("required");
-                docText += "[KEY] ";
+                if (attr.required)
+                {
+                    attribute.append_attribute("use").set_value("required");
+                    docText += "[KEY] ";
+                }
+                else
+                {
+                    docText += "[KEY-opt] ";
+                }
             }
         }
 
