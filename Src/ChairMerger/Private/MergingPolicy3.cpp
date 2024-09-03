@@ -174,6 +174,9 @@ void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErro
             attr.generated = childNode.attribute("generated").as_bool(false);
             attr.comment = childNode.attribute("comment").as_string();
 
+            if (std::find_if(m_Attributes.begin(), m_Attributes.end(), [&](const Attribute& x) { return x.name == attr.name; }) != m_Attributes.end())
+                curErrorStack.ThrowException(fmt::format("Duplicate attribue '{}'", attr.name));
+
             if (attr.readOnly && !attr.required)
                 curErrorStack.ThrowException("Read-only attribute must be required");
 
