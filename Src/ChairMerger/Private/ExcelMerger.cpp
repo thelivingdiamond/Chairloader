@@ -125,8 +125,15 @@ void ExcelTable::ParseFirstRow(std::string_view keyName, Row&& row)
         {
             // Found the key
             if (keyColumnIdx != -1)
-                throw ExcelMergingException("Table has multiple key columns", 0, colIdx);
-            keyColumnIdx = colIdx;
+            {
+                // Allow multiple keys if key is empty
+                if (!keyName.empty())
+                    throw ExcelMergingException("Table has multiple key columns", 0, colIdx);
+            }
+            else
+            {
+                keyColumnIdx = colIdx;
+            }
         }
 
         colIdx++;

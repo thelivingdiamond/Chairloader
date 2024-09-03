@@ -29,7 +29,7 @@ void XmlMerger3::MergeDocument(
         throw std::logic_error("Can't use MergeDocument when replacing");
 
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
-        throw std::logic_error("Use MergeLocalizationDocument instead");
+        throw std::logic_error("Use MergeExcelDocument instead");
 
     CRY_ASSERT(policy.GetMethod() == FileMergingPolicy3::EMethod::Merge);
 
