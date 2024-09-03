@@ -1370,5 +1370,133 @@
                 </Node>
             </ChildNodes>
         </NodeType>
+
+        <!-- FXEffect -->
+        <NodeType name="FXEffect">
+            <Attributes>
+                <Attribute name="name" type="string" />
+                <Attribute name="delay" type="float" />
+                <Attribute name="ch:index" type="int32" generated="true" />
+            </Attributes>
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="Rolling" type="FXEffect" />
+                <NodeByType name="Sliding" type="FXEffect" />
+                <NodeByType name="RandEffect" type="FXEffect" />
+
+                <Node name="Audio">
+                    <Attributes>
+                        <Attribute name="trigger" type="string" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Switch">
+                            <Attributes>
+                                <Attribute name="name" type="string" required="true" />
+                                <Attribute name="state" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="GameNoise">
+                    <Attributes>
+                        <Attribute name="type" type="ArkGameNoiseTypeId" required="true" />
+                        <Attribute name="loudness" type="ArkGameNoiseLoudnessId" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                </Node>
+
+                <Node name="Particle">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                    
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Name">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="particleName" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="Direction">
+                            <Attributes>
+                                <Attribute name="directionType" type="string" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Decal">
+                    <Attributes allowUnknown="true">
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Name">
+                            <Attributes>
+                                <Attribute name="materialPath" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="Material">
+                            <Attributes>
+                                <Attribute name="materialPath" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- MovementTransition -->
+        <NodeType name="MovementTransition">
+            <Attributes allowUnknown="true">
+                <Attribute name="animGraphSignal" type="string" required="true" readOnly="true" />
+                <Attribute name="stance" type="string" required="true" readOnly="true" />
+                <Attribute name="pseudoSpeed" type="string" required="true" readOnly="true" />
+                <Attribute name="minDist" type="float" />
+                <Attribute name="maxDist" type="float" />
+                <Attribute name="prepareDist" type="float" />
+                <Attribute name="travelAngle" type="float" />
+                <Attribute name="travelAngleTolerance" type="float" />
+                <Attribute name="prepareTravelAngleTolerance" type="float" />
+                <Attribute name="jukeAngle" type="float" />
+                <Attribute name="jukeAngleTolerance" type="float" />
+                <Attribute name="targetTravelAngle" type="float" />
+                <Attribute name="targetTravelAngleTolerance" type="float" />
+                <Attribute name="exit2ndSeg" type="float" />
+                <Attribute name="bodyTurnAngle" type="float" />
+                <Attribute name="bodyTurnAngleTolerance" type="float" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- SOTemplateParam -->
+        <NodeType name="SOTemplateParam">
+            <Attributes>
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+                <Attribute name="caption" type="string" allowEmpty="true" />
+                <Attribute name="visible" type="boolInt" />
+                <Attribute name="editable" type="boolInt" />
+                <Attribute name="value" type="string" allowEmpty="true" />
+                <Attribute name="help" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>

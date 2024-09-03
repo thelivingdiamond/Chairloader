@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkSpaceSettings">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Sun">
+                <Attributes>
+                    <Attribute name="Angles" type="Ang3" required="true" />
+                    <Attribute name="Speed" type="float" required="true" />
+                    <Attribute name="Scale" type="float" required="true" />
+                    <Attribute name="Intensity" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Stars">
+                <Attributes>
+                    <Attribute name="RotationOffset" type="Ang3" required="true" />
+                    <Attribute name="Intensity" type="float" required="true" />
+                    <Attribute name="Scale" type="float" required="true" />
+                    <Attribute name="CountPercentage" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Earth">
+                <Attributes>
+                    <Attribute name="SunOffsetAngles" type="Ang3" />
+                    <Attribute name="WorldOffsetAngles" type="Ang3" />
+                    <Attribute name="Orientation" type="Ang3" required="true" />
+                    <Attribute name="RotationSpeed" type="float" required="true" />
+                    <Attribute name="Distance" type="float" required="true" />
+                    <Attribute name="Scale" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Moon">
+                <Attributes>
+                    <Attribute name="SunOffsetAngles" type="Ang3" />
+                    <Attribute name="WorldOffsetAngles" type="Ang3" />
+                    <Attribute name="Orientation" type="Ang3" required="true" />
+                    <Attribute name="RotationSpeed" type="float" required="true" />
+                    <Attribute name="Distance" type="float" required="true" />
+                    <Attribute name="Scale" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="HDR">
+                <Attributes>
+                    <Attribute name="shoulderScale" type="float" required="true" />
+                    <Attribute name="midtonesScale" type="float" required="true" />
+                    <Attribute name="toeScale" type="float" required="true" />
+                    <Attribute name="whitepoint" type="float" required="true" />
+                    <Attribute name="saturation" type="float" required="true" />
+                    <Attribute name="colorBalance" type="Vec3" required="true" />
+                    <Attribute name="sceneKey" type="float" required="true" />
+                    <Attribute name="minExposure" type="float" required="true" />
+                    <Attribute name="maxExposure" type="float" required="true" />
+                    <Attribute name="evMin" type="float" required="true" />
+                    <Attribute name="evMax" type="float" required="true" />
+                    <Attribute name="evAutoCompensation" type="float" required="true" />
+                    <Attribute name="bloomAmount" type="float" required="true" />
+                    <Attribute name="hdrMultiplier" type="float" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

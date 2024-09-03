@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="SmartObjectsLibrary">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="sName" />
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="SmartObject">
+                <Attributes allowUnknown="true">
+                    <Attribute name="sName" type="string" required="true" readOnly="true" />
+                    <Attribute name="iTemplateId" type="int32" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Class">
+                <Attributes allowUnknown="true">
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="State">
+                <Attributes allowUnknown="true">
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

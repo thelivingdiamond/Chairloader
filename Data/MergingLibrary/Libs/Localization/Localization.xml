@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml">
+    <Node name="localization">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name=".*" nameRegex="true">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildText />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="directory" textType="string">
+                        <Attributes />
+                    </Node>
+                    <Node name="entry" textType="string">
+                        <Attributes />
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

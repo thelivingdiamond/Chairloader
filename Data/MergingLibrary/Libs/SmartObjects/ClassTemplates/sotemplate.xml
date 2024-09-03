@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml">
+    <Node name="sotemplate">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="object">
+                <Attributes>
+                    <Attribute name="model" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="helper">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="pos" type="Vec3" />
+                    <Attribute name="rot" type="Quat" />
+                    <Attribute name="radius" type="float" />
+                    <Attribute name="projectOnGround" type="boolInt" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
