@@ -19,11 +19,25 @@
                     <Attribute name="name" type="string" />
                 </Attributes>
 
+                <XsdAliases>
+                    <Alias>Always</Alias>
+                    <Alias>GameMode</Alias>
+                </XsdAliases>
+
                 <Collection type="nodeDict" />
 
                 <ChildNodes>
                     <Node name=".*" nameRegex="true">
                         <Attributes />
+
+                        <XsdAliases>
+                            <Alias>CDFs</Alias>
+                            <Alias>CGFs</Alias>
+                            <Alias>Particles</Alias>
+                            <Alias>ADBs</Alias>
+                            <Alias>FlashTexs</Alias>
+                            <Alias>GFXs</Alias>
+                        </XsdAliases>
 
                         <!-- Some files are duplicated -->
                         <Collection type="dict" allowDuplicates="true">
@@ -37,6 +51,15 @@
                                 <Attributes>
                                     <Attribute name="name" type="string" required="true" readOnly="true" />
                                 </Attributes>
+
+                                <XsdAliases>
+                                    <Alias>CDF</Alias>
+                                    <Alias>CGF</Alias>
+                                    <Alias>Particle</Alias>
+                                    <Alias>ADB</Alias>
+                                    <Alias>FlashTex</Alias>
+                                    <Alias>GFX</Alias>
+                                </XsdAliases>
                             </Node>
                         </ChildNodes>
                     </Node>

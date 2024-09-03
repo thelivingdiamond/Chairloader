@@ -3,12 +3,12 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
-    <Node name="FontConfig">
+    <Node name="FontConfig" allowAnyChildrenInXsd="true">
         <Attributes />
         <Collection type="nodeDict" />
 
         <ChildNodes>
-            <Node name=".*" nameRegex="true">
+            <Node name=".*" nameRegex="true" allowAnyChildrenInXsd="true">
                 <Attributes>
                     <Attribute name="fontlib" type="string" required="true" />
                 </Attributes>

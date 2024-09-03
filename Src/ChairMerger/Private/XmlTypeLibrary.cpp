@@ -455,6 +455,7 @@ void XmlTypeLibrary::LoadXmlNodeTypes(const pugi::xml_node& node, const XmlError
     {
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
         std::string_view name = XmlUtils::GetRequiredAttr(errorStack, childNode, "name").as_string();
+        childErrorStack.SetId("name", name);
 
         auto it = m_NodeTypes.find(name);
         it->second->LoadXmlNode(&m_NodeTypeAllocator, this, childNode, childErrorStack);

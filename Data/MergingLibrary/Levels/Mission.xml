@@ -496,6 +496,15 @@
                                                 <Attributes>
                                                     <Attribute name="ObstructSound" type="boolInt" required="true" />
                                                 </Attributes>
+
+                                                <XsdAliases>
+                                                    <Alias>Side1</Alias>
+                                                    <Alias>Side2</Alias>
+                                                    <Alias>Side3</Alias>
+                                                    <Alias>Side4</Alias>
+                                                    <Alias>Side5</Alias>
+                                                    <Alias>Side6</Alias>
+                                                </XsdAliases>
                                             </Node>
                                         </ChildNodes>
                                     </Node>
@@ -659,6 +668,12 @@
                             <Node name="Properties(2?)" nameRegex="true" recursive="true">
                                 <!-- Attributes and child nodes depend on particular entity class so allow everything -->
                                 <Attributes allowUnknown="true" />
+
+                                <XsdAliases>
+                                    <Alias>Properties</Alias>
+                                    <Alias>Properties2</Alias>
+                                </XsdAliases>
+
                                 <Collection type="nodeDict" />
                             </Node>
                         </ChildNodes>

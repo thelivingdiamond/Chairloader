@@ -31,6 +31,12 @@
                             <Attribute name="ps4pad" type="boolInt" />
                             <Attribute name="steam" type="boolInt" />
                         </Attributes>
+
+                        <XsdAliases>
+                            <Alias>PC</Alias>
+                            <Alias>XboxOne</Alias>
+                            <Alias>PS4</Alias>
+                        </XsdAliases>
                     </Node>
                 </ChildNodes>
             </Node>

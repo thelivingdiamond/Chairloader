@@ -44,6 +44,8 @@
                             <Attribute name="signalInput" type="uint64" readOnly="true" required="true" />
                             <Attribute name="signalOutput" type="uint64" readOnly="true"  required="true" />
                         </Attributes>
+
+                        <XsdAliases />
                     </Node>
                 </ChildNodes>
             </Node>

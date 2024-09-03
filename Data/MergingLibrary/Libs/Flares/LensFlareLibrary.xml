@@ -24,7 +24,7 @@
         </ChildConstraints>
 
         <ChildNodes>
-            <NodeByType name="FlareItem" type="LestFlareItem" />
+            <NodeByType name="FlareItem" type="LensFlareItem" />
         </ChildNodes>
     </Node>
 </MergingPolicy>

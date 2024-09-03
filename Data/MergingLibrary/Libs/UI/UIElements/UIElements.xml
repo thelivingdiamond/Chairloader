@@ -113,6 +113,11 @@
 
                     <Node name="(E|e)vents" nameRegex="true">
                         <Attributes />
+
+                        <XsdAliases>
+                            <Alias>Events</Alias>
+                            <Alias>events</Alias>
+                        </XsdAliases>
                         
                         <Collection type="dict">
                             <PrimaryKey>

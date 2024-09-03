@@ -140,6 +140,11 @@
 
                     <!-- Attributes and child nodes depend on particular entity class so allow everything -->
                     <Attributes allowUnknown="true" />
+
+                    <XsdAliases>
+                        <Alias>Properties</Alias>
+                        <Alias>Properties2</Alias>
+                    </XsdAliases>
                     
                     <Collection type="nodeDict" />
                 </Node>
@@ -1148,6 +1153,14 @@
                                 <Attribute name="analogCompareVal" type="float" />
                                 <Attribute name="analogCompareOp" type="string" />
                             </Attributes>
+
+                            <XsdAliases>
+                                <Alias>keyboard</Alias>
+                                <Alias>xboxpad</Alias>
+                                <Alias>ps4pad</Alias>
+                                <Alias>steam</Alias>
+                            </XsdAliases>
+
                             <Collection type="dict">
                                 <PrimaryKey>
                                     <ChildAttribute name="input" />
@@ -1170,8 +1183,8 @@
             </ChildNodes>
         </NodeType>
 
-        <!-- FlareItem -->
-        <NodeType name="LestFlareItem">
+        <!-- LensFlareItem -->
+        <NodeType name="LensFlareItem">
             <Attributes>
                 <Attribute name="Name" type="string" required="true" readOnly="true" />
                 <Attribute name="Type" type="string" required="true" />
@@ -1191,9 +1204,9 @@
             </Collection>
 
             <ChildNodes>
-                <NodeByType name="FlareItem" type="LestFlareItem" />
+                <NodeByType name="FlareItem" type="LensFlareItem" />
                 
-                <Node name="Params">
+                <Node name="Params" allowAnyChildrenInXsd="true">
                     <Attributes>
                         <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                     </Attributes>
@@ -1211,6 +1224,8 @@
                             <Attributes allowUnknown="true">
                                 <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                             </Attributes>
+
+                            <XsdAliases />
                         </Node>
                     </ChildNodes>
                 </Node>

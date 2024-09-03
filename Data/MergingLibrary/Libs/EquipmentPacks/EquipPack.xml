@@ -13,7 +13,7 @@
         <Collection type="nodeDict" />
 
         <ChildNodes>
-            <Node name="Items">
+            <Node name="Items" allowAnyChildrenInXsd="true">
                 <Attributes />
 
                 <Patches>

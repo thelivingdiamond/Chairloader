@@ -19,7 +19,7 @@
                         <Collection type="nodeDict" />
 
                         <ChildNodes>
-                            <Node name="Children">
+                            <Node name="Children" allowAnyChildrenInXsd="true">
                                 <Attributes />
         
                                 <Patches>
@@ -31,10 +31,12 @@
                                 </Collection>
 
                                 <ChildNodes>
-                                    <Node name=".*" nameRegex="true">
+                                    <Node name=".*" nameRegex="true" allowAnyChildrenInXsd="true">
                                         <Attributes allowUnknown="true">
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>
+
+                                        <XsdAliases />
                                         
                                         <Collection type="nodeDict" />
 
@@ -151,8 +153,9 @@
 
                                             <!-- Allow text type because Ark/AI/AiTrees/NightmareAiTree.xml -->
                                             <!-- has an error in ArkAiTreeNightmareCombatNode node -->
-                                            <Node name=".*" nameRegex="true" recursive="true" textType="string" allowEmptyText="true" >
+                                            <Node name=".*" nameRegex="true" recursive="true" textType="string" allowEmptyText="true" allowAnyChildrenInXsd="true" >
                                                 <Attributes allowUnknown="true" />
+                                                <XsdAliases />
                                                 <Collection type="nodeDict" />
                                             </Node>
                                         </ChildNodes>
