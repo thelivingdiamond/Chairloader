@@ -337,12 +337,12 @@
                             <Attribute name="Pos" type="Vec3" />
                             <Attribute name="Rotate" type="Quat" />
                             <Attribute name="Scale" type="Vec3" required="true" />
+                            <Attribute name="ViewDistRatio" type="float" />
 
                             <!-- Type: Decal -->
                             <Attribute name="Material" type="string" />
                             <Attribute name="ProjectionType" type="int32" />
                             <Attribute name="Deferred" type="boolInt" />
-                            <Attribute name="ViewDistRatio" type="float" />
                             <Attribute name="SortPriority" type="int32" />
                             <Attribute name="ProjectionDepth" type="float" />
                             <Attribute name="PoofOnCollision" type="boolInt" />
@@ -354,7 +354,6 @@
                             <Attribute name="AffectedBySun" type="boolInt" />
                             <Attribute name="IgnoreSkyColor" type="boolInt" />
                             <Attribute name="IgnoreGI" type="boolInt" />
-                            <Attribute name="ViewDistRatio" type="float" />
                             <Attribute name="SkyOnly" type="boolInt" />
                             <Attribute name="OceanIsVisible" type="boolInt" />
                             <Attribute name="UseDeepness" type="boolInt" />

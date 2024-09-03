@@ -22,7 +22,6 @@
                     <Attribute name="HeightmapMaxHeight" type="float" required="true" />
                     <Attribute name="WaterLevel" type="float" required="true" />
                     <Attribute name="TerrainSectorSizeInMeters" type="float" required="true" />
-                    <Attribute name="CreationDate" type="string" required="true" />
                 </Attributes>
             </Node>
 

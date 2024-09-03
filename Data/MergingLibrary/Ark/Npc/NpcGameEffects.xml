@@ -357,8 +357,6 @@
                     <Attribute name="id" type="int32" required="true" readOnly="true" />
                     <Attribute name="name" type="string" required="true" readOnly="true" />
 
-                    <Attribute name="id" type="float" required="true" />
-                    <Attribute name="name" type="float" required="true" />
                     <Attribute name="stunSignalModifierId" type="ArkSignalModifierId" required="true" />
                     <Attribute name="stunVfxDuration" type="float" required="true" />
                     <Attribute name="bStunRagdoll" type="boolString" required="true" />
