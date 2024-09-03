@@ -1790,5 +1790,26 @@
                 </Node>
             </ChildNodes>
         </NodeType>
+
+        <!-- ChannelConfig -->
+        <NodeType name="ChannelConfig">
+            <Attributes allowUnknown="true">
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+                <Attribute name="minSilence" type="float" />
+                <Attribute name="flushSilence" type="float" />
+                <Attribute name="type" type="string" />
+                <Attribute name="priority" type="int32" />
+            </Attributes>
+                
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="name" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="Channel" type="ChannelConfig" />
+            </ChildNodes>
+        </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>

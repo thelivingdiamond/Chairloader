@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ItemPackages">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="item" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="package">
+                <Attributes>
+                    <Attribute name="display_name" type="string" required="true" />
+                    <Attribute name="item" type="string" required="true" readOnly="true" />
+                    <Attribute name="setup" type="string" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
