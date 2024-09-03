@@ -153,18 +153,11 @@ int main(int argc, char** argv)
                     return;
                 }
 
-                if (filePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
-                {
-                    // Can't validate Excel files
-                    output.stats.skipped++;
-                    return;
-                }
-
                 output.stats.checked++;
 
                 std::string patchError;
 
-                if (applyPatches)
+                if (filePolicy->GetMethod() != FileMergingPolicy3::EMethod::Excel2003 && applyPatches)
                 {
                     try
                     {
@@ -191,6 +184,7 @@ int main(int argc, char** argv)
                     auto& err = result.errors.emplace_back(XmlValidator::ValidationError());
                     err.path.push_back("Patch");
                     err.message = patchError;
+                    result.isValid = false;
                 }
 
                 if (!result)

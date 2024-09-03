@@ -7,7 +7,7 @@ ExcelMergingException::ExcelMergingException(const std::string& message, int row
 
 std::string ExcelMergingException::FormatMsg(const std::string& message, int rowIndex, int cellIndex)
 {
-    std::string outMsg = "Localization error: " + message;
+    std::string outMsg = "Excel error: " + message;
 
     if (rowIndex != -1)
         outMsg += fmt::format("\n    Row: {}", rowIndex + 1);

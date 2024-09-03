@@ -5,6 +5,7 @@
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
+#include "ExcelMerger.h"
 #include "MetaAttributes.h"
 
 XmlValidator::Result XmlValidator::ValidateDocument(
@@ -17,7 +18,7 @@ XmlValidator::Result XmlValidator::ValidateDocument(
     XmlErrorStack errorStack(rootNode.name());
 
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
-        throw std::logic_error("Excel files can't be validated");
+        return ValidateExcelDocument(context, doc, policy);
 
     if (rootNode.name() != policy.GetRootNodeName())
     {
@@ -444,6 +445,45 @@ void XmlValidator::ValidateConstraints(
 
         i++;
     }
+}
+
+XmlValidator::Result XmlValidator::ValidateExcelDocument(const Context& context, const pugi::xml_document& doc, const FileMergingPolicy3& policy)
+{
+    Result result;
+
+    ExcelTable excelTable;
+
+    try
+    {
+        excelTable.ReadTable(policy.GetExcelKeyColName(), doc);
+    }
+    catch (const std::exception& e)
+    {
+        AddError(result, XmlErrorStack("excelTable.ReadTable"), e.what());
+        return result;
+    }
+
+    // Check for duplicate keys
+    std::set<std::string_view> keys;
+
+    for (const ExcelTable::Row& row : excelTable.rows)
+    {
+        std::string_view key = row[excelTable.keyColumnIdx];
+
+        if (key.empty())
+            continue;
+
+        if (keys.find(key) != keys.end())
+        {
+            AddError(result, XmlErrorStack("Table"), fmt::format("Duplicate key {}", key));
+        }
+        else
+        {
+            keys.insert(key);
+        }
+    }
+
+    return result;
 }
 
 void XmlValidator::AddError(Result& result, const XmlErrorStack& errorStack, std::string_view message, std::string_view attribute)

@@ -135,6 +135,12 @@ private:
         const XmlErrorStack& errorStack,
         Result& result);
 
+    //! Validates an Excel document.
+    static Result ValidateExcelDocument(
+        const Context& context,
+        const pugi::xml_document& doc,
+        const FileMergingPolicy3& policy);
+
     static void AddError(
         Result& result,
         const XmlErrorStack& errorStack,

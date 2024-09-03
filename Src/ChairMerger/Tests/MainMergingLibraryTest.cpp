@@ -59,11 +59,8 @@ TEST(MainMergingLibraryTest, TestMerging)
         valCtx.mode = XmlValidator::EMode::MergingBase;
         valCtx.pTypeLib = &typeLibrary;
 
-        if (pPolicy->GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
-        {
-            validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
-            ASSERT_TRUE(validationResult) << "Input file is invalid:\n" << validationResult.ToString("  ");
-        }
+        validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
+        ASSERT_TRUE(validationResult) << "Input file is invalid:\n" << validationResult.ToString("  ");
 
         // Merge
         XmlMergerContext context;
@@ -75,12 +72,9 @@ TEST(MainMergingLibraryTest, TestMerging)
         else
             XmlMerger3::MergeDocument(context, baseDoc, modDoc, *pPolicy);
 
-        if (pPolicy->GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
-        {
-            // Validate output
-            validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
-            ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
-        }
+        // Validate output
+        validationResult = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
+        ASSERT_TRUE(validationResult) << "Output after merging is invalid:\n" << validationResult.ToString("  ");
 
         // Compare with expected
         EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, baseDoc));
