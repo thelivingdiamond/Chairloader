@@ -276,7 +276,7 @@ void PreyFilePatcher::PatchDirectory(
 
         // Patch
         auto [xmlDoc, errorStack] = XmlUtils::LoadDocumentWithStack(fullPath);
-        PatchDocument(fullPath, xmlDoc, *pFilePolicy, errorStack);
+        PatchDocument(fullPath, xsdRefPath, xmlDoc, *pFilePolicy, errorStack);
 
         // Validate
         XmlValidator::Context context;

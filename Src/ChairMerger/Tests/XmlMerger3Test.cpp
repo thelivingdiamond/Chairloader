@@ -19,7 +19,7 @@ protected:
     {
         FileMergingPolicy3 policy;
         auto [policyDoc, errorStack] = XmlUtils::LoadDocumentWithStack(path);
-        policy.LoadXmlNode(pTypeLib, policyDoc.first_child(), errorStack);
+        policy.LoadXmlNode(fs::path(), pTypeLib, policyDoc.first_child(), errorStack);
         return policy;
     }
 

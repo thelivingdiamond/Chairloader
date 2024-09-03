@@ -96,8 +96,9 @@ void MergingLibrary3::AddNode(const pugi::xml_node& node, const XmlErrorStack& e
 {
     CheckPathRelative(relPath);
     FileMergingPolicy3Ptr filePolicy = std::make_unique<FileMergingPolicy3>();
-    filePolicy->LoadXmlNode(m_pTypeLib, node, errorStack);
+    filePolicy->LoadXmlNode(relPath, m_pTypeLib, node, errorStack);
 
+    m_PathMap.emplace(relPath, filePolicy.get());
 
     if (filePolicy->IsRegexName())
     {

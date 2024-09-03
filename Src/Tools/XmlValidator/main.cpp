@@ -162,7 +162,7 @@ int main(int argc, char** argv)
                     try
                     {
                         XmlErrorStack errorStack("FILE");
-                        PreyFilePatcher::PatchDocument(xmlFullPath, xmlDoc, *filePolicy, errorStack);
+                        PreyFilePatcher::PatchDocument(xmlFullPath, fs::path(), xmlDoc, *filePolicy, errorStack);
                     }
                     catch (const std::exception& e)
                     {
@@ -313,6 +313,8 @@ int main(int argc, char** argv)
 
         auto timeElapsed = endTime - startTime;
         fmt::println("Time elapsed: {:.3f} s", std::chrono::duration_cast<std::chrono::milliseconds>(timeElapsed).count() / 1000.0);
+
+        return combinedOutput.stats.failed > 0 ? 1 : 0;
     }
     catch (const std::exception& e)
     {

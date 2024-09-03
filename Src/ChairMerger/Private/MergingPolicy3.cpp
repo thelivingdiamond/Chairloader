@@ -564,11 +564,14 @@ void FileMergingPolicy3::SetFileName(std::string_view fileName, bool isRegex)
 }
 
 void FileMergingPolicy3::LoadXmlNode(
+    const fs::path& relPath,
     XmlTypeLibrary* pTypeLib,
     const pugi::xml_node& node,
     const XmlErrorStack& parentErrorStack)
 {
     XmlErrorStack errorStack = parentErrorStack.GetChild(XML_NODE_NAME);
+
+    m_RelPath = relPath;
 
     if (pugi::xml_attribute fileNameRegexAttr = node.attribute("fileNameRegex"))
         SetFileName(fileNameRegexAttr.as_string(), true);

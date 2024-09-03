@@ -214,7 +214,7 @@ TEST(FileMergingPolicy3, LoadFromXml)
 
     auto [policyXml, errorStack] = XmlUtils::LoadDocumentWithStack("Testing/MergingPolicy3/LoadFromXml.xml");
     FileMergingPolicy3 actual;
-    actual.LoadXmlNode(nullptr, policyXml.first_child(), errorStack);
+    actual.LoadXmlNode(fs::path(), nullptr, policyXml.first_child(), errorStack);
 
     EXPECT_EQ(actual.GetFileName(), R"((In)?validRegex\.xml)");
     EXPECT_EQ(actual.IsRegexName(), true);

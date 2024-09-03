@@ -8,7 +8,7 @@ static FileMergingPolicy3 LoadFilePolicy(const fs::path& path)
 {
     FileMergingPolicy3 policy;
     auto [policyDoc, errorStack] = XmlUtils::LoadDocumentWithStack(path);
-    policy.LoadXmlNode(nullptr, policyDoc.first_child(), errorStack);
+    policy.LoadXmlNode(fs::path(), nullptr, policyDoc.first_child(), errorStack);
     return policy;
 }
 
@@ -27,7 +27,7 @@ TEST(PreyFilePatcherTest, PatchNode)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Patch
-    PreyFilePatcher::PatchDocument(basePath, baseDoc, policy, errorStack);
+    PreyFilePatcher::PatchDocument(basePath, fs::path(), baseDoc, policy, errorStack);
 
     // Validate output
     XmlValidator::Context valCtx;
