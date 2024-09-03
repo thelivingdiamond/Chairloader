@@ -69,6 +69,12 @@ public:
             value.remove_suffix(1);
         }
 
+        if ((std::is_floating_point_v<T> || std::is_signed_v<T>) && value[0] == '+')
+        {
+            // Remove leading plus
+            value.remove_prefix(1);
+        }
+
         T number{};
         const char* begin = value.data();
         const char* end = value.data() + value.size();
