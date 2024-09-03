@@ -263,6 +263,22 @@
                                         <Attribute name="Height" type="float" required="true" />
                                     </Attributes>
                                 </Node>
+
+                                <Node name="ResizeBorder">
+                                    <Attributes>
+                                        <Attribute name="X" type="float" required="true" />
+                                        <Attribute name="Y" type="float" required="true" />
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
+
+                                <Node name="NodeSize">
+                                    <Attributes>
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
                             </ChildNodes>
                         </Node>
                     </ChildNodes>
@@ -1497,6 +1513,282 @@
                 <Attribute name="value" type="string" allowEmpty="true" />
                 <Attribute name="help" type="string" allowEmpty="true" />
             </Attributes>
+        </NodeType>
+
+        <!-- PrefabObject -->
+        <NodeType name="PrefabObject">
+            <Attributes allowUnknown="true">
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                <Attribute name="Group" type="GuidWithBraces" />
+                <Attribute name="Pos" type="Vec3" />
+                <Attribute name="Rotate" type="Quat" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="Sequence" type="MovieSequence" />
+                <NodeByType name="FlowGraph" type="FlowGraph" />
+
+                <Node name="Objects">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="Object" type="PrefabObject" />
+                    </ChildNodes>
+                </Node>
+
+                <Node name="CollisionFiltering">
+                    <Attributes />
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Type">
+                            <Attributes allowUnknown="true" />
+                        </Node>
+                        <Node name="Ignore">
+                            <Attributes allowUnknown="true" />
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Properties" recursive="true">
+                    <Attributes allowUnknown="true" />
+                    <Collection type="nodeDict" />
+                </Node>
+
+                <Node name="Properties2" recursive="true">
+                    <Attributes allowUnknown="true" />
+                    <Collection type="nodeDict" />
+                </Node>
+                
+                <Node name="EntityLinks">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="TargetId" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Link">
+                            <Attributes>
+                                <Attribute name="TargetId" type="GuidWithBraces" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" allowEmpty="true" />
+                                <Attribute name="RelRot" type="Quat" />
+                                <Attribute name="RelPos" type="Vec3" />
+                                <Attribute name="Version" type="int32" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="SoundData">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="Points">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Point">
+                            <Attributes>
+                                <Attribute name="Pos" type="Vec3" required="true" />
+                                <Attribute name="ObstructSound" type="boolInt" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Entities">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Entity">
+                            <Attributes>
+                                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Brush">
+                    <Attributes>
+                        <Attribute name="DesignerModeFlags" type="uint32" required="true" />
+                        <Attribute name="SubdivisionLevel" type="int32" required="true" />
+                        <Attribute name="TessFactor" type="int32" required="true" />
+                        <Attribute name="MirrorPlaneNormal" type="Vec3" required="true" />
+                        <Attribute name="MirrorPlaneDistance" type="float" required="true" />
+                    </Attributes>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildName />
+                            <ChildAttribute name="GUID" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Region">
+                            <Attributes>
+                                <Attribute name="GUID" type="GuidWithBraces" required="true" readOnly="true" />
+                                <Attribute name="BinaryData" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="SmoothingGroups">
+                            <Attributes />
+                        </Node>
+
+                        <Node name="SemiSharpCrease">
+                            <Attributes />
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Mesh">
+                    <Attributes>
+                        <Attribute name="Version" type="int32" required="true" />
+                        <Attribute name="BinaryData" type="string" required="true" />
+                    </Attributes>
+                </Node>
+
+                <Node name="AffectedAgentTypes">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="ZoomScrollSettings">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="ID">
+                    <Attributes>
+                        <Attribute name="value" type="int32" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- MovieSequence -->
+        <NodeType name="MovieSequence">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="SequenceVersion" type="int32" required="true" />
+                <Attribute name="Flags" type="int32" required="true" />
+                <Attribute name="StartTime" type="float" required="true" />
+                <Attribute name="EndTime" type="float" required="true" />
+                <Attribute name="ID" type="int32" required="true" />
+                <Attribute name="ConversationID" type="string" />
+            </Attributes>
+            
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Nodes">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Node">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="Id" type="int32" required="true" />
+                                <Attribute name="Type" type="string" required="true" />
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Flags" type="int32" />
+                                <Attribute name="ParentNode" type="int32" />
+                                <Attribute name="paramIdVersion" type="int32" />
+                            </Attributes>
+
+                            <Collection type="replaceOnly" />
+
+                            <ChildNodes>
+                                <Node name="Track">
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="paramUserValue" type="string" />
+                                        <Attribute name="paramType" type="string" />
+                                        <Attribute name="defaultValue" type="string" />
+                                        <Attribute name="Type" type="int32" required="true" />
+                                        <Attribute name="AnimationLayer" type="int32" />
+                                        <Attribute name="Voice" type="VoiceId" />
+                                        <Attribute name="PAChannel" type="int32" />
+                                        <Attribute name="Flags" type="int32" />
+                                        <Attribute name="StartTime" type="float" />
+                                        <Attribute name="EndTime" type="float" />
+                                        <Attribute name="HasCustomColor" type="boolInt" required="true" />
+                                        <Attribute name="ValueType" type="int32" required="true" />
+                                    </Attributes>
+
+                                    <Collection type="replaceOnly" />
+
+                                    <ChildNodes>
+                                        <Node name="Key">
+                                            <Attributes allowUnknown="true">
+                                                <Attribute name="time" type="float" required="true" />
+                                            </Attributes>
+                                        </Node>
+
+                                        <Node name="NewSubTrack">
+                                            <Attributes>
+                                                <Attribute name="Flags" type="int32" required="true" />
+                                                <Attribute name="defaultValue" type="string" required="true" />
+                                                <Attribute name="HasCustomColor" type="boolInt" required="true" />
+                                            </Attributes>
+
+                                            <Collection type="replaceOnly" />
+
+                                            <ChildNodes>
+                                                <Node name="Key">
+                                                    <Attributes allowUnknown="true">
+                                                        <Attribute name="time" type="float" required="true" />
+                                                    </Attributes>
+                                                </Node>
+                                            </ChildNodes>
+                                        </Node>
+                                    </ChildNodes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Events">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Event">
+                            <Attributes>
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
         </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>
