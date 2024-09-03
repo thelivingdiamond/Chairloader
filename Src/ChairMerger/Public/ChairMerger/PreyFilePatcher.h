@@ -26,6 +26,7 @@ public:
     //! Patches an XML document using the merging policy.
     static void PatchDocument(
         const fs::path& xmlFilePath,
+        const fs::path& xsdRefPath,
         pugi::xml_document& doc,
         const FileMergingPolicy3& policy,
         const XmlErrorStack& parentErrorStack);
@@ -33,6 +34,7 @@ public:
     //! Patches a directory using the policy. Calls the callback for each file.
     static void PatchDirectory(
         const fs::path& dirPath,
+        const fs::path& xsdRefPath,
         const MergingLibrary3& policyLib,
         const XmlTypeLibrary* pTypeLib,
         const ProgressCallback& callback);

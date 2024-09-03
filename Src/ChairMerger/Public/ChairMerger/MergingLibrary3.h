@@ -8,8 +8,12 @@ class XmlTypeLibrary;
 class CHAIRMERGER_EXPORT MergingLibrary3 : boost::noncopyable
 {
 public:
+    using FilePathMap = std::map<fs::path, const FileMergingPolicy3*>;
+
     MergingLibrary3(XmlTypeLibrary* pTypeLib);
     ~MergingLibrary3();
+
+    const FilePathMap& GetFilePathMap() const { return m_PathMap; }
 
     //! Loads merging library from a file or directory.
     void LoadFromPath(const fs::path& path);
@@ -28,6 +32,7 @@ private:
     XmlTypeLibrary* m_pTypeLib = nullptr;
     std::map<std::string, FileMergingPolicy3Ptr, std::less<>> m_FileMergingPolicy;
     std::map<std::string, std::vector<FileMergingPolicy3Ptr>, std::less<>> m_DirMergingPolicy;
+    FilePathMap m_PathMap;
 
     void AddFile(const fs::path& filePath, const fs::path& relPath);
     void AddNode(const pugi::xml_node& node, const XmlErrorStack& errorStack, const fs::path& relPath);

@@ -5,6 +5,7 @@
 #include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlValidator.h>
+#include "Manager/XmlNamespaces.h"
 #include "MetaAttributes.h"
 
 static char nibbleToHex(uint8_t val)
@@ -227,6 +228,7 @@ void PreyFilePatcher::PatchNode(
 
 void PreyFilePatcher::PatchDocument(
     const fs::path& xmlFilePath,
+    const fs::path& xsdRefPath,
     pugi::xml_document& doc,
     const FileMergingPolicy3& policy,
     const XmlErrorStack& parentErrorStack)
@@ -237,11 +239,32 @@ void PreyFilePatcher::PatchDocument(
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         throw std::logic_error("Localization files can't be patched");
 
+    // Add XSD reference
+    XmlUtils::GetOrAddAttribute(node, "xmlns").set_value(CHAIR_XML_NS_PREY);
+    XmlUtils::GetOrAddAttribute(node, "xmlns:ch").set_value(CHAIR_XML_NS_CHAIRLOADER);
+    XmlUtils::GetOrAddAttribute(node, "xmlns:xsi").set_value("http://www.w3.org/2001/XMLSchema-instance");
+
+    std::string_view xsdPreyLocation =
+        !xsdRefPath.empty()
+        ? (xsdRefPath / "Prey" / policy.GetRelPath()).generic_u8string()
+        : CHAIR_XML_NS_PREY + ("/" + policy.GetRelPath().generic_u8string());
+
+    std::string_view xsdChairLocation =
+        !xsdRefPath.empty()
+        ? (xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string()
+        : std::string(CHAIR_XML_NS_CHAIRLOADER) + "/" + CHAIR_XSD_META_TYPE;
+
+    XmlUtils::GetOrAddAttribute(node, "xsi:schemaLocation").set_value(fmt::format(
+        "{} {} {} {}",
+        CHAIR_XML_NS_PREY, xsdPreyLocation,
+        CHAIR_XML_NS_CHAIRLOADER, xsdChairLocation).c_str());
+
     PatchNode(xmlFilePath, node, policy.GetRootNode(), errorStack);
 }
 
 void PreyFilePatcher::PatchDirectory(
     const fs::path& dirPath,
+    const fs::path& xsdRefPath,
     const MergingLibrary3& policyLib,
     const XmlTypeLibrary* pTypeLib,
     const ProgressCallback& callback)
@@ -262,6 +285,13 @@ void PreyFilePatcher::PatchDirectory(
         if (!pFilePolicy)
         {
             // File not supported. Skip.
+            continue;
+        }
+
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Replace ||
+            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+        {
+            // File not merged. Skip.
             continue;
         }
 

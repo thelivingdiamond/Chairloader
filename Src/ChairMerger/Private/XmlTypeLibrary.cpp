@@ -33,14 +33,21 @@ public:
     }
 
     // BaseXmlType
-    virtual const std::string& GetFullName() const
+    virtual const std::string& GetFullName() const override
     {
         return m_FullName;
     }
 
-    virtual bool ValidateValue(std::string_view value) const
+    virtual bool ValidateValue(std::string_view value) const override
     {
         return m_pBaseType->ValidateValue(value);
+    }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+        outNode.append_child("xs:restriction").append_attribute("base").set_value(m_pBaseType->GetName().c_str());
     }
 
 private:
@@ -83,6 +90,44 @@ public:
 
         return result.ec == std::errc() && result.ptr == end;
     }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        const char* xsdType = nullptr;
+
+        if constexpr (std::is_integral_v<T> && std::is_signed_v<T>)
+        {
+            switch (sizeof(T))
+            {
+            case 1: xsdType = "xs:byte"; break;
+            case 2: xsdType = "xs:short"; break;
+            case 4: xsdType = "xs:int"; break;
+            case 8: xsdType = "xs:long"; break;
+            }
+        }
+        else if constexpr (std::is_integral_v<T> && std::is_unsigned_v<T>)
+        {
+            switch (sizeof(T))
+            {
+            case 1: xsdType = "xs:unsignedByte"; break;
+            case 2: xsdType = "xs:unsignedShort"; break;
+            case 4: xsdType = "xs:unsignedInt"; break;
+            case 8: xsdType = "xs:unsignedLong"; break;
+            }
+        }
+        else if constexpr (std::is_same_v<T, float>)
+        {
+            xsdType = "xs:float";
+        }
+        else if constexpr (std::is_same_v<T, double>)
+        {
+            xsdType = "xs:double";
+        }
+
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+        outNode.append_child("xs:restriction").append_attribute("base").set_value(xsdType);
+    }
 };
 
 class StringXmlType : public BaseXmlType
@@ -97,6 +142,16 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         return !value.empty();
+    }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+
+        pugi::xml_node restriction = outNode.append_child("xs:restriction");
+        restriction.append_attribute("base").set_value("xs:string");
+        restriction.append_child("xs:minLength").append_attribute("value").set_value("1");
     }
 };
 
@@ -118,6 +173,16 @@ public:
         return boost::regex_match(std::string(value), m_Regex);
     }
 
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+
+        pugi::xml_node restriction = outNode.append_child("xs:restriction");
+        restriction.append_attribute("base").set_value("xs:string");
+        restriction.append_child("xs:pattern").append_attribute("value").set_value(m_Regex.str().c_str());
+    }
+
 private:
     boost::regex m_Regex;
 };
@@ -134,6 +199,18 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         return value == "0" || value == "1";
+    }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+
+        pugi::xml_node restriction = outNode.append_child("xs:restriction");
+        restriction.append_attribute("base").set_value("xs:int");
+
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("0");
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("1");
     }
 };
 
@@ -153,6 +230,15 @@ public:
 
         return value == "true" || value == "false";
     }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+
+        pugi::xml_node restriction = outNode.append_child("xs:restriction");
+        restriction.append_attribute("base").set_value("xs:boolean");
+    }
 };
 
 class AnyBoolXmlType : public BaseXmlType
@@ -169,6 +255,20 @@ public:
     virtual bool ValidateValue(std::string_view value) const
     {
         return m_IntBool.ValidateValue(value) || m_StringBool.ValidateValue(value);
+    }
+
+    virtual void GetXsdType(pugi::xml_node outNode) const override
+    {
+        outNode.set_name("xs:simpleType");
+        outNode.append_attribute("name").set_value(GetName().c_str());
+
+        pugi::xml_node restriction = outNode.append_child("xs:restriction");
+        restriction.append_attribute("base").set_value("xs:string");
+
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("false");
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("true");
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("0");
+        restriction.append_child("xs:enumeration").append_attribute("value").set_value("1");
     }
 
 private:
@@ -201,6 +301,32 @@ XmlTypeLibrary::XmlTypeLibrary()
 
 XmlTypeLibrary::~XmlTypeLibrary()
 {
+}
+
+std::vector<const IXmlValueType*> XmlTypeLibrary::GetValueTypes() const
+{
+    std::vector<const IXmlValueType*> list;
+    list.reserve(m_ValueTypes.size());
+
+    for (auto& i : m_ValueTypes)
+    {
+        list.push_back(i.second.get());
+    }
+
+    return list;
+}
+
+std::vector<std::pair<const MergingPolicy3*, std::string>> XmlTypeLibrary::GetNodeTypes() const
+{
+    std::vector<std::pair<const MergingPolicy3*, std::string>> list;
+    list.reserve(m_NodeTypes.size());
+
+    for (auto& i : m_NodeTypes)
+    {
+        list.emplace_back(i.second, i.first);
+    }
+
+    return list;
 }
 
 const IXmlValueType* XmlTypeLibrary::FindValueType(std::string_view typeName) const

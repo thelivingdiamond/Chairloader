@@ -29,6 +29,7 @@ set(SOURCE_FILES
 	Manager/ThreadPool.h
 	Manager/PugiUtils.h
 	Manager/SynchronizedData.h
+	Manager/XmlNamespaces.h
 
 	# SHA256
 	SHA256/SHA256.cpp

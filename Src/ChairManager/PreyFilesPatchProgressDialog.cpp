@@ -37,8 +37,17 @@ void PreyFilesPatchProgressDialog::Start()
         MergingLibrary3 mergingLib(&xmlTypeLib);
         mergingLib.LoadFromPath(mergingLibPath);
 
+        // TODO 2024-09-03: Ugly hack
+        fs::path xsdBasePath = fs::current_path() / "../Xsd";
+
+        if (fs::exists(xsdBasePath / "Chairloader/MetaType.xsd"))
+            xsdBasePath = fs::absolute(xsdBasePath);
+        else
+            xsdBasePath.clear();
+
         PreyFilePatcher::PatchDirectory(
             preyFilesPath,
+            xsdBasePath,
             mergingLib,
             &xmlTypeLib,
             fnCallback);

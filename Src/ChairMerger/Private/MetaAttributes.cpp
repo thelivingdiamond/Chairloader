@@ -6,6 +6,12 @@ static const std::set<std::string, std::less<>> g_MetaAttrs = {
     MetaAttributes::APPLY_IF,
     MetaAttributes::ARRAY_SOURCE,
     MetaAttributes::ACTION,
+
+    // Used for XSDs
+    "xmlns",
+    "xmlns:ch",
+    "xmlns:xsi",
+    "xsi:schemaLocation",
 };
 
 //! Meta attributes that must not be stripped

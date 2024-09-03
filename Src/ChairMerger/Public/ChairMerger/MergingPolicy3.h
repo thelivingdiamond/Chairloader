@@ -283,6 +283,7 @@ public:
         // Why can't MSVC generate this on its own? Idk.
         if (&other != this)
         {
+            m_RelPath = std::move(other.m_RelPath);
             m_FileName = std::move(other.m_FileName);
             m_FileNameRegex = std::move(other.m_FileNameRegex);
             m_IsFileNameRegex = std::move(other.m_IsFileNameRegex);
@@ -296,6 +297,9 @@ public:
 
         return *this;
     }
+
+    //! @returns Relative path to the policy.
+    const fs::path& GetRelPath() const { return m_RelPath; }
 
     //! Checks if the input file name matches this policy file.
     bool MatchFileName(const std::string& name) const;
@@ -324,9 +328,14 @@ public:
     const MergingPolicy3& GetRootNode() const { return *m_RootNode; }
 
     //! Loads data from XML.
-    void LoadXmlNode(XmlTypeLibrary* pTypeLib, const pugi::xml_node& node, const XmlErrorStack& parentErrorStack);
+    void LoadXmlNode(
+        const fs::path& relPath,
+        XmlTypeLibrary* pTypeLib,
+        const pugi::xml_node& node,
+        const XmlErrorStack& parentErrorStack);
 
 private:
+    fs::path m_RelPath;
     std::string m_FileName;
     boost::regex m_FileNameRegex;
     bool m_IsFileNameRegex = false;

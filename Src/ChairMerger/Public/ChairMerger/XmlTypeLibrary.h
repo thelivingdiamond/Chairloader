@@ -17,6 +17,9 @@ struct CHAIRMERGER_EXPORT IXmlValueType
 
     //! Validates a value.
     virtual bool ValidateValue(std::string_view value) const = 0;
+
+    //! Fills outNode with XSD type.
+    virtual void GetXsdType(pugi::xml_node outNode) const = 0;
 };
 
 class CHAIRMERGER_EXPORT XmlTypeLibrary : NoCopy
@@ -24,6 +27,12 @@ class CHAIRMERGER_EXPORT XmlTypeLibrary : NoCopy
 public:
     XmlTypeLibrary();
     ~XmlTypeLibrary();
+
+    //! @returns The list of all value types.
+    std::vector<const IXmlValueType*> GetValueTypes() const;
+
+    //! @returns The list of all node types.
+    std::vector<std::pair<const MergingPolicy3*, std::string>> GetNodeTypes() const;
 
     //! Finds a value type by its name.
     //! @returns Type or nullptr if not found.
