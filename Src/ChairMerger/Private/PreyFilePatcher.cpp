@@ -239,25 +239,34 @@ void PreyFilePatcher::PatchDocument(
     if (policy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
         throw std::logic_error("Localization files can't be patched");
 
+    // Remove old XSDs
+    node.remove_attribute("xmlns");
+    node.remove_attribute("xmlns:ch");
+    node.remove_attribute("xmlns:xsi");
+    node.remove_attribute("xsi:schemaLocation");
+
     // Add XSD reference
-    XmlUtils::GetOrAddAttribute(node, "xmlns").set_value(CHAIR_XML_NS_PREY);
-    XmlUtils::GetOrAddAttribute(node, "xmlns:ch").set_value(CHAIR_XML_NS_CHAIRLOADER);
-    XmlUtils::GetOrAddAttribute(node, "xmlns:xsi").set_value("http://www.w3.org/2001/XMLSchema-instance");
+
+    fs::path xsdRelPath = policy.GetRelPath();
+    xsdRelPath.replace_extension("xsd");
 
     std::string_view xsdPreyLocation =
         !xsdRefPath.empty()
-        ? (xsdRefPath / "Prey" / policy.GetRelPath()).generic_u8string()
-        : CHAIR_XML_NS_PREY + ("/" + policy.GetRelPath().generic_u8string());
+        ? (xsdRefPath / "Prey" / xsdRelPath).generic_u8string()
+        : CHAIR_XML_NS_PREY + ("/" + xsdRelPath.generic_u8string());
 
     std::string_view xsdChairLocation =
         !xsdRefPath.empty()
         ? (xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string()
         : std::string(CHAIR_XML_NS_CHAIRLOADER) + "/" + CHAIR_XSD_META_TYPE;
 
-    XmlUtils::GetOrAddAttribute(node, "xsi:schemaLocation").set_value(fmt::format(
+    node.prepend_attribute("xsi:schemaLocation").set_value(fmt::format(
         "{} {} {} {}",
         CHAIR_XML_NS_PREY, xsdPreyLocation,
         CHAIR_XML_NS_CHAIRLOADER, xsdChairLocation).c_str());
+    node.prepend_attribute("xmlns:xsi").set_value("http://www.w3.org/2001/XMLSchema-instance");
+    node.prepend_attribute("xmlns:ch").set_value(CHAIR_XML_NS_CHAIRLOADER);
+    node.prepend_attribute("xmlns").set_value(CHAIR_XML_NS_PREY);
 
     PatchNode(xmlFilePath, node, policy.GetRootNode(), errorStack);
 }

@@ -456,8 +456,9 @@ int main(int argc, char** argv)
             try
             {
                 fs::path filePath = outDir / relPath;
+                filePath.replace_extension(".xsd");
                 fs::create_directories(filePath.parent_path());
-                GenerateFileSchema(outDir.parent_path(), nodeTypeMap , *pFilePolicy, outDir / relPath);
+                GenerateFileSchema(outDir.parent_path(), nodeTypeMap , *pFilePolicy, filePath);
             }
             catch (const std::exception& e)
             {
