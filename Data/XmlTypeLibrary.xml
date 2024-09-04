@@ -1206,7 +1206,7 @@
             <ChildNodes>
                 <NodeByType name="FlareItem" type="LensFlareItem" />
                 
-                <Node name="Params" allowAnyChildrenInXsd="true">
+                <Node name="Params">
                     <Attributes>
                         <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                     </Attributes>
@@ -1215,7 +1215,7 @@
                         <AddChildIndex name="ch:index" />
                     </Patches>
 
-                    <Collection type="array">
+                    <Collection type="array" allowAnyChildrenInXsd="true">
                         <ChildIndexAttribute name="ch:index" />
                     </Collection>
 

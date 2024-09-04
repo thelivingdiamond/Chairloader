@@ -3,14 +3,14 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
-    <Node name="extensionsSerializationOrder" allowAnyChildrenInXsd="true">
+    <Node name="extensionsSerializationOrder">
         <Attributes />
 
         <Patches>
             <AddChildIndex name="ch:index" />
         </Patches>
 
-        <Collection type="array">
+        <Collection type="array" allowAnyChildrenInXsd="true">
             <ChildIndexAttribute name="ch:index" />
         </Collection>
 

@@ -13,14 +13,14 @@
         <Collection type="nodeDict" />
 
         <ChildNodes>
-            <Node name="Items" allowAnyChildrenInXsd="true">
+            <Node name="Items">
                 <Attributes />
 
                 <Patches>
                     <AddChildIndex name="ch:index" />
                 </Patches>
 
-                <Collection type="array">
+                <Collection type="array" allowAnyChildrenInXsd="true">
                     <ChildIndexAttribute name="ch:index" />
                 </Collection>
 

@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
     fileNameRegex=".*\.xml">
-    <Node name="localization" allowAnyChildrenInXsd="true">
+    <Node name="localization">
         <Attributes />
         <Collection type="nodeDict" />
 
@@ -12,7 +12,7 @@
             <Node name=".*" nameRegex="true">
                 <Attributes />
 
-                <Collection type="dict">
+                <Collection type="dict" allowAnyChildrenInXsd="true">
                     <PrimaryKey>
                         <ChildText />
                     </PrimaryKey>

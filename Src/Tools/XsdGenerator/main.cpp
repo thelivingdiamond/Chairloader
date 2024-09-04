@@ -197,7 +197,7 @@ void CreateTypeForPolicy(
         }
     }
 
-    if (policy.IsAllowingAnyChildrenInXsd())
+    if (policy.GetCollection().allowAnyChildrenInXsd)
     {
         pugi::xml_node any = choice.append_child("xs:any");
         any.append_attribute("processContents").set_value("skip");

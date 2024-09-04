@@ -113,6 +113,9 @@ public:
         //! The type of the collection.
         ECollectionType type = ECollectionType::None;
 
+        //! If true, any node name will be allowed without XSD validation.
+        bool allowAnyChildrenInXsd = false;
+
         //! Use the child node name as part of the key.
         bool keyChildName = false;
 
@@ -163,10 +166,6 @@ public:
     //! @returns Whether unknown attributes are allowed. If false, causes an error if an attribute is not listed.
     bool IsAllowingUnknownAttributes() const { return m_AllowUnknownAttributes; }
     void SetAllowUnknownAttributes(bool state) { m_AllowUnknownAttributes = state; }
-
-    //! @returns If true, any node name will be allowed without XSD validation.
-    bool IsAllowingAnyChildrenInXsd() const { return m_AllowAnyChildrenInXsd; }
-    void SetAllowAnyChildrenInXsd(bool state) { m_AllowAnyChildrenInXsd = state; }
 
     //! @returns If specified, the node may have text contents of the specified type. If empty, text is not allowed.
     const std::string& GetTextType() const { return m_TextType; }
@@ -245,7 +244,6 @@ private:
 
     std::string m_TextType;
     bool m_TextAllowEmpty = false;
-    bool m_AllowAnyChildrenInXsd = false;
 
     std::vector<Attribute> m_Attributes;
     bool m_AllowUnknownAttributes = false;

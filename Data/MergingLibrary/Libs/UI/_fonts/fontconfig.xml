@@ -3,17 +3,17 @@
     xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
-    <Node name="FontConfig" allowAnyChildrenInXsd="true">
+    <Node name="FontConfig">
         <Attributes />
-        <Collection type="nodeDict" />
+        <Collection type="nodeDict" allowAnyChildrenInXsd="true" />
 
         <ChildNodes>
-            <Node name=".*" nameRegex="true" allowAnyChildrenInXsd="true">
+            <Node name=".*" nameRegex="true">
                 <Attributes>
                     <Attribute name="fontlib" type="string" required="true" />
                 </Attributes>
 
-                <Collection type="nodeDict" />
+                <Collection type="nodeDict" allowAnyChildrenInXsd="true" />
 
                 <ChildNodes>
                     <Node name=".*" nameRegex="true" textType="string">

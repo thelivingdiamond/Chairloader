@@ -116,7 +116,6 @@ void MergingPolicy3::LoadXmlNode(IMergingPolicyAllocator* pAlloc, XmlTypeLibrary
     SetRecursive(node.attribute("recursive").as_bool(false));
     SetTextType(node.attribute("textType").as_string(""));
     SetEmptyTextAllowed(node.attribute("allowEmptyText").as_bool(false));
-    SetAllowAnyChildrenInXsd(node.attribute("allowAnyChildrenInXsd").as_bool(false));
 
     // Reset fields
     m_AllowUnknownAttributes = false;
@@ -312,6 +311,7 @@ void MergingPolicy3::LoadXmlCollection(const pugi::xml_node& node, const XmlErro
     }
 
     m_Collection.allowDuplicates = node.attribute("allowDuplicates").as_bool(false);
+    m_Collection.allowAnyChildrenInXsd = node.attribute("allowAnyChildrenInXsd").as_bool(false);
 
     bool foundPrimaryKey = false;
     bool foundArrayIndex = false;

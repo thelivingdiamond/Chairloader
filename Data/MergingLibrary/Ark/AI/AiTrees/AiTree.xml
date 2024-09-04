@@ -19,26 +19,26 @@
                         <Collection type="nodeDict" />
 
                         <ChildNodes>
-                            <Node name="Children" allowAnyChildrenInXsd="true">
+                            <Node name="Children">
                                 <Attributes />
         
                                 <Patches>
                                     <AddChildIndex name="ch:index" />
                                 </Patches>
                         
-                                <Collection type="array">
+                                <Collection type="array" allowAnyChildrenInXsd="true">
                                     <ChildIndexAttribute name="ch:index" />
                                 </Collection>
 
                                 <ChildNodes>
-                                    <Node name=".*" nameRegex="true" allowAnyChildrenInXsd="true">
+                                    <Node name=".*" nameRegex="true">
                                         <Attributes allowUnknown="true">
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>
 
                                         <XsdAliases />
                                         
-                                        <Collection type="nodeDict" />
+                                        <Collection type="nodeDict" allowAnyChildrenInXsd="true" />
 
                                         <ChildNodes>
                                             <!-- ArkAiTreeLurkNode -->
@@ -153,10 +153,10 @@
 
                                             <!-- Allow text type because Ark/AI/AiTrees/NightmareAiTree.xml -->
                                             <!-- has an error in ArkAiTreeNightmareCombatNode node -->
-                                            <Node name=".*" nameRegex="true" recursive="true" textType="string" allowEmptyText="true" allowAnyChildrenInXsd="true" >
+                                            <Node name=".*" nameRegex="true" recursive="true" textType="string" allowEmptyText="true">
                                                 <Attributes allowUnknown="true" />
                                                 <XsdAliases />
-                                                <Collection type="nodeDict" />
+                                                <Collection type="nodeDict" allowAnyChildrenInXsd="true" />
                                             </Node>
                                         </ChildNodes>
                                     </Node>

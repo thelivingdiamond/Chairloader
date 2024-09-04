@@ -303,6 +303,12 @@
                             Allow duplicate keys. Should only be used when original Prey file contains an error.
                         </xs:documentation></xs:annotation>
                     </xs:attribute>
+
+                    <xs:attribute name="allowAnyChildrenInXsd" type="xs:boolean" default="false">
+                        <xs:annotation><xs:documentation>
+                            If true, any node name will be allowed without XSD validation.
+                        </xs:documentation></xs:annotation>
+                    </xs:attribute>
                 </xs:complexType>
             </xs:element>
 
@@ -372,12 +378,6 @@
         <xs:attribute name="allowEmptyText" type="xs:boolean" default="false">
             <xs:annotation><xs:documentation>
                 If text is allowed and false, if text is empty, causes a validation error.
-            </xs:documentation></xs:annotation>
-        </xs:attribute>
-
-        <xs:attribute name="allowAnyChildrenInXsd" type="xs:boolean" default="false">
-            <xs:annotation><xs:documentation>
-                If true, any node name will be allowed without XSD validation.
             </xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:complexType>
