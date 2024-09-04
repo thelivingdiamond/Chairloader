@@ -74,6 +74,9 @@ void CreateTypeForPolicy(
 {
     outNode.set_name("xs:complexType");
 
+    if (!policy.GetTextType().empty())
+        outNode.append_attribute("mixed").set_value("true");
+
     // Generate comment
     std::string comment;
 
@@ -120,26 +123,7 @@ void CreateTypeForPolicy(
     pugi::xml_node complexContent = outNode.append_child("xs:complexContent");
     pugi::xml_node extension = complexContent.append_child("xs:extension");
     pugi::xml_attribute baseTypeAttr = extension.append_attribute("base");
-
-    // Decide on the type
-    auto fnHasAttribute = [&](auto pred)
-    {
-        auto it = std::find_if(policy.GetAttributes().begin(), policy.GetAttributes().end(), pred);
-        return it != policy.GetAttributes().end();
-    };
-
-    if (fnHasAttribute([](const MergingPolicy3::Attribute& x) { return x.name == "ch:index" && x.required; }))
-    {
-        baseTypeAttr.set_value("ch:RequiredIndexedMetaType");
-    }
-    else if (fnHasAttribute([](const MergingPolicy3::Attribute& x) { return x.name == "ch:index" && !x.required; }))
-    {
-        baseTypeAttr.set_value("ch:IndexedMetaType");
-    }
-    else
-    {
-        baseTypeAttr.set_value("ch:MetaType");
-    }
+    baseTypeAttr.set_value("MetaType");
 
     // Child nodes
     pugi::xml_node choice;
@@ -207,12 +191,21 @@ void CreateTypeForPolicy(
     // Attributes
     for (const MergingPolicy3::Attribute& attr : policy.GetAttributes())
     {
+        pugi::xml_node attribute = extension.append_child("xs:attribute");
+
         if (boost::starts_with(attr.name, "ch:"))
         {
+            // Reference the attribute in Chairloader namespace
+            attribute.append_attribute("ref").set_value(attr.name.c_str());
+
+            if (attr.required)
+            {
+                attribute.append_attribute("use").set_value("required");
+            }
+
             continue;
         }
 
-        pugi::xml_node attribute = extension.append_child("xs:attribute");
         attribute.append_attribute("name").set_value(attr.name.c_str());
 
         if (!attr.allowEmpty)
@@ -319,10 +312,13 @@ NodeTypeMap GenerateNodeTypes(const XmlTypeLibrary& typeLib, const fs::path& out
     // Include value types
     root.append_child("xs:include").append_attribute("schemaLocation").set_value("./ValueTypes.xsd");
 
-    // Import meta-node
+    // Include meta-type
+    root.append_child("xs:include").append_attribute("schemaLocation").set_value((std::string("../Chairloader/") + CHAIR_XSD_META_TYPE).c_str());
+
+    // Import meta-attributes
     pugi::xml_node importMeta = root.append_child("xs:import");
     importMeta.append_attribute("namespace").set_value(CHAIR_XML_NS_CHAIRLOADER);
-    importMeta.append_attribute("schemaLocation").set_value(("../Chairloader/" + std::string(CHAIR_XSD_META_TYPE)).c_str());
+    importMeta.append_attribute("schemaLocation").set_value(("../Chairloader/" + std::string(CHAIR_XSD_META_ATTRIBUTES)).c_str());
 
     // Cache all type names
     NodeTypeMap typeNameMap;
@@ -358,20 +354,18 @@ void GenerateFileSchema(
     pugi::xml_node root = doc.child(XS_SCHEMA);
 
     // Include types
-    if (!xsdRefPath.empty())
-        root.append_child("xs:include").append_attribute("schemaLocation").set_value((xsdRefPath / "Prey/ValueTypes.xsd").generic_u8string().c_str());
-    else
-        root.append_child("xs:include").append_attribute("schemaLocation").set_value(fmt::format("{}/ValueTypes.xsd", CHAIR_XML_NS_PREY).c_str());
+    root.append_child("xs:include").append_attribute("schemaLocation").set_value(CreateXsdPath(xsdRefPath, "Prey/ValueTypes.xsd").c_str());
+    root.append_child("xs:include").append_attribute("schemaLocation").set_value(CreateXsdPath(xsdRefPath, "Prey/NodeTypes.xsd").c_str());
 
-    if (!xsdRefPath.empty())
-        root.append_child("xs:include").append_attribute("schemaLocation").set_value((xsdRefPath / "Prey/NodeTypes.xsd").generic_u8string().c_str());
-    else
-        root.append_child("xs:include").append_attribute("schemaLocation").set_value(fmt::format("{}/NodeTypes.xsd", CHAIR_XML_NS_PREY).c_str());
+    // Include meta-node
+    root
+        .append_child("xs:include")
+        .append_attribute("schemaLocation").set_value(CreateXsdPath(xsdRefPath, fmt::format("Chairloader/{}", CHAIR_XSD_META_TYPE)).c_str());
 
-    // Import meta-node
-    pugi::xml_node importMeta = root.append_child("xs:import");
-    importMeta.append_attribute("namespace").set_value(CHAIR_XML_NS_CHAIRLOADER);
-    importMeta.append_attribute("schemaLocation").set_value((xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string().c_str());
+    // Import meta-attributes
+    pugi::xml_node importMetaAttr = root.append_child("xs:import");
+    importMetaAttr.append_attribute("namespace").set_value(CHAIR_XML_NS_CHAIRLOADER);
+    importMetaAttr.append_attribute("schemaLocation").set_value((xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string().c_str());
 
     // Add root node
     pugi::xml_node element = root.append_child("xs:element");

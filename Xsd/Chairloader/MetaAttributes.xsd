@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    elementFormDefault="qualified">
+    <xs:annotation><xs:documentation>
+        Defines meta-attributes in the Chairloader XML namespace.
+    </xs:documentation></xs:annotation>
+
+    <xs:attribute name="index" type="xs:int">
+        <xs:annotation><xs:documentation>
+            Index in the parent node.
+        </xs:documentation></xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="apply_if" type="xs:boolean">
+        <xs:annotation><xs:documentation>
+            Whether the node should be patched. If false, node is skipped entirely.
+        </xs:documentation></xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="arrayMod" type="xs:string">
+        <xs:annotation><xs:documentation>
+            From what mod should an array entry be modified. If not set, modify the Prey entry.
+        </xs:documentation></xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="action">
+        <xs:annotation><xs:documentation>
+            How to merge this node.
+        </xs:documentation></xs:annotation>
+
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="patch">
+                    <xs:annotation><xs:documentation>
+                        Node will be patched recursively. Specified attributes will be modified,
+                        unspecified will be left unchanged. Child node specified via keys/array indices.
+                    </xs:documentation></xs:annotation>
+                </xs:enumeration>
+
+                <xs:enumeration value="delete">
+                    <xs:annotation><xs:documentation>
+                        Node will be deleted from the tree.
+                    </xs:documentation></xs:annotation>
+                </xs:enumeration>
+
+                <xs:enumeration value="replace">
+                    <xs:annotation><xs:documentation>
+                        Entire node will be replaced by this mod's node.
+                    </xs:documentation></xs:annotation>
+                </xs:enumeration>
+
+                <xs:enumeration value="replaceChildren">
+                    <xs:annotation><xs:documentation>
+                        Attributes will be merged (as in "patch" mode). Children will be replaced (as in "replace" mode).
+                    </xs:documentation></xs:annotation>
+                </xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+</xs:schema>
