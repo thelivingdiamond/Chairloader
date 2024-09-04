@@ -128,13 +128,18 @@ void CreateTypeForPolicy(
     // Child nodes
     pugi::xml_node choice;
 
-    auto fnAddNode = [&](const std::string& childNodeName, const MergingPolicy3& childNodePolicy)
+    auto fnEnsureChoise = [&]()
     {
         if (!choice)
         {
             choice = extension.append_child("xs:choice");
             choice.append_attribute("maxOccurs").set_value("unbounded");
         }
+    };
+
+    auto fnAddNode = [&](const std::string& childNodeName, const MergingPolicy3& childNodePolicy)
+    {
+        fnEnsureChoise();
 
         pugi::xml_node element = choice.append_child("xs:element");
         element.append_attribute("name").set_value(childNodeName.c_str());
@@ -181,8 +186,9 @@ void CreateTypeForPolicy(
         }
     }
 
-    if (policy.GetCollection().allowAnyChildrenInXsd)
+    if (policy.GetCollection().allowAnyChildrenInXsd || policy.IsRecursive())
     {
+        fnEnsureChoise();
         pugi::xml_node any = choice.append_child("xs:any");
         any.append_attribute("processContents").set_value("skip");
         any.append_attribute("minOccurs").set_value("0");
