@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-<Root>
+<Root
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey"
+    xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey https://thelivingdiamond.github.io/Chairloader/Xsd/Prey/Test.xsd https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader https://thelivingdiamond.github.io/Chairloader/Xsd/Prey/Test.xsd">
     <A
         ch:index="1000"
         aAttr1="aVal1_1"
