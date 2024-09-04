@@ -246,16 +246,15 @@ void PreyFilePatcher::PatchDocument(
     node.remove_attribute("xsi:schemaLocation");
 
     // Add XSD reference
-
     fs::path xsdRelPath = policy.GetRelPath();
     xsdRelPath.replace_extension("xsd");
 
-    std::string_view xsdPreyLocation =
+    std::string xsdPreyLocation =
         !xsdRefPath.empty()
         ? (xsdRefPath / "Prey" / xsdRelPath).generic_u8string()
         : CHAIR_XML_NS_PREY + ("/" + xsdRelPath.generic_u8string());
 
-    std::string_view xsdChairLocation =
+    std::string xsdChairLocation =
         !xsdRefPath.empty()
         ? (xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string()
         : std::string(CHAIR_XML_NS_CHAIRLOADER) + "/" + CHAIR_XSD_META_TYPE;
