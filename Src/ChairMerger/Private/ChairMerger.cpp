@@ -527,7 +527,7 @@ void ChairMerger::ProcessXMLFile(
                 std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
                 m_pLog->Log(severityLevel::error, "Validation failure of base file after merging %s:%s", mod.modName, relativePath.u8string());
                 PrintValidationResult(result, m_pLog);
-                throw std::runtime_error("Mod file failed validation. Check the log for details.");
+                throw std::runtime_error("File failed validation after merging. Check the log for details.");
             }
         }
 
@@ -575,6 +575,20 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
 
         XmlFinalizerContext context;
         XmlFinalizer3::FinalizeDocument(context, doc, *pFilePolicy);
+
+        XmlValidator::Context valCtx;
+        valCtx.pTypeLib = m_pTypeLib.get();
+        valCtx.mode = XmlValidator::EMode::Prey;
+
+        XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, doc, *pFilePolicy);
+
+        if (!result)
+        {
+            std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+            m_pLog->Log(severityLevel::error, "Validation failure of final file %s", relPath.u8string());
+            PrintValidationResult(result, m_pLog);
+            throw std::runtime_error("Game file failed validation after finalization. Check the log for details.");
+        }
     }
     catch (const std::exception& e)
     {
