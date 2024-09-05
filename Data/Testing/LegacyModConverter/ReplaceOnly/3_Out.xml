@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Root ch:action="replace">
+    <Item
+        attr1="prey1_1"
+        attr2="prey2_1" />
+    <Item
+        attr1="mod1_2"
+        attr2="prey2_2" />
+    <Item
+        attr1="prey1_3"
+        attr2="mod2_4" />
+    <Item
+        attr1="mod1_5"
+        attr2="mod2_6" />
+    <Item
+        attr1="prey1_7"
+        attr2="prey2_8" />
+</Root>

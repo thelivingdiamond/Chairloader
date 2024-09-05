@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Root>
+    <Item
+        attr1="mod1_500"
+        attr2="mod2_500"
+        ch:index="500" />
+    <Item
+        attr2="mod2_3000"
+        ch:index="3000" />
+    <Item
+        ch:action="delete"
+        ch:index="4000" />
+    <Item
+        attr1="mod_4000"
+        attr2="mod_4000"
+        ch:index="4500" />
+    <Item
+        ch:action="delete"
+        ch:index="5000" />
+    <Item
+        attr1="mod1_5500"
+        attr2="mod2_5500"
+        ch:index="5500" />
+</Root>

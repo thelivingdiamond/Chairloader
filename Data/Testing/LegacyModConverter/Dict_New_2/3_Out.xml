@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Root>
+    <Item
+        key="key7_Mod"
+        attr1="mod1"
+        attr2="mod2" />
+    <Item
+        key="key6_Mod"
+        attr1="mod1"
+        attr2="mod2" />
+</Root>
