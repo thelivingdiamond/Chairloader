@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Root ch:action="replace">
+<Root>
     <Item
         attr1="mod1_500"
         attr2="mod2_500"
@@ -20,6 +20,10 @@
         attr1="mod_4000"
         attr2="mod_4000"
         ch:index="5000" />
+    <!--<Item
+        attr1="prey1_5000"
+        attr2="prey2_5000"
+        ch:index="" />-->
     <Item
         attr1="mod1_5500"
         attr2="mod2_5500"
