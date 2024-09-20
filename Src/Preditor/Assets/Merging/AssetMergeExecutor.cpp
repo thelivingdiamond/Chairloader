@@ -1,3 +1,4 @@
+#include <Chairloader/Private/XmlUtils.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ModListConfig.h>
 #include <Manager/ModConfig.h>
@@ -11,105 +12,6 @@
 #include "Merging/AssetMergeSystem.h"
 #include "Merging/MergeCache.h"
 #include "CMAdapter.h"
-
-namespace
-{
-
-//! Checks if two XML nodes are equal.
-bool XmlNodesAreEqual(pugi::xml_node lhs, pugi::xml_node rhs)
-{
-    // Compare names
-    if (strcmp(lhs.name(), rhs.name()))
-    {
-        // Non-equal names
-        return false;
-    }
-
-    // Compare text
-    if (strcmp(lhs.text().as_string(), rhs.text().as_string()))
-    {
-        // Non-equal contents
-        return false;
-    }
-
-    // Compare attributes
-    {
-        auto attrl = lhs.attributes();
-        auto attrr = rhs.attributes();
-        auto itl = attrl.begin();
-        auto itr = attrr.begin();
-
-        for (;;)
-        {
-            if (itl == attrl.end() && itr == attrr.end())
-            {
-                // Equal size and contents
-                break;
-            }
-            else if (itl == attrl.end() || itr == attrr.end())
-            {
-                // One attr list is shorter
-                return false;
-            }
-
-            assert(itl != attrl.end() && itr != attrr.end());
-
-            // Compare attr contents
-            if (strcmp(itl->name(), itr->name()))
-            {
-                // Non-equal names
-                return false;
-            }
-
-            if (strcmp(itl->as_string(), itr->as_string()))
-            {
-                // Non-equal values
-                return false;
-            }
-
-            ++itl;
-            ++itr;
-        }
-    }
-
-    // Compare children
-    {
-        auto childrenl = lhs.children();
-        auto childrenr = rhs.children();
-        auto itl = childrenl.begin();
-        auto itr = childrenr.begin();
-
-        for (;;)
-        {
-            if (itl == childrenl.end() && itr == childrenr.end())
-            {
-                // Equal size and contents
-                break;
-            }
-            else if (itl == childrenl.end() || itr == childrenr.end())
-            {
-                // One child list is shorter
-                return false;
-            }
-
-            assert(itl != childrenl.end() && itr != childrenr.end());
-
-            if (!XmlNodesAreEqual(*itl, *itr))
-            {
-                // Non-equal children
-                return false;
-            }
-
-            ++itl;
-            ++itr;
-        }
-    }
-
-    // All checks passed
-    return true;
-}
-
-} // namespace
 
 class Assets::AssetMergeExecutor::ModSystem final : public IChairManager
 {
@@ -468,7 +370,7 @@ void Assets::AssetMergeExecutor::FillMergeList(const MergeCache& oldCache, const
         {
             // Config exists in old cache
             // Compare them
-            bool equalNodes = XmlNodesAreEqual(modConfig, oldConfig->second);
+            bool equalNodes = XmlUtils::XmlNodesAreEqual(modConfig, oldConfig->second);
 
             if (!equalNodes)
             {

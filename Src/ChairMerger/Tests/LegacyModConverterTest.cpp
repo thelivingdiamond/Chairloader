@@ -1,3 +1,4 @@
+#include <ChairMerger/LegacyModConverter.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
 #include "XmlTestUtils.h"
@@ -40,8 +41,8 @@ TEST_P(LegacyModConverterNodeTest, Success)
     fs::path testDir = m_TestDir / fs::u8path(testName);
     fs::path policyPath = testDir / "0_Policy.xml";
     fs::path preyPath = testDir / "1_Prey.xml";
-    fs::path modPath = testDir / "1_Mod.xml";
-    fs::path expectedPath = testDir / "3_Expected.xml";
+    fs::path modPath = testDir / "2_Mod.xml";
+    fs::path expectedPath = testDir / "3_Out.xml";
 
     std::unique_ptr<XmlTypeLibrary> pTypeLibrary = LoadTypeLib();
     FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
@@ -71,8 +72,11 @@ TEST_P(LegacyModConverterNodeTest, Success)
     }
 
     // Convert
-    // TODO
     pugi::xml_document modDoc;
+    {
+        LegacyModConverter conv;
+        conv.ConvertDocument(preyDoc, legacyModDoc, modDoc, policy);
+    }
 
     // Validate mod document
     {

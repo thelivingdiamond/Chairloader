@@ -132,6 +132,9 @@ public:
     //! @returns The attribute.
     static pugi::xml_attribute GetOrAddAttribute(pugi::xml_node node, const char* name);
 
+    //! Checks whether two XML nodes are equal.
+    static bool XmlNodesAreEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs);
+
     template <typename T, typename TMap>
     static bool TryGetEnumAttribute(const pugi::xml_attribute& attr, const TMap& nameToEnumMap, T& outValue)
     {

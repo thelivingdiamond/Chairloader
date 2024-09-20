@@ -20,6 +20,7 @@ set(SOURCE_FILES
 	Private/ExcelMerger.h
 	Private/HashUtils.cpp
 	Private/HashUtils.h
+	Private/LegacyModConverter.cpp
 	Private/LuaUtils.cpp
 	Private/MergingLibrary3.cpp
 	Private/MergingPolicy3.cpp
@@ -40,6 +41,7 @@ set(SOURCE_FILES
 	Public/ChairMerger/ChairMerger.h
 	Public/ChairMerger/ChairMergerSettings.h
 	Public/ChairMerger/FileChecksum.h
+	Public/ChairMerger/LegacyModConverter.h
 	Public/ChairMerger/LuaUtils.h
 	Public/ChairMerger/MergingLibrary3.h
 	Public/ChairMerger/MergingPolicy.h

@@ -132,3 +132,96 @@ pugi::xml_attribute XmlUtils::GetOrAddAttribute(pugi::xml_node node, const char*
 
     return attr;
 }
+
+bool XmlUtils::XmlNodesAreEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs)
+{
+    // Compare names
+    if (strcmp(lhs.name(), rhs.name()))
+    {
+        // Non-equal names
+        return false;
+    }
+
+    // Compare text
+    if (strcmp(lhs.text().as_string(), rhs.text().as_string()))
+    {
+        // Non-equal contents
+        return false;
+    }
+
+    // Compare attributes
+    {
+        auto attrl = lhs.attributes();
+        auto attrr = rhs.attributes();
+        auto itl = attrl.begin();
+        auto itr = attrr.begin();
+
+        for (;;)
+        {
+            if (itl == attrl.end() && itr == attrr.end())
+            {
+                // Equal size and contents
+                break;
+            }
+            else if (itl == attrl.end() || itr == attrr.end())
+            {
+                // One attr list is shorter
+                return false;
+            }
+
+            assert(itl != attrl.end() && itr != attrr.end());
+
+            // Compare attr contents
+            if (strcmp(itl->name(), itr->name()))
+            {
+                // Non-equal names
+                return false;
+            }
+
+            if (strcmp(itl->as_string(), itr->as_string()))
+            {
+                // Non-equal values
+                return false;
+            }
+
+            ++itl;
+            ++itr;
+        }
+    }
+
+    // Compare children
+    {
+        auto childrenl = lhs.children();
+        auto childrenr = rhs.children();
+        auto itl = childrenl.begin();
+        auto itr = childrenr.begin();
+
+        for (;;)
+        {
+            if (itl == childrenl.end() && itr == childrenr.end())
+            {
+                // Equal size and contents
+                break;
+            }
+            else if (itl == childrenl.end() || itr == childrenr.end())
+            {
+                // One child list is shorter
+                return false;
+            }
+
+            assert(itl != childrenl.end() && itr != childrenr.end());
+
+            if (!XmlNodesAreEqual(*itl, *itr))
+            {
+                // Non-equal children
+                return false;
+            }
+
+            ++itl;
+            ++itr;
+        }
+    }
+
+    // All checks passed
+    return true;
+}
