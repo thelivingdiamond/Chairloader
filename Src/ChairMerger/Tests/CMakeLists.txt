@@ -6,6 +6,7 @@ set(SOURCE_FILES
 	ChairMergerTestBase.cpp
 	ChairMergerTestBase.h
 	HashUtilsTest.cpp
+	LegacyModConverterTest.cpp
 	LuaUtilsTest.cpp
 	main.cpp
 	MainMergingLibraryTest.cpp
