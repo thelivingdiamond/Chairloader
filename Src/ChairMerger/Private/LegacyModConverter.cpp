@@ -252,6 +252,7 @@ bool LegacyModConverter::ConvertDict(
 {
     const MergingPolicy3::Collection& collection = policy.GetCollection();
     int index = 0;
+    bool hasChanges = false;
 
     auto fnAddKeyAttrs = [&](const pugi::xml_node& sourceNode, pugi::xml_node& destNode)
     {
@@ -285,18 +286,23 @@ bool LegacyModConverter::ConvertDict(
             // Add key attributes
             fnAddKeyAttrs(legacyModChildNode, modChildNode);
 
-            bool hasChanges = ConvertNode(preyChildNode, legacyModChildNode, modChildNode, *pChildPolicy, legacyModChildErrorStack);
+            bool hasChangesInNew = ConvertNode(preyChildNode, legacyModChildNode, modChildNode, *pChildPolicy, legacyModChildErrorStack);
 
-            if (!hasChanges)
+            if (!hasChangesInNew)
             {
                 // No changes. Erase the created node.
                 outNode.remove_child(modChildNode);
+            }
+            else
+            {
+                hasChanges = true;
             }
         }
         else
         {
             // New node
             outNode.append_copy(legacyModChildNode);
+            hasChanges = true;
         }
 
         index++;
@@ -321,8 +327,9 @@ bool LegacyModConverter::ConvertDict(
             pugi::xml_node modChildNode = outNode.append_child(preyChildNode.name());
             fnAddKeyAttrs(preyChildNode, modChildNode);
             modChildNode.append_attribute(MetaAttributes::ACTION).set_value("delete");
+            hasChanges = true;
         }
     }
 
-    return false;
+    return hasChanges;
 }
