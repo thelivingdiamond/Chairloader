@@ -20,7 +20,7 @@ public:
     const std::list<LogEntry>& GetLogs() const { return m_Logs; }
 
     //! Converts a legacy mod node.
-    void ConvertNode(
+    bool ConvertNode(
         const pugi::xml_node& preyNode,
         const pugi::xml_node& legacyModNode,
         pugi::xml_node outNode,
@@ -40,7 +40,21 @@ private:
 
     void AddLog(severityLevel level, std::string_view message, const XmlErrorStack& errorStack);
 
-    void ConvertAttributes(
+    bool ConvertAttributes(
+        const pugi::xml_node& preyNode,
+        const pugi::xml_node& legacyModNode,
+        pugi::xml_node outNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack);
+
+    bool ConvertText(
+        const pugi::xml_node& preyNode,
+        const pugi::xml_node& legacyModNode,
+        pugi::xml_node outNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack);
+
+    bool ConvertDict(
         const pugi::xml_node& preyNode,
         const pugi::xml_node& legacyModNode,
         pugi::xml_node outNode,

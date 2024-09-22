@@ -135,6 +135,9 @@ public:
     //! Checks whether two XML nodes are equal.
     static bool XmlNodesAreEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs);
 
+    //! Checks whether the children of two XML nodes are equal.
+    static bool XmlChildrenAreEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs);
+
     template <typename T, typename TMap>
     static bool TryGetEnumAttribute(const pugi::xml_attribute& attr, const TMap& nameToEnumMap, T& outValue)
     {

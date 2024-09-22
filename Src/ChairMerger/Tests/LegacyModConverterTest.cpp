@@ -100,6 +100,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Array_NoChanges",
         "Array_NoChanges_DuplicatePrey",
         "Attributes_Missing",
+        "Attributes_Missing_AllowEmpty",
         "Attributes_Root",
         "Dict_Delete",
         "Dict_Existsing_1",
@@ -108,4 +109,5 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_New_2",
         "Dict_New_OutOfOrder",
         "Dict_NoChanges",
-        "ReplaceOnly"));
+        "ReplaceOnly",
+        "Text"));

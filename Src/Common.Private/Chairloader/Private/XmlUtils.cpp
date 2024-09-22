@@ -190,38 +190,46 @@ bool XmlUtils::XmlNodesAreEqual(const pugi::xml_node& lhs, const pugi::xml_node&
     }
 
     // Compare children
-    {
-        auto childrenl = lhs.children();
-        auto childrenr = rhs.children();
-        auto itl = childrenl.begin();
-        auto itr = childrenr.begin();
-
-        for (;;)
-        {
-            if (itl == childrenl.end() && itr == childrenr.end())
-            {
-                // Equal size and contents
-                break;
-            }
-            else if (itl == childrenl.end() || itr == childrenr.end())
-            {
-                // One child list is shorter
-                return false;
-            }
-
-            assert(itl != childrenl.end() && itr != childrenr.end());
-
-            if (!XmlNodesAreEqual(*itl, *itr))
-            {
-                // Non-equal children
-                return false;
-            }
-
-            ++itl;
-            ++itr;
-        }
-    }
+    if (!XmlChildrenAreEqual(lhs, rhs))
+        return false;
 
     // All checks passed
+    return true;
+}
+
+bool XmlUtils::XmlChildrenAreEqual(const pugi::xml_node& lhs, const pugi::xml_node& rhs)
+{
+    auto childrenl = lhs.children();
+    auto childrenr = rhs.children();
+    auto itl = childrenl.begin();
+    auto itr = childrenr.begin();
+
+    for (;;)
+    {
+        bool a = itl == childrenl.end();
+        bool b = itr == childrenr.end();
+        if (itl == childrenl.end() && itr == childrenr.end())
+        {
+            // Equal size and contents
+            break;
+        }
+        else if (itl == childrenl.end() || itr == childrenr.end())
+        {
+            // One child list is shorter
+            return false;
+        }
+
+        assert(itl != childrenl.end() && itr != childrenr.end());
+
+        if (!XmlNodesAreEqual(*itl, *itr))
+        {
+            // Non-equal children
+            return false;
+        }
+
+        ++itl;
+        ++itr;
+    }
+
     return true;
 }

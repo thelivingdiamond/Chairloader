@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Root>
+    <Empty></Empty>
+    <Unchanged>Testing1</Unchanged>
+    <Changed>Testing2</Changed>
+    <SetToEmpty>Testing3</SetToEmpty>
+</Root>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Root ch:action="replace">
+<Root ch:action="replaceChildren">
     <Item
         attr1="prey1_1"
         attr2="prey2_1" />

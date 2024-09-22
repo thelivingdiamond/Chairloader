@@ -74,6 +74,18 @@ public:
         const pugi::xml_document& modDoc,
         const FileMergingPolicy3& policy);
 
+    //! Tries to find a child mod node in the parent base node.
+    //! @param  parentBaseNode  Base node that contains children of the same type as childModNode.
+    //! @param  childModNode    Child mod node.
+    //! @param  parentPolicy    Merging policy for the base node.
+    //! @param  modErrorStack   XML error stack for the child mod node.
+    //! @returns Child base node that has key equal to the one of child mod node.
+    static pugi::xml_node FindBaseNodeByModKey(
+        const pugi::xml_node& parentBaseNode,
+        const pugi::xml_node& childModNode,
+        const MergingPolicy3& parentPolicy,
+        const XmlErrorStack& childModErrorStack);
+
 private:
     using ArrayIndex = int32_t;
 
@@ -122,18 +134,6 @@ private:
         const pugi::xml_node& modNode,
         const MergingPolicy3& policy,
         const XmlErrorStack& modErrorStack);
-
-    //! Tries to find a child mod node in the parent base node.
-    //! @param  parentBaseNode  Base node that contains children of the same type as childModNode.
-    //! @param  childModNode    Child mod node.
-    //! @param  parentPolicy    Merging policy for the base node.
-    //! @param  modErrorStack   XML error stack for the child mod node.
-    //! @returns Child base node that has key equal to the one of child mod node.
-    static pugi::xml_node FindBaseNodeByModKey(
-        pugi::xml_node& parentBaseNode,
-        const pugi::xml_node& childModNode,
-        const MergingPolicy3& parentPolicy,
-        const XmlErrorStack& childModErrorStack);
 
     //! Tries to find a child node that has index equal to the parameter or the one after it.
     //! @param  parentBaseNode  Base node (an array). Must be sorted ASC.

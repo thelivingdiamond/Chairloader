@@ -223,6 +223,71 @@ void XmlMerger3::MergeExcelDocument(
     }
 }
 
+pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
+    const pugi::xml_node& parentBaseNode,
+    const pugi::xml_node& childModNode,
+    const MergingPolicy3& parentPolicy,
+    const XmlErrorStack& childModErrorStack)
+{
+    const MergingPolicy3::Collection& collection = parentPolicy.GetCollection();
+    CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Dict);
+    const std::vector<std::string>& keyAttributes = collection.keyChildAttributes;
+
+    // Get the key values
+    std::string_view childModNodeName = childModNode.name();
+    std::vector<std::string_view> childModKeyValues;
+    childModKeyValues.resize(keyAttributes.size());
+
+    for (size_t i = 0; i < childModKeyValues.size(); i++)
+    {
+        const pugi::xml_attribute modAttr = childModNode.attribute(keyAttributes[i].c_str());
+
+        if (!modAttr)
+            childModErrorStack.ThrowException(fmt::format("Key attribute {} is missing", keyAttributes[i]));
+
+        childModKeyValues[i] = modAttr.as_string();
+    }
+
+    // Iterate through all base child nodes and find the first one that matches
+    for (const pugi::xml_node childBaseNode : parentBaseNode.children())
+    {
+        if (childBaseNode.type() != pugi::node_element)
+            continue;
+
+        bool allEqual = true;
+
+        if (collection.keyChildName)
+            allEqual &= childModNodeName == childBaseNode.name();
+
+        if (collection.keyChildText)
+            allEqual &= !!!strcmp(childModNode.text().as_string(), childBaseNode.text().as_string()); // !!! to shut up the analyzer
+
+        for (size_t i = 0; i < childModKeyValues.size() && allEqual; i++)
+        {
+            const pugi::xml_attribute baseAttr = childBaseNode.attribute(keyAttributes[i].c_str());
+
+            if (!baseAttr)
+            {
+                childModErrorStack.ThrowException(fmt::format(
+                    "Key attribute {} is missing ON THE BASE NODE. "
+                    "Base XML is invalid. This is not supposed to happen.",
+                    keyAttributes[i]));
+            }
+
+            allEqual &= childModKeyValues[i] == baseAttr.as_string();
+        }
+
+        if (allEqual)
+        {
+            // Found the node
+            return childBaseNode;
+        }
+    }
+
+    // Not found
+    return pugi::xml_node();
+}
+
 void XmlMerger3::MergeAttributes(
     const XmlMergerContext& context,
     pugi::xml_node& baseNode,
@@ -481,71 +546,6 @@ void XmlMerger3::MergeChildrenArray(
 
         i++;
     }
-}
-
-pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
-    pugi::xml_node& parentBaseNode,
-    const pugi::xml_node& childModNode,
-    const MergingPolicy3& parentPolicy,
-    const XmlErrorStack& childModErrorStack)
-{
-    const MergingPolicy3::Collection& collection = parentPolicy.GetCollection();
-    CRY_ASSERT(collection.type == MergingPolicy3::ECollectionType::Dict);
-    const std::vector<std::string>& keyAttributes = collection.keyChildAttributes;
-
-    // Get the key values
-    std::string_view childModNodeName = childModNode.name();
-    std::vector<std::string_view> childModKeyValues;
-    childModKeyValues.resize(keyAttributes.size());
-
-    for (size_t i = 0; i < childModKeyValues.size(); i++)
-    {
-        const pugi::xml_attribute modAttr = childModNode.attribute(keyAttributes[i].c_str());
-
-        if (!modAttr)
-            childModErrorStack.ThrowException(fmt::format("Key attribute {} is missing", keyAttributes[i]));
-
-        childModKeyValues[i] = modAttr.as_string();
-    }
-
-    // Iterate through all base child nodes and find the first one that matches
-    for (pugi::xml_node childBaseNode : parentBaseNode.children())
-    {
-        if (childBaseNode.type() != pugi::node_element)
-            continue;
-
-        bool allEqual = true;
-
-        if (collection.keyChildName)
-            allEqual &= childModNodeName == childBaseNode.name();
-
-        if (collection.keyChildText)
-            allEqual &= !!!strcmp(childModNode.text().as_string(), childBaseNode.text().as_string()); // !!! to shut up the analyzer
-
-        for (size_t i = 0; i < childModKeyValues.size() && allEqual; i++)
-        {
-            const pugi::xml_attribute baseAttr = childBaseNode.attribute(keyAttributes[i].c_str());
-
-            if (!baseAttr)
-            {
-                childModErrorStack.ThrowException(fmt::format(
-                    "Key attribute {} is missing ON THE BASE NODE. "
-                    "Base XML is invalid. This is not supposed to happen.",
-                    keyAttributes[i]));
-            }
-
-            allEqual &= childModKeyValues[i] == baseAttr.as_string();
-        }
-
-        if (allEqual)
-        {
-            // Found the node
-            return childBaseNode;
-        }
-    }
-
-    // Not found
-    return pugi::xml_node();
 }
 
 std::pair<pugi::xml_node, bool> XmlMerger3::FindBaseNodeByIndex(
