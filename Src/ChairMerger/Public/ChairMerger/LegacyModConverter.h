@@ -9,12 +9,33 @@ class FileMergingPolicy3;
 class CHAIRMERGER_EXPORT LegacyModConverter
 {
 public:
+    enum class EPakType
+    {
+        None,
+        GameData, //!< Goes into GameSDK or Precache.
+        Level, //! Goes into a level folder.
+        Localization, //!< Goes into a localization folder
+    };
+
     struct LogEntry
     {
         severityLevel level;
         std::string message;
         std::vector<std::string> stackTrace;
     };
+
+    struct ModInfo
+    {
+        //! Type of the mod pak.
+        EPakType pakType = EPakType::None;
+
+        //! Relative path in the output (converted) folder.
+        //! Will include level name or localization folder.
+        fs::path outputRelativePath;
+    };
+
+    //! Analizes a mod folder.
+    static ModInfo AnalyzeFolder(const std::string& pakName, const fs::path& modDir);
 
     //! @returns List of log entries.
     const std::list<LogEntry>& GetLogs() const { return m_Logs; }

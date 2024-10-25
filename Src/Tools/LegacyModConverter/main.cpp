@@ -10,6 +10,7 @@
 #include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
+#include <SHA256/SHA256.h>
 
 namespace po = boost::program_options;
 
@@ -26,6 +27,28 @@ struct ConvertionStats
 struct ChairloaderGlobalEnvironment* gCL;
 
 static constexpr char LINES[] = "----------------------------------------------------------------------";
+
+SHA256::Digest HashFile(const fs::path& path)
+{
+    std::ifstream file;
+    file.exceptions(std::ios::failbit | std::ios::badbit);
+    file.open(path, std::ios::binary);
+    file.seekg(0, std::ios::end);
+    uint64_t size = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    std::vector<char> buf(16384);
+    SHA256 hash;
+
+    for (uint64_t i = 0; i < size; i += (uint64_t)buf.size())
+    {
+        size_t read = (size_t)std::min((uint64_t)buf.size(), size - i);
+        file.read(buf.data(), read);
+        hash.update((uint8_t*)buf.data(), read);
+    }
+
+    return hash.digest();
+}
 
 int main(int argc, char** argv)
 {
@@ -77,6 +100,11 @@ int main(int argc, char** argv)
         fs::path outDir = fs::u8path(vm["out-dir"].as<std::string>());
         ConvertionStats stats;
 
+        // Analyze the folder
+        LegacyModConverter::ModInfo legacyModInfo = LegacyModConverter::AnalyzeFolder(legacyModDir.filename().u8string(), legacyModDir);
+        fmt::println("Output relative path: {}", legacyModInfo.outputRelativePath.generic_u8string());
+        fmt::println("{}", LINES);
+
         for (const fs::directory_entry& dirEnt : fs::recursive_directory_iterator(legacyModDir))
         {
             if (dirEnt.is_directory())
@@ -84,28 +112,43 @@ int main(int argc, char** argv)
 
             stats.total++;
             fs::path legacyFilePath = dirEnt.path();
-            fs::path relPath = legacyFilePath.lexically_relative(legacyModDir);
+            fs::path relPath = legacyModInfo.outputRelativePath / legacyFilePath.lexically_relative(legacyModDir);
 
             try
             {
                 fs::path preyFilePath = preyFilesDir / relPath;
                 fs::path outFilePath = outDir / relPath;
 
-                if (!fs::exists(preyFilePath))
+                fs::create_directories(outFilePath.parent_path());
+
+                bool preyFileExists = fs::exists(preyFilePath);
+                const FileMergingPolicy3* pPolicy = mergingLibrary.FindPolicyForFile(relPath);
+
+                if (!preyFileExists || !pPolicy ||
+                    (pPolicy->GetMethod() != FileMergingPolicy3::EMethod::Merge && pPolicy->GetMethod() != FileMergingPolicy3::EMethod::Excel2003))
                 {
-                    // This is a new file. Just copy it.
-                    fmt::println("Copying: {}", relPath.generic_u8string());
+                    // No policy for this file. Copy it instead.
+                    // Can happen if non-XML file or new file.
+
+                    if (preyFileExists)
+                    {
+                        // Hash the files
+                        SHA256::Digest preyHash = HashFile(preyFilePath);
+                        SHA256::Digest legacyHash = HashFile(legacyFilePath);
+
+                        if (preyHash == legacyHash)
+                        {
+                            // File not changed
+                            stats.unchanged++;
+                            fmt::println("Unchanged (bin): {}", relPath.generic_u8string());
+                            continue;
+                        }
+                    }
+
+                    fmt::println("Copying (bin): {}", relPath.generic_u8string());
                     fs::copy_file(legacyFilePath, outFilePath, fs::copy_options::overwrite_existing);
                     stats.copied++;
                     continue;
-                }
-
-                const FileMergingPolicy3* pPolicy = mergingLibrary.FindPolicyForFile(relPath);
-
-                if (!pPolicy)
-                {
-                    // No policy for this file. This is not supposed to happen.
-                    throw std::runtime_error("Policy not found for file");
                 }
 
                 pugi::xml_document legacyDoc = XmlUtils::LoadDocument(legacyFilePath);
@@ -113,13 +156,16 @@ int main(int argc, char** argv)
                 pugi::xml_document outDoc;
 
                 // Patch the files
+                if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Merge)
                 {
-                    XmlErrorStack errorStack("LegacyMod");
-                    PreyFilePatcher::PatchDocument(legacyFilePath, fs::path(), legacyDoc, *pPolicy, errorStack);
-                }
-                {
-                    XmlErrorStack errorStack("Prey");
-                    PreyFilePatcher::PatchDocument(preyFilePath, fs::path(), preyDoc, *pPolicy, errorStack);
+                    {
+                        XmlErrorStack errorStack("LegacyMod");
+                        PreyFilePatcher::PatchDocument(legacyFilePath, fs::path(), legacyDoc, *pPolicy, errorStack);
+                    }
+                    {
+                        XmlErrorStack errorStack("Prey");
+                        PreyFilePatcher::PatchDocument(preyFilePath, fs::path(), preyDoc, *pPolicy, errorStack);
+                    }
                 }
 
                 LegacyModConverter converter;
@@ -145,7 +191,7 @@ int main(int argc, char** argv)
                 {
                     // File not changed
                     stats.unchanged++;
-                    fmt::println("Unchanged: {}", relPath.generic_u8string());
+                    fmt::println("Unchanged (xml): {}", relPath.generic_u8string());
                 }
             }
             catch (const std::exception& e)

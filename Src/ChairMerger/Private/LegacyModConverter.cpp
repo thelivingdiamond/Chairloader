@@ -1,8 +1,101 @@
+#include <boost/algorithm/string.hpp>
 #include <ChairMerger/LegacyModConverter.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlValidator.h>
 #include <ChairMerger/XmlMerger3.h>
 #include "MetaAttributes.h"
+
+static constexpr const char* LOCALIZATION_FOLDER_NAMES[] = {
+    "English", // Must be first!
+    "French",
+    "Italian",
+    "German",
+    "Spanish",
+    "Brazilian",
+    "Russian",
+    "Polish",
+    "Japanese",
+    "TChinese",
+    "SChinese",
+};
+
+LegacyModConverter::ModInfo LegacyModConverter::AnalyzeFolder(const std::string& pakName, const fs::path& modDir)
+{
+    ModInfo result;
+    result.pakType = EPakType::GameData;
+
+    if (fs::exists(modDir / "levelinfo.xml"))
+    {
+        // Found LevelInfo. This is a level pak.
+        result.pakType = EPakType::Level;
+
+        // Read level name from LevelInfo
+        // Level name looks like "gamesdk/levels/campaign/station/exterior"
+        pugi::xml_document doc = XmlUtils::LoadDocument(modDir / "levelinfo.xml");
+        std::string levelName = doc.first_child().attribute("Name").as_string();
+
+        if (levelName.empty())
+            throw std::runtime_error("Level name not set in LevelInfo");
+
+        if (boost::istarts_with(levelName, "GameSDK/"))
+        {
+            // Strip GameSDK
+            levelName = levelName.substr(8);
+        }
+
+        levelName += "/level"; // Chairloader stores level files there
+        result.outputRelativePath = fs::u8path(levelName);
+        return result;
+    }
+    
+    // Check if all files begin with text_ or voice_
+    bool isLocalization = true;
+
+    for (const fs::directory_entry& i : fs::recursive_directory_iterator(modDir))
+    {
+        if (!i.is_regular_file())
+            continue;
+
+        fs::path filePath = i.path();
+
+        // ark/campaign/levels contains unprefixed files. Skip them.
+        if (boost::iequals(filePath.parent_path().filename().u8string(), "levels"))
+            continue;
+
+        std::string name = i.path().filename().u8string();
+
+        if (!boost::istarts_with(name, "text_") && !boost::istarts_with(name, "voice_"))
+        {
+            // Not localization
+            isLocalization = false;
+            break;
+        }
+    }
+
+    if (isLocalization)
+    {
+        result.pakType = EPakType::Localization;
+
+        // Check pak name for language
+        // Use English if not found
+        const char* foundLanguage = LOCALIZATION_FOLDER_NAMES[0];
+
+        for (const char* langName : LOCALIZATION_FOLDER_NAMES)
+        {
+            std::string prefix = fmt::format("{}_xml", langName);
+
+            if (boost::istarts_with(pakName, prefix))
+            {
+                foundLanguage = langName;
+                break;
+            }
+        }
+
+        result.outputRelativePath = fs::u8path(fmt::format("Localization/{}_xml", foundLanguage));
+    }
+
+    return result;
+}
 
 bool LegacyModConverter::ConvertNode(
     const pugi::xml_node& preyNode,
