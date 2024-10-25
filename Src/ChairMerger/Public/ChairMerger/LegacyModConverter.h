@@ -56,6 +56,14 @@ public:
         pugi::xml_document& outDoc,
         const FileMergingPolicy3& policy);
 
+    //! Converts an Excel document.
+    //! @returns Whether the output document contains any changes.
+    bool ConvertExcelDocument(
+        const pugi::xml_document& preyDoc,
+        const pugi::xml_document& legacyModDoc,
+        pugi::xml_document& outDoc,
+        const FileMergingPolicy3& policy);
+
 private:
     std::list<LogEntry> m_Logs;
 

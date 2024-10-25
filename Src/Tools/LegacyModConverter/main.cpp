@@ -10,6 +10,7 @@
 #include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
+#include <ChairMerger/XmlMerger3.h>
 #include <SHA256/SHA256.h>
 
 namespace po = boost::program_options;
@@ -151,13 +152,21 @@ int main(int argc, char** argv)
                     continue;
                 }
 
-                pugi::xml_document legacyDoc = XmlUtils::LoadDocument(legacyFilePath);
-                pugi::xml_document preyDoc = XmlUtils::LoadDocument(preyFilePath);
+                unsigned parseOptions =
+                    pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003
+                    ? XmlMerger3::EXCEL_PARSE_OPTIONS
+                    : pugi::parse_default;
+
+                pugi::xml_document legacyDoc = XmlUtils::LoadDocument(legacyFilePath, parseOptions);
+                pugi::xml_document preyDoc = XmlUtils::LoadDocument(preyFilePath, parseOptions);
                 pugi::xml_document outDoc;
 
-                // Patch the files
+                LegacyModConverter converter;
+                bool foundChanges = false;
+
                 if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Merge)
                 {
+                    // Patch the files
                     {
                         XmlErrorStack errorStack("LegacyMod");
                         PreyFilePatcher::PatchDocument(legacyFilePath, fs::path(), legacyDoc, *pPolicy, errorStack);
@@ -166,16 +175,20 @@ int main(int argc, char** argv)
                         XmlErrorStack errorStack("Prey");
                         PreyFilePatcher::PatchDocument(preyFilePath, fs::path(), preyDoc, *pPolicy, errorStack);
                     }
+
+                    foundChanges = converter.ConvertDocument(preyDoc, legacyDoc, outDoc, *pPolicy);
+                }
+                else if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+                {
+                    foundChanges = converter.ConvertExcelDocument(preyDoc, legacyDoc, outDoc, *pPolicy);
                 }
 
-                LegacyModConverter converter;
+                // TODO 2024-09-22: Check for errors in the log
+                // TODO 2024-09-22: Also print the log
+                // TODO 2024-09-22: Add stats to the merging process
                 
-                if (converter.ConvertDocument(preyDoc, legacyDoc, outDoc, *pPolicy))
+                if (foundChanges)
                 {
-                    // TODO 2024-09-22: Check for errors in the log
-                    // TODO 2024-09-22: Also print the log
-                    // TODO 2024-09-22: Add stats to the merging process
-
                     // Save the converted file
                     fs::create_directories(outFilePath.parent_path());
 

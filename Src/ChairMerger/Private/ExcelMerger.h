@@ -29,6 +29,9 @@ public:
     //! Reads a table into this object. May only be called once.
     void ReadTable(std::string_view keyName, const pugi::xml_node& rootNode);
 
+    //! Exports the table into an Excel XML spreadsheet.
+    pugi::xml_document ExportExcelXml() const;
+
 private:
     //! Parses column names from the first row.
     void ParseFirstRow(std::string_view keyName, Row&& row);

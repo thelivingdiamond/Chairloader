@@ -4,6 +4,7 @@
 #include <ChairMerger/XmlValidator.h>
 #include <ChairMerger/XmlMerger3.h>
 #include "MetaAttributes.h"
+#include "ExcelMerger.h"
 
 static constexpr const char* LOCALIZATION_FOLDER_NAMES[] = {
     "English", // Must be first!
@@ -203,6 +204,101 @@ bool LegacyModConverter::ConvertDocument(
 
     // Convert root node
     return ConvertNode(preyNode, legacyModNode, outNode, policy.GetRootNode(), outErrorStack);
+}
+
+bool LegacyModConverter::ConvertExcelDocument(
+    const pugi::xml_document& preyDoc,
+    const pugi::xml_document& legacyModDoc,
+    pugi::xml_document& outDoc,
+    const FileMergingPolicy3& policy)
+{
+    if (policy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
+        throw std::logic_error("Not an Excel file policy");
+
+    // Parse both spreadsheets
+    ExcelTable preyTable;
+    preyTable.ReadTable(policy.GetExcelKeyColName(), preyDoc);
+
+    ExcelTable legacyModTable;
+    legacyModTable.ReadTable(policy.GetExcelKeyColName(), legacyModDoc);
+
+    ExcelTable outTable;
+    outTable.columnNames = legacyModTable.columnNames;
+    outTable.keyColumnIdx = legacyModTable.keyColumnIdx;
+
+    // Compare each key in mod with prey
+    std::vector<size_t> colsToAdd;
+
+    for (size_t rowIdx = 0; rowIdx < legacyModTable.rows.size(); rowIdx++)
+    {
+        colsToAdd.clear();
+        const ExcelTable::Row& row = legacyModTable.rows[rowIdx];
+
+        if (row[legacyModTable.keyColumnIdx].empty())
+            continue;
+
+        // Find the Prey row with the same key
+        const std::string& rowKey = row[legacyModTable.keyColumnIdx];
+        auto preyRowIt = std::find_if(preyTable.rows.begin(), preyTable.rows.end(), [&](const const ExcelTable::Row& x) { return x[preyTable.keyColumnIdx] == rowKey; });
+
+        if (preyRowIt == preyTable.rows.end())
+        {
+            // Row not found in Prey files. Add it.
+            outTable.rows.push_back(row);
+            continue;
+        }
+
+        for (size_t colIdx = 0; colIdx < row.size(); colIdx++)
+        {
+            const std::string& colName = legacyModTable.columnNames[colIdx];
+            const std::string& cellValue = row[colIdx];
+
+            if (colName.empty() || cellValue.empty())
+                continue;
+
+            // Find the column in prey
+            auto preyColNameIt = std::find(preyTable.columnNames.begin(), preyTable.columnNames.end(), colName);
+
+            if (preyColNameIt == preyTable.columnNames.end())
+            {
+                // Column doesn't exist and the cell has the value. Add the row
+                colsToAdd.push_back(colIdx);
+                continue;
+            }
+
+            // Compare cell values
+            size_t preyColIdx = preyColNameIt - preyTable.columnNames.begin();
+
+            if ((*preyRowIt)[preyColIdx] != cellValue)
+            {
+                // Column is different from Prey
+                colsToAdd.push_back(colIdx);
+            }
+        }
+
+        if (colsToAdd.empty())
+        {
+            // No columns to add
+            continue;
+        }
+
+        ExcelTable::Row newRow(outTable.columnNames.size());
+        newRow[outTable.keyColumnIdx] = row[legacyModTable.keyColumnIdx];
+
+        for (size_t colIdx : colsToAdd)
+        {
+            newRow[colIdx] = row[colIdx];
+        }
+
+        outTable.rows.emplace_back(std::move(newRow));
+    }
+
+    if (outTable.rows.empty())
+        return false;
+
+    // Save the table
+    outDoc = outTable.ExportExcelXml();
+    return true;
 }
 
 void LegacyModConverter::AddLog(severityLevel level, std::string_view message, const XmlErrorStack& errorStack)
