@@ -95,6 +95,7 @@ int main(int argc, char** argv)
                 {
                     // This is a new file. Just copy it.
                     fmt::println("Copying: {}", relPath.generic_u8string());
+                    fs::copy_file(legacyFilePath, outFilePath, fs::copy_options::overwrite_existing);
                     stats.copied++;
                     continue;
                 }
