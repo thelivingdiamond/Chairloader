@@ -1232,11 +1232,22 @@ void ChairManager::LoadModInfoFiles()
     // Read settings from the config
     for (Mod& mod : ModList)
     {
+        // Find the mod in the config
+        pugi::xml_node modNode;
+
+        for (pugi::xml_node i : ModListNode.children("Mod"))
+        {
+            if (i.child("modName").text().as_string() == mod.modName)
+            {
+                modNode = i;
+                break;
+            }
+        }
+
         // -- If in Chairloader.xml --
-        if (ModListNode.child(mod.modName.c_str()))
+        if (modNode)
         {
             /* Load Previous Mod Config */
-            auto modNode = ModListNode.child(mod.modName.c_str());
             mod.enabled = modNode.child("enabled").text().as_bool();
             mod.deployed = modNode.child("deployed").text().as_bool();
 
@@ -1315,13 +1326,25 @@ void ChairManager::SaveMod(Mod *modEntry) {
         return;
     }
 
-    auto modNode = ModListNode.child(modEntry->modName.c_str());
+    // Find the mod in the config
+    pugi::xml_node modNode;
+
+    for (pugi::xml_node i : ModListNode.children("Mod"))
+    {
+        if (i.child("modName").text().as_string() == modEntry->modName)
+        {
+            modNode = i;
+            break;
+        }
+    }
+
     if (modNode) {
         modNode.remove_children();
     } else {
-        ModListNode.append_child(modEntry->modName.c_str()).append_attribute("type").set_value("xmlnode");;
+        modNode = ModListNode.append_child("Mod");
+        modNode.append_attribute("type").set_value("xmlnode");
     }
-    modNode = ModListNode.child(modEntry->modName.c_str());
+
     //modName
     auto node = modNode.append_child("modName");
     node.append_attribute("type").set_value("string");
