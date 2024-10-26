@@ -183,10 +183,33 @@ int main(int argc, char** argv)
                     foundChanges = converter.ConvertExcelDocument(preyDoc, legacyDoc, outDoc, *pPolicy);
                 }
 
-                // TODO 2024-09-22: Check for errors in the log
-                // TODO 2024-09-22: Also print the log
-                // TODO 2024-09-22: Add stats to the merging process
+                // Print the log
+                const std::list<LegacyModConverter::LogEntry>& logs = converter.GetLogs();
+                bool foundErrors = false;
+
+                for (auto& i : logs)
+                {
+                    fmt::println("{}: {}", relPath.generic_u8string(), i.message);
+                    fmt::println("Stack trace:");
+
+                    for (const std::string& j : i.stackTrace)
+                    {
+                        fmt::println("- {}", j);
+                    }
+
+                    if (i.level == severityLevel::error)
+                        foundErrors = true;
+                }
+
+                // Check for errors
+                if (foundErrors)
+                {
+                    fmt::println("Failed to convert {}", relPath.generic_u8string());
+                    stats.failed++;
+                    continue;
+                }
                 
+                // Save the file if need to
                 if (foundChanges)
                 {
                     // Save the converted file
