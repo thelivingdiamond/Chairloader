@@ -405,11 +405,13 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
 void ChairManager::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
+
+    bool sortModList = false; // If true, mod list will be sorted after iteration
+
     if (ImGui::BeginTabItem("Mod List")) {
         if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0))) {
             float checkboxColumnSize = 0.0f;
             std::string modNameForDeletion; // If not empty, will be removed after all mods are displayed.
-            bool sortModList = false; // If true, mod list will be sorted after iteration
 
             if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
                 ImGuiTableFlags_NoBordersInBody)) {
@@ -419,7 +421,6 @@ void ChairManager::DrawModList() {
                     ImGui::CalcTextSize("Version").x + 16.0f);
                 ImGui::TableSetupColumn("Order", ImGuiTableColumnFlags_WidthFixed,
                     ImGui::CalcTextSize("Order").x + 16.0f);
-                ImGui::TableSetupColumn("##Buttons", ImGuiTableColumnFlags_WidthFixed);
                 ImGui::TableHeadersRow();
                 if (selectedMod.empty() && !ModList.empty()) {
                     selectedMod = ModList.at(0).modName;
@@ -545,29 +546,6 @@ void ChairManager::DrawModList() {
                     ImGui::TableNextColumn();
                     ImGui::Text("%i", ModEntry.loadOrder + 1);
 
-                    ImGui::TableNextColumn();
-                    if (selectedMod == ModEntry.modName) {
-                        try {
-                            if (ModEntry.loadOrder > 0) {
-                                if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
-                                    std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
-                                    sortModList = true;
-                                }
-                                ImGui::SameLine();
-                            }
-                            if (ModEntry.loadOrder < ModList.size() - 1) {
-                                if (ImGui::ArrowButton("##Down",
-                                    ImGuiDir_Down)) {
-                                    std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
-                                    sortModList = true;
-                                }
-                            }
-                        }
-                        catch (const std::exception& exc) {
-                            log(severityLevel::error, "%s", exc.what());
-                            std::cerr << exc.what() << std::endl;
-                        }
-                    }
                     i++;
 
                     ImGui::PopID();
@@ -582,11 +560,6 @@ void ChairManager::DrawModList() {
                 fs::remove_all(GetGamePath() / "Mods" / modNameForDeletion);
                 ModList.erase(std::find(ModList.begin(), ModList.end(), modNameForDeletion));
                 modNameForDeletion.clear();
-            }
-
-            if (sortModList)
-            {
-                std::sort(ModList.begin(), ModList.end());
             }
         }
         ImGui::EndChild();
@@ -616,6 +589,30 @@ void ChairManager::DrawModList() {
                     //                    if(ImGui::Button("Config")){
                     //                        m_ConfigManager.showConfigPopup(ModSelect->modName);
                     //                    }
+
+                    // Load order
+                    {
+                        ImGui::Separator();
+                        ImGui::Text("Load Order:");
+                        size_t selectedModIdx = ModSelect - ModList.begin();
+
+                        ImGui::BeginDisabled(ModSelect->loadOrder <= 0);
+                        if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
+                            std::swap(ModList.at(selectedModIdx - 1).loadOrder, ModList.at(selectedModIdx).loadOrder);
+                            sortModList = true;
+                        }
+                        ImGui::EndDisabled();
+                        ImGui::SameLine();
+
+                        ImGui::BeginDisabled(ModSelect->loadOrder >= ModList.size());
+                        if (ImGui::ArrowButton("##Down",
+                            ImGuiDir_Down)) {
+                            std::swap(ModList.at(selectedModIdx).loadOrder, ModList.at(selectedModIdx + 1).loadOrder);
+                            sortModList = true;
+                        }
+                        ImGui::EndDisabled();
+                    }
+
                     if (!ModSelect->dependencies.empty()) {
                         ImGui::Separator();
                         ImGui::Text("Dependencies:");
@@ -743,6 +740,11 @@ void ChairManager::DrawModList() {
             }
         }
         ImGui::EndTabItem();
+    }
+
+    if (sortModList)
+    {
+        std::sort(ModList.begin(), ModList.end());
     }
 }
 
