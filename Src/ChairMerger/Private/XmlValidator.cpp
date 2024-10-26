@@ -126,6 +126,24 @@ void XmlValidator::ValidateNodeInternal(
     Result& result,
     bool recurse)
 {
+    if (context.mode == EMode::Mod)
+    {
+        MetaAttributes meta;
+        meta.ParseNode(node, errorStack);
+
+        if (!meta.GetApplyNode())
+        {
+            // Node is not applied - ignore
+            return;
+        }
+
+        if (meta.GetAction() == MetaAttributes::EAction::Delete)
+        {
+            // Node is deleted - ignore
+            return;
+        }
+    }
+
     ValidateAttributes(context, node, policy, errorStack, result);
     ValidateText(context, node, policy, errorStack, result);
     ValidateCollection(context, node, policy, errorStack, result);

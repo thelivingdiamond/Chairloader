@@ -342,6 +342,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Array_ModOverride",
         "Dict_ApplyIf",
         "Action_Delete",
+        "Action_DeleteNonExistant",
         "Action_Replace",
         "Action_ReplaceChildren"));
 

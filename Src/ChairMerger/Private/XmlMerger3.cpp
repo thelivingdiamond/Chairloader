@@ -243,9 +243,14 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
         const pugi::xml_attribute modAttr = childModNode.attribute(keyAttributes[i].c_str());
 
         if (!modAttr)
-            childModErrorStack.ThrowException(fmt::format("Key attribute {} is missing", keyAttributes[i]));
-
-        childModKeyValues[i] = modAttr.as_string();
+        {
+            // It's OK if missing. Some nodes may not have the attribute.
+            childModKeyValues[i] = "__undefined__";
+        }
+        else
+        {
+            childModKeyValues[i] = modAttr.as_string();
+        }
     }
 
     // Iterate through all base child nodes and find the first one that matches
@@ -265,16 +270,7 @@ pugi::xml_node XmlMerger3::FindBaseNodeByModKey(
         for (size_t i = 0; i < childModKeyValues.size() && allEqual; i++)
         {
             const pugi::xml_attribute baseAttr = childBaseNode.attribute(keyAttributes[i].c_str());
-
-            if (!baseAttr)
-            {
-                childModErrorStack.ThrowException(fmt::format(
-                    "Key attribute {} is missing ON THE BASE NODE. "
-                    "Base XML is invalid. This is not supposed to happen.",
-                    keyAttributes[i]));
-            }
-
-            allEqual &= childModKeyValues[i] == baseAttr.as_string();
+            allEqual &= childModKeyValues[i] == baseAttr.as_string("__undefined__");
         }
 
         if (allEqual)
@@ -318,7 +314,7 @@ void XmlMerger3::MergeAttributes(
             // Check value when read-only
             CRY_ASSERT(pPolicyAttr->required);
             if (!baseAttr)
-                modErrorStack.ThrowException(fmt::format("Required attribute {} is missing in the base node", attrName));
+                modErrorStack.ThrowException(fmt::format("Required attribute '{}' is missing in the base node", attrName));
 
             if (strcmp(modAttr.as_string(), baseAttr.as_string()))
             {
@@ -428,9 +424,15 @@ void XmlMerger3::MergeChildrenDict(
         else
         {
             // This is a new node
-            pugi::xml_node addedNode = baseNode.append_copy(childModNode);
-            MetaAttributes::StripNode(addedNode);
-            ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
+            MetaAttributes meta;
+            meta.ParseNode(childModNode, childModErrorStack);
+
+            if (meta.GetAction() != MetaAttributes::EAction::Delete)
+            {
+                pugi::xml_node addedNode = baseNode.append_copy(childModNode);
+                MetaAttributes::StripNode(addedNode);
+                ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
+            }
         }
 
         i++;
@@ -705,6 +707,14 @@ void XmlMerger3::ValidateNewNode(
     const MergingPolicy3& childModPolicy,
     const XmlErrorStack& childModErrorStack)
 {
+#ifdef DEBUG_BUILD
+    {
+        MetaAttributes meta;
+        meta.ParseNode(childModNode, childModErrorStack);
+        CRY_ASSERT(meta.GetAction() != MetaAttributes::EAction::Delete);
+    }
+#endif
+
     XmlValidator::Context valCtx;
     valCtx.mode = XmlValidator::EMode::MergingBase;
     valCtx.pTypeLib = context.pTypeLib;
