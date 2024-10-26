@@ -98,6 +98,33 @@ LegacyModConverter::ModInfo LegacyModConverter::AnalyzeFolder(const std::string&
     return result;
 }
 
+void LegacyModConverter::PatchDocument(
+    const fs::path& relPath,
+    pugi::xml_document& legacyModDoc,
+    const FileMergingPolicy3& policy)
+{
+    std::string fileName = relPath.filename().u8string();
+    XmlErrorStack stack(fileName.c_str());
+
+    RemoveDuplicateKeys(legacyModDoc.first_child(), policy.GetRootNode(), stack);
+
+    if (boost::istarts_with(fileName, "mission_"))
+    {
+        // Remove UseInIndoors from Object. Not used by the game.
+        // Found in Talos In The Dark
+        // https://www.nexusmods.com/prey2017/mods/64
+        bool done = false;
+
+        for (pugi::xml_node node : legacyModDoc.first_child().child("Objects").children("Object"))
+        {
+            done |= node.remove_attribute("UseInIndoors");
+        }
+
+        if (done)
+            AddLog(severityLevel::warning, "Removed UseInIndoors attribute", stack);
+    }
+}
+
 bool LegacyModConverter::ConvertNode(
     const pugi::xml_node& preyNode,
     const pugi::xml_node& legacyModNode,
@@ -521,4 +548,75 @@ bool LegacyModConverter::ConvertDict(
     }
 
     return hasChanges;
+}
+
+void LegacyModConverter::RemoveDuplicateKeys(
+    pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack)
+{
+    const MergingPolicy3::Collection& collection = policy.GetCollection();
+
+    if (collection.type == MergingPolicy3::ECollectionType::Dict)
+    {
+        std::map<std::string, pugi::xml_node> keyToNodeMap;
+        pugi::xml_node curNode = node.last_child();
+
+        // Iterate in reverse so the last duplicate element remains
+        while (curNode)
+        {
+            XmlErrorStack childErrorStack = errorStack.GetChild(curNode);
+            std::string key;
+
+            if (collection.keyChildName)
+            {
+                key += curNode.name();
+                key += '|';
+            }
+
+            if (collection.keyChildText)
+            {
+                key += curNode.text().as_string();
+                key += '|';
+            }
+
+            for (const std::string& attrName : collection.keyChildAttributes)
+            {
+                pugi::xml_attribute attr = curNode.attribute(attrName.c_str());
+
+                if (attr)
+                    key += attr.as_string();
+                else
+                    key += "<not set>";
+
+                key += '|';
+            }
+
+            bool inserted = keyToNodeMap.insert({ key, curNode }).second;
+
+            if (!inserted)
+            {
+                AddLog(severityLevel::warning, fmt::format("Removed duplicate item {}", key), childErrorStack);
+                pugi::xml_node toRemove = curNode;
+                curNode = curNode.previous_sibling();
+                node.remove_child(toRemove);
+            }
+            else
+            {
+                curNode = curNode.previous_sibling();
+            }
+        }
+    }
+
+    // Recurse down whatever is left
+    for (pugi::xml_node& childNode : node.children())
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        const MergingPolicy3* childPolicy = policy.FindChildNode(childNode.name());
+
+        if (!childPolicy)
+            continue; // Validation will handle this
+
+        RemoveDuplicateKeys(childNode, *childPolicy, childErrorStack);
+    }
 }

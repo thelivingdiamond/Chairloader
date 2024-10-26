@@ -40,6 +40,12 @@ public:
     //! @returns List of log entries.
     const std::list<LogEntry>& GetLogs() const { return m_Logs; }
 
+    //! Patches a document to fix modder's mistakes (and removes legacy stuff no longer in the game).
+    void PatchDocument(
+        const fs::path& relPath,
+        pugi::xml_document& legacyModDoc,
+        const FileMergingPolicy3& policy);
+
     //! Converts a legacy mod node.
     bool ConvertNode(
         const pugi::xml_node& preyNode,
@@ -87,6 +93,12 @@ private:
         const pugi::xml_node& preyNode,
         const pugi::xml_node& legacyModNode,
         pugi::xml_node outNode,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack);
+
+    //! Looks for items with duplicate keys and removes them.
+    void RemoveDuplicateKeys(
+        pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack);
 };

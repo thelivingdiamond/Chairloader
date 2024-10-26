@@ -445,6 +445,14 @@ void ChairMerger::ProcessXMLFile(
 {
     try
     {
+        if (mod.type == EModType::Legacy)
+        {
+            // Skip serialize.xml
+            // It's auto-generated
+            if (boost::iequals(relativePath.filename().u8string(), "serialize.xml"))
+                return;
+        }
+
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
             throw std::runtime_error("This file can't be modified by mods");
 
@@ -471,6 +479,17 @@ void ChairMerger::ProcessXMLFile(
         if (mod.type == EModType::Native)
             ResolveFileWildcards(mod, modDoc.first_child());
 
+        // Load the original file
+        IXmlCache::ReadLock originalXmlLock;
+        const pugi::xml_document* originalDoc = nullptr;
+
+        {
+            IXmlCache::EOpenResult result = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
+
+            if (result != IXmlCache::EOpenResult::NotFound)
+                IXmlCache::ThrowForResult(result);
+        }
+
         // if we have an original result, we can actually do some merging
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
         {
@@ -485,10 +504,6 @@ void ChairMerger::ProcessXMLFile(
         // Convert legacy mod into a Chairloader mod
         if (mod.type == EModType::Legacy)
         {
-            // Load the original file
-            IXmlCache::ReadLock originalXmlLock;
-            const pugi::xml_document& originalDoc = m_pOriginalFileCache->OpenXmlForReading(relativePath, originalXmlLock, parseTags);
-
             // Move mod into a temp doc
             // modDoc will be replaced with converted mod
             pugi::xml_document legacyModDoc = std::move(modDoc);
@@ -500,10 +515,28 @@ void ChairMerger::ProcessXMLFile(
 
             if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge)
             {
+                // Patch the file
+                try
+                {
+                    XmlErrorStack errorStack(mod.modName);
+                    fs::path fullPath = mod.dataPath / relativePath;
+
+                    // Add Chairloader meta-attributes
+                    PreyFilePatcher::PatchDocument(fullPath, fs::path(), legacyModDoc, fileMergingPolicy, errorStack);
+
+                    // Patch to fix bugs
+                    converter.PatchDocument(relativePath, legacyModDoc, fileMergingPolicy);
+                }
+                catch (const std::exception& e)
+                {
+                    m_pLog->Log(severityLevel::error, "%s:%s: %s", mod.modName, relativePath.u8string(), e.what());
+                    throw std::runtime_error("Legacy mod file failed patching. Check the log for details.");
+                }
+
                 // Validate the original file
                 XmlValidator::Context valCtx;
                 valCtx.pTypeLib = m_pTypeLib.get();
-                valCtx.mode = XmlValidator::EMode::Prey;
+                valCtx.mode = XmlValidator::EMode::MergingBase;
 
                 XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, legacyModDoc, fileMergingPolicy);
 
@@ -515,24 +548,17 @@ void ChairMerger::ProcessXMLFile(
                     throw std::runtime_error("Legacy mod file failed validation. Check the log for details.");
                 }
 
-                // Patch the file
-                try
-                {
-                    XmlErrorStack errorStack(mod.modName);
-                    fs::path fullPath = mod.dataPath / relativePath;
-                    PreyFilePatcher::PatchDocument(fullPath, fs::path(), modDoc, fileMergingPolicy, errorStack);
-                }
-                catch (const std::exception& e)
-                {
-                    m_pLog->Log(severityLevel::error, "%s:%s: %s", mod.modName, relativePath.u8string(), e.what());
-                    throw std::runtime_error("Legacy mod file failed patching. Check the log for details.");
-                }
-
-                foundChanges = converter.ConvertDocument(originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                if (originalDoc)
+                    foundChanges = converter.ConvertDocument(*originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                else
+                    foundChanges = true;
             }
             else if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
             {
-                foundChanges = converter.ConvertExcelDocument(originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                if (originalDoc)
+                    foundChanges = converter.ConvertExcelDocument(*originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                else
+                    foundChanges = true;
             }
 
             // Print the log
@@ -550,7 +576,7 @@ void ChairMerger::ProcessXMLFile(
 
                     for (size_t j = 0; j < i.stackTrace.size(); j++)
                     {
-                        m_pLog->Log(severityLevel::debug, "  - #%d: %s", i.stackTrace.size() - j - 1);
+                        m_pLog->Log(severityLevel::debug, "  - #%d: %s", i.stackTrace.size() - j - 1, i.stackTrace[j]);
                     }
 
                     if (i.level == severityLevel::error)
@@ -564,6 +590,23 @@ void ChairMerger::ProcessXMLFile(
                 m_pLog->Log(severityLevel::error, "%s:%s: Conversion failed", mod.modName, relativePath.u8string());
                 throw std::runtime_error("Legacy mod file failed to convert. Check the log for details.");
             }
+
+            if (!foundChanges)
+            {
+                // No changes in legacy mod file
+                return;
+            }
+
+            if (foundChanges && !originalDoc)
+                modDoc = std::move(legacyModDoc);
+        }
+
+        // If original file doesn't exist, overwrite the base file.
+        if (!originalDoc)
+        {
+            // Replace the entire file
+            baseDoc = std::move(modDoc);
+            return;
         }
 
         // Validate mod file
