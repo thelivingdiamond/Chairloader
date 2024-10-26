@@ -6,9 +6,11 @@
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
 #include <ChairMerger/ChairMerger.h>
+#include <ChairMerger/LegacyModConverter.h>
 #include <ChairMerger/LuaUtils.h>
 #include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/NameToIdMap.h>
+#include <ChairMerger/PreyFilePatcher.h>
 #include <ChairMerger/WildcardResolver.h>
 #include <ChairMerger/XmlFinalizer3.h>
 #include <ChairMerger/XmlMerger3.h>
@@ -443,9 +445,6 @@ void ChairMerger::ProcessXMLFile(
 {
     try
     {
-        if (mod.type == EModType::Legacy)
-            throw std::logic_error("Legacy mods are not supported yet");
-
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
             throw std::runtime_error("This file can't be modified by mods");
 
@@ -469,7 +468,8 @@ void ChairMerger::ProcessXMLFile(
         }
 
         // resolve attribute wildcards on non legacy files
-        ResolveFileWildcards(mod, modDoc.first_child());
+        if (mod.type == EModType::Native)
+            ResolveFileWildcards(mod, modDoc.first_child());
 
         // if we have an original result, we can actually do some merging
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
@@ -481,6 +481,90 @@ void ChairMerger::ProcessXMLFile(
 
         CRY_ASSERT(fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge ||
             fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003);
+
+        // Convert legacy mod into a Chairloader mod
+        if (mod.type == EModType::Legacy)
+        {
+            // Load the original file
+            IXmlCache::ReadLock originalXmlLock;
+            const pugi::xml_document& originalDoc = m_pOriginalFileCache->OpenXmlForReading(relativePath, originalXmlLock, parseTags);
+
+            // Move mod into a temp doc
+            // modDoc will be replaced with converted mod
+            pugi::xml_document legacyModDoc = std::move(modDoc);
+            modDoc = pugi::xml_document();
+
+            // Convert the legacy mod
+            LegacyModConverter converter;
+            bool foundChanges = false;
+
+            if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge)
+            {
+                // Validate the original file
+                XmlValidator::Context valCtx;
+                valCtx.pTypeLib = m_pTypeLib.get();
+                valCtx.mode = XmlValidator::EMode::Prey;
+
+                XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, legacyModDoc, fileMergingPolicy);
+
+                if (!result)
+                {
+                    std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                    m_pLog->Log(severityLevel::error, "Validation failure of legacy mod file %s:%s", mod.modName, relativePath.u8string());
+                    PrintValidationResult(result, m_pLog);
+                    throw std::runtime_error("Legacy mod file failed validation. Check the log for details.");
+                }
+
+                // Patch the file
+                try
+                {
+                    XmlErrorStack errorStack(mod.modName);
+                    fs::path fullPath = mod.dataPath / relativePath;
+                    PreyFilePatcher::PatchDocument(fullPath, fs::path(), modDoc, fileMergingPolicy, errorStack);
+                }
+                catch (const std::exception& e)
+                {
+                    m_pLog->Log(severityLevel::error, "%s:%s: %s", mod.modName, relativePath.u8string(), e.what());
+                    throw std::runtime_error("Legacy mod file failed patching. Check the log for details.");
+                }
+
+                foundChanges = converter.ConvertDocument(originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+            }
+            else if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+            {
+                foundChanges = converter.ConvertExcelDocument(originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+            }
+
+            // Print the log
+            const std::list<LegacyModConverter::LogEntry>& logs = converter.GetLogs();
+            bool foundErrors = false;
+
+            if (!logs.empty())
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::warning, "Conversion log for legacy file %s:%s", mod.modName, relativePath.u8string());
+
+                for (auto& i : logs)
+                {
+                    m_pLog->Log(i.level, "- %s", i.message);
+
+                    for (size_t j = 0; j < i.stackTrace.size(); j++)
+                    {
+                        m_pLog->Log(severityLevel::debug, "  - #%d: %s", i.stackTrace.size() - j - 1);
+                    }
+
+                    if (i.level == severityLevel::error)
+                        foundErrors = true;
+                }
+            }
+
+            // Check for errors
+            if (foundErrors)
+            {
+                m_pLog->Log(severityLevel::error, "%s:%s: Conversion failed", mod.modName, relativePath.u8string());
+                throw std::runtime_error("Legacy mod file failed to convert. Check the log for details.");
+            }
+        }
 
         // Validate mod file
         if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
