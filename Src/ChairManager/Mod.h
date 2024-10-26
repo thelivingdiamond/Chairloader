@@ -19,17 +19,19 @@ struct Mod{
     //! Path to the mod directory (where ModInfo.xml is).
     fs::path path;
 
-    // installed = Mod loader remembers
     // enabled = Mod loader will load
     // deployed = files are ready
-    bool installed = false,
-            enabled = false,
-            deployed = false,
-            hasXML = false,
-            hasLevelXML = false;
+    bool enabled = false;
+    bool deployed = false;
+    bool hasXML = false;
+    bool hasLevelXML = false;
+    bool isNew = false; // Mod didn't exist in the mod list.
 
     //! The mod is a Preditor project outside of Mods directory.
     bool isPreditorProject = false;
+
+    //! The mod is a legacy mod (without ModInfo.xml).
+    bool isLegacyMod = false;
 
     bool operator<( Mod& b ) const {
         return this->loadOrder < b.loadOrder;

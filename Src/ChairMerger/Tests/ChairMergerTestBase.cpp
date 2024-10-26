@@ -100,7 +100,6 @@ void ChairMergerTestBase::LoadMods()
         mod.author = "Tester";
         mod.loadOrder = modNumber;
         mod.path = modDir;
-        mod.installed = true;
         mod.enabled = true;
         mod.deployed = false;
         mod.hasXML = true;

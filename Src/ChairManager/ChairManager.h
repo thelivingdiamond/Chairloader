@@ -46,7 +46,6 @@ public:
     const fs::path& GetGamePath();
     // get mods and get legacy mods
     const std::vector<Mod>& GetMods() { return ModList; }
-    const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
     // get config manager
     ConfigManager* GetConfigManager() { return &m_ConfigManager; }
     // is mod enabled
@@ -138,7 +137,6 @@ private:
     fs::path ChairManagerConfigPath;
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
-    std::vector<std::string> LegacyModList;
 
     /* Init */
     void LoadModManagerConfig();
@@ -240,18 +238,13 @@ private:
 
     /* Mod List Functions */
     bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
-    void LoadModsFromConfig();
-    void DetectNewMods();
-    void DetectPreditorProjects();
-    void loadModInfoFiles();
-    void FindMod(Mod* modEntry);
+    void LoadModInfoFiles();
     bool verifyDependencies(std::string modName);
     bool verifyDependenciesEnabled(std::string modName);
     fs::path fileToLoad;
     fs::path modToLoadPath;
 
     //Install
-    void InstallMod(std::string &modName);
     void UninstallMod(std::string &modName);
     void InstallModFromFile(fs::path path, fs::path fileName);
     bool m_bInstallLegacyMod;
