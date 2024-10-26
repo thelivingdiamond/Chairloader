@@ -65,7 +65,7 @@
                                     <Node name="ArkTraumaPhase">
                                         <Attributes>
                                             <Attribute name="DamageThreshold" type="float" required="true" />
-                                            <Attribute name="Description" type="string" required="true" />
+                                            <Attribute name="Description" type="string" required="true" allowEmpty="true" />
                                             <Attribute name="HudIcon" type="string" />
                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                         </Attributes>

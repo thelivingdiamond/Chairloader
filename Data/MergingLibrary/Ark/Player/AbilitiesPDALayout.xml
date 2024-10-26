@@ -64,7 +64,7 @@
                                                 <ChildNodes>
                                                     <Node name="Ability">
                                                         <Attributes>
-                                                            <Attribute name="Value" type="ArkAbilityId" />
+                                                            <Attribute name="Value" type="ArkAbilityId" allowEmpty="true" />
                                                             <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
                                                         </Attributes>
                                                     </Node>

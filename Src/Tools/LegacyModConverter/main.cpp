@@ -176,8 +176,9 @@ int main(int argc, char** argv)
                         PreyFilePatcher::PatchDocument(preyFilePath, fs::path(), preyDoc, *pPolicy, errorStack);
                     }
 
-                    converter.PatchDocument(relPath, legacyDoc, *pPolicy);
+                    converter.PrePatchDocument(relPath, legacyDoc, *pPolicy);
                     foundChanges = converter.ConvertDocument(preyDoc, legacyDoc, outDoc, *pPolicy);
+                    converter.PostPatchDocument(relPath, outDoc, *pPolicy);
                 }
                 else if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
                 {

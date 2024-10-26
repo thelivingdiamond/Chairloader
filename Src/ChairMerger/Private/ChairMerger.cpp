@@ -525,7 +525,7 @@ void ChairMerger::ProcessXMLFile(
                     PreyFilePatcher::PatchDocument(fullPath, fs::path(), legacyModDoc, fileMergingPolicy, errorStack);
 
                     // Patch to fix bugs
-                    converter.PatchDocument(relativePath, legacyModDoc, fileMergingPolicy);
+                    converter.PrePatchDocument(relativePath, legacyModDoc, fileMergingPolicy);
                 }
                 catch (const std::exception& e)
                 {
@@ -549,9 +549,14 @@ void ChairMerger::ProcessXMLFile(
                 }
 
                 if (originalDoc)
+                {
                     foundChanges = converter.ConvertDocument(*originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                    converter.PostPatchDocument(relativePath, modDoc, fileMergingPolicy);
+                }
                 else
+                {
                     foundChanges = true;
+                }
             }
             else if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
             {

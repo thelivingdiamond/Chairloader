@@ -1,4 +1,5 @@
 #include <boost/algorithm/string.hpp>
+#include <SHA256/SHA256.h>
 #include <ChairMerger/LegacyModConverter.h>
 #include <ChairMerger/MergingPolicy3.h>
 #include <ChairMerger/XmlValidator.h>
@@ -98,15 +99,13 @@ LegacyModConverter::ModInfo LegacyModConverter::AnalyzeFolder(const std::string&
     return result;
 }
 
-void LegacyModConverter::PatchDocument(
+void LegacyModConverter::PrePatchDocument(
     const fs::path& relPath,
     pugi::xml_document& legacyModDoc,
     const FileMergingPolicy3& policy)
 {
     std::string fileName = relPath.filename().u8string();
     XmlErrorStack stack(fileName.c_str());
-
-    RemoveDuplicateKeys(legacyModDoc.first_child(), policy.GetRootNode(), stack);
 
     if (boost::istarts_with(fileName, "mission_"))
     {
@@ -122,6 +121,109 @@ void LegacyModConverter::PatchDocument(
 
         if (done)
             AddLog(severityLevel::warning, "Removed UseInIndoors attribute", stack);
+    }
+    else if (boost::iequals(relPath.parent_path().filename().u8string(), "EntityArchetypes"))
+    {
+        std::set<std::string_view> ids;
+
+        for (pugi::xml_node node : legacyModDoc.first_child().children("EntityPrototype"))
+        {
+            pugi::xml_attribute nameAttr = node.attribute("Name");
+            pugi::xml_attribute classAttr = node.attribute("Class");
+            pugi::xml_attribute idAttr = node.attribute("Id");
+            pugi::xml_attribute aidAttr = node.attribute("ArchetypeId");
+            const char* id = idAttr.as_string();
+
+            if (id[0] == '\0')
+                continue;
+
+            // Fix duplicate GUIDs
+            // Found in PREY for Death
+            // https://www.nexusmods.com/prey2017/mods/1
+            bool inserted = ids.insert(std::string_view(id)).second;
+
+            if (!inserted)
+            {
+                // Found duplicate
+                const char* name = nameAttr.as_string();
+                const char* aid = aidAttr.as_string();
+                SHA256 hash;
+                hash.update(name);
+                hash.update(aid);
+                SHA256::Digest digest = hash.digest();
+
+                std::string guid = SHA256::toString(digest.data());
+                guid.resize(38);
+                guid[0] = '{';
+                guid[9] = '-';
+                guid[14] = '-';
+                guid[19] = '-';
+                guid[24] = '-';
+                guid[37] = '}';
+
+                for (char& c : guid)
+                {
+                    if (c >= 'a' && c <= 'f')
+                        c = c - 'a' + 'A';
+                }
+
+                AddLog(severityLevel::warning, fmt::format("Changed duplicate Id {} -> {}", id, guid), stack);
+                idAttr.set_value(guid.c_str());
+            }
+
+            // Fix empty class of Data.Notes.Stickynote.Sorry
+            // Found in PREY for Death
+            // https://www.nexusmods.com/prey2017/mods/1
+            if (!classAttr.as_string()[0] && boost::istarts_with(nameAttr.as_string(), "Data.Notes.Stickynote"))
+                classAttr.set_value("ArkPages");
+
+            // Rename duplicate Ammo.RecyclerGrenades
+            // Found in PREY for Death
+            // https://www.nexusmods.com/prey2017/mods/1
+            if (aidAttr.as_ullong() == 10739735956177611862ULL)
+            {
+                nameAttr.set_value("Ammo.RecyclerGrenades.PFD");
+            }
+        }
+    }
+
+    // Run after manual fixes
+    RemoveDuplicateKeys(legacyModDoc.first_child(), policy.GetRootNode(), stack);
+}
+
+void LegacyModConverter::PostPatchDocument(
+    const fs::path& relPath,
+    pugi::xml_document& modDoc,
+    const FileMergingPolicy3& policy)
+{
+    std::string fileName = relPath.filename().u8string();
+
+    if (boost::iequals(fileName, "ArkPickups.xml"))
+    {
+        pugi::xml_node rootNode = modDoc.first_child();
+        pugi::xml_node curNode = rootNode.first_child();
+
+        while (curNode)
+        {
+            pugi::xml_node thisNode = curNode;
+            curNode = curNode.next_sibling();
+
+            pugi::xml_attribute actionAttr = thisNode.attribute(MetaAttributes::ACTION);
+
+            if (actionAttr && !strcmp(actionAttr.as_string(), "delete"))
+            {
+                const char* name = thisNode.attribute("Name").as_string();
+
+                if (!strcmp(name, "Medical.TraumaPharmas.AntiBleed_2") ||
+                    !strcmp(name, "Medical.TraumaPharmas.AntiBurn_2") ||
+                    !strcmp(name, "Medical.TraumaPharmas.AntiConcussion_2") ||
+                    !strcmp(name, "Medical.TraumaPharmas.AntiCripple_2"))
+                {
+                    // Restore post-Mooncrash archetypes
+                    rootNode.remove_child(thisNode);
+                }
+            }
+        }
     }
 }
 
@@ -474,6 +576,11 @@ bool LegacyModConverter::ConvertDict(
     {
         for (const std::string& keyAttrName : collection.keyChildAttributes)
         {
+            pugi::xml_attribute srcKeyAttr = sourceNode.attribute(keyAttrName.c_str());
+
+            if (!srcKeyAttr)
+                continue;
+
             const char* value = sourceNode.attribute(keyAttrName.c_str()).as_string();
             destNode.append_attribute(keyAttrName.c_str()).set_value(value);
         }

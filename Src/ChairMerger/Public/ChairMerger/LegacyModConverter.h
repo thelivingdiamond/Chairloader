@@ -41,9 +41,15 @@ public:
     const std::list<LogEntry>& GetLogs() const { return m_Logs; }
 
     //! Patches a document to fix modder's mistakes (and removes legacy stuff no longer in the game).
-    void PatchDocument(
+    void PrePatchDocument(
         const fs::path& relPath,
         pugi::xml_document& legacyModDoc,
+        const FileMergingPolicy3& policy);
+
+    //! Patches a converted document.
+    void PostPatchDocument(
+        const fs::path& relPath,
+        pugi::xml_document& modDoc,
         const FileMergingPolicy3& policy);
 
     //! Converts a legacy mod node.
