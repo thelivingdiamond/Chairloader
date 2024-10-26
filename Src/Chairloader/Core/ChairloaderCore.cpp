@@ -1,4 +1,6 @@
+#include <boost/algorithm/string.hpp>
 #include <Prey/CryInput/IInput.h>
+#include <Chairloader/Private/ModPrefix.h>
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderTools.h>
 #include <Chairloader/IChairloaderDll.h>
@@ -79,46 +81,60 @@ void ChairloaderCore::RegisterMods()
 		std::string modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
 
 		if (mod.child("enabled").text().as_bool()) {
-			if (m_InstalledMods.find(modName) != m_InstalledMods.end())
-				CryFatalError("Duplicate mod: {}", modName);
-
-			m_InstalledMods.insert(modName);
-
-			// Get mod path
-			fs::path fullPath;
-			auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
-
-			if (boost::get<std::string>(&fullPathParam))
+			try
 			{
-				// Preditor's main mod is outside of Mods dir.
-				fullPath = fs::u8path(boost::get<std::string>(fullPathParam));
+				if (boost::starts_with(modName, LEGACY_MOD_PREFIX))
+				{
+					// Don't load legacy mods
+					CryLog("Found legacy mod: {}", modName);
+					continue;
+				}
+
+				if (m_InstalledMods.find(modName) != m_InstalledMods.end())
+					CryFatalError("Duplicate mod: {}", modName);
+
+				m_InstalledMods.insert(modName);
+
+				// Get mod path
+				fs::path fullPath;
+				auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
+
+				if (boost::get<std::string>(&fullPathParam))
+				{
+					// Preditor's main mod is outside of Mods dir.
+					fullPath = fs::u8path(boost::get<std::string>(fullPathParam));
+				}
+				else
+				{
+					fullPath = gChair->GetModsPath() / fs::u8path(modName);
+				}
+
+				// Read ModInfo.xml instead of whatever is in Chairloader config
+				Manager::ModInfo modInfo;
+				modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
+
+				int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
+
+				if (!modInfo.dllName.empty())
+				{
+					CryLog("Found DLL mod: {}", modName);
+					m_pModDllManager->RegisterModFromXML(modInfo, loadOrder, fullPath);
+				}
+
+				if (m_pLuaModManager->RegisterModFromXML(modInfo, loadOrder))
+				{
+					CryLog("Found Lua mod: {}", modName);
+				}
+
+				if (modInfo.enableShaderCompiler)
+				{
+					CryLog("Found Shader mod: {}", modName);
+					gChair->GetCryRender()->AddShadersMod(modName);
+				}
 			}
-			else
+			catch (const std::exception& e)
 			{
-				fullPath = gChair->GetModsPath() / fs::u8path(modName);
-			}
-
-			// Read ModInfo.xml instead of whatever is in Chairloader config
-			Manager::ModInfo modInfo;
-			modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
-
-			int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
-
-			if (!modInfo.dllName.empty())
-			{
-				CryLog("Found DLL mod: {}", modName);
-				m_pModDllManager->RegisterModFromXML(modInfo, loadOrder, fullPath);
-			}
-
-			if (m_pLuaModManager->RegisterModFromXML(modInfo, loadOrder))
-			{
-				CryLog("Found Lua mod: {}", modName);
-			}
-
-			if (modInfo.enableShaderCompiler)
-			{
-				CryLog("Found Shader mod: {}", modName);
-				gChair->GetCryRender()->AddShadersMod(modName);
+				CryFatalError("Failed to load mod {}:\n{}", modName, e.what());
 			}
 		}
 	}
