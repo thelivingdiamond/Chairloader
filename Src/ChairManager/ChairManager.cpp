@@ -6,14 +6,17 @@
 #include <sstream>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/regex.hpp>
 #include <curlpp/cURLpp.hpp>
 #include <Chairloader/SemanticVersion.h>
-#include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/ChairMerger.h>
+#include <ChairMerger/LegacyModConverter.h>
+#include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/ZipUtils.h>
 #include <Manager/FileHistory.h>
 #include <Manager/GamePath.h>
 #include <Manager/PreditorFiles.h>
+#include <Manager/ModInfo.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <WinShell/WinShell.h>
 #include <GUIUtils.h>
@@ -30,6 +33,7 @@
 #include "Paths.h"
 #include "PreyFilesPatchProgressDialog.h"
 
+static const boost::regex fileNameRegex(R"(^[\w\-. ]+$)");
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
 static bool showDemo = false;
@@ -264,7 +268,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("Files", true)) {
             if (ImGui::MenuItem("Install Mod")) {
-                OpenInstallModDialog(false);
+                OpenInstallModDialog();
             }
             ImGui::Separator();
             if(ImGui::MenuItem("Uninstall Chairloader")){
@@ -325,7 +329,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
                 ImGui::Text("Legacy Mods");
                 ImGui::SameLine();
                 ImGuiUtils::HelpMarker(
-                        "Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
+                        "Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.");
                 //Load Order
                 ImGui::Text("Load Order");
                 ImGui::SameLine();
@@ -398,6 +402,9 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
     if (showDemo) {
         ImGui::ShowDemoWindow(&showDemo);
     }
+
+    UpdateModInstall();
+
     std::sort(ModList.begin(), ModList.end());
     ImGui::End();
 }
@@ -659,7 +666,7 @@ void ChairManager::DrawModList() {
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
             ImGui::Separator();
             if (ImGui::Button("Install Mod From File")) {
-                ImGui::OpenPopup("Install Mod From File");
+                OpenInstallModDialog();
             }
             ImGui::Separator();
             if (ImGui::Button("Options")) {
@@ -698,47 +705,8 @@ void ChairManager::DrawModList() {
             ImGui::InputText("Custom Launch Options", &m_customArgs);
             ImGui::EndPopup();
         }
-        if (ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-            static int installType = 0;
-            ImGui::RadioButton("Chairloader Mod (.zip)", &installType, 0);
-            ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
 
-            if (ImGui::Button("Select File")) {
-                OpenInstallModDialog(installType == 1);
-                ImGui::CloseCurrentPopup();
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("Cancel")) {
-                ImGui::CloseCurrentPopup();
-                installType = 0;
-            }
-            ImGui::EndPopup();
-        }
         ImGui::EndChild();
-
-        WinShell::DialogResult result;
-
-        if (WinShell::ImUpdateFileOpenDialog("ChooseModFile", &result)) {
-            // action if OK
-            if (result.isOk)
-            {
-                try {
-                    // WTF?
-                    modToLoadPath = result.filePath;
-                    fileToLoad = modToLoadPath.filename();
-                    modToLoadPath = modToLoadPath.parent_path();
-                    log(severityLevel::trace, "File To Load: %s", fileToLoad.u8string());
-                    if (!(fileToLoad).empty()) {
-                        fs::remove_all("temp");
-                        InstallModFromFile(modToLoadPath, fileToLoad);
-                    }
-                }
-                catch (std::exception& exc) {
-                    log(severityLevel::error, "%s", exc.what());
-                    std::cerr << exc.what() << std::endl;
-                }
-            }
-        }
         ImGui::EndTabItem();
     }
 
@@ -1597,65 +1565,188 @@ void ChairManager::UninstallMod(std::string &modName) {
 
 }
 
-void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
-    fs::path tempDir = fs::absolute("./temp");
-    fs::path outPath = tempDir;
+void ChairManager::InstallModFromState()
+{
+    using Manager::ModInfo;
 
-    try {
-        ZipUtils::ExtractFolder(path / fileName, outPath);
-    }
-    catch (std::exception &e) {
-        overlayLog(severityLevel::error, "Could not extract %s: %s", fileName.u8string().c_str(), e.what());
-        return;
-    }
+    ModInstallState& state = m_ModInstallState;
+    CRY_ASSERT(state.stage != EModInstallStage::None);
+    fs::path tempDir = fs::current_path() / RUNTIME_DATA_DIR / "TempInstall";
+    std::string modFileName = state.modFilePath.filename().u8string();
 
-    // See if the archive only contains a directory
-    std::vector<fs::directory_entry> outPathFileList;
-    for (const auto& i : fs::directory_iterator(outPath))
+    try
     {
-        outPathFileList.push_back(i);
+        fs::path modsDir = GetGamePath() / "Mods";
+
+        if (fs::exists(tempDir))
+            fs::remove_all(tempDir);
+
+        fs::create_directories(tempDir);
+
+        // Extract the mod to temp folder
+        ZipUtils::ExtractFolder(state.modFilePath, tempDir);
+
+        if (state.isLegacy)
+        {
+            // Analyze the mod folder
+            LegacyModConverter::ModInfo legacyModInfo = LegacyModConverter::AnalyzeFolder(modFileName, tempDir);
+            log(severityLevel::info, "Legacy mod relative path: %s", legacyModInfo.outputRelativePath.u8string());
+
+            fs::path outModRootPath = modsDir / "Legacy" / fs::u8path(state.legacyModName);
+            fs::create_directories(outModRootPath.parent_path());
+
+            if (fs::exists(outModRootPath))
+            {
+                overlayLog(severityLevel::warning, "Mod '%s' already installed. It will be reinstalled.", state.legacyModName);
+                fs::remove_all(outModRootPath);
+            }
+
+            // Copy the mod files
+            fs::path outModPath = outModRootPath / legacyModInfo.outputRelativePath;
+            fs::create_directories(outModPath);
+            fs::copy(tempDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+
+            overlayLog(severityLevel::info, "Mod %s installed", state.legacyModName);
+        }
+        else
+        {
+            fs::path srcModRootDir;
+
+            // See if the archive only contains a directory
+            std::vector<fs::directory_entry> tempDirFileList;
+            for (const auto& i : fs::directory_iterator(tempDir))
+            {
+                tempDirFileList.push_back(i);
+            }
+
+            if (tempDirFileList.size() == 1 && tempDirFileList[0].is_directory())
+                srcModRootDir = tempDirFileList[0].path();
+            else
+                srcModRootDir = tempDir;
+
+            // Read mod info
+            if (!fs::exists(srcModRootDir / ModInfo::XML_FILE_NAME))
+                throw std::runtime_error("ModInfo.xml not found in Chairloader mod");
+
+            ModInfo modInfo;
+            modInfo.LoadFile(srcModRootDir / ModInfo::XML_FILE_NAME);
+
+            // Check if already installed
+            fs::path outModPath = modsDir / fs::u8path(modInfo.modName);
+
+            if (fs::exists(outModPath))
+            {
+                overlayLog(severityLevel::warning, "Mod '%s' already installed. It will be reinstalled.", modInfo.modName);
+                fs::remove_all(outModPath);
+            }
+
+            // Copy the mod files
+            fs::create_directories(outModPath);
+            fs::copy(tempDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+
+            overlayLog(severityLevel::info, "Mod %s installed", modInfo.displayName);
+        }
+
+        LoadModInfoFiles();
+    }
+    catch (const std::exception& e)
+    {
+        log(severityLevel::error, "Failed to install %s: %s", modFileName, e.what());
+        overlayLog(severityLevel::error, "Failed to install %s.\n%s\nCheck the log for details.", modFileName, e.what());
     }
 
-    if (outPathFileList.size() == 1 && outPathFileList[0].is_directory())
-        outPath = outPathFileList[0].path();
+    state.stage = EModInstallStage::None;
+    fs::remove_all(tempDir);
+}
 
-    if(!m_bInstallLegacyMod) {
-        if (exists(outPath / "ModInfo.xml")) {
-            auto mod = new Mod;
-            if (LoadModInfoFile(outPath, mod, true)) {
-                try {
-                    fs::copy(outPath, GetGamePath() / "Mods" / mod->modName,
-                             fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
-                    LoadModInfoFiles();
-                    m_ConfigManager.saveDirtyConfigs();
-                    m_ConfigManager.init(this);
-                } catch (std::exception &exc) {
-                    std::cerr << exc.what() << std::endl;
-                    log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
+void ChairManager::UpdateModInstall()
+{
+    switch (m_ModInstallState.stage)
+    {
+    case EModInstallStage::None:
+        break;
+    case EModInstallStage::SelectFile:
+    {
+        WinShell::DialogResult result;
+
+        if (!WinShell::ImUpdateFileOpenDialog("ChooseModFile", &result))
+            break;
+
+        if (result.isOk)
+        {
+            m_ModInstallState.modFilePath = result.filePath;
+            m_ModInstallState.isLegacy = boost::iequals(result.filePath.extension().u8string(), ".pak");
+
+            if (m_ModInstallState.isLegacy)
+            {
+                // This is a legacy mod. Ask for name.
+                ImGui::OpenPopup("LegacyModInstallName");
+                m_ModInstallState.legacyModName = result.filePath.stem().u8string();
+                m_ModInstallState.stage = EModInstallStage::LegacyModPopup;
+            }
+            else
+            {
+                // Native mod. Install it.
+                InstallModFromState();
+            }
+        }
+        else
+        {
+            m_ModInstallState.stage = EModInstallStage::None;
+        }
+
+        break;
+    }
+    case EModInstallStage::LegacyModPopup:
+    {
+        if (ImGui::BeginPopupModal("LegacyModInstallName"))
+        {
+            ImGui::Text("You are installing a legacy (pre-Chairloader) mod.");
+            ImGui::Text("Please, enter the mod's name");
+            ImGui::PushItemWidth(-1);
+            ImGui::InputText("##modName", &m_ModInstallState.legacyModName);
+            ImGui::PopItemWidth();
+
+            bool isValid = false;
+
+            if (!boost::regex_match(m_ModInstallState.legacyModName, fileNameRegex))
+            {
+                ImGui::TextColored(ImVec4(1, 0, 0, 1), "Name is not valid");
+                isValid = false;
+            }
+            else
+            {
+                fs::path modsDir = GetGamePath() / "Mods";
+                fs::path legacyModsDir = modsDir / "Legacy";
+                fs::path outModPath = legacyModsDir / fs::u8path(m_ModInstallState.legacyModName);
+
+                if (fs::exists(outModPath))
+                {
+                    ImGui::TextColored(ImVec4(1, 1, 0, 1), "Mod with this name already exists. It will be reinstalled.");
+                    isValid = true;
+                }
+                else
+                {
+                    ImGui::NewLine(); // Space for error text
+                    isValid = true;
                 }
             }
-        } else {
-            log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
+
+            ImGui::BeginDisabled(!isValid);
+            if (ImGui::Button("Install"))
+                InstallModFromState();
+            ImGui::EndDisabled();
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Cancel"))
+                m_ModInstallState.stage = EModInstallStage::None;
+
+            ImGui::EndPopup();
         }
-    } else {
-        if (exists(outPath)) {
-            try {
-                auto BaseModFolder = fileName.filename().replace_extension("");
-                log(severityLevel::info, "Installing Legacy Mod: %s", BaseModFolder.u8string().c_str());
-                fs::copy(outPath, GetGamePath() / "Mods" / "Legacy" / BaseModFolder,
-                         fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", BaseModFolder.u8string().c_str());
-                LoadModInfoFiles();
-            } catch (std::exception &exc) {
-                std::cerr << exc.what() << std::endl;
-                log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
-            }
-        } else {
-            log(severityLevel::error, "Mod Installation Failed: file not extracted");
-        }
+        break;
     }
-    fs::remove_all(tempDir);
+    }
 }
 
 void ChairManager::EnableMod(std::string modName, bool enabled) {
@@ -2268,23 +2359,14 @@ void ChairManager::RunAsyncDeploy() {
     m_pMergerTask->future = m_pMergerTask->pMerger->DeployAsync();
 }
 
-void ChairManager::OpenInstallModDialog(bool isLegacy)
+void ChairManager::OpenInstallModDialog()
 {
-    m_bInstallLegacyMod = isLegacy;
     WinShell::DialogOptions fileDialogOpts;
-
-    if (!m_bInstallLegacyMod)
-    {
-        fileDialogOpts.title = "Choose Mod File...";
-        fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip)", "*.zip" });
-    }
-    else
-    {
-        fileDialogOpts.title = "Choose Legacy Mod File...";
-        fileDialogOpts.fileTypes.push_back({ "Legacy Mod File (*.pak)", "*.pak" });
-    }
+    fileDialogOpts.title = "Choose Mod File...";
+    fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip, *.pak)", "*.zip;*.pak" });
 
     WinShell::ImShowFileOpenDialog("ChooseModFile", fileDialogOpts);
+    m_ModInstallState.stage = EModInstallStage::SelectFile;
 }
 
 bool ChairManager::IsUpdateAvailable()

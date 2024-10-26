@@ -241,13 +241,27 @@ private:
     void LoadModInfoFiles();
     bool verifyDependencies(std::string modName);
     bool verifyDependenciesEnabled(std::string modName);
-    fs::path fileToLoad;
-    fs::path modToLoadPath;
 
     //Install
+    enum class EModInstallStage
+    {
+        None,
+        SelectFile, //!< File selection dialog is open
+        LegacyModPopup, //!< Pop-up for legacy mods is open
+    };
+
+    struct ModInstallState
+    {
+        EModInstallStage stage = EModInstallStage::None;
+        fs::path modFilePath;
+        bool isLegacy = false;
+        std::string legacyModName;
+    };
+
+    ModInstallState m_ModInstallState;
     void UninstallMod(std::string &modName);
-    void InstallModFromFile(fs::path path, fs::path fileName);
-    bool m_bInstallLegacyMod;
+    void InstallModFromState();
+    void UpdateModInstall();
 
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
@@ -340,7 +354,7 @@ private:
     void RunAsyncDeploy();
 
     //! Opens the file select dialog for mod installation.
-    void OpenInstallModDialog(bool isLegacy);
+    void OpenInstallModDialog();
 
     //! Checks if an update is available.
     bool IsUpdateAvailable();
