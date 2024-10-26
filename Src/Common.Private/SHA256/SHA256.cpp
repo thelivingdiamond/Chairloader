@@ -44,8 +44,8 @@ void SHA256::update(const uint8_t *data, size_t length) {
     }
 }
 
-void SHA256::update(const std::string &data) {
-    update(reinterpret_cast<const uint8_t *>(data.c_str()), data.size());
+void SHA256::update(std::string_view data) {
+    update(reinterpret_cast<const uint8_t *>(data.data()), data.size());
 }
 
 SHA256::Digest SHA256::digest() {
