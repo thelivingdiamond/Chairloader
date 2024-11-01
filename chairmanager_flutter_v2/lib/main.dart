@@ -1,4 +1,3 @@
-import 'package:chairmanager_flutter_v2/controllers/LogController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
@@ -8,17 +7,40 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:get/get.dart';
 
 import 'package:chairmanager_flutter_v2/controllers/FocusController.dart';
-import 'package:chairmanager_flutter_v2/pages/home/HomeController.dart';
 import 'package:chairmanager_flutter_v2/controllers/NavigationController.dart';
 import 'package:chairmanager_flutter_v2/controllers/SettingsController.dart';
 import 'package:chairmanager_flutter_v2/pages/home/Home.dart';
 import 'package:chairmanager_flutter_v2/pages/settings/Settings.dart';
-import 'package:chairmanager_flutter_v2/widgets/WindowsBar.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 
 
 void main() async {
-  Get.put(LogController());
+  var talker = Get.put(TalkerFlutter.init(
+      settings: TalkerSettings(
+        useHistory: true,
+        useConsoleLogs: true,
+        enabled: true,
+        maxHistoryItems: 1000,
+        timeFormat: TimeFormat.yearMonthDayAndTime,
+      )
+  ));
+  talker.stream.listen((event) {
+    if(event.logLevel == LogLevel.error || event.logLevel == LogLevel.critical){
+      Get.snackbar(
+        "Error",
+        event.displayMessage,
+        backgroundColor: Colors.red.shade900.withOpacity(0.8),
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Colors.white,
+        animationDuration: const Duration(milliseconds: 300),
+        icon: const Icon(Icons.error),
+        shouldIconPulse: event.logLevel == LogLevel.critical,
+        onTap: (snack) => Get.closeCurrentSnackbar(),
+        snackStyle: SnackStyle.FLOATING,
+      );
+    }
+  });
   Get.put(NavigationController());
   Get.put(FocusController());
   var settingsController = Get.put(SettingsController());
@@ -64,16 +86,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-
-      // home: Scaffold(
-      //   body: WindowBorder(
-      //     color: borderColor,
-      //     width: 1,
-      //     child: const Row(
-      //       children: [LeftSide(), RightSide()],
-      //     ),
-      //   ),
-      // ),
     )
     );
   }
@@ -124,10 +136,10 @@ class RightSide extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                    height: appWindow.titleBarHeight,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Obx( () => Text("Chair Manager", style: focusController.hasFocus.value ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).disabledColor),)),
+                  height: appWindow.titleBarHeight,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Obx( () => Text("Chair Manager", style: focusController.hasFocus.value ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).disabledColor),)),
                 ),
                 Row(
                   children: [Expanded(child: MoveWindow()), const WindowButtons()],

@@ -1,10 +1,10 @@
-import 'package:chairmanager_flutter_v2/logger/LogMixin.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/PreyVersion.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsController extends GetxController with LogMixin {
+class SettingsController extends GetxController with TalkerMixin {
   var darkMode = true.obs;
   Rx<ThemeColor> themeColor = ThemeColor.Indigo.obs;
   Rx<DynamicSchemeVariant> schemeVariant = DynamicSchemeVariant.fidelity.obs;

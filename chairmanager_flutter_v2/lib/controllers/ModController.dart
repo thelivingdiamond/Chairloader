@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:xml/xml.dart' as xml;
 
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
-import 'package:chairmanager_flutter_v2/logger/LogMixin.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/Mod.dart';
 import 'package:chairmanager_flutter_v2/models/ModConfig.dart';
 
-class ModController extends GetxController with LogMixin{
+class ModController extends GetxController with TalkerMixin{
   RxList<Mod> mods = <Mod>[].obs;
 
   void reorderMods(int oldIndex, int newIndex) {
@@ -62,7 +62,7 @@ class ModController extends GetxController with LogMixin{
           mod.config = await loadConfig(mod.modName);
         }
       } catch(e) {
-        logger.e("Failed to load config for ${mod.modName}", error: e, stackTrace: StackTrace.current);
+        talker.error("Failed to load config for ${mod.modName}", e, StackTrace.current);
       }
     }
     configDirty = false;
@@ -84,7 +84,7 @@ class ModController extends GetxController with LogMixin{
     var configPath = "${pathController.modConfigPath}\\Chairloader.xml";
     var configFile = File(configPath);
     if(! await configFile.exists()) {
-      logger.e("Chairloader.xml does not exist, something is very wrong");
+      talker.error("Chairloader.xml does not exist, something is very wrong");
       return;
     }
     // read the file into an xml document
@@ -143,7 +143,7 @@ class ModController extends GetxController with LogMixin{
         if (fileSystemEntity is Directory) {
           var mod = await readModInfo(fileSystemEntity.path);
           if (mod == null) {
-            logger.t("Failed to read mod info for ${fileSystemEntity.path}");
+            talker.verbose("Failed to read mod info for ${fileSystemEntity.path}");
             continue;
           }
           var priorMod = priorConfig.firstWhereOrNull((element) => element.$1 == mod.modName);
@@ -151,12 +151,12 @@ class ModController extends GetxController with LogMixin{
             mod.loadOrder = priorMod.$2;
             mod.enabled = priorMod.$3;
           }
-          logger.t("Loaded mod ${mod.modName}");
+          talker.verbose("Loaded mod ${mod.modName}");
           detectedMods.add(mod);
         }
       }
     } catch (e) {
-      logger.e("Failed to detect mods", error: e, stackTrace: StackTrace.current);
+      talker.error("Failed to detect mods", e, StackTrace.current);
       // logger.e(e);
     }
     return detectedMods;
@@ -178,12 +178,12 @@ class ModController extends GetxController with LogMixin{
             mod.loadOrder = priorMod.$2;
             mod.enabled = priorMod.$3;
           }
-          logger.t("Found legacy mod ${fileSystemEntity.path}");
+          talker.verbose("Found legacy mod ${fileSystemEntity.path}");
           detectedMods.add(mod);
         }
       }
     } catch (e) {
-      logger.e("Failed to detect legacy mods", error: e, stackTrace: StackTrace.current);
+      talker.error("Failed to detect legacy mods", e, StackTrace.current);
       // logger.e(e);
     }
     return detectedMods;
@@ -200,7 +200,7 @@ class ModController extends GetxController with LogMixin{
           .firstOrNull
           ?.getAttribute("modName");
       if (modName == null) {
-        logger.w("ModInfo.xml for ${path} is missing a ModName tag");
+        talker.warning("ModInfo.xml for $path is missing a ModName tag");
         return Mod.empty();
       }
       var mod = Mod.fromModInfo(modInfoXml);
@@ -236,7 +236,7 @@ class ModController extends GetxController with LogMixin{
         throw Exception("Default config file for $modName does not exist");
       }
       await defaultConfigFile.copy(configFile.path);
-      logger.t("Copied default config for $modName");
+      talker.verbose("Copied default config for $modName");
     }
     // then load the config file
     var configString = await configFile.readAsString();
@@ -244,7 +244,7 @@ class ModController extends GetxController with LogMixin{
     var configElement = configDocument.rootElement;
     // then for each child of the root element, create a ConfigEntry from it
     var modConfig = ModConfig.fromXml(configElement, configPath: configFile.path, modDirPath: pathController.modDirPath, modName: modName);
-    logger.t("Loaded config for $modName");
+    talker.verbose("Loaded config for $modName");
     return modConfig;
   }
 
@@ -259,7 +259,7 @@ class ModController extends GetxController with LogMixin{
     ]);
     // then save the config file
     await configFile.writeAsString(configDocument.toXmlString(pretty: true, indent: "  "), mode:FileMode.writeOnly);
-    logger.t("Saved config for ${config.modName}");
+    talker.verbose("Saved config for ${config.modName}");
   }
 
 

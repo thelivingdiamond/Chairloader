@@ -1,4 +1,4 @@
-import 'package:chairmanager_flutter_v2/logger/LogMixin.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/PreyVersion.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,7 +29,7 @@ const String _MICRO_GAME_DLL_BACKUP_PATH = "Binaries\\Danielle\\Gaming.Desktop.x
 
 const String _CHAIRLOADER_BIN_SRC_PATH_STR = "Release";
 
-class PathController extends GetxController  with LogMixin {
+class PathController extends GetxController  with TalkerMixin {
   var preyPath = "".obs;
   var preyVersion = PreyVersion.Steam.obs;
 

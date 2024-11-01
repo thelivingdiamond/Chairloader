@@ -1,8 +1,8 @@
-import 'package:chairmanager_flutter_v2/logger/LogMixin.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
-class FocusController extends GetxController with WindowListener, LogMixin {
+class FocusController extends GetxController with WindowListener, TalkerMixin {
   var hasFocus = true.obs;
 
   @override

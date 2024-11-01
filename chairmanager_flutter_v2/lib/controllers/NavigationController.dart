@@ -1,8 +1,8 @@
-import 'package:chairmanager_flutter_v2/logger/LogMixin.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NavigationController extends GetxController with LogMixin {
+class NavigationController extends GetxController with TalkerMixin {
   var selectedIndex = 0.obs;
 
   void changeTabIndex(int index) {
