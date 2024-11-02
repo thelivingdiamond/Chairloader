@@ -202,29 +202,58 @@ class Home extends StatelessWidget {
                   bottom: 16.0,
                   right: 16.0,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      MenuAnchor(
-                          builder: (context, controller, child) => FloatingActionButton(
-                            onPressed: () {
-                              if (controller.isOpen) {
-                              controller.close();
-                              } else {
-                              controller.open();
-                              }
-                            },
-                            child: const Icon(Icons.menu),
-                          ),
-                          menuChildren: [
-                            MenuItemButton(
-                             child: const Text("Deploy Mods"),
-                              onPressed: () => {},
-                            )
-                          ],
+                      Tooltip(
+                        message: "Deploy Mods",
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            Get.dialog(
+                              AlertDialog(
+                                title: const Text("Deploy Mods"),
+                                content: const Text("This feature is not yet implemented"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text("Close"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          shape: const CircleBorder(),
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          splashColor: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.3),
+                          child: Icon(Icons.local_shipping, color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                      ),
+                      const SizedBox(height: 8.0, width: 8.0),
+                      Tooltip(
+                        message: "Launch Game",
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            Get.dialog(
+                              AlertDialog(
+                                title: const Text("Launch Game"),
+                                content: const Text("This feature is not yet implemented"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text("Close"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                            child: const Icon(Icons.play_arrow),
+                        ),
                       ),
                     ],
                   )
-              )
+              ),
             ]
         );
       },
