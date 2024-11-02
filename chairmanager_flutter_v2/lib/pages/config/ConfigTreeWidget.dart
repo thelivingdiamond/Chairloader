@@ -19,7 +19,28 @@ class ConfigTreeWidget extends StatelessWidget {
       case ConfigEntryType.bool:
         return SwitchListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: Text(node.displayName ?? node.name),
+          title: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(node.displayName ?? node.name),
+              if(node.description != null)
+                IconButton(
+                  icon: const Icon(Icons.info),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(node.displayName ?? node.name),
+                          content: Text(node.description ?? ""),
+                        );
+                      },
+                    );
+                  },
+                ),
+
+            ],
+          ),
           value: node.value,
           onChanged: (value) {
             node.value = value;
@@ -126,7 +147,27 @@ class ConfigTreeWidget extends StatelessWidget {
           child: ExpansionTile(
             // backgroundColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.025),
             childrenPadding: const EdgeInsets.only(left: 16),
-            title: Text(node.displayName ?? node.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(node.displayName ?? node.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                if(node.description != null)
+                  IconButton(
+                    icon: const Icon(Icons.info),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(node.displayName ?? node.name),
+                            content: Text(node.description ?? ""),
+                          );
+                        },
+                      );
+                    },
+                  ),
+              ],
+            ),
             children: node.children.map((child) => ConfigTreeWidget(node: child, mod: mod,)).toList(),
           ),
         );
