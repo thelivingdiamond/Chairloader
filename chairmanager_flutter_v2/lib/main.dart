@@ -77,6 +77,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: settingsController.themeColor.value.color, brightness: settingsController.darkMode.value ? Brightness.dark : Brightness.light, dynamicSchemeVariant: settingsController.schemeVariant.value),
         useMaterial3: true,
       ),
+      navigatorObservers: [
+        TalkerRouteObserver(Get.find()),
+      ],
       home:  Scaffold(
         body: WindowBorder(
           color: borderColor,
