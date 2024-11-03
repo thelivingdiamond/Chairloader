@@ -1,5 +1,6 @@
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
+import 'package:chairmanager_flutter_v2/controllers/VersionController.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,22 @@ void main() async {
         timeFormat: TimeFormat.yearMonthDayAndTime,
       )
   ));
+
+  Get.put(NavigationController());
+  Get.put(FocusController());
+
+  var settingsController = Get.put(SettingsController());
+  await settingsController.load();
+
+  var pathController = Get.put(PathController());
+  await pathController.load();
+
+  var versionController = Get.put(VersionController());
+  await versionController.init();
+
+  var modController = Get.put(ModController());
+
+  runApp(const MyApp());
   talker.stream.listen((event) {
     if(event.logLevel == LogLevel.error || event.logLevel == LogLevel.critical){
       Get.snackbar(
@@ -41,15 +58,7 @@ void main() async {
       );
     }
   });
-  Get.put(NavigationController());
-  Get.put(FocusController());
-  var settingsController = Get.put(SettingsController());
-  var pathController = Get.put(PathController());
-  await pathController.load();
-  await settingsController.load();
-  var modController = Get.put(ModController());
 
-  runApp(const MyApp());
   await modController.detectMods();
   doWhenWindowReady(() {
     const initialSize = Size(1000, 600);
@@ -100,6 +109,7 @@ class LeftSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationController navigationController = Get.find();
+    VersionController versionController = Get.find();
     return Obx(
           () => NavigationRail(
           backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
@@ -108,12 +118,19 @@ class LeftSide extends StatelessWidget {
             navigationController.changeTabIndex(index);
           },
           labelType: NavigationRailLabelType.all,
-          destinations: navigationController.destinations
+          destinations: [
+            ...navigationController.destinations
               .map((e) => NavigationRailDestination(
               icon: Icon(e.icon),
               selectedIcon: Icon(e.selectedIcon),
-              label: Text(e.title)))
-              .toList()
+              label: Text(e.title))),
+            if(versionController.downloadUpdateAvailable || versionController.installUpdateAvailable)
+              const NavigationRailDestination(
+                icon: Icon(Icons.update, color: Colors.green,),
+                selectedIcon: Icon(Icons.update, color: Colors.green,),
+                label: Text("Update Available"),
+              )
+          ]
       ),
     );
   }

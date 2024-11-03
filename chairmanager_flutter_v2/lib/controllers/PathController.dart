@@ -57,6 +57,8 @@ class PathController extends GetxController  with TalkerMixin {
     update();
   }
 
+  final String chairloaderDllName = "Chairloader.dll";
+
 
   String get binaryPath {
     switch (preyVersion.value) {

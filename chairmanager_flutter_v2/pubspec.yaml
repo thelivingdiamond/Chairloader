@@ -40,6 +40,10 @@ dependencies:
   flutter_animate: any
   talker_flutter: any
   anyhow: any
+  version: any
+  win32: any
+  ffi: any
+  http: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -182,6 +182,7 @@ class Home extends StatelessWidget {
                         ),
                         Expanded(flex: 1, child: Card(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
                                 height: 48.0,
@@ -193,13 +194,17 @@ class Home extends StatelessWidget {
                                 child: Text("Mod Details", style: Theme.of(context).textTheme.titleLarge),
                               ),
                               if(homeController.selectedMod != null)
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(homeController.selectedMod!.modName, style: Theme.of(context).textTheme.titleMedium),
-                                    Text("Version: ${homeController.selectedMod!.version}", style: Theme.of(context).textTheme.bodyMedium),
-                                    Text("Author: ${homeController.selectedMod!.author}", style: Theme.of(context).textTheme.bodyMedium),
-                                  ],
+                                Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(homeController.selectedMod!.modName, style: Theme.of(context).textTheme.titleMedium),
+                                      Text("Version: ${homeController.selectedMod!.version}", style: Theme.of(context).textTheme.bodyMedium),
+                                      Text("Author: ${homeController.selectedMod!.author}", style: Theme.of(context).textTheme.bodyMedium),
+                                      const SizedBox(height: 8.0),
+                                    ],
+                                  ),
                                 )
                               else
                                 const Text("Select a mod to view details")
