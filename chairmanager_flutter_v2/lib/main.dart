@@ -61,7 +61,11 @@ void main() async {
     }
   });
 
-  await modController.detectMods();
+  try{
+    await modController.detectMods();
+  } catch(e, stackTrace){
+    talker.error("Error detecting mods", e, stackTrace);
+  }
   doWhenWindowReady(() {
     const initialSize = Size(1000, 600);
     appWindow.minSize = const Size(600, 400);
