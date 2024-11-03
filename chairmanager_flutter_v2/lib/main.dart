@@ -128,7 +128,7 @@ class LeftSide extends StatelessWidget {
               const NavigationRailDestination(
                 icon: Icon(Icons.update, color: Colors.green,),
                 selectedIcon: Icon(Icons.update, color: Colors.green,),
-                label: Text("Update Available"),
+                label: Text("Update\nAvailable", textAlign: TextAlign.center,),
               )
           ]
       ),
