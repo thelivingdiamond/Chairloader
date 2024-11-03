@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/PreyVersion.dart';
 import 'package:get/get.dart';
@@ -33,6 +35,26 @@ class PathController extends GetxController  with TalkerMixin {
   var preyPath = "".obs;
   var preyVersion = PreyVersion.Steam.obs;
 
+  final String chairloaderDllName = "Chairloader.dll";
+
+  final List<String> requiredChairloaderBinaries = [
+    "Chairloader.dll",
+    "mswsock.dll"
+  ];
+
+  final List requiredChairloaderDirectories = [
+    "Mods",
+    "Mods\\Legacy",
+    "Mods\\config",
+  ];
+
+  final List requiredGameDirectories = [
+    "Engine",
+    "GameSDK",
+  ];
+
+  final List requiredGameFiles = [];
+
 
   Future<void> load() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -56,8 +78,6 @@ class PathController extends GetxController  with TalkerMixin {
     });
     update();
   }
-
-  final String chairloaderDllName = "Chairloader.dll";
 
 
   String get binaryPath {
@@ -153,5 +173,19 @@ class PathController extends GetxController  with TalkerMixin {
 
   String get modConfigPath {
     return "${preyPath.value}\\Mods\\config";
+  }
+
+  Future<PreyVersion> deduceGameVersion(String path) async {
+    if (await File('$path\\$_STEAM_GAME_EXE_PATH').exists()){
+      return PreyVersion.Steam;
+    } else if (await File('$path\\$_GOG_GAME_EXE_PATH').exists()){
+      return PreyVersion.GOG;
+    } else if (await File('$path\\$_EPIC_GAME_EXE_PATH').exists()){
+      return PreyVersion.Epic;
+    } else if (await File('$path\\$_MICRO_GAME_EXE_PATH').exists()){
+      return PreyVersion.MicrosoftStore;
+    } else {
+      return PreyVersion.Unknown;
+    }
   }
 }
