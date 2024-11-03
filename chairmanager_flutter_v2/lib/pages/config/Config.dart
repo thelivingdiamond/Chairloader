@@ -88,7 +88,7 @@ class Config extends StatelessWidget {
                                     return ListView.builder(
                                       itemCount: mod.config!.config.length,
                                       itemBuilder: (context, index) {
-                                        return ConfigTreeWidget(node: mod.config!.config[index], mod: mod);
+                                        return ConfigTreeWidget(node: mod.config!.config[index], mod: mod, initiallyExpanded: true,);
                                       },
                                     );
                                   }

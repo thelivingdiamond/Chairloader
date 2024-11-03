@@ -7,10 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ConfigTreeWidget extends StatelessWidget {
-  const ConfigTreeWidget({super.key, required this.node, required this.mod});
+  const ConfigTreeWidget({super.key, required this.node, required this.mod, this.initiallyExpanded = false});
 
   final IConfigNode node;
   final Mod mod;
+  final bool initiallyExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +146,7 @@ class ConfigTreeWidget extends StatelessWidget {
             border: Border(left: BorderSide(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1))),
           ),
           child: ExpansionTile(
-            // backgroundColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.025),
+            initiallyExpanded: initiallyExpanded,
             childrenPadding: const EdgeInsets.only(left: 16),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
