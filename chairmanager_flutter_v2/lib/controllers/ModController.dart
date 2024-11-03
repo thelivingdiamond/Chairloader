@@ -10,6 +10,8 @@ import 'package:chairmanager_flutter_v2/models/ModConfig.dart';
 class ModController extends GetxController with TalkerMixin{
   RxList<Mod> mods = <Mod>[].obs;
 
+  final int maxDescriptionSize = 1 * 1024 * 1024; // 1MB
+
   void reorderMods(int oldIndex, int newIndex) {
     if (oldIndex < newIndex) {
       newIndex -= 1;
@@ -17,13 +19,13 @@ class ModController extends GetxController with TalkerMixin{
     final Mod item = mods.removeAt(oldIndex);
     mods.insert(newIndex, item);
     _reserializeLoadOrder();
-    configDirty = true;
+    modListDirty = true;
     update();
   }
 
   void enableMod(Mod mod, bool? enabled) {
     mod.enabled = enabled ?? false;
-    configDirty = true;
+    modListDirty = true;
     update();
   }
 
@@ -31,7 +33,7 @@ class ModController extends GetxController with TalkerMixin{
     for (var mod in mods) {
       mod.enabled = enabled;
     }
-    configDirty = true;
+    modListDirty = true;
     update();
   }
 
@@ -41,7 +43,7 @@ class ModController extends GetxController with TalkerMixin{
     }
   }
 
-  bool configDirty = false;
+  bool modListDirty = false;
 
   Future<void> detectMods() async {
     // get the load order and enabled status of each mod from the config file
@@ -50,26 +52,27 @@ class ModController extends GetxController with TalkerMixin{
     // for each mod, if it is in the list of mods, update the load order and enabled status
     // for each mod, if it is not in the list of mods, add it to the list of mods at the end and disable it
     mods.clear();
-    var configModList = await getConfigModList();
+    var configModList = await getModList();
     var registeredMods = await detectRegisteredMods(configModList);
     var legacyMods = await detectLegacyMods(configModList);
     mods.addAll(registeredMods);
     mods.addAll(legacyMods);
-    sortMods();
+    sortModList();
     for (var mod in mods) {
       try{
         if(!mod.isLegacy) {
           mod.config = await loadConfig(mod.modName);
+          mod.description = await loadDescription(mod);
         }
       } catch(e) {
         talker.error("Failed to load config for ${mod.modName}", e, StackTrace.current);
       }
     }
-    configDirty = false;
+    modListDirty = false;
     update();
   }
 
-  void sortMods() {
+  void sortModList() {
     mods.sort((a, b) => a.loadOrder.compareTo(b.loadOrder));
     _reserializeLoadOrder();
     update();
@@ -79,7 +82,7 @@ class ModController extends GetxController with TalkerMixin{
     return mods.where((element) => element.config != null && element.config!.config.isNotEmpty).toList();
   }
 
-  Future<void> saveModListToConfig() async {
+  Future<void> saveModList() async {
     PathController pathController = Get.find();
     var configPath = "${pathController.modConfigPath}\\Chairloader.xml";
     var configFile = File(configPath);
@@ -101,12 +104,12 @@ class ModController extends GetxController with TalkerMixin{
       }
       // write the xml document back to the file
       await configFile.writeAsString(configXml.toXmlString(pretty: true));
-      configDirty = false;
+      modListDirty = false;
       update();
     }
   }
 
-  Future<List<(String, int, bool)>> getConfigModList() async {
+  Future<List<(String, int, bool)>> getModList() async {
     List<(String, int, bool)> loadOrderEnabledList = [];
 
     PathController pathController = Get.find();
@@ -260,6 +263,23 @@ class ModController extends GetxController with TalkerMixin{
     // then save the config file
     await configFile.writeAsString(configDocument.toXmlString(pretty: true, indent: "  "), mode:FileMode.writeOnly);
     talker.verbose("Saved config for ${config.modName}");
+  }
+
+
+  Future<String?> loadDescription(Mod mod) async {
+    PathController pathController = Get.find();
+    var descriptionFile = File("${pathController.modDirPath}/${mod.modName}/description.md");
+    // check the size, if it's too big, don't load it
+
+
+    if(await descriptionFile.exists()) {
+      if(descriptionFile.lengthSync() > maxDescriptionSize) {
+        talker.warning("Description for ${mod.modName} is too large, not loading");
+        return null;
+      }
+      return await descriptionFile.readAsString();
+    }
+    return null;
   }
 
 

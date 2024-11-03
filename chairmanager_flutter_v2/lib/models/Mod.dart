@@ -26,6 +26,7 @@ class Mod {
   bool isLegacy = false;
   int loadOrder = -1;
   ModConfig? config;
+  String? description;
   List<String> dependencies = [];
 
   // < operator
