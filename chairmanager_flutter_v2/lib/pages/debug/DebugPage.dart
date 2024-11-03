@@ -1,4 +1,4 @@
-import 'package:chairmanager_flutter_v2/dialogs/GamePathSelection/GamePathSelectionDialog.dart';
+import 'package:chairmanager_flutter_v2/dialogs/GamePathSelection/gamePathSelectionDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
