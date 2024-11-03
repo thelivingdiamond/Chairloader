@@ -2,6 +2,7 @@ import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/controllers/VersionController.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
+import 'package:chairmanager_flutter_v2/pages/debug/DebugPage.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
 import 'package:chairmanager_flutter_v2/widgets/WindowsButtons.dart';
 import 'package:flutter/material.dart';
@@ -182,6 +183,8 @@ class RightSide extends StatelessWidget {
                       return const LogPage();
                     case 3:
                       return const Settings();
+                    case 4:
+                      return const DebugPage();
                     default:
                       return const Card(child: Placeholder(),);
                   }
