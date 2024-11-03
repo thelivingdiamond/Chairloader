@@ -232,9 +232,13 @@ class Home extends StatelessWidget {
                     Text("Author: ${homeController.selectedMod!.author}", style: Theme.of(context).textTheme.bodyMedium),
                     // expansion panel for dependencies (TODO: implement dependency checking)
                     const SizedBox(height: 8.0),
-                    const ExpansionTile(title: Text("Dependencies"), children: [
+                    const ExpansionTile(
+                        title: Text("Dependencies"),
+                        visualDensity: VisualDensity.compact,
+                        children: [
                       ListTile(
-                        title: Text("No dependencies"),
+                        visualDensity: VisualDensity.compact,
+                        title: Text("TODO: Implement Dependency Checking"),
                       )
                     ]),
                     const SizedBox(height: 8.0),
