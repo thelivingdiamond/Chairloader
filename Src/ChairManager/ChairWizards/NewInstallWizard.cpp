@@ -625,8 +625,9 @@ private:
     {
         return std::async(std::launch::async, [=]()
         {
+            auto fnLogCallback = [this](std::string_view msg) { Task_LogMessage(msg); };
             std::string deployErrorMessage;
-            bool success = ChairManager::Get().DeployForInstallWizard(deployErrorMessage);
+            bool success = ChairManager::Get().DeployForInstallWizard(fnLogCallback, deployErrorMessage);
 
             if (!success)
                 throw std::runtime_error("Deploy failed.\n" + deployErrorMessage);

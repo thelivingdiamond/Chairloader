@@ -2156,7 +2156,7 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     }
 }
 
-std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWizard)
+std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWizard, ILogger* pLogger)
 {
     fs::path chairManagerDir = fs::current_path();
     std::vector<ChairMerger::Mod> modsForMerging;
@@ -2208,7 +2208,7 @@ std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWiza
         chairManagerDir / "PreyFiles",
         chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
         GetGamePath(),
-        this
+        pLogger ? pLogger : this
     );
 
     pMerger->SetMods(std::move(modsForMerging));
@@ -2350,9 +2350,37 @@ void ChairManager::SetGamePathFromWizard(const fs::path& gamePath)
     saveModManagerConfigFile();
 }
 
-bool ChairManager::DeployForInstallWizard(std::string& errorMessage) {
+bool ChairManager::DeployForInstallWizard(const DeployLogCallback& logFunc, std::string& errorMessage) {
     // This is called from a worker thread.
-    std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true);
+    class CallbackLogger : public ILogger
+    {
+    public:
+        CallbackLogger(const DeployLogCallback& callback)
+        {
+            m_fnCallback = callback;
+        }
+
+        // ILogger
+        virtual void LogString(severityLevel level, std::string_view str) override
+        {
+            ChairManager::Get().LogString(level, str);
+
+            if (level >= severityLevel::info)
+                m_fnCallback(str);
+        }
+
+        virtual void OverlayLogString(severityLevel level, std::string_view str) override
+        {
+            // Not supported
+            std::abort();
+        }
+
+    private:
+        DeployLogCallback m_fnCallback;
+    };
+
+    CallbackLogger logger(logFunc);
+    std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true, &logger);
     pMerger->Deploy();
     errorMessage = pMerger->GetDeployFailedMessage();
     return !pMerger->DeployFailed();

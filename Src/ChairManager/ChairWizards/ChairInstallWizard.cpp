@@ -488,9 +488,4 @@ void ChairInstallWizard::ExtractAsyncTask() const
 
 void ChairInstallWizard::DeployAsyncTask() const
 {
-	std::string deployErrorMessage;
-	bool success = ChairManager::Get().DeployForInstallWizard(deployErrorMessage);
-
-	if (!success)
-		throw std::runtime_error("Deploy failed.\n" + deployErrorMessage);
 }

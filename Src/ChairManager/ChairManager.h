@@ -36,6 +36,8 @@ class NewInstallWizard;
 
 class ChairManager final : public IChairManager {
 public:
+    using DeployLogCallback = std::function<void(std::string_view msg)>;
+
     static bool IsInstantiated() { return m_spInstance != nullptr; }
     static ChairManager& Get() { return *m_spInstance; }
 
@@ -70,7 +72,7 @@ public:
 
 
     void SetGamePathFromWizard(const fs::path& gamePath);
-    bool DeployForInstallWizard(std::string& errorMessage);
+    bool DeployForInstallWizard(const DeployLogCallback& logFunc, std::string& errorMessage);
 
 
 
@@ -341,7 +343,7 @@ private:
     void removeStartupCinematics();
     void restoreStartupCinematics();
 
-    std::unique_ptr<ChairMerger> CreateChairMerger(bool forInstallWizard);
+    std::unique_ptr<ChairMerger> CreateChairMerger(bool forInstallWizard, ILogger* pLogger = nullptr);
     void RunAsyncDeploy();
 
     //! Opens the file select dialog for mod installation.
