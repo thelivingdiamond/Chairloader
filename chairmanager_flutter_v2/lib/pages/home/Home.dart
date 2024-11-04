@@ -1,3 +1,4 @@
+import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/pages/home/HomeController.dart';
 import 'package:chairmanager_flutter_v2/widgets/Intents.dart';
@@ -201,6 +202,7 @@ class Home extends StatelessWidget {
   }
 
   Widget _modDetailsPane(BuildContext context, HomeController homeController, ModController modController, Talker talker){
+    LaunchController launchController = Get.find();
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -267,58 +269,49 @@ class Home extends StatelessWidget {
           else
             Expanded(child: Center(child: Text("Select a mod to view details", style: Theme.of(context).textTheme.bodyMedium))),
           Container(
+            alignment: Alignment.bottomRight,
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Wrap(
+              spacing: 4.0,
+              runSpacing: 4.0,
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Tooltip(
                   message: "Deploy Mods",
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      Get.dialog(
-                        AlertDialog(
-                          title: const Text("Deploy Mods"),
-                          content: const Text("This feature is not yet implemented"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: const Text("Close"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    shape: const CircleBorder(),
-                    backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.9),
-                    splashColor: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.3),
-                    child: Icon(Icons.local_shipping, color: Theme.of(context).colorScheme.onPrimary),
+                  child: FilledButton.tonal(
+                    onPressed: () async => await homeController.openDeployDialog(),
+                    child: const Text("Deploy Mods"),
                   ),
                 ),
-                const SizedBox(height: 8.0, width: 8.0),
                 Tooltip(
-                  message: "Launch Game",
-                  child: FloatingActionButton(
-                    backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.9),
-                    onPressed: () {
-                      Get.dialog(
-                        AlertDialog(
-                          title: const Text("Launch Game"),
-                          content: const Text("This feature is not yet implemented"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: const Text("Close"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    child: const Icon(Icons.play_arrow),
+                  message: "Launch Options",
+                  child: IconButton(
+                    icon: const Icon(Icons.settings),
+                    // backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.9),
+                    onPressed: () async => await homeController.openLaunchOptionsDialog(),
                   ),
+                ),
+                Obx(() {
+                      if(launchController.isRunning.value) {
+                        return Tooltip(
+                          message: "Stop Game",
+                          child: FloatingActionButton.small(
+                            backgroundColor: Colors.red,
+                            child: const Icon(Icons.stop, color: Colors.white),
+                            onPressed: () => launchController.stopGame(),
+                          ),
+                        );
+                      } else {
+                        return Tooltip(
+                          message: "Launch Game",
+                          child: FloatingActionButton.small(
+                            child: const Icon(Icons.play_arrow),
+                            onPressed: () async => await launchController.launchGame(),
+                          ),
+                        );
+                      }
+                    }
                 ),
               ],
             ),
