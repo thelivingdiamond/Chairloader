@@ -140,7 +140,8 @@ bool WizardManager::ShowContent()
                 Stage& stage = m_Stages[GetCurrentStageIdx()];
 
                 ImGui::BeginDisabled(!stage.pStage->CanCancel());
-                ImGui::Button("Cancel");
+                if (ImGui::Button("Cancel"))
+                    Cancel();
                 ImGui::EndDisabled();
 
                 ImGui::SameLine();
@@ -169,11 +170,13 @@ bool WizardManager::ShowContent()
             }
             default:
             {
+                ImGui::BeginDisabled();
                 ImGui::Button("Cancel");
                 ImGui::SameLine();
                 ImGui::Button("< Prev");
                 ImGui::SameLine();
                 ImGui::Button("Next >");
+                ImGui::EndDisabled();
                 break;
             }
             }
@@ -302,6 +305,17 @@ void WizardManager::GoToPrev()
 
 void WizardManager::Finish()
 {
+    m_State = EState::Done;
+}
+
+void WizardManager::Cancel()
+{
+    Stage& stage = m_Stages[GetCurrentStageIdx()];
+
+    if (!stage.pStage->TryCancel())
+        return;
+
+    m_Cancelled = true;
     m_State = EState::Done;
 }
 

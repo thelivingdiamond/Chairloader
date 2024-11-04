@@ -732,3 +732,8 @@ bool NewInstallWizard::IsFinished()
     // DeployStage is the last one. If it's done, all is done.
     return m_pWizMgr->IsDone() || m_pWizMgr->IsStageDone(m_pDeployStage.get());
 }
+
+bool NewInstallWizard::IsCancelled()
+{
+    return m_pWizMgr->IsCancelled();
+}

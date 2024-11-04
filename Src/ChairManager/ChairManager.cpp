@@ -72,7 +72,12 @@ void ChairManager::Draw() {
         m_pInstallWizard->Update();
 
         if (m_pInstallWizard->IsFinished())
-            OnInstallWizardFinished();
+        {
+            if (m_pInstallWizard->IsCancelled())
+                bDraw = false;
+            else
+                OnInstallWizardFinished();
+        }
 
         break;
     case State::UninstallWizard:

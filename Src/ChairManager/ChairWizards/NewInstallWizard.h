@@ -13,6 +13,7 @@ public:
 
     void Update();
     bool IsFinished();
+    bool IsCancelled();
 
 private:
     ILogger* m_pLogger = nullptr;

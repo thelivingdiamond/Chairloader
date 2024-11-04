@@ -78,6 +78,7 @@ private:
     void GoToNext();
     void GoToPrev();
     void Finish();
+    void Cancel();
 
     void OnCurrentCheckFinished();
 
