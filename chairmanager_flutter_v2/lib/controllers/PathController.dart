@@ -35,7 +35,11 @@ class PathController extends GetxController  with TalkerMixin {
   var preyPath = "".obs;
   var preyVersion = PreyVersion.Steam.obs;
 
+  var dataPath = "".obs;
+
   final String chairloaderDllName = "Chairloader.dll";
+
+  final String chairmergerExeName = "ChairMerger.Runner.exe";
 
   final List<String> requiredChairloaderBinaries = [
     "Chairloader.dll",
@@ -60,6 +64,7 @@ class PathController extends GetxController  with TalkerMixin {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     preyPath.value = prefs.getString("preyPath") ?? "";
     preyVersion.value = PreyVersion.values.firstWhereOrNull((version) => version.toString() == prefs.getString("preyVersion")) ?? PreyVersion.Steam;
+    dataPath.value = prefs.getString("dataPath") ?? "Data"; // likely just for debugging/development
     update();
   }
 
@@ -75,6 +80,14 @@ class PathController extends GetxController  with TalkerMixin {
     preyVersion.value = version;
     SharedPreferences.getInstance().then((prefs) {
       prefs.setString("preyVersion", version.toString());
+    });
+    update();
+  }
+
+  void setDataPath(String path) {
+    dataPath.value = path;
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString("dataPath", path);
     });
     update();
   }

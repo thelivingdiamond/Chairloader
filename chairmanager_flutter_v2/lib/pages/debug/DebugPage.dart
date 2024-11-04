@@ -1,4 +1,6 @@
+import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/dialogs/GamePathSelection/gamePathSelectionDialog.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +23,27 @@ class DebugPage extends StatelessWidget {
                 child: const Text("Open Game Path Selection Dialog")
             ),
           ),
+          GetBuilder<PathController>(builder: (controller) =>
+              Column(
+                children: [
+                  TextFormField(
+                              controller: TextEditingController(text: controller.dataPath.value),
+                              onChanged: (value) {
+                  controller.setDataPath(value);
+                              },
+                            ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        var result = await FilePicker.platform.getDirectoryPath();
+                        if(result != null){
+                          controller.setDataPath(result);
+                        }
+                      },
+                      child: const Text("Pick Data Path")
+                  ),
+                ],
+              )),
+
         ],
       ),
     );
