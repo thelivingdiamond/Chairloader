@@ -35,8 +35,28 @@
                         <ChildNodes>
                             <Node name="PCInfo">
                                 <Attributes>
-                                    <Attribute name="SteamID" type="int32" required="true" />
+                                    <Attribute name="SteamID" type="int32" />
+                                    <Attribute name="QuasimodoProjectName" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoPackageSID" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoContentId" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoStoreID" type="string" allowEmpty="true" />
                                 </Attributes>
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Language" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="LocInfo">
+                                        <Attributes>
+                                            <Attribute name="Language" type="string" required="true" readOnly="true" />
+                                            <Attribute name="DisplayName" type="string" required="true" />
+                                            <Attribute name="Description" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
                             </Node>
                             
                             <Node name="PS4Info">

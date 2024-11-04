@@ -55,6 +55,7 @@
                             <Attribute name="SteamID" type="int32" required="true" />
                             <Attribute name="PsnID" type="int32" required="true" />
                             <Attribute name="LiveID" type="int32" required="true" />
+                            <Attribute name="QuasimodoID" type="int32" />
                         </Attributes>
 
                         <Collection type="nodeDict" />
