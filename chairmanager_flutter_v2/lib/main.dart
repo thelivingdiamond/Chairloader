@@ -81,7 +81,7 @@ void main() async {
   });
 }
 
-const borderColor = Color(0xFF550680);
+const borderColor = Color(0xFF252325);
 
 
 class MyApp extends StatelessWidget {
@@ -147,7 +147,13 @@ class LeftSide extends StatelessWidget {
                 selectedIcon: Icon(Icons.update, color: Colors.green,),
                 label: Text("Update\nAvailable", textAlign: TextAlign.center,),
               )
-          ]
+          ],
+
+            trailing: IconButton(
+              icon: const Icon(Icons.more_vert),
+              onPressed: () {
+              },
+            ),
       ),
     );
   }
