@@ -4,6 +4,7 @@ import 'package:chairmanager_flutter_v2/controllers/VersionController.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
 import 'package:chairmanager_flutter_v2/pages/debug/DebugPage.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
+import 'package:chairmanager_flutter_v2/pages/splash/SplashScreen.dart';
 import 'package:chairmanager_flutter_v2/widgets/WindowsButtons.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
@@ -95,6 +96,11 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [
         TalkerRouteObserver(Get.find()),
       ],
+      // routes: {
+      //   '/splash': (context) => const SplashScreen(),
+      // },
+      // initialRoute: '/splash',
+
       home:  Scaffold(
         body: WindowBorder(
           color: borderColor,
