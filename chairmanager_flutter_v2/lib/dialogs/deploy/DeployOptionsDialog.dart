@@ -1,4 +1,4 @@
-import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialogController.dart';
+import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,8 +7,7 @@ class DeployOptionsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DeployDialogController>(
-      init: DeployDialogController(),
+    return GetBuilder<DeployController>(
       builder: (controller) {
         return Dialog(
           child: Container(
@@ -25,7 +24,7 @@ class DeployOptionsDialog extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Checkbox(value: controller.args.forceLevelsRepack, onChanged: (value) {
+                        Checkbox(value: controller.chairMergerSettings.forceLevelPack, onChanged: (value) {
                           controller.setForceLevelsRepack(value ?? false);
                         }),
                         Text("Force Levels Repack", style: Theme.of(context).textTheme.bodyLarge,),
@@ -34,7 +33,7 @@ class DeployOptionsDialog extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Checkbox(value: controller.args.forceLocalizationRepack, onChanged: (value) {
+                        Checkbox(value: controller.chairMergerSettings.forceLocalizationPack, onChanged: (value) {
                           controller.setForceLocalizationRepack(value ?? false);
                         }),
                         Text("Force Localization Repack", style: Theme.of(context).textTheme.bodyLarge,),
@@ -43,7 +42,7 @@ class DeployOptionsDialog extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Checkbox(value: controller.args.forceMainPatchRepack, onChanged: (value) {
+                        Checkbox(value: controller.chairMergerSettings.forceMainPatchPack, onChanged: (value) {
                           controller.setForceMainPatchRepack(value ?? false);
                         }),
                         Text("Force Main Patch Repack", style: Theme.of(context).textTheme.bodyLarge,),
@@ -52,8 +51,8 @@ class DeployOptionsDialog extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Checkbox(value: controller.args.packOnlyVanillaFiles, onChanged: (value) {
-                          controller.setPackOnlyVanillaFiles(value ?? false);
+                        Checkbox(value: controller.chairMergerSettings.forceVanillaPack, onChanged: (value) {
+                          controller.setForceVanillaPack(value ?? false);
                         }),
                         Text("Pack only vanilla files (no mods)", style: Theme.of(context).textTheme.bodyLarge,),
                       ],
@@ -65,12 +64,15 @@ class DeployOptionsDialog extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     FilledButton.tonal(
-                      onPressed: () => controller.cancel(),
+                      onPressed: () => Get.back(),
                       child: const Text("Cancel"),
                     ),
                     const SizedBox(width: 8.0,),
                     FilledButton(
-                      onPressed: () => controller.launchDeployDialog(),
+                      onPressed: () async {
+                        Get.back();
+                        await controller.startDeployDialog();
+                      },
                       child: const Text("Deploy"),
                     ),
                   ],

@@ -201,4 +201,24 @@ class PathController extends GetxController  with TalkerMixin {
       return PreyVersion.Unknown;
     }
   }
+
+  String get chairMergerExePath {
+    return "$dataPath\\$chairmergerExeName";
+  }
+
+  String get runtimeDataPath {
+    return "$dataPath\\Config";
+  }
+  String get preyFilesPath {
+    return "$dataPath\\PreyFiles";
+  }
+
+  String getModDataPath(String modName, bool isLegacy) {
+    return isLegacy ? "$modLegacyDirPath\\$modName" : "$modDirPath\\$modName\\Data";
+  }
+
+  String getModConfigPath(String modName, bool isLegacy) {
+    return isLegacy ? "" : "$modConfigPath\\$modName.xml";
+  }
+
 }

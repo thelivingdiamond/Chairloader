@@ -8,16 +8,35 @@ class ChairMergerParams {
   final List<ChairMergerMod> mods;
   final ChairMergerSettings settings;
 
+  Map<String, dynamic> toJson() {
+    return {
+      "mergerFiles": mergerFiles,
+      "preyFiles": preyFiles,
+      "outputRoot": outputRoot,
+      "gamePath": gamePath,
+      "mods": mods.map((e) => e.toJson()).toList(),
+      "settings": settings.toJson(),
+    };
+  }
 }
 
 
 class ChairMergerSettings {
-  ChairMergerSettings({required this.forceLevelsRepack, required this.forceLocalizationRepack, required this.forceMainPatchRepack, required this.forceVanillaPack});
+  ChairMergerSettings();
 
-  final bool forceLevelsRepack;
-  final bool forceLocalizationRepack;
-  final bool forceMainPatchRepack;
-  final bool forceVanillaPack;
+  bool forceLevelPack = false;
+  bool forceLocalizationPack = false;
+  bool forceMainPatchPack = false;
+  bool forceVanillaPack = false;
+
+  Map<String, dynamic> toJson() {
+    return {
+      "forceLevelPack": forceLevelPack,
+      "forceLocalizationPack": forceLocalizationPack,
+      "forceMainPatchPack": forceMainPatchPack,
+      "forceVanillaPack": forceVanillaPack,
+    };
+  }
 }
 
 enum ChairMergerModType {
@@ -36,5 +55,16 @@ class ChairMergerMod {
   final int type;
   final String modName;
   final String dataPath;
-  final String configPath;
+  final String? configPath;
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {};
+    map["type"] = type;
+    map["modName"] = modName;
+    map["dataPath"] = dataPath;
+    if(configPath != null){
+      map["configPath"] = configPath;
+    }
+    return map;
+  }
 }

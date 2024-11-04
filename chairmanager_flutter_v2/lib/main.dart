@@ -1,3 +1,4 @@
+import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/controllers/VersionController.dart';
@@ -43,6 +44,8 @@ void main() async {
 
   var versionController = Get.put(VersionController());
   await versionController.init();
+
+  var deployController = Get.put(DeployController());
 
   var launchController = Get.put(LaunchController());
   await launchController.init();
