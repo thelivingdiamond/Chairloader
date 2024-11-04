@@ -25,11 +25,18 @@ class VersionController extends GetxController with TalkerMixin {
   Version downloadedVersion = Version.parse("0.0.0");
   Version availableVersion = Version.parse("0.0.0");
 
+  DateTime? lastGithubCheck;
+  // only ever check for updates every hour (to avoid rate limiting)
+  static const Duration githubCheckInterval = Duration(hours: 1);
+
   PathController pathController = Get.find();
 
 
   Future<void> init() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    // load the last github check time
+    lastGithubCheck = DateTime.parse(prefs.getString("lastGithubCheck") ?? "2000-01-01T00:00:00.000Z");
+
     var installedResult = await getInstalledVersion();
     if(installedResult.isErr()){
       talker.error("Failed to get installed version: ${installedResult.unwrapErr()}");
@@ -57,17 +64,26 @@ class VersionController extends GetxController with TalkerMixin {
     }
 
     etag = prefs.getString("etag") ?? "";
+    etag = etag.replaceAll("W/", "");
     talker.verbose("etag: $etag");
 
-    var githubVersionResult = await getGithubVersion();
-    if(githubVersionResult.isErr()){
-      talker.error("Failed to get github version: ${githubVersionResult.unwrapErr()}");
-    } else {
-      var githubVersion = githubVersionResult.unwrap();
-      if(githubVersion != null){
-        prefs.setString("availableVersion", githubVersion.toString());
+    if(DateTime.now().difference(lastGithubCheck!) > githubCheckInterval){
+      var githubVersionResult = await getGithubVersion();
+      lastGithubCheck = DateTime.now();
+      prefs.setString("lastGithubCheck", lastGithubCheck.toString());
+      if(githubVersionResult.isErr()){
+        talker.error("Failed to get github version: ${githubVersionResult.unwrapErr()}");
+      } else {
+        var githubVersion = githubVersionResult.unwrap();
+        if(githubVersion != null){
+          prefs.setString("availableVersion", githubVersion.toString());
+        }
+        availableVersion = githubVersion ?? Version.parse(prefs.getString("availableVersion") ?? "0.0.0");
+        talker.info("Available version on github: $availableVersion");
       }
-      availableVersion = githubVersion ?? Version.parse(prefs.getString("availableVersion") ?? "0.0.0");
+    } else {
+      availableVersion = Version.parse(prefs.getString("availableVersion") ?? "0.0.0");
+      talker.verbose("Not checking for update, last check was ${DateTime.now().difference(lastGithubCheck!).inMinutes} minutes ago");
       talker.info("Available version on github: $availableVersion");
     }
   }
@@ -103,12 +119,15 @@ class VersionController extends GetxController with TalkerMixin {
     // make the request
     final response = await http.get(Uri.parse(chairloaderUpdateUrl), headers: headers);
     if(response.statusCode == 304){
+      talker.verbose("eTag matches, no new version available");
       // no update
       result = const Ok(null);
     } else if(response.statusCode == 200){
       talker.verbose("got a new response${force ? " (forced)" : ""}");
       // get the etag from the response
       etag = response.headers["etag"] ?? "";
+      // remove the W/ from the etag
+      etag = etag.replaceAll("W/", "");
       // save the etag to storage
       prefs.setString("etag", etag);
       responseString = response.body;
@@ -122,8 +141,15 @@ class VersionController extends GetxController with TalkerMixin {
         result = bail(e);
       }
     } else {
+      // check for the 'retry-after' header and the 'x-ratelimit-remaining' header and the 'x-ratelimit-reset' header
+      // log the headers
+      response.headers.forEach((key, value) {
+        talker.verbose("$key: $value");
+      });
+
+
       // something went wrong
-      result = bail("Failed to check for update, status code: ${response.statusCode}");
+      result = bail("Failed to check for update, status code: ${response.statusCode}, body: ${response.body}");
     }
     return result;
   }
