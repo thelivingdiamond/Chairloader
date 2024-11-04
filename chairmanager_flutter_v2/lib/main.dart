@@ -17,6 +17,8 @@ import 'package:chairmanager_flutter_v2/pages/home/Home.dart';
 import 'package:chairmanager_flutter_v2/pages/settings/Settings.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
+import 'controllers/LaunchController.dart';
+
 
 
 void main() async {
@@ -41,6 +43,9 @@ void main() async {
 
   var versionController = Get.put(VersionController());
   await versionController.init();
+
+  var launchController = Get.put(LaunchController());
+  await launchController.init();
 
   var modController = Get.put(ModController());
 
