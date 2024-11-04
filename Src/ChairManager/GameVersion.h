@@ -15,16 +15,19 @@ public:
 		Supported,
 		Patchable,
 		NotSupported,
+		UnknownVersion,
 		Error,
 	};
 
 	GameVersion();
 	~GameVersion();
 
+	Result GetResult() const { return m_Result; }
 	void Update();
 	Result ShowInstalledVersion(bool showBtns = true);
 	const std::string& GetErrorText() { return m_ErrorText; }
 	void PatchTheGame() const;
+	void CheckAgain() { StartAsyncTasks(); }
 
 private:
 	enum class State
@@ -52,6 +55,7 @@ private:
 	KnownVersion* m_pSupportedVersion = nullptr;
 	KnownVersion* m_pInstalledVersion = nullptr;
 	bool m_bHasBackup = false;
+	Result m_Result = Result::Loading;
 
 	State m_State = State::Error;
 	std::future<HashGameResult> m_HashGameTaskFuture;

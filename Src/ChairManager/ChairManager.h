@@ -11,6 +11,7 @@
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
+#include <Manager/GamePath.h>
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
@@ -24,7 +25,6 @@
 class GamePathDialog;
 class GameVersion;
 class GamePath;
-class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
 class ChairMerger;
@@ -32,6 +32,7 @@ struct SemanticVersion;
 enum class DeployStep;
 class ChairMerger;
 class PreyFilesPatchProgressDialog;
+class NewInstallWizard;
 
 class ChairManager final : public IChairManager {
 public:
@@ -68,7 +69,7 @@ public:
     }
 
 
-
+    void SetGamePathFromWizard(const fs::path& gamePath);
     bool DeployForInstallWizard(std::string& errorMessage);
 
 
@@ -97,7 +98,7 @@ public:
         saveModManagerConfigFile();
     }
 
-    GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
+    GamePath& GetGamePathUtil(){ return m_GamePath; }
 
     // IChairManager
     virtual fs::path GetConfigPath() override;
@@ -122,7 +123,6 @@ private:
     enum class State
     {
         Invalid,
-        LocateGameDir,
         InstallWizard,
         Deploying,
         UninstallWizard,
@@ -144,15 +144,10 @@ private:
     void Init();
     bool initialized = false;
 
-    /* LocateGameDir */
-    std::unique_ptr<GamePathDialog> m_pGamePathDialog;
-    void SwitchToGameSelectionDialog(const fs::path& gamePath);
-    void DrawGamePathSelectionDialog(bool* pbIsOpen);
-
     /* InstallWizard */
-    std::unique_ptr<ChairInstallWizard> m_pInstallWizard;
+    std::unique_ptr<NewInstallWizard> m_pInstallWizard;
     void SwitchToInstallWizard();
-    void DrawInstallWizard(bool* pbIsOpen);
+    void OnInstallWizardFinished();
 
     /* UninstallWizard */
     std::unique_ptr<ChairUninstallWizard> m_pUninstallWizard;
@@ -320,15 +315,11 @@ private:
     bool verifyChairloaderConfigFile();
     // Create default chairloader config file
     void createChairloaderConfigFile();
-    // Verify chairloader is installed
-    bool verifyChairloaderInstalled();
-    // Verify default file structure
-    bool verifyDefaultFileStructure();
     // Create default file structure
     void createDefaultFileStructure();
     static inline ChairManager* m_spInstance = nullptr;
 
-    std::unique_ptr<GamePath> m_pGamePath;
+    GamePath m_GamePath;
 
     std::unique_ptr<PreyFilesPatchProgressDialog> m_pXmlPatchDialog;
 

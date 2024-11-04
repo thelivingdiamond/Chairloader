@@ -25,8 +25,8 @@
 #include "ChairWizards/GamePathDialog.h"
 #include "GameVersion.h"
 #include "winver.h"
-#include "ChairWizards/ChairInstallWizard.h"
 #include "ChairWizards/ChairUninstallWizard.h"
+#include "ChairWizards/NewInstallWizard.h"
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
@@ -63,16 +63,17 @@ void ChairManager::Draw() {
 
     switch (m_State)
     {
-    case State::LocateGameDir:
-        DrawGamePathSelectionDialog(&bDraw);
-        break;
     case State::MainWindow:
         if(!initialized)
             Init();
         DrawMainWindow(&bDraw);
         break;
     case State::InstallWizard:
-        DrawInstallWizard(&bDraw);
+        m_pInstallWizard->Update();
+
+        if (m_pInstallWizard->IsFinished())
+            OnInstallWizardFinished();
+
         break;
     case State::UninstallWizard:
         DrawUninstallWizard(&m_bShowUninstallWizard);
@@ -102,7 +103,7 @@ void ChairManager::LoadModManagerConfig()
     if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
         if (ChairManagerConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
-            if (ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path))
+            if (GamePath::ValidateGamePath(path))
             {
                 SetGamePath(path);
             }
@@ -152,9 +153,9 @@ void ChairManager::LoadModManagerConfig()
 
 void ChairManager::SetGamePath(const fs::path& path)
 {
-    assert(path.empty() || ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path));
+    CRY_ASSERT(path.empty() || ChairManager::Get().GetGamePathUtil().ValidateGamePath(path));
 
-    m_pGamePath->SetGamePath(path);
+    m_GamePath.SetGamePath(path);
     pugi::xml_node cfg = ChairManagerConfigFile.first_child();
 
     if (!path.empty())
@@ -170,73 +171,28 @@ void ChairManager::SetGamePath(const fs::path& path)
     }
 }
 
-void ChairManager::SwitchToGameSelectionDialog(const fs::path& gamePath)
-{
-    m_State = State::LocateGameDir;
-    m_pGamePathDialog = std::make_unique<GamePathDialog>();
-    m_pGamePathDialog->SetGamePath(gamePath);
-}
-
-void ChairManager::DrawGamePathSelectionDialog(bool* pbIsOpen)
-{
-    GamePathDialog::Result result = m_pGamePathDialog->ShowDialog(MAIN_WINDOW_NAME, pbIsOpen);
-
-    if (result == GamePathDialog::Result::Ok)
-    {
-        log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
-        SetGamePath(m_pGamePathDialog->GetGamePath());
-        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
-        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
-        saveModManagerConfigFile();
-        m_pGamePathDialog.reset();
-        SwitchToInstallWizard();
-    }
-    else if (result == GamePathDialog::Result::Cancel)
-    {
-        *pbIsOpen = false;
-        m_pGamePathDialog.reset();
-    }
-}
-
 void ChairManager::SwitchToInstallWizard()
 {
-    if (!verifyChairloaderInstalled())
-    {
-        log(severityLevel::info, "Chairloader not found, starting the wizard");
-        m_State = State::InstallWizard;
-    }
-#ifndef DEBUG_BUILD
-    else if(VersionCheck::getInstalledChairloaderVersion() < VersionCheck::getPackagedChairloaderVersion()) {
-        log(severityLevel::info, "Chairloader version mismatch, running install wizard");
-        m_State = State::InstallWizard;
-    }
-#endif
-    else
-    {
-        log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer, %s is the latest version on github",
-            VersionCheck::getInstalledChairloaderVersion().String().c_str(),
-            VersionCheck::getPackagedChairloaderVersion().String().c_str(),
-            VersionCheck::getLatestChairloaderVersion().String().c_str());
-
-        if (IsUpdateAvailable())
-            m_bShowUpdatePopup = true;
-
-        m_State = State::MainWindow;
-    }
+    CRY_ASSERT(!m_pInstallWizard);
+    m_pInstallWizard = std::make_unique<NewInstallWizard>(this);
+    m_State = State::InstallWizard;
 }
 
-void ChairManager::DrawInstallWizard(bool* pbIsOpen)
+void ChairManager::OnInstallWizardFinished()
 {
-    if (!m_pInstallWizard)
-    {
-        m_pInstallWizard = std::make_unique<ChairInstallWizard>();
-    }
+    log(severityLevel::info, "Install wizard has finished");
+    CRY_ASSERT(m_pInstallWizard);
+    m_pInstallWizard.reset();
 
-    if (m_pInstallWizard->Show("Chairloader Installer", pbIsOpen))
-    {
-        m_pInstallWizard.reset();
-        m_State = State::MainWindow;
-    }
+    log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer, %s is the latest version on github",
+        VersionCheck::getInstalledChairloaderVersion().String(),
+        VersionCheck::getPackagedChairloaderVersion().String(),
+        VersionCheck::getLatestChairloaderVersion().String());
+
+    if (IsUpdateAvailable())
+        m_bShowUpdatePopup = true;
+
+    m_State = State::MainWindow;
 }
 
 void ChairManager::DrawMainWindow(bool* pbIsOpen)
@@ -722,9 +678,8 @@ void ChairManager::DrawDLLSettings() {
         ImGui::InputText("Prey Path", &preyPathString, ImGuiInputTextFlags_ReadOnly);
 
         if(ImGui::Button("Change Path")){
-            m_pGamePathDialog = std::make_unique<GamePathDialog>();
-            m_pGamePathDialog->SetGamePath(GetGamePath());
-            ImGui::OpenPopup("Change Game Path");
+            SetGamePath(fs::path());
+            SwitchToInstallWizard();
         }
 
         ImGui::PushID("GameVersion");
@@ -739,24 +694,6 @@ void ChairManager::DrawDLLSettings() {
             ImGui::OpenPopup("XML Patch Progress");
         }
         ImGui::EndDisabled();
-
-        if (m_pGamePathDialog)
-        {
-            GamePathDialog::Result result = m_pGamePathDialog->ShowModal("Change Game Path");
-
-            if (result == GamePathDialog::Result::Ok)
-            {
-                log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
-                SetGamePath(m_pGamePathDialog->GetGamePath());
-                saveModManagerConfigFile();
-                m_pGamePathDialog.reset();
-                Init();
-            }
-            else if (result == GamePathDialog::Result::Cancel)
-            {
-                m_pGamePathDialog.reset();
-            }
-        }
 
         if (m_pXmlPatchDialog)
         {
@@ -1268,18 +1205,10 @@ ChairManager::ChairManager() {
     ChairManagerConfigPath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManagerConfig.xml";
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
-    m_pGamePath = std::make_unique<GamePath>();
     cURLpp::initialize();
     LoadModManagerConfig();
     VersionCheck::fetchLatestVersion();
-
-    if (GetGamePath().empty() || !ChairManager::Get().GetGamePathUtil()->ValidateGamePath(GetGamePath())){
-        SwitchToGameSelectionDialog(GetGamePath());
-    } else {
-        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
-        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
-        SwitchToInstallWizard();
-    }
+    SwitchToInstallWizard();
 }
 
 ChairManager::~ChairManager() {
@@ -1914,45 +1843,9 @@ void ChairManager::createChairloaderConfigFile() {
     }
 }
 
-bool ChairManager::verifyChairloaderInstalled() {
-    try{
-        // Check for installed Chairloader binaries
-        for (const char* fileName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries())
-        {
-            if (!fs::exists(GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / fileName))
-                return false;
-        }
-
-        // Check for extracted PreyFiles
-        // TODO 2023-08-30: Remove all hardcoded PreyFiles
-        if (!fs::exists(fs::path("PreyFiles") / PREDITOR_FILES_EXTRACTED))
-            return false;
-
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while verifying chairloader: %s", exception.what());
-        return false;
-    }
-}
-
-bool ChairManager::verifyDefaultFileStructure() {
-    try {
-        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
-        {
-            if (!fs::is_directory(GetGamePath() / dirName))
-                return false;
-        }
-
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while verifying default file structure: %s", exception.what());
-        return false;
-    }
-}
-
 void ChairManager::createDefaultFileStructure() {
     try {
-        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
+        for (const char* dirName : GetGamePathUtil().GetRequiredChairloaderDirs())
         {
             fs::create_directories(GetGamePath() / dirName);
         }
@@ -2093,24 +1986,11 @@ void ChairManager::DrawDebug() {
             }
         }
         if(ImGui::CollapsingHeader("Multi Platform Support")){
-            static int i = 0;
-            if(ImGui::RadioButton("Steam", &i, 0)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Steam);
-            }
-            if(ImGui::RadioButton("GOG", &i, 1)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Gog);
-            }
-            if(ImGui::RadioButton("Epic", &i, 2)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Epic);
-            }
-            if(ImGui::RadioButton("Microsoft Store", &i, 3)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Microsoft);
-            }
-            ImGui::Text("GAME BIN: %s", ChairManager::Get().GetGamePathUtil()->GetGameBinDir());
-            ImGui::Text("GAME EXE: %s", ChairManager::Get().GetGamePathUtil()->GetGameExePath());
-            ImGui::Text("GAME DLL: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPath());
-            ImGui::Text("GAME PDB: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPDBPath());
-            ImGui::Text("GAME BACKUP: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
+            ImGui::Text("GAME BIN: %s", GetGamePathUtil().GetGameBinDir());
+            ImGui::Text("GAME EXE: %s", GetGamePathUtil().GetGameExePath());
+            ImGui::Text("GAME DLL: %s", GetGamePathUtil().GetGameDllPath());
+            ImGui::Text("GAME PDB: %s", GetGamePathUtil().GetGameDllPDBPath());
+            ImGui::Text("GAME BACKUP: %s", GetGamePathUtil().GetGameDllBackupPath());
         }
         ImGui::EndTabItem();
 
@@ -2462,6 +2342,14 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 //    return std::string();
 }
 
+void ChairManager::SetGamePathFromWizard(const fs::path& gamePath)
+{
+    log(severityLevel::info, "User selected game path: %s", gamePath.u8string());
+    SetGamePath(gamePath);
+    log(severityLevel::info, "Game platform: %s", m_GamePath.GetGamePlatformString());
+    saveModManagerConfigFile();
+}
+
 bool ChairManager::DeployForInstallWizard(std::string& errorMessage) {
     // This is called from a worker thread.
     std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true);
@@ -2493,7 +2381,7 @@ void ChairManager::launchGame() {
     }
 
     // Assemble command line
-    fs::path exePath = GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameExePath();
+    fs::path exePath = GetGamePath() / GetGamePathUtil().GetGameExePath();
     std::wstring cmdLine = exePath.wstring();
 
     for (const std::wstring& i : args)
@@ -2588,7 +2476,7 @@ void ChairManager::restoreStartupCinematics() {
 }
 
 const fs::path &ChairManager::GetGamePath() {
-    return m_pGamePath->GetGamePath();
+    return m_GamePath.GetGamePath();
 }
 
 fs::path ChairManager::GetConfigPath()

@@ -4,6 +4,7 @@
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <Manager/ILogger.h>
 #include "PreyFilesPatchProgressDialog.h"
+#include "PreyFilesPatchTask.h"
 
 PreyFilesPatchProgressDialog::PreyFilesPatchProgressDialog(ILogger* pLogger)
 {
@@ -16,41 +17,19 @@ PreyFilesPatchProgressDialog::~PreyFilesPatchProgressDialog()
 
 void PreyFilesPatchProgressDialog::Start()
 {
-    fs::path preyFilesPath = fs::absolute("PreyFiles");
-    fs::path mergingLibPath= fs::absolute("MergingLibrary");
-    fs::path xmlTypesPath = fs::absolute("XmlTypeLibrary.xml");
     m_pLogger->Log(severityLevel::info, "Starting XML patching");
 
-    m_Future = std::async(std::launch::async, [this, preyFilesPath, mergingLibPath, xmlTypesPath]()
+    m_Future = std::async(std::launch::async, [this]()
     {
-        auto fnCallback = [this](const std::string& msg)
+        PreyFilesPatchTask task;
+        task.logCallback = [](std::string_view msg) {};
+        task.progressCallback = [this](std::string_view fileName, float progress)
         {
             auto lock = m_ProgressText.GetScopedLock();
-            m_ProgressText.GetData() = msg;
+            m_ProgressText.GetData() = fileName;
         };
 
-        fnCallback("Loading XML type library");
-        XmlTypeLibrary xmlTypeLib;
-        xmlTypeLib.LoadTypesFromFile(xmlTypesPath);
-
-        fnCallback("Loading merging library");
-        MergingLibrary3 mergingLib(&xmlTypeLib);
-        mergingLib.LoadFromPath(mergingLibPath);
-
-        // TODO 2024-09-03: Ugly hack
-        fs::path xsdBasePath = fs::current_path() / "../Xsd";
-
-        if (fs::exists(xsdBasePath / "Chairloader/MetaType.xsd"))
-            xsdBasePath = fs::absolute(xsdBasePath);
-        else
-            xsdBasePath.clear();
-
-        PreyFilePatcher::PatchDirectory(
-            preyFilesPath,
-            xsdBasePath,
-            mergingLib,
-            &xmlTypeLib,
-            fnCallback);
+        task.RunTask();
     });
 }
 

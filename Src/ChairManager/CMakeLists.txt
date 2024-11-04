@@ -14,6 +14,8 @@ set(SOURCE_FILES
 	ChairWizards/ChairUpdateWizard.h
 	ChairWizards/GamePathDialog.cpp
 	ChairWizards/GamePathDialog.h
+	ChairWizards/NewInstallWizard.cpp
+	ChairWizards/NewInstallWizard.h
 	
 	Resources/appicon.rc
 
@@ -31,6 +33,8 @@ set(SOURCE_FILES
 	pch.h
 	PreyFilesPatchProgressDialog.cpp 
 	PreyFilesPatchProgressDialog.h
+	PreyFilesPatchTask.cpp 
+	PreyFilesPatchTask.h
 	UpdateHandler.cpp 
 	UpdateHandler.h
 	UpdateURL.h

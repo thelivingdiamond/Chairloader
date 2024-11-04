@@ -104,7 +104,7 @@ GameVersion::GameVersion()
 {
 	LoadKnownVersions();
 	StartAsyncTasks();
-	m_bHasBackup = fs::exists(ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
+	m_bHasBackup = fs::exists(ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllBackupPath());
 }
 
 GameVersion::~GameVersion()
@@ -126,10 +126,25 @@ void GameVersion::Update()
 				m_pInstalledVersion = nullptr;
 
 			m_State = State::Ready;
+
+			if (m_pInstalledVersion)
+			{
+				if (m_pInstalledVersion->isSupported)
+					m_Result = Result::Supported;
+				else if (m_pInstalledVersion->isOutdated)
+					m_Result = Result::NotSupported;
+				else
+					m_Result = Result::Patchable;
+			}
+			else
+			{
+				m_Result = Result::UnknownVersion;
+			}
 		}
 		catch (const std::exception& e)
 		{
 			m_State = State::Error;
+			m_Result = Result::Error;
 			m_ErrorText = e.what();
 		}
 	}
@@ -137,49 +152,44 @@ void GameVersion::Update()
 
 GameVersion::Result GameVersion::ShowInstalledVersion(bool showBtns)
 {
-	Result result = Result::Loading;
-
 	if (m_State == State::Error)
 	{
-		result = Result::Error;
 		ImGui::TextColored(ImColor(255, 0, 0), "Error: %s", m_ErrorText.c_str());
 		ShowModals();
-		return result;
+		return GetResult();
 	}
 
 	if (m_State == State::WaitTasks)
 	{
-		result = Result::Loading;
 		ImGui::Text("Loading...");
 		ShowModals();
-		return result;
+		return GetResult();
 	}
 
 	if (m_pInstalledVersion)
 	{
 		std::string ver = m_pInstalledVersion->type + "-" + m_pInstalledVersion->releaseDate;
 		ImGui::Text("Game Version: %s", ver.c_str());
-		if (m_pInstalledVersion->isSupported)
-		{
-			result = Result::Supported;
-			ImGui::Text("This version is supported by Chairloader");
-		}
-		else if (m_pInstalledVersion->isOutdated)
-		{
-			result = Result::NotSupported;
-			ImGui::TextColored(ImColor(252, 127, 3), "This version is outdated. Update your game.");
-		}
-		else
-		{
-			result = Result::Patchable;
-			ImGui::TextColored(ImColor(255, 255, 0), "This version needs to be patched for Chairloader to work");
-		}
 	}
 	else
 	{
-		result = Result::NotSupported;
 		ImGui::Text("Game Version: Unknown");
+	}
+
+	switch (m_Result)
+	{
+	case Result::Supported:
+		ImGui::Text("This version is supported by Chairloader");
+		break;
+	case Result::Patchable:
+		ImGui::TextColored(ImColor(255, 255, 0), "This version needs to be patched for Chairloader to work");
+		break;
+	case Result::NotSupported:
+		ImGui::TextColored(ImColor(252, 127, 3), "This version is outdated. Update your game.");
+		break;
+	case Result::UnknownVersion:
 		ImGui::TextColored(ImColor(255, 0, 0), "This version is not supported");
+		break;
 	}
 
 	if (showBtns)
@@ -203,7 +213,7 @@ GameVersion::Result GameVersion::ShowInstalledVersion(bool showBtns)
 		ShowModals();
 	}
 
-	return result;
+	return GetResult();
 }
 
 void GameVersion::LoadKnownVersions()
@@ -248,6 +258,7 @@ void GameVersion::LoadKnownVersions()
 void GameVersion::StartAsyncTasks()
 {
 	m_State = State::WaitTasks;
+	m_Result = Result::Loading;
 	m_HashGameTaskFuture = std::async(std::launch::async, [&]() { return HashGameTask(); });
 }
 
@@ -318,8 +329,8 @@ void GameVersion::PatchTheGame() const
 		throw std::runtime_error("Diff file \"" + diffFileName + "\" not found");
 
 	// Make a backup of PreyDll.dll
-	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
-	fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
+	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllPath();
+	fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllBackupPath();
 	fs::copy_file(dllPath, backupFilePath, fs::copy_options::overwrite_existing);
 
 	// Decompress diff file
@@ -345,8 +356,8 @@ void GameVersion::RestoreBackup()
 {
 	try
 	{
-		fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
-		fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath();
+		fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllPath();
+		fs::path backupFilePath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllBackupPath();
 
 		if (!fs::exists(backupFilePath))
 			throw std::runtime_error("Backup file no longer exists");
@@ -366,7 +377,7 @@ GameVersion::HashGameResult GameVersion::HashGameTask()
 	HashGameResult result;
 
 	// Open the game dll
-	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameDllPath();
+	fs::path dllPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameDllPath();
 
 	if (!fs::exists(dllPath))
 		throw std::runtime_error("PreyDll.dll is missing");

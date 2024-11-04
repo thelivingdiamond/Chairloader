@@ -53,9 +53,6 @@ public:
 //! Path to the Chairloader patch file
     const char* GetChairloaderPatchPath() const;
 
-//! Sets the game store platform, used to determine the appropriate game path
-    void SetGamePlatform(GamePlatform platform);
-
 //! Returns the game store platform
     GamePlatform GetGamePlatform() const { return m_Platform; };
     const char* GetGamePlatformString() const;
@@ -93,6 +90,7 @@ protected:
 //! Set the path to the game directory
     void SetGamePath(const fs::path& path) {
         m_Path = path;
+        m_Platform = DeduceGamePlatform(path);
     }
 
 private:

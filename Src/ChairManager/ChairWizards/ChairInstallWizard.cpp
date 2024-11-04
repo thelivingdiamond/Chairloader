@@ -172,6 +172,7 @@ void ChairInstallWizard::ShowVersionCheckPage()
 		ShowBottomBtns(fnBack, fnNext, fnCancel);
 		break;
 	case GameVersion::Result::NotSupported:
+	case GameVersion::Result::UnknownVersion:
 		ShowBottomBtns(fnBack, BtnCallback(), fnCancel);
 		break;
 	}
@@ -393,14 +394,14 @@ void ChairInstallWizard::InstallAsyncTask() const
 		m_InstallLog.push_back(std::move(msg));
 	};
 
-	fs::path srcBinPath = fs::current_path() / ChairManager::Get().GetGamePathUtil()->GetChairloaderBinSrcPath();
-	fs::path dstBinPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir();
+	fs::path srcBinPath = fs::current_path() / ChairManager::Get().GetGamePathUtil().GetChairloaderBinSrcPath();
+	fs::path dstBinPath = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameBinDir();
 
 	printlog("Verifying files...");
 	{
 		bool allFilesExist = true;
 
-		for (const char* name : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries())
+		for (const char* name : ChairManager::Get().GetGamePathUtil().GetRequiredChairloaderBinaries())
 		{
 			if (!fs::exists(srcBinPath / name))
 			{
@@ -448,7 +449,7 @@ void ChairInstallWizard::ExtractAsyncTask() const
 	// Launch Preditor in extract mode
 	STARTUPINFOW startupInfo = { sizeof(STARTUPINFOW) };
 	PROCESS_INFORMATION processInfo = {};
-	fs::path gamePath = ChairManager::Get().GetGamePathUtil()->GetGamePath();
+	fs::path gamePath = ChairManager::Get().GetGamePathUtil().GetGamePath();
 	std::string cmdLine = fmt::format("Preditor.exe --extract --game-path \"{}\" --output-path \"{}\"", gamePath.u8string(), outPath.u8string());
 	std::wstring wideCmdLine;
 	Unicode::Convert(wideCmdLine, cmdLine);

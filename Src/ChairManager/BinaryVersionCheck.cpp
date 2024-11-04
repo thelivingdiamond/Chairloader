@@ -20,7 +20,7 @@ static std::string m_latestVersion;
 
 
 SemanticVersion VersionCheck::getInstalledChairloaderVersion() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersion(szVersionFile);
 }
 
@@ -53,7 +53,7 @@ std::string VersionCheck::getBinaryVersionString(fs::path szVersionFile) {
 }
 
 std::string VersionCheck::getInstalledChairloaderVersionString() {
-    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / "Chairloader.dll";
+    auto szVersionFile = ChairManager::Get().GetGamePath() / ChairManager::Get().GetGamePathUtil().GetGameBinDir() / "Chairloader.dll";
     return getBinaryVersionString(szVersionFile);
 }
 
