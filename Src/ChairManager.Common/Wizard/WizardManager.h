@@ -10,6 +10,9 @@ public:
     WizardManager(ILogger* logger);
     ~WizardManager();
 
+    //! Restarts the initial check and switches to the first stage.
+    void Reset();
+
     //! Adds a stage into the wizard.
     //! Can only be called before first update or show.
     void AddStage(WizardStage* pStage);

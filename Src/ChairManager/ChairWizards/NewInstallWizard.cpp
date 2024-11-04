@@ -23,8 +23,9 @@ void ShowPatchWarning(bool isFinal)
 class GamePathStage : public WizardStage
 {
 public:
-    GamePathStage() : WizardStage("Game Path")
+    GamePathStage(WizardManager* pMgr) : WizardStage("Game Path")
     {
+        m_pMgr = pMgr;
         SetGamePath(ChairManager::Get().GetGamePath());
     }
 
@@ -68,6 +69,13 @@ public:
 
         if (!m_ValidationError.empty())
             ImGui::TextColored(ImColor(255, 0, 0), "%s", m_ValidationError.c_str());
+
+        if (m_IsValid)
+        {
+            ImGui::NewLine();
+            ImGui::Text("Game path: %s", m_GamePath.GetGamePath().u8string().c_str());
+            ImGui::Text("Platform: %s", m_GamePath.GetGamePlatformString());
+        }
     }
 
     virtual bool CanContinue() override { return m_IsValid; }
@@ -77,6 +85,10 @@ public:
     virtual bool TryContinue() override
     {
         ChairManager::Get().SetGamePathFromWizard(m_Path);
+
+        // Once path is set, need to restart the wizard.
+        // This will refresh all steps that depend on path
+        m_pMgr->Reset();
         return true;
     }
 
@@ -87,12 +99,13 @@ public:
         return promise.get_future();
     }
 
-
 private:
+    WizardManager* m_pMgr = nullptr;
     bool m_IsValid = false;
     char m_PathInput[260] = {};
     std::string m_ValidationError;
     fs::path m_Path;
+    GamePath m_GamePath;
 
     void ValidatePath()
     {
@@ -104,18 +117,21 @@ private:
         if (exePath.empty())
             return;
 
-        if (ChairManager::Get().GetGamePathUtil().ValidateGamePath(exePath))
+        if (GamePath::ValidateGamePath(exePath))
         {
             // Allow the input of game path instead of exe path
-            m_IsValid = true;
+            m_IsValid = m_GamePath.TrySetGamePath(exePath, &m_ValidationError);
             m_Path = exePath;
             return;
         }
 
-        m_IsValid = ChairManager::Get().GetGamePathUtil().ValidateExePath(exePath, &m_ValidationError);
+        m_IsValid = GamePath::ValidateExePath(exePath, &m_ValidationError);
 
         if (m_IsValid)
-            m_Path = ChairManager::Get().GetGamePathUtil().ExePathToGamePath(exePath);
+        {
+            m_Path = GamePath::ExePathToGamePath(exePath);
+            m_IsValid = m_GamePath.TrySetGamePath(m_Path, &m_ValidationError);
+        }
     }
 };
 
@@ -164,6 +180,11 @@ public:
         m_pGameVersion = pGameVersion;
     }
 
+    virtual void Reset() override
+    {
+        m_pGameVersion->CheckAgain();
+    }
+
     virtual void ShowContent() override
     {
         ImGui::TextWrapped("Currently Chairloader only works with one specific version of Prey.");
@@ -173,26 +194,17 @@ public:
         m_pGameVersion->Update();
         GameVersion::Result result = m_pGameVersion->ShowInstalledVersion(false);
 
-        switch (result)
+        if (result == GameVersion::Result::Error)
         {
-        case GameVersion::Result::Error:
             ImGui::Text("Error: %s", m_pGameVersion->GetErrorText().c_str());
-            break;
-        case GameVersion::Result::Loading:
-            break;
-        case GameVersion::Result::Supported:
-            m_bFinished = true;
-            break;
-        case GameVersion::Result::Patchable:
-            m_bFinished = true;
-            break;
-        case GameVersion::Result::NotSupported:
-        case GameVersion::Result::UnknownVersion:
-            break;
         }
     }
 
-    virtual bool CanContinue() override { return m_bFinished; }
+    virtual bool CanContinue() override
+    {
+        return m_pGameVersion->GetResult() == GameVersion::Result::Supported ||
+            m_pGameVersion->GetResult() == GameVersion::Result::Patchable;;
+    }
 
     virtual std::future<bool> CheckFinishedConditionAsync(bool isInitial) override
     {
@@ -202,14 +214,20 @@ public:
             while (m_pGameVersion->GetResult() == GameVersion::Result::Loading)
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-            // return !isInitial;
-            return m_pGameVersion->GetResult() == GameVersion::Result::Supported;
+            if (isInitial)
+            {
+                return m_pGameVersion->GetResult() == GameVersion::Result::Supported;
+            }
+            else
+            {
+                return m_pGameVersion->GetResult() == GameVersion::Result::Supported ||
+                    m_pGameVersion->GetResult() == GameVersion::Result::Patchable;
+            }
         });
     }
 
 private:
     GameVersion* m_pGameVersion = nullptr;
-    bool m_bFinished = false;
 };
 
 class VerifyFilesWarningStage : public WizardStage
@@ -639,7 +657,7 @@ NewInstallWizard::NewInstallWizard(ILogger* pLogger)
     m_pWizMgr = std::make_unique<WizardManager>(pLogger);
     m_pWizMgr->SetInitialCheckText("Validating Chairloader installation\n\nPlease, wait...");
 
-    m_pGamePathStage = std::make_unique<GamePathStage>();
+    m_pGamePathStage = std::make_unique<GamePathStage>(m_pWizMgr.get());
     m_pWizMgr->AddStage(m_pGamePathStage.get());
 
     m_pWelcomeStage = std::make_unique<WelcomeStage>();

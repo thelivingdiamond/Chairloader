@@ -4,6 +4,16 @@ ProgressWizardStage::~ProgressWizardStage()
 {
 }
 
+void ProgressWizardStage::Reset()
+{
+    CRY_ASSERT(m_State != EState::InProgress);
+    m_State = EState::NotStarted;
+    m_ErrorText.clear();
+    m_ProgressBar.GetData() = -1;
+    m_ProgressSubtext.GetData().clear();
+    m_Log.GetData().clear();
+}
+
 void ProgressWizardStage::OnActive()
 {
     if (m_State == EState::NotStarted)

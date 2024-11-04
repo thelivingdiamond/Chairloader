@@ -19,6 +19,9 @@ public:
     //! Adds a dependency. CheckFinishedConditionAsync won't be called unless all deps are successful.
     void AddDependency(WizardStage* pStage) { m_Deps.push_back(pStage); }
 
+    //! Resets internal processes.
+    virtual void Reset() {}
+
     //! Updates internal processes. Called only when active.
     virtual void Update() {}
 

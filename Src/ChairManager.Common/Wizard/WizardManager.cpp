@@ -11,6 +11,12 @@ WizardManager::~WizardManager()
 {
 }
 
+void WizardManager::Reset()
+{
+    if (m_State != EState::InitialCheck)
+        m_State = EState::None;
+}
+
 void WizardManager::AddStage(WizardStage* pStage)
 {
     if (m_State != EState::None)
@@ -190,6 +196,12 @@ void WizardManager::Update()
         // Begin the initial check
         m_InitialCheckFuture = InitialCheckAsync();
         m_State = EState::InitialCheck;
+
+        for (Stage& stage : m_Stages)
+        {
+            stage.pStage->Reset();
+        }
+
         break;
     }
     case EState::InitialCheck:
@@ -256,14 +268,18 @@ void WizardManager::GoToNext()
     if (!stage.pStage->TryContinue())
         return;
 
-    // Check whether current stage has succeded
-    m_State = EState::CheckingCurrentResult;
-    m_CurrentCheckFuture = CurrentCheckAsync();
-
-    // Block a bit to not show the placeholder screen
-    if (m_CurrentCheckFuture.wait_for(std::chrono::milliseconds(100)) == std::future_status::ready)
+    // If None state, Reset() was called from TryContinue
+    if (m_State != EState::None)
     {
-        OnCurrentCheckFinished();
+        // Check whether current stage has succeded
+        m_State = EState::CheckingCurrentResult;
+        m_CurrentCheckFuture = CurrentCheckAsync();
+
+        // Block a bit to not show the placeholder screen
+        if (m_CurrentCheckFuture.wait_for(std::chrono::milliseconds(100)) == std::future_status::ready)
+        {
+            OnCurrentCheckFinished();
+        }
     }
 }
 
@@ -320,6 +336,10 @@ std::future<void> WizardManager::InitialCheckAsync()
     {
         for (Stage& stage : m_Stages)
         {
+            // Reset
+            stage.initialStatus = false;
+            stage.isDone = false;
+
             // Check dependencies
             bool allDepsReady = true;
 

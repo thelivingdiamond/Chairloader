@@ -27,6 +27,7 @@ public:
     EState GetState() const { return m_State; }
 
     // WizardStage
+    virtual void Reset() override;
     virtual bool CanContinue() override { return m_State == EState::Success; }
     virtual bool CanReturn() override { return false; }
     virtual bool CanCancel() override { return m_State == EState::Success || m_State == EState::Error; }
