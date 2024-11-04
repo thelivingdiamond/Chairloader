@@ -15,14 +15,20 @@ struct ChairloaderGlobalEnvironment* gCL;
 
 //void (*pfnLogCallback)(int verbosity, const char* msg, size_t msgLen);
 
-static std::string logLevelToString(logLevel level) {
+static std::string logLevelToString(int level) {
     switch(level) {
-        case logLevel::normal:
+        case 0:
+            return "trace";
+        case 1:
+            return "debug";
+        case 2:
             return "info";
-        case logLevel::warning:
+        case 3:
             return "warning";
-        case logLevel::error:
+        case 4:
             return "error";
+        case 5:
+            return "fatal";
         default:
             return "unknown";
     }
@@ -30,9 +36,12 @@ static std::string logLevelToString(logLevel level) {
 
 static void LogCallback(int verbosity, const char* msg, size_t msgLen) {
     std::string_view msgView(msg, msgLen);
-    logLevel level = static_cast<logLevel>(verbosity);
     // print it out like [info] : message
-    std::cout << "[" << logLevelToString(level) << "] : " << msgView << std::endl;
+    std::cout << "[" << logLevelToString(verbosity) << "] : " << msgView << std::endl;
+}
+
+static void Log(int verbosity, const std::string msg) {
+    LogCallback(verbosity, msg.c_str(), msg.size());
 }
 
 
@@ -68,10 +77,17 @@ int main() {
 
     params.pfnLogCallback = LogCallback;
 
-    std::cout << "awaiting json parameters..." << std::endl;
+    Log(2, "Awaiting json parameters...");
 
     boost::json::value json;
     std::cin >> json;
+
+    if(json == nullptr) {
+        Log(5, "Failed to read json parameters");
+        return 1;
+    }
+
+    Log(2, "Received json parameters");
 
     params.mergerFiles = json.at("mergerFiles").as_string().c_str();
     params.preyFiles = json.at("preyFiles").as_string().c_str();
@@ -82,7 +98,11 @@ int main() {
         for(auto& item : json.at("mods").as_array()) {
             ChairMergerMod mod{};
             mod.dataPath = item.at("dataPath").as_string().c_str();
-            mod.configPath = item.at("configPath").as_string().c_str();
+            if(item.as_object().contains("configPath")){
+                mod.configPath = item.at("configPath").as_string().c_str();
+            } else {
+                mod.configPath = nullptr;
+            }
             mod.modName = item.at("modName").as_string().c_str();
             mod.type = boost::json::value_to<int>(item.at("type"));
             mods.push_back(mod);
@@ -99,12 +119,21 @@ int main() {
         settings.m_bForceVanillaPack = settingsJson.at("forceVanillaPack").as_bool();
     }
 
-    bool success = ChairMerger_RunMerging(&params);
-    if(!success) {
-        std::cout << "Failed to run ChairMerger" << std::endl;
+    params.settings = settings;
+
+    Log(2, "Beginning Merging");
+    try {
+        bool success = ChairMerger_RunMerging(&params);
+        if(!success) {
+            Log(5, "ChairMerger failed to run successfully");
+            return 1;
+        }
+
+        Log(2, "ChairMerger ran successfully");
+        return 0;
+    } catch (std::exception& e) {
+        Log(5, "ChairMerger failed to run successfully" + std::string(e.what()));
         return 1;
     }
-
-    std::cout << "Successfully ran ChairMerger" << std::endl;
-    return 0;
 }
+
