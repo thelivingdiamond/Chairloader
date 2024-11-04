@@ -105,9 +105,7 @@ class Home extends StatelessWidget {
                           message: "Refresh Mod List",
                           child: IconButton(
                             icon: const Icon(Icons.refresh),
-                            onPressed: () async => {
-                              await modController.detectMods()
-                            },
+                            onPressed: () async => await homeController.refreshMods(),
                           ),
                         ),
                       ],
@@ -132,7 +130,7 @@ class Home extends StatelessWidget {
                             ),
                             MenuItemButton(
                               leadingIcon: const Icon(Icons.refresh),
-                              onPressed: () async => await modController.detectMods(),
+                              onPressed: () async => await homeController.refreshMods(),
                               child: const Text("Refresh Mod List"),
                             ),
                           ],
@@ -169,8 +167,15 @@ class Home extends StatelessWidget {
                   selectedTileColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                   isThreeLine: false,
                   key: ValueKey(mod.modName),
-                  title: Text(mod.displayName.isNotEmpty ? mod.displayName : mod.modName),
-                  // subtitle: Text(mod.author),
+                  title: RichText(
+                      text: TextSpan(
+                        text: mod.displayName.isNotEmpty ? mod.displayName : mod.modName,
+                        children: mod.isLegacy ? [
+                          TextSpan(text: ' - Legacy', style: TextStyle(color: Theme.of(context).disabledColor)),
+                        ] : null,
+                      )
+                  ),
+                  subtitle: mod.author.isNotEmpty ? Text(mod.author) : null,
                   trailing: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2.0),
                       child: Text(mod.version, style: TextStyle(color: Theme.of(context).disabledColor))
@@ -238,11 +243,11 @@ class Home extends StatelessWidget {
                         title: Text("Dependencies"),
                         visualDensity: VisualDensity.compact,
                         children: [
-                      ListTile(
-                        visualDensity: VisualDensity.compact,
-                        title: Text("TODO: Implement Dependency Checking"),
-                      )
-                    ]),
+                          ListTile(
+                            visualDensity: VisualDensity.compact,
+                            title: Text("TODO: Implement Dependency Checking"),
+                          )
+                        ]),
                     const SizedBox(height: 8.0),
                     // render the description as markdown
                     if(homeController.selectedMod!.description != null)
