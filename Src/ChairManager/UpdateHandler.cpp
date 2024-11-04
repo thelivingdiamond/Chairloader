@@ -47,7 +47,7 @@ void setError(std::string szError) {
 }
 
 bool UpdateHandler::isUpdateAvailable() {
-    auto latestVersion = VersionCheck::getLatestChairloaderVersion();
+    auto& latestVersion = ChairManager::Get().GetLatestVersionFromGitHub();
     auto installedVersion = VersionCheck::getInstalledChairloaderVersion();
     ChairManager::Get().log(severityLevel::info , "Online Version: %s", latestVersion.String());
     ChairManager::Get().log(severityLevel::info , "Installed Version: %s", installedVersion.String());

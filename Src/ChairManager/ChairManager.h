@@ -70,37 +70,12 @@ public:
         dpiScale = dpiScaleIn;
     }
 
-
     void SetGamePathFromWizard(const fs::path& gamePath);
     bool DeployForInstallWizard(const DeployLogCallback& logFunc, std::string& errorMessage);
 
-
-
-    std::string getETag() {
-        return m_githubETag;
-    }
-    void setETag(std::string eTag) {
-        m_githubETag = eTag;
-        if(!ChairManagerConfigFile.first_child().child("ETag"))
-            ChairManagerConfigFile.first_child().append_child("ETag");
-        ChairManagerConfigFile.first_child().child("ETag").text().set(eTag.c_str());
-        saveModManagerConfigFile();
-    }
-    std::string getCachedLatestVersion() {
-        auto versionNode = ChairManagerConfigFile.first_child().child("LatestVersion");
-        if(versionNode)
-            return versionNode.text().as_string();
-        return "";
-    }
-
-    void setCachedLatestVersion(std::string version) {
-        if(!ChairManagerConfigFile.first_child().child("LatestVersion"))
-            ChairManagerConfigFile.first_child().append_child("LatestVersion");
-        ChairManagerConfigFile.first_child().child("LatestVersion").text().set(version.c_str());
-        saveModManagerConfigFile();
-    }
-
     GamePath& GetGamePathUtil(){ return m_GamePath; }
+
+    const SemanticVersion& GetLatestVersionFromGitHub() const { return m_LatestVersionFromGitHub; }
 
     // IChairManager
     virtual fs::path GetConfigPath() override;
@@ -133,12 +108,17 @@ private:
     };
     State m_State = State::Invalid;
 
-
     /* Globals */
     fs::path m_LogFilePath;
     fs::path ChairManagerConfigPath;
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
+
+    /* Update checking */
+    SemanticVersion m_LatestVersionFromGitHub;
+    std::future<std::pair<std::string, std::string>> m_VersionCheckTask;
+    void StartVersionCheckTask(bool force = false);
+    void UpdateVersionCheckTask();
 
     /* Init */
     void LoadModManagerConfig();

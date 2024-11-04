@@ -61,6 +61,9 @@ struct ChairManager::MergerTask
 void ChairManager::Draw() {
     bool bDraw = true;
 
+    if (m_VersionCheckTask.valid())
+        UpdateVersionCheckTask();
+
     switch (m_State)
     {
     case State::MainWindow:
@@ -102,6 +105,56 @@ void ChairManager::Draw() {
         UI::RequestExit();
 }
 
+
+void ChairManager::StartVersionCheckTask(bool force)
+{
+    m_VersionCheckTask = std::async(std::launch::async, [=]()
+    {
+        return VersionCheck::fetchLatestVersion(!force ? m_githubETag : std::string_view());
+    });
+}
+
+void ChairManager::UpdateVersionCheckTask()
+{
+    if (!IsFutureReady(m_VersionCheckTask))
+        return;
+
+    try
+    {
+        auto [versionString, etag] = m_VersionCheckTask.get();
+
+        if (versionString.empty())
+        {
+            // Result hasn't changed. Use the saved value.
+            std::string savedVersion = ChairManagerConfigFile.first_child().child("LatestVersion").text().as_string();
+            Log(severityLevel::info, "GitHub version not changed: %s", savedVersion);
+            m_LatestVersionFromGitHub = SemanticVersion(savedVersion);
+        }
+        else
+        {
+            // Update cache
+            if (!ChairManagerConfigFile.first_child().child("ETag"))
+                ChairManagerConfigFile.first_child().append_child("ETag");
+            ChairManagerConfigFile.first_child().child("ETag").text().set(etag.c_str());
+
+            if (!ChairManagerConfigFile.first_child().child("LatestVersion"))
+                ChairManagerConfigFile.first_child().append_child("LatestVersion");
+            ChairManagerConfigFile.first_child().child("LatestVersion").text().set(versionString.c_str());
+
+            saveModManagerConfigFile();
+
+            // Save version
+            m_LatestVersionFromGitHub = SemanticVersion(versionString);
+        }
+
+        if (IsUpdateAvailable())
+            m_bShowUpdatePopup = true;
+    }
+    catch (const std::exception& e)
+    {
+        Log(severityLevel::error, "Failed to check for updates: %s", e.what());
+    }
+}
 
 void ChairManager::LoadModManagerConfig()
 {
@@ -189,13 +242,9 @@ void ChairManager::OnInstallWizardFinished()
     CRY_ASSERT(m_pInstallWizard);
     m_pInstallWizard.reset();
 
-    log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer, %s is the latest version on github",
+    log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer",
         VersionCheck::getInstalledChairloaderVersion().String(),
-        VersionCheck::getPackagedChairloaderVersion().String(),
-        VersionCheck::getLatestChairloaderVersion().String());
-
-    if (IsUpdateAvailable())
-        m_bShowUpdatePopup = true;
+        VersionCheck::getPackagedChairloaderVersion().String());
 
     m_State = State::MainWindow;
 }
@@ -315,18 +364,20 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         if(IsUpdateAvailable()){
             ImGui::Text("Chairloader is out of date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", m_LatestVersionFromGitHub.String().c_str());
             ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+
             if(ImGui::Button("Update Chairloader")){
                 SwitchToUpdateWizard();
             }
         } else {
             ImGui::Text("Chairloader is up to date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", m_LatestVersionFromGitHub.String().c_str());
             ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+
             if(ImGui::Button("Force Check For Update")){
-                VersionCheck::fetchLatestVersion(true);
+                StartVersionCheckTask(true);
             }
         }
         if(ImGui::Button("Close")){
@@ -1212,7 +1263,7 @@ ChairManager::ChairManager() {
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
     cURLpp::initialize();
     LoadModManagerConfig();
-    VersionCheck::fetchLatestVersion();
+    StartVersionCheckTask(); // Requires config
     SwitchToInstallWizard();
 }
 
@@ -1971,24 +2022,17 @@ void ChairManager::DrawDebug() {
             if(ImGui::Button("Install Updates")){
                 UpdateHandler::asyncInstallUpdate();
             }
-            static bool updateAvailable;
+
             if(ImGui::Button("Check for Updates")){
-                updateAvailable = UpdateHandler::isUpdateAvailable();
+                StartVersionCheckTask();
             }
-            ImGui::BeginDisabled();
-            ImGui::Checkbox("Update Available", &updateAvailable);
-            ImGui::EndDisabled();
 
             if(ImGui::Button("Switch to update wizard")){
                 SwitchToUpdateWizard();
             }
+
             ImGui::Text("ETAG:");
             ImGui::Text("%s", m_githubETag.c_str());
-            static std::string newETag;
-            ImGui::InputText("New ETAG", &newETag);
-            if(ImGui::Button("Set ETAG")){
-                setETag(newETag);
-            }
         }
         if(ImGui::CollapsingHeader("Multi Platform Support")){
             ImGui::Text("GAME BIN: %s", GetGamePathUtil().GetGameBinDir());
@@ -2256,7 +2300,7 @@ void ChairManager::OpenInstallModDialog()
 
 bool ChairManager::IsUpdateAvailable()
 {
-    return VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion();
+    return m_LatestVersionFromGitHub.IsValid() && m_LatestVersionFromGitHub > VersionCheck::getInstalledChairloaderVersion();
 }
 
 void ChairManager::SwitchToUninstallWizard() {
