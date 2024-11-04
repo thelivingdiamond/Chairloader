@@ -6,8 +6,6 @@ set(SOURCE_FILES
 	UI.cpp
 	UI.h
 	
-	ChairWizards/ChairInstallWizard.cpp
-	ChairWizards/ChairInstallWizard.h
 	ChairWizards/ChairUninstallWizard.cpp
 	ChairWizards/ChairUninstallWizard.h
 	ChairWizards/ChairUpdateWizard.cpp
