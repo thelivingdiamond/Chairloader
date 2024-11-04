@@ -103,3 +103,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  assets:
+    - assets/ChairManager_Icon.png
+    - assets/ChairManager_Icon_64.png
