@@ -2,64 +2,64 @@ import 'dart:io';
 
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
+import 'package:chairmanager_flutter_v2/storage/StorageMixin.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class LaunchController extends GetxController with TalkerMixin {
+class LaunchController extends GetxController with TalkerMixin, StorageMixin {
   LaunchArguments args = LaunchArguments();
 
-  late SharedPreferences prefs;
   PathController pathController = Get.find();
 
   Process? gameProcess;
   RxBool isRunning = false.obs;
 
+  Future<void> init() async {
+    // load the settings
+    args.loadChairloader = await storage.getOrInit<bool>("loadChairloader", true);
+    args.loadTrainers = await storage.getOrInit<bool>("loadTrainers", false);
+    args.loadEditor = await storage.getOrInit<bool>("loadEditor", false);
+    args.devMode = await storage.getOrInit<bool>("devMode", false);
+    args.noRandom = await storage.getOrInit<bool>("noRandom", false);
+    args.customOptions = await storage.getOrInit<String>("customOptions", "");
+  }
+
   void setLoadChairloader(bool value) {
     args.loadChairloader = value;
-    prefs.setBool("loadChairloader", value);
+    storage.set("loadChairloader", value);
     update();
   }
 
   void setLoadTrainers(bool value) {
     args.loadTrainers = value;
-    prefs.setBool("loadTrainers", value);
+    storage.set("loadTrainers", value);
     update();
   }
 
   void setLoadEditor(bool value) {
     args.loadEditor = value;
-    prefs.setBool("loadEditor", value);
+    storage.set("loadEditor", value);
     update();
   }
 
   void setDevMode(bool value) {
     args.devMode = value;
-    prefs.setBool("devMode", value);
+    storage.set("devMode", value);
     update();
   }
 
   void setNoRandom(bool value) {
     args.noRandom = value;
-    prefs.setBool("noRandom", value);
+    storage.set("noRandom", value);
     update();
   }
 
   void setCustomOptions(String value) {
     args.customOptions = value;
-    prefs.setString("customOptions", value);
+    storage.set("customOptions", value);
     update();
   }
 
-  Future<void> init() async {
-    // load the settings
-    prefs = await SharedPreferences.getInstance();
-    args.loadChairloader = prefs.getBool("loadChairloader") ?? true;
-    args.loadTrainers = prefs.getBool("loadTrainers") ?? false;
-    args.loadEditor = prefs.getBool("loadEditor") ?? false;
-    args.devMode = prefs.getBool("devMode") ?? false;
-    args.noRandom = prefs.getBool("noRandom") ?? false;
-    args.customOptions = prefs.getString("customOptions") ?? "";
-  }
+
 
   Future<void> launchGame() async {
    // get the path to the executable

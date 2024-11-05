@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
@@ -6,19 +9,20 @@ import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
 import 'package:chairmanager_flutter_v2/pages/debug/DebugPage.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
 import 'package:chairmanager_flutter_v2/pages/splash/SplashScreen.dart';
+import 'package:chairmanager_flutter_v2/storage/Storage.dart';
 import 'package:chairmanager_flutter_v2/widgets/WindowsButtons.dart';
-import 'package:flutter/material.dart';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:get/get.dart';
-
 import 'package:chairmanager_flutter_v2/controllers/FocusController.dart';
 import 'package:chairmanager_flutter_v2/controllers/NavigationController.dart';
 import 'package:chairmanager_flutter_v2/controllers/SettingsController.dart';
 import 'package:chairmanager_flutter_v2/pages/home/Home.dart';
 import 'package:chairmanager_flutter_v2/pages/settings/Settings.dart';
-import 'package:talker_flutter/talker_flutter.dart';
 
-import 'controllers/LaunchController.dart';
+import 'package:flutter/material.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:talker_flutter/talker_flutter.dart';
+import 'package:get/get.dart';
+
+
 
 
 
@@ -33,6 +37,11 @@ void main() async {
       )
   ));
 
+  WidgetsFlutterBinding.ensureInitialized();
+
+  var storage = Get.put(Storage(path: ".\\Config\\ChairManager.config"));
+  await storage.init();
+
   Get.put(NavigationController());
   Get.put(FocusController());
 
@@ -40,7 +49,7 @@ void main() async {
   await settingsController.load();
 
   var pathController = Get.put(PathController());
-  await pathController.load();
+  await pathController.init();
 
   var versionController = Get.put(VersionController());
   await versionController.init();

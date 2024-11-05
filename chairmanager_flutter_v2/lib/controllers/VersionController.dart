@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
+import 'package:chairmanager_flutter_v2/storage/StorageMixin.dart';
 import 'package:ffi/ffi.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version/version.dart';
 import 'package:win32/win32.dart';
 import 'dart:ffi';
@@ -16,7 +16,7 @@ const String chairloaderUpdateUrl = "https://api.github.com/repos/thelivingdiamo
 
 
 
-class VersionController extends GetxController with TalkerMixin {
+class VersionController extends GetxController with TalkerMixin, StorageMixin {
   String etag = "";
   bool get downloadUpdateAvailable => downloadedVersion > installedVersion;
   bool get installUpdateAvailable => availableVersion > installedVersion;
@@ -33,9 +33,9 @@ class VersionController extends GetxController with TalkerMixin {
 
 
   Future<void> init() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // load the last github check time
-    lastGithubCheck = DateTime.parse(prefs.getString("lastGithubCheck") ?? "2000-01-01T00:00:00.000Z");
+
+    final lastGithubCheckString = await storage.getOrInit<String>("lastGithubCheck", '2000-01-01T00:00:00.000Z');
+    lastGithubCheck = DateTime.parse(lastGithubCheckString);
 
     var installedResult = await getInstalledVersion();
     if(installedResult.isErr()){
@@ -63,26 +63,26 @@ class VersionController extends GetxController with TalkerMixin {
       }
     }
 
-    etag = prefs.getString("etag") ?? "";
+    etag = await storage.getOrInit<String>("etag", "");
     etag = etag.replaceAll("W/", "");
     talker.verbose("etag: $etag");
 
     if(DateTime.now().difference(lastGithubCheck!) > githubCheckInterval){
       var githubVersionResult = await getGithubVersion();
       lastGithubCheck = DateTime.now();
-      prefs.setString("lastGithubCheck", lastGithubCheck.toString());
+      await storage.set("lastGithubCheck", lastGithubCheck?.toIso8601String());
       if(githubVersionResult.isErr()){
         talker.error("Failed to get github version: ${githubVersionResult.unwrapErr()}");
       } else {
         var githubVersion = githubVersionResult.unwrap();
         if(githubVersion != null){
-          prefs.setString("availableVersion", githubVersion.toString());
+          await storage.set("availableVersion", githubVersion.toString());
         }
-        availableVersion = githubVersion ?? Version.parse(prefs.getString("availableVersion") ?? "0.0.0");
+        availableVersion = githubVersion ?? Version.parse(storage.get("availableVersion") as String? ?? "0.0.0");
         talker.info("Available version on github: $availableVersion");
       }
     } else {
-      availableVersion = Version.parse(prefs.getString("availableVersion") ?? "0.0.0");
+      availableVersion = Version.parse(storage.get("availableVersion") as String? ?? "0.0.0");
       talker.verbose("Not checking for update, last check was ${DateTime.now().difference(lastGithubCheck!).inMinutes} minutes ago");
       talker.info("Available version on github: $availableVersion");
     }
@@ -106,7 +106,6 @@ class VersionController extends GetxController with TalkerMixin {
 
 
   Future<Result<Version?>> getGithubVersion({bool force = false}) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     // make the header
     Result<Version?> result;
     Map<String, String> headers = {};
@@ -129,7 +128,7 @@ class VersionController extends GetxController with TalkerMixin {
       // remove the W/ from the etag
       etag = etag.replaceAll("W/", "");
       // save the etag to storage
-      prefs.setString("etag", etag);
+      await storage.set("etag", etag);
       responseString = response.body;
 
       try {

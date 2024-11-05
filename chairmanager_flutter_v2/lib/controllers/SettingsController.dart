@@ -1,49 +1,42 @@
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
-import 'package:chairmanager_flutter_v2/models/PreyVersion.dart';
+import 'package:chairmanager_flutter_v2/storage/StorageMixin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsController extends GetxController with TalkerMixin {
+class SettingsController extends GetxController with TalkerMixin, StorageMixin {
   var darkMode = true.obs;
   Rx<ThemeColor> themeColor = ThemeColor.Indigo.obs;
   Rx<DynamicSchemeVariant> schemeVariant = DynamicSchemeVariant.fidelity.obs;
 
   Future<void> load() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    darkMode.value = prefs.getBool("darkMode") ?? false;
-    final themeColorName = prefs.getString("themeColor") ?? "Blue";
+    darkMode.value = await storage.getOrInit<bool>("darkMode", true);
+
+    final themeColorName = await storage.getOrInit<String>("themeColor", "Indigo");
     themeColor.value = ThemeColor.values.firstWhere((color) => color.name == themeColorName);
-    final schemeVariantName = prefs.getString("schemeVariant") ?? "tonalSpot";
+
+    final schemeVariantName = await storage.getOrInit<String>("schemeVariant", "fidelity");
     schemeVariant.value = DynamicSchemeVariant.values.firstWhere((variant) => variant.name == schemeVariantName);
+
     update();
   }
 
   void toggleDarkMode() {
     darkMode.value = !darkMode.value;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setBool("darkMode", darkMode.value);
-    });
+    storage.set("darkMode", darkMode.value);
     update();
   }
 
   void setThemeColor(ThemeColor color) {
     themeColor.value = color;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("themeColor", color.name);
-    });
+    storage.set("themeColor", color.name);
     update();
   }
 
   void setSchemeVariant(DynamicSchemeVariant variant) {
     schemeVariant.value = variant;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("schemeVariant", variant.name);
-    });
+    storage.set("schemeVariant", variant.name);
     update();
   }
-
-
 
   @override
   void onClose() {

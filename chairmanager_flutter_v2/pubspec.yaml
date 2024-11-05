@@ -34,7 +34,6 @@ dependencies:
   get: any
   bitsdojo_window: any
   dart_amqp: any
-  shared_preferences: any
   window_manager: any
   xml: any
   flutter_animate: any
@@ -46,6 +45,7 @@ dependencies:
   http: any
   flutter_markdown: any
   file_picker: any
+  mutex: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

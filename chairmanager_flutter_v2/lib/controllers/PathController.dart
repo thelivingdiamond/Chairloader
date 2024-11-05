@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/PreyVersion.dart';
+import 'package:chairmanager_flutter_v2/storage/StorageMixin.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 const String _STEAM_GAME_BIN_DIR = "Binaries\\Danielle\\x64\\Release";
 const String _STEAM_GAME_EXE_PATH = "Binaries\\Danielle\\x64\\Release\\Prey.exe";
@@ -31,7 +31,7 @@ const String _MICRO_GAME_DLL_BACKUP_PATH = "Binaries\\Danielle\\Gaming.Desktop.x
 
 const String _CHAIRLOADER_BIN_SRC_PATH_STR = "Release";
 
-class PathController extends GetxController  with TalkerMixin {
+class PathController extends GetxController  with TalkerMixin, StorageMixin {
   var preyPath = "".obs;
   var preyVersion = PreyVersion.Steam.obs;
 
@@ -60,35 +60,29 @@ class PathController extends GetxController  with TalkerMixin {
   final List requiredGameFiles = [];
 
 
-  Future<void> load() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    preyPath.value = prefs.getString("preyPath") ?? "";
-    preyVersion.value = PreyVersion.values.firstWhereOrNull((version) => version.toString() == prefs.getString("preyVersion")) ?? PreyVersion.Steam;
-    dataPath.value = prefs.getString("dataPath") ?? "Data"; // likely just for debugging/development
+  Future<void> init() async {
+    preyPath.value = await storage.getOrInit<String>("preyPath", "");
+    final versionString = await storage.getOrInit<String>("preyVersion", "Steam");
+    preyVersion.value = PreyVersion.values.firstWhere((e) => e.name == versionString, orElse: () => PreyVersion.Steam);
+    dataPath.value = await storage.getOrInit<String>("dataPath", ".\\Data"); // probably just for debugging/testing where the data path is not in the correct location
     update();
   }
 
   void setPreyPath(String path) {
     preyPath.value = path;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("preyPath", path);
-    });
+    storage.set("preyPath", path);
     update();
   }
 
   void setPreyVersion(PreyVersion version) {
     preyVersion.value = version;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("preyVersion", version.toString());
-    });
+    storage.set("preyVersion", version.name);
     update();
   }
 
   void setDataPath(String path) {
     dataPath.value = path;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("dataPath", path);
-    });
+    storage.set("dataPath", path);
     update();
   }
 
@@ -203,14 +197,15 @@ class PathController extends GetxController  with TalkerMixin {
   }
 
   String get chairMergerExePath {
-    return "$dataPath\\$chairmergerExeName";
+    return Directory("$dataPath\\ChairMerger").absolute.path;
   }
 
   String get runtimeDataPath {
-    return "$dataPath\\Config";
+    // this one is always relative to the current working directory
+    return Directory("Config").absolute.path;
   }
   String get preyFilesPath {
-    return "$dataPath\\PreyFiles";
+    return Directory("$dataPath\\PreyFiles").absolute.path;
   }
 
   String getModDataPath(String modName, bool isLegacy) {
