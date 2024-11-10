@@ -65,6 +65,12 @@ class DeployController extends GetxController with TalkerMixin {
         configPath: mod.config != null ? pathController.getModConfigPath(mod.modName, mod.isLegacy) : null,
       ),
     ).toList();
+    mods.add(ChairMergerMod(
+        type: ChairMergerModType.folder.value,
+        modName: 'Chairloader',
+        dataPath: pathController.chairloaderPatchPath,
+        configPath: null)
+    );
 
     ChairMergerParams params = ChairMergerParams(
       settings: chairMergerSettings,

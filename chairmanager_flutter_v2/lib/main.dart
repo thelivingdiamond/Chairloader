@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:chairmanager_flutter_v2/controllers/ChairloaderFileInstallController.dart';
+import 'package:chairmanager_flutter_v2/controllers/DllPatcherController.dart';
+import 'package:chairmanager_flutter_v2/controllers/ExtractionController.dart';
 import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
@@ -10,6 +13,7 @@ import 'package:chairmanager_flutter_v2/pages/debug/DebugPage.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
 import 'package:chairmanager_flutter_v2/pages/splash/SplashScreen.dart';
 import 'package:chairmanager_flutter_v2/storage/Storage.dart';
+import 'package:chairmanager_flutter_v2/widgets/MainBody.dart';
 import 'package:chairmanager_flutter_v2/widgets/WindowsButtons.dart';
 import 'package:chairmanager_flutter_v2/controllers/FocusController.dart';
 import 'package:chairmanager_flutter_v2/controllers/NavigationController.dart';
@@ -54,7 +58,12 @@ void main() async {
   var versionController = Get.put(VersionController());
   await versionController.init();
 
-  var deployController = Get.put(DeployController());
+  Get.put(DeployController());
+  Get.put(ExtractionController());
+  Get.put(ChairloaderFileInstallController());
+
+  var patcherController = Get.put(DllPatcherController());
+  await patcherController.load();
 
   var launchController = Get.put(LaunchController());
   await launchController.init();
@@ -103,6 +112,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SettingsController settingsController = Get.find();
+    NavigationController navigationController = Get.find();
     return Obx( () => GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'UniFlutter',
@@ -122,8 +132,31 @@ class MyApp extends StatelessWidget {
         body: WindowBorder(
           color: borderColor,
           width: 1,
-          child: const Row(
-            children: [LeftSide(), RightSide()],
+          child: Row(
+            children: [const LeftSide(),
+              MainBody(
+                child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    // switch the widget being rendered based on the selected index
+                    child: Obx(() {
+                      switch (navigationController.selectedIndex.value) {
+                        case 0:
+                          return const Home();
+                        case 1:
+                          return const Config();
+                        case 2:
+                          return const LogPage();
+                        case 3:
+                          return const Settings();
+                        case 4:
+                          return const DebugPage();
+                        default:
+                          return const Card(child: Placeholder(),);
+                      }
+                    })
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -141,91 +174,33 @@ class LeftSide extends StatelessWidget {
     VersionController versionController = Get.find();
     return Obx(
           () => NavigationRail(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
-          selectedIndex: navigationController.selectedIndex.value,
-          onDestinationSelected: (int index) {
-            navigationController.changeTabIndex(index);
-          },
-          labelType: NavigationRailLabelType.all,
-          destinations: [
-            ...navigationController.destinations
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+        selectedIndex: navigationController.selectedIndex.value,
+        onDestinationSelected: (int index) {
+          navigationController.changeTabIndex(index);
+        },
+        labelType: NavigationRailLabelType.all,
+        destinations: [
+          ...navigationController.destinations
               .map((e) => NavigationRailDestination(
               icon: Icon(e.icon),
               selectedIcon: Icon(e.selectedIcon),
               label: Text(e.title))),
-            if(versionController.downloadUpdateAvailable || versionController.installUpdateAvailable)
-              const NavigationRailDestination(
-                icon: Icon(Icons.update, color: Colors.green,),
-                selectedIcon: Icon(Icons.update, color: Colors.green,),
-                label: Text("Update\nAvailable", textAlign: TextAlign.center,),
-              )
-          ],
+          if(versionController.downloadUpdateAvailable || versionController.installUpdateAvailable)
+            const NavigationRailDestination(
+              icon: Icon(Icons.update, color: Colors.green,),
+              selectedIcon: Icon(Icons.update, color: Colors.green,),
+              label: Text("Update\nAvailable", textAlign: TextAlign.center,),
+            )
+        ],
 
-            trailing: IconButton(
-              icon: const Icon(Icons.more_vert),
-              onPressed: () {
-              },
-            ),
-      ),
-    );
-  }
-}
-
-class RightSide extends StatelessWidget {
-  const RightSide({super.key});
-  @override
-  Widget build(BuildContext context) {
-    NavigationController navigationController = Get.find();
-    FocusController focusController = Get.find();
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [ Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2), Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5)],
-              stops: const [0.1, 0.9]),
+        trailing: IconButton(
+          icon: const Icon(Icons.more_vert),
+          onPressed: () {
+          },
         ),
-        child: Column(children: [
-          WindowTitleBarBox(
-            child: Stack(
-              children: [
-                Container(
-                  height: appWindow.titleBarHeight,
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Obx( () => Text("Chair Manager", style: focusController.hasFocus.value ? Theme.of(context).textTheme.titleMedium : Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).disabledColor),)),
-                ),
-                Row(
-                  children: [Expanded(child: MoveWindow()), const WindowButtons()],
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-                padding: const EdgeInsets.all(8.0),
-                // switch the widget being rendered based on the selected index
-                child: Obx(() {
-                  switch (navigationController.selectedIndex.value) {
-                    case 0:
-                      return const Home();
-                    case 1:
-                      return const Config();
-                    case 2:
-                      return const LogPage();
-                    case 3:
-                      return const Settings();
-                    case 4:
-                      return const DebugPage();
-                    default:
-                      return const Card(child: Placeholder(),);
-                  }
-                })
-            ),
-          ),
-        ]),
       ),
     );
   }
 }
+

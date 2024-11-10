@@ -46,6 +46,8 @@ dependencies:
   flutter_markdown: any
   file_picker: any
   mutex: any
+  crypto: any
+  intl: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

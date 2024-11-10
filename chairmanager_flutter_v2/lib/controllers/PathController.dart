@@ -41,6 +41,10 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
 
   final String chairmergerExeName = "ChairMerger.Runner.exe";
 
+  final String dllPatcherExeName = "DllPatcher.exe";
+
+  final String preditorExeName = "Preditor.exe";
+
   final List<String> requiredChairloaderBinaries = [
     "Chairloader.dll",
     "mswsock.dll"
@@ -182,6 +186,44 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
     return "${preyPath.value}\\Mods\\config";
   }
 
+  String get chairloaderInstallFilePath{
+    return Directory("$dataPath\\$_CHAIRLOADER_BIN_SRC_PATH_STR").absolute.path;
+  }
+
+  String get chairloaderPatchPath{
+    return Directory("$dataPath\\ChairloaderPatch").absolute.path;
+  }
+
+  Future<(bool, String?, String?)> validateGamePath(String? path) async {
+    bool valid = false;
+    String? error;
+
+    if(path == null){
+      return (false, "Game Path is empty", null);
+    }
+
+    (valid, error) = await validateExePath(path);
+    if (!valid) {
+      return (false, error, null);
+    }
+
+
+    // now get the game path from the selected path
+    var gamePath = exePathToGamePath(path);
+
+    if (gamePath == null) {
+      return (false, "Game Path could not be found in the selected path", null);
+    }
+
+    (valid, error) = await validateGameFiles(gamePath);
+    if (!valid) {
+      return (false, error, null);
+    }
+
+
+    return (true, null, gamePath);
+  }
+
   Future<PreyVersion> deduceGameVersion(String path) async {
     if (await File('$path\\$_STEAM_GAME_EXE_PATH').exists()){
       return PreyVersion.Steam;
@@ -197,7 +239,19 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
   }
 
   String get chairMergerExePath {
-    return Directory("$dataPath\\ChairMerger").absolute.path;
+    return Directory("$dataPath\\$chairmergerExeName").absolute.path;
+  }
+
+  String get dllPatcherExePath {
+    return Directory("$dataPath\\$dllPatcherExeName").absolute.path;
+  }
+
+  String get dllVersionsXmlPath {
+    return Directory("$dataPath\\Versions\\Versions.xml").absolute.path;
+  }
+
+  String get preditorExePath {
+    return Directory("$dataPath\\$preditorExeName").absolute.path;
   }
 
   String get runtimeDataPath {
@@ -214,6 +268,62 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
 
   String getModConfigPath(String modName, bool isLegacy) {
     return isLegacy ? "" : "$modConfigPath\\$modName.xml";
+  }
+
+  Future<(bool, String?)> validateExePath(String path) async{
+    //"C:\Program Files (x86)\Steam\steamapps\common\Prey\Binaries\Danielle\x64\Release\Prey.exe"
+    // check if it's empty
+    if(path.isEmpty){
+      return (false, "Executable File Path is empty");
+    }
+
+    if(! await File(path).exists()){
+      return (false, "Executable File does not exist");
+    }
+    // check if it ends with prey.exe
+    if(!path.endsWith("Prey.exe")){
+      return (false, "Executable File is not Prey.exe");
+    }
+
+    return (true, null);
+  }
+
+  Future<(bool, String?)> validateGameFiles(String path) async {
+    // check if it's empty
+    if(path.isEmpty){
+      return (false, "Game Path is empty");
+    }
+    if(! await Directory(path).exists()){
+      return (false, "Game Path does not exist");
+    }
+
+    var gameVersion = await deduceGameVersion(path);
+    if(gameVersion == PreyVersion.Unknown){
+      return (false, "Game Version is unknown");
+    }
+
+    //TODO: check vital files exist
+    for(var file in requiredGameFiles){
+      if(! await File("$path\\$file").exists()){
+        return (false, "Path is missing required file: $file");
+      }
+    }
+
+    for (var directory in requiredGameDirectories) {
+      if (! await Directory("$path\\$directory").exists()) {
+        return (false, "Path is missing required directory: $directory");
+      }
+    }
+
+    return (true, null);
+  }
+
+  String? exePathToGamePath(String exePath){
+    File exeFile = File(exePath);
+    //Binaries\Danielle\x64\Release\Prey.exe
+    // well, I guess this works
+    var parentDir = exeFile.parent.parent.parent.parent.parent;
+    return parentDir.path;
   }
 
 }

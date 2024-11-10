@@ -22,7 +22,7 @@ class Storage extends GetxController {
 
   Mutex mutex = Mutex();
 
-  JsonEncoder encoder = JsonEncoder.withIndent('' * 4);
+  JsonEncoder encoder = JsonEncoder.withIndent(' ' * 4);
   JsonDecoder decoder = const JsonDecoder();
 
 

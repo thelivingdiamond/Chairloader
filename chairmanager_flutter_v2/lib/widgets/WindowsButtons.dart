@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WindowButtons extends StatefulWidget {
-  const WindowButtons({super.key});
+  const WindowButtons({super.key, this.showThemeSwitcher = true});
+
+  final bool showThemeSwitcher;
 
   @override
   State<WindowButtons> createState() => _WindowButtonsState();
@@ -42,10 +44,11 @@ class _WindowButtonsState extends State<WindowButtons> {
     SettingsController settingsController = Get.find();
     return Row(
       children: [
-        Obx(() => IconButton(
-            onPressed: settingsController.toggleDarkMode,
-            icon: Icon(settingsController.darkMode.value ? Icons.dark_mode : Icons.light_mode, size: 16,)
-        )),
+        if(widget.showThemeSwitcher)
+          Obx(() => IconButton(
+              onPressed: settingsController.toggleDarkMode,
+              icon: Icon(settingsController.darkMode.value ? Icons.dark_mode : Icons.light_mode, size: 16,)
+          )),
         const SizedBox(width: 8.0),
         MinimizeWindowButton(colors: getButtonColors(context)),
         appWindow.isMaximized
