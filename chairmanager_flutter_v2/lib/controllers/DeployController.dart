@@ -6,8 +6,10 @@ import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialog.dart';
 import 'package:chairmanager_flutter_v2/logger/TalkerMixin.dart';
 import 'package:chairmanager_flutter_v2/models/ChairMerger.dart';
+import 'package:chairmanager_flutter_v2/models/GenericLogMessage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 import 'ModController.dart';
 
@@ -16,7 +18,7 @@ class DeployController extends GetxController with TalkerMixin {
 
   ChairMergerSettings chairMergerSettings = ChairMergerSettings();
 
-  List<String> mergerOutput = [];
+  List<GenericLogMessage> mergerOutput = [];
 
   bool mergingFinished = false;
 
@@ -42,7 +44,7 @@ class DeployController extends GetxController with TalkerMixin {
 
   Future<void> startDeployDialog() async {
     Get.dialog(
-      const DeployDialog(),
+      DeployDialog(),
       barrierDismissible: false,
       barrierColor: Colors.black.withOpacity(0.1),
     );
@@ -56,11 +58,10 @@ class DeployController extends GetxController with TalkerMixin {
 
     ModController modController = Get.find();
     PathController pathController = Get.find();
-    List<ChairMergerMod> mods = modController.mods.where((m) => m.enabled).map(
+    List<ChairMergerMod> mods = modController.mods.where((m) => m.enabled && Directory(pathController.getModDataPath(m.modName, m.isLegacy)).existsSync()).map(
       (mod) => ChairMergerMod(
         type: mod.isLegacy ? ChairMergerModType.legacy.value : ChairMergerModType.native.value,
         modName: mod.modName,
-        //TODO: don't pass mods in where the mod data path doesn't exist
         dataPath: pathController.getModDataPath(mod.modName, mod.isLegacy),
         configPath: mod.config != null ? pathController.getModConfigPath(mod.modName, mod.isLegacy) : null,
       ),
@@ -82,18 +83,24 @@ class DeployController extends GetxController with TalkerMixin {
     );
 
     // now we run the chairmerger
-    var process = await Process.start(pathController.chairMergerExePath, []);
+    var process = await Process.start(pathController.chairMergerExePath, [], workingDirectory: pathController.dataPath.value);
     process.stdout.transform(utf8.decoder).listen((event) {
-      mergerOutput.addAll(event.split("\n"));
+      final messages = parseOutput(event);
+      for(var message in messages){
+        talker.log(message.message, logLevel: message.level);
+      }
+      mergerOutput.addAll(parseOutput(event));
       update();
     });
     process.stderr.transform(utf8.decoder).listen((event) {
-      mergerOutput.addAll(event.split("\n"));
+      final messages = parseOutput(event);
+      for(var message in messages){
+        talker.log(message.message, logLevel: message.level);
+      }
       update();
     });
 
     final json = jsonEncode(params);
-    talker.verbose(json);
     process.stdin.writeln(json);
     var exitCode = await process.exitCode;
     if(exitCode == 0){
@@ -104,4 +111,25 @@ class DeployController extends GetxController with TalkerMixin {
     mergingFinished = true;
     update();
   }
+
+  Iterable<GenericLogMessage> parseOutput(String output) {
+    return output.split("\n").where((element) => element.isNotEmpty).map((e) {
+      if(e.startsWith("[trace] : ")){
+        return GenericLogMessage(e.substring("[trace] : ".length), LogLevel.verbose);
+      } else if(e.startsWith("[debug] : ")){
+        return GenericLogMessage(e.substring("[debug] : ".length), LogLevel.debug);
+      } else if(e.startsWith("[info] : ")){
+        return GenericLogMessage(e.substring("[info] : ".length), LogLevel.info);
+      } else if(e.startsWith("[warning]")){
+        return GenericLogMessage(e.substring("[warning] : ".length), LogLevel.warning);
+      } else if(e.startsWith("[error]")){
+        return GenericLogMessage(e.substring("[error] : ".length), LogLevel.error);
+      } else if(e.startsWith("[fatal]")){
+        return GenericLogMessage(e.substring("[fatal] : ".length), LogLevel.critical);
+      } else {
+        return GenericLogMessage(e, LogLevel.info);
+      }
+    });
+  }
 }
+
