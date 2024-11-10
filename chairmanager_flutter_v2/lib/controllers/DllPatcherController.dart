@@ -51,7 +51,7 @@ class DllPatcherController extends GetxController with TalkerMixin {
             knownDllVersions.firstWhereOrNull((element) => element.sha256Hash == currentDllHash.toString());
         if (currentDllVersion != null) {
           talker.info("Current detected DLL version is: ${currentDllVersion!
-              .type}. It is ${currentDllVersion!.isSupported == true
+              .type.name}. It is ${currentDllVersion!.isSupported == true
               ? 'supported'
               : 'not supported'} and ${currentDllVersion!.isOutdated == true
               ? 'outdated'
