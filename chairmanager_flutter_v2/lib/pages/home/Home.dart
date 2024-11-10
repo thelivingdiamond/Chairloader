@@ -169,6 +169,7 @@ class Home extends StatelessWidget {
                   key: ValueKey(mod.modName),
                   title: RichText(
                       text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyMedium,
                         text: mod.displayName.isNotEmpty ? mod.displayName : mod.modName,
                         children: mod.isLegacy ? [
                           TextSpan(text: ' - Legacy', style: TextStyle(color: Theme.of(context).disabledColor)),
