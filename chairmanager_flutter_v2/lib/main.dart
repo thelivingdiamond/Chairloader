@@ -8,6 +8,7 @@ import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/controllers/VersionController.dart';
+import 'package:chairmanager_flutter_v2/logger/TalkerFileSink.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
 import 'package:chairmanager_flutter_v2/pages/debug/DebugPage.dart';
 import 'package:chairmanager_flutter_v2/pages/log/LogPage.dart';
@@ -46,14 +47,17 @@ void main() async {
   var storage = Get.put(Storage(path: ".\\Config\\ChairManager.config"));
   await storage.init();
 
+  var pathController = Get.put(PathController());
+  await pathController.init();
+
+  Get.put(TalkerFileSink());
+
   Get.put(NavigationController());
   Get.put(FocusController());
 
   var settingsController = Get.put(SettingsController());
   await settingsController.load();
 
-  var pathController = Get.put(PathController());
-  await pathController.init();
 
   var versionController = Get.put(VersionController());
   await versionController.init();

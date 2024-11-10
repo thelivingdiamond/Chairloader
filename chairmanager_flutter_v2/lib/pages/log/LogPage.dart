@@ -88,8 +88,8 @@ class _LogPageState extends State<LogPage> with StorageMixin {
   }
 
   List<GenericLogMessage> get filteredMessages {
-    return talker.history.where((e) => logLevelFilter.contains(e.logLevel) && e.displayMessage.toLowerCase().contains(filter.toLowerCase()))
-        .map((e) => GenericLogMessage('${dateFormat.format(e.time.toLocal())} | ${e.displayMessage}', e.logLevel ?? LogLevel.info)).toList();
+    return talker.history.where((e) => logLevelFilter.contains(e.logLevel ?? LogLevel.verbose) && e.displayMessage.toLowerCase().contains(filter.toLowerCase()))
+        .map((e) => GenericLogMessage('${dateFormat.format(e.time.toLocal())} | ${e.displayMessage}', e.logLevel ?? LogLevel.verbose)).toList();
   }
 
   Future<void> setLogLevel(LogLevel level, bool enabled) async {

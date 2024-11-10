@@ -258,6 +258,11 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
     // this one is always relative to the current working directory
     return Directory("Config").absolute.path;
   }
+
+  String get logsPath {
+    return Directory("$runtimeDataPath\\Logs").absolute.path;
+  }
+
   String get preyFilesPath {
     return Directory("$dataPath\\PreyFiles").absolute.path;
   }
