@@ -71,22 +71,6 @@ void main() async {
   var modController = Get.put(ModController());
 
   runApp(const MyApp());
-  talker.stream.listen((event) {
-    if(event.logLevel == LogLevel.error || event.logLevel == LogLevel.critical){
-      Get.snackbar(
-        "Error",
-        event.displayMessage,
-        backgroundColor: Colors.red.shade900.withOpacity(0.8),
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: Colors.white,
-        animationDuration: const Duration(milliseconds: 300),
-        icon: const Icon(Icons.error),
-        shouldIconPulse: event.logLevel == LogLevel.critical,
-        onTap: (snack) => Get.closeCurrentSnackbar(),
-        snackStyle: SnackStyle.FLOATING,
-      );
-    }
-  });
 
   try{
     await modController.detectMods();
