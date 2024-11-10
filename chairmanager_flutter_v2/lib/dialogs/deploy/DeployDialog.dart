@@ -1,9 +1,11 @@
 import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
+import 'package:chairmanager_flutter_v2/widgets/GenericLogView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeployDialog extends StatelessWidget {
   const DeployDialog({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +15,29 @@ class DeployDialog extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              Text("Deploying", style: Theme.of(context).textTheme.titleLarge,),
+              if(!controller.mergingFinished)
+                Padding(
+                  padding: const EdgeInsets.symmetric( vertical: 8.0),
+                  child: LinearProgressIndicator(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: controller.mergerOutput.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      color: index.isEven ? Colors.grey[600]?.withOpacity(0.1) : null,
-                      child: Text(controller.mergerOutput[index]),
-                    );
-                  },
+                child: GenericLogView(
+                    messages: controller.mergerOutput,
+                  itemPadding: const EdgeInsets.symmetric(vertical: 2.0),
                 ),
               ),
               if(controller.mergingFinished)
-                ElevatedButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: const Text("Close"),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text("Close"),
+                  ),
                 ),
             ],
           ),
