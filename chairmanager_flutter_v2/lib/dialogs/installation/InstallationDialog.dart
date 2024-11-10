@@ -187,7 +187,7 @@ class InstallationDialog extends StatelessWidget {
                                 height: 150,
                                 child: Text(
                                   "This is your last chance to cancel the installation process. Press 'Next' to begin.",
-                                  style: Theme.of(context).textTheme.titleLarge,
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                 )
                             )
                         ),
@@ -265,7 +265,7 @@ class InstallationDialog extends StatelessWidget {
                                       backgroundColor: controller.isError ? Colors.red : Colors.green,
                                       foregroundColor: Colors.white,
                                     ),
-                                    onPressed: () => Get.back(),
+                                    onPressed: () => Get.back(result: controller.isError),
                                     child: const Text("Close"),
                                   ),
                                 ),
