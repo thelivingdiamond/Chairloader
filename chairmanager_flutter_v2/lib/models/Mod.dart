@@ -1,7 +1,10 @@
 
 import 'package:chairmanager_flutter_v2/models/ModConfig.dart';
+import 'package:chairmanager_flutter_v2/extensions/VersionExtensions.dart';
+import 'package:version/version.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:get/get.dart';
+import 'package:xml/xpath.dart';
 
 class Mod {
   Mod({
@@ -15,12 +18,12 @@ class Mod {
     required this.enabled,
   });
 
-  Mod.empty() : modName = "", displayName = "", author = "", version = "", dllName = "", loadOrder = -1, isLegacy = false, enabled = false;
+  Mod.empty() : modName = "", displayName = "", author = "", version = null, dllName = "", loadOrder = -1, isLegacy = false, enabled = false;
 
   final String modName;
   final String displayName;
   final String author;
-  final String version;
+  final Version? version;
   final String dllName;
   bool enabled;
   bool isLegacy = false;
@@ -61,18 +64,18 @@ class Mod {
 
 
   Mod.fromModInfo(xml.XmlDocument modInfo, {this.loadOrder = -1, this.enabled = true}) :
-        modName = modInfo.findAllElements("Mod").firstOrNull?.getAttribute("modName") ?? "",
-        displayName = modInfo.findElements("Mod").firstOrNull?.getAttribute("displayName") ?? "",
-        author = modInfo.findElements("Mod").firstOrNull?.getAttribute("author") ?? "",
-        version = modInfo.findElements("Mod").firstOrNull?.getAttribute("version") ?? "",
-        dllName = modInfo.findElements("Mod").firstOrNull?.getAttribute("dllName") ?? "",
+        modName = modInfo.xpathEvaluate("/Mod/@modName").string,
+        displayName = modInfo.xpathEvaluate("/Mod/@displayName").string,
+        author = modInfo.xpathEvaluate("/Mod/@author").string,
+        version = modInfo.xpathEvaluate("/Mod/@version").string.tryParseVersion(),
+        dllName = modInfo.xpathEvaluate("/Mod/@dllName").string,
         isLegacy = false;
 
   Mod.legacy(String path, {this.loadOrder = -1, this.enabled = true}) :
         modName = path.split("\\").last,
         displayName = "",
         author = "",
-        version = "",
+        version = null,
         dllName = "",
         isLegacy = true;
 }
