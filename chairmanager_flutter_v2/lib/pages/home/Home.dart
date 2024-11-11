@@ -1,5 +1,6 @@
 import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
+import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationDialog.dart';
 import 'package:chairmanager_flutter_v2/pages/home/HomeController.dart';
 import 'package:chairmanager_flutter_v2/widgets/Intents.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class Home extends StatelessWidget {
                           child: IconButton(
                             icon: const Icon(Icons.create_new_folder),
                             onPressed: () => {
-                              talker.error("Install Mod: This feature is not yet implemented", "AAAAAAAAAAAA")
+                              Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
                             },
                           ),
                         ),
@@ -125,7 +126,9 @@ class Home extends StatelessWidget {
                           ...[
                             MenuItemButton(
                               leadingIcon: const Icon(Icons.create_new_folder),
-                              onPressed: () => talker.debug("Install Mod: This feature is not yet implemented", "AAAAAAAAAAAA"),
+                              onPressed: () => {
+                                Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
+                              },
                               child: const Text("Install Mod"),
                             ),
                             MenuItemButton(
@@ -179,7 +182,7 @@ class Home extends StatelessWidget {
                   subtitle: mod.author.isNotEmpty ? Text(mod.author) : null,
                   trailing: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2.0),
-                      child: Text(mod.version, style: TextStyle(color: Theme.of(context).disabledColor))
+                      child: Text(mod.version.toString(), style: TextStyle(color: Theme.of(context).disabledColor))
                   ),
                   leading: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
