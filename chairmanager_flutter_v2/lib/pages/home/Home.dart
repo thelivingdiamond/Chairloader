@@ -1,6 +1,7 @@
 import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationDialog.dart';
+import 'package:chairmanager_flutter_v2/dialogs/modUninstallation/ModUninstallationDialog.dart';
 import 'package:chairmanager_flutter_v2/pages/home/HomeController.dart';
 import 'package:chairmanager_flutter_v2/widgets/Intents.dart';
 import 'package:flutter/material.dart';
@@ -226,7 +227,34 @@ class Home extends StatelessWidget {
             child: Text("Mod Details", style: Theme.of(context).textTheme.titleLarge),
           ),
           if(homeController.selectedMod != null)
-            Expanded(
+            ...[
+              Row(
+                children: [
+                  Tooltip(
+                    message: "Uninstall Mod",
+                    child: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {Get.dialog(const ModUninstallationDialog(), arguments: homeController.selectedMod);},
+                    ),
+                  ),
+                  Tooltip(
+                    message: "Open Mod Folder",
+                    child: IconButton(
+                      icon: const Icon(Icons.folder_open),
+                      onPressed: () async => await homeController.openSelectedModFolder(),
+                    ),
+                  ),
+                  Tooltip(
+                    message: homeController.selectedMod?.config == null ? "" : "Open Mod Config File",
+                    child: IconButton(
+                      icon: const Icon(Icons.settings_applications_outlined),
+                      onPressed: homeController.selectedMod?.config == null ? null : () async => await homeController.openSelectedModConfig(),
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(height: 1.0),
+              Expanded(
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -275,6 +303,7 @@ class Home extends StatelessWidget {
                 ),
               ),
             )
+            ]
           else
             Expanded(child: Center(child: Text("Select a mod to view details", style: Theme.of(context).textTheme.bodyMedium))),
           Container(

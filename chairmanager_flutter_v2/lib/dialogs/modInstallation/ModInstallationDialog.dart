@@ -1,4 +1,4 @@
-import 'package:chairmanager_flutter_v2/controllers/ModInstallationController.dart';
+import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

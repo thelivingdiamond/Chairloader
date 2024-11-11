@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:xml/xml.dart' as xml;
 
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
@@ -280,6 +281,21 @@ class ModController extends GetxController with TalkerMixin{
       return await descriptionFile.readAsString();
     }
     return null;
+  }
+
+  Future<void> openModFolder(Mod mod) async {
+    PathController pathController = Get.find();
+    if(mod.isLegacy) {
+      await OpenFile.open("${pathController.modLegacyDirPath}\\${mod.modName}\\");
+    } else {
+      await OpenFile.open("${pathController.modDirPath}\\${mod.modName}\\");
+    }
+  }
+
+  Future<void> openModConfig(Mod mod) async {
+    PathController pathController = Get.find();
+    if(mod.config == null) return;
+    await OpenFile.open("${pathController.modConfigPath}\\${mod.modName}.xml");
   }
 
 

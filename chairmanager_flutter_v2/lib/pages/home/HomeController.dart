@@ -30,4 +30,16 @@ class HomeController extends GetxController {
     await controller.detectMods();
     update();
   }
+
+  Future<void> openSelectedModFolder() async {
+    if(selectedMod == null) return;
+    ModController controller = Get.find();
+    await controller.openModFolder(selectedMod!);
+  }
+
+  Future<void> openSelectedModConfig() async {
+    if(selectedMod == null) return;
+    ModController controller = Get.find();
+    await controller.openModConfig(selectedMod!);
+  }
 }
