@@ -19,6 +19,7 @@ class DeployController extends GetxController with TalkerMixin {
   ChairMergerSettings chairMergerSettings = ChairMergerSettings();
 
   List<GenericLogMessage> mergerOutput = [];
+  StreamController<GenericLogMessage> mergerOutputController = StreamController<GenericLogMessage>.broadcast();
 
   bool mergingFinished = false;
 
@@ -58,14 +59,15 @@ class DeployController extends GetxController with TalkerMixin {
 
     ModController modController = Get.find();
     PathController pathController = Get.find();
-    List<ChairMergerMod> mods = modController.mods.where((m) => m.enabled && Directory(pathController.getModDataPath(m.modName, m.isLegacy)).existsSync()).map(
+    List<ChairMergerMod> mods = [];
+    mods.addAll(modController.mods.where((m) => m.enabled && Directory(pathController.getModDataPath(m.modName, m.isLegacy)).existsSync()).map(
       (mod) => ChairMergerMod(
         type: mod.isLegacy ? ChairMergerModType.legacy.value : ChairMergerModType.native.value,
         modName: mod.modName,
         dataPath: pathController.getModDataPath(mod.modName, mod.isLegacy),
         configPath: mod.config != null ? pathController.getModConfigPath(mod.modName, mod.isLegacy) : null,
       ),
-    ).toList();
+    ));
     mods.add(ChairMergerMod(
         type: ChairMergerModType.folder.value,
         modName: 'Chairloader',
@@ -88,6 +90,7 @@ class DeployController extends GetxController with TalkerMixin {
       final messages = parseOutput(event);
       for(var message in messages){
         talker.log(message.message, logLevel: message.level);
+        mergerOutputController.add(message);
       }
       mergerOutput.addAll(parseOutput(event));
       update();
@@ -96,11 +99,13 @@ class DeployController extends GetxController with TalkerMixin {
       final messages = parseOutput(event);
       for(var message in messages){
         talker.log(message.message, logLevel: message.level);
+        mergerOutputController.add(message);
       }
       update();
     });
-
     final json = jsonEncode(params);
+    // we do this to ensure that the merger is ready to receive the json
+    var firstMessage = await mergerOutputController.stream.first;
     process.stdin.writeln(json);
     var exitCode = await process.exitCode;
     if(exitCode == 0){

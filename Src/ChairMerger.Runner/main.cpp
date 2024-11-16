@@ -77,6 +77,7 @@ int main() {
 
     params.pfnLogCallback = LogCallback;
 
+    // this first message is important, as it tells the caller that we are ready to receive json (ensures sync)
     Log(2, "Awaiting json parameters...");
 
     boost::json::value json;
