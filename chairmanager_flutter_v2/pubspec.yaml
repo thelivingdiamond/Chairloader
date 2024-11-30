@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get: any
+  get: ^4.6.6
   bitsdojo_window: any
   dart_amqp: any
   window_manager: any

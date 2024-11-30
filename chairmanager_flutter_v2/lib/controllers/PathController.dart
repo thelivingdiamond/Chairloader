@@ -63,6 +63,11 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
 
   final List requiredGameFiles = [];
 
+  // making this a list so it's easier to add more files later
+  final List chairloaderDeployedPaks = [
+    "patch_chairloader.pak"
+  ];
+
 
   Future<void> init() async {
     preyPath.value = await storage.getOrInit<String>("preyPath", "");
@@ -193,6 +198,11 @@ class PathController extends GetxController  with TalkerMixin, StorageMixin {
   String get chairloaderPatchPath{
     return Directory("$dataPath\\ChairloaderPatch").absolute.path;
   }
+
+  String get precachePath {
+    return "${preyPath.value}\\GameSDK\\Precache";
+  }
+
 
   Future<(bool, String?, String?)> validateGamePath(String? path) async {
     bool valid = false;

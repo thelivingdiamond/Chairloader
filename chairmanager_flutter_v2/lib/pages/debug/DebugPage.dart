@@ -1,6 +1,7 @@
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/dialogs/GamePathSelection/gamePathSelectionDialog.dart';
 import 'package:chairmanager_flutter_v2/dialogs/installation/InstallationDialog.dart';
+import 'package:chairmanager_flutter_v2/dialogs/uninstallation/UninstallationDialog.dart';
 import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationDialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,15 @@ class DebugPage extends StatelessWidget {
                   Get.dialog(const InstallationDialog(), barrierDismissible: false, useSafeArea: false);
                 },
                 child: const Text("Open Installation Dialog")
+            ),
+          ),
+          const SizedBox(height: 16.0,),
+          Center(
+            child: FilledButton(
+                onPressed: () {
+                  Get.dialog(const UninstallationDialog(), barrierDismissible: false, useSafeArea: false);
+                },
+                child: const Text("Open Uninstallation Dialog")
             ),
           ),
           const SizedBox(height: 16.0,),
