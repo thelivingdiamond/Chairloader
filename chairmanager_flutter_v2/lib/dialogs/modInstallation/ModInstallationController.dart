@@ -114,19 +114,20 @@ class ModInstallationController extends GetxController with TalkerMixin {
     final modDirPath = pathController.modDirPath;
     busy = true;
     update();
-    await _ModInstaller.installModsIsolate(candidates, modDirPath, modLegacyDirPath, tempDir.path);
+    try{
+      await _installMods(candidates, modDirPath, modLegacyDirPath, tempDir.path);
+    } catch (e) {
+      talker.error("Error while installing mods: $e");
+    }
+    finally {
+      await tempDir.delete(recursive: true);
+    }
     busy = false;
-    await modController.detectMods();
     update();
-  }
-}
-
-class _ModInstaller {
-  static Future<void> installModsIsolate(List<ModInstallCandidate> candidates, String modDirPath, String modLegacyDirPath, String tempDir) async {
-    await Isolate.run<void>(() async => await installMods(candidates, modDirPath, modLegacyDirPath, tempDir));
+    await modController.detectMods();
   }
 
-  static Future<void> installMods(List<ModInstallCandidate> candidates, String modDirPath, String modLegacyDirPath, String tempDir) async {
+  Future<void> _installMods(List<ModInstallCandidate> candidates, String modDirPath, String modLegacyDirPath, String tempDir) async {
     final candidatesInArchives = candidates.where((c) => c.inArchive).groupListsBy((c) => c.archivePath);
     final nonArchiveCandidates = candidates.where((c) => !c.inArchive);
     for(var candidate in nonArchiveCandidates){
@@ -146,12 +147,16 @@ class _ModInstaller {
               await modDir.create(recursive: true);
             }
             await extractArchiveToDiskAsync(archive, modDir.absolute.path);
-          } finally {
+          } catch (e) {
+            talker.error("Error while processing ${candidate.archivePath}: $e");
+          }
+          finally {
             await fileStream.close();
           }
           // copy the .pak file to the mods directory
         } else {
           // this is an error but doesn't really matter
+          talker.error("Error while processing ${candidate.archivePath}: Registered mods should always be in an archive");
         }
       }
     }
@@ -194,12 +199,18 @@ class _ModInstaller {
                 await modDir.create(recursive: true);
               }
               await extractArchiveToDiskAsync(archive, modDir.absolute.path);
-            } finally {
+            } catch (e) {
+              talker.error("Error while processing ${candidate.archivePath}: $e");
+            }
+            finally {
               await fileStream.close();
             }
           }
         }
-      } finally {
+      } catch (e) {
+        talker.error("Error while processing $archivePath: $e");
+      }
+      finally {
         await fileStream.close();
       }
     });
