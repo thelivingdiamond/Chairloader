@@ -6,6 +6,7 @@ import 'package:chairmanager_flutter_v2/widgets/MainBody.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class InstallationDialog extends StatelessWidget {
@@ -52,7 +53,7 @@ class InstallationDialog extends StatelessWidget {
                                         backgroundColor: Colors.red,
                                         foregroundColor: Colors.white,
                                       ),
-                                      onPressed: () => Get.back(),
+                                      onPressed: () => context.pop(),
                                       child: const Text("Cancel"),
                                     ),
                                     const SizedBox(width: 16.0,),
@@ -265,7 +266,7 @@ class InstallationDialog extends StatelessWidget {
                                       backgroundColor: controller.isError ? Colors.red : Colors.green,
                                       foregroundColor: Colors.white,
                                     ),
-                                    onPressed: () => Get.back(result: controller.isError),
+                                    onPressed: () => context.pop(controller.isError),
                                     child: const Text("Close"),
                                   ),
                                 ),

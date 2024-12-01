@@ -3,21 +3,16 @@ import 'dart:io';
 import 'package:chairmanager_flutter_v2/controllers/ModController.dart';
 import 'package:chairmanager_flutter_v2/controllers/PathController.dart';
 import 'package:chairmanager_flutter_v2/models/Mod.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ModUninstallationController extends GetxController {
-  ModUninstallationController();
-  late final Mod selectedMod;
+  ModUninstallationController(this.selectedMod);
+  final Mod selectedMod;
 
   PathController pathController = Get.find();
   ModController modController = Get.find();
 
-
-  @override
-  void onInit() {
-    super.onInit();
-    selectedMod = Get.arguments as Mod;
-  }
 
   bool deleteConfigFiles = false;
 

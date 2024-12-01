@@ -1,6 +1,7 @@
 import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class DeployOptionsDialog extends StatelessWidget {
   const DeployOptionsDialog({super.key});
@@ -64,14 +65,14 @@ class DeployOptionsDialog extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     FilledButton.tonal(
-                      onPressed: () => Get.back(),
+                      onPressed: () => context.pop(),
                       child: const Text("Cancel"),
                     ),
                     const SizedBox(width: 8.0,),
                     FilledButton(
                       onPressed: () async {
-                        Get.back();
-                        await controller.startDeployDialog();
+                        context.pop();
+                        await controller.startDeployDialog(context);
                       },
                       child: const Text("Deploy"),
                     ),

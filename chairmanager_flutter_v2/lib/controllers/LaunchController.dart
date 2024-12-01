@@ -82,10 +82,6 @@ class LaunchController extends GetxController with TalkerMixin, StorageMixin {
       update();
     }
   }
-
-  void cancel() {
-    Get.back();
-  }
 }
 
 

@@ -1,7 +1,9 @@
 import 'package:chairmanager_flutter_v2/controllers/DeployController.dart';
+import 'package:chairmanager_flutter_v2/dialogs/installation/InstallationDialog.dart';
 import 'package:chairmanager_flutter_v2/widgets/GenericLogView.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class DeployDialog extends StatelessWidget {
   const DeployDialog({super.key});
@@ -34,7 +36,7 @@ class DeployDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.back();
+                      context.pop();
                     },
                     child: const Text("Close"),
                   ),

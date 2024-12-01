@@ -1,14 +1,23 @@
+import 'dart:math';
+
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:chairmanager_flutter_v2/controllers/FocusController.dart';
+import 'package:chairmanager_flutter_v2/main.dart';
 import 'package:chairmanager_flutter_v2/pages/config/Config.dart';
 import 'package:chairmanager_flutter_v2/pages/splash/SplashScreenController.dart';
 import 'package:chairmanager_flutter_v2/widgets/WindowsButtons.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:particles_flutter/component/particle/particle.dart';
+import 'package:particles_flutter/particles_engine.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, this.forceAnimation = false});
+
+  final bool forceAnimation;
 
   @override
   Widget build(BuildContext context) {
@@ -47,33 +56,53 @@ class SplashScreen extends StatelessWidget {
                   // switch the widget being rendered based on the selected index
                   child: Stack(
                     children: [
+                      if(!kDebugMode || forceAnimation)
+                        Container(
+                          child:   Particles(
+                            awayRadius: 150,
+                            particles: createParticles(150, 25.0, 10.0, Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5)),
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            onTapAnimation: true,
+                            awayAnimationDuration: const Duration(milliseconds: 100),
+                            awayAnimationCurve: Curves.linear,
+                            enableHover: false,
+                            hoverRadius: 5,
+                            connectDots: true,
+                          )
+                        ),
+                      if(kDebugMode && !forceAnimation)
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Debug Mode", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                              Text("This is a debug build of the application", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)
+                                  .animate(onComplete: (animationController) => context.go("/"),).fadeIn(duration: 1.ms).then(),
+                            ],
+                          ),
+                        )
+                      else
                       Center(
                         child: Transform.scale(
                           scale: 0.5,
-                          child: const Image(image: AssetImage('assets/ChairManager_Icon.png')
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primaryContainer,
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                              child: const Image(image: AssetImage('assets/ChairManager_Icon.png'))
                           )
-                              .animate(onComplete: (animationController) => controller.goHome(),)
-                              .slideY(begin: 1.5, end: 0, duration: const Duration(milliseconds: 2000), curve: Curves.easeInOutCubic)
-                          // .rotate()
-                              .fadeIn(duration: const Duration(milliseconds: 1000), curve: Curves.easeInOutCubic)
+                              .animate(onComplete: (animationController) => context.go("/"),)
+                              .slideY(begin: 1.5, end: 0, duration: 2000.ms, curve: Curves.easeInOutCubic)
+                              .blur(duration: 2000.ms, curve: Curves.easeInOutCubic, begin: const Offset(20, 20), end: Offset.zero)
+                              .fadeIn(duration: 2000.ms, curve: Curves.easeInOutCubic)
                               .then()
-                              .scale(begin: const Offset(1, 1), end: const Offset(2, 2), duration: const Duration(milliseconds: 1000), curve: Curves.easeInOutCubic)
+                              .shake(duration: 900.ms, curve: Curves.easeInOutCubic, hz: 5)
+                              .scale(begin: const Offset(1, 1), end: const Offset(2, 2), duration: 1000.ms, curve: Curves.elasticIn)
+                              .fadeOut(delay: 800.ms, duration: 150.ms, curve: Curves.easeInOut)
                               .then(),
                         ),
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          width: MediaQuery.of(context).size.width,
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Text("Chair Manager", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
-                                const Text("Loading...", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
-                              ],
-                            ),
-                          )
                       ),
                     ],
                   )
@@ -83,5 +112,24 @@ class SplashScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Particle> createParticles(int count, double velocityScale, double sizeScale, Color color) {
+    var rng = Random();
+    List<Particle> particles = [];
+    for (int i = 0; i < count; i++) {
+      particles.add(Particle(
+        color: color,
+        size: rng.nextDouble() * sizeScale + 1, // min size = 1
+        velocity: Offset(rng.nextDouble() * velocityScale * randomSign(),
+            rng.nextDouble() * velocityScale * randomSign()),
+      ));
+    }
+    return particles;
+  }
+
+  double randomSign() {
+    var rng = Random();
+    return rng.nextBool() ? 1 : -1;
   }
 }

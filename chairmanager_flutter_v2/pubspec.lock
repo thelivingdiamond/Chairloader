@@ -248,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: "8660b74171fafae4aa8202100fa2e55349e078281dadc73a241eb8e758534d9d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "14.6.1"
   group_button:
     dependency: transitive
     description:
@@ -448,6 +456,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.3"
+  particles_flutter:
+    dependency: "direct main"
+    description:
+      name: particles_flutter
+      sha256: "35a010675a4d07d89501d555e1a477b39d32a1fb1ad1e16e6cd85f25149d8f53"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   path:
     dependency: transitive
     description:

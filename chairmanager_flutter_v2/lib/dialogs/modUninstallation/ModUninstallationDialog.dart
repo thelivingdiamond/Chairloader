@@ -1,15 +1,19 @@
+import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialog.dart';
 import 'package:chairmanager_flutter_v2/dialogs/modUninstallation/ModUninstallationController.dart';
 import 'package:chairmanager_flutter_v2/models/Mod.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ModUninstallationDialog extends StatelessWidget {
-  const ModUninstallationDialog({super.key});
+  const ModUninstallationDialog({super.key, required this.selectedMod});
+
+  final Mod selectedMod;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ModUninstallationController>(
-      init: ModUninstallationController(),
+      init: ModUninstallationController(selectedMod),
       builder: (controller) => Dialog(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -51,14 +55,16 @@ class ModUninstallationDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:[
                   FilledButton.tonal(
-                      onPressed: () => Get.back(),
+                      onPressed: () => context.pop(),
                       child: const Text("Cancel")
                   ),
                   const SizedBox(width: 16.0,),
                   FilledButton(
                       onPressed: () async {
                         await controller.uninstallMod();
-                        Get.back();
+                        if(context.mounted){
+                          context.pop();
+                        }
                       },
                       child: const Text("Confirm")
                   )

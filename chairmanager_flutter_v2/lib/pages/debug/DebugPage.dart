@@ -6,6 +6,7 @@ import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationD
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class DebugPage extends StatelessWidget {
   const DebugPage({super.key});
@@ -20,8 +21,9 @@ class DebugPage extends StatelessWidget {
           const SizedBox(height: 16.0,),
           Center(
             child: FilledButton(
-                onPressed: () {
-                  Get.dialog(const GamePathSelectionDialog(), barrierDismissible: false);
+                onPressed: () async {
+                  await showDialog(context: context, builder: (context) => const GamePathSelectionDialog(), useSafeArea: false, barrierDismissible: false);
+                  // Get.dialog(const GamePathSelectionDialog(), barrierDismissible: false);
                 },
                 child: const Text("Open Game Path Selection Dialog")
             ),
@@ -29,8 +31,8 @@ class DebugPage extends StatelessWidget {
           const SizedBox(height: 16.0,),
           Center(
             child: FilledButton(
-                onPressed: () {
-                  Get.dialog(const InstallationDialog(), barrierDismissible: false, useSafeArea: false);
+                onPressed: () async {
+                  await showDialog(context: context, builder: (context) => const InstallationDialog(), useSafeArea: false, barrierDismissible: false);
                 },
                 child: const Text("Open Installation Dialog")
             ),
@@ -38,8 +40,8 @@ class DebugPage extends StatelessWidget {
           const SizedBox(height: 16.0,),
           Center(
             child: FilledButton(
-                onPressed: () {
-                  Get.dialog(const UninstallationDialog(), barrierDismissible: false, useSafeArea: false);
+                onPressed: () async {
+                  await showDialog(context: context, builder: (context) => const UninstallationDialog(), useSafeArea: false, barrierDismissible: false);
                 },
                 child: const Text("Open Uninstallation Dialog")
             ),
@@ -47,10 +49,19 @@ class DebugPage extends StatelessWidget {
           const SizedBox(height: 16.0,),
           Center(
             child: FilledButton(
-                onPressed: () {
-                  Get.dialog(const ModInstallationDialog(), barrierDismissible: false);
+                onPressed: () async {
+                  await showDialog(context: context, builder: (context) => const ModInstallationDialog(), useSafeArea: false, barrierDismissible: false);
+                  // Get.dialog(const ModInstallationDialog(), barrierDismissible: false);
                 },
                 child: const Text("Open Mod Installation Dialog")
+            ),
+          ),
+          Center(
+            child: FilledButton(
+                onPressed: () {
+                  context.go("/SplashScreen", extra: true);
+                },
+                child: const Text("Go to Splash Screen")
             ),
           ),
           GetBuilder<PathController>(builder: (controller) =>

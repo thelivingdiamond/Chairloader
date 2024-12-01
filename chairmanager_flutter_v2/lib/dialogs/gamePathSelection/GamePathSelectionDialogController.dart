@@ -49,7 +49,6 @@ class GamePathSelectionDialogController extends GetxController {
   void finish() {
     pathController.setPreyPath(gamePath!);
     pathController.setPreyVersion(gameVersion!);
-    Get.back(result: gamePath);
   }
 
 }

@@ -1,6 +1,8 @@
+import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialog.dart';
 import 'package:chairmanager_flutter_v2/dialogs/uninstallation/UninstallationDialogController.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class UninstallationDialog extends StatelessWidget {
   const UninstallationDialog({super.key});
@@ -91,7 +93,7 @@ class UninstallationDialog extends StatelessWidget {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.back();
+                            context.pop();
                           },
                           child: const Text("Close"),
                         ),
@@ -106,7 +108,7 @@ class UninstallationDialog extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Get.back();
+                            context.pop();
                           },
                           child: const Text("Cancel"),
                         ),

@@ -24,6 +24,7 @@ import 'package:chairmanager_flutter_v2/pages/settings/Settings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:go_router/go_router.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:get/get.dart';
 
@@ -43,6 +44,25 @@ void main() async {
   ));
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  Get.put(
+      GoRouter(
+        initialLocation: '/SplashScreen',
+          routes:
+          [
+            GoRoute(
+                path: '/',
+                builder: (context, state) => const BasePage()
+            ),
+            GoRoute(
+              path: '/SplashScreen',
+              builder: (context, state) => SplashScreen(forceAnimation: state.extra as bool? ?? false,),
+            ),
+
+          ],
+        observers: [TalkerRouteObserver(talker)],
+      )
+  );
 
   var storage = Get.put(Storage(path: ".\\Config\\ChairManager.config"));
   await storage.init();
@@ -101,57 +121,60 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SettingsController settingsController = Get.find();
     NavigationController navigationController = Get.find();
-    return Obx( () => GetMaterialApp(
+    return Obx( () => MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'UniFlutter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: settingsController.themeColor.value.color, brightness: settingsController.darkMode.value ? Brightness.dark : Brightness.light, dynamicSchemeVariant: settingsController.schemeVariant.value),
         useMaterial3: true,
       ),
-      navigatorObservers: [
-        TalkerRouteObserver(Get.find()),
-      ],
-      // routes: {
-      //   '/splash': (context) => const SplashScreen(),
-      // },
-      // initialRoute: '/splash',
-
-      home:  Scaffold(
-        body: WindowBorder(
-          color: borderColor,
-          width: 1,
-          child: Row(
-            children: [const LeftSide(),
-              MainBody(
-                child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    // switch the widget being rendered based on the selected index
-                    child: Obx(() {
-                      switch (navigationController.selectedIndex.value) {
-                        case 0:
-                          return const Home();
-                        case 1:
-                          return const Config();
-                        case 2:
-                          return const LogPage();
-                        case 3:
-                          return const Settings();
-                        case 4:
-                          return const DebugPage();
-                        default:
-                          return const Card(child: Placeholder(),);
-                      }
-                    })
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      routerConfig: Get.find<GoRouter>(),
     )
     );
   }
 }
+
+class BasePage extends StatelessWidget {
+  const BasePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    NavigationController navigationController = Get.find();
+    return Scaffold(
+      body: WindowBorder(
+        color: borderColor,
+        width: 1,
+        child: Row(
+          children: [const LeftSide(),
+            MainBody(
+              child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  // switch the widget being rendered based on the selected index
+                  child: Obx(() {
+                    switch (navigationController.selectedIndex.value) {
+                      case 0:
+                        return const Home();
+                      case 1:
+                        return const Config();
+                      case 2:
+                        return const LogPage();
+                      case 3:
+                        return const Settings();
+                      case 4:
+                        return const DebugPage();
+                      default:
+                        return const Card(child: Placeholder(),);
+                    }
+                  })
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 
 class LeftSide extends StatelessWidget {

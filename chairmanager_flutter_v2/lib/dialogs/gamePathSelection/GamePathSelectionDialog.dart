@@ -1,7 +1,9 @@
 import 'package:chairmanager_flutter_v2/dialogs/GamePathSelection/GamePathSelectionDialogController.dart';
+import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class GamePathSelectionDialog extends StatelessWidget {
   const GamePathSelectionDialog({super.key});
@@ -75,7 +77,7 @@ class GamePathSelectionDialog extends StatelessWidget {
                 children: [
                   FilledButton(
                     onPressed: () {
-                      Get.back();
+                      Navigator.pop(context);
                     },
                     child: const Text("Cancel"),
                   ),
@@ -83,6 +85,7 @@ class GamePathSelectionDialog extends StatelessWidget {
                   FilledButton(
                     onPressed: controller.gamePathValid ? () {
                       controller.finish();
+                      context.pop(controller.gamePath);
                     } : null,
                     child: const Text("Finish"),
                   ),

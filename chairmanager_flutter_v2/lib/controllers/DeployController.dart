@@ -43,12 +43,8 @@ class DeployController extends GetxController with TalkerMixin {
     update();
   }
 
-  Future<void> startDeployDialog() async {
-    Get.dialog(
-      DeployDialog(),
-      barrierDismissible: false,
-      barrierColor: Colors.black.withOpacity(0.1),
-    );
+  Future<void> startDeployDialog(BuildContext context) async {
+    showDialog(context: context, builder: (context) => const DeployDialog(), barrierDismissible: false);
     await deploy();
   }
 

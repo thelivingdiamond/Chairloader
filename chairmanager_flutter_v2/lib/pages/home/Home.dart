@@ -99,7 +99,8 @@ class Home extends StatelessWidget {
                           child: IconButton(
                             icon: const Icon(Icons.create_new_folder),
                             onPressed: () => {
-                              Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
+                              showDialog(context: context, builder: (context) => const ModInstallationDialog(), barrierDismissible: false),
+                              // Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
                             },
                           ),
                         ),
@@ -128,7 +129,8 @@ class Home extends StatelessWidget {
                             MenuItemButton(
                               leadingIcon: const Icon(Icons.create_new_folder),
                               onPressed: () => {
-                                Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
+                                showDialog(context: context, builder: (context) => const ModInstallationDialog(), barrierDismissible: false),
+                                // Get.dialog(const ModInstallationDialog(), barrierDismissible: false)
                               },
                               child: const Text("Install Mod"),
                             ),
@@ -234,7 +236,10 @@ class Home extends StatelessWidget {
                     message: "Uninstall Mod",
                     child: IconButton(
                       icon: const Icon(Icons.delete),
-                      onPressed: () {Get.dialog(const ModUninstallationDialog(), arguments: homeController.selectedMod);},
+                      onPressed: () {
+                        showDialog(context: context, builder: (context) =>  ModUninstallationDialog(selectedMod: homeController.selectedMod!), barrierDismissible: false);
+                        // Get.dialog(const ModUninstallationDialog(), arguments: homeController.selectedMod);
+                        },
                     ),
                   ),
                   Tooltip(
@@ -318,7 +323,7 @@ class Home extends StatelessWidget {
                 Tooltip(
                   message: "Deploy Mods",
                   child: FilledButton.tonal(
-                    onPressed: () async => await homeController.openDeployDialog(),
+                    onPressed: () async => await homeController.openDeployDialog(context),
                     child: const Text("Deploy Mods"),
                   ),
                 ),
@@ -327,7 +332,7 @@ class Home extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.settings),
                     // backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.9),
-                    onPressed: () async => await homeController.openLaunchOptionsDialog(),
+                    onPressed: () async => await homeController.openLaunchOptionsDialog(context),
                   ),
                 ),
                 Obx(() {

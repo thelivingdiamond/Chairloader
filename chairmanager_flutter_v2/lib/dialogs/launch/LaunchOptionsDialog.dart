@@ -1,6 +1,7 @@
 import 'package:chairmanager_flutter_v2/controllers/LaunchController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class LaunchOptionsDialog extends StatelessWidget  {
   const LaunchOptionsDialog({super.key});
@@ -97,7 +98,7 @@ class LaunchOptionsDialog extends StatelessWidget  {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         FilledButton.tonal(
-                          onPressed: () => controller.cancel(),
+                          onPressed: () => context.pop(),
                           child: const Text("Ok"),
                         ),
                       ],

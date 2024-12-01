@@ -1,6 +1,8 @@
+import 'package:chairmanager_flutter_v2/dialogs/deploy/DeployDialog.dart';
 import 'package:chairmanager_flutter_v2/dialogs/modInstallation/ModInstallationController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 
 class ModInstallationDialog extends StatelessWidget {
@@ -48,7 +50,7 @@ class ModInstallationDialog extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Get.back();
+                        context.pop();
                       },
                       child: const Text("Cancel"),
                     ),
@@ -61,7 +63,9 @@ class ModInstallationDialog extends StatelessWidget {
                     FilledButton(
                       onPressed: !controller.candidates.any((c) => c.selected) ? null : () async {
                         await controller.installMods();
-                        Get.back();
+                        if(context.mounted){
+                          context.pop();
+                        }
                       },
                       child: const Text("Install"),
                     ),
