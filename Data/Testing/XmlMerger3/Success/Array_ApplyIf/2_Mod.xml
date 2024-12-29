@@ -6,12 +6,12 @@
         aAttr2="aVal2_1_Mod" />
     <A
         ch:index="2000"
-        ch:apply_if="true"
+        ch:applyIf="true"
         aAttr1="aVal1_2_Mod"
         aAttr2="aVal2_2_Mod" />
     <A
         ch:index="3000"
-        ch:apply_if="false"
+        ch:applyIf="false"
         aAttr1="aVal1_3_Mod"
         aAttr2="aVal2_3_Mod" />
     <A
@@ -20,12 +20,12 @@
         aAttr2="aVal2_4_Mod" />
     <A
         ch:index="5000"
-        ch:apply_if="true"
+        ch:applyIf="true"
         aAttr1="aVal1_5_Mod"
         aAttr2="aVal2_5_Mod" />
     <A
         ch:index="6000"
-        ch:apply_if="false"
+        ch:applyIf="false"
         aAttr1="aVal1_6_Mod"
         aAttr2="aVal2_6_Mod" />
 </Root>

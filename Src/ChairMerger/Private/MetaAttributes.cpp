@@ -4,6 +4,7 @@
 //! All supported meta attributes
 static const std::set<std::string, std::less<>> g_MetaAttrs = {
     MetaAttributes::APPLY_IF,
+    MetaAttributes::APPLY_IF_LEGACY,
     MetaAttributes::ARRAY_SOURCE,
     MetaAttributes::ACTION,
     MetaAttributes::BASED_ON,
@@ -30,7 +31,12 @@ static const std::map<std::string, MetaAttributes::EAction, std::less<>> g_Actio
 
 bool MetaAttributes::CheckApplyIf(const pugi::xml_node& node)
 {
-    return node.attribute(APPLY_IF).as_bool(true);
+    if (pugi::xml_attribute attr = node.attribute(APPLY_IF))
+        return attr.as_bool();
+    else if (pugi::xml_attribute attr = node.attribute(APPLY_IF_LEGACY))
+        return attr.as_bool();
+    else
+        return true;
 }
 
 void MetaAttributes::StripNode(pugi::xml_node node, bool finalize)

@@ -14,7 +14,7 @@
         </xs:documentation></xs:annotation>
     </xs:attribute>
 
-    <xs:attribute name="apply_if" type="xs:boolean">
+    <xs:attribute name="applyIf" type="xs:boolean">
         <xs:annotation><xs:documentation>
             Whether the node should be patched. If false, node is skipped entirely.
         </xs:documentation></xs:annotation>

@@ -3,13 +3,13 @@
     <A keyAttr1="newModKey1" aAttr1="modVal1" aAttr2="modVal2">
         <B bAttr1="modbAttr1" bAttr2="modbAttr2" />
     </A>
-    <A keyAttr1="newModKey2" aAttr1="modVal1" aAttr2="modVal2" ch:apply_if="true">
+    <A keyAttr1="newModKey2" aAttr1="modVal1" aAttr2="modVal2" ch:applyIf="true">
         <B bAttr1="modbAttr1" bAttr2="modbAttr2" />
     </A>
-    <A keyAttr1="newModKey3" aAttr1="modVal1" aAttr2="modVal2" ch:apply_if="false">
+    <A keyAttr1="newModKey3" aAttr1="modVal1" aAttr2="modVal2" ch:applyIf="false">
         <B bAttr1="modbAttr1" bAttr2="modbAttr2" />
     </A>
     <AA keyAttr1="keyVal2" aaAttr1="aaVal1_Mod" aaAttr2="aaVal2_Mod" />
-    <AA keyAttr1="keyVal3" aaAttr1="aaVal1_3_Mod" aaAttr2="aaVal2_3_Mod" ch:apply_if="true" />
-    <AA keyAttr1="keyVal4" aaAttr1="aaVal1_4_Mod" aaAttr2="aaVal2_4_Mod" ch:apply_if="false" />
+    <AA keyAttr1="keyVal3" aaAttr1="aaVal1_3_Mod" aaAttr2="aaVal2_3_Mod" ch:applyIf="true" />
+    <AA keyAttr1="keyVal4" aaAttr1="aaVal1_4_Mod" aaAttr2="aaVal2_4_Mod" ch:applyIf="false" />
 </Root>

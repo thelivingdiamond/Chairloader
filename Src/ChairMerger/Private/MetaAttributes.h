@@ -6,7 +6,8 @@ class MetaAttributes
 {
 public:
     static constexpr char PREFIX[] = "ch:";
-    static constexpr char APPLY_IF[] = "ch:apply_if";
+    static constexpr char APPLY_IF[] = "ch:applyIf";
+    static constexpr char APPLY_IF_LEGACY[] = "ch:apply_if";
     static constexpr char ARRAY_SOURCE[] = "ch:arrayMod";
     static constexpr char ARRAY_SOURCE_PREY[] = "__prey__";
     static constexpr char ACTION[] = "ch:action";
