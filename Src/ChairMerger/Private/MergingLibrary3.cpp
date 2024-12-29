@@ -22,7 +22,21 @@ void MergingLibrary3::LoadFromPath(const fs::path& path)
 
 void MergingLibrary3::LoadFromFile(const fs::path& path)
 {
-    throw std::logic_error("Not implemented");
+    if (fs::is_directory(path))
+        throw std::logic_error(fmt::format("Is a directory: {}", path.u8string()));
+
+    auto [document, errorStack] = XmlUtils::LoadDocumentWithStack(path);
+
+    for (const pugi::xml_node childNode : document.first_child())
+    {
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+
+        std::string relPathStr = XmlUtils::GetRequiredAttr(childErrorStack, childNode, "relPath").as_string();
+        childErrorStack.SetId("relPath", relPathStr);
+
+        fs::path relPath = fs::u8path(relPathStr);
+        AddNode(childNode, childErrorStack, relPath);
+    }
 }
 
 void MergingLibrary3::LoadFromDir(const fs::path& path)

@@ -6,6 +6,9 @@
 /Config
 /PreyFiles
 
+# Generated during build
+/MergingLibrary.xml
+
 # Temporary files
 /temp
 
