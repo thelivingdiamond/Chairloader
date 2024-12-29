@@ -20,5 +20,6 @@
         <xs:attribute ref="ch:action" />
         <xs:attribute ref="ch:apply_if" />
         <xs:attribute ref="ch:arrayMod" />
+        <xs:attribute ref="ch:basedOn" />
     </xs:complexType>
 </xs:schema>
