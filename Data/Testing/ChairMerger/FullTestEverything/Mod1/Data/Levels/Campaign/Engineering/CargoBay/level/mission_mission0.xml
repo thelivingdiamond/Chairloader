@@ -5,7 +5,6 @@
             Archetype="ArkPickups.Data.Keycard"
             Pos="153.1,90.9,693.9"
             EntityClass="ArkKeycard"
-            EntityId="3026"
             EntityGuid="4FDA91B7404BEB33"
             ViewDistRatio="255"
             CastShadowViewDistRatio="30"

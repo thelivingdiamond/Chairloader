@@ -170,7 +170,7 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
 const auto FULL_TEST_NAMES = testing::Values<std::string>(
     "FullTestMain",
     "FullTestLocalization",
-    "FullTestLevels",
+    "FullTestLevels"
     "FullTestEverything"
 );
 
