@@ -1,4 +1,19 @@
+#include <boost/algorithm/string.hpp>
 #include "ExcelMerger.h"
+#include "MetaAttributes.h"
+
+static bool IsTrueString(std::string_view s, bool def)
+{
+    if (s.empty())
+        return def;
+    
+    // 1*, t* (true), T* (True), y* (yes), Y* (YES)
+    return
+        s[0] == '1' ||
+        s[0] == 't' ||
+        s[0] == 'T' ||
+        s[0] == 'y';
+}
 
 static pugi::xml_document ExportExcelXmlInternal(const ExcelTable& excelTable, bool addWatermark)
 {
@@ -141,6 +156,9 @@ void ExcelTable::ReadTable(std::string_view keyName, const pugi::xml_node& rootN
 
     for (const pugi::xml_node& row : tableNode.children("Row"))
     {
+        if (!MetaAttributes::CheckApplyIf(row))
+            continue;
+
         // Read contents
         Row rowData;
         rowData.reserve(columnNames.size()); // Can't resize because column count is unknown until first row is read
@@ -222,6 +240,32 @@ pugi::xml_document ExcelTable::ExportExcelXml() const
     return ExportExcelXmlInternal(*this, false);
 }
 
+int ExcelTable::FindRowByKey(const std::string& key) const
+{
+    // Linear search.
+    // This makes merging O(n^2) but there's only a few hundred rows in a table
+    for (size_t i = 0; i < rows.size(); i++)
+    {
+        const ExcelTable::Row& modRow = rows[i];
+
+        if (modRow[keyColumnIdx] == key)
+            return (int)i;
+    }
+
+    return -1;
+}
+
+int ExcelTable::FindColumnByName(const std::string& name) const
+{
+    for (size_t i = 0; i < columnNames.size(); i++)
+    {
+        if (boost::iequals(columnNames[i], name))
+            return (int)i;
+    }
+
+    return -1;
+}
+
 void ExcelTable::ParseFirstRow(std::string_view keyName, Row&& row)
 {
     assert(columnNames.empty());
@@ -275,11 +319,15 @@ void ExcelMerger::MergeSheet(const pugi::xml_node& spreadsheet)
 
     // Create new columns and the column map
     ColumnMap colMap = MergeColumns(modTable);
+    int modApplyIfColumn = modTable.FindColumnByName(MetaAttributes::APPLY_IF);
 
     for (const ExcelTable::Row& modRow : modTable.rows)
     {
+        if (modApplyIfColumn != -1 && !IsTrueString(modRow[modApplyIfColumn], true))
+            continue;
+
         const std::string& key = modRow[modTable.keyColumnIdx];
-        int baseRowIdx = FindRowByKey(key);
+        int baseRowIdx = m_CurrentTable.FindRowByKey(key);
 
         if (baseRowIdx == -1)
         {
@@ -297,6 +345,12 @@ void ExcelMerger::MergeSheet(const pugi::xml_node& spreadsheet)
         {
             const std::string& modCellValue = modRow[modCellIdx];
             int currentCellIdx = colMap[modCellIdx];
+
+            if (currentCellIdx == -1)
+            {
+                // Skip this column
+                continue;
+            }
 
             if (modCellIdx == modTable.keyColumnIdx)
             {
@@ -331,13 +385,13 @@ ExcelMerger::ColumnMap ExcelMerger::MergeColumns(const ExcelTable& modTable)
     // Create column mapping. Add new columns if have to.
     for (size_t i = 0; i < colMap.size(); i++)
     {
-        int modColIdxInCurrentTable = FindColumnByName(modTable.columnNames[i]);
+        int modColIdxInCurrentTable = m_CurrentTable.FindColumnByName(modTable.columnNames[i]);
 
-        if (modColIdxInCurrentTable == -1)
+        if (modColIdxInCurrentTable == -1 && !boost::iequals(modTable.columnNames[i], MetaAttributes::APPLY_IF))
         {
             // Make a new column
             modColIdxInCurrentTable = (int)m_CurrentTable.columnNames.size();
-            m_CurrentTable.columnNames.emplace_back();
+            m_CurrentTable.columnNames.emplace_back(modTable.columnNames[i]);
         }
 
         colMap[i] = modColIdxInCurrentTable;
@@ -356,32 +410,4 @@ ExcelMerger::ColumnMap ExcelMerger::MergeColumns(const ExcelTable& modTable)
     }
 
     return colMap;
-}
-
-int ExcelMerger::FindRowByKey(const std::string& key)
-{
-    // Linear search.
-    // This makes merging O(n^2) but there's only a few hundred rows in a table
-    int keyColumnIdx = m_CurrentTable.keyColumnIdx;
-
-    for (size_t i = 0; i < m_CurrentTable.rows.size(); i++)
-    {
-        const ExcelTable::Row& modRow = m_CurrentTable.rows[i];
-
-        if (modRow[keyColumnIdx] == key)
-            return (int)i;
-    }
-
-    return -1;
-}
-
-int ExcelMerger::FindColumnByName(const std::string& name)
-{
-    for (size_t i = 0; i < m_CurrentTable.columnNames.size(); i++)
-    {
-        if (m_CurrentTable.columnNames[i] == name)
-            return (int)i;
-    }
-
-    return -1;
 }

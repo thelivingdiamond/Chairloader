@@ -32,6 +32,12 @@ public:
     //! Exports the table into an Excel XML spreadsheet.
     pugi::xml_document ExportExcelXml() const;
 
+    //! @returns Row index or -1.
+    int FindRowByKey(const std::string& key) const;
+
+    //! @returns Column index or -1.
+    int FindColumnByName(const std::string& name) const;
+
 private:
     //! Parses column names from the first row.
     void ParseFirstRow(std::string_view keyName, Row&& row);
@@ -62,8 +68,4 @@ private:
     //! Creates new columns if needs to.
     //! @returns The map of column indices in mod table to the current table's.
     ColumnMap MergeColumns(const ExcelTable& modTable);
-
-    int FindRowByKey(const std::string& key);
-
-    int FindColumnByName(const std::string& name);
 };

@@ -353,6 +353,8 @@ INSTANTIATE_TEST_SUITE_P(
     XmlMerger3SuccessLocTest,
     testing::Values(
         "Method_Localization",
+        "Method_Localization_ApplyIf_Column",
+        "Method_Localization_ApplyIf_Row",
         "Method_LocalizationTouchUp"));
 
 INSTANTIATE_TEST_SUITE_P(
