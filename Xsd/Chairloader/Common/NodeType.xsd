@@ -75,6 +75,13 @@
                                     </xs:documentation></xs:annotation>
                                 </xs:attribute>
 
+                                <xs:attribute name="prohibitInMods" type="xs:boolean" default="false">
+                                    <xs:annotation><xs:documentation>
+                                        If true, mods can't use this attribute at all. Use for attributes that are filled automatically during finalization.
+                                        Base nodes are allowed to contain such attributes.
+                                    </xs:documentation></xs:annotation>
+                                </xs:attribute>
+
                                 <xs:attribute name="comment" type="xs:string">
                                     <xs:annotation><xs:documentation>
                                         Comment describing the attribute.

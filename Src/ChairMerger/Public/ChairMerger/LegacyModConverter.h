@@ -107,4 +107,10 @@ private:
         pugi::xml_node& node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack);
+
+    //! Applies fixes to new nodes.
+    void FixUpNewNode(
+        pugi::xml_node& node,
+        const MergingPolicy3& policy,
+        const XmlErrorStack& errorStack);
 };

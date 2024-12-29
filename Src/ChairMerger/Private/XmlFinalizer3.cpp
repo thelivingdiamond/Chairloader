@@ -52,7 +52,7 @@ void XmlFinalizer3::FinalizeNode(
 
                 if (pugi::xml_attribute entityIdAttr = entityNode.attribute("EntityId"))
                 {
-                    entityId = XmlUtils::GetRequiredAttr(entityErrorStack, entityNode, "EntityId").as_int(-9999);
+                    entityId = entityIdAttr.as_int(-9999);
                     if (entityId == -9999)
                         entityErrorStack.ThrowException("Invalid EntityId");
                 }

@@ -415,7 +415,7 @@
 
                             <Attribute name="Archetype" type="ArchetypeName" />
                             <Attribute name="EntityClass" type="string" required="true" />
-                            <Attribute name="EntityId" type="EntityIdDef" required="true" />
+                            <Attribute name="EntityId" type="EntityIdDef" required="true" prohibitInMods="true" />
                             <Attribute name="EntityGuid" type="EntityGuidDef" required="true" />
                             <Attribute name="ch:fakeGuid" type="bool" generated="true" />
                             <Attribute name="ParentId" type="EntityId" />

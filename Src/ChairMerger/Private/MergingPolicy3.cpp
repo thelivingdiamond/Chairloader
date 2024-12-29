@@ -174,6 +174,7 @@ void MergingPolicy3::LoadXmlAttributes(const pugi::xml_node& node, const XmlErro
             attr.required = childNode.attribute("required").as_bool(false);
             attr.allowEmpty = childNode.attribute("allowEmpty").as_bool(false);
             attr.readOnly = childNode.attribute("readOnly").as_bool(false);
+            attr.prohibitInMods = childNode.attribute("prohibitInMods").as_bool(false);
             attr.generated = childNode.attribute("generated").as_bool(false);
             attr.comment = childNode.attribute("comment").as_string();
 

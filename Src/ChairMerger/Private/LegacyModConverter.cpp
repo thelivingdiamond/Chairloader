@@ -457,6 +457,12 @@ bool LegacyModConverter::ConvertAttributes(
             return;
         }
 
+        if (pAttrPolicy && pAttrPolicy->prohibitInMods)
+        {
+            // Attribute is not allowed in mods
+            return;
+        }
+
         if (preyAttr && !legacyModAttr)
         {
             // Mod removed the attribute
@@ -594,16 +600,16 @@ bool LegacyModConverter::ConvertDict(
         XmlErrorStack legacyModChildErrorStack = errorStack.GetChild(legacyModChildNode);
         legacyModChildErrorStack.SetIndex(index);
 
+        const MergingPolicy3* pChildPolicy = policy.FindChildNode(legacyModChildNode.name());
+
+        if (!pChildPolicy)
+            legacyModChildErrorStack.ThrowException(fmt::format("Node '{}' not found in merging policy", legacyModChildNode.name()));
+
         const pugi::xml_node& preyChildNode = XmlMerger3::FindBaseNodeByModKey(preyNode, legacyModChildNode, policy, legacyModChildErrorStack);
 
         if (preyChildNode)
         {
             // An existing node. Merge it.
-            const MergingPolicy3* pChildPolicy = policy.FindChildNode(legacyModChildNode.name());
-
-            if (!pChildPolicy)
-                legacyModChildErrorStack.ThrowException(fmt::format("Node '{}' not found in merging policy", legacyModChildNode.name()));
-
             pugi::xml_node modChildNode = outNode.append_child(legacyModChildNode.name());
 
             // Add key attributes
@@ -624,7 +630,8 @@ bool LegacyModConverter::ConvertDict(
         else
         {
             // New node
-            outNode.append_copy(legacyModChildNode);
+            pugi::xml_node newNode = outNode.append_copy(legacyModChildNode);
+            FixUpNewNode(newNode, *pChildPolicy, legacyModChildErrorStack);
             hasChanges = true;
         }
 
@@ -725,5 +732,33 @@ void LegacyModConverter::RemoveDuplicateKeys(
             continue; // Validation will handle this
 
         RemoveDuplicateKeys(childNode, *childPolicy, childErrorStack);
+    }
+}
+
+void LegacyModConverter::FixUpNewNode(
+    pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    const XmlErrorStack& errorStack)
+{
+    // Remove prohibited attributes
+    for (const MergingPolicy3::Attribute& poilicyAttr : policy.GetAttributes())
+    {
+        if (poilicyAttr.prohibitInMods)
+            node.remove_attribute(poilicyAttr.name.c_str());
+    }
+
+    // Recurse down
+    for (pugi::xml_node& childNode : node.children())
+    {
+        if (XmlUtils::IsTextNode(childNode))
+            continue;
+
+        XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
+        const MergingPolicy3* childPolicy = policy.FindChildNode(childNode.name());
+
+        if (!childPolicy)
+            continue; // Validation will handle this
+
+        FixUpNewNode(childNode, *childPolicy, childErrorStack);
     }
 }

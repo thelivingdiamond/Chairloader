@@ -212,6 +212,9 @@ void XmlValidator::ValidateAttributes(
 
         if (!attrError.empty())
             AddError(result, errorStack, attrError, nodeAttr.name());
+
+        if (context.mode == EMode::Mod && policyAttr->prohibitInMods)
+            AddError(result, errorStack, "This attribute can't be used by mods", nodeAttr.name());
     }
 
     if (context.mode == EMode::Prey || context.mode == EMode::MergingBase)
@@ -219,7 +222,10 @@ void XmlValidator::ValidateAttributes(
         // Check if any required attributes are missing
         for (const MergingPolicy3::Attribute& policyAttr : policy.GetAttributes())
         {
-            if (!policyAttr.generated && policyAttr.required && !node.attribute(policyAttr.name.c_str()))
+            if (!policyAttr.generated &&
+                policyAttr.required &&
+                (context.mode == EMode::Prey || !policyAttr.prohibitInMods) &&
+                !node.attribute(policyAttr.name.c_str()))
                 AddError(result, errorStack, "Required attribute is missing", policyAttr.name);
         }
     }
