@@ -10,6 +10,7 @@ public:
     static constexpr char ARRAY_SOURCE[] = "ch:arrayMod";
     static constexpr char ARRAY_SOURCE_PREY[] = "__prey__";
     static constexpr char ACTION[] = "ch:action";
+    static constexpr char BASED_ON[] = "ch:basedOn";
 
     enum class EAction
     {
@@ -55,7 +56,11 @@ public:
     //! @returns The action for the node.
     EAction GetAction() const { return m_Action.value_or(EAction::Patch); }
 
+    //! @returns The query string to find a node to base on.
+    const std::string& GetBasedOn() const { return m_BasedOn; }
+
 private:
     bool m_Apply = false;
     std::optional<EAction> m_Action;
+    std::string m_BasedOn;
 };

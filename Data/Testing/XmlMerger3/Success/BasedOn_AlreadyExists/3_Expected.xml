@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A keyAttr1="keyVal1" aAttr1="aVal1" aAttr2="aVal2">
+        <B bAttr1="bVal1" bAttr2="bVal2">
+            <C notChanged="asdf"/>
+        </B>
+    </A>
+    <AA keyAttr1="keyVal2" aaAttr1="aaVal1" aaAttr2="aaVal2" />
+    <AA keyAttr1="keyVal3" aaAttr1="aaVal1_2" aaAttr2="aaVal2_2" />
+    <AA keyAttr1="keyValFromMod" aaAttr1="aaVal1_3" aaAttr2="aaVal2Mod" />
+</Root>

@@ -1,6 +1,7 @@
 #include <charconv>
 #include <Chairloader/Private/XmlUtils.h>
 #include <ChairMerger/MergingPolicy3.h>
+#include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/XmlMerger3.h>
 #include <ChairMerger/XmlTypeLibrary.h>
 #include <ChairMerger/XmlValidator.h>
@@ -429,9 +430,32 @@ void XmlMerger3::MergeChildrenDict(
 
             if (meta.GetAction() != MetaAttributes::EAction::Delete)
             {
-                pugi::xml_node addedNode = baseNode.append_copy(childModNode);
-                MetaAttributes::StripNode(addedNode);
-                ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
+                if (!meta.GetBasedOn().empty())
+                {
+                    // Find the based node
+                    std::vector<std::pair<std::string, std::string>> query = XMLMerger2::ParseSiblingQuery(meta.GetBasedOn());
+                    pugi::xml_node baseNodeFromQuery = FindSiblingNode(baseNode, query);
+
+                    if (!baseNodeFromQuery)
+                    {
+                        childModErrorStack.ThrowException(fmt::format(
+                            "Base node not found. Query: '{}'",
+                            meta.GetBasedOn()));
+                    }
+
+                    // Copy the base node
+                    pugi::xml_node addedNode = baseNode.append_copy(baseNodeFromQuery);
+
+                    // Merge it
+                    MergeNode(context, addedNode, childModNode, *pChildPolicy, childModErrorStack);
+                }
+                else
+                {
+                    // Create new node
+                    pugi::xml_node addedNode = baseNode.append_copy(childModNode);
+                    MetaAttributes::StripNode(addedNode);
+                    ValidateNewNode(context, addedNode, *pChildPolicy, childModErrorStack);
+                }
             }
         }
 
@@ -740,4 +764,35 @@ bool XmlMerger3::TryParseArrayIndex(std::string_view str, ArrayIndex& outValue)
     std::from_chars_result result = std::from_chars(begin, end, outValue);
 
     return result.ec == std::errc() && result.ptr == end;
+}
+
+pugi::xml_node XmlMerger3::FindSiblingNode(
+    const pugi::xml_node& parent,
+    const std::vector<std::pair<std::string, std::string>>& query)
+{
+    for (pugi::xml_node child : parent)
+    {
+        // Check for conditions
+        bool matchesConds = true;
+
+        for (const auto& i : query)
+        {
+            pugi::xml_attribute keyAttr = child.attribute(i.first.c_str());
+
+            if (!keyAttr || keyAttr.as_string() != i.second)
+            {
+                // Skip this node
+                matchesConds = false;
+                break;
+            }
+        }
+
+        if (!matchesConds)
+            continue;
+
+        // Found a sibling
+        return child;
+    }
+
+    return pugi::xml_node();
 }

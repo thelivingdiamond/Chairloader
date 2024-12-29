@@ -182,4 +182,12 @@ private:
         return TryParseArrayIndex(attr.as_string(), outValue);
     }
     //! @}
+    
+    //! Finds thefirst node that matches the query.
+    //! @param  parent  Node whose children will be checked.
+    //! @param  query   Query in format attribute = value.
+    //! @returns Node or null node.
+    static pugi::xml_node FindSiblingNode(
+        const pugi::xml_node& parent,
+        const std::vector<std::pair<std::string, std::string>>& query);
 };

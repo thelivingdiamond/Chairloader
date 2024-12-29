@@ -6,6 +6,7 @@ static const std::set<std::string, std::less<>> g_MetaAttrs = {
     MetaAttributes::APPLY_IF,
     MetaAttributes::ARRAY_SOURCE,
     MetaAttributes::ACTION,
+    MetaAttributes::BASED_ON,
 
     // Used for XSDs
     "xmlns",
@@ -79,5 +80,10 @@ void MetaAttributes::ParseNode(const pugi::xml_node& node, const XmlErrorStack& 
     if (pugi::xml_attribute action = node.attribute(ACTION))
     {
         m_Action = XmlUtils::GetEnumAttribute<EAction>(errorStack, action, g_ActionValues);
+    }
+
+    if (pugi::xml_attribute action = node.attribute(BASED_ON))
+    {
+        m_BasedOn = action.as_string();
     }
 }
