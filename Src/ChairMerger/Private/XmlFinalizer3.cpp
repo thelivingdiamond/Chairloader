@@ -132,6 +132,23 @@ void XmlFinalizer3::FinalizeNode(
     }
 }
 
+pugi::xml_document XmlFinalizer3::GenerateEntitySerialize(const pugi::xml_document& document, const FileMergingPolicy3& policy)
+{
+    std::set<int> entityIds;
+    FillEntitySerialize(document.first_child(), policy.GetRootNode(), entityIds);
+
+    pugi::xml_document serializeDoc;
+    pugi::xml_node root = serializeDoc.append_child("EntitySerialization");
+
+    for (int entityId : entityIds)
+    {
+        pugi::xml_node node = root.append_child("Entity");
+        node.append_attribute("id").set_value(entityId);
+    }
+
+    return serializeDoc;
+}
+
 std::string XmlFinalizer3::ExpandFinalizerExpression(
     XmlFinalizerContext& context,
     pugi::xml_node& node,
@@ -177,4 +194,51 @@ std::string XmlFinalizer3::ExpandFinalizerExpression(
 void XmlFinalizer3::ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg)
 {
     errorStack.ThrowException(fmt::format("Error in finalizer expression \"{}\": {}", expression, msg));
+}
+
+void XmlFinalizer3::FillEntitySerialize(
+    pugi::xml_node& node,
+    const MergingPolicy3& policy,
+    std::set<int>& entityIds)
+{
+    if (policy.GetPatches().addEntitySerialize)
+    {
+        // Iterate over all entities
+        for (pugi::xml_node& childNode : node.children())
+        {
+            if (XmlUtils::IsTextNode(childNode))
+                continue;
+
+            if (!childNode.attribute(policy.GetPatches().addEntitySerializeAttrName.c_str()).as_bool(false))
+                continue;
+
+            pugi::xml_attribute entityIdAttr = childNode.attribute(policy.GetPatches().addEntitySerializeIdAttrName.c_str());
+
+            if (!entityIdAttr)
+                throw std::runtime_error("EntityId not set in serializable entity");
+
+            int entityId = entityIdAttr.as_int(-9999);
+
+            if (entityId == -9999)
+                throw std::runtime_error(fmt::format("EntityId={} is not valid in serializable entity", entityIdAttr.as_string()));
+
+            entityIds.insert(entityId);
+        }
+    }
+    else
+    {
+        // Recurse down
+        for (pugi::xml_node& childNode : node.children())
+        {
+            if (XmlUtils::IsTextNode(childNode))
+                continue;
+
+            const MergingPolicy3* childPolicy = policy.FindChildNode(childNode.name());
+
+            if (!childPolicy)
+                continue; // Validation will handle this
+
+            FillEntitySerialize(childNode, *childPolicy, entityIds);
+        }
+    }
 }

@@ -41,3 +41,24 @@ TEST(XmlFinalizerTest, PatchNode)
     // Compare with expected
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, document));
 }
+
+TEST(XmlFinalizerTest, GenerateEntitySerialize)
+{
+    fs::path testDir = "Testing/XmlFinalizer3_EntitySerialization";
+    fs::path policyPath = testDir / "0_Policy.xml";
+    fs::path basePath = testDir / "1_Base.xml";
+    fs::path expectedPath = testDir / "2_Expected.xml";
+
+    XmlTypeLibrary typeLibrary;
+    typeLibrary.LoadTypesFromFile("XmlTypeLibrary.xml");
+    FileMergingPolicy3 policy = LoadFilePolicy(policyPath);
+
+    pugi::xml_document document = XmlUtils::LoadDocument(basePath);
+    pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
+
+    // Finalize
+    pugi::xml_document actual = XmlFinalizer3::GenerateEntitySerialize(document, policy);
+
+    // Compare with expected
+    EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, actual));
+}

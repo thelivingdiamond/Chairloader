@@ -36,6 +36,14 @@ public:
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack);
 
+    //! Generates serialize.xml file for a level.
+    //! @param  document    Mission XML.
+    //! @param  policy      Merging policy for document.
+    //! @returns Document for serialize.xml.
+    static pugi::xml_document GenerateEntitySerialize(
+        const pugi::xml_document& document,
+        const FileMergingPolicy3& policy);
+
 private:
     static std::string ExpandFinalizerExpression(
         XmlFinalizerContext& context,
@@ -45,4 +53,9 @@ private:
         std::string_view expression);
 
     [[noreturn]] static void ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg);
+
+    static void FillEntitySerialize(
+        pugi::xml_node& node,
+        const MergingPolicy3& policy,
+        std::set<int>& entityIds);
 };
