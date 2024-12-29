@@ -66,3 +66,23 @@ cl_output_to_data(ChairManager)
 cl_version_info(ChairManager "ChairManager.exe" "Chairloader Mod Manager")
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})
+
+# MergingLibrary compiling
+set(MERGING_LIB_SRC_DIR "${CMAKE_SOURCE_DIR}/Data/MergingLibrary")
+set(MERGING_LIB_FILE "${CMAKE_SOURCE_DIR}/Data/MergingLibrary.xml")
+
+file(GLOB_RECURSE MERGING_LIB_SRC_FILES
+	LIST_DIRECTORIES false
+	CONFIGURE_DEPENDS
+	"${MERGING_LIB_SRC_DIR}/**/*.xml"
+)
+
+message(STATUS "MERGING_LIB_SRC_FILES = ${MERGING_LIB_SRC_FILES}")
+
+add_custom_command(
+	OUTPUT ${MERGING_LIB_FILE}
+	COMMAND MergingLibraryCompiler "--dir" ${MERGING_LIB_SRC_DIR} "--out-file" ${MERGING_LIB_FILE}
+	DEPENDS ${MERGING_LIB_SRC_FILES}
+)
+
+target_sources(ChairManager PRIVATE ${MERGING_LIB_FILE})
