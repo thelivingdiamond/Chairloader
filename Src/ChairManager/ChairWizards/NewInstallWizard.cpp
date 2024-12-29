@@ -515,12 +515,14 @@ public:
                 if (!fs::exists(chairFilePath) || !fs::exists(installedFilePath))
                     return false;
 
+#ifndef DEBUG_BUILD
                 // Compare version
                 SemanticVersion chairFileVersion = VersionCheck::getBinaryVersion(chairFilePath);
                 SemanticVersion installedFileVersion = VersionCheck::getBinaryVersion(installedFilePath);
 
                 if (chairFileVersion != installedFileVersion)
                     return false;
+#endif
             }
 
             return true;
