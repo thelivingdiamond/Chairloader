@@ -57,7 +57,9 @@ TEST(XmlFinalizerTest, GenerateEntitySerialize)
     pugi::xml_document expectedDoc = XmlUtils::LoadDocument(expectedPath);
 
     // Finalize
-    pugi::xml_document actual = XmlFinalizer3::GenerateEntitySerialize(document, policy);
+    XmlFinalizerContext context;
+    XmlFinalizer3::FinalizeDocument(context, document, policy);
+    pugi::xml_document actual = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
 
     // Compare with expected
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(expectedDoc, actual));

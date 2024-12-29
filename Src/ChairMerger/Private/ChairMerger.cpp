@@ -24,6 +24,8 @@
 #include "Cache/DiskXmlCache.h"
 #include "HashUtils.h"
 
+constexpr char SERIALIZE_XML[] = "serialize.xml";
+
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;
 std::map<std::string, uint64_t> ChairMerger::m_NameToIdMap;
@@ -449,7 +451,7 @@ void ChairMerger::ProcessXMLFile(
         {
             // Skip serialize.xml
             // It's auto-generated
-            if (boost::iequals(relativePath.filename().u8string(), "serialize.xml"))
+            if (boost::iequals(relativePath.filename().u8string(), SERIALIZE_XML))
                 return;
         }
 
@@ -699,9 +701,10 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
         const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(relPath);
         CRY_ASSERT(pFilePolicy);
 
-        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003 ||
+            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
         {
-            // Localization files don't need finalization
+            // Don't need finalization
             return;
         }
 
@@ -720,6 +723,17 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
             m_pLog->Log(severityLevel::error, "Validation failure of final file %s", relPath.u8string());
             PrintValidationResult(result, m_pLog);
             throw std::runtime_error("Game file failed validation after finalization. Check the log for details.");
+        }
+
+        if (!context.serializeEntityIds.empty())
+        {
+            // Generate serialize.xml
+            // Save to do this now because it's read-only in the policy.
+            // So this is the only place where it will be written
+            fs::path serPath = relPath.parent_path() / SERIALIZE_XML;
+            IXmlCache::WriteLock serLock;
+            pugi::xml_document& serDoc = m_pBaseFileCache->OpenXmlForWriting(serPath, serLock);
+            serDoc = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
         }
     }
     catch (const std::exception& e)
@@ -888,48 +902,52 @@ void ChairMerger::PackLevelFiles()
             const auto deployedHash = m_DeployedLevelFileChecksums[changedPack];
             const bool forcePack = m_Settings.m_bForceLevelPack;
             AddPendingTask(m_MergeThreadPool->enqueue([this, levelPath, deployedHash, forcePack, &bFailure] {
+                fs::path levelInputPath = m_OutputPath / "Levels" / levelPath;
+                fs::path levelOutputPath = m_LevelOutputPath / levelPath;
+                
                 try
                 {
                     // create the level directory in the level output path
-                    fs::create_directories(m_LevelOutputPath / levelPath);
+                    fs::create_directories(levelOutputPath);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not create level directory %s",
-                                            (m_LevelOutputPath / levelPath).string());
+                        levelOutputPath.u8string());
                     bFailure = true;
                     return;
                 }
                 try
                 {
                     // copy over the level directory to the level output path
-                    fs::copy(m_PreyFilesPath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
+                    fs::copy(m_PreyFilesPath / "Levels" / levelPath, levelOutputPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error,
                                             "ChairMerger: Could not copy original level directory %s",
-                                            (m_PreyFilesPath / "Levels" / levelPath).string());
+                                            (m_PreyFilesPath / "Levels" / levelPath).u8string());
                     bFailure = true;
                     return;
                 }
-                try
+
+                if (fs::exists(levelInputPath))
                 {
                     // then copy over the output that we merged or copied into
-                    fs::copy(m_OutputPath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
-                             fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    fs::copy(m_OutputPath / "Levels" / levelPath, levelOutputPath,
+                        fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
-                catch (fs::filesystem_error& e)
+                else
                 {
                     m_pLog->Log(
                         severityLevel::debug,
-                        "ChairMerger: Could not copy level output directory %s, no mod modified this level.",
-                        (m_OutputPath / "Levels" / levelPath).string());
+                        "ChairMerger: Level %s: no mod modified this level.",
+                        levelPath.u8string());
                 }
 
                 // now check if we need to continue to pack the level directory
-                auto levelPakHashPath = m_LevelOutputPath / levelPath / "level";
+                auto levelPakHashPath = levelOutputPath / "level";
                 auto levelOutputChecksum = HashUtils::HashDirectory(levelPakHashPath);
                 if (levelOutputChecksum == deployedHash && !forcePack)
                 {
@@ -947,50 +965,50 @@ void ChairMerger::PackLevelFiles()
                     {
                         m_pLog->Log(severityLevel::error,
                                                 "ChairMerger: Could not remove level directory %s",
-                                                (m_LevelOutputPath / levelPath / "level").string());
+                            levelPakHashPath.u8string());
                     }
                     return;
                 }
                 try
                 {
                     // then we must pack the level directory
-                    std::ofstream(m_LevelOutputPath / levelPath / "level" / MARK_OF_THE_CHAIR).close();
-                    ZipUtils::CompressFolder(m_LevelOutputPath / levelPath / "level",
-                                             m_LevelOutputPath / levelPath / "level.pak", true);
+                    std::ofstream(levelPakHashPath / MARK_OF_THE_CHAIR).close();
+                    ZipUtils::CompressFolder(levelPakHashPath,
+                                             levelOutputPath / "level.pak", true);
                 }
                 catch (std::exception& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not pack level directory %s",
-                                            (m_LevelOutputPath / levelPath / "level").string());
+                        levelPakHashPath.u8string());
                     bFailure = true;
                 }
                 try
                 {
                     // remove the "level" folder from the level output path
-                    fs::remove_all(m_LevelOutputPath / levelPath / "level");
+                    fs::remove_all(levelPakHashPath);
                     // remove the folder from the output path
                     fs::remove_all(m_OutputPath / "Levels" / levelPath);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not remove level directory %s",
-                                            (m_LevelOutputPath / levelPath / "level").string());
+                        levelPakHashPath.u8string());
                 }
                 try
                 {
                     // copy the output folder to the game files folder
-                    fs::copy(m_LevelOutputPath / levelPath, m_LevelFilesPath / levelPath,
+                    fs::copy(levelOutputPath, m_LevelFilesPath / levelPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not copy merged level pack %s",
-                                            (m_LevelOutputPath / levelPath).string());
+                        levelOutputPath.u8string());
                     bFailure = true;
                     return;
                 }
                 m_pLog->Log(severityLevel::trace, "ChairMerger: Finished merging level pack %s",
-                                        levelPath.string());
+                                        levelPath.u8string());
             }));
         }
         WaitForPendingTasks();

@@ -11,7 +11,8 @@
             CastShadowMinSpec="1"
             CastSunShadowMinSpec="8"
             ShadowCasterType="2"
-            Layer="CargoBay_Scripting">
+            Layer="CargoBay_Scripting"
+            ch:serialize="true">
             <Properties2
                 iCountOverride="0"
                 keycard_Keycard="4349723564917331725" />

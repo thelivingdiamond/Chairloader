@@ -368,7 +368,7 @@ bool LegacyModConverter::ConvertExcelDocument(
 
         // Find the Prey row with the same key
         const std::string& rowKey = row[legacyModTable.keyColumnIdx];
-        auto preyRowIt = std::find_if(preyTable.rows.begin(), preyTable.rows.end(), [&](const const ExcelTable::Row& x) { return x[preyTable.keyColumnIdx] == rowKey; });
+        auto preyRowIt = std::find_if(preyTable.rows.begin(), preyTable.rows.end(), [&](const ExcelTable::Row& x) { return x[preyTable.keyColumnIdx] == rowKey; });
 
         if (preyRowIt == preyTable.rows.end())
         {

@@ -8,6 +8,7 @@ class XmlErrorStack;
 struct XmlFinalizerContext
 {
     std::map<std::string, int> entityIdMap; //!< Maps EntityGuid to EntityId. Filled by the finalizer.
+    std::set<int> serializeEntityIds; //!< Entities that need to be serialized.
 };
 
 //! Finalizes an XML file and converts it into a file compatible with Prey.
@@ -37,12 +38,9 @@ public:
         const XmlErrorStack& errorStack);
 
     //! Generates serialize.xml file for a level.
-    //! @param  document    Mission XML.
-    //! @param  policy      Merging policy for document.
+    //! @param  serializeEntityIds  List of IDs to be serialized.
     //! @returns Document for serialize.xml.
-    static pugi::xml_document GenerateEntitySerialize(
-        const pugi::xml_document& document,
-        const FileMergingPolicy3& policy);
+    static pugi::xml_document GenerateEntitySerialize(std::set<int>& serializeEntityIds);
 
 private:
     static std::string ExpandFinalizerExpression(
@@ -53,9 +51,4 @@ private:
         std::string_view expression);
 
     [[noreturn]] static void ThrowExpression(const XmlErrorStack& errorStack, std::string_view expression, std::string_view msg);
-
-    static void FillEntitySerialize(
-        pugi::xml_node& node,
-        const MergingPolicy3& policy,
-        std::set<int>& entityIds);
 };
