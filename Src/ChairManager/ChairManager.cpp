@@ -531,9 +531,10 @@ void ChairManager::DrawModList() {
                         ImGui::Checkbox("Has XML", &ModEntry.hasXML);
                         ImGui::EndDisabled();
 
-                        if (ImGui::Button("Uninstall")) {
-                            UninstallMod(ModEntry.modName);
+                        if (!ModEntry.isPreditorProject && ImGui::Button("Delete")) {
+                            showDeleteConfirmation = true;
                         }
+
                         if (ModEntry.enabled) {
                             if (ImGui::Button("Disable"))
                                 EnableMod(ModEntry.modName, false);
@@ -545,6 +546,7 @@ void ChairManager::DrawModList() {
 
                         ImGui::EndPopup();
                     }
+
                     if (showDeleteConfirmation) {
                         ImGui::OpenPopup("Delete Confirmation");
                         showDeleteConfirmation = false;
@@ -552,7 +554,8 @@ void ChairManager::DrawModList() {
 
                     if (ImGui::BeginPopupModal("Delete Confirmation")) {
                         ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.",
-                            ModEntry.modName.c_str());
+                            ModEntry.displayName.c_str());
+
                         if (ImGui::Button("Delete")) {
                             if (!ModEntry.modName.empty()) {
                                 modNameForDeletion = ModEntry.modName;
@@ -580,9 +583,7 @@ void ChairManager::DrawModList() {
 
             if (!modNameForDeletion.empty())
             {
-                log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(), modNameForDeletion);
-                fs::remove_all(GetGamePath() / "Mods" / modNameForDeletion);
-                ModList.erase(std::find(ModList.begin(), ModList.end(), modNameForDeletion));
+                DeleteInstalledMod(modNameForDeletion);
                 modNameForDeletion.clear();
             }
         }
@@ -1534,29 +1535,9 @@ void ChairManager::serializeLoadOrder() {
 
 void ChairManager::SaveAllMods() {
     for(auto &mod : ModList){
-        ModListNode.remove_child(mod.modName.c_str());
         SaveMod(&mod);
     }
     saveChairloaderConfigFile();
-}
-
-void ChairManager::UninstallMod(std::string &modName) {
-    auto mod = std::find(ModList.begin(), ModList.end(), modName);
-    if(mod != ModList.end()){
-        mod->enabled = false;
-        mod->deployed = false;
-        if(ModListNode.remove_child(modName.c_str())){
-            log(severityLevel::info, "%s: uninstalled successfully", modName);
-            saveChairloaderConfigFile();
-        } else {
-            log(severityLevel::error, "%s: uninstall failed: not found in Chairloader.xml");
-        }
-    } else {
-        log(severityLevel::error, "Could not install %s: Not found in mod list", modName);
-        ErrorMessage = "Could not uninstall" + modName + ": Not found in mod list";
-        showErrorPopup = true;
-    }
-
 }
 
 void ChairManager::InstallModFromState()
@@ -2310,6 +2291,51 @@ void ChairManager::OpenInstallModDialog()
 bool ChairManager::IsUpdateAvailable()
 {
     return m_LatestVersionFromGitHub.IsValid() && m_LatestVersionFromGitHub > VersionCheck::getInstalledChairloaderVersion();
+}
+
+void ChairManager::DeleteInstalledMod(const std::string& modName)
+{
+    auto it = std::find(ModList.begin(), ModList.end(), modName);
+
+    if (it == ModList.end())
+        throw std::invalid_argument("Mod not found");
+
+    if (it->isPreditorProject)
+        throw std::invalid_argument("Can't delete Preditor projects");
+
+    // Remove mod's files
+    try
+    {
+        fs::path modDir = it->path;
+        log(severityLevel::info, "Deleting %s", modDir.u8string());
+
+        // Sanity checks
+        if (!modDir.is_absolute())
+            throw std::logic_error("Mod path not absolute");
+        if (!modDir.has_filename())
+            throw std::logic_error("Mod path doesn't have file name");
+
+        fs::remove_all(modDir);
+    }
+    catch (const std::exception& e)
+    {
+        log(severityLevel::error, "Failed to remove %s: %s", modName, e.what());
+        return;
+    }
+
+    // Remove mod from list
+    ModList.erase(it);
+
+    for (pugi::xml_node childNode : ModListNode)
+    {
+        if (childNode.child("modName").text().as_string() == modName)
+        {
+            ModListNode.remove_child(childNode);
+            break;
+        }
+    }
+
+    saveChairloaderConfigFile();
 }
 
 void ChairManager::SwitchToUninstallWizard() {
