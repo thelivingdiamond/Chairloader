@@ -1,5 +1,6 @@
 #include <boost/algorithm/string.hpp>
 #include <Prey/CryInput/IInput.h>
+#include <Prey/CrySystem/ICmdLine.h>
 #include <Chairloader/Private/ModPrefix.h>
 #include <Chairloader/IChairloaderCryRender.h>
 #include <Chairloader/IChairloaderTools.h>
@@ -54,6 +55,7 @@ void ChairloaderCore::InitSystem()
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
 	m_pLuaModManager = std::make_unique<LuaModManager>();
+	SkipIntroMovies();
 }
 
 void ChairloaderCore::ShutdownSystem()
@@ -245,6 +247,15 @@ void ChairloaderCore::LoadConfig()
 {
     m_KeyHideGui = LoadConfigKey("HideGUIKey", eKI_F1);
     m_KeyToggleFreecam = LoadConfigKey("ToggleFreecamKey", eKI_F2);
+}
+
+void ChairloaderCore::SkipIntroMovies()
+{
+	if (!gChair->GetPreditorAPI() && !gEnv->pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "novid"))
+		return;
+
+	gEnv->pConsole->GetCVar("sys_intromoviesduringinit")->Set(0);
+	gEnv->pConsole->GetCVar("sys_rendersplashscreen")->Set(0);
 }
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)

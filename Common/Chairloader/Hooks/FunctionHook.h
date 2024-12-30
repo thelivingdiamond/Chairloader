@@ -11,11 +11,16 @@ public:
 	void RemoveHook();
 
 	//! @returns whether a hook is installed.
-	inline bool IsHooked() { return m_pfnHook != nullptr; }
+	bool IsHooked() const { return m_pfnHook != nullptr; }
+
+	//! Disable debug assert if the hook needs to outlive its DLL.
+	//! Use with care: will cause a crash if hook is called after DLL is unloaded.
+	void MarkKeepAfterDestroy() { m_bKeepAfterDestroy = true; }
 
 protected:
 	void* m_pfn = nullptr;
 	void* m_pfnHook = nullptr;
+	bool m_bKeepAfterDestroy = false;
 
 	//! Installs a function hook.
 	//! Must be called in a Detours transaction.

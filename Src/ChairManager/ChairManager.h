@@ -317,6 +317,7 @@ private:
         m_bLoadEditor = false,
         m_bDevMode = false,
         m_bTrainer = false,
+        m_bNoVid = false,
         m_bNoRandom = false;
     void launchGame();
 
