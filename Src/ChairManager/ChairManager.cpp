@@ -190,6 +190,10 @@ void ChairManager::LoadModManagerConfig()
         if(!launchOptionsNode.attribute("Trainer"))
             launchOptionsNode.append_attribute("Trainer").set_value(false);
         m_bTrainer = launchOptionsNode.attribute("Trainer").as_bool();
+        //NoVid
+        if (!launchOptionsNode.attribute("NoVid"))
+            launchOptionsNode.append_attribute("NoVid").set_value(false);
+        m_bNoVid = launchOptionsNode.attribute("NoVid").as_bool();
     }
     else {
         log(severityLevel::error, "ChairManager config file not found, creating new");
@@ -204,6 +208,7 @@ void ChairManager::LoadModManagerConfig()
         launchOptionsNode.append_attribute("NoRandom").set_value(false);
         launchOptionsNode.append_attribute("AugGeom").set_value(false);
         launchOptionsNode.append_attribute("Trainer").set_value(false);
+        launchOptionsNode.append_attribute("NoVid").set_value(false);
         ChairManagerConfigFile.save_file(ChairManagerConfigPath.wstring().c_str());
     }
     log(severityLevel::info, "ChairManager Config File Loaded");
@@ -696,6 +701,10 @@ void ChairManager::DrawModList() {
             //        m_bNoRandom;
             if (ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
+                saveModManagerConfigFile();
+            }
+            if (ImGui::Checkbox("Skip Intro Movies", &m_bNoVid)) {
+                ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("NoVid").set_value(m_bNoVid);
                 saveModManagerConfigFile();
             }
             if (ImGui::Checkbox("Load Trainers", &m_bTrainer)) {
@@ -2455,6 +2464,9 @@ void ChairManager::launchGame() {
     }
     if (m_bTrainer) {
         args.push_back(L"-trainer");
+    }
+    if (m_bNoVid) {
+        args.push_back(L"-novid");
     }
 
     // Assemble command line
