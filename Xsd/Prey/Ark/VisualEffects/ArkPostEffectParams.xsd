@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkPostEffectParams">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Param" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "Id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="Id" type="ArkUniqueId" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ParamName" type="string" />
+                    <xs:attribute name="Type" type="string" />
+                    <xs:attribute name="Value">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="pickerPrefix" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

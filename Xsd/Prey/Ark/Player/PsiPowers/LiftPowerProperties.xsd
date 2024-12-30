@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="LiftPowerProperties">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Common" minOccurs="0" maxOccurs="unbounded" type="ArkPsiPowerPropertiesCommon" />
+            <xs:element name="Levels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkPsiPowerLiftLevelProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="LiftProperties" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="DurationSec" type="float" />
+                                        <xs:attribute name="MaxHeight" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="DisplayName" type="string" />
+                              <xs:attribute name="Description" type="string" />
+                              <xs:attribute name="CooldownDurationSec" type="float" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Unique" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="MinHeight" type="float" />
+                    <xs:attribute name="MaxRange" type="float" />
+                    <xs:attribute name="MaxRangeZeroG" type="float" />
+                    <xs:attribute name="Radius" type="float" />
+                    <xs:attribute name="Gravity" type="float" />
+                    <xs:attribute name="InwardLiftForce" type="float" />
+                    <xs:attribute name="UpwardLiftForce" type="float" />
+                    <xs:attribute name="LiftForceZeroG" type="float" />
+                    <xs:attribute name="HoverVelocityDamping" type="float" />
+                    <xs:attribute name="HoverVelocityFalloff" type="float" />
+                    <xs:attribute name="HoverFalloffDistance" type="float" />
+                    <xs:attribute name="ParticleEffect" type="string" />
+                    <xs:attribute name="TargetingParticleEffect" type="string" />
+                    <xs:attribute name="TargetingParticleEffectLight" type="string" />
+                    <xs:attribute name="PlayerPostEffectId" type="string" />
+                    <xs:attribute name="PlayerExitAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="EnterLiftSignalPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="PlayerEnterAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

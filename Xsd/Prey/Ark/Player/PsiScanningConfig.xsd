@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkScanning">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="FanfareInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+          </xs:choice>
+          <xs:attribute name="EventBonusSec" type="float" />
+          <xs:attribute name="LockonTimeSec" type="float" />
+          <xs:attribute name="LockonTimeoutSec" type="float" />
+          <xs:attribute name="LockonTimeoutFlashingStart" type="float" />
+          <xs:attribute name="LockonTimeoutFlashingFreq" type="float" />
+          <xs:attribute name="MaxDistanceScanRateMultiplier" type="float" />
+          <xs:attribute name="AutoUnequipTimeoutSec" type="float" />
+          <xs:attribute name="ScanCompleteLockonTimeoutSec" type="float" />
+          <xs:attribute name="PostProcessEffect" type="ArkPostEffectId" />
+          <xs:attribute name="LockonAttachment" type="string" />
+          <xs:attribute name="EnableAutoUnequip" type="boolString" />
+          <xs:attribute name="ScanFirstTargetOnEquip" type="boolString" />
+          <xs:attribute name="FanfareZoomHFOV" type="float" />
+          <xs:attribute name="FanfareZoomDuration" type="float" />
+          <xs:attribute name="FanfareZoomOutDuration" type="float" />
+          <xs:attribute name="FanfareCameraSpeed" type="float" />
+          <xs:attribute name="ErrorMessageDuration" type="float" />
+          <xs:attribute name="ReticleLerpSpeed" type="float" />
+          <xs:attribute name="LightArchetype" type="ArchetypeName" />
+          <xs:attribute name="LightAttachment" type="string" />
+          <xs:attribute name="ResearchRtpc" type="string" />
+          <xs:attribute name="PauseResearchAudioTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ResumeResearchAudioTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ReminderUIDelay" type="float" />
+          <xs:attribute name="PsychoscopeHideTime" type="float" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

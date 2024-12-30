@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="SignalReceivers">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="DispositionFactors" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Enslaved" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                      <xs:element name="Friendly" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                      <xs:element name="Hostile" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                      <xs:element name="Neutral" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Imports" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="File" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="file" type="string">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="PlayerDispositionFactors" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Friendly" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                      <xs:element name="Neutral" minOccurs="0" maxOccurs="unbounded" type="AISignalFactorList" />
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ShotgunSignalAccumulator" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="signalId" type="ArkSignalId" />
+                    <xs:attribute name="time" type="float" />
+                    <xs:attribute name="threshold" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="SignalData" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="signal" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="id" type="ArkSignalId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="does_damage" type="boolString" />
+                              <xs:attribute name="is_bump_signal" type="boolString" />
+                              <xs:attribute name="is_critical" type="boolString" />
+                              <xs:attribute name="is_emp" type="boolString" />
+                              <xs:attribute name="is_fear" type="boolString" />
+                              <xs:attribute name="is_fire" type="boolString" />
+                              <xs:attribute name="is_flare" type="boolString" />
+                              <xs:attribute name="is_grenadeattached" type="boolString" />
+                              <xs:attribute name="is_laser" type="boolString" />
+                              <xs:attribute name="is_mindcontrol" type="boolString" />
+                              <xs:attribute name="is_nullwave" type="boolString" />
+                              <xs:attribute name="is_playerpower" type="boolString" />
+                              <xs:attribute name="is_recycle_begin" type="boolString" />
+                              <xs:attribute name="is_stun" type="boolString" />
+                              <xs:attribute name="is_stungun" type="boolString" />
+                              <xs:attribute name="is_collision" type="boolString" />
+                              <xs:attribute name="is_remote_manipulation" type="boolString" />
+                              <xs:attribute name="is_psychic" type="boolString" />
+                              <xs:attribute name="is_break_mimicry" type="boolString" />
+                              <xs:attribute name="block_hit_react" type="boolString" />
+                              <xs:attribute name="callback_luaCallbackFunc" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

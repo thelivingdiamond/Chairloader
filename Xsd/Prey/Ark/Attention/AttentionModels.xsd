@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="AttentionModels">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="AttentionModel" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="AttentionTarget" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ComplexDamageTimer" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="timer" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="RelativeClosenessToSwitch" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="scalar" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="SimpleDamageTimer" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="timer" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Complex" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="AttentionLevels" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="AttentionLevel" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="minimum" type="float" />
+                                                  <xs:attribute name="maximum" type="float" />
+                                                  <xs:attribute name="drainRate" type="float" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Hearing" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Increases" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Increase" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="noiseTypeId" type="ArkGameNoiseTypeId" />
+                                                            <xs:attribute name="gain" type="float" />
+                                                            <xs:attribute name="minimumAttentionLevel" type="int32" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="OnDamaged" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Increase" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="minimumAttentionLevel" type="int32" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Proxy" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="FollowTime" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="seconds" type="float" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Room" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ContinueContainerAccumulationRates" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="AccumulationRate" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="attentionLevelIndex" type="int32" />
+                                                            <xs:attribute name="value" type="float" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="ContinueRoomAccumulationRates" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="AccumulationRate" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="attentionLevelIndex" type="int32" />
+                                                            <xs:attribute name="value" type="float" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="StartContainerGains" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Gain" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="attentionLevelIndex" type="int32" />
+                                                            <xs:attribute name="value" type="float" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="StartRoomGains" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Gain" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="attentionLevelIndex" type="int32" />
+                                                            <xs:attribute name="value" type="float" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Surprise" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="fromLevel" type="int32" />
+                                        <xs:attribute name="toLevel" type="int32" />
+                                        <xs:attribute name="timeSeconds" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Vision" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="AccumulationRates" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="AccumulationRate" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="attentionLevelIndex" type="int32" />
+                                                            <xs:attribute name="value" type="float" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Simple" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="AttentionTimeout" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="seconds" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

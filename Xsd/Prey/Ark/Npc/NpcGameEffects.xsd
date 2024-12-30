@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="NpcGameEffects">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="ArkNpcGameEffect_ControlTurrets" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxControllableTurrets" type="int32" />
+                    <xs:attribute name="turretDesiredDistanceFromNpc" type="float" />
+                    <xs:attribute name="desiredTurretHeight" type="float" />
+                    <xs:attribute name="turretCheckRadius" type="float" />
+                    <xs:attribute name="requiredTurretTag" type="ArkMetaTagId" />
+                    <xs:attribute name="defaultTurretFaction" type="ArkFactionId" />
+                    <xs:attribute name="conditionalOwnerFaction" type="ArkFactionId" />
+                    <xs:attribute name="conditionalTurretFaction" type="ArkFactionId" />
+                    <xs:attribute name="timeBetweenTurretScans" type="float" />
+                    <xs:attribute name="formationChangeRotationSpeed" type="float" />
+                    <xs:attribute name="turretRotationSpeed" type="float" />
+                    <xs:attribute name="turretTraceAdjustmentRadius" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Corrupted" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="corruptedFactionId" type="ArkFactionId" />
+                    <xs:attribute name="corruptedMetaTag" type="ArkMetaTagId" />
+                    <xs:attribute name="corruptedContextProfileId" type="int32" />
+                    <xs:attribute name="corruptedSignalModifierId" type="ArkSignalModifierId" />
+                    <xs:attribute name="corruptedExplodeOnDeathPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="uncorruptOnSignalGroupId" type="ArkSignalGroupId" />
+                    <xs:attribute name="corruptedExplodeOnDeathCameraShakeId" type="ArkCameraShakeId" />
+                    <xs:attribute name="corruptedExplodeMinimumDistanceScaleAmount" type="float" />
+                    <xs:attribute name="corruptedExplodeOnDeathRadius" type="float" />
+                    <xs:attribute name="corruptedExplodeOnDeathImpulse" type="float" />
+                    <xs:attribute name="corruptedAiTreePath" type="string" />
+                    <xs:attribute name="healthMultiplier" type="float" />
+                    <xs:attribute name="bShouldExplodeHeadOnDeath" type="boolString" />
+                    <xs:attribute name="corruptedExplodeDamageSourceAttachment" type="string" />
+                    <xs:attribute name="playerDeprogrammingSignalId" type="ArkSignalId" />
+                    <xs:attribute name="instantKillSignalGroupId" type="ArkSignalGroupId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Disintegration" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_DoppelgangerLink" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_EnergizeAura" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="BlackList" minOccurs="0" maxOccurs="unbounded" type="ArkNpcGameEffectBlackList" />
+                    </xs:choice>
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="signalPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="signalRadius" type="float" />
+                    <xs:attribute name="signalFrequency" type="float" />
+                    <xs:attribute name="lightningMaterial" type="string" />
+                    <xs:attribute name="sourceOffset" type="Vec3" />
+                    <xs:attribute name="sourceOffsetVariation" type="Vec3" />
+                    <xs:attribute name="modifierId" type="ArkSignalModifierId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Energized" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="energizingSignalId" type="ArkSignalId" />
+                    <xs:attribute name="drainPerSecond" type="float" />
+                    <xs:attribute name="delayBeforeDrain" type="float" />
+                    <xs:attribute name="energizedExplosionPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="energizedExplosionRadius" type="float" />
+                    <xs:attribute name="energizedExplosionImpulse" type="float" />
+                    <xs:attribute name="energizedExplosionCameraShakeId" type="ArkCameraShakeId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_EthericFog" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="fogSpawnCooldown" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_ExcreteCystoids" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="SpawnCountInterval" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="minimum" type="int32" />
+                              <xs:attribute name="maximum" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="SpawnPeriodInterval" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="minimum" type="float" />
+                              <xs:attribute name="maximum" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="cystoidArchetypeName" type="ArchetypeName" />
+                    <xs:attribute name="excreteAudioTrigger" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Feared" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="endFearDistance" type="float" />
+                    <xs:attribute name="bFleesFromHostileDamage" type="boolString" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Gloo" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="glooBreakBuildupTrigger" type="string" />
+                    <xs:attribute name="glooHitTrigger" type="string" />
+                    <xs:attribute name="glooSignalId" type="ArkSignalId" />
+                    <xs:attribute name="glooLowerThresholdPreBreakSfxTime" type="float" />
+                    <xs:attribute name="glooSignalModifier" type="ArkSignalModifierId" />
+                    <xs:attribute name="glooGrowAccumulationSpeedPerSecond" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Hacked" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="hackedFaction" type="ArkFactionId" />
+                    <xs:attribute name="hackedMetaTag" type="ArkMetaTagId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_HitReactionMaterialAnimation" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Interference" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="BlackList" minOccurs="0" maxOccurs="unbounded" type="ArkNpcGameEffectBlackList" />
+                    </xs:choice>
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="signalPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="signalRadius" type="float" />
+                    <xs:attribute name="signalFrequency" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_MindControl" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="mindControlSingalId" type="ArkSignalId" />
+                    <xs:attribute name="mindControlFactionId" type="ArkFactionId" />
+                    <xs:attribute name="mindControlMetaTag" type="ArkMetaTagId" />
+                    <xs:attribute name="loopEffectDelayTime" type="float" />
+                    <xs:attribute name="playerDamageAmountToBreakControl" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_NightmareEtherFormDamageAura" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="auraPackageId" type="ArkFactionId" />
+                    <xs:attribute name="auraTickRate" type="float" />
+                    <xs:attribute name="auraRadius" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_OnFire" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="damageTickRate" type="float" />
+                    <xs:attribute name="fireDamagePackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="instigatingSignalGroup" type="ArkSignalGroupId" />
+                    <xs:attribute name="bFleesWhenIgnited" type="boolString" />
+                    <xs:attribute name="aoePackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="aoeRadiusFromNpc" type="float" />
+                    <xs:attribute name="onFireTime" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_OperatorArmsRetracted" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_PlayerControlled" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_PlayerProximityPackage" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="packageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="packageFrequency" type="float" />
+                    <xs:attribute name="minDistance" type="float" />
+                    <xs:attribute name="maxDistance" type="float" />
+                    <xs:attribute name="minScale" type="float" />
+                    <xs:attribute name="maxScale" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_PoltergeistForceAura" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="radius" type="float" />
+                    <xs:attribute name="minForce" type="float" />
+                    <xs:attribute name="maxForce" type="float" />
+                    <xs:attribute name="minMass" type="float" />
+                    <xs:attribute name="maxMass" type="float" />
+                    <xs:attribute name="damageAmountForRepelBlast" type="float" />
+                    <xs:attribute name="damageSampleTimeForRepelBlast" type="float" />
+                    <xs:attribute name="repelBlastPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="repelBlastRadiusMin" type="float" />
+                    <xs:attribute name="repelBlastRadiusMax" type="float" />
+                    <xs:attribute name="repelBlastMinScale" type="float" />
+                    <xs:attribute name="repelBlastImpulse" type="float" />
+                    <xs:attribute name="repelBlastCameraShakeId" type="ArkCameraShakeId" />
+                    <xs:attribute name="pRepelBlastEffect" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_PoltergeistInvisibility" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="visibleTimeAfterHit" type="float" />
+                    <xs:attribute name="visibleTimeAfterGloo" type="float" />
+                    <xs:attribute name="visibleTimeAfterStun" type="float" />
+                    <xs:attribute name="visibleAfterHitCapTime" type="float" />
+                    <xs:attribute name="visibleAfterHitCooldown" type="float" />
+                    <xs:attribute name="appearAudioTrigger" type="string" />
+                    <xs:attribute name="disappearAudioTrigger" type="string" />
+                    <xs:attribute name="glooSignalId" type="ArkSignalId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_PsiSuppression" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_RaiseFromCorpse" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="breakOutSignalGroupId" type="ArkSignalId" />
+                    <xs:attribute name="minRagdollTime" type="float" />
+                    <xs:attribute name="maxRagdollTime" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_SimplePackageAura" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="auraPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="auraInboundModifierId" type="ArkSignalModifierId" />
+                    <xs:attribute name="auraDurationTime" type="float" />
+                    <xs:attribute name="auraTickRate" type="float" />
+                    <xs:attribute name="auraRadius" type="float" />
+                    <xs:attribute name="characterEffectType" type="float" />
+                    <xs:attribute name="defaultEffectRadius" type="float" />
+                    <xs:attribute name="bStoppedByGoo" type="bool" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_Stun" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="stunSignalModifierId" type="ArkSignalModifierId" />
+                    <xs:attribute name="stunVfxDuration" type="float" />
+                    <xs:attribute name="bStunRagdoll" type="boolString" />
+                    <xs:attribute name="bStunLastsForever" type="boolString" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkNpcGameEffect_WeaverShield" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="activationCooldown" type="float" />
+                    <xs:attribute name="blockDamageTime" type="float" />
+                    <xs:attribute name="startAudioTrigger" type="string" />
+                    <xs:attribute name="stopAudioTrigger" type="string" />
+                    <xs:attribute name="impactAudioTrigger" type="string" />
+                    <xs:attribute name="signalModifierId" type="ArkSignalModifierId" />
+                    <xs:attribute name="fearPackageId" type="ArkSignalPackageId" />
+                    <xs:attribute name="shieldSkinAttachmentName" type="string" />
+                    <xs:attribute name="dissolveOnSignalGroupId" type="ArkSignalGroupId" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

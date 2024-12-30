@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="FearPowerProperties">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Common" minOccurs="0" maxOccurs="unbounded" type="ArkPsiPowerPropertiesCommon" />
+            <xs:element name="Levels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkPsiFearBlastProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="BlastTypeProperties" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="BlastProperties" minOccurs="0" maxOccurs="unbounded" type="ArkPsiBlastProperties" />
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="TargetingProperties" minOccurs="0" maxOccurs="unbounded" type="ArkPsiPowerTargetingComponentProperties" />
+                              </xs:choice>
+                              <xs:attribute name="DisplayName" type="string" />
+                              <xs:attribute name="Description" type="string" />
+                              <xs:attribute name="CooldownDurationSec" type="float" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

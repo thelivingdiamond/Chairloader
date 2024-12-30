@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkLocations">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Locations" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkLocation" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Floors" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ArkMapFloor" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="Name" type="string">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="Label" type="string" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Transitions" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ArkTransition" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "ConnectionA" "ConnectionB" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="ConnectionA" type="ArkLocationId" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="ConnectionB" type="ArkLocationId" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="Cost" type="int32" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="ID" type="ArkLocationIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" />
+                              <xs:attribute name="Label" type="string" />
+                              <xs:attribute name="LevelName" type="string" />
+                              <xs:attribute name="Cooldown" type="float" />
+                              <xs:attribute name="StationMapIndex" type="int32" />
+                              <xs:attribute name="Tip" type="ArkTipId" />
+                              <xs:attribute name="ScreenshotPath" type="string" />
+                              <xs:attribute name="RichPresence" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

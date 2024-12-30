@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    elementFormDefault="qualified">
+    <xs:annotation><xs:documentation>
+        This file defines the data model of a particular XML file and how this file should be merged.
+    </xs:documentation></xs:annotation>
+
+    <xs:include schemaLocation="Common/NodeType.xsd" />
+
+    <!-- <MergingPolicy> -->
+    <xs:element name="MergingPolicy">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Node" type="Node" maxOccurs="1"/>
+                <xs:element name="NodeByType" type="NodeByType" maxOccurs="1"/>
+            </xs:choice>
+            
+            <xs:attribute name="fileNameRegex" type="xs:string">
+                <xs:annotation><xs:documentation>
+                    If set, this file will apply to all file names that match the regex.
+                    If not set, file will only apply to XMLs of the same name as the policy file.
+                </xs:documentation></xs:annotation>
+            </xs:attribute>
+            
+            <xs:attribute name="recursive" type="xs:boolean">
+                <xs:annotation><xs:documentation>
+                    If true, merging policy will apply to all subfolders. Regex will be matched with filename relative to current folder.
+                </xs:documentation></xs:annotation>
+            </xs:attribute>
+            
+            <xs:attribute name="method" default="merge">
+                <xs:annotation><xs:documentation>
+                    If true, merging policy will apply to all subfolders. Regex will be matched with filename relative to current folder.
+                </xs:documentation></xs:annotation>
+
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="readOnly" />
+                        <xs:enumeration value="merge" />
+                        <xs:enumeration value="replace" />
+                        <xs:enumeration value="excel2003" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="excelKeyColName" type="xs:string">
+                <xs:annotation><xs:documentation>
+                    Key column name for Excel 2003 method.
+                </xs:documentation></xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

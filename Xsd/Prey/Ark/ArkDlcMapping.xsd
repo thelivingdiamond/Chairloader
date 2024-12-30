@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkDlcMappings">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Dlcs" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Dlc" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "Name" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="PCInfo" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="LocInfo" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "Language" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="Language" type="string" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="DisplayName" type="string" />
+                                                  <xs:attribute name="Description" type="string" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="SteamID" type="int32" />
+                                        <xs:attribute name="QuasimodoProjectName">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="QuasimodoPackageSID">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="QuasimodoContentId">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="QuasimodoStoreID">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="PS4Info" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="ContentLabel" type="string" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="XB1Info" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="LocInfo" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "Language" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="Language" type="string" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="DisplayName" type="string" />
+                                                  <xs:attribute name="Description" type="string" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="AlignmentChunkID" type="int64" />
+                                        <xs:attribute name="ProductID" type="string" />
+                                        <xs:attribute name="Version" type="string" />
+                                        <xs:attribute name="Logo" type="string" />
+                                        <xs:attribute name="SmallLogo" type="string" />
+                                        <xs:attribute name="WideLogo" type="string" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="Id" type="int32">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="folderPath" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

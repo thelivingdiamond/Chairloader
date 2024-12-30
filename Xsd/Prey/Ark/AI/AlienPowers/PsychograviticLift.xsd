@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="Config">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Levels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Level" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="description" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="psiCost" type="int32" />
+          <xs:attribute name="displayName" type="string" />
+          <xs:attribute name="queryTimerSec" type="float" />
+          <xs:attribute name="updateTimerSec" type="float" />
+          <xs:attribute name="queryBoxScale" type="float" />
+          <xs:attribute name="stopHeightScale" type="float" />
+          <xs:attribute name="innerRadiusScale" type="float" />
+          <xs:attribute name="alignToSurface" type="boolString" />
+          <xs:attribute name="avgSurfaceNormalCoeff" type="float" />
+          <xs:attribute name="avgCylinderPositionCoeff" type="float" />
+          <xs:attribute name="maxHeightAboveGround" type="float" />
+          <xs:attribute name="targetingCylinderRadiusScale" type="float" />
+          <xs:attribute name="height" type="float" />
+          <xs:attribute name="radius" type="float" />
+          <xs:attribute name="gravity" type="float" />
+          <xs:attribute name="durationSec" type="float" />
+          <xs:attribute name="maxDistance" type="float" />
+          <xs:attribute name="maxAimAngleDeg" type="float" />
+          <xs:attribute name="liftImpulseScale" type="float" />
+          <xs:attribute name="centeringImpulseScale" type="float" />
+          <xs:attribute name="ZVelocityDamping" type="float" />
+          <xs:attribute name="XYVelocityDamping" type="float" />
+          <xs:attribute name="ZVelocityLerpCoeff" type="float" />
+          <xs:attribute name="XYVelocityLerpCoeff" type="float" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

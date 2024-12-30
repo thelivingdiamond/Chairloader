@@ -1,0 +1,1834 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="PlayerConfig">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Ability" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="partialTyphonThreshold" type="int32" />
+                    <xs:attribute name="fullTyphonThreshold" type="int32" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkAudioLogComponent" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="loadTime" type="float" />
+                    <xs:attribute name="loadTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="loadedTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkLiveTranscribeComponent" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="startNextIntervalMin" type="float" />
+                    <xs:attribute name="startNextIntervalMax" type="float" />
+                    <xs:attribute name="ringTime" type="float" />
+                    <xs:attribute name="startRingTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="answerCallTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkPlayerScopeComponent" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                    </xs:choice>
+                    <xs:attribute name="PostProcessId" type="ArkPostEffectId" />
+                    <xs:attribute name="ZoomDelta" type="float" />
+                    <xs:attribute name="FullyZoomedHFOV" type="float" />
+                    <xs:attribute name="DefaultZoomHFOV" type="float" />
+                    <xs:attribute name="DefaultZoomDuration" type="float" />
+                    <xs:attribute name="ZoomingInAudioTriggerName">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="ZoomingOutAudioTriggerName">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="OpenAudioTriggerName">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="CloseAudioTriggerName">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Audio" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="genderSwitch" type="string" />
+                    <xs:attribute name="maleState" type="string" />
+                    <xs:attribute name="femaleState" type="string" />
+                    <xs:attribute name="combatIntensityRtpc">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="combatIntensityEventStartThreshold" type="float" />
+                    <xs:attribute name="combatIntensityEventStopThreshold" type="float" />
+                    <xs:attribute name="combatSwitch">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="combatOnState">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="combatOffState">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="combatEndTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="setHelmetOnAtmosphere">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="setHelmetOnNoAtmosphere">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="setHelmetOffAtmosphere">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="setHelmetOffNoAtmosphere">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="helmetOn">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="helmetOff">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="AutoSave" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="healthThreshold" type="float" />
+                    <xs:attribute name="oxygenThreshold" type="float" />
+                    <xs:attribute name="blockedBySignalDuration" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Awareness" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="proxyDistance" type="float" />
+                    <xs:attribute name="obscuredButShownDuration" type="float" />
+                    <xs:attribute name="minTimeToBeShown" type="float" />
+                    <xs:attribute name="fullAwarenessDuration" type="float" />
+                    <xs:attribute name="fullAlphaDistance" type="float" />
+                    <xs:attribute name="zeroAlphaDistance" type="float" />
+                    <xs:attribute name="fullScaleDistance" type="float" />
+                    <xs:attribute name="minScaleDistance" type="float" />
+                    <xs:attribute name="minScale" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="CQC" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="minDistance" type="float" />
+                    <xs:attribute name="postProcessId">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Camera" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Lean" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="angleDegrees" type="float" />
+                              <xs:attribute name="offset" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="RecyclerGrenadeDeath" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="deathCameraSpeed" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="stanceChangeInterpSpeed" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Carry" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                      <xs:element name="DragCorpse" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Joints" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Joint" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Replace Only Node<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="name" type="string" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="height" type="float" />
+                              <xs:attribute name="distance" type="float" />
+                              <xs:attribute name="breakDistance" type="float" />
+                              <xs:attribute name="syncSpeed" type="float" />
+                              <xs:attribute name="remoteSyncSpeed" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="HoldDurations" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="leverageI" type="float" />
+                              <xs:attribute name="leverageII" type="float" />
+                              <xs:attribute name="leverageIII" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="KickBacks" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Level" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Replace Only Node<br /></xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="value" type="int32" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="syncSpeed" type="float" />
+                    <xs:attribute name="maxPullForce" type="float" />
+                    <xs:attribute name="maxPullForceZeroG" type="float" />
+                    <xs:attribute name="heightOffset" type="float" />
+                    <xs:attribute name="carryLerpSpeed" type="float" />
+                    <xs:attribute name="carryLerpSpeedObstructed" type="float" />
+                    <xs:attribute name="carryLerpAcceleration" type="float" />
+                    <xs:attribute name="carryLerpAccelerationObstructed" type="float" />
+                    <xs:attribute name="maxTimeAllowedUnderDesiredLerpVelocity" type="float" />
+                    <xs:attribute name="cameraRotationToEntityMinThreshold" type="float" />
+                    <xs:attribute name="cameraRotationToEntityMaxThreshold" type="float" />
+                    <xs:attribute name="sneakCameraPitchLimit" type="float" />
+                    <xs:attribute name="objectLengthRotationLimitScaleMin" type="float" />
+                    <xs:attribute name="objectLengthRotationLimitScaleMax" type="float" />
+                    <xs:attribute name="emitterDuration" type="float" />
+                    <xs:attribute name="opacity" type="float" />
+                    <xs:attribute name="breakDistance" type="float" />
+                    <xs:attribute name="collisionRestoreTime" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Examination" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Default" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                              <xs:attribute name="distFromTarget" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Telescope" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                              <xs:attribute name="lerpDuration" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="WorldUI" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                              <xs:attribute name="viewingBuffer" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="maxCameraRotation" type="float" />
+                    <xs:attribute name="cameraSpeedMultiplier" type="float" />
+                    <xs:attribute name="cameraLerpDuration" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Fatigue" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="fatigueRtpc" type="string" />
+                    <xs:attribute name="staminaPercentStartAudio" type="float" />
+                    <xs:attribute name="staminaPercentStopAudio" type="float" />
+                    <xs:attribute name="showUIPercent" type="float" />
+                    <xs:attribute name="startAudioTrigger" type="string" />
+                    <xs:attribute name="stopAudioTrigger" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Flashlight" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="DimRanges" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="DimRange" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Array item<br /></xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                        <xs:attribute name="diffuseMultiplier" type="float" />
+                                        <xs:attribute ref="ch:index" use="required" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="archetype" type="ArchetypeName" />
+                    <xs:attribute name="audio">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="attachment" type="string" />
+                    <xs:attribute name="dimStart" type="float" />
+                    <xs:attribute name="minDimAmount" type="float" />
+                    <xs:attribute name="dimRangeDeltaRate" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Health" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Feedback" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="lowHealth" type="float" />
+                              <xs:attribute name="nearDeath" type="float" />
+                              <xs:attribute name="lowHealthParticle">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="nearDeathParticle">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="nearDeathStingerAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="nearDeathStartAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="nearDeathStopAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="nearDeathIntensityRtpc" type="string" />
+                              <xs:attribute name="lowHealthPostEffect" type="ArkPostEffectId" />
+                              <xs:attribute name="nearDeathPostEffect" type="ArkPostEffectId" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="damageAudio">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="deathAudio" type="string" />
+                    <xs:attribute name="regenStartAudio" type="string" />
+                    <xs:attribute name="regenStopAudio" type="string" />
+                    <xs:attribute name="deathMenuDelay" type="float" />
+                    <xs:attribute name="deathCharacter" type="string" />
+                    <xs:attribute name="lastChanceTimeout" type="float" />
+                    <xs:attribute name="lastChanceAudio" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Helmet" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Oxygen" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Alarm" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Array item<br /></xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="threshold" type="float" />
+                                        <xs:attribute name="trigger" type="string" />
+                                        <xs:attribute name="stopTrigger">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute ref="ch:index" use="required" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="startAsphyxiatingAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="stopAsphyxiatingAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="deathFromAsphyxiationAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="asphyxiationAudioRtpc">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="startDepletingOxygenAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="oxygenAmountRtpc" type="string" />
+                              <xs:attribute name="stopDepletingOxygenAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="suitPatchedAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="signalModifier" type="ArkSignalModifierId" />
+                    <xs:attribute name="toleranceX" type="float" />
+                    <xs:attribute name="toleranceY" type="float" />
+                    <xs:attribute name="catchUpSpeed" type="float" />
+                    <xs:attribute name="reactDuration" type="float" />
+                    <xs:attribute name="crackSubMatId" type="int32" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ImpendingDanger" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="bufferRange" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Input" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Rotation" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="sprintSpeedScale" type="float" />
+                              <xs:attribute name="zoomSpeedScale" type="float" />
+                              <xs:attribute name="deadzone" type="float" />
+                              <xs:attribute name="accelerationThreshold" type="float" />
+                              <xs:attribute name="curvePercentSpeed" type="float" />
+                              <xs:attribute name="accelerationMaxTurnSpeed" type="float" />
+                              <xs:attribute name="accelerationRate" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="fearNoiseAmplitude" type="float" />
+                    <xs:attribute name="mimicGrabMashesRequired" type="float" />
+                    <xs:attribute name="sprintCancelForwardThreshold" type="float" />
+                    <xs:attribute name="sprintCancelBackwardThreshold" type="float" />
+                    <xs:attribute name="sprintCancelStrafeThreshold" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="LearnedNames" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="LearnedName" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "researchTopic" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="researchTopic" type="ArkResearchTopicId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="MarkedEnemies" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="durationToLoseTarget" type="float" />
+                    <xs:attribute name="markAddedAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="hiddenMarkAddedAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="markRemovedAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="fullAlphaDistance" type="float" />
+                    <xs:attribute name="zeroAlphaDistance" type="float" />
+                    <xs:attribute name="maxAngleForLabel" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Movement" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="CameraRoll" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="maxAngle" type="float" />
+                              <xs:attribute name="increaseSpeed" type="float" />
+                              <xs:attribute name="recoverySpeed" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Climb" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="mediumToHighThreshold" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Death" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="deathCamProbability" type="float" />
+                              <xs:attribute name="deathCamDelay" type="float" />
+                              <xs:attribute name="idealDeathCamDistance" type="float" />
+                              <xs:attribute name="idealDeathCamAngle" type="float" />
+                              <xs:attribute name="deathCamGravityMinAngle" type="float" />
+                              <xs:attribute name="timeScale" type="float" />
+                              <xs:attribute name="fullSlowDuration" type="float" />
+                              <xs:attribute name="rampUpSpeedDuration" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="DeathByRecyclerGrenade" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="duration" type="float" />
+                              <xs:attribute name="effectName" type="string" />
+                              <xs:attribute name="scaleName" type="string" />
+                              <xs:attribute name="scaleMin" type="float" />
+                              <xs:attribute name="scaleMax" type="float" />
+                              <xs:attribute name="postVFX" type="ArkPostEffectId" />
+                              <xs:attribute name="gammaParam" type="ArkPostEffectParamId" />
+                              <xs:attribute name="gammaMin" type="float" />
+                              <xs:attribute name="gammaMax" type="float" />
+                              <xs:attribute name="brightnessParam" type="ArkPostEffectParamId" />
+                              <xs:attribute name="brightnessMin" type="float" />
+                              <xs:attribute name="brightnessMax" type="float" />
+                              <xs:attribute name="saturationParam" type="ArkPostEffectParamId" />
+                              <xs:attribute name="saturationMin" type="float" />
+                              <xs:attribute name="saturationMax" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Fall" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="fatalSpeed" type="float" />
+                              <xs:attribute name="safeSpeed" type="float" />
+                              <xs:attribute name="traumaDmgSpeed" type="float" />
+                              <xs:attribute name="package" type="ArkSignalPackageId" />
+                              <xs:attribute name="bigBumpSpeed" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Ground" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Sprint" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="accelerationDuration" type="float" />
+                                        <xs:attribute name="startAudioTrigger">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="fullyAcceleratedAudioTrigger">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Stumble" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minXAdd" type="float" />
+                                        <xs:attribute name="maxXAdd" type="float" />
+                                        <xs:attribute name="minYScale" type="float" />
+                                        <xs:attribute name="maxYScale" type="float" />
+                                        <xs:attribute name="minListDuration" type="float" />
+                                        <xs:attribute name="maxListDuration" type="float" />
+                                        <xs:attribute name="stumbleDurationMin" type="float" />
+                                        <xs:attribute name="stumbleDurationMax" type="float" />
+                                        <xs:attribute name="stumbleBreakDurationMin" type="float" />
+                                        <xs:attribute name="stumbleBreakDurationMax" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="preLandJumpWindow" type="float" />
+                              <xs:attribute name="turnTravelAngle" type="float" />
+                              <xs:attribute name="turnTravelSpeed" type="float" />
+                              <xs:attribute name="leanPitchLimit" type="float" />
+                              <xs:attribute name="leanYawLimit" type="float" />
+                              <xs:attribute name="leanCancelSpeed" type="float" />
+                              <xs:attribute name="rotationCatchUpAngleThreshold" type="float" />
+                              <xs:attribute name="jumpWindow" type="float" />
+                              <xs:attribute name="groundProbeDistance" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Jump" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="minJumpHeight" type="float" />
+                              <xs:attribute name="maxJumpDuration" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Lift" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="postEffectId" type="ArkPostEffectId" />
+                              <xs:attribute name="particleEffectPath" type="string" />
+                              <xs:attribute name="enterAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="exitAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="inputMovementSpeed" type="float" />
+                              <xs:attribute name="propulsionMovementSpeed" type="float" />
+                              <xs:attribute name="upwardDamageSpeed" type="float" />
+                              <xs:attribute name="upwardDamagePackageId" type="ArkSignalPackageId" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Shift" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="speed" type="float" />
+                              <xs:attribute name="shiftForwardFov" type="float" />
+                              <xs:attribute name="shiftBackwardFov" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Smoke" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="speed" type="float" />
+                              <xs:attribute name="inertia" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ZeroG" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Align" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                        <xs:attribute name="rate" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Cruise" minOccurs="0" maxOccurs="unbounded" type="ArkPlayerZeroGMode" />
+                                <xs:element name="Effect" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="name" type="string" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Normal" minOccurs="0" maxOccurs="unbounded" type="ArkPlayerZeroGMode" />
+                                <xs:element name="OngoingLegend" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ArkInputLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Roll" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="velocity" type="float" />
+                                        <xs:attribute name="acceleration" type="float" />
+                                        <xs:attribute name="deceleration" type="float" />
+                                        <xs:attribute name="yInputDeadzone" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Sprint" minOccurs="0" maxOccurs="unbounded" type="ArkPlayerZeroGMode" />
+                              </xs:choice>
+                              <xs:attribute name="bodyCollisionPackageId" type="ArkSignalPackageId" />
+                              <xs:attribute name="headCollisionPackageId" type="ArkSignalPackageId" />
+                              <xs:attribute name="maxCollisionAngle" type="float" />
+                              <xs:attribute name="gameNoiseType" type="ArkGameNoiseTypeId" />
+                              <xs:attribute name="gameNoiseLoudness" type="ArkGameNoiseLoudnessId" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="climbHorizontalFromEdgeProbeDistance" type="float" />
+                    <xs:attribute name="climbVerticalReachDistance" type="float" />
+                    <xs:attribute name="climbVerticalNormalMaxAngle" type="float" />
+                    <xs:attribute name="airControl" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="NPCTargeting" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="attackTargetPosHeightPercent" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Pharma" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="expirationWarningDuration" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Propulsion" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="JetPackNoise" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="type" type="ArkGameNoiseTypeId" />
+                              <xs:attribute name="loudness" type="ArkGameNoiseLoudnessId" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="cameraFrequency" type="float" />
+                    <xs:attribute name="cameraAmplitude" type="float" />
+                    <xs:attribute name="cameraNoise" type="float" />
+                    <xs:attribute name="cameraMinFalloff" type="float" />
+                    <xs:attribute name="cameraFalloffDuration" type="float" />
+                    <xs:attribute name="audioTrigger_start">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="audioTrigger_stop">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Radiation" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="mediumThreshold" type="float" />
+                    <xs:attribute name="highThreshold" type="float" />
+                    <xs:attribute name="lowLevelFlashRate" type="float" />
+                    <xs:attribute name="mediumLevelFlashRate" type="float" />
+                    <xs:attribute name="highLevelFlashRate" type="float" />
+                    <xs:attribute name="radiationAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="radiationAudioTriggerStop">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="radiationPerSecRtpc" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Stats" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Stat" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="name" type="ArkPlayerStatNameDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="value" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="packageFile" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Status" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="hudIconBlinkRate" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Weapon" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="weaponCameraSpeedMultiplierAcceleration" type="float" />
+                    <xs:attribute name="aimAssistTargetRange" type="float" />
+                    <xs:attribute name="gameLogReportWindow" type="float" />
+                    <xs:attribute name="sneakAttackAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="criticalHitAudioTrigger">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="quickSelectTimeout" type="float" />
+          <xs:attribute name="knockdownLoopDuration" type="float" />
+          <xs:attribute name="maxNumDamageIndicators" type="int32" />
+          <xs:attribute name="enemyHealthTimeout" type="float" />
+          <xs:attribute name="coralSignalPackageId" type="ArkSignalPackageId" />
+          <xs:attribute name="coralInteractionRate" type="float" />
+          <xs:attribute name="lookAtFarRange" type="float" />
+          <xs:attribute name="idleFragmentSpeedThreshold" type="float" />
+          <xs:attribute name="targetingAttachment" type="string" />
+          <xs:attribute name="criticalHitMetaTags" type="string" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

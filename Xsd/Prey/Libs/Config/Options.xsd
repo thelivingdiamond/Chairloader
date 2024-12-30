@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkOptionLayout">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Pages" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkOptionLayoutPage" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="SubPages" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ArkOptionLayoutSubPage" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Attributes" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:choice maxOccurs="unbounded">
+                                                              <xs:element name="ArkOptionAttribute" minOccurs="0" maxOccurs="unbounded">
+                                                                <xs:complexType>
+                                                                  <xs:annotation>
+                                                                    <xs:documentation>Array item<br /></xs:documentation>
+                                                                  </xs:annotation>
+                                                                  <xs:complexContent>
+                                                                    <xs:extension base="MetaType">
+                                                                      <xs:choice maxOccurs="unbounded">
+                                                                        <xs:element name="Subactions" minOccurs="0" maxOccurs="unbounded">
+                                                                          <xs:complexType>
+                                                                            <xs:annotation>
+                                                                              <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:complexContent>
+                                                                              <xs:extension base="MetaType">
+                                                                                <xs:choice maxOccurs="unbounded">
+                                                                                  <xs:element name="ArkOptionSubAction" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: "Action" </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType">
+                                                                                          <xs:attribute name="Action" type="string" use="required">
+                                                                                            <xs:annotation>
+                                                                                              <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                          </xs:attribute>
+                                                                                        </xs:extension>
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                </xs:choice>
+                                                                              </xs:extension>
+                                                                            </xs:complexContent>
+                                                                          </xs:complexType>
+                                                                        </xs:element>
+                                                                        <xs:element name="Widget" minOccurs="0" maxOccurs="unbounded">
+                                                                          <xs:complexType>
+                                                                            <xs:annotation>
+                                                                              <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                            </xs:annotation>
+                                                                            <xs:complexContent>
+                                                                              <xs:extension base="MetaType">
+                                                                                <xs:choice maxOccurs="unbounded">
+                                                                                  <xs:element name="ArkOptionAudioLanguage" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionButton" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionControlMap" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionDropDown" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType">
+                                                                                          <xs:choice maxOccurs="unbounded">
+                                                                                            <xs:element name="Options" minOccurs="0" maxOccurs="unbounded">
+                                                                                              <xs:complexType>
+                                                                                                <xs:annotation>
+                                                                                                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                                </xs:annotation>
+                                                                                                <xs:complexContent>
+                                                                                                  <xs:extension base="MetaType">
+                                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                                      <xs:element name="ArkOption" minOccurs="0" maxOccurs="unbounded">
+                                                                                                        <xs:complexType>
+                                                                                                          <xs:annotation>
+                                                                                                            <xs:documentation>Array item<br /></xs:documentation>
+                                                                                                          </xs:annotation>
+                                                                                                          <xs:complexContent>
+                                                                                                            <xs:extension base="MetaType">
+                                                                                                              <xs:attribute name="Label" type="string" />
+                                                                                                              <xs:attribute name="Value" type="string" />
+                                                                                                              <xs:attribute ref="ch:index" use="required" />
+                                                                                                            </xs:extension>
+                                                                                                          </xs:complexContent>
+                                                                                                        </xs:complexType>
+                                                                                                      </xs:element>
+                                                                                                    </xs:choice>
+                                                                                                  </xs:extension>
+                                                                                                </xs:complexContent>
+                                                                                              </xs:complexType>
+                                                                                            </xs:element>
+                                                                                          </xs:choice>
+                                                                                        </xs:extension>
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionList" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType">
+                                                                                          <xs:choice maxOccurs="unbounded">
+                                                                                            <xs:element name="Options" minOccurs="0" maxOccurs="unbounded">
+                                                                                              <xs:complexType>
+                                                                                                <xs:annotation>
+                                                                                                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                                </xs:annotation>
+                                                                                                <xs:complexContent>
+                                                                                                  <xs:extension base="MetaType">
+                                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                                      <xs:element name="ArkDifficultyOption" minOccurs="0" maxOccurs="unbounded">
+                                                                                                        <xs:complexType>
+                                                                                                          <xs:annotation>
+                                                                                                            <xs:documentation>Array item<br /></xs:documentation>
+                                                                                                          </xs:annotation>
+                                                                                                          <xs:complexContent>
+                                                                                                            <xs:extension base="MetaType">
+                                                                                                              <xs:attribute name="Label" type="string" />
+                                                                                                              <xs:attribute name="label" type="string" />
+                                                                                                              <xs:attribute name="Value" type="string" />
+                                                                                                              <xs:attribute name="value" type="string" />
+                                                                                                              <xs:attribute ref="ch:index" use="required" />
+                                                                                                            </xs:extension>
+                                                                                                          </xs:complexContent>
+                                                                                                        </xs:complexType>
+                                                                                                      </xs:element>
+                                                                                                      <xs:element name="ArkOption" minOccurs="0" maxOccurs="unbounded">
+                                                                                                        <xs:complexType>
+                                                                                                          <xs:annotation>
+                                                                                                            <xs:documentation>Array item<br /></xs:documentation>
+                                                                                                          </xs:annotation>
+                                                                                                          <xs:complexContent>
+                                                                                                            <xs:extension base="MetaType">
+                                                                                                              <xs:attribute name="Label" type="string" />
+                                                                                                              <xs:attribute name="Value" type="string" />
+                                                                                                              <xs:attribute name="Hidden" type="boolString" />
+                                                                                                              <xs:attribute ref="ch:index" use="required" />
+                                                                                                            </xs:extension>
+                                                                                                          </xs:complexContent>
+                                                                                                        </xs:complexType>
+                                                                                                      </xs:element>
+                                                                                                    </xs:choice>
+                                                                                                  </xs:extension>
+                                                                                                </xs:complexContent>
+                                                                                              </xs:complexType>
+                                                                                            </xs:element>
+                                                                                          </xs:choice>
+                                                                                        </xs:extension>
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionMonitor" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionResolution" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionSlider" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType">
+                                                                                          <xs:attribute name="Min" type="float" />
+                                                                                          <xs:attribute name="Max" type="float" />
+                                                                                          <xs:attribute name="Decimals" type="int32" />
+                                                                                          <xs:attribute name="Unit" type="float" />
+                                                                                          <xs:attribute name="Normalize" type="boolString" />
+                                                                                        </xs:extension>
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionTextLanguage" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType" />
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                  <xs:element name="ArkOptionToggle" minOccurs="0" maxOccurs="unbounded">
+                                                                                    <xs:complexType>
+                                                                                      <xs:annotation>
+                                                                                        <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                      </xs:annotation>
+                                                                                      <xs:complexContent>
+                                                                                        <xs:extension base="MetaType">
+                                                                                          <xs:choice maxOccurs="unbounded">
+                                                                                            <xs:element name="Option0" minOccurs="0" maxOccurs="unbounded">
+                                                                                              <xs:complexType>
+                                                                                                <xs:annotation>
+                                                                                                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                                </xs:annotation>
+                                                                                                <xs:complexContent>
+                                                                                                  <xs:extension base="MetaType">
+                                                                                                    <xs:attribute name="Label" type="string" />
+                                                                                                    <xs:attribute name="label" type="string" />
+                                                                                                    <xs:attribute name="Value" type="string" />
+                                                                                                    <xs:attribute name="value" type="string" />
+                                                                                                  </xs:extension>
+                                                                                                </xs:complexContent>
+                                                                                              </xs:complexType>
+                                                                                            </xs:element>
+                                                                                            <xs:element name="Option1" minOccurs="0" maxOccurs="unbounded">
+                                                                                              <xs:complexType>
+                                                                                                <xs:annotation>
+                                                                                                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                                                                </xs:annotation>
+                                                                                                <xs:complexContent>
+                                                                                                  <xs:extension base="MetaType">
+                                                                                                    <xs:attribute name="Label" type="string" />
+                                                                                                    <xs:attribute name="label" type="string" />
+                                                                                                    <xs:attribute name="Value" type="string" />
+                                                                                                    <xs:attribute name="value" type="string" />
+                                                                                                  </xs:extension>
+                                                                                                </xs:complexContent>
+                                                                                              </xs:complexType>
+                                                                                            </xs:element>
+                                                                                          </xs:choice>
+                                                                                        </xs:extension>
+                                                                                      </xs:complexContent>
+                                                                                    </xs:complexType>
+                                                                                  </xs:element>
+                                                                                </xs:choice>
+                                                                              </xs:extension>
+                                                                            </xs:complexContent>
+                                                                          </xs:complexType>
+                                                                        </xs:element>
+                                                                      </xs:choice>
+                                                                      <xs:attribute name="Action" type="string" />
+                                                                      <xs:attribute name="Label" type="string" />
+                                                                      <xs:attribute name="SetOnChange" type="boolString" />
+                                                                      <xs:attribute name="HideOnFrontend" type="boolString" />
+                                                                      <xs:attribute name="HideFromProfile" type="boolString" />
+                                                                      <xs:attribute name="HideInGame" type="boolString" />
+                                                                      <xs:attribute name="HideForSteamController" type="boolString" />
+                                                                      <xs:attribute name="WriteConfigFile" type="boolString" />
+                                                                      <xs:attribute name="WaitForTextureReload" type="boolString" />
+                                                                      <xs:attribute name="Hidden" type="boolString" />
+                                                                      <xs:attribute name="Default" type="string" />
+                                                                      <xs:attribute name="Platform" type="string" />
+                                                                      <xs:attribute name="HideOnPC" type="boolString" />
+                                                                      <xs:attribute name="HideOnQuasimodo" type="boolString" />
+                                                                      <xs:attribute ref="ch:index" use="required" />
+                                                                    </xs:extension>
+                                                                  </xs:complexContent>
+                                                                </xs:complexType>
+                                                              </xs:element>
+                                                            </xs:choice>
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                  <xs:attribute name="Label">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="LabelPS4" type="string" />
+                                                  <xs:attribute name="Warning" type="string" />
+                                                  <xs:attribute name="Keybinds" type="boolString" />
+                                                  <xs:attribute name="Platform" type="string" />
+                                                  <xs:attribute name="RequiresApply" type="boolString" />
+                                                  <xs:attribute name="WriteConfigFile" type="boolString" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="Label" type="string" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

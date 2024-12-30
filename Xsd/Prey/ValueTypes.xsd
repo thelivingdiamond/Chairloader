@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:simpleType name="Ang3">
+    <xs:restriction base="Vec3" />
+  </xs:simpleType>
+  <xs:simpleType name="ArchetypeId">
+    <xs:restriction base="uint64" />
+  </xs:simpleType>
+  <xs:simpleType name="ArchetypeIdDef">
+    <xs:restriction base="uint64" />
+  </xs:simpleType>
+  <xs:simpleType name="ArchetypeName">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="ArchetypeNameDef">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAbilityId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAbilityIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAudioLogCollectionId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAudioLogCollectionIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAudioLogId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkAudioLogIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkButtonUtilityId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkButtonUtilityIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCameraShakeChannelId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCameraShakeChannelIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCameraShakeId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCameraShakeIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterEffectId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterEffectIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterGroupId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterGroupIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkCharacterIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkConversationId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkConversationIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogResponseId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogResponseIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogResponseSetId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogResponseSetIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogVoiceId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDialogVoiceIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDisruptionProfileId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDisruptionProfileIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDistractorId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkDistractorIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEmailId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEmailIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEmotionId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEmotionIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEntitlementId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEntitlementIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEntitlementUnlockId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEntitlementUnlockIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEventDrivenAchievementId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkEventDrivenAchievementIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkFabricationPlanId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkFabricationPlanIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkFactionId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkFactionIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameMetricId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameMetricIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameNoiseLoudnessId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameNoiseLoudnessIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameNoiseTypeId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameNoiseTypeIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameStateConditionId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGameStateConditionIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGlintConfigId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkGlintConfigIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkKeyCardId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkKeyCardIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkKeyCodeId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkKeyCodeIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLightDisruptionProfileId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLightDisruptionProfileIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLocationId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLocationIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLoreEntryId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkLoreEntryIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkMaterialAnimationId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkMaterialAnimationIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkMetaTagId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkMetaTagIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkNoteId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkNoteIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveClueId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveClueIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveDescId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveDescIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveTaskId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkObjectiveTaskIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPackageSignalRampId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPackageSignalRampIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPlayerStatName">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPlayerStatNameDef">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPoiId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPoiIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPostEffectId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPostEffectIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPostEffectParamId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkPostEffectParamIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkRemoteEventId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkRemoteEventIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkResearchTopicId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkResearchTopicIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSecurityStationId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSecurityStationIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalFXId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalFXIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalGroupId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalGroupIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalModifierId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalModifierIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalPackageId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalPackageIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalReceiverId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkSignalReceiverIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStatModifierPackageId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStatModifierPackageIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStationAirlockId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStationAirlockIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStationPathId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkStationPathIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipLockId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipLockIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipSequenceId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTipSequenceIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTraumaId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTraumaIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTutorialId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkTutorialIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkUniqueId">
+    <xs:restriction base="uint64" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkVisionConeId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkVisionConeIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWeaponModifierId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWeaponModifierIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWorkstationDownloadId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWorkstationDownloadIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWorkstationId">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="ArkWorkstationIdDef">
+    <xs:restriction base="ArkUniqueId" />
+  </xs:simpleType>
+  <xs:simpleType name="DialogId">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="DialogIdDef">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityClass">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityClassDef">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityGuid">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityGuidDef">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityId">
+    <xs:restriction base="uint16" />
+  </xs:simpleType>
+  <xs:simpleType name="EntityIdDef">
+    <xs:restriction base="uint16" />
+  </xs:simpleType>
+  <xs:simpleType name="GameTokenId">
+    <xs:restriction base="int32" />
+  </xs:simpleType>
+  <xs:simpleType name="GameTokenIdDef">
+    <xs:restriction base="int32" />
+  </xs:simpleType>
+  <xs:simpleType name="GameTokenName">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="GameTokenNameDef">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="GuidNoBraces">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="GuidWithBraces">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LocalArchetypeName">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="LocalArchetypeNameDef">
+    <xs:restriction base="string" />
+  </xs:simpleType>
+  <xs:simpleType name="Quat">
+    <xs:restriction base="Vec4" />
+  </xs:simpleType>
+  <xs:simpleType name="Vec2">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Vec3">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Vec4">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+),\s*([\d\.+e-]+)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VoiceId">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="VoiceIdDef">
+    <xs:restriction base="uint64_hex" />
+  </xs:simpleType>
+  <xs:simpleType name="bool">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="false" />
+      <xs:enumeration value="true" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="boolInt">
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="boolString">
+    <xs:restriction base="xs:boolean" />
+  </xs:simpleType>
+  <xs:simpleType name="float">
+    <xs:restriction base="xs:double" />
+  </xs:simpleType>
+  <xs:simpleType name="int16">
+    <xs:restriction base="xs:short" />
+  </xs:simpleType>
+  <xs:simpleType name="int32">
+    <xs:restriction base="xs:int" />
+  </xs:simpleType>
+  <xs:simpleType name="int64">
+    <xs:restriction base="xs:long" />
+  </xs:simpleType>
+  <xs:simpleType name="int8">
+    <xs:restriction base="xs:byte" />
+  </xs:simpleType>
+  <xs:simpleType name="string">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="uint16">
+    <xs:restriction base="xs:unsignedShort" />
+  </xs:simpleType>
+  <xs:simpleType name="uint32">
+    <xs:restriction base="xs:unsignedInt" />
+  </xs:simpleType>
+  <xs:simpleType name="uint64">
+    <xs:restriction base="xs:unsignedLong" />
+  </xs:simpleType>
+  <xs:simpleType name="uint64_hex">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-fA-F]{1,16}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="uint8">
+    <xs:restriction base="xs:unsignedByte" />
+  </xs:simpleType>
+</xs:schema>

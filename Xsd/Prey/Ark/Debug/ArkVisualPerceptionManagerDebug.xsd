@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkVisualPerceptionManager">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Debug" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="perceiverBoundsColorR" type="uint8" />
+                    <xs:attribute name="perceiverBoundsColorG" type="uint8" />
+                    <xs:attribute name="perceiverBoundsColorB" type="uint8" />
+                    <xs:attribute name="simplePerceivableBoundsColorR" type="uint8" />
+                    <xs:attribute name="simplePerceivableBoundsColorG" type="uint8" />
+                    <xs:attribute name="simplePerceivableBoundsColorB" type="uint8" />
+                    <xs:attribute name="complexPerceivableBoundsColorR" type="uint8" />
+                    <xs:attribute name="complexPerceivableBoundsColorG" type="uint8" />
+                    <xs:attribute name="complexPerceivableBoundsColorB" type="uint8" />
+                    <xs:attribute name="visionConeLongitudeCount" type="float" />
+                    <xs:attribute name="visionConeLattitudinalIncrement" type="float" />
+                    <xs:attribute name="visionConeLineColorR" type="uint8" />
+                    <xs:attribute name="visionConeLineColorG" type="uint8" />
+                    <xs:attribute name="visionConeLineColorB" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeLineColorR" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeLineColorG" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeLineColorB" type="uint8" />
+                    <xs:attribute name="visionConeAcuteLineColorR" type="uint8" />
+                    <xs:attribute name="visionConeAcuteLineColorG" type="uint8" />
+                    <xs:attribute name="visionConeAcuteLineColorB" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeAcuteLineColorR" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeAcuteLineColorG" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeAcuteLineColorB" type="uint8" />
+                    <xs:attribute name="visionConeXRayLineColorR" type="uint8" />
+                    <xs:attribute name="visionConeXRayLineColorG" type="uint8" />
+                    <xs:attribute name="visionConeXRayLineColorB" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeXRayLineColorR" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeXRayLineColorG" type="uint8" />
+                    <xs:attribute name="secondaryVisionConeXRayLineColorB" type="uint8" />
+                    <xs:attribute name="eyePositionRadius" type="float" />
+                    <xs:attribute name="visionMagnitudeFontSize" type="float" />
+                    <xs:attribute name="visionMagnitudeColorR" type="uint8" />
+                    <xs:attribute name="visionMagnitudeColorG" type="uint8" />
+                    <xs:attribute name="visionMagnitudeColorB" type="uint8" />
+                    <xs:attribute name="bVisionMagnitudeFixedSize" type="boolString" />
+                    <xs:attribute name="visionConeSampleGridSize" type="float" />
+                    <xs:attribute name="visionConeSamplePointRadius" type="float" />
+                    <xs:attribute name="visionConeSamplePointDisplacement" type="float" />
+                    <xs:attribute name="visionConeSamplePointColorR" type="uint8" />
+                    <xs:attribute name="visionConeSamplePointColorG" type="uint8" />
+                    <xs:attribute name="visionConeSamplePointColorB" type="uint8" />
+                    <xs:attribute name="bDrawShadedVisionConeSamplePoint" type="boolString" />
+                    <xs:attribute name="dropoffChartLocationX" type="float" />
+                    <xs:attribute name="dropoffChartLocationY" type="float" />
+                    <xs:attribute name="dropoffChartSecondaryLocationX" type="float" />
+                    <xs:attribute name="dropoffChartSecondaryLocationY" type="float" />
+                    <xs:attribute name="dropoffChartWidth" type="float" />
+                    <xs:attribute name="dropoffChartHeight" type="float" />
+                    <xs:attribute name="dropoffChartXMajorDataUnits" type="float" />
+                    <xs:attribute name="dropoffChartYMajorDataUnits" type="float" />
+                    <xs:attribute name="dropoffChartXMinorDataUnits" type="float" />
+                    <xs:attribute name="dropoffChartYMinorDataUnits" type="float" />
+                    <xs:attribute name="dropoffChartAxisColorR" type="uint8" />
+                    <xs:attribute name="dropoffChartAxisColorG" type="uint8" />
+                    <xs:attribute name="dropoffChartAxisColorB" type="uint8" />
+                    <xs:attribute name="dropoffChartLineColorR" type="uint8" />
+                    <xs:attribute name="dropoffChartLineColorG" type="uint8" />
+                    <xs:attribute name="dropoffChartLineColorB" type="uint8" />
+                    <xs:attribute name="dropoffChartSampleTickColorR" type="uint8" />
+                    <xs:attribute name="dropoffChartSampleTickColorG" type="uint8" />
+                    <xs:attribute name="dropoffChartSampleTickColorB" type="uint8" />
+                    <xs:attribute name="dropoffChartAxisThickness" type="float" />
+                    <xs:attribute name="dropoffChartLineThickness" type="float" />
+                    <xs:attribute name="dropoffChartSampleTickThickness" type="float" />
+                    <xs:attribute name="dropoffChartAxisMajorTickLength" type="float" />
+                    <xs:attribute name="dropoffChartAxisMinorTickLength" type="float" />
+                    <xs:attribute name="dropoffChartSampleTickLength" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

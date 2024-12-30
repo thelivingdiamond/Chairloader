@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="Mission">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="ArkAutoMap" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="PixelsPerMeter" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ArkLevelProperties" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Group" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Location" type="ArkLocationId" />
+                              <xs:attribute name="HelmetOn" type="boolInt" />
+                              <xs:attribute name="AllowSaveGameToken" type="GameTokenId" />
+                              <xs:attribute name="SafeBoundsMax" type="Vec3" />
+                              <xs:attribute name="SafeBoundsMin" type="Vec3" />
+                              <xs:attribute name="PlayerWarningBuffer" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Environment" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="CloudShadows" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="CloudShadowTexture">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="CloudShadowSpeed" type="Vec3" />
+                              <xs:attribute name="CloudShadowTiling" type="boolInt" />
+                              <xs:attribute name="CloudShadowBrightness" type="float" />
+                              <xs:attribute name="CloudShadowInvert" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Color_Grading" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="LevelColorGradient">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="DynTexSource" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Width" type="int32" />
+                              <xs:attribute name="Height" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="EnvState" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="WindVector" type="Vec3" />
+                              <xs:attribute name="BreezeGeneration" type="boolInt" />
+                              <xs:attribute name="BreezeStrength" type="float" />
+                              <xs:attribute name="BreezeMovementSpeed" type="float" />
+                              <xs:attribute name="BreezeVariation" type="float" />
+                              <xs:attribute name="BreezeLifeTime" type="float" />
+                              <xs:attribute name="BreezeCount" type="int32" />
+                              <xs:attribute name="BreezeSpawnRadius" type="float" />
+                              <xs:attribute name="BreezeSpread" type="float" />
+                              <xs:attribute name="BreezeRadius" type="float" />
+                              <xs:attribute name="BreezeAwakeThreshold" type="float" />
+                              <xs:attribute name="ConsoleMergedMeshesPool" type="int32" />
+                              <xs:attribute name="ShowTerrainSurface" type="bool" />
+                              <xs:attribute name="SunShadowsMinSpec" type="int32" />
+                              <xs:attribute name="SunShadowsAdditionalCascadeMinSpec" type="int32" />
+                              <xs:attribute name="SunShadowsClipPlaneRange" type="float" />
+                              <xs:attribute name="SunShadowsClipPlaneRangeShift" type="float" />
+                              <xs:attribute name="UseLayersActivation" type="boolInt" />
+                              <xs:attribute name="SunLinkedToTOD" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Fog" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ViewDistance" type="float" />
+                              <xs:attribute name="ViewDistanceLowSpec" type="int32" />
+                              <xs:attribute name="LDRGlobalDensMult" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Lighting" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="SunRotation" type="float" />
+                              <xs:attribute name="SunHeight" type="float" />
+                              <xs:attribute name="Algorithm" type="int32" />
+                              <xs:attribute name="Lighting" type="boolInt" />
+                              <xs:attribute name="Shadows" type="boolInt" />
+                              <xs:attribute name="ShadowIntensity" type="int32" />
+                              <xs:attribute name="ILQuality" type="int32" />
+                              <xs:attribute name="HemiSamplQuality" type="int32" />
+                              <xs:attribute name="Longitude" type="float" />
+                              <xs:attribute name="Elevation" type="float" />
+                              <xs:attribute name="DawnTime" type="int32" />
+                              <xs:attribute name="DawnDuration" type="float" />
+                              <xs:attribute name="DuskTime" type="int32" />
+                              <xs:attribute name="DuskDuration" type="float" />
+                              <xs:attribute name="SceneIndex" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="LookingGlass" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Enabled" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Moon" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Latitude" type="float" />
+                              <xs:attribute name="Longitude" type="float" />
+                              <xs:attribute name="Size" type="float" />
+                              <xs:attribute name="Texture">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Ocean" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Material" type="string" />
+                              <xs:attribute name="CausticDepth" type="float" />
+                              <xs:attribute name="CausticIntensity" type="float" />
+                              <xs:attribute name="CausticsTilling" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="OceanAnimation" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="WindDirection" type="float" />
+                              <xs:attribute name="WindSpeed" type="float" />
+                              <xs:attribute name="WavesSpeed" type="float" />
+                              <xs:attribute name="WavesAmount" type="float" />
+                              <xs:attribute name="WavesSize" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ParticleLighting" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="AmbientMul" type="float" />
+                              <xs:attribute name="LightsMul" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="SkyBox" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="UseEarthSkyBox" type="boolInt" />
+                              <xs:attribute name="Material" type="string" />
+                              <xs:attribute name="MaterialLowSpec" type="string" />
+                              <xs:attribute name="Angle" type="float" />
+                              <xs:attribute name="Stretching" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="SunShadows" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="CascadeCount" type="int32" />
+                              <xs:attribute name="FirstCachedCascade" type="int32" />
+                              <xs:attribute name="DynamicDistance" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Terrain" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="DetailLayersViewDistRatio" type="float" />
+                              <xs:attribute name="Scene" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Total_Illumination_v2" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Active" type="boolInt" />
+                              <xs:attribute name="IntegrationMode" type="int32" />
+                              <xs:attribute name="InjectionMultiplier" type="float" />
+                              <xs:attribute name="SkyColorMultiplier" type="float" />
+                              <xs:attribute name="UseTODSkyColor" type="float" />
+                              <xs:attribute name="PortalsDeform" type="boolInt" />
+                              <xs:attribute name="PortalsInject" type="boolInt" />
+                              <xs:attribute name="DiffuseAmplifier" type="float" />
+                              <xs:attribute name="SpecularAmplifier" type="float" />
+                              <xs:attribute name="NumberOfBounces" type="int32" />
+                              <xs:attribute name="Saturation" type="float" />
+                              <xs:attribute name="PropagationBooster" type="float" />
+                              <xs:attribute name="DiffuseBias" type="float" />
+                              <xs:attribute name="DiffuseConeWidth" type="float" />
+                              <xs:attribute name="ConeMaxLength" type="float" />
+                              <xs:attribute name="UpdateLighting" type="boolInt" />
+                              <xs:attribute name="UpdateGeometry" type="boolInt" />
+                              <xs:attribute name="MinNodeSize" type="int32" />
+                              <xs:attribute name="SkipNonGILights" type="boolInt" />
+                              <xs:attribute name="LowSpecMode" type="boolInt" />
+                              <xs:attribute name="HalfresKernel" type="boolInt" />
+                              <xs:attribute name="UseLightProbes" type="boolInt" />
+                              <xs:attribute name="VoxelizaionLODRatio" type="float" />
+                              <xs:attribute name="VoxelPoolResolution" type="int32" />
+                              <xs:attribute name="SSAOAmount" type="float" />
+                              <xs:attribute name="ObjectsMaxViewDistance" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="VolFogShadows" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Enable" type="boolInt" />
+                              <xs:attribute name="EnableForClouds" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="VolumetricFog" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="Enable" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="MiniMap" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="CenterX" type="float" />
+                    <xs:attribute name="CenterY" type="float" />
+                    <xs:attribute name="ExtendsX" type="float" />
+                    <xs:attribute name="ExtendsY" type="float" />
+                    <xs:attribute name="TexWidth" type="int32" />
+                    <xs:attribute name="TexHeight" type="int32" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Objects" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Entity" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "EntityGuid" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Area" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="BezierPoints" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="Pos" type="Vec3" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="Entities" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Entity" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: "Id" </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="Id" type="EntityId" use="required">
+                                                              <xs:annotation>
+                                                                <xs:documentation>[KEY] </xs:documentation>
+                                                              </xs:annotation>
+                                                            </xs:attribute>
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="Points" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="Pos" type="Vec3" />
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="SoundData" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Side1" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Side2" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Side3" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Side4" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Side5" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Side6" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="ObstructSound" type="boolInt" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="Id" type="int32" />
+                                        <xs:attribute name="Group" type="int32" />
+                                        <xs:attribute name="Proximity" type="int32" />
+                                        <xs:attribute name="Priority" type="int32" />
+                                        <xs:attribute name="DontDisableInvisible" type="boolInt" />
+                                        <xs:attribute name="Gravity" type="float" />
+                                        <xs:attribute name="BoxMin" type="Vec3" />
+                                        <xs:attribute name="BoxMax" type="Vec3" />
+                                        <xs:attribute name="Height" type="float" />
+                                        <xs:attribute name="VolumeRadius" type="float" />
+                                        <xs:attribute name="SphereCenter" type="Vec3" />
+                                        <xs:attribute name="SphereRadius" type="float" />
+                                        <xs:attribute name="AreaSolidFileName" type="string" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ClipVolume" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="GeometryFileName" type="string" />
+                                        <xs:attribute name="SceneMask" type="int32" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="EntityLinks" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Link" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "TargetId" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="TargetId" type="EntityId" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="Name">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="FlowGraph" minOccurs="0" maxOccurs="unbounded" type="FlowGraph" />
+                                <xs:element name="PhysicsState" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="joint" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="q" type="Vec3" />
+                                                  <xs:attribute name="qext" type="Vec3" />
+                                                  <xs:attribute name="q0changed" type="boolInt" />
+                                                  <xs:attribute name="quat0" type="Quat" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="awake" type="boolInt" />
+                                        <xs:attribute name="pos" type="Vec3" />
+                                        <xs:attribute name="numjoints" type="int32" />
+                                        <xs:attribute name="offsPivot" type="Vec3" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="RenderProxy" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType" />
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Rope" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Points" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Array item<br /></xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:attribute name="Pos" type="Vec3" />
+                                                            <xs:attribute ref="ch:index" use="required" />
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="flags" type="int32" />
+                                        <xs:attribute name="radius" type="float" />
+                                        <xs:attribute name="anchor_radius" type="float" />
+                                        <xs:attribute name="num_seg" type="int32" />
+                                        <xs:attribute name="num_sides" type="int32" />
+                                        <xs:attribute name="texu" type="float" />
+                                        <xs:attribute name="texv" type="float" />
+                                        <xs:attribute name="ph_num_seg" type="int32" />
+                                        <xs:attribute name="ph_sub_vtxs" type="int32" />
+                                        <xs:attribute name="mass" type="float" />
+                                        <xs:attribute name="friction" type="float" />
+                                        <xs:attribute name="friction_pull" type="float" />
+                                        <xs:attribute name="wind" type="Vec3" />
+                                        <xs:attribute name="wind_var" type="float" />
+                                        <xs:attribute name="air_resist" type="float" />
+                                        <xs:attribute name="water_resist" type="float" />
+                                        <xs:attribute name="joint_lim" type="float" />
+                                        <xs:attribute name="max_force" type="float" />
+                                        <xs:attribute name="tension" type="float" />
+                                        <xs:attribute name="max_iters" type="int32" />
+                                        <xs:attribute name="max_time_step" type="float" />
+                                        <xs:attribute name="stiffness" type="float" />
+                                        <xs:attribute name="hardness" type="float" />
+                                        <xs:attribute name="damping" type="float" />
+                                        <xs:attribute name="sleepSpeed" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Properties" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:any processContents="skip" minOccurs="0" />
+                                        </xs:choice>
+                                        <xs:anyAttribute processContents="skip" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Properties2" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:any processContents="skip" minOccurs="0" />
+                                        </xs:choice>
+                                        <xs:anyAttribute processContents="skip" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="Name">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] [MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Layer" type="string" />
+                              <xs:attribute name="HiddenInGame" type="boolInt" />
+                              <xs:attribute name="Pos" type="Vec3" />
+                              <xs:attribute name="Rotate" type="Quat" />
+                              <xs:attribute name="Scale" type="Vec3" />
+                              <xs:attribute name="AttachmentType" type="string" />
+                              <xs:attribute name="AttachmentTarget" type="string" />
+                              <xs:attribute name="Archetype" type="ArchetypeName" />
+                              <xs:attribute name="EntityClass" type="string" />
+                              <xs:attribute name="EntityId" type="EntityIdDef" />
+                              <xs:attribute name="EntityGuid" type="EntityGuidDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute ref="ch:fakeGuid" />
+                              <xs:attribute name="ParentId" type="EntityId" />
+                              <xs:attribute name="CastShadowViewDistRatio" type="float" />
+                              <xs:attribute name="CastShadowMinSpec" type="int32" />
+                              <xs:attribute name="CastSunShadowMinSpec" type="int32" />
+                              <xs:attribute name="ShadowCasterType" type="int32" />
+                              <xs:attribute name="NoDecals" type="boolInt" />
+                              <xs:attribute name="HiddenInNodes" type="boolInt" />
+                              <xs:attribute name="ViewDistRatio" type="float" />
+                              <xs:attribute name="LodRatio" type="float" />
+                              <xs:attribute name="MinSpec" type="int32" />
+                              <xs:attribute name="InHideMask" type="uint32" />
+                              <xs:attribute name="OutHideMask" type="uint32" />
+                              <xs:attribute name="SceneMask" type="uint32" />
+                              <xs:attribute name="OutdoorOnly" type="boolInt" />
+                              <xs:attribute name="SkipMetricsLogging" type="boolInt" />
+                              <xs:attribute name="Material" type="string" />
+                              <xs:attribute name="Geometry" type="string" />
+                              <xs:attribute ref="ch:serialize" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Object" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "EntityGuid" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Points" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="Pos" type="Vec3" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="Name">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] [MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Type" type="string" />
+                              <xs:attribute name="Pos" type="Vec3" />
+                              <xs:attribute name="Rotate" type="Quat" />
+                              <xs:attribute name="Scale" type="Vec3" />
+                              <xs:attribute name="ViewDistRatio" type="float" />
+                              <xs:attribute name="Material" type="string" />
+                              <xs:attribute name="ProjectionType" type="int32" />
+                              <xs:attribute name="Deferred" type="boolInt" />
+                              <xs:attribute name="SortPriority" type="int32" />
+                              <xs:attribute name="ProjectionDepth" type="float" />
+                              <xs:attribute name="PoofOnCollision" type="boolInt" />
+                              <xs:attribute name="Height" type="float" />
+                              <xs:attribute name="DisplayFilled" type="boolInt" />
+                              <xs:attribute name="DisplayFilledAlways" type="boolInt" />
+                              <xs:attribute name="AffectedBySun" type="boolInt" />
+                              <xs:attribute name="IgnoreSkyColor" type="boolInt" />
+                              <xs:attribute name="IgnoreGI" type="boolInt" />
+                              <xs:attribute name="SkyOnly" type="boolInt" />
+                              <xs:attribute name="OceanIsVisible" type="boolInt" />
+                              <xs:attribute name="UseDeepness" type="boolInt" />
+                              <xs:attribute name="DoubleSide" type="boolInt" />
+                              <xs:attribute name="LightBlending" type="boolInt" />
+                              <xs:attribute name="LightBlendValue" type="float" />
+                              <xs:attribute name="ProbeDepth" type="float" />
+                              <xs:attribute name="Color" type="Vec3" />
+                              <xs:attribute name="DebugInspectorIndex" type="int32" />
+                              <xs:attribute name="CullDistRatio" type="float" />
+                              <xs:attribute name="EntityGuid" type="EntityGuidDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute ref="ch:fakeGuid" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="TimeOfDay" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Variable" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "Name" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Spline" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="Keys">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="Name" type="string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="Time" type="float" />
+                    <xs:attribute name="TimeStart" type="float" />
+                    <xs:attribute name="TimeEnd" type="float" />
+                    <xs:attribute name="TimeAnimSpeed" type="float" />
+                    <xs:attribute name="TimePaused" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Weapons" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Ammo" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType" />
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Used" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType" />
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="encounterRoot" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="encounterProfile" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "encounterProfileName" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="encounter" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "encounterName" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="encounterTableEntry" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="encounterTableEntrySpawnerEntityId" type="EntityId" />
+                                                  <xs:attribute name="encounterTableEntryIsActive" type="boolInt" />
+                                                  <xs:attribute name="encounterTableEntrySpawnFirst" type="boolInt" />
+                                                  <xs:attribute name="encounterTableEntryCanRespawn" type="boolInt" />
+                                                  <xs:attribute name="encounterTableEntrySpawnChance" type="float" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="encounterName" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="encounterIsHighPriority" type="boolInt" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="encounterProfileName" type="string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="encounterProfileInitPopTarget" type="int32" />
+                              <xs:attribute name="encounterProfileRepopTarget" type="int32" />
+                              <xs:attribute name="encounterProfileRepopThresh" type="int32" />
+                              <xs:attribute name="encounterProfileRepopStrategy" type="int32" />
+                              <xs:attribute name="encounterProfileTimeBeforeRepop" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="Name" type="string" />
+          <xs:attribute name="Description">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Time" type="string" />
+          <xs:attribute name="PlayerEquipPack">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Script">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="CGFCount" type="int32" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

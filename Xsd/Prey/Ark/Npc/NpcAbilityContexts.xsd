@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="NpcAbilityContexts">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="NpcAbilityContext" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Prereqs" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ArkNpcAbilityPrereq_AbilityCooldown" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="CooldownInterval" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                                          <xs:element name="Modifiers" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_Modifiers" />
+                                        </xs:choice>
+                                        <xs:attribute name="abilityId" type="int32" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_AreaHasMaxNumCystoids" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_CanCorrupt" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_CanJump" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_CanSidestep" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="traceDistance" type="float" />
+                                        <xs:attribute name="traceHeightBias" type="float" />
+                                        <xs:attribute name="traceRadius" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_ContextCooldown" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                                <xs:element name="ArkNpcAbilityPrereq_ContextGroupCooldown" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                                <xs:element name="ArkNpcAbilityPrereq_DoesNotHaveActiveDoppelganger" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType" />
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_GlobalAbilityCooldown" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="CooldownInterval" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                                          <xs:element name="Modifiers" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_Modifiers" />
+                                        </xs:choice>
+                                        <xs:attribute name="abilityId" type="int32" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_GlobalContextCooldown" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                                <xs:element name="ArkNpcAbilityPrereq_GlobalContextGroupCooldown" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_ContextCooldown" />
+                                <xs:element name="ArkNpcAbilityPrereq_HasCollisionCapsuleClearance" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="capsuleDistance" type="float" />
+                                        <xs:attribute name="capsuleRadius" type="float" />
+                                        <xs:attribute name="startingHeight" type="float" />
+                                        <xs:attribute name="targetOffset" type="float" />
+                                        <xs:attribute name="jointName" type="string" />
+                                        <xs:attribute name="bAllowRigidBody" type="boolString" />
+                                        <xs:attribute name="bAllowBreakable" type="boolString" />
+                                        <xs:attribute name="bAllowPermeable" type="boolString" />
+                                        <xs:attribute name="bAllowTransparent" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEMPBlastPosition" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="zeroGUpAddition" type="float" />
+                                        <xs:attribute name="spawnDistanceInFrontOfPlayer" type="float" />
+                                        <xs:attribute name="distanceFromObstacle" type="float" />
+                                        <xs:attribute name="bOnlyUseLastSeenTargetPos" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEnergyAoELineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredTimeWithLineOfSight" type="float" />
+                                        <xs:attribute name="firingStartAttachmentName" type="string" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEnoughAmmo" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredAmmo" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEnoughControlledTurrets" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredNumTurretsInclusive" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEnoughCorruptedNpcs" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredNumCorruptedNpcsInclusive" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasEnoughNearbyNpcs" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="checkRadius" type="float" />
+                                        <xs:attribute name="checkHeight" type="float" />
+                                        <xs:attribute name="requiredTag" type="ArkMetaTagId" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="bMustBeReachable" type="boolString" />
+                                        <xs:attribute name="minNumberOfNpcs" type="int32" />
+                                        <xs:attribute name="disqualifyingGameEffectId" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasFiringLineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="firingStartAttachmentName" type="string" />
+                                        <xs:attribute name="requiredTimeWithLineOfSight" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasGameEffect" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="bShouldHaveGameEffect" type="boolString" />
+                                        <xs:attribute name="requiredGameEffectId" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasHitReactShiftLocation" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minShiftDistance" type="float" />
+                                        <xs:attribute name="maxShiftDistance" type="float" />
+                                        <xs:attribute name="searchHeight" type="float" />
+                                        <xs:attribute name="maxNumberOfLoSChecks" type="int32" />
+                                        <xs:attribute name="backwardsAvoidShiftAngle" type="float" />
+                                        <xs:attribute name="pointAttemptPartitions" type="int32" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasHitReacted" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="time" type="float" />
+                                        <xs:attribute name="bStagger" type="boolString" />
+                                        <xs:attribute name="bKnockDown" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasLineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredTimeWithLineOfSight" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasMeleeLineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="meleeStartAttachmentName" type="string" />
+                                        <xs:attribute name="requiredTimeWithLineOfSight" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasNearbyProp" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minDistanceFromTarget" type="float" />
+                                        <xs:attribute name="maxDistanceFromTarget" type="float" />
+                                        <xs:attribute name="minMass" type="float" />
+                                        <xs:attribute name="maxMass" type="float" />
+                                        <xs:attribute name="minHeight" type="float" />
+                                        <xs:attribute name="maxHeight" type="float" />
+                                        <xs:attribute name="clusterMaxDistance" type="float" />
+                                        <xs:attribute name="clusterMaxMass" type="float" />
+                                        <xs:attribute name="clusterMaxMassDifference" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasPhysicalRangedLineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="firingStartAttachmentName" type="string" />
+                                        <xs:attribute name="requiredTimeWithLineOfSight" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasPistolPointedAtTarget" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredAngle" type="float" />
+                                        <xs:attribute name="bulletSpawnAttachment" type="string" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasSpaceForDoppelgangers" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="spawnPointSearchArc" type="float" />
+                                        <xs:attribute name="searchHeight" type="float" />
+                                        <xs:attribute name="minSearchRangeMin" type="float" />
+                                        <xs:attribute name="minSearchRangeMax" type="float" />
+                                        <xs:attribute name="maxSearchRangeMin" type="float" />
+                                        <xs:attribute name="maxSearchRangeMax" type="float" />
+                                        <xs:attribute name="expectedDistanceToTargetMin" type="float" />
+                                        <xs:attribute name="expectedDistanceToTargetMax" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HasThermogenesisPosition" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="downTraceCheckDistance" type="float" />
+                                        <xs:attribute name="spawnDistanceInFrontOfPlayer" type="float" />
+                                        <xs:attribute name="distanceFromObstacle" type="float" />
+                                        <xs:attribute name="aboveFloorDelta" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_HealthPercent" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minHealthPercent" type="float" />
+                                        <xs:attribute name="maxHealthPercent" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_IsEtherFormRestricted" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsFrozenInGloo" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsHitReacting" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsIgnoringRangedAbilities" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsInMeleeRole" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsInRangedRole" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsInZeroG" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsOnGround" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsOnSlope" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minDegree" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_IsPsiSuppressed" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsRegainingLoS" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsTargetInSyncedAnimation" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsTargetPlayer" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsTargetReachable" minOccurs="0" maxOccurs="unbounded" type="ArkNpcAbilityPrereq_IsSomething" />
+                                <xs:element name="ArkNpcAbilityPrereq_IsUsingUnreachableTargeting" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="bShouldBeInUnreachableTargeting" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_LookedAtForLongEnough" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredTimeLookedAt" type="float" />
+                                        <xs:attribute name="lookAtConeAngle" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_LostLineOfSight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredTimeWithoutLoS" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MaxAngleToTarget" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="angle" type="float" />
+                                        <xs:attribute name="bUseHeadDirection" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MaxNumberOfCombatants" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="maxNumberOfCombatants" type="int32" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MaxTargetDeltaHeight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="deltaHeight" type="float" />
+                                        <xs:attribute name="sourceBoneName" type="string" />
+                                        <xs:attribute name="bUseTargetAttackPos" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MaxTargetDistance" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MaxTargetDistanceCapsule" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MinTargetDeltaHeight" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="deltaHeight" type="float" />
+                                        <xs:attribute name="sourceBoneName" type="string" />
+                                        <xs:attribute name="bUseTargetAttackPos" type="boolString" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MinTargetDistance" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_MinTargetDistanceCapsule" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="distance" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_Never" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType" />
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_NightmareCrouchHeightMin" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="height" type="float" />
+                                        <xs:attribute name="testHorizontal" type="float" />
+                                        <xs:attribute name="testDown" type="float" />
+                                        <xs:attribute name="testUp" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_PercentChanceFromBehindTarget" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="thresholdAngle" type="float" />
+                                        <xs:attribute name="percentChance" type="float" />
+                                        <xs:attribute name="percentChanceVsNpc" type="float" />
+                                        <xs:attribute name="retryPeriod" type="float" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_TargetHasMetaTag" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="requiredTag" type="ArkMetaTagId" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_TargetIsCorrupted" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="bShouldBeCorrupted" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_WithinArcToTarget" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="bUseHeadDirection" type="boolString" />
+                                        <xs:attribute name="minAngleToTargetDegrees" type="float" />
+                                        <xs:attribute name="maxAngleToTargetDegrees" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ArkNpcAbilityPrereq_WithinNavMeshAllowedDistance" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "requiredTag" "abilityId" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="minDistance" type="float" />
+                                        <xs:attribute name="failRetryTime" type="float" />
+                                        <xs:attribute name="bNegate" type="boolString" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="id" type="int32" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name" type="string">
+                      <xs:annotation>
+                        <xs:documentation>[READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="abilityId" type="int32" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

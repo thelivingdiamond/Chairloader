@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkCameraShakeLibrary">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="CameraShakes" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkCameraShake_Animated" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ID" type="ArkCameraShakeIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" />
+                              <xs:attribute name="Channel" type="ArkCameraShakeChannelId" />
+                              <xs:attribute name="InnerRadius" type="float" />
+                              <xs:attribute name="OuterRadius" type="float" />
+                              <xs:attribute name="UIHorizontalAmplitude" type="float" />
+                              <xs:attribute name="UIVerticalAmplitude" type="float" />
+                              <xs:attribute name="RampInDuration" type="float" />
+                              <xs:attribute name="HoldDuration" type="float" />
+                              <xs:attribute name="RampOutDuration" type="float" />
+                              <xs:attribute name="VerticalFrequency" type="float" />
+                              <xs:attribute name="PitchAmplitude" type="float" />
+                              <xs:attribute name="HorizontalFrequency" type="float" />
+                              <xs:attribute name="YawAmplitude" type="float" />
+                              <xs:attribute name="forceFeedback" type="string" />
+                              <xs:attribute name="Animation" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ArkCameraShake_Procedural" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ID" type="ArkCameraShakeIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" />
+                              <xs:attribute name="Channel" type="ArkCameraShakeChannelId" />
+                              <xs:attribute name="InnerRadius" type="float" />
+                              <xs:attribute name="OuterRadius" type="float" />
+                              <xs:attribute name="UIHorizontalAmplitude" type="float" />
+                              <xs:attribute name="UIVerticalAmplitude" type="float" />
+                              <xs:attribute name="RampInDuration" type="float" />
+                              <xs:attribute name="HoldDuration" type="float" />
+                              <xs:attribute name="RampOutDuration" type="float" />
+                              <xs:attribute name="VerticalFrequency" type="float" />
+                              <xs:attribute name="PitchAmplitude" type="float" />
+                              <xs:attribute name="HorizontalFrequency" type="float" />
+                              <xs:attribute name="YawAmplitude" type="float" />
+                              <xs:attribute name="forceFeedback" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Channels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkCameraShakeChannel" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ID" type="ArkCameraShakeChannelIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

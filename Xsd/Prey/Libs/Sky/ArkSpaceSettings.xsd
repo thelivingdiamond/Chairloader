@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkSpaceSettings">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Earth" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="SunOffsetAngles" type="Ang3" />
+                    <xs:attribute name="WorldOffsetAngles" type="Ang3" />
+                    <xs:attribute name="Orientation" type="Ang3" />
+                    <xs:attribute name="RotationSpeed" type="float" />
+                    <xs:attribute name="Distance" type="float" />
+                    <xs:attribute name="Scale" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HDR" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="shoulderScale" type="float" />
+                    <xs:attribute name="midtonesScale" type="float" />
+                    <xs:attribute name="toeScale" type="float" />
+                    <xs:attribute name="whitepoint" type="float" />
+                    <xs:attribute name="saturation" type="float" />
+                    <xs:attribute name="colorBalance" type="Vec3" />
+                    <xs:attribute name="sceneKey" type="float" />
+                    <xs:attribute name="minExposure" type="float" />
+                    <xs:attribute name="maxExposure" type="float" />
+                    <xs:attribute name="evMin" type="float" />
+                    <xs:attribute name="evMax" type="float" />
+                    <xs:attribute name="evAutoCompensation" type="float" />
+                    <xs:attribute name="bloomAmount" type="float" />
+                    <xs:attribute name="hdrMultiplier" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Moon" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="SunOffsetAngles" type="Ang3" />
+                    <xs:attribute name="WorldOffsetAngles" type="Ang3" />
+                    <xs:attribute name="Orientation" type="Ang3" />
+                    <xs:attribute name="RotationSpeed" type="float" />
+                    <xs:attribute name="Distance" type="float" />
+                    <xs:attribute name="Scale" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Stars" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="RotationOffset" type="Ang3" />
+                    <xs:attribute name="Intensity" type="float" />
+                    <xs:attribute name="Scale" type="float" />
+                    <xs:attribute name="CountPercentage" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Sun" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="Angles" type="Ang3" />
+                    <xs:attribute name="Speed" type="float" />
+                    <xs:attribute name="Scale" type="float" />
+                    <xs:attribute name="Intensity" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

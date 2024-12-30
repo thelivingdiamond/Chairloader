@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkFabricationPlans">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="FabricationPlans" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkFabricationPlan" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="id" type="ArkFabricationPlanIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="name" type="string">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="archetype" type="ArchetypeName" />
+                              <xs:attribute name="description" type="string" />
+                              <xs:attribute name="organicCount" type="int32" />
+                              <xs:attribute name="mineralCount" type="int32" />
+                              <xs:attribute name="syntheticCount" type="int32" />
+                              <xs:attribute name="exoticCount" type="int32" />
+                              <xs:attribute name="rawMaterialClass" type="string" />
+                              <xs:attribute name="positionOffset" type="Vec3" />
+                              <xs:attribute name="rotationOffset" type="Ang3" />
+                              <xs:attribute name="useShortAnimation" type="boolString" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="XLargeRawMaterialModel" type="string" />
+          <xs:attribute name="LargeRawMaterialModel" type="string" />
+          <xs:attribute name="MediumRawMaterialModel" type="string" />
+          <xs:attribute name="SmallRawMaterialModel" type="string" />
+          <xs:attribute name="SmallRawMaterialLongAnim" type="ArkMaterialAnimationId" />
+          <xs:attribute name="MediumRawMaterialLongAnim" type="ArkMaterialAnimationId" />
+          <xs:attribute name="LargeRawMaterialLongAnim" type="ArkMaterialAnimationId" />
+          <xs:attribute name="XLargeRawMaterialLongAnim" type="ArkMaterialAnimationId" />
+          <xs:attribute name="SmallRawMaterialShortAnim" type="ArkMaterialAnimationId" />
+          <xs:attribute name="MediumRawMaterialShortAnim" type="ArkMaterialAnimationId" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

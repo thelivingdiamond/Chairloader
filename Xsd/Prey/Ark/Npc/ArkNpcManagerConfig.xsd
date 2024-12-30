@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkNpcManagerConfig">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="DisallowedMusicContributorTag" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "value" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:attribute name="value" type="ArkMetaTagId" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="bLoadsOnLevelStart" type="boolString" />
+          <xs:attribute name="musicStateUpdateFrequency" type="float" />
+          <xs:attribute name="timeBetweenCombatReactionAnimations" type="float" />
+          <xs:attribute name="timeBetweenNoticeAnimations" type="float" />
+          <xs:attribute name="timeBetweenCombatStartStingers" type="float" />
+          <xs:attribute name="combatStartAudioTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToUnknownMusicTrigger" type="string" />
+          <xs:attribute name="ascendingToUnknownStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToUnknownStingerCooldown" type="float" />
+          <xs:attribute name="ascendingToNoticedMusicTrigger" type="string" />
+          <xs:attribute name="ascendingToNoticedStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToNoticedStingerCooldown" type="float" />
+          <xs:attribute name="ascendingToCuriousMusicTrigger" type="string" />
+          <xs:attribute name="ascendingToCuriousStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToCuriousStingerCooldown" type="float" />
+          <xs:attribute name="ascendingToInterestedMusicTrigger" type="string" />
+          <xs:attribute name="ascendingToInterestedStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToInterestedStingerCooldown" type="float" />
+          <xs:attribute name="ascendingToKnownMusicTrigger" type="string" />
+          <xs:attribute name="ascendingToKnownStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ascendingToKnownStingerCooldown" type="float" />
+          <xs:attribute name="descendingToKnownMusicTrigger" type="string" />
+          <xs:attribute name="descendingToKnownStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="descendingToKnownStingerCooldown" type="float" />
+          <xs:attribute name="descendingToInterestedMusicTrigger" type="string" />
+          <xs:attribute name="descendingToInterestedStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="descendingToInterestedStingerCooldown" type="float" />
+          <xs:attribute name="descendingToCuriousMusicTrigger" type="string" />
+          <xs:attribute name="descendingToCuriousStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="descendingToCuriousStingerCooldown" type="float" />
+          <xs:attribute name="descendingToNoticedMusicTrigger" type="string" />
+          <xs:attribute name="descendingToNoticedStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="descendingToNoticedStingerCooldown" type="float" />
+          <xs:attribute name="descendingToUnknownMusicTrigger" type="string" />
+          <xs:attribute name="descendingToUnknownStingerTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="descendingToUnknownStingerCooldown" type="float" />
+          <xs:attribute name="cancelUnknownMusicTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="cancelNoticedMusicTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="cancelCuriousMusicTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="cancelInterestedMusicTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="cancelKnownMusicTrigger">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="bUseCombatantValidation" type="boolString" />
+          <xs:attribute name="minValidateCombatantsTime" type="float" />
+          <xs:attribute name="maxValidateCombatantsTime" type="float" />
+          <xs:attribute name="requiredCombatPointsForCombatMusic" type="int32" />
+          <xs:attribute name="bustPlayerThroughAttentionMinAttentionLevel" type="int32" />
+          <xs:attribute name="bustPlayerBySeeingMimicMinAttentionLevel" type="int32" />
+          <xs:attribute name="unbustPlayerMinAttentionLevel" type="int32" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

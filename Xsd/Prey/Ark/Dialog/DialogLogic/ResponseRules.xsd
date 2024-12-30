@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ResponseRules">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="ResponseRule" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Criteria" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Criterion" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Array item<br /></xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="id" type="ArkUniqueId" />
+                                        <xs:attribute name="value">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="comparison" type="int32" />
+                                        <xs:attribute name="type" type="string" />
+                                        <xs:attribute name="fromResponse" type="int32" />
+                                        <xs:attribute name="passIfMissing" type="boolString" />
+                                        <xs:attribute name="keyType">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="compare" type="bool" />
+                                        <xs:attribute ref="ch:index" use="required" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Writeback" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Fact" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Array item<br /></xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="id" type="ArkUniqueId" />
+                                        <xs:attribute name="value">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                        <xs:attribute name="time" type="float" />
+                                        <xs:attribute name="type" type="int32" />
+                                        <xs:attribute ref="ch:index" use="required" />
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="id" type="ArkConversationIdDef" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="name">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="cooldown">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="float" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="conversation">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="int32" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="response" type="ArkDialogResponseSetId" />
+                    <xs:attribute name="oneshot">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="bool" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="description">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="string" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="priority">
+                      <xs:annotation>
+                        <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="int32" />
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="trackView" type="int32" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ResponseSet" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Response" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="id" type="ArkDialogResponseId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="dialog" type="ArkDialogId" />
+                              <xs:attribute name="cooldown" type="float" />
+                              <xs:attribute name="weight" type="float" />
+                              <xs:attribute name="oneshot" type="bool" />
+                              <xs:attribute name="completeConversation" type="bool" />
+                              <xs:attribute name="delay">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="float" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="targetId" type="uint64" />
+                              <xs:attribute name="targetType" type="int32" />
+                              <xs:attribute name="speakerTrackMethod" type="int32" />
+                              <xs:attribute name="targetTrackMethod" type="int32" />
+                              <xs:attribute name="emotion" type="ArkEmotionId" />
+                              <xs:attribute name="cutoff">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="float" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="entityOneshot" type="bool" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="id" type="ArkDialogResponseSetIdDef" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="WritebackKeys" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; "id" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="WritebackKey" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "id" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="id" type="ArkUniqueId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="name">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="description">
+            <xs:annotation>
+              <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:union>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="0" />
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:simpleType>
+                  <xs:restriction base="string" />
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkTraumas">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Traumas" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkTrauma" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Phases" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="ArkTraumaPhase" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Array item<br /></xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="SignalModifiers" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:choice maxOccurs="unbounded">
+                                                              <xs:element name="SignalModifier" minOccurs="0" maxOccurs="unbounded">
+                                                                <xs:complexType>
+                                                                  <xs:annotation>
+                                                                    <xs:documentation>Dictionary item<br />Key: "ModifierId" </xs:documentation>
+                                                                  </xs:annotation>
+                                                                  <xs:complexContent>
+                                                                    <xs:extension base="MetaType">
+                                                                      <xs:attribute name="ModifierId" type="ArkSignalModifierId" use="required">
+                                                                        <xs:annotation>
+                                                                          <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                                        </xs:annotation>
+                                                                      </xs:attribute>
+                                                                      <xs:attribute name="IsInbound" type="boolString" />
+                                                                      <xs:attribute name="IsActiveInAlternateForm" type="boolString" />
+                                                                    </xs:extension>
+                                                                  </xs:complexContent>
+                                                                </xs:complexType>
+                                                              </xs:element>
+                                                            </xs:choice>
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="StatModifiers" minOccurs="0" maxOccurs="unbounded">
+                                                      <xs:complexType>
+                                                        <xs:annotation>
+                                                          <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexContent>
+                                                          <xs:extension base="MetaType">
+                                                            <xs:choice maxOccurs="unbounded">
+                                                              <xs:element name="StatModifier" minOccurs="0" maxOccurs="unbounded">
+                                                                <xs:complexType>
+                                                                  <xs:annotation>
+                                                                    <xs:documentation>Dictionary item<br />Key: "StatName" </xs:documentation>
+                                                                  </xs:annotation>
+                                                                  <xs:complexContent>
+                                                                    <xs:extension base="MetaType">
+                                                                      <xs:attribute name="StatName" type="ArkPlayerStatName" use="required">
+                                                                        <xs:annotation>
+                                                                          <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                                        </xs:annotation>
+                                                                      </xs:attribute>
+                                                                      <xs:attribute name="Modifier" type="float" />
+                                                                      <xs:attribute name="IsActiveInAlternateForm" type="boolString" />
+                                                                    </xs:extension>
+                                                                  </xs:complexContent>
+                                                                </xs:complexType>
+                                                              </xs:element>
+                                                            </xs:choice>
+                                                          </xs:extension>
+                                                        </xs:complexContent>
+                                                      </xs:complexType>
+                                                    </xs:element>
+                                                  </xs:choice>
+                                                  <xs:attribute name="DamageThreshold" type="float" />
+                                                  <xs:attribute name="Description">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="HudIcon" type="string" />
+                                                  <xs:attribute ref="ch:index" use="required" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="ID" type="ArkTraumaIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string" />
+                              <xs:attribute name="DrainRate" type="float" />
+                              <xs:attribute name="RemoveSignal">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="ArkSignalId" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Duration" type="float" />
+                              <xs:attribute name="Label" type="string" />
+                              <xs:attribute name="HowToRemove" type="string" />
+                              <xs:attribute name="SuitVO" type="ArkConversationId" />
+                              <xs:attribute name="AccumulateSignal" type="ArkSignalId" />
+                              <xs:attribute name="DoesStack" type="boolString" />
+                              <xs:attribute name="RemoveOnDrain" type="boolString" />
+                              <xs:attribute name="MaxAccumulation" type="float" />
+                              <xs:attribute name="PlayerMaterial" type="string" />
+                              <xs:attribute name="PlayerMaterialPriority" type="int32" />
+                              <xs:attribute name="SurvivalMode" type="boolString" />
+                              <xs:attribute name="RepeatMin" type="int32" />
+                              <xs:attribute name="RepeatMax" type="int32" />
+                              <xs:attribute name="TraumaSFX" type="string" />
+                              <xs:attribute name="TraumaStopSFX" type="string" />
+                              <xs:attribute name="PostEffect">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="PostEffectParam">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="TagState">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="FillHudIcon" type="boolString" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

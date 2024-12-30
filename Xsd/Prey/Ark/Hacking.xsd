@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkHacking">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="DifficultyLevels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="DifficultyLevel" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="minTravelDistance" type="float" />
+                              <xs:attribute name="maxTravelDistance" type="float" />
+                              <xs:attribute name="timePerPuzzle" type="float" />
+                              <xs:attribute name="chainLength" type="int32" />
+                              <xs:attribute name="pathObstacles" type="int32" />
+                              <xs:attribute name="pathStunObstacles" type="int32" />
+                              <xs:attribute name="otherStunObstacles" type="int32" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HackingAbilities" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="HackingAbility" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="id" type="ArkAbilityId">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ObstacleTypes" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ObstacleDesc" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="minWidth" type="int32" />
+                              <xs:attribute name="maxWidth" type="int32" />
+                              <xs:attribute name="minHeight" type="int32" />
+                              <xs:attribute name="maxHeight" type="int32" />
+                              <xs:attribute name="count" type="int32" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="timeForPhaseIn" type="float" />
+          <xs:attribute name="cursorPhaseIn" type="float" />
+          <xs:attribute name="timeForInitialization" type="float" />
+          <xs:attribute name="timeForResult" type="float" />
+          <xs:attribute name="failSignalDelay" type="float" />
+          <xs:attribute name="maxVelocity" type="float" />
+          <xs:attribute name="friction" type="float" />
+          <xs:attribute name="failureSignalPackage" type="ArkSignalPackageId" />
+          <xs:attribute name="inactiveRadius" type="float" />
+          <xs:attribute name="activeRadius" type="float" />
+          <xs:attribute name="gridStepHeight" type="float" />
+          <xs:attribute name="gridStepWidth" type="float" />
+          <xs:attribute name="bDrawGrid" type="boolString" />
+          <xs:attribute name="keyboardAcceleration" type="float" />
+          <xs:attribute name="gamepadAcceleration" type="float" />
+          <xs:attribute name="elasticity" type="float" />
+          <xs:attribute name="collisionSignalPackage" type="float" />
+          <xs:attribute name="failCollisions" type="int32" />
+          <xs:attribute name="stunTime" type="float" />
+          <xs:attribute name="obstacleBufferDistance" type="float" />
+          <xs:attribute name="pathObstacleVariance" type="float" />
+          <xs:attribute name="pathObstacleNormalVariance" type="float" />
+          <xs:attribute name="targetFriction" type="float" />
+          <xs:attribute name="obstacleGridSize" type="float" />
+          <xs:attribute name="superStunTime" type="float" />
+          <xs:attribute name="stunElasticity" type="float" />
+          <xs:attribute name="superStunForce" type="float" />
+          <xs:attribute name="collideForce" type="float" />
+          <xs:attribute name="invalidInputStunForce" type="float" />
+          <xs:attribute name="invalidInputStunTime" type="float" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

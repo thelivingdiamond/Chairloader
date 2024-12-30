@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkPropertyProfileLibrary">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="DisruptionProfiles" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkDisruptionProfile" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ID" type="ArkDisruptionProfileIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="DisruptSignal" type="ArkSignalId" />
+                              <xs:attribute name="InterferenceSignal" type="ArkSignalId" />
+                              <xs:attribute name="DisruptThreshold" type="float" />
+                              <xs:attribute name="DisruptMaxAmount" type="float" />
+                              <xs:attribute name="DisruptDecayRate" type="float" />
+                              <xs:attribute name="DisruptSparkRate" type="float" />
+                              <xs:attribute name="DisruptSparkVariation" type="float" />
+                              <xs:attribute name="InterferenceThreshold" type="float" />
+                              <xs:attribute name="InterferenceMaxAmount" type="float" />
+                              <xs:attribute name="InterferenceDecayRate" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="LightDisruptionProfiles" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkLightDisruptionProfile" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: "ID" </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="ID" type="ArkLightDisruptionProfileIdDef" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Name" type="string">
+                                <xs:annotation>
+                                  <xs:documentation>[READ-ONLY] </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="InterferenceRampIn" type="float" />
+                              <xs:attribute name="InterferenceRampInVariation" type="float" />
+                              <xs:attribute name="InterferenceMaxBrightness" type="float" />
+                              <xs:attribute name="InterferenceMinBrightnessVariation" type="float" />
+                              <xs:attribute name="InterferenceMaxBrightnessVariation" type="float" />
+                              <xs:attribute name="InterferenceMinBrightness" type="float" />
+                              <xs:attribute name="InterferenceDarkDuration" type="float" />
+                              <xs:attribute name="InterferenceBrightDuration" type="float" />
+                              <xs:attribute name="InterferenceBrightDurationVariation" type="float" />
+                              <xs:attribute name="InterferenceDarkDurationVariation" type="float" />
+                              <xs:attribute name="InterferenceRampOut" type="float" />
+                              <xs:attribute name="InterferenceRampOutVariation" type="float" />
+                              <xs:attribute name="InterferenceVFXThreshold" type="float" />
+                              <xs:attribute name="DisruptionBurstMultiplier" type="float" />
+                              <xs:attribute name="DisruptionBurstTransitionTime" type="float" />
+                              <xs:attribute name="InterferencePrimaryDarkWeight" type="float" />
+                              <xs:attribute name="InterferenceSecondaryDarkDuration" type="float" />
+                              <xs:attribute name="InterferenceSecondaryDarkWeight" type="float" />
+                              <xs:attribute name="InterferenceSecondaryDarkDurationVariation" type="float" />
+                              <xs:attribute name="InterferenceSecondaryMinBrightness" type="float" />
+                              <xs:attribute name="InterferenceSecondaryMinBrightnessVariation" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

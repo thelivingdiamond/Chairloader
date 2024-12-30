@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkAttentionManagerDebug">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:attribute name="attentionLevel0ColorR" type="uint8" />
+          <xs:attribute name="attentionLevel0ColorG" type="uint8" />
+          <xs:attribute name="attentionLevel0ColorB" type="uint8" />
+          <xs:attribute name="attentionLevel1ColorR" type="uint8" />
+          <xs:attribute name="attentionLevel1ColorG" type="uint8" />
+          <xs:attribute name="attentionLevel1ColorB" type="uint8" />
+          <xs:attribute name="attentionLevel2ColorR" type="uint8" />
+          <xs:attribute name="attentionLevel2ColorG" type="uint8" />
+          <xs:attribute name="attentionLevel2ColorB" type="uint8" />
+          <xs:attribute name="attentionLevel3ColorR" type="uint8" />
+          <xs:attribute name="attentionLevel3ColorG" type="uint8" />
+          <xs:attribute name="attentionLevel3ColorB" type="uint8" />
+          <xs:attribute name="attentionLevel4ColorR" type="uint8" />
+          <xs:attribute name="attentionLevel4ColorG" type="uint8" />
+          <xs:attribute name="attentionLevel4ColorB" type="uint8" />
+          <xs:attribute name="attentionMeterLevelRadius" type="float" />
+          <xs:attribute name="attentionMeterLevelHeight" type="float" />
+          <xs:attribute name="attentionMeterValueRadius" type="float" />
+          <xs:attribute name="attentionMeterValueHeight" type="float" />
+          <xs:attribute name="attentionMeterAngularWidth" type="float" />
+          <xs:attribute name="attentionMeterVerticalOffset" type="float" />
+          <xs:attribute name="attentionMeterBackgroundAlpha" type="float" />
+          <xs:attribute name="bAttentionMeterDrawInFront" type="boolString" />
+          <xs:attribute name="attentionValueVerticalOffset" type="float" />
+          <xs:attribute name="attentionValueFontSize" type="float" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

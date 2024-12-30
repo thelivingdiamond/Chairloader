@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="SearchHuntParams">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="HuntFocusPosTolerance" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntNavAgentTypeName" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntPosHorizontalRadius" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntPosSpawnRangeMax" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntPosSpawnRangeMin" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntPosSpawnTime" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="HuntPosVerticalHeight" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="MaxHuntPositions" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType" />
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

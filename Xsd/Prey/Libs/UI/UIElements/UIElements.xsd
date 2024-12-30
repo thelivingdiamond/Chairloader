@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="UIElements">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="UIElement" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType mixed="true">
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="Arrays" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Array" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="name" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="varname" type="string" />
+                                        <xs:attribute name="desc">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="GFx" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="Constraints" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Align" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="mode" type="string" />
+                                                  <xs:attribute name="valign" type="string" />
+                                                  <xs:attribute name="halign" type="string" />
+                                                  <xs:attribute name="scale" type="float" />
+                                                  <xs:attribute name="max" type="float" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="file" type="string" />
+                              <xs:attribute name="layer" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="WorldUI" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="enable" type="boolInt" />
+                              <xs:attribute name="distance" type="float" />
+                              <xs:attribute name="cursorEvents" type="boolString" />
+                              <xs:attribute name="poolSize" type="int32" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="functions" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="function" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType mixed="true">
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="name" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] [MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="type" type="string" />
+                                                  <xs:attribute name="desc">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="value" type="string" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="paran" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="name" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] [MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="type" type="string" />
+                                                  <xs:attribute name="desc">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="value" type="string" />
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="name" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="funcname" type="string" />
+                                        <xs:attribute name="desc">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="variables" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="variable" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="name" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="varname" type="string" />
+                                        <xs:attribute name="type" type="string" />
+                                        <xs:attribute name="desc">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Events" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="name" type="string" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="type" type="string" />
+                                                  <xs:attribute name="desc">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="name" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="fscommand" type="string" />
+                                        <xs:attribute name="desc">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="events" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="name" type="string" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                  <xs:attribute name="type" type="string" />
+                                                  <xs:attribute name="desc">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                      <xs:union>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:length value="0" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="string" />
+                                                        </xs:simpleType>
+                                                      </xs:union>
+                                                    </xs:simpleType>
+                                                  </xs:attribute>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <xs:attribute name="name" type="string" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="fscommand" type="string" />
+                                        <xs:attribute name="desc">
+                                          <xs:annotation>
+                                            <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                            <xs:union>
+                                              <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:length value="0" />
+                                                </xs:restriction>
+                                              </xs:simpleType>
+                                              <xs:simpleType>
+                                                <xs:restriction base="string" />
+                                              </xs:simpleType>
+                                            </xs:union>
+                                          </xs:simpleType>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="name" type="string" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="mouseevents" type="boolInt" />
+                    <xs:attribute name="keyevents" type="boolInt" />
+                    <xs:attribute name="cursor" type="boolInt" />
+                    <xs:attribute name="events_exclusive" type="boolInt" />
+                    <xs:attribute name="use_steam_menu" type="boolInt" />
+                    <xs:attribute name="render_lockless" type="boolInt" />
+                    <xs:attribute name="controller_input" type="boolInt" />
+                    <xs:attribute name="disable_wireframe" type="boolInt" />
+                    <xs:attribute name="render_over_binks" type="boolInt" />
+                    <xs:attribute name="is_Hud" type="boolInt" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="name" type="string" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

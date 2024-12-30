@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="SurfaceTypes">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="SurfaceType" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: "name" </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="AI" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="crouchMult" type="float" />
+                              <xs:attribute name="fFootStepRadius" type="float" />
+                              <xs:attribute name="fImpactRadius" type="float" />
+                              <xs:attribute name="fImpactSoundRadius" type="float" />
+                              <xs:attribute name="movingMult" type="float" />
+                              <xs:attribute name="proneMult" type="float" />
+                              <xs:anyAttribute processContents="skip" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Ark" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="is_goo" type="boolInt" />
+                              <xs:attribute name="can_attach_goo" type="boolInt" />
+                              <xs:attribute name="see_through" type="boolInt" />
+                              <xs:attribute name="breakable_glass" type="boolInt" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="BreakageParticles" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="count_per_unit" type="int32" />
+                              <xs:attribute name="count_scale" type="float" />
+                              <xs:attribute name="scale" type="float" />
+                              <xs:attribute name="type" type="string" />
+                              <xs:attribute name="effect" type="string" />
+                              <xs:anyAttribute processContents="skip" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="Physics" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="can_shatter" type="boolInt" />
+                              <xs:attribute name="elasticity" type="float" />
+                              <xs:attribute name="friction" type="float" />
+                              <xs:attribute name="pierceability" type="float" />
+                              <xs:attribute name="no_collide" type="boolInt" />
+                              <xs:attribute name="break_energy" type="float" />
+                              <xs:attribute name="breakable_2d" type="boolInt" />
+                              <xs:attribute name="hit_maxdmg" type="float" />
+                              <xs:attribute name="hit_maxhits" type="int32" />
+                              <xs:attribute name="hit_points" type="float" />
+                              <xs:attribute name="hit_radius" type="float" />
+                              <xs:anyAttribute processContents="skip" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="breakable_2d" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Replace Only Node<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="blast_radius" type="float" />
+                              <xs:attribute name="cell_size" type="float" />
+                              <xs:attribute name="filter_angle" type="float" />
+                              <xs:attribute name="max_patch_tris" type="int32" />
+                              <xs:attribute name="rigid_body" type="int32" />
+                              <xs:attribute name="shard_density" type="float" />
+                              <xs:anyAttribute processContents="skip" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="name" type="string" use="required">
+                      <xs:annotation>
+                        <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="type" type="string" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

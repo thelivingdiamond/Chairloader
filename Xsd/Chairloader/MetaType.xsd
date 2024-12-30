@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey"
+    xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey"
+    elementFormDefault="qualified">
+    <xs:annotation><xs:documentation>
+        MetaType is the base type for Prey file nodes.
+        Types that derive from MetaType add additional attributes.
+    </xs:documentation></xs:annotation>
+
+    <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="./MetaAttributes.xsd" />
+
+    <xs:complexType name="MetaType">
+        <xs:annotation><xs:documentation>
+            Base type for Prey nodes.
+        </xs:documentation></xs:annotation>
+
+        <xs:attribute ref="ch:action" />
+        <xs:attribute ref="ch:applyIf" />
+        <xs:attribute ref="ch:arrayMod" />
+        <xs:attribute ref="ch:basedOn" />
+    </xs:complexType>
+</xs:schema>

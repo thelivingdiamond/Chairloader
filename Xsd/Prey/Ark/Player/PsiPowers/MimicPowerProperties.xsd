@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="MimicPowerProperties">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Common" minOccurs="0" maxOccurs="unbounded" type="ArkPsiPowerPropertiesCommon" />
+            <xs:element name="Levels" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="ArkPsiPowerMimicLevelProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Array item<br /></xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="TargetingProperties" minOccurs="0" maxOccurs="unbounded" type="ArkPsiPowerTargetingComponentProperties" />
+                              </xs:choice>
+                              <xs:attribute name="DisplayName" type="string" />
+                              <xs:attribute name="Description" type="string" />
+                              <xs:attribute name="CooldownDurationSec" type="float" />
+                              <xs:attribute name="PsiCostPerSec" type="float" />
+                              <xs:attribute ref="ch:index" use="required" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Unique" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                  <xs:extension base="MetaType">
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="EffectsProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="JumpAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="MorphInAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="MorphOutAudioTrigger">
+                                <xs:annotation>
+                                  <xs:documentation>[MAY BE EMPTY] </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:union>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:length value="0" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                    <xs:simpleType>
+                                      <xs:restriction base="string" />
+                                    </xs:simpleType>
+                                  </xs:union>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="MovementParticleEffect" type="string" />
+                              <xs:attribute name="ObjectMorphInParticleEffect" type="string" />
+                              <xs:attribute name="PersistentParticleEffect" type="string" />
+                              <xs:attribute name="MorphOutParticleEffect" type="string" />
+                              <xs:attribute name="MorphEffectDurationSec" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="EngineeringOperatorProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="SwitchCameraInputLegendItem" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegendItem" />
+                              </xs:choice>
+                              <xs:attribute name="MoveSpeed" type="float" />
+                              <xs:attribute name="SprintSpeed" type="float" />
+                              <xs:attribute name="DefaultTurnSpeed" type="float" />
+                              <xs:attribute name="AttackTurnSpeed" type="float" />
+                              <xs:attribute name="RollSpeed" type="float" />
+                              <xs:attribute name="AttackSignalPackageId" type="ArkSignalPackageId" />
+                              <xs:attribute name="DefaultCameraOffset" type="Vec3" />
+                              <xs:attribute name="DefaultCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="SafeCameraOffset" type="Vec3" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="MilitaryOperatorProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:attribute name="LaserDamage" type="float" />
+                              <xs:attribute name="MoveSpeed" type="float" />
+                              <xs:attribute name="SprintSpeed" type="float" />
+                              <xs:attribute name="DefaultTurnSpeed" type="float" />
+                              <xs:attribute name="AttackTurnSpeed" type="float" />
+                              <xs:attribute name="RollSpeed" type="float" />
+                              <xs:attribute name="DefaultCameraOffset" type="Vec3" />
+                              <xs:attribute name="DefaultCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="SafeCameraOffset" type="Vec3" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ObjectSignalModifiers" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="SignalModifier" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "value" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="value" type="ArkSignalModifierId" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="OperatorProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ModalLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                                <xs:element name="ModalLegendZeroG" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="PlayerSignalModifiers" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="SignalModifier" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: "value" </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:attribute name="value" type="ArkSignalModifierId" use="required">
+                                          <xs:annotation>
+                                            <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="RigidProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ModalLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                                <xs:element name="ModalLegendZeroG" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                              <xs:attribute name="DamageSignalGroupId" type="ArkSignalGroupId" />
+                              <xs:attribute name="JumpHeight" type="float" />
+                              <xs:attribute name="PenetratingJumpHeight" type="float" />
+                              <xs:attribute name="MoveSpeed" type="float" />
+                              <xs:attribute name="SprintSpeed" type="float" />
+                              <xs:attribute name="TumbleSpeed" type="float" />
+                              <xs:attribute name="LiftMaxAngularSpeed" type="float" />
+                              <xs:attribute name="TumbleSpeedLinearThreshold" type="float" />
+                              <xs:attribute name="MoveSpeedZeroG" type="float" />
+                              <xs:attribute name="SprintSpeedZeroG" type="float" />
+                              <xs:attribute name="RollSpeedZeroG" type="float" />
+                              <xs:attribute name="AirControlScale" type="float" />
+                              <xs:attribute name="NoiseId" type="ArkGameNoiseTypeId" />
+                              <xs:attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" />
+                              <xs:attribute name="NoiseInterval" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="ScienceOperatorProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ValidTargetClasses" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="Class" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "value" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="value" type="EntityClass" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ValidTargetMetaTags" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:annotation>
+                                      <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexContent>
+                                      <xs:extension base="MetaType">
+                                        <xs:choice maxOccurs="unbounded">
+                                          <xs:element name="MetaTag" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                              <xs:annotation>
+                                                <xs:documentation>Dictionary item<br />Key: "value" </xs:documentation>
+                                              </xs:annotation>
+                                              <xs:complexContent>
+                                                <xs:extension base="MetaType">
+                                                  <xs:attribute name="value" type="ArkMetaTagId" use="required">
+                                                    <xs:annotation>
+                                                      <xs:documentation>[KEY] [READ-ONLY] </xs:documentation>
+                                                    </xs:annotation>
+                                                  </xs:attribute>
+                                                </xs:extension>
+                                              </xs:complexContent>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:choice>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:choice>
+                              <xs:attribute name="MoveSpeed" type="float" />
+                              <xs:attribute name="SprintSpeed" type="float" />
+                              <xs:attribute name="DefaultTurnSpeed" type="float" />
+                              <xs:attribute name="AttackTurnSpeed" type="float" />
+                              <xs:attribute name="RollSpeed" type="float" />
+                              <xs:attribute name="AttackSignalPackageId" type="ArkSignalPackageId" />
+                              <xs:attribute name="DefaultCameraOffset" type="Vec3" />
+                              <xs:attribute name="DefaultCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraOffset" type="Vec3" />
+                              <xs:attribute name="AttackCameraZeroGOffset" type="Vec3" />
+                              <xs:attribute name="SafeCameraOffset" type="Vec3" />
+                              <xs:attribute name="MaxTargetAngle" type="float" />
+                              <xs:attribute name="MaxTargetDistance" type="float" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="TurretProperties" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:annotation>
+                            <xs:documentation>Dictionary item<br />Key: &lt;Child Name&gt; </xs:documentation>
+                          </xs:annotation>
+                          <xs:complexContent>
+                            <xs:extension base="MetaType">
+                              <xs:choice maxOccurs="unbounded">
+                                <xs:element name="ModalLegend" minOccurs="0" maxOccurs="unbounded" type="ArkInputLegend" />
+                              </xs:choice>
+                              <xs:attribute name="AimSpeed" type="float" />
+                              <xs:attribute name="AimSpeedZeroG" type="float" />
+                              <xs:attribute name="MoveSpeedZeroG" type="float" />
+                              <xs:attribute name="SprintSpeedZeroG" type="float" />
+                              <xs:attribute name="RollSpeedZeroG" type="float" />
+                              <xs:attribute name="RecoilForceZeroG" type="float" />
+                              <xs:attribute name="DefaultCameraOffset" type="Vec3" />
+                              <xs:attribute name="DefaultCameraOffsetZeroG" type="Vec3" />
+                              <xs:attribute name="AttackCameraOffset" type="Vec3" />
+                            </xs:extension>
+                          </xs:complexContent>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="AutoFallbackRange" type="float" />
+                    <xs:attribute name="ForceMorphOutDelaySec" type="float" />
+                    <xs:attribute name="GameNoiseDelaySec" type="float" />
+                    <xs:attribute name="ClipOpacity" type="float" />
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

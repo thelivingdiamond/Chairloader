@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" targetNamespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey" elementFormDefault="qualified">
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/ValueTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Prey/NodeTypes.xsd" />
+  <xs:include schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:import namespace="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader" schemaLocation="E:/Projects/Prey/Chairloader/Branch_Main/Xsd/Chairloader/MetaType.xsd" />
+  <xs:element name="ArkTurretControllerConfig">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="MetaType">
+          <xs:attribute name="avoidOwnerRadius" type="float" />
+          <xs:attribute name="approximateTurretRadius" type="float" />
+          <xs:attribute name="ownerHalfHeight" type="float" />
+          <xs:attribute name="stuckTestMaxTime" type="float" />
+          <xs:attribute name="stuckTestMinDistance" type="float" />
+          <xs:attribute name="adjustedMinMoveSpeed" type="float" />
+          <xs:attribute name="minTimeBetweenTraces" type="float" />
+          <xs:attribute name="formationResetHoldDist" type="float" />
+          <xs:attribute name="maxStuckTimeAllowed" type="float" />
+          <xs:attribute name="maxTimeOutOfRangeAllowed" type="float" />
+          <xs:attribute name="expectedTurretHeight" type="float" />
+          <xs:attribute name="turretTooCloseRadius" type="float" />
+          <xs:attribute name="targetPositionTooCloseTime" type="float" />
+          <xs:attribute name="maxNumOwnerPosListEntries" type="float" />
+          <xs:attribute name="breakDistance" type="float" />
+          <xs:attribute name="startRecoveryDistance" type="float" />
+          <xs:attribute name="lerpMaxSpeed" type="float" />
+          <xs:attribute name="lerpObstructedMaxSpeed" type="float" />
+          <xs:attribute name="lerpAcceleration" type="float" />
+          <xs:attribute name="lerpObstructedAcceleration" type="float" />
+          <xs:attribute name="turretFloatAmplitude" type="float" />
+          <xs:attribute name="turretFloatSpeed" type="float" />
+          <xs:attribute name="turretDropStunDuration" type="float" />
+          <xs:attribute name="turretFloatMaxNoiseAngle" type="float" />
+          <xs:attribute name="turretFloatNoiseAngleSpeed" type="float" />
+          <xs:attribute name="distBetweenLastOwnerLocations" type="float" />
+          <xs:attribute name="rotatingToPointGiveUpDistance" type="float" />
+          <xs:attribute name="returningToPointGiveUpDistance" type="float" />
+          <xs:attribute name="followPathHeightAdjustment" type="float" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
