@@ -1,11 +1,12 @@
 #pragma once
 #include "Merging/Mergers/AssetMerger.h"
 
+class FileMergingPolicy3;
+
 namespace Assets
 {
 
 class AssetMergeSource;
-class AssetMergeSystem;
 
 //! Merges XML files using ChairManager's XML merger.
 class XmlAssetMerger : public AssetMerger
@@ -21,7 +22,6 @@ protected:
     virtual void DoMerge(const std::vector<InputFile>& inputFiles) override;
 
 private:
-    AssetMergeSystem* m_pSys = nullptr;
     unsigned m_ParseFlags = pugi::parse_default; //!< Flags for xml_document::load_file
 
     //! Reads the input file.
@@ -34,8 +34,8 @@ private:
     //! Wildcards are Lua expressions embedded into XML attributes.
     void ResolveWildcards(pugi::xml_document& doc, AssetMergeSource* pSource);
 
-    //! Writes XML document into the output file.
-    void SaveXml(const pugi::xml_document& doc);
+    //! Finalizes and writes XML document into the output file.
+    void SaveFinalXml(pugi::xml_document& doc, const FileMergingPolicy3& policy);
 };
 
 } // namespace Assets

@@ -1,6 +1,8 @@
 #pragma once
 
-class MergingPolicy;
+class FileMergingPolicy3;
+class MergingLibrary3;
+class XmlTypeLibrary;
 
 namespace Assets
 {
@@ -36,23 +38,38 @@ public:
     //! Throws if merger is not found.
     AssetMergerPtr CreateMerger(const std::string& name);
 
-    //! Finds the merging policy for specified file.
-    MergingPolicy FindMergingPolicy(const std::string& relPath) const;
+    //! @returns XML Type Library.
+    const XmlTypeLibrary& GetTypeLibrary() const { return *m_pXmlTypeLibrary; }
+
+    //! @returns Merging Library.
+    const MergingLibrary3& GetMergingLibrary() const { return *m_pMergingLibrary; }
 
     //! @returns NameToIdMap
     const auto& GetNameToIdMap() const { return m_NameToIdMap; }
+
+    //! Files that must always be merged (even if no mod modifies them).
+    const std::set<std::string>& GetAlwaysMergeFiles() const { return m_AlwaysMergeFiles; }
+
+    //! Remaps output file path if required.
+    //! Level and localization files need to be placed into a different directory.
+    std::string RemapOutputFile(const std::string& relPath);
 
 private:
     static constexpr char CACHE_FILE_NAME[] = "MergeCache.xml";
 
     using MergerFactory = std::function<AssetMergerPtr()>;
 
-    pugi::xml_document m_MergingPolicyDoc;
+    std::unique_ptr<XmlTypeLibrary> m_pXmlTypeLibrary;
+    std::unique_ptr<MergingLibrary3> m_pMergingLibrary;
     std::map<std::string, uint64_t> m_NameToIdMap; //!< Maps Ark/Prey XML names to their IDs.
     std::map<std::string, MergerFactory> m_MergerFactories;
+    std::set<std::string> m_AlwaysMergeFiles;
 
     //! @returns the merge cache path.
     fs::path GetCachePath();
+
+    //! Fills m_AlwaysMergeFiles.
+    void FillAlwaysMergeFiles();
 
     template <typename T, typename ...TArgs>
     void CreateNamedMergerFactory(const std::string& name, TArgs... args)

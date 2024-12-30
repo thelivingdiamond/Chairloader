@@ -17,10 +17,6 @@ void Assets::DirectoryAssetMergeSource::CollectFiles()
 
 bool Assets::DirectoryAssetMergeSource::CheckFile(const std::string& relPath, const fs::path& fullPath)
 {
-    // Skip level files (will be handled separately)
-    if (StartsWith(relPath, "levels/"))
-        return false;
-
     return true;
 }
 
