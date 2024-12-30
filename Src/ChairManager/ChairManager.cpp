@@ -606,7 +606,7 @@ void ChairManager::DrawModList() {
                 }
             }
             ImGui::Separator();
-            if (ImGui::BeginChild("Mod Info", { 0, ImGui::GetContentRegionAvail().y * 0.61f })) {
+            if (ImGui::BeginChild("Mod Info", { 0, ImGui::GetContentRegionAvail().y * 0.72f })) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
                     ImGui::TextWrapped("%s", ModSelect->displayName.c_str());
@@ -670,27 +670,29 @@ void ChairManager::DrawModList() {
                 }
             }
             ImGui::EndChild();
-            //            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
-            if (ImGui::Button("Save Mod List")) {
-                SaveAllMods();
-                overlayLog(severityLevel::info, "Mod list saved");
-            }
-            ImGui::SameLine();
-            ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
+
             if (ImGui::Button("Deploy Mods")) {
+                SaveAllMods();
                 SwitchToDeployScreen();
             }
+
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
+
             ImGui::Separator();
+
             if (ImGui::Button("Install Mod From File")) {
                 OpenInstallModDialog();
             }
+
             ImGui::Separator();
+
             if (ImGui::Button("Options")) {
                 ImGui::OpenPopup("Launch Options");
             }
+
             ImGui::SameLine();
+
             if (ImGui::Button("Launch Prey")) {
                 launchGame();
             }
@@ -1538,6 +1540,7 @@ void ChairManager::SaveAllMods() {
         SaveMod(&mod);
     }
     saveChairloaderConfigFile();
+    overlayLog(severityLevel::info, "Mod list saved");
 }
 
 void ChairManager::InstallModFromState()
