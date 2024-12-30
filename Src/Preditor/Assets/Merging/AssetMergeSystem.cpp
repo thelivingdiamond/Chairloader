@@ -1,5 +1,7 @@
-#include <ChairMerger/MergingPolicy.h>
+#include <ChairMerger/MergingPolicy3.h>
+#include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/NameToIdMap.h>
+#include <ChairMerger/XmlTypeLibrary.h>
 #include "Mergers/SymlinkAssetMerger.h"
 #include "Mergers/XmlAssetMerger.h"
 #include "Merging/AssetMergeExecutor.h"
@@ -9,11 +11,44 @@
 
 Assets::AssetMergeSystem::AssetMergeSystem()
 {
-    fs::path mergingLibPath = gPreditor->pConfig->GetPreditorRoot() / MERGING_LIBRARY_FILE_NAME;
-    
-    if (!m_MergingPolicyDoc.load_file(mergingLibPath.c_str()))
+    try
     {
-        CryFatalError("[AssetMergeSystem] Failed to open {}", MERGING_LIBRARY_FILE_NAME);
+        fs::path typeLibPath = gPreditor->pConfig->GetPreditorRoot() / "XmlTypeLibrary.xml";
+        CryLog("[AssetMergeSystem] Loading {}", typeLibPath.u8string());
+        m_pXmlTypeLibrary = std::make_unique<XmlTypeLibrary>();
+        m_pXmlTypeLibrary->LoadTypesFromFile(typeLibPath);
+    }
+    catch (const std::exception& e)
+    {
+        CryFatalError("[AssetMergeSystem] Failed to load XML Type Library:\n{}", e.what());
+    }
+
+    try
+    {
+        fs::path mergingLibDir = gPreditor->pConfig->GetPreditorRoot() / "MergingLibrary";
+        fs::path mergingLibFile = gPreditor->pConfig->GetPreditorRoot() / "MergingLibrary.xml";
+        m_pMergingLibrary = std::make_unique<MergingLibrary3>(m_pXmlTypeLibrary.get());
+
+        if (fs::exists(mergingLibDir))
+        {
+            // Use directory if it exists. It contains the source files.
+            CryLog("[AssetMergeSystem] Using merging library from directory {}", mergingLibDir.u8string());
+            m_pMergingLibrary->LoadFromDir(mergingLibDir);
+        }
+        else if (fs::exists(mergingLibFile))
+        {
+            // Use file instead. It contains the combined contents of source dir.
+            CryLog("[AssetMergeSystem] Using merging library from file {}", mergingLibFile.u8string());
+            m_pMergingLibrary->LoadFromFile(mergingLibFile);
+        }
+        else
+        {
+            throw std::runtime_error("Merging library missing");
+        }
+    }
+    catch (const std::exception& e)
+    {
+        CryFatalError("[AssetMergeSystem] Failed to load Merging Library:\n{}", e.what());
     }
 
     m_NameToIdMap = Manager::NameToIdMap::Create(
@@ -73,8 +108,12 @@ bool Assets::AssetMergeSystem::MergeAssets()
 
 std::string_view Assets::AssetMergeSystem::GetMergerNameForFile(const std::string& fileRelPath)
 {
-    if (EndsWith(fileRelPath, ".xml"))
+    const FileMergingPolicy3* pPolicy = m_pMergingLibrary->FindPolicyForFile(fileRelPath);
+
+    if (pPolicy)
         return "xml";
+    else if (EndsWith(fileRelPath, ".xml"))
+        CryError("[Merging] File {} not found in merging library", fileRelPath);
 
     // By default, symlink the last file
     return "symlink";
@@ -115,16 +154,6 @@ Assets::AssetMergeSystem::AssetMergerPtr Assets::AssetMergeSystem::CreateMerger(
         throw std::runtime_error(fmt::format("Unknown merger '{}'", name));
 
     return it->second();
-}
-
-MergingPolicy Assets::AssetMergeSystem::FindMergingPolicy(const std::string& relPath) const
-{
-    MergingPolicy policy = MergingPolicy::FindMergingPolicy(m_MergingPolicyDoc, fs::u8path(relPath), gPreditor->pConfig->GetPreyFiles());
-
-    if (policy.policy == MergingPolicy::identification_policy::unknown)
-        CryError("[Merging] File {} not found in merging library", relPath);
-
-    return policy;
 }
 
 fs::path Assets::AssetMergeSystem::GetCachePath()

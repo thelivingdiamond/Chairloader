@@ -1,6 +1,8 @@
 #pragma once
 #include "Merging/Mergers/AssetMerger.h"
 
+class FileMergingPolicy3;
+
 namespace Assets
 {
 
@@ -34,8 +36,8 @@ private:
     //! Wildcards are Lua expressions embedded into XML attributes.
     void ResolveWildcards(pugi::xml_document& doc, AssetMergeSource* pSource);
 
-    //! Writes XML document into the output file.
-    void SaveXml(const pugi::xml_document& doc);
+    //! Finalizes and writes XML document into the output file.
+    void SaveFinalXml(pugi::xml_document& doc, const FileMergingPolicy3& policy);
 };
 
 } // namespace Assets

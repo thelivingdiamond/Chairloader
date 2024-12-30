@@ -1,9 +1,44 @@
-#include <ChairMerger/MergingPolicy.h>
-#include <ChairMerger/XMLMerger2.h>
+#include <ChairMerger/MergingPolicy3.h>
+#include <ChairMerger/MergingLibrary3.h>
+#include <ChairMerger/XmlMerger3.h>
+#include <ChairMerger/XmlValidator.h>
+#include <ChairMerger/XmlFinalizer3.h>
 #include <ChairMerger/WildcardResolver.h>
 #include "Merging/Mergers/XmlAssetMerger.h"
 #include "Merging/Sources/AssetMergeSource.h"
 #include "Merging/AssetMergeSystem.h"
+
+constexpr char SERIALIZE_XML[] = "serialize.xml";
+
+static void PrintValidationResult(std::string_view relPath, std::string_view subtext, const XmlValidator::Result& result)
+{
+    constexpr char LINES[] = "============================================================";
+    CryError(LINES);
+    CryError("= XML VALIDATION ERROR: {}", subtext);
+    CryError("= {}", relPath);
+    CryError(LINES);
+
+    for (auto& error : result.errors)
+    {
+        // Path
+        std::string path;
+        for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
+        {
+            path += "> ";
+            path += *it;
+            path += " ";
+        }
+
+        // Attribute
+        if (!error.attributeName.empty())
+            path += fmt::format("| (attr = {})", error.attributeName);
+
+        CryLog("{}", path);
+
+        // Message
+        CryLog("    {}", error.message);
+    }
+}
 
 Assets::XmlAssetMerger::XmlAssetMerger(AssetMergeSystem* pSys)
 {
@@ -16,25 +51,31 @@ Assets::XmlAssetMerger::~XmlAssetMerger()
 
 void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
 {
-    MergingPolicy policy = m_pSys->FindMergingPolicy(GetRelPath());
+    const FileMergingPolicy3* pPolicy = m_pSys->GetMergingLibrary().FindPolicyForFile(GetRelPath());
+    CRY_ASSERT_MESSAGE(pPolicy, "XmlAssetMerger may only be used with registered files");
 
-    if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
-    {
-        // Excel spreadsheets are parsed in full
-        m_ParseFlags = pugi::parse_full;
-    }
-
-    if (policy.policy == MergingPolicy::identification_policy::overwrite ||
-        policy.policy == MergingPolicy::identification_policy::unknown)
+    if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Replace)
     {
         // Keep the last file, ignore the rest
         pugi::xml_document lastXml = ReadFile(*inputFiles.rbegin());
-        SaveXml(lastXml);
+        SaveFinalXml(lastXml, *pPolicy);
         return;
     }
 
+    if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+    {
+        // Don't merge the file
+        CryWarning("[XmlAssetMerger] Not merging read-only file {}", GetRelPath());
+        return;
+    }
+
+    if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+    {
+        // Excel spreadsheets are parsed in full
+        m_ParseFlags = XmlMerger3::EXCEL_PARSE_OPTIONS;
+    }
+
     pugi::xml_document baseDoc; //!< The XML into which changes are being merged into
-    pugi::xml_document originalDoc; //!< The original XML from Prey
 
     fs::path originalDocPath = gPreditor->pConfig->GetPreyFiles() / fs::u8path(GetRelPath());
     size_t inputFileIdx = 0;
@@ -42,7 +83,6 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
     if (fs::exists(originalDocPath))
     {
         // Prey file is the base
-        originalDoc = ReadFile(originalDocPath);
         baseDoc = ReadFile(originalDocPath);
     }
     else
@@ -59,10 +99,52 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
     {
         const InputFile& inputFile = inputFiles[inputFileIdx];
         pugi::xml_document modDoc = ReadFile(inputFile);
-        XMLMerger2::MergeXMLDocument(baseDoc, modDoc, originalDoc, policy);
+
+        XmlMergerContext context;
+        context.modName = inputFile.pSource->GetSourceName();
+        context.pTypeLib = &m_pSys->GetTypeLibrary();
+
+        if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+        {
+            XmlMerger3::MergeExcelDocument(context, baseDoc, modDoc, *pPolicy);
+        }
+        else
+        {
+            // Validate mod node
+            {
+                XmlValidator::Context valCtx;
+                valCtx.mode = XmlValidator::EMode::Mod;
+                valCtx.pTypeLib = &m_pSys->GetTypeLibrary();
+
+                XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, modDoc, *pPolicy);
+
+                if (!result)
+                {
+                    PrintValidationResult(GetRelPath(), fmt::format("in mod {}", inputFile.pSource->GetSourceName()), result);
+                    throw std::runtime_error("Mod file validation error");
+                }
+            }
+
+            XmlMerger3::MergeDocument(context, baseDoc, modDoc, *pPolicy);
+
+            // Validate base after merging
+            {
+                XmlValidator::Context valCtx;
+                valCtx.mode = XmlValidator::EMode::MergingBase;
+                valCtx.pTypeLib = &m_pSys->GetTypeLibrary();
+
+                XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, baseDoc, *pPolicy);
+
+                if (!result)
+                {
+                    PrintValidationResult(GetRelPath(), fmt::format("after merging mod {}", inputFile.pSource->GetSourceName()), result);
+                    throw std::runtime_error("Base file validation error after merging");
+                }
+            }
+        }
     }
 
-    SaveXml(baseDoc);
+    SaveFinalXml(baseDoc, *pPolicy);
 }
 
 pugi::xml_document Assets::XmlAssetMerger::ReadFile(const fs::path& file)
@@ -96,10 +178,42 @@ void Assets::XmlAssetMerger::ResolveWildcards(pugi::xml_document& doc, AssetMerg
         wr->ResolveDocumentWildcards(doc);
 }
 
-void Assets::XmlAssetMerger::SaveXml(const pugi::xml_document& doc)
+void Assets::XmlAssetMerger::SaveFinalXml(pugi::xml_document& doc, const FileMergingPolicy3& policy)
 {
     constexpr char INDENT[] = "    ";
     constexpr unsigned FLAGS = pugi::format_indent | pugi::format_indent_attributes;
+
+    // Finalize
+    XmlFinalizerContext context;
+    XmlFinalizer3::FinalizeDocument(context, doc, policy);
+
+    if (!context.serializeEntityIds.empty())
+    {
+        // Generate serialize.xml
+        // Safe to do this because it's read-only in the policy.
+        fs::path serPath = GetOutputFilePath().parent_path() / SERIALIZE_XML;
+        pugi::xml_document serDoc = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
+
+        if (!serDoc.save_file(serPath.c_str(), INDENT, FLAGS))
+        {
+            throw std::runtime_error(fmt::format("doc.save_file failed for {}", serPath.u8string()));
+        }
+    }
+
+    // Validate after finalization
+    {
+        XmlValidator::Context valCtx;
+        valCtx.mode = XmlValidator::EMode::Prey;
+        valCtx.pTypeLib = &m_pSys->GetTypeLibrary();
+
+        XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, doc, policy);
+
+        if (!result)
+        {
+            PrintValidationResult(GetRelPath(), "in final file", result);
+            throw std::runtime_error("Final validation error");
+        }
+    }
 
     if (!doc.save_file(GetOutputFilePath().c_str(), INDENT, FLAGS))
     {

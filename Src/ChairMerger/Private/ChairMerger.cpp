@@ -728,7 +728,7 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
         if (!context.serializeEntityIds.empty())
         {
             // Generate serialize.xml
-            // Save to do this now because it's read-only in the policy.
+            // Safe to do this now because it's read-only in the policy.
             // So this is the only place where it will be written
             fs::path serPath = relPath.parent_path() / SERIALIZE_XML;
             IXmlCache::WriteLock serLock;
