@@ -747,7 +747,8 @@ void ChairManager::DrawDLLSettings() {
 
         if(ImGui::Button("Change Path")){
             SetGamePath(fs::path());
-            SwitchToInstallWizard();
+            saveChairloaderConfigFile();
+            UI::RequestExit();
         }
 
         ImGui::PushID("GameVersion");
