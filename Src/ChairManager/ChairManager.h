@@ -236,7 +236,6 @@ private:
     };
 
     ModInstallState m_ModInstallState;
-    void UninstallMod(std::string &modName);
     void InstallModFromState();
     void UpdateModInstall();
 
@@ -332,4 +331,8 @@ private:
 
     //! Checks if an update is available.
     bool IsUpdateAvailable();
+
+    //! Deletes a mod from mod list and all of its files.
+    //! Doesn't delete Preditor projects.
+    void DeleteInstalledMod(const std::string& modName);
 };
