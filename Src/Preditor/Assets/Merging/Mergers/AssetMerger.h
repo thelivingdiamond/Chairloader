@@ -5,6 +5,7 @@ namespace Assets
 {
 
 class AssetMergeSource;
+class AssetMergeSystem;
 
 //! Takes a set of file from input sources and produces a single output file.
 class AssetMerger : NoCopy
@@ -16,7 +17,7 @@ public:
         fs::path fullPath;
     };
 
-    AssetMerger();
+    AssetMerger(AssetMergeSystem* pSys);
     virtual ~AssetMerger();
 
     //! @returns the relative path. Lower case with forward slashes.
@@ -29,6 +30,8 @@ public:
     void MergeFiles(const std::string& relPath, const std::vector<InputFile>& inputFiles);
 
 protected:
+    AssetMergeSystem* m_pSys = nullptr;
+
     //! Performs actual merging.
     virtual void DoMerge(const std::vector<InputFile>& inputFiles) = 0;
 

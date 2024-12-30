@@ -50,6 +50,10 @@ public:
     //! Files that must always be merged (even if no mod modifies them).
     const std::set<std::string>& GetAlwaysMergeFiles() const { return m_AlwaysMergeFiles; }
 
+    //! Remaps output file path if required.
+    //! Level and localization files need to be placed into a different directory.
+    std::string RemapOutputFile(const std::string& relPath);
+
 private:
     static constexpr char CACHE_FILE_NAME[] = "MergeCache.xml";
 

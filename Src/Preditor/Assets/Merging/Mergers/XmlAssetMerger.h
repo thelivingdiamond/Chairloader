@@ -7,7 +7,6 @@ namespace Assets
 {
 
 class AssetMergeSource;
-class AssetMergeSystem;
 
 //! Merges XML files using ChairManager's XML merger.
 class XmlAssetMerger : public AssetMerger
@@ -23,7 +22,6 @@ protected:
     virtual void DoMerge(const std::vector<InputFile>& inputFiles) override;
 
 private:
-    AssetMergeSystem* m_pSys = nullptr;
     unsigned m_ParseFlags = pugi::parse_default; //!< Flags for xml_document::load_file
 
     //! Reads the input file.

@@ -12,7 +12,7 @@ class SymlinkAssetMerger : public AssetMerger
 public:
     static constexpr char NAME[] = "symlink";
 
-    SymlinkAssetMerger();
+    SymlinkAssetMerger(AssetMergeSystem* pSys);
     ~SymlinkAssetMerger();
 
 protected:

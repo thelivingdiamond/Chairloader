@@ -3,7 +3,8 @@
 
 bool Assets::SymlinkAssetMerger::m_CopyInstead = false;
 
-Assets::SymlinkAssetMerger::SymlinkAssetMerger()
+Assets::SymlinkAssetMerger::SymlinkAssetMerger(AssetMergeSystem* pSys)
+    : AssetMerger(pSys)
 {
 }
 

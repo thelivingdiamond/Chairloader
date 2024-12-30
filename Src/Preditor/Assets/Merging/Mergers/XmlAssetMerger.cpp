@@ -41,8 +41,8 @@ static void PrintValidationResult(std::string_view relPath, std::string_view sub
 }
 
 Assets::XmlAssetMerger::XmlAssetMerger(AssetMergeSystem* pSys)
+    : AssetMerger(pSys)
 {
-    m_pSys = pSys;
 }
 
 Assets::XmlAssetMerger::~XmlAssetMerger()

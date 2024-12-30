@@ -80,7 +80,7 @@ Assets::AssetMergeSystem::AssetMergeSystem()
 
     FillAlwaysMergeFiles();
 
-    CreateMergerFactory<SymlinkAssetMerger>();
+    CreateMergerFactory<SymlinkAssetMerger>(this);
     CreateMergerFactory<XmlAssetMerger>(this);
 }
 
@@ -178,6 +178,30 @@ Assets::AssetMergeSystem::AssetMergerPtr Assets::AssetMergeSystem::CreateMerger(
         throw std::runtime_error(fmt::format("Unknown merger '{}'", name));
 
     return it->second();
+}
+
+std::string Assets::AssetMergeSystem::RemapOutputFile(const std::string& relPath)
+{
+    if (StartsWith(relPath, "levels/"))
+    {
+        // relPath = "levels/..../[levelName]/level/..."
+        // Need to remove /level/
+        size_t pos = relPath.find("/level/");
+
+        if (pos == std::string::npos)
+            return relPath;
+
+        return relPath.substr(0, pos) + relPath.substr(pos + 6);
+    }
+
+    if (StartsWith(relPath, "localization/english_xml"))
+    {
+        // relPath = "localization/english_xml/..."
+        // Need to remove /english_xml/
+        return "localization/" + relPath.substr(25);
+    }
+
+    return relPath;
 }
 
 fs::path Assets::AssetMergeSystem::GetCachePath()
