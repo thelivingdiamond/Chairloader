@@ -47,6 +47,9 @@ public:
     //! @returns NameToIdMap
     const auto& GetNameToIdMap() const { return m_NameToIdMap; }
 
+    //! Files that must always be merged (even if no mod modifies them).
+    const std::set<std::string>& GetAlwaysMergeFiles() const { return m_AlwaysMergeFiles; }
+
 private:
     static constexpr char CACHE_FILE_NAME[] = "MergeCache.xml";
 
@@ -56,9 +59,13 @@ private:
     std::unique_ptr<MergingLibrary3> m_pMergingLibrary;
     std::map<std::string, uint64_t> m_NameToIdMap; //!< Maps Ark/Prey XML names to their IDs.
     std::map<std::string, MergerFactory> m_MergerFactories;
+    std::set<std::string> m_AlwaysMergeFiles;
 
     //! @returns the merge cache path.
     fs::path GetCachePath();
+
+    //! Fills m_AlwaysMergeFiles.
+    void FillAlwaysMergeFiles();
 
     template <typename T, typename ...TArgs>
     void CreateNamedMergerFactory(const std::string& name, TArgs... args)

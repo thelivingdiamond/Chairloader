@@ -14,29 +14,41 @@ Assets::SymlinkAssetMerger::~SymlinkAssetMerger()
 void Assets::SymlinkAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
 {
     // Symlink to the last file
-    const InputFile& srcFile = *inputFiles.rbegin();
+    fs::path srcFile;
+    std::string sourceName;
+
+    if (!inputFiles.empty())
+    {
+        srcFile = inputFiles.rbegin()->fullPath;
+        sourceName = inputFiles.rbegin()->pSource->GetSourceName();
+    }
+    else
+    {
+        srcFile = gPreditor->pConfig->GetPreyFiles() / fs::u8path(GetRelPath());
+        sourceName = "PreyFiles";
+    }
 
     if constexpr (ASSETS_DEBUG)
     {
         CryLog("[SymlinkAssetMerger] {}: link from {} ({})", GetRelPath(),
-            srcFile.pSource->GetSourceName(), srcFile.fullPath.u8string());
+            sourceName, srcFile.u8string());
     }
 
     bool result = false;
 
     if (!m_CopyInstead)
     {
-        result = TrySymlink(srcFile.fullPath, GetOutputFilePath());
+        result = TrySymlink(srcFile, GetOutputFilePath());
 
         if (!result)
         {
             m_CopyInstead = true;
-            result = TryCopy(srcFile.fullPath, GetOutputFilePath());
+            result = TryCopy(srcFile, GetOutputFilePath());
         }
     }
     else
     {
-        result = TryCopy(srcFile.fullPath, GetOutputFilePath());
+        result = TryCopy(srcFile, GetOutputFilePath());
     }
 
     if (!result)

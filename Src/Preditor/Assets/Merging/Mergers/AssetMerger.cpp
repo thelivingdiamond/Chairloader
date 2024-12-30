@@ -15,9 +15,8 @@ void Assets::AssetMerger::MergeFiles(const std::string& relPath, const std::vect
     m_RelPath = relPath;
     m_OutputFilePath = gPreditor->pPaths->GetMergedAssetsPath() / fs::u8path(relPath);
 
-    // Must have input files
-    if (inputFiles.empty())
-        throw std::logic_error("inputFiles must not be empty");
+    // NOTE: inputFiles may be empty. In this case the original file should be processed.
+    // NOTE: But not simply copied. XMLs must be finalized (even without mods).
 
     // Remove existing file
     if (fs::exists(m_OutputFilePath))

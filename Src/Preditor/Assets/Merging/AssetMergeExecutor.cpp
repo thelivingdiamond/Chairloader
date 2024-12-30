@@ -342,6 +342,19 @@ Assets::MergeCache Assets::AssetMergeExecutor::CreateCache()
         }
     }
 
+    // Always-merge files
+    for (const std::string& relPath : m_pSys->GetAlwaysMergeFiles())
+    {
+        auto it = cache.files.find(relPath);
+
+        if (it != cache.files.end())
+            continue;
+
+        // Add new file entry
+        it = cache.files.emplace(relPath, MergeCache::OutFile()).first;
+        it->second.merger = m_pSys->GetMergerNameForFile(relPath);
+    }
+
     return cache;
 }
 

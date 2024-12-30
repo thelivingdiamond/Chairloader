@@ -54,10 +54,18 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
     const FileMergingPolicy3* pPolicy = m_pSys->GetMergingLibrary().FindPolicyForFile(GetRelPath());
     CRY_ASSERT_MESSAGE(pPolicy, "XmlAssetMerger may only be used with registered files");
 
+    fs::path originalDocPath = gPreditor->pConfig->GetPreyFiles() / fs::u8path(GetRelPath());
+
     if (pPolicy->GetMethod() == FileMergingPolicy3::EMethod::Replace)
     {
         // Keep the last file, ignore the rest
-        pugi::xml_document lastXml = ReadFile(*inputFiles.rbegin());
+        pugi::xml_document lastXml;
+
+        if (!inputFiles.empty())
+            lastXml = ReadFile(*inputFiles.rbegin());
+        else
+            lastXml = ReadFile(originalDocPath);
+
         SaveFinalXml(lastXml, *pPolicy);
         return;
     }
@@ -77,7 +85,6 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
 
     pugi::xml_document baseDoc; //!< The XML into which changes are being merged into
 
-    fs::path originalDocPath = gPreditor->pConfig->GetPreyFiles() / fs::u8path(GetRelPath());
     size_t inputFileIdx = 0;
 
     if (fs::exists(originalDocPath))
@@ -87,6 +94,8 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
     }
     else
     {
+        CRY_ASSERT(!inputFiles.empty());
+
         // First file is the base
         baseDoc = ReadFile(*inputFiles.rbegin());
 
@@ -183,35 +192,38 @@ void Assets::XmlAssetMerger::SaveFinalXml(pugi::xml_document& doc, const FileMer
     constexpr char INDENT[] = "    ";
     constexpr unsigned FLAGS = pugi::format_indent | pugi::format_indent_attributes;
 
-    // Finalize
-    XmlFinalizerContext context;
-    XmlFinalizer3::FinalizeDocument(context, doc, policy);
-
-    if (!context.serializeEntityIds.empty())
+    if (policy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
     {
-        // Generate serialize.xml
-        // Safe to do this because it's read-only in the policy.
-        fs::path serPath = GetOutputFilePath().parent_path() / SERIALIZE_XML;
-        pugi::xml_document serDoc = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
+        // Finalize
+        XmlFinalizerContext context;
+        XmlFinalizer3::FinalizeDocument(context, doc, policy);
 
-        if (!serDoc.save_file(serPath.c_str(), INDENT, FLAGS))
+        if (!context.serializeEntityIds.empty())
         {
-            throw std::runtime_error(fmt::format("doc.save_file failed for {}", serPath.u8string()));
+            // Generate serialize.xml
+            // Safe to do this because it's read-only in the policy.
+            fs::path serPath = GetOutputFilePath().parent_path() / SERIALIZE_XML;
+            pugi::xml_document serDoc = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
+
+            if (!serDoc.save_file(serPath.c_str(), INDENT, FLAGS))
+            {
+                throw std::runtime_error(fmt::format("doc.save_file failed for {}", serPath.u8string()));
+            }
         }
-    }
 
-    // Validate after finalization
-    {
-        XmlValidator::Context valCtx;
-        valCtx.mode = XmlValidator::EMode::Prey;
-        valCtx.pTypeLib = &m_pSys->GetTypeLibrary();
-
-        XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, doc, policy);
-
-        if (!result)
+        // Validate after finalization
         {
-            PrintValidationResult(GetRelPath(), "in final file", result);
-            throw std::runtime_error("Final validation error");
+            XmlValidator::Context valCtx;
+            valCtx.mode = XmlValidator::EMode::Prey;
+            valCtx.pTypeLib = &m_pSys->GetTypeLibrary();
+
+            XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, doc, policy);
+
+            if (!result)
+            {
+                PrintValidationResult(GetRelPath(), "in final file", result);
+                throw std::runtime_error("Final validation error");
+            }
         }
     }
 

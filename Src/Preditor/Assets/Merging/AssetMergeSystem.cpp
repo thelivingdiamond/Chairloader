@@ -9,6 +9,28 @@
 #include "Merging/MergeCache.h"
 #include "AssetsCommon.h"
 
+//! Files that are stored in paks other than main patch.
+//! They must always be merged to overwrite ChairManager paks.
+constexpr const char* SEPARATE_PAK_FILES[] = {
+    "levels/campaign/endgame/level",
+    "levels/campaign/engineering/cargobay/level",
+    "levels/campaign/engineering/lifesupport/level",
+    "levels/campaign/engineering/powersource/level",
+    "levels/campaign/executive/arboretum/level",
+    "levels/campaign/executive/bridge/level",
+    "levels/campaign/executive/corporateit/level",
+    "levels/campaign/executive/crewfacilities/level",
+    "levels/campaign/playergenderselect/level",
+    "levels/campaign/research/lobby/level",
+    "levels/campaign/research/prototype/level",
+    "levels/campaign/research/psychotronics/level",
+    "levels/campaign/research/shuttlebay/level",
+    "levels/campaign/research/simulationlabs/level",
+    "levels/campaign/research/zerog_utilitytunnels/level",
+    "levels/campaign/station/exterior/level",
+    "localization/english_xml",
+};
+
 Assets::AssetMergeSystem::AssetMergeSystem()
 {
     try
@@ -55,6 +77,8 @@ Assets::AssetMergeSystem::AssetMergeSystem()
         gPreditor->pConfig->GetPreditorRoot() / Manager::NameToIdMap::LIBRARY_FILE_NAME,
         gPreditor->pConfig->GetPreyFiles()
     );
+
+    FillAlwaysMergeFiles();
 
     CreateMergerFactory<SymlinkAssetMerger>();
     CreateMergerFactory<XmlAssetMerger>(this);
@@ -159,4 +183,23 @@ Assets::AssetMergeSystem::AssetMergerPtr Assets::AssetMergeSystem::CreateMerger(
 fs::path Assets::AssetMergeSystem::GetCachePath()
 {
     return gPreditor->pPaths->GetUserPath() / CACHE_FILE_NAME;
+}
+
+void Assets::AssetMergeSystem::FillAlwaysMergeFiles()
+{
+    fs::path root = gPreditor->pConfig->GetPreyFiles();
+
+    for (const char* prefix : SEPARATE_PAK_FILES)
+    {
+        for (const fs::directory_entry dirEnt : fs::recursive_directory_iterator(root / fs::u8path(prefix)))
+        {
+            if (dirEnt.is_directory())
+                continue;
+
+            fs::path relPath = dirEnt.path().lexically_relative(root);
+            std::string relPathStr = relPath.generic_u8string();
+            StrToLower(relPathStr);
+            m_AlwaysMergeFiles.insert(std::move(relPathStr));
+        }
+    }
 }
