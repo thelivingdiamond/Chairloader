@@ -4,7 +4,7 @@
 #pragma once
 #include <mutex>
 #include <Manager/ModConfig.h>
-
+#include <Chairloader/Private/ModPrefix.h>
 
 /*
 <X Param="{{ configValue }}" /> <!-- Current mod's config -->
@@ -16,9 +16,6 @@
  */
 
 struct IChairManager;
-
-//! Preditor projects have this prefix in their modName.
-constexpr char PREDITOR_MOD_PREFIX[] = "preditor:";
 
 //! the purpose of this class is to load, edit, and manage config files for mods
 class ConfigManager {

@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="NpcGameEffects">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="ArkNpcGameEffect_WeaverShield">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="activationCooldown" type="float" required="true" />
+                    <Attribute name="blockDamageTime" type="float" required="true" />
+                    <Attribute name="startAudioTrigger" type="string" required="true" />
+                    <Attribute name="stopAudioTrigger" type="string" required="true" />
+                    <Attribute name="impactAudioTrigger" type="string" required="true" />
+                    <Attribute name="signalModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="fearPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="shieldSkinAttachmentName" type="string" required="true" />
+                    <Attribute name="dissolveOnSignalGroupId" type="ArkSignalGroupId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_PoltergeistForceAura">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="radius" type="float" required="true" />
+                    <Attribute name="minForce" type="float" required="true" />
+                    <Attribute name="maxForce" type="float" required="true" />
+                    <Attribute name="minMass" type="float" required="true" />
+                    <Attribute name="maxMass" type="float" required="true" />
+                    <Attribute name="damageAmountForRepelBlast" type="float" required="true" />
+                    <Attribute name="damageSampleTimeForRepelBlast" type="float" required="true" />
+                    <Attribute name="repelBlastPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="repelBlastRadiusMin" type="float" required="true" />
+                    <Attribute name="repelBlastRadiusMax" type="float" required="true" />
+                    <Attribute name="repelBlastMinScale" type="float" required="true" />
+                    <Attribute name="repelBlastImpulse" type="float" required="true" />
+                    <Attribute name="repelBlastCameraShakeId" type="ArkCameraShakeId" required="true" />
+                    <Attribute name="pRepelBlastEffect" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_PoltergeistInvisibility">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="visibleTimeAfterHit" type="float" required="true" />
+                    <Attribute name="visibleTimeAfterGloo" type="float" required="true" />
+                    <Attribute name="visibleTimeAfterStun" type="float" required="true" />
+                    <Attribute name="visibleAfterHitCapTime" type="float" required="true" />
+                    <Attribute name="visibleAfterHitCooldown" type="float" required="true" />
+                    <Attribute name="appearAudioTrigger" type="string" required="true" />
+                    <Attribute name="disappearAudioTrigger" type="string" required="true" />
+                    <Attribute name="glooSignalId" type="ArkSignalId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Interference">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="signalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="signalRadius" type="float" required="true" />
+                    <Attribute name="signalFrequency" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="BlackList" type="ArkNpcGameEffectBlackList" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_EnergizeAura">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="signalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="signalRadius" type="float" required="true" />
+                    <Attribute name="signalFrequency" type="float" required="true" />
+                    <Attribute name="lightningMaterial" type="string" required="true" />
+                    <Attribute name="sourceOffset" type="Vec3" required="true" />
+                    <Attribute name="sourceOffsetVariation" type="Vec3" required="true" />
+                    <Attribute name="modifierId" type="ArkSignalModifierId" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="BlackList" type="ArkNpcGameEffectBlackList" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_PsiSuppression">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_ControlTurrets">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="maxControllableTurrets" type="int32" required="true" />
+                    <Attribute name="turretDesiredDistanceFromNpc" type="float" required="true" />
+                    <Attribute name="desiredTurretHeight" type="float" required="true" />
+                    <Attribute name="turretCheckRadius" type="float" required="true" />
+                    <Attribute name="requiredTurretTag" type="ArkMetaTagId" required="true" />
+                    <Attribute name="defaultTurretFaction" type="ArkFactionId" required="true" />
+                    <Attribute name="conditionalOwnerFaction" type="ArkFactionId" required="true" />
+                    <Attribute name="conditionalTurretFaction" type="ArkFactionId" required="true" />
+                    <Attribute name="timeBetweenTurretScans" type="float" required="true" />
+                    <Attribute name="formationChangeRotationSpeed" type="float" required="true" />
+                    <Attribute name="turretRotationSpeed" type="float" required="true" />
+                    <Attribute name="turretTraceAdjustmentRadius" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_EthericFog">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fogSpawnCooldown" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_ExcreteCystoids">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="cystoidArchetypeName" type="ArchetypeName" required="true" />
+                    <Attribute name="excreteAudioTrigger" type="string" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="SpawnCountInterval">
+                        <Attributes>
+                            <Attribute name="minimum" type="int32" required="true" />
+                            <Attribute name="maximum" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="SpawnPeriodInterval">
+                        <Attributes>
+                            <Attribute name="minimum" type="float" required="true" />
+                            <Attribute name="maximum" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_SimplePackageAura">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="auraPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="auraInboundModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="auraDurationTime" type="float" required="true" />
+                    <Attribute name="auraTickRate" type="float" required="true" />
+                    <Attribute name="auraRadius" type="float" required="true" />
+                    <Attribute name="characterEffectType" type="float" required="true" />
+                    <Attribute name="defaultEffectRadius" type="float" required="true" />
+                    <Attribute name="bStoppedByGoo" type="bool" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Gloo">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="glooBreakBuildupTrigger" type="string" required="true" />
+                    <Attribute name="glooHitTrigger" type="string" required="true" />
+                    <Attribute name="glooSignalId" type="ArkSignalId" required="true" />
+                    <Attribute name="glooLowerThresholdPreBreakSfxTime" type="float" required="true" />
+                    <Attribute name="glooSignalModifier" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="glooGrowAccumulationSpeedPerSecond" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Feared">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="endFearDistance" type="float" required="true" />
+                    <Attribute name="bFleesFromHostileDamage" type="boolString" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_OnFire">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="damageTickRate" type="float" required="true" />
+                    <Attribute name="fireDamagePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="instigatingSignalGroup" type="ArkSignalGroupId" required="true" />
+                    <Attribute name="bFleesWhenIgnited" type="boolString" required="true" />
+                    <Attribute name="aoePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="aoeRadiusFromNpc" type="float" required="true" />
+
+                    <Attribute name="onFireTime" type="float" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_HitReactionMaterialAnimation">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_DoppelgangerLink">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Energized">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="energizingSignalId" type="ArkSignalId" required="true" />
+                    <Attribute name="drainPerSecond" type="float" required="true" />
+                    <Attribute name="delayBeforeDrain" type="float" required="true" />
+                    <Attribute name="energizedExplosionPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="energizedExplosionRadius" type="float" required="true" />
+                    <Attribute name="energizedExplosionImpulse" type="float" required="true" />
+                    <Attribute name="energizedExplosionCameraShakeId" type="ArkCameraShakeId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Hacked">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="hackedFaction" type="ArkFactionId" required="true" />
+                    <Attribute name="hackedMetaTag" type="ArkMetaTagId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Corrupted">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="corruptedFactionId" type="ArkFactionId" required="true" />
+                    <Attribute name="corruptedMetaTag" type="ArkMetaTagId" required="true" />
+                    <Attribute name="corruptedContextProfileId" type="int32" required="true" />
+                    <Attribute name="corruptedSignalModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="corruptedExplodeOnDeathPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="uncorruptOnSignalGroupId" type="ArkSignalGroupId" />
+                    <Attribute name="corruptedExplodeOnDeathCameraShakeId" type="ArkCameraShakeId" required="true" />
+                    <Attribute name="corruptedExplodeMinimumDistanceScaleAmount" type="float" required="true" />
+                    <Attribute name="corruptedExplodeOnDeathRadius" type="float" required="true" />
+                    <Attribute name="corruptedExplodeOnDeathImpulse" type="float" required="true" />
+                    <Attribute name="corruptedAiTreePath" type="string" required="true" />
+                    <Attribute name="healthMultiplier" type="float" required="true" />
+                    <Attribute name="bShouldExplodeHeadOnDeath" type="boolString" required="true" />
+                    <Attribute name="corruptedExplodeDamageSourceAttachment" type="string" required="true" />
+                    <Attribute name="playerDeprogrammingSignalId" type="ArkSignalId" />
+                    <Attribute name="instantKillSignalGroupId" type="ArkSignalGroupId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_NightmareEtherFormDamageAura">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="auraPackageId" type="ArkFactionId" required="true" />
+                    <Attribute name="auraTickRate" type="float" required="true" />
+                    <Attribute name="auraRadius" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_MindControl">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="mindControlSingalId" type="ArkSignalId" required="true" /> <!-- Not a typo in "singal" -->
+                    <Attribute name="mindControlFactionId" type="ArkFactionId" required="true" />
+                    <Attribute name="mindControlMetaTag" type="ArkMetaTagId" required="true" />
+                    <Attribute name="loopEffectDelayTime" type="float" required="true" />
+                    <Attribute name="playerDamageAmountToBreakControl" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_PlayerProximityPackage">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="packageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="packageFrequency" type="float" required="true" />
+                    <Attribute name="minDistance" type="float" required="true" />
+                    <Attribute name="maxDistance" type="float" required="true" />
+                    <Attribute name="minScale" type="float" required="true" />
+                    <Attribute name="maxScale" type="float" required="true" /> 
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_RaiseFromCorpse">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="breakOutSignalGroupId" type="ArkSignalId" required="true" />
+                    <Attribute name="minRagdollTime" type="float" required="true" />
+                    <Attribute name="maxRagdollTime" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Disintegration">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_OperatorArmsRetracted">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_Stun">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="stunSignalModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="stunVfxDuration" type="float" required="true" />
+                    <Attribute name="bStunRagdoll" type="boolString" required="true" />
+                    <Attribute name="bStunLastsForever" type="boolString" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcGameEffect_PlayerControlled">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

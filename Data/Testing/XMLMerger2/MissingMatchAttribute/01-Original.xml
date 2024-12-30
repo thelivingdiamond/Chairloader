@@ -9,7 +9,7 @@
         <Entity
             Name="Data.Keycard5"
             EntityId="3026"
-            EntityGuid="4FDA91B7404BPB33">
+            EntityGuid="4FDA91B7404BEB33">
             <Properties2
                 keycard_Keycard="4349723564917331725" />
             <RenderProxy />

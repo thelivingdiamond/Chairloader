@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkAudioLogLibrary">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="AudioLogs">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkAudioLog">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkAudioLogIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Label" type="string" required="true" />
+                            <Attribute name="Conversation" type="ArkConversationId" required="true" />
+                            <Attribute name="From" type="ArkCharacterId" />
+                            <Attribute name="Date" type="string" />
+                            <Attribute name="KeyCode" type="ArkKeyCodeId" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="To">
+                                <Attributes />
+
+                                <Collection type="replaceOnly" />
+
+                                <ChildNodes>
+                                    <Node name="Recipient">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArkCharacterId" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AudioLogCollections">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkAudioLogCollection">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkAudioLogCollectionIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Owner" type="ArkCharacterId" required="true" />
+                            <Attribute name="PlotCritical" type="boolString" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="LinkedAudioLogs">
+                                <Attributes />
+        
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+                        
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="AudioLog">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArkAudioLogId" required="true" readOnly="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Root">
+        <Attributes>
+            <Attribute name="rootAttr1" type="string" allowEmpty="true" />
+            <Attribute name="rootAttr2" type="string" allowEmpty="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkDistractionManagerConfig">
+        <Attributes>
+            <Attribute name="AreaCooldownRadius" type="float" required="true" />
+            <Attribute name="AmortizedUpdateNumFrames" type="int32" required="true" />
+            <Attribute name="MaxSearchPerFrame" type="int32" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

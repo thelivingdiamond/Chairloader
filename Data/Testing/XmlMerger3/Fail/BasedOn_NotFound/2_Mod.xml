@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <AA
+        keyAttr1="keyValFromMod"
+        ch:basedOn="keyAttr1=invalid"
+        aaAttr2="aaVal2Mod" />
+</Root>

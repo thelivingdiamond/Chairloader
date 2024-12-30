@@ -6,10 +6,16 @@
 #include <gtest/gtest.h>
 #include <boost/algorithm/string.hpp>
 #include <ChairMerger/ChairMerger.h>
-#include <ChairMerger/XMLMerger2.h>
+#include <ChairMerger/LegacyModConverter.h>
 #include <ChairMerger/LuaUtils.h>
-#include <ChairMerger/WildcardResolver.h>
+#include <ChairMerger/MergingLibrary3.h>
 #include <ChairMerger/NameToIdMap.h>
+#include <ChairMerger/PreyFilePatcher.h>
+#include <ChairMerger/WildcardResolver.h>
+#include <ChairMerger/XmlFinalizer3.h>
+#include <ChairMerger/XmlMerger3.h>
+#include <ChairMerger/XmlTypeLibrary.h>
+#include <ChairMerger/XmlValidator.h>
 #include <Manager/PreditorFiles.h>
 #include <Manager/ILogger.h>
 #include <Manager/IChairManager.h>
@@ -18,9 +24,35 @@
 #include "Cache/DiskXmlCache.h"
 #include "HashUtils.h"
 
+constexpr char SERIALIZE_XML[] = "serialize.xml";
+
 // resolve static variable m_RandomGenerator
 std::mt19937 ChairMerger::m_RandomGenerator;
 std::map<std::string, uint64_t> ChairMerger::m_NameToIdMap;
+
+static void PrintValidationResult(const XmlValidator::Result& result, ILogger* pLog)
+{
+    for (auto& error : result.errors)
+    {
+        // Path
+        std::string path;
+        for (auto it = error.path.crbegin(); it != error.path.crend(); ++it)
+        {
+            path += "> ";
+            path += *it;
+            path += " ";
+        }
+
+        // Attribute
+        if (!error.attributeName.empty())
+            path += fmt::format("| (attr = {})", error.attributeName);
+
+        pLog->Log(severityLevel::warning, "%s", path);
+
+        // Message
+        pLog->Log(severityLevel::info, "    %s", error.message);
+    }
+}
 
 ChairMergerException::ChairMergerException(DeployStep step, DeployPhase phase, std::vector<std::string>&& messages)
     : std::runtime_error(fmt::format("Merging error when {} during {}", ChairMerger::GetDeployStepString(step),
@@ -79,17 +111,33 @@ ChairMerger::ChairMerger(
     }
     unsigned int numThreads = std::thread::hardware_concurrency();
     m_MergeThreadPool = std::make_unique<ThreadPool>(numThreads);
-    m_MergingPolicyDoc = std::make_unique<pugi::xml_document>();
-
-    auto result = m_MergingPolicyDoc->load_file(MERGING_LIBRARY_FILE_NAME);
-    if (!result)
-    {
-        m_pLog->Log(severityLevel::error, "ChairMerger: Could not load MergingLibrary.xml");
-    }
 
     m_RandomGenerator = std::mt19937(std::random_device()());
     m_pOriginalFileCache = std::make_unique<DiskXmlCache>();
     m_pOriginalFileCache->SetRootDir(m_PreyFilesPath);
+
+    m_pTypeLib = std::make_unique<XmlTypeLibrary>();
+    m_pTypeLib->LoadTypesFromFile(m_MergerFilesPath / "XmlTypeLibrary.xml");
+
+    fs::path mergingLibDir = m_MergerFilesPath / "MergingLibrary";
+    fs::path mergingLibFile = m_MergerFilesPath / "MergingLibrary.xml";
+    m_pMergingLibrary = std::make_unique<MergingLibrary3>(m_pTypeLib.get());
+
+    if (fs::exists(mergingLibDir))
+    {
+        // Use directory if it exists. It contains the source files.
+        m_pLog->Log(severityLevel::info, "Using merging library from directory");
+        m_pMergingLibrary->LoadFromDir(mergingLibDir);
+    }
+    else if (fs::exists(mergingLibFile))
+    {
+        // Use file instead. It contains the combined contents of source dir.
+        m_pMergingLibrary->LoadFromFile(mergingLibFile);
+    }
+    else
+    {
+        throw std::runtime_error("Merging library missing");
+    }
 }
 
 ChairMerger::~ChairMerger()
@@ -202,34 +250,25 @@ std::string ChairMerger::GetDeployStepString(DeployStep step)
     return m_DeployStepStrings.at(step);
 }
 
-void ChairMerger::RecursiveFileCopyBlacklist(fs::path source, fs::path destination, std::vector<std::string> exclusions)
+void ChairMerger::RecursiveFileCopyNonXml(fs::path source, fs::path destination)
 {
     if (fs::exists(source) && fs::is_directory(source))
     {
-        for (auto& file : fs::directory_iterator(source))
+        for (auto& file : fs::recursive_directory_iterator(source))
         {
             if (fs::is_directory(file))
-            {
-                RecursiveFileCopyBlacklist(file.path(), destination / file.path().filename(), exclusions);
-            }
-            else
-            {
-                bool shouldCopy = true;
-                for (auto& exclusion : exclusions)
-                {
-                    if (file.path().extension() == exclusion)
-                    {
-                        shouldCopy = false;
-                        break;
-                    }
-                }
-                if (shouldCopy)
-                {
-                    auto destinationPath = destination / file.path().filename();
-                    fs::create_directories(destinationPath.parent_path());
-                    fs::copy_file(file.path(), destinationPath, fs::copy_options::overwrite_existing);
-                }
-            }
+                continue;
+
+            fs::path srcPath = file.path();
+            fs::path relPath = srcPath.lexically_relative(source);
+
+            if (m_pMergingLibrary->FindPolicyForFile(relPath))
+                continue;
+
+            m_pLog->Log(severityLevel::debug, "Copying non-XML file: %s", relPath.u8string());
+            fs::path dstPath = destination / relPath;
+            fs::create_directories(dstPath.parent_path());
+            fs::copy_file(srcPath, dstPath, fs::copy_options::overwrite_existing);
         }
     }
 }
@@ -285,6 +324,8 @@ void ChairMerger::Merge()
         WaitForPendingTasks();
         m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", m_Mods[i].modName);
     }
+
+    FinalizeFiles();
 
     // Save files to disk
     m_pBaseFileCache->ExportModifiedFiles(m_OutputPath);
@@ -360,21 +401,10 @@ void ChairMerger::ResolveFileWildcards(const Mod& mod, pugi::xml_node docNode)
     wr.ResolveDocumentWildcards(docNode);
 }
 
-MergingPolicy ChairMerger::GetFileMergingPolicy(const fs::path& file)
-{
-    MergingPolicy policy = MergingPolicy::FindMergingPolicy(*m_MergingPolicyDoc, file, m_PreyFilesPath);
-
-    if (policy.policy == MergingPolicy::identification_policy::unknown)
-        m_pLog->Log(severityLevel::error, "XMLMerger: File %s not found in merging library",
-            file.u8string());
-
-    return policy;
-}
-
 void ChairMerger::CopyModDataFiles(fs::path sourcePath)
 {
     AddPendingTask(
-        m_MergeThreadPool->enqueue([this, sourcePath] { RecursiveFileCopyBlacklist(sourcePath, m_OutputPath, { ".xml" }); }));
+        m_MergeThreadPool->enqueue([this, sourcePath] { RecursiveFileCopyNonXml(sourcePath, m_OutputPath); }));
 }
 
 void ChairMerger::ProcessMod(size_t modIdx)
@@ -385,29 +415,53 @@ void ChairMerger::ProcessMod(size_t modIdx)
     CopyModDataFiles(m_Mods[modIdx].dataPath);
 
     // Merge all XML files from the mod's Data folder
+    // The list may contain non-XML files
     std::vector<fs::path> fileList;
     m_ModXmlCaches[modIdx]->GetAllFileList(fileList);
 
     for (const fs::path& fileRelPath : fileList)
     {
-        if (fileRelPath.extension() == ".xml")
+        // Find the merging policy without checking the extension
+        // Some XMLs have different extension (.adb, .mtl, ...)
+        const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(fileRelPath);
+
+        if (pFilePolicy)
         {
-            AddPendingTask(m_MergeThreadPool->enqueue(
-                [this, fileRelPath, modIdx] { ProcessXMLFile(m_Mods[modIdx], m_ModXmlCaches[modIdx].get(), fileRelPath); }));
+            m_pLog->Log(severityLevel::debug, "Merging XML file: %s", fileRelPath.u8string());
+            AddPendingTask(m_MergeThreadPool->enqueue([this, fileRelPath, modIdx, pFilePolicy] {
+                ProcessXMLFile(m_Mods[modIdx], m_ModXmlCaches[modIdx].get(), fileRelPath, *pFilePolicy);
+            }));
+        }
+        else if (fileRelPath.extension() == ".xml")
+        {
+            m_pLog->Log(severityLevel::error, "XML file not found in merging policy: %s", fileRelPath.u8string());
         }
     }
 }
 
-void ChairMerger::ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const fs::path& relativePath)
+void ChairMerger::ProcessXMLFile(
+    const Mod& mod,
+    IXmlCache* pModXmlCache,
+    const fs::path& relativePath,
+    const FileMergingPolicy3& fileMergingPolicy)
 {
     try
     {
-        auto policy = GetFileMergingPolicy(relativePath);
-        auto parseTags = pugi::parse_default;
-        if (policy.policy == MergingPolicy::identification_policy::match_spreadsheet)
+        if (mod.type == EModType::Legacy)
         {
-            parseTags = pugi::parse_full;
+            // Skip serialize.xml
+            // It's auto-generated
+            if (boost::iequals(relativePath.filename().u8string(), SERIALIZE_XML))
+                return;
         }
+
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+            throw std::runtime_error("This file can't be modified by mods");
+
+        auto parseTags = pugi::parse_default;
+
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+            parseTags = XmlMerger3::EXCEL_PARSE_OPTIONS;
 
         // now we have the relative path to the file, we can use this to find the original file, and the base file in the
         // output directory
@@ -417,35 +471,199 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const 
         pugi::xml_document modDoc;
 
         {
-            // Make a copy of the cache document. It will be modified when resolving wildcards.
+            // Make a copy of the cached document. It will be modified when resolving wildcards.
             IXmlCache::ReadLock modXmlLock;
             const pugi::xml_document& modDocFromCache = pModXmlCache->OpenXmlForReading(relativePath, modXmlLock, parseTags);
             modDoc.reset(modDocFromCache);
         }
 
-        const pugi::xml_document* originalDoc = nullptr;
-        IXmlCache::ReadLock originalXmlLock;
-        IXmlCache::EOpenResult originalResult = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
-
         // resolve attribute wildcards on non legacy files
-        ResolveFileWildcards(mod, modDoc.first_child());
+        if (mod.type == EModType::Native)
+            ResolveFileWildcards(mod, modDoc.first_child());
 
-        if (originalResult == IXmlCache::EOpenResult::NotFound)
+        // Load the original file
+        IXmlCache::ReadLock originalXmlLock;
+        const pugi::xml_document* originalDoc = nullptr;
+
         {
-            // this is a new file, we have to just copy it over, even if base exists
-            baseDoc = std::move(modDoc);
-            return;
+            IXmlCache::EOpenResult result = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
+
+            if (result != IXmlCache::EOpenResult::NotFound)
+                IXmlCache::ThrowForResult(result);
         }
 
         // if we have an original result, we can actually do some merging
-        if (policy.policy == MergingPolicy::identification_policy::overwrite ||
-            policy.policy == MergingPolicy::identification_policy::unknown)
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
         {
+            // Replace the entire file
             baseDoc = std::move(modDoc);
             return;
         }
 
-        XMLMerger2::MergeXMLDocument(baseDoc, modDoc, *originalDoc, policy);
+        CRY_ASSERT(fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge ||
+            fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003);
+
+        // Convert legacy mod into a Chairloader mod
+        if (mod.type == EModType::Legacy)
+        {
+            // Move mod into a temp doc
+            // modDoc will be replaced with converted mod
+            pugi::xml_document legacyModDoc = std::move(modDoc);
+            modDoc = pugi::xml_document();
+
+            // Convert the legacy mod
+            LegacyModConverter converter;
+            bool foundChanges = false;
+
+            if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Merge)
+            {
+                // Patch the file
+                try
+                {
+                    XmlErrorStack errorStack(mod.modName);
+                    fs::path fullPath = mod.dataPath / relativePath;
+
+                    // Add Chairloader meta-attributes
+                    PreyFilePatcher::PatchDocument(fullPath, fs::path(), legacyModDoc, fileMergingPolicy, errorStack);
+
+                    // Patch to fix bugs
+                    converter.PrePatchDocument(relativePath, legacyModDoc, fileMergingPolicy);
+                }
+                catch (const std::exception& e)
+                {
+                    m_pLog->Log(severityLevel::error, "%s:%s: %s", mod.modName, relativePath.u8string(), e.what());
+                    throw std::runtime_error("Legacy mod file failed patching. Check the log for details.");
+                }
+
+                // Validate the original file
+                XmlValidator::Context valCtx;
+                valCtx.pTypeLib = m_pTypeLib.get();
+                valCtx.mode = XmlValidator::EMode::MergingBase;
+
+                XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, legacyModDoc, fileMergingPolicy);
+
+                if (!result)
+                {
+                    std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                    m_pLog->Log(severityLevel::error, "Validation failure of legacy mod file %s:%s", mod.modName, relativePath.u8string());
+                    PrintValidationResult(result, m_pLog);
+                    throw std::runtime_error("Legacy mod file failed validation. Check the log for details.");
+                }
+
+                if (originalDoc)
+                {
+                    foundChanges = converter.ConvertDocument(*originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                    converter.PostPatchDocument(relativePath, modDoc, fileMergingPolicy);
+                }
+                else
+                {
+                    foundChanges = true;
+                }
+            }
+            else if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+            {
+                if (originalDoc)
+                    foundChanges = converter.ConvertExcelDocument(*originalDoc, legacyModDoc, modDoc, fileMergingPolicy);
+                else
+                    foundChanges = true;
+            }
+
+            // Print the log
+            const std::list<LegacyModConverter::LogEntry>& logs = converter.GetLogs();
+            bool foundErrors = false;
+
+            if (!logs.empty())
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::warning, "Conversion log for legacy file %s:%s", mod.modName, relativePath.u8string());
+
+                for (auto& i : logs)
+                {
+                    m_pLog->Log(i.level, "- %s", i.message);
+
+                    for (size_t j = 0; j < i.stackTrace.size(); j++)
+                    {
+                        m_pLog->Log(severityLevel::debug, "  - #%d: %s", i.stackTrace.size() - j - 1, i.stackTrace[j]);
+                    }
+
+                    if (i.level == severityLevel::error)
+                        foundErrors = true;
+                }
+            }
+
+            // Check for errors
+            if (foundErrors)
+            {
+                m_pLog->Log(severityLevel::error, "%s:%s: Conversion failed", mod.modName, relativePath.u8string());
+                throw std::runtime_error("Legacy mod file failed to convert. Check the log for details.");
+            }
+
+            if (!foundChanges)
+            {
+                // No changes in legacy mod file
+                return;
+            }
+
+            if (foundChanges && !originalDoc)
+                modDoc = std::move(legacyModDoc);
+        }
+
+        // If original file doesn't exist, overwrite the base file.
+        if (!originalDoc)
+        {
+            // Replace the entire file
+            baseDoc = std::move(modDoc);
+            return;
+        }
+
+        // Validate mod file
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
+        {
+            XmlValidator::Context valCtx;
+            valCtx.pTypeLib = m_pTypeLib.get();
+            valCtx.mode = XmlValidator::EMode::Mod;
+
+            XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, modDoc, fileMergingPolicy);
+
+            if (!result)
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::error, "Validation failure of mod file %s:%s", mod.modName, relativePath.u8string());
+                PrintValidationResult(result, m_pLog);
+                throw std::runtime_error("Mod file failed validation. Check the log for details.");
+            }
+        }
+
+        XmlMergerContext context;
+        context.modName = mod.modName;
+        context.pTypeLib = m_pTypeLib.get();
+
+        if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+        {
+            XmlMerger3::MergeExcelDocument(context, baseDoc, modDoc, fileMergingPolicy);
+        }
+        else
+        {
+            XmlMerger3::MergeDocument(context, baseDoc, modDoc, fileMergingPolicy);
+        }
+
+        // Validate base file after merging
+        if (fileMergingPolicy.GetMethod() != FileMergingPolicy3::EMethod::Excel2003)
+        {
+            XmlValidator::Context valCtx;
+            valCtx.pTypeLib = m_pTypeLib.get();
+            valCtx.mode = XmlValidator::EMode::MergingBase;
+
+            XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, baseDoc, fileMergingPolicy);
+
+            if (!result)
+            {
+                std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+                m_pLog->Log(severityLevel::error, "Validation failure of base file after merging %s:%s", mod.modName, relativePath.u8string());
+                PrintValidationResult(result, m_pLog);
+                throw std::runtime_error("File failed validation after merging. Check the log for details.");
+            }
+        }
 
         // we are done
     }
@@ -457,6 +675,71 @@ void ChairMerger::ProcessXMLFile(const Mod& mod, IXmlCache* pModXmlCache, const 
             relativePath.u8string(),
             mod.modName
         ));
+    }
+}
+
+void ChairMerger::FinalizeFiles()
+{
+    std::vector<fs::path> fileList;
+    m_pBaseFileCache->GetCachedFileList(fileList);
+
+    for (const fs::path& relPath : fileList)
+    {
+        AddPendingTask(m_MergeThreadPool->enqueue([this, relPath] { FinalizeFile(relPath); }));
+    }
+
+    WaitForPendingTasks();
+}
+
+void ChairMerger::FinalizeFile(const fs::path& relPath)
+{
+    try
+    {
+        IXmlCache::WriteLock lock;
+        pugi::xml_document& doc = m_pBaseFileCache->OpenXmlForWriting(relPath, lock, IXmlCache::DONT_PARSE, IXmlCache::DONT_FORMAT);
+
+        const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(relPath);
+        CRY_ASSERT(pFilePolicy);
+
+        if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003 ||
+            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+        {
+            // Don't need finalization
+            return;
+        }
+
+        XmlFinalizerContext context;
+        XmlFinalizer3::FinalizeDocument(context, doc, *pFilePolicy);
+
+        XmlValidator::Context valCtx;
+        valCtx.pTypeLib = m_pTypeLib.get();
+        valCtx.mode = XmlValidator::EMode::Prey;
+
+        XmlValidator::Result result = XmlValidator::ValidateDocument(valCtx, doc, *pFilePolicy);
+
+        if (!result)
+        {
+            std::scoped_lock lock(m_LogMutex); // Prevent logs from multiple files overlapping
+            m_pLog->Log(severityLevel::error, "Validation failure of final file %s", relPath.u8string());
+            PrintValidationResult(result, m_pLog);
+            throw std::runtime_error("Game file failed validation after finalization. Check the log for details.");
+        }
+
+        if (!context.serializeEntityIds.empty())
+        {
+            // Generate serialize.xml
+            // Save to do this now because it's read-only in the policy.
+            // So this is the only place where it will be written
+            fs::path serPath = relPath.parent_path() / SERIALIZE_XML;
+            IXmlCache::WriteLock serLock;
+            pugi::xml_document& serDoc = m_pBaseFileCache->OpenXmlForWriting(serPath, serLock);
+            serDoc = XmlFinalizer3::GenerateEntitySerialize(context.serializeEntityIds);
+        }
+    }
+    catch (const std::exception& e)
+    {
+        m_pLog->Log(severityLevel::error, "While finalizing file %s:\n%s", relPath.u8string(), e.what());
+        throw;
     }
 }
 
@@ -619,49 +902,52 @@ void ChairMerger::PackLevelFiles()
             const auto deployedHash = m_DeployedLevelFileChecksums[changedPack];
             const bool forcePack = m_Settings.m_bForceLevelPack;
             AddPendingTask(m_MergeThreadPool->enqueue([this, levelPath, deployedHash, forcePack, &bFailure] {
+                fs::path levelInputPath = m_OutputPath / "Levels" / levelPath;
+                fs::path levelOutputPath = m_LevelOutputPath / levelPath;
+                
                 try
                 {
                     // create the level directory in the level output path
-                    fs::create_directories(m_LevelOutputPath / levelPath);
+                    fs::create_directories(levelOutputPath);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not create level directory %s",
-                                            (m_LevelOutputPath / levelPath).string());
+                        levelOutputPath.u8string());
                     bFailure = true;
                     return;
                 }
                 try
                 {
                     // copy over the level directory to the level output path
-                    fs::copy(m_PreyFilesPath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
+                    fs::copy(m_PreyFilesPath / "Levels" / levelPath, levelOutputPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error,
                                             "ChairMerger: Could not copy original level directory %s",
-                                            (m_PreyFilesPath / "Levels" / levelPath).string());
+                                            (m_PreyFilesPath / "Levels" / levelPath).u8string());
                     bFailure = true;
                     return;
                 }
-                try
+
+                if (fs::exists(levelInputPath))
                 {
                     // then copy over the output that we merged or copied into
-                    fs::copy(m_OutputPath / "Levels" / levelPath, m_LevelOutputPath / levelPath,
-                             fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+                    fs::copy(m_OutputPath / "Levels" / levelPath, levelOutputPath,
+                        fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
-                catch (fs::filesystem_error& e)
+                else
                 {
                     m_pLog->Log(
                         severityLevel::debug,
-                        "ChairMerger: Could not copy level output directory %s, no mod modified this level.",
-                        (m_OutputPath / "Levels" / levelPath).string());
+                        "ChairMerger: Level %s: no mod modified this level.",
+                        levelPath.u8string());
                 }
-                // then serialize the entity level ids
-                XMLMerger2::SerializeLevelEntityIDs(m_LevelOutputPath / levelPath / "level");
+
                 // now check if we need to continue to pack the level directory
-                auto levelPakHashPath = m_LevelOutputPath / levelPath / "level";
+                auto levelPakHashPath = levelOutputPath / "level";
                 auto levelOutputChecksum = HashUtils::HashDirectory(levelPakHashPath);
                 if (levelOutputChecksum == deployedHash && !forcePack)
                 {
@@ -679,50 +965,50 @@ void ChairMerger::PackLevelFiles()
                     {
                         m_pLog->Log(severityLevel::error,
                                                 "ChairMerger: Could not remove level directory %s",
-                                                (m_LevelOutputPath / levelPath / "level").string());
+                            levelPakHashPath.u8string());
                     }
                     return;
                 }
                 try
                 {
                     // then we must pack the level directory
-                    std::ofstream(m_LevelOutputPath / levelPath / "level" / MARK_OF_THE_CHAIR).close();
-                    ZipUtils::CompressFolder(m_LevelOutputPath / levelPath / "level",
-                                             m_LevelOutputPath / levelPath / "level.pak", true);
+                    std::ofstream(levelPakHashPath / MARK_OF_THE_CHAIR).close();
+                    ZipUtils::CompressFolder(levelPakHashPath,
+                                             levelOutputPath / "level.pak", true);
                 }
                 catch (std::exception& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not pack level directory %s",
-                                            (m_LevelOutputPath / levelPath / "level").string());
+                        levelPakHashPath.u8string());
                     bFailure = true;
                 }
                 try
                 {
                     // remove the "level" folder from the level output path
-                    fs::remove_all(m_LevelOutputPath / levelPath / "level");
+                    fs::remove_all(levelPakHashPath);
                     // remove the folder from the output path
                     fs::remove_all(m_OutputPath / "Levels" / levelPath);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not remove level directory %s",
-                                            (m_LevelOutputPath / levelPath / "level").string());
+                        levelPakHashPath.u8string());
                 }
                 try
                 {
                     // copy the output folder to the game files folder
-                    fs::copy(m_LevelOutputPath / levelPath, m_LevelFilesPath / levelPath,
+                    fs::copy(levelOutputPath, m_LevelFilesPath / levelPath,
                              fs::copy_options::recursive | fs::copy_options::overwrite_existing);
                 }
                 catch (fs::filesystem_error& e)
                 {
                     m_pLog->Log(severityLevel::error, "ChairMerger: Could not copy merged level pack %s",
-                                            (m_LevelOutputPath / levelPath).string());
+                        levelOutputPath.u8string());
                     bFailure = true;
                     return;
                 }
                 m_pLog->Log(severityLevel::trace, "ChairMerger: Finished merging level pack %s",
-                                        levelPath.string());
+                                        levelPath.u8string());
             }));
         }
         WaitForPendingTasks();
@@ -926,15 +1212,6 @@ void ChairMerger::PackMainPatch()
     std::ofstream(m_OutputPath / MARK_OF_THE_CHAIR).close();
     ZipUtils::CompressFolder(m_OutputPath, chairPakPath, true);
     m_pLog->Log(severityLevel::trace, "ChairMerger: Finished packing main patch");
-}
-
-void ChairMerger::SerializeLevelPacks()
-{
-    for (auto& levelPack : m_ChangedLevelPacks)
-    {
-        auto levelFolderPath = m_OutputPath / "Levels" / levelPack.parent_path() / "level";
-        XMLMerger2::SerializeLevelEntityIDs(levelFolderPath);
-    }
 }
 
 void ChairMerger::SetDeployStep(DeployStep step)

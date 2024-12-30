@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml">
+    <Node name="Communications">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="Config">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Communication">
+                        <Attributes>
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                            <Attribute name="finishMethod" type="string" required="true" />
+                            <Attribute name="blocking" type="string" required="true" />
+                            <Attribute name="forceAnimation" type="boolInt" />
+                        </Attributes>
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="animationName" />
+                                <ChildAttribute name="voiceName" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Variation">
+                                <Attributes>
+                                    <Attribute name="animationName" type="string" />
+                                    <Attribute name="voiceName" type="string" allowEmpty="true" />
+                                    <Attribute name="timeout" type="float" />
+                                    <Attribute name="animationType" type="string" />
+                                    <Attribute name="lookAtTarget" type="boolString" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ChannelConfig">
+                <Attributes />
+                
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <NodeByType name="Channel" type="ChannelConfig" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="GlobalConfiguration">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="WWISE">
+                        <Attributes allowUnknown="true" />
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Variables">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Variable">
+                        <Attributes>
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

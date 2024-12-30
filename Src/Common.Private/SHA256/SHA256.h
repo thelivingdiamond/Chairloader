@@ -29,7 +29,7 @@ public:
 
     SHA256();
     void update(const uint8_t *data, size_t length);
-    void update(const std::string &data);
+    void update(std::string_view data);
     Digest digest();
 
     static std::string toString(const uint8_t *digest);

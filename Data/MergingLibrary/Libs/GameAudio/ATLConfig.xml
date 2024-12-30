@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml"
+    recursive="true">
+    <Node name="ATLConfig">
+        <Attributes>
+            <Attribute name="atl_name" type="string" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="AudioRTPCs">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="atl_name" />
+                        <ChildAttribute name="path" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ATLRtpc">
+                        <Attributes>
+                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                            <Attribute name="path" type="string" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="WwiseRtpc">
+                                <Attributes>
+                                    <Attribute name="wwise_name" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AudioSwitches">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="atl_name" />
+                        <ChildAttribute name="path" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ATLSwitch">
+                        <Attributes>
+                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                            <Attribute name="path" type="string" />
+                        </Attributes>
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="atl_name" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="ATLSwitchState">
+                                <Attributes>
+                                    <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="WwiseSwitch">
+                                        <Attributes>
+                                            <Attribute name="wwise_name" type="string" required="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="WwiseValue">
+                                                <Attributes>
+                                                    <Attribute name="wwise_name" type="string" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="WwiseState">
+                                        <Attributes>
+                                            <Attribute name="wwise_name" type="string" required="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="WwiseValue">
+                                                <Attributes>
+                                                    <Attribute name="wwise_name" type="string" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+
+                                    <Node name="ATLSwitchRequest">
+                                        <Attributes>
+                                            <Attribute name="atl_name" type="string" required="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="ATLValue">
+                                                <Attributes>
+                                                    <Attribute name="atl_name" type="string" required="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AudioTriggers">
+                <Attributes />
+
+                <!-- Allow duplicates because Libs/GameAudio/levels/VS_Incubation/incubation.xml -->
+                <!-- has duplicate Play_PodBot_Move_Short_Energy -->
+                <Collection type="dict" allowDuplicates="true">
+                    <PrimaryKey>
+                        <ChildAttribute name="atl_name" />
+                        <ChildAttribute name="path" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ATLTrigger">
+                        <Attributes>
+                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                            <Attribute name="path" type="string" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="WwiseEvent">
+                                <Attributes>
+                                    <Attribute name="wwise_name" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AudioEnvironments">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="atl_name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ATLEnvironment">
+                        <Attributes>
+                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                            <Attribute name="path" type="string" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="WwiseAuxBus">
+                                <Attributes>
+                                    <Attribute name="wwise_name" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <!-- Only one file has this node. Might be a mistake. -->
+                            <Node name="WwiseRtpc">
+                                <Attributes>
+                                    <Attribute name="wwise_name" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AudioPreloads">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="atl_name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ATLPreloadRequest">
+                        <Attributes>
+                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                            <Attribute name="atl_type" type="string" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="ATLPlatforms">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="atl_name" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Platform">
+                                        <Attributes>
+                                            <Attribute name="atl_name" type="string" required="true" readOnly="true" />
+                                            <Attribute name="atl_config_group_name" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="ATLConfigGroup">
+                                <Attributes>
+                                    <Attribute name="atl_name" type="string" required="true" />
+                                </Attributes>
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="wwise_name" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="WwiseFile">
+                                        <Attributes>
+                                            <Attribute name="wwise_name" type="string" required="true" readOnly="true" />
+                                            <Attribute name="wwise_localised" type="boolString" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

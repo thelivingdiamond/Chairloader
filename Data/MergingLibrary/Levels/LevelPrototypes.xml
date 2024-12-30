@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*/levelprototypes\.xml"
+    recursive="true">
+    <Node name="EntityPrototypeLibrary">
+        <Attributes>
+            <Attribute name="Name" type="string" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="Name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="Name" />
+            <UniqueAttribute name="Id" />
+            <UniqueAttribute name="ArchetypeId" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <NodeByType name="EntityPrototype" type="EntityPrototype" />
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

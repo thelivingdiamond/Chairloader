@@ -42,6 +42,9 @@ struct SemanticVersion {
         m_Patch = patch;
         m_ReleaseType = releaseType;
     }
+
+    bool IsValid() const { return m_Major != 0 || m_Minor != 0 || m_Patch != 0; }
+
     // < operator
     bool operator<(const SemanticVersion& rhs) const {
         return m_Major < rhs.m_Major ||

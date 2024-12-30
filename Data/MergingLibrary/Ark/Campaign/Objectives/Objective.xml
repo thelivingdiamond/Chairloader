@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml">
+    <Node name="Objectives">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="Objective">
+                <Attributes>
+                    <Attribute name="id" type="ArkObjectiveIdDef" required="true" readOnly="true" />
+                    <Attribute name="title" type="string" required="true" />
+                    <Attribute name="optional" type="boolString" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Descriptions">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="id" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Desc">
+                                <Attributes>
+                                    <Attribute name="id" type="ArkObjectiveDescIdDef" required="true" readOnly="true" />
+                                    <Attribute name="displayName" type="string" required="true" />
+                                    <Attribute name="text" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Tasks">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="id" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Task">
+                                <Attributes>
+                                    <Attribute name="id" type="ArkObjectiveTaskId" required="true" readOnly="true" />
+                                    <Attribute name="displayName" type="string" required="true" />
+                                    <Attribute name="optional" type="boolString" required="true" />
+                                    <Attribute name="text" type="string" required="true" />
+
+                                    <Attribute name="Location" type="ArkLocationId" />
+                                    <Attribute name="timerLabel" type="string" />
+                                    <Attribute name="markerLabel" type="string" />
+                                    <Attribute name="description" type="ArkObjectiveDescId" />
+                                    <Attribute name="targetCharacterId" type="ArkUniqueId" /> <!-- This ID doesn't point to any valid records - tmp64 -->
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Clues">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="id" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Clue">
+                                <Attributes>
+                                    <Attribute name="id" type="ArkObjectiveClueIdDef" required="true" readOnly="true" />
+                                    <Attribute name="displayName" type="string" required="true" />
+                                    <Attribute name="text" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

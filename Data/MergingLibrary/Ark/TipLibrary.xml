@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkTipLibrary">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Tips">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkTip">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTipIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Content" type="string" required="true" />
+                            <Attribute name="Sequence" type="ArkTipSequenceId" />
+                            <Attribute name="HideOnDeathScreen" type="boolString" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Locks">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="value" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Lock">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArkTipLockId" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="Locks">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkTipLock">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTipLockIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="Sequences">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkTipSequence">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkTipSequenceIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

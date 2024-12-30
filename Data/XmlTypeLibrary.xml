@@ -1,0 +1,1830 @@
+<?xml version='1.0' encoding='utf-8'?>
+<XmlTypeLibrary
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../Xsd/Chairloader/XmlTypeLibrary.xsd">
+    <ValueTypes>
+        <!-- Special -->
+        <RegExType name="GuidWithBraces" regex="\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}" />
+        <RegExType name="GuidNoBraces" regex="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        
+        <RegExType name="uint64_hex" regex="[0-9a-fA-F]{1,16}" />
+        
+        <RegExType name="Vec2" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*" />
+        <RegExType name="Vec3" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+)" />
+        <RegExType name="Vec4" regex="([\d\.+e-]+)\s*,\s*([\d\.+e-]+)\s*,\s*([\d\.+e-]+),\s*([\d\.+e-]+)" />
+        <AliasType name="Quat" baseType="Vec4" />
+        <AliasType name="Ang3" baseType="Vec3" />
+
+        <!-- Aliases -->
+        <AliasType name="ArkUniqueId" baseType="uint64" />
+
+        <!-- IDs -->
+        <!-- Automatically makes aliases for TypeName and TypeNameDef -->
+        <IDType name="ArchetypeName" baseType="string" /> <!-- Archetype with library name -->
+        <IDType name="LocalArchetypeName" baseType="string" /> <!-- Archetype without library name -->
+        <IDType name="EntityClass" baseType="string" /> <!-- Entity class (defined in Lua) -->
+        <IDType name="ArchetypeId" baseType="uint64" />
+        <IDType name="GameTokenId" baseType="int32" />
+        <IDType name="GameTokenName" baseType="string" />
+        <IDType name="EntityId" baseType="uint16" />
+        <IDType name="EntityGuid" baseType="uint64_hex" />
+        <IDType name="DialogId" baseType="uint64_hex" />
+        <IDType name="VoiceId" baseType="uint64_hex" />
+
+        <!-- Ark -->
+        <IDType name="ArkMetaTagId" baseType="ArkUniqueId" />
+        <IDType name="ArkCameraShakeId" baseType="ArkUniqueId" />
+        <IDType name="ArkCameraShakeChannelId" baseType="ArkUniqueId" />
+        <IDType name="ArkEventDrivenAchievementId" baseType="ArkUniqueId" />
+        <IDType name="ArkFactionId" baseType="ArkUniqueId" />
+        <IDType name="ArkDisruptionProfileId" baseType="ArkUniqueId" />
+        <IDType name="ArkLightDisruptionProfileId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameNoiseTypeId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameNoiseLoudnessId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipLockId" baseType="ArkUniqueId" />
+        <IDType name="ArkTipSequenceId" baseType="ArkUniqueId" />
+        <IDType name="ArkEmotionId" baseType="ArkUniqueId" />
+        <IDType name="ArkEntitlementId" baseType="ArkUniqueId" />
+        <IDType name="ArkEntitlementUnlockId" baseType="ArkUniqueId" />
+        <IDType name="ArkRemoteEventId" baseType="ArkUniqueId" />
+
+        <!-- Ark / AI -->
+        <IDType name="ArkDistractorId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Signal System -->
+        <IDType name="ArkSignalId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalGroupId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalPackageId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalModifierId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Campaign -->
+        <IDType name="ArkCharacterId" baseType="ArkUniqueId" />
+        <IDType name="ArkCharacterGroupId" baseType="ArkUniqueId" />
+        <IDType name="ArkLocationId" baseType="ArkUniqueId" />
+        <IDType name="ArkEmailId" baseType="ArkUniqueId" />
+        <IDType name="ArkKeyCardId" baseType="ArkUniqueId" />
+        <IDType name="ArkKeyCodeId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveDescId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveTaskId" baseType="ArkUniqueId" />
+        <IDType name="ArkObjectiveClueId" baseType="ArkUniqueId" />
+        <IDType name="ArkSecurityStationId" baseType="ArkUniqueId" />
+        <IDType name="ArkAudioLogId" baseType="ArkUniqueId" />
+        <IDType name="ArkAudioLogCollectionId" baseType="ArkUniqueId" />
+        <IDType name="ArkNoteId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameStateConditionId" baseType="ArkUniqueId" />
+        <IDType name="ArkTutorialId" baseType="ArkUniqueId" />
+        <IDType name="ArkLoreEntryId" baseType="ArkUniqueId" />
+        <IDType name="ArkPoiId" baseType="ArkUniqueId" />
+        <IDType name="ArkStationPathId" baseType="ArkUniqueId" />
+        <IDType name="ArkStationAirlockId" baseType="ArkUniqueId" />
+        <IDType name="ArkWorkstationId" baseType="ArkUniqueId" />
+        <IDType name="ArkButtonUtilityId" baseType="ArkUniqueId" />
+        <IDType name="ArkWorkstationDownloadId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Dialog -->
+        <IDType name="ArkDialogId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogVoiceId" baseType="ArkUniqueId" />
+        <IDType name="ArkConversationId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogResponseSetId" baseType="ArkUniqueId" />
+        <IDType name="ArkDialogResponseId" baseType="ArkUniqueId" />
+
+        <!-- Ark / Player -->
+        <IDType name="ArkAbilityId" baseType="ArkUniqueId" />
+        <IDType name="ArkPlayerStatName" baseType="string" />
+        <IDType name="ArkTraumaId" baseType="ArkUniqueId" />
+        <IDType name="ArkGameMetricId" baseType="ArkUniqueId" />
+        <IDType name="ArkResearchTopicId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalReceiverId" baseType="ArkUniqueId" />
+        <IDType name="ArkPackageSignalRampId" baseType="ArkUniqueId" />
+        <IDType name="ArkStatModifierPackageId" baseType="ArkUniqueId" />
+        <IDType name="ArkSignalFXId" baseType="ArkUniqueId" />
+        
+        <!-- Ark / Vision -->
+        <IDType name="ArkVisionConeId" baseType="ArkUniqueId" />
+        
+        <!-- Ark / VisualEffects -->
+        <IDType name="ArkMaterialAnimationId" baseType="ArkUniqueId" />
+        <IDType name="ArkPostEffectId" baseType="ArkUniqueId" />
+        <IDType name="ArkPostEffectParamId" baseType="ArkUniqueId" />
+        <IDType name="ArkCharacterEffectId" baseType="ArkUniqueId" />
+        <IDType name="ArkGlintConfigId" baseType="ArkUniqueId" />
+        
+        <!-- Ark / Items -->
+        <IDType name="ArkFabricationPlanId" baseType="ArkUniqueId" />
+
+        <!-- Ark / WeaponMods -->
+        <IDType name="ArkWeaponModifierId" baseType="ArkUniqueId" />
+    </ValueTypes>
+
+    <NodeTypes>
+        <!-- EntityPrototype -->
+        <NodeType name="EntityPrototype">
+            <Attributes>
+                <Attribute name="Name" type="LocalArchetypeNameDef" required="true" readOnly="true" comment="Archetype name in the library" />
+                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                <Attribute name="Library" type="string" required="true" readOnly="true" />
+                <Attribute name="Class" type="EntityClass" required="true" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+                <Attribute name="ArchetypeId" type="ArchetypeIdDef" required="true" readOnly="true" />
+            </Attributes>
+
+            <!-- This node acts like a dictionary with keys being the child node names -->
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Properties(2?)" nameRegex="true" recursive="true">
+                    <!-- recursive="true" applies the same rules to all unknown child nodes -->
+
+                    <!-- Attributes and child nodes depend on particular entity class so allow everything -->
+                    <Attributes allowUnknown="true" />
+
+                    <XsdAliases>
+                        <Alias>Properties</Alias>
+                        <Alias>Properties2</Alias>
+                    </XsdAliases>
+                    
+                    <Collection type="nodeDict" />
+                </Node>
+
+                <Node name="ObjectVars">
+                    <Attributes>
+                        <Attribute name="OutdoorOnly" type="boolInt" required="true" />
+                        <Attribute name="CastShadow" type="boolInt" required="true" />
+                        <Attribute name="CastShadowMinspec" type="int32" required="true" />
+                        <Attribute name="DynamicDistanceShadows" type="boolInt" required="true" />
+                        <Attribute name="ShadowCasterType" type="int32" required="true" />
+                        <Attribute name="CastSunShadowMinSpec" type="int32" required="true" />
+                        <Attribute name="LodRatio" type="int32" required="true" />
+                        <Attribute name="ViewDistRatio" type="int32" required="true" />
+                        <Attribute name="CastShadowViewDistRatio" type="int32" />
+                        <Attribute name="HiddenInGame" type="boolInt" required="true" />
+                        <Attribute name="GlobalInSegmentedWorld" type="boolInt" required="true" />
+                        <Attribute name="RecvWind" type="boolInt" required="true" />
+                        <Attribute name="RenderNearest" type="boolInt" required="true" />
+                        <Attribute name="NoStaticDecals" type="boolInt" required="true" />
+                        <Attribute name="CreatedThroughPool" type="boolInt" required="true" />
+                        <Attribute name="SceneIndex" type="int32" required="true" />
+                        <Attribute name="HiddenInProbes" type="boolInt" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- FlowGraph -->
+        <NodeType name="FlowGraph">
+            <Attributes>
+                <Attribute name="isModule" type="boolInt" />
+                <Attribute name="moduleName" type="string" />
+                <Attribute name="isObjectList" type="boolInt" />
+                <Attribute name="objectListClass" type="string" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+                <Attribute name="Group" type="string" allowEmpty="true" />
+                <Attribute name="enabled" type="boolInt" />
+                <Attribute name="MultiPlayer" type="string" />
+            </Attributes>
+            
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="ModuleInputsOutputs">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                            <ChildAttribute name="Input" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Port">
+                            <Attributes>
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Input" type="boolInt" required="true" readOnly="true" />
+                                <Attribute name="Type" type="int32" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Nodes">
+                    <Attributes/>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Node">
+                            <Attributes>
+                                <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" />
+                                <Attribute name="Class" type="string" required="true" />
+                                <Attribute name="pos" type="Vec3" required="true" />
+                                <Attribute name="GraphEntity" type="boolInt" />
+                                <Attribute name="EntityGUID" type="GuidWithBraces" />
+                                <Attribute name="EntityGUID_64" type="EntityGuid" />
+                                <Attribute name="InHideMask" type="uint32" />
+                                <Attribute name="OutHideMask" type="uint32" />
+                                <Attribute name="flags" type="uint32" />
+                            </Attributes>
+
+                            <Collection type="nodeDict" />
+
+                            <ChildNodes>
+                                <Node name="Inputs">
+                                    <!-- Attributes depend on a particular flowgraph node type -->
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="entityId" type="EntityId" />
+                                    </Attributes>
+                                </Node>
+
+                                <Node name="Outputs">
+                                    <Attributes />
+
+                                    <Collection type="dict">
+                                        <PrimaryKey>
+                                            <ChildAttribute name="Name" />
+                                        </PrimaryKey>
+                                    </Collection>
+
+                                    <ChildNodes>
+                                        <Node name="Output">
+                                            <Attributes>
+                                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                            </Attributes>
+                                        </Node>
+                                    </ChildNodes>
+                                </Node>
+
+                                <Node name="CommentBox">
+                                    <Attributes>
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
+
+                                <Node name="ResizeBorder">
+                                    <Attributes>
+                                        <Attribute name="X" type="float" required="true" />
+                                        <Attribute name="Y" type="float" required="true" />
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
+
+                                <Node name="NodeSize">
+                                    <Attributes>
+                                        <Attribute name="Width" type="float" required="true" />
+                                        <Attribute name="Height" type="float" required="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Edges">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="nodeIn" />
+                            <ChildAttribute name="nodeOut" />
+                            <ChildAttribute name="portIn" />
+                            <ChildAttribute name="portOut" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Edge">
+                            <Attributes>
+                                <Attribute name="nodeIn" type="int32" required="true" readOnly="true" />
+                                <Attribute name="nodeOut" type="int32" required="true" readOnly="true" />
+                                <Attribute name="portIn" type="string" required="true" readOnly="true" />
+                                <Attribute name="portOut" type="string" required="true" readOnly="true" />
+                                <Attribute name="enabled" type="boolInt" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="GraphTokens">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildConstraints>
+                        <UniqueAttribute name="Id" />
+                        <UniqueAttribute name="Name" />
+                    </ChildConstraints>
+
+                    <ChildNodes>
+                        <Node name="Token">
+                            <Attributes>
+                                <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Type" type="int32" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ParticleNode -->
+        <NodeType name="ParticleNode">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Params">
+                    <!-- Allow unknown because too many attributes and all use complex syntax -->
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="Childs">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="Particles" type="ParticleNode" />
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- AISignalFactorList -->
+        <NodeType name="AISignalFactorList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="id" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="signal">
+                    <Attributes>
+                        <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
+                        <Attribute name="factor" type="float" required="true"/>
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- NoiseTypeList -->
+        <NodeType name="NoiseTypeList">
+            <Attributes />
+    
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="id" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="NoiseType">
+                    <Attributes>
+                        <Attribute name="id" type="ArkGameNoiseTypeId" required="true" readOnly="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkGameStateConditionGroup -->
+        <NodeType name="ArkGameStateConditionGroup">
+            <Attributes>
+                <Attribute name="And" type="boolString" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Conditions">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="ArkConditionGroup" type="ArkGameStateConditionGroup" />
+
+                        <!-- ArkNotCondition -->
+                        <Node name="ArkNotCondition">
+                            <Attributes>
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+
+                            <Collection type="nodeDict" />
+
+                            <ChildNodes>
+                                <NodeByType name="ConditionGroup" type="ArkGameStateConditionGroup" />
+                            </ChildNodes>
+                        </Node>
+
+                        <!-- ArkWeaponDurabilityCondition -->
+                        <Node name="ArkWeaponDurabilityCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkHasItemCondition -->
+                        <Node name="ArkHasItemCondition">
+                            <Attributes>
+                                <Attribute name="Archetype" type="ArchetypeName" required="true" />
+                                <Attribute name="Quantity" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkHealthAmountCondition -->
+                        <Node name="ArkHealthAmountCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="float" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkPsiAmountCondition -->
+                        <Node name="ArkPsiAmountCondition">
+                            <Attributes>
+                                <Attribute name="Amount" type="float" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkConditionExecutedCondition -->
+                        <Node name="ArkConditionExecutedCondition">
+                            <Attributes>
+                                <Attribute name="GameStateCondition" type="ArkGameStateConditionId" required="true" />
+                                <Attribute name="Count" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTutorialOnCooldownCondition -->
+                        <Node name="ArkTutorialOnCooldownCondition">
+                            <Attributes>
+                                <Attribute name="Tutorial" type="ArkTutorialId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkLookingAtNearCondition -->
+                        <Node name="ArkLookingAtNearCondition">
+                            <Attributes>
+                                <Attribute name="CheckIsAlive" type="boolString" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkLookingAtFarCondition -->
+                        <Node name="ArkLookingAtFarCondition">
+                            <Attributes>
+                                <Attribute name="CheckIsAlive" type="boolString" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkInteractedWithCondition -->
+                        <Node name="ArkInteractedWithCondition">
+                            <Attributes>
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkObjectiveCondition -->
+                        <Node name="ArkObjectiveCondition">
+                            <Attributes>
+                                <Attribute name="State" type="string" required="true" />
+                                <Attribute name="Objective" type="ArkObjectiveId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkGainedItemCondition -->
+                        <Node name="ArkGainedItemCondition">
+                            <Attributes>
+                                <Attribute name="Quantity" type="int32" required="true" />
+                                <Attribute name="ComparisonType" type="string" required="true" />
+                                <Attribute name="Archetype" type="ArchetypeName" />
+                                <Attribute name="MetaTags" type="ArkMetaTagId" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkAcquiredChipsetCondition -->
+                        <Node name="ArkAcquiredChipsetCondition">
+                            <Attributes>
+                                <!-- No other attrbutes for some reason -->
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTraumaActiveCondition -->
+                        <Node name="ArkTraumaActiveCondition">
+                            <Attributes>
+                                <Attribute name="Trauma" type="ArkTraumaId" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+
+                        <!-- ArkTraumaActiveCondition -->
+                        <Node name="ArkDifficultyOptionCondition">
+                            <Attributes>
+                                <Attribute name="DifficultyOption" type="string" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkWorkstationUtilityList -->
+        <NodeType name="ArkWorkstationUtilityList">
+            <Attributes />
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkButtonUtility">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkButtonUtilityIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Label" type="string" required="true" />
+                        <Attribute name="Enabled" type="boolString" required="true" />
+                        <Attribute name="Hidden" type="boolString" />
+                        <Attribute name="NoDefaultButton" type="boolString" />
+                        <Attribute name="Description" type="string" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Buttons">
+                            <Attributes />
+
+                            <Patches>
+                                <AddChildIndex name="ch:index" />
+                            </Patches>
+
+                            <Collection type="array">
+                                <ChildIndexAttribute name="ch:index" />
+                            </Collection>
+
+                            <ChildNodes>
+                                <Node name="Button">
+                                    <Attributes>
+                                        <Attribute name="ID" type="ArkUniqueId" required="true" readOnly="true" />
+                                        <Attribute name="Name" type="string" required="true" />
+                                        <Attribute name="Label" type="string" required="true" />
+                                        <Attribute name="Enabled" type="boolString" required="true" />
+                                        <Attribute name="Hidden" type="boolString" />
+                                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ArkKeypadUtility">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkButtonUtilityIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Label" type="string" required="true" />
+                        <Attribute name="Enabled" type="boolString" required="true" />
+                        <Attribute name="Hidden" type="boolString" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkDialogVoiceList -->
+        <NodeType name="ArkDialogVoiceList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="ID" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkDialogVoice">
+                    <Attributes>
+                        <Attribute name="ID" type="ArkDialogVoiceIdDef" required="true" readOnly="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                        <Attribute name="Description" type="string" required="true" />
+                        <Attribute name="Abstract" type="boolString" required="true" />
+                        <Attribute name="FaceFX" type="boolString" required="true" />
+                        <Attribute name="Sex" type="string" />
+                        <Attribute name="Effect" type="string" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <NodeByType name="Voices" type="ArkDialogVoiceList" />
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkNpcAbilityPrereq_CooldownInterval -->
+        <NodeType name="ArkNpcAbilityPrereq_CooldownInterval">
+            <Attributes>
+                <Attribute name="minimum" type="float" required="true" />
+                <Attribute name="maximum" type="float" required="true" />
+            </Attributes>
+        </NodeType>
+        
+
+        <!-- ArkNpcAbilityPrereq_Modifiers -->
+        <NodeType name="ArkNpcAbilityPrereq_Modifiers">
+            <Attributes />
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkNpcAbilityPrereqModifier_AddIfDifficultyEqual">
+                    <Attributes>
+                        <Attribute name="value" type="int32" required="true" />
+                        <Attribute name="modifier" type="float" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkNpcAbilityPrereq_ContextCooldown -->
+        <NodeType name="ArkNpcAbilityPrereq_ContextCooldown">
+            <Attributes>
+                <Attribute name="contextId" type="int32" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="CooldownInterval" type="ArkNpcAbilityPrereq_CooldownInterval" />
+                <NodeByType name="Modifiers" type="ArkNpcAbilityPrereq_Modifiers" />
+
+                <Node name="ContextIds">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Element">
+                            <Attributes>
+                                <Attribute name="value" type="int32" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+        
+        <!-- ArkNpcAbilityPrereq_IsSomething -->
+        <NodeType name="ArkNpcAbilityPrereq_IsSomething">
+            <Attributes>
+                <Attribute name="bNegate" type="boolString" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkNpcGameEffectBlackList -->
+        <NodeType name="ArkNpcGameEffectBlackList">
+            <Attributes />
+            
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="className" />
+                    <ChildAttribute name="archetypeName" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="ArkBlackListItem">
+                    <Attributes>
+                        <Attribute name="className" type="EntityClass" required="true" readOnly="true" allowEmpty="true" />
+                        <Attribute name="archetypeName" type="ArchetypeName" required="true" readOnly="true" allowEmpty="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkInputLegendItem -->
+        <NodeType name="ArkInputLegendItem">
+            <Attributes>
+                <Attribute name="Label" type="string" required="true" />
+                <Attribute name="ControlScheme" type="string" />
+                <Attribute name="Action" type="string" />
+                <Attribute name="ActionMap" type="string" />
+                <Attribute name="Hold" type="boolString" />
+                <Attribute name="ComboString" type="string" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="ActionList">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="ArkInputAction">
+                            <Attributes>
+                                <Attribute name="Action" type="string" required="true" readOnly="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkInputLegend -->
+        <NodeType name="ArkInputLegend">
+            <Attributes>
+                <Attribute name="ActionMap" type="string" />
+                <Attribute name="actionMap" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Items">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="ArkInputLegendItem" type="ArkInputLegendItem" />
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkPlayerZeroGMode -->
+        <NodeType name="ArkPlayerZeroGMode">
+            <Attributes>
+                <Attribute name="minDragSpeed" type="float" required="true" />
+                <Attribute name="maxDragSpeed" type="float" required="true" />
+                <Attribute name="drag" type="float" required="true" />
+                <Attribute name="maxSpeedStat" type="string" required="true" />
+                <Attribute name="baseAccel_UD" type="float" required="true" />
+                <Attribute name="baseAccel_LR" type="float" required="true" />
+                <Attribute name="baseAccel_FB" type="float" required="true" />
+                <Attribute name="velocityLerp" type="float" required="true" />
+                <Attribute name="baseDecel" type="float" required="true" />
+                <Attribute name="counterThrustAngle" type="float" required="true" />
+                <Attribute name="counterThrustSpeed" type="float" required="true" />
+                <Attribute name="brakingRatio" type="float" required="true" />
+                <Attribute name="yawpitchFactor" type="float" required="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkPsiPowerPropertiesCommon -->
+        <NodeType name="ArkPsiPowerPropertiesCommon">
+            <Attributes>
+                <Attribute name="DisplayName" type="string" required="true" />
+                <Attribute name="PsiCost" type="int32" required="true" />
+                <Attribute name="Description" type="string" />
+                <Attribute name="PickerLabel" type="string" required="true" />
+                <Attribute name="InterruptsMimicGrabSequence" type="boolString" />
+                <Attribute name="CostReductionStat" type="ArkPlayerStatName" />
+                <Attribute name="PersistentPostProcessVFX" type="ArkPostEffectId" allowEmpty="true" />
+                <Attribute name="NoiseId" type="ArkGameNoiseTypeId" />
+                <Attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" />
+                <Attribute name="ExecutionAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="TargetHighlightColorAlpha" type="float" />
+                <Attribute name="TargetHighlightColor" type="Vec3" />
+                <Attribute name="ExecutionPlayerEffect" type="string" />
+                <Attribute name="PostProcessVFX" type="ArkPostEffectId" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="ModalLegend" type="ArkInputLegend" />
+
+                <Node name="ActiveBlacklist">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Power" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="BlacklistEntry">
+                            <Attributes>
+                                <Attribute name="Power" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkPsiPowerTargetingComponentProperties -->
+        <NodeType name="ArkPsiPowerTargetingComponentProperties">
+            <Attributes>
+                <Attribute name="MaxRange" type="float" />
+                <Attribute name="MinRange" type="float" />
+                <Attribute name="TargetParticleEffect" type="string" />
+                <Attribute name="TargetParticleEffectAttachment" type="string" />
+                <Attribute name="TargetParticleLightEffect" type="string" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="ValidTargetMetaTags">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="MetaTag">
+                            <Attributes>
+                                <Attribute name="value" type="ArkMetaTagId" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ValidTargetClasses">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="value" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Class">
+                            <Attributes>
+                                <Attribute name="value" type="EntityClass" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkPsiBlastProperties -->
+        <NodeType name="ArkPsiBlastProperties">
+            <Attributes>
+                <Attribute name="Radius" type="float" required="true" />
+                <Attribute name="TriggerRadius" type="float" />
+                <Attribute name="DelaySec" type="float" required="true" />
+                <Attribute name="DurationSec" type="float" />
+                <Attribute name="SignalPackageId" type="ArkSignalPackageId" allowEmpty="true" />
+                <Attribute name="ExplosionSignalPackageId" type="ArkSignalPackageId" />
+                <Attribute name="StopDelayAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="ExplosionAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StartPersistentAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StopPersistentAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="StartDelayAudioTrigger" type="string" allowEmpty="true" />
+                <Attribute name="PreExplosionParticleEffect" type="string" />
+                <Attribute name="ExplosionParticleEffect" type="string" required="true" />
+                <Attribute name="ExplosionDelaySec" type="float" />
+                <Attribute name="UpdateIntervalSec" type="float" />
+                <Attribute name="NoiseId" type="ArkGameNoiseTypeId" required="true" />
+                <Attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" required="true" />
+                <Attribute name="FalloffRadius" type="float" required="true" />
+                <Attribute name="FalloffScale" type="float" />
+                <Attribute name="CameraShake" type="ArkCameraShakeId" />
+                <Attribute name="Force" type="float" />
+                <Attribute name="KillPreExplosionParticleEffect" type="boolString" />
+                <Attribute name="MaxBlastCount" type="int32" />
+            </Attributes>
+        </NodeType>
+
+        <!-- CurveParam -->
+        <NodeType name="CurveParam">
+            <Attributes>
+                <Attribute name="Duration" type="float" />
+                <Attribute name="Curve" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- ArkMaterialAnimationKeysArray -->
+        <NodeType name="ArkMaterialAnimationKeysArray">
+            <Attributes />
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Keys">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Key">
+                            <Attributes>
+                                <Attribute name="Time" type="float" required="true" />
+                                <Attribute name="Value" type="float" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkMaterialAnimationRgbKeysArray -->
+        <NodeType name="ArkMaterialAnimationRgbKeysArray">
+            <Attributes />
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="RgbKeys">
+                    <Attributes />
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="RgbKey">
+                            <Attributes>
+                                <Attribute name="Time" type="float" required="true" />
+                                <Attribute name="Red" type="float" required="true" />
+                                <Attribute name="Green" type="float" required="true" />
+                                <Attribute name="Blue" type="float" required="true" />
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArlSignalModifierList -->
+        <NodeType name="ArlSignalModifierList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="ModifierId" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="SignalModifier">
+                    <Attributes>
+                        <Attribute name="ModifierId" type="ArkSignalModifierId" required="true" readOnly="true" />
+                        <Attribute name="IsInbound" type="boolString" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ArkStatModifierList -->
+        <NodeType name="ArkStatModifierList">
+            <Attributes />
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="StatName" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="StatModifier">
+                    <Attributes>
+                        <Attribute name="StatName" type="ArkPlayerStatName" required="true" readOnly="true" />
+                        <Attribute name="Modifier" type="float" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ActionMap -->
+        <NodeType name="ActionMap">
+            <Attributes>
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+            </Attributes>
+
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="name" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <Node name="action">
+                    <Attributes>
+                        <Attribute name="name" type="string" required="true" readOnly="true" />
+                        <Attribute name="onPress" type="boolInt" />
+                        <Attribute name="onRelease" type="boolInt" />
+                        <Attribute name="onHold" type="boolInt" />
+                        <Attribute name="noModifiers" type="boolInt" />
+                        <Attribute name="retriggerable" type="boolInt" />
+                        <Attribute name="holdTriggerDelay" type="float" />
+                        <Attribute name="holdRepeatDelay" type="float" />
+                        <Attribute name="releaseTriggerThreshold" type="float" />
+                        <Attribute name="keyboard" type="string" />
+                        <Attribute name="xboxpad" type="string" />
+                        <Attribute name="ps4pad" type="string" />
+                        <Attribute name="steam" type="string" />
+                    </Attributes>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildName />
+                            <ChildAttribute name="device" />
+                            <ChildAttribute name="input" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="rebind">
+                            <Attributes>
+                                <Attribute name="device" type="string" required="true" readOnly="true" />
+                                <Attribute name="input" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name=".*" nameRegex="true">
+                            <Attributes>
+                                <Attribute name="input" type="string" />
+                                <Attribute name="onPress" type="boolInt" />
+                                <Attribute name="onRelease" type="boolInt" />
+                                <Attribute name="onHold" type="boolInt" />
+                                <Attribute name="noModifiers" type="boolInt" />
+                                <Attribute name="retriggerable" type="boolInt" />
+                                <Attribute name="holdTriggerDelay" type="float" />
+                                <Attribute name="holdRepeatDelay" type="float" />
+                                <Attribute name="pressTriggerDelayRepeatOverride" type="float" />
+                                <Attribute name="releaseTriggerDelayRepeatOverride" type="float" />
+                                <Attribute name="inputsToBlock" type="string" />
+                                <Attribute name="inputBlockTime" type="float" />
+                                <Attribute name="useAnalogCompare" type="boolInt" />
+                                <Attribute name="analogCompareVal" type="float" />
+                                <Attribute name="analogCompareOp" type="string" />
+                            </Attributes>
+
+                            <XsdAliases>
+                                <Alias>keyboard</Alias>
+                                <Alias>xboxpad</Alias>
+                                <Alias>ps4pad</Alias>
+                                <Alias>steam</Alias>
+                            </XsdAliases>
+
+                            <Collection type="dict">
+                                <PrimaryKey>
+                                    <ChildAttribute name="input" />
+                                </PrimaryKey>
+                            </Collection>
+
+                            <ChildNodes>
+                                <Node name="inputdata">
+                                    <Attributes>
+                                        <Attribute name="input" type="string" required="true" readOnly="true" />
+                                        <Attribute name="useAnalogCompare" type="boolInt" />
+                                        <Attribute name="analogCompareVal" type="float" />
+                                        <Attribute name="analogCompareOp" type="string" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- LensFlareItem -->
+        <NodeType name="LensFlareItem">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="Type" type="string" required="true" />
+                <Attribute name="Enable" type="boolInt" required="true" />
+                <Attribute name="Id" type="GuidWithBraces" />
+                <Attribute name="Library" type="string" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <!-- Using an array because some sub-lens flares have duplicate names -->
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="FlareItem" type="LensFlareItem" />
+                
+                <Node name="Params">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Patches>
+                        <AddChildIndex name="ch:index" />
+                    </Patches>
+
+                    <Collection type="array" allowAnyChildrenInXsd="true">
+                        <ChildIndexAttribute name="ch:index" />
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name=".*" nameRegex="true">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                            </Attributes>
+
+                            <XsdAliases />
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+        
+        <!-- GameToken -->
+        <NodeType name="GameToken">
+            <Attributes>
+                <Attribute name="Id" type="GameTokenId" required="true" readOnly="true" />
+                <Attribute name="Name" type="GameTokenName" required="true" readOnly="true" />
+                <Attribute name="Flags" type="uint32" />
+                <Attribute name="Type" type="string" required="true" />
+                <Attribute name="Value" type="string" required="true" allowEmpty="true" />
+                <Attribute name="Description" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- GameTokensLibrary -->
+        <NodeType name="GameTokensLibrary">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" />
+                <Attribute name="LevelName" type="string" />
+            </Attributes>
+    
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="Id" />
+                </PrimaryKey>
+            </Collection>
+    
+            <ChildConstraints>
+                <UniqueAttribute name="Name" />
+            </ChildConstraints>
+    
+            <ChildNodes>
+                <NodeByType name="GameToken" type="GameToken" />
+            </ChildNodes>
+        </NodeType>
+
+        <!-- HitDeathReactionsParams -->
+        <NodeType name="HitDeathReactionsParams">
+            <Attributes allowUnknown="true">
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+
+            <Collection type="replaceOnly" />
+
+            <ChildNodes>
+                <Node name="SetTags">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Tag">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedSignals">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Signal">
+                            <Attributes>
+                                <Attribute name="id" type="ArkSignalId" required="true" readOnly="true" />
+                                <Attribute name="minValue" type="float" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedHitTypes">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="HitType">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedParts">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Part">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedStances">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Stance">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedProjectiles">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Projectile">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="AllowedWeapons">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Weapon">
+                            <Attributes>
+                                <Attribute name="value" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ValidationSection">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <NodeByType name="Validation" type="HitDeathReactionsParams" />
+                    </ChildNodes>
+                </Node>
+
+                <Node name="ReactionAnim">
+                    <Attributes>
+                        <Attribute name="additive" type="boolInt" />
+                        <Attribute name="layer" type="int32" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="AnimNames">
+                            <Attributes />
+                            <Collection type="replaceOnly" />
+
+                            <ChildNodes>
+                                <Node name="AnimName">
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="name" type="string" required="true" readOnly="true" />
+                                    </Attributes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- FXEffect -->
+        <NodeType name="FXEffect">
+            <Attributes>
+                <Attribute name="name" type="string" />
+                <Attribute name="delay" type="float" />
+                <Attribute name="ch:index" type="int32" generated="true" />
+            </Attributes>
+
+            <Patches>
+                <AddChildIndex name="ch:index" />
+            </Patches>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="Rolling" type="FXEffect" />
+                <NodeByType name="Sliding" type="FXEffect" />
+                <NodeByType name="RandEffect" type="FXEffect" />
+
+                <Node name="Audio">
+                    <Attributes>
+                        <Attribute name="trigger" type="string" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Switch">
+                            <Attributes>
+                                <Attribute name="name" type="string" required="true" />
+                                <Attribute name="state" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="GameNoise">
+                    <Attributes>
+                        <Attribute name="type" type="ArkGameNoiseTypeId" required="true" />
+                        <Attribute name="loudness" type="ArkGameNoiseLoudnessId" required="true" />
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                </Node>
+
+                <Node name="Particle">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+                    
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Name">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="particleName" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="Direction">
+                            <Attributes>
+                                <Attribute name="directionType" type="string" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Decal">
+                    <Attributes allowUnknown="true">
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                    </Attributes>
+
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Name">
+                            <Attributes>
+                                <Attribute name="materialPath" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="Material">
+                            <Attributes>
+                                <Attribute name="materialPath" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- MovementTransition -->
+        <NodeType name="MovementTransition">
+            <Attributes allowUnknown="true">
+                <Attribute name="animGraphSignal" type="string" required="true" readOnly="true" />
+                <Attribute name="stance" type="string" required="true" readOnly="true" />
+                <Attribute name="pseudoSpeed" type="string" required="true" readOnly="true" />
+                <Attribute name="minDist" type="float" />
+                <Attribute name="maxDist" type="float" />
+                <Attribute name="prepareDist" type="float" />
+                <Attribute name="travelAngle" type="float" />
+                <Attribute name="travelAngleTolerance" type="float" />
+                <Attribute name="prepareTravelAngleTolerance" type="float" />
+                <Attribute name="jukeAngle" type="float" />
+                <Attribute name="jukeAngleTolerance" type="float" />
+                <Attribute name="targetTravelAngle" type="float" />
+                <Attribute name="targetTravelAngleTolerance" type="float" />
+                <Attribute name="exit2ndSeg" type="float" />
+                <Attribute name="bodyTurnAngle" type="float" />
+                <Attribute name="bodyTurnAngleTolerance" type="float" />
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- SOTemplateParam -->
+        <NodeType name="SOTemplateParam">
+            <Attributes>
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+                <Attribute name="caption" type="string" allowEmpty="true" />
+                <Attribute name="visible" type="boolInt" />
+                <Attribute name="editable" type="boolInt" />
+                <Attribute name="value" type="string" allowEmpty="true" />
+                <Attribute name="help" type="string" allowEmpty="true" />
+            </Attributes>
+        </NodeType>
+
+        <!-- PrefabObject -->
+        <NodeType name="PrefabObject">
+            <Attributes allowUnknown="true">
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                <Attribute name="Group" type="GuidWithBraces" />
+                <Attribute name="Pos" type="Vec3" />
+                <Attribute name="Rotate" type="Quat" />
+            </Attributes>
+
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <NodeByType name="Sequence" type="MovieSequence" />
+                <NodeByType name="FlowGraph" type="FlowGraph" />
+
+                <Node name="Objects">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <NodeByType name="Object" type="PrefabObject" />
+                    </ChildNodes>
+                </Node>
+
+                <Node name="CollisionFiltering">
+                    <Attributes />
+                    <Collection type="nodeDict" />
+
+                    <ChildNodes>
+                        <Node name="Type">
+                            <Attributes allowUnknown="true" />
+                        </Node>
+                        <Node name="Ignore">
+                            <Attributes allowUnknown="true" />
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Properties" recursive="true">
+                    <Attributes allowUnknown="true" />
+                    <Collection type="nodeDict" />
+                </Node>
+
+                <Node name="Properties2" recursive="true">
+                    <Attributes allowUnknown="true" />
+                    <Collection type="nodeDict" />
+                </Node>
+                
+                <Node name="EntityLinks">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="TargetId" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Link">
+                            <Attributes>
+                                <Attribute name="TargetId" type="GuidWithBraces" required="true" readOnly="true" />
+                                <Attribute name="Name" type="string" allowEmpty="true" />
+                                <Attribute name="RelRot" type="Quat" />
+                                <Attribute name="RelPos" type="Vec3" />
+                                <Attribute name="Version" type="int32" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="SoundData">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="Points">
+                    <Attributes />
+                    <Collection type="replaceOnly" />
+
+                    <ChildNodes>
+                        <Node name="Point">
+                            <Attributes>
+                                <Attribute name="Pos" type="Vec3" required="true" />
+                                <Attribute name="ObstructSound" type="boolInt" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Entities">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Id" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Entity">
+                            <Attributes>
+                                <Attribute name="Id" type="GuidWithBraces" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Brush">
+                    <Attributes>
+                        <Attribute name="DesignerModeFlags" type="uint32" required="true" />
+                        <Attribute name="SubdivisionLevel" type="int32" required="true" />
+                        <Attribute name="TessFactor" type="int32" required="true" />
+                        <Attribute name="MirrorPlaneNormal" type="Vec3" required="true" />
+                        <Attribute name="MirrorPlaneDistance" type="float" required="true" />
+                    </Attributes>
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildName />
+                            <ChildAttribute name="GUID" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Region">
+                            <Attributes>
+                                <Attribute name="GUID" type="GuidWithBraces" required="true" readOnly="true" />
+                                <Attribute name="BinaryData" type="string" required="true" />
+                            </Attributes>
+                        </Node>
+
+                        <Node name="SmoothingGroups">
+                            <Attributes />
+                        </Node>
+
+                        <Node name="SemiSharpCrease">
+                            <Attributes />
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Mesh">
+                    <Attributes>
+                        <Attribute name="Version" type="int32" required="true" />
+                        <Attribute name="BinaryData" type="string" required="true" />
+                    </Attributes>
+                </Node>
+
+                <Node name="AffectedAgentTypes">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="ZoomScrollSettings">
+                    <Attributes allowUnknown="true" />
+                </Node>
+
+                <Node name="ID">
+                    <Attributes>
+                        <Attribute name="value" type="int32" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- MovieSequence -->
+        <NodeType name="MovieSequence">
+            <Attributes>
+                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                <Attribute name="SequenceVersion" type="int32" required="true" />
+                <Attribute name="Flags" type="int32" required="true" />
+                <Attribute name="StartTime" type="float" required="true" />
+                <Attribute name="EndTime" type="float" required="true" />
+                <Attribute name="ID" type="int32" required="true" />
+                <Attribute name="ConversationID" type="string" />
+            </Attributes>
+            
+            <Collection type="nodeDict" />
+
+            <ChildNodes>
+                <Node name="Nodes">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Node">
+                            <Attributes allowUnknown="true">
+                                <Attribute name="Id" type="int32" required="true" />
+                                <Attribute name="Type" type="string" required="true" />
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                                <Attribute name="Flags" type="int32" />
+                                <Attribute name="ParentNode" type="int32" />
+                                <Attribute name="paramIdVersion" type="int32" />
+                            </Attributes>
+
+                            <Collection type="replaceOnly" />
+
+                            <ChildNodes>
+                                <Node name="Track">
+                                    <Attributes allowUnknown="true">
+                                        <Attribute name="paramUserValue" type="string" />
+                                        <Attribute name="paramType" type="string" />
+                                        <Attribute name="defaultValue" type="string" />
+                                        <Attribute name="Type" type="int32" required="true" />
+                                        <Attribute name="AnimationLayer" type="int32" />
+                                        <Attribute name="Voice" type="VoiceId" />
+                                        <Attribute name="PAChannel" type="int32" />
+                                        <Attribute name="Flags" type="int32" />
+                                        <Attribute name="StartTime" type="float" />
+                                        <Attribute name="EndTime" type="float" />
+                                        <Attribute name="HasCustomColor" type="boolInt" required="true" />
+                                        <Attribute name="ValueType" type="int32" required="true" />
+                                    </Attributes>
+
+                                    <Collection type="replaceOnly" />
+
+                                    <ChildNodes>
+                                        <Node name="Key">
+                                            <Attributes allowUnknown="true">
+                                                <Attribute name="time" type="float" required="true" />
+                                            </Attributes>
+                                        </Node>
+
+                                        <Node name="NewSubTrack">
+                                            <Attributes>
+                                                <Attribute name="Flags" type="int32" required="true" />
+                                                <Attribute name="defaultValue" type="string" required="true" />
+                                                <Attribute name="HasCustomColor" type="boolInt" required="true" />
+                                            </Attributes>
+
+                                            <Collection type="replaceOnly" />
+
+                                            <ChildNodes>
+                                                <Node name="Key">
+                                                    <Attributes allowUnknown="true">
+                                                        <Attribute name="time" type="float" required="true" />
+                                                    </Attributes>
+                                                </Node>
+                                            </ChildNodes>
+                                        </Node>
+                                    </ChildNodes>
+                                </Node>
+                            </ChildNodes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+
+                <Node name="Events">
+                    <Attributes />
+
+                    <Collection type="dict">
+                        <PrimaryKey>
+                            <ChildAttribute name="Name" />
+                        </PrimaryKey>
+                    </Collection>
+
+                    <ChildNodes>
+                        <Node name="Event">
+                            <Attributes>
+                                <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            </Attributes>
+                        </Node>
+                    </ChildNodes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
+
+        <!-- ChannelConfig -->
+        <NodeType name="ChannelConfig">
+            <Attributes allowUnknown="true">
+                <Attribute name="name" type="string" required="true" readOnly="true" />
+                <Attribute name="minSilence" type="float" />
+                <Attribute name="flushSilence" type="float" />
+                <Attribute name="type" type="string" />
+                <Attribute name="priority" type="int32" />
+            </Attributes>
+                
+            <Collection type="dict">
+                <PrimaryKey>
+                    <ChildAttribute name="name" />
+                </PrimaryKey>
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="Channel" type="ChannelConfig" />
+            </ChildNodes>
+        </NodeType>
+    </NodeTypes>
+</XmlTypeLibrary>

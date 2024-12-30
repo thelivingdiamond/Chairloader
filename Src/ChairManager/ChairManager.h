@@ -11,6 +11,7 @@
 #include <Manager/LogEntry.h>
 #include <Manager/IChairManager.h>
 #include <Manager/ConfigManager.h>
+#include <Manager/GamePath.h>
 #include <pugixml.hpp>
 #include <filesystem>
 #include <fstream>
@@ -24,16 +25,19 @@
 class GamePathDialog;
 class GameVersion;
 class GamePath;
-class ChairInstallWizard;
 class ChairUninstallWizard;
 class ChairUpdateWizard;
 class ChairMerger;
 struct SemanticVersion;
 enum class DeployStep;
 class ChairMerger;
+class PreyFilesPatchProgressDialog;
+class NewInstallWizard;
 
 class ChairManager final : public IChairManager {
 public:
+    using DeployLogCallback = std::function<void(std::string_view msg)>;
+
     static bool IsInstantiated() { return m_spInstance != nullptr; }
     static ChairManager& Get() { return *m_spInstance; }
 
@@ -45,7 +49,6 @@ public:
     const fs::path& GetGamePath();
     // get mods and get legacy mods
     const std::vector<Mod>& GetMods() { return ModList; }
-    const std::vector<std::string>& GetLegacyMods() { return LegacyModList; }
     // get config manager
     ConfigManager* GetConfigManager() { return &m_ConfigManager; }
     // is mod enabled
@@ -67,37 +70,12 @@ public:
         dpiScale = dpiScaleIn;
     }
 
+    void SetGamePathFromWizard(const fs::path& gamePath);
+    bool DeployForInstallWizard(const DeployLogCallback& logFunc, std::string& errorMessage);
 
+    GamePath& GetGamePathUtil(){ return m_GamePath; }
 
-    bool DeployForInstallWizard(std::string& errorMessage);
-
-
-
-    std::string getETag() {
-        return m_githubETag;
-    }
-    void setETag(std::string eTag) {
-        m_githubETag = eTag;
-        if(!ChairManagerConfigFile.first_child().child("ETag"))
-            ChairManagerConfigFile.first_child().append_child("ETag");
-        ChairManagerConfigFile.first_child().child("ETag").text().set(eTag.c_str());
-        saveModManagerConfigFile();
-    }
-    std::string getCachedLatestVersion() {
-        auto versionNode = ChairManagerConfigFile.first_child().child("LatestVersion");
-        if(versionNode)
-            return versionNode.text().as_string();
-        return "";
-    }
-
-    void setCachedLatestVersion(std::string version) {
-        if(!ChairManagerConfigFile.first_child().child("LatestVersion"))
-            ChairManagerConfigFile.first_child().append_child("LatestVersion");
-        ChairManagerConfigFile.first_child().child("LatestVersion").text().set(version.c_str());
-        saveModManagerConfigFile();
-    }
-
-    GamePath* GetGamePathUtil(){ return m_pGamePath.get(); }
+    const SemanticVersion& GetLatestVersionFromGitHub() const { return m_LatestVersionFromGitHub; }
 
     // IChairManager
     virtual fs::path GetConfigPath() override;
@@ -122,7 +100,6 @@ private:
     enum class State
     {
         Invalid,
-        LocateGameDir,
         InstallWizard,
         Deploying,
         UninstallWizard,
@@ -131,13 +108,17 @@ private:
     };
     State m_State = State::Invalid;
 
-
     /* Globals */
     fs::path m_LogFilePath;
     fs::path ChairManagerConfigPath;
     std::vector<Mod> ModList;
     std::map<std::string, std::string> ModNameToDisplayName;
-    std::vector<std::string> LegacyModList;
+
+    /* Update checking */
+    SemanticVersion m_LatestVersionFromGitHub;
+    std::future<std::pair<std::string, std::string>> m_VersionCheckTask;
+    void StartVersionCheckTask(bool force = false);
+    void UpdateVersionCheckTask();
 
     /* Init */
     void LoadModManagerConfig();
@@ -145,15 +126,10 @@ private:
     void Init();
     bool initialized = false;
 
-    /* LocateGameDir */
-    std::unique_ptr<GamePathDialog> m_pGamePathDialog;
-    void SwitchToGameSelectionDialog(const fs::path& gamePath);
-    void DrawGamePathSelectionDialog(bool* pbIsOpen);
-
     /* InstallWizard */
-    std::unique_ptr<ChairInstallWizard> m_pInstallWizard;
+    std::unique_ptr<NewInstallWizard> m_pInstallWizard;
     void SwitchToInstallWizard();
-    void DrawInstallWizard(bool* pbIsOpen);
+    void OnInstallWizardFinished();
 
     /* UninstallWizard */
     std::unique_ptr<ChairUninstallWizard> m_pUninstallWizard;
@@ -239,21 +215,30 @@ private:
 
     /* Mod List Functions */
     bool LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory = false);
-    void LoadModsFromConfig();
-    void DetectNewMods();
-    void DetectPreditorProjects();
-    void loadModInfoFiles();
-    void FindMod(Mod* modEntry);
+    void LoadModInfoFiles();
     bool verifyDependencies(std::string modName);
     bool verifyDependenciesEnabled(std::string modName);
-    fs::path fileToLoad;
-    fs::path modToLoadPath;
 
     //Install
-    void InstallMod(std::string &modName);
+    enum class EModInstallStage
+    {
+        None,
+        SelectFile, //!< File selection dialog is open
+        LegacyModPopup, //!< Pop-up for legacy mods is open
+    };
+
+    struct ModInstallState
+    {
+        EModInstallStage stage = EModInstallStage::None;
+        fs::path modFilePath;
+        bool isLegacy = false;
+        std::string legacyModName;
+    };
+
+    ModInstallState m_ModInstallState;
     void UninstallMod(std::string &modName);
-    void InstallModFromFile(fs::path path, fs::path fileName);
-    bool m_bInstallLegacyMod;
+    void InstallModFromState();
+    void UpdateModInstall();
 
     //Enable
     void EnableMod(std::string modName, bool enabled = true);
@@ -312,15 +297,13 @@ private:
     bool verifyChairloaderConfigFile();
     // Create default chairloader config file
     void createChairloaderConfigFile();
-    // Verify chairloader is installed
-    bool verifyChairloaderInstalled();
-    // Verify default file structure
-    bool verifyDefaultFileStructure();
     // Create default file structure
     void createDefaultFileStructure();
     static inline ChairManager* m_spInstance = nullptr;
 
-    std::unique_ptr<GamePath> m_pGamePath;
+    GamePath m_GamePath;
+
+    std::unique_ptr<PreyFilesPatchProgressDialog> m_pXmlPatchDialog;
 
     //! Chairloader version checking
     SemanticVersion* packagedChairloaderVersion;
@@ -340,11 +323,11 @@ private:
     void removeStartupCinematics();
     void restoreStartupCinematics();
 
-    std::unique_ptr<ChairMerger> CreateChairMerger(bool forInstallWizard);
+    std::unique_ptr<ChairMerger> CreateChairMerger(bool forInstallWizard, ILogger* pLogger = nullptr);
     void RunAsyncDeploy();
 
     //! Opens the file select dialog for mod installation.
-    void OpenInstallModDialog(bool isLegacy);
+    void OpenInstallModDialog();
 
     //! Checks if an update is available.
     bool IsUpdateAvailable();

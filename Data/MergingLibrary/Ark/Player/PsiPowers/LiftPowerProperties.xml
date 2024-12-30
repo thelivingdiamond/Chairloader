@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="LiftPowerProperties">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="Common" type="ArkPsiPowerPropertiesCommon" />
+
+            <Node name="Unique">
+                <Attributes>
+                    <Attribute name="MinHeight" type="float" required="true" />
+                    <Attribute name="MaxRange" type="float" required="true" />
+                    <Attribute name="MaxRangeZeroG" type="float" required="true" />
+                    <Attribute name="Radius" type="float" required="true" />
+                    <Attribute name="Gravity" type="float" required="true" />
+                    <Attribute name="InwardLiftForce" type="float" required="true" />
+                    <Attribute name="UpwardLiftForce" type="float" required="true" />
+                    <Attribute name="LiftForceZeroG" type="float" required="true" />
+                    <Attribute name="HoverVelocityDamping" type="float" required="true" />
+                    <Attribute name="HoverVelocityFalloff" type="float" required="true" />
+                    <Attribute name="HoverFalloffDistance" type="float" required="true" />
+                    <Attribute name="ParticleEffect" type="string" required="true" />
+                    <Attribute name="TargetingParticleEffect" type="string" required="true" />
+                    <Attribute name="TargetingParticleEffectLight" type="string" required="true" />
+                    <Attribute name="PlayerPostEffectId" type="string" required="true" />
+                    <Attribute name="PlayerExitAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="EnterLiftSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="PlayerEnterAudioTrigger" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Levels">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkPsiPowerLiftLevelProperties">
+                        <Attributes>
+                            <Attribute name="DisplayName" type="string" required="true" />
+                            <Attribute name="Description" type="string" required="true" />
+                            <Attribute name="CooldownDurationSec" type="float" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="LiftProperties">
+                                <Attributes>
+                                    <Attribute name="DurationSec" type="float" required="true" />
+                                    <Attribute name="MaxHeight" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

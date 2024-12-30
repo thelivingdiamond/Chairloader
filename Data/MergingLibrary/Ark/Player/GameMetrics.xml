@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkGameMetricLibrary">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Metrics">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkGameMetricProperties">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkGameMetricIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Label" type="string" required="true" />
+                            <Attribute name="DefaultValue" type="int32" required="true" />
+                            <Attribute name="VisibilityThreshold" type="int32" required="true" />
+                            <Attribute name="HiddenFromUI" type="boolString" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

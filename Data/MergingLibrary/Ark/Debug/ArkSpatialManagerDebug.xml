@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkSpatialManagerDebug">
+        <Attributes>
+            <Attribute name="textScreenPositionX" type="float" required="true" />
+            <Attribute name="textScreenPositiony" type="float" required="true" />
+            <Attribute name="fontSize" type="float" required="true" />
+            <Attribute name="textColorR" type="uint8" required="true" />
+            <Attribute name="textColorG" type="uint8" required="true" />
+            <Attribute name="textColorB" type="uint8" required="true" />
+            <Attribute name="lineHeight" type="float" required="true" />
+            <Attribute name="moveCountSampleFrameCount" type="float" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

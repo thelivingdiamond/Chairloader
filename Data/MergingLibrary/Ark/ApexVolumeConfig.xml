@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ApexVolumeConfig">
+        <Attributes>
+            <Attribute name="dotSignal" type="ArkSignalPackageId" required="true" />
+            <Attribute name="killSignal" type="ArkSignalPackageId" required="true" />
+            <Attribute name="killTimeThreshold" type="float" required="true" />
+            <Attribute name="period" type="float" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

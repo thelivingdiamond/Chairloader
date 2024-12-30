@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkNpcUnreachableTargetingManagerConfig">
+        <Attributes>
+            <Attribute name="MinSearchRadius" type="float" required="true" />
+            <Attribute name="MaxSearchRadius" type="float" required="true" />
+            <Attribute name="SearchRadiusStep" type="float" required="true" />
+            <Attribute name="SearchHeight" type="float" required="true" />
+            <Attribute name="TraceRadius" type="float" required="true" />
+            <Attribute name="MaxDistanceBeforeUpdateNeeded" type="float" required="true" />
+            <Attribute name="ClaimRadius" type="float" required="true" />
+            <Attribute name="MaxAllowedAngleFromNpcToTarget" type="float" required="true" />
+            <Attribute name="MaxPointsPerSearchArea" type="int32" required="true" />
+            <Attribute name="PreventAnySuccesses" type="boolString" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Config">
+        <Attributes>
+            <Attribute name="psiCost" type="int32" required="true" />
+            <Attribute name="displayName" type="string" required="true" />
+            <Attribute name="queryTimerSec" type="float" required="true" />
+            <Attribute name="updateTimerSec" type="float" required="true" />
+            <Attribute name="queryBoxScale" type="float" required="true" />
+            <Attribute name="stopHeightScale" type="float" required="true" />
+            <Attribute name="innerRadiusScale" type="float" required="true" />
+            <Attribute name="alignToSurface" type="boolString" required="true" />
+            <Attribute name="avgSurfaceNormalCoeff" type="float" required="true" />
+            <Attribute name="avgCylinderPositionCoeff" type="float" required="true" />
+            <Attribute name="maxHeightAboveGround" type="float" required="true" />
+            <Attribute name="targetingCylinderRadiusScale" type="float" required="true" />
+            <Attribute name="height" type="float" required="true" />
+            <Attribute name="radius" type="float" required="true" />
+            <Attribute name="gravity" type="float" required="true" />
+            <Attribute name="durationSec" type="float" required="true" />
+            <Attribute name="maxDistance" type="float" required="true" />
+            <Attribute name="maxAimAngleDeg" type="float" required="true" />
+            <Attribute name="liftImpulseScale" type="float" required="true" />
+            <Attribute name="centeringImpulseScale" type="float" required="true" />
+            <Attribute name="ZVelocityDamping" type="float" required="true" />
+            <Attribute name="XYVelocityDamping" type="float" required="true" />
+            <Attribute name="ZVelocityLerpCoeff" type="float" required="true" />
+            <Attribute name="XYVelocityLerpCoeff" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Levels">
+                <Attributes />
+                <Collection type="replaceOnly" />
+
+                <ChildNodes>
+                    <Node name="Level">
+                        <Attributes>
+                            <Attribute name="description" type="string" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

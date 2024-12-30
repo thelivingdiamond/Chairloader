@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="CharacterDBAs">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="DBAGroup">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="DBA">
+                        <Attributes>
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

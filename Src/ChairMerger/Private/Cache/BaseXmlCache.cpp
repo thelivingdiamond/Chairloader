@@ -111,11 +111,17 @@ IXmlCache::EOpenResult BaseXmlCache::InitEntry(
     int formatFlags,
     bool isWriting)
 {
+    if (isWriting && (parseFlags == DONT_PARSE) != (formatFlags == DONT_FORMAT))
+        throw std::invalid_argument("If one of the flags is DONT, both must be");
+
     it = m_FileMap.find(relPathNorm);
 
     // Not found
     if (it == m_FileMap.end())
     {
+        if (parseFlags == DONT_PARSE || formatFlags == DONT_FORMAT)
+            return EOpenResult::NotFound;
+
         // File not yet loaded. Load it from disk.
         pugi::xml_document doc;
         if (!LoadDocument(relPath, relPathNorm, doc))
@@ -157,10 +163,10 @@ IXmlCache::EOpenResult BaseXmlCache::InitEntry(
     }
 
     // Check flags
-    if (it->second->parseFlags != parseFlags)
+    if (parseFlags != DONT_PARSE && it->second->parseFlags != parseFlags)
         return EOpenResult::ParseFlagsMismatch;
 
-    if (isWriting && it->second->formatFlags != formatFlags)
+    if (formatFlags != DONT_FORMAT && isWriting && it->second->formatFlags != formatFlags)
         return EOpenResult::FormatFlagsMismatch;
 
     return EOpenResult::Success;

@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml"
+    recursive="true">
+    <Node name="ResponseRules">
+        <Attributes>
+            <Attribute name="description" type="string" allowEmpty="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="WritebackKeys">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="WritebackKey">
+                        <Attributes>
+                            <Attribute name="id" type="ArkUniqueId" required="true" readOnly="true" />
+                            <Attribute name="name" type="string" required="true" allowEmpty="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ResponseRule">
+                <Attributes>
+                    <Attribute name="id" type="ArkConversationIdDef" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="cooldown" type="float" required="true" allowEmpty="true" />
+                    <Attribute name="conversation" type="int32" allowEmpty="true" />
+                    <Attribute name="response" type="ArkDialogResponseSetId" />
+                    <Attribute name="oneshot" type="bool" allowEmpty="true" />
+                    <Attribute name="description" type="string" allowEmpty="true" />
+                    <Attribute name="priority" type="int32" allowEmpty="true" />
+                    <Attribute name="trackView" type="int32" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Criteria">
+                        <Attributes />
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Criterion">
+                                <Attributes>
+                                    <Attribute name="id" type="ArkUniqueId" />
+                                    <Attribute name="value" type="string" allowEmpty="true" />
+                                    <Attribute name="comparison" type="int32" />
+                                    <Attribute name="type" type="string" />
+                                    <Attribute name="fromResponse" type="int32" />
+                                    <Attribute name="passIfMissing" type="boolString" />
+                                    <Attribute name="keyType" type="string" allowEmpty="true" />
+                                    <Attribute name="compare" type="bool" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Writeback">
+                        <Attributes />
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Fact">
+                                <Attributes>
+                                    <Attribute name="id" type="ArkUniqueId" required="true" />
+                                    <Attribute name="value" type="string" required="true" allowEmpty="true" />
+                                    <Attribute name="time" type="float" required="true" />
+                                    <Attribute name="type" type="int32" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ResponseSet">
+                <Attributes>
+                    <Attribute name="id" type="ArkDialogResponseSetIdDef" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Response">
+                        <Attributes>
+                            <Attribute name="id" type="ArkDialogResponseId" required="true" readOnly="true" />
+                            <Attribute name="dialog" type="ArkDialogId" required="true" />
+                            <Attribute name="cooldown" type="float" required="true" />
+                            <Attribute name="weight" type="float" required="true" />
+                            <Attribute name="oneshot" type="bool" required="true" />
+                            <Attribute name="completeConversation" type="bool" />
+                            <Attribute name="delay" type="float" allowEmpty="true" />
+                            <Attribute name="targetId" type="uint64" />
+                            <Attribute name="targetType" type="int32" />
+                            <Attribute name="speakerTrackMethod" type="int32" />
+                            <Attribute name="targetTrackMethod" type="int32" />
+                            <Attribute name="emotion" type="ArkEmotionId" />
+                            <Attribute name="cutoff" type="float" allowEmpty="true" />
+                            <Attribute name="entityOneshot" type="bool" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

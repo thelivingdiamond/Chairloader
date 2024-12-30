@@ -84,14 +84,14 @@ void ChairUpdateWizard::ShowConfirmPage() {
     static bool m_bRefresh = true;
     if(m_bRefresh){
         m_bRefresh = false;
-        m_LatestVersion = VersionCheck::getLatestChairloaderVersion();
+        m_LatestVersion = ChairManager::Get().GetLatestVersionFromGitHub();
         m_CurrentVersion = VersionCheck::getInstalledChairloaderVersion();
         m_bUpdateAvailable = m_LatestVersion > m_CurrentVersion;
     }
     if(m_bUpdateAvailable){
         ImGui::TextWrapped("A new version of Chairloader is available. Do you want to update?");
         ImGui::Text("\tCurrent Version: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-        ImGui::Text("\tNew Version: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+        ImGui::Text("\tNew Version: %s", ChairManager::Get().GetLatestVersionFromGitHub().String().c_str());
         ImGui::NewLine();
         if(ImGui::Selectable("Check for updates again")){
             m_bRefresh = true;

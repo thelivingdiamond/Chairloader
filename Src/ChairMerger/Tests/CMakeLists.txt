@@ -6,14 +6,22 @@ set(SOURCE_FILES
 	ChairMergerTestBase.cpp
 	ChairMergerTestBase.h
 	HashUtilsTest.cpp
+	LegacyModConverterTest.cpp
 	LuaUtilsTest.cpp
 	main.cpp
+	MainMergingLibraryTest.cpp
+	MergingPolicy3Test.cpp
 	ModMerging.cpp
 	pch.h
+	PreyFilePatcherTest.cpp
+	StringUtilsTest.cpp
 	Wildcards.cpp
+	XmlFinalizerTest.cpp
 	XMLMerger2Test.cpp
+	XmlMerger3Test.cpp
 	XmlTestUtils.cpp
 	XmlTestUtils.h
+	XmlTypeLibraryTest.cpp
 	ZipUtilsTest.cpp
 )
 

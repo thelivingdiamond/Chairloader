@@ -1,0 +1,485 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="NpcAbilities">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="ArkNpcAbility_PsiAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="projectileSourceAttachment" type="string" required="true" />
+                    <Attribute name="projectileSpawnDistance" type="float" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="bStop" type="boolString" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_HitReactShift">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="stopDistance" type="float" required="true" />
+                    <Attribute name="delayBeforeShift" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_EthericDoppelganger">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="doppelgangerMoveTime" type="float" required="true" />
+                    <Attribute name="doppelgangerLifeTime" type="float" required="true" />
+                    <Attribute name="doppelgangerOutboundModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="doppelgangerGameEffectId" type="int32" required="true" />
+                    <Attribute name="doppelgangerArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="pDisappearParticleEffect" type="string" required="true" />
+                    <Attribute name="pTrailParticleEffect" type="string" required="true" />
+                    <Attribute name="pReappearParticleEffect" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_ThermalAura">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="auraGameEffectId" type="int32" required="true" allowEmpty="true" />
+                    <Attribute name="bSkipCast" type="boolString" required="true" />
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="warmupAudioTrigger" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_Thermogenesis">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="blastRadius" type="float" required="true" />
+                    <Attribute name="castAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="pPrecachedTelegraphEffect" type="string" required="true" />
+                    <Attribute name="pPrecachedExplosionEffect" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_CallAndActivateEffectOnNpcs">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="callDuration" type="float" required="true" />
+                    <Attribute name="callSuccessCallReductionTime" type="float" required="true" />
+                    <Attribute name="callEffectApplicationRadius" type="float" required="true" />
+                    <Attribute name="callEffectGameEffectId" type="int32" required="true" />
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="calleeInboundSignalModifierId" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="excludeGameEffectId" type="int32" required="true" />
+                    <Attribute name="callerEffectGameEffectId" type="int32" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_MeleeAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="distanceTagGroupName" type="string" required="true" />
+                    <Attribute name="directionTagGroupName" type="string" required="true" />
+                    <Attribute name="distanceTag" type="string" required="true" />
+                    <Attribute name="directionTag" type="string" required="true" />
+                    <Attribute name="bCrouchNightmare" type="boolString" required="true" />
+                    <Attribute name="bReorientMimic" type="boolString" required="true" />
+                    <Attribute name="damageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="damageSignalPackageScale" type="float" required="true" />
+                    <Attribute name="playerImpulse" type="float" required="true" />
+                    <Attribute name="npcImpulse" type="float" required="true" />
+                    <Attribute name="otherImpulse" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Delay">
+                        <Attributes>
+                            <Attribute name="minimum" type="float" required="true" />
+                            <Attribute name="maximum" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcAbility_JumpAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="bImmediate" type="boolString" required="true" />
+                    <Attribute name="bForcePath" type="boolString" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_Sidestep">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_MimicGrabAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="jumpAbortDistance" type="float" required="true" />
+                    <Attribute name="jumpAbortCosAngle" type="float" required="true" />
+                    <Attribute name="grabDamageSignal" type="ArkSignalId" required="true" />
+                    <Attribute name="grabDuration" type="float" required="true" />
+                    <Attribute name="grabDamageCooldown" type="float" required="true" />
+                    <Attribute name="grabFragmentName" type="string" required="true" />
+                    <Attribute name="jumpFragmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_CombatIdle">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="bFaceTargetFirst" type="boolString" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_OperatorRamAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="orientDuration" type="float" required="true" />
+                    <Attribute name="chargeDuration" type="float" required="true" />
+                    <Attribute name="ramDuration" type="float" required="true" />
+                    <Attribute name="explosionRadius" type="float" required="true" />
+                    <Attribute name="explosionDamageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="explosionSelfDestroySignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="collisionSelfDamageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="deathExplosionDamageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="orientAudioTrigger" type="string" required="true" />
+                    <Attribute name="chargeAudioTrigger" type="string" required="true" />
+                    <Attribute name="ramAudioTrigger" type="string" required="true" />
+                    <Attribute name="cameraShakeId" type="ArkCameraShakeId" required="true" />
+                    <Attribute name="pOrientParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="pChargeParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="pRamParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="particleEffectAttachmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_OperatorSwipeAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="config">
+                        <Attributes>
+                            <Attribute name="abilityTotalDuration" type="float" required="true" />
+                            <Attribute name="abilityLostLosTimeToQuit" type="float" required="true" />
+                            <Attribute name="laserChargeDuration" type="float" required="true" />
+                            <Attribute name="laserDamagePerSecond" type="float" required="true" />
+                            <Attribute name="laserAimingGoalThresholdDegrees" type="float" required="true" />
+                            <Attribute name="laserNextAimGoalDelay" type="float" required="true" />
+                            <Attribute name="accuracyIncreaseRate" type="float" required="true" />
+                            <Attribute name="accuracyIncreaseStopAtTargetSpeed" type="float" required="true" />
+                            <Attribute name="accuracyMinBeforeIncreaseStop" type="float" required="true" />
+                            <Attribute name="accuracyExponent" type="float" required="true" />
+                            <Attribute name="swipeShootAreaWidthRange" type="Vec2" required="true" />
+                            <Attribute name="abilityFailDelay" type="float" required="true" />
+                            <Attribute name="turnSpeedPerSecond" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcAbility_OperatorStrafeAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="config">
+                        <Attributes>
+                            <Attribute name="laserChargeDuration" type="float" required="true" />
+                            <Attribute name="laserDamagePerSecond" type="float" required="true" />
+                            <Attribute name="minStrafeDistance" type="float" required="true" />
+                            <Attribute name="stopDistanceToGoal" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcAbility_OperatorScienceZap">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="arcMaterialName" type="string" required="true" />
+                    <Attribute name="lightningArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="damageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="chargeDuration" type="float" required="true" />
+                    <Attribute name="maxDistanceToZapTarget" type="float" required="true" />
+                    <Attribute name="lightningAttachmentName0" type="string" required="true" />
+                    <Attribute name="lightningAttachmentName1" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_CorruptedEngineerFlame">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="abilityDuration" type="float" required="true" />
+                    <Attribute name="damagePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_PoltergeistThrowAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="preAppearLiftDuration" type="float" required="true" />
+                    <Attribute name="postAppearLiftDuration" type="float" required="true" />
+                    <Attribute name="postLiftDisappearDuration" type="float" required="true" />
+                    <Attribute name="multipleThrowDelay" type="float" required="true" />
+                    <Attribute name="liftAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="impulseAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="targetLeadTime" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_PoltergeistLift">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="liftParticleEffectName" type="string" required="true" />
+                    <Attribute name="startDuration" type="float" required="true" />
+                    <Attribute name="preAppearDuration" type="float" required="true" />
+                    <Attribute name="appearDuration" type="float" required="true" />
+                    <Attribute name="liftDuration" type="float" required="true" />
+                    <Attribute name="liftRadius" type="float" required="true" />
+                    <Attribute name="targetLeadTime" type="float" required="true" />
+                    <Attribute name="targetForwardOffset" type="float" required="true" />
+                    <Attribute name="pLiftStartParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="downwardImpulse" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_Fear">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="radius" type="float" required="true" />
+                    <Attribute name="fearPackageId" type="ArkSignalPackageId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_ShiftChargeAttack">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="damageSignalPackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="stopDistance" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_EMPBlast">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="electricalBoxArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="warmupEffectName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_CorruptNpc">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="castTime" type="float" required="true" />
+                    <Attribute name="preAbilityFacingTime" type="float" required="true" />
+                    <Attribute name="corruptionProjectileRadius" type="float" required="true" />
+                    <Attribute name="corruptionProjectileSpeed" type="float" required="true" />
+                    <Attribute name="projectileSourceAttachment" type="string" required="true" />
+                    <Attribute name="projectileTargetAttachment" type="string" required="true" />
+                    <Attribute name="pCastParticleEffect" type="string" required="true" />
+                    <Attribute name="castParticleEffectAttachmentName" type="string" required="true" />
+                    <Attribute name="pProjectileParticleEffect" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_Psychoshock">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="damagePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="damageSourceAttachment" type="string" required="true" />
+                    <Attribute name="damageRadius" type="float" required="true" />
+                    <Attribute name="castDuration" type="float" required="true" />
+                    <Attribute name="cameraShakeId" type="ArkCameraShakeId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_RepelBlast">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="radius" type="float" required="true" />
+                    <Attribute name="impulse" type="float" required="true" />
+                    <Attribute name="verticalImpulse" type="float" required="true" />
+                    <Attribute name="minimumExplosionDistanceScale" type="float" required="true" />
+                    <Attribute name="damageSourceAttachment" type="string" required="true" />
+                    <Attribute name="packageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="abilityDelayDuration" type="float" required="true" />
+                    <Attribute name="cameraShakeId" type="ArkCameraShakeId" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_LaunchCystoids">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="cystoidArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="mindControlledCystoidArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="spawnDistance" type="float" required="true" />
+                    <Attribute name="spawnRadius" type="float" required="true" />
+                    <Attribute name="spawnMaxAngle" type="float" required="true" />
+                    <Attribute name="minTimeBetweenSpawns" type="float" required="true" />
+                    <Attribute name="maxTimeBetweenSpawns" type="float" required="true" />
+                    <Attribute name="minNumCystoids" type="int32" required="true" />
+                    <Attribute name="maxNumCystoids" type="int32" required="true" />
+                    <Attribute name="expectedRangeMin" type="float" required="true" />
+                    <Attribute name="expectedRangeMax" type="float" required="true" />
+                    <Attribute name="forceAtMinRange" type="float" required="true" />
+                    <Attribute name="forceAtMaxRange" type="float" required="true" />
+                    <Attribute name="launchAngleFloor" type="float" required="true" />
+                    <Attribute name="relativeSpawnHeight" type="float" required="true" />
+                    <Attribute name="castTime" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_RaisePhantomFromCorpse">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="startRaiseCorpseEventName" type="string" required="true" />
+                    <Attribute name="phantomArchetypeName" type="ArchetypeName" required="true" />
+                    <Attribute name="distanceFromCorpse" type="float" required="true" />
+                    <Attribute name="timeBetweenRaisePosUpdate" type="float" required="true" />
+                    <Attribute name="bIgnoreMovement" type="boolString" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="NavMeshSearchBounds">
+                        <Attributes>
+                            <Attribute name="horizontalDistance" type="float" required="true" />
+                            <Attribute name="downDistance" type="float" required="true" />
+                            <Attribute name="upDistance" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkNpcAbility_ShootPistol">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="projectileSourceAttachment" type="string" required="true" />
+                    <Attribute name="actionEvent" type="string" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="bulletArchetype" type="ArchetypeName" required="true" />
+                    <Attribute name="shotSpread" type="float" required="true" />
+                    <Attribute name="pMuzzleFlashParticleEffect" type="string" required="true" />
+                    <Attribute name="muzzleFlashAttachmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_ReloadPistol">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="actionEvent" type="string" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkNpcAbility_CorruptedExplode">
+                <Attributes>
+                    <Attribute name="id" type="int32" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+
+                    <Attribute name="damageSourceAttachment" type="string" required="true" />
+                    <Attribute name="fragmentName" type="string" required="true" />
+                    <Attribute name="giveUpDelayDuration" type="float" required="true" />
+                    <Attribute name="explodeDelayDuration" type="float" required="true" />
+                    <Attribute name="damagePackageId" type="ArkSignalPackageId" required="true" />
+                    <Attribute name="damageRadius" type="float" required="true" />
+                    <Attribute name="damageImpulse" type="float" required="true" />
+                    <Attribute name="distanceToStopAbility" type="float" required="true" />
+                    <Attribute name="distanceToExplode" type="float" required="true" />
+                    <Attribute name="damageMinimumDistanceScaleAmount" type="float" required="true" />
+                    <Attribute name="chargeDialogRepeatCooldown" type="float" required="true" />
+                    <Attribute name="cameraShakeId" type="ArkCameraShakeId" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

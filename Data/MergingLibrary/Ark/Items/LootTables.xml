@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkLootTables">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Tables">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkLootTable">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Slots">
+                                <Attributes />
+
+                                <Patches>
+                                    <AddChildIndex name="ch:index" />
+                                </Patches>
+
+                                <Collection type="array">
+                                    <ChildIndexAttribute name="ch:index" />
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ArkLootSlot">
+                                        <Attributes>
+                                            <Attribute name="Percent" type="float" required="true" />
+                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                        </Attributes>
+
+                                        <Collection type="nodeDict" />
+
+                                        <ChildNodes>
+                                            <Node name="Items">
+                                                <Attributes />
+
+                                                <Patches>
+                                                    <AddChildIndex name="ch:index" />
+                                                </Patches>
+        
+                                                <Collection type="array">
+                                                    <ChildIndexAttribute name="ch:index" />
+                                                </Collection>
+
+                                                <ChildNodes>
+                                                    <Node name="ArkLootItem">
+                                                        <Attributes>
+                                                            <Attribute name="Archetype" type="ArchetypeName" required="true" />
+                                                            <Attribute name="Weight" type="float" required="true" />
+                                                            <Attribute name="CountMin" type="int32" />
+                                                            <Attribute name="CountMax" type="int32" />
+                                                            <Attribute name="LootRequirement" type="ArkAbilityId" allowEmpty="true" />
+                                                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                                        </Attributes>
+                                                    </Node>
+                                                </ChildNodes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Root>
+    <Item
+        key="key2"
+        attr1="mod1" />
+    <Item
+        key="key2.5"
+        attr1="mod1"
+        attr2="mod2" />
+    <Item
+        key="key3"
+        ch:action="delete" />
+</Root>

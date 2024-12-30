@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*">
+    <Node name="ParticleLibrary">
+        <Attributes>
+            <Attribute name="Name" type="string" required="true" />
+            <Attribute name="ParticleVersion" type="int32" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="Name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <NodeByType name="Particles" type="ParticleNode" />
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

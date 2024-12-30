@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="modifiers">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="id" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="modifier">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="id" type="ArkSignalModifierIdDef" required="true" readOnly="true" />
+                </Attributes>
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="rule">
+                        <Attributes>
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="inputFilters">
+                                <Attributes />
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildName />
+                                        <ChildAttribute name="signalID" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="matchingKey">
+                                        <Attributes>
+                                            <Attribute name="signalID" type="ArkSignalId" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="outputEffects">
+                                <Attributes />
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildName />
+                                        <ChildAttribute name="signalID" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="effect">
+                                        <Attributes>
+                                            <Attribute name="signalID" type="ArkSignalId" required="true" readOnly="true" />
+                                            <Attribute name="scale" type="float" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

@@ -120,10 +120,6 @@ fs::path GamePath::ExePathToGamePath(const fs::path& exePath)
     return exePath.parent_path().parent_path().parent_path().parent_path().parent_path();
 }
 
-void GamePath::SetGamePlatform(GamePath::GamePlatform platform) {
-    m_Platform = platform;
-}
-
 bool GamePath::TrySetGamePath(const fs::path& path, std::string* error)
 {
     bool isValid = ValidateGamePath(path, error);

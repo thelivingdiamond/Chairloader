@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Substitutions">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="OldClass" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="Node">
+                <Attributes>
+                    <Attribute name="OldClass" type="string" required="true" readOnly="true" />
+                    <Attribute name="NewClass" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="OldName" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="InputPort">
+                        <Attributes>
+                            <Attribute name="OldName" type="string" required="true" readOnly="true" />
+                            <Attribute name="NewName" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                    <Node name="OutputPort">
+                        <Attributes>
+                            <Attribute name="OldName" type="string" required="true" readOnly="true" />
+                            <Attribute name="NewName" type="string" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Ren">
+                <Attributes>
+                    <Attribute name="class" type="string" required="true" readOnly="true" />
+                    <Attribute name="newClass" type="string" required="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

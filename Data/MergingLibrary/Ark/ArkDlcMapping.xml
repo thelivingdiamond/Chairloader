@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkDlcMappings">
+        <Attributes/>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Dlcs">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Id" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Dlc">
+                        <Attributes>
+                            <Attribute name="Id" type="int32" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="folderPath" type="string" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="PCInfo">
+                                <Attributes>
+                                    <Attribute name="SteamID" type="int32" />
+                                    <Attribute name="QuasimodoProjectName" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoPackageSID" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoContentId" type="string" allowEmpty="true" />
+                                    <Attribute name="QuasimodoStoreID" type="string" allowEmpty="true" />
+                                </Attributes>
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Language" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="LocInfo">
+                                        <Attributes>
+                                            <Attribute name="Language" type="string" required="true" readOnly="true" />
+                                            <Attribute name="DisplayName" type="string" required="true" />
+                                            <Attribute name="Description" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                            
+                            <Node name="PS4Info">
+                                <Attributes>
+                                    <Attribute name="ContentLabel" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="XB1Info">
+                                <Attributes>
+                                    <Attribute name="AlignmentChunkID" type="int64" required="true" />
+                                    <Attribute name="ProductID" type="string" required="true" />
+
+                                    <Attribute name="Version" type="string" />
+                                    <Attribute name="Logo" type="string" />
+                                    <Attribute name="SmallLogo" type="string" />
+                                    <Attribute name="WideLogo" type="string" />
+                                </Attributes>
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Language" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="LocInfo">
+                                        <Attributes>
+                                            <Attribute name="Language" type="string" required="true" readOnly="true" />
+                                            <Attribute name="DisplayName" type="string" required="true" />
+                                            <Attribute name="Description" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

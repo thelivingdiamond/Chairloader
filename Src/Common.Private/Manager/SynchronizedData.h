@@ -6,6 +6,10 @@ template <typename T, typename TMutex = std::mutex>
 class SynchronizedData
 {
 public:
+    SynchronizedData() = default;
+    SynchronizedData(const T& value) : m_Data(value) {}
+    SynchronizedData(T&& value) : m_Data(std::move(value)) {}
+
     //! @returns A new scoped lock.
     std::scoped_lock<TMutex> GetScopedLock() const { return std::scoped_lock<TMutex>(m_Mutex); }
 

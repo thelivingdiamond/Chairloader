@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Root>
+    <AAA attr="1">Node1</AAA>
+    <AAA attr="2">Node2</AAA>
+    <AAA attr="3">Node3</AAA>
+</Root>

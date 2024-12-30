@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkAimAssistConfig">
+        <Attributes>
+            <Attribute name="Magnetism" type="float" required="true" />
+            <Attribute name="Centering" type="float" required="true" />
+            <Attribute name="AimAssistDeadZone" type="float" required="true" />
+            <Attribute name="SprintMagnetism" type="float" required="true" />
+            <Attribute name="SprintCentering" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Entities">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkAimAssistEntity">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Shape">
+                                <Attributes>
+                                    <Attribute name="InnerRadius" type="float" required="true" />
+                                    <Attribute name="OuterRadius" type="float" required="true" />
+                                </Attributes>
+
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <Node name="Points">
+                                        <Attributes />
+
+                                        <Collection type="dict">
+                                            <PrimaryKey>
+                                                <ChildAttribute name="AttachmentName" />
+                                            </PrimaryKey>
+                                        </Collection>
+
+                                        <ChildNodes>
+                                            <Node name="ArkAimAssistPoint">
+                                                <Attributes>
+                                                    <Attribute name="AttachmentName" type="string" required="true" readOnly="true" />
+                                                </Attributes>
+                                            </Node>
+                                        </ChildNodes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

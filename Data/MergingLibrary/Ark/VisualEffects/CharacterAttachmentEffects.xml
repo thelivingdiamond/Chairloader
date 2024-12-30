@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkCharacterEffects">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Effects">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="Id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkCharacterEffect">
+                        <Attributes>
+                            <Attribute name="Id" type="ArkCharacterEffectIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="AttachEffects">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Attachment" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ArkAttachmentEffect">
+                                        <Attributes>
+                                            <Attribute name="Attachment" type="string" required="true" readOnly="true" />
+                                            <Attribute name="ParticleEffect" type="string" required="true" />
+                                            <Attribute name="PositionOffset" type="Vec3" />
+                                            <Attribute name="RotationOffset" type="Ang3" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

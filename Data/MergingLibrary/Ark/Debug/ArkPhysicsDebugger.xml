@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkPhysicsDebugger">
+        <Attributes>
+            <Attribute name="rayHitDistance" type="float" required="true" />
+            <Attribute name="rayHitSphereRadius" type="float" required="true" />
+            <Attribute name="rayHitSphereColorR" type="uint8" required="true" />
+            <Attribute name="rayHitSphereColorG" type="uint8" required="true" />
+            <Attribute name="rayHitSphereColorB" type="uint8" required="true" />
+            <Attribute name="textScreenPositionX" type="float" required="true" />
+            <Attribute name="textScreenPositiony" type="float" required="true" />
+            <Attribute name="fontSize" type="float" required="true" />
+            <Attribute name="textColorR" type="uint8" required="true" />
+            <Attribute name="textColorG" type="uint8" required="true" />
+            <Attribute name="textColorB" type="uint8" required="true" />
+            <Attribute name="lineHeight" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="value" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="IgnoredGeomFlag">
+                <Attributes>
+                    <Attribute name="value" type="uint32" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

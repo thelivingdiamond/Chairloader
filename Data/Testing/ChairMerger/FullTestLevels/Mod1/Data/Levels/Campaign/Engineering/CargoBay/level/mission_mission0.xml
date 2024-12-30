@@ -5,14 +5,14 @@
             Archetype="ArkPickups.Data.Keycard"
             Pos="153.1,90.9,693.9"
             EntityClass="ArkKeycard"
-            EntityId="3026"
-            EntityGuid="4FDA91B7404BPB33"
+            EntityGuid="4FDA91B7404BEB33"
             ViewDistRatio="255"
             CastShadowViewDistRatio="30"
             CastShadowMinSpec="1"
             CastSunShadowMinSpec="8"
             ShadowCasterType="2"
-            Layer="CargoBay_Scripting">
+            Layer="CargoBay_Scripting"
+            ch:serialize="true">
             <Properties2
                 iCountOverride="0"
                 keycard_Keycard="4349723564917331725" />
@@ -20,7 +20,7 @@
         </Entity>
         <Entity
             Name="Cardboard_Box_70x35x4"
-            ch:patch_mode="true"
+            EntityGuid="48E6532A332E8D81"
             Pos="1337,226,420">
         </Entity>
     </Objects>

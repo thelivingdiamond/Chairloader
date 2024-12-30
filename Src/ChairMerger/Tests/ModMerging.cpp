@@ -1,4 +1,5 @@
 #include <libzippp.h>
+#include <ChairMerger/MergingLibrary3.h>
 #include "ChairMergerTestBase.h"
 #include "XmlTestUtils.h"
 #include "Cache/DiskXmlCache.h"
@@ -28,20 +29,22 @@ TEST_P(ChairMergerTestProcessXMLFile, ProcessXMLFile)
     DiskXmlCache modXmlCache;
     modXmlCache.SetRootDir(mod.dataPath);
 
+    const FileMergingPolicy3* pPolicy = m_pMerger->m_pMergingLibrary->FindPolicyForFile(relativePath);
+    ASSERT_NE(nullptr, pPolicy);
+
     m_pMerger->m_pBaseFileCache = std::make_unique<DiskXmlCache>();
     m_pMerger->m_pBaseFileCache->SetRootDir(m_pMerger->m_PreyFilesPath);
-    m_pMerger->ProcessXMLFile(mod, &modXmlCache, relativePath);
+    m_pMerger->ProcessXMLFile(mod, &modXmlCache, relativePath, *pPolicy);
     m_pMerger->m_pBaseFileCache->ExportModifiedFiles(m_pMerger->m_OutputPath);
 
-    pugi::xml_document docOutput = XmlTestUtils::LoadDocument(m_TempDir / "Output" / relativePath);
-    pugi::xml_document docExpected = XmlTestUtils::LoadDocument(m_TestDir / "Expected" / relativePath);
+    pugi::xml_document docOutput = XmlUtils::LoadDocument(m_TempDir / "Output" / relativePath);
+    pugi::xml_document docExpected = XmlUtils::LoadDocument(m_TestDir / "Expected" / relativePath);
 
     EXPECT_TRUE(XmlTestUtils::CheckNodesEqual(docExpected, docOutput));
 }
 
 const auto TEST_FILES = testing::Values<std::string>(
-    "Ark/ArkFactions.xml",
-    "Ark/Player/PlayerConfig.xml"
+    "Ark/ArkFactions.xml"
 );
 
 INSTANTIATE_TEST_SUITE_P(ChairMerger, ChairMergerTestProcessXMLFile, TEST_FILES);

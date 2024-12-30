@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkScanning">
+        <Attributes>
+            <Attribute name="EventBonusSec" type="float" required="true" />
+            <Attribute name="LockonTimeSec" type="float" required="true" />
+            <Attribute name="LockonTimeoutSec" type="float" required="true" />
+            <Attribute name="LockonTimeoutFlashingStart" type="float" required="true" />
+            <Attribute name="LockonTimeoutFlashingFreq" type="float" required="true" />
+            <Attribute name="MaxDistanceScanRateMultiplier" type="float" required="true" />
+            <Attribute name="AutoUnequipTimeoutSec" type="float" required="true" />
+            <Attribute name="ScanCompleteLockonTimeoutSec" type="float" required="true" />
+            <Attribute name="PostProcessEffect" type="ArkPostEffectId" required="true" />
+            <Attribute name="LockonAttachment" type="string" required="true" />
+            <Attribute name="EnableAutoUnequip" type="boolString" required="true" />
+            <Attribute name="ScanFirstTargetOnEquip" type="boolString" required="true" />
+            <Attribute name="FanfareZoomHFOV" type="float" required="true" />
+            <Attribute name="FanfareZoomDuration" type="float" required="true" />
+            <Attribute name="FanfareZoomOutDuration" type="float" required="true" />
+            <Attribute name="FanfareCameraSpeed" type="float" required="true" />
+            <Attribute name="ErrorMessageDuration" type="float" required="true" />
+            <Attribute name="ReticleLerpSpeed" type="float" required="true" />
+            <Attribute name="LightArchetype" type="ArchetypeName" required="true" />
+            <Attribute name="LightAttachment" type="string" required="true" />
+            <Attribute name="ResearchRtpc" type="string" required="true" />
+            <Attribute name="PauseResearchAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ResumeResearchAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ReminderUIDelay" type="float" required="true" />
+            <Attribute name="PsychoscopeHideTime" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="FanfareInputLegend" type="ArkInputLegend" />
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

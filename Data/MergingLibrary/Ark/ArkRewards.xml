@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkRewards">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Trackables">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Trackable">
+                        <Attributes>
+                            <Attribute name="ID" type="int32" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="AssociatedMetric" type="ArkGameMetricId" required="true" />
+                            <Attribute name="DefaultValue" type="int32" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Rewards">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Reward">
+                        <Attributes>
+                            <Attribute name="ID" type="int32" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="SteamID" type="int32" required="true" />
+                            <Attribute name="PsnID" type="int32" required="true" />
+                            <Attribute name="LiveID" type="int32" required="true" />
+                            <Attribute name="QuasimodoID" type="int32" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="LinkedTrackable">
+                                <Attributes>
+                                    <Attribute name="ID" type="int32" required="true" />
+                                    <Attribute name="ValueEqualTo" type="int32" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

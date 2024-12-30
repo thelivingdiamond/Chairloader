@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="root">
+        <Attributes>
+            <Attribute name="hitReactDamageThreshold" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildName />
+                <ChildAttribute name="ID" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildConstraints>
+            <UniqueAttribute name="name" />
+        </ChildConstraints>
+
+        <ChildNodes>
+            <Node name="SignalReceiver">
+                <Attributes>
+                    <Attribute name="ID" type="ArkSignalReceiverIdDef" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="bBlocksAutoSave" type="boolString" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="signalID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="signal">
+                        <Attributes>
+                            <Attribute name="signalID" type="ArkSignalId" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="PackageSignalRamp">
+                <Attributes>
+                    <Attribute name="ID" type="ArkPackageSignalRampIdDef" required="true" readOnly="true" />
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="ramp" type="float" required="true" />
+                    <Attribute name="maxRepeatCount" type="int32" required="true" />
+                    <Attribute name="increaseTime" type="float" required="true" />
+                    <Attribute name="decreaseTime" type="float" required="true" />
+                    <Attribute name="decreaseCount" type="int32" required="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="packageID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="package">
+                        <Attributes>
+                            <Attribute name="packageID" type="ArkSignalPackageId" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="DispositionFactors">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="Friendly" type="AISignalFactorList" />
+                    <NodeByType name="Neutral" type="AISignalFactorList" />
+                    <NodeByType name="Hostile" type="AISignalFactorList" />
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

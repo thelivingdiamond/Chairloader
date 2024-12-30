@@ -20,8 +20,9 @@ namespace VersionCheck {
     std::string getBinaryVersionString(fs::path szVersionFile);
 
 //!  Fetch the latest version of Chairloader from the GitHub API
-//! \param bForce Force a refresh of the version, even if it's already cached
-    void fetchLatestVersion(bool bForce = false);
+//! \param etag If set, that ETag is added to the request.
+//! @returns Pair: version string and ETag. IF version is empty, it hasn't changed.
+    std::pair<std::string, std::string> fetchLatestVersion(std::string_view etag);
 
 //! Get the Installed Chairloader version
 //! \return The Semantic Version
@@ -38,14 +39,6 @@ namespace VersionCheck {
 //! Get the Chairloader version in the Release folder
 //! \return The version string
     std::string getPackagedChairloaderVersionString();
-
-//! Get the latest Chairloader version from the GitHub API
-//! \return The Semantic Version
-    SemanticVersion getLatestChairloaderVersion();
-
-//! Get the latest Chairloader version from the GitHub API
-//! \return The version string
-    std::string getLatestChairloaderVersionString();
 };
 
 #endif //CHAIRLOADER_BINARYVERSIONCHECK_H

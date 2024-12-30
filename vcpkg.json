@@ -12,6 +12,7 @@
     "boost-format",
     "boost-json",
     "boost-program-options",
+    "boost-regex",
     "boost-variant",
     "curlpp",
     "detours",
@@ -21,6 +22,7 @@
     "libzippp",
     "lua",
     "luabridge",
-    "pugixml"
+    "pugixml",
+    "taskflow"
   ]
 }

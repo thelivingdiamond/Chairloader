@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="MimicPowerProperties">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="Common" type="ArkPsiPowerPropertiesCommon" />
+
+            <Node name="Unique">
+                <Attributes>
+                    <Attribute name="AutoFallbackRange" type="float" required="true" />
+                    <Attribute name="ForceMorphOutDelaySec" type="float" required="true" />
+                    <Attribute name="GameNoiseDelaySec" type="float" required="true" />
+                    <Attribute name="ClipOpacity" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="RigidProperties">
+                        <Attributes>
+                            <Attribute name="DamageSignalGroupId" type="ArkSignalGroupId" required="true" />
+                            <Attribute name="JumpHeight" type="float" required="true" />
+                            <Attribute name="PenetratingJumpHeight" type="float" required="true" />
+                            <Attribute name="MoveSpeed" type="float" required="true" />
+                            <Attribute name="SprintSpeed" type="float" required="true" />
+                            <Attribute name="TumbleSpeed" type="float" required="true" />
+                            <Attribute name="LiftMaxAngularSpeed" type="float" required="true" />
+                            <Attribute name="TumbleSpeedLinearThreshold" type="float" required="true" />
+                            <Attribute name="MoveSpeedZeroG" type="float" required="true" />
+                            <Attribute name="SprintSpeedZeroG" type="float" required="true" />
+                            <Attribute name="RollSpeedZeroG" type="float" required="true" />
+                            <Attribute name="AirControlScale" type="float" required="true" />
+                            <Attribute name="NoiseId" type="ArkGameNoiseTypeId" required="true" />
+                            <Attribute name="LoudnessId" type="ArkGameNoiseLoudnessId" required="true" />
+                            <Attribute name="NoiseInterval" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+                        
+                        <ChildNodes>
+                            <NodeByType name="ModalLegend" type="ArkInputLegend" />
+                            <NodeByType name="ModalLegendZeroG" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="TurretProperties">
+                        <Attributes>
+                            <Attribute name="AimSpeed" type="float" required="true" />
+                            <Attribute name="AimSpeedZeroG" type="float" required="true" />
+                            <Attribute name="MoveSpeedZeroG" type="float" required="true" />
+                            <Attribute name="SprintSpeedZeroG" type="float" required="true" />
+                            <Attribute name="RollSpeedZeroG" type="float" required="true" />
+                            <Attribute name="RecoilForceZeroG" type="float" required="true" />
+                            <Attribute name="DefaultCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="DefaultCameraOffsetZeroG" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraOffset" type="Vec3" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+                        
+                        <ChildNodes>
+                            <NodeByType name="ModalLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="OperatorProperties">
+                        <Attributes />
+
+                        <Collection type="nodeDict" />
+                        
+                        <ChildNodes>
+                            <NodeByType name="ModalLegend" type="ArkInputLegend" />
+                            <NodeByType name="ModalLegendZeroG" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="MilitaryOperatorProperties">
+                        <Attributes>
+                            <Attribute name="LaserDamage" type="float" required="true" />
+                            <Attribute name="MoveSpeed" type="float" required="true" />
+                            <Attribute name="SprintSpeed" type="float" required="true" />
+                            <Attribute name="DefaultTurnSpeed" type="float" required="true" />
+                            <Attribute name="AttackTurnSpeed" type="float" required="true" />
+                            <Attribute name="RollSpeed" type="float" required="true" />
+                            <Attribute name="DefaultCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="DefaultCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="SafeCameraOffset" type="Vec3" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="EngineeringOperatorProperties">
+                        <Attributes>
+                            <Attribute name="MoveSpeed" type="float" required="true" />
+                            <Attribute name="SprintSpeed" type="float" required="true" />
+                            <Attribute name="DefaultTurnSpeed" type="float" required="true" />
+                            <Attribute name="AttackTurnSpeed" type="float" required="true" />
+                            <Attribute name="RollSpeed" type="float" required="true" />
+                            <Attribute name="AttackSignalPackageId" type="ArkSignalPackageId" required="true" />
+                            <Attribute name="DefaultCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="DefaultCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="SafeCameraOffset" type="Vec3" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+                        
+                        <ChildNodes>
+                            <NodeByType name="SwitchCameraInputLegendItem" type="ArkInputLegendItem" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="ScienceOperatorProperties">
+                        <Attributes>
+                            <Attribute name="MoveSpeed" type="float" required="true" />
+                            <Attribute name="SprintSpeed" type="float" required="true" />
+                            <Attribute name="DefaultTurnSpeed" type="float" required="true" />
+                            <Attribute name="AttackTurnSpeed" type="float" required="true" />
+                            <Attribute name="RollSpeed" type="float" required="true" />
+                            <Attribute name="AttackSignalPackageId" type="ArkSignalPackageId" required="true" />
+                            <Attribute name="DefaultCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="DefaultCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="AttackCameraZeroGOffset" type="Vec3" required="true" />
+                            <Attribute name="SafeCameraOffset" type="Vec3" required="true" />
+                            <Attribute name="MaxTargetAngle" type="float" required="true" />
+                            <Attribute name="MaxTargetDistance" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+                        
+                        <ChildNodes>
+                            <Node name="ValidTargetMetaTags">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="value" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="MetaTag">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArkMetaTagId" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+
+                            <Node name="ValidTargetClasses">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="value" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="Class">
+                                        <Attributes>
+                                            <Attribute name="value" type="EntityClass" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="EffectsProperties">
+                        <Attributes>
+                            <Attribute name="JumpAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="MorphInAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="MorphOutAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="MovementParticleEffect" type="string" required="true" />
+                            <Attribute name="ObjectMorphInParticleEffect" type="string" required="true" />
+                            <Attribute name="PersistentParticleEffect" type="string" required="true" />
+                            <Attribute name="MorphOutParticleEffect" type="string" required="true" />
+                            <Attribute name="MorphEffectDurationSec" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="ObjectSignalModifiers">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="value" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="SignalModifier">
+                                <Attributes>
+                                    <Attribute name="value" type="ArkSignalModifierId" required="true" readOnly="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="PlayerSignalModifiers">
+                        <Attributes />
+
+                        <Collection type="dict">
+                            <PrimaryKey>
+                                <ChildAttribute name="value" />
+                            </PrimaryKey>
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="SignalModifier">
+                                <Attributes>
+                                    <Attribute name="value" type="ArkSignalModifierId" required="true" readOnly="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Levels">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkPsiPowerMimicLevelProperties">
+                        <Attributes>
+                            <Attribute name="DisplayName" type="string" required="true" />
+                            <Attribute name="Description" type="string" required="true" />
+                            <Attribute name="CooldownDurationSec" type="float" required="true" />
+                            <Attribute name="PsiCostPerSec" type="float" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="TargetingProperties" type="ArkPsiPowerTargetingComponentProperties" />
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

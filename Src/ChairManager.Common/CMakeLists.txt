@@ -41,6 +41,13 @@ set(SOURCE_FILES
 	WinShell/WinShell.cpp
 	WinShell/WinShell.h
 
+	Wizard/ProgressWizardStage.cpp
+	Wizard/ProgressWizardStage.h
+	Wizard/WizardManager.cpp
+	Wizard/WizardManager.h
+	Wizard/WizardStage.cpp
+	Wizard/WizardStage.h
+
 	pch.h
 )
 

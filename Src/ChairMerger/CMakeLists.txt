@@ -16,12 +16,24 @@ set(SOURCE_FILES
 	Private/CApi.cpp
 	Private/ChairMerger.cpp
 	Private/DllMain.cpp
+	Private/ExcelMerger.cpp
+	Private/ExcelMerger.h
 	Private/HashUtils.cpp
 	Private/HashUtils.h
+	Private/LegacyModConverter.cpp
 	Private/LuaUtils.cpp
+	Private/MergingLibrary3.cpp
+	Private/MergingPolicy3.cpp
+	Private/MetaAttributes.cpp
+	Private/MetaAttributes.h
+	Private/PreyFilePatcher.cpp
 	Private/README.md
 	Private/WildcardResolver.cpp
+	Private/XmlFinalizer3.cpp
 	Private/XMLMerger2.cpp
+	Private/XmlMerger3.cpp
+	Private/XmlTypeLibrary.cpp
+	Private/XmlValidator.cpp
 	Private/ZipUtils.cpp
 
 	Public/ChairMerger/AttributeWildcard.h
@@ -29,11 +41,19 @@ set(SOURCE_FILES
 	Public/ChairMerger/ChairMerger.h
 	Public/ChairMerger/ChairMergerSettings.h
 	Public/ChairMerger/FileChecksum.h
+	Public/ChairMerger/LegacyModConverter.h
 	Public/ChairMerger/LuaUtils.h
+	Public/ChairMerger/MergingLibrary3.h
 	Public/ChairMerger/MergingPolicy.h
+	Public/ChairMerger/MergingPolicy3.h
 	Public/ChairMerger/NameToIdMap.h
+	Public/ChairMerger/PreyFilePatcher.h
 	Public/ChairMerger/WildcardResolver.h
+	Public/ChairMerger/XmlFinalizer3.h
 	Public/ChairMerger/XMLMerger2.h
+	Public/ChairMerger/XmlMerger3.h
+	Public/ChairMerger/XmlTypeLibrary.h
+	Public/ChairMerger/XmlValidator.h
 	Public/ChairMerger/ZipUtils.h
 )
 

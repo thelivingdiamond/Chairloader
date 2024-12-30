@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A
+        ch:index="1000"
+        aAttr1="aVal1_1_Mod"
+        aAttr2="aVal2_1_Mod" />
+    <A
+        ch:index="2000"
+        aAttr1="aVal1_2_Mod"
+        aAttr2="aVal2_2_Mod" />
+    <A
+        ch:index="3000"
+        aAttr1="aVal1_3"
+        aAttr2="aVal2_3" />
+    <A
+        ch:index="4000"
+        aAttr1="aVal1_4_Mod"
+        aAttr2="aVal2_4_Mod"
+        ch:arrayMod="Chairloader.TestMod" />
+    <A
+        ch:index="5000"
+        aAttr1="aVal1_5_Mod"
+        aAttr2="aVal2_5_Mod"
+        ch:arrayMod="Chairloader.TestMod" />
+    <A
+        ch:index="10000"
+        aAttr1="aVal1_10"
+        aAttr2="aVal2_10" />
+</Root>

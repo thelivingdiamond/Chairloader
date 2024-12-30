@@ -5,14 +5,18 @@
 #include <iostream>
 #include <sstream>
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/regex.hpp>
 #include <curlpp/cURLpp.hpp>
 #include <Chairloader/SemanticVersion.h>
-#include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/ChairMerger.h>
+#include <ChairMerger/LegacyModConverter.h>
+#include <ChairMerger/XMLMerger2.h>
 #include <ChairMerger/ZipUtils.h>
 #include <Manager/FileHistory.h>
 #include <Manager/GamePath.h>
 #include <Manager/PreditorFiles.h>
+#include <Manager/ModInfo.h>
 #include <boost/algorithm/string/predicate.hpp>
 #include <WinShell/WinShell.h>
 #include <GUIUtils.h>
@@ -21,13 +25,15 @@
 #include "ChairWizards/GamePathDialog.h"
 #include "GameVersion.h"
 #include "winver.h"
-#include "ChairWizards/ChairInstallWizard.h"
 #include "ChairWizards/ChairUninstallWizard.h"
+#include "ChairWizards/NewInstallWizard.h"
 #include "BinaryVersionCheck.h"
 #include "UpdateHandler.h"
 #include "ChairWizards/ChairUpdateWizard.h"
 #include "Paths.h"
+#include "PreyFilesPatchProgressDialog.h"
 
+static const boost::regex fileNameRegex(R"(^[\w\-. ]+$)");
 static std::string ErrorMessage;
 static bool showErrorPopup = false;
 static bool showDemo = false;
@@ -55,18 +61,27 @@ struct ChairManager::MergerTask
 void ChairManager::Draw() {
     bool bDraw = true;
 
+    if (m_VersionCheckTask.valid())
+        UpdateVersionCheckTask();
+
     switch (m_State)
     {
-    case State::LocateGameDir:
-        DrawGamePathSelectionDialog(&bDraw);
-        break;
     case State::MainWindow:
         if(!initialized)
             Init();
         DrawMainWindow(&bDraw);
         break;
     case State::InstallWizard:
-        DrawInstallWizard(&bDraw);
+        m_pInstallWizard->Update();
+
+        if (m_pInstallWizard->IsFinished())
+        {
+            if (m_pInstallWizard->IsCancelled())
+                bDraw = false;
+            else
+                OnInstallWizardFinished();
+        }
+
         break;
     case State::UninstallWizard:
         DrawUninstallWizard(&m_bShowUninstallWizard);
@@ -91,12 +106,62 @@ void ChairManager::Draw() {
 }
 
 
+void ChairManager::StartVersionCheckTask(bool force)
+{
+    m_VersionCheckTask = std::async(std::launch::async, [=]()
+    {
+        return VersionCheck::fetchLatestVersion(!force ? m_githubETag : std::string_view());
+    });
+}
+
+void ChairManager::UpdateVersionCheckTask()
+{
+    if (!IsFutureReady(m_VersionCheckTask))
+        return;
+
+    try
+    {
+        auto [versionString, etag] = m_VersionCheckTask.get();
+
+        if (versionString.empty())
+        {
+            // Result hasn't changed. Use the saved value.
+            std::string savedVersion = ChairManagerConfigFile.first_child().child("LatestVersion").text().as_string();
+            Log(severityLevel::info, "GitHub version not changed: %s", savedVersion);
+            m_LatestVersionFromGitHub = SemanticVersion(savedVersion);
+        }
+        else
+        {
+            // Update cache
+            if (!ChairManagerConfigFile.first_child().child("ETag"))
+                ChairManagerConfigFile.first_child().append_child("ETag");
+            ChairManagerConfigFile.first_child().child("ETag").text().set(etag.c_str());
+
+            if (!ChairManagerConfigFile.first_child().child("LatestVersion"))
+                ChairManagerConfigFile.first_child().append_child("LatestVersion");
+            ChairManagerConfigFile.first_child().child("LatestVersion").text().set(versionString.c_str());
+
+            saveModManagerConfigFile();
+
+            // Save version
+            m_LatestVersionFromGitHub = SemanticVersion(versionString);
+        }
+
+        if (IsUpdateAvailable())
+            m_bShowUpdatePopup = true;
+    }
+    catch (const std::exception& e)
+    {
+        Log(severityLevel::error, "Failed to check for updates: %s", e.what());
+    }
+}
+
 void ChairManager::LoadModManagerConfig()
 {
     if (ChairManagerConfigFile.load_file(ChairManagerConfigPath.wstring().c_str())) {
         if (ChairManagerConfigFile.first_child().child("PreyPath")) {
             fs::path path(ChairManagerConfigFile.first_child().child("PreyPath").text().as_string());
-            if (ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path))
+            if (GamePath::ValidateGamePath(path))
             {
                 SetGamePath(path);
             }
@@ -146,9 +211,9 @@ void ChairManager::LoadModManagerConfig()
 
 void ChairManager::SetGamePath(const fs::path& path)
 {
-    assert(path.empty() || ChairManager::Get().GetGamePathUtil()->ValidateGamePath(path));
+    CRY_ASSERT(path.empty() || ChairManager::Get().GetGamePathUtil().ValidateGamePath(path));
 
-    m_pGamePath->SetGamePath(path);
+    m_GamePath.SetGamePath(path);
     pugi::xml_node cfg = ChairManagerConfigFile.first_child();
 
     if (!path.empty())
@@ -164,73 +229,24 @@ void ChairManager::SetGamePath(const fs::path& path)
     }
 }
 
-void ChairManager::SwitchToGameSelectionDialog(const fs::path& gamePath)
-{
-    m_State = State::LocateGameDir;
-    m_pGamePathDialog = std::make_unique<GamePathDialog>();
-    m_pGamePathDialog->SetGamePath(gamePath);
-}
-
-void ChairManager::DrawGamePathSelectionDialog(bool* pbIsOpen)
-{
-    GamePathDialog::Result result = m_pGamePathDialog->ShowDialog(MAIN_WINDOW_NAME, pbIsOpen);
-
-    if (result == GamePathDialog::Result::Ok)
-    {
-        log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
-        SetGamePath(m_pGamePathDialog->GetGamePath());
-        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
-        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
-        saveModManagerConfigFile();
-        m_pGamePathDialog.reset();
-        SwitchToInstallWizard();
-    }
-    else if (result == GamePathDialog::Result::Cancel)
-    {
-        *pbIsOpen = false;
-        m_pGamePathDialog.reset();
-    }
-}
-
 void ChairManager::SwitchToInstallWizard()
 {
-    if (!verifyChairloaderInstalled())
-    {
-        log(severityLevel::info, "Chairloader not found, starting the wizard");
-        m_State = State::InstallWizard;
-    }
-#ifndef DEBUG_BUILD
-    else if(VersionCheck::getInstalledChairloaderVersion() < VersionCheck::getPackagedChairloaderVersion()) {
-        log(severityLevel::info, "Chairloader version mismatch, running install wizard");
-        m_State = State::InstallWizard;
-    }
-#endif
-    else
-    {
-        log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer, %s is the latest version on github",
-            VersionCheck::getInstalledChairloaderVersion().String().c_str(),
-            VersionCheck::getPackagedChairloaderVersion().String().c_str(),
-            VersionCheck::getLatestChairloaderVersion().String().c_str());
-
-        if (IsUpdateAvailable())
-            m_bShowUpdatePopup = true;
-
-        m_State = State::MainWindow;
-    }
+    CRY_ASSERT(!m_pInstallWizard);
+    m_pInstallWizard = std::make_unique<NewInstallWizard>(this);
+    m_State = State::InstallWizard;
 }
 
-void ChairManager::DrawInstallWizard(bool* pbIsOpen)
+void ChairManager::OnInstallWizardFinished()
 {
-    if (!m_pInstallWizard)
-    {
-        m_pInstallWizard = std::make_unique<ChairInstallWizard>();
-    }
+    log(severityLevel::info, "Install wizard has finished");
+    CRY_ASSERT(m_pInstallWizard);
+    m_pInstallWizard.reset();
 
-    if (m_pInstallWizard->Show("Chairloader Installer", pbIsOpen))
-    {
-        m_pInstallWizard.reset();
-        m_State = State::MainWindow;
-    }
+    log(severityLevel::info, "Chairloader version %s installed, %s is packaged with this installer",
+        VersionCheck::getInstalledChairloaderVersion().String(),
+        VersionCheck::getPackagedChairloaderVersion().String());
+
+    m_State = State::MainWindow;
 }
 
 void ChairManager::DrawMainWindow(bool* pbIsOpen)
@@ -262,7 +278,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("Files", true)) {
             if (ImGui::MenuItem("Install Mod")) {
-                OpenInstallModDialog(false);
+                OpenInstallModDialog();
             }
             ImGui::Separator();
             if(ImGui::MenuItem("Uninstall Chairloader")){
@@ -276,9 +292,9 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         }
         //Create a menu for mod list
         if (ImGui::BeginMenu("Mods", true)) {
-            //Load Mod List
-            if (ImGui::MenuItem("Load Mod List")) {
-                loadModInfoFiles();
+            //Reload Mods
+            if (ImGui::MenuItem("Reload Mods")) {
+                LoadModInfoFiles();
             }
             // Save Config
             if (ImGui::MenuItem("Save Config")) {
@@ -323,7 +339,7 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
                 ImGui::Text("Legacy Mods");
                 ImGui::SameLine();
                 ImGuiUtils::HelpMarker(
-                        "Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
+                        "Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.");
                 //Load Order
                 ImGui::Text("Load Order");
                 ImGui::SameLine();
@@ -348,18 +364,20 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
         if(IsUpdateAvailable()){
             ImGui::Text("Chairloader is out of date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", m_LatestVersionFromGitHub.String().c_str());
             ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+
             if(ImGui::Button("Update Chairloader")){
                 SwitchToUpdateWizard();
             }
         } else {
             ImGui::Text("Chairloader is up to date!");
             ImGui::Text("Installed: %s", VersionCheck::getInstalledChairloaderVersion().String().c_str());
-            ImGui::Text("Latest: %s", VersionCheck::getLatestChairloaderVersion().String().c_str());
+            ImGui::Text("Latest: %s", m_LatestVersionFromGitHub.String().c_str());
             ImGui::Text("Downloaded: %s", VersionCheck::getPackagedChairloaderVersion().String().c_str());
+
             if(ImGui::Button("Force Check For Update")){
-                VersionCheck::fetchLatestVersion(true);
+                StartVersionCheckTask(true);
             }
         }
         if(ImGui::Button("Close")){
@@ -396,6 +414,9 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
     if (showDemo) {
         ImGui::ShowDemoWindow(&showDemo);
     }
+
+    UpdateModInstall();
+
     std::sort(ModList.begin(), ModList.end());
     ImGui::End();
 }
@@ -403,254 +424,168 @@ void ChairManager::DrawMainWindow(bool* pbIsOpen)
 void ChairManager::DrawModList() {
     static std::string selectedMod;
     static bool showDeleteConfirmation;
-    if(ImGui::BeginTabItem("Mod List")) {
+
+    bool sortModList = false; // If true, mod list will be sorted after iteration
+
+    if (ImGui::BeginTabItem("Mod List")) {
         if (ImGui::BeginChild("Mod List", ImVec2(ImGui::GetContentRegionAvail().x * 0.65f, 0))) {
-            if(ImGui::BeginTabBar("Mod List Bar")) {
-                float checkboxColumnSize = 0.0f;
-                if(ImGui::BeginTabItem("Mods")) {
-                    std::string modNameForDeletion; // If not empty, will be removed after all mods are displayed.
-                    bool sortModList = false; // If true, mod list will be sorted after iteration
+            float checkboxColumnSize = 0.0f;
+            std::string modNameForDeletion; // If not empty, will be removed after all mods are displayed.
 
-                    if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
-                                                         ImGuiTableFlags_NoBordersInBody)) {
-                        ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed);
-                        ImGui::TableSetupColumn("Mod Name");
-                        ImGui::TableSetupColumn("Version", ImGuiTableColumnFlags_WidthFixed,
-                                                ImGui::CalcTextSize("Version").x + 16.0f);
-                        ImGui::TableSetupColumn("Order", ImGuiTableColumnFlags_WidthFixed,
-                                                ImGui::CalcTextSize("Order").x + 16.0f);
-                        ImGui::TableSetupColumn("##Buttons", ImGuiTableColumnFlags_WidthFixed);
-                        ImGui::TableHeadersRow();
-                        if (selectedMod.empty() && !ModList.empty()) {
-                            selectedMod = ModList.at(0).modName;
-                        }
-                        int i = 0;
-                        for (Mod &ModEntry: ModList) {
-                            ImGui::PushID(&ModEntry);
-                            ImGui::TableNextRow();
-                            ImGui::TableNextColumn();
+            if (ImGui::BeginTable("Mod List", 5, ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
+                ImGuiTableFlags_NoBordersInBody)) {
+                ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("Mod Name");
+                ImGui::TableSetupColumn("Version", ImGuiTableColumnFlags_WidthFixed,
+                    ImGui::CalcTextSize("Version").x + 16.0f);
+                ImGui::TableSetupColumn("Order", ImGuiTableColumnFlags_WidthFixed,
+                    ImGui::CalcTextSize("Order").x + 16.0f);
+                ImGui::TableHeadersRow();
+                if (selectedMod.empty() && !ModList.empty()) {
+                    selectedMod = ModList.at(0).modName;
+                }
+                int i = 0;
+                for (Mod& ModEntry : ModList) {
+                    ImGui::PushID(&ModEntry);
+                    ImGui::TableNextRow();
+                    ImGui::TableNextColumn();
 
-                            if (ModEntry.installed && verifyDependenciesEnabled(ModEntry.modName)) {
-                                ImGui::Checkbox("##Enable", &ModEntry.enabled);
-                            } else {
-                                ImGui::BeginDisabled();
-                                ImGui::Checkbox("##Enable", &ModEntry.enabled);
-                                ImGui::EndDisabled();
-                            }
-                            checkboxColumnSize = ImGui::GetColumnWidth();
-                            ImGui::TableNextColumn();
-                            ImVec2 SelectableSize = {0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0};
-                            auto storedpos = ImGui::GetCursorPosY() + (4 * dpiScale);
-                            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
-                            if (ImGui::Selectable("##Selectable",
-                                                  selectedMod == ModEntry.modName, 0,
-                                                  ImVec2{ImGui::GetColumnWidth(), ImGui::GetFrameHeight() - 2.0f * dpiScale}))
-                                selectedMod = ModEntry.modName;
-                            if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-                                ImGui::OpenPopup("Mod Actions");
-                            }
-                            ImGui::SetCursorPosY(storedpos);
-                            if(!verifyDependenciesEnabled(ModEntry.modName))
-                                ModEntry.enabled = false;
-                            if (ModEntry.installed) {
-                                if (ModEntry.enabled) {
-                                    ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s",
-                                                       ModEntry.displayName.c_str());
-//                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
-//                                selectedMod = ModEntry.modName;
-                                } else {
-//                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
-//                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
-//                                selectedMod = ModEntry.modName;
-//                            ImGui::PopStyleColor();
-                                    if(verifyDependencies(ModEntry.modName)) {
-                                        if(verifyDependenciesEnabled(ModEntry.modName)){
-                                            ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
-                                                               ModEntry.displayName.c_str());
-                                            if (ImGui::IsItemHovered()) {
-                                                ImGui::BeginTooltip();
-                                                ImGui::Text("Mod is not enabled");
-                                                ImGui::EndTooltip();
-                                            }
-                                        } else {
-                                            ImGui::TextColored (warningColor, "%s",
-                                                               ModEntry.displayName.c_str());
-                                            if (ImGui::IsItemHovered()) {
-                                                ImGui::BeginTooltip();
-                                                ImGui::Text("Dependencies are installed, but not enabled");
-                                                ImGui::EndTooltip();
-                                            }
-                                        }
+                    if (verifyDependenciesEnabled(ModEntry.modName)) {
+                        ImGui::Checkbox("##Enable", &ModEntry.enabled);
+                    }
+                    checkboxColumnSize = ImGui::GetColumnWidth();
+                    ImGui::TableNextColumn();
+                    ImVec2 SelectableSize = { 0, /*ImGui::GetTextLineHeightWithSpacing() + 4.0f*/0 };
+                    auto storedpos = ImGui::GetCursorPosY() + (4 * dpiScale);
+                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() - (3.5 * dpiScale));
 
-                                    } else {
-                                        ImGui::TextColored(errorColor, "%s",
-                                                           ModEntry.displayName.c_str());
-                                        if (ImGui::IsItemHovered()) {
-                                            ImGui::BeginTooltip();
-                                            ImGui::Text("Dependencies not found");
-                                            ImGui::EndTooltip();
-                                        }
-                                    }
-                                }
-                            } else {
-//                        ImGui::PushStyleColor(ImGuiCol_Text,ImColor(245,100,100).operator ImU32());
-//                        if (ImGui::Selectable((ModEntry.modName + " *").c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
-//                            selectedMod = ModEntry.modName;
-//                        ImGui::PopStyleColor();
+                    if (ImGui::Selectable("##Selectable",
+                        selectedMod == ModEntry.modName, 0,
+                        ImVec2{ ImGui::GetColumnWidth(), ImGui::GetFrameHeight() - 2.0f * dpiScale }))
+                    {
+                        selectedMod = ModEntry.modName;
+                        ModEntry.isNew = false;
+                    }
 
-                                ImGui::TextColored(errorColor, "%s *", ModEntry.displayName.c_str());
+                    if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
+                        ImGui::OpenPopup("Mod Actions");
+                    }
+                    ImGui::SetCursorPosY(storedpos);
+                    if (!verifyDependenciesEnabled(ModEntry.modName))
+                        ModEntry.enabled = false;
+
+                    if (ModEntry.enabled) {
+                        ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_Text), "%s",
+                            ModEntry.displayName.c_str());
+                        //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
+                        //                                selectedMod = ModEntry.modName;
+                    }
+                    else {
+                        //                            ImGui::PushStyleColor(ImGuiCol_Text,ImColor(180,180,180).operator ImU32());
+                        //                            if (ImGui::Selectable(ModEntry.modName.c_str(), selectedMod == ModEntry.modName, 0, SelectableSize))
+                        //                                selectedMod = ModEntry.modName;
+                        //                            ImGui::PopStyleColor();
+                        if (verifyDependencies(ModEntry.modName)) {
+                            if (verifyDependenciesEnabled(ModEntry.modName)) {
+                                ImGui::TextColored(ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled), "%s",
+                                    ModEntry.displayName.c_str());
                                 if (ImGui::IsItemHovered()) {
                                     ImGui::BeginTooltip();
-                                    ImGui::Text("Mod is not installed. Please install it before you can enable it");
+                                    ImGui::Text("Mod is not enabled");
                                     ImGui::EndTooltip();
                                 }
-
                             }
-                            if (ImGui::BeginPopup("Mod Actions")) {
-                                ImGui::Text("%s:", ModEntry.displayName.c_str());
-                                ImGui::BeginDisabled();
-                                bool hasDll = !ModEntry.dllName.empty();
-                                ImGui::Checkbox("Has DLL", &hasDll);
-                                ImGui::SameLine();
-                                ImGui::Checkbox("Has XML", &ModEntry.hasXML);
-                                ImGui::EndDisabled();
-                                if (ModEntry.installed) {
-                                    if (ImGui::Button("Uninstall")) {
-                                        UninstallMod(ModEntry.modName);
-                                    }
-                                    if (ModEntry.enabled) {
-                                        if (ImGui::Button("Disable"))
-                                            EnableMod(ModEntry.modName, false);
-                                    } else {
-                                        if (ImGui::Button("Enable"))
-                                            EnableMod(ModEntry.modName, true);
-                                    }
-                                } else {
-                                    if (ImGui::Button("Install")) {
-                                        InstallMod(ModEntry.modName);
-                                    }
-
-                                    if (!ModEntry.isPreditorProject)
-                                    {
-                                        if (ImGui::Button("Delete")) {
-                                            showDeleteConfirmation = true;
-                                        }
-                                    }
-                                }
-                                ImGui::EndPopup();
-                            }
-                            if (showDeleteConfirmation) {
-                                ImGui::OpenPopup("Delete Confirmation");
-                                showDeleteConfirmation = false;
-                            }
-
-                            if (ImGui::BeginPopupModal("Delete Confirmation")) {
-                                ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.",
-                                            ModEntry.modName.c_str());
-                                if (ImGui::Button("Delete")) {
-                                    if (!ModEntry.modName.empty()) {
-                                        modNameForDeletion = ModEntry.modName;
-                                    }
-                                    ImGui::CloseCurrentPopup();
-                                }
-                                ImGui::SameLine();
-                                if (ImGui::Button("Cancel")) {
-                                    ImGui::CloseCurrentPopup();
-                                }
-                                ImGui::EndPopup();
-                            }
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%s", ModEntry.version.c_str());
-                            ImGui::TableNextColumn();
-                            ImGui::Text("%i", ModEntry.loadOrder + 1);
-
-                            ImGui::TableNextColumn();
-                            if (selectedMod == ModEntry.modName) {
-                                try {
-                                    if (ModEntry.loadOrder > 0) {
-                                        if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
-                                            std::swap(ModList.at(i - 1).loadOrder, ModList.at(i).loadOrder);
-                                            sortModList = true;
-                                        }
-                                        ImGui::SameLine();
-                                    }
-                                    if (ModEntry.loadOrder < ModList.size() - 1) {
-                                        if (ImGui::ArrowButton("##Down",
-                                                               ImGuiDir_Down)) {
-                                            std::swap(ModList.at(i).loadOrder, ModList.at(i + 1).loadOrder);
-                                            sortModList = true;
-                                        }
-                                    }
-                                } catch (const std::exception &exc) {
-                                    log(severityLevel::error, "%s", exc.what());
-                                    std::cerr << exc.what() << std::endl;
+                            else {
+                                ImGui::TextColored(warningColor, "%s",
+                                    ModEntry.displayName.c_str());
+                                if (ImGui::IsItemHovered()) {
+                                    ImGui::BeginTooltip();
+                                    ImGui::Text("Dependencies are installed, but not enabled");
+                                    ImGui::EndTooltip();
                                 }
                             }
-                            i++;
 
-                            ImGui::PopID();
                         }
-                        //TODO: add ability to reorder legacy mods...
-                        ImGui::EndTable();
+                        else {
+                            ImGui::TextColored(errorColor, "%s",
+                                ModEntry.displayName.c_str());
+                            if (ImGui::IsItemHovered()) {
+                                ImGui::BeginTooltip();
+                                ImGui::Text("Dependencies not found");
+                                ImGui::EndTooltip();
+                            }
+                        }
                     }
 
-                    if (!modNameForDeletion.empty())
-                    {
-                        log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(), modNameForDeletion);
-                        fs::remove_all(GetGamePath() / "Mods" / modNameForDeletion);
-                        ModList.erase(std::find(ModList.begin(), ModList.end(), modNameForDeletion));
-                        modNameForDeletion.clear();
-                    }
-
-                    if (sortModList)
-                    {
-                        std::sort(ModList.begin(), ModList.end());
-                    }
-
-                    ImGui::EndTabItem();
-                }
-                if (!LegacyModList.empty()) {
-                    if(ImGui::BeginTabItem("Legacy Mods")) {
-                        ImGui::TextDisabled("What's a legacy mod");
+                    if (ImGui::BeginPopup("Mod Actions")) {
+                        ImGui::Text("%s:", ModEntry.displayName.c_str());
+                        ImGui::BeginDisabled();
+                        bool hasDll = !ModEntry.dllName.empty();
+                        ImGui::Checkbox("Has DLL", &hasDll);
                         ImGui::SameLine();
-                        ImGuiUtils::HelpMarker("Legacy mods are mods that weren't made for Chairloader, such as older mods that only had asset files. They do not have ModInfo.xml files and as such are not registered with the other mods.\n They are merged first, so registered mods will override legacy ones.");
-                        if (ImGui::BeginTable("Legacy Mod List", 2,
-                                              ImGuiTableFlags_Borders | ImGuiTableFlags_SizingStretchProp |
-                                              ImGuiTableFlags_NoBordersInBody)) {
+                        ImGui::Checkbox("Has XML", &ModEntry.hasXML);
+                        ImGui::EndDisabled();
 
-                            ImGui::TableSetupColumn("##Enable/Disable", ImGuiTableColumnFlags_WidthFixed,
-                                                    28.0f);
-                            ImGui::TableSetupColumn("Mod Name");
-                            ImGui::TableNextRow();
-                            ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBg0, ImColor(40, 40, 40));
-                            ImGui::TableSetColumnIndex(1);
-//                    ImGui::Spacing();
-//                    ImGui::Separator();
-                            ImGui::Text("Legacy Mods");
-                            for (auto &legacyMod: LegacyModList) {
-                                ImGui::TableNextRow();
-                                ImGui::TableSetColumnIndex(1);
-                                ImGui::Text("%s", legacyMod.c_str());
-                            }
-                            ImGui::EndTable();
+                        if (ImGui::Button("Uninstall")) {
+                            UninstallMod(ModEntry.modName);
                         }
-                        ImGui::EndTabItem();
+                        if (ModEntry.enabled) {
+                            if (ImGui::Button("Disable"))
+                                EnableMod(ModEntry.modName, false);
+                        }
+                        else {
+                            if (ImGui::Button("Enable"))
+                                EnableMod(ModEntry.modName, true);
+                        }
+
+                        ImGui::EndPopup();
                     }
-                } else {
-                    ImGui::BeginDisabled();
-                    if(ImGui::BeginTabItem("Legacy Mods")){
-                        ImGui::EndTabItem();
+                    if (showDeleteConfirmation) {
+                        ImGui::OpenPopup("Delete Confirmation");
+                        showDeleteConfirmation = false;
                     }
-                    ImGui::EndDisabled();
+
+                    if (ImGui::BeginPopupModal("Delete Confirmation")) {
+                        ImGui::Text("Are you sure you want to delete %s?\nConfig data will be preserved.",
+                            ModEntry.modName.c_str());
+                        if (ImGui::Button("Delete")) {
+                            if (!ModEntry.modName.empty()) {
+                                modNameForDeletion = ModEntry.modName;
+                            }
+                            ImGui::CloseCurrentPopup();
+                        }
+                        ImGui::SameLine();
+                        if (ImGui::Button("Cancel")) {
+                            ImGui::CloseCurrentPopup();
+                        }
+                        ImGui::EndPopup();
+                    }
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%s", ModEntry.version.c_str());
+                    ImGui::TableNextColumn();
+                    ImGui::Text("%i", ModEntry.loadOrder + 1);
+
+                    i++;
+
+                    ImGui::PopID();
                 }
-                ImGui::EndTabBar();
+
+                ImGui::EndTable();
+            }
+
+            if (!modNameForDeletion.empty())
+            {
+                log(severityLevel::info, "Deleting %s/Mods/%s/", GetGamePath().u8string(), modNameForDeletion);
+                fs::remove_all(GetGamePath() / "Mods" / modNameForDeletion);
+                ModList.erase(std::find(ModList.begin(), ModList.end(), modNameForDeletion));
+                modNameForDeletion.clear();
             }
         }
         ImGui::EndChild();
         ImGui::SameLine();
         if (ImGui::BeginChild("Controls")) {
             if (ImGui::Button("Refresh Mod List")) {
-                loadModInfoFiles();
+                LoadModInfoFiles();
                 selectedMod.clear();
                 m_ConfigManager.saveDirtyConfigs();
                 m_ConfigManager.init(this);
@@ -658,155 +593,138 @@ void ChairManager::DrawModList() {
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Loads mod list from the Chairloader config file. Also discovers new mods in the Mods/ folder.");
             ImGui::SameLine();
-            if(ImGui::Button("Enable All")){
-                for(auto& mod : ModList){
+            if (ImGui::Button("Enable All")) {
+                for (auto& mod : ModList) {
                     EnableMod(mod.modName);
                     // if dependencies aren't installed then those mods will disable themselves later
                 }
             }
             ImGui::Separator();
-            if(ImGui::BeginChild("Mod Info", {0, ImGui::GetContentRegionAvail().y * 0.61f})) {
+            if (ImGui::BeginChild("Mod Info", { 0, ImGui::GetContentRegionAvail().y * 0.61f })) {
                 auto ModSelect = std::find(ModList.begin(), ModList.end(), selectedMod);
                 if (ModSelect != ModList.end()) {
-                    if (!ModSelect->installed)
-                        ImGui::BeginDisabled();
                     ImGui::TextWrapped("%s", ModSelect->displayName.c_str());
                     ImGui::Text("By: %s", ModSelect->author.c_str());
-//                    if(ImGui::Button("Config")){
-//                        m_ConfigManager.showConfigPopup(ModSelect->modName);
-//                    }
-                    if(!ModSelect->dependencies.empty()){
+                    //                    if(ImGui::Button("Config")){
+                    //                        m_ConfigManager.showConfigPopup(ModSelect->modName);
+                    //                    }
+
+                    // Load order
+                    {
+                        ImGui::Separator();
+                        ImGui::Text("Load Order:");
+                        size_t selectedModIdx = ModSelect - ModList.begin();
+
+                        ImGui::BeginDisabled(ModSelect->loadOrder <= 0);
+                        if (ImGui::ArrowButton("##Up", ImGuiDir_Up)) {
+                            std::swap(ModList.at(selectedModIdx - 1).loadOrder, ModList.at(selectedModIdx).loadOrder);
+                            sortModList = true;
+                        }
+                        ImGui::EndDisabled();
+                        ImGui::SameLine();
+
+                        ImGui::BeginDisabled(ModSelect->loadOrder >= ModList.size());
+                        if (ImGui::ArrowButton("##Down",
+                            ImGuiDir_Down)) {
+                            std::swap(ModList.at(selectedModIdx).loadOrder, ModList.at(selectedModIdx + 1).loadOrder);
+                            sortModList = true;
+                        }
+                        ImGui::EndDisabled();
+                    }
+
+                    if (!ModSelect->dependencies.empty()) {
                         ImGui::Separator();
                         ImGui::Text("Dependencies:");
-                        for(auto & dependency : ModSelect->dependencies){
+                        for (auto& dependency : ModSelect->dependencies) {
                             auto dependencySearch = std::find(ModList.begin(), ModList.end(), dependency);
-                            if(dependencySearch == ModList.end())
+                            if (dependencySearch == ModList.end())
                                 ImGui::PushStyleColor(ImGuiCol_Text, errorColor.operator ImU32());
-                            else if(!dependencySearch->enabled)
+                            else if (!dependencySearch->enabled)
                                 ImGui::PushStyleColor(ImGuiCol_Text, warningColor.operator ImU32());
-                            if(ImGui::TreeNode(dependency.c_str())){
-                                if(dependencySearch != ModList.end()){
-                                    if(dependencySearch->enabled) {
+                            if (ImGui::TreeNode(dependency.c_str())) {
+                                if (dependencySearch != ModList.end()) {
+                                    if (dependencySearch->enabled) {
                                         ImGui::Text("Version Installed: %s", dependencySearch->version.c_str());
-                                    } else {
+                                    }
+                                    else {
                                         ImGui::Text("Dependency not enabled");
                                     }
-                                } else {
+                                }
+                                else {
                                     ImGui::Text("Dependency not found");
                                 }
                                 ImGui::TreePop();
                             }
-                            if(dependencySearch == ModList.end())
+                            if (dependencySearch == ModList.end())
                                 ImGui::PopStyleColor();
-                            else if(!dependencySearch->enabled)
+                            else if (!dependencySearch->enabled)
                                 ImGui::PopStyleColor();
                         }
-                    }
-                    if (!ModSelect->installed) {
-                        ImGui::EndDisabled();
-                        if (ImGui::Button("Install")) {
-                            InstallMod(ModSelect->modName);
-                        }
-                        ImGui::SameLine();
-                        ImGuiUtils::HelpMarker("This will save the mod to the Mod List, meaning it will be remembered in the future, and can actually be loaded.");
                     }
                 }
             }
             ImGui::EndChild();
-//            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
-            if(ImGui::Button("Save Mod List")){
+            //            ImGui::SetCursorPosY(ImGui::GetWindowSize().y -100);
+            if (ImGui::Button("Save Mod List")) {
                 SaveAllMods();
                 overlayLog(severityLevel::info, "Mod list saved");
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Save the mod list to the chairloader.xml config file");
-            if(ImGui::Button("Deploy Mods")){
+            if (ImGui::Button("Deploy Mods")) {
                 SwitchToDeployScreen();
             }
             ImGui::SameLine();
             ImGuiUtils::HelpMarker("Merge, patch, and copy the files to the game directory.");
             ImGui::Separator();
-            if(ImGui::Button("Install Mod From File")){
-               ImGui::OpenPopup("Install Mod From File");
+            if (ImGui::Button("Install Mod From File")) {
+                OpenInstallModDialog();
             }
             ImGui::Separator();
-            if(ImGui::Button("Options")){
+            if (ImGui::Button("Options")) {
                 ImGui::OpenPopup("Launch Options");
             }
             ImGui::SameLine();
-            if(ImGui::Button("Launch Prey")){
+            if (ImGui::Button("Launch Prey")) {
                 launchGame();
             }
         }
-        if(ImGui::BeginPopupContextWindow("Launch Options")){
+        if (ImGui::BeginPopupContextWindow("Launch Options")) {
             // bool m_bLoadChairloader,
             //        m_bLoadEditor,
             //        m_bDevMode,
             //        m_bNoRandom;
-            if(ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)){
+            if (ImGui::Checkbox("Load Chairloader", &m_bLoadChairloader)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadChairloader").set_value(m_bLoadChairloader);
                 saveModManagerConfigFile();
             }
-            if(ImGui::Checkbox("Load Trainers", &m_bTrainer)) {
+            if (ImGui::Checkbox("Load Trainers", &m_bTrainer)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("Trainer").set_value(m_bTrainer);
                 saveModManagerConfigFile();
             }
-            if(ImGui::Checkbox("Load Editor", &m_bLoadEditor)){
+            if (ImGui::Checkbox("Load Editor", &m_bLoadEditor)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("LoadEditor").set_value(m_bLoadEditor);
                 saveModManagerConfigFile();
             }
-            if(ImGui::Checkbox("Dev Mode", &m_bDevMode)){
+            if (ImGui::Checkbox("Dev Mode", &m_bDevMode)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("DevMode").set_value(m_bDevMode);
                 saveModManagerConfigFile();
             }
-            if(ImGui::Checkbox("No Random", &m_bNoRandom)){
+            if (ImGui::Checkbox("No Random", &m_bNoRandom)) {
                 ChairManagerConfigFile.first_child().child("LaunchOptions").attribute("NoRandom").set_value(m_bNoRandom);
                 saveModManagerConfigFile();
             }
             ImGui::InputText("Custom Launch Options", &m_customArgs);
             ImGui::EndPopup();
         }
-        if(ImGui::BeginPopupModal("Install Mod From File", nullptr, ImGuiWindowFlags_AlwaysAutoResize)){
-            static int installType = 0;
-            ImGui::RadioButton("Chairloader Mod (.zip)", &installType, 0);
-            ImGui::RadioButton("Legacy Mod (.pak)", &installType, 1);
 
-            if(ImGui::Button("Select File")){
-                OpenInstallModDialog(installType == 1);
-                ImGui::CloseCurrentPopup();
-            }
-            ImGui::SameLine();
-            if(ImGui::Button("Cancel")){
-                ImGui::CloseCurrentPopup();
-                installType = 0;
-            }
-            ImGui::EndPopup();
-        }
         ImGui::EndChild();
-
-        WinShell::DialogResult result;
-
-        if(WinShell::ImUpdateFileOpenDialog("ChooseModFile", &result)) {
-            // action if OK
-            if (result.isOk)
-            {
-                try {
-                    // WTF?
-                    modToLoadPath = result.filePath;
-                    fileToLoad = modToLoadPath.filename();
-                    modToLoadPath = modToLoadPath.parent_path();
-                    log(severityLevel::trace, "File To Load: %s", fileToLoad.u8string());
-                    if (!(fileToLoad).empty()) {
-                        fs::remove_all("temp");
-                        InstallModFromFile(modToLoadPath, fileToLoad);
-                    }
-                } catch(std::exception &exc) {
-                    log(severityLevel::error, "%s", exc.what());
-                    std::cerr << exc.what() << std::endl;
-                }
-            }
-        }
         ImGui::EndTabItem();
+    }
+
+    if (sortModList)
+    {
+        std::sort(ModList.begin(), ModList.end());
     }
 }
 
@@ -816,30 +734,30 @@ void ChairManager::DrawDLLSettings() {
         ImGui::InputText("Prey Path", &preyPathString, ImGuiInputTextFlags_ReadOnly);
 
         if(ImGui::Button("Change Path")){
-            m_pGamePathDialog = std::make_unique<GamePathDialog>();
-            m_pGamePathDialog->SetGamePath(GetGamePath());
-            ImGui::OpenPopup("Change Game Path");
+            SetGamePath(fs::path());
+            SwitchToInstallWizard();
         }
 
         ImGui::PushID("GameVersion");
         m_pGameVersion->ShowInstalledVersion();
         ImGui::PopID();
 
-        if (m_pGamePathDialog)
+        ImGui::BeginDisabled(m_pXmlPatchDialog != nullptr);
+        if (ImGui::Button("Force-refresh base patches"))
         {
-            GamePathDialog::Result result = m_pGamePathDialog->ShowModal("Change Game Path");
+            m_pXmlPatchDialog = std::make_unique<PreyFilesPatchProgressDialog>(this);
+            m_pXmlPatchDialog->Start();
+            ImGui::OpenPopup("XML Patch Progress");
+        }
+        ImGui::EndDisabled();
 
-            if (result == GamePathDialog::Result::Ok)
+        if (m_pXmlPatchDialog)
+        {
+            if (ImGui::BeginPopupModal("XML Patch Progress"))
             {
-                log(severityLevel::info, "User selected game path: %s", m_pGamePathDialog->GetGamePath().u8string().c_str());
-                SetGamePath(m_pGamePathDialog->GetGamePath());
-                saveModManagerConfigFile();
-                m_pGamePathDialog.reset();
-                Init();
-            }
-            else if (result == GamePathDialog::Result::Cancel)
-            {
-                m_pGamePathDialog.reset();
+                if (!m_pXmlPatchDialog->ShowUI())
+                    m_pXmlPatchDialog.reset();
+                ImGui::EndPopup();
             }
         }
 
@@ -869,24 +787,7 @@ void ChairManager::DrawAssetView() {
                     ImGui::EndChild();
                     ImGui::EndTabItem();
                 }
-                // Legacy Mods
-                if(ImGui::BeginTabItem("Legacy Mods")) {
-                    if (ImGui::BeginChild("Legacy Mods", ImVec2(0, 0), true)) {
-                        ImGui::Text("Legacy Mods");
-                        ImGui::Separator();
-                        if(ImGui::BeginTable("Legacy Mod Tree Nodes", 1, ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY)) {
-                            for (auto &mod: LegacyModList) {
-                                ImGui::TableNextRow();
-                                ImGui::TableNextColumn();
-                                TreeNodeWalkDirectory("", mod, XMLFile::XMLType::Legacy);
-                            }
-                            ImGui::EndTable();
-                        }
-                    }
-                    ImGui::EndChild();
-                    ImGui::EndTabItem();
-                    // base assets
-                }
+
                 if(ImGui::BeginTabItem("Base Assets")) {
                     if (ImGui::BeginChild("Base Assets", ImVec2(0, 0), true)) {
                         ImGui::Text("Base Assets");
@@ -1173,123 +1074,183 @@ bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDiffe
     return false;
 }
 
-void ChairManager::LoadModsFromConfig() {
-    for(auto &PrevMod : ModListNode){
-        fs::path modPath;
+void ChairManager::LoadModInfoFiles()
+{
+    ModList.clear();
+    fs::path modsDir = GetGamePath() / "Mods";
+    fs::path legacyModsDir = modsDir / "Legacy";
 
-        if (pugi::xml_node fullPathNode = PrevMod.child("fullPath"))
-            modPath = fs::u8path(fullPathNode.text().as_string());
-        else
-            modPath = GetGamePath() / "Mods" / PrevMod.name();
+    // Add Chairloader modes
+    if (fs::is_directory(modsDir))
+    {
+        for (auto& directory : fs::directory_iterator(modsDir))
+        {
+            if (!directory.is_directory())
+                continue;
 
-        Mod mod;
-        if(LoadModInfoFile(modPath, &mod, false)) {
-            if (boost::algorithm::starts_with(PrevMod.name(), PREDITOR_MOD_PREFIX))
+            fs::path modDirPath = directory.path();
+            std::string modDirName = modDirPath.filename().u8string();
+
+            try
             {
+
+                // Skip non-mod directories
+                if (boost::iequals(modDirName, "config") ||
+                    boost::iequals(modDirName, ".temp") ||
+                    boost::iequals(modDirName, "Legacy"))
+                    continue;
+
+                Mod mod;
+
+                if (!LoadModInfoFile(directory.path(), &mod, false))
+                {
+                    log(severityLevel::error, "Failed to load mod %s", modDirName);
+                    continue;
+                }
+
+                ModList.emplace_back(std::move(mod));
+            }
+            catch (const std::exception& e)
+            {
+                log(severityLevel::error, "Failed to load mod %s: %s", modDirName, e.what());
+            }
+        }
+    }
+
+    // Add Preditor projects
+    if (fs::exists(PREDITOR_PROJECT_HISTORY_FILE_PATH))
+    {
+        std::vector<std::string> preditorHistory = FileHistory::ReadHistory(PREDITOR_PROJECT_HISTORY_FILE_PATH);
+
+        for (const std::string& projectPathStr : preditorHistory)
+        {
+            Mod mod;
+            fs::path projectPath = fs::u8path(projectPathStr);
+
+            if (!fs::is_directory(projectPath))
+                continue;
+
+            try
+            {
+
+                if (!LoadModInfoFile(projectPath, &mod, true))
+                {
+                    log(severityLevel::info, "Invalid Preditor project: '%s'", projectPathStr);
+                    continue;
+                }
+
+                // See if the same directory was already added
+                bool foundDir = std::find_if(ModList.begin(), ModList.end(), [&](const Mod& i) { return fs::equivalent(i.path, projectPath); }) != ModList.end();
+                if (foundDir)
+                {
+                    log(severityLevel::info, "Preditor project aready added: '%s'", projectPathStr);
+                    continue;
+                }
+
+                // Add prefix to differentiate from actually installed mods
                 mod.modName = PREDITOR_MOD_PREFIX + mod.modName;
                 mod.displayName = "[Preditor] " + mod.displayName;
-            }
+                mod.isPreditorProject = true;
 
-            FindMod(&mod);
-            log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
-            log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
-            ModList.emplace_back(mod);
-        } else {
-            log(severityLevel::info, "%s not found, removing from config file", PrevMod.child("modName").text().as_string());
-            ModListNode.remove_child(PrevMod.child("modName").text().as_string());
-            saveChairloaderConfigFile();
-        }
-    }
-    std::sort(ModList.begin(), ModList.end());
-    serializeLoadOrder();
-}
-void ChairManager::DetectNewMods() {
-    for(auto &directory : fs::directory_iterator(fs::path(GetGamePath().u8string() + "/Mods/"))){
-        if(directory.path() != GetGamePath() / "Mods/config" && directory.path() != GetGamePath() / "Mods/Legacy" && directory.is_directory()) {
-            Mod mod;
-            if(LoadModInfoFile(directory.path(), &mod, false)) {
-                if(std::find(ModList.begin(), ModList.end(), mod.modName) == ModList.end()) {
-                    FindMod(&mod);
-                    log(severityLevel::debug, "%s load order:%i", mod.modName, mod.loadOrder);
-                    log(severityLevel::info, "ModInfo.xml Loaded: '%s'", mod.modName.c_str());
-                    ModList.emplace_back(mod);
-                }
+                log(severityLevel::info, "Preditor project found: '%s' - '%s'", mod.modName, projectPathStr);
+                ModList.emplace_back(std::move(mod));
+            }
+            catch (const std::exception& e)
+            {
+                log(severityLevel::error, "Failed to load Preditor project %s: %s", projectPath.u8string(), e.what());
             }
         }
     }
 
-    std::sort(ModList.begin(), ModList.end());
-    serializeLoadOrder();
-}
-
-void ChairManager::DetectPreditorProjects()
-{
-    std::vector<std::string> history = FileHistory::ReadHistory(PREDITOR_PROJECT_HISTORY_FILE_PATH);
-
-    for (const std::string& projectPathStr : history)
+    // Add legacy mods
+    if (fs::is_directory(legacyModsDir))
     {
-        Mod mod;
-        fs::path projectPath = fs::u8path(projectPathStr);
-
-        if (!fs::is_directory(projectPath))
-            continue;
-
-        if (!LoadModInfoFile(projectPath, &mod, true))
+        for (auto& directory : fs::directory_iterator(legacyModsDir))
         {
-            log(severityLevel::info, "Invalid Preditor project: '%s'", projectPathStr);
-            continue;
+            if (!directory.is_directory())
+                continue;
+
+            fs::path modDirPath = directory.path();
+            std::string modDirName = modDirPath.filename().u8string();
+
+            try
+            {
+                log(severityLevel::info, "Legacy mod found: '%s'", modDirName);
+                Mod mod;
+                mod.modName = LEGACY_MOD_PREFIX + modDirName;
+                mod.displayName = "[Legacy] " + modDirName;
+                mod.version = "N/A";
+                mod.author = "N/A";
+                mod.path = modDirPath;
+                mod.isLegacyMod = true;
+                ModList.emplace_back(std::move(mod));
+            }
+            catch (const std::exception& e)
+            {
+                log(severityLevel::error, "Failed to load legacy mod %s: %s", modDirName, e.what());
+            }
         }
-
-        // See if the same directory was already added
-        bool foundDir = std::find_if(ModList.begin(), ModList.end(), [&](const Mod& i) { return fs::equivalent(i.path, projectPath); }) != ModList.end();
-        if (foundDir)
-        {
-            log(severityLevel::info, "Preditor project aready added: '%s'", projectPathStr);
-            continue;
-        }
-
-        // Add prefix to differentiate from actually installed mods
-        mod.modName = PREDITOR_MOD_PREFIX + mod.modName;
-        mod.displayName = "[Preditor] " + mod.displayName;
-        mod.isPreditorProject = true;
-
-        FindMod(&mod);
-        log(severityLevel::info, "Preditor project found: '%s' - '%s'", mod.modName, projectPathStr);
-        ModList.emplace_back(mod);
     }
 
+    // Read settings from the config
+    for (Mod& mod : ModList)
+    {
+        // Find the mod in the config
+        pugi::xml_node modNode;
+
+        for (pugi::xml_node i : ModListNode.children("Mod"))
+        {
+            if (i.child("modName").text().as_string() == mod.modName)
+            {
+                modNode = i;
+                break;
+            }
+        }
+
+        // -- If in Chairloader.xml --
+        if (modNode)
+        {
+            /* Load Previous Mod Config */
+            mod.enabled = modNode.child("enabled").text().as_bool();
+            mod.deployed = modNode.child("deployed").text().as_bool();
+
+            /* Load Order*/
+            int ModloadOrder = modNode.child("loadOrder").text().as_int();
+            if (checkSafeLoadOrder(ModloadOrder))
+            {
+                incrementNextSafeLoadOrder(ModloadOrder);
+                mod.loadOrder = ModloadOrder;
+                loadOrder.insert(std::pair(mod.loadOrder, mod.modName));
+                log(severityLevel::debug, "New Load Order Found = %i", mod.loadOrder);
+            }
+            else
+            {
+                mod.loadOrder = getNextSafeLoadOrder();
+                loadOrder.insert(std::pair(mod.loadOrder, mod.modName));
+                log(severityLevel::debug, "Non-unique load order found. Next safe = %i", mod.loadOrder);
+            }
+
+            /* Version Check */
+            if (mod.version != modNode.child("version").text().as_string()) {
+                log(severityLevel::warning, "%s: config version mismatch, TODO: fix this automatically", mod.modName);
+            }
+            // TODO: handle configs
+        }
+        else
+        {
+            // -- If New Mod --
+            log(severityLevel::debug, "New Mod Found: %s", mod.modName);
+            mod.deployed = false;
+            mod.enabled = false;
+            mod.loadOrder = getNextSafeLoadOrder();
+            mod.isNew = true;
+            loadOrder.insert(std::pair(mod.loadOrder, mod.modName));
+        }
+    }
+
+    // Sort mods by load order
     std::sort(ModList.begin(), ModList.end());
     serializeLoadOrder();
-}
-
-void ChairManager::loadModInfoFiles() {
-    ModList.clear();
-    LegacyModList.clear();
-    // load previously loaded (assumedly) valid config
-    LoadModsFromConfig();
-    DetectNewMods();
-    DetectPreditorProjects();
-    overlayLog(severityLevel::info, "Loaded %i mods", ModList.size());
-//    serializeLoadOrder();
-    try {
-        for (auto &directory: fs::directory_iterator(GetGamePath() / "Mods/Legacy")) {
-            if (directory.is_directory()) {
-                LegacyModList.emplace_back(directory.path().filename().u8string());
-            }
-        }
-        if(LegacyModList.size() > 0) {
-            if(LegacyModList.size() == 1) {
-                log(severityLevel::info, "Found %i legacy mod", LegacyModList.size());
-            } else {
-                log(severityLevel::info, "Found %i legacy mods", LegacyModList.size());
-            }
-        }
-    } catch (std::exception & exception) {
-        log(severityLevel::debug, "%s", exception.what());
-    }
-    for(auto & mod : ModList){
-        mod.enabled = mod.enabled && verifyDependencies(mod.modName);
-    }
 }
 
 ChairManager::ChairManager() {
@@ -1300,18 +1261,10 @@ ChairManager::ChairManager() {
     ChairManagerConfigPath = fs::current_path() / fs::path(RUNTIME_DATA_DIR) / "ChairManagerConfig.xml";
     packagedChairloaderVersion = new SemanticVersion;
     *packagedChairloaderVersion = VersionCheck::getPackagedChairloaderVersion();
-    m_pGamePath = std::make_unique<GamePath>();
     cURLpp::initialize();
     LoadModManagerConfig();
-    VersionCheck::fetchLatestVersion();
-
-    if (GetGamePath().empty() || !ChairManager::Get().GetGamePathUtil()->ValidateGamePath(GetGamePath())){
-        SwitchToGameSelectionDialog(GetGamePath());
-    } else {
-        m_pGamePath->SetGamePlatform(m_pGamePath->DeduceGamePlatform(GetGamePath()));
-        log(severityLevel::info, "Game platform: %s", m_pGamePath->GetGamePlatformString());
-        SwitchToInstallWizard();
-    }
+    StartVersionCheckTask(); // Requires config
+    SwitchToInstallWizard();
 }
 
 ChairManager::~ChairManager() {
@@ -1322,111 +1275,72 @@ ChairManager::~ChairManager() {
     m_spInstance = nullptr;
 }
 
-
-void ChairManager::FindMod(Mod* modEntry) {
-    /* Check if mod is in the config list */
-    if(std::find(ModList.begin(), ModList.end(),modEntry->modName) == ModList.end()) {
-        // -- If in Chairloader.xml --
-        if (ModListNode.child(modEntry->modName.c_str())) {
-            /* Load Previous Mod Config */
-            auto modNode = ModListNode.child(modEntry->modName.c_str());
-            modEntry->enabled = modNode.child("enabled").text().as_bool();
-            modEntry->deployed = modNode.child("deployed").text().as_bool();
-            modEntry->installed = true;
-            /* Load Order*/
-            int ModloadOrder = modNode.child("loadOrder").text().as_int();
-            if(checkSafeLoadOrder(ModloadOrder)){
-                incrementNextSafeLoadOrder(ModloadOrder);
-                modEntry->loadOrder = ModloadOrder;
-                loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
-                log(severityLevel::debug, "New Load Order Found = %i", modEntry->loadOrder);
-            } else {
-                modEntry->loadOrder = getNextSafeLoadOrder();
-                loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
-                log(severityLevel::debug, "Non-unique load order found. Next safe = %i", modEntry->loadOrder);
-            }
-
-            /* Version Check */
-            if(modEntry->version != modNode.child("version").text().as_string()){
-                log(severityLevel::warning, "%s: config version mismatch, TODO: fix this automatically", modEntry->modName);
-            }
-            // TODO: handle configs
-        // -- If New Mod --
-        } else {
-            log(severityLevel::debug, "New Mod Found: %s", modEntry->modName);
-            modEntry->deployed = false;
-            modEntry->enabled = false;
-            modEntry->loadOrder = getNextSafeLoadOrder();
-            loadOrder.insert(std::pair(modEntry->loadOrder, modEntry->modName));
-        }
-    } else {
-        log(severityLevel::error, "%s already loaded", modEntry->modName);
-    }
-
-}
-
-
-
-
 void ChairManager::SaveMod(Mod *modEntry) {
     if(modEntry == nullptr) {
         log(severityLevel::error, "Cannot save mod, nullptr was passed");
         return;
     }
-    if(modEntry->installed) {
-        auto modNode = ModListNode.child(modEntry->modName.c_str());
-        if (modNode) {
-            modNode.remove_children();
-        } else {
-            ModListNode.append_child(modEntry->modName.c_str()).append_attribute("type").set_value("xmlnode");;
-        }
-        modNode = ModListNode.child(modEntry->modName.c_str());
-        //modName
-        auto node = modNode.append_child("modName");
-        node.append_attribute("type").set_value("string");
-        node.text().set(modEntry->modName.c_str());
-        //loadOrder
-        node = modNode.append_child("loadOrder");
-        node.append_attribute("type").set_value("int");
-        node.text().set(modEntry->loadOrder);
-        //enabled
-        node = modNode.append_child("enabled");
-        node.append_attribute("type").set_value("bool");
-        node.text().set(modEntry->enabled);
-        //deployed
-        node = modNode.append_child("deployed");
-        node.append_attribute("type").set_value("bool");
-        node.text().set(modEntry->deployed);
-        //Version
-        node = modNode.append_child("version");
-        node.append_attribute("type").set_value("string");
-        node.text().set(modEntry->version.c_str());
-        saveChairloaderConfigFile();
-        //dllName
-        if (!modEntry->dllName.empty())
+
+    // Find the mod in the config
+    pugi::xml_node modNode;
+
+    for (pugi::xml_node i : ModListNode.children("Mod"))
+    {
+        if (i.child("modName").text().as_string() == modEntry->modName)
         {
-            node = modNode.append_child("dllName");
-            node.append_attribute("type").set_value("string");
-            node.text().set(modEntry->dllName.c_str());
+            modNode = i;
+            break;
         }
-        saveChairloaderConfigFile();
-        //hasXML
-        node = modNode.append_child("hasXML");
-        node.append_attribute("type").set_value("string");
-        node.text().set(modEntry->hasXML);
-        // fullPath
-        if (modEntry->isPreditorProject)
-        {
-            node = modNode.append_child("fullPath");
-            node.append_attribute("type").set_value("string");
-            node.text().set(modEntry->path.u8string().c_str());
-        }
-        saveChairloaderConfigFile();
-    } else {
-        log(severityLevel::error, "Cannot save mod %s: must be installed first", modEntry->modName);
-        ErrorMessage =  "Cannot save mod " + modEntry->modName + ": must be installed first";
-        showErrorPopup = true;
     }
+
+    if (modNode) {
+        modNode.remove_children();
+    } else {
+        modNode = ModListNode.append_child("Mod");
+        modNode.append_attribute("type").set_value("xmlnode");
+    }
+
+    //modName
+    auto node = modNode.append_child("modName");
+    node.append_attribute("type").set_value("string");
+    node.text().set(modEntry->modName.c_str());
+    //loadOrder
+    node = modNode.append_child("loadOrder");
+    node.append_attribute("type").set_value("int");
+    node.text().set(modEntry->loadOrder);
+    //enabled
+    node = modNode.append_child("enabled");
+    node.append_attribute("type").set_value("bool");
+    node.text().set(modEntry->enabled);
+    //deployed
+    node = modNode.append_child("deployed");
+    node.append_attribute("type").set_value("bool");
+    node.text().set(modEntry->deployed);
+    //Version
+    node = modNode.append_child("version");
+    node.append_attribute("type").set_value("string");
+    node.text().set(modEntry->version.c_str());
+    saveChairloaderConfigFile();
+    //dllName
+    if (!modEntry->dllName.empty())
+    {
+        node = modNode.append_child("dllName");
+        node.append_attribute("type").set_value("string");
+        node.text().set(modEntry->dllName.c_str());
+    }
+    saveChairloaderConfigFile();
+    //hasXML
+    node = modNode.append_child("hasXML");
+    node.append_attribute("type").set_value("string");
+    node.text().set(modEntry->hasXML);
+    // fullPath
+    if (modEntry->isPreditorProject)
+    {
+        node = modNode.append_child("fullPath");
+        node.append_attribute("type").set_value("string");
+        node.text().set(modEntry->path.u8string().c_str());
+    }
+    saveChairloaderConfigFile();
 }
 
 
@@ -1611,31 +1525,15 @@ void ChairManager::serializeLoadOrder() {
 
 void ChairManager::SaveAllMods() {
     for(auto &mod : ModList){
-        if(mod.installed) {
-            ModListNode.remove_child(mod.modName.c_str());
-            SaveMod(&mod);
-        }
+        ModListNode.remove_child(mod.modName.c_str());
+        SaveMod(&mod);
     }
     saveChairloaderConfigFile();
-}
-
-void ChairManager::InstallMod(std::string &modName) {
-    auto mod = std::find(ModList.begin(), ModList.end(), modName);
-    if(mod != ModList.end()){
-        mod->installed = true;
-        SaveMod(&(*mod));
-        log(severityLevel::info, "%s: Installed successfully", modName);
-    } else {
-        log(severityLevel::error, "Could not install %s: Not found in mod list", modName);
-        ErrorMessage = "Could not install" + modName + ": Not found in mod list";
-        showErrorPopup = true;
-    }
 }
 
 void ChairManager::UninstallMod(std::string &modName) {
     auto mod = std::find(ModList.begin(), ModList.end(), modName);
     if(mod != ModList.end()){
-        mod->installed = false;
         mod->enabled = false;
         mod->deployed = false;
         if(ModListNode.remove_child(modName.c_str())){
@@ -1652,73 +1550,194 @@ void ChairManager::UninstallMod(std::string &modName) {
 
 }
 
-void ChairManager::InstallModFromFile(fs::path path, fs::path fileName) {
-    fs::path tempDir = fs::absolute("./temp");
-    fs::path outPath = tempDir;
+void ChairManager::InstallModFromState()
+{
+    using Manager::ModInfo;
 
-    try {
-        ZipUtils::ExtractFolder(path / fileName, outPath);
-    }
-    catch (std::exception &e) {
-        overlayLog(severityLevel::error, "Could not extract %s: %s", fileName.u8string().c_str(), e.what());
-        return;
-    }
+    ModInstallState& state = m_ModInstallState;
+    CRY_ASSERT(state.stage != EModInstallStage::None);
+    fs::path tempDir = fs::current_path() / RUNTIME_DATA_DIR / "TempInstall";
+    std::string modFileName = state.modFilePath.filename().u8string();
 
-    // See if the archive only contains a directory
-    std::vector<fs::directory_entry> outPathFileList;
-    for (const auto& i : fs::directory_iterator(outPath))
+    try
     {
-        outPathFileList.push_back(i);
+        fs::path modsDir = GetGamePath() / "Mods";
+
+        if (fs::exists(tempDir))
+            fs::remove_all(tempDir);
+
+        fs::create_directories(tempDir);
+
+        // Extract the mod to temp folder
+        ZipUtils::ExtractFolder(state.modFilePath, tempDir);
+
+        if (state.isLegacy)
+        {
+            // Analyze the mod folder
+            LegacyModConverter::ModInfo legacyModInfo = LegacyModConverter::AnalyzeFolder(modFileName, tempDir);
+            log(severityLevel::info, "Legacy mod relative path: %s", legacyModInfo.outputRelativePath.u8string());
+
+            fs::path outModRootPath = modsDir / "Legacy" / fs::u8path(state.legacyModName);
+            fs::create_directories(outModRootPath.parent_path());
+
+            if (fs::exists(outModRootPath))
+            {
+                overlayLog(severityLevel::warning, "Mod '%s' already installed. It will be reinstalled.", state.legacyModName);
+                fs::remove_all(outModRootPath);
+            }
+
+            // Copy the mod files
+            fs::path outModPath = outModRootPath / legacyModInfo.outputRelativePath;
+            fs::create_directories(outModPath);
+            fs::copy(tempDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+
+            overlayLog(severityLevel::info, "Mod %s installed", state.legacyModName);
+        }
+        else
+        {
+            fs::path srcModRootDir;
+
+            // See if the archive only contains a directory
+            std::vector<fs::directory_entry> tempDirFileList;
+            for (const auto& i : fs::directory_iterator(tempDir))
+            {
+                tempDirFileList.push_back(i);
+            }
+
+            if (tempDirFileList.size() == 1 && tempDirFileList[0].is_directory())
+                srcModRootDir = tempDirFileList[0].path();
+            else
+                srcModRootDir = tempDir;
+
+            // Read mod info
+            if (!fs::exists(srcModRootDir / ModInfo::XML_FILE_NAME))
+                throw std::runtime_error("ModInfo.xml not found in Chairloader mod");
+
+            ModInfo modInfo;
+            modInfo.LoadFile(srcModRootDir / ModInfo::XML_FILE_NAME);
+
+            // Check if already installed
+            fs::path outModPath = modsDir / fs::u8path(modInfo.modName);
+
+            if (fs::exists(outModPath))
+            {
+                overlayLog(severityLevel::warning, "Mod '%s' already installed. It will be reinstalled.", modInfo.modName);
+                fs::remove_all(outModPath);
+            }
+
+            // Copy the mod files
+            fs::create_directories(outModPath);
+            fs::copy(tempDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+
+            overlayLog(severityLevel::info, "Mod %s installed", modInfo.displayName);
+        }
+
+        LoadModInfoFiles();
+    }
+    catch (const std::exception& e)
+    {
+        log(severityLevel::error, "Failed to install %s: %s", modFileName, e.what());
+        overlayLog(severityLevel::error, "Failed to install %s.\n%s\nCheck the log for details.", modFileName, e.what());
     }
 
-    if (outPathFileList.size() == 1 && outPathFileList[0].is_directory())
-        outPath = outPathFileList[0].path();
+    state.stage = EModInstallStage::None;
+    fs::remove_all(tempDir);
+}
 
-    if(!m_bInstallLegacyMod) {
-        if (exists(outPath / "ModInfo.xml")) {
-            auto mod = new Mod;
-            if (LoadModInfoFile(outPath, mod, true)) {
-                try {
-                    fs::copy(outPath, GetGamePath() / "Mods" / mod->modName,
-                             fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                    log(severityLevel::info, "Mod Installation Succeeded: %s loaded", mod->modName);
-                    DetectNewMods();
-                    InstallMod(mod->modName);
-                    m_ConfigManager.saveDirtyConfigs();
-                    m_ConfigManager.init(this);
-                } catch (std::exception &exc) {
-                    std::cerr << exc.what() << std::endl;
-                    log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
+void ChairManager::UpdateModInstall()
+{
+    switch (m_ModInstallState.stage)
+    {
+    case EModInstallStage::None:
+        break;
+    case EModInstallStage::SelectFile:
+    {
+        WinShell::DialogResult result;
+
+        if (!WinShell::ImUpdateFileOpenDialog("ChooseModFile", &result))
+            break;
+
+        if (result.isOk)
+        {
+            m_ModInstallState.modFilePath = result.filePath;
+            m_ModInstallState.isLegacy = boost::iequals(result.filePath.extension().u8string(), ".pak");
+
+            if (m_ModInstallState.isLegacy)
+            {
+                // This is a legacy mod. Ask for name.
+                ImGui::OpenPopup("LegacyModInstallName");
+                m_ModInstallState.legacyModName = result.filePath.stem().u8string();
+                m_ModInstallState.stage = EModInstallStage::LegacyModPopup;
+            }
+            else
+            {
+                // Native mod. Install it.
+                InstallModFromState();
+            }
+        }
+        else
+        {
+            m_ModInstallState.stage = EModInstallStage::None;
+        }
+
+        break;
+    }
+    case EModInstallStage::LegacyModPopup:
+    {
+        if (ImGui::BeginPopupModal("LegacyModInstallName"))
+        {
+            ImGui::Text("You are installing a legacy (pre-Chairloader) mod.");
+            ImGui::Text("Please, enter the mod's name");
+            ImGui::PushItemWidth(-1);
+            ImGui::InputText("##modName", &m_ModInstallState.legacyModName);
+            ImGui::PopItemWidth();
+
+            bool isValid = false;
+
+            if (!boost::regex_match(m_ModInstallState.legacyModName, fileNameRegex))
+            {
+                ImGui::TextColored(ImVec4(1, 0, 0, 1), "Name is not valid");
+                isValid = false;
+            }
+            else
+            {
+                fs::path modsDir = GetGamePath() / "Mods";
+                fs::path legacyModsDir = modsDir / "Legacy";
+                fs::path outModPath = legacyModsDir / fs::u8path(m_ModInstallState.legacyModName);
+
+                if (fs::exists(outModPath))
+                {
+                    ImGui::TextColored(ImVec4(1, 1, 0, 1), "Mod with this name already exists. It will be reinstalled.");
+                    isValid = true;
+                }
+                else
+                {
+                    ImGui::NewLine(); // Space for error text
+                    isValid = true;
                 }
             }
-        } else {
-            log(severityLevel::error, "Mod Installation Failed: No ModInfo.xml file found");
+
+            ImGui::BeginDisabled(!isValid);
+            if (ImGui::Button("Install"))
+                InstallModFromState();
+            ImGui::EndDisabled();
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Cancel"))
+                m_ModInstallState.stage = EModInstallStage::None;
+
+            ImGui::EndPopup();
         }
-    } else {
-        if (exists(outPath)) {
-            try {
-                auto BaseModFolder = fileName.filename().replace_extension("");
-                log(severityLevel::info, "Installing Legacy Mod: %s", BaseModFolder.u8string().c_str());
-                fs::copy(outPath, GetGamePath() / "Mods" / "Legacy" / BaseModFolder,
-                         fs::copy_options::recursive | fs::copy_options::overwrite_existing);
-                log(severityLevel::info, "Mod Installation Succeeded: %s loaded", BaseModFolder.u8string().c_str());
-                loadModInfoFiles();
-            } catch (std::exception &exc) {
-                std::cerr << exc.what() << std::endl;
-                log(severityLevel::error, "Mod Installation Failed: %s", exc.what());
-            }
-        } else {
-            log(severityLevel::error, "Mod Installation Failed: file not extracted");
-        }
+        break;
     }
-    fs::remove_all(tempDir);
+    }
 }
 
 void ChairManager::EnableMod(std::string modName, bool enabled) {
     auto mod = std::find(ModList.begin(), ModList.end(),modName);
     if(mod != ModList.end()) {
-        if(mod->installed)
-            mod->enabled = enabled;
+        mod->enabled = enabled;
     }
 }
 
@@ -1880,45 +1899,9 @@ void ChairManager::createChairloaderConfigFile() {
     }
 }
 
-bool ChairManager::verifyChairloaderInstalled() {
-    try{
-        // Check for installed Chairloader binaries
-        for (const char* fileName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderBinaries())
-        {
-            if (!fs::exists(GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameBinDir() / fileName))
-                return false;
-        }
-
-        // Check for extracted PreyFiles
-        // TODO 2023-08-30: Remove all hardcoded PreyFiles
-        if (!fs::exists(fs::path("PreyFiles") / PREDITOR_FILES_EXTRACTED))
-            return false;
-
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while verifying chairloader: %s", exception.what());
-        return false;
-    }
-}
-
-bool ChairManager::verifyDefaultFileStructure() {
-    try {
-        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
-        {
-            if (!fs::is_directory(GetGamePath() / dirName))
-                return false;
-        }
-
-        return true;
-    } catch (std::exception & exception){
-        overlayLog(severityLevel::error, "Exception while verifying default file structure: %s", exception.what());
-        return false;
-    }
-}
-
 void ChairManager::createDefaultFileStructure() {
     try {
-        for (const char* dirName : ChairManager::Get().GetGamePathUtil()->GetRequiredChairloaderDirs())
+        for (const char* dirName : GetGamePathUtil().GetRequiredChairloaderDirs())
         {
             fs::create_directories(GetGamePath() / dirName);
         }
@@ -1953,7 +1936,7 @@ void ChairManager::Init() {
     log(severityLevel::info, "%s", foundMods);
     std::ofstream ofs(m_LogFilePath, std::fstream::out | std::fstream::trunc);
     ofs.close();
-    loadModInfoFiles();
+    LoadModInfoFiles();
     ModNameToDisplayName.clear();
     for(auto & mod: ModList){
         ModNameToDisplayName.insert(std::pair(mod.modName, mod.displayName));
@@ -2039,44 +2022,24 @@ void ChairManager::DrawDebug() {
             if(ImGui::Button("Install Updates")){
                 UpdateHandler::asyncInstallUpdate();
             }
-            static bool updateAvailable;
+
             if(ImGui::Button("Check for Updates")){
-                updateAvailable = UpdateHandler::isUpdateAvailable();
+                StartVersionCheckTask();
             }
-            ImGui::BeginDisabled();
-            ImGui::Checkbox("Update Available", &updateAvailable);
-            ImGui::EndDisabled();
 
             if(ImGui::Button("Switch to update wizard")){
                 SwitchToUpdateWizard();
             }
+
             ImGui::Text("ETAG:");
             ImGui::Text("%s", m_githubETag.c_str());
-            static std::string newETag;
-            ImGui::InputText("New ETAG", &newETag);
-            if(ImGui::Button("Set ETAG")){
-                setETag(newETag);
-            }
         }
         if(ImGui::CollapsingHeader("Multi Platform Support")){
-            static int i = 0;
-            if(ImGui::RadioButton("Steam", &i, 0)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Steam);
-            }
-            if(ImGui::RadioButton("GOG", &i, 1)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Gog);
-            }
-            if(ImGui::RadioButton("Epic", &i, 2)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Epic);
-            }
-            if(ImGui::RadioButton("Microsoft Store", &i, 3)){
-                ChairManager::Get().GetGamePathUtil()->SetGamePlatform(GamePath::GamePlatform::Microsoft);
-            }
-            ImGui::Text("GAME BIN: %s", ChairManager::Get().GetGamePathUtil()->GetGameBinDir());
-            ImGui::Text("GAME EXE: %s", ChairManager::Get().GetGamePathUtil()->GetGameExePath());
-            ImGui::Text("GAME DLL: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPath());
-            ImGui::Text("GAME PDB: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllPDBPath());
-            ImGui::Text("GAME BACKUP: %s", ChairManager::Get().GetGamePathUtil()->GetGameDllBackupPath());
+            ImGui::Text("GAME BIN: %s", GetGamePathUtil().GetGameBinDir());
+            ImGui::Text("GAME EXE: %s", GetGamePathUtil().GetGameExePath());
+            ImGui::Text("GAME DLL: %s", GetGamePathUtil().GetGameDllPath());
+            ImGui::Text("GAME PDB: %s", GetGamePathUtil().GetGameDllPDBPath());
+            ImGui::Text("GAME BACKUP: %s", GetGamePathUtil().GetGameDllBackupPath());
         }
         ImGui::EndTabItem();
 
@@ -2242,7 +2205,7 @@ void ChairManager::DrawDeployScreen(bool *pbIsOpen) {
     }
 }
 
-std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWizard)
+std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWizard, ILogger* pLogger)
 {
     fs::path chairManagerDir = fs::current_path();
     std::vector<ChairMerger::Mod> modsForMerging;
@@ -2257,33 +2220,35 @@ std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWiza
 
     if (!forInstallWizard)
     {
-        // Legacy mods
-        for (const std::string& modName : LegacyModList)
-        {
-            ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
-            mergedMod.type = ChairMerger::EModType::Legacy;
-            mergedMod.modName = "Chairloader";
-            mergedMod.dataPath = GetGamePath() / "Mods/Legacy" / modName;
-        }
-
-        // Native mods
         for (const Mod& mod : ModList)
         {
             if (!mod.enabled)
                 continue;
 
             ChairMerger::Mod& mergedMod = modsForMerging.emplace_back();
-            mergedMod.type = ChairMerger::EModType::Native;
-            mergedMod.modName = mod.modName;
-            mergedMod.dataPath = mod.path / "Data";
 
-            ModConfig& modConfig = GetConfigManager()->getModConfig(mod.modName);
-
-            // May be null if config fails to load
-            if (modConfig.configDoc)
-                mergedMod.config.reset(*modConfig.configDoc);
+            if (mod.isLegacyMod)
+            {
+                // Legacy mod
+                mergedMod.type = ChairMerger::EModType::Legacy;
+                mergedMod.modName = mod.modName;
+                mergedMod.dataPath = mod.path;
+            }
             else
-                Log(severityLevel::error, "Mod '%s' config is null!", mod.modName);
+            {
+                // Native mod
+                mergedMod.type = ChairMerger::EModType::Native;
+                mergedMod.modName = mod.modName;
+                mergedMod.dataPath = mod.path / "Data";
+
+                ModConfig& modConfig = GetConfigManager()->getModConfig(mod.modName);
+
+                // May be null if config fails to load
+                if (modConfig.configDoc)
+                    mergedMod.config.reset(*modConfig.configDoc);
+                else
+                    Log(severityLevel::error, "Mod '%s' config is null!", mod.modName);
+            }
         }
     }
 
@@ -2292,7 +2257,7 @@ std::unique_ptr<ChairMerger> ChairManager::CreateChairMerger(bool forInstallWiza
         chairManagerDir / "PreyFiles",
         chairManagerDir / RUNTIME_DATA_DIR / "TempMerger",
         GetGamePath(),
-        this
+        pLogger ? pLogger : this
     );
 
     pMerger->SetMods(std::move(modsForMerging));
@@ -2323,28 +2288,19 @@ void ChairManager::RunAsyncDeploy() {
     m_pMergerTask->future = m_pMergerTask->pMerger->DeployAsync();
 }
 
-void ChairManager::OpenInstallModDialog(bool isLegacy)
+void ChairManager::OpenInstallModDialog()
 {
-    m_bInstallLegacyMod = isLegacy;
     WinShell::DialogOptions fileDialogOpts;
-
-    if (!m_bInstallLegacyMod)
-    {
-        fileDialogOpts.title = "Choose Mod File...";
-        fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip)", "*.zip" });
-    }
-    else
-    {
-        fileDialogOpts.title = "Choose Legacy Mod File...";
-        fileDialogOpts.fileTypes.push_back({ "Legacy Mod File (*.pak)", "*.pak" });
-    }
+    fileDialogOpts.title = "Choose Mod File...";
+    fileDialogOpts.fileTypes.push_back({ "Mod Archive (*.zip, *.pak)", "*.zip;*.pak" });
 
     WinShell::ImShowFileOpenDialog("ChooseModFile", fileDialogOpts);
+    m_ModInstallState.stage = EModInstallStage::SelectFile;
 }
 
 bool ChairManager::IsUpdateAvailable()
 {
-    return VersionCheck::getLatestChairloaderVersion() > VersionCheck::getInstalledChairloaderVersion();
+    return m_LatestVersionFromGitHub.IsValid() && m_LatestVersionFromGitHub > VersionCheck::getInstalledChairloaderVersion();
 }
 
 void ChairManager::SwitchToUninstallWizard() {
@@ -2435,9 +2391,45 @@ std::string ChairManager::GetDisplayName(std::string modName) {
 //    return std::string();
 }
 
-bool ChairManager::DeployForInstallWizard(std::string& errorMessage) {
+void ChairManager::SetGamePathFromWizard(const fs::path& gamePath)
+{
+    log(severityLevel::info, "User selected game path: %s", gamePath.u8string());
+    SetGamePath(gamePath);
+    log(severityLevel::info, "Game platform: %s", m_GamePath.GetGamePlatformString());
+    saveModManagerConfigFile();
+}
+
+bool ChairManager::DeployForInstallWizard(const DeployLogCallback& logFunc, std::string& errorMessage) {
     // This is called from a worker thread.
-    std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true);
+    class CallbackLogger : public ILogger
+    {
+    public:
+        CallbackLogger(const DeployLogCallback& callback)
+        {
+            m_fnCallback = callback;
+        }
+
+        // ILogger
+        virtual void LogString(severityLevel level, std::string_view str) override
+        {
+            ChairManager::Get().LogString(level, str);
+
+            if (level >= severityLevel::info)
+                m_fnCallback(str);
+        }
+
+        virtual void OverlayLogString(severityLevel level, std::string_view str) override
+        {
+            // Not supported
+            std::abort();
+        }
+
+    private:
+        DeployLogCallback m_fnCallback;
+    };
+
+    CallbackLogger logger(logFunc);
+    std::unique_ptr<ChairMerger> pMerger = CreateChairMerger(true, &logger);
     pMerger->Deploy();
     errorMessage = pMerger->GetDeployFailedMessage();
     return !pMerger->DeployFailed();
@@ -2466,7 +2458,7 @@ void ChairManager::launchGame() {
     }
 
     // Assemble command line
-    fs::path exePath = GetGamePath() / ChairManager::Get().GetGamePathUtil()->GetGameExePath();
+    fs::path exePath = GetGamePath() / GetGamePathUtil().GetGameExePath();
     std::wstring cmdLine = exePath.wstring();
 
     for (const std::wstring& i : args)
@@ -2561,7 +2553,7 @@ void ChairManager::restoreStartupCinematics() {
 }
 
 const fs::path &ChairManager::GetGamePath() {
-    return m_pGamePath->GetGamePath();
+    return m_GamePath.GetGamePath();
 }
 
 fs::path ChairManager::GetConfigPath()
@@ -2588,7 +2580,15 @@ std::vector<std::string> ChairManager::GetModNames()
 
 std::vector<std::string> ChairManager::GetLegacyModNames()
 {
-    return LegacyModList;
+    std::vector<std::string> list;
+
+    for (const Mod& mod : ModList)
+    {
+        if (mod.isLegacyMod)
+            list.push_back(mod.modName);
+    }
+
+    return list;
 }
 
 const std::vector<Mod>& ChairManager::GetMods() const

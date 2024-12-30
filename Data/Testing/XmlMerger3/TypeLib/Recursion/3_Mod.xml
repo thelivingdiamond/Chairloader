@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Root>
+    <A>
+        <B>
+            <A aAttr1="aVal1_3_Mod" />
+        </B>
+    </A>
+</Root>

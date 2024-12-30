@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkPropertyProfileLibrary">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="DisruptionProfiles">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkDisruptionProfile">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkDisruptionProfileIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+
+                            <!-- Not required because the first item is "DISABLED" with no other attributes -->
+                            <Attribute name="DisruptSignal" type="ArkSignalId" />
+                            <Attribute name="InterferenceSignal" type="ArkSignalId" />
+                            <Attribute name="DisruptThreshold" type="float" />
+                            <Attribute name="DisruptMaxAmount" type="float" />
+                            <Attribute name="DisruptDecayRate" type="float" />
+                            <Attribute name="DisruptSparkRate" type="float" />
+                            <Attribute name="DisruptSparkVariation" type="float" />
+                            <Attribute name="InterferenceThreshold" type="float" />
+                            <Attribute name="InterferenceMaxAmount" type="float" />
+                            <Attribute name="InterferenceDecayRate" type="float" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="LightDisruptionProfiles">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkLightDisruptionProfile">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkLightDisruptionProfileIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="InterferenceRampIn" type="float" />
+                            <Attribute name="InterferenceRampInVariation" type="float" />
+                            <Attribute name="InterferenceMaxBrightness" type="float" />
+                            <Attribute name="InterferenceMinBrightnessVariation" type="float" />
+                            <Attribute name="InterferenceMaxBrightnessVariation" type="float" />
+                            <Attribute name="InterferenceMinBrightness" type="float" />
+                            <Attribute name="InterferenceDarkDuration" type="float" />
+                            <Attribute name="InterferenceBrightDuration" type="float" />
+                            <Attribute name="InterferenceBrightDurationVariation" type="float" />
+                            <Attribute name="InterferenceDarkDurationVariation" type="float" />
+                            <Attribute name="InterferenceRampOut" type="float" />
+                            <Attribute name="InterferenceRampOutVariation" type="float" />
+                            <Attribute name="InterferenceVFXThreshold" type="float"/>
+                            <Attribute name="DisruptionBurstMultiplier" type="float" />
+                            <Attribute name="DisruptionBurstTransitionTime" type="float" />
+                            <Attribute name="InterferencePrimaryDarkWeight" type="float" />
+                            <Attribute name="InterferenceSecondaryDarkDuration" type="float" />
+                            <Attribute name="InterferenceSecondaryDarkWeight" type="float" />
+                            <Attribute name="InterferenceSecondaryDarkDurationVariation" type="float" />
+                            <Attribute name="InterferenceSecondaryMinBrightness" type="float" />
+                            <Attribute name="InterferenceSecondaryMinBrightnessVariation" type="float" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

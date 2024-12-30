@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<Root
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey"
+    xmlns:ch="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Prey https://thelivingdiamond.github.io/Chairloader/Xsd/Prey/.xsd https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MetaAttributes.xsd">
+    <A
+        ch:index="1000"
+        aAttr1="aVal1_1"
+        aAttr2="aVal2_1" />
+    <A
+        ch:index="2000"
+        aAttr1="aVal1_2"
+        aAttr2="aVal2_2" />
+    <A
+        ch:index="3000"
+        aAttr1="aVal1_3"
+        aAttr2="aVal2_3" />
+    <A
+        ch:index="4000"
+        aAttr1="aVal1_4"
+        aAttr2="aVal2_4" />
+    <Mission
+        ch:index="5000"
+        linkedEntity="$(EntityId:333)">
+        <Objects>
+            <Object EntityGuid="000" />
+            <Entity EntityGuid="111" EntityId="1" />
+            <Entity EntityGuid="222" EntityId="3">
+                <EntityLinks>
+                    <Link Name="SomeName" TargetId="$(EntityId:333)" />
+                </EntityLinks>
+            </Entity>
+            <Entity EntityGuid="333" EntityId="2">
+                <EntityLinks>
+                    <Link Name="SomeName1" TargetId="$(EntityId:222)" />
+                    <Link Name="SomeName2" TargetId="$(EntityId:111)" />
+                    <Link Name="InvalidLink" TargetId="10" />
+                </EntityLinks>
+            </Entity>
+        </Objects>
+    </Mission>
+</Root>

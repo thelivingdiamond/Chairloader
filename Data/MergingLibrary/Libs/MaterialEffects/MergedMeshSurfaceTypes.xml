@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="MergedMeshSurfaceTypes">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="SurfaceType">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Audio">
+                        <Attributes>
+                            <Attribute name="atl_trigger" type="string" />
+                            <Attribute name="atl_rtpc" type="string" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

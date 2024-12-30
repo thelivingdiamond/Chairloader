@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkDistractions">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Distractions">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="Distraction">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkDistractorIdDef" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="Debug" type="boolString" required="true" />
+                            <Attribute name="IgnoreNpcFacingCheck" type="boolString" required="true" />
+                            <Attribute name="OnUseCooldown" type="float" required="true" />
+                            <Attribute name="CanBeUsedInZeroG" type="boolString" required="true" />
+                            <Attribute name="Reusable" type="boolString" required="true" />
+                            <Attribute name="SkipMovement" type="boolString" required="true" />
+                            <Attribute name="CanBeSimultaneous" type="boolString" required="true" />
+                            <Attribute name="CanRetreatTo" type="boolString" required="true" />
+                            <Attribute name="TriggersAreaCooldown" type="boolString" required="true" />
+                            <Attribute name="UsesAreaCooldown" type="boolString" required="true" />
+                            <Attribute name="TryDistractRateSec" type="float" required="true" />
+                            <Attribute name="MaxDistractDistance" type="float" required="true" />
+                            <Attribute name="MaxDistractDistanceVertical" type="float" required="true" />
+                            <Attribute name="MaxDistractionAngleDegreesOffForward" type="float" required="true" />
+                            <Attribute name="MinDuration" type="float" required="true" />
+                            <Attribute name="MaxDuration" type="float" required="true" />
+                            <Attribute name="NpcUseColdown" type="float" required="true" />
+                            <Attribute name="MinHeightDifference" type="float" required="true" />
+                            <Attribute name="MaxHeightDifference" type="float" required="true" />
+                            <Attribute name="UseableByTag" type="ArkMetaTagId" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="DistractionAnimation">
+                                <Attributes>
+                                    <Attribute name="Fragment" type="string" />
+                                    <Attribute name="Type" type="int32" required="true" />
+                                    <Attribute name="LoopMinTime" type="float" />
+                                    <Attribute name="LoopMaxTime" type="float" />
+                                    <Attribute name="HoverAddRootMotion" type="boolString" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="DistractionEvent">
+                                <Attributes>
+                                    <Attribute name="Event" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="DistractionLookAt">
+                                <Attributes>
+                                    <Attribute name="LookAtRelativePosX" type="float" required="true" />
+                                    <Attribute name="LookAtRelativePosY" type="float" required="true" />
+                                    <Attribute name="LookAtRelativePosZ" type="float" required="true" />
+                                    <Attribute name="Mode" type="int32" required="true" />
+                                </Attributes>
+                            </Node>
+                            
+                            <Node name="DistractionPositioning">
+                                <Attributes>
+                                    <Attribute name="MinValidStandRadius" type="float" required="true" />
+                                    <Attribute name="MaxValidStandRadius" type="float" required="true" />
+                                    <Attribute name="Mode" type="int32" required="true" />
+                                    <Attribute name="MoveSpeed" type="float" required="true" />
+                                    <Attribute name="AngleOffset" type="float" required="true" />
+                                    <Attribute name="ValidStandAngle" type="float" required="true" />
+                                    <Attribute name="PositionRelativePosX" type="float" />
+                                    <Attribute name="PositionRelativePosY" type="float" />
+                                    <Attribute name="PositionRelativePosZ" type="float" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="LookAtModes">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Mode">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Mode" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="PositionModes">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Mode">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Mode" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="PositionMoveSpeed">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="MoveSpeed">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="MoveSpeed" type="float" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="FragmentTypes">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Type">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Type" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="DistractorLifetimes">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Lifetime">
+                        <Attributes>
+                            <Attribute name="Name" type="string" required="true" />
+                            <Attribute name="Value" type="int32" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

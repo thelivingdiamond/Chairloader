@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="SearchHuntParams">
+        <Attributes />
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="HuntPosSpawnTime" textType="float"><Attributes /></Node>
+            <Node name="HuntPosSpawnRangeMin" textType="float"><Attributes /></Node>
+            <Node name="HuntPosSpawnRangeMax" textType="float"><Attributes /></Node>
+            <Node name="MaxHuntPositions" textType="int32"><Attributes /></Node>
+            <Node name="HuntNavAgentTypeName" textType="string"><Attributes /></Node>
+            <Node name="HuntPosHorizontalRadius" textType="float"><Attributes /></Node>
+            <Node name="HuntPosVerticalHeight" textType="float"><Attributes /></Node>
+            <Node name="HuntFocusPosTolerance" textType="float"><Attributes /></Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

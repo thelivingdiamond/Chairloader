@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Pairs">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="FP" />
+                <ChildAttribute name="TP" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="Pair">
+                <Attributes>
+                    <Attribute name="FP" type="uint64" required="true" readOnly="true" />
+                    <Attribute name="TP" type="uint64" required="true" readOnly="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

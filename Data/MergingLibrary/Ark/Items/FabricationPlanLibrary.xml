@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkFabricationPlans">
+        <Attributes>
+            <Attribute name="XLargeRawMaterialModel" type="string" required="true" />
+            <Attribute name="LargeRawMaterialModel" type="string" required="true" />
+            <Attribute name="MediumRawMaterialModel" type="string" required="true" />
+            <Attribute name="SmallRawMaterialModel" type="string" required="true" />
+            <Attribute name="SmallRawMaterialLongAnim" type="ArkMaterialAnimationId" required="true" />
+            <Attribute name="MediumRawMaterialLongAnim" type="ArkMaterialAnimationId" required="true" />
+            <Attribute name="LargeRawMaterialLongAnim" type="ArkMaterialAnimationId" required="true" />
+            <Attribute name="XLargeRawMaterialLongAnim" type="ArkMaterialAnimationId" required="true" />
+            <Attribute name="SmallRawMaterialShortAnim" type="ArkMaterialAnimationId" required="true" />
+            <Attribute name="MediumRawMaterialShortAnim" type="ArkMaterialAnimationId" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="FabricationPlans">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="id" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkFabricationPlan">
+                        <Attributes>
+                            <Attribute name="id" type="ArkFabricationPlanIdDef" required="true" readOnly="true" />
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                            <Attribute name="archetype" type="ArchetypeName" required="true" />
+                            <Attribute name="description" type="string" required="true" />
+                            <Attribute name="organicCount" type="int32" required="true" />
+                            <Attribute name="mineralCount" type="int32" required="true" />
+                            <Attribute name="syntheticCount" type="int32" required="true" />
+                            <Attribute name="exoticCount" type="int32" required="true" />
+                            <Attribute name="rawMaterialClass" type="string" required="true" />
+                            <Attribute name="positionOffset" type="Vec3" required="true" />
+                            <Attribute name="rotationOffset" type="Ang3" required="true" />
+                            <Attribute name="useShortAnimation" type="boolString" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

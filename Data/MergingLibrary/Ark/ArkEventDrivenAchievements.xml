@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkEventDrivenAchievementLibrary">
+        <Attributes/>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="EventDrivenAchievements">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="ID" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildConstraints>
+                    <UniqueAttribute name="Name" />
+                </ChildConstraints>
+
+                <ChildNodes>
+                    <Node name="ArkEventDrivenAchievement">
+                        <Attributes>
+                            <Attribute name="ID" type="ArkEventDrivenAchievementId" required="true" readOnly="true" />
+                            <Attribute name="Name" type="string" required="true" readOnly="true" />
+                            <Attribute name="RewardID" type="int32" allowEmpty="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="MetricComparisons">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="Metric" />
+                                        <ChildAttribute name="ComparisonType" />
+                                        <ChildAttribute name="Value" />
+                                    </PrimaryKey>
+                                </Collection>
+
+                                <ChildNodes>
+                                    <Node name="ArkMetricComparison">
+                                        <Attributes>
+                                            <Attribute name="Metric" type="ArkGameMetricId" required="true" readOnly="true" />
+                                            <Attribute name="ComparisonType" type="string" required="true" readOnly="true" />
+                                            <Attribute name="Value" type="int32" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

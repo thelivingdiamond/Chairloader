@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2">
+    <A
+        ch:index="2500"
+        aAttr1="aVal1_2_Mod"
+        ch:arrayMod="Chairloader.UnknownMod" />
+</Root>

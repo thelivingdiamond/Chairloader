@@ -100,7 +100,6 @@ void ChairMergerTestBase::LoadMods()
         mod.author = "Tester";
         mod.loadOrder = modNumber;
         mod.path = modDir;
-        mod.installed = true;
         mod.enabled = true;
         mod.deployed = false;
         mod.hasXML = true;
@@ -156,7 +155,7 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
 {
     if (!fs::exists(expected))
     {
-        ADD_FAILURE() << "Expected file doesn't exist: " << expected.u8string();
+        ADD_FAILURE() << "Unexpected file: " << expected.u8string();
         return false;
     }
 
@@ -203,8 +202,8 @@ bool ChairMergerTestBase::CheckEqualDirectories(const fs::path& expected, const 
         if (dirToCheck.extension() == ".xml")
         {
             // Compare XML
-            pugi::xml_document docExpected = XmlTestUtils::LoadDocument(expected);
-            pugi::xml_document docActual = XmlTestUtils::LoadDocument(dirToCheck);
+            pugi::xml_document docExpected = XmlUtils::LoadDocument(expected);
+            pugi::xml_document docActual = XmlUtils::LoadDocument(dirToCheck);
             return XmlTestUtils::CheckNodesEqual(docExpected, docActual);
         }
         else

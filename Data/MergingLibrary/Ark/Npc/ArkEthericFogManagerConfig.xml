@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="ArkEthericFogManagerConfig">
+        <Attributes>
+            <Attribute name="minDistanceBetweenFragments" type="float" required="true" />
+            <Attribute name="maxNumFragments" type="int32" required="true" />
+            <Attribute name="largeFragmentPreventOverlapRadius" type="float" required="true" />
+        </Attributes>
+    </Node>
+</MergingPolicy>

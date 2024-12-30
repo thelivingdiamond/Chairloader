@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="SurfaceTypes">
+        <Attributes />
+
+        <Collection type="dict">
+            <PrimaryKey>
+                <ChildAttribute name="name" />
+            </PrimaryKey>
+        </Collection>
+
+        <ChildNodes>
+            <Node name="SurfaceType">
+                <Attributes>
+                    <Attribute name="name" type="string" required="true" readOnly="true" />
+                    <Attribute name="type" type="string" />
+                </Attributes>
+
+                <Collection type="replaceOnly" />
+
+                <ChildNodes>
+                    <Node name="Physics">
+                        <Attributes allowUnknown="true">
+                            <Attribute name="can_shatter" type="boolInt" />
+                            <Attribute name="elasticity" type="float" />
+                            <Attribute name="friction" type="float" />
+                            <Attribute name="pierceability" type="float" />
+                            <Attribute name="no_collide" type="boolInt" />
+                            <Attribute name="break_energy" type="float" />
+                            <Attribute name="breakable_2d" type="boolInt" />
+                            <Attribute name="hit_maxdmg" type="float" />
+                            <Attribute name="hit_maxhits" type="int32" />
+                            <Attribute name="hit_points" type="float" />
+                            <Attribute name="hit_radius" type="float" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="BreakageParticles">
+                        <Attributes allowUnknown="true">
+                            <Attribute name="count_per_unit" type="int32" />
+                            <Attribute name="count_scale" type="float" />
+                            <Attribute name="scale" type="float" />
+                            <Attribute name="type" type="string" />
+                            <Attribute name="effect" type="string" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Ark">
+                        <Attributes>
+                            <Attribute name="is_goo" type="boolInt" />
+                            <Attribute name="can_attach_goo" type="boolInt" />
+                            <Attribute name="see_through" type="boolInt" />
+                            <Attribute name="breakable_glass" type="boolInt" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="AI">
+                        <Attributes allowUnknown="true">
+                            <Attribute name="crouchMult" type="float" />
+                            <Attribute name="fFootStepRadius" type="float" />
+                            <Attribute name="fImpactRadius" type="float" />
+                            <Attribute name="fImpactSoundRadius" type="float" />
+                            <Attribute name="movingMult" type="float" />
+                            <Attribute name="proneMult" type="float" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="breakable_2d">
+                        <Attributes allowUnknown="true">
+                            <Attribute name="blast_radius" type="float" />
+                            <Attribute name="cell_size" type="float" />
+                            <Attribute name="filter_angle" type="float" />
+                            <Attribute name="max_patch_tris" type="int32" />
+                            <Attribute name="rigid_body" type="int32" />
+                            <Attribute name="shard_density" type="float" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

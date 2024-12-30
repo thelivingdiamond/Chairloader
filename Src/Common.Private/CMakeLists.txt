@@ -5,6 +5,14 @@ set(SOURCE_FILES
 	BinDiff/BinDiff.cpp
 	BinDiff/BinDiff.h
 
+	# Chairloader
+	Chairloader/Private/GTestMain.inl
+	Chairloader/Private/ModPrefix.h
+	Chairloader/Private/StringUtils.cpp
+	Chairloader/Private/StringUtils.h
+	Chairloader/Private/XmlUtils.cpp
+	Chairloader/Private/XmlUtils.h
+
 	# ChairManager
 	Manager/FileHistory.cpp
 	Manager/FileHistory.h
@@ -22,6 +30,7 @@ set(SOURCE_FILES
 	Manager/ThreadPool.h
 	Manager/PugiUtils.h
 	Manager/SynchronizedData.h
+	Manager/XmlNamespaces.h
 
 	# SHA256
 	SHA256/SHA256.cpp

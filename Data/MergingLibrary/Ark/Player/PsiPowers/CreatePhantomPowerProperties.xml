@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="CreatePhantomPowerProperties">
+        <Attributes />
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <NodeByType name="Common" type="ArkPsiPowerPropertiesCommon" />
+
+            <Node name="Unique">
+                <Attributes>
+                    <Attribute name="RaiseHeight" type="float" required="true" />
+                    <Attribute name="RaiseSpeed" type="float" required="true" />
+                    <Attribute name="RaiseDuration" type="float" required="true" />
+                    <Attribute name="CorpseDamping" type="float" required="true" />
+                    <Attribute name="CorpseGravity" type="float" required="true" />
+                    <Attribute name="CorpseParticleEffect" type="string" required="true" />
+                    <Attribute name="CorpseParticleEffectAttachment" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Levels">
+                <Attributes />
+
+                <Patches>
+                    <AddChildIndex name="ch:index" />
+                </Patches>
+
+                <Collection type="array">
+                    <ChildIndexAttribute name="ch:index" />
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="ArkPsiPowerCreatePhantomProperties">
+                        <Attributes>
+                            <Attribute name="DisplayName" type="string" required="true" />
+                            <Attribute name="Description" type="string" required="true" />
+                            <Attribute name="CooldownDurationSec" type="float" required="true" />
+                            <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="TargetingProperties" type="ArkPsiPowerTargetingComponentProperties" />
+
+                            <Node name="Archetypes">
+                                <Attributes />
+
+                                <Collection type="dict">
+                                    <PrimaryKey>
+                                        <ChildAttribute name="value" />
+                                    </PrimaryKey>
+                                </Collection>
+                                
+
+                                <ChildNodes>
+                                    <Node name="Archetype">
+                                        <Attributes>
+                                            <Attribute name="value" type="ArchetypeName" required="true" readOnly="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

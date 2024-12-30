@@ -104,3 +104,20 @@ TEST(MemoryXmlCache, LockedWrite)
 
     ASSERT_EQ(IXmlCache::EOpenResult::Locked, std::async(std::launch::async, fn).get());
 }
+
+TEST(MemoryXmlCache, DontParse)
+{
+    MemoryXmlCache cache;
+
+    {
+        IXmlCache::ReadLock lock;
+        const pugi::xml_document* pDoc = nullptr;
+        ASSERT_EQ(IXmlCache::EOpenResult::NotFound, cache.TryOpenXmlForReading("test.xml", &pDoc, lock, IXmlCache::DONT_PARSE));
+    }
+
+    {
+        IXmlCache::WriteLock lock;
+        pugi::xml_document* pDoc = nullptr;
+        ASSERT_EQ(IXmlCache::EOpenResult::NotFound, cache.TryOpenXmlForWriting("test.xml", &pDoc, lock, IXmlCache::DONT_PARSE, IXmlCache::DONT_FORMAT));
+    }
+}

@@ -1,0 +1,736 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="PlayerConfig">
+        <Attributes>
+            <Attribute name="quickSelectTimeout" type="float" required="true" />
+            <Attribute name="knockdownLoopDuration" type="float" required="true" />
+            <Attribute name="maxNumDamageIndicators" type="int32" required="true" />
+            <Attribute name="enemyHealthTimeout" type="float" required="true" />
+            <Attribute name="coralSignalPackageId" type="ArkSignalPackageId" required="true" />
+            <Attribute name="coralInteractionRate" type="float" required="true" />
+            <Attribute name="lookAtFarRange" type="float" required="true" />
+            <Attribute name="idleFragmentSpeedThreshold" type="float" required="true" />
+            <Attribute name="targetingAttachment" type="string" required="true" />
+            <Attribute name="criticalHitMetaTags" type="string" required="true" /> <!-- Actually a comma-separated list of ArkMetaTagId -->
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="CQC">
+                <Attributes>
+                    <Attribute name="minDistance" type="float" required="true" />
+                    <Attribute name="postProcessId" type="string" allowEmpty="true" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Helmet">
+                <Attributes>
+                    <Attribute name="signalModifier" type="ArkSignalModifierId" required="true" />
+                    <Attribute name="toleranceX" type="float" required="true" />
+                    <Attribute name="toleranceY" type="float" required="true" />
+                    <Attribute name="catchUpSpeed" type="float" required="true" />
+                    <Attribute name="reactDuration" type="float" required="true" />
+                    <Attribute name="crackSubMatId" type="int32" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Oxygen">
+                        <Attributes>
+                            <Attribute name="startAsphyxiatingAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="stopAsphyxiatingAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="deathFromAsphyxiationAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="asphyxiationAudioRtpc" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="startDepletingOxygenAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="oxygenAmountRtpc" type="string" required="true" />
+                            <Attribute name="stopDepletingOxygenAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="suitPatchedAudioTrigger" type="string" required="true" allowEmpty="true" />
+                        </Attributes>
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="Alarm">
+                                <Attributes>
+                                    <Attribute name="threshold" type="float" required="true" />
+                                    <Attribute name="trigger" type="string" required="true" />
+                                    <Attribute name="stopTrigger" type="string" required="true" allowEmpty="true" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Audio">
+                <Attributes>
+                    <Attribute name="genderSwitch" type="string" required="true" />
+                    <Attribute name="maleState" type="string" required="true" />
+                    <Attribute name="femaleState" type="string" required="true" />
+                    <Attribute name="combatIntensityRtpc" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="combatIntensityEventStartThreshold" type="float" required="true" />
+                    <Attribute name="combatIntensityEventStopThreshold" type="float" required="true" />
+                    <Attribute name="combatSwitch" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="combatOnState" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="combatOffState" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="combatEndTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="setHelmetOnAtmosphere" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="setHelmetOnNoAtmosphere" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="setHelmetOffAtmosphere" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="setHelmetOffNoAtmosphere" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="helmetOn" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="helmetOff" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Health">
+                <Attributes>
+                    <Attribute name="damageAudio" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="deathAudio" type="string" required="true" />
+                    <Attribute name="regenStartAudio" type="string" required="true" />
+                    <Attribute name="regenStopAudio" type="string" required="true" />
+                    <Attribute name="deathMenuDelay" type="float" required="true" />
+                    <Attribute name="deathCharacter" type="string" required="true" />
+                    <Attribute name="lastChanceTimeout" type="float" required="true" />
+                    <Attribute name="lastChanceAudio" type="string" required="true" />
+                </Attributes>
+                
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Feedback">
+                        <Attributes>
+                            <Attribute name="lowHealth" type="float" required="true" />
+                            <Attribute name="nearDeath" type="float" required="true" />
+                            <Attribute name="lowHealthParticle" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="nearDeathParticle" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="nearDeathStingerAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="nearDeathStartAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="nearDeathStopAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="nearDeathIntensityRtpc" type="string" required="true" />
+                            <Attribute name="lowHealthPostEffect" type="ArkPostEffectId" required="true" />
+                            <Attribute name="nearDeathPostEffect" type="ArkPostEffectId" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Pharma">
+                <Attributes>
+                    <Attribute name="expirationWarningDuration" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Radiation">
+                <Attributes>
+                    <Attribute name="mediumThreshold" type="float" required="true" />
+                    <Attribute name="highThreshold" type="float" required="true" />
+                    <Attribute name="lowLevelFlashRate" type="float" required="true" />
+                    <Attribute name="mediumLevelFlashRate" type="float" required="true" />
+                    <Attribute name="highLevelFlashRate" type="float" required="true" />
+                    <Attribute name="radiationAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="radiationAudioTriggerStop" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="radiationPerSecRtpc" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Status">
+                <Attributes>
+                    <Attribute name="hudIconBlinkRate" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Ability">
+                <Attributes>
+                    <Attribute name="partialTyphonThreshold" type="int32" required="true" />
+                    <Attribute name="fullTyphonThreshold" type="int32" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Fatigue">
+                <Attributes>
+                    <Attribute name="fatigueRtpc" type="string" required="true" />
+                    <Attribute name="staminaPercentStartAudio" type="float" required="true" />
+                    <Attribute name="staminaPercentStopAudio" type="float" required="true" />
+                    <Attribute name="showUIPercent" type="float" required="true" />
+                    <Attribute name="startAudioTrigger" type="string" required="true" />
+                    <Attribute name="stopAudioTrigger" type="string" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="LearnedNames">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="researchTopic" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="LearnedName">
+                        <Attributes>
+                            <Attribute name="researchTopic" type="ArkResearchTopicId" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Awareness">
+                <Attributes>
+                    <Attribute name="proxyDistance" type="float" required="true" />
+                    <Attribute name="obscuredButShownDuration" type="float" required="true" />
+                    <Attribute name="minTimeToBeShown" type="float" required="true" />
+                    <Attribute name="fullAwarenessDuration" type="float" required="true" />
+                    <Attribute name="fullAlphaDistance" type="float" required="true" />
+                    <Attribute name="zeroAlphaDistance" type="float" required="true" />
+                    <Attribute name="fullScaleDistance" type="float" required="true" />
+                    <Attribute name="minScaleDistance" type="float" required="true" />
+                    <Attribute name="minScale" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="MarkedEnemies">
+                <Attributes>
+                    <Attribute name="durationToLoseTarget" type="float" required="true" />
+                    <Attribute name="markAddedAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="hiddenMarkAddedAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="markRemovedAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="fullAlphaDistance" type="float" required="true" />
+                    <Attribute name="zeroAlphaDistance" type="float" required="true" />
+                    <Attribute name="maxAngleForLabel" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="ArkPlayerScopeComponent">
+                <Attributes>
+                    <Attribute name="PostProcessId" type="ArkPostEffectId" required="true" />
+                    <Attribute name="ZoomDelta" type="float" required="true" />
+                    <Attribute name="FullyZoomedHFOV" type="float" required="true" />
+                    <Attribute name="DefaultZoomHFOV" type="float" required="true" />
+                    <Attribute name="DefaultZoomDuration" type="float" required="true" />
+                    <Attribute name="ZoomingInAudioTriggerName" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="ZoomingOutAudioTriggerName" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="OpenAudioTriggerName" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="CloseAudioTriggerName" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                </ChildNodes>
+            </Node>
+
+            <Node name="Flashlight">
+                <Attributes>
+                    <Attribute name="archetype" type="ArchetypeName" required="true" />
+                    <Attribute name="audio" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="attachment" type="string" required="true" />
+                    <Attribute name="dimStart" type="float" required="true" />
+                    <Attribute name="minDimAmount" type="float" required="true" />
+                    <Attribute name="dimRangeDeltaRate" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="DimRanges">
+                        <Attributes />
+
+                        <Patches>
+                            <AddChildIndex name="ch:index" />
+                        </Patches>
+
+                        <Collection type="array">
+                            <ChildIndexAttribute name="ch:index" />
+                        </Collection>
+
+                        <ChildNodes>
+                            <Node name="DimRange">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                    <Attribute name="diffuseMultiplier" type="float" required="true" />
+                                    <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Movement">
+                <Attributes>
+                    <Attribute name="climbHorizontalFromEdgeProbeDistance" type="float" required="true" />
+                    <Attribute name="climbVerticalReachDistance" type="float" required="true" />
+                    <Attribute name="climbVerticalNormalMaxAngle" type="float" required="true" />
+                    <Attribute name="airControl" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="CameraRoll">
+                        <Attributes>
+                            <Attribute name="maxAngle" type="float" required="true" />
+                            <Attribute name="increaseSpeed" type="float" required="true" />
+                            <Attribute name="recoverySpeed" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Ground">
+                        <Attributes>
+                            <Attribute name="preLandJumpWindow" type="float" required="true" />
+                            <Attribute name="turnTravelAngle" type="float" required="true" />
+                            <Attribute name="turnTravelSpeed" type="float" required="true" />
+                            <Attribute name="leanPitchLimit" type="float" required="true" />
+                            <Attribute name="leanYawLimit" type="float" required="true" />
+                            <Attribute name="leanCancelSpeed" type="float" required="true" />
+                            <Attribute name="rotationCatchUpAngleThreshold" type="float" required="true" />
+                            <Attribute name="jumpWindow" type="float" required="true" />
+                            <Attribute name="groundProbeDistance" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Sprint">
+                                <Attributes>
+                                    <Attribute name="accelerationDuration" type="float" required="true" />
+                                    <Attribute name="startAudioTrigger" type="string" required="true" allowEmpty="true" />
+                                    <Attribute name="fullyAcceleratedAudioTrigger" type="string" required="true" allowEmpty="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="Stumble">
+                                <Attributes>
+                                    <Attribute name="minXAdd" type="float" required="true" />
+                                    <Attribute name="maxXAdd" type="float" required="true" />
+                                    <Attribute name="minYScale" type="float" required="true" />
+                                    <Attribute name="maxYScale" type="float" required="true" />
+                                    <Attribute name="minListDuration" type="float" required="true" />
+                                    <Attribute name="maxListDuration" type="float" required="true" />
+                                    <Attribute name="stumbleDurationMin" type="float" required="true" />
+                                    <Attribute name="stumbleDurationMax" type="float" required="true" />
+                                    <Attribute name="stumbleBreakDurationMin" type="float" required="true" />
+                                    <Attribute name="stumbleBreakDurationMax" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Climb">
+                        <Attributes>
+                            <Attribute name="mediumToHighThreshold" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Jump">
+                        <Attributes>
+                            <Attribute name="minJumpHeight" type="float" required="true" />
+                            <Attribute name="maxJumpDuration" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Fall">
+                        <Attributes>
+                            <Attribute name="fatalSpeed" type="float" required="true" />
+                            <Attribute name="safeSpeed" type="float" required="true" />
+                            <Attribute name="traumaDmgSpeed" type="float" required="true" />
+                            <Attribute name="package" type="ArkSignalPackageId" required="true" />
+                            <Attribute name="bigBumpSpeed" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="ZeroG">
+                        <Attributes>
+                            <Attribute name="bodyCollisionPackageId" type="ArkSignalPackageId" required="true" />
+                            <Attribute name="headCollisionPackageId" type="ArkSignalPackageId" required="true" />
+                            <Attribute name="maxCollisionAngle" type="float" required="true" />
+                            <Attribute name="gameNoiseType" type="ArkGameNoiseTypeId" required="true" />
+                            <Attribute name="gameNoiseLoudness" type="ArkGameNoiseLoudnessId" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="Normal" type="ArkPlayerZeroGMode" />
+                            <NodeByType name="Cruise" type="ArkPlayerZeroGMode" />
+                            <NodeByType name="Sprint" type="ArkPlayerZeroGMode" />
+
+                            <Node name="Roll">
+                                <Attributes>
+                                    <Attribute name="velocity" type="float" required="true" />
+                                    <Attribute name="acceleration" type="float" required="true" />
+                                    <Attribute name="deceleration" type="float" required="true" />
+                                    <Attribute name="yInputDeadzone" type="float" required="true" /> 
+                                </Attributes>
+                            </Node>
+
+                            <Node name="Align">
+                                <Attributes>
+                                    <Attribute name="distance" type="float" required="true" />
+                                    <Attribute name="rate" type="float" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="Effect">
+                                <Attributes>
+                                    <Attribute name="name" type="string" required="true" />
+                                </Attributes>
+                            </Node>
+
+                            <Node name="OngoingLegend">
+                                <Attributes />
+                                <Collection type="nodeDict" />
+
+                                <ChildNodes>
+                                    <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Smoke">
+                        <Attributes>
+                            <Attribute name="speed" type="float" required="true" />
+                            <Attribute name="inertia" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Shift">
+                        <Attributes>
+                            <Attribute name="speed" type="float" required="true" />
+                            <Attribute name="shiftForwardFov" type="float" required="true" />
+                            <Attribute name="shiftBackwardFov" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Lift">
+                        <Attributes>
+                            <Attribute name="postEffectId" type="ArkPostEffectId" required="true" />
+                            <Attribute name="particleEffectPath" type="string" required="true" />
+                            <Attribute name="enterAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="exitAudioTrigger" type="string" required="true" allowEmpty="true" />
+                            <Attribute name="inputMovementSpeed" type="float" required="true" />
+                            <Attribute name="propulsionMovementSpeed" type="float" required="true" />
+                            <Attribute name="upwardDamageSpeed" type="float" required="true" />
+                            <Attribute name="upwardDamagePackageId" type="ArkSignalPackageId" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Death">
+                        <Attributes>
+                            <Attribute name="deathCamProbability" type="float" required="true" />
+                            <Attribute name="deathCamDelay" type="float" required="true" />
+                            <Attribute name="idealDeathCamDistance" type="float" required="true" />
+                            <Attribute name="idealDeathCamAngle" type="float" required="true" />
+                            <Attribute name="deathCamGravityMinAngle" type="float" required="true" />
+                            <Attribute name="timeScale" type="float" required="true" />
+                            <Attribute name="fullSlowDuration" type="float" required="true" />
+                            <Attribute name="rampUpSpeedDuration" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="DeathByRecyclerGrenade">
+                        <Attributes>
+                            <Attribute name="duration" type="float" required="true" />
+                            <Attribute name="effectName" type="string" required="true" />
+                            <Attribute name="scaleName" type="string" required="true" />
+                            <Attribute name="scaleMin" type="float" required="true" />
+                            <Attribute name="scaleMax" type="float" required="true" />
+                            <Attribute name="postVFX" type="ArkPostEffectId" required="true" />
+                            <Attribute name="gammaParam" type="ArkPostEffectParamId" required="true" />
+                            <Attribute name="gammaMin" type="float" required="true" />
+                            <Attribute name="gammaMax" type="float" required="true" />
+                            <Attribute name="brightnessParam" type="ArkPostEffectParamId" required="true" />
+                            <Attribute name="brightnessMin" type="float" required="true" />
+                            <Attribute name="brightnessMax" type="float" required="true" />
+                            <Attribute name="saturationParam" type="ArkPostEffectParamId" required="true" />
+                            <Attribute name="saturationMin" type="float" required="true" />
+                            <Attribute name="saturationMax" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="AutoSave">
+                <Attributes>
+                    <Attribute name="healthThreshold" type="float" required="true" />
+                    <Attribute name="oxygenThreshold" type="float" required="true" />
+                    <Attribute name="blockedBySignalDuration" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="NPCTargeting">
+                <Attributes>
+                    <Attribute name="attackTargetPosHeightPercent" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Weapon">
+                <Attributes>
+                    <Attribute name="weaponCameraSpeedMultiplierAcceleration" type="float" required="true" />
+                    <Attribute name="aimAssistTargetRange" type="float" required="true" />
+                    <Attribute name="gameLogReportWindow" type="float" required="true" />
+                    <Attribute name="sneakAttackAudioTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="criticalHitAudioTrigger" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Input">
+                <Attributes>
+                    <Attribute name="fearNoiseAmplitude" type="float" required="true" />
+                    <Attribute name="mimicGrabMashesRequired" type="float" required="true" />
+                    <Attribute name="sprintCancelForwardThreshold" type="float" required="true" />
+                    <Attribute name="sprintCancelBackwardThreshold" type="float" required="true" />
+                    <Attribute name="sprintCancelStrafeThreshold" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="Rotation">
+                        <Attributes>
+                            <Attribute name="sprintSpeedScale" type="float" required="true" />
+                            <Attribute name="zoomSpeedScale" type="float" required="true" />
+                            <Attribute name="deadzone" type="float" required="true" />
+                            <Attribute name="accelerationThreshold" type="float" required="true" />
+                            <Attribute name="curvePercentSpeed" type="float" required="true" />
+                            <Attribute name="accelerationMaxTurnSpeed" type="float" required="true" />
+                            <Attribute name="accelerationRate" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Camera">
+                <Attributes>
+                    <Attribute name="stanceChangeInterpSpeed" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="RecyclerGrenadeDeath">
+                        <Attributes>
+                            <Attribute name="deathCameraSpeed" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="Lean">
+                        <Attributes>
+                            <Attribute name="angleDegrees" type="float" required="true" />
+                            <Attribute name="offset" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ImpendingDanger">
+                <Attributes>
+                    <Attribute name="bufferRange" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="Propulsion">
+                <Attributes>
+                    <Attribute name="cameraFrequency" type="float" required="true" />
+                    <Attribute name="cameraAmplitude" type="float" required="true" />
+                    <Attribute name="cameraNoise" type="float" required="true" />
+                    <Attribute name="cameraMinFalloff" type="float" required="true" />
+                    <Attribute name="cameraFalloffDuration" type="float" required="true" />
+                    <Attribute name="audioTrigger_start" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="audioTrigger_stop" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="JetPackNoise">
+                        <Attributes>
+                            <Attribute name="type" type="ArkGameNoiseTypeId" required="true" />
+                            <Attribute name="loudness" type="ArkGameNoiseLoudnessId" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Examination">
+                <Attributes>
+                    <Attribute name="maxCameraRotation" type="float" required="true" />
+                    <Attribute name="cameraSpeedMultiplier" type="float" required="true" />
+                    <Attribute name="cameraLerpDuration" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <Node name="WorldUI">
+                        <Attributes>
+                            <Attribute name="viewingBuffer" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Default">
+                        <Attributes>
+                            <Attribute name="distFromTarget" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="Telescope">
+                        <Attributes>
+                            <Attribute name="lerpDuration" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Carry">
+                <Attributes>
+                    <Attribute name="syncSpeed" type="float" required="true" />
+                    <Attribute name="maxPullForce" type="float" required="true" />
+                    <Attribute name="maxPullForceZeroG" type="float" required="true" />
+                    <Attribute name="heightOffset" type="float" required="true" />
+                    <Attribute name="carryLerpSpeed" type="float" required="true" />
+                    <Attribute name="carryLerpSpeedObstructed" type="float" required="true" />
+                    <Attribute name="carryLerpAcceleration" type="float" required="true" />
+                    <Attribute name="carryLerpAccelerationObstructed" type="float" required="true" />
+                    <Attribute name="maxTimeAllowedUnderDesiredLerpVelocity" type="float" required="true" />
+                    <Attribute name="cameraRotationToEntityMinThreshold" type="float" required="true" />
+                    <Attribute name="cameraRotationToEntityMaxThreshold" type="float" required="true" />
+                    <Attribute name="sneakCameraPitchLimit" type="float" required="true" />
+                    <Attribute name="objectLengthRotationLimitScaleMin" type="float" required="true" />
+                    <Attribute name="objectLengthRotationLimitScaleMax" type="float" required="true" />
+                    <Attribute name="emitterDuration" type="float" required="true" />
+                    <Attribute name="opacity" type="float" required="true" />
+                    <Attribute name="breakDistance" type="float" required="true" />
+                    <Attribute name="collisionRestoreTime" type="float" required="true" />
+                </Attributes>
+
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+
+                    <Node name="HoldDurations">
+                        <Attributes>
+                            <Attribute name="leverageI" type="float" required="true" />
+                            <Attribute name="leverageII" type="float" required="true" />
+                            <Attribute name="leverageIII" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+
+                    <Node name="DragCorpse">
+                        <Attributes>
+                            <Attribute name="height" type="float" required="true" />
+                            <Attribute name="distance" type="float" required="true" />
+                            <Attribute name="breakDistance" type="float" required="true" />
+                            <Attribute name="syncSpeed" type="float" required="true" />
+                            <Attribute name="remoteSyncSpeed" type="float" required="true" />
+                        </Attributes>
+
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <Node name="Joints">
+                                <Attributes />
+                                <Collection type="replaceOnly" />
+
+                                <ChildNodes>
+                                    <Node name="Joint">
+                                        <Attributes>
+                                            <Attribute name="name" type="string" required="true" />
+                                        </Attributes>
+                                    </Node>
+                                </ChildNodes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+
+                    <Node name="KickBacks">
+                        <Attributes />
+                        <Collection type="replaceOnly" />
+
+                        <ChildNodes>
+                            <Node name="Level">
+                                <Attributes>
+                                    <Attribute name="value" type="int32" required="true" />
+                                </Attributes>
+                            </Node>
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Stats">
+                <Attributes>
+                    <Attribute name="packageFile" type="string" required="true" />
+                </Attributes>
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Stat">
+                        <Attributes>
+                            <Attribute name="name" type="ArkPlayerStatNameDef" required="true" readOnly="true" />
+                            <Attribute name="value" type="float" required="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="ArkLiveTranscribeComponent">
+                <Attributes>
+                    <Attribute name="startNextIntervalMin" type="float" required="true" />
+                    <Attribute name="startNextIntervalMax" type="float" required="true" />
+                    <Attribute name="ringTime" type="float" required="true" />
+                    <Attribute name="startRingTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="answerCallTrigger" type="string" required="true" allowEmpty="true" /> 
+                </Attributes>
+            </Node>
+
+            <Node name="ArkAudioLogComponent">
+                <Attributes>
+                    <Attribute name="loadTime" type="float" required="true" />
+                    <Attribute name="loadTrigger" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="loadedTrigger" type="string" required="true" allowEmpty="true" /> 
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

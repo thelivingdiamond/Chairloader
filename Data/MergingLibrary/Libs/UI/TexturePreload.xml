@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Preload">
+        <Attributes />
+        <Collection type="nodeDict" allowAnyChildrenInXsd="true" />
+
+        <ChildNodes>
+            <Node name=".*" nameRegex="true" recursive="true">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildName />
+                        <ChildAttribute name="file" />
+                        <ChildAttribute name="texture" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Preload">
+                        <Attributes>
+                            <Attribute name="file" type="string" />
+                            <Attribute name="texture" type="string" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

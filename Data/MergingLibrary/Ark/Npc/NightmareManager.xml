@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="NightmareManager">
+        <Attributes>
+            <Attribute name="NightmareArchetypePath" type="ArchetypeName" required="true" />
+            <Attribute name="NightmareHeatSpawnThreshold" type="float" required="true" />
+            <Attribute name="NightmareHeatLeakPerMinute" type="float" required="true" />
+            <Attribute name="NightmareSpawnDelayTimer" type="float" required="true" />
+            <Attribute name="NightmarePostSpawnFxDelayTimer" type="float" required="true" />
+            <Attribute name="NightmareSpawnSfx" type="string" required="true" />
+            <Attribute name="NightmareRoarSfx" type="string" required="true" />
+            <Attribute name="CameraShakeSfx" type="string" required="true" />
+            <Attribute name="RespawnCooldownOnSpawnInMinutes" type="float" required="true" />
+            <Attribute name="RespawnCooldownOnDeathInMinutes" type="float" required="true" />
+            <Attribute name="PassiveCooldownInitialCooldownOnEnableMinutes" type="float" required="true" />
+            <Attribute name="PassiveCooldownOnCombatInMinutes" type="float" required="true" />
+            <Attribute name="PassiveCooldownOnPassiveSpawnMinutes" type="float" required="true" />
+            <Attribute name="OffscreenTimeRequiredToSpawn" type="float" required="true" />
+            <Attribute name="ShakeRangeMin" type="float" required="true" />
+            <Attribute name="ShakeRangeMax" type="float" required="true" />
+            <Attribute name="ShakeDistance" type="float" required="true" />
+            <Attribute name="ShakeAngle" type="Ang3" required="true" />
+            <Attribute name="ShakeShift" type="Vec3" required="true" />
+            <Attribute name="ShakeDuration" type="float" required="true" />
+            <Attribute name="ShakeSpeed" type="float" required="true" />
+            <Attribute name="ShakeFrequency" type="float" required="true" />
+            <Attribute name="ShakeRandomness" type="float" required="true" />
+            <Attribute name="etherFormLeaveTimer" type="float" required="true" />
+            <Attribute name="etherFormLeaveAfterPlayerDamageTimer" type="float" required="true" />
+            <Attribute name="etherFormTrackWindowTime" type="float" required="true" />
+            <Attribute name="etherFormTrackDurationMin" type="float" required="true" />
+            <Attribute name="etherFormTrackDurationMax" type="float" required="true" />
+            <Attribute name="etherFormCoolDownMin" type="float" required="true" />
+            <Attribute name="etherFormCoolDownMax" type="float" required="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="NoSpawningInLevels">
+                <Attributes />
+
+                <Collection type="dict">
+                    <PrimaryKey>
+                        <ChildAttribute name="name" />
+                    </PrimaryKey>
+                </Collection>
+
+                <ChildNodes>
+                    <Node name="Level">
+                        <Attributes>
+                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                        </Attributes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>

@@ -38,11 +38,15 @@
     "ChairMerger.dll",
     "ChairMerger.pdb",
     "curlpp.dll",
+    "LegacyModConverter.exe",
+    "LegacyModConverter.pdb",
     "libcurl.dll",
     "libzippp.dll",
     "lua.dll",
     "Preditor.exe",
     "Preditor.pdb",
+    "XmlValidator.exe",
+    "XmlValidator.pdb",
     "zip.dll",
     "zlib1.dll"
   ]

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Root>
+    <Item
+        attr1="mod1_500"
+        attr2="mod2_500"
+        ch:index="500" />
+</Root>

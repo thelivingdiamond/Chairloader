@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../../Xsd/Chairloader/MergingPolicy.xsd"
+    fileNameRegex=".*\.xml"
+    recursive="true"
+    method="replace">
+    <Node name="NotUsed">
+        <Attributes />
+    </Node>
+</MergingPolicy>

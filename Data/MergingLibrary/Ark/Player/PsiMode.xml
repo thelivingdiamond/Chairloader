@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<MergingPolicy
+    xmlns="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader ../../../../Xsd/Chairloader/MergingPolicy.xsd">
+    <Node name="Config">
+        <Attributes>
+            <Attribute name="PlayerPsiModeMaterial" type="string" required="true" allowEmpty="true" />
+            <Attribute name="PlayerPsiModeParticleEffect" type="string" required="true" allowEmpty="true" />
+            <Attribute name="selectionText" type="string" required="true" allowEmpty="true" />
+            <Attribute name="startMainLoopTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="stopMainLoopTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="SelectTargetAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="UnselectTargetAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="CooldownFinishedAudioTrigger" type="string" required="true" allowEmpty="true" />
+            <Attribute name="ActivatePowerFailAudioTrigger" type="string" required="true" allowEmpty="true" />
+        </Attributes>
+
+        <Collection type="nodeDict" />
+
+        <ChildNodes>
+            <Node name="Zoom">
+                <Attributes>
+                    <Attribute name="minDepth" type="float" required="true" />
+                    <Attribute name="maxDepth" type="float" required="true" />
+                    <Attribute name="minHFOV" type="float" required="true" />
+                    <Attribute name="maxHFOV" type="float" required="true" />
+                    <Attribute name="interpTime" type="float" required="true" />
+                </Attributes>
+            </Node>
+
+            <Node name="OneG">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+
+                    <Node name="Mimic">
+                        <Attributes />
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+            
+            <Node name="ZeroG">
+                <Attributes />
+                <Collection type="nodeDict" />
+
+                <ChildNodes>
+                    <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+
+                    <Node name="Mimic">
+                        <Attributes />
+                        <Collection type="nodeDict" />
+
+                        <ChildNodes>
+                            <NodeByType name="ArkInputLegend" type="ArkInputLegend" />
+                        </ChildNodes>
+                    </Node>
+                </ChildNodes>
+            </Node>
+
+            <Node name="Targeting">
+                <Attributes>
+                    <Attribute name="AudioTriggerCooldownSec" type="float" required="true" />
+                    <Attribute name="ShowHudTargetInfo" type="boolString" required="true" />
+                    <Attribute name="DepthControlSpeed" type="float" required="true" />
+                    <Attribute name="CollisionRadius" type="float" required="true" />
+                    <Attribute name="IndividualTargetingAngle" type="float" required="true" />
+                    <Attribute name="MinSizeForCrosshair" type="float" required="true" />
+                    <Attribute name="ParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="CrosshairEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="TargeParticleEffect" type="string" required="true" allowEmpty="true" />
+                    <Attribute name="TargetAttachmentName" type="string" required="true" allowEmpty="true" />
+                </Attributes>
+            </Node>
+        </ChildNodes>
+    </Node>
+</MergingPolicy>
