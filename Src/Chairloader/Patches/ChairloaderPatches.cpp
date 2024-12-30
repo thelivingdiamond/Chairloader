@@ -75,6 +75,7 @@ void ChairloaderPatches::InitSystem()
 		// CleanupVibrationAtExit_Hook is called after Chairloader is shut down and
 		// all automatic hooks are removed. So it must use manual hook.
 		HookTransaction tr;
+		g_CleanupVibrationAtExit_Hook.MarkKeepAfterDestroy();
 		g_CleanupVibrationAtExit_Hook.InstallHook(g_CleanupVibrationAtExit.Get(), &CleanupVibrationAtExit_Hook);
 		tr.CommitOrDie();
 	}

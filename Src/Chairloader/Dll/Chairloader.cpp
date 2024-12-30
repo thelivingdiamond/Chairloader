@@ -203,6 +203,7 @@ Chairloader::~Chairloader()
 	{
 		HookTransaction hookTr;
 		PreyFunctionSystem::RemoveHooks();
+		g_CSystem_InitializeEngineModule_Hook.RemoveHook();
 		hookTr.Commit();
 	}
 	catch (const std::exception& e)

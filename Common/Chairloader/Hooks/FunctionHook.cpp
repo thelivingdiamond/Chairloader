@@ -12,7 +12,7 @@ FunctionHookBase::~FunctionHookBase()
 {
 #ifdef DEBUG_BUILD
 	// If the game crashed, destructors may still be called, even though shutdown code didn't run.
-	CRY_ASSERT_MESSAGE(!IsHooked(), "FunctionHook: RemoveHook wasn't called before destructor. Ignore if the game crashed.");
+	CRY_ASSERT_MESSAGE(m_bKeepAfterDestroy || !IsHooked(), "FunctionHook: RemoveHook wasn't called before destructor. Ignore if the game crashed.");
 #endif
 }
 
