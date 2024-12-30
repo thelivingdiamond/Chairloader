@@ -62,4 +62,5 @@ private:
 	EKeyId m_KeyToggleFreecam = eKI_Unknown;
 
 	void LoadConfig();
+	void SkipIntroMovies();
 };
