@@ -371,7 +371,7 @@ void GenerateFileSchema(
     // Import meta-attributes
     pugi::xml_node importMetaAttr = root.append_child("xs:import");
     importMetaAttr.append_attribute("namespace").set_value(CHAIR_XML_NS_CHAIRLOADER);
-    importMetaAttr.append_attribute("schemaLocation").set_value((xsdRefPath / "Chairloader" / CHAIR_XSD_META_TYPE).generic_u8string().c_str());
+    importMetaAttr.append_attribute("schemaLocation").set_value(CreateXsdPath(xsdRefPath, fmt::format("Chairloader/{}", CHAIR_XSD_META_TYPE)).c_str());
 
     // Add root node
     pugi::xml_node element = root.append_child("xs:element");
@@ -405,7 +405,8 @@ int main(int argc, char** argv)
             ("help", "produce help message")
             ("type-lib", po::value<std::string>()->required(), "path to the type library")
             ("merging-lib", po::value<std::string>()->required(), "path to the merging library")
-            ("out-dir", po::value<std::string>()->required(), "path to the output XSD directory");
+            ("out-dir", po::value<std::string>()->required(), "path to the output XSD directory")
+            ("local-locations", po::value<bool>(), "use local paths for locations");
 
         po::store(po::parse_command_line(argc, argv, desc), vm);
 
@@ -428,6 +429,10 @@ int main(int argc, char** argv)
         auto startTime = std::chrono::steady_clock::now();
 
         fs::path outDir = fs::u8path(vm["out-dir"].as<std::string>());
+        fs::path xsdRefPath;
+
+        if (vm.count("local-locations"))
+            xsdRefPath = outDir.parent_path();
 
         // Load type library
         fs::path typeLibPath = fs::u8path(vm["type-lib"].as<std::string>());
@@ -458,7 +463,7 @@ int main(int argc, char** argv)
                 fs::path filePath = outDir / relPath;
                 filePath.replace_extension(".xsd");
                 fs::create_directories(filePath.parent_path());
-                GenerateFileSchema(outDir.parent_path(), nodeTypeMap , *pFilePolicy, filePath);
+                GenerateFileSchema(xsdRefPath, nodeTypeMap , *pFilePolicy, filePath);
             }
             catch (const std::exception& e)
             {
