@@ -53,7 +53,7 @@ SHA256::Digest HashFile(const fs::path& path)
 
 int main(int argc, char** argv)
 {
-    po::options_description desc("Validates that XML files match the merging policy");
+    po::options_description desc("Converts legacy mod into Chairloader mod");
     po::variables_map vm;
 
     try
