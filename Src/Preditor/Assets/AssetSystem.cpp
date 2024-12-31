@@ -60,9 +60,37 @@ Assets::AssetMetadata* Assets::AssetSystem::GetMetadata(std::string_view relPath
 void Assets::AssetSystem::InitSystem()
 {
     // Merge assets early on
-    if (!RunMerging())
+    while (true)
     {
-        CryFatalError("Start-up merging failed. Preditor cannot continue to load. Check the console for details.");
+        CryLog("[AssetSystem] Running start-up merging");
+        bool result = RunMerging();
+
+        if (result)
+        {
+            CryLog("[AssetSystem] Start-up merging succeded. Continuing.");
+            break;
+        }
+
+        int dialogResult = CryMessageBox(
+            "Start-up merging failed. Check the console for details.\n\n"
+            "Cancel - Exit Preditor\n"
+            "Try Again - Retry merging\n"
+            "Continue - Ignore the error. Game may not function properly.\n",
+            "Merging Failure",
+            6 // MB_CANCELTRYCONTINUE
+        );
+
+        if (dialogResult == 0 || dialogResult == 2)
+        {
+            // IDCANCEL
+            CryFatalError("Start-up merging failed. Check the console for details.");
+        }
+        else if (dialogResult == 11)
+        {
+            // IDCONTINUE
+            CryLog("[AssetSystem] Start-up merging error ignored. Continuing.");
+            break;
+        }
     }
 }
 
