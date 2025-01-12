@@ -71,6 +71,16 @@ static bool TryParseVec4(std::string text, Vec4& outValue)
     }
 }
 
+static const char* GetClipboardTextSafe()
+{
+    const char* clipboardText = ImGui::GetClipboardText();
+
+    if (!clipboardText)
+        clipboardText = "";
+
+    return clipboardText;
+}
+
 bool EditorControls::DragVec3(const char* label, Vec3* pValue, float v_speed, const char* format, ImGuiSliderFlags flags)
 {
     ImGui::PushID(label);
@@ -85,7 +95,7 @@ bool EditorControls::DragVec3(const char* label, Vec3* pValue, float v_speed, co
     if (ImGui::BeginPopupContextItem("ContextMenu"))
     {
         Vec3 clipboardValue = ZERO;
-        bool isInClipboard = TryParseVec3(ImGui::GetClipboardText(), clipboardValue);
+        bool isInClipboard = TryParseVec3(GetClipboardTextSafe(), clipboardValue);
 
         if (ImGui::Selectable("Copy as Vec3"))
         {
@@ -144,8 +154,8 @@ bool EditorControls::DragQuat(const char* label, Quat* pValue, float v_speed, co
     {
         Vec3 clipboardValue3 = ZERO;
         Vec4 clipboardValue4 = ZERO;
-        bool isInClipboard3 = TryParseVec3(ImGui::GetClipboardText(), clipboardValue3);
-        bool isInClipboard4 = TryParseVec4(ImGui::GetClipboardText(), clipboardValue4);
+        bool isInClipboard3 = TryParseVec3(GetClipboardTextSafe(), clipboardValue3);
+        bool isInClipboard4 = TryParseVec4(GetClipboardTextSafe(), clipboardValue4);
 
         if (ImGui::Selectable("Copy as Ang3 (deg)"))
         {
