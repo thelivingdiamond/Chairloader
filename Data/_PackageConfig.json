@@ -45,6 +45,7 @@
     "lua.dll",
     "Preditor.exe",
     "Preditor.pdb",
+    "XmlTypeLibrary.xml",
     "XmlValidator.exe",
     "XmlValidator.pdb",
     "zip.dll",
