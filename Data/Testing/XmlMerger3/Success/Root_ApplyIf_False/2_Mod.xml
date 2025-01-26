@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Root rootAttr1="rootVal1" rootAttr2="rootVal2" ch:applyIf="false">
+    <A keyAttr1="keyVal1" aAttr1="aVal1Mod" aAttr2="aVal2" />
+    <AA keyAttr1="keyVal2" aaAttr1="aaVal1" aaAttr2="aaVal2Mod" />
+</Root>

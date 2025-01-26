@@ -346,7 +346,9 @@ INSTANTIATE_TEST_SUITE_P(
         "Dict_Key1",
         "Dict_Key2",
         "Dict_NodeName",
-        "Dict_NodeText"));
+        "Dict_NodeText",
+        "Root_ApplyIf_False",
+        "Root_ApplyIf_True"));
 
 INSTANTIATE_TEST_SUITE_P(
     XmlMerger3,

@@ -34,6 +34,9 @@ void XmlMerger3::MergeDocument(
 
     CRY_ASSERT(policy.GetMethod() == FileMergingPolicy3::EMethod::Merge);
 
+    if (!MetaAttributes::CheckApplyIf(modNode))
+        return;
+
     XmlErrorStack modErrorStack(modNode.name());
     MergeNode(context, baseNode, modNode, policy.GetRootNode(), modErrorStack);
 }
