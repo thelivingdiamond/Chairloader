@@ -1610,6 +1610,10 @@ void ChairManager::InstallModFromState()
             ModInfo modInfo;
             modInfo.LoadFile(srcModRootDir / ModInfo::XML_FILE_NAME);
 
+            std::string validationError;
+            if (!ModInfo::ValidateModName(modInfo.modName, &validationError))
+                throw std::runtime_error(fmt::format("Mod '{}' name is invalid: {}", modInfo.modName, validationError));
+
             // Check if already installed
             fs::path outModPath = modsDir / fs::u8path(modInfo.modName);
 
@@ -1621,7 +1625,7 @@ void ChairManager::InstallModFromState()
 
             // Copy the mod files
             fs::create_directories(outModPath);
-            fs::copy(tempDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+            fs::copy(srcModRootDir, outModPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
 
             overlayLog(severityLevel::info, "Mod %s installed", modInfo.displayName);
         }
