@@ -88,13 +88,13 @@ jobs:
         python ./Scripts/print_disk_usage.py
     
     - name: Upload binaries archive
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4.6.0
       with:
         name: ${{steps.createDist.outputs.artifact_name}}
         path: _temp/${{steps.createDist.outputs.artifact_name}}.zip
 
     - name: Upload symbols archive
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4.6.0
       with:
         name: ${{steps.createDist.outputs.artifact_name_symbols}}
         path: _temp/${{steps.createDist.outputs.artifact_name_symbols}}.zip
