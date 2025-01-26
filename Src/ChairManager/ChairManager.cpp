@@ -1537,6 +1537,22 @@ void ChairManager::serializeLoadOrder() {
 }
 
 void ChairManager::SaveAllMods() {
+    // Remove old mod entries
+    // Nodes used to be named as mod name. Now they are all named Mod.
+    {
+        pugi::xml_node node = ModListNode.first_child();
+        while (node)
+        {
+            pugi::xml_node thisNode = node;
+            node = thisNode.next_sibling();
+
+            if (strcmp(thisNode.name(), "Mod"))
+            {
+                ModListNode.remove_child(thisNode);
+            }
+        }
+    }
+
     for(auto &mod : ModList){
         SaveMod(&mod);
     }
