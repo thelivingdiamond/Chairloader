@@ -1,5 +1,7 @@
 #include <shellapi.h>
 #include <Prey/CryCore/Platform/WindowsUtils.h>
+#include <Chairloader/Private/LoaderApi.h>
+#include <Chairloader/Hooks/HookTransaction.h>
 #include "ChairloaderLoader.h"
 
 //! List of suffixes that point to Whiplash DLLs.
@@ -7,6 +9,12 @@ constexpr const wchar_t* WHIPLASH_PATHS[] = {
     L"Whiplash\\Binaries\\Danielle\\x64\\Release\\PreyDll.dll",
     L"Whiplash\\Binaries\\Danielle\\x64-Epic\\Release\\PreyDll.dll",
     L"Whiplash\\Binaries\\Danielle\\Gaming.Desktop.x64\\Release\\PreyDll.dll",
+};
+
+class NonFatalException : public std::runtime_error
+{
+public:
+    NonFatalException(const std::string& s) : std::runtime_error(s) {}
 };
 
 ChairloaderLoader g_Loader;
@@ -17,9 +25,9 @@ EChairloaderInitResult ChairloaderLoader::Init()
     {
         std::string errorText;
 
-        if (!FindGameDll())
+        if (!FindOrigGameDll())
         {
-            ShowMsgBox(MB_OK | MB_ICONERROR, "Module '{}' not found.", GAME_DLL_NAME);
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Module '{}' not found.", ORIG_GAME_DLL_NAME);
             return EChairloaderInitResult::Failed;
         }
 
@@ -32,7 +40,7 @@ EChairloaderInitResult ChairloaderLoader::Init()
 
         if (!ParseCommandLine())
         {
-            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to parse command line.", GAME_DLL_NAME);
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to parse command line.");
             return EChairloaderInitResult::Failed;
         }
 
@@ -48,22 +56,44 @@ EChairloaderInitResult ChairloaderLoader::Init()
             return EChairloaderInitResult::Failed;
         }
 
-        if (!IsVersionSupported())
+        if (!IsVersionSupported(m_OrigGameDllInfo))
         {
-            ShowMsgBox(
-                MB_OK | MB_ICONERROR,
-                "Currently running version of the game is not supported.\n"
-                "Patch the game in Chairloader Mod Manager.");
-            return EChairloaderInitResult::Failed;
+            // Original Game DLL not supported. Load Chairloader's Game DLL
+            if (!LoadChairGameDll(errorText))
+            {
+                ShowMsgBox(
+                    MB_OK | MB_ICONERROR,
+                    fmt::format("Failed to load {}: {}", CHAIR_GAME_DLL_NAME, errorText));
+                return EChairloaderInitResult::Failed;
+            }
+
+            // Check that it's supported
+            if (!IsVersionSupported(m_ChairGameDllInfo))
+            {
+                ShowMsgBox(
+                    MB_OK | MB_ICONERROR,
+                    fmt::format(
+                        "{} is not supported by Chairloader.\n"
+                        "Patch the game in Chairloader Mod Manager.",
+                        CHAIR_GAME_DLL_NAME));
+
+                // Fatal error because a new DLL was loaded
+                return EChairloaderInitResult::Fatal;
+            }
         }
 
         if (!LoadChairloader(errorText))
         {
             ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load {}:\n{}", CHAIRLOADER_DLL_NAME, errorText);
-            return EChairloaderInitResult::Failed;
+            return EChairloaderInitResult::Fatal;
         }
 
         return EChairloaderInitResult::Ok;
+    }
+    catch (const NonFatalException& e)
+    {
+        ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load Chairloader: {}", e.what());
+        return EChairloaderInitResult::Failed;
     }
     catch (const std::exception& e)
     {
@@ -74,27 +104,43 @@ EChairloaderInitResult ChairloaderLoader::Init()
 
 void ChairloaderLoader::Shutdown()
 {
-    if (m_GameDllInfo)
-    {
-        // Not loaded by this DLL - not unloaded too
-        m_GameDllInfo.SetHandle(nullptr);
-    }
-
     if (m_hChairDll)
     {
         FreeLibrary(m_hChairDll);
         m_hChairDll = nullptr;
     }
+
+    if (m_ChairGameDllInfo)
+    {
+        // Loaded by this DLL
+        if (m_EntryMainHook.IsHooked())
+        {
+            HookTransaction tr;
+            m_EntryMainHook.RemoveHook();
+            tr.Commit();
+        }
+
+        FreeLibrary(m_ChairGameDllInfo.hModule);
+        m_ChairGameDllInfo.SetHandle(nullptr);
+    }
+
+    if (m_OrigGameDllInfo)
+    {
+        // Not loaded by this DLL - not unloaded too
+        m_OrigGameDllInfo.SetHandle(nullptr);
+    }
 }
 
-bool ChairloaderLoader::FindGameDll()
+bool ChairloaderLoader::FindOrigGameDll()
 {
-    CRY_ASSERT(!m_GameDllInfo);
-    HMODULE hModule = GetModuleHandle(GAME_DLL_NAME);
+    LogDebug("FindOrigGameDll");
+    CRY_ASSERT(!m_OrigGameDllInfo);
+    HMODULE hModule = GetModuleHandle(ORIG_GAME_DLL_NAME);
 
     if (hModule)
     {
-        m_GameDllInfo.SetHandle(hModule);
+        LogDebug("hModule = {:p}", (void*)hModule);
+        m_OrigGameDllInfo.SetHandle(hModule);
         return true;
     }
 
@@ -103,11 +149,11 @@ bool ChairloaderLoader::FindGameDll()
 
 bool ChairloaderLoader::IsWhiplash()
 {
-    CRY_ASSERT(m_GameDllInfo);
+    CRY_ASSERT(m_OrigGameDllInfo);
 
     // Check if the loaded PreyDll.dll is from Mooncrash.
     wchar_t preyDllPath[MAX_PATH] = {};
-    int pathLen = GetModuleFileNameW(m_GameDllInfo.hModule, preyDllPath, std::size(preyDllPath));
+    int pathLen = GetModuleFileNameW(m_OrigGameDllInfo.hModule, preyDllPath, std::size(preyDllPath));
 
     // Convert slashes to backslashes (just in case)
     for (wchar_t& c : preyDllPath)
@@ -152,7 +198,10 @@ bool ChairloaderLoader::IsChairloaderEnabled()
     for (const std::string& i : m_CmdLineArgs)
     {
         if (i == "-nochair")
+        {
+            LogDebug("Chairloader disabled by command line {}", i);
             return false;
+        }
     }
 
     // Enabled by default
@@ -174,32 +223,137 @@ bool ChairloaderLoader::ReadSupportedVersions(std::string& outError)
     return true;
 }
 
-bool ChairloaderLoader::IsVersionSupported()
+bool ChairloaderLoader::IsVersionSupported(const GameModuleInfo& gameDll)
 {
     for (const GameVersionInfo& versionInfo : m_SupportedVersions)
     {
-        bool isSupported = m_GameDllInfo.CompareTestString(versionInfo.testString, versionInfo.testStringOffset);
+        bool isSupported = gameDll.CompareTestString(versionInfo.testString, versionInfo.testStringOffset);
+
         if (isSupported)
+        {
+            LogDebug("[{:p}] {} - Supported", (void*)gameDll.hModule, versionInfo.name);
             return true;
+        }
+        else
+        {
+            LogDebug("[{:p}] {} - Not Supported", (void*)gameDll.hModule, versionInfo.name);
+        }
     }
 
     return false;
 }
 
-bool ChairloaderLoader::LoadChairloader(std::string& outError)
+bool ChairloaderLoader::LoadChairGameDll(std::string& outError)
 {
-    CRY_ASSERT(m_GameDllInfo);
-    CRY_ASSERT(!m_hChairDll);
-    HMODULE hChairDll = LoadLibraryExA(CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
-    
-    if (hChairDll)
+    LogDebug("LoadChairGameDll");
+    CRY_ASSERT(!m_ChairGameDllInfo);
+    CRY_ASSERT(m_OrigGameDllInfo);
+
+    std::vector<wchar_t> buf(2048);
+    size_t bufLen = GetModuleFileNameW(m_OrigGameDllInfo.hModule, buf.data(), buf.size());
+
+    if (bufLen == 0)
     {
-        m_hChairDll = hChairDll;
-        return true;
+        outError = "Failed to get Game DLL path";
+        return false;
     }
 
-    outError = WindowsErrorToString(::GetLastError());
-    return false;
+    if (GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+    {
+        outError = "Game DLL path is too long";
+        return false;
+    }
+
+    fs::path origDllPath = fs::path(std::wstring_view(buf.data(), bufLen));
+    fs::path chairDllPath = origDllPath.parent_path() / CHAIR_GAME_DLL_NAME;
+
+    if (!fs::exists(chairDllPath))
+    {
+        outError = fmt::format("File {} not found. Rerun ChairManager.");
+        return false;
+    }
+
+    HMODULE hChairGameDll = LoadLibraryExW(chairDllPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+
+    if (!hChairGameDll)
+    {
+        outError = WindowsErrorToString(::GetLastError());
+        return false;
+    }
+
+    LogDebug("hChairGameDll = {:p}", (void*)hChairGameDll);
+    m_ChairGameDllInfo.SetHandle(hChairGameDll);
+
+    // Hook EntryMain
+    {
+        auto* pfnEntryMain = reinterpret_cast<FnEntryMain*>(GetProcAddress(g_Loader.m_OrigGameDllInfo.hModule, ENTRY_MAIN));
+
+        if (!pfnEntryMain)
+        {
+            LogDebug("{} not found in hOrigGameDll", ENTRY_MAIN);
+            return false;
+        }
+
+        HookTransaction tr;
+        m_EntryMainHook.InstallHook(pfnEntryMain, &ChairEntryMain);
+        tr.Commit();
+    }
+
+    return true;
+}
+
+bool ChairloaderLoader::LoadChairloader(std::string& outError)
+{
+    LogDebug("LoadChairloader");
+    CRY_ASSERT(m_OrigGameDllInfo);
+    CRY_ASSERT(!m_hChairDll);
+
+    HMODULE hGameDll = m_ChairGameDllInfo ? m_ChairGameDllInfo.hModule : m_OrigGameDllInfo.hModule;
+    HMODULE hChairDll = LoadLibraryExA(CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+    
+    if (!hChairDll)
+    {
+        outError = WindowsErrorToString(::GetLastError());
+        return false;
+    }
+
+    // Init Chairloader
+    auto* pfnChairInit = reinterpret_cast<FnChairloaderInit*>(GetProcAddress(hChairDll, FN_CHAIRLOADER_INIT));
+
+    if (!pfnChairInit)
+    {
+        outError = fmt::format("{} not found in {}", FN_CHAIRLOADER_INIT, CHAIRLOADER_DLL_NAME);
+        return false;
+    }
+
+    LogDebug("Initializing Chairloader");
+    bool initResult = pfnChairInit(hGameDll);
+
+    if (!initResult)
+    {
+        outError = "Chairloader failed to initialize";
+        return false;
+    }
+
+    LogDebug("hChairDll = {:p}", (void*)hChairDll);
+    m_hChairDll = hChairDll;
+    return true;
+}
+
+int ChairloaderLoader::ChairEntryMain(void* hInstance, void* hPrevInstance, char* lpCmdLine, int nCmdShow)
+{
+    CRY_ASSERT(g_Loader.m_ChairGameDllInfo);
+
+    auto* pfnEntryMain = reinterpret_cast<FnEntryMain*>(GetProcAddress(g_Loader.m_ChairGameDllInfo.hModule, ENTRY_MAIN));
+
+    if (!pfnEntryMain)
+    {
+        LogDebug("{} not found in hChairGameDllInfo", ENTRY_MAIN);
+        return 1;
+    }
+
+    LogDebug("Starting up {} instead of {}", CHAIR_GAME_DLL_NAME, ORIG_GAME_DLL_NAME);
+    return pfnEntryMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 }
 
 void ChairloaderLoader::ShowMsgBoxV(UINT type, std::string_view format, fmt::format_args args)
@@ -208,4 +362,12 @@ void ChairloaderLoader::ShowMsgBoxV(UINT type, std::string_view format, fmt::for
     std::wstring wtext;
     Unicode::Convert(wtext, text);
     MessageBoxW(nullptr, wtext.c_str(), MSGBOX_CAPTION, type);
+}
+
+void ChairloaderLoader::LogDebugV(std::string_view format, fmt::format_args args)
+{
+    std::string text = "[Chairloader.Loader] " + fmt::vformat(format, args) + "\n";
+    std::wstring wtext;
+    Unicode::Convert(wtext, text);
+    OutputDebugStringW(wtext.c_str());
 }

@@ -9,8 +9,6 @@
 #include <Chairloader/IChairToPreditor.h>
 #include "WinConsole.h"
 
-#define PREY_DLL_NAME "PreyDll.dll"
-
 class CSystem;
 
 class Chairloader
@@ -18,17 +16,17 @@ class Chairloader
 	, public IChairToPreditor
 {
 public:
-	static void CreateInstance(void* hThisDll);
+	static void CreateInstance(void* hThisDll, void* hGameDll);
 	static Chairloader* Get();
 
 	//! Constructed just after loading PreyDll.dll, before any game code is run.
-	Chairloader(void* hThisDll);
+	Chairloader(void* hThisDll, void* hGameDll);
 
 	//! Destroyed after CSystem::Shutdown
 	~Chairloader();
 
 	//! Called just after the DLL has been loaded.
-	void DllAttach();
+	void EarlyInit();
 
 	//! Called during CSystem::Init, before any engine modules.
 	void InitSystem(CSystem* pSystem);
