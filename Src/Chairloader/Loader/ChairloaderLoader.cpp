@@ -27,7 +27,7 @@ EChairloaderInitResult ChairloaderLoader::Init()
 
         if (!FindOrigGameDll())
         {
-            ShowMsgBox(MB_OK | MB_ICONERROR, "Module '{}' not found.", ORIG_GAME_DLL_NAME);
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Module '{}' not found.", LOADER_ORIG_GAME_DLL_NAME);
             return EChairloaderInitResult::Failed;
         }
 
@@ -63,7 +63,7 @@ EChairloaderInitResult ChairloaderLoader::Init()
             {
                 ShowMsgBox(
                     MB_OK | MB_ICONERROR,
-                    fmt::format("Failed to load {}: {}", CHAIR_GAME_DLL_NAME, errorText));
+                    fmt::format("Failed to load {}: {}", LOADER_CHAIR_GAME_DLL_NAME, errorText));
                 return EChairloaderInitResult::Failed;
             }
 
@@ -75,7 +75,7 @@ EChairloaderInitResult ChairloaderLoader::Init()
                     fmt::format(
                         "{} is not supported by Chairloader.\n"
                         "Patch the game in Chairloader Mod Manager.",
-                        CHAIR_GAME_DLL_NAME));
+                        LOADER_CHAIR_GAME_DLL_NAME));
 
                 // Fatal error because a new DLL was loaded
                 return EChairloaderInitResult::Fatal;
@@ -84,7 +84,7 @@ EChairloaderInitResult ChairloaderLoader::Init()
 
         if (!LoadChairloader(errorText))
         {
-            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load {}:\n{}", CHAIRLOADER_DLL_NAME, errorText);
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to load {}:\n{}", LOADER_CHAIRLOADER_DLL_NAME, errorText);
             return EChairloaderInitResult::Fatal;
         }
 
@@ -135,7 +135,7 @@ bool ChairloaderLoader::FindOrigGameDll()
 {
     LogDebug("FindOrigGameDll");
     CRY_ASSERT(!m_OrigGameDllInfo);
-    HMODULE hModule = GetModuleHandle(ORIG_GAME_DLL_NAME);
+    HMODULE hModule = GetModuleHandle(LOADER_ORIG_GAME_DLL_NAME);
 
     if (hModule)
     {
@@ -265,7 +265,7 @@ bool ChairloaderLoader::LoadChairGameDll(std::string& outError)
     }
 
     fs::path origDllPath = fs::path(std::wstring_view(buf.data(), bufLen));
-    fs::path chairDllPath = origDllPath.parent_path() / CHAIR_GAME_DLL_NAME;
+    fs::path chairDllPath = origDllPath.parent_path() / LOADER_CHAIR_GAME_DLL_NAME;
 
     if (!fs::exists(chairDllPath))
     {
@@ -309,7 +309,7 @@ bool ChairloaderLoader::LoadChairloader(std::string& outError)
     CRY_ASSERT(!m_hChairDll);
 
     HMODULE hGameDll = m_ChairGameDllInfo ? m_ChairGameDllInfo.hModule : m_OrigGameDllInfo.hModule;
-    HMODULE hChairDll = LoadLibraryExA(CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+    HMODULE hChairDll = LoadLibraryExA(LOADER_CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     
     if (!hChairDll)
     {
@@ -322,7 +322,7 @@ bool ChairloaderLoader::LoadChairloader(std::string& outError)
 
     if (!pfnChairInit)
     {
-        outError = fmt::format("{} not found in {}", FN_CHAIRLOADER_INIT, CHAIRLOADER_DLL_NAME);
+        outError = fmt::format("{} not found in {}", FN_CHAIRLOADER_INIT, LOADER_CHAIRLOADER_DLL_NAME);
         return false;
     }
 
@@ -352,7 +352,7 @@ int ChairloaderLoader::ChairEntryMain(void* hInstance, void* hPrevInstance, char
         return 1;
     }
 
-    LogDebug("Starting up {} instead of {}", CHAIR_GAME_DLL_NAME, ORIG_GAME_DLL_NAME);
+    LogDebug("Starting up {} instead of {}", LOADER_CHAIR_GAME_DLL_NAME, LOADER_ORIG_GAME_DLL_NAME);
     return pfnEntryMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 }
 

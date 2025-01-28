@@ -29,9 +29,6 @@ public:
 private:
     using FnEntryMain = int(void* hInstance, void* hPrevInstance, char* lpCmdLine, int nCmdShow);
 
-    static constexpr char ORIG_GAME_DLL_NAME[] = "PreyDll.dll";
-    static constexpr char CHAIR_GAME_DLL_NAME[] = "PreyDll.Chairloader.dll";
-    static constexpr char CHAIRLOADER_DLL_NAME[] = "Chairloader.dll";
     static constexpr char ENTRY_MAIN[] = "EntryMain";
 
     //! The original Game DLL module.
