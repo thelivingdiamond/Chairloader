@@ -154,6 +154,13 @@ void ChairMerger::SetMods(std::vector<Mod>&& mods)
 
     for (size_t i = 0; i < m_Mods.size(); i++)
     {
+        // Skip DLL-only mods
+        if (!fs::exists(m_Mods[i].dataPath))
+            continue;
+
+        if (!fs::is_directory(m_Mods[i].dataPath))
+            throw std::runtime_error(fmt::format("{}: Data path doesn't point to a directory: {}", m_Mods[i].modName, m_Mods[i].dataPath.u8string()));
+
         m_ModXmlCaches[i] = std::make_unique<DiskXmlCache>();
         static_cast<DiskXmlCache*>(m_ModXmlCaches[i].get())->SetRootDir(m_Mods[i].dataPath);
     }
@@ -320,6 +327,12 @@ void ChairMerger::Merge()
 
     for (size_t i = 0; i < m_Mods.size(); i++)
     {
+        if (!m_ModXmlCaches[i])
+        {
+            m_pLog->Log(severityLevel::debug, "Skipping mod without Data: %s", m_Mods[i].modName);
+            continue;
+        }
+
         ProcessMod(i);
         WaitForPendingTasks();
         m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", m_Mods[i].modName);
