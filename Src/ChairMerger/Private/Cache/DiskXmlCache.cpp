@@ -16,6 +16,9 @@ fs::path DiskXmlCache::GetRootDir() const
 
 void DiskXmlCache::SetRootDir(const fs::path& value)
 {
+    if (!fs::exists(value))
+        throw std::logic_error("Root directory must exist");
+
     std::unique_lock lock(m_FileMapMutex);
     m_RootDir = value;
 }
