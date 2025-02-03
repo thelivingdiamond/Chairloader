@@ -36,6 +36,9 @@ void DiskXmlCache::ExportModifiedFiles(const fs::path& outRootDir)
         fs::path outPath = outRootDir / i.second->relPath;
         fs::create_directories(outPath.parent_path());
 
+        if (i.second->formatFlags == DONT_FORMAT)
+            throw std::runtime_error(fmt::format("File {} is marked as DONT_FORMAT", i.first));
+
         if (!i.second->document.save_file(outPath.c_str(), "\t", i.second->formatFlags, pugi::encoding_utf8))
             throw std::runtime_error(fmt::format("Failed to write {}", outPath.u8string()));
     }

@@ -693,6 +693,29 @@ void ChairMerger::ProcessXMLFile(
 
 void ChairMerger::FinalizeFiles()
 {
+    // Preload all level files so they are always finalized
+    for (fs::directory_entry dirEnt : fs::recursive_directory_iterator(m_PreyFilesPath / "Levels"))
+    {
+        if (dirEnt.is_directory())
+            continue;
+
+        fs::path relPath = dirEnt.path().lexically_relative(m_PreyFilesPath);
+        const FileMergingPolicy3* pFilePolicy = m_pMergingLibrary->FindPolicyForFile(relPath);
+
+        if (pFilePolicy)
+        {
+            // Preload the file
+            unsigned parseTags = pugi::parse_default;
+
+            if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003)
+                parseTags = XmlMerger3::EXCEL_PARSE_OPTIONS;
+
+            // Open file for writing so it's loaded into cache and marked as modified
+            IXmlCache::WriteLock lock;
+            m_pBaseFileCache->OpenXmlForWriting(relPath, lock, parseTags);
+        }
+    }
+
     std::vector<fs::path> fileList;
     m_pBaseFileCache->GetCachedFileList(fileList);
 

@@ -1,4 +1,4 @@
-<LevelData SandboxVersion="3.7.0.179">
+<LevelData xmlns="this must be removed when finalizing" SandboxVersion="3.7.0.179">
  <LevelInfo CreationDate="08/01/18" Name="CargoBay" HeightmapSize="400" HeightmapUnitSize="2" HeightmapMaxHeight="1024" WaterLevel="-1000000" TerrainSectorSizeInMeters="64"/>
  <SurfaceTypes>
   <SurfaceType Name="Materials/material_terrain_default" SurfaceTypeID="0" DetailTexture="" DetailScaleX="1" DetailScaleY="1" DetailMaterial="Materials/material_terrain_default" ProjectAxis="2" Bumpmap="" ProjAxis="Z"/>
