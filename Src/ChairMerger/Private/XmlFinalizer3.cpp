@@ -26,9 +26,10 @@ void XmlFinalizer3::FinalizeNode(
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack)
 {
-    if (policy.GetPatches().replaceEntityIDs)
+    pugi::xml_node objectsNode;
+
+    if (policy.GetPatches().replaceEntityIDs && (objectsNode = node.child("Objects")))
     {
-        pugi::xml_node objectsNode = node.child("Objects");
         XmlErrorStack objectsErrorStack = errorStack.GetChild(objectsNode);
         int maxEntityId = 0;
 
