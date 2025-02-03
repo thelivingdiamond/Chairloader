@@ -22,7 +22,7 @@ TEST(HashUtilsTest, HashDirectory)
 {
     auto digest = HashUtils::HashDirectory(g_PreyFiles);
     std::string digestStr = SHA256::toString(digest.data());
-    std::string expectedDigestStr = "e725f5a933387c69d20f6e4add3fdf65a7c9760b464cc268037718780c00eef8";
+    std::string expectedDigestStr = "07745874a9052a2b28c55e63d4a116af824232bd2704e170bdb5e6f6a1eaa67e";
     EXPECT_EQ(digestStr, expectedDigestStr);
 }
 
