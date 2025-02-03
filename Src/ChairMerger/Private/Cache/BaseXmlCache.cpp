@@ -23,7 +23,7 @@ IXmlCache::EOpenResult BaseXmlCache::TryOpenXmlForReading(
     std::shared_lock mapLock(m_FileMapMutex);
     
     FileMap::iterator it;
-    EOpenResult initResult = InitEntry(relPath, relPathNorm, mapLock, it, parseFlags, 0, false);
+    EOpenResult initResult = InitEntry(relPath, relPathNorm, mapLock, it, parseFlags, DONT_FORMAT, false);
     if (initResult != EOpenResult::Success)
         return initResult;
 
@@ -119,7 +119,7 @@ IXmlCache::EOpenResult BaseXmlCache::InitEntry(
     // Not found
     if (it == m_FileMap.end())
     {
-        if (parseFlags == DONT_PARSE || formatFlags == DONT_FORMAT)
+        if (parseFlags == DONT_PARSE)
             return EOpenResult::NotFound;
 
         // File not yet loaded. Load it from disk.
@@ -151,11 +151,12 @@ IXmlCache::EOpenResult BaseXmlCache::InitEntry(
             it->second->formatFlags = formatFlags;
             it->second->isModified = isWriting;
 
-            if (isWriting)
-                it->second->formatFlags = formatFlags;
-
             InitObject(*it->second);
         }
+
+        // If opening for writing, replace DONT_FORMAT with something more sensible
+        if (isWriting && it->second->formatFlags == DONT_FORMAT)
+            it->second->formatFlags = formatFlags;
 
         // Downgrade the lock
         mapLockUnique.unlock();
@@ -166,7 +167,7 @@ IXmlCache::EOpenResult BaseXmlCache::InitEntry(
     if (parseFlags != DONT_PARSE && it->second->parseFlags != parseFlags)
         return EOpenResult::ParseFlagsMismatch;
 
-    if (formatFlags != DONT_FORMAT && isWriting && it->second->formatFlags != formatFlags)
+    if (isWriting && formatFlags != DONT_FORMAT && it->second->formatFlags != formatFlags)
         return EOpenResult::FormatFlagsMismatch;
 
     return EOpenResult::Success;

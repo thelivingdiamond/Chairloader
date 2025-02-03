@@ -104,6 +104,8 @@ struct IXmlCache
             throw std::runtime_error("File is locked by another thread");
         case EOpenResult::ParseFlagsMismatch:
             throw std::runtime_error("File was loaded with different parse flags");
+        case EOpenResult::FormatFlagsMismatch:
+            throw std::runtime_error("File was loaded with different format flags");
         default:
             throw std::logic_error("Unknown error");
         }
