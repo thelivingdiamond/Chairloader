@@ -704,6 +704,20 @@ void ChairMerger::FinalizeFiles()
 
         if (pFilePolicy)
         {
+            // Check if this is inside of a level
+            bool isInLevel = false;
+            for (fs::path i : relPath)
+            {
+                if (i == "level")
+                {
+                    isInLevel = true;
+                    break;
+                }
+            }
+
+            if (!isInLevel)
+                continue;
+
             // Preload the file
             unsigned parseTags = pugi::parse_default;
 
@@ -738,7 +752,8 @@ void ChairMerger::FinalizeFile(const fs::path& relPath)
         CRY_ASSERT(pFilePolicy);
 
         if (pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Excel2003 ||
-            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly)
+            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::ReadOnly ||
+            pFilePolicy->GetMethod() == FileMergingPolicy3::EMethod::Replace)
         {
             // Don't need finalization
             return;
