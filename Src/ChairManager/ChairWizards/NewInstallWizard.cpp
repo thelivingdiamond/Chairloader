@@ -684,7 +684,11 @@ NewInstallWizard::NewInstallWizard(ILogger* pLogger)
     m_pWizMgr->AddStage(m_pPatchDllStage.get());
 
     m_pExtractFilesStage = std::make_unique<ExtractFilesStage>();
-    m_pExtractFilesStage->AddDependency(m_pPatchDllStage.get());
+    // Removed dependency on m_pPatchDllStage
+    // Otherwise files are always extracted after DLL is removed
+    // Since files are already patched, the user has to validate game files
+    // Which is not desirable.
+    // m_pExtractFilesStage->AddDependency(m_pPatchDllStage.get());
     m_pWizMgr->AddStage(m_pExtractFilesStage.get());
 
     m_pPatchFilesStage = std::make_unique<PatchFilesStage>();
