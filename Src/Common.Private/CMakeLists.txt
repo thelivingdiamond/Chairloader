@@ -7,6 +7,7 @@ set(SOURCE_FILES
 
 	# Chairloader
 	Chairloader/Private/GTestMain.inl
+	Chairloader/Private/LoaderApi.h
 	Chairloader/Private/ModPrefix.h
 	Chairloader/Private/StringUtils.cpp
 	Chairloader/Private/StringUtils.h
