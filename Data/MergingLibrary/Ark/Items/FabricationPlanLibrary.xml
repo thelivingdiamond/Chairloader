@@ -33,7 +33,7 @@
                     <Node name="ArkFabricationPlan">
                         <Attributes>
                             <Attribute name="id" type="ArkFabricationPlanIdDef" required="true" readOnly="true" />
-                            <Attribute name="name" type="string" required="true" readOnly="true" />
+                            <Attribute name="name" type="string" required="true" />
                             <Attribute name="archetype" type="ArchetypeName" required="true" />
                             <Attribute name="description" type="string" required="true" />
                             <Attribute name="organicCount" type="int32" required="true" />
