@@ -38,7 +38,7 @@ void XmlMerger3::MergeDocument(
         return;
 
     XmlErrorStack modErrorStack(modNode.name());
-    MergeNode(context, baseNode, modNode, policy.GetRootNode(), modErrorStack);
+    MergeNode(context, baseNode, modNode, policy.GetRootNode(), modErrorStack, false);
 }
 
 void XmlMerger3::MergeNode(
@@ -46,7 +46,8 @@ void XmlMerger3::MergeNode(
     pugi::xml_node& baseNode,
     const pugi::xml_node& modNode,
     const MergingPolicy3& policy,
-    const XmlErrorStack& modErrorStack)
+    const XmlErrorStack& modErrorStack,
+    bool mergeReadOnlyAttrs)
 {
     MetaAttributes meta;
     meta.ParseNode(modNode, modErrorStack);
@@ -64,7 +65,7 @@ void XmlMerger3::MergeNode(
     case MetaAttributes::EAction::Patch:
     case MetaAttributes::EAction::ReplaceChildren:
     {
-        PatchNode(context, baseNode, modNode, meta, policy, modErrorStack);
+        PatchNode(context, baseNode, modNode, meta, policy, modErrorStack, mergeReadOnlyAttrs);
         break;
     }
     case MetaAttributes::EAction::Delete:
@@ -108,12 +109,13 @@ void XmlMerger3::PatchNode(
     const pugi::xml_node& modNode,
     const MetaAttributes& modNodeMeta,
     const MergingPolicy3& policy,
-    const XmlErrorStack& modErrorStack)
+    const XmlErrorStack& modErrorStack,
+    bool mergeReadOnlyAttrs)
 {
     const MergingPolicy3::Collection& collection = policy.GetCollection();
 
     // Merge attributes
-    MergeAttributes(context, baseNode, modNode, policy, modErrorStack);
+    MergeAttributes(context, baseNode, modNode, policy, modErrorStack, mergeReadOnlyAttrs);
     MergeText(context, baseNode, modNode, policy, modErrorStack);
 
     if (modNodeMeta.GetAction() == MetaAttributes::EAction::ReplaceChildren)
@@ -293,7 +295,8 @@ void XmlMerger3::MergeAttributes(
     pugi::xml_node& baseNode,
     const pugi::xml_node& modNode,
     const MergingPolicy3& policy,
-    const XmlErrorStack& modErrorStack)
+    const XmlErrorStack& modErrorStack,
+    bool mergeReadOnlyAttrs)
 {
     for (const pugi::xml_attribute modAttr : modNode.attributes())
     {
@@ -313,7 +316,7 @@ void XmlMerger3::MergeAttributes(
             if (!policy.IsAllowingUnknownAttributes())
                 modErrorStack.ThrowException(fmt::format("Unknown attribute '{}' in mod node", attrName));
         }
-        else if (pPolicyAttr->readOnly)
+        else if (!mergeReadOnlyAttrs && pPolicyAttr->readOnly)
         {
             // Check value when read-only
             CRY_ASSERT(pPolicyAttr->required);
@@ -423,7 +426,7 @@ void XmlMerger3::MergeChildrenDict(
         if (childBaseNode)
         {
             // The node exists in base. Merge them.
-            MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack);
+            MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack, false);
         }
         else
         {
@@ -450,7 +453,8 @@ void XmlMerger3::MergeChildrenDict(
                     pugi::xml_node addedNode = baseNode.append_copy(baseNodeFromQuery);
 
                     // Merge it
-                    MergeNode(context, addedNode, childModNode, *pChildPolicy, childModErrorStack);
+                    // Ignore read-only flag on attributes since this is basically a new mod node.
+                    MergeNode(context, addedNode, childModNode, *pChildPolicy, childModErrorStack, true);
                 }
                 else
                 {
@@ -540,7 +544,7 @@ void XmlMerger3::MergeChildrenArray(
         if (foundExactBaseNode)
         {
             // Merge the node
-            MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack);
+            MergeNode(context, childBaseNode, childModNode, *pChildPolicy, childModErrorStack, false);
         }
         else
         {

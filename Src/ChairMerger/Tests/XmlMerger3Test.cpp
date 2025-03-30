@@ -341,6 +341,7 @@ INSTANTIATE_TEST_SUITE_P(
         "Attributes_Text",
         "BasedOn",
         "BasedOn_AlreadyExists",
+        "BasedOn_ReadOnlyID",
         "Dict_Append",
         "Dict_ApplyIf",
         "Dict_Key1",
