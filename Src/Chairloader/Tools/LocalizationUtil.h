@@ -19,13 +19,15 @@ private:
     //! Use default language. Don't change it on startup.
     static constexpr int DEFAULT_LANG_IDX = 0;
 
+    unsigned m_InstalledAudioLangs = 0;
     int m_CurrentTextItem = 0; // 0 is special, 1+ - language id
     int m_CurrentAudioItem = 0; // 0 is special, 1+ - language id
     std::vector<const char*> items = {nullptr, "English", "French", "Italian", "German", "Spanish", "Latin American Spanish", "Brazilian Portuguese", "Russian", "Polish", "Japanese", "Traditional Chinese", "Simplified Chinese"};
     const std::vector<const char*> items_internal = {"default", "english", "french", "italian", "german", "spanish", "latin_american_spanish", "brazilian_portuguese", "russian", "polish", "japanese", "chineset", "chineses"};
 
     void SetLangCVar(const char* cvarName, int selectedItemIdx);
-    void ShowLanguageComboBox(const char* label, const char* cvarName, int* pSelectedItemIdx);
+    void ShowLanguageComboBox(const char* label, const char* cvarName, int* pSelectedItemIdx, unsigned availLangs);
+    unsigned FindInstalledAudioLanguages();
 };
 
 
