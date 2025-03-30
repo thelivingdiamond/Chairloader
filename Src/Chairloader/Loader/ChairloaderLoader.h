@@ -1,4 +1,5 @@
 #pragma once
+#include <Chairloader/Hooks/FunctionHook.h>
 #include "GameModuleInfo.h"
 #include "GameVersionInfo.h"
 
@@ -26,11 +27,18 @@ public:
     void Shutdown();
 
 private:
-    static constexpr char GAME_DLL_NAME[] = "PreyDll.dll";
-    static constexpr char CHAIRLOADER_DLL_NAME[] = "Chairloader.dll";
+    using FnEntryMain = int(void* hInstance, void* hPrevInstance, char* lpCmdLine, int nCmdShow);
 
-    //! The Game DLL module.
-    GameModuleInfo m_GameDllInfo;
+    static constexpr char ENTRY_MAIN[] = "EntryMain";
+
+    //! The original Game DLL module.
+    GameModuleInfo m_OrigGameDllInfo;
+
+    //! The Chairloader Game DLL module.
+    GameModuleInfo m_ChairGameDllInfo;
+
+    //! Hook of original Game DLL's EntryMain.
+    FunctionHook<int(void* hInstance, void* hPrevInstance, char* lpCmdLine, int nCmdShow)> m_EntryMainHook;
 
     //! The Chairloader DLL module.
     HMODULE m_hChairDll = nullptr;
@@ -42,7 +50,7 @@ private:
     std::vector<GameVersionInfo> m_SupportedVersions;
 
     //! Finds the loaded Game DLL.
-    bool FindGameDll();
+    bool FindOrigGameDll();
 
     //! @returns Whether currently launching Whiplash.
     bool IsWhiplash();
@@ -57,15 +65,27 @@ private:
     bool ReadSupportedVersions(std::string& outError);
 
     //! Checks if the current Game DLL is supported.
-    bool IsVersionSupported();
+    bool IsVersionSupported(const GameModuleInfo& gameDll);
+
+    //! Loads Chairloader Game DLL.
+    bool LoadChairGameDll(std::string& outError);
 
     //! Loads the Chairloader DLL. Can either fully succeed or fully fail.
     bool LoadChairloader(std::string& outError);
 
+    //! Hook of orig Game DLL's EntryMain.
+    //! Calls Chair GameDLL's EntryMain.
+    static int ChairEntryMain(void* hInstance, void* hPrevInstance, char* lpCmdLine, int nCmdShow);
+
     static void ShowMsgBoxV(UINT type, std::string_view format, fmt::format_args args);
     
     template <typename... Args>
-    inline void ShowMsgBox(UINT type, std::string_view format, const Args &...args) { ShowMsgBoxV(type, format, fmt::make_format_args(args...)); }
+    static inline void ShowMsgBox(UINT type, std::string_view format, const Args &...args) { ShowMsgBoxV(type, format, fmt::make_format_args(args...)); }
+
+    static void LogDebugV(std::string_view format, fmt::format_args args);
+
+    template <typename... Args>
+    static inline void LogDebug(std::string_view format, const Args &...args) { LogDebugV(format, fmt::make_format_args(args...)); }
 };
 
 extern ChairloaderLoader g_Loader;
