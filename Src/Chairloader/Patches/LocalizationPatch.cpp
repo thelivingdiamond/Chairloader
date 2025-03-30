@@ -141,7 +141,8 @@ unsigned LocalizationPatch::FindInstalledLanguages()
         // List of files to check
         const char* langName = pLocMan->LanguageNameFromID((ELanguageID)i);
         std::string filesToCheck[] = {
-            fmt::format("{}.pak", langName),        // Audio
+            // Not checking for audio since not all localizations have it
+            // fmt::format("{}.pak", langName),        // Audio
             fmt::format("{}_xml.pak", langName),    // Text
         };
 
