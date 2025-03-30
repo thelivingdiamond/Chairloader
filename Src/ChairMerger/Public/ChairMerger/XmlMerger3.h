@@ -34,33 +34,37 @@ public:
         const FileMergingPolicy3& policy);
 
     //! Merges a mod node into the base node. Merging method is decided by the merging policy
-    //! @param  context     Merger context.
-    //! @param  baseNode        Base node. Will be modified.
-    //! @param  modNode         Mod node.
-    //! @param  policy          Merging policy for the node.
-    //! @param  modErrorStack   XML error stack for the mod node.
+    //! @param  context             Merger context.
+    //! @param  baseNode            Base node. Will be modified.
+    //! @param  modNode             Mod node.
+    //! @param  policy              Merging policy for the node.
+    //! @param  modErrorStack       XML error stack for the mod node.
+    //! @param  mergeReadOnlyAttrs  Ignore read-only flag on attributes, merge them anyway.
     static void MergeNode(
         const XmlMergerContext& context,
         pugi::xml_node& baseNode,
         const pugi::xml_node& modNode,
         const MergingPolicy3& policy,
-        const XmlErrorStack& modErrorStack);
+        const XmlErrorStack& modErrorStack,
+        bool mergeReadOnlyAttrs);
 
     //! Merges a mod node into the base node.
     //! Only attributes set in mod node will be updated.
     //! Children merging method is decided by the merging policy.
-    //! @param  context     Merger context.
-    //! @param  baseNode        Base node. Will be modified.
-    //! @param  modNode         Mod node.
-    //! @param  policy          Merging policy for the node.
-    //! @param  modErrorStack   XML error stack for the mod node.
+    //! @param  context             Merger context.
+    //! @param  baseNode            Base node. Will be modified.
+    //! @param  modNode             Mod node.
+    //! @param  policy              Merging policy for the node.
+    //! @param  modErrorStack       XML error stack for the mod node.
+    //! @param  mergeReadOnlyAttrs  Ignore read-only flag on attributes, merge them anyway.
     static void PatchNode(
         const XmlMergerContext& context,
         pugi::xml_node& baseNode,
         const pugi::xml_node& modNode,
         const MetaAttributes& modNodeMeta,
         const MergingPolicy3& policy,
-        const XmlErrorStack& modErrorStack);
+        const XmlErrorStack& modErrorStack,
+        bool mergeReadOnlyAttrs);
 
     //! Merges a mod Excel spreasheet into the base spreadsheet.
     //! XMLs must be loaded with EXCEL_PARSE_OPTIONS.
@@ -92,17 +96,19 @@ private:
     static constexpr ArrayIndex INVALID_INDEX = std::numeric_limits<ArrayIndex>::max();
 
     //! Merges the attributes of mod node into the base node.
-    //! @param  context     Merger context.
-    //! @param  baseNode        Base node. Will be modified.
-    //! @param  modNode         Mod node.
-    //! @param  policy          Merging policy for the node.
-    //! @param  modErrorStack   XML error stack for the mod node.
+    //! @param  context             Merger context.
+    //! @param  baseNode            Base node. Will be modified.
+    //! @param  modNode             Mod node.
+    //! @param  policy              Merging policy for the node.
+    //! @param  modErrorStack       XML error stack for the mod node.
+    //! @param  mergeReadOnlyAttrs  Ignore read-only flag on attributes, merge them anyway.
     static void MergeAttributes(
         const XmlMergerContext& context,
         pugi::xml_node& baseNode,
         const pugi::xml_node& modNode,
         const MergingPolicy3& policy,
-        const XmlErrorStack& modErrorStack);
+        const XmlErrorStack& modErrorStack,
+        bool mergeReadOnlyAttrs);
 
     //! Merges the text of mod node into the base node.
     //! @param  context     Merger context.
