@@ -1,6 +1,6 @@
 {
   "name": "chairloader",
-  "version-string": "1.3.3",
+  "version-string": "1.3.4",
   "description": "An extensible Prey (2017) modding framework",
   "builtin-baseline": "f7423ee180c4b7f40d43402c2feb3859161ef625",
   "$deps_": "Please, keep sorted alphabetically",
