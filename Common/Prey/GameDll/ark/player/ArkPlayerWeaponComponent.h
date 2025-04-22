@@ -95,6 +95,7 @@ public:
 	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId);
 	virtual void OnItemRemoved(unsigned _entityId);
 	virtual void OnAbilityAdded(uint64_t _abilityId);
+    virtual void OnBecomeAlien();
 	bool CanEquip() const { return FCanEquip(this); }
 	void OnDoubleWrenchEnabled() { FOnDoubleWrenchEnabled(this); }
 	void RestoreVitalsOnSneakAttack() { FRestoreVitalsOnSneakAttack(this); }
