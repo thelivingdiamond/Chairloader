@@ -38,7 +38,6 @@ public:
 	virtual void OnPsiChanged();
 	virtual void OnStatusChanged(uint64_t _statusId, bool _bActive);
 	virtual void OnAbilityAdded(const uint64_t _abilityID);
-    virtual void OnBecomeAlien();
 	void ResetFacts() { FResetFacts(this); }
 	ArkResponseFact &GetFact(uint64_t _id) { return FGetFactOv1(this,_id); }
 	ArkResponseFact &GetFact(EArkResponseKey _key) { return FGetFactOv0(this,_key); }
