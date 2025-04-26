@@ -79,6 +79,23 @@ public:
         return ConfigNode(m_node.child(name));
     }
 
+    ConfigNode create(const char* name, NodeType type) {
+        if (m_node.child(name)) {
+            throw std::runtime_error("Node already exists");
+        }
+        auto node = m_node.append_child(name);
+        node.append_attribute("type") = toString(type).c_str();
+        node.append_child(pugi::node_pcdata).set_value("");
+        return ConfigNode(node);
+    }
+
+    ConfigNode getOrCreate(const char* name, NodeType type) {
+        if (m_node.child(name)) {
+            return ConfigNode(m_node.child(name));
+        }
+        return create(name, type);
+    }
+
     bool exists() const {
         return m_node;
     }
@@ -156,16 +173,21 @@ public:
      * @param value The value to set.
      */
     template<typename T>
-    void set(const T& value) {
+    void set(const T& value, NodeType type = NodeType::Unknown) {
         if(!m_node) {
             throw std::runtime_error("Node does not exist");
+        }
+
+        if (type != NodeType::Unknown) {
+            m_node.attribute("type").set_value(toString(type).c_str());
+            m_nodeType = type;
         }
 
         if (m_nodeType == NodeType::Enum) {
             ConfigNode(m_node.child("selected")).set(value);
             return;
         }
-        m_node.text().set(value);
+        setValue(m_node, value);
     }
 
     /**
@@ -193,6 +215,7 @@ public:
 
 private:
     template<typename T> static T getValue(pugi::xml_node node);
+    template<typename T> static void setValue(pugi::xml_node node, const T& value);
 
     pugi::xml_node m_node;
     std::string m_name;
@@ -211,4 +234,14 @@ template<> inline float ConfigNode::getValue<float>(pugi::xml_node node) { retur
 template<> inline std::string ConfigNode::getValue<std::string>(pugi::xml_node node) { return node.text().as_string(); }
 template<> inline bool ConfigNode::getValue<bool>(pugi::xml_node node) { return node.text().as_bool(); }
 template<> inline pugi::xml_node ConfigNode::getValue<pugi::xml_node>(pugi::xml_node node) { return node; }
+
+template<> inline void ConfigNode::setValue<int>(pugi::xml_node node, const int& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<unsigned int>(pugi::xml_node node, const unsigned int& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<int64_t>(pugi::xml_node node, const int64_t& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<uint64_t>(pugi::xml_node node, const uint64_t& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<float>(pugi::xml_node node, const float& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<std::string>(pugi::xml_node node, const std::string& value) { node.text().set(value.c_str()); }
+template<> inline void ConfigNode::setValue<bool>(pugi::xml_node node, const bool& value) { node.text().set(value); }
+template<> inline void ConfigNode::setValue<pugi::xml_node>(pugi::xml_node node, const pugi::xml_node& value) { node = value; }
+
 #endif //CHAIRLOADER_CONFIGNODE_H
