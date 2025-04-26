@@ -70,17 +70,20 @@ void ChairloaderCore::RegisterMods()
     m_pModDllManager = std::make_unique<ModDllManager>();
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
-	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
+	auto maybeNode = gCL->conf->getModConfig(CONFIG_NAME)["ModList"].maybe<pugi::xml_node>();
 
-	if (cfgValue.type() != typeid(pugi::xml_node))
+
+
+	if (!maybeNode)
 	{
 		CryWarning("ModList is not a node in the config.");
 		return;
 	}
 
-	auto node = boost::get<pugi::xml_node>(cfgValue);
+	auto node = *maybeNode;
 	for (pugi::xml_node& mod : node) {
-		std::string modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
+		auto modNode = ConfigNode(mod);
+		auto modName = modNode["modName"].as<std::string>();
 
 		if (mod.child("enabled").text().as_bool()) {
 			try
@@ -99,12 +102,12 @@ void ChairloaderCore::RegisterMods()
 
 				// Get mod path
 				fs::path fullPath;
-				auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
+				auto fullPathNode = modNode["fullPath"].maybe<std::string>();
 
-				if (boost::get<std::string>(&fullPathParam))
+				if (fullPathNode)
 				{
 					// Preditor's main mod is outside of Mods dir.
-					fullPath = fs::u8path(boost::get<std::string>(fullPathParam));
+					fullPath = fs::u8path(*fullPathNode);
 				}
 				else
 				{
@@ -115,7 +118,7 @@ void ChairloaderCore::RegisterMods()
 				Manager::ModInfo modInfo;
 				modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
 
-				int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
+				int loadOrder = modNode["loadOrder"].asOr<int>(0);
 
 				if (!modInfo.dllName.empty())
 				{
@@ -260,11 +263,11 @@ void ChairloaderCore::SkipIntroMovies()
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)
 {
-    auto key = gCL->conf->getConfigValue(CONFIG_NAME, paramName);
+    auto key = gCL->conf->getModConfig(CONFIG_NAME)[paramName.c_str()].maybe<std::string>();
     const IChairloader::KeyNameMap& keyNames = gChair->GetKeyNames();
 
-    if (key.type() == typeid(std::string)) {
-        auto keyName = boost::get<std::string>(key);
+    if (key) {
+        auto keyName = *key;
         std::transform(keyName.begin(), keyName.end(), keyName.begin(), ::tolower);
         auto it = keyNames.right.find(keyName);
 
@@ -275,7 +278,8 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-	gCL->conf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
+	gCL->conf->getModConfig(CONFIG_NAME).getOrCreate(paramName.c_str(), NodeType::String).set(keyNames.left.at(defaultKey));
+	gCL->conf->setConfigDirty(CONFIG_NAME, true);
     return defaultKey;
 }
 

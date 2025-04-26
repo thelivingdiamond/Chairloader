@@ -33,7 +33,7 @@ public:
 
 	// TODO: load files from a given list of modNames (handled during mod registration)
 	// Constructor and destructor
-	ChairloaderConfigManager();
+	ChairloaderConfigManager() = default;
 
 	// save all configs to file on destruction
 	~ChairloaderConfigManager();
@@ -46,40 +46,8 @@ public:
 	*/
 	void Update();
 
-	// retrieve the typed value of a parameter
-	ConfigParameter ParseXmlTextToParameter(pugi::xml_node parameterNode);
-
-	// Returns a boost::variant of the parameter. Returns boost::blank if the parameter does not exist;
-	// use boost::get<type>(parameter) to get the value. assumes you know the type of the parameter you are getting. 
-	ConfigParameter getConfigValue(std::string modName, std::string parameterName) override;
-
-	// Sets the value of a parameter. Returns true if the parameter was written, false otherwise.
-	bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) override;
-
-	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
-	pugi::xml_node getConfigNode(std::string modName) override;
-
-	/**
-	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file. 
-	 * \param node 
-	 * \param parameterName 
-	 * \return boost::Variant of the value, will be type boost::blank if parameter does not exist
-	 */
-	ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) override;
-
 	void setConfigDirty(std::string modName, bool bDirty) override;
     bool getConfigDirty(std::string modName) override;
-
-	/**
-	 * \brief Sets a chairloader-formatted parameter to an xml node. Use this function for writing to xmlnode parameters in your config file. 
-	 * \param node: xmlnode to be written to
-	 * \param parameterName: name of parameter
-	 * \param value: string text of the parameter to be set
-	 * \param type: type of node
-	 * \return true if parameter was set succesfully
-	 */
-	bool setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type) override;
-
 
 
 	// Returns the XML config file for a modName and stores it internally in the map
@@ -105,8 +73,6 @@ public:
 	//TODO: can we make this the default for accessing and deprecate everything else?
     ConfigNode getModConfig(std::string modName) override;
 private:
-	// store configs in a bimap
-	boost::bimap<parameterType, std::string> parameterNameMap;
 	std::map<std::string, pugi::xml_document*> modConfigs;
 	std::map<std::string, bool> modConfigsDirty;
 
