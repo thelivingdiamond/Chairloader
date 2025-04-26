@@ -1,6 +1,7 @@
 #pragma once
 #include <boost/bimap.hpp>
 #include <boost/variant.hpp>
+#include "ConfigNode.h"
 
 struct IChairloaderConfigManager {
 
@@ -68,4 +69,6 @@ struct IChairloaderConfigManager {
 	// retrive config file path
 	virtual fs::path getConfigPath(std::string modName) = 0;
 	virtual fs::path getDefaultConfigPath(std::string modName) = 0;
+
+    virtual ConfigNode getModConfig(std::string modName) = 0;
 };

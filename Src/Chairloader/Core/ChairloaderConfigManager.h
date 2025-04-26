@@ -101,6 +101,9 @@ public:
 	// retrive config file path
 	fs::path getConfigPath(std::string modName);
 	fs::path getDefaultConfigPath(std::string modName);
+
+	//TODO: can we make this the default for accessing and deprecate everything else?
+    ConfigNode getModConfig(std::string modName) override;
 private:
 	// store configs in a bimap
 	boost::bimap<parameterType, std::string> parameterNameMap;

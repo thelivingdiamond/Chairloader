@@ -412,3 +412,7 @@ bool ChairloaderConfigManager::getConfigDirty(std::string modName) {
     return false;
 }
 
+ConfigNode ChairloaderConfigManager::getModConfig(std::string modName) {
+    return ConfigNode(getConfigNode(modName));
+}
+
