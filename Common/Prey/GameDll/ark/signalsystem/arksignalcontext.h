@@ -15,8 +15,10 @@ class CArkSignalContext // Id=80136D9 Size=16
 public:
 	boost::variant<boost::blank,HitInfo const *,SExplosionContainer *> m_pInfo;
 	
-	CArkSignalContext();
-	CArkSignalContext(HitInfo const *const _pInfo);
+	CArkSignalContext(){m_pInfo = boost::blank();}
+	CArkSignalContext(HitInfo const *const _pInfo) {
+        m_pInfo = _pInfo;
+    };
 	CArkSignalContext(void *const );
 	Vec3 GetDamagePosition() const { return FGetDamagePosition(this); }
 	Vec3 GetDamageDirection() const { return FGetDamageDirection(this); }

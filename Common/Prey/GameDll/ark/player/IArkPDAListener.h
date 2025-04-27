@@ -6,9 +6,9 @@
 class IArkPDAListener
 { // Size=8 (0x8)
 public:
-	virtual void OnPDAOpen();
-	virtual void OnPDAOpenComplete();
-	virtual void OnPDAClose();
+	virtual void OnPDAOpen() { FOnPDAOpen(this); }
+	virtual void OnPDAOpenComplete() { FOnPDAOpenComplete(this); }
+	virtual void OnPDAClose() { FOnPDAClose(this); }
 
 	static inline auto FOnPDAOpen = PreyFunction<void(IArkPDAListener* const _this)>(0xA13080);
 	static inline auto FOnPDAOpenComplete = PreyFunction<void(IArkPDAListener* const _this)>(0xA13080);
