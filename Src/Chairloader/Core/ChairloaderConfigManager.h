@@ -71,7 +71,7 @@ public:
 	fs::path getDefaultConfigPath(std::string modName);
 
 	//TODO: can we make this the default for accessing and deprecate everything else?
-    ConfigNode getModConfig(std::string modName) override;
+    ConfigNodeRef<IConfigNodeV1> getModConfig(std::string modName) override;
 private:
 	std::map<std::string, pugi::xml_document*> modConfigs;
 	std::map<std::string, bool> modConfigsDirty;

@@ -1,6 +1,8 @@
 #include <Chairloader/IChairloaderDll.h>
 #include "ChairloaderConfigManager.h"
 
+#include "Config/ConfigNodeV1.h"
+
 
 ChairloaderConfigManager::~ChairloaderConfigManager() {
 	// save the files
@@ -68,9 +70,44 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 							ImGui::Text("%s", parameter.attribute("type").value());
 							ImGui::TableSetColumnIndex(2);
 
-							auto node = ConfigNode(parameter);
+							auto node = ConfigNodeV1(parameter);
 							// put text on imgui according to the type and value of the parameter
-							auto valueText = node.as<std::string>();
+							auto value = node.GetValue();
+							// convert the value to a string based on the type
+							std::string valueText;
+							if (!value) {
+								valueText = "Error: Invalid Value";
+							} else {
+								switch (node.GetNodeType()) {
+									case IConfigNodeV1::NodeType::String:
+										valueText = std::get<std::string>(*value);
+										break;
+									case IConfigNodeV1::NodeType::Bool:
+										valueText = std::to_string(std::get<bool>(*value));
+										break;
+									case IConfigNodeV1::NodeType::Int:
+										valueText = std::to_string(std::get<int>(*value));
+										break;
+									case IConfigNodeV1::NodeType::Uint:
+										valueText = std::to_string(std::get<unsigned int>(*value));
+										break;
+									case IConfigNodeV1::NodeType::Int64:
+										valueText = std::to_string(std::get<int64_t>(*value));
+										break;
+									case IConfigNodeV1::NodeType::Uint64:
+										valueText = std::to_string(std::get<uint64_t>(*value));
+										break;
+									case IConfigNodeV1::NodeType::Float:
+										valueText = std::to_string(std::get<float>(*value));
+										break;
+									case IConfigNodeV1::NodeType::XmlNode:
+										valueText = std::get<pugi::xml_node>(*value).name();
+										break;
+									default:
+										valueText = "Error: Invalid Value";
+										break;
+								}
+							}
 
 
 							ImGui::PushID((entry.first + parameter.name()).c_str());
@@ -90,34 +127,34 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 							}
 							if(ImGui::BeginPopup((valueText + modName + selected.name() + "popup").c_str())) {
 								// oh boy here we go
-								switch (node.type()) {
-								case NodeType::String:
+								switch (node.GetNodeType()) {
+								case IConfigNodeV1::NodeType::String:
 									ImGui::InputText("String Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterString);
 									break;
-								case NodeType::Bool:
+								case IConfigNodeV1::NodeType::Bool:
 									ImGui::InputText("Boolean Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterBool);
 									break;
-								case NodeType::Int:
+								case IConfigNodeV1::NodeType::Int:
 									ImGui::InputText("Int Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case NodeType::Uint:
+								case IConfigNodeV1::NodeType::Uint:
 									ImGui::InputText("UInt Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case NodeType::Int64:
+								case IConfigNodeV1::NodeType::Int64:
 									ImGui::InputText("Int64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case NodeType::Uint64:
+								case IConfigNodeV1::NodeType::Uint64:
 									ImGui::InputText("UInt64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case NodeType::Float:
+								case IConfigNodeV1::NodeType::Float:
 									ImGui::InputText("Float Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterFloat);
 									break;
-								case NodeType::XmlNode:
+								case IConfigNodeV1::NodeType::XmlNode:
 									ImGui::BeginDisabled();
 									ImGui::InputText("XMLNode Value", &popUpText);
 									ImGui::EndDisabled();
 									break;
-								case NodeType::Unknown:
+								case IConfigNodeV1::NodeType::Unknown:
 									ImGui::InputText("Other Value", &popUpText);
 									break;
 								default:
@@ -127,7 +164,7 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 									ImGui::BeginDisabled();
 								ImGui::PushID((valueText + modName + selected.name() + "popup save button").c_str());
 								if (ImGui::Button("Save To Config")) {
-									node.set(popUpText);
+									node.GetXmlNode().text().set(popUpText.c_str());
 									setConfigDirty(entry.first, true);
 								}
 								ImGui::PopID();
@@ -147,29 +184,6 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 			}
 			ImGui::EndTabBar();
 		}
-		// ImGui::Separator();
-		// ConfigParameter daBoi;
-		// daBoi = "yes";
-		// daBoi = 2;
-		// auto var = boost::get<int>(daBoi);
-		// static std::string input = "In your mom";
-//		if (ImGui::Button("Load Test Config File")) {
-//			// loadConfigFile();
-//			loadModConfigFile("ExampleMod");
-//		}
-		// if(ImGui::Button("Save Parameter 1")) {
-		// 	setConfigValue("ExampleMod", "parameterName", "1", parameterType::Int);
-		// }
-		// ImGui::InputText("Config Save Location", &input);
-		// if (ImGui::Button("Save Parameter 2")) {
-		// 	setConfigValue("ExampleMod", "configSaveLocation", input.c_str(), parameterType::String);
-		// }
-		// if(ImGui::Button("Check filesystem shit")) {
-		// 	if (fs::exists(getConfigPath("ExampleMod")))
-		// 		CryLog("File exists yep");
-		// 	else
-		// 		CryLog("FUCK");
-		// }
 	}
 	ImGui::End();
 }
@@ -206,7 +220,7 @@ bool ChairloaderConfigManager::loadModConfigFile(std::string modName) {
 		modConfigs.insert(std::pair{ modName, configFile});
 		modConfigsDirty.insert(std::pair{ modName, false});
 	}
-	
+
 	// load existing config file
 	if (fs::exists(configFilePath)) {
 		// continue on to load
@@ -275,13 +289,13 @@ bool ChairloaderConfigManager::getConfigDirty(std::string modName) {
     return false;
 }
 
-ConfigNode ChairloaderConfigManager::getModConfig(std::string modName) {
+ConfigNodeRef<IConfigNodeV1> ChairloaderConfigManager::getModConfig(std::string modName) {
 	if (modConfigs.find(modName) != modConfigs.end()) {
 		auto configFile = modConfigs.find(modName)->second;
 		auto node = configFile->child(modName.c_str());
-		return ConfigNode(node);
+		return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>(node));
 	}
 	CryError("{}: config not found", modName);
-	return ConfigNode();
+	return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>());
 }
 

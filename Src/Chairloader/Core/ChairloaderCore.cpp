@@ -15,6 +15,7 @@
 #include "LogManager.h"
 #include "ModDllManager.h"
 #include "ChairVarManager.h"
+#include "Config/ConfigNodeV1.h"
 
 constexpr char CONFIG_NAME[] = "Chairloader";
 static PreyGlobal<bool> s_freeCamActive(0x2C09352);
@@ -70,7 +71,7 @@ void ChairloaderCore::RegisterMods()
     m_pModDllManager = std::make_unique<ModDllManager>();
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
-	auto maybeNode = gCL->conf->getModConfig(CONFIG_NAME)["ModList"].maybe<pugi::xml_node>();
+	auto maybeNode = gCL->conf->getModConfig(CONFIG_NAME)["ModList"]->Maybe<pugi::xml_node>();
 
 
 
@@ -82,8 +83,8 @@ void ChairloaderCore::RegisterMods()
 
 	auto node = *maybeNode;
 	for (pugi::xml_node& mod : node) {
-		auto modNode = ConfigNode(mod);
-		auto modName = modNode["modName"].as<std::string>();
+		auto modNode = ConfigNodeV1(mod);
+		auto modName = modNode["modName"]->As<std::string>();
 
 		if (mod.child("enabled").text().as_bool()) {
 			try
@@ -102,7 +103,7 @@ void ChairloaderCore::RegisterMods()
 
 				// Get mod path
 				fs::path fullPath;
-				auto fullPathNode = modNode["fullPath"].maybe<std::string>();
+				auto fullPathNode = modNode["fullPath"]->Maybe<std::string>();
 
 				if (fullPathNode)
 				{
@@ -118,7 +119,7 @@ void ChairloaderCore::RegisterMods()
 				Manager::ModInfo modInfo;
 				modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
 
-				int loadOrder = modNode["loadOrder"].asOr<int>(0);
+				int loadOrder = modNode["loadOrder"]->AsOrDefault<int>(0);
 
 				if (!modInfo.dllName.empty())
 				{
@@ -263,7 +264,7 @@ void ChairloaderCore::SkipIntroMovies()
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)
 {
-    auto key = gCL->conf->getModConfig(CONFIG_NAME)[paramName.c_str()].maybe<std::string>();
+    auto key = gCL->conf->getModConfig(CONFIG_NAME)[paramName.c_str()]->Maybe<std::string>();
     const IChairloader::KeyNameMap& keyNames = gChair->GetKeyNames();
 
     if (key) {
@@ -278,7 +279,7 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-	gCL->conf->getModConfig(CONFIG_NAME).getOrCreate(paramName.c_str(), NodeType::String).set(keyNames.left.at(defaultKey));
+	gCL->conf->getModConfig(CONFIG_NAME)->GetOrCreate(paramName.c_str(), IConfigNodeV1::NodeType::String)->Set(keyNames.left.at(defaultKey));
 	gCL->conf->setConfigDirty(CONFIG_NAME, true);
     return defaultKey;
 }
