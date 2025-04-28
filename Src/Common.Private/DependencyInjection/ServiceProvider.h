@@ -7,11 +7,11 @@
 
 #include <map>
 #include <vector>
-#include <Chairloader/IServiceProvider.h>
+#include <Chairloader/IChairServiceProvider.h>
 
 struct ServiceDescriptor;
 
-class ServiceProvider : public IServiceProvider {
+class ServiceProvider : public IChairServiceProvider {
 public:
     ServiceProvider(std::map<std::type_index, ServiceDescriptor> services)
         : services(std::move(services)) {

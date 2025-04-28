@@ -7,8 +7,8 @@
 #include <memory>
 #include <typeindex>
 
-struct IServiceProvider {
-    virtual ~IServiceProvider() = default;
+struct IChairServiceProvider {
+    virtual ~IChairServiceProvider() = default;
 
     virtual std::shared_ptr<void> GetService(std::type_index serviceType) = 0;
 

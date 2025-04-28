@@ -7,12 +7,12 @@
 #include <functional>
 #include <memory>
 #include <typeindex>
-struct IServiceProvider;
+struct IChairServiceProvider;
 
 struct ServiceDescriptor {
     std::type_index serviceType;
     std::type_index implementationType;
-    std::function<std::shared_ptr<void>(IServiceProvider &)> factory;
+    std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory;
 };
 
 #endif //SERVICEDESCRIPTOR_H
