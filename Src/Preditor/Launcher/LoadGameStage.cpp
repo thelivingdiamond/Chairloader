@@ -17,7 +17,7 @@ void LoadGameStage::Start()
 {
 	try
 	{
-		UpdateProgressText("Loading PreyDll.dll...");
+		UpdateProgressText("Loading Game DLL...");
 		
 		// Parse game path
 		GamePath gamePath;

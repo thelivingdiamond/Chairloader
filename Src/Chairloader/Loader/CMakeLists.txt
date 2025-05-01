@@ -15,6 +15,7 @@ add_library(Chairloader.Loader SHARED ${SOURCE_FILES})
 
 target_link_libraries(Chairloader.Loader PRIVATE
 	Common
+	Common.Private
 	Shell32.lib
 )
 
