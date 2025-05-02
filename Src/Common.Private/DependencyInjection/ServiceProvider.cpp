@@ -9,33 +9,38 @@
 
 #include "ServiceDescriptor.h"
 
-std::shared_ptr<void> ServiceProvider::GetService(std::type_index serviceType) {
-    if (std::find(resolutionStack.begin(), resolutionStack.end(), serviceType) != resolutionStack.end()) {
+void *ServiceProvider::GetService(const std::string &serviceType) {
+    if (std::find(m_ServiceResolutionStack.begin(), m_ServiceResolutionStack.end(), serviceType) !=
+        m_ServiceResolutionStack.end()) {
         // Prevent circular dependencies
-        throw std::runtime_error("Circular dependency detected while resolving service: " + std::string(serviceType.name()));
+        throw std::runtime_error("Circular dependency detected while resolving service: " + serviceType);
     }
+
     // Check if the service is already resolved
-    auto it = serviceMap.find(serviceType);
-    if (it != serviceMap.end()) {
-        return it->second;
+    const auto it = m_ServiceInstances.find(serviceType);
+    if (it != m_ServiceInstances.end()) {
+        return it->second.get();
     }
+
     // Check if the service is registered
-    auto serviceIt = services.find(serviceType);
-    if (serviceIt == services.end()) {
-        throw std::runtime_error("Service not found: " + std::string(serviceType.name()));
+    const auto serviceIt = m_ServiceDescriptors.find(serviceType);
+    if (serviceIt == m_ServiceDescriptors.end()) {
+        throw std::runtime_error("Service not found: " + serviceType);
     }
+
     // Add the service type to the resolution stack
-    resolutionStack.push_back(serviceType);
+    m_ServiceResolutionStack.push_back(serviceType);
+
     try {
         // Create the service using the factory function
-        auto service = serviceIt->second.factory(*this);
         // Store the resolved service in the map
-        serviceMap[serviceType] = service;
-        resolutionStack.pop_back();
-        return service;
-    } catch (const std::exception& e) {
+        m_ServiceInstances[serviceType] = std::move(serviceIt->second.m_factory(*this));
+        m_ServiceResolutionStack.pop_back();
+        // Return the resolved service
+        return m_ServiceInstances[serviceType].get();
+    } catch (const std::exception &e) {
         // Remove the service type from the resolution stack if an error occurs
-        resolutionStack.pop_back();
+        m_ServiceResolutionStack.pop_back();
         throw; // Re-throw the exception
     }
 }

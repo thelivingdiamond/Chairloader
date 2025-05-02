@@ -14,12 +14,15 @@ class ServiceCollection : public IChairServiceCollection {
 public:
     ~ServiceCollection() override = default;
 
-    void AddService(std::type_index service, std::type_index implementation,
-                    std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory) override;
+    void AddService(const std::string &serviceType, const std::string &implementationType,
+                    const ServiceConstructor &factory) override;
 
     std::unique_ptr<IChairServiceProvider> BuildServiceProvider() override;
+
 private:
-    std::map<std::type_index, ServiceDescriptor> services;
+    std::map<std::string, ServiceDescriptor> m_ServiceDescriptors;
+
+    bool m_Built = false;
 };
 
 

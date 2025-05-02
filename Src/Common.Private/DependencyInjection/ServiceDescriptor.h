@@ -6,13 +6,14 @@
 #define SERVICEDESCRIPTOR_H
 #include <functional>
 #include <memory>
-#include <typeindex>
+
+#include "Chairloader/IChairServiceCollection.h"
 struct IChairServiceProvider;
 
 struct ServiceDescriptor {
-    std::type_index serviceType;
-    std::type_index implementationType;
-    std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory;
+    std::string m_ServiceType;
+    std::string m_ImplementationType;
+    IChairServiceCollection::ServiceConstructor m_factory;
 };
 
 #endif //SERVICEDESCRIPTOR_H

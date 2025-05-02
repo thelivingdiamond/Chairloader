@@ -6,11 +6,15 @@
 
 #include "ServiceProvider.h"
 
-void ServiceCollection::AddService(std::type_index service, const std::type_index implementation,
-                                   const std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory) {
-    services.emplace(service, ServiceDescriptor{service, implementation, factory});
+void ServiceCollection::AddService(const std::string &serviceType, const std::string &implementationType,
+                                   const ServiceConstructor &factory) {
+    m_ServiceDescriptors.emplace(serviceType, ServiceDescriptor{serviceType, implementationType, factory});
 }
 
 std::unique_ptr<IChairServiceProvider> ServiceCollection::BuildServiceProvider() {
-    return std::make_unique<ServiceProvider>(std::move(services));
+    if (m_Built) {
+        throw std::runtime_error("Service provider already built");
+    }
+    m_Built = true;
+    return std::make_unique<ServiceProvider>(std::move(m_ServiceDescriptors));
 }

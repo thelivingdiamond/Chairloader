@@ -6,33 +6,25 @@
 #define ISERVICECOLLECTION_H
 #include <functional>
 #include <memory>
-#include <typeindex>
 #include <utility>
 
 struct IChairServiceProvider;
 
+
 struct IChairServiceCollection {
     virtual ~IChairServiceCollection() = default;
 
-    virtual void AddService(std::type_index service, std::type_index implementation, std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory) = 0;
+    using ServiceConstructor = std::function<std::unique_ptr<void>(IChairServiceProvider &)>;
 
-    virtual void AddService(std::type_index service, std::function<std::shared_ptr<void>(IChairServiceProvider &)> factory) {
-        AddService(service, service, std::move(factory));
-    }
+    virtual void AddService(const std::string &serviceType, const std::string &implementationType,
+                            const ServiceConstructor& factory) = 0;
 
-    template <typename TService, typename TImplementation>
-    void AddService(std::function<std::shared_ptr<TImplementation>(IChairServiceProvider &)> factory) {
-        AddService(typeid(TService), typeid(TImplementation), std::move(factory));
-    }
-
-    template <typename TService>
-    void AddService(std::function<std::shared_ptr<TService>(IChairServiceProvider &)> factory) {
-        AddService(typeid(TService), std::move(factory));
+    virtual void AddService(const std::string &serviceType, const ServiceConstructor& factory) {
+        AddService(serviceType, serviceType, factory);
     }
 
     virtual std::unique_ptr<IChairServiceProvider> BuildServiceProvider() = 0;
 };
-
 
 
 #endif //ISERVICECOLLECTION_H

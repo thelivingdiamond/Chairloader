@@ -4,17 +4,24 @@
 
 #ifndef ISERVICEPROVIDER_H
 #define ISERVICEPROVIDER_H
-#include <memory>
-#include <typeindex>
 
 struct IChairServiceProvider {
     virtual ~IChairServiceProvider() = default;
 
-    virtual std::shared_ptr<void> GetService(std::type_index serviceType) = 0;
+    virtual void *GetService(const std::string &serviceType) = 0;
 
-    template <typename T>
-    std::shared_ptr<T> GetService() {
-        return std::static_pointer_cast<T>(GetService(typeid(T)));
+    template<typename T>
+    T *GetService(const std::string &serviceType) {
+        return static_cast<T *>(GetService(serviceType));
+    }
+
+    template<typename T>
+    T *GetRequiredService(const std::string &serviceType) {
+        T *service = GetService<T>(serviceType);
+        if (!service) {
+            throw std::runtime_error("Required service not found: " + serviceType);
+        }
+        return service;
     }
 };
 
