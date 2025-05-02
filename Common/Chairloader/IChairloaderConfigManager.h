@@ -2,7 +2,7 @@
 #include "IConfigNodeV1.h"
 
 struct IChairloaderConfigManager {
-    virtual ConfigNodeRef<IConfigNodeV1> getModConfig(std::string modName) = 0;
+    virtual ConfigNodeRef<IConfigNodeV1> getModConfig(const std::string &modName) = 0;
 
     virtual void setConfigDirty(std::string modName, bool bDirty) = 0;
 

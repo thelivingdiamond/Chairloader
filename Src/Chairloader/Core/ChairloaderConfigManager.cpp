@@ -289,7 +289,7 @@ bool ChairloaderConfigManager::getConfigDirty(std::string modName) {
     return false;
 }
 
-ConfigNodeRef<IConfigNodeV1> ChairloaderConfigManager::getModConfig(std::string modName) {
+ConfigNodeRef<IConfigNodeV1> ChairloaderConfigManager::getModConfig(const std::string &modName) {
 	if (modConfigs.find(modName) != modConfigs.end()) {
 		auto configFile = modConfigs.find(modName)->second;
 		auto node = configFile->child(modName.c_str());
