@@ -68,6 +68,8 @@ set(SOURCE_FILES
 	Chairloader/ChairVars.cpp
 	Chairloader/IChairloader.h
 	Chairloader/IChairloaderConfigManager.h
+	Chairloader/IConfigNodeV1.h
+	Chairloader/ConfigNodeRef.h
 	Chairloader/IChairloaderGui.h
 	Chairloader/IChairloaderImGui.h
 	Chairloader/IChairLogger.cpp

@@ -36,6 +36,9 @@ set(SOURCE_FILES
 	SHA256/SHA256.cpp
 	SHA256/SHA256.h
 
+	# Config
+	Config/ConfigNodeV1.h
+
 	GUIUtils.h
 	pch.h
 	version_info.rc.in
