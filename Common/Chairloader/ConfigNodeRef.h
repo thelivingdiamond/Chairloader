@@ -33,6 +33,10 @@ public :
         return ConfigNodeRef(std::move(childNode));
     }
 
+    operator bool() const {
+        return node != nullptr && node->IsValid();
+    }
+
 private:
     std::unique_ptr<T> node;
 };

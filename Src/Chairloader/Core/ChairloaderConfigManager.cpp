@@ -296,6 +296,6 @@ ConfigNodeRef<IConfigNodeV1> ChairloaderConfigManager::getModConfig(std::string 
 		return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>(node));
 	}
 	CryError("{}: config not found", modName);
-	return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>());
+	return ConfigNodeRef<IConfigNodeV1>(nullptr);
 }
 
