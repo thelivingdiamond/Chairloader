@@ -24,7 +24,7 @@ public:
         return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>(m_node.child(name)));
     }
 
-    ConfigNodeRef<IConfigNodeV1> Create(const char *name, NodeType type) override {
+    ConfigNodeRef<IConfigNodeV1> Create(const char *name, EConfigNodeType type) override {
         if (m_node.child(name)) {
             throw std::runtime_error("Node already exists");
         }
@@ -34,7 +34,7 @@ public:
         return ConfigNodeRef<IConfigNodeV1>(std::make_unique<ConfigNodeV1>(node));
     }
 
-    ConfigNodeRef<IConfigNodeV1> GetOrCreate(const char *name, const NodeType type) override {
+    ConfigNodeRef<IConfigNodeV1> GetOrCreate(const char *name, const EConfigNodeType type) override {
         if (m_node.child(name)) {
             return Get(name);
         }
@@ -46,7 +46,7 @@ public:
     }
 
 
-    NodeType GetNodeType() const override {
+    EConfigNodeType GetNodeType() const override {
         return ToNodeType(m_node.attribute("type").as_string());
     }
 
@@ -71,78 +71,78 @@ public:
             return std::nullopt;
         }
         switch (GetNodeType()) {
-            case NodeType::String: return m_node.text().as_string();
-            case NodeType::Bool: return m_node.text().as_bool();
-            case NodeType::Int: return m_node.text().as_int();
-            case NodeType::Uint: return m_node.text().as_uint();
-            case NodeType::Int64: return m_node.text().as_llong();
-            case NodeType::Uint64: return m_node.text().as_ullong();
-            case NodeType::Float: return m_node.text().as_float();
-            case NodeType::Enum: return m_node.child("selected").text().as_string();
-            case NodeType::XmlNode: return m_node;
+            case EConfigNodeType::String: return m_node.text().as_string();
+            case EConfigNodeType::Bool: return m_node.text().as_bool();
+            case EConfigNodeType::Int: return m_node.text().as_int();
+            case EConfigNodeType::Uint: return m_node.text().as_uint();
+            case EConfigNodeType::Int64: return m_node.text().as_llong();
+            case EConfigNodeType::Uint64: return m_node.text().as_ullong();
+            case EConfigNodeType::Float: return m_node.text().as_float();
+            case EConfigNodeType::Enum: return m_node.child("selected").text().as_string();
+            case EConfigNodeType::XmlNode: return m_node;
             default: return std::nullopt;
         }
     }
 
     void SetValue(const ValueType &value) override {
         switch (GetNodeType()) {
-            case NodeType::String:
+            case EConfigNodeType::String:
                 if (std::holds_alternative<std::string>(value)) {
                     m_node.text().set(std::get<std::string>(value).c_str());
                 } else {
                     throw std::runtime_error("Invalid type for String node");
                 }
                 break;
-            case NodeType::Bool:
+            case EConfigNodeType::Bool:
                 if (std::holds_alternative<bool>(value)) {
                     m_node.text().set(std::get<bool>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Bool node");
                 }
                 break;
-            case NodeType::Int:
+            case EConfigNodeType::Int:
                 if (std::holds_alternative<int>(value)) {
                     m_node.text().set(std::get<int>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Int node");
                 }
                 break;
-            case NodeType::Uint:
+            case EConfigNodeType::Uint:
                 if (std::holds_alternative<unsigned int>(value)) {
                     m_node.text().set(std::get<unsigned int>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Uint node");
                 }
                 break;
-            case NodeType::Int64:
+            case EConfigNodeType::Int64:
                 if (std::holds_alternative<int64_t>(value)) {
                     m_node.text().set(std::get<int64_t>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Int64 node");
                 }
                 break;
-            case NodeType::Uint64:
+            case EConfigNodeType::Uint64:
                 if (std::holds_alternative<uint64_t>(value)) {
                     m_node.text().set(std::get<uint64_t>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Uint64 node");
                 }
                 break;
-            case NodeType::Float:
+            case EConfigNodeType::Float:
                 if (std::holds_alternative<float>(value)) {
                     m_node.text().set(std::get<float>(value));
                 } else {
                     throw std::runtime_error("Invalid type for Float node");
                 }
                 break;
-            case NodeType::Enum:
+            case EConfigNodeType::Enum:
                 if (std::holds_alternative<std::string>(value)) {
                     m_node.child("selected").text().set(std::get<std::string>(value).c_str());
                 } else {
                     throw std::runtime_error("Invalid type for Enum node");
                 }
                 break;
-            case NodeType::XmlNode:
+            case EConfigNodeType::XmlNode:
                 if (std::holds_alternative<pugi::xml_node>(value)) {
                     m_node = std::get<pugi::xml_node>(value);
                 } else {
@@ -159,26 +159,26 @@ public:
             throw std::runtime_error("Node is not valid");
         }
 
-        NodeType newType = NodeType::Unknown;
+        EConfigNodeType newType = EConfigNodeType::Unknown;
         // determine the node type from the variant
         if (std::holds_alternative<std::string>(value)) {
-            newType = NodeType::String;
+            newType = EConfigNodeType::String;
         } else if (std::holds_alternative<bool>(value)) {
-            newType = NodeType::Bool;
+            newType = EConfigNodeType::Bool;
         } else if (std::holds_alternative<int>(value)) {
-            newType = NodeType::Int;
+            newType = EConfigNodeType::Int;
         } else if (std::holds_alternative<unsigned int>(value)) {
-            newType = NodeType::Uint;
+            newType = EConfigNodeType::Uint;
         } else if (std::holds_alternative<int64_t>(value)) {
-            newType = NodeType::Int64;
+            newType = EConfigNodeType::Int64;
         } else if (std::holds_alternative<uint64_t>(value)) {
-            newType = NodeType::Uint64;
+            newType = EConfigNodeType::Uint64;
         } else if (std::holds_alternative<float>(value)) {
-            newType = NodeType::Float;
+            newType = EConfigNodeType::Float;
         } else if (std::holds_alternative<pugi::xml_node>(value)) {
-            newType = NodeType::XmlNode;
+            newType = EConfigNodeType::XmlNode;
         } else if (std::holds_alternative<std::string>(value)) {
-            newType = NodeType::Enum; // Assuming Enum is also a string for simplicity
+            newType = EConfigNodeType::Enum; // Assuming Enum is also a string for simplicity
         } else {
             throw std::runtime_error("Invalid type for SetValueAndChangeType");
         }

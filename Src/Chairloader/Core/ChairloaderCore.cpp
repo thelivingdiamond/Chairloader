@@ -279,7 +279,7 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-	gCL->conf->getModConfig(CONFIG_NAME)->GetOrCreate(paramName.c_str(), IConfigNodeV1::NodeType::String)->Set(keyNames.left.at(defaultKey));
+	gCL->conf->getModConfig(CONFIG_NAME)->GetOrCreate(paramName.c_str(), EConfigNodeType::String)->Set(keyNames.left.at(defaultKey));
 	gCL->conf->setConfigDirty(CONFIG_NAME, true);
     return defaultKey;
 }

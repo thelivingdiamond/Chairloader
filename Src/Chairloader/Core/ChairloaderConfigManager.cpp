@@ -79,28 +79,28 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 								valueText = "Error: Invalid Value";
 							} else {
 								switch (node.GetNodeType()) {
-									case IConfigNodeV1::NodeType::String:
+									case EConfigNodeType::String:
 										valueText = std::get<std::string>(*value);
 										break;
-									case IConfigNodeV1::NodeType::Bool:
+									case EConfigNodeType::Bool:
 										valueText = std::to_string(std::get<bool>(*value));
 										break;
-									case IConfigNodeV1::NodeType::Int:
+									case EConfigNodeType::Int:
 										valueText = std::to_string(std::get<int>(*value));
 										break;
-									case IConfigNodeV1::NodeType::Uint:
+									case EConfigNodeType::Uint:
 										valueText = std::to_string(std::get<unsigned int>(*value));
 										break;
-									case IConfigNodeV1::NodeType::Int64:
+									case EConfigNodeType::Int64:
 										valueText = std::to_string(std::get<int64_t>(*value));
 										break;
-									case IConfigNodeV1::NodeType::Uint64:
+									case EConfigNodeType::Uint64:
 										valueText = std::to_string(std::get<uint64_t>(*value));
 										break;
-									case IConfigNodeV1::NodeType::Float:
+									case EConfigNodeType::Float:
 										valueText = std::to_string(std::get<float>(*value));
 										break;
-									case IConfigNodeV1::NodeType::XmlNode:
+									case EConfigNodeType::XmlNode:
 										valueText = std::get<pugi::xml_node>(*value).name();
 										break;
 									default:
@@ -128,33 +128,33 @@ void ChairloaderConfigManager::Draw(bool* bShow) {
 							if(ImGui::BeginPopup((valueText + modName + selected.name() + "popup").c_str())) {
 								// oh boy here we go
 								switch (node.GetNodeType()) {
-								case IConfigNodeV1::NodeType::String:
+								case EConfigNodeType::String:
 									ImGui::InputText("String Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterString);
 									break;
-								case IConfigNodeV1::NodeType::Bool:
+								case EConfigNodeType::Bool:
 									ImGui::InputText("Boolean Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterBool);
 									break;
-								case IConfigNodeV1::NodeType::Int:
+								case EConfigNodeType::Int:
 									ImGui::InputText("Int Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case IConfigNodeV1::NodeType::Uint:
+								case EConfigNodeType::Uint:
 									ImGui::InputText("UInt Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case IConfigNodeV1::NodeType::Int64:
+								case EConfigNodeType::Int64:
 									ImGui::InputText("Int64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case IConfigNodeV1::NodeType::Uint64:
+								case EConfigNodeType::Uint64:
 									ImGui::InputText("UInt64 Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterInt);
 									break;
-								case IConfigNodeV1::NodeType::Float:
+								case EConfigNodeType::Float:
 									ImGui::InputText("Float Value", &popUpText, ImGuiInputTextFlags_CallbackCharFilter, filterFloat);
 									break;
-								case IConfigNodeV1::NodeType::XmlNode:
+								case EConfigNodeType::XmlNode:
 									ImGui::BeginDisabled();
 									ImGui::InputText("XMLNode Value", &popUpText);
 									ImGui::EndDisabled();
 									break;
-								case IConfigNodeV1::NodeType::Unknown:
+								case EConfigNodeType::Unknown:
 									ImGui::InputText("Other Value", &popUpText);
 									break;
 								default:

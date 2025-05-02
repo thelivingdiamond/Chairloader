@@ -11,21 +11,32 @@
 #include <variant>
 #include "Chairloader/ConfigNodeRef.h"
 
+enum class EConfigNodeType {
+    Unknown,
+    String,
+    Bool,
+    Int,
+    Uint,
+    Int64,
+    Uint64,
+    Float,
+    XmlNode,
+    Enum,
+};
+
 // interface for version 1 of config node
 struct IConfigNodeV1 {
-    enum class NodeType { String, Bool, Int, Uint, Int64, Uint64, Float, XmlNode, Enum, Unknown };
 
     using ValueType = std::variant<float, bool, int, unsigned int, int64_t, uint64_t, std::string, pugi::xml_node>;
 
     virtual ~IConfigNodeV1() = default;
 
     // access child nodes
-    //TODO: should these return std::unique_ptr<IConfigNodeV1> or ConfigNodeRef?
     virtual ConfigNodeRef<IConfigNodeV1> Get(const char *name) = 0;
 
-    virtual ConfigNodeRef<IConfigNodeV1> Create(const char *name, NodeType type) = 0;
+    virtual ConfigNodeRef<IConfigNodeV1> Create(const char *name, EConfigNodeType type) = 0;
 
-    virtual ConfigNodeRef<IConfigNodeV1> GetOrCreate(const char *name, NodeType type) = 0;
+    virtual ConfigNodeRef<IConfigNodeV1> GetOrCreate(const char *name, EConfigNodeType type) = 0;
 
     virtual ConfigNodeRef<IConfigNodeV1> operator [](const char *name) {
         return Get(name);
@@ -34,7 +45,7 @@ struct IConfigNodeV1 {
     // access node properties
     virtual bool IsValid() const = 0;
 
-    virtual NodeType GetNodeType() const = 0;
+    virtual EConfigNodeType GetNodeType() const = 0;
 
     virtual std::string GetName() const = 0;
 
@@ -88,30 +99,30 @@ struct IConfigNodeV1 {
     }
 
 
-    static NodeType ToNodeType(const std::string_view s) {
-        if (s == "string") return NodeType::String;
-        if (s == "bool") return NodeType::Bool;
-        if (s == "int") return NodeType::Int;
-        if (s == "uint") return NodeType::Uint;
-        if (s == "int64") return NodeType::Int64;
-        if (s == "uint64") return NodeType::Uint64;
-        if (s == "float") return NodeType::Float;
-        if (s == "xmlnode") return NodeType::XmlNode;
-        if (s == "enum") return NodeType::Enum;
-        return NodeType::Unknown;
+    static EConfigNodeType ToNodeType(const std::string_view s) {
+        if (s == "string") return EConfigNodeType::String;
+        if (s == "bool") return EConfigNodeType::Bool;
+        if (s == "int") return EConfigNodeType::Int;
+        if (s == "uint") return EConfigNodeType::Uint;
+        if (s == "int64") return EConfigNodeType::Int64;
+        if (s == "uint64") return EConfigNodeType::Uint64;
+        if (s == "float") return EConfigNodeType::Float;
+        if (s == "xmlnode") return EConfigNodeType::XmlNode;
+        if (s == "enum") return EConfigNodeType::Enum;
+        return EConfigNodeType::Unknown;
     }
 
-    static std::string ToString(const NodeType type) {
+    static std::string ToString(const EConfigNodeType type) {
         switch (type) {
-            case NodeType::String: return "string";
-            case NodeType::Bool: return "bool";
-            case NodeType::Int: return "int";
-            case NodeType::Uint: return "uint";
-            case NodeType::Int64: return "int64";
-            case NodeType::Uint64: return "uint64";
-            case NodeType::Float: return "float";
-            case NodeType::XmlNode: return "xmlnode";
-            case NodeType::Enum: return "enum";
+            case EConfigNodeType::String: return "string";
+            case EConfigNodeType::Bool: return "bool";
+            case EConfigNodeType::Int: return "int";
+            case EConfigNodeType::Uint: return "uint";
+            case EConfigNodeType::Int64: return "int64";
+            case EConfigNodeType::Uint64: return "uint64";
+            case EConfigNodeType::Float: return "float";
+            case EConfigNodeType::XmlNode: return "xmlnode";
+            case EConfigNodeType::Enum: return "enum";
             default: return "unknown";
         }
     }
