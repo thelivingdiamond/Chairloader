@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 #include <utility>
+#include <any>
 
 struct IChairServiceProvider;
 
@@ -14,7 +15,7 @@ struct IChairServiceProvider;
 struct IChairServiceCollection {
     virtual ~IChairServiceCollection() = default;
 
-    using ServiceConstructor = std::function<std::unique_ptr<void>(IChairServiceProvider &)>;
+    using ServiceConstructor = std::function<std::shared_ptr<void>(IChairServiceProvider &)>;
 
     virtual void AddService(const std::string &serviceType, const std::string &implementationType,
                             const ServiceConstructor& factory) = 0;

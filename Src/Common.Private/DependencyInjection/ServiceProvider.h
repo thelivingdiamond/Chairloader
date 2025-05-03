@@ -5,6 +5,7 @@
 #ifndef SERVICEPROVIDER_H
 #define SERVICEPROVIDER_H
 
+#include <any>
 #include <map>
 #include <vector>
 #include <Chairloader/IChairServiceProvider.h>
@@ -24,7 +25,7 @@ public:
 private:
     std::map<std::string, ServiceDescriptor> m_ServiceDescriptors;
 
-    std::map<std::string, std::unique_ptr<void> > m_ServiceInstances;
+    std::map<std::string, std::shared_ptr<void>> m_ServiceInstances;
 
     std::vector<std::string> m_ServiceResolutionStack;
 };
