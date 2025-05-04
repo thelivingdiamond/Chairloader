@@ -6,7 +6,6 @@ namespace Internal
 
 struct IChairloaderPatches : public IChairloaderModule
 {
-	static std::unique_ptr<IChairloaderPatches> CreateInstance();
 	virtual ~IChairloaderPatches() {}
 
 	//! System initialization

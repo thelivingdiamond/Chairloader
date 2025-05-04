@@ -30,9 +30,14 @@ public:
 
 CBetterCVarsWhitelist g_CVarsWhitelist;
 
-std::unique_ptr<Internal::IChairloaderCore> Internal::IChairloaderCore::CreateInstance()
-{
-	return std::make_unique<ChairloaderCore>();
+
+ChairloaderCore::ChairloaderCore(IChairloaderConfigManager *configManager, Internal::IModDllManager *modDllManager,
+                                 IChairVarManager *cvarManager, IChairloaderGui *gui)
+	: m_pConfigManager(static_cast<ChairloaderConfigManager *>(configManager))
+	  //TODO: how do we handle getting specific concrete types from the service provider?
+	  , m_pModDllManager(static_cast<ModDllManager *>(modDllManager))
+	  , m_pCVarManager(cvarManager)
+	  , m_pGui(static_cast<ChairloaderGui *>(gui)) {
 }
 
 ChairloaderCore* ChairloaderCore::Get()
@@ -47,10 +52,8 @@ void ChairloaderCore::InitSystem()
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
 
 	LogManager::Get().InitSystem();
-	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
-    m_pCVarManager = std::make_unique<ChairVarManager>();
     m_pCVarManager->InitSystem();
-	gCL->conf = m_pConfigManager.get();
+	gCL->conf = m_pConfigManager;
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
@@ -67,7 +70,6 @@ void ChairloaderCore::ShutdownSystem()
 
 void ChairloaderCore::RegisterMods()
 {
-    m_pModDllManager = std::make_unique<ModDllManager>();
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
 	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
@@ -150,7 +152,7 @@ void ChairloaderCore::PreInitGame()
 void ChairloaderCore::InitGame()
 {
 	ChairImGui::Get().InitGame();
-	m_pGui = std::make_unique<ChairloaderGui>();
+	m_pGui->InitGame();
 	g_pProfiler = new Profiler();
 	m_pLuaModManager->PostGameInit();
 }
@@ -205,7 +207,7 @@ Internal::ILogManager* ChairloaderCore::GetLogManager()
 
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
-	return m_pModDllManager.get();
+	return m_pModDllManager;
 }
 
 bool ChairloaderCore::IsModInstalled(const std::string& modName)
@@ -280,5 +282,5 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
 }
 
 IChairVarManager *ChairloaderCore::GetCVarManager() {
-    return m_pCVarManager.get();
+    return m_pCVarManager;
 }

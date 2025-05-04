@@ -12,7 +12,6 @@ struct SToolsInitParams
 
 struct IChairloaderTools : public IChairloaderModule
 {
-	static std::unique_ptr<IChairloaderTools> CreateInstance();
 	virtual ~IChairloaderTools() {}
 
 	//! System initialization

@@ -39,6 +39,7 @@ set(CHAIR_SOURCE_FILES
 	
 	ChairloaderTools.cpp
 	ChairloaderTools.h
+	ChairloaderToolsServiceEnvironment.cpp
 	HeaderTestFile.cpp
 	LocalizationUtil.cpp
 	LocalizationUtil.h

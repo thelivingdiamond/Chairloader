@@ -12,6 +12,7 @@ set(SOURCE_FILES
 	ChairloaderConfigManager.h
 	ChairloaderCore.cpp
 	ChairloaderCore.h
+	ChairloaderCoreServiceEnvironment.cpp
 	ChairloaderGui.cpp
 	ChairloaderGui.h
 	ChairLogger.cpp

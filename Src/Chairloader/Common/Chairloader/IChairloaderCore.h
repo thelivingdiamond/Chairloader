@@ -12,7 +12,6 @@ struct IModDllManager;
 
 struct IChairloaderCore : public IChairloaderModule
 {
-	static std::unique_ptr<IChairloaderCore> CreateInstance();
 	virtual ~IChairloaderCore() {}
 
 	virtual ILogManager* GetLogManager() = 0;

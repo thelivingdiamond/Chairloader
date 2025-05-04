@@ -1,6 +1,7 @@
 #pragma once
 #include <Chairloader/IChairloaderCore.h>
 
+
 class LuaModManager;
 class ModDllManager;
 class ChairloaderConfigManager;
@@ -9,6 +10,11 @@ class ChairloaderGui;
 class ChairloaderCore : public Internal::IChairloaderCore
 {
 public:
+	ChairloaderCore(IChairloaderConfigManager* configManager,
+		Internal::IModDllManager* modDllManager,
+		IChairVarManager* cvarManager,
+		IChairloaderGui* gui);
+
 	static ChairloaderCore* Get();
 
 	//-------------------------------------------
@@ -34,7 +40,7 @@ public:
 
 	Internal::ILogManager* GetLogManager() override;
 	Internal::IModDllManager* GetDllManager() override;
-	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
+	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager; }
 
     IChairVarManager *GetCVarManager() override;
 
@@ -50,11 +56,11 @@ public:
 
     EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) override;
 private:
-	std::unique_ptr<ChairloaderConfigManager> m_pConfigManager;
-	std::unique_ptr<ModDllManager> m_pModDllManager;
+	ChairloaderConfigManager* m_pConfigManager;
+	ModDllManager* m_pModDllManager;
+    IChairVarManager* m_pCVarManager;
+	ChairloaderGui* m_pGui;
 	std::unique_ptr<LuaModManager> m_pLuaModManager;
-	std::unique_ptr<ChairloaderGui> m_pGui;
-    std::unique_ptr<IChairVarManager> m_pCVarManager;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap

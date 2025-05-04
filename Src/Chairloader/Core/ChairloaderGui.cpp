@@ -10,6 +10,19 @@
 #include "LogManager.h"
 
 ChairloaderGui::ChairloaderGui() {
+}
+
+
+//void ChairloaderGui::logItem(std::string msg, const std::string modName, logLevel level, bool displayToScreen) {
+//    log.logItem(msg, modName, level, displayToScreen);
+//}
+//
+//void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
+//    log.logItem(message, displayToScreen);
+//}
+
+
+void ChairloaderGui::InitGame() {
     ImGui::GetStyle().Alpha = 0.8f;
     gCL->gui = this;
 
@@ -34,16 +47,6 @@ ChairloaderGui::ChairloaderGui() {
 
     LogManager::Get().AddMessage(logMsg.data(), logMsg.size(), true);
 }
-
-
-//void ChairloaderGui::logItem(std::string msg, const std::string modName, logLevel level, bool displayToScreen) {
-//    log.logItem(msg, modName, level, displayToScreen);
-//}
-//
-//void ChairloaderGui::logItem(logMessage message, bool displayToScreen) {
-//    log.logItem(message, displayToScreen);
-//}
-
 
 void ChairloaderGui::draw() {
     if(m_bIsEnabled || persistentLogOverlay){

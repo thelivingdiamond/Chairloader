@@ -6,6 +6,8 @@ class ChairSteamAPI;
 class ChairloaderPatches : public Internal::IChairloaderPatches
 {
 public:
+	ChairloaderPatches(IChairSteamAPI* pChairSteamAPI);
+
 	//! Called before CSystem::InitSoundSystem to replace pArkRewardSystem and pArkDlcSystem.
 	void ReplaceArkSystems();
 
@@ -15,5 +17,5 @@ public:
 	virtual void MainUpdate(unsigned updateFlags) override;
 
 private:
-	std::unique_ptr<ChairSteamAPI> m_pSteamAPI;
+	ChairSteamAPI* m_pSteamAPI;
 };

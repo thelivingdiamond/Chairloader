@@ -13,7 +13,6 @@ struct SCryRenderInitParams
 
 struct IChairloaderCryRender : public IChairloaderModule
 {
-	static std::unique_ptr<IChairloaderCryRender> CreateInstance();
 	virtual ~IChairloaderCryRender() {}
 
 	//! System initialization
