@@ -16,6 +16,11 @@ set(SOURCE_FILES
 	Chairloader/IPreditorToChair.h
 	Chairloader/PreditorAPI.h
 
+	Chairloader/ServiceEnvironments/IChairloaderPatchesServiceEnvironment.h
+	Chairloader/ServiceEnvironments/IChairloaderToolsServiceEnvironment.h
+	Chairloader/ServiceEnvironments/IChairloaderCoreServiceEnvironment.h
+	Chairloader/ServiceEnvironments/IChairloaderCryRenderServiceEnvironment.h
+
 	BackupDxState.cpp
 	BackupDxState.h
 	ConsoleColorParser.cpp

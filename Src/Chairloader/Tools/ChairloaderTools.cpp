@@ -14,10 +14,6 @@
 #include <Prey/CrySystem/ILocalizationManager.h>
 #include <Prey/CrySystem/LocalizedStringManager.h>
 
-std::unique_ptr<Internal::IChairloaderTools> Internal::IChairloaderTools::CreateInstance()
-{
-	return std::make_unique<ChairloaderTools>();
-}
 
 void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 {

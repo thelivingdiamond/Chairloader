@@ -23,6 +23,7 @@ set(SOURCE_FILES
 	ArkPlayerCheats.h
 	ChairloaderPatches.cpp
 	ChairloaderPatches.h
+	ChairloaderPatchesServiceEnvironment.cpp
 	ConsoleEventPatch.cpp
 	ConsoleEventPatch.h
 	LocalizationPatch.cpp

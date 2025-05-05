@@ -17,6 +17,8 @@ public:
 //    void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
 //    void logItem(logMessage message, bool displayToScreen = true) override;
 
+    void InitGame();
+
     void draw();
     void update();
 

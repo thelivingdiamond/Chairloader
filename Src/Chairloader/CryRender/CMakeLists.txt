@@ -38,6 +38,7 @@ set(SOURCE_FILES
 	ChairloaderCryRender.h
 	ChairRender.cpp
 	ChairRender.h
+	ChairloaderCryRenderServiceEnvironment.cpp
 	DebugMarkers.cpp
 	DebugMarkers.h
 	pch.h

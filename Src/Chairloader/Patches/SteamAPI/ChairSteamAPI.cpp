@@ -65,7 +65,7 @@ bool CDXInput_AddInputDevice_Hook(CBaseInput* const _this, IInputDevice* pDevice
     return g_CDXInput_AddInputDevice_Hook.InvokeOrig(_this, pDevice);
 }
 
-std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
+std::shared_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
 {
     HMODULE hModule = nullptr;
 
@@ -76,7 +76,7 @@ std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
         char path[MAX_PATH];
         GetModuleFileNameA(hModule, path, sizeof(path));
         CryLog("Found Steam API: {}", path);
-        return std::make_unique<ChairSteamAPI>(hModule, false);
+        return std::make_shared<ChairSteamAPI>(hModule, false);
     }
 
     // Try GOG
@@ -86,7 +86,7 @@ std::unique_ptr<ChairSteamAPI> ChairSteamAPI::CreateInstance()
         char path[MAX_PATH];
         GetModuleFileNameA(hModule, path, sizeof(path));
         CryLog("Found Galaxy API: {}", path);
-        return std::make_unique<ChairSteamAPI>(hModule, true);
+        return std::make_shared<ChairSteamAPI>(hModule, true);
     }
 
     CryLog("{} or {} not found. Not running Steam/GOG version.", DLL_NAME, GOG_DLL_NAME);
@@ -98,32 +98,8 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
     assert(!g_pIChairSteamAPI);
     assert(!gCL->pSteamAPI);
     m_bIsGog = isGog;
-    
+
     m_hModule = hModuleVoid;
-    LoadFuncs();
-
-    if (!isGog)
-    {
-        CreateSteamAppId();
-
-        if (!IsSteamRunning())
-            CryFatalError("Steam is not running");
-    }
-
-    if (!InitSteam())
-        return;
-
-    if (!isGog)
-    {
-        // Steam API is only available for Steam version
-        // GOG's wrapper is too limited.
-        gCL->pSteamAPI = this;
-    }
-
-    // CArkEntitlementSystem::Init
-    // Remove EntitlementGranted call for Whiplash.
-    // Since Steam API is available, it will be granted by the DLC system.
-    mem::Nop((uint8_t*)(gCL->cl->GetPreyDllBase() + 0xD5B5BF), 0xD5B5C4 - 0xD5B5BF);
 }
 
 ChairSteamAPI::~ChairSteamAPI()
@@ -140,6 +116,33 @@ ChairSteamAPI::~ChairSteamAPI()
     assert(!gCL->pSteamAPI || gCL->pSteamAPI == this);
     g_pIChairSteamAPI = nullptr;
     gCL->pSteamAPI = nullptr;
+}
+
+void ChairSteamAPI::InitSystem() {
+    LoadFuncs();
+
+    if (!m_bIsGog)
+    {
+        CreateSteamAppId();
+
+        if (!IsSteamRunning())
+            CryFatalError("Steam is not running");
+    }
+
+    if (!InitSteam())
+        return;
+
+    if (!m_bIsGog)
+    {
+        // Steam API is only available for Steam version
+        // GOG's wrapper is too limited.
+        gCL->pSteamAPI = this;
+    }
+
+    // CArkEntitlementSystem::Init
+    // Remove EntitlementGranted call for Whiplash.
+    // Since Steam API is available, it will be granted by the DLC system.
+    mem::Nop((uint8_t*)(gCL->cl->GetPreyDllBase() + 0xD5B5BF), 0xD5B5C4 - 0xD5B5BF);
 }
 
 void ChairSteamAPI::ReplaceArkSystems()

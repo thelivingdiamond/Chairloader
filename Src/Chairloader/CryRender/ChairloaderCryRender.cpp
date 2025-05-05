@@ -6,10 +6,6 @@
 
 CD3D9Renderer* gcpRendD3D = nullptr;
 
-std::unique_ptr<Internal::IChairloaderCryRender> Internal::IChairloaderCryRender::CreateInstance()
-{
-	return std::make_unique<RenderDll::ChairloaderCryRender>();
-}
 
 void RenderDll::ChairloaderCryRender::InitSystem(const Internal::SCryRenderInitParams& params)
 {
