@@ -16,31 +16,45 @@ void *ServiceProvider::GetService(const std::string &serviceType) {
         throw std::runtime_error("Circular dependency detected while resolving service: " + serviceType);
     }
 
+    // find out what the implementation type is for the requested service
+    const auto implIt = m_ServiceToImplementationMap.find(serviceType);
+    if (implIt == m_ServiceToImplementationMap.end()) {
+        // Service not registered
+        return nullptr;
+    }
+    const auto impl = implIt->second;
+
     // Check if the service is already resolved
-    const auto it = m_ServiceInstances.find(serviceType);
+    const auto it = m_ServiceInstances.find(impl);
     if (it != m_ServiceInstances.end()) {
         return it->second.get();
     }
 
-    // Check if the service is registered
-    const auto serviceIt = m_ServiceDescriptors.find(serviceType);
-    if (serviceIt == m_ServiceDescriptors.end()) {
-        throw std::runtime_error("Service not found: " + serviceType);
+    // Check if we have a descriptor for the implementation type
+    const auto serviceIt = m_ImplementationDescriptors.find(impl);
+    if (serviceIt == m_ImplementationDescriptors.end()) {
+        // Implementation type not registered
+        return nullptr;
     }
 
     // Add the service type to the resolution stack
     m_ServiceResolutionStack.push_back(serviceType);
 
     try {
-        // Create the service using the factory function
-        // Store the resolved service in the map
-        m_ServiceInstances[serviceType] = std::move(serviceIt->second.m_factory(*this));
-        m_ServiceResolutionStack.pop_back();
-        // Return the resolved service
-        return m_ServiceInstances[serviceType].get();
+        // Create the service instance using the factory function
+        auto serviceInstance = serviceIt->second.m_factory(*this);
+        if (!serviceInstance) {
+            throw std::runtime_error("Failed to create service instance for: " + impl);
+        }
+
+        // Store the created service instance
+        m_ServiceInstances[impl] = std::move(serviceInstance);
     } catch (const std::exception &e) {
-        // Remove the service type from the resolution stack if an error occurs
+        // Remove the service type from the resolution stack on failure
         m_ServiceResolutionStack.pop_back();
-        throw; // Re-throw the exception
+        throw;
     }
+    // Remove the service type from the resolution stack after successful resolution
+    m_ServiceResolutionStack.pop_back();
+    return m_ServiceInstances[impl].get();
 }

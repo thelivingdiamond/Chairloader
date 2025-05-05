@@ -14,8 +14,10 @@ struct ServiceDescriptor;
 
 class ServiceProvider : public IChairServiceProvider {
 public:
-    ServiceProvider(std::map<std::string, ServiceDescriptor> services)
-        : m_ServiceDescriptors(std::move(services)) {
+    ServiceProvider(std::map<std::string, std::string> &serviceToImplementationMap,
+                    std::map<std::string, ServiceDescriptor> &implementationDescriptors)
+        : m_ServiceToImplementationMap(std::move(serviceToImplementationMap)),
+          m_ImplementationDescriptors(std::move(implementationDescriptors)) {
     }
 
     ~ServiceProvider() override = default;
@@ -23,9 +25,11 @@ public:
     void *GetService(const std::string &serviceType) override;
 
 private:
-    std::map<std::string, ServiceDescriptor> m_ServiceDescriptors;
+    std::map<std::string, std::string> m_ServiceToImplementationMap;
 
-    std::map<std::string, std::shared_ptr<void>> m_ServiceInstances;
+    std::map<std::string, ServiceDescriptor> m_ImplementationDescriptors;
+
+    std::map<std::string, std::shared_ptr<void> > m_ServiceInstances;
 
     std::vector<std::string> m_ServiceResolutionStack;
 };

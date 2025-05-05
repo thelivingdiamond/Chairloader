@@ -17,10 +17,13 @@ public:
     void AddService(const std::string &serviceType, const std::string &implementationType,
                     const ServiceConstructor &factory) override;
 
+    void AssociateService(const std::string &serviceType, const std::string &implementationType) override;
+
     std::unique_ptr<IChairServiceProvider> BuildServiceProvider() override;
 
 private:
-    std::map<std::string, ServiceDescriptor> m_ServiceDescriptors;
+    std::map<std::string, std::string> m_ServiceToImplementationMap;
+    std::map<std::string, ServiceDescriptor> m_ImplementationDescriptors;
 
     bool m_Built = false;
 };
