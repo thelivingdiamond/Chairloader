@@ -5,13 +5,17 @@
 #include "ChairloaderEnv.h"
 #include "IChairloaderConfigManager.h"
 #include "IChairloaderGui.h"
+#include "IChairService.h"
 
 struct IGameFramework;
 struct IChairLogger;
 struct ICVar;
 class CGame;
 
-struct IChairloader {
+struct IChairloader : public IChairService<IChairloader> {
+
+    static const char* NameImpl() { return "IChairloader"; }
+
     //! Gets the Mod SDK version used in Chairloader.
     virtual void GetModSdkVersion(int& major, int& minor, int& patch) = 0;
 
