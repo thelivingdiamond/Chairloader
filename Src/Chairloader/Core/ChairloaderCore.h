@@ -10,10 +10,10 @@ class ChairloaderGui;
 class ChairloaderCore : public Internal::IChairloaderCore
 {
 public:
-	ChairloaderCore(IChairloaderConfigManager* configManager,
-		Internal::IModDllManager* modDllManager,
-		IChairVarManager* cvarManager,
-		IChairloaderGui* gui);
+	ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
+		std::shared_ptr<Internal::IModDllManager> modDllManager,
+		std::shared_ptr<IChairVarManager> cvarManager,
+		std::shared_ptr<IChairloaderGui> gui);
 
 	static ChairloaderCore* Get();
 
@@ -40,7 +40,7 @@ public:
 
 	Internal::ILogManager* GetLogManager() override;
 	Internal::IModDllManager* GetDllManager() override;
-	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager; }
+	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
 
     IChairVarManager *GetCVarManager() override;
 
@@ -56,10 +56,10 @@ public:
 
     EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) override;
 private:
-	ChairloaderConfigManager* m_pConfigManager;
-	ModDllManager* m_pModDllManager;
-    IChairVarManager* m_pCVarManager;
-	ChairloaderGui* m_pGui;
+	std::shared_ptr<ChairloaderConfigManager> m_pConfigManager;
+	std::shared_ptr<ModDllManager> m_pModDllManager;
+    std::shared_ptr<IChairVarManager> m_pCVarManager;
+	std::shared_ptr<ChairloaderGui> m_pGui;
 	std::unique_ptr<LuaModManager> m_pLuaModManager;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 

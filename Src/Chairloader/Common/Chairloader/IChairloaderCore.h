@@ -10,8 +10,10 @@ namespace Internal
 struct ILogManager;
 struct IModDllManager;
 
-struct IChairloaderCore : public IChairloaderModule
+struct IChairloaderCore : public IChairloaderModule, IChairService<IChairloaderCore>
 {
+	static const char* NameImpl() { return "IChairloaderCore"; }
+
 	virtual ~IChairloaderCore() {}
 
 	virtual ILogManager* GetLogManager() = 0;

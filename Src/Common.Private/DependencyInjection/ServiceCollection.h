@@ -14,8 +14,8 @@ class ServiceCollection : public IChairServiceCollection {
 public:
     ~ServiceCollection() override = default;
 
-    void AddService(const std::string &serviceType, ServiceConstructor constructor,
-        EChairServiceLifetime lifetime) override;
+    void AddService(const std::string &serviceType, EChairServiceLifetime lifetime,
+                    ServiceConstructor constructor) override;
 
     std::unique_ptr<IChairServiceProvider> BuildServiceProvider() override;
 

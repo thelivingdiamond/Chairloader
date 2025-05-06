@@ -7,8 +7,7 @@
 #include "ServiceProvider.h"
 
 
-void ServiceCollection::AddService(const std::string &serviceType, ServiceConstructor constructor,
-    EChairServiceLifetime lifetime) {
+void ServiceCollection::AddService(const std::string &serviceType, EChairServiceLifetime lifetime, ServiceConstructor constructor) {
     if (m_Built) {
         throw std::runtime_error("Cannot add services after the service provider has been built");
     }

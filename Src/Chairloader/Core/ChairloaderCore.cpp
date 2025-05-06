@@ -31,13 +31,14 @@ public:
 CBetterCVarsWhitelist g_CVarsWhitelist;
 
 
-ChairloaderCore::ChairloaderCore(IChairloaderConfigManager *configManager, Internal::IModDllManager *modDllManager,
-                                 IChairVarManager *cvarManager, IChairloaderGui *gui)
-	: m_pConfigManager(static_cast<ChairloaderConfigManager *>(configManager))
-	  //TODO: how do we handle getting specific concrete types from the service provider?
-	  , m_pModDllManager(static_cast<ModDllManager *>(modDllManager))
-	  , m_pCVarManager(cvarManager)
-	  , m_pGui(static_cast<ChairloaderGui *>(gui)) {
+ChairloaderCore::ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
+	std::shared_ptr<Internal::IModDllManager> modDllManager,
+	std::shared_ptr<IChairVarManager> cvarManager,
+	std::shared_ptr<IChairloaderGui> gui)
+		: m_pConfigManager(std::static_pointer_cast<ChairloaderConfigManager>(configManager))
+		, m_pModDllManager(std::static_pointer_cast<ModDllManager>(modDllManager))
+		, m_pCVarManager(std::static_pointer_cast<ChairVarManager>(cvarManager))
+		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui)) {
 }
 
 ChairloaderCore* ChairloaderCore::Get()
@@ -53,7 +54,7 @@ void ChairloaderCore::InitSystem()
 
 	LogManager::Get().InitSystem();
     m_pCVarManager->InitSystem();
-	gCL->conf = m_pConfigManager;
+	gCL->conf = m_pConfigManager.get();
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
@@ -207,7 +208,7 @@ Internal::ILogManager* ChairloaderCore::GetLogManager()
 
 Internal::IModDllManager* ChairloaderCore::GetDllManager()
 {
-	return m_pModDllManager;
+	return m_pModDllManager.get();
 }
 
 bool ChairloaderCore::IsModInstalled(const std::string& modName)
@@ -282,5 +283,5 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
 }
 
 IChairVarManager *ChairloaderCore::GetCVarManager() {
-    return m_pCVarManager;
+    return m_pCVarManager.get();
 }

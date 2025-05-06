@@ -18,14 +18,14 @@ struct IChairServiceProvider {
 
     /// Typed lookup using CRTP Name()
     template<typename T>
-    std::shared_ptr<void> GetService() {
-        return static_cast<T>(GetService(T::Name()));
+    std::shared_ptr<T> GetService() {
+        return std::static_pointer_cast<T>(GetService(T::Name()));
     }
 
     /// Typed lookup using CRTP Name()
     template<typename T>
-    std::shared_ptr<void> GetRequiredService() {
-        std::shared_ptr<void> service = GetService<T>();
+    std::shared_ptr<T> GetRequiredService() {
+        std::shared_ptr<T> service = GetService<T>();
         if (!service) {
             throw std::runtime_error("Required service not found: " + std::string(T::Name()));
         }
