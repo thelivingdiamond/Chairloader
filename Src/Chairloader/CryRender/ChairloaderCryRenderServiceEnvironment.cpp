@@ -8,11 +8,6 @@
 #include "Chairloader/IChairServiceCollection.h"
 
 void Internal::IChairloaderCryRenderServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    serviceCollection.AddService("IChairRender", "ChairRender",[](IChairServiceProvider& provider) {
-        return std::make_shared<RenderDll::ChairRender>();
-    });
-
-    serviceCollection.AddService("IChairloaderCryRender", "ChairloaderCryRender", [](IChairServiceProvider& provider) {
-        return std::make_shared<RenderDll::ChairloaderCryRender>();
-    });
+    AddSingleton<IChairRender, RenderDll::ChairRender>(serviceCollection);
+    AddSingleton<IChairloaderCryRender, RenderDll::ChairloaderCryRender>(serviceCollection);
 }

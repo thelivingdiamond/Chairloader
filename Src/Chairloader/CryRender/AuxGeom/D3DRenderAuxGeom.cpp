@@ -5,6 +5,8 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Prey/RenderDll/Common/RenderThread.h>
 
+#include "DependencyInjection/ServiceLocator.h"
+
 #if defined(ENABLE_RENDER_AUX_GEOM)
 
 const float c_clipThres(0.1f);
@@ -71,7 +73,7 @@ static void RC_AuxFlush(IRenderAuxGeomImpl* pAux, SAuxGeomCBRawDataPackaged& dat
 	}
 
 
-	RenderCmdBuf cmd = gCL->pRender->QueueCommand(g_nAuxFlushId, 4 * sizeof(void*) + sizeof(uint32));
+	RenderCmdBuf cmd = ServiceLocator::GetService<IChairRender>()->QueueCommand(g_nAuxFlushId, 4 * sizeof(void*) + sizeof(uint32));
 	cmd.AddPointer(pAux);
 	cmd.AddPointer(data.m_pData);
 	cmd.AddPointer((void*)begin);
@@ -98,12 +100,12 @@ static void RT_AuxFlush(RenderCmdId, RenderCmdBuf& cmd)
 void CRenderAuxGeomD3D::InitCustomCommand()
 {
 	// Modders, rename the command
-	g_nAuxFlushId = gCL->pRender->RegisterRenderCommand("Chairloader_AuxFlush", RT_AuxFlush);
+	g_nAuxFlushId = ServiceLocator::GetService<IChairRender>()->RegisterRenderCommand("Chairloader_AuxFlush", RT_AuxFlush);
 }
 
 void CRenderAuxGeomD3D::ShutdownCustomCommand()
 {
-	gCL->pRender->UnregisterRenderCommand(g_nAuxFlushId);
+	ServiceLocator::GetService<IChairRender>()->UnregisterRenderCommand(g_nAuxFlushId);
 }
 
 CRenderAuxGeomD3D::CRenderAuxGeomD3D(CD3D9Renderer& renderer)
