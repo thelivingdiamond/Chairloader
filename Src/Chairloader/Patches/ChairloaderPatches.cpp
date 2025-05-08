@@ -50,7 +50,7 @@ void CDXInput_ShutDown_Hook(CDXInput* const _this)
 }
 
 
-ChairloaderPatches::ChairloaderPatches(IChairSteamAPI *pChairSteamAPI) : m_pSteamAPI(static_cast<ChairSteamAPI*>(pChairSteamAPI)) {
+ChairloaderPatches::ChairloaderPatches(std::shared_ptr<IChairSteamAPI> pChairSteamAPI) : m_pSteamAPI(std::static_pointer_cast<ChairSteamAPI>(pChairSteamAPI)) {
 }
 
 void ChairloaderPatches::ReplaceArkSystems()
@@ -68,7 +68,7 @@ void ChairloaderPatches::InitSystem()
 	LuaDbgRes::InitSystem();
 	LuaWarnPatch::InitSystem();
 	m_pSteamAPI->InitSystem();
-	LocalizationPatch::InitSystem(m_pSteamAPI);
+	LocalizationPatch::InitSystem(m_pSteamAPI.get());
 
 	{
 		// CleanupVibrationAtExit_Hook is called after Chairloader is shut down and
