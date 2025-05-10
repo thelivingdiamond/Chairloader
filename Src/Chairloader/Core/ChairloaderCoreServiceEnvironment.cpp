@@ -2,6 +2,7 @@
 // Created by theli on 5/3/2025.
 //
 
+#include "ChairImGui.h"
 #include "ChairloaderConfigManager.h"
 #include "ChairloaderCore.h"
 #include "ChairVarManager.h"
@@ -16,13 +17,15 @@
 #include "Chairloader/IChairServiceProvider.h"
 
 void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    AddSingleton<ILogManager, LogManager>(serviceCollection);
     AddTransient<IChairLogger, ChairLogger>(serviceCollection);
-    AddSingleton<IModDllManager, ModDllManager>(serviceCollection);
+    AddSingleton<ILogManager, LogManager>(serviceCollection);
+    AddSingleton<IChairloaderConfigManager, ChairloaderConfigManager>(serviceCollection);
+    AddSingleton<IChairloaderImGui, ChairImGui, IChairRender>(serviceCollection);
     AddSingleton<IChairVarManager, ChairVarManager>(serviceCollection);
     AddSingleton<IChairloaderGui, ChairloaderGui>(serviceCollection);
-    AddSingleton<IChairloaderConfigManager, ChairloaderConfigManager>(serviceCollection);
+    AddSingleton<IModDllManager, ModDllManager, IChairloaderConfigManager>(serviceCollection);
     AddSingleton<LuaModManager, LuaModManager>(serviceCollection);
     AddSingleton<ScriptBind_Chairloader, ScriptBind_Chairloader, LuaModManager, IChairLogger>(serviceCollection);
-    AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,IChairloaderGui, LuaModManager>(serviceCollection);
+    AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,
+        IChairloaderGui, LuaModManager, IChairloaderImGui>(serviceCollection);
 }

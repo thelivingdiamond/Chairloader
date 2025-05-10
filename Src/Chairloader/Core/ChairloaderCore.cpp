@@ -35,12 +35,15 @@ ChairloaderCore::ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> conf
 	std::shared_ptr<Internal::IModDllManager> modDllManager,
 	std::shared_ptr<IChairVarManager> cvarManager,
 	std::shared_ptr<IChairloaderGui> gui,
-	std::shared_ptr<LuaModManager> luaModManager)
+	std::shared_ptr<LuaModManager> luaModManager,
+	std::shared_ptr<IChairloaderImGui> imgui)
 		: m_pConfigManager(std::static_pointer_cast<ChairloaderConfigManager>(configManager))
 		, m_pModDllManager(std::static_pointer_cast<ModDllManager>(modDllManager))
 		, m_pCVarManager(std::static_pointer_cast<ChairVarManager>(cvarManager))
 		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui))
-		, m_pLuaModManager(std::move(luaModManager)){
+		, m_pLuaModManager(std::move(luaModManager))
+		, m_pImGui(std::static_pointer_cast<ChairImGui>(imgui))
+{
 }
 
 ChairloaderCore* ChairloaderCore::Get()
@@ -58,13 +61,13 @@ void ChairloaderCore::InitSystem()
     m_pCVarManager->InitSystem();
 	CryLog("Chairloader config loaded: {}", m_pConfigManager->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
-	ChairImGui::Get().InitSystem();
+	m_pImGui->InitSystem();
 	SkipIntroMovies();
 }
 
 void ChairloaderCore::ShutdownSystem()
 {
-	ChairImGui::Get().ShutdownSystem();
+	m_pImGui->ShutdownSystem();
 	m_pConfigManager = nullptr;
 }
 
@@ -151,7 +154,7 @@ void ChairloaderCore::PreInitGame()
 
 void ChairloaderCore::InitGame()
 {
-	ChairImGui::Get().InitGame();
+	m_pImGui->InitGame();
 	m_pGui->InitGame();
 	g_pProfiler = new Profiler();
 	m_pLuaModManager->PostGameInit();
@@ -166,7 +169,7 @@ void ChairloaderCore::PreShutdown()
 void ChairloaderCore::ShutdownGame()
 {
 	m_pGui = nullptr;
-	ChairImGui::Get().ShutdownGame();
+	m_pImGui->ShutdownGame();
 }
 
 void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
@@ -176,7 +179,7 @@ void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 	if (m_pConfigManager->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
-	ChairImGui::Get().UpdateBeforeSystem();
+	m_pImGui->UpdateBeforeSystem();
 	m_pGui->update();
 	m_pConfigManager->Update();
     m_pCVarManager->UpdateSystem();

@@ -1,6 +1,8 @@
 #include <Chairloader/IChairloaderDll.h>
 #include "ChairToolsUtils.h"
 
+#include "Chairloader/IChairServiceProvider.h"
+
 #ifdef PREDITOR
 #include <Chairloader/IChairToPreditor.h>
 #include "ChairloaderToolsPreditor.h"
@@ -34,7 +36,7 @@ ImFont* ChairToolsUtils::GetFont(IChairloaderImGui::EFont font)
 
 	return nullptr;
 #else
-	return gCL->pImGui->GetFont(font);
+	return gCL->pServiceProvider->GetRequiredService<IChairloaderImGui>()->GetFont(font);
 #endif
 }
 

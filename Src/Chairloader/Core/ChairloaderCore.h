@@ -2,6 +2,7 @@
 #include <Chairloader/IChairloaderCore.h>
 
 
+class ChairImGui;
 class LuaModManager;
 class ModDllManager;
 class ChairloaderConfigManager;
@@ -14,7 +15,8 @@ public:
 		std::shared_ptr<Internal::IModDllManager> modDllManager,
 		std::shared_ptr<IChairVarManager> cvarManager,
 		std::shared_ptr<IChairloaderGui> gui,
-		std::shared_ptr<LuaModManager> luaModManager);
+		std::shared_ptr<LuaModManager> luaModManager,
+		std::shared_ptr<IChairloaderImGui> imgui);
 
 	static ChairloaderCore* Get();
 
@@ -61,6 +63,7 @@ private:
     std::shared_ptr<IChairVarManager> m_pCVarManager;
 	std::shared_ptr<ChairloaderGui> m_pGui;
 	std::shared_ptr<LuaModManager> m_pLuaModManager;
+	std::shared_ptr<ChairImGui> m_pImGui;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap
