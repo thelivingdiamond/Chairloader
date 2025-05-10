@@ -56,8 +56,7 @@ void ChairloaderCore::InitSystem()
 
 	LogManager::Get().InitSystem();
     m_pCVarManager->InitSystem();
-	gCL->conf = m_pConfigManager.get();
-	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
+	CryLog("Chairloader config loaded: {}", m_pConfigManager->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
 	SkipIntroMovies();
@@ -66,7 +65,6 @@ void ChairloaderCore::InitSystem()
 void ChairloaderCore::ShutdownSystem()
 {
 	ChairImGui::Get().ShutdownSystem();
-	gCL->conf = nullptr;
 	m_pConfigManager = nullptr;
 }
 
@@ -74,7 +72,7 @@ void ChairloaderCore::RegisterMods()
 {
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
-	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
+	auto cfgValue = m_pConfigManager->getConfigValue(CONFIG_NAME, "ModList");
 
 	if (cfgValue.type() != typeid(pugi::xml_node))
 	{
@@ -84,7 +82,7 @@ void ChairloaderCore::RegisterMods()
 
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
-		std::string modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
+		std::string modName = boost::get<std::string>(m_pConfigManager->getNodeConfigValue(mod, "modName"));
 
 		if (mod.child("enabled").text().as_bool()) {
 			try
@@ -103,7 +101,7 @@ void ChairloaderCore::RegisterMods()
 
 				// Get mod path
 				fs::path fullPath;
-				auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
+				auto fullPathParam = m_pConfigManager->getNodeConfigValue(mod, "fullPath");
 
 				if (boost::get<std::string>(&fullPathParam))
 				{
@@ -119,7 +117,7 @@ void ChairloaderCore::RegisterMods()
 				Manager::ModInfo modInfo;
 				modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
 
-				int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
+				int loadOrder = boost::get<int>(m_pConfigManager->getNodeConfigValue(mod, "loadOrder"));
 
 				if (!modInfo.dllName.empty())
 				{
@@ -175,7 +173,7 @@ void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 {
 	LogManager::Get().Update();
 
-	if (gCL->conf->getConfigDirty(CONFIG_NAME))
+	if (m_pConfigManager->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
 	ChairImGui::Get().UpdateBeforeSystem();
@@ -259,7 +257,7 @@ void ChairloaderCore::SkipIntroMovies()
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)
 {
-    auto key = gCL->conf->getConfigValue(CONFIG_NAME, paramName);
+    auto key = m_pConfigManager->getConfigValue(CONFIG_NAME, paramName);
     const IChairloader::KeyNameMap& keyNames = gChair->GetKeyNames();
 
     if (key.type() == typeid(std::string)) {
@@ -274,7 +272,7 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-	gCL->conf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
+	m_pConfigManager->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
     return defaultKey;
 }
 
