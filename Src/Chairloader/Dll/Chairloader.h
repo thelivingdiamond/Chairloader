@@ -63,11 +63,10 @@ private:
 	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
     bool m_bTrainerEnabled = false;
-	std::unique_ptr<IChairServiceProvider> m_pServiceProvider;
-	Internal::IChairloaderCore* m_pCore;
-	Internal::IChairloaderCryRender* m_pRender;
-	Internal::IChairloaderPatches* m_pPatches;
-	Internal::IChairloaderTools* m_pTools;
+	std::shared_ptr<Internal::IChairloaderCore> m_pCore;
+	std::shared_ptr<Internal::IChairloaderCryRender> m_pRender;
+	std::shared_ptr<Internal::IChairloaderPatches> m_pPatches;
+	std::shared_ptr<Internal::IChairloaderTools> m_pTools;
 	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;
@@ -98,10 +97,10 @@ public:
 
 	// IChairloaderDll
 	//TODO: remove these in favor of the service provider
-	Internal::IChairloaderCore* GetCore() override { return m_pCore; }
-	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender; }
-	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches; }
-	Internal::IChairloaderTools* GetTools() override { return m_pTools; }
+	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
+	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender.get(); }
+	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches.get(); }
+	Internal::IChairloaderTools* GetTools() override { return m_pTools.get(); }
 	void* GetDllHandle() override { return m_hThisDll; }
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ReloadModDLLs() override;

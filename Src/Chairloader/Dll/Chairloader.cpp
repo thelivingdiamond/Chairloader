@@ -28,9 +28,10 @@
 #include "Chairloader/ServiceEnvironments/IChairloaderCryRenderServiceEnvironment.h"
 #include "Chairloader/ServiceEnvironments/IChairloaderPatchesServiceEnvironment.h"
 #include "DependencyInjection/ServiceCollection.h"
+#include "DependencyInjection/ServiceLocator.h"
 
 static ChairloaderGlobalEnvironment s_CLEnv;
-static std::unique_ptr<Chairloader> gChairloaderDll;
+static std::shared_ptr<Chairloader> gChairloaderDll;
 
 Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
@@ -155,7 +156,7 @@ void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
 
 void Chairloader::CreateInstance(void* hThisDll)
 {
-	gChairloaderDll = std::make_unique<Chairloader>(hThisDll);
+	gChairloaderDll = std::make_shared<Chairloader>(hThisDll);
 }
 
 Chairloader* Chairloader::Get()
@@ -194,9 +195,9 @@ Chairloader::Chairloader(void* hThisDll) {
 
 	ConfigureServices();
 
-	m_pCore = m_pServiceProvider->GetService<Internal::IChairloaderCore>("IChairloaderCore");
-	m_pRender = m_pServiceProvider->GetService<Internal::IChairloaderCryRender>("IChairloaderCryRender");
-	m_pTools = m_pServiceProvider->GetService<Internal::IChairloaderTools>("IChairloaderTools");
+	m_pCore = ServiceLocator::GetService<Internal::IChairloaderCore>();
+	m_pRender = ServiceLocator::GetService<Internal::IChairloaderCryRender>();
+	m_pTools = ServiceLocator::GetService<Internal::IChairloaderTools>();
 }
 
 Chairloader::~Chairloader()
@@ -242,7 +243,12 @@ void Chairloader::ConfigureServices() {
 	Internal::IChairloaderCryRenderServiceEnvironment::ConfigureServices(collection);
 	Internal::IChairloaderPatchesServiceEnvironment::ConfigureServices(collection);
 
-	m_pServiceProvider = collection.BuildServiceProvider();
+	collection.AddService(IChairloader::Name(), EChairServiceLifetime::Singleton,
+		[](IChairServiceProvider& serviceProvider) {
+			return std::static_pointer_cast<void>(gChairloaderDll);
+		});
+
+	ServiceLocator::SetProvider(collection.BuildServiceProvider());
 }
 
 
@@ -312,7 +318,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Initialize Patches
 	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nopatches"))
 	{
-		m_pPatches = m_pServiceProvider->GetService<Internal::IChairloaderPatches>("IChairloaderPatches");
+		m_pPatches = ServiceLocator::GetService<Internal::IChairloaderPatches>();
 		m_pPatches->InitSystem();
 	}
 	else
