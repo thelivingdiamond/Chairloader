@@ -10,8 +10,11 @@ struct SToolsInitParams
 	bool bEnableTrainer = false;
 };
 
-struct IChairloaderTools : public IChairloaderModule
+struct IChairloaderTools : public IChairloaderModule, IChairService<IChairloaderTools>
 {
+
+	static const char* NameImpl() { return "IChairloaderTools"; }
+
 	virtual ~IChairloaderTools() {}
 
 	//! System initialization
