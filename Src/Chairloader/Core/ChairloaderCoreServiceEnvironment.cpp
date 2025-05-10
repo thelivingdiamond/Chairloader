@@ -8,6 +8,7 @@
 #include "ChairloaderGui.h"
 #include "ChairLogger.h"
 #include "Lua/LuaModManager.h"
+#include "Lua/ScriptBind_Chairloader.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
 #include "Chairloader/ServiceEnvironments/IChairloaderCoreServiceEnvironment.h"
@@ -21,5 +22,7 @@ void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServi
     AddSingleton<IChairVarManager, ChairVarManager>(serviceCollection);
     AddSingleton<IChairloaderGui, ChairloaderGui>(serviceCollection);
     AddSingleton<IChairloaderConfigManager, ChairloaderConfigManager>(serviceCollection);
-    AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,IChairloaderGui>(serviceCollection);
+    AddSingleton<LuaModManager, LuaModManager>(serviceCollection);
+    AddSingleton<ScriptBind_Chairloader, ScriptBind_Chairloader, LuaModManager, IChairLogger>(serviceCollection);
+    AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,IChairloaderGui, LuaModManager>(serviceCollection);
 }

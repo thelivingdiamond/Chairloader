@@ -4,13 +4,16 @@
 
 class LuaModManager;
 
-class ScriptBind_Chairloader : public CScriptableBase
+class ScriptBind_Chairloader : public CScriptableBase, public IChairService<ScriptBind_Chairloader>
 {
 public:
-    ScriptBind_Chairloader(LuaModManager* pManager);
+
+    static const char* NameImpl() { return "ScriptBind_Chairloader"; }
+
+    ScriptBind_Chairloader(std::shared_ptr<LuaModManager> pManager, std::shared_ptr<IChairLogger> pLogger);
 
 private:
-    LuaModManager* m_pManager = nullptr;
+    std::shared_ptr<LuaModManager> m_pManager = nullptr;
     std::shared_ptr<IChairLogger> m_pLuaLog;
 
     //! Prints text into the log.

@@ -34,11 +34,13 @@ CBetterCVarsWhitelist g_CVarsWhitelist;
 ChairloaderCore::ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
 	std::shared_ptr<Internal::IModDllManager> modDllManager,
 	std::shared_ptr<IChairVarManager> cvarManager,
-	std::shared_ptr<IChairloaderGui> gui)
+	std::shared_ptr<IChairloaderGui> gui,
+	std::shared_ptr<LuaModManager> luaModManager)
 		: m_pConfigManager(std::static_pointer_cast<ChairloaderConfigManager>(configManager))
 		, m_pModDllManager(std::static_pointer_cast<ModDllManager>(modDllManager))
 		, m_pCVarManager(std::static_pointer_cast<ChairVarManager>(cvarManager))
-		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui)) {
+		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui))
+		, m_pLuaModManager(std::move(luaModManager)){
 }
 
 ChairloaderCore* ChairloaderCore::Get()
@@ -58,7 +60,6 @@ void ChairloaderCore::InitSystem()
 	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
 	ChairImGui::Get().InitSystem();
-	m_pLuaModManager = std::make_unique<LuaModManager>();
 	SkipIntroMovies();
 }
 
@@ -166,7 +167,6 @@ void ChairloaderCore::PreShutdown()
 
 void ChairloaderCore::ShutdownGame()
 {
-	m_pLuaModManager = nullptr;
 	m_pGui = nullptr;
 	ChairImGui::Get().ShutdownGame();
 }

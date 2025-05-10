@@ -11,9 +11,12 @@ struct ModInfo;
 }
 
 //! Manager for mods that use custom Lua scripts.
-class LuaModManager : NoCopy
+class LuaModManager : NoCopy, public IChairService<LuaModManager>
 {
 public:
+
+    static const char* NameImpl() { return "LuaModManager"; }
+
     LuaModManager();
     ~LuaModManager();
 
@@ -59,7 +62,7 @@ private:
     };
 
     IScriptSystem* m_pScriptSystem = nullptr;
-    std::unique_ptr<ScriptBind_Chairloader> m_pScriptBind;
+    std::shared_ptr<ScriptBind_Chairloader> m_pScriptBind;
 
     SmartScriptTable m_pInternalTable;
     HSCRIPTFUNCTION m_pfnHookEntityTable = nullptr;

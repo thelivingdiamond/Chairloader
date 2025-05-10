@@ -13,7 +13,8 @@ public:
 	ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
 		std::shared_ptr<Internal::IModDllManager> modDllManager,
 		std::shared_ptr<IChairVarManager> cvarManager,
-		std::shared_ptr<IChairloaderGui> gui);
+		std::shared_ptr<IChairloaderGui> gui,
+		std::shared_ptr<LuaModManager> luaModManager);
 
 	static ChairloaderCore* Get();
 
@@ -59,7 +60,7 @@ private:
 	std::shared_ptr<ModDllManager> m_pModDllManager;
     std::shared_ptr<IChairVarManager> m_pCVarManager;
 	std::shared_ptr<ChairloaderGui> m_pGui;
-	std::unique_ptr<LuaModManager> m_pLuaModManager;
+	std::shared_ptr<LuaModManager> m_pLuaModManager;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap

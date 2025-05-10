@@ -5,12 +5,12 @@
 
 #include "DependencyInjection/ServiceLocator.h"
 
-ScriptBind_Chairloader::ScriptBind_Chairloader(LuaModManager* pManager)
+ScriptBind_Chairloader::ScriptBind_Chairloader(std::shared_ptr<LuaModManager> pManager, std::shared_ptr<IChairLogger> pLogger)
+    : m_pManager(pManager)
+    , m_pLuaLog(pLogger)
 {
     CScriptableBase::Init(gEnv->pSystem->GetIScriptSystem(), gEnv->pSystem);
     SetGlobalName("Chairloader");
-    m_pManager = pManager;
-    m_pLuaLog = ServiceLocator::GetService<IChairLogger>();
     m_pLuaLog->SetName("Lua");
 
 #undef SCRIPT_REG_CLASSNAME
