@@ -17,6 +17,8 @@ class Editor;
 class ChairloaderTools : public Internal::IChairloaderTools
 {
 public:
+	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager);
+
 	void InitSystem(const Internal::SToolsInitParams& params) override;
 	void InitGame() override;
 	void UpdateBeforeSystem(unsigned updateFlags) override;
@@ -25,6 +27,8 @@ public:
 	void ShowMainMenuItems() override;
 
 private:
+	std::shared_ptr<IChairloaderConfigManager> m_pConfigManager;
+
 	// Dev tools
 	bool m_bDrawDevConsole = false;
     EKeyId m_KeyToggleConsole = eKI_Unknown;

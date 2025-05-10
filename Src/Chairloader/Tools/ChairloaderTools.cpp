@@ -15,6 +15,11 @@
 #include <Prey/CrySystem/LocalizedStringManager.h>
 
 
+ChairloaderTools::ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager)
+	: m_pConfigManager(std::move(configManager))
+{
+}
+
 void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 {
 	m_bEnableEditor = params.bEnableEditor;
@@ -60,7 +65,7 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 	// Perf info is always visible
 	m_pPerfOverlay->Update();
 
-    if(gChair->GetChairloaderEnvironment()->conf->getConfigDirty("Chairloader"))
+    if(m_pConfigManager->getConfigDirty("Chairloader"))
     {
         m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
     }
