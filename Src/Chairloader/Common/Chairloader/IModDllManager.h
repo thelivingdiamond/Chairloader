@@ -5,8 +5,11 @@ struct IChairloaderMod;
 namespace Internal
 {
 
-struct IModDllManager
+struct IModDllManager : IChairService<IModDllManager>
 {
+
+	static const char* NameImpl() { return "IModDllManager"; }
+
 	virtual ~IModDllManager() {}
 
 	//! Registers a mod interface without DLL. Only calls callbacks. Doesn't support reloading.

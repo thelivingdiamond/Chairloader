@@ -11,8 +11,11 @@ struct SCryRenderInitParams
 	bool bEnableAuxGeom = false;
 };
 
-struct IChairloaderCryRender : public IChairloaderModule
+struct IChairloaderCryRender : public IChairloaderModule, IChairService<IChairloaderCryRender>
 {
+
+	static const char* NameImpl() { return "IChairloaderCryRender"; }
+
 	virtual ~IChairloaderCryRender() {}
 
 	//! System initialization

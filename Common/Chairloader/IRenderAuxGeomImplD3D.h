@@ -7,8 +7,11 @@
 //! An implementation of the aux geomertry renderer for D3D.
 //! Mods may provide a custom implementation via IChairRender::SetAuxGeomFactory.
 //! This interface is provided for very specific mods. It is versioned separately from Mod SDK.
-struct IRenderAuxGeomImplD3D
+struct IRenderAuxGeomImplD3D : IChairService<IRenderAuxGeomImplD3D>
 {
+
+    static const char* NameImpl() { return "IRenderAuxGeomImplD3D"; }
+
     //! The interface version.
     static constexpr int INTERFACE_VERSION = 1;
 

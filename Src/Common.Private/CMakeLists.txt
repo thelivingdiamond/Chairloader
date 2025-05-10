@@ -42,6 +42,8 @@ set(SOURCE_FILES
 	DependencyInjection/ServiceProvider.cpp
 	DependencyInjection/ServiceProvider.h
 	DependencyInjection/ServiceDescriptor.h
+	DependencyInjection/ServiceLocator.h
+	DependencyInjection/ServiceLocator.cpp
 
 	GUIUtils.h
 	pch.h

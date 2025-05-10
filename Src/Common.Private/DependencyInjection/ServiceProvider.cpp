@@ -9,52 +9,47 @@
 
 #include "ServiceDescriptor.h"
 
-void *ServiceProvider::GetService(const std::string &serviceType) {
+std::shared_ptr<void> ServiceProvider::GetService(const std::string &serviceType) {
     if (std::find(m_ServiceResolutionStack.begin(), m_ServiceResolutionStack.end(), serviceType) !=
         m_ServiceResolutionStack.end()) {
         // Prevent circular dependencies
         throw std::runtime_error("Circular dependency detected while resolving service: " + serviceType);
     }
 
-    // find out what the implementation type is for the requested service
-    const auto implIt = m_ServiceToImplementationMap.find(serviceType);
-    if (implIt == m_ServiceToImplementationMap.end()) {
-        // Service not registered
+    // get the descriptor so we know if it's a singleton or transient service
+    auto it = m_ImplementationDescriptors.find(serviceType);
+    if (it == m_ImplementationDescriptors.end()) {
+        // Service not found
         return nullptr;
     }
-    const auto impl = implIt->second;
-
-    // Check if the service is already resolved
-    const auto it = m_ServiceInstances.find(impl);
-    if (it != m_ServiceInstances.end()) {
-        return it->second.get();
+    const ServiceDescriptor &descriptor = it->second;
+    // Check if the service has already been instantiated
+    auto instanceIt = m_ServiceInstances.find(serviceType);
+    if (instanceIt != m_ServiceInstances.end()) {
+        // Return existing instance if it's a singleton
+        if (descriptor.m_serviceLifetime == EChairServiceLifetime::Singleton) {
+            return instanceIt->second;
+        }
+        // If it's transient, we still need to create a new instance
     }
-
-    // Check if we have a descriptor for the implementation type
-    const auto serviceIt = m_ImplementationDescriptors.find(impl);
-    if (serviceIt == m_ImplementationDescriptors.end()) {
-        // Implementation type not registered
-        return nullptr;
-    }
-
-    // Add the service type to the resolution stack
+    // Push the service type onto the resolution stack to detect circular dependencies
     m_ServiceResolutionStack.push_back(serviceType);
-
     try {
-        // Create the service instance using the factory function
-        auto serviceInstance = serviceIt->second.m_factory(*this);
+        // Create a new instance of the service using the factory
+        std::shared_ptr<void> serviceInstance = descriptor.m_factory(*this);
         if (!serviceInstance) {
-            throw std::runtime_error("Failed to create service instance for: " + impl);
+            throw std::runtime_error("Service factory returned null for service: " + serviceType);
+        }
+        // Store the instance if it's a singleton
+        if (descriptor.m_serviceLifetime == EChairServiceLifetime::Singleton) {
+            m_ServiceInstances[serviceType] = serviceInstance;
         }
 
-        // Store the created service instance
-        m_ServiceInstances[impl] = std::move(serviceInstance);
-    } catch (const std::exception &e) {
-        // Remove the service type from the resolution stack on failure
+        m_ServiceResolutionStack.pop_back(); // Pop the service type from the resolution stack
+        return serviceInstance;
+    } catch (...) {
+        // Pop the service type from the resolution stack on error
         m_ServiceResolutionStack.pop_back();
-        throw;
+        throw; // Re-throw the exception
     }
-    // Remove the service type from the resolution stack after successful resolution
-    m_ServiceResolutionStack.pop_back();
-    return m_ServiceInstances[impl].get();
 }

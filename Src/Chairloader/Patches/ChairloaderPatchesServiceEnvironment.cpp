@@ -12,13 +12,9 @@
 
 void Internal::IChairloaderPatchesServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
 
-    serviceCollection.AddService("IChairStreamApi", "ChairSteamAPI", [](IChairServiceProvider &provider) {
-        return ChairSteamAPI::CreateInstance();
-    });
-
-    serviceCollection.AddService("IChairloaderPatches", "ChairloaderPatches", [](IChairServiceProvider& provider) {
-        return std::make_shared<ChairloaderPatches>(
-            provider.GetService<IChairSteamAPI>("IChairStreamApi")
-        );
-    });
+    serviceCollection.AddService(IChairSteamAPI::Name(), EChairServiceLifetime::Singleton,
+        [](IChairServiceProvider& serviceProvider) {
+            return std::static_pointer_cast<void>(ChairSteamAPI::CreateInstance());
+        });
+    AddSingleton<IChairloaderPatches, ChairloaderPatches, IChairSteamAPI>(serviceCollection);
 }

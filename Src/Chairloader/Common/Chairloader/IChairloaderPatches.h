@@ -4,8 +4,11 @@
 namespace Internal
 {
 
-struct IChairloaderPatches : public IChairloaderModule
+struct IChairloaderPatches : public IChairloaderModule, IChairService<IChairloaderPatches>
 {
+
+	static const char* NameImpl() { return "IChairloaderPatches"; }
+
 	virtual ~IChairloaderPatches() {}
 
 	//! System initialization

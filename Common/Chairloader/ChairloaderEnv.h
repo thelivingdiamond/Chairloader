@@ -1,5 +1,6 @@
 #pragma once
 
+struct IChairServiceProvider;
 struct IChairloader;
 struct IChairloaderImGui;
 struct IChairloaderGui;
@@ -21,6 +22,7 @@ struct ChairloaderGlobalEnvironment {
 	IChairXmlUtils* pXmlUtils;
 	IChairSteamAPI* pSteamAPI; //!< NULL if not Steam version
 	IChairSceneEditor* pSceneEditor; //!< NULL if editor not enabled
+	IChairServiceProvider* pServiceProvider;
 };
 
 extern ChairloaderGlobalEnvironment* gCL;

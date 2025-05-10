@@ -11,7 +11,8 @@
 struct IChairServiceProvider;
 
 struct ServiceDescriptor {
-    std::string m_ImplementationType;
+    std::string m_serviceType;
+    EChairServiceLifetime m_serviceLifetime;
     IChairServiceCollection::ServiceConstructor m_factory;
 };
 

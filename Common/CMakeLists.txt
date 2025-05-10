@@ -86,6 +86,7 @@ set(SOURCE_FILES
 	Chairloader/SemanticVersion.h
 	Chairloader/IChairServiceCollection.h
 	Chairloader/IChairServiceProvider.h
+	Chairloader/IChairService.h
 
 	pugixml/pugiconfig.hpp
 	pugixml/pugixml.cpp

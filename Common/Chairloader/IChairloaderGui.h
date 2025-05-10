@@ -27,8 +27,10 @@ struct logMessage {
     }
 };
 
-struct IChairloaderGui
+struct IChairloaderGui : IChairService<IChairloaderGui>
 {
+    static const char* NameImpl() { return "IChairloaderGui"; }
+
     virtual ~IChairloaderGui() {}
 
     //! @returns whether the GUI is currently enabled and being drawn to the screen.

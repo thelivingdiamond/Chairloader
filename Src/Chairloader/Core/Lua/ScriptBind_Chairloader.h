@@ -11,7 +11,7 @@ public:
 
 private:
     LuaModManager* m_pManager = nullptr;
-    std::unique_ptr<IChairLogger> m_pLuaLog;
+    std::shared_ptr<IChairLogger> m_pLuaLog;
 
     //! Prints text into the log.
     int Log(IFunctionHandler* pH, const char* text);

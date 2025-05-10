@@ -6,6 +6,7 @@
 #include "ChairloaderCore.h"
 #include "ChairVarManager.h"
 #include "ChairloaderGui.h"
+#include "ChairLogger.h"
 #include "Lua/LuaModManager.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
@@ -14,32 +15,11 @@
 #include "Chairloader/IChairServiceProvider.h"
 
 void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-
-    //TODO: can we move log manager like this?
-    serviceCollection.AddService("ILogManager", "LogManager", [](IChairServiceProvider &provider) {
-        return std::make_shared<LogManager>();
-    });
-
-    serviceCollection.AddService("IModDllManager", "ModDllManager", [](IChairServiceProvider &provider) {
-        return std::make_shared<ModDllManager>();
-    });
-
-    serviceCollection.AddService("IChairVarManager", "ChairVarManager", [](IChairServiceProvider &provider) {
-        return std::make_shared<ChairVarManager>();
-    });
-
-    serviceCollection.AddService("IChairloaderGui", "ChairloaderGui", [](IChairServiceProvider &provider) {
-        return std::make_shared<ChairloaderGui>();
-    });
-
-    serviceCollection.AddService("IChairloaderConfigManager", "ChairloaderConfigManager", [](IChairServiceProvider &provider) {
-        return std::make_shared<ChairloaderConfigManager>();
-    });
-
-    serviceCollection.AddService("IChairloaderCore", "ChairloaderCore", [](IChairServiceProvider &provider) {
-        return std::make_shared<ChairloaderCore>(provider.GetRequiredService<IChairloaderConfigManager>("IChairloaderConfigManager"),
-                                              provider.GetRequiredService<IModDllManager>("IModDllManager"),
-                                              provider.GetRequiredService<IChairVarManager>("IChairVarManager"),
-                                              provider.GetRequiredService<IChairloaderGui>("IChairloaderGui"));
-    });
+    AddSingleton<ILogManager, LogManager>(serviceCollection);
+    AddTransient<IChairLogger, ChairLogger>(serviceCollection);
+    AddSingleton<IModDllManager, ModDllManager>(serviceCollection);
+    AddSingleton<IChairVarManager, ChairVarManager>(serviceCollection);
+    AddSingleton<IChairloaderGui, ChairloaderGui>(serviceCollection);
+    AddSingleton<IChairloaderConfigManager, ChairloaderConfigManager>(serviceCollection);
+    AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,IChairloaderGui>(serviceCollection);
 }

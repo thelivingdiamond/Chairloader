@@ -3,6 +3,8 @@
 #include <Prey/CryScriptSystem/ScriptTable.h>
 #include "Lua/LuaWarnPatch.h"
 
+#include "DependencyInjection/ServiceLocator.h"
+
 // TODO 2023-06-07: Add proper Lua headers
 #define LUA_REGISTRYINDEX	(-10000)
 #define LUA_MULTRET	(-1)
@@ -13,7 +15,7 @@
 namespace
 {
 
-std::unique_ptr<IChairLogger> g_pLuaLog;
+std::shared_ptr<IChairLogger> g_pLuaLog;
 PreyFunction<void(IConsoleCmdArgs* pArgs)> g_ReloadScriptCmd(0x0D12360);
 
 PreyFunction<const char* (lua_State* L, int idx, size_t* len)> lua_tolstring(0xD2CD60);
@@ -145,7 +147,7 @@ void CScriptSystem_RaiseError_Hook(CScriptSystem* const _this, const char* forma
 
 void LuaWarnPatch::InitSystem()
 {
-    g_pLuaLog = gCL->cl->CreateLogger();
+    g_pLuaLog = ServiceLocator::GetService<IChairLogger>();
     g_pLuaLog->SetName("Lua");
 
 	g_lua_storedebuginfo_Hook.SetHookFunc(&lua_storedebuginfo_Hook);

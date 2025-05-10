@@ -18,7 +18,5 @@
 #include "DevConsoleDialog.h"
 
 void Internal::IChairloaderToolsServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    serviceCollection.AddService("IChairloaderTools", "ChairloaderTools", [](IChairServiceProvider &provider) {
-        return std::make_shared<ChairloaderTools>();
-    });
+    AddSingleton<IChairloaderTools, ChairloaderTools>(serviceCollection);
 }

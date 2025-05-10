@@ -2,8 +2,10 @@
 #include <Chairloader/SteamAPI/steam_api.h>
 
 //! Steam API DLL wrappers. The library is loaded by Chairloader.
-struct IChairSteamAPI
+struct IChairSteamAPI : IChairService<IChairSteamAPI>
 {
+    static const char* NameImpl() { return "IChairSteamAPI"; }
+
     //! The name of Steam API DLL.
     static constexpr char DLL_NAME[] = "steam_api64.dll";
 
