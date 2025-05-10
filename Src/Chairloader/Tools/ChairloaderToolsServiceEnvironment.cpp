@@ -20,5 +20,6 @@
 #include "DevConsoleDialog.h"
 
 void Internal::IChairloaderToolsServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
+    serviceCollection.AddService(IChairSceneEditor::Name(), EChairServiceLifetime::Singleton, [](IChairServiceProvider & sp) { return sp.GetRequiredService<IChairloaderTools>()->GetEditor();  });
     AddSingleton<IChairloaderTools, ChairloaderTools, IChairloaderConfigManager, ILogManager, IModDllManager, IChairloaderGui>(serviceCollection);
 }

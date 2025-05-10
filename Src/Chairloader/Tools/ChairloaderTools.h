@@ -22,7 +22,10 @@ class Editor;
 class ChairloaderTools : public Internal::IChairloaderTools
 {
 public:
-	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager, std::shared_ptr<Internal::ILogManager> logManager, std::shared_ptr<Internal::IModDllManager> modDllManager, std::shared_ptr<IChairloaderGui> gui);
+	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager,
+		std::shared_ptr<Internal::ILogManager> logManager,
+		std::shared_ptr<Internal::IModDllManager> modDllManager,
+		std::shared_ptr<IChairloaderGui> gui);
 
 	void InitSystem(const Internal::SToolsInitParams& params) override;
 	void InitGame() override;
@@ -30,6 +33,8 @@ public:
 	void MainUpdate(unsigned updateFlags) override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 	void ShowMainMenuItems() override;
+
+	std::shared_ptr<IChairSceneEditor> GetEditor() override;
 
 private:
 	std::shared_ptr<IChairloaderConfigManager> m_pConfigManager;
@@ -54,7 +59,7 @@ private:
 
 	// Editor
 	bool m_bEnableEditor = false;
-	std::unique_ptr<Editor> m_pEditor;
+	std::shared_ptr<Editor> m_pEditor;
 
     // Localization
     std::unique_ptr<LocalizationUtil> m_pLocalizationUtil;

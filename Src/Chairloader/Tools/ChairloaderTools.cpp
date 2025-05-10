@@ -57,7 +57,7 @@ void ChairloaderTools::InitGame()
 	}
 
 	if (m_bEnableEditor)
-		m_pEditor = std::make_unique<Editor>(m_pModDllManager);
+		m_pEditor = std::make_shared<Editor>(m_pModDllManager);
 }
 
 void ChairloaderTools::UpdateBeforeSystem(unsigned updateFlags)
@@ -148,6 +148,10 @@ void ChairloaderTools::ShowMainMenuItems()
 {
     auto keyName = gChair->GetKeyNames().left.at(m_KeyToggleConsole);
 	ImGui::MenuItem("Show Console", keyName.c_str(), &m_bDrawDevConsole);
+}
+
+std::shared_ptr<IChairSceneEditor> ChairloaderTools::GetEditor() {
+	return m_pEditor;
 }
 
 void ChairloaderTools::ShowMainMenuBar()

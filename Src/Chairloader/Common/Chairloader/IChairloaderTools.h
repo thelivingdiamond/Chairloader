@@ -25,6 +25,8 @@ struct IChairloaderTools : public IChairloaderModule, IChairService<IChairloader
 
 	//! Shows menu items in the "Chairloader" menu on the main menu bar.
 	virtual void ShowMainMenuItems() = 0;
+
+	virtual std::shared_ptr<IChairSceneEditor> GetEditor() = 0;
 };
 
 } // namespace Internal
