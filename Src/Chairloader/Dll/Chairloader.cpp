@@ -249,6 +249,7 @@ void Chairloader::ConfigureServices() {
 		});
 
 	ServiceLocator::SetProvider(collection.BuildServiceProvider());
+	gCL->pServiceProvider = ServiceLocator::GetProvider();
 }
 
 
@@ -705,11 +706,6 @@ ChairloaderGlobalEnvironment* Chairloader::GetChairloaderEnvironment() {
 uintptr_t Chairloader::GetPreyDllBase()
 {
 	return GetModuleBase();
-}
-
-std::unique_ptr<IChairLogger> Chairloader::CreateLogger()
-{
-	return m_pCore->CreateLogger();
 }
 
 bool Chairloader::IsEditorEnabled()

@@ -216,10 +216,6 @@ bool ChairloaderCore::IsModInstalled(const std::string& modName)
 	return m_InstalledMods.find(modName) != m_InstalledMods.end();
 }
 
-std::unique_ptr<IChairLogger> ChairloaderCore::CreateLogger()
-{
-	return std::make_unique<ChairLogger>();
-}
 
 const std::string& ChairloaderCore::GetKeyStrHideGui()
 {

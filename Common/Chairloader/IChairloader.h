@@ -28,9 +28,6 @@ struct IChairloader : public IChairService<IChairloader> {
     //! @returns the base address of PreyDll.dll.
     virtual uintptr_t GetPreyDllBase() = 0;
 
-    //! Creates a new IChairLogger instance.
-    virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;
-
     //! Key Map Names for key bind purposes
     using KeyNameMap = boost::bimap<EKeyId, std::string>;
     using KeyNamePair = boost::bimap<EKeyId, std::string>::value_type;

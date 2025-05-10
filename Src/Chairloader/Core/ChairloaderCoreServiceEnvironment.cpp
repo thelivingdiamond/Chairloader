@@ -6,6 +6,7 @@
 #include "ChairloaderCore.h"
 #include "ChairVarManager.h"
 #include "ChairloaderGui.h"
+#include "ChairLogger.h"
 #include "Lua/LuaModManager.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
@@ -15,6 +16,7 @@
 
 void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
     AddSingleton<ILogManager, LogManager>(serviceCollection);
+    AddTransient<IChairLogger, ChairLogger>(serviceCollection);
     AddSingleton<IModDllManager, ModDllManager>(serviceCollection);
     AddSingleton<IChairVarManager, ChairVarManager>(serviceCollection);
     AddSingleton<IChairloaderGui, ChairloaderGui>(serviceCollection);

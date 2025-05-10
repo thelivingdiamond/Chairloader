@@ -88,7 +88,6 @@ public:
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 	uintptr_t GetPreyDllBase() override;
-	std::unique_ptr<IChairLogger> CreateLogger() override;
 	bool IsEditorEnabled() override;
 	CGame* GetCGame() override;
 	int* GetAssertFlagAddress() override;

@@ -45,7 +45,6 @@ public:
     IChairVarManager *GetCVarManager() override;
 
 	bool IsModInstalled(const std::string& modName) override;
-    std::unique_ptr<IChairLogger> CreateLogger() override;
 
 	const std::string& GetKeyStrHideGui();
 	const std::string& GetKeyStrToggleFreecam();
