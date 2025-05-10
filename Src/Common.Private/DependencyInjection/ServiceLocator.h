@@ -29,7 +29,7 @@ public:
      * @param prov A unique pointer to the service provider to set.
      * @throws std::logic_error if the provider is already set.
      */
-    static void SetProvider(std::unique_ptr<IChairServiceProvider> &prov) {
+    static void SetProvider(std::unique_ptr<IChairServiceProvider> prov) {
         std::lock_guard lock(mutex_);
         if (provider_) {
             throw std::logic_error("ServiceLocator::SetProvider called twice");
