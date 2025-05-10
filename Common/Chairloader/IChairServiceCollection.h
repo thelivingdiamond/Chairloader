@@ -54,6 +54,19 @@ void AddSingleton(IChairServiceCollection &col) {
     );
 }
 
+template<typename I, typename Impl>
+void AddSingleton(IChairServiceCollection &col, std::function<std::shared_ptr<Impl>(IChairServiceProvider &)> constructor) {
+    static_assert(std::is_base_of_v<I, Impl>, "Impl must derive from I");
+    col.AddService(
+        I::Name(),
+        EChairServiceLifetime::Singleton,
+        [constructor](IChairServiceProvider &prov)-> std::shared_ptr<void> {
+            return std::static_pointer_cast<void>(constructor(prov));
+        }
+    );
+}
+
+
 template<typename I, typename Impl, typename... Deps, typename = std::enable_if_t<(sizeof...(Deps) > 0)> >
 void AddSingleton(IChairServiceCollection &col) {
     static_assert(std::is_base_of_v<I, Impl>, "Impl must derive from I");
@@ -86,6 +99,18 @@ void AddTransient(IChairServiceCollection &col) {
         EChairServiceLifetime::Transient,
         [](IChairServiceProvider &prov)-> std::shared_ptr<void> {
             return std::make_shared<Impl>(prov.GetRequiredService<Deps>()...);
+        }
+    );
+}
+
+template<typename I, typename Impl>
+void AddTransient(IChairServiceCollection &col, std::function<std::shared_ptr<Impl>(IChairServiceProvider &)> constructor) {
+    static_assert(std::is_base_of_v<I, Impl>, "Impl must derive from I");
+    col.AddService(
+        I::Name(),
+        EChairServiceLifetime::Transient,
+        [constructor](IChairServiceProvider &prov)-> std::shared_ptr<void> {
+            return std::static_pointer_cast<void>(constructor(prov));
         }
     );
 }
