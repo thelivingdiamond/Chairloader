@@ -17,10 +17,12 @@
 
 ChairloaderTools::ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager,
 								   std::shared_ptr<Internal::ILogManager> logManager,
-								   std::shared_ptr<Internal::IModDllManager> modDllManager)
+								   std::shared_ptr<Internal::IModDllManager> modDllManager,
+								   std::shared_ptr<IChairloaderGui> gui)
 	: m_pConfigManager(std::move(configManager))
 	, m_pLogManager(std::move(logManager))
 	, m_pModDllManager(std::move(modDllManager))
+	, m_pGui(std::move(gui))
 {
 }
 
@@ -74,7 +76,7 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
         m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
     }
 
-	if (gCL->gui->IsEnabled())
+	if (m_pGui->IsEnabled())
 	{
 		ShowMainMenuBar();
 
@@ -111,9 +113,9 @@ bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 		bool alt = (event.modifiers & eMM_Alt) != 0;
 		auto modLogOnAlt = alt ? DevConsoleDialog::TabRequest::ModLog : DevConsoleDialog::TabRequest::None;
 
-		if (!gCL->gui->IsEnabled())
+		if (!m_pGui->IsEnabled())
 		{
-			gCL->gui->SetEnabled(true);
+			m_pGui->SetEnabled(true);
 			m_bDrawDevConsole = true;
 			m_pDevConsole->SetTabRequest(modLogOnAlt);
 		}

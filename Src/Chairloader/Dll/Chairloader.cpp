@@ -200,6 +200,7 @@ Chairloader::Chairloader(void* hThisDll) {
 	m_pTools = ServiceLocator::GetService<Internal::IChairloaderTools>();
 	m_pModDllManager = ServiceLocator::GetService<Internal::IModDllManager>();
 	m_pVarManager = ServiceLocator::GetService<IChairVarManager>();
+	m_pGui = ServiceLocator::GetService<IChairloaderGui>();
 }
 
 Chairloader::~Chairloader()
@@ -458,7 +459,7 @@ void Chairloader::MainUpdate(unsigned updateFlags)
 
 	m_pTools->MainUpdate(updateFlags);
 
-	if (gCL->gui->IsEnabled())
+	if (m_pGui->IsEnabled())
 		m_pModDllManager->CallDraw();
 
 	m_pModDllManager->CallMainUpdate(updateFlags);

@@ -22,7 +22,7 @@ class Editor;
 class ChairloaderTools : public Internal::IChairloaderTools
 {
 public:
-	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager, std::shared_ptr<Internal::ILogManager> logManager, std::shared_ptr<Internal::IModDllManager> modDllManager);
+	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager, std::shared_ptr<Internal::ILogManager> logManager, std::shared_ptr<Internal::IModDllManager> modDllManager, std::shared_ptr<IChairloaderGui> gui);
 
 	void InitSystem(const Internal::SToolsInitParams& params) override;
 	void InitGame() override;
@@ -35,6 +35,7 @@ private:
 	std::shared_ptr<IChairloaderConfigManager> m_pConfigManager;
 	std::shared_ptr<Internal::ILogManager> m_pLogManager;
 	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
+	std::shared_ptr<IChairloaderGui> m_pGui;
 
 	// Dev tools
 	bool m_bDrawDevConsole = false;

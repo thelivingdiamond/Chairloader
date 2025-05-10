@@ -69,6 +69,7 @@ private:
 	std::shared_ptr<Internal::IChairloaderTools> m_pTools;
 	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
 	std::shared_ptr<IChairVarManager> m_pVarManager;
+	std::shared_ptr<IChairloaderGui> m_pGui;
 
 	unsigned m_SavedUpdateFlags = 0;
 

@@ -20,5 +20,5 @@
 #include "DevConsoleDialog.h"
 
 void Internal::IChairloaderToolsServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    AddSingleton<IChairloaderTools, ChairloaderTools, IChairloaderConfigManager, ILogManager, IModDllManager>(serviceCollection);
+    AddSingleton<IChairloaderTools, ChairloaderTools, IChairloaderConfigManager, ILogManager, IModDllManager, IChairloaderGui>(serviceCollection);
 }
