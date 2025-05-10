@@ -16,6 +16,9 @@ struct ModInfo;
 class ModDllManager : public Internal::IModDllManager
 {
 public:
+
+	ModDllManager(std::shared_ptr<IChairloaderConfigManager> pConfigManager);
+
 	//! Enables hot-reloading. Must be called before first RegisterMod.
 	void SetHotReloadEnabled(bool state);
 
@@ -102,6 +105,7 @@ private:
 		IChairloaderMod::ModDllInfo dllInfo;
 	};
 
+	std::shared_ptr<IChairloaderConfigManager> m_pConfigManager; //!< Pointer to the config manager.
 	std::map<int, std::vector<ModuleInfo>> m_RegisteredMods; //!< List of registered mods sorted by load order.
 	std::vector<Module> m_Modules; //!< List of modules.
 	bool m_bHotReload = false; //!< Whether hot reload is enabled.
