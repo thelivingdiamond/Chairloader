@@ -2,6 +2,7 @@
 #include <Chairloader/IChairloaderCore.h>
 
 
+class LogManager;
 class ChairImGui;
 class LuaModManager;
 class ModDllManager;
@@ -16,9 +17,8 @@ public:
 		std::shared_ptr<IChairVarManager> cvarManager,
 		std::shared_ptr<IChairloaderGui> gui,
 		std::shared_ptr<LuaModManager> luaModManager,
-		std::shared_ptr<IChairloaderImGui> imgui);
-
-	static ChairloaderCore* Get();
+		std::shared_ptr<IChairloaderImGui> imgui,
+		std::shared_ptr<LogManager> logManager);
 
 	//-------------------------------------------
 	// System initialization
@@ -41,11 +41,6 @@ public:
 	void UpdateBeforeSystem(unsigned updateFlags) override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 
-	Internal::ILogManager* GetLogManager() override;
-	Internal::IModDllManager* GetDllManager() override;
-	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager.get(); }
-
-    IChairVarManager *GetCVarManager() override;
 
 	bool IsModInstalled(const std::string& modName) override;
 
@@ -64,6 +59,7 @@ private:
 	std::shared_ptr<ChairloaderGui> m_pGui;
 	std::shared_ptr<LuaModManager> m_pLuaModManager;
 	std::shared_ptr<ChairImGui> m_pImGui;
+	std::shared_ptr<LogManager> m_pLogManager;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap

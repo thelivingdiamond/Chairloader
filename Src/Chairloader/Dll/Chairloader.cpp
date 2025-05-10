@@ -198,6 +198,8 @@ Chairloader::Chairloader(void* hThisDll) {
 	m_pCore = ServiceLocator::GetService<Internal::IChairloaderCore>();
 	m_pRender = ServiceLocator::GetService<Internal::IChairloaderCryRender>();
 	m_pTools = ServiceLocator::GetService<Internal::IChairloaderTools>();
+	m_pModDllManager = ServiceLocator::GetService<Internal::IModDllManager>();
+	m_pVarManager = ServiceLocator::GetService<IChairVarManager>();
 }
 
 Chairloader::~Chairloader()
@@ -336,7 +338,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Register mods
 	m_pCore->RegisterMods();
 	if (m_pPreditorAPI)
-		m_pCore->GetDllManager()->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
+		m_pModDllManager->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
 
 	// Init renderer patches. Must be done after shader mods are registered.
 	Internal::SCryRenderInitParams renderParams;
@@ -349,9 +351,9 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	InstallHooks();
 
 	// Load DLL mods
-	m_pCore->GetDllManager()->LoadModules();
-	m_pCore->GetDllManager()->CallInitSystem();
-    m_pCore->GetDllManager()->CallConnect();
+	m_pModDllManager->LoadModules();
+	m_pModDllManager->CallInitSystem();
+    m_pModDllManager->CallConnect();
 
 	m_pRender->SetRenderThreadIsIdle(false);
 }
@@ -378,7 +380,7 @@ void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 		m_pPatches->InitGame();
 
 	m_pTools->InitGame();
-	m_pCore->GetDllManager()->CallInitGame();
+	m_pModDllManager->CallInitGame();
 	m_pRender->SetRenderThreadIsIdle(false);
 }
 
@@ -391,7 +393,7 @@ void Chairloader::ShutdownGame()
 	m_pRender->SetRenderThreadIsIdle(true);
 
 	m_pCore->PreShutdown();
-	m_pCore->GetDllManager()->CallShutdownGame();
+	m_pModDllManager->CallShutdownGame();
 	m_pTools->ShutdownGame();
 	m_pRender->ShutdownGame();
 
@@ -413,8 +415,8 @@ void Chairloader::ShutdownSystem()
 	
 	m_pRender->SetRenderThreadIsIdle(true);
 
-	m_pCore->GetDllManager()->CallShutdownSystem();
-	m_pCore->GetDllManager()->UnloadModules();
+	m_pModDllManager->CallShutdownSystem();
+	m_pModDllManager->UnloadModules();
 
 	if (m_pPatches)
 		m_pPatches->ShutdownGame();
@@ -434,7 +436,7 @@ void Chairloader::UpdateBeforeSystem(unsigned updateFlags)
 	m_pTools->UpdateBeforeSystem(updateFlags);
 
 	// Tools update MUST come before mod PreUpdate for proper hot-reloading in the Editor
-	m_pCore->GetDllManager()->CallUpdateBeforeSystem(updateFlags);
+	m_pModDllManager->CallUpdateBeforeSystem(updateFlags);
 }
 
 void Chairloader::UpdateBeforePhysics()
@@ -443,7 +445,7 @@ void Chairloader::UpdateBeforePhysics()
 	m_pCore->UpdateBeforePhysics(updateFlags);
 	m_pRender->UpdateBeforePhysics(updateFlags);
 	m_pTools->UpdateBeforePhysics(updateFlags);
-	m_pCore->GetDllManager()->CallUpdateBeforePhysics(updateFlags);
+	m_pModDllManager->CallUpdateBeforePhysics(updateFlags);
 }
 
 void Chairloader::MainUpdate(unsigned updateFlags)
@@ -457,9 +459,9 @@ void Chairloader::MainUpdate(unsigned updateFlags)
 	m_pTools->MainUpdate(updateFlags);
 
 	if (gCL->gui->IsEnabled())
-		m_pCore->GetDllManager()->CallDraw();
+		m_pModDllManager->CallDraw();
 
-	m_pCore->GetDllManager()->CallMainUpdate(updateFlags);
+	m_pModDllManager->CallMainUpdate(updateFlags);
 }
 
 void Chairloader::LateUpdate(unsigned updateFlags)
@@ -467,7 +469,7 @@ void Chairloader::LateUpdate(unsigned updateFlags)
 	m_pCore->LateUpdate(updateFlags);
 	m_pRender->LateUpdate(updateFlags);
 	m_pTools->LateUpdate(updateFlags);
-	m_pCore->GetDllManager()->CallLateUpdate(updateFlags);
+	m_pModDllManager->CallLateUpdate(updateFlags);
 }
 
 void Chairloader::InitHooks()
@@ -732,7 +734,7 @@ void Chairloader::ReloadModDLLs()
 	rd->m_pRT->SyncMainWithRender(); // This frame
 	m_pRender->SetRenderThreadIsIdle(true);
 
-	m_pCore->GetDllManager()->ReloadModules();
+	m_pModDllManager->ReloadModules();
 
 	m_pRender->SetRenderThreadIsIdle(false);
 }
@@ -745,7 +747,7 @@ void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
     }
     if(pCVar->GetFlags() & VF_DUMPTOCHAIR) {
         CryLog("Registering CVar {} for {}", pCVar->GetName(), modName);
-        m_pCore->GetCVarManager()->RegisterCVar(pCVar, modName);
+        m_pVarManager->RegisterCVar(pCVar, modName);
     }
 }
 

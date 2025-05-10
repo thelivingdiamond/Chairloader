@@ -67,6 +67,9 @@ private:
 	std::shared_ptr<Internal::IChairloaderCryRender> m_pRender;
 	std::shared_ptr<Internal::IChairloaderPatches> m_pPatches;
 	std::shared_ptr<Internal::IChairloaderTools> m_pTools;
+	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
+	std::shared_ptr<IChairVarManager> m_pVarManager;
+
 	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;

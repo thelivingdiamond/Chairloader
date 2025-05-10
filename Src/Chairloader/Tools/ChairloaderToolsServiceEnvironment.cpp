@@ -5,6 +5,8 @@
 #include "ChairloaderTools.h"
 #include "Chairloader/ServiceEnvironments/IChairloaderToolsServiceEnvironment.h"
 #include "Chairloader/IChairServiceCollection.h"
+#include "Chairloader/ILogManager.h"
+#include "Chairloader/IModDllManager.h"
 #include "LocalizationUtil.h"
 #include "Editor/Editor.h"
 #include "Trainer/SignalSystemManager.h"
@@ -18,5 +20,5 @@
 #include "DevConsoleDialog.h"
 
 void Internal::IChairloaderToolsServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    AddSingleton<IChairloaderTools, ChairloaderTools, IChairloaderConfigManager>(serviceCollection);
+    AddSingleton<IChairloaderTools, ChairloaderTools, IChairloaderConfigManager, ILogManager, IModDllManager>(serviceCollection);
 }

@@ -2,9 +2,9 @@
 #include "LogManager.h"
 
 
-static OverlayLogManager s_OverlayLog;
-
-OverlayLogManager::OverlayLogManager() {
+OverlayLogManager::OverlayLogManager(std::shared_ptr<LogManager> pLogManager)
+    : m_pLogManager(std::move(pLogManager))
+{
 }
 OverlayLogManager::~OverlayLogManager() {
 //    archiveLogQueue.clear();
@@ -15,7 +15,7 @@ OverlayLogManager::~OverlayLogManager() {
 // show persistent transparent log overlay
 void OverlayLogManager::draw() {
     auto lastAlpha = ImGui::GetStyle().Alpha;
-    if (LogManager::Get().GetOverlayMessageCount() > 0) {
+    if (m_pLogManager->GetOverlayMessageCount() > 0) {
         // get screen X and Y
         auto screenX = ImGui::GetIO().DisplaySize.x;
         auto maxWindowSize = ImVec2(700, 150);
@@ -34,10 +34,10 @@ void OverlayLogManager::draw() {
                 ImGuiWindowFlags_NoFocusOnAppearing;
         float totalLogHeight = 0.0f;
 
-        for(size_t idx = 0; idx < LogManager::Get().GetOverlayMessageCount(); idx++) {
+        for(size_t idx = 0; idx < m_pLogManager->GetOverlayMessageCount(); idx++) {
             char message[1024];
             uint64_t messageTime;
-            LogManager::Get().GetOverlayMessage(idx, message, sizeof(message), &messageTime);
+            m_pLogManager->GetOverlayMessage(idx, message, sizeof(message), &messageTime);
             auto textSize = ImGui::CalcTextSize(message, nullptr, false, maxWindowSize.x + ImGui::GetStyle().WindowPadding.x * 2.0f);
             if(textSize.y >= maxWindowSize.y){
                 textSize.y = maxWindowSize.y;
@@ -52,15 +52,15 @@ void OverlayLogManager::draw() {
         ImVec2 nextWindowPos = firstWindowPos;
         nextWindowPos.y += totalLogHeight;
         //  now go through in reverse order and draw the messages
-        for (size_t idx = LogManager::Get().GetOverlayMessageCount(); idx > 0; idx--) {
+        for (size_t idx = m_pLogManager->GetOverlayMessageCount(); idx > 0; idx--) {
             char message[1024];
             uint64_t messageTime;
-            LogManager::Get().GetOverlayMessage(idx - 1, message, sizeof(message), &messageTime);
+            m_pLogManager->GetOverlayMessage(idx - 1, message, sizeof(message), &messageTime);
             bool entryDelete = false;
             auto currentMillis = std::chrono::duration_cast<std::chrono::milliseconds>(
                     std::chrono::system_clock::now().time_since_epoch()).count();
             if (currentMillis >= messageTime + MessageTimeoutTime) {
-                LogManager::Get().RemoveOverlayMessage(idx - 1);
+                m_pLogManager->RemoveOverlayMessage(idx - 1);
                 break;
             }
             else {
@@ -121,7 +121,7 @@ void OverlayLogManager::draw() {
                 }
                 ImGui::PopStyleVar(2);
                 if(entryDelete){
-                    LogManager::Get().RemoveOverlayMessage(idx - 1);
+                    m_pLogManager->RemoveOverlayMessage(idx - 1);
                     break;
                 }
             }

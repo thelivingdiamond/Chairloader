@@ -1,6 +1,11 @@
 #pragma once
 #include <Chairloader/IChairloaderTools.h>
 
+namespace Internal {
+	struct IModDllManager;
+	struct ILogManager;
+}
+
 class DevConsoleDialog;
 class FileBrowser;
 class PerfOverlay;
@@ -17,7 +22,7 @@ class Editor;
 class ChairloaderTools : public Internal::IChairloaderTools
 {
 public:
-	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager);
+	ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager, std::shared_ptr<Internal::ILogManager> logManager, std::shared_ptr<Internal::IModDllManager> modDllManager);
 
 	void InitSystem(const Internal::SToolsInitParams& params) override;
 	void InitGame() override;
@@ -28,6 +33,8 @@ public:
 
 private:
 	std::shared_ptr<IChairloaderConfigManager> m_pConfigManager;
+	std::shared_ptr<Internal::ILogManager> m_pLogManager;
+	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
 
 	// Dev tools
 	bool m_bDrawDevConsole = false;

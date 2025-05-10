@@ -36,20 +36,18 @@ ChairloaderCore::ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> conf
 	std::shared_ptr<IChairVarManager> cvarManager,
 	std::shared_ptr<IChairloaderGui> gui,
 	std::shared_ptr<LuaModManager> luaModManager,
-	std::shared_ptr<IChairloaderImGui> imgui)
+	std::shared_ptr<IChairloaderImGui> imgui,
+	std::shared_ptr<LogManager> logManager)
 		: m_pConfigManager(std::static_pointer_cast<ChairloaderConfigManager>(configManager))
 		, m_pModDllManager(std::static_pointer_cast<ModDllManager>(modDllManager))
 		, m_pCVarManager(std::static_pointer_cast<ChairVarManager>(cvarManager))
 		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui))
 		, m_pLuaModManager(std::move(luaModManager))
 		, m_pImGui(std::static_pointer_cast<ChairImGui>(imgui))
+		, m_pLogManager(std::move(logManager))
 {
 }
 
-ChairloaderCore* ChairloaderCore::Get()
-{
-	return static_cast<ChairloaderCore*>(gChair->GetCore());
-}
 
 void ChairloaderCore::InitSystem()
 {
@@ -57,7 +55,7 @@ void ChairloaderCore::InitSystem()
 	auto pSystem = reinterpret_cast<CSystem*>(gEnv->pSystem);
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
 
-	LogManager::Get().InitSystem();
+	m_pLogManager->InitSystem();
     m_pCVarManager->InitSystem();
 	CryLog("Chairloader config loaded: {}", m_pConfigManager->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
@@ -174,7 +172,7 @@ void ChairloaderCore::ShutdownGame()
 
 void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 {
-	LogManager::Get().Update();
+	m_pLogManager->Update();
 
 	if (m_pConfigManager->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
@@ -200,16 +198,6 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 	}
 
 	return false;
-}
-
-Internal::ILogManager* ChairloaderCore::GetLogManager()
-{
-	return &LogManager::Get();
-}
-
-Internal::IModDllManager* ChairloaderCore::GetDllManager()
-{
-	return m_pModDllManager.get();
 }
 
 bool ChairloaderCore::IsModInstalled(const std::string& modName)
@@ -277,8 +265,4 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     // Failed to get from config, restore default
 	m_pConfigManager->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
     return defaultKey;
-}
-
-IChairVarManager *ChairloaderCore::GetCVarManager() {
-    return m_pCVarManager.get();
 }

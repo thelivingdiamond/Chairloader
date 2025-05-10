@@ -69,7 +69,9 @@ Editor* Editor::Get()
 	return g_pEditor;
 }
 
-Editor::Editor()
+Editor::Editor(std::shared_ptr<Internal::IModDllManager> pModDllManager)
+	: m_pModDllManager(std::move(pModDllManager))
+	, m_ModReloading(m_pModDllManager)
 {
 	assert(!g_pEditor);
 	assert(!gCL->pSceneEditor);
@@ -99,7 +101,7 @@ void Editor::UpdateBeforeSystem()
 	if (CV_ed_AutoReloadMods && m_bGameWindowIsNowActive)
 	{
 		// Game window is now focused, check mods
-		if (gChair->GetCore()->GetDllManager()->CheckModulesForChanges())
+		if (m_pModDllManager->CheckModulesForChanges())
 			m_ModReloading.ReloadMods();
 		m_bGameWindowIsNowActive = false;
 	}

@@ -16,10 +16,6 @@ struct IChairloaderCore : public IChairloaderModule, IChairService<IChairloaderC
 
 	virtual ~IChairloaderCore() {}
 
-	virtual ILogManager* GetLogManager() = 0;
-	virtual IModDllManager* GetDllManager() = 0;
-    virtual IChairVarManager* GetCVarManager() = 0;
-
 	//! System initialization
 	virtual void InitSystem() = 0;
 

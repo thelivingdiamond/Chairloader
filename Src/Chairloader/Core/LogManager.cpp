@@ -1,12 +1,5 @@
 #include "LogManager.h"
 
-static LogManager s_LogManager;
-
-LogManager& LogManager::Get()
-{
-	return s_LogManager;
-}
-
 LogManager::LogManager()
 {
 	m_MainThreadId = CryGetCurrentThreadId();

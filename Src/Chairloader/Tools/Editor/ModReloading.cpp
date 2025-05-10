@@ -8,9 +8,9 @@
 #include "ModReloading.h"
 #include "ChairToolsUtils.h"
 
-ModReloading::ModReloading()
+ModReloading::ModReloading(std::shared_ptr<Internal::IModDllManager> pModDllManager)
+	: m_pDllManager(std::move(pModDllManager))
 {
-	m_pDllManager = ChairToolsUtils::GetDll()->GetCore()->GetDllManager();
 }
 
 void ModReloading::UpdateBeforeSystem()

@@ -10,6 +10,11 @@ static void CryLogf(const char* format, ...)
 	va_end(args);
 }
 
+ChairLogger::ChairLogger(std::shared_ptr<LogManager> pLogManager)
+	: m_pLogManager(std::move(pLogManager))
+{
+}
+
 void ChairLogger::Log(EChairLogType type, const char* msg, size_t size)
 {
 	CryStackStringT<char, PRINT_MSG_BUF_SIZE> buf;
@@ -46,7 +51,7 @@ void ChairLogger::Log(EChairLogType type, const char* msg, size_t size)
 	CryLogf("%s", buf.c_str());
 
 	// Log to the log manager
-	LogManager::Get().AddMessage(buf.c_str(), buf.size());
+	m_pLogManager->AddMessage(buf.c_str(), buf.size());
 }
 
 void ChairLogger::FatalError(const char* msg)
@@ -111,5 +116,5 @@ void ChairLogger::OverlayLog(EChairLogType type, const char *msg, size_t size) {
     CryLogf("%s", buf.c_str());
 
     // Log to the log manager with overlay
-    LogManager::Get().AddMessage(buf.c_str(), buf.size(), true);
+    m_pLogManager->AddMessage(buf.c_str(), buf.size(), true);
 }

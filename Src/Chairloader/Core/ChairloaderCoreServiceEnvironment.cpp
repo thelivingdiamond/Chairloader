@@ -17,15 +17,16 @@
 #include "Chairloader/IChairServiceProvider.h"
 
 void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
-    AddTransient<IChairLogger, ChairLogger>(serviceCollection);
-    AddSingleton<ILogManager, LogManager>(serviceCollection);
+    AddSingleton<LogManager, LogManager>(serviceCollection);
+    AddSingleton<ILogManager, LogManager>(serviceCollection, [](IChairServiceProvider & sp) { return sp.GetRequiredService<LogManager>();  });
+    AddTransient<IChairLogger, ChairLogger, LogManager>(serviceCollection);
     AddSingleton<IChairloaderConfigManager, ChairloaderConfigManager>(serviceCollection);
     AddSingleton<IChairloaderImGui, ChairImGui, IChairRender>(serviceCollection);
     AddSingleton<IChairVarManager, ChairVarManager>(serviceCollection);
-    AddSingleton<IChairloaderGui, ChairloaderGui>(serviceCollection);
+    AddSingleton<IChairloaderGui, ChairloaderGui, LogManager>(serviceCollection);
     AddSingleton<IModDllManager, ModDllManager, IChairloaderConfigManager>(serviceCollection);
     AddSingleton<LuaModManager, LuaModManager>(serviceCollection);
     AddSingleton<ScriptBind_Chairloader, ScriptBind_Chairloader, LuaModManager, IChairLogger>(serviceCollection);
     AddSingleton<IChairloaderCore, ChairloaderCore, IChairloaderConfigManager, IModDllManager, IChairVarManager,
-        IChairloaderGui, LuaModManager, IChairloaderImGui>(serviceCollection);
+        IChairloaderGui, LuaModManager, IChairloaderImGui, LogManager>(serviceCollection);
 }

@@ -15,8 +15,12 @@
 #include <Prey/CrySystem/LocalizedStringManager.h>
 
 
-ChairloaderTools::ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager)
+ChairloaderTools::ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager,
+								   std::shared_ptr<Internal::ILogManager> logManager,
+								   std::shared_ptr<Internal::IModDllManager> modDllManager)
 	: m_pConfigManager(std::move(configManager))
+	, m_pLogManager(std::move(logManager))
+	, m_pModDllManager(std::move(modDllManager))
 {
 }
 
@@ -32,7 +36,7 @@ void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 void ChairloaderTools::InitGame()
 {
     m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
-	m_pDevConsole = std::make_unique<DevConsoleDialog>();
+	m_pDevConsole = std::make_unique<DevConsoleDialog>(m_pLogManager);
 	m_pFileBrowser = std::make_unique<FileBrowser>();
 	m_pPerfOverlay = std::make_unique<PerfOverlay>();
     m_pLocalizationUtil = std::make_unique<LocalizationUtil>();
@@ -51,7 +55,7 @@ void ChairloaderTools::InitGame()
 	}
 
 	if (m_bEnableEditor)
-		m_pEditor = std::make_unique<Editor>();
+		m_pEditor = std::make_unique<Editor>(m_pModDllManager);
 }
 
 void ChairloaderTools::UpdateBeforeSystem(unsigned updateFlags)
