@@ -7,9 +7,14 @@
 CD3D9Renderer* gcpRendD3D = nullptr;
 
 
+RenderDll::ChairloaderCryRender::ChairloaderCryRender(std::shared_ptr<IChairRender> pRender)
+	: m_pRender(std::static_pointer_cast<ChairRender>(pRender))
+{
+}
+
 void RenderDll::ChairloaderCryRender::InitSystem(const Internal::SCryRenderInitParams& params)
 {
-	ChairRender::Get().Init();
+	m_pRender->Init();
 	DebugMarkers::InitHooks();
 
 	if (params.bEnableAuxGeom)
@@ -26,12 +31,12 @@ void RenderDll::ChairloaderCryRender::InitGame()
 void RenderDll::ChairloaderCryRender::ShutdownSystem()
 {
 	AuxGeom::ShutdownSystem();
-	ChairRender::Get().Shutdown();
+	m_pRender->Shutdown();
 }
 
 void RenderDll::ChairloaderCryRender::SetRenderThreadIsIdle(bool state)
 {
-	ChairRender::Get().SetCanChangeRenderCmds(state);
+	m_pRender->SetCanChangeRenderCmds(state);
 }
 
 void RenderDll::ChairloaderCryRender::AddShadersMod(const std::string& name)

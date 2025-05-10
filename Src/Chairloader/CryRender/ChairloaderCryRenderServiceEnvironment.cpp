@@ -9,5 +9,5 @@
 
 void Internal::IChairloaderCryRenderServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
     AddSingleton<IChairRender, RenderDll::ChairRender>(serviceCollection);
-    AddSingleton<IChairloaderCryRender, RenderDll::ChairloaderCryRender>(serviceCollection);
+    AddSingleton<IChairloaderCryRender, RenderDll::ChairloaderCryRender, IChairRender>(serviceCollection);
 }
