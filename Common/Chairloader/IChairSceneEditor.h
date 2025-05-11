@@ -11,8 +11,11 @@ enum class EChairSceneEditor
     Preditor,
 };
 
-struct IChairSceneEditor
+struct IChairSceneEditor : IChairService<IChairSceneEditor>
 {
+
+    static const char* NameImpl() { return "IChairSceneEditor"; }
+
     virtual ~IChairSceneEditor() {}
 
     //! @returns The current editor type.

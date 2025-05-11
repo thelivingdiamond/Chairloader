@@ -165,8 +165,11 @@ struct IChairRenderListener
 	virtual void RT_Present() {}
 };
 
-struct IChairRender
+struct IChairRender : IChairService<IChairRender>
 {
+
+	static const char* NameImpl() { return "IChairRender"; }
+
 	//! Function that instantiates the Aux Geom Renderer.
 	using AuxGeomFactory = std::function<IRenderAuxGeomImplD3D* ()>;
 

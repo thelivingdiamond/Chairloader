@@ -8,6 +8,7 @@
 #include <Chairloader/PreditorAPI.h>
 #include <Chairloader/IChairToPreditor.h>
 #include "WinConsole.h"
+#include "Chairloader/IChairServiceProvider.h"
 
 #define PREY_DLL_NAME "PreyDll.dll"
 
@@ -62,16 +63,21 @@ private:
 	IPreditorToChair* m_pPreditorAPI = nullptr;
 	bool m_bEditorEnabled = false;
     bool m_bTrainerEnabled = false;
-	std::unique_ptr<Internal::IChairloaderCore> m_pCore;
-	std::unique_ptr<Internal::IChairloaderCryRender> m_pRender;
-	std::unique_ptr<Internal::IChairloaderPatches> m_pPatches;
-	std::unique_ptr<Internal::IChairloaderTools> m_pTools;
+	std::shared_ptr<Internal::IChairloaderCore> m_pCore;
+	std::shared_ptr<Internal::IChairloaderCryRender> m_pRender;
+	std::shared_ptr<Internal::IChairloaderPatches> m_pPatches;
+	std::shared_ptr<Internal::IChairloaderTools> m_pTools;
+	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
+	std::shared_ptr<IChairVarManager> m_pVarManager;
+	std::shared_ptr<IChairloaderGui> m_pGui;
+
 	unsigned m_SavedUpdateFlags = 0;
 
 	IGameFramework* m_pFramework = nullptr;
 	CGame* m_pGame = nullptr;
 	KeyNameMap m_KeyNames;
 
+	void ConfigureServices();
 	void InitHooks();
 	void InitPaths();
 	void InstallHooks();
@@ -86,7 +92,6 @@ public:
     const KeyNameMap &GetKeyNames() const override { return m_KeyNames; }
 	ChairloaderGlobalEnvironment* GetChairloaderEnvironment() override;
 	uintptr_t GetPreyDllBase() override;
-	std::unique_ptr<IChairLogger> CreateLogger() override;
 	bool IsEditorEnabled() override;
 	CGame* GetCGame() override;
 	int* GetAssertFlagAddress() override;
@@ -94,6 +99,7 @@ public:
 	const fs::path& GetModsPath() override;
 
 	// IChairloaderDll
+	//TODO: remove these in favor of the service provider
 	Internal::IChairloaderCore* GetCore() override { return m_pCore.get(); }
 	Internal::IChairloaderCryRender* GetCryRender() override { return m_pRender.get(); }
 	Internal::IChairloaderPatches* GetPatches() override { return m_pPatches.get(); }

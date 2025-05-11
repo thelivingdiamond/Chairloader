@@ -5,6 +5,8 @@
 #include <Prey/CryEntitySystem/ScriptBind_Entity.h>
 #include <Manager/ModInfo.h>
 #include "Lua/LuaModManager.h"
+
+#include "DependencyInjection/ServiceLocator.h"
 #include "Lua/ScriptBind_Chairloader.h"
 
 #define SCRIPT_ONRESET "OnReset"
@@ -126,7 +128,7 @@ void LuaModManager::HookEntityTable(CEntityScript* pEntityScript)
 void LuaModManager::Init()
 {
     m_pScriptSystem = gEnv->pScriptSystem;
-    m_pScriptBind = std::make_unique<ScriptBind_Chairloader>(this);
+    m_pScriptBind = ServiceLocator::GetRequiredService<ScriptBind_Chairloader>();
 
     if (!gEnv->pCryPak->IsFileExist(CHAIR_SCRIPT_PATH))
     {

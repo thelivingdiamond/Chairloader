@@ -23,14 +23,20 @@
 #include <Prey/RenderDll/XRenderD3D9/DriverD3D.h>
 #include <Chairloader/ModSDK/ChairGlobalModName.h>
 
+#include "Chairloader/ServiceEnvironments/IChairloaderToolsServiceEnvironment.h"
+#include "Chairloader/ServiceEnvironments/IChairloaderCoreServiceEnvironment.h"
+#include "Chairloader/ServiceEnvironments/IChairloaderCryRenderServiceEnvironment.h"
+#include "Chairloader/ServiceEnvironments/IChairloaderPatchesServiceEnvironment.h"
+#include "DependencyInjection/ServiceCollection.h"
+#include "DependencyInjection/ServiceLocator.h"
+
 static ChairloaderGlobalEnvironment s_CLEnv;
-static std::unique_ptr<Chairloader> gChairloaderDll;
+static std::shared_ptr<Chairloader> gChairloaderDll;
 
 Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 static int CV_cl_asserts;
-static ChairXmlUtils g_XmlUtils;
 
 
 namespace
@@ -149,7 +155,7 @@ void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
 
 void Chairloader::CreateInstance(void* hThisDll)
 {
-	gChairloaderDll = std::make_unique<Chairloader>(hThisDll);
+	gChairloaderDll = std::make_shared<Chairloader>(hThisDll);
 }
 
 Chairloader* Chairloader::Get()
@@ -186,10 +192,14 @@ Chairloader::Chairloader(void* hThisDll) {
 	g_CSystem_InitializeEngineModule_Hook.InstallHook(CSystem::FInitializeEngineModule.Get(), &CSystem_InitializeEngineModule_Hook);
 	hookTr.CommitOrDie();
 
-	// Instantiate modules
-	m_pCore = Internal::IChairloaderCore::CreateInstance();
-	m_pRender = Internal::IChairloaderCryRender::CreateInstance();
-	m_pTools = Internal::IChairloaderTools::CreateInstance();
+	ConfigureServices();
+
+	m_pCore = ServiceLocator::GetService<Internal::IChairloaderCore>();
+	m_pRender = ServiceLocator::GetService<Internal::IChairloaderCryRender>();
+	m_pTools = ServiceLocator::GetService<Internal::IChairloaderTools>();
+	m_pModDllManager = ServiceLocator::GetService<Internal::IModDllManager>();
+	m_pVarManager = ServiceLocator::GetService<IChairVarManager>();
+	m_pGui = ServiceLocator::GetService<IChairloaderGui>();
 }
 
 Chairloader::~Chairloader()
@@ -224,10 +234,30 @@ void Chairloader::DllAttach()
 	SavePathPatch::ApplyPatch();
 }
 
+
+void Chairloader::ConfigureServices() {
+
+	ServiceCollection collection;
+
+	//TODO: is there a better way to do this?
+	Internal::IChairloaderToolsServiceEnvironment::ConfigureServices(collection);
+	Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(collection);
+	Internal::IChairloaderCryRenderServiceEnvironment::ConfigureServices(collection);
+	Internal::IChairloaderPatchesServiceEnvironment::ConfigureServices(collection);
+
+	collection.AddService(IChairloader::Name(), EChairServiceLifetime::Singleton,
+		[](IChairServiceProvider& serviceProvider) {
+			return std::static_pointer_cast<void>(gChairloaderDll);
+		});
+
+	ServiceLocator::SetProvider(collection.BuildServiceProvider());
+	gCL->pServiceProvider = ServiceLocator::GetProvider();
+}
+
+
 void Chairloader::InitSystem(CSystem* pSystem)
 {
 	gCL->cl = this;
-	gCL->pXmlUtils = &g_XmlUtils;
 	ModuleInitISystem(pSystem, "Chairloader");
 	ModuleInitIChairLogger("Chairloader");
 	m_WinConsole.InitSystem();
@@ -290,7 +320,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Initialize Patches
 	if (!pSystem->GetICmdLine()->FindArg(eCLAT_Pre, "nopatches"))
 	{
-		m_pPatches = Internal::IChairloaderPatches::CreateInstance();
+		m_pPatches = ServiceLocator::GetService<Internal::IChairloaderPatches>();
 		m_pPatches->InitSystem();
 	}
 	else
@@ -307,7 +337,7 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	// Register mods
 	m_pCore->RegisterMods();
 	if (m_pPreditorAPI)
-		m_pCore->GetDllManager()->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
+		m_pModDllManager->RegisterRawMod("Chairloader.Preditor", m_pPreditorAPI->GetMod(), true);
 
 	// Init renderer patches. Must be done after shader mods are registered.
 	Internal::SCryRenderInitParams renderParams;
@@ -320,9 +350,9 @@ void Chairloader::InitSystem(CSystem* pSystem)
 	InstallHooks();
 
 	// Load DLL mods
-	m_pCore->GetDllManager()->LoadModules();
-	m_pCore->GetDllManager()->CallInitSystem();
-    m_pCore->GetDllManager()->CallConnect();
+	m_pModDllManager->LoadModules();
+	m_pModDllManager->CallInitSystem();
+    m_pModDllManager->CallConnect();
 
 	m_pRender->SetRenderThreadIsIdle(false);
 }
@@ -349,7 +379,7 @@ void Chairloader::InitGame(CGame* pGame, IGameFramework* pFramework)
 		m_pPatches->InitGame();
 
 	m_pTools->InitGame();
-	m_pCore->GetDllManager()->CallInitGame();
+	m_pModDllManager->CallInitGame();
 	m_pRender->SetRenderThreadIsIdle(false);
 }
 
@@ -362,7 +392,7 @@ void Chairloader::ShutdownGame()
 	m_pRender->SetRenderThreadIsIdle(true);
 
 	m_pCore->PreShutdown();
-	m_pCore->GetDllManager()->CallShutdownGame();
+	m_pModDllManager->CallShutdownGame();
 	m_pTools->ShutdownGame();
 	m_pRender->ShutdownGame();
 
@@ -384,8 +414,8 @@ void Chairloader::ShutdownSystem()
 	
 	m_pRender->SetRenderThreadIsIdle(true);
 
-	m_pCore->GetDllManager()->CallShutdownSystem();
-	m_pCore->GetDllManager()->UnloadModules();
+	m_pModDllManager->CallShutdownSystem();
+	m_pModDllManager->UnloadModules();
 
 	if (m_pPatches)
 		m_pPatches->ShutdownGame();
@@ -405,7 +435,7 @@ void Chairloader::UpdateBeforeSystem(unsigned updateFlags)
 	m_pTools->UpdateBeforeSystem(updateFlags);
 
 	// Tools update MUST come before mod PreUpdate for proper hot-reloading in the Editor
-	m_pCore->GetDllManager()->CallUpdateBeforeSystem(updateFlags);
+	m_pModDllManager->CallUpdateBeforeSystem(updateFlags);
 }
 
 void Chairloader::UpdateBeforePhysics()
@@ -414,7 +444,7 @@ void Chairloader::UpdateBeforePhysics()
 	m_pCore->UpdateBeforePhysics(updateFlags);
 	m_pRender->UpdateBeforePhysics(updateFlags);
 	m_pTools->UpdateBeforePhysics(updateFlags);
-	m_pCore->GetDllManager()->CallUpdateBeforePhysics(updateFlags);
+	m_pModDllManager->CallUpdateBeforePhysics(updateFlags);
 }
 
 void Chairloader::MainUpdate(unsigned updateFlags)
@@ -427,10 +457,10 @@ void Chairloader::MainUpdate(unsigned updateFlags)
 
 	m_pTools->MainUpdate(updateFlags);
 
-	if (gCL->gui->IsEnabled())
-		m_pCore->GetDllManager()->CallDraw();
+	if (m_pGui->IsEnabled())
+		m_pModDllManager->CallDraw();
 
-	m_pCore->GetDllManager()->CallMainUpdate(updateFlags);
+	m_pModDllManager->CallMainUpdate(updateFlags);
 }
 
 void Chairloader::LateUpdate(unsigned updateFlags)
@@ -438,7 +468,7 @@ void Chairloader::LateUpdate(unsigned updateFlags)
 	m_pCore->LateUpdate(updateFlags);
 	m_pRender->LateUpdate(updateFlags);
 	m_pTools->LateUpdate(updateFlags);
-	m_pCore->GetDllManager()->CallLateUpdate(updateFlags);
+	m_pModDllManager->CallLateUpdate(updateFlags);
 }
 
 void Chairloader::InitHooks()
@@ -679,11 +709,6 @@ uintptr_t Chairloader::GetPreyDllBase()
 	return GetModuleBase();
 }
 
-std::unique_ptr<IChairLogger> Chairloader::CreateLogger()
-{
-	return m_pCore->CreateLogger();
-}
-
 bool Chairloader::IsEditorEnabled()
 {
 	return m_bEditorEnabled;
@@ -708,7 +733,7 @@ void Chairloader::ReloadModDLLs()
 	rd->m_pRT->SyncMainWithRender(); // This frame
 	m_pRender->SetRenderThreadIsIdle(true);
 
-	m_pCore->GetDllManager()->ReloadModules();
+	m_pModDllManager->ReloadModules();
 
 	m_pRender->SetRenderThreadIsIdle(false);
 }
@@ -721,7 +746,7 @@ void Chairloader::RegisterCVar(ICVar *pCVar, std::string &modName) {
     }
     if(pCVar->GetFlags() & VF_DUMPTOCHAIR) {
         CryLog("Registering CVar {} for {}", pCVar->GetName(), modName);
-        m_pCore->GetCVarManager()->RegisterCVar(pCVar, modName);
+        m_pVarManager->RegisterCVar(pCVar, modName);
     }
 }
 

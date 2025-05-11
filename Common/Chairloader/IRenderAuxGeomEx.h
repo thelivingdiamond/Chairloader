@@ -5,8 +5,10 @@ struct CTexture;
 
 //! Chairloader extensions for IRenderAuxGeom.
 //! When changed, IRenderAuxGeomImplD3D::INTERFACE_VERSION must be incremented.
-struct IRenderAuxGeomEx
+struct IRenderAuxGeomEx : IChairService<IRenderAuxGeomEx>
 {
+	static const char* NameImpl() { return "IRenderAuxGeomEx"; }
+
 	virtual ~IRenderAuxGeomEx() {}
 
 	//! Deprecated. Causes a fatal error on call.

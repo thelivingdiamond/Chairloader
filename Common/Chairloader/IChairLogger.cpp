@@ -1,6 +1,8 @@
 #include <Chairloader/IChairLogger.h>
 
-static std::unique_ptr<IChairLogger> g_pChairLogger = nullptr;
+#include "IChairServiceProvider.h"
+
+static std::shared_ptr<IChairLogger> g_pChairLogger = nullptr;
 
 void IChairLogger::VLog(EChairLogType type, std::string_view format, fmt::format_args args)
 {
@@ -22,7 +24,7 @@ void IChairLogger::VLog(EChairLogType type, std::string_view format, fmt::format
 
 void ModuleInitIChairLogger(const char* modName)
 {
-	g_pChairLogger = gCL->cl->CreateLogger();
+	g_pChairLogger = gCL->pServiceProvider->GetService<IChairLogger>();
 	g_pChairLogger->SetName(modName);
 }
 

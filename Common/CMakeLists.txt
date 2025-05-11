@@ -84,6 +84,9 @@ set(SOURCE_FILES
 	Chairloader/PreyFunction.h
 	Chairloader/ValidateCompiler.h
 	Chairloader/SemanticVersion.h
+	Chairloader/IChairServiceCollection.h
+	Chairloader/IChairServiceProvider.h
+	Chairloader/IChairService.h
 
 	pugixml/pugiconfig.hpp
 	pugixml/pugixml.cpp

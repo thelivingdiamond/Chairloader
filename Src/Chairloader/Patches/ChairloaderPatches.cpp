@@ -49,9 +49,8 @@ void CDXInput_ShutDown_Hook(CDXInput* const _this)
 	g_CleanupVibrationAtExit_Hook.InvokeOrig();
 }
 
-std::unique_ptr<Internal::IChairloaderPatches> Internal::IChairloaderPatches::CreateInstance()
-{
-	return std::make_unique<ChairloaderPatches>();
+
+ChairloaderPatches::ChairloaderPatches(std::shared_ptr<IChairSteamAPI> pChairSteamAPI) : m_pSteamAPI(std::static_pointer_cast<ChairSteamAPI>(pChairSteamAPI)) {
 }
 
 void ChairloaderPatches::ReplaceArkSystems()
@@ -68,7 +67,9 @@ void ChairloaderPatches::InitSystem()
 	LuaDbgFix::InitSystem();
 	LuaDbgRes::InitSystem();
 	LuaWarnPatch::InitSystem();
-	m_pSteamAPI = ChairSteamAPI::CreateInstance();
+	if (m_pSteamAPI) {
+		m_pSteamAPI->InitSystem();
+	}
 	LocalizationPatch::InitSystem(m_pSteamAPI.get());
 
 	{
