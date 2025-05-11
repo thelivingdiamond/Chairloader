@@ -67,7 +67,9 @@ void ChairloaderPatches::InitSystem()
 	LuaDbgFix::InitSystem();
 	LuaDbgRes::InitSystem();
 	LuaWarnPatch::InitSystem();
-	m_pSteamAPI->InitSystem();
+	if (m_pSteamAPI) {
+		m_pSteamAPI->InitSystem();
+	}
 	LocalizationPatch::InitSystem(m_pSteamAPI.get());
 
 	{

@@ -16,5 +16,5 @@ void Internal::IChairloaderPatchesServiceEnvironment::ConfigureServices(IChairSe
         [](IChairServiceProvider& serviceProvider) {
             return std::static_pointer_cast<void>(ChairSteamAPI::CreateInstance());
         });
-    AddSingleton<IChairloaderPatches, ChairloaderPatches, IChairSteamAPI>(serviceCollection);
+    AddSingleton<IChairloaderPatches, ChairloaderPatches>(serviceCollection, [](IChairServiceProvider & sp) { return std::make_shared<ChairloaderPatches>(sp.GetService<IChairSteamAPI>()); });
 }
