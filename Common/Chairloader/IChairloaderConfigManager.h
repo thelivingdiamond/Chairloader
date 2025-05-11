@@ -2,7 +2,11 @@
 #include <boost/bimap.hpp>
 #include <boost/variant.hpp>
 
-struct IChairloaderConfigManager {
+#include "IChairService.h"
+
+struct IChairloaderConfigManager : public IChairService<IChairloaderConfigManager> {
+
+	static const char* NameImpl() { return "IChairloaderConfigManager"; }
 
 	enum class parameterType {
 		String,

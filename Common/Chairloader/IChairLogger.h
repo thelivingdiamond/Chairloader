@@ -2,6 +2,8 @@
 #include <Prey/CrySystem/ILog.h>
 #include <fmt/format.h>
 
+#include "IChairService.h"
+
 //! Type of the log message.
 enum class EChairLogType
 {
@@ -12,8 +14,10 @@ enum class EChairLogType
 
 //! A logger used by mods. Stores all messages in a global log manager prefixed with the mod name.
 //! Log messages are printed to the console and mod log window.
-struct IChairLogger
+struct IChairLogger : IChairService<IChairLogger>
 {
+	static const char* NameImpl() { return "IChairLogger"; }
+
 	//! Size of the stack-allocatd buffer for the message.
 	//! Larger strings will go to the heap and will be formatted twice.
 	static constexpr size_t MSG_BUF_SIZE = 256;

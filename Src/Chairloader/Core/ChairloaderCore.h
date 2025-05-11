@@ -2,6 +2,8 @@
 #include <Chairloader/IChairloaderCore.h>
 
 
+class LogManager;
+class ChairImGui;
 class LuaModManager;
 class ModDllManager;
 class ChairloaderConfigManager;
@@ -10,12 +12,13 @@ class ChairloaderGui;
 class ChairloaderCore : public Internal::IChairloaderCore
 {
 public:
-	ChairloaderCore(IChairloaderConfigManager* configManager,
-		Internal::IModDllManager* modDllManager,
-		IChairVarManager* cvarManager,
-		IChairloaderGui* gui);
-
-	static ChairloaderCore* Get();
+	ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
+		std::shared_ptr<Internal::IModDllManager> modDllManager,
+		std::shared_ptr<IChairVarManager> cvarManager,
+		std::shared_ptr<IChairloaderGui> gui,
+		std::shared_ptr<LuaModManager> luaModManager,
+		std::shared_ptr<IChairloaderImGui> imgui,
+		std::shared_ptr<LogManager> logManager);
 
 	//-------------------------------------------
 	// System initialization
@@ -38,14 +41,8 @@ public:
 	void UpdateBeforeSystem(unsigned updateFlags) override;
 	bool HandleKeyPress(const SInputEvent& event) override;
 
-	Internal::ILogManager* GetLogManager() override;
-	Internal::IModDllManager* GetDllManager() override;
-	ChairloaderConfigManager* GetConfigManager() { return m_pConfigManager; }
-
-    IChairVarManager *GetCVarManager() override;
 
 	bool IsModInstalled(const std::string& modName) override;
-    std::unique_ptr<IChairLogger> CreateLogger() override;
 
 	const std::string& GetKeyStrHideGui();
 	const std::string& GetKeyStrToggleFreecam();
@@ -56,11 +53,13 @@ public:
 
     EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) override;
 private:
-	ChairloaderConfigManager* m_pConfigManager;
-	ModDllManager* m_pModDllManager;
-    IChairVarManager* m_pCVarManager;
-	ChairloaderGui* m_pGui;
-	std::unique_ptr<LuaModManager> m_pLuaModManager;
+	std::shared_ptr<ChairloaderConfigManager> m_pConfigManager;
+	std::shared_ptr<ModDllManager> m_pModDllManager;
+    std::shared_ptr<IChairVarManager> m_pCVarManager;
+	std::shared_ptr<ChairloaderGui> m_pGui;
+	std::shared_ptr<LuaModManager> m_pLuaModManager;
+	std::shared_ptr<ChairImGui> m_pImGui;
+	std::shared_ptr<LogManager> m_pLogManager;
 	std::set<std::string> m_InstalledMods; //!< Set of installed and enabled mods.
 
 	// Keymap

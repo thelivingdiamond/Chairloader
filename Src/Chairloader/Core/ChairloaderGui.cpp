@@ -8,8 +8,12 @@
 #include "ChairloaderCore.h"
 #include "ChairloaderConfigManager.h"
 #include "LogManager.h"
+#include "DependencyInjection/ServiceLocator.h"
 
-ChairloaderGui::ChairloaderGui() {
+ChairloaderGui::ChairloaderGui(std::shared_ptr<LogManager> logManager)
+    : m_pLogManager(logManager)
+    , overlayLogManager(logManager)
+{
 }
 
 
@@ -26,7 +30,9 @@ void ChairloaderGui::InitGame() {
     ImGui::GetStyle().Alpha = 0.8f;
     gCL->gui = this;
 
-    std::string hideGuiKey = ChairloaderCore::Get()->GetKeyStrHideGui();
+    m_pCore = std::static_pointer_cast<ChairloaderCore>(ServiceLocator::GetRequiredService<Internal::IChairloaderCore>());
+    auto pLogManager = ServiceLocator::GetRequiredService<LogManager>();
+    std::string hideGuiKey = m_pCore->GetKeyStrHideGui();
     std::string logMsg;
 
     if (gEnv->pSystem->IsDevMode())
@@ -45,7 +51,7 @@ void ChairloaderGui::InitGame() {
         logMsg = fmt::format("Chairloader is active. Press {} to open the menu", hideGuiKey);
     }
 
-    LogManager::Get().AddMessage(logMsg.data(), logMsg.size(), true);
+    pLogManager->AddMessage(logMsg.data(), logMsg.size(), true);
 }
 
 void ChairloaderGui::draw() {
@@ -59,7 +65,7 @@ void ChairloaderGui::draw() {
         ImGui::PushStyleColor(ImGuiCol_PopupBg, bgColor);
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("Chairloader")) {
-                ImGui::MenuItem("Show GUI", ChairloaderCore::Get()->GetKeyStrHideGui().c_str(), &m_bIsEnabled);
+                ImGui::MenuItem("Show GUI", m_pCore->GetKeyStrHideGui().c_str(), &m_bIsEnabled);
                 ImGui::MenuItem("  - Keep Overlay Log", nullptr, &persistentLogOverlay);
                 gChair->GetTools()->ShowMainMenuItems();
                 ImGui::Separator();
@@ -102,9 +108,9 @@ void ChairloaderGui::draw() {
             if (ImGui::BeginMainMenuBar()) {
                 if (gEnv->pSystem->IsDevMode()) {
                     if (ImGui::BeginMenu("Console")) {
-                        bool freeCam = ChairloaderCore::Get()->IsFreecamEnabled();
-                        if (ImGui::MenuItem("Enable Free Cam", ChairloaderCore::Get()->GetKeyStrToggleFreecam().c_str(), freeCam)) {
-                            ChairloaderCore::Get()->ToggleFreecam();
+                        bool freeCam = m_pCore->IsFreecamEnabled();
+                        if (ImGui::MenuItem("Enable Free Cam", m_pCore->GetKeyStrToggleFreecam().c_str(), freeCam)) {
+                            m_pCore->ToggleFreecam();
                         }
 
                         if (freeCam) {
@@ -142,7 +148,7 @@ void ChairloaderGui::draw() {
             if (control.showProfilerDialog)
                 profilerDialog.Show(&control.showProfilerDialog);
             if (control.showConfigMenu)
-                ChairloaderCore::Get()->GetConfigManager()->Draw(&control.showConfigMenu);
+                std::static_pointer_cast<ChairloaderConfigManager>(ServiceLocator::GetRequiredService<IChairloaderConfigManager>())->Draw(&control.showConfigMenu);
 //            log.drawDisplay();
         }
     }

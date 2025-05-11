@@ -10,13 +10,11 @@ namespace Internal
 struct ILogManager;
 struct IModDllManager;
 
-struct IChairloaderCore : public IChairloaderModule
+struct IChairloaderCore : public IChairloaderModule, IChairService<IChairloaderCore>
 {
-	virtual ~IChairloaderCore() {}
+	static const char* NameImpl() { return "IChairloaderCore"; }
 
-	virtual ILogManager* GetLogManager() = 0;
-	virtual IModDllManager* GetDllManager() = 0;
-    virtual IChairVarManager* GetCVarManager() = 0;
+	virtual ~IChairloaderCore() {}
 
 	//! System initialization
 	virtual void InitSystem() = 0;
@@ -35,9 +33,6 @@ struct IChairloaderCore : public IChairloaderModule
 
 	//! @returns whether the mod is installed and enabled.
 	virtual bool IsModInstalled(const std::string& modName) = 0;
-
-	//! Creates a new IChairLogger instance.
-	virtual std::unique_ptr<IChairLogger> CreateLogger() = 0;
 
     virtual EKeyId LoadConfigKey(const std::string& paramName, EKeyId defaultKey = eKI_Unknown) = 0;
 };

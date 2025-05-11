@@ -2,6 +2,8 @@
 #include <Chairloader/IChairXmlUtils.h>
 #include "DebugMenu.h"
 
+#include "DependencyInjection/ServiceLocator.h"
+
 class DebugMenu::Attribute
 {
 public:
@@ -187,7 +189,7 @@ void DebugMenu::ReloadMenu()
     try
     {
         pugi::xml_parse_result parseResult;
-        pugi::xml_document doc = gCL->pXmlUtils->LoadXmlFromFile(XML_PATH, &parseResult);
+        pugi::xml_document doc = ServiceLocator::GetRequiredService<IChairXmlUtils>()->LoadXmlFromFile(XML_PATH, &parseResult);
 
         if (!parseResult)
             throw std::runtime_error(fmt::format("{}:{}: {}", XML_PATH, parseResult.offset, parseResult.description()));

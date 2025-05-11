@@ -10,8 +10,11 @@ struct SToolsInitParams
 	bool bEnableTrainer = false;
 };
 
-struct IChairloaderTools : public IChairloaderModule
+struct IChairloaderTools : public IChairloaderModule, IChairService<IChairloaderTools>
 {
+
+	static const char* NameImpl() { return "IChairloaderTools"; }
+
 	virtual ~IChairloaderTools() {}
 
 	//! System initialization
@@ -22,6 +25,8 @@ struct IChairloaderTools : public IChairloaderModule
 
 	//! Shows menu items in the "Chairloader" menu on the main menu bar.
 	virtual void ShowMainMenuItems() = 0;
+
+	virtual std::shared_ptr<IChairSceneEditor> GetEditor() = 0;
 };
 
 } // namespace Internal

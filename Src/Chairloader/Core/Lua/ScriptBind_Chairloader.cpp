@@ -3,12 +3,14 @@
 #include "Lua/LuaModManager.h"
 #include "Lua/ScriptBind_Chairloader.h"
 
-ScriptBind_Chairloader::ScriptBind_Chairloader(LuaModManager* pManager)
+#include "DependencyInjection/ServiceLocator.h"
+
+ScriptBind_Chairloader::ScriptBind_Chairloader(std::shared_ptr<LuaModManager> pManager, std::shared_ptr<IChairLogger> pLogger)
+    : m_pManager(pManager)
+    , m_pLuaLog(pLogger)
 {
     CScriptableBase::Init(gEnv->pSystem->GetIScriptSystem(), gEnv->pSystem);
     SetGlobalName("Chairloader");
-    m_pManager = pManager;
-    m_pLuaLog = gCL->cl->CreateLogger();
     m_pLuaLog->SetName("Lua");
 
 #undef SCRIPT_REG_CLASSNAME
