@@ -37,7 +37,6 @@ Internal::IChairloaderDll* gChair = nullptr;
 ChairloaderGlobalEnvironment* gCL = &s_CLEnv;
 
 static int CV_cl_asserts;
-static ChairXmlUtils g_XmlUtils;
 
 
 namespace
@@ -259,7 +258,6 @@ void Chairloader::ConfigureServices() {
 void Chairloader::InitSystem(CSystem* pSystem)
 {
 	gCL->cl = this;
-	gCL->pXmlUtils = &g_XmlUtils;
 	ModuleInitISystem(pSystem, "Chairloader");
 	ModuleInitIChairLogger("Chairloader");
 	m_WinConsole.InitSystem();

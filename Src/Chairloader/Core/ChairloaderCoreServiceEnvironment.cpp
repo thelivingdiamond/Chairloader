@@ -12,11 +12,13 @@
 #include "Lua/ScriptBind_Chairloader.h"
 #include "LogManager.h"
 #include "ModDllManager.h"
+#include "Chairloader/ChairXmlUtils.h"
 #include "Chairloader/ServiceEnvironments/IChairloaderCoreServiceEnvironment.h"
 #include "Chairloader/IChairServiceCollection.h"
 #include "Chairloader/IChairServiceProvider.h"
 
 void Internal::IChairloaderCoreServiceEnvironment::ConfigureServices(IChairServiceCollection &serviceCollection) {
+    AddSingleton<IChairXmlUtils, ChairXmlUtils>(serviceCollection);
     AddSingleton<LogManager, LogManager>(serviceCollection);
     AddSingleton<ILogManager, LogManager>(serviceCollection, [](IChairServiceProvider & sp) { return sp.GetRequiredService<LogManager>();  });
     AddTransient<IChairLogger, ChairLogger, LogManager>(serviceCollection);

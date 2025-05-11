@@ -2,13 +2,15 @@
 #include <Chairloader/IChairXmlUtils.h>
 #include "SteamAPI/ArkSteamRewardSystem.h"
 
+#include "DependencyInjection/ServiceLocator.h"
+
 bool ArkSteamRewardSystem::LoadRewardData(const string& _strRewardFile)
 {
     if (!CArkRewardSystem::LoadRewardData(_strRewardFile))
         return false;
 
     // Load SteamIDs for rewards
-    pugi::xml_document xmlDoc = gCL->pXmlUtils->LoadXmlFromFile(_strRewardFile);
+    pugi::xml_document xmlDoc = ServiceLocator::GetRequiredService<IChairXmlUtils>()->LoadXmlFromFile(_strRewardFile);
     pugi::xml_node root = xmlDoc.child("ArkRewards");
     pugi::xml_node rewards = root.child("Rewards");
 

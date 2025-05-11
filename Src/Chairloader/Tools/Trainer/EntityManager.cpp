@@ -14,6 +14,8 @@
 
 #include <Chairloader/IChairXmlUtils.h>
 
+#include "DependencyInjection/ServiceLocator.h"
+
 static ClassLibrary gClassLibrary;
 
 EntityManager::EntityManager() {
@@ -1546,7 +1548,7 @@ void EntityManager::LoadSpawnList()
     try
     {
         pugi::xml_parse_result loadResult;
-        pugi::xml_document xml = gCL->pXmlUtils->LoadXmlFromFile(SPAWN_LIST_PATH, &loadResult);
+        pugi::xml_document xml = ServiceLocator::GetRequiredService<IChairXmlUtils>()->LoadXmlFromFile(SPAWN_LIST_PATH, &loadResult);
         if (!loadResult)
             throw std::runtime_error(loadResult.description());
 

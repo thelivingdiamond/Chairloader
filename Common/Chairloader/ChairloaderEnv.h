@@ -18,7 +18,6 @@ struct ChairloaderGlobalEnvironment {
 	IChairloaderGui* gui;
 	IRenderAuxGeomEx* pAuxGeomEx;
 	IChairRender* pRender;
-	IChairXmlUtils* pXmlUtils;
 	IChairSteamAPI* pSteamAPI; //!< NULL if not Steam version
 	IChairSceneEditor* pSceneEditor; //!< NULL if editor not enabled
 	IChairServiceProvider* pServiceProvider;
