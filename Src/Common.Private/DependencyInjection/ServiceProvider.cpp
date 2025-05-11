@@ -37,9 +37,10 @@ std::shared_ptr<void> ServiceProvider::GetService(const std::string &serviceType
     try {
         // Create a new instance of the service using the factory
         std::shared_ptr<void> serviceInstance = descriptor.m_factory(*this);
-        if (!serviceInstance) {
-            throw std::runtime_error("Service factory returned null for service: " + serviceType);
-        }
+        // TODO: is there a better way to handle "Optional" services that are populated by something else?
+        // if (!serviceInstance) {
+        //     throw std::runtime_error("Service factory returned null for service: " + serviceType);
+        // }
         // Store the instance if it's a singleton
         if (descriptor.m_serviceLifetime == EChairServiceLifetime::Singleton) {
             m_ServiceInstances[serviceType] = serviceInstance;
