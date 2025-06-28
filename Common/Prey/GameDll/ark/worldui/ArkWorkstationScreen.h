@@ -4,7 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/worldui/ArkStationWorldUI.h>
-#include <Prey/Ark/arkworkstation.h>
+#include <Prey/Ark/ArkWorkstation.h>
 
 class ArkUtility;
 class ArkUtilityButton;

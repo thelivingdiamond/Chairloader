@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObjectSignalReceiver.h>
 
 namespace ArkSignalSystem

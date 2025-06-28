@@ -4,7 +4,7 @@
 #include <Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arkeventscheduler.h>
+#include <Prey/GameDll/ark/ArkEventScheduler.h>
 
 class ICrySizer;
 struct SFlowNodeConfig;

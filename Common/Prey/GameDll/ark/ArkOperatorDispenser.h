@@ -6,8 +6,8 @@
 #include <Prey/GameDll/ark/ArkInteractiveMachine.h>
 #include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/arkdoor.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkDoor.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
 #include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>

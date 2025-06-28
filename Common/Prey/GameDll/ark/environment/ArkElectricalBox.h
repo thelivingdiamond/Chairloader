@@ -7,7 +7,7 @@
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>

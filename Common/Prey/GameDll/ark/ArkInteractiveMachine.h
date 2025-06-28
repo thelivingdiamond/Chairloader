@@ -5,7 +5,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
 #include <Prey/GameDll/ark/arkinteractiveobject.h>
-#include <Prey/GameDll/ark/arkrepairable.h>
+#include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
 #include <Prey/GameDll/ark/perception/ArkGameNoise.h>
 #include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>

@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkgamemode.h>
+#include <Prey/Ark/ArkGameMode.h>
 #include <Prey/CryString/CryName.h>
 
 // Header: FromCpp

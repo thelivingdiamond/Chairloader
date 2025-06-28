@@ -2,7 +2,7 @@
 #include "ArkBreakableSignalReceiver.h"
 static_assert(sizeof(ArkBreakableSignalReceiver) == 32);
 
-#include "ArkPackageSignalRamp.h"
+#include "arkpackagesignalramp.h"
 static_assert(sizeof(ArkSignalSystem::PackageSignalRamp) == 48);
 static_assert(sizeof(ArkSignalSystem::PackageSignalRampContainer) == 64);
 

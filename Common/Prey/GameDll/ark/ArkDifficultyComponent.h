@@ -4,7 +4,7 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arkdifficultycomponent.h>
+#include <Prey/GameDll/ark/ArkDifficultyComponent.h>
 #include <Prey/GameDll/ark/ui/IArkPauseMenuListener.h>
 #include <Prey/GameDll/ark/ArkSignalModifer.h>
 

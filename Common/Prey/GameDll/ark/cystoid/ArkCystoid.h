@@ -5,7 +5,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/attention/arkgenericattentionobject.h>
 #include <Prey/GameDll/ark/cystoid/ArkCystoidSignalReceiver.h>
 #include <Prey/GameDll/ark/cystoid/ArkCystoidPotentialTarget.h>

@@ -4,7 +4,7 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/attention/arkinstigationmanager.h>
+#include <Prey/GameDll/ark/attention/ArkInstigationManager.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/IGameRules.h>
 

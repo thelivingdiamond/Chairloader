@@ -2,8 +2,8 @@
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryAISystem/MovementRequest.h>
 #include <Prey/CryAISystem/MovementRequestStatus.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireManagerBase.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcFacingDesire.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcFacingDesire.h>
 #include <Prey/ArkStubs.h>
 
 class ArkNpc;

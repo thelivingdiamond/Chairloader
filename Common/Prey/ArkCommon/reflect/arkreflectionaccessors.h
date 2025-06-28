@@ -4,7 +4,7 @@
 #include <CryEngine/cryaisystem/navigation/mnm/CompactSpanGrid.h>
 #include <CryEngine/cryaisystem/navigation/mnm/profiler.h>
 #include <CryEngine/cryaisystem/navigation/mnm/voxelizer.h>
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <CryEngine/crycommon/cryfixedstring.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinTagDefs.h>

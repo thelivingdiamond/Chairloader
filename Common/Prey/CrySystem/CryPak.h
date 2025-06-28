@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryCore/stdafx.h>
+#include <Prey/CryCore/StdAfx.h>
 
 #include <Prey/CryString/CryFixedString.h>
 #include <Prey/CrySystem/CryPak.h>

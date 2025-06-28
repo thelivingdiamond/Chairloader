@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryString/CryName.h>
-#include <Prey/GameDll/ark/dialog/arkresponserule.h>
+#include <Prey/GameDll/ark/dialog/ArkResponseRule.h>
 #include <Prey/GameDll/ark/dialog/arkresponsetypes.h>
 
 class XmlNodeRef;

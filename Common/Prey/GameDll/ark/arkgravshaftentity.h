@@ -9,7 +9,7 @@
 //#include <Prey/CryParticleSystem/IParticles.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 //#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
-#include <Prey/GameDll/ark/arkrepairable.h>
+#include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/iface/IArkGravShaft.h>
 #include <Prey/GameDll/ark/iface/IArkLightListener.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>

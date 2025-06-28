@@ -5,9 +5,9 @@
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkEmissiveComponent.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalreceiver.h>

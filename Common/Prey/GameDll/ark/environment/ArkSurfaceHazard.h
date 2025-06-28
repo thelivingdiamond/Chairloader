@@ -7,7 +7,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalHazard.h>
 #include <Prey/GameDll/ark/iface/IArkGroundColliderListener.h>
 #include <Prey/GameDll/ark/iface/IArkPsiPowerTargetingListener.h>

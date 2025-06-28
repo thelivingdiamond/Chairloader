@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
 
 class ArkApexTentacle;

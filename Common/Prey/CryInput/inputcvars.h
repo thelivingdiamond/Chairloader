@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryInput/InputCVars.h>
+#include <Prey/CryInput/inputcvars.h>
 
 struct ICVar;
 

@@ -4,7 +4,7 @@
 //#include <CryEngine/crycommon/multithread_containers.h>
 #include <Prey/CryExtension/CryGUID.h>
 #include <Prey/CryInput/IInput.h>
-#include <Prey/CryInput/InputDevice.h>
+#include <Prey/CryInput/inputdevice.h>
 #include "Prey/CryThreading/IThreadTask.h"
 //#include <Prey/CryNetwork/IServiceNetwork.h>
 //#include <Prey/CrySystem/ServiceNetwork.h>

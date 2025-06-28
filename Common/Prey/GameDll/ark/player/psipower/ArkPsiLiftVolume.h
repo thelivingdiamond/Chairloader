@@ -4,7 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 //#include <Prey/GameDll/ark/npc/ArkNpc.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLift.h>
-#include <Prey/GameDll/ark/player/psipower/arkplayerliftentity.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntity.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolumeEntity.h>
 
 struct IEntity;

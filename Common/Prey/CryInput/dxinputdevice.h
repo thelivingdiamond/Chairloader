@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryInput/InputDevice.h>
+#include <Prey/CryInput/inputdevice.h>
 
 class CDXInput;
 struct IDirectInputDevice8A;

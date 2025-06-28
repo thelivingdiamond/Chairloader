@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkPsiScanningComponentListener.h>
 #include <Prey/GameDll/ark/weapons/arkweapon.h>
 

@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/GameDll/ark/weapons/arkweaponactions.h>
-#include <Prey/GameDll/ark/weapons/arkwrenchcomponent.h>
+#include <Prey/GameDll/ark/weapons/ArkWrenchComponent.h>
 
 class ArkNpc;
 class ArkSafeScriptTable;

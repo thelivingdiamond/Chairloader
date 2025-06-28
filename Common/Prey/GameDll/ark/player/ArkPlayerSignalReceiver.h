@@ -2,7 +2,7 @@
 #pragma once
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/ArkSignalDispositionModifier.h>
-#include <Prey/GameDll/ark/signalsystem/ArkPackageSignalRamp.h>
+#include <Prey/GameDll/ark/signalsystem/arkpackagesignalramp.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalreceiver.h>
 
 namespace ArkSignalSystem

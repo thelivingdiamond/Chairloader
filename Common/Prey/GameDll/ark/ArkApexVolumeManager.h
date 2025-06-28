@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkApexVolumeManager.h

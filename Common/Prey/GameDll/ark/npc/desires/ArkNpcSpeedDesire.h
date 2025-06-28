@@ -5,7 +5,7 @@
 //#include <Prey/CryAISystem/MovementStyle.h>
 #include <Chairloader/PreyFunction.h>
 #include <Prey/ArkCommon/ArkDelegate.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireBase.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireBase.h>
 #include "ArkNpcSpeedDesireManager.h"
 
 // Header: FromCpp

@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryAction/ark/ArkActionGame.h>
 #include <Prey/CryCore/StdAfx.h>
-#include <Prey/CryAction/ActionGame.h>
+#include <Prey/CryAction/actiongame.h>
 #include <Prey/CryAction/IGameRulesSystem.h>
 #include <Prey/CryAction/IMaterialEffects.h>
 #include <Prey/CryCore/smartptr.h>

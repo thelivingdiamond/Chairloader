@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/GameDll/ark/npc/desires/ArkNpcLookDesire.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireManagerBase.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
 
 class ArkNpc;
 struct IEntity;

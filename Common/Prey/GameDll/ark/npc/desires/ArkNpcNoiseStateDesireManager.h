@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireManagerBase.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
 #include <boost/optional.hpp>
 
 class ArkNpc;

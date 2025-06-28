@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/dialog/arkresponse.h>
+#include <Prey/GameDll/ark/dialog/ArkResponse.h>
 
 class XmlNodeRef;
 

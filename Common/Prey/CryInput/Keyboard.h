@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryInput/DXInputDevice.h>
+#include <Prey/CryInput/dxinputdevice.h>
 #include <Prey/CryInput/Keyboard.h>
 
 class CDXInput;

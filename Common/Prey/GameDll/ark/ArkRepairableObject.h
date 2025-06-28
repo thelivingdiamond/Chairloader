@@ -3,10 +3,10 @@
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
 
 class ICrySizer;

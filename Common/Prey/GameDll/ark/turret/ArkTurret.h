@@ -14,7 +14,7 @@
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
 #include <Prey/GameDll/ark/player/IArkEtherDuplicateListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatialManagerEntry.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
 #include <Prey/GameDll/ark/turret/ArkTurretDialogSpeaker.h>
 #include <Prey/GameDll/ark/turret/ArkTurretFsm.h>
 #include <Prey/GameDll/ark/turret/ArkTurretSignalReceiver.h>

@@ -13,7 +13,7 @@
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 //#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
-#include <Prey/GameDll/ark/arkdoor.h>
+#include <Prey/GameDll/ark/ArkDoor.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/iface/IArkDoor.h>
 //#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h>

@@ -1,5 +1,5 @@
 // Header test file for path CryEngine/cryinput/baseinput.h
-#include "baseinput.h"
+#include "BaseInput.h"
 static_assert(sizeof(CBaseInput) == 264);
 
 #include "cryinput.h"
@@ -17,7 +17,7 @@ static_assert(sizeof(CInputCVars) == 112);
 #include "inputdevice.h"
 static_assert(sizeof(CInputDevice) == 112);
 
-#include "keyboard.h"
+#include "Keyboard.h"
 static_assert(sizeof(CKeyboard) == 152);
 static_assert(sizeof(CKeyboard::SScanCode) == 12);
 
