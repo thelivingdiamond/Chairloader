@@ -47,7 +47,7 @@ set(CMAKE_MAP_IMPORTED_CONFIG_DEBUGCHAIR Release) # Use Release imported libs fo
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
 # Edit and Continue in Debug
-string(REPLACE "/Zi" "/ZI" CMAKE_CXX_FLAGS_DEBUGCHAIR "${CMAKE_CXX_FLAGS_DEBUGCHAIR}")
+set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<$<CONFIG:Debug>:EditAndContinue,ProgramDatabase>")
 
 # PDBs and optimizations in Release
 set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /debug")   # Generate PDB
