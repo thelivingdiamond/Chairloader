@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.25)
 project(ExampleMod) # CHANGE ME
 
 # Search for libraries in CMake
@@ -11,7 +11,7 @@ include(CMake/CompilerConfig.cmake)
 include(CMake/ModConfig.cmake)
 
 # vcpkg libraries
-find_package(Boost REQUIRED)
+find_package(Boost CONFIG REQUIRED)
 find_package(Detours MODULE REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 

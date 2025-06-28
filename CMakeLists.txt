@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.25)
 
 project(Chairloader)
 set(CHAIRLOADER TRUE)
@@ -155,7 +155,7 @@ find_package(libzip REQUIRED)
 find_package(libzippp CONFIG REQUIRED)
 find_package(Lua REQUIRED)
 find_package(pugixml REQUIRED)
-find_package(taskflow CONFIG REQUIRED)
+find_package(Taskflow CONFIG REQUIRED)
 find_package(unofficial-curlpp CONFIG REQUIRED)
 
 find_path(LUABRIDGE_INCLUDE_DIRS "LuaBridge/List.h")
