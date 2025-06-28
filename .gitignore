@@ -14,3 +14,7 @@
 
 # VS Code
 /.vscode
+
+# Example mod
+/ExampleMod.dll
+/ExampleMod.pdb
