@@ -7,7 +7,7 @@ set(SOURCE_FILES
 	ImGui/imgui.h
 	ImGui/imgui.cpp
 	ImGui/imconfig.h
-	ImGUi/imgui_internal.h
+	ImGui/imgui_internal.h
 	ImGui/imgui_demo.cpp
 	ImGui/imgui_draw.cpp
 	ImGui/imgui_impl_dx11.cpp
