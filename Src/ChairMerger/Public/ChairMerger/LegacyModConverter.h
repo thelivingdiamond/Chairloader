@@ -104,7 +104,7 @@ private:
 
     //! Looks for items with duplicate keys and removes them.
     void RemoveDuplicateKeys(
-        pugi::xml_node& node,
+        pugi::xml_node node,
         const MergingPolicy3& policy,
         const XmlErrorStack& errorStack);
 

@@ -19,7 +19,7 @@ enum class severityLevel{
 
 class LogEntry{
 public:
-    LogEntry(std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
+    LogEntry(const std::string &messageIn, severityLevel levelIn): message(messageIn), level(levelIn){
         tm timeStruct{};
         timeNow = time(nullptr);
         localtime_s(&timeStruct,&timeNow);

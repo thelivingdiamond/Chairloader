@@ -1,3 +1,4 @@
+#include <Prey/CrySystem/Ark/IArkDlcSystem.h>
 #include "ArkUglySteamDlcSystem.h"
 
 static_assert(sizeof(Engine::CArkUglySteamDlcSystem) == 232);
