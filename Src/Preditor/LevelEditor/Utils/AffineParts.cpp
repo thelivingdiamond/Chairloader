@@ -503,7 +503,7 @@ static Quatern snuggle(Quatern q, HVect* k)
 		mag[1] = (double)q.x * q.z - (double)q.y * q.w;
 		mag[2] = (double)q.y * q.z + (double)q.x * q.w;
 		for (i = 0; i < 3; i++)
-			if (neg[i] = (mag[i] < 0.0)) mag[i] = -mag[i];
+			if ((neg[i] = (mag[i] < 0.0))) mag[i] = -mag[i];
 		if (mag[0] > mag[1]) { if (mag[0] > mag[2]) win = 0; else win = 2; }
 		else { if (mag[1] > mag[2]) win = 1; else win = 2; }
 		switch (win)
@@ -534,7 +534,7 @@ static Quatern snuggle(Quatern q, HVect* k)
 		for (i = 0; i < 4; i++)
 		{
 			pa[i] = 0.0;
-			if (neg[i] = (qa[i] < 0.0)) qa[i] = -qa[i];
+			if ((neg[i] = (qa[i] < 0.0))) qa[i] = -qa[i];
 			par ^= neg[i];
 		}
 		/* Find two largest components, indices in hi and lo */

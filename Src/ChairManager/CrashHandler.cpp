@@ -155,7 +155,7 @@ void CrashHandler::PrintSystemInfo(FILE* file)
 			}
 			else
 			{
-				fprintf(file, "malloc(%u) failed\n", size);
+				fprintf(file, "malloc(%u) failed\n", (unsigned)size);
 			}
 		}
 		else
@@ -294,7 +294,7 @@ LONG CrashHandler::VectoredExceptionsHandler(PEXCEPTION_POINTERS pExceptionInfo)
 		snprintf(errorText, sizeof(errorText),
 			"Exception %s (0x%08X) at address 0x%08llX (%s)",
 			ExceptionCodeString(exceptionCode),
-			exceptionCode,
+			(unsigned)exceptionCode,
 			exceptionAddress,
 			GetModuleNameForAddress(exceptionAddress)
 		);

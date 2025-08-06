@@ -60,10 +60,20 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi /Gy")
 set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${RELEASE_LINKER_FLAGS}")
 
+# Configure warnings
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	add_compile_options(
+		-Wno-nontrivial-memcall # first argument in call to 'memset' is a pointer to non-trivially copyable type 'ImGuiTable'
+		-Wno-deprecated-declarations # 'strcmpi' is deprecated: The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strcmpi.
+		-Wno-invalid-offsetof # offset of on non-standard-layout type 'CD3D9Renderer'
+		-Wno-switch # enumeration value 'NumSymTypes' not handled in switch [-Wswitch]
+	)
+endif()
+
 #------------------------------------------------------------------------
 # Macros
 #------------------------------------------------------------------------
-# Add custom debug macro (_DEBUG is not available since linking with Releas libs)
 add_compile_definitions(
-	$<IF:$<OR:$<CONFIG:Debug>,$<CONFIG:DebugChair>>,DEBUG_BUILD,RELEASE_BUILD>
+	_CRT_SECURE_NO_WARNINGS # Disable bullshit warnings
+	$<IF:$<OR:$<CONFIG:Debug>,$<CONFIG:DebugChair>>,DEBUG_BUILD,RELEASE_BUILD> # Add custom debug macro (_DEBUG is not available since linking with Releas libs)
 )

@@ -113,7 +113,7 @@ bool WizardManager::ShowContent()
             }
             case EState::InitialCheck:
             {
-                ImGui::Text(m_InitialCheckText.c_str());
+                ImGui::Text("%s", m_InitialCheckText.c_str());
                 break;
             }
             case EState::Wizard:

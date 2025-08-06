@@ -486,7 +486,7 @@ void FlowgraphEditor::DrawNodeGraphList()
                                     ImGui::PopStyleColor();
                                 }
                                 ImGui::SameLine();
-                                ImGui::Text("%d", graph->m_Nodes.size());
+                                ImGui::Text("%d", (int)graph->m_Nodes.size());
                             }
                             ImGui::TreePop();
                         }
