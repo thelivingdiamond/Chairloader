@@ -176,9 +176,7 @@ private:
     fs::path getDefaultConfigPath(std::string &modName);
     pugi::xml_document ChairloaderConfigFile, ChairManagerConfigFile;
     pugi::xml_node ModListNode;
-    inline bool saveChairloaderConfigFile() {
-        return ChairloaderConfigFile.save_file((GetGamePath().wstring() + L"/Mods/config/Chairloader.xml").c_str());
-    };
+    void saveChairloaderConfigFile();
     inline bool saveModManagerConfigFile(){
         return ChairManagerConfigFile.save_file(ChairManagerConfigPath.string().c_str());
     }
