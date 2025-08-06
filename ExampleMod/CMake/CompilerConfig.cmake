@@ -46,8 +46,10 @@ set(CMAKE_MAP_IMPORTED_CONFIG_DEBUGCHAIR Release) # Use Release imported libs fo
 # Use Windows subsystem for DLLs
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
-# Edit and Continue in Debug
-set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<$<CONFIG:Debug>:EditAndContinue,ProgramDatabase>")
+# Edit and Continue in Debug (not supported by Clang)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<CONFIG:Debug>,EditAndContinue,ProgramDatabase>")
+endif()
 
 # PDBs and optimizations in Release
 set(RELEASE_LINKER_FLAGS "${RELEASE_LINKER_FLAGS} /debug")   # Generate PDB

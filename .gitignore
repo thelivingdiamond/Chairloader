@@ -12,6 +12,9 @@
 /cmake-build-*
 /.idea
 
+# User-specific files
+CMakeUserPresets.json
+
 # VS Code
 /.vscode
 
