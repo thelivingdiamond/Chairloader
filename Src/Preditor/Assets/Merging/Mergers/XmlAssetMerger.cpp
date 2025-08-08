@@ -97,7 +97,7 @@ void Assets::XmlAssetMerger::DoMerge(const std::vector<InputFile>& inputFiles)
         CRY_ASSERT(!inputFiles.empty());
 
         // First file is the base
-        baseDoc = ReadFile(*inputFiles.rbegin());
+        baseDoc = ReadFile(*inputFiles.begin());
 
         // Since it's already "merged", skip it
         inputFileIdx = 1;
