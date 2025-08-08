@@ -143,6 +143,9 @@ void XmlFinalizer3::FinalizeNode(
 
     for (pugi::xml_node childNode : node.children())
     {
+        if (childNode.type() != pugi::node_element)
+            continue;
+
         XmlErrorStack childErrorStack = errorStack.GetChild(childNode);
         childErrorStack.SetIndex(i);
 
