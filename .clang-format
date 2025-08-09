@@ -1,0 +1,19 @@
+---
+BasedOnStyle: Microsoft
+IndentWidth: 4
+---
+Language: Cpp
+PointerAlignment: Left
+# Line limit
+PackConstructorInitializers: Never
+BreakConstructorInitializers: BeforeComma
+# Comment alignment
+Cpp11BracedListStyle: False
+BraceWrapping:
+  AfterCaseLabel: True
+AlwaysBreakTemplateDeclarations: Yes
+# Header sorting
+AllowShortFunctionsOnASingleLine: Inline
+BreakInheritanceList: BeforeComma
+# AllowShortLambdasOnASingleLine
+AccessModifierOffset: -4
