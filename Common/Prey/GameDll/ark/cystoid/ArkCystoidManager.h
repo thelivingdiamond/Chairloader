@@ -1,12 +1,12 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/Ark/arkaudioutil.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/Ark/arksignalsystemdata.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
-#include <Prey/GameDll/ark/cystoid/arkcystoidmanager.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/cystoid/ArkCystoidManager.h>
 
 class ArkCystoid;
 namespace ArkSignalSystem

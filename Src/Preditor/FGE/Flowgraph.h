@@ -13,7 +13,7 @@
 #include <variant>
 #include <pugixml.hpp>
 #include "IChairFlowgraph.h"
-#include <ImNodes/ImNodes.h>
+#include <ImNodes/imnodes.h>
 
 struct FlowGraph : public IChairFlowgraph
 {

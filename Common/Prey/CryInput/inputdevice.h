@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryInput/IInput.h>
-#include <Prey/CryInput/InputDevice.h>
+#include <Prey/CryInput/inputdevice.h>
 
 struct IInput;
 struct SInputEvent;

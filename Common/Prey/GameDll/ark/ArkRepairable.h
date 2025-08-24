@@ -4,8 +4,8 @@
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/arkrepairable.h>
-#include <Prey/GameDll/ark/arkscripttable.h>
+#include <Prey/GameDll/ark/ArkRepairable.h>
+#include <Prey/GameDll/ark/ArkScriptTable.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 
 struct ArkInteractionInfo;

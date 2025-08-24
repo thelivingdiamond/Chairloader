@@ -51,7 +51,7 @@ CAPTION "About"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,53,74,50,14
-    LTEXT           "Lua Debugger Version 1.0\n(C) 2002 Crytek\n\nWritten by\nAlberto Demichelis\nTim Schrцder",IDC_STATIC,7,7,96,53
+    LTEXT           "Lua Debugger Version 1.0\n(C) 2002 Crytek\n\nWritten by\nAlberto Demichelis\nTim Sch?der",IDC_STATIC,7,7,96,53
 END
 
 
@@ -109,7 +109,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_LUADBG              ICON                    "LuaDbgRes\\LUADBG.ico"
+IDI_LUADBG              ICON                    "LuaDbgRes/LUADBG.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -161,6 +161,8 @@ END
 // Toolbar
 //
 
+// llvm-rc doesn't support TOOLBAR
+#ifndef __llvm__
 IDC_LUADBG TOOLBAR 16, 15
 BEGIN
     BUTTON      ID_DEBUG_RUN
@@ -174,15 +176,15 @@ BEGIN
     SEPARATOR
     BUTTON      IDM_ABOUT
 END
-
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
-IDC_LUADBG              BITMAP                  "LuaDbgRes\\toolbar1.bmp"
-IDB_TREE_VIEW           BITMAP                  "LuaDbgRes\\TreeView.bmp"
+IDC_LUADBG              BITMAP                  "LuaDbgRes/toolbar1.bmp"
+IDB_TREE_VIEW           BITMAP                  "LuaDbgRes/TreeView.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

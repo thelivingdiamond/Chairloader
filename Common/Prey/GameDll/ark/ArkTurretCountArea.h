@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 
 struct IGameObject;
 struct SEntityEvent;

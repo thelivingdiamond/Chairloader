@@ -63,7 +63,7 @@ void ConsoleEventPatch::InitHooks()
 {
     // Hook ProcessEvent in vtable (index = 8)
     uint8_t* pVTableEntry = (uint8_t*)((*g_CArkFlowConsoleEvent_vftable) + 8);
-    void* pFunc = &CArkFlowConsoleEvent_ProcessEvent_Hook;
+    void* pFunc = (void*)&CArkFlowConsoleEvent_ProcessEvent_Hook;
     uint8_t ppFunc[sizeof(pFunc)];
     memcpy(ppFunc, &pFunc, sizeof(pFunc));
 

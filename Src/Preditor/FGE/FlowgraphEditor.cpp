@@ -4,8 +4,8 @@
 #include <Prey/CryCore/Platform/CryWindows.h>
 #include <Prey/CrySystem/System.h>
 #include "FlowgraphEditor.h"
-#include <Prey/CryAction/Ark/IArkGlobalActionManager.h>
-#include <Prey/CryAction/flowsystem/Nodes/FlowBaseNode.h>
+#include <Prey/CryAction/ark/IArkGlobalActionManager.h>
+#include <Prey/CryAction/flowsystem/nodes/flowbasenode.h>
 #include <Prey/CryAction/flowsystem/flowsystem.h>
 #include "ImGui/imgui_stdlib.h"
 #include "ImGui/imgui_internal.h"
@@ -486,7 +486,7 @@ void FlowgraphEditor::DrawNodeGraphList()
                                     ImGui::PopStyleColor();
                                 }
                                 ImGui::SameLine();
-                                ImGui::Text("%d", graph->m_Nodes.size());
+                                ImGui::Text("%d", (int)graph->m_Nodes.size());
                             }
                             ImGui::TreePop();
                         }

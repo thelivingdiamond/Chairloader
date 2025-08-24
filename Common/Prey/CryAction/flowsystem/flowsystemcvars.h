@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAction/FlowSystem/FlowSystemCVars.h>
+#include <Prey/CryAction/flowsystem/flowsystemcvars.h>
 
 // Header: FromCpp
 // CryEngine/cryaction/flowsystem/flowsystemcvars.h

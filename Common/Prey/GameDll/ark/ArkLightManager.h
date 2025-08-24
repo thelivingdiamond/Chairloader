@@ -4,7 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryCore/Containers/VectorMap.h>
 #include <Prey/GameDll/ark/ArkLightManagerDisruptableData.h>
-#include <Prey/GameDll/ark/arklightmanager.h>
+#include <Prey/GameDll/ark/ArkLightManager.h>
 
 // Header: FromCpp
 // Prey/GameDll/ark/arklightmanager.h

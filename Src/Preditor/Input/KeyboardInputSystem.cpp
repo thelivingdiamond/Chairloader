@@ -85,7 +85,7 @@ void Input::KeyboardInputSystem::ReloadKeybinds()
             // Modifier count
             int lhsCount = CountModifiers(lhs.GetModMask());
             int rhsCount = CountModifiers(rhs.GetModMask());
-            return lhsCount > lhsCount;
+            return lhsCount > rhsCount;
         };
 
         std::sort(list.bindList.begin(), list.bindList.end(), fnCompare);

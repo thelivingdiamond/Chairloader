@@ -12,5 +12,12 @@
 /cmake-build-*
 /.idea
 
+# User-specific files
+CMakeUserPresets.json
+
 # VS Code
 /.vscode
+
+# Example mod
+/ExampleMod.dll
+/ExampleMod.pdb

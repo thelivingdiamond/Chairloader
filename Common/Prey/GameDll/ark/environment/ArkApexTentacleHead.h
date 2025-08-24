@@ -2,8 +2,8 @@
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
-#include <Prey/GameDll/ark/environment/arkapextentaclehead.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+#include <Prey/GameDll/ark/environment/ArkApexTentacleHead.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalreceiver.h>
 
 namespace ArkSignalSystem

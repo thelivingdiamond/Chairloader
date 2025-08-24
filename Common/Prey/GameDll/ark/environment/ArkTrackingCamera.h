@@ -5,7 +5,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 

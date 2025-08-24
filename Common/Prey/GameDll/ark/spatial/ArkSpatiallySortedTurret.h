@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/GameDll/ark/spatial/arkspatiallysortedturret.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedTurret.h>
 
 class ArkCystoidNest;
 class ArkTurret;

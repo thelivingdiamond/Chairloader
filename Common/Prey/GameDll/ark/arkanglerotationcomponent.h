@@ -4,7 +4,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
 #include <Prey/GameDll/ark/ArkDisruptableSignalReceiver.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 #include <Prey/GameDll/ark/ArkOverlappingGooHandler.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/weapons/IArkOverlappingGooListener.h>

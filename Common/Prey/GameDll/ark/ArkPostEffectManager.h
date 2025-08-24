@@ -5,7 +5,7 @@
 #include <Prey/Ark/iarkposteffectmanager.h>
 #include <Prey/CrySystem/ITimer.h>
 #include <Prey/CrySystem/XML/IXml.h>
-#include <Prey/GameDll/ark/arkposteffectmanager.h>
+#include <Prey/GameDll/ark/ArkPostEffectManager.h>
 #include <Prey/GameDll/ark/iface/IArkPostEffect.h>
 #include <Prey/GameDll/ark/iface/IArkPostEffectManager.h>
 #include <Prey/GameDll/ark/iface/IArkPostEffectOverrideParam.h>

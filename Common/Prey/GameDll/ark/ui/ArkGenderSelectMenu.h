@@ -8,7 +8,7 @@
 #include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/IUIGameEventSystem.h>
-#include <Prey/GameDll/ark/ui/arkgenderselectmenu.h>
+#include <Prey/GameDll/ark/ui/ArkGenderSelectMenu.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
 class CCryName;

@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/player/psipower/arkpsiliftvolume.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolume.h>
 
 struct IEntity;
 struct SEntityEvent;

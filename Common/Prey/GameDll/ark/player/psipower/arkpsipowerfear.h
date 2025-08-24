@@ -5,7 +5,7 @@
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiPowerTargetingComponent.h>
-#include <Prey/GameDll/ark/psicommon/ArkPsiFearBlast.h>
+#include <Prey/GameDll/ark/psicommon/arkpsifearblast.h>
 
 class ArkClass;
 class IArkValueBase;

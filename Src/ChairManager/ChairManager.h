@@ -168,7 +168,7 @@ private:
     float OverlayElementHeight = 150.0f;
 
     void DrawOverlayLog();
-    void ChairManager::OverlayLogElement(LogEntry entry);
+    void OverlayLogElement(LogEntry entry);
 
 
     /* Config Functions */

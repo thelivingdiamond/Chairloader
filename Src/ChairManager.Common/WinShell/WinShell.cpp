@@ -17,8 +17,8 @@ struct CComRaii : NoCopy
 {
 	CComRaii()
 	{
-		if (CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE) != S_OK)
-			throw std::runtime_error("CoInitializeEx failed");
+		if (!SUCCEEDED(CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
+            throw std::runtime_error("CoInitializeEx failed");
 	}
 
 	~CComRaii()

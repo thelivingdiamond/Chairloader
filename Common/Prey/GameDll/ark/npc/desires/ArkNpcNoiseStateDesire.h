@@ -3,7 +3,7 @@
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/GameDll/Ark/npc/desires/ArkNpcDesireBase.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireBase.h>
 #include "ArkNpcNoiseStateDesireManager.h"
 
 // Header: FromCpp

@@ -29,7 +29,7 @@ T& GetArkPropertyValue(const ArkProperty* pProp, ArkReflectedObject* pObject)
 //! @tparam T           Visitor type.
 //! @returns visitor's return value.
 template <typename T>
-auto VisitArkProperty(const ArkProperty* pProp, ArkReflectedObject* pObject, T& visitor)
+auto VisitArkProperty(const ArkProperty* pProp, ArkReflectedObject* pObject, T&& visitor)
 {
     switch (pProp->m_arkType)
     {

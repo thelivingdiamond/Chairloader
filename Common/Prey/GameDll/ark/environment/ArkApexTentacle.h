@@ -7,12 +7,12 @@
 #include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/arksimpletimer.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
 #include <Prey/GameDll/ark/player/IArkEtherDuplicateListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCarryListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
-#include <Prey/GameDll/ark/spatial/ArkSpatialManagerEntry.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
 
 namespace ArkSignalSystem
 {

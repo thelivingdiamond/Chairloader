@@ -665,7 +665,7 @@ bool LegacyModConverter::ConvertDict(
 }
 
 void LegacyModConverter::RemoveDuplicateKeys(
-    pugi::xml_node& node,
+    pugi::xml_node node,
     const MergingPolicy3& policy,
     const XmlErrorStack& errorStack)
 {

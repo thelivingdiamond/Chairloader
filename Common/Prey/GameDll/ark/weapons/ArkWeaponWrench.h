@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/weapons/ArkWeapon.h>
+#include <Prey/GameDll/ark/weapons/arkweapon.h>
 #include <Prey/GameDll/ark/weapons/ArkWrenchComponent.h>
 
 class ArkNpc;

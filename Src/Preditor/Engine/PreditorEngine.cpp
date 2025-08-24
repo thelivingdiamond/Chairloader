@@ -228,8 +228,8 @@ void CSystem_LoadConfiguration_Hook(CSystem* const _this, const char* sFilename,
 				RECT rc;
 				if (SystemParametersInfoA(SPI_GETWORKAREA, 0, &rc, 0))
 				{
-					_this->m_rWidth->Set(rc.right - rc.left);
-					_this->m_rHeight->Set(rc.bottom - rc.top);
+					_this->m_rWidth->Set((int)(rc.right - rc.left));
+					_this->m_rHeight->Set((int)(rc.bottom - rc.top));
 				}
 			}
 		}

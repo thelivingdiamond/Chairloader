@@ -269,7 +269,7 @@ void GameVersion::ShowModals()
 	ImGui::SetNextWindowSize({ 600, 0 });
 	if (ImGui::BeginPopupModal("Error Occured", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 	{
-		ImGui::TextWrapped(m_ModalErrorText.c_str());
+		ImGui::TextWrapped("%s", m_ModalErrorText.c_str());
 		if (ImGui::Button("Close"))
 			ImGui::CloseCurrentPopup();
 		ImGui::EndPopup();

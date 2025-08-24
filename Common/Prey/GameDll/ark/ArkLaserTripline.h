@@ -4,7 +4,7 @@
 #include <Prey/CryMath/Cry_Color.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
-#include <Prey/GameDll/ark/ArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 #include <Prey/GameDll/ark/ArkLaserTriplineSignalReceiver.h>
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>

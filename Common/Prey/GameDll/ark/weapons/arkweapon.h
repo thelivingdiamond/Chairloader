@@ -6,7 +6,7 @@
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
-#include <Prey/GameDll/ArkItem.h>
+#include <Prey/GameDll/arkitem.h>
 #include <Prey/GameDll/EntityUtility/EntityEffects.h>
 #include <Prey/GameDll/ark/ArkInteractionInfo.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -17,7 +17,7 @@
 #include <Prey/GameDll/ark/player/IArkPlayerLightOwner.h>
 #include <Prey/GameDll/ark/player/IArkStatsListener.h>
 #include <Prey/GameDll/ark/playerIArkCombatFocusListener.h>
-#include <Prey/GameDll/ark/ui/ArkInventoryUI.h>
+#include <Prey/GameDll/ark/ui/arkinventoryui.h>
 #include <Prey/GameDll/ark/weapons/IArkWeapon.h>
 
 struct ArkInteractionTestResult;

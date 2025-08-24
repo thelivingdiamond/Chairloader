@@ -135,7 +135,7 @@ void ModMain::Draw()
         static bool state = false;
         static time_t loadTime = std::time(nullptr);
         const char* text = !state ? "That Heavy is dead!" : "Yes! He died!";
-        ImGui::Text(text);
+        ImGui::Text("%s", text);
         ImGui::Text("Load time: %lld", (long long)loadTime);
 
         if (ImGui::Button("The Heavy is dead???"))

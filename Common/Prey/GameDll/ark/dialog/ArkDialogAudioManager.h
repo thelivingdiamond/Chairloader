@@ -2,7 +2,7 @@
 
 #pragma once
 #include <Prey/GameDll/ark/dialog/IArkDialogAudioManager.h>
-#include <Prey/GameDll/ark/dialog/arkdialogaudiomanager.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogAudioManager.h>
 
 class ArkDialogAudioTrigger;
 class IArkDialogLoadListener;

@@ -1,10 +1,10 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/cryaction/ark/ArkGlobalActionManager.h>
+#include <Prey/CryAction/ark/ArkGlobalActionManager.h>
 #include <Prey/CryCore/Containers/CryArray.h>
 //#include <Prey/CryAction/FlowSystem/FlowSystem.cpp>
-#include <Prey/CryAction/FlowSystem/FlowSystemCVars.h>
+#include <Prey/CryAction/flowsystem/flowsystemcvars.h>
 #include <Prey/CryCore/Containers/CryListenerSet.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>

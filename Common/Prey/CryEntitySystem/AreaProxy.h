@@ -7,7 +7,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryPhysics/physinterface.h>
 #include <Prey/GameDll/ark/attention/ArkComplexAttentionObject.h>
-#include <Prey/GameDll/ark/npc/ability/arknpcability.h>
+#include <Prey/GameDll/ark/npc/ability/ArkNpcAbility.h>
 #include <Prey/GameDll/ark/perception/ArkAttentiveSubject.h>
 #include <Prey/GameDll/ark/perception/arkvisualperceiver.h>
 #include <Chairloader/PreyFunction.h>
