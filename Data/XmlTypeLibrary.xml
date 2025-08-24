@@ -1826,5 +1826,35 @@
                 <NodeByType name="Channel" type="ChannelConfig" />
             </ChildNodes>
         </NodeType>
+
+        <!-- ChairloaderEntitySpawnListCategory -->
+        <NodeType name="ChairloaderEntitySpawnListCategory">
+            <Attributes>
+                <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                <Attribute name="Header" type="string" required="true" />
+            </Attributes>
+
+            <Collection type="array">
+                <ChildIndexAttribute name="ch:index" />
+            </Collection>
+
+            <ChildNodes>
+                <NodeByType name="Category" type="ChairloaderEntitySpawnListCategory" />
+
+                <Node name="Npc" textType="string">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                    </Attributes>
+                </Node>
+
+                <Node name="Entity" textType="string">
+                    <Attributes>
+                        <Attribute name="ch:index" type="int32" required="true" readOnly="true" generated="true" />
+                        <Attribute name="Name" type="string" required="true" />
+                    </Attributes>
+                </Node>
+            </ChildNodes>
+        </NodeType>
     </NodeTypes>
 </XmlTypeLibrary>
