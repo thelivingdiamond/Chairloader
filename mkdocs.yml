@@ -63,6 +63,8 @@ nav:
   - Using Chairloader:
       - using-chairloader/index.md
       - using-chairloader/command-line-options.md
+      - using-chairloader/editor.md
+      - using-chairloader/trainers.md
   - Modding Docs:
       - modding/introduction.md
       - modding/file-structure.md

@@ -25,3 +25,4 @@ CMakeUserPresets.json
 # MkDocs
 /.venv
 /.cache
+/site
