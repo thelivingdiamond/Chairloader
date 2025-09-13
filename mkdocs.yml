@@ -39,6 +39,7 @@ theme:
     - navigation.expand
 
 repo_url: https://github.com/thelivingdiamond/Chairloader
+repo_name: thelivingdiamond/Chairloader
 
 plugins:
   - glightbox
