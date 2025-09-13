@@ -21,3 +21,8 @@ CMakeUserPresets.json
 # Example mod
 /ExampleMod.dll
 /ExampleMod.pdb
+
+# MkDocs
+/.venv
+/.cache
+/site
