@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: Chairloader
+site_url: https://chairloader.dev
+theme:
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/icon.png
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - navigation.expand
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+copyright: >
+  <a href="#__consent">Change cookie settings</a>
+
+repo_url: https://github.com/thelivingdiamond/Chairloader
+
+plugins:
+  - glightbox
+  - search
+  - privacy
+
+markdown_extensions:
+  - admonition
+  - def_list
+  - pymdownx.details
+  - pymdownx.superfences
+
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/installation.md
+      - getting-started/steam-deck-and-linux.md
+  - Mod Manager:
+      - mod-manager/introduction.md
+  - Using Chairloader:
+      - using-chairloader/index.md
+      - using-chairloader/command-line-options.md
+  - Modding Docs:
+      - modding/introduction.md
+      - modding/file-structure.md
+      - modding/config-files.md
+      - C++ Modding:
+        - modding/cpp/building-chairloader.md
+        - modding/cpp/mod-project-setup.md
+        - modding/cpp/engine-source-code.md
+      - XML Modding:
+        - modding/xml/basic-xml-mod.md
+        - modding/xml/meta-sequences.md
+        - modding/xml/level-patching.md
+        - modding/xml/1.3.0-migration-guide.md
+        - modding/xml/legacy-mod-conversion.md
+      - Lua Modding:
+        - modding/lua/introduction.md
+  - Preditor:
+      - preditor/architecture-overview.md
