@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<EntitySpawnList Header="Trainer">
+    <Category ch:index="100" Header="Typhon">
+        <Category ch:index="100" Header="Mimics">
+            <Npc ch:index="100" Name="ArkNpcs.Mimics.Mimic">Mimic</Npc>
+            <Npc ch:index="200" Name="ArkNpcs.Mimics.EliteMimic">Greater Mimic</Npc>
+        </Category>
+
+        <Category ch:index="200" Header="Phantoms">
+            <Npc ch:index="100" Name="ArkNpcs.Phantoms.BasePhantom">Normal</Npc>
+            <Npc ch:index="200" Name="ArkNpcs.Phantoms.ThermalPhantom">Thermal</Npc>
+            <Npc ch:index="300" Name="ArkNpcs.Phantoms.EthericPhantom">Etheric</Npc>
+            <Npc ch:index="400" Name="ArkNpcs.Phantoms.VoltaicPhantom">Voltaic</Npc>
+        </Category>
+
+        <Npc ch:index="300" Name="ArkNpcs.ArkNightmare">Nightmare</Npc>
+        <Npc ch:index="400" Name="ArkNpcs.ArkPoltergeist">Poltergeist</Npc>
+        <Npc ch:index="500" Name="ArkNpcs.Overseers.Telepath">Telepath</Npc>
+        <Npc ch:index="600" Name="ArkNpcs.Overseers.Technopath">Technopath</Npc>
+    </Category>
+
+    <Category ch:index="200" Header="Operators">
+        <Npc ch:index="100" Name="ArkRobots.Operators\Generic.MedicalOperator">Medical</Npc>
+        <Npc ch:index="200" Name="ArkRobots.Operators\Generic.EngineeringOperator">Engineering</Npc>
+        <Npc ch:index="300" Name="ArkRobots.Operators\Generic.ScienceOperator">Science</Npc>
+        <Npc ch:index="400" Name="ArkRobots.Operators\Generic.MilitaryOperator">Military</Npc>
+    </Category>
+    
+    <Npc ch:index="300" Name="ArkRobots.Turrets.Turret_Default">Turret</Npc>
+
+    <Category ch:index="400" Header="Weapons">
+        <Entity ch:index="100" Name="ArkPickups.Weapons.Wrench">Wrench</Entity>
+        <Entity ch:index="200" Name="ArkPickups.Weapons.Shotgun">Shotgun</Entity>
+        <Entity ch:index="300" Name="ArkPickups.Ammo.ShotgunShells">Shotgun Ammo</Entity>
+        <Entity ch:index="400" Name="ArkPickups.Weapons.Pistol">Pistol</Entity>
+        <Entity ch:index="500" Name="ArkPickups.Ammo.PistolBullets">Pistol Ammo</Entity>
+        <Entity ch:index="600" Name="ArkPickups.Weapons.GooGun">Gloo Gun</Entity>
+        <Entity ch:index="700" Name="ArkPickups.Ammo.GooGun">Gloo Gun Ammo</Entity>
+        <Entity ch:index="800" Name="ArkPickups.Weapons.Instalaser">Q Beam</Entity>
+        <Entity ch:index="900" Name="ArkPickups.Ammo.InstaLaser">Q Beam Ammo</Entity>
+        <Entity ch:index="1000" Name="ArkPickups.Weapons.StunGun">Stun Gun</Entity>
+        <Entity ch:index="1100" Name="ArkPickups.Ammo.StunGunAmmo">Stun Gun Ammo</Entity>
+    </Category>
+</EntitySpawnList>
