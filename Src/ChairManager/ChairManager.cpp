@@ -2634,7 +2634,13 @@ fs::path ChairManager::GetConfigPath()
 
 fs::path ChairManager::GetModPath(const std::string& modName)
 {
-    return GetGamePath() / "Mods" / fs::u8path(modName);
+    for (const auto& i : GetMods())
+    {
+        if (i.modName == modName)
+            return i.path;
+    }
+
+    return std::string();
 }
 
 std::vector<std::string> ChairManager::GetModNames()
