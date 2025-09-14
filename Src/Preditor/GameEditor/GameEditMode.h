@@ -9,6 +9,7 @@ namespace GameEditor
 
 class EntityManipulator;
 class EntitySelectionManager;
+class EntitySpawner;
 class GameViewportHandler;
 
 //! Runtime entity editing.
@@ -37,6 +38,7 @@ private:
     std::unique_ptr<IEditToolManager> m_pEditToolManager;
     std::unique_ptr<EntityHierarchy> m_pEntityHierarchy;
     std::unique_ptr<EntityInspector> m_pEntityInspector;
+    std::shared_ptr<EntitySpawner> m_pEntitySpawner;
 };
 
 } // namespace GameEditor

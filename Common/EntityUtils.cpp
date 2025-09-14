@@ -11,7 +11,7 @@ inline auto FGetArkTurretFromEntity = PreyFunction<ArkTurret * (IEntity const*)>
 
 IEntity* EntityUtils::SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
 	IEntity* latestEntity = nullptr;
-	static ArkNpcSpawnedState_Alert alert;
+	static ArkNpcSpawnedState_Alert alert(true);
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
 	for (int i = 1; i <= spawnCount; i++) {
         if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {

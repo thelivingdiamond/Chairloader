@@ -9,6 +9,12 @@ LevelEditor::ObjectManager::ObjectManager()
 
 LevelEditor::ObjectManager::~ObjectManager()
 {
+    for (auto& pObject : m_Objects)
+    {
+        pObject->DetachFromGame();
+    }
+
+    m_Objects.clear();
 }
 
 LevelEditor::Object* LevelEditor::ObjectManager::GetObject(SceneObjectId id)

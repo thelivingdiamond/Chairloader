@@ -67,7 +67,7 @@ bool ManagedWindow::UpdateWindow()
 {
 	if (m_bOpen)
 	{
-		assert(!m_PersistentID.empty() || (m_Flags & ImGuiWindowFlags_NoSavedSettings) != 0);
+		CRY_ASSERT(!m_PersistentID.empty() || (m_Flags & ImGuiWindowFlags_NoSavedSettings) != 0);
 
 		if (m_bVisible)
 		{

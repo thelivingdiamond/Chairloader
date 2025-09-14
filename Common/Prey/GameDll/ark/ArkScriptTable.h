@@ -43,8 +43,8 @@ public:
 			ScriptAnyValue any;
 			if (m_pScriptTable->GetValueAny(_pKey, any))
 			{
-				if (any.GetVarType() == ANY_TSTRING)
-					sscanf(any.str, SCNx64, &result);
+				if (any.GetVarType() == svtString)
+					sscanf(any.str, "%" SCNd64, &result);
 			}
 		}
 

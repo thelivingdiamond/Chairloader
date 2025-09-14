@@ -26,6 +26,7 @@ public:
     void ApplyTransformToEntity(unsigned nWhyFlags = 0);
 
     // Object
+    virtual void DetachFromGame() override;
     virtual void Init(XmlNodeRef objectNode) override;
     virtual void ShowInspectorSelf() override;
     virtual void OnTransformChanged(unsigned nWhyFlags) override;

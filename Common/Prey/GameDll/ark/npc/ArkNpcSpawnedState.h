@@ -6,13 +6,20 @@
 // Prey/GameDll/ark/npc/ArkNpcSpawnedState.h
 struct ArkNpcSpawnedState_Alive // Id=80142E0 Size=1
 {
-	bool m_bAlwaysUpdate;
+    bool m_bAlwaysUpdate;
+
+    ArkNpcSpawnedState_Alive(bool alwaysUpdate)
+    {
+        m_bAlwaysUpdate = alwaysUpdate;
+	}
 };
 
 // Header: Override
 // Prey/GameDll/ark/npc/ArkNpcSpawnedState.h
 struct ArkNpcSpawnedState_Alert : public ArkNpcSpawnedState_Alive // Id=80142DF Size=1
 {
+    ArkNpcSpawnedState_Alert(bool alwaysUpdate) : ArkNpcSpawnedState_Alive(alwaysUpdate) {}
+    
 #if 0
 	void __dflt_ctor_closure();
 #endif
