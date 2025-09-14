@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<EntitySpawnList>
+    <Category ch:index="100" Header="Typhon">
+        <Category ch:index="110" Header="Mimics with Hats">
+            <Npc ch:index="100" Name="ArkNpcs.Mimics.Mimic.BeanieHat">Beanie</Npc>
+            <Npc ch:index="200" Name="ArkNpcs.Mimics.Mimic.BucketHat">Bucket</Npc>
+            <Npc ch:index="300" Name="ArkNpcs.Mimics.Mimic.CrownHat">Crown</Npc>
+            <Npc ch:index="400" Name="ArkNpcs.Mimics.Mimic.RiceHat">Rice</Npc>
+            <Npc ch:index="500" Name="ArkNpcs.Mimics.Mimic.Sombrero">Sombrero</Npc>
+            <Npc ch:index="600" Name="ArkNpcs.Mimics.Mimic.StripedHat">Striped Hat</Npc>
+            <Npc ch:index="700" Name="ArkNpcs.Mimics.Mimic.TopHat">Top Hat</Npc>
+            <Npc ch:index="800" Name="ArkNpcs.Mimics.Mimic.WitchHat">Witch Hat</Npc>
+        </Category>
+    </Category>
+</EntitySpawnList>
