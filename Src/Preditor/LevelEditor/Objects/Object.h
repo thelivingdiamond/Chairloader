@@ -88,6 +88,9 @@ public:
         return pComp;
     }
 
+    //! Forget about any references to engine level objects, they may have become invalid.
+    virtual void DetachFromGame() {}
+
     //! Initializes the object.
     //! @param  objectNode  Object XML node (may be null).
     virtual void Init(XmlNodeRef objectNode);
