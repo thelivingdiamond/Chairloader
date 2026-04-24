@@ -361,20 +361,3 @@ public:
 	static inline auto FHideLoadingScreen = PreyFunction<void(CFlashUI* const _this)>(0x2D6300);
 	static inline auto FCheckFilter = PreyFunction<bool(string const& str)>(0x2D4D70);
 };
-
-struct IFlashPlayer
-{
-	virtual ~IFlashPlayer() {}
-};
-
-struct IFlashPlayer_RenderProxy
-{
-	virtual ~IFlashPlayer_RenderProxy() {}
-};
-
-class CFlashPlayer : public IFlashPlayer, public IFlashPlayer_RenderProxy
-{
-public:
-	virtual void AddRef();
-	virtual void Release();
-};
