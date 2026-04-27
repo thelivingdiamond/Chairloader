@@ -33,6 +33,7 @@ class CDownloadManager;
 class CCmdLine;
 class CThreadTaskManager;
 class CResourceManager;
+struct IFlashPlayer;
 
 class CFrameProfileSystem { void* pad; };
 class CThreadProfiler {};
@@ -155,7 +156,8 @@ public:
 	static inline auto FChangeUserPath = PreyFunction<void(CSystem* const _this, const char* sUserPath)>(0xDE0720);
 	static inline auto FLoadConfiguration = PreyFunction<void(CSystem* const _this, const char* sFilename, ILoadConfigurationEntrySink* pSink, bool allowMissing)>(0xDCB5B0);
 	static inline auto FOpenBasicPaks = PreyFunction<void(CSystem* const _this)>(0xDD95F0);
-
+	static inline auto FCreateFlashPlayerInstance = PreyFunction<IFlashPlayer*(CSystem* const _this)>(0xE5CC10);
+	static inline auto FCreateFlashPlayerBootStrapper = PreyFunction<IFlashPlayerBootStrapper*(CSystem* const _this)>(0xE5CB40);
 	//! Sets whether dev mode is enabled.
 	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
 
