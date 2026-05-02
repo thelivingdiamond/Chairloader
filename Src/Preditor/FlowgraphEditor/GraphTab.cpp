@@ -1,11 +1,14 @@
 #include <algorithm>
 #include <cstdio>
+#include <map>
 #include <set>
 #include "GraphTab.h"
+#include "Clipboard.h"
 #include "Commands/AddNodeCmd.h"
 #include "Commands/CompositeCommand.h"
 #include "Commands/ConnectPinsCmd.h"
 #include "Commands/MoveNodeCmd.h"
+#include "Commands/PasteNodesCmd.h"
 #include "Commands/RemoveEdgeCmd.h"
 #include "Commands/RemoveNodeCmd.h"
 #include "FlowgraphEditorWindow.h"
@@ -118,6 +121,53 @@ void DrawCommentBox(const Node& node)
 
     // Sit behind regular nodes so they receive input first.
     ed::SetNodeZPosition(node.id, -1.0f);
+}
+
+// Builds a PasteNodesCmd from a snapshot of source nodes/edges. Allocates
+// fresh ids in `dst`, applies a uniform position offset, and drops edges with
+// at least one endpoint outside the snapshot. Used by both paste and duplicate.
+std::unique_ptr<FlowgraphEditor::PasteNodesCmd> BuildCloneCommand(
+    FlowgraphEditor::Flowgraph& dst,
+    const std::vector<FlowgraphEditor::Node>& srcNodes,
+    const std::vector<FlowgraphEditor::Edge>& srcEdges,
+    ImVec2 offset,
+    const char* commandName)
+{
+    using namespace FlowgraphEditor;
+
+    std::map<int64_t, int64_t> nodeIdRemap;
+    std::vector<Node> newNodes;
+    newNodes.reserve(srcNodes.size());
+    for (const Node& src : srcNodes)
+    {
+        Node n = src;
+        const int64_t newId = dst.AllocNodeId();
+        nodeIdRemap[src.id] = newId;
+        n.id = newId;
+        n.pos.x += offset.x;
+        n.pos.y += offset.y;
+        for (Pin& p : n.inputs)  p.id = dst.AllocPinId();
+        for (Pin& p : n.outputs) p.id = dst.AllocPinId();
+        newNodes.push_back(std::move(n));
+    }
+
+    std::vector<Edge> newEdges;
+    newEdges.reserve(srcEdges.size());
+    for (const Edge& src : srcEdges)
+    {
+        auto fromIt = nodeIdRemap.find(src.fromNodeId);
+        auto toIt   = nodeIdRemap.find(src.toNodeId);
+        if (fromIt == nodeIdRemap.end() || toIt == nodeIdRemap.end())
+            continue;
+        Edge e = src;
+        e.id = dst.AllocEdgeId();
+        e.fromNodeId = fromIt->second;
+        e.toNodeId   = toIt->second;
+        newEdges.push_back(std::move(e));
+    }
+
+    return std::make_unique<PasteNodesCmd>(
+        std::move(newNodes), std::move(newEdges), commandName);
 }
 
 void DrawNode(const Node& node)
@@ -388,6 +438,10 @@ void FlowgraphEditor::GraphTab::HandleKeyboard()
 {
     if (!ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows))
         return;
+    // Don't steal Ctrl+C/X/V from focused InputTexts (e.g. the load-path field
+    // at the top of the editor, or the inspector's Name field).
+    if (ImGui::GetIO().WantTextInput)
+        return;
 
     const bool ctrl  = ImGui::GetIO().KeyCtrl;
     const bool shift = ImGui::GetIO().KeyShift;
@@ -411,4 +465,118 @@ void FlowgraphEditor::GraphTab::HandleKeyboard()
             else       w->SaveActiveTab();
         }
     }
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_C))  CopySelection();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_X))  CutSelection();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_V))  PasteFromClipboard();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_D))  DuplicateSelection();
+}
+
+std::vector<int64_t> FlowgraphEditor::GraphTab::GetSelectedNodeIds()
+{
+    if (!m_pContext)
+        return {};
+
+    ed::SetCurrentEditor(m_pContext);
+    const int count = ed::GetSelectedObjectCount();
+    std::vector<ed::NodeId> selected(count);
+    const int written = ed::GetSelectedNodes(selected.data(), count);
+    ed::SetCurrentEditor(nullptr);
+
+    std::vector<int64_t> ids;
+    ids.reserve((size_t)std::max(0, written));
+    for (int i = 0; i < written; ++i)
+        ids.push_back((int64_t)(uintptr_t)selected[i].AsPointer());
+    return ids;
+}
+
+void FlowgraphEditor::GraphTab::CopySelection()
+{
+    auto ids = GetSelectedNodeIds();
+    if (ids.empty())
+        return;
+
+    std::set<int64_t> idSet(ids.begin(), ids.end());
+
+    Clipboard& clip = Clipboard::Get();
+    clip.Clear();
+
+    for (const Node& n : m_Graph->nodes)
+    {
+        if (idSet.count(n.id))
+            clip.nodes.push_back(n);
+    }
+    // Keep only edges fully internal to the selection — partial edges would
+    // dangle on paste with no matching endpoint.
+    for (const Edge& e : m_Graph->edges)
+    {
+        if (idSet.count(e.fromNodeId) && idSet.count(e.toNodeId))
+            clip.edges.push_back(e);
+    }
+}
+
+void FlowgraphEditor::GraphTab::CutSelection()
+{
+    auto ids = GetSelectedNodeIds();
+    if (ids.empty())
+        return;
+
+    CopySelection();
+
+    // Same cascading-delete logic as HandleDelete, but driven by our snapshot
+    // of the selection rather than ed::QueryDeletedNode.
+    std::set<int64_t> nodeIds(ids.begin(), ids.end());
+    std::set<int64_t> edgeIds;
+    for (const Edge& e : m_Graph->edges)
+    {
+        if (nodeIds.count(e.fromNodeId) || nodeIds.count(e.toNodeId))
+            edgeIds.insert(e.id);
+    }
+
+    auto composite = std::make_unique<CompositeCommand>("Cut");
+    for (int64_t id : edgeIds)
+        composite->Add(std::make_unique<RemoveEdgeCmd>(*m_Graph, id));
+    for (int64_t id : nodeIds)
+        composite->Add(std::make_unique<RemoveNodeCmd>(*m_Graph, id));
+
+    if (!composite->IsEmpty())
+    {
+        m_Graph->Execute(std::move(composite));
+        m_bNeedsSync = true;
+    }
+}
+
+void FlowgraphEditor::GraphTab::PasteFromClipboard()
+{
+    const Clipboard& clip = Clipboard::Get();
+    if (clip.Empty())
+        return;
+
+    constexpr ImVec2 kPasteOffset(20.0f, 20.0f);
+    auto cmd = BuildCloneCommand(*m_Graph, clip.nodes, clip.edges, kPasteOffset, "Paste");
+    m_Graph->Execute(std::move(cmd));
+    m_bNeedsSync = true;
+}
+
+void FlowgraphEditor::GraphTab::DuplicateSelection()
+{
+    auto ids = GetSelectedNodeIds();
+    if (ids.empty())
+        return;
+
+    std::set<int64_t> idSet(ids.begin(), ids.end());
+
+    std::vector<Node> srcNodes;
+    for (const Node& n : m_Graph->nodes)
+        if (idSet.count(n.id))
+            srcNodes.push_back(n);
+
+    std::vector<Edge> srcEdges;
+    for (const Edge& e : m_Graph->edges)
+        if (idSet.count(e.fromNodeId) && idSet.count(e.toNodeId))
+            srcEdges.push_back(e);
+
+    constexpr ImVec2 kDuplicateOffset(20.0f, 20.0f);
+    auto cmd = BuildCloneCommand(*m_Graph, srcNodes, srcEdges, kDuplicateOffset, "Duplicate");
+    m_Graph->Execute(std::move(cmd));
+    m_bNeedsSync = true;
 }

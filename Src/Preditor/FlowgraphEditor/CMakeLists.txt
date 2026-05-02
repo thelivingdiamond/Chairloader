@@ -1,6 +1,8 @@
 set(SOURCE_FILES
 	CMakeLists.txt
 
+	Clipboard.cpp
+	Clipboard.h
 	FlowgraphEditorWindow.cpp
 	FlowgraphEditorWindow.h
 	GraphTab.cpp
@@ -22,6 +24,8 @@ set(SOURCE_FILES
 	Commands/ModifyTokenCmd.h
 	Commands/MoveNodeCmd.cpp
 	Commands/MoveNodeCmd.h
+	Commands/PasteNodesCmd.cpp
+	Commands/PasteNodesCmd.h
 	Commands/RemoveEdgeCmd.cpp
 	Commands/RemoveEdgeCmd.h
 	Commands/RemoveNodeCmd.cpp

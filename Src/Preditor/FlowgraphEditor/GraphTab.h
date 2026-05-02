@@ -34,6 +34,15 @@ private:
     void HandleDelete();
     void HandleKeyboard();
 
+    //! Returns the editor-selected node ids in this tab. Empty if nothing
+    //! selected or the editor context isn't ready.
+    std::vector<int64_t> GetSelectedNodeIds();
+
+    void CopySelection();
+    void CutSelection();
+    void PasteFromClipboard();
+    void DuplicateSelection();
+
     std::string m_Title;
     std::string m_ImGuiId;
     std::unique_ptr<Flowgraph> m_Graph;
