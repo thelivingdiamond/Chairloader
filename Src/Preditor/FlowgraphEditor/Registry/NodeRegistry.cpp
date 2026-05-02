@@ -105,8 +105,7 @@ void ExtractInputPort(const SInputPortConfig& src, PrototypePort& dst)
     dst.humanName   = src.humanName   ? src.humanName   : "";
     dst.description = src.description ? src.description : "";
     dst.uiConfig    = src.sUIConfig   ? src.sUIConfig   : "";
-    // TODO Phase 4: read TFlowInputData variant tag for type, and serialize defaultData → defaultValueText.
-    dst.type = FlowDataType::Void;
+    dst.type = FlowDataTypeFromEngine(static_cast<int>(src.defaultData.GetType()));
 }
 
 void ExtractOutputPort(const SOutputPortConfig& src, PrototypePort& dst)
@@ -155,7 +154,9 @@ std::unique_ptr<PrototypeNode> ScrapeOne(CFlowSystem& flowSystem,
     ExtractPortArray(cfg.pInputPorts,  proto->inputs,  ExtractInputPort);
     ExtractPortArray(cfg.pOutputPorts, proto->outputs, ExtractOutputPort);
 
-    pNode.ReleaseOwnership();
+    // Let the _smart_ptr destruct: refcount drops to zero, the node is
+    // destroyed, and it unhooks from any engine update lists it joined.
+    // Do NOT call ReleaseOwnership() here — Cry's smart_ptr leaks the ref.
     return proto;
 }
 
@@ -174,14 +175,46 @@ bool NodeRegistry::EnsureLoaded()
     if (!gEnv || !gEnv->pFlowSystem)
         return false;
     LoadFromEngine();
+    EnsureEditorPrototypes();
     m_bLoaded = true;
     return true;
+}
+
+void NodeRegistry::EnsureEditorPrototypes()
+{
+    // Commentbox is editor-only decoration. The engine may or may not register
+    // it depending on build; ensure the palette always has one regardless.
+    if (!Find("_commentbox"))
+    {
+        auto proto = std::make_unique<PrototypeNode>();
+        proto->className   = "_commentbox";
+        proto->description = "Commentbox — decorative group rectangle for organizing nearby nodes.";
+        proto->categoryKey = "comment";
+
+        auto addInput = [&](const char* name, FlowDataType type, const char* desc) {
+            PrototypePort port;
+            port.name        = name;
+            port.type        = type;
+            port.description = desc;
+            proto->inputs.push_back(std::move(port));
+        };
+        addInput("TextSize",      FlowDataType::Float, "Label font size multiplier");
+        addInput("Color",         FlowDataType::Vec3,  "Tint color (RGB 0..1)");
+        addInput("DisplayFilled", FlowDataType::Bool,  "Fill the rectangle");
+        addInput("DisplayBox",    FlowDataType::Bool,  "Draw the rectangle border");
+        addInput("SortPriority",  FlowDataType::Int,   "Z-order among commentboxes");
+
+        AddSynthetic(std::move(proto));
+    }
 }
 
 void NodeRegistry::LoadFromEngine()
 {
     auto* flowSystem = static_cast<CFlowSystem*>(gEnv->pFlowSystem);
-    StubFlowGraph stubGraph;
+
+    // Static so it outlives the scrape — defense in depth in case a node holds
+    // onto its parent-graph pointer past its own destructor.
+    static StubFlowGraph s_stubGraph;
     size_t failed = 0;
 
     for (const auto& [name, typeId] : flowSystem->m_typeNameToIdMap)
@@ -192,7 +225,7 @@ void NodeRegistry::LoadFromEngine()
             continue;
 
         std::string className = name.c_str();
-        auto proto = ScrapeOne(*flowSystem, className, typeId, stubGraph);
+        auto proto = ScrapeOne(*flowSystem, className, typeId, s_stubGraph);
         if (!proto)
         {
             ++failed;

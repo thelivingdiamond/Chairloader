@@ -1,5 +1,14 @@
 #include <algorithm>
+#include <cstdio>
+#include <set>
 #include "GraphTab.h"
+#include "Commands/AddNodeCmd.h"
+#include "Commands/CompositeCommand.h"
+#include "Commands/ConnectPinsCmd.h"
+#include "Commands/MoveNodeCmd.h"
+#include "Commands/RemoveEdgeCmd.h"
+#include "Commands/RemoveNodeCmd.h"
+#include "FlowgraphEditorWindow.h"
 
 namespace ed = ax::NodeEditor;
 
@@ -66,14 +75,64 @@ void DrawOutputColumn(const std::vector<Pin>& pins, float rightX, float y, float
     ed::PopStyleVar(2);
 }
 
+// Parses "r,g,b" (each in 0..1) out of a commentbox's <Inputs Color="..."/>
+// default. Returns ImColor(160,160,160) when missing or malformed.
+ImColor ParseCommentColor(const Node& node)
+{
+    auto it = node.inputDefaults.find("Color");
+    if (it == node.inputDefaults.end())
+        return ImColor(160, 160, 160);
+
+    float r = 0.0f, g = 0.0f, b = 0.0f;
+    if (std::sscanf(it->second.c_str(), "%f,%f,%f", &r, &g, &b) != 3)
+        return ImColor(160, 160, 160);
+
+    return ImColor(r, g, b, 1.0f);
+}
+
+// Commentboxes are decoration, not flow nodes — render as a colored group
+// rectangle with a header label, no pins. Z-pushed behind regular nodes so
+// they don't intercept clicks.
+void DrawCommentBox(const Node& node)
+{
+    std::string label;
+    if      (!node.name.empty())      label = node.name;
+    else if (!node.className.empty()) label = node.className;
+    else                              label = "comment";
+
+    const ImColor color = ParseCommentColor(node);
+    const ImColor bg(color.Value.x, color.Value.y, color.Value.z, 0.20f);
+    const ImColor border(color.Value.x, color.Value.y, color.Value.z, 0.85f);
+
+    ed::PushStyleColor(ed::StyleColor_NodeBg,     bg);
+    ed::PushStyleColor(ed::StyleColor_NodeBorder, border);
+    ed::PushStyleColor(ed::StyleColor_GroupBg,    bg);
+    ed::PushStyleColor(ed::StyleColor_GroupBorder, border);
+
+    ed::BeginNode(node.id);
+    ImGui::TextUnformatted(label.c_str());
+    ed::Group(ImVec2(node.commentWidth, node.commentHeight));
+    ed::EndNode();
+
+    ed::PopStyleColor(4);
+
+    // Sit behind regular nodes so they receive input first.
+    ed::SetNodeZPosition(node.id, -1.0f);
+}
+
 void DrawNode(const Node& node)
 {
-    const std::string& title = node.className.empty() ? std::string("<unnamed>")
-                                                       : node.className;
+    if (node.IsCommentBox())
+    {
+        DrawCommentBox(node);
+        return;
+    }
+
+    const std::string title = node.className.empty() ? "<unnamed>" : node.className;
     const float titleW     = ImGui::CalcTextSize(title.c_str()).x;
-    const float inputColW  = MaxPinLabelWidth(node.inputs);
-    const float outputColW = MaxPinLabelWidth(node.outputs);
-    const float bodyW      = std::max(titleW, inputColW + kColumnGap + outputColW);
+    const float maxInputW  = MaxPinLabelWidth(node.inputs);
+    const float maxOutputW = MaxPinLabelWidth(node.outputs);
+    const float bodyW      = std::max(titleW, maxInputW + kColumnGap + maxOutputW);
 
     ed::BeginNode(node.id);
 
@@ -130,15 +189,16 @@ void FlowgraphEditor::GraphTab::ShowContents()
     ed::SetCurrentEditor(m_pContext);
     ed::Begin("##GraphCanvas", ImVec2(0, 0));
 
-    if (m_bFirstFrame)
+    if (m_bNeedsSync)
     {
-        for (const Node& node : m_Graph->nodes)
-            ed::SetNodePosition(node.id, node.pos);
-        m_bFirstFrame = false;
+        SyncAllNodePositions();
+        m_bNeedsSync = false;
     }
 
     for (const Node& node : m_Graph->nodes)
         DrawNode(node);
+
+    DetectAndEmitMoves();
 
     for (const Edge& edge : m_Graph->edges)
     {
@@ -148,6 +208,207 @@ void FlowgraphEditor::GraphTab::ShowContents()
             ed::Link(edge.id, fromId, toId);
     }
 
+    HandleNewLinks();
+    HandleDelete();
+
     ed::End();
+
+    // Drop target for prototypes dragged in from the palette. ed::End leaves
+    // an item that BeginDragDropTarget latches onto.
+    if (ImGui::BeginDragDropTarget())
+    {
+        if (const auto* payload = ImGui::AcceptDragDropPayload("FLOWGRAPH_PROTOTYPE"))
+        {
+            std::string className(static_cast<const char*>(payload->Data));
+            ImVec2 canvasPos = ed::ScreenToCanvas(ImGui::GetMousePos());
+            m_Graph->Execute(std::make_unique<AddNodeCmd>(std::move(className), canvasPos));
+            m_bNeedsSync = true;
+        }
+        ImGui::EndDragDropTarget();
+    }
+
+    HandleKeyboard();
+
     ed::SetCurrentEditor(nullptr);
+}
+
+void FlowgraphEditor::GraphTab::SyncAllNodePositions()
+{
+    for (const Node& node : m_Graph->nodes)
+        ed::SetNodePosition(node.id, node.pos);
+}
+
+void FlowgraphEditor::GraphTab::DetectAndEmitMoves()
+{
+    for (Node& node : m_Graph->nodes)
+    {
+        ImVec2 canvasPos = ed::GetNodePosition(node.id);
+        if (canvasPos.x != node.pos.x || canvasPos.y != node.pos.y)
+        {
+            // First time we see this node move in the current session, snapshot start.
+            // Direct mutation during drag — the composite command emitted on drag-end
+            // is what makes it undoable.
+            if (m_DragStartPositions.find(node.id) == m_DragStartPositions.end())
+                m_DragStartPositions[node.id] = node.pos;
+            node.pos = canvasPos;
+            m_bDragInProgress = true;
+        }
+    }
+
+    // Finalize on mouse release rather than "no motion this frame" — a paused
+    // mid-drag would otherwise prematurely close the session and the next bit
+    // of motion would start a fresh one, producing many tiny undo entries.
+    if (m_bDragInProgress && ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+        FinalizeDragSession();
+}
+
+void FlowgraphEditor::GraphTab::FinalizeDragSession()
+{
+    auto composite = std::make_unique<CompositeCommand>("Move Nodes");
+
+    for (auto& [nodeId, startPos] : m_DragStartPositions)
+    {
+        const Node* n = m_Graph->FindNode(nodeId);
+        if (!n)
+            continue;
+        if (n->pos.x == startPos.x && n->pos.y == startPos.y)
+            continue;
+        composite->Add(std::make_unique<MoveNodeCmd>(nodeId, startPos, n->pos));
+    }
+
+    if (!composite->IsEmpty())
+    {
+        // Composite::Redo re-applies positions — idempotent here since the
+        // direct-mutation in DetectAndEmitMoves already moved them.
+        m_Graph->Execute(std::move(composite));
+    }
+
+    m_DragStartPositions.clear();
+    m_bDragInProgress = false;
+}
+
+void FlowgraphEditor::GraphTab::HandleNewLinks()
+{
+    if (!ed::BeginCreate(ImColor(255, 255, 255), 2.0f))
+    {
+        ed::EndCreate();
+        return;
+    }
+
+    ed::PinId fromPinId, toPinId;
+    if (ed::QueryNewLink(&fromPinId, &toPinId) && fromPinId && toPinId)
+    {
+        const int64_t fromId = (int64_t)(uintptr_t)fromPinId.AsPointer();
+        const int64_t toId   = (int64_t)(uintptr_t)toPinId.AsPointer();
+
+        PinLocation from = m_Graph->FindPinLocation(fromId);
+        PinLocation to   = m_Graph->FindPinLocation(toId);
+
+        const bool valid = from.IsValid() && to.IsValid()
+                        && from.nodeId != to.nodeId
+                        && from.isInput != to.isInput;
+
+        if (!valid)
+        {
+            ed::RejectNewItem(ImColor(255, 64, 64), 2.0f);
+        }
+        else
+        {
+            // Ensure `from` is the output side, `to` is the input side.
+            if (from.isInput)
+                std::swap(from, to);
+
+            if (ed::AcceptNewItem(ImColor(64, 255, 64), 2.0f))
+            {
+                m_Graph->Execute(std::make_unique<ConnectPinsCmd>(
+                    from.nodeId, std::move(from.portName),
+                    to.nodeId,   std::move(to.portName)));
+            }
+        }
+    }
+
+    ed::EndCreate();
+}
+
+void FlowgraphEditor::GraphTab::HandleDelete()
+{
+    std::vector<int64_t> nodeIds;
+    std::vector<int64_t> edgeIds;
+
+    if (ed::BeginDelete())
+    {
+        ed::NodeId nodeId;
+        while (ed::QueryDeletedNode(&nodeId))
+        {
+            if (ed::AcceptDeletedItem())
+                nodeIds.push_back((int64_t)(uintptr_t)nodeId.AsPointer());
+        }
+        ed::LinkId linkId;
+        while (ed::QueryDeletedLink(&linkId))
+        {
+            if (ed::AcceptDeletedItem())
+                edgeIds.push_back((int64_t)(uintptr_t)linkId.AsPointer());
+        }
+    }
+    ed::EndDelete();
+
+    if (nodeIds.empty() && edgeIds.empty())
+        return;
+
+    // Cascade: incident edges of deleted nodes get implicitly removed too.
+    std::set<int64_t> edgeSet(edgeIds.begin(), edgeIds.end());
+    for (int64_t nodeId : nodeIds)
+    {
+        for (const Edge& edge : m_Graph->edges)
+            if (edge.fromNodeId == nodeId || edge.toNodeId == nodeId)
+                edgeSet.insert(edge.id);
+    }
+
+    const char* name = "Delete Selection";
+    if (nodeIds.size() == 1 && edgeSet.empty())       name = "Remove Node";
+    else if (nodeIds.empty() && edgeSet.size() == 1)  name = "Remove Edge";
+
+    auto composite = std::make_unique<CompositeCommand>(name);
+
+    // Edges first so that on Undo the nodes restore first and edges find their endpoints.
+    for (int64_t id : edgeSet)
+        composite->Add(std::make_unique<RemoveEdgeCmd>(*m_Graph, id));
+    for (int64_t id : nodeIds)
+        composite->Add(std::make_unique<RemoveNodeCmd>(*m_Graph, id));
+
+    if (!composite->IsEmpty())
+    {
+        m_Graph->Execute(std::move(composite));
+        // Restored nodes (from a future Undo) will need positions pushed back to canvas.
+        m_bNeedsSync = true;
+    }
+}
+
+void FlowgraphEditor::GraphTab::HandleKeyboard()
+{
+    if (!ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows))
+        return;
+
+    const bool ctrl  = ImGui::GetIO().KeyCtrl;
+    const bool shift = ImGui::GetIO().KeyShift;
+
+    if (ctrl && ImGui::IsKeyPressed(ImGuiKey_Z))
+    {
+        if (shift) m_Graph->Redo();
+        else       m_Graph->Undo();
+        m_bNeedsSync = true;
+    }
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_Y))
+    {
+        m_Graph->Redo();
+        m_bNeedsSync = true;
+    }
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_S))
+    {
+        if (auto* w = FlowgraphEditorWindow::Get())
+        {
+            if (shift) w->SaveAll();
+            else       w->SaveActiveTab();
+        }
+    }
 }

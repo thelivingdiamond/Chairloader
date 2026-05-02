@@ -40,6 +40,10 @@ private:
     std::shared_ptr<HierarchyWindow> m_pHierarchyWindow;
     std::shared_ptr<SelectionWindow> m_pSelectionWindow;
     std::shared_ptr<ManagedWindow> m_pFlowgraphEditorWindow;
+    std::shared_ptr<ManagedWindow> m_pFlowgraphBrowserWindow;
+    std::shared_ptr<ManagedWindow> m_pFlowgraphPaletteWindow;
+    std::shared_ptr<ManagedWindow> m_pFlowgraphInspectorWindow;
+    std::shared_ptr<ManagedWindow> m_pFlowgraphTokensWindow;
     std::weak_ptr<ArkLibraryExplorer> m_pArkLibraryExplorer;
 
     std::vector<std::string> m_LevelEditHistory;

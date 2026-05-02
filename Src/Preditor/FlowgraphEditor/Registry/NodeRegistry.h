@@ -48,6 +48,8 @@ private:
     NodeRegistry() = default;
 
     void LoadFromEngine();
+    //! Adds editor-only prototypes (commentbox, etc.) the engine doesn't expose.
+    void EnsureEditorPrototypes();
     void RebuildIndices();
 
     bool m_bLoaded = false;
