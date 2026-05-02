@@ -39,6 +39,7 @@ private:
     std::shared_ptr<InspectorWindow> m_pInspectorWindow;
     std::shared_ptr<HierarchyWindow> m_pHierarchyWindow;
     std::shared_ptr<SelectionWindow> m_pSelectionWindow;
+    std::shared_ptr<ManagedWindow> m_pFlowgraphEditorWindow;
     std::weak_ptr<ArkLibraryExplorer> m_pArkLibraryExplorer;
 
     std::vector<std::string> m_LevelEditHistory;

@@ -5,6 +5,7 @@
 #include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
+#include <Preditor/FlowgraphEditor/IFlowgraphEditor.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/SceneEditor/I3DCursor.h>
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
@@ -71,6 +72,7 @@ Main::PreditorUI::PreditorUI()
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
     m_pHierarchyWindow = WindowManager::Get().Create<HierarchyWindow>();
     m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
+    m_pFlowgraphEditorWindow = IFlowgraphEditor::CreateMainWindow();
 
     LoadLevelEditHistory();
 }
@@ -191,6 +193,7 @@ void Main::PreditorUI::ShowMainMenuBar()
             m_pSelectionWindow->ShowToggleMenuItem("Object Selection List");
             m_pInspectorWindow->ShowToggleMenuItem("Inspector");
             m_pHierarchyWindow->ShowToggleMenuItem("Hierarchy");
+            m_pFlowgraphEditorWindow->ShowToggleMenuItem("Flowgraph Editor");
             ImGui::Separator();
 
             m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");

@@ -21,6 +21,8 @@ set(SOURCE_FILES
 
 	Preditor/EditTools/IEditToolManager.h
 
+	Preditor/FlowgraphEditor/IFlowgraphEditor.h
+
 	Preditor/Engine/IPreditorEngine.h
 	Preditor/Engine/ISimulationController.h
 
