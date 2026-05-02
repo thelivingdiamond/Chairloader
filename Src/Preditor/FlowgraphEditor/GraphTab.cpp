@@ -1,7 +1,9 @@
 #include <algorithm>
+#include <cctype>
 #include <cstdio>
 #include <map>
 #include <set>
+#include <imgui_stdlib.h>
 #include "GraphTab.h"
 #include "Clipboard.h"
 #include "Commands/AddNodeCmd.h"
@@ -12,6 +14,7 @@
 #include "Commands/RemoveEdgeCmd.h"
 #include "Commands/RemoveNodeCmd.h"
 #include "FlowgraphEditorWindow.h"
+#include "Registry/NodeRegistry.h"
 
 namespace ed = ax::NodeEditor;
 
@@ -278,6 +281,7 @@ void FlowgraphEditor::GraphTab::ShowContents()
     }
 
     HandleKeyboard();
+    DrawAddPopup();
 
     ed::SetCurrentEditor(nullptr);
 }
@@ -465,10 +469,13 @@ void FlowgraphEditor::GraphTab::HandleKeyboard()
             else       w->SaveActiveTab();
         }
     }
-    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_C))  CopySelection();
-    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_X))  CutSelection();
-    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_V))  PasteFromClipboard();
-    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_D))  DuplicateSelection();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_C))   CopySelection();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_X))   CutSelection();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_V))   PasteFromClipboard();
+    else if (ctrl && ImGui::IsKeyPressed(ImGuiKey_D))   DuplicateSelection();
+    // Blender-style: X to delete, Shift+A to open the add-node search popup.
+    else if (!ctrl && !shift && ImGui::IsKeyPressed(ImGuiKey_X)) DeleteSelection();
+    else if (!ctrl && shift  && ImGui::IsKeyPressed(ImGuiKey_A)) OpenAddPopup();
 }
 
 std::vector<int64_t> FlowgraphEditor::GraphTab::GetSelectedNodeIds()
@@ -519,20 +526,32 @@ void FlowgraphEditor::GraphTab::CutSelection()
     auto ids = GetSelectedNodeIds();
     if (ids.empty())
         return;
-
     CopySelection();
+    DeleteNodes(ids, "Cut");
+}
 
-    // Same cascading-delete logic as HandleDelete, but driven by our snapshot
-    // of the selection rather than ed::QueryDeletedNode.
-    std::set<int64_t> nodeIds(ids.begin(), ids.end());
+void FlowgraphEditor::GraphTab::DeleteSelection()
+{
+    DeleteNodes(GetSelectedNodeIds(), "Delete");
+}
+
+void FlowgraphEditor::GraphTab::DeleteNodes(const std::vector<int64_t>& nodeIds,
+                                            const char* commandName)
+{
+    if (nodeIds.empty())
+        return;
+
+    // Cascade: incident edges first so undo restores nodes before edges look
+    // up their endpoints.
+    std::set<int64_t> idSet(nodeIds.begin(), nodeIds.end());
     std::set<int64_t> edgeIds;
     for (const Edge& e : m_Graph->edges)
     {
-        if (nodeIds.count(e.fromNodeId) || nodeIds.count(e.toNodeId))
+        if (idSet.count(e.fromNodeId) || idSet.count(e.toNodeId))
             edgeIds.insert(e.id);
     }
 
-    auto composite = std::make_unique<CompositeCommand>("Cut");
+    auto composite = std::make_unique<CompositeCommand>(commandName);
     for (int64_t id : edgeIds)
         composite->Add(std::make_unique<RemoveEdgeCmd>(*m_Graph, id));
     for (int64_t id : nodeIds)
@@ -579,4 +598,142 @@ void FlowgraphEditor::GraphTab::DuplicateSelection()
     auto cmd = BuildCloneCommand(*m_Graph, srcNodes, srcEdges, kDuplicateOffset, "Duplicate");
     m_Graph->Execute(std::move(cmd));
     m_bNeedsSync = true;
+}
+
+void FlowgraphEditor::GraphTab::OpenAddPopup()
+{
+    // Capture canvas pos at press time so the new node lands here even if
+    // the user mouses around in the popup before clicking a result.
+    m_AddPopupCanvasPos = ed::ScreenToCanvas(ImGui::GetMousePos());
+    m_bWantOpenAddPopup = true;
+}
+
+void FlowgraphEditor::GraphTab::DrawAddPopup()
+{
+    constexpr const char* kPopupId = "##addNodePopup";
+
+    if (m_bWantOpenAddPopup)
+    {
+        ImGui::OpenPopup(kPopupId);
+        m_AddFilter.clear();
+        m_AddHighlightedIndex = 0;
+        m_bWantOpenAddPopup = false;
+    }
+
+    if (!ImGui::BeginPopup(kPopupId))
+        return;
+
+    if (ImGui::IsWindowAppearing())
+        ImGui::SetKeyboardFocusHere();
+
+    // Up/Down inside the InputText route through CallbackHistory — that's
+    // ImGui's built-in hook for console-style history nav, repurposed here for
+    // result-list nav. The lambda has no captures so it converts to a function
+    // pointer; we pass &navDelta as user_data.
+    int navDelta = 0;
+    auto navCallback = [](ImGuiInputTextCallbackData* data) -> int {
+        if (data->EventFlag == ImGuiInputTextFlags_CallbackHistory)
+        {
+            int* d = static_cast<int*>(data->UserData);
+            if      (data->EventKey == ImGuiKey_UpArrow)   --(*d);
+            else if (data->EventKey == ImGuiKey_DownArrow) ++(*d);
+        }
+        return 0;
+    };
+
+    constexpr float kPopupWidth = 320.0f;
+    ImGui::SetNextItemWidth(kPopupWidth);
+    const bool enterPressed = ImGui::InputTextWithHint(
+        "##filter", "Search prototypes...", &m_AddFilter,
+        ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackHistory,
+        navCallback, &navDelta);
+
+    // Reset selection when the filter changes — old index would point at a
+    // stale row in the new (potentially shorter) match list.
+    if (ImGui::IsItemEdited())
+        m_AddHighlightedIndex = 0;
+
+    if (m_AddFilter.empty())
+    {
+        ImGui::TextDisabled("Type to search across all categories.");
+        ImGui::EndPopup();
+        return;
+    }
+
+    // Lowercase the filter once for the case-insensitive substring match.
+    std::string needle;
+    needle.reserve(m_AddFilter.size());
+    for (char c : m_AddFilter)
+        needle += (char)std::tolower((unsigned char)c);
+
+    // Two-pass: collect matches first, then render. Lets us clamp the
+    // highlight index against the actual count before drawing the highlighted
+    // row, and lets Enter pick the right entry without tracking during draw.
+    constexpr size_t kMaxResults = 50;
+    std::vector<const std::string*> matches;
+    matches.reserve(kMaxResults);
+    size_t totalMatches = 0;
+    std::string lowerName;
+
+    for (const auto& proto : NodeRegistry::Get().All())
+    {
+        lowerName.assign(proto->className);
+        for (char& c : lowerName)
+            c = (char)std::tolower((unsigned char)c);
+        if (lowerName.find(needle) == std::string::npos)
+            continue;
+
+        ++totalMatches;
+        if (matches.size() < kMaxResults)
+            matches.push_back(&proto->className);
+    }
+
+    // Apply nav and clamp.
+    m_AddHighlightedIndex += navDelta;
+    if (matches.empty())
+        m_AddHighlightedIndex = 0;
+    else
+        m_AddHighlightedIndex = std::clamp(m_AddHighlightedIndex, 0, (int)matches.size() - 1);
+
+    for (size_t i = 0; i < matches.size(); ++i)
+    {
+        const bool highlighted = ((int)i == m_AddHighlightedIndex);
+        if (ImGui::Selectable(matches[i]->c_str(), highlighted))
+        {
+            m_Graph->Execute(std::make_unique<AddNodeCmd>(*matches[i], m_AddPopupCanvasPos));
+            m_bNeedsSync = true;
+            ImGui::CloseCurrentPopup();
+        }
+        // Keep the highlighted row visible while the user nav-arrows up/down.
+        if (highlighted && navDelta != 0)
+            ImGui::SetScrollHereY(0.5f);
+        // Tooltip for hover (mouse only — won't fire from nav).
+        if (ImGui::IsItemHovered())
+        {
+            const PrototypeNode* p = NodeRegistry::Get().Find(*matches[i]);
+            if (p && !p->description.empty())
+                ImGui::SetTooltip("%s", p->description.c_str());
+        }
+    }
+
+    if (matches.empty())
+    {
+        ImGui::TextDisabled("No matches.");
+    }
+    else if (totalMatches > kMaxResults)
+    {
+        ImGui::Separator();
+        ImGui::TextDisabled("%zu more — refine search",
+                            totalMatches - kMaxResults);
+    }
+
+    if (enterPressed && !matches.empty())
+    {
+        m_Graph->Execute(std::make_unique<AddNodeCmd>(
+            *matches[m_AddHighlightedIndex], m_AddPopupCanvasPos));
+        m_bNeedsSync = true;
+        ImGui::CloseCurrentPopup();
+    }
+
+    ImGui::EndPopup();
 }

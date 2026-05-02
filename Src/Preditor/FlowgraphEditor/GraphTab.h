@@ -42,6 +42,17 @@ private:
     void CutSelection();
     void PasteFromClipboard();
     void DuplicateSelection();
+    void DeleteSelection();
+    //! Cascade-deletes `nodeIds` and any incident edges as one undo entry.
+    //! Shared by Cut, X-key delete, and any future programmatic delete.
+    void DeleteNodes(const std::vector<int64_t>& nodeIds, const char* commandName);
+
+    //! Records the canvas position and queues the add-node search popup for
+    //! the next frame. Triggered by Shift+A.
+    void OpenAddPopup();
+    //! Renders the add-node popup if open. Must be called every frame from
+    //! ShowContents so ImGui can poll/draw it.
+    void DrawAddPopup();
 
     std::string m_Title;
     std::string m_ImGuiId;
@@ -58,6 +69,17 @@ private:
     std::map<int64_t, ImVec2> m_DragStartPositions;
 
     bool m_bClosing = false;
+
+    // Add-node popup state. m_bWantOpenAddPopup is set when Shift+A fires;
+    // DrawAddPopup consumes it on the next frame to call ImGui::OpenPopup.
+    // The canvas pos is captured at press time so the new node lands where
+    // the user invoked the popup, not wherever the cursor wanders during search.
+    // m_AddHighlightedIndex tracks Up/Down arrow nav inside the InputText —
+    // ImGui's built-in nav doesn't traverse out of focused text widgets.
+    bool m_bWantOpenAddPopup = false;
+    ImVec2 m_AddPopupCanvasPos{};
+    std::string m_AddFilter;
+    int m_AddHighlightedIndex = 0;
 };
 
 } // namespace FlowgraphEditor
