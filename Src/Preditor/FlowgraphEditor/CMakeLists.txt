@@ -3,7 +3,20 @@ set(SOURCE_FILES
 
 	FlowgraphEditorWindow.cpp
 	FlowgraphEditorWindow.h
+	GraphTab.cpp
+	GraphTab.h
 	IFlowgraphEditor.cpp
+
+	IO/XmlSerializer.cpp
+	IO/XmlSerializer.h
+
+	Model/Flowgraph.cpp
+	Model/Flowgraph.h
+
+	Registry/NodeRegistry.cpp
+	Registry/NodeRegistry.h
+	Registry/PrototypeNode.cpp
+	Registry/PrototypeNode.h
 )
 
 add_library(Preditor.FlowgraphEditor STATIC
