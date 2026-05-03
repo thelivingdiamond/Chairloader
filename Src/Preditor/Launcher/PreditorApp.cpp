@@ -82,9 +82,6 @@ void PreditorApp::Update()
 
 void PreditorApp::ShowUI(bool* bOpen)
 {
-    // TODO: Move to Main
-    // if (GetStage() == ProjectStage::Get() && m_pLookingGlass) // TODO: Hack to display LG after DockSpaceOverViewport
-    //     m_pLookingGlass->ShowUI();
 }
 
 void PreditorApp::PostUpdate()

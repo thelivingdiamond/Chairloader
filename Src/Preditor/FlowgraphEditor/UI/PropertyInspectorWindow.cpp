@@ -4,6 +4,9 @@
 #include <cstdlib>
 #include <ImGuiNodeEditor/imgui_node_editor.h>
 #include <imgui_stdlib.h>
+#include <Preditor/ReferenceCatalog/Catalog.h>
+#include <Preditor/ReferenceCatalog/KindRegistry.h>
+#include <Preditor/ReferenceCatalog/Table.h>
 #include "PropertyInspectorWindow.h"
 #include "../Commands/RenameNodeCmd.h"
 #include "../Commands/ResizeCommentBoxCmd.h"
@@ -28,6 +31,88 @@ bool LooksLikeColor(std::string_view name)
     return lower.find("color") != std::string::npos;
 }
 
+// Renders a name-picker for ports whose value is an id into a catalog kind.
+// Returns true on success; false (rare — empty/unloaded table) falls through
+// to the typed editor.
+bool DrawReferencePicker(FlowgraphEditor::Flowgraph& graph,
+                         FlowgraphEditor::Node& node,
+                         const FlowgraphEditor::Pin& pin,
+                         const std::string& kind,
+                         const std::string& current)
+{
+    auto table = ReferenceCatalog::Catalog::Get().TryGet(kind);
+    if (!table || table->Empty())
+        return false;
+
+    const ReferenceCatalog::Entry* entry = table->ById(current);
+
+    // Display the user's raw value alongside the resolved name — preserves
+    // signed-int64 forms ("-4589…") that the model stores even though the
+    // Table resolves via the canonical unsigned form.
+    std::string buttonLabel;
+    ImVec4 col;
+    if (entry)
+    {
+        buttonLabel = entry->name + "  [" + current + "]";
+        col = ImVec4(0.45f, 0.95f, 0.45f, 1.0f);
+    }
+    else if (current.empty())
+    {
+        buttonLabel = "(none)";
+        col = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);
+    }
+    else
+    {
+        buttonLabel = "(unknown) " + current;
+        col = ImVec4(1.0f, 0.78f, 0.2f, 1.0f);
+    }
+
+    ImGui::PushStyleColor(ImGuiCol_Text, col);
+    const bool open = ImGui::Button(buttonLabel.c_str(), ImVec2(-FLT_MIN, 0));
+    ImGui::PopStyleColor();
+    if (open)
+        ImGui::OpenPopup("##refPicker");
+
+    if (ImGui::BeginPopup("##refPicker"))
+    {
+        static ImGuiTextFilter filter;
+        if (ImGui::IsWindowAppearing())
+        {
+            filter.Clear();
+            ImGui::SetKeyboardFocusHere();
+        }
+        filter.Draw("##filter", 280.0f);
+
+        const std::string canonCurrent = ReferenceCatalog::CanonicalizeId(current);
+
+        ImGui::BeginChild("##list", ImVec2(380, 300), true);
+        for (const auto& e : table->All())
+        {
+            if (!filter.PassFilter(e.name.c_str()) && !filter.PassFilter(e.id.c_str()))
+                continue;
+            ImGui::PushID(&e);
+            const bool selected = (ReferenceCatalog::CanonicalizeId(e.id) == canonCurrent);
+            if (ImGui::Selectable(e.name.c_str(), selected))
+            {
+                if (!selected)
+                {
+                    graph.Execute(std::make_unique<FlowgraphEditor::SetPortDefaultCmd>(
+                        node.id, pin.name, current, e.id));
+                }
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            ImGui::TextDisabled("[%s]", e.id.c_str());
+            ImGui::PopID();
+        }
+        ImGui::EndChild();
+
+        ImGui::TextDisabled("%zu entries · %s", table->Size(), kind.c_str());
+        ImGui::EndPopup();
+    }
+    return true;
+}
+
 // Returns a typed editor for an input port; on commit emits SetPortDefaultCmd.
 // Each frame: read current from model, run a typed widget, compare to before,
 // emit if changed. Coalescing in SetPortDefaultCmd keeps history clean.
@@ -43,6 +128,21 @@ void DrawPortValueEditor(FlowgraphEditor::Flowgraph& graph,
 
     ImGui::PushID(pin.name.c_str());
     ImGui::SetNextItemWidth(-FLT_MIN);
+
+    // Reference picker takes precedence over the typed editor when this port
+    // is mapped to a catalog kind (e.g. GameToken). Falls through if the
+    // catalog is empty or unloaded — typed editor remains as escape hatch.
+    {
+        const std::string& uiCfg = pin.prototype ? pin.prototype->uiConfig : std::string{};
+        auto kindOpt = ReferenceCatalog::KindRegistry::Get().Resolve({
+            node.className, pin.name, uiCfg
+        });
+        if (kindOpt && DrawReferencePicker(graph, node, pin, *kindOpt, current))
+        {
+            ImGui::PopID();
+            return;
+        }
+    }
 
     bool changed = false;
     std::string newValue = current;

@@ -37,7 +37,16 @@ set(SOURCE_FILES
 	Preditor/Main/IPreditor.h
 	Preditor/Main/IProject.h
 	Preditor/Main/IUserProjectSettings.h
-	
+
+	Preditor/ReferenceCatalog/Catalog.h
+	Preditor/ReferenceCatalog/Entry.h
+	Preditor/ReferenceCatalog/IProvider.h
+	Preditor/ReferenceCatalog/IReferenceCatalogUI.h
+	Preditor/ReferenceCatalog/KindRegistry.h
+	Preditor/ReferenceCatalog/Table.h
+	Preditor/ReferenceCatalog/Providers/FunctionProvider.h
+	Preditor/ReferenceCatalog/Providers/XmlFileProvider.h
+
 	Preditor/SceneEditor/Common.h
 	Preditor/SceneEditor/I3DCursor.h
 	Preditor/SceneEditor/ILevelSceneEditor.h

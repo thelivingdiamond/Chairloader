@@ -38,6 +38,7 @@ target_link_libraries(Preditor.Launcher
 	Preditor.Input
 	Preditor.LevelEditor
 	Preditor.Main
+	Preditor.ReferenceCatalog
 	Preditor.Viewport
 	D3D11.lib
 	libzip::zip

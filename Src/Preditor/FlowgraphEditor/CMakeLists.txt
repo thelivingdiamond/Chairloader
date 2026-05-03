@@ -74,6 +74,7 @@ target_include_directories(Preditor.FlowgraphEditor PRIVATE
 
 target_link_libraries(Preditor.FlowgraphEditor
 	Preditor.Common
+	Preditor.ReferenceCatalog
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCE_FILES})

@@ -6,6 +6,7 @@
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 #include <Preditor/FlowgraphEditor/IFlowgraphEditor.h>
+#include <Preditor/ReferenceCatalog/IReferenceCatalogUI.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/SceneEditor/I3DCursor.h>
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
@@ -78,6 +79,9 @@ Main::PreditorUI::PreditorUI()
     m_pFlowgraphPaletteWindow   = IFlowgraphEditor::CreatePaletteWindow();
     m_pFlowgraphInspectorWindow = IFlowgraphEditor::CreateInspectorWindow();
     m_pFlowgraphTokensWindow    = IFlowgraphEditor::CreateTokensWindow();
+
+    IReferenceCatalogUI::EnsureDefaults();
+    m_pReferenceCatalogBrowser  = IReferenceCatalogUI::CreateBrowserWindow();
 
     LoadLevelEditHistory();
 }
@@ -222,6 +226,10 @@ void Main::PreditorUI::ShowMainMenuBar()
                 m_pFlowgraphTokensWindow->ShowToggleMenuItem("Tokens");
                 ImGui::EndMenu();
             }
+
+            ImGui::Separator();
+
+            m_pReferenceCatalogBrowser->ShowToggleMenuItem("Reference Catalog");
 
             ImGui::Separator();
 

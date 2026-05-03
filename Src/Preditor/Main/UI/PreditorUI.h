@@ -44,6 +44,7 @@ private:
     std::shared_ptr<ManagedWindow> m_pFlowgraphPaletteWindow;
     std::shared_ptr<ManagedWindow> m_pFlowgraphInspectorWindow;
     std::shared_ptr<ManagedWindow> m_pFlowgraphTokensWindow;
+    std::shared_ptr<ManagedWindow> m_pReferenceCatalogBrowser;
     std::weak_ptr<ArkLibraryExplorer> m_pArkLibraryExplorer;
 
     std::vector<std::string> m_LevelEditHistory;
