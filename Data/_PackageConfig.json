@@ -29,8 +29,8 @@
     "patchChecksums.xml",
     "VariableLibrary.xml",
 
-    "boost_json-vc145-mt-x64-1_90.dll",
-    "boost_program_options-vc145-mt-x64-1_90.dll",
+    "boost_json-vc144-mt-x64-1_90.dll",
+    "boost_program_options-vc144-mt-x64-1_90.dll",
     "bz2.dll",
     "ChairManager.exe",
     "ChairManager.pdb",
