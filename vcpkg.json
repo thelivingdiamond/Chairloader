@@ -26,6 +26,8 @@
     "taskflow"
   ],
   "overrides": [
-    { "name": "taskflow", "version": "3.7.0" }
+    { "name": "taskflow", "version": "3.7.0" },
+    { "name": "lua",       "version": "5.4.6" },
+    { "name": "luabridge", "version": "2.8"   }
   ]
 }
