@@ -28,8 +28,6 @@ set(SOURCE_FILES
 
 	EntityHierarchyWindow.cpp
 	EntityHierarchyWindow.h
-	LookingGlass.cpp
-	LookingGlass.h
 	Preditor.cpp
 	Preditor.h
 	SceneEditorManager.cpp

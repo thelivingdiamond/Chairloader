@@ -31,6 +31,21 @@ set(SOURCE_FILES
 	ImNodes/imnodes.h
 	ImNodes/imnodes_internal.h
 
+	# ImGuiNodeEditor (thedmd/imgui-node-editor v0.9.4)
+	ImGuiNodeEditor/crude_json.cpp
+	ImGuiNodeEditor/crude_json.h
+	ImGuiNodeEditor/imgui_bezier_math.h
+	ImGuiNodeEditor/imgui_bezier_math.inl
+	ImGuiNodeEditor/imgui_canvas.cpp
+	ImGuiNodeEditor/imgui_canvas.h
+	ImGuiNodeEditor/imgui_extra_math.h
+	ImGuiNodeEditor/imgui_extra_math.inl
+	ImGuiNodeEditor/imgui_node_editor.cpp
+	ImGuiNodeEditor/imgui_node_editor.h
+	ImGuiNodeEditor/imgui_node_editor_api.cpp
+	ImGuiNodeEditor/imgui_node_editor_internal.h
+	ImGuiNodeEditor/imgui_node_editor_internal.inl
+
 	# ChairManager
 	Manager/ConfigManager.cpp
 	Manager/ConfigManager.h

@@ -3,6 +3,7 @@
 *.dll
 *.pdb
 *.old
+*.ilk
 /Config
 /PreyFiles
 

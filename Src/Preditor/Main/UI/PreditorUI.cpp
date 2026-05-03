@@ -5,6 +5,8 @@
 #include <Preditor/Assets/IAssetSystem.h>
 #include <Preditor/Viewport/IViewportWindow.h>
 #include <Preditor/EditTools/IEditToolManager.h>
+#include <Preditor/FlowgraphEditor/IFlowgraphEditor.h>
+#include <Preditor/ReferenceCatalog/IReferenceCatalogUI.h>
 #include <Preditor/Engine/IPreditorEngine.h>
 #include <Preditor/SceneEditor/I3DCursor.h>
 #include <Preditor/SceneEditor/ISceneEditorManager.h>
@@ -71,6 +73,15 @@ Main::PreditorUI::PreditorUI()
     m_pInspectorWindow = WindowManager::Get().Create<InspectorWindow>();
     m_pHierarchyWindow = WindowManager::Get().Create<HierarchyWindow>();
     m_pSelectionWindow = WindowManager::Get().Create<SelectionWindow>();
+
+    m_pFlowgraphEditorWindow    = IFlowgraphEditor::CreateMainWindow();
+    m_pFlowgraphBrowserWindow   = IFlowgraphEditor::CreateBrowserWindow();
+    m_pFlowgraphPaletteWindow   = IFlowgraphEditor::CreatePaletteWindow();
+    m_pFlowgraphInspectorWindow = IFlowgraphEditor::CreateInspectorWindow();
+    m_pFlowgraphTokensWindow    = IFlowgraphEditor::CreateTokensWindow();
+
+    IReferenceCatalogUI::EnsureDefaults();
+    m_pReferenceCatalogBrowser  = IReferenceCatalogUI::CreateBrowserWindow();
 
     LoadLevelEditHistory();
 }
@@ -191,6 +202,35 @@ void Main::PreditorUI::ShowMainMenuBar()
             m_pSelectionWindow->ShowToggleMenuItem("Object Selection List");
             m_pInspectorWindow->ShowToggleMenuItem("Inspector");
             m_pHierarchyWindow->ShowToggleMenuItem("Hierarchy");
+
+            if (ImGui::BeginMenu("Flowgraph"))
+            {
+                ManagedWindow* fgWindows[] = {
+                    m_pFlowgraphEditorWindow.get(),
+                    m_pFlowgraphBrowserWindow.get(),
+                    m_pFlowgraphPaletteWindow.get(),
+                    m_pFlowgraphInspectorWindow.get(),
+                    m_pFlowgraphTokensWindow.get(),
+                };
+
+                if (ImGui::MenuItem("Show All"))
+                    for (ManagedWindow* w : fgWindows) w->SetVisible(true);
+                if (ImGui::MenuItem("Hide All"))
+                    for (ManagedWindow* w : fgWindows) w->SetVisible(false);
+                ImGui::Separator();
+
+                m_pFlowgraphEditorWindow->ShowToggleMenuItem("Editor");
+                m_pFlowgraphBrowserWindow->ShowToggleMenuItem("Browser");
+                m_pFlowgraphPaletteWindow->ShowToggleMenuItem("Palette");
+                m_pFlowgraphInspectorWindow->ShowToggleMenuItem("Inspector");
+                m_pFlowgraphTokensWindow->ShowToggleMenuItem("Tokens");
+                ImGui::EndMenu();
+            }
+
+            ImGui::Separator();
+
+            m_pReferenceCatalogBrowser->ShowToggleMenuItem("Reference Catalog");
+
             ImGui::Separator();
 
             m_pProjectBrowser->ShowToggleMenuItem("Project File Browser");

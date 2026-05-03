@@ -8,11 +8,12 @@ add_subdirectory(Common)
 add_subdirectory(Assets)
 add_subdirectory(EditTools)
 add_subdirectory(Engine)
-add_subdirectory(FGE)
+add_subdirectory(FlowgraphEditor)
 add_subdirectory(GameEditor)
 add_subdirectory(Input)
 add_subdirectory(LevelEditor)
 add_subdirectory(Main)
+add_subdirectory(ReferenceCatalog)
 add_subdirectory(Viewport)
 
 # EXEs and DLLs
