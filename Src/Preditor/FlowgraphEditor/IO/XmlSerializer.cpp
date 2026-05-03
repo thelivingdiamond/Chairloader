@@ -535,6 +535,72 @@ pugi::xml_node FindEntityByGuid(pugi::xml_node from, const std::string& guid)
 
 } // anonymous namespace
 
+bool CreateEmpty(GraphZone zone, const std::filesystem::path& target)
+{
+    std::error_code ec;
+    if (std::filesystem::exists(target, ec))
+    {
+        CryLog("FlowgraphEditor: refusing to overwrite '{}'", target.u8string());
+        return false;
+    }
+
+    constexpr const char* kPreyNs  = "https://thelivingdiamond.github.io/Chairloader/Xsd/Prey";
+    constexpr const char* kChairNs = "https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader";
+    constexpr const char* kXsiNs   = "http://www.w3.org/2001/XMLSchema-instance";
+    constexpr const char* kMetaXsd = "https://thelivingdiamond.github.io/Chairloader/Xsd/Chairloader/MetaAttributes.xsd";
+
+    const char* graphXsd = nullptr;
+    switch (zone)
+    {
+    case GraphZone::FlowgraphModule: graphXsd = "Libs/FlowgraphModules/Graph.xsd"; break;
+    case GraphZone::GlobalAction:    graphXsd = "Libs/GlobalActions/Graph.xsd";    break;
+    case GraphZone::UIAction:        graphXsd = "Libs/UI/UIActions/Graph.xsd";     break;
+    }
+
+    pugi::xml_document doc;
+    auto graph = doc.append_child("Graph");
+
+    graph.append_attribute("xmlns")     = kPreyNs;
+    graph.append_attribute("xmlns:ch")  = kChairNs;
+    graph.append_attribute("xmlns:xsi") = kXsiNs;
+
+    const std::string schemaLocation =
+        std::string(kPreyNs) + " https://thelivingdiamond.github.io/Chairloader/Xsd/Prey/" + graphXsd
+      + " " + kChairNs + " " + kMetaXsd;
+    graph.append_attribute("xsi:schemaLocation") = schemaLocation.c_str();
+
+    if (zone == GraphZone::FlowgraphModule)
+    {
+        const std::string moduleName = target.stem().u8string();
+        graph.append_attribute("isModule")     = "1";
+        graph.append_attribute("moduleName")   = moduleName.c_str();
+        graph.append_attribute("isObjectList") = "0";
+    }
+
+    graph.append_attribute("Description") = "";
+    graph.append_attribute("Group")       = "";
+    graph.append_attribute("enabled")     = "1";
+    graph.append_attribute("MultiPlayer") = "ClientServer";
+
+    if (zone == GraphZone::FlowgraphModule)
+        graph.append_child("ModuleInputsOutputs");
+    graph.append_child("Nodes");
+    graph.append_child("Edges");
+    graph.append_child("GraphTokens");
+
+    if (!target.parent_path().empty())
+        std::filesystem::create_directories(target.parent_path(), ec);
+
+    if (!doc.save_file(target.wstring().c_str(), kSaveIndent, kSaveFormatFlags))
+    {
+        CryLog("FlowgraphEditor: failed to create '{}'", target.u8string());
+        return false;
+    }
+
+    CryLog("FlowgraphEditor: created '{}'", target.u8string());
+    return true;
+}
+
 bool Save(const Flowgraph& graph, const std::filesystem::path& target)
 {
     pugi::xml_document doc;

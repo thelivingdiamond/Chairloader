@@ -29,6 +29,16 @@ struct GraphSummary
     size_t edgeCount = 0;
 };
 
+//! Identifies which family of standalone flowgraph file CreateEmpty produces.
+//! Mission/entity-bound graphs aren't a zone — they're authored against
+//! existing vanilla entities, not created from scratch.
+enum class GraphZone
+{
+    FlowgraphModule,
+    GlobalAction,
+    UIAction,
+};
+
 namespace XmlSerializer
 {
 
@@ -69,6 +79,11 @@ std::unique_ptr<Flowgraph> LoadGraphMatching(
 //!
 //! Returns true on success; logs failure via CryLog.
 bool Save(const Flowgraph& graph, const std::filesystem::path& target);
+
+//! Writes an empty `<Graph>` skeleton at `target` matching the vanilla format
+//! for the given zone. For modules, `moduleName` is the target filename stem.
+//! Refuses to overwrite an existing file. Returns true on success.
+bool CreateEmpty(GraphZone zone, const std::filesystem::path& target);
 
 //! Surgical save for entity-bound graphs (mission files). Produces a Chairmerger
 //! diff XML, NOT a full-file copy:

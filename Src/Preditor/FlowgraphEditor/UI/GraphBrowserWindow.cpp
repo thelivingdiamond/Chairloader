@@ -1,16 +1,37 @@
 #include <algorithm>
+#include <cctype>
+#include <optional>
+#include <unordered_set>
 #include <imgui_stdlib.h>
 #include "GraphBrowserWindow.h"
 #include "../FlowgraphEditorWindow.h"
 #include "../IO/PathResolver.h"
+#include "../IO/XmlSerializer.h"
 
 namespace fs = std::filesystem;
 
 namespace
 {
 
-void CollectXmlFiles(const fs::path& dir, std::vector<FlowgraphEditor::GraphBrowserWindow::Entry>& out,
-                     const fs::path& root, bool recursive)
+using Entry = FlowgraphEditor::GraphBrowserWindow::Entry;
+
+//! Indexed by Section. nullopt zone = section is read-only (no "+ New" button).
+struct SectionSpec
+{
+    const char* relPath;
+    bool recursive;
+    std::optional<FlowgraphEditor::GraphZone> zone;
+};
+
+constexpr SectionSpec kSectionSpecs[(size_t)FlowgraphEditor::GraphBrowserWindow::Section::Count] = {
+    { "Libs/FlowgraphModules", false, FlowgraphEditor::GraphZone::FlowgraphModule },
+    { "Libs/GlobalActions",    false, FlowgraphEditor::GraphZone::GlobalAction },
+    { "Libs/UI/UIActions",     false, FlowgraphEditor::GraphZone::UIAction },
+    { "Levels/Campaign",       true,  std::nullopt },
+};
+
+void CollectXmlFiles(const fs::path& dir, std::vector<Entry>& out,
+                     const fs::path& root, bool recursive, bool isProjectOnly)
 {
     std::error_code ec;
     if (!fs::exists(dir, ec))
@@ -19,10 +40,11 @@ void CollectXmlFiles(const fs::path& dir, std::vector<FlowgraphEditor::GraphBrow
     auto add = [&](const fs::path& p) {
         if (p.extension() != ".xml")
             return;
-        FlowgraphEditor::GraphBrowserWindow::Entry e;
+        Entry e;
         e.absolutePath = p;
         e.relativeDisplay = fs::relative(p, root, ec).u8string();
         std::replace(e.relativeDisplay.begin(), e.relativeDisplay.end(), '\\', '/');
+        e.isProjectOnly = isProjectOnly;
         out.push_back(std::move(e));
     };
 
@@ -38,6 +60,37 @@ void CollectXmlFiles(const fs::path& dir, std::vector<FlowgraphEditor::GraphBrow
             if (!ec && it.is_regular_file(ec))
                 add(it.path());
     }
+}
+
+//! Returns empty on valid input, else a user-facing error string.
+std::string ValidateCreateName(const std::string& name)
+{
+    if (name.empty())
+        return "Name is required.";
+
+    auto isValidChar = [](char c) {
+        return std::isalnum(static_cast<unsigned char>(c)) || c == '_' || c == '-';
+    };
+    if (!std::isalpha(static_cast<unsigned char>(name.front())) && name.front() != '_')
+        return "Name must start with a letter or underscore.";
+    for (char c : name)
+        if (!isValidChar(c))
+            return "Name may only contain letters, digits, underscore, or dash.";
+    return {};
+}
+
+const char* SectionLabel(FlowgraphEditor::GraphBrowserWindow::Section s)
+{
+    using Section = FlowgraphEditor::GraphBrowserWindow::Section;
+    switch (s)
+    {
+    case Section::Modules:       return "Flowgraph Module";
+    case Section::GlobalActions: return "Global Action";
+    case Section::UIActions:     return "UI Action";
+    case Section::Levels:        return "Level Mission";
+    case Section::Count:         break;
+    }
+    return "";
 }
 
 } // anonymous namespace
@@ -81,6 +134,8 @@ void FlowgraphEditor::GraphBrowserWindow::ShowContents()
     DrawSection(Section::GlobalActions, "Global Actions",    /*expandableLeaves*/ false);
     DrawSection(Section::UIActions,     "UI Actions",        /*expandableLeaves*/ false);
     DrawSection(Section::Levels,        "Level Missions",    /*expandableLeaves*/ true);
+
+    DrawCreateModal();
 }
 
 void FlowgraphEditor::GraphBrowserWindow::RescanIfNeeded()
@@ -109,12 +164,37 @@ void FlowgraphEditor::GraphBrowserWindow::Rescan()
         return;
     }
 
-    CollectXmlFiles(m_RootPath / "Libs/FlowgraphModules", m_Sections[(size_t)Section::Modules],       m_RootPath, false);
-    CollectXmlFiles(m_RootPath / "Libs/GlobalActions",    m_Sections[(size_t)Section::GlobalActions], m_RootPath, false);
-    CollectXmlFiles(m_RootPath / "Libs/UI/UIActions",     m_Sections[(size_t)Section::UIActions],     m_RootPath, false);
-    CollectXmlFiles(m_RootPath / "Levels/Campaign",       m_Sections[(size_t)Section::Levels],        m_RootPath, true);
+    fs::path projectDataRoot;
+    if (gPreditor->pPaths)
+        projectDataRoot = gPreditor->pPaths->GetProjectDirPath() / "Data";
 
-    // Levels: filter to mission_*.xml files only.
+    for (size_t i = 0; i < (size_t)Section::Count; ++i)
+    {
+        const SectionSpec& spec = kSectionSpecs[i];
+        auto& entries = m_Sections[i];
+
+        CollectXmlFiles(m_RootPath / spec.relPath, entries, m_RootPath, spec.recursive, false);
+
+        // Append mod-only files from the project overlay. Both walks key on
+        // the same zone-relative display, so dedupe is straightforward and
+        // vanilla wins on collision.
+        if (!projectDataRoot.empty())
+        {
+            std::vector<Entry> overlayEntries;
+            CollectXmlFiles(projectDataRoot / spec.relPath, overlayEntries, projectDataRoot, spec.recursive, true);
+
+            std::unordered_set<std::string> existing;
+            existing.reserve(entries.size());
+            for (const Entry& e : entries)
+                existing.insert(e.relativeDisplay);
+
+            for (Entry& e : overlayEntries)
+                if (existing.insert(e.relativeDisplay).second)
+                    entries.push_back(std::move(e));
+        }
+    }
+
+    // Levels: keep only mission_*.xml — other XMLs in Levels/ aren't graphs.
     auto& levels = m_Sections[(size_t)Section::Levels];
     levels.erase(
         std::remove_if(levels.begin(), levels.end(),
@@ -164,7 +244,23 @@ void FlowgraphEditor::GraphBrowserWindow::DrawSection(Section section, const cha
     char header[64];
     std::snprintf(header, sizeof(header), "%s (%zu)###section-%s", label, entries.size(), label);
 
-    if (!ImGui::CollapsingHeader(header))
+    // AllowItemOverlap lets the SameLine'd button win the hit test against
+    // the header's full-row Selectable.
+    const SectionSpec& spec = kSectionSpecs[(size_t)section];
+    const ImGuiTreeNodeFlags headerFlags =
+        spec.zone ? ImGuiTreeNodeFlags_AllowItemOverlap : 0;
+    const bool open = ImGui::CollapsingHeader(header, headerFlags);
+
+    if (spec.zone)
+    {
+        ImGui::SameLine();
+        ImGui::PushID((int)section);
+        if (ImGui::SmallButton("+ New"))
+            OpenCreateModal(section);
+        ImGui::PopID();
+    }
+
+    if (!open)
         return;
 
     for (const Entry& e : entries)
@@ -180,15 +276,14 @@ void FlowgraphEditor::GraphBrowserWindow::DrawSection(Section section, const cha
 
 void FlowgraphEditor::GraphBrowserWindow::DrawModdedSection()
 {
-    // Walk every cached file entry and pick those flagged as having an
-    // overlay. The flag is recomputed in Rescan + on a slow timer in Update,
-    // so we don't pay fs::exists per row per frame.
+    // Picks vanilla-with-overlay AND mod-only files. Both flags are computed
+    // at scan time, so this walk is cheap.
     std::vector<const Entry*> modded;
     for (const auto& section : m_Sections)
     {
         for (const Entry& e : section)
         {
-            if (e.hasOverlay)
+            if (e.hasOverlay || e.isProjectOnly)
                 modded.push_back(&e);
         }
     }
@@ -229,13 +324,23 @@ void FlowgraphEditor::GraphBrowserWindow::DrawFileEntry(const Entry& e, bool exp
     ImGui::PushID(e.absolutePath.u8string().c_str());
 
     auto drawBadge = [&]() {
-        if (!e.hasOverlay)
+        if (e.isProjectOnly)
+        {
+            ImGui::SameLine();
+            ImGui::TextColored(ImVec4(0.45f, 0.75f, 0.95f, 1.0f), "[new]");
+            if (ImGui::IsItemHovered())
+                ImGui::SetTooltip("Mod-only file — has no vanilla counterpart.\n"
+                                  "Lives entirely in the project overlay.");
             return;
-        ImGui::SameLine();
-        ImGui::TextColored(ImVec4(0.55f, 0.85f, 0.45f, 1.0f), "[modded]");
-        if (ImGui::IsItemHovered())
-            ImGui::SetTooltip("You've already saved a mod for this file.\n"
-                              "Opening it will load your mod, not vanilla.");
+        }
+        if (e.hasOverlay)
+        {
+            ImGui::SameLine();
+            ImGui::TextColored(ImVec4(0.55f, 0.85f, 0.45f, 1.0f), "[modded]");
+            if (ImGui::IsItemHovered())
+                ImGui::SetTooltip("You've already saved a mod for this file.\n"
+                                  "Opening it will load your mod, not vanilla.");
+        }
     };
 
     if (!expandable)
@@ -312,4 +417,114 @@ FlowgraphEditor::GraphBrowserWindow::GetSummaries(const std::filesystem::path& p
     auto summaries = XmlSerializer::EnumerateGraphs(path);
     auto [ins, _] = m_SummaryCache.emplace(path, std::move(summaries));
     return ins->second;
+}
+
+void FlowgraphEditor::GraphBrowserWindow::OpenCreateModal(Section section)
+{
+    m_PendingCreateSection = section;
+    m_CreateNameBuffer.clear();
+    m_CreateError.clear();
+}
+
+fs::path FlowgraphEditor::GraphBrowserWindow::ComposeCreateTarget(Section section,
+                                                                  const std::string& name) const
+{
+    if (!gPreditor || !gPreditor->pPaths)
+        return {};
+
+    const SectionSpec& spec = kSectionSpecs[(size_t)section];
+    fs::path projectDataRoot = gPreditor->pPaths->GetProjectDirPath() / "Data";
+    return projectDataRoot / spec.relPath / (name + ".xml");
+}
+
+void FlowgraphEditor::GraphBrowserWindow::DrawCreateModal()
+{
+    constexpr const char* kPopupId = "Create Flowgraph##fgCreate";
+    if (m_PendingCreateSection != Section::Count)
+        ImGui::OpenPopup(kPopupId);
+
+    if (!ImGui::BeginPopupModal(kPopupId, nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+        return;
+
+    auto closeAndReset = [&]() {
+        m_PendingCreateSection = Section::Count;
+        m_CreateNameBuffer.clear();
+        m_CreateError.clear();
+        ImGui::CloseCurrentPopup();
+    };
+
+    if (m_PendingCreateSection == Section::Count)
+    {
+        ImGui::EndPopup();
+        return;
+    }
+
+    const Section section = m_PendingCreateSection;
+    const SectionSpec& spec = kSectionSpecs[(size_t)section];
+
+    ImGui::Text("New %s", SectionLabel(section));
+    ImGui::TextDisabled("Saved under: %s/%s/<name>.xml",
+                        gPreditor && gPreditor->pPaths
+                            ? gPreditor->pPaths->GetProjectDirPath().u8string().c_str()
+                            : "<project>/Data",
+                        spec.relPath);
+    ImGui::Spacing();
+
+    ImGui::SetNextItemWidth(360.0f);
+    if (ImGui::IsWindowAppearing())
+        ImGui::SetKeyboardFocusHere();
+    const bool enterPressed = ImGui::InputTextWithHint(
+        "##createName", "name (no extension)", &m_CreateNameBuffer,
+        ImGuiInputTextFlags_EnterReturnsTrue);
+    // Clear a stale create-failure message as soon as the user tweaks the name.
+    if (ImGui::IsItemEdited())
+        m_CreateError.clear();
+
+    std::string err = ValidateCreateName(m_CreateNameBuffer);
+    fs::path target;
+    if (err.empty())
+    {
+        target = ComposeCreateTarget(section, m_CreateNameBuffer);
+        if (target.empty())
+            err = "Project paths aren't ready yet.";
+        else
+        {
+            std::error_code ec;
+            if (fs::exists(target, ec))
+                err = "A file with that name already exists in the project overlay.";
+            else if (fs::exists(m_RootPath / spec.relPath / (m_CreateNameBuffer + ".xml"), ec))
+                err = "That name collides with a vanilla file. Open the vanilla file and edit it instead.";
+        }
+    }
+
+    if (!m_CreateError.empty())
+        ImGui::TextColored(ImVec4(0.95f, 0.45f, 0.45f, 1.0f), "%s", m_CreateError.c_str());
+    else if (!err.empty() && !m_CreateNameBuffer.empty())
+        ImGui::TextDisabled("%s", err.c_str());
+
+    ImGui::Spacing();
+
+    const bool canCreate = err.empty();
+    ImGui::BeginDisabled(!canCreate);
+    const bool clicked = ImGui::Button("Create");
+    ImGui::EndDisabled();
+    if (canCreate && (clicked || enterPressed))
+    {
+        if (!XmlSerializer::CreateEmpty(*spec.zone, target))
+        {
+            m_CreateError = "Failed to create file. See log for details.";
+        }
+        else
+        {
+            const std::string created = target.u8string();
+            closeAndReset();
+            Rescan();
+            if (auto* editor = FlowgraphEditorWindow::Get())
+                editor->OpenFile(created);
+        }
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Cancel"))
+        closeAndReset();
+    ImGui::EndPopup();
 }

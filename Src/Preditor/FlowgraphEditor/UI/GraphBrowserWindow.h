@@ -16,10 +16,21 @@ public:
     {
         std::filesystem::path absolutePath;
         std::string relativeDisplay;
-        //! Cached "is there a project-side overlay for this file?" flag.
-        //! Refreshed on Rescan and at a slow tick so post-save mods show up
-        //! without paying for fs::exists per row per frame.
+        //! Vanilla file with a project-side overlay. Refreshed on a slow tick
+        //! so post-save mods badge without an explicit Rescan click.
         bool hasOverlay = false;
+        //! Mod-only file (no vanilla counterpart).
+        bool isProjectOnly = false;
+    };
+
+    //! Public so the cpp-side section spec table can index it by value.
+    enum class Section
+    {
+        Modules,
+        GlobalActions,
+        UIActions,
+        Levels,
+        Count,
     };
 
     GraphBrowserWindow();
@@ -30,19 +41,13 @@ protected:
     virtual void Update(bool isVisible) override;
 
 private:
-    enum class Section
-    {
-        Modules,
-        GlobalActions,
-        UIActions,
-        Levels,
-        Count,
-    };
-
     void RescanIfNeeded();
     void Rescan();
-    //! Recomputes Entry::hasOverlay across every cached entry. Cheap (one
-    //! fs::exists per file); called from Rescan and on a low-frequency tick.
+    void OpenCreateModal(Section section);
+    void DrawCreateModal();
+    //! Returns empty path if project paths aren't ready yet.
+    std::filesystem::path ComposeCreateTarget(Section section, const std::string& name) const;
+    //! Refreshes Entry::hasOverlay flags. Cheap (one fs::exists per file).
     void RefreshOverlayFlags();
     void DrawModdedSection();
     void DrawSection(Section section, const char* label, bool expandableLeaves);
@@ -66,6 +71,11 @@ private:
     //! ImGui::GetTime() value of the last RefreshOverlayFlags pass. Used to
     //! throttle the background refresh.
     double m_LastOverlayRefreshTime = 0.0;
+
+    // m_PendingCreateSection == Count when no modal is up.
+    Section m_PendingCreateSection = Section::Count;
+    std::string m_CreateNameBuffer;
+    std::string m_CreateError;
 };
 
 } // namespace FlowgraphEditor
