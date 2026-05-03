@@ -34,6 +34,10 @@ set(SOURCE_FILES
 	Commands/RemoveTokenCmd.h
 	Commands/RenameNodeCmd.cpp
 	Commands/RenameNodeCmd.h
+	Commands/ResizeCommentBoxCmd.cpp
+	Commands/ResizeCommentBoxCmd.h
+	Commands/SetEdgeEnabledCmd.cpp
+	Commands/SetEdgeEnabledCmd.h
 	Commands/SetPortDefaultCmd.cpp
 	Commands/SetPortDefaultCmd.h
 

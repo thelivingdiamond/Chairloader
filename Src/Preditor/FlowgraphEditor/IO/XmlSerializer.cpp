@@ -659,4 +659,53 @@ bool ModFileContainsEntity(const std::filesystem::path& modFilePath,
     return (bool)FindEntityByGuid(doc.root(), entityGuid);
 }
 
+bool RemoveEntityFromMissionMod(const std::filesystem::path& modFilePath,
+                                const std::string& entityGuid)
+{
+    if (entityGuid.empty())
+        return false;
+
+    std::error_code ec;
+    if (!std::filesystem::exists(modFilePath, ec))
+        return false;
+
+    pugi::xml_document doc;
+    if (!doc.load_file(modFilePath.wstring().c_str()))
+    {
+        CryLog("FlowgraphEditor: RemoveEntityFromMissionMod failed to parse '{}'",
+               modFilePath.u8string());
+        return false;
+    }
+
+    pugi::xml_node entity = FindEntityByGuid(doc.root(), entityGuid);
+    if (!entity)
+        return false;
+
+    pugi::xml_node parent = entity.parent();
+    parent.remove_child(entity);
+
+    // If the diff is now empty (no more <Entity> children under <Objects>),
+    // there's no point keeping it on disk — delete the file entirely so the
+    // browser stops badging it as modded.
+    auto objects = doc.child("Mission").child("Objects");
+    if (!objects || !objects.first_child())
+    {
+        std::filesystem::remove(modFilePath, ec);
+        CryLog("FlowgraphEditor: removed entity '{}' (last entry; deleted '{}')",
+               entityGuid, modFilePath.u8string());
+        return true;
+    }
+
+    if (!doc.save_file(modFilePath.wstring().c_str(), kSaveIndent, kSaveFormatFlags))
+    {
+        CryLog("FlowgraphEditor: failed to save mod file after entity removal '{}'",
+               modFilePath.u8string());
+        return false;
+    }
+
+    CryLog("FlowgraphEditor: removed entity '{}' from '{}'",
+           entityGuid, modFilePath.u8string());
+    return true;
+}
+
 } // namespace FlowgraphEditor::XmlSerializer

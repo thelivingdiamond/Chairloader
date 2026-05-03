@@ -33,6 +33,7 @@ void FlowgraphEditor::FlowgraphEditorWindow::Update(bool /*isVisible*/)
 void FlowgraphEditor::FlowgraphEditorWindow::ShowContents()
 {
     DrawFileLoader();
+    DrawTabActionsBar();
     ImGui::Separator();
 
     m_pActiveTab = nullptr;
@@ -41,6 +42,9 @@ void FlowgraphEditor::FlowgraphEditorWindow::ShowContents()
     {
         ImGui::TextDisabled("No graphs open. Paste a path above and click Load,");
         ImGui::TextDisabled("or open a file from the Flowgraph Browser.");
+        DrawCloseDirtyModal();
+        DrawSaveAsModal();
+        DrawResetModal();
         return;
     }
 
@@ -68,10 +72,22 @@ void FlowgraphEditor::FlowgraphEditorWindow::ShowContents()
                 ImGui::EndTabItem();
             }
             if (!open)
-                pTab->MarkForClose();
+            {
+                // Intercept the X click for dirty tabs — confirm before
+                // discarding work. Clean tabs close immediately.
+                Flowgraph* g = pTab->GetGraph();
+                if (g && g->IsDirty())
+                    m_pPendingCloseTab = pTab.get();
+                else
+                    pTab->MarkForClose();
+            }
         }
         ImGui::EndTabBar();
     }
+
+    DrawCloseDirtyModal();
+    DrawSaveAsModal();
+    DrawResetModal();
 
     m_Tabs.erase(
         std::remove_if(m_Tabs.begin(), m_Tabs.end(),
@@ -91,9 +107,6 @@ void FlowgraphEditor::FlowgraphEditorWindow::DrawFileLoader()
     if (ImGui::Button("Load", ImVec2(-FLT_MIN, 0)))
         LoadGraphsFromFile(m_LoadPath);
     ImGui::EndDisabled();
-
-    if (!m_LoadStatus.empty())
-        ImGui::TextDisabled("%s", m_LoadStatus.c_str());
 }
 
 void FlowgraphEditor::FlowgraphEditorWindow::OpenFile(const std::string& path)
@@ -214,6 +227,230 @@ void FlowgraphEditor::FlowgraphEditorWindow::SaveAll()
 
     m_LoadStatus = "Save All: " + std::to_string(saved) + " saved, "
                  + std::to_string(skipped) + " skipped";
+}
+
+void FlowgraphEditor::FlowgraphEditorWindow::DrawTabActionsBar()
+{
+    GraphTab* tab = m_pActiveTab; // last frame's; one-frame latency is fine
+    const bool hasTab = (tab != nullptr);
+
+    ImGui::BeginDisabled(!hasTab);
+    if (ImGui::Button("Save As..."))
+    {
+        m_pPendingSaveAsTab = tab;
+        if (Flowgraph* g = tab->GetGraph())
+            m_SaveAsPath = g->sourcePath.u8string();
+        else
+            m_SaveAsPath.clear();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Reset to Vanilla"))
+        m_pPendingResetTab = tab;
+    ImGui::EndDisabled();
+
+    if (!m_LoadStatus.empty())
+    {
+        ImGui::SameLine();
+        ImGui::TextDisabled("|  %s", m_LoadStatus.c_str());
+    }
+}
+
+void FlowgraphEditor::FlowgraphEditorWindow::DrawCloseDirtyModal()
+{
+    constexpr const char* kPopupId = "Unsaved changes##closeDirty";
+    if (m_pPendingCloseTab)
+        ImGui::OpenPopup(kPopupId);
+
+    if (ImGui::BeginPopupModal(kPopupId, nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        if (m_pPendingCloseTab)
+        {
+            ImGui::Text("'%s' has unsaved changes.", m_pPendingCloseTab->GetTitle().c_str());
+            ImGui::Spacing();
+
+            if (ImGui::Button("Save"))
+            {
+                if (SaveTab(*m_pPendingCloseTab))
+                    m_pPendingCloseTab->MarkForClose();
+                m_pPendingCloseTab = nullptr;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Don't Save"))
+            {
+                m_pPendingCloseTab->MarkForClose();
+                m_pPendingCloseTab = nullptr;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel"))
+            {
+                m_pPendingCloseTab = nullptr;
+                ImGui::CloseCurrentPopup();
+            }
+        }
+        ImGui::EndPopup();
+    }
+}
+
+void FlowgraphEditor::FlowgraphEditorWindow::DrawSaveAsModal()
+{
+    constexpr const char* kPopupId = "Save As##saveAs";
+    if (m_pPendingSaveAsTab)
+        ImGui::OpenPopup(kPopupId);
+
+    if (ImGui::BeginPopupModal(kPopupId, nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        if (m_pPendingSaveAsTab)
+        {
+            Flowgraph* g = m_pPendingSaveAsTab->GetGraph();
+            const bool isMissionDiff = g && !g->parentEntityGuid.empty();
+
+            if (isMissionDiff)
+            {
+                ImGui::TextWrapped("Mission entity graphs are written as merge-XML diffs into the project Data overlay. Save As doesn't apply — use the regular Save.");
+                ImGui::Spacing();
+                if (ImGui::Button("OK"))
+                {
+                    m_pPendingSaveAsTab = nullptr;
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+            else
+            {
+                ImGui::Text("Write a copy of '%s' to:",
+                            m_pPendingSaveAsTab->GetTitle().c_str());
+                ImGui::SetNextItemWidth(560.0f);
+                ImGui::InputText("##saveAsPath", &m_SaveAsPath);
+                ImGui::Spacing();
+
+                ImGui::BeginDisabled(m_SaveAsPath.empty());
+                if (ImGui::Button("Save"))
+                {
+                    if (SaveTabAs(*m_pPendingSaveAsTab, std::filesystem::path(m_SaveAsPath)))
+                    {
+                        m_pPendingSaveAsTab = nullptr;
+                        ImGui::CloseCurrentPopup();
+                    }
+                    // On failure, stay open so user sees the status message.
+                }
+                ImGui::EndDisabled();
+                ImGui::SameLine();
+                if (ImGui::Button("Cancel"))
+                {
+                    m_pPendingSaveAsTab = nullptr;
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+        }
+        ImGui::EndPopup();
+    }
+}
+
+void FlowgraphEditor::FlowgraphEditorWindow::DrawResetModal()
+{
+    constexpr const char* kPopupId = "Reset to Vanilla?##reset";
+    if (m_pPendingResetTab)
+        ImGui::OpenPopup(kPopupId);
+
+    if (ImGui::BeginPopupModal(kPopupId, nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        if (m_pPendingResetTab)
+        {
+            Flowgraph* g = m_pPendingResetTab->GetGraph();
+            ImGui::Text("Discard your mod of '%s' and revert to vanilla?",
+                        m_pPendingResetTab->GetTitle().c_str());
+            if (g && !g->parentEntityGuid.empty())
+                ImGui::TextDisabled("(Only this entity is affected; other modded entities in the same mission stay.)");
+            else
+                ImGui::TextDisabled("(The whole project overlay file will be deleted.)");
+
+            ImGui::Spacing();
+            if (ImGui::Button("Reset"))
+            {
+                if (ResetTabToVanilla(*m_pPendingResetTab))
+                    m_pPendingResetTab->MarkForClose();
+                m_pPendingResetTab = nullptr;
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel"))
+            {
+                m_pPendingResetTab = nullptr;
+                ImGui::CloseCurrentPopup();
+            }
+        }
+        ImGui::EndPopup();
+    }
+}
+
+bool FlowgraphEditor::FlowgraphEditorWindow::SaveTabAs(GraphTab& tab,
+                                                       const std::filesystem::path& target)
+{
+    Flowgraph* graph = tab.GetGraph();
+    if (!graph)
+        return false;
+
+    if (!XmlSerializer::Save(*graph, target))
+    {
+        m_LoadStatus = "Save As failed for " + target.u8string();
+        return false;
+    }
+
+    // Repoint the tab at the new file so subsequent Saves target it.
+    graph->sourcePath = target;
+    graph->MarkClean();
+    m_LoadStatus = "Saved a copy to " + target.u8string();
+    return true;
+}
+
+bool FlowgraphEditor::FlowgraphEditorWindow::ResetTabToVanilla(GraphTab& tab)
+{
+    Flowgraph* graph = tab.GetGraph();
+    if (!graph || graph->sourcePath.empty())
+    {
+        m_LoadStatus = "Tab has no source path; nothing to reset.";
+        return false;
+    }
+
+    // Mission entity diff: surgically remove just our entity (the helper
+    // deletes the overlay file if we were the last entry).
+    if (!graph->parentEntityGuid.empty())
+    {
+        std::filesystem::path target = PathResolver::GetSaveTarget(graph->sourcePath);
+        if (!XmlSerializer::RemoveEntityFromMissionMod(target, graph->parentEntityGuid))
+        {
+            m_LoadStatus = "Nothing to reset — no mod for entity '"
+                + graph->parentEntityName + "'.";
+            return false;
+        }
+        m_LoadStatus = "Reset entity '" + graph->parentEntityName + "' to vanilla.";
+        return true;
+    }
+
+    // Standalone overlay (UIAction etc.): delete the project file outright.
+    // Refuse for Unknown sources — those aren't in the project tree, so
+    // "Reset to Vanilla" has no defined meaning.
+    if (PathResolver::Classify(graph->sourcePath) == PathResolver::Source::Unknown)
+    {
+        m_LoadStatus = "Source isn't in the vanilla or project tree — Reset doesn't apply.";
+        return false;
+    }
+
+    std::filesystem::path target = PathResolver::GetSaveTarget(graph->sourcePath);
+    std::error_code ec;
+    if (!std::filesystem::exists(target, ec))
+    {
+        m_LoadStatus = "Nothing to reset — no mod overlay for this file.";
+        return false;
+    }
+    if (!std::filesystem::remove(target, ec))
+    {
+        m_LoadStatus = "Failed to delete overlay " + target.u8string();
+        return false;
+    }
+    m_LoadStatus = "Deleted overlay " + target.u8string();
+    return true;
 }
 
 bool FlowgraphEditor::FlowgraphEditorWindow::SaveTab(GraphTab& tab)

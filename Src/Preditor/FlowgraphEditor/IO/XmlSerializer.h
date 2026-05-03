@@ -101,5 +101,14 @@ bool SaveIntoExistingFile(const Flowgraph& graph,
 bool ModFileContainsEntity(const std::filesystem::path& modFilePath,
                            const std::string& entityGuid);
 
+//! Surgical removal: finds the <Entity EntityGuid="..."> block in the mod
+//! diff and removes it. If the mod file has no remaining <Entity> children
+//! afterward, the file itself is deleted (no point keeping an empty diff).
+//!
+//! Used by "Reset to Vanilla" on entity-bound mission graphs so other modded
+//! entities in the same mission survive. Returns true if anything was removed.
+bool RemoveEntityFromMissionMod(const std::filesystem::path& modFilePath,
+                                const std::string& entityGuid);
+
 } // namespace XmlSerializer
 } // namespace FlowgraphEditor

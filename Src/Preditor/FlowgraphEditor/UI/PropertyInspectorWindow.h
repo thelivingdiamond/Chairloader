@@ -5,9 +5,11 @@ namespace FlowgraphEditor
 {
 
 struct Node;
+struct Edge;
 
-//! Properties view for the active graph's selected node(s). Renders typed
-//! editors for input port defaults; commits route through SetPortDefaultCmd.
+//! Properties view for the active graph's selected node(s) and edge(s).
+//! Renders typed editors for input port defaults; commits route through
+//! SetPortDefaultCmd / RenameNodeCmd / SetEdgeEnabledCmd.
 class PropertyInspectorWindow : public ManagedWindow
 {
 public:
@@ -19,6 +21,7 @@ protected:
 
 private:
     void DrawNodeProperties(Node& node);
+    void DrawEdgeProperties(Edge& edge);
 };
 
 } // namespace FlowgraphEditor

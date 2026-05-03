@@ -43,8 +43,14 @@ protected:
 
 private:
     void DrawFileLoader();
+    void DrawTabActionsBar();
+    void DrawCloseDirtyModal();
+    void DrawSaveAsModal();
+    void DrawResetModal();
     void LoadGraphsFromFile(const std::string& path);
     bool SaveTab(GraphTab& tab);
+    bool SaveTabAs(GraphTab& tab, const std::filesystem::path& target);
+    bool ResetTabToVanilla(GraphTab& tab);
 
     static FlowgraphEditorWindow* s_pInstance;
 
@@ -52,6 +58,14 @@ private:
     GraphTab* m_pActiveTab = nullptr;
     std::string m_LoadPath;
     std::string m_LoadStatus;
+
+    // Modal-pending tab pointers. Raw pointers — safe because all three modals
+    // are blocking, so the underlying tab can't be removed from m_Tabs while a
+    // modal is up.
+    GraphTab* m_pPendingCloseTab  = nullptr; //!< user clicked X on a dirty tab
+    GraphTab* m_pPendingSaveAsTab = nullptr; //!< user invoked Save As
+    GraphTab* m_pPendingResetTab  = nullptr; //!< user invoked Reset to Vanilla
+    std::string m_SaveAsPath;                 //!< buffer for the Save As modal
 };
 
 } // namespace FlowgraphEditor

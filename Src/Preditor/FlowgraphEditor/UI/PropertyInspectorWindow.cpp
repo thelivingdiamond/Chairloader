@@ -6,6 +6,8 @@
 #include <imgui_stdlib.h>
 #include "PropertyInspectorWindow.h"
 #include "../Commands/RenameNodeCmd.h"
+#include "../Commands/ResizeCommentBoxCmd.h"
+#include "../Commands/SetEdgeEnabledCmd.h"
 #include "../Commands/SetPortDefaultCmd.h"
 #include "../FlowgraphEditorWindow.h"
 #include "../GraphTab.h"
@@ -148,30 +150,48 @@ void FlowgraphEditor::PropertyInspectorWindow::ShowContents()
     }
 
     ed::SetCurrentEditor(ctx);
-    const int count = ed::GetSelectedObjectCount();
-    std::vector<ed::NodeId> selected(count);
-    const int written = ed::GetSelectedNodes(selected.data(), count);
+    const int objectCount = ed::GetSelectedObjectCount();
+    std::vector<ed::NodeId> selectedNodes(objectCount);
+    std::vector<ed::LinkId> selectedLinks(objectCount);
+    const int writtenNodes = ed::GetSelectedNodes(selectedNodes.data(), objectCount);
+    const int writtenLinks = ed::GetSelectedLinks(selectedLinks.data(), objectCount);
     ed::SetCurrentEditor(nullptr);
 
-    if (written <= 0)
+    if (writtenNodes <= 0 && writtenLinks <= 0)
     {
-        ImGui::TextDisabled("Select a node on the canvas to inspect it.");
+        ImGui::TextDisabled("Select a node or edge on the canvas to inspect it.");
         return;
     }
 
-    for (int i = 0; i < written; ++i)
+    bool anyDrawn = false;
+    for (int i = 0; i < writtenNodes; ++i)
     {
-        int64_t nodeId = (int64_t)(uintptr_t)selected[i].AsPointer();
+        int64_t nodeId = (int64_t)(uintptr_t)selectedNodes[i].AsPointer();
         Node* node = graph->FindNode(nodeId);
         if (!node)
             continue;
 
+        if (anyDrawn)
+            ImGui::Separator();
         ImGui::PushID((int)nodeId);
         DrawNodeProperties(*node);
         ImGui::PopID();
+        anyDrawn = true;
+    }
 
-        if (i + 1 < written)
+    for (int i = 0; i < writtenLinks; ++i)
+    {
+        int64_t edgeId = (int64_t)(uintptr_t)selectedLinks[i].AsPointer();
+        Edge* edge = graph->FindEdge(edgeId);
+        if (!edge)
+            continue;
+
+        if (anyDrawn)
             ImGui::Separator();
+        ImGui::PushID((int)edgeId);
+        DrawEdgeProperties(*edge);
+        ImGui::PopID();
+        anyDrawn = true;
     }
 }
 
@@ -206,6 +226,32 @@ void FlowgraphEditor::PropertyInspectorWindow::DrawNodeProperties(Node& node)
     {
         ImGui::Spacing();
         ImGui::TextWrapped("%s", node.prototype->description.c_str());
+    }
+
+    // Commentbox-specific controls — typed Width/Height live on the Node, not
+    // in inputDefaults, so they don't get a row in the generic Inputs table.
+    if (node.IsCommentBox())
+    {
+        ImGui::Spacing();
+        ImGui::AlignTextToFramePadding();
+        ImGui::TextUnformatted("Size");
+        ImGui::SameLine();
+        float w = node.commentWidth;
+        float h = node.commentHeight;
+        constexpr float kItemW = 80.0f;
+        ImGui::SetNextItemWidth(kItemW);
+        const bool wChanged = ImGui::DragFloat("##cw", &w, 1.0f, 30.0f, 8192.0f, "W: %.0f");
+        ImGui::SameLine();
+        ImGui::SetNextItemWidth(kItemW);
+        const bool hChanged = ImGui::DragFloat("##ch", &h, 1.0f, 30.0f, 8192.0f, "H: %.0f");
+        if ((wChanged || hChanged) &&
+            (w != node.commentWidth || h != node.commentHeight))
+        {
+            graph->Execute(std::make_unique<ResizeCommentBoxCmd>(
+                node.id,
+                ImVec2(node.commentWidth, node.commentHeight),
+                ImVec2(w, h)));
+        }
     }
 
     if (!node.entityGuid.empty() || !node.entityGuid64.empty())
@@ -266,5 +312,36 @@ void FlowgraphEditor::PropertyInspectorWindow::DrawNodeProperties(Node& node)
             if (pin.prototype && !pin.prototype->description.empty() && ImGui::IsItemHovered())
                 ImGui::SetTooltip("%s", pin.prototype->description.c_str());
         }
+    }
+}
+
+void FlowgraphEditor::PropertyInspectorWindow::DrawEdgeProperties(Edge& edge)
+{
+    auto* editor = FlowgraphEditorWindow::Get();
+    GraphTab* tab = editor ? editor->GetActiveTab() : nullptr;
+    Flowgraph* graph = tab ? tab->GetGraph() : nullptr;
+    if (!graph)
+        return;
+
+    auto nodeLabel = [&](int64_t nodeId) -> std::string {
+        const Node* n = graph->FindNode(nodeId);
+        if (!n) return "<missing>";
+        if (!n->name.empty()) return n->name;
+        return n->className.empty() ? "<unnamed>" : n->className;
+    };
+
+    ImGui::TextUnformatted("Edge");
+    ImGui::TextDisabled("id %lld", (long long)edge.id);
+
+    ImGui::Spacing();
+    ImGui::Text("From: %s.%s", nodeLabel(edge.fromNodeId).c_str(), edge.fromPort.c_str());
+    ImGui::Text("To:   %s.%s", nodeLabel(edge.toNodeId).c_str(),   edge.toPort.c_str());
+
+    ImGui::Spacing();
+    bool enabled = edge.enabled;
+    if (ImGui::Checkbox("Enabled", &enabled) && enabled != edge.enabled)
+    {
+        graph->Execute(std::make_unique<SetEdgeEnabledCmd>(
+            edge.id, edge.enabled, enabled));
     }
 }
