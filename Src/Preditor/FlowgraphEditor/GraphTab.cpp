@@ -81,6 +81,27 @@ void DrawOutputColumn(const std::vector<Pin>& pins, float rightX, float y, float
     ed::PopStyleVar(2);
 }
 
+// Stable color per node category. Same categoryKey → same color across runs,
+// so "entity:*" nodes always share a hue, "math:*" share another, etc. Empty
+// key (unknown / uncategorized) gets a neutral gray.
+ImColor CategoryColor(std::string_view categoryKey)
+{
+    if (categoryKey.empty())
+        return ImColor(0.45f, 0.45f, 0.45f, 1.0f);
+
+    // FNV-1a over the key, mapped to a hue.
+    uint32_t h = 2166136261u;
+    for (unsigned char c : categoryKey)
+    {
+        h ^= c;
+        h *= 16777619u;
+    }
+    const float hue = (h % 360) / 360.0f;
+    float r, g, b;
+    ImGui::ColorConvertHSVtoRGB(hue, 0.55f, 0.85f, r, g, b);
+    return ImColor(r, g, b, 1.0f);
+}
+
 // Parses "r,g,b" (each in 0..1) out of a commentbox's <Inputs Color="..."/>
 // default. Returns ImColor(160,160,160) when missing or malformed.
 ImColor ParseCommentColor(const Node& node)
@@ -187,9 +208,39 @@ void DrawNode(const Node& node)
     const float maxOutputW = MaxPinLabelWidth(node.outputs);
     const float bodyW      = std::max(titleW, maxInputW + kColumnGap + maxOutputW);
 
+    const std::string_view categoryKey =
+        node.prototype ? std::string_view(node.prototype->categoryKey) : std::string_view{};
+    const ImColor headerColor = CategoryColor(categoryKey);
+
     ed::BeginNode(node.id);
 
+    // Colored header strip behind the title — gives instant visual delineation
+    // between header and body, and codes nodes by category at a glance.
+    // We add the rect to the current window draw list FIRST, then the title
+    // text via TextUnformatted — same list, later draws render on top, so the
+    // text sits over the rect without needing channels or the experimental
+    // ed::GetNodeBackgroundDrawList (which trips a channel-index assert).
+    //
+    // Strip extents come from the node's padding: titleScreenPos is the
+    // post-padding cursor, so subtracting NodePadding gets us back to the
+    // node's actual edges (no inset gap on top/sides). Rounding matches the
+    // node's own rounding so the strip tucks into the corners cleanly.
+    const ImVec2 titleScreenPos = ImGui::GetCursorScreenPos();
+    const float  titleHeight    = ImGui::GetTextLineHeightWithSpacing();
+    {
+        const auto& nodeStyle = ed::GetStyle();
+        const ImVec4 pad = nodeStyle.NodePadding; // left, top, right, bottom
+        const ImColor strip(headerColor.Value.x, headerColor.Value.y, headerColor.Value.z, 0.85f);
+        ImGui::GetWindowDrawList()->AddRectFilled(
+            ImVec2(titleScreenPos.x - pad.x, titleScreenPos.y - pad.y),
+            ImVec2(titleScreenPos.x + bodyW + pad.z, titleScreenPos.y + titleHeight),
+            strip,
+            nodeStyle.NodeRounding, ImDrawFlags_RoundCornersTop);
+    }
+
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
     ImGui::TextUnformatted(title.c_str());
+    ImGui::PopStyleColor();
     if (!node.prototype)
         ImGui::TextDisabled("(class not in registry)");
 
