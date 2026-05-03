@@ -24,5 +24,8 @@
     "luabridge",
     "pugixml",
     "taskflow"
+  ],
+  "overrides": [
+    { "name": "taskflow", "version": "3.7.0" }
   ]
 }
