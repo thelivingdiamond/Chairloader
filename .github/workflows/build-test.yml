@@ -39,7 +39,7 @@ jobs:
       with:
         vcpkgJsonGlob: 'vcpkg.json'
         vcpkgDirectory: '${{env.VCPKG_ROOT}}'
-        vcpkgGitCommitId: 'f7423ee180c4b7f40d43402c2feb3859161ef625'
+        vcpkgGitCommitId: '56bb2411609227288b70117ead2c47585ba07713'
         runVcpkgInstall: false
 
     - name: Disk Usage - Pre-build
