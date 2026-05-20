@@ -1,71 +1,60 @@
 #pragma once
-#include <boost/bimap.hpp>
-#include <boost/variant.hpp>
-
+#include "IConfigNodeV1.h"
+/**
+ * \brief Interface for managing configuration files for mods.
+ */
 struct IChairloaderConfigManager {
+    /**
+     * \brief Retrieves the configuration node for a specific mod.
+     * \param modName The name of the mod.
+     * \return A reference to the configuration node.
+     */
+    virtual ConfigNodeRef<IConfigNodeV1> getModConfig(const std::string &modName) = 0;
 
-	enum class parameterType {
-		String,
-		Bool,
-		Int,
-		Uint,
-		Int64,
-		Uint64,
-		Float,
-		XMLNode,
-		Other
-	};
+    /**
+     * \brief Marks the configuration of a mod as dirty or clean.
+     * \param modName The name of the mod.
+     * \param bDirty True to mark the configuration as dirty, false to mark it as clean.
+     */
+    virtual void setConfigDirty(std::string modName, bool bDirty) = 0;
 
-	using ConfigParameterPair = boost::bimap<parameterType, std::string>::value_type;
-	using ConfigParameter = boost::variant<std::string, bool, int, unsigned int, int64, uint64, float, pugi::xml_node, boost::blank>;
-
-	// Returns a boost::variant of the parameter. Returns "" if the parameter does not exist;
-	// use boost::get<type>(parameter) to get the value. assumes you know the type of the parameter you are getting. 
-	virtual ConfigParameter getConfigValue(std::string modName, std::string parameterName)=0;
-
-	// Sets the value of a parameter. Returns true if the parameter was written, false otherwise.
-	virtual bool setConfigValue(std::string modName, std::string parameterName, std::string value, parameterType type) = 0;
-
-	// Returns the xml node <modName>. Use for custom parsing on the entire config file if needed. 
-	virtual pugi::xml_node getConfigNode(std::string modName) = 0;
-
-	/**
-	 * \brief Gets a chairloader-formatted parameter from an xml node. Use this function for parsing xmlnode parameters in your config file.
-	 * \param node
-	 * \param parameterName
-	 * \return boost::Variant of the value, or an empty string "" if parameter does not exist
-	 */
-	virtual ConfigParameter getNodeConfigValue(pugi::xml_node node, std::string parameterName) = 0;
-
-	virtual void setConfigDirty(std::string modName, bool bDirty) = 0;
+    /**
+     * \brief Checks if the configuration of a mod is marked as dirty.
+     * \param modName The name of the mod.
+     * \return True if the configuration is dirty, false otherwise.
+     */
     virtual bool getConfigDirty(std::string modName) = 0;
 
-	/**
-	 * \brief Sets a chairloader-formatted parameter to an xml node. Use this function for writing to xmlnode parameters in your config file.
-	 * \param node: xmlnode to be written to
-	 * \param parameterName: name of parameter
-	 * \param value: string text of the parameter to be set
-	 * \param type: type of node
-	 * \return true if parameter was set succesfully
-	 */
-	virtual bool setNodeConfigValue(pugi::xml_node node, std::string parameterName, std::string value, parameterType type) = 0;
+    /**
+     * \brief Loads the configuration file for a specific mod.
+     *
+     * If the configuration file exists in `Mods/config/`, it will load that file.
+     * If not, it will check for a default configuration in the mod folder (`Mods/modName/modName_default.xml`).
+     * If neither is found, it will create a default configuration file with only the root modName node.
+     *
+     * \param modName The name of the mod.
+     * \return True if the configuration file was successfully loaded or created, false otherwise.
+     */
+    virtual bool loadModConfigFile(std::string modName) = 0;
 
+    /**
+     * \brief Saves the configuration file for a specific mod to disk.
+     * \param modName The name of the mod.
+     * \return True if the configuration file was successfully saved, false otherwise.
+     */
+    virtual bool saveModConfigFile(std::string modName) = 0;
 
-	// Returns the XML config file for a modName and stores it internally in the map
-	// if the config is defined in Mods/config/ then it will return that file
-	//    "Mods/config/modName.xml"
-	// if the config is not found there, then it will check for the default config in the mod folder
-	//    "Mods/modName/modName_default.xml"
-	// Else, it will create a default file for you with only the root modName node. Good luck!
-	//    "Mods/config/modName.xml"
-	virtual bool loadModConfigFile(std::string modName) = 0;
+    /**
+     * \brief Retrieves the file path of the configuration file for a specific mod.
+     * \param modName The name of the mod.
+     * \return The file path of the configuration file.
+     */
+    virtual fs::path getConfigPath(std::string modName) = 0;
 
-	// saves the config file to disk for a modName
-	virtual bool saveModConfigFile(std::string modName) = 0;
-
-	// intialize mod configs 
-
-	// retrive config file path
-	virtual fs::path getConfigPath(std::string modName) = 0;
-	virtual fs::path getDefaultConfigPath(std::string modName) = 0;
+    /**
+     * \brief Retrieves the file path of the default configuration file for a specific mod.
+     * \param modName The name of the mod.
+     * \return The file path of the default configuration file.
+     */
+    virtual fs::path getDefaultConfigPath(std::string modName) = 0;
 };
