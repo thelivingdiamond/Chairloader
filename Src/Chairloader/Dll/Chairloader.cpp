@@ -147,9 +147,9 @@ void CEntitySystem_FOnLevelEnd_Hook(CEntitySystem* _this) {
 
 } // namespace
 
-void Chairloader::CreateInstance(void* hThisDll)
+void Chairloader::CreateInstance(void* hThisDll, void* hGameDll)
 {
-	gChairloaderDll = std::make_unique<Chairloader>(hThisDll);
+	gChairloaderDll = std::make_unique<Chairloader>(hThisDll, hGameDll);
 }
 
 Chairloader* Chairloader::Get()
@@ -157,24 +157,14 @@ Chairloader* Chairloader::Get()
 	return gChairloaderDll.get();
 }
 
-Chairloader::Chairloader(void* hThisDll) {
+Chairloader::Chairloader(void* hThisDll, void* hGameDll) {
 	m_hThisDll = hThisDll;
 	gChair = this;
 	m_WinConsole.InitConsole();
 	printf("ChairLoader Initializing...\n");
 
-	// Get game DLL address
-	HMODULE hGameDll = nullptr;
-	GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, PREY_DLL_NAME, &hGameDll);
-
-	if (!hGameDll)
-	{
-		printf("Error! Failed to get " PREY_DLL_NAME " module base address\n");
-		std::abort();
-	}
-
 	m_ModuleBase = (uintptr_t)hGameDll;
-	printf(PREY_DLL_NAME " = 0x%016llX\n", m_ModuleBase);
+	printf("Game DLL Base = 0x%016llX\n", m_ModuleBase);
 
     // insert key name pairs into bimap bc bimaps kinda suck at static initialization
     LoadKeyNames();
@@ -218,7 +208,7 @@ Chairloader::~Chairloader()
 	gChair = nullptr;
 }
 
-void Chairloader::DllAttach()
+void Chairloader::EarlyInit()
 {
 	// This must run very early. The string is used in CEngineConfig, which is called in RunGame.
 	SavePathPatch::ApplyPatch();

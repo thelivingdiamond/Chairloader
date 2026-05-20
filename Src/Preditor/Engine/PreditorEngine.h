@@ -54,6 +54,7 @@ private:
 	std::unique_ptr<SimulationController> m_pSimulationController;
 	bool m_bGameInput = false;
 
+	fs::path FindGameDll(const fs::path& binariesPath);
 	void ApplyBasePatches();	//!< Applies patches used by both full and minimal engine.
 	void ApplyFullPatches();	//!< Applies patches used by the full engine.
 	void ApplyMinimalPatches(const InitParams& params);	//!< Applies patches used by the minimal engine.

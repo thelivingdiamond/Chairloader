@@ -12,6 +12,7 @@
 #include <Chairloader/IChairloaderMod.h>
 #include <Chairloader/IChairToPreditor.h>
 #include <Chairloader/Hooks/HookTransaction.h>
+#include <Chairloader/Private/LoaderApi.h>
 #include <App/Application.h>
 #include <Preditor/Main/IUserProjectSettings.h>
 #include <Preditor/Main/IPreditor.h>
@@ -332,7 +333,11 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 	AddDllDirectory(binariesPath.c_str());
 
 	// Load the DLL
-	fs::path dllPath = binariesPath / "PreyDll.dll";
+	fs::path dllPath = FindGameDll(binariesPath);
+
+	if (dllPath.empty())
+		throw std::runtime_error("Game DLL not found");
+
 	DllHandle hPreyDll = DllHandle(LoadLibraryExW(dllPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS), &FreeLibrary);
 
 	if (!hPreyDll)
@@ -344,7 +349,7 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 	if (!params.minimal)
 	{
 		// Load Chairloader
-		fs::path chairPath = binariesPath / "Chairloader.dll";
+		fs::path chairPath = binariesPath / LOADER_CHAIRLOADER_DLL_NAME;
 		DllHandle hChairDll = DllHandle(LoadLibraryExW(chairPath.c_str(), nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS), &FreeLibrary);
 
 		if (!hChairDll)
@@ -352,6 +357,17 @@ void Engine::PreditorEngine::Load(const InitParams& params)
 			std::string err = WindowsErrorToString(::GetLastError());
 			throw std::runtime_error("Failed to load Chairloader.dll\n" + err);
 		}
+
+		// Init Chairloader
+		auto* pfnChairInit = reinterpret_cast<FnChairloaderInit*>(GetProcAddress(hChairDll.get(), FN_CHAIRLOADER_INIT));
+
+		if (!pfnChairInit)
+			throw std::runtime_error(fmt::format("{} not found in {}", FN_CHAIRLOADER_INIT, LOADER_CHAIRLOADER_DLL_NAME));
+
+		bool chairInitResult = pfnChairInit(hPreyDll.get());
+
+		if (!chairInitResult)
+			throw std::runtime_error("Chairloader failed to initialize");
 
 		// Init Preditor API
 		auto pFunc = reinterpret_cast<Chair_GetPreditorAPI_Func>(GetProcAddress(hChairDll.get(), PREDITOR_API_EXPORT_FUNC_NAME));
@@ -546,6 +562,21 @@ bool Engine::PreditorEngine::HandleInputEventPreGame(const SInputEvent& event)
 
 	// If game input enabled, return false (not handled by Preditor)/
 	return inputMode != EViewportInputMode::Game;
+}
+
+fs::path Engine::PreditorEngine::FindGameDll(const fs::path& binariesPath)
+{
+	fs::path chairDll = binariesPath / LOADER_CHAIR_GAME_DLL_NAME;
+
+	if (fs::exists(chairDll))
+		return chairDll;
+
+	fs::path origDll = binariesPath / LOADER_ORIG_GAME_DLL_NAME;
+
+	if (fs::exists(origDll))
+		return origDll;
+
+	return fs::path();
 }
 
 void Engine::PreditorEngine::ApplyBasePatches()
