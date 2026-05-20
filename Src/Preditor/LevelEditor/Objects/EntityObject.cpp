@@ -80,6 +80,12 @@ void LevelEditor::EntityObject::ApplyTransformToEntity(unsigned nWhyFlags)
     }
 }
 
+void LevelEditor::EntityObject::DetachFromGame()
+{
+    Object::DetachFromGame();
+    m_pEntity = nullptr;
+}
+
 void LevelEditor::EntityObject::Init(XmlNodeRef objectNode)
 {
     Object::Init(objectNode);

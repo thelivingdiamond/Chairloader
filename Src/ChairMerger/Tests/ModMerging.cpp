@@ -115,6 +115,7 @@ protected:
 
 TEST_P(ChairMergerTestFullMerging, FullTest)
 {
+    CrySleep(5000);
     InitTest(GetParam());
     LoadMods();
     CreateMerger();
@@ -168,6 +169,7 @@ TEST_P(ChairMergerTestFullMerging, FullTest)
 }
 
 const auto FULL_TEST_NAMES = testing::Values<std::string>(
+    "FullTestCustomFileMerge",
     "FullTestDllOnly",
     "FullTestMain",
     "FullTestLocalization",

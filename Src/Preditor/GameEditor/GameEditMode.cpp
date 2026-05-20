@@ -1,6 +1,8 @@
+#include <WindowManager/WindowManager.h>
 #include <Preditor/EditTools/IEditToolManager.h>
 #include "EntityManipulator.h"
 #include "EntitySelectionManager.h"
+#include "EntitySpawner.h"
 #include "GameEditMode.h"
 #include "GameViewportHandler.h"
 
@@ -21,10 +23,13 @@ GameEditor::GameEditMode::GameEditMode()
     m_pEditToolManager = IEditToolManager::CreateInstance(this);
     m_pEntityHierarchy = std::make_unique<EntityHierarchy>();
     m_pEntityInspector = std::make_unique<EntityInspector>();
+    m_pEntitySpawner = WindowManager::Get().Create<EntitySpawner>();
 }
 
 GameEditor::GameEditMode::~GameEditMode()
 {
+    m_pEntitySpawner->CloseWindow();
+    m_pEntitySpawner = nullptr;
 }
 
 SelectionManager* GameEditor::GameEditMode::GetSelection()
@@ -54,11 +59,13 @@ const char* GameEditor::GameEditMode::GetObjectName(SceneObjectId id)
 void GameEditor::GameEditMode::OnEnabled()
 {
     m_pEditToolManager->SetEnabled(true);
+    m_pEntitySpawner->SetVisible(true);
 }
 
 void GameEditor::GameEditMode::OnDisabled()
 {
     m_pEditToolManager->SetEnabled(false);
+    m_pEntitySpawner->SetVisible(true);
 }
 
 void GameEditor::GameEditMode::ShowHierarchy()

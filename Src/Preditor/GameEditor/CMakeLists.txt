@@ -4,6 +4,8 @@ set(SOURCE_FILES
 	EntityManipulator.h
 	EntitySelectionManager.cpp
 	EntitySelectionManager.h
+	EntitySpawner.cpp
+	EntitySpawner.h
 	GameEditMode.cpp
 	GameEditMode.h
 	GameViewportHandler.cpp

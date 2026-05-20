@@ -322,23 +322,41 @@ void ChairMerger::Merge()
     SetDeployPhase(DeployPhase::Merge);
     SetDeployStep(DeployStep::MergingMods);
 
-    m_pBaseFileCache = std::make_unique<DiskXmlCache>();
-    m_pBaseFileCache->SetRootDir(m_PreyFilesPath);
-
-    for (size_t i = 0; i < m_Mods.size(); i++)
+    try
     {
-        if (!m_ModXmlCaches[i])
+        m_pBaseFileCache = std::make_unique<DiskXmlCache>();
+        m_pBaseFileCache->SetRootDir(m_PreyFilesPath);
+
+        for (size_t i = 0; i < m_Mods.size(); i++)
         {
-            m_pLog->Log(severityLevel::debug, "Skipping mod without Data: %s", m_Mods[i].modName);
-            continue;
+            if (!m_ModXmlCaches[i])
+            {
+                m_pLog->Log(severityLevel::debug, "Skipping mod without Data: %s", m_Mods[i].modName);
+                continue;
+            }
+
+            ProcessMod(i);
+            WaitForPendingTasks();
+            m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", m_Mods[i].modName);
         }
 
-        ProcessMod(i);
-        WaitForPendingTasks();
-        m_pLog->Log(severityLevel::trace, "Finished merging mod: %s", m_Mods[i].modName);
+        FinalizeFiles();
     }
-
-    FinalizeFiles();
+    catch (const std::exception&)
+    {
+        // Save files to disk for debugging
+        try
+        {
+            m_pBaseFileCache->ExportModifiedFiles(m_OutputPath);
+            m_pBaseFileCache.reset();
+        }
+        catch (const std::exception& e)
+        {
+            m_pLog->Log(severityLevel::error, "Failed to save modified files: %s", e.what());
+        }
+        
+        throw;
+    }
 
     // Save files to disk
     m_pBaseFileCache->ExportModifiedFiles(m_OutputPath);
@@ -494,17 +512,6 @@ void ChairMerger::ProcessXMLFile(
         if (mod.type == EModType::Native)
             ResolveFileWildcards(mod, modDoc.first_child());
 
-        // Load the original file
-        IXmlCache::ReadLock originalXmlLock;
-        const pugi::xml_document* originalDoc = nullptr;
-
-        {
-            IXmlCache::EOpenResult result = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
-
-            if (result != IXmlCache::EOpenResult::NotFound)
-                IXmlCache::ThrowForResult(result);
-        }
-
         // if we have an original result, we can actually do some merging
         if (fileMergingPolicy.GetMethod() == FileMergingPolicy3::EMethod::Replace)
         {
@@ -519,6 +526,17 @@ void ChairMerger::ProcessXMLFile(
         // Convert legacy mod into a Chairloader mod
         if (mod.type == EModType::Legacy)
         {
+            // Load the original file
+            IXmlCache::ReadLock originalXmlLock;
+            const pugi::xml_document* originalDoc = nullptr;
+
+            {
+                IXmlCache::EOpenResult result = m_pOriginalFileCache->TryOpenXmlForReading(relativePath, &originalDoc, originalXmlLock, parseTags);
+
+                if (result != IXmlCache::EOpenResult::NotFound)
+                    IXmlCache::ThrowForResult(result);
+            }
+
             // Move mod into a temp doc
             // modDoc will be replaced with converted mod
             pugi::xml_document legacyModDoc = std::move(modDoc);
@@ -621,8 +639,8 @@ void ChairMerger::ProcessXMLFile(
                 modDoc = std::move(legacyModDoc);
         }
 
-        // If original file doesn't exist, overwrite the base file.
-        if (!originalDoc)
+        // If base file is empty, overwrite the base file.
+        if (!baseDoc.first_child())
         {
             // Replace the entire file
             baseDoc = std::move(modDoc);

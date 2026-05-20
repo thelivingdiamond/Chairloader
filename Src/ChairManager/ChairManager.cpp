@@ -1024,6 +1024,15 @@ fs::path ChairManager::getConfigPath(std::string &modName) {
 fs::path ChairManager::getDefaultConfigPath(std::string &modName) {
     return GetGamePath() / "Mods" / modName / fs::u8path(modName + "_default.xml");
 }
+
+void ChairManager::saveChairloaderConfigFile()
+{
+    bool result = ChairloaderConfigFile.save_file((GetGamePath().wstring() + L"/Mods/config/Chairloader.xml").c_str());
+
+    if (!result)
+        log(severityLevel::error, "Failed to save Chairloader config");
+}
+
 bool ChairManager::LoadModInfoFile(fs::path directory, Mod *mod, bool allowDifferentDirectory) {
     std::string directoryName = directory.filename().u8string();
     pugi::xml_document result;
@@ -2625,7 +2634,13 @@ fs::path ChairManager::GetConfigPath()
 
 fs::path ChairManager::GetModPath(const std::string& modName)
 {
-    return GetGamePath() / "Mods" / fs::u8path(modName);
+    for (const auto& i : GetMods())
+    {
+        if (i.modName == modName)
+            return i.path;
+    }
+
+    return std::string();
 }
 
 std::vector<std::string> ChairManager::GetModNames()
