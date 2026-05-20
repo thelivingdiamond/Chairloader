@@ -11,7 +11,7 @@ class Editor : public ISystemEventListener, public IChairSceneEditor
 public:
 	static void InitHooks();
 	static Editor* Get();
-	Editor();
+	Editor(std::shared_ptr<Internal::IModDllManager> pModDllManager);
 	~Editor();
 
 	bool IsInEditor() const { return m_bInEditor; }
@@ -49,6 +49,7 @@ private:
 		void SetVisible(bool state);
 	};
 
+	std::shared_ptr<Internal::IModDllManager> m_pModDllManager;
 	std::unique_ptr<EditorView> m_pView;
 
 	ModReloading m_ModReloading;

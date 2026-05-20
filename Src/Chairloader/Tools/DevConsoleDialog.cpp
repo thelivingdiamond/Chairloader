@@ -78,10 +78,10 @@ void Command_Find(IConsoleCmdArgs *args) {
 
 } // namespace
 
-DevConsoleDialog::DevConsoleDialog() {
+DevConsoleDialog::DevConsoleDialog(std::shared_ptr<Internal::ILogManager> pLogManager)
+	: m_pLogManager(std::move(pLogManager))
+{
 	m_pConsole = gEnv->pConsole;
-	m_pLogManager = ChairToolsUtils::GetDll()->GetCore()->GetLogManager();
-
 #ifndef PREDITOR
 	REGISTER_COMMAND("find", Command_Find, 0, "Prints all variables matching input text");
 #endif

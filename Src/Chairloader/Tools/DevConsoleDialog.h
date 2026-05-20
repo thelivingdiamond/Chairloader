@@ -19,7 +19,7 @@ public:
 		Toggle, //!< Toggle to the other tab
 	};
 
-	DevConsoleDialog();
+	DevConsoleDialog(std::shared_ptr<Internal::ILogManager> pLogManager);
 	void Show(bool *p_open);
 	void SetTabRequest(TabRequest req) { m_TabRequest = req; }
 
@@ -33,7 +33,7 @@ private:
 
 	const std::string modName = "DevConsole";
 	IConsole *m_pConsole = nullptr;
-	Internal::ILogManager* m_pLogManager = nullptr;
+	std::shared_ptr<Internal::ILogManager> m_pLogManager = nullptr;
 	bool m_bAutoScroll = true;
 	bool m_bScrollToBottom = false;
 	char m_InputBuf[1024] = {};

@@ -5,7 +5,9 @@
 class LogManager : public Internal::ILogManager
 {
 public:
-	static LogManager& Get();
+
+	static const char* Name() { return "LogManager"; }
+
 	LogManager();
 
 	//! Initializes the logger

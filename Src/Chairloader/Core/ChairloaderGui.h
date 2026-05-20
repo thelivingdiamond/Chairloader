@@ -7,15 +7,19 @@
 #include "OverlayLog.h"
 #include "Profiler.h"
 
+class ChairloaderCore;
+
 class ChairloaderGui : public IChairloaderGui {
 public:
-    ChairloaderGui();
+    ChairloaderGui(std::shared_ptr<LogManager> logManager);
 
     bool IsEnabled() override { return m_bIsEnabled; }
     void SetEnabled(bool state) override { m_bIsEnabled = state; }
 
 //    void logItem(std::string msg, const std::string modName, logLevel level = logLevel::normal, bool displayToScreen = true) override;
 //    void logItem(logMessage message, bool displayToScreen = true) override;
+
+    void InitGame();
 
     void draw();
     void update();
@@ -39,6 +43,8 @@ private:
             devMode = false,
             hideAll = false;
     };
+    std::shared_ptr<LogManager> m_pLogManager;
+    std::shared_ptr<ChairloaderCore> m_pCore;
     const std::string modName = "ChairloaderGUI";
     //TODO: rethink the control variable
 

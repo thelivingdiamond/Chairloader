@@ -3,8 +3,10 @@
 namespace Internal
 {
 
-struct ILogManager
+struct ILogManager : IChairService<ILogManager>
 {
+	static const char* NameImpl() { return "ILogManager"; }
+
 	virtual ~ILogManager() {}
 
 	//! @returns the number of messages in the log manager.

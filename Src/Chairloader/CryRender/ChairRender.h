@@ -7,8 +7,6 @@ namespace RenderDll
 class ChairRender : public IChairRender, NoCopy
 {
 public:
-	static ChairRender& Get();
-
 	ChairRender();
 	~ChairRender();
 

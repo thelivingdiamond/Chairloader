@@ -4,7 +4,10 @@
 
 struct ICVar;
 
-struct IChairVarManager {
+struct IChairVarManager : IChairService<IChairVarManager> {
+
+    static const char* NameImpl() { return "IChairVarManager"; }
+
     ~IChairVarManager() = default;
 
     //! Register a CVar to the ChairVarManager, requires the VF_DUMPTOCHAIR flag to be set. The value will be restored across restarts.

@@ -1,8 +1,10 @@
 #pragma once
 #include <imgui.h>
 
-struct IChairloaderImGui
+struct IChairloaderImGui : IChairService<IChairloaderImGui>
 {
+	static const char* NameImpl() { return "IChairloaderImGui"; }
+
 	enum class EFont
 	{
 		Default,	//!< The font used for UI

@@ -36,6 +36,15 @@ set(SOURCE_FILES
 	SHA256/SHA256.cpp
 	SHA256/SHA256.h
 
+	# Dependency Injection
+	DependencyInjection/ServiceCollection.cpp
+	DependencyInjection/ServiceCollection.h
+	DependencyInjection/ServiceProvider.cpp
+	DependencyInjection/ServiceProvider.h
+	DependencyInjection/ServiceDescriptor.h
+	DependencyInjection/ServiceLocator.h
+	DependencyInjection/ServiceLocator.cpp
+
 	GUIUtils.h
 	pch.h
 	version_info.rc.in

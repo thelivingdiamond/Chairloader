@@ -2,8 +2,11 @@
 #include <boost/core/span.hpp>
 
 //! Utility functions to work with XML files in CryEngine.
-struct IChairXmlUtils
+struct IChairXmlUtils : IChairService<IChairXmlUtils>
 {
+
+	static const char* NameImpl() { return "IChairXmlUtils"; }
+
 	virtual ~IChairXmlUtils() {}
 
 	//! Converts a CryEngine IXmlNode to a pugixml document.

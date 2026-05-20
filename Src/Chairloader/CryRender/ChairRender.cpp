@@ -3,9 +3,8 @@
 #include "ChairRender.h"
 #include "DebugMarkers.h"
 #include "AuxGeom/RenderAuxGeomPatch.h"
+#include "DependencyInjection/ServiceLocator.h"
 #include "Shaders/ShaderCompilingPatch.h"
-
-static RenderDll::ChairRender g_ChairRender;
 
 namespace RenderDll
 {
@@ -35,61 +34,62 @@ RenderCmdId g_nBinkRenderCmdId = INVALID_RENDER_CMD_ID;
 void CD3D9Renderer_InitRenderer_Hook(CD3D9Renderer* const _this)
 {
 	g_CD3D9Renderer_InitRenderer_Hook.InvokeOrig(_this);
-	g_ChairRender.InitRendererModule(_this);
+	//TODO: this is kind of ugly, is it better to store a static shared pointer in this file and just reference it?
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->InitRendererModule(_this);
 }
 
 void* CD3D9Renderer_Init_Hook(CD3D9Renderer* const _this, int x, int y, int width, int height, unsigned cbpp, int zbpp, int sbits, EFullscreenMode _fullscreenMode, void* hinst, void* Glhwnd, bool bReInit, SCustomRenderInitArgs const* pCustomArgs, bool bShaderCacheGen)
 {
 	void* ret = g_CD3D9Renderer_Init_Hook.InvokeOrig(_this, x, y, width, height, cbpp, zbpp, sbits, _fullscreenMode, hinst, Glhwnd, bReInit, pCustomArgs, bShaderCacheGen);
-	g_ChairRender.InitRenderer();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->InitRenderer();
 	return ret;
 }
 
 void CD3D9Renderer_RT_InitRenderer_Hook(CD3D9Renderer* _this)
 {
 	g_CD3D9Renderer_RT_InitRenderer_Hook.InvokeOrig(_this);
-	g_ChairRender.RT_InitRenderer();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_InitRenderer();
 }
 
 void CD3D9Renderer_ShutDown_Hook(CD3D9Renderer* _this, bool bReInit)
 {
-	g_ChairRender.ShutdownRenderer();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->ShutdownRenderer();
 	g_CD3D9Renderer_ShutDown_Hook.InvokeOrig(_this, bReInit);
 }
 
 void CD3D9Renderer_RT_ShutDown_Hook(CD3D9Renderer* _this, unsigned nFlags)
 {
-	g_ChairRender.RT_ShutdownRenderer();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_ShutdownRenderer();
 	g_CD3D9Renderer_RT_ShutDown_Hook.InvokeOrig(_this, nFlags);
 }
 
 void CD3D9Renderer_BeginFrame_Hook(CD3D9Renderer* _this, bool resolveBackBuffer)
 {
 	g_CD3D9Renderer_BeginFrame_Hook.InvokeOrig(_this, resolveBackBuffer);
-	g_ChairRender.BeginFrame();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->BeginFrame();
 }
 
 void CD3D9Renderer_EndFrame_Hook(CD3D9Renderer* _this)
 {
-	g_ChairRender.EndFrame();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->EndFrame();
 	g_CD3D9Renderer_EndFrame_Hook.InvokeOrig(_this);
 }
 
 void CD3D9Renderer_RT_BeginFrame_Hook(CD3D9Renderer* _this)
 {
 	g_CD3D9Renderer_RT_BeginFrame_Hook.InvokeOrig(_this);
-	g_ChairRender.RT_BeginFrame();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_BeginFrame();
 }
 
 void CD3D9Renderer_RT_EndFrame_Hook(CD3D9Renderer* _this)
 {
-	g_ChairRender.RT_EndFrame();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_EndFrame();
 	g_CD3D9Renderer_RT_EndFrame_Hook.InvokeOrig(_this);
 }
 
 uint32 ComputePresentInterval_Hook(bool vsync, uint32 refreshNumerator, uint32 refreshDenominator)
 {
-	g_ChairRender.RT_Present();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_Present();
 	return g_ComputePresentInterval_Hook.InvokeOrig(vsync, refreshNumerator, refreshDenominator);
 }
 
@@ -104,7 +104,7 @@ void SRenderThread_RC_BinkRender_Hook(SRenderThread* _this, ArkBinkPlayer* _pPla
 		return g_ArkBinkManager_RT_RenderInternal_Hook.InvokeOrig(gRenDev->m_pBinkManager, _pPlayer, _frame);
 	}
 
-	RenderCmdBuf buf = g_ChairRender.QueueCommand(g_nBinkRenderCmdId, sizeof(void*) + sizeof(int));
+	RenderCmdBuf buf = ServiceLocator::GetService<IChairRender>()->QueueCommand(g_nBinkRenderCmdId, sizeof(void*) + sizeof(int));
 	buf.AddPointer(_pPlayer);
 	buf.AddDWORD(_frame);
 	buf.EndCommand();
@@ -112,14 +112,14 @@ void SRenderThread_RC_BinkRender_Hook(SRenderThread* _this, ArkBinkPlayer* _pPla
 
 void ArkBinkManager_RT_RenderInternal_Hook(ArkBinkManager*, ArkBinkPlayer*, int nCmdIdInt)
 {
-	g_ChairRender.RT_HandleCustomCommand((RenderCmdId)nCmdIdInt);
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_HandleCustomCommand((RenderCmdId)nCmdIdInt);
 }
 
 void SRenderThread_ProcessCommands_Hook(SRenderThread* _this)
 {
-	g_ChairRender.RT_PreProcessCommands();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_PreProcessCommands();
 	g_SRenderThread_ProcessCommands_Hook.InvokeOrig(_this);
-	g_ChairRender.RT_PostProcessCommands();
+	std::static_pointer_cast<ChairRender>(ServiceLocator::GetService<IChairRender>())->RT_PostProcessCommands();
 }
 
 //! Custom command handler in place of the original RC_BinkRender
@@ -133,11 +133,6 @@ void RT_BinkRender(RenderCmdId nCmdId, RenderCmdBuf& buf)
 } // namespace RenderDll
 
 //-------------------------------------------------------------------------------------
-
-RenderDll::ChairRender& RenderDll::ChairRender::Get()
-{
-	return g_ChairRender;
-}
 
 RenderDll::ChairRender::ChairRender()
 {

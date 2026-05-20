@@ -14,9 +14,16 @@
 #include <Prey/CrySystem/ILocalizationManager.h>
 #include <Prey/CrySystem/LocalizedStringManager.h>
 
-std::unique_ptr<Internal::IChairloaderTools> Internal::IChairloaderTools::CreateInstance()
+
+ChairloaderTools::ChairloaderTools(std::shared_ptr<IChairloaderConfigManager> configManager,
+								   std::shared_ptr<Internal::ILogManager> logManager,
+								   std::shared_ptr<Internal::IModDllManager> modDllManager,
+								   std::shared_ptr<IChairloaderGui> gui)
+	: m_pConfigManager(std::move(configManager))
+	, m_pLogManager(std::move(logManager))
+	, m_pModDllManager(std::move(modDllManager))
+	, m_pGui(std::move(gui))
 {
-	return std::make_unique<ChairloaderTools>();
 }
 
 void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
@@ -31,7 +38,7 @@ void ChairloaderTools::InitSystem(const Internal::SToolsInitParams& params)
 void ChairloaderTools::InitGame()
 {
     m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
-	m_pDevConsole = std::make_unique<DevConsoleDialog>();
+	m_pDevConsole = std::make_unique<DevConsoleDialog>(m_pLogManager);
 	m_pFileBrowser = std::make_unique<FileBrowser>();
 	m_pPerfOverlay = std::make_unique<PerfOverlay>();
     m_pLocalizationUtil = std::make_unique<LocalizationUtil>();
@@ -50,7 +57,7 @@ void ChairloaderTools::InitGame()
 	}
 
 	if (m_bEnableEditor)
-		m_pEditor = std::make_unique<Editor>();
+		m_pEditor = std::make_shared<Editor>(m_pModDllManager);
 }
 
 void ChairloaderTools::UpdateBeforeSystem(unsigned updateFlags)
@@ -64,12 +71,12 @@ void ChairloaderTools::MainUpdate(unsigned updateFlags)
 	// Perf info is always visible
 	m_pPerfOverlay->Update();
 
-    if(gChair->GetChairloaderEnvironment()->conf->getConfigDirty("Chairloader"))
+    if(m_pConfigManager->getConfigDirty("Chairloader"))
     {
         m_KeyToggleConsole = gChair->GetCore()->LoadConfigKey("ToggleConsoleKey", eKI_Tilde);
     }
 
-	if (gCL->gui->IsEnabled())
+	if (m_pGui->IsEnabled())
 	{
 		ShowMainMenuBar();
 
@@ -106,9 +113,9 @@ bool ChairloaderTools::HandleKeyPress(const SInputEvent& event)
 		bool alt = (event.modifiers & eMM_Alt) != 0;
 		auto modLogOnAlt = alt ? DevConsoleDialog::TabRequest::ModLog : DevConsoleDialog::TabRequest::None;
 
-		if (!gCL->gui->IsEnabled())
+		if (!m_pGui->IsEnabled())
 		{
-			gCL->gui->SetEnabled(true);
+			m_pGui->SetEnabled(true);
 			m_bDrawDevConsole = true;
 			m_pDevConsole->SetTabRequest(modLogOnAlt);
 		}
@@ -141,6 +148,10 @@ void ChairloaderTools::ShowMainMenuItems()
 {
     auto keyName = gChair->GetKeyNames().left.at(m_KeyToggleConsole);
 	ImGui::MenuItem("Show Console", keyName.c_str(), &m_bDrawDevConsole);
+}
+
+std::shared_ptr<IChairSceneEditor> ChairloaderTools::GetEditor() {
+	return m_pEditor;
 }
 
 void ChairloaderTools::ShowMainMenuBar()

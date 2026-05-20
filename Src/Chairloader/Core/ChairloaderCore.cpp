@@ -30,15 +30,24 @@ public:
 
 CBetterCVarsWhitelist g_CVarsWhitelist;
 
-std::unique_ptr<Internal::IChairloaderCore> Internal::IChairloaderCore::CreateInstance()
+
+ChairloaderCore::ChairloaderCore(std::shared_ptr<IChairloaderConfigManager> configManager,
+	std::shared_ptr<Internal::IModDllManager> modDllManager,
+	std::shared_ptr<IChairVarManager> cvarManager,
+	std::shared_ptr<IChairloaderGui> gui,
+	std::shared_ptr<LuaModManager> luaModManager,
+	std::shared_ptr<IChairloaderImGui> imgui,
+	std::shared_ptr<LogManager> logManager)
+		: m_pConfigManager(std::static_pointer_cast<ChairloaderConfigManager>(configManager))
+		, m_pModDllManager(std::static_pointer_cast<ModDllManager>(modDllManager))
+		, m_pCVarManager(std::static_pointer_cast<ChairVarManager>(cvarManager))
+		, m_pGui(std::static_pointer_cast<ChairloaderGui>(gui))
+		, m_pLuaModManager(std::move(luaModManager))
+		, m_pImGui(std::static_pointer_cast<ChairImGui>(imgui))
+		, m_pLogManager(std::move(logManager))
 {
-	return std::make_unique<ChairloaderCore>();
 }
 
-ChairloaderCore* ChairloaderCore::Get()
-{
-	return static_cast<ChairloaderCore*>(gChair->GetCore());
-}
 
 void ChairloaderCore::InitSystem()
 {
@@ -46,31 +55,25 @@ void ChairloaderCore::InitSystem()
 	auto pSystem = reinterpret_cast<CSystem*>(gEnv->pSystem);
 	pSystem->m_pCVarsWhitelist = &g_CVarsWhitelist;
 
-	LogManager::Get().InitSystem();
-	m_pConfigManager = std::make_unique<ChairloaderConfigManager>();
-    m_pCVarManager = std::make_unique<ChairVarManager>();
+	m_pLogManager->InitSystem();
     m_pCVarManager->InitSystem();
-	gCL->conf = m_pConfigManager.get();
-	CryLog("Chairloader config loaded: {}", gCL->conf->loadModConfigFile(CONFIG_NAME));
+	CryLog("Chairloader config loaded: {}", m_pConfigManager->loadModConfigFile(CONFIG_NAME));
 	LoadConfig();
-	ChairImGui::Get().InitSystem();
-	m_pLuaModManager = std::make_unique<LuaModManager>();
+	m_pImGui->InitSystem();
 	SkipIntroMovies();
 }
 
 void ChairloaderCore::ShutdownSystem()
 {
-	ChairImGui::Get().ShutdownSystem();
-	gCL->conf = nullptr;
+	m_pImGui->ShutdownSystem();
 	m_pConfigManager = nullptr;
 }
 
 void ChairloaderCore::RegisterMods()
 {
-    m_pModDllManager = std::make_unique<ModDllManager>();
     m_pModDllManager->SetHotReloadEnabled(gChair->IsEditorEnabled() || gChair->GetPreditorAPI());
 
-	auto cfgValue = gCL->conf->getConfigValue(CONFIG_NAME, "ModList");
+	auto cfgValue = m_pConfigManager->getConfigValue(CONFIG_NAME, "ModList");
 
 	if (cfgValue.type() != typeid(pugi::xml_node))
 	{
@@ -80,7 +83,7 @@ void ChairloaderCore::RegisterMods()
 
 	auto node = boost::get<pugi::xml_node>(cfgValue);
 	for (pugi::xml_node& mod : node) {
-		std::string modName = boost::get<std::string>(gCL->conf->getNodeConfigValue(mod, "modName"));
+		std::string modName = boost::get<std::string>(m_pConfigManager->getNodeConfigValue(mod, "modName"));
 
 		if (mod.child("enabled").text().as_bool()) {
 			try
@@ -99,7 +102,7 @@ void ChairloaderCore::RegisterMods()
 
 				// Get mod path
 				fs::path fullPath;
-				auto fullPathParam = gCL->conf->getNodeConfigValue(mod, "fullPath");
+				auto fullPathParam = m_pConfigManager->getNodeConfigValue(mod, "fullPath");
 
 				if (boost::get<std::string>(&fullPathParam))
 				{
@@ -115,7 +118,7 @@ void ChairloaderCore::RegisterMods()
 				Manager::ModInfo modInfo;
 				modInfo.LoadFile(fullPath / Manager::ModInfo::XML_FILE_NAME);
 
-				int loadOrder = boost::get<int>(gCL->conf->getNodeConfigValue(mod, "loadOrder"));
+				int loadOrder = boost::get<int>(m_pConfigManager->getNodeConfigValue(mod, "loadOrder"));
 
 				if (!modInfo.dllName.empty())
 				{
@@ -149,8 +152,8 @@ void ChairloaderCore::PreInitGame()
 
 void ChairloaderCore::InitGame()
 {
-	ChairImGui::Get().InitGame();
-	m_pGui = std::make_unique<ChairloaderGui>();
+	m_pImGui->InitGame();
+	m_pGui->InitGame();
 	g_pProfiler = new Profiler();
 	m_pLuaModManager->PostGameInit();
 }
@@ -163,19 +166,18 @@ void ChairloaderCore::PreShutdown()
 
 void ChairloaderCore::ShutdownGame()
 {
-	m_pLuaModManager = nullptr;
 	m_pGui = nullptr;
-	ChairImGui::Get().ShutdownGame();
+	m_pImGui->ShutdownGame();
 }
 
 void ChairloaderCore::UpdateBeforeSystem(unsigned updateFlags)
 {
-	LogManager::Get().Update();
+	m_pLogManager->Update();
 
-	if (gCL->conf->getConfigDirty(CONFIG_NAME))
+	if (m_pConfigManager->getConfigDirty(CONFIG_NAME))
 		LoadConfig();
 
-	ChairImGui::Get().UpdateBeforeSystem();
+	m_pImGui->UpdateBeforeSystem();
 	m_pGui->update();
 	m_pConfigManager->Update();
     m_pCVarManager->UpdateSystem();
@@ -198,25 +200,11 @@ bool ChairloaderCore::HandleKeyPress(const SInputEvent& event)
 	return false;
 }
 
-Internal::ILogManager* ChairloaderCore::GetLogManager()
-{
-	return &LogManager::Get();
-}
-
-Internal::IModDllManager* ChairloaderCore::GetDllManager()
-{
-	return m_pModDllManager.get();
-}
-
 bool ChairloaderCore::IsModInstalled(const std::string& modName)
 {
 	return m_InstalledMods.find(modName) != m_InstalledMods.end();
 }
 
-std::unique_ptr<IChairLogger> ChairloaderCore::CreateLogger()
-{
-	return std::make_unique<ChairLogger>();
-}
 
 const std::string& ChairloaderCore::GetKeyStrHideGui()
 {
@@ -260,7 +248,7 @@ void ChairloaderCore::SkipIntroMovies()
 
 EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defaultKey)
 {
-    auto key = gCL->conf->getConfigValue(CONFIG_NAME, paramName);
+    auto key = m_pConfigManager->getConfigValue(CONFIG_NAME, paramName);
     const IChairloader::KeyNameMap& keyNames = gChair->GetKeyNames();
 
     if (key.type() == typeid(std::string)) {
@@ -275,10 +263,6 @@ EKeyId ChairloaderCore::LoadConfigKey(const std::string& paramName, EKeyId defau
     }
 
     // Failed to get from config, restore default
-	gCL->conf->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
+	m_pConfigManager->setConfigValue(CONFIG_NAME, paramName, keyNames.left.at(defaultKey), IChairloaderConfigManager::parameterType::String);
     return defaultKey;
-}
-
-IChairVarManager *ChairloaderCore::GetCVarManager() {
-    return m_pCVarManager.get();
 }

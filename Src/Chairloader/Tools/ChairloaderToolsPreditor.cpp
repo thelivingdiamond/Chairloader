@@ -3,6 +3,11 @@
 #include "FileBrowser.h"
 #include "ChairToolsUtils.h"
 #include "DebugMenu.h"
+#include "Chairloader/IChairloaderDll.h"
+#include "Chairloader/IModDllManager.h"
+#include "Chairloader/ILogManager.h"
+#include "Chairloader/IChairServiceProvider.h"
+#include "Chairloader/IChairToPreditor.h"
 #include "Editor/ModReloading.h"
 
 std::unique_ptr<IChairloaderToolsPreditor> IChairloaderToolsPreditor::CreateInstance(IChairToPreditor* pChair)
@@ -13,8 +18,9 @@ std::unique_ptr<IChairloaderToolsPreditor> IChairloaderToolsPreditor::CreateInst
 ChairloaderToolsPreditor::ChairloaderToolsPreditor(IChairToPreditor* pChair)
 {
 	ChairToolsUtils::SetIChairToPreditor(pChair);
-	m_pModReloading = std::make_unique<ModReloading>();
-	m_pDevConsole = std::make_unique<DevConsoleDialog>();
+	//TODO: do proper service environment for preditor
+	m_pModReloading = std::make_unique<ModReloading>(pChair->GetIChairloaderDll()->GetChairloaderEnvironment()->pServiceProvider->GetRequiredService<Internal::IModDllManager>());
+	m_pDevConsole = std::make_unique<DevConsoleDialog>(pChair->GetIChairloaderDll()->GetChairloaderEnvironment()->pServiceProvider->GetRequiredService<Internal::ILogManager>());
 	m_pFileBrowser = std::make_unique<FileBrowser>();
 	m_pDebugMenu = std::make_unique<DebugMenu>();
 }

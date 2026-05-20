@@ -6,12 +6,14 @@ class ChairSteamAPI final : public IChairSteamAPI, NoCopy
 public:
     //! Creates an instance of ChairSteamAPI if Steam API is available.
     //! @returns instance or nullptr.
-    static std::unique_ptr<ChairSteamAPI> CreateInstance();
+    static std::shared_ptr<ChairSteamAPI> CreateInstance();
 
     //! @param  hModule DLL handle.
     //! @param  isGog   GOG version.
     ChairSteamAPI(void* hModule, bool isGog);
     ~ChairSteamAPI();
+
+    void InitSystem();
 
     //! Initializes various Ark???System that replace ones created in CSystem::Init.
     void ReplaceArkSystems();

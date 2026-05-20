@@ -8,7 +8,7 @@ struct IModDllManager;
 class ModReloading
 {
 public:
-	ModReloading();
+	ModReloading(std::shared_ptr<Internal::IModDllManager> pModDllManager);
 
 	//! Pre-system update. Mods are being reloaded in here.
 	void UpdateBeforeSystem();
@@ -26,7 +26,7 @@ public:
 private:
 	static constexpr char SAVE_NAME[] = "chaireditor_save";
 
-	Internal::IModDllManager* m_pDllManager = nullptr;
+	std::shared_ptr<Internal::IModDllManager> m_pDllManager = nullptr;
 	bool m_bPendingReload = false; //!< Need to reload next frame.
 
 	//! Saves the game, unloads level, reloads mods and reloads save.

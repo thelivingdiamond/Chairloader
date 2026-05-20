@@ -5,6 +5,10 @@
 #include "ModDllManager.h"
 #include "ChairloaderConfigManager.h"
 
+ModDllManager::ModDllManager(std::shared_ptr<IChairloaderConfigManager> pConfigManager)
+	: m_pConfigManager(std::move(pConfigManager)){
+}
+
 void ModDllManager::SetHotReloadEnabled(bool state)
 {
 	CRY_ASSERT(m_RegisteredMods.empty() && m_Modules.empty());
@@ -28,8 +32,8 @@ void ModDllManager::RegisterModFromXML(const Manager::ModInfo& modInfo, int load
 		info.sourceDllPath = info.modDirPath / dllName;
 	else
 		info.sourceDllPath = dllName;
-	
-	gCL->conf->loadModConfigFile(info.modName);
+
+	m_pConfigManager->loadModConfigFile(info.modName);
 	m_RegisteredMods[info.loadOrder].push_back(std::move(info));
 }
 

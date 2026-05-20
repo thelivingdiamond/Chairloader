@@ -16,9 +16,7 @@ class ChairImGui
 	, private ISyncMainWithRenderListener
 {
 public:
-	static ChairImGui& Get();
-
-	ChairImGui();
+	ChairImGui(std::shared_ptr<IChairRender> pRender);
 	~ChairImGui();
 	void InitSystem();
 	void InitGame();
@@ -34,6 +32,7 @@ private:
 	static constexpr char FONT_CONFIG_PATH[] = "Libs/Chairloader/Fonts/Fonts.xml";
 	static constexpr float DEFAULT_DPI = 96.0f;
 
+	std::shared_ptr<IChairRender> m_pRender;
 	ImGuiContext* m_pMainContext = nullptr;
 	_smart_ptr<ITexture> m_pFontAtlas = nullptr;
 	ImFont* m_Fonts[(int)EFont::FontCount] = {};

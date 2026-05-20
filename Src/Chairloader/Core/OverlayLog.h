@@ -5,15 +5,18 @@
 #include <ConsoleColorParser.h>
 
 
+class LogManager;
+
 class OverlayLogManager{
 public:
-    OverlayLogManager();
+    OverlayLogManager(std::shared_ptr<LogManager> pLogManager);
     ~OverlayLogManager();
     // show persistent transparent log overlay
     void draw();
     void setMessageTimeoutInterval(float milliseconds);
 private:
     uint64_t MessageTimeoutTime = 10000;
+    std::shared_ptr<LogManager> m_pLogManager;
 
     class OverlayParser : public ConsoleColorParser
     {

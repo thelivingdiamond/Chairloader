@@ -11,7 +11,7 @@
 
 class CBasicEventListener;
 
-static ChairImGui g_ChairImGui;
+static ChairImGui* g_ChairImGui;
 static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
 static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
 static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x1685F90);
@@ -22,7 +22,7 @@ static void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int i
 {
 	// Exclusive ImGui mouse input
 	// Don't pass mouse events to the game and FlashUI
-	if (g_ChairImGui.HasExclusiveMouseInput())
+	if (g_ChairImGui->HasExclusiveMouseInput())
 		return;
 
 	s_CHardwareMouse_Event_Hook.InvokeOrig(_this, iX, iY, eHardwareMouseEvent, wheelDelta);
@@ -31,7 +31,7 @@ static void CHardwareMouse_Event_Hook(IHardwareMouse* const _this, int iX, int i
 static int CBasicEventListener_OnSetCursor_Hook(CBasicEventListener* const _this, HWND__* hWnd)
 {
 	// Allow ImGui to set the crusor
-	if (g_ChairImGui.HasExclusiveMouseInput())
+	if (g_ChairImGui->HasExclusiveMouseInput())
 		return 1;
 
 	return s_CBasicEventListener_OnSetCursor_Hook.InvokeOrig(_this, hWnd);
@@ -39,21 +39,20 @@ static int CBasicEventListener_OnSetCursor_Hook(CBasicEventListener* const _this
 
 static void CSystem_RenderEnd_Hook(CSystem* const _this, bool bRenderStats)
 {
-	g_ChairImGui.RenderEnd();
+	g_ChairImGui->RenderEnd();
 	return s_CSystem_RenderEnd_Hook.InvokeOrig(_this, bRenderStats);
 }
 
-ChairImGui& ChairImGui::Get()
-{
-	return g_ChairImGui;
-}
-
-ChairImGui::ChairImGui()
-{
+ChairImGui::ChairImGui(std::shared_ptr<IChairRender> pRender)
+	: m_pRender(std::move(pRender)) {
+	assert(!g_ChairImGui);
+	g_ChairImGui = this;
 }
 
 ChairImGui::~ChairImGui()
 {
+	assert(g_ChairImGui == this);
+	g_ChairImGui = nullptr;
 }
 
 void ChairImGui::InitSystem()
@@ -84,7 +83,7 @@ void ChairImGui::InitGame()
 
 	m_pRenderer = std::make_unique<ImGuiRendererD3D11>();
 	gEnv->pRenderer->RegisterSyncWithMainListener(this);
-	gCL->pRender->AddListener(this);
+	m_pRender->AddListener(this);
 
 	InitBackend();
 }
@@ -92,7 +91,7 @@ void ChairImGui::InitGame()
 void ChairImGui::ShutdownGame()
 {
 	m_pFontAtlas = nullptr;
-	gCL->pRender->RemoveListener(this);
+	m_pRender->RemoveListener(this);
 	gEnv->pRenderer->RemoveSyncWithMainListener(this);
 	m_pRenderer = nullptr;
 	ImGui::DestroyContext(m_pMainContext);
@@ -589,7 +588,7 @@ void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent 
 	if (pPreditorAPI && pPreditorAPI->HandleInputEvent(event))
 		return;
 	
-	if (!g_ChairImGui.m_pMainContext)
+	if (!g_ChairImGui->m_pMainContext)
 	{
 		s_hookCBaseInputPostInputEvent.InvokeOrig(_this, event, bForce);
 		return;
@@ -652,7 +651,7 @@ void ChairImGui::CBaseInput_PostInputEvent(CBaseInput *_this, const SInputEvent 
 	if (event.deviceType == eIDT_Keyboard && io.WantTextInput)
 		return;
 
-	if (event.deviceType == eIDT_Mouse && g_ChairImGui.m_ImGuiUsesMouse)
+	if (event.deviceType == eIDT_Mouse && g_ChairImGui->m_ImGuiUsesMouse)
 	 	return;
 
 	if (pPreditorAPI && pPreditorAPI->HandleInputEventPreGame(event))

@@ -1,9 +1,14 @@
 #pragma once
 #include <Chairloader/IChairLogger.h>
 
+class LogManager;
+
 class ChairLogger : public IChairLogger
 {
 public:
+
+	ChairLogger(std::shared_ptr<LogManager> pLogManager);
+
 	// IChairLogger
 	void Log(EChairLogType type, const char* msg, size_t size) override;
     void OverlayLog(EChairLogType type, const char *msg, size_t size) override;
@@ -18,4 +23,5 @@ private:
 	static constexpr size_t PRINT_MSG_BUF_SIZE = 256;
 
 	std::string m_Name;
+	std::shared_ptr<LogManager> m_pLogManager;
 };
