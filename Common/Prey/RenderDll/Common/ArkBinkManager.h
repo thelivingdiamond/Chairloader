@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/ISystem.h>
@@ -69,7 +67,8 @@ public:
 	void SetPlayerInitialVolumes(ArkBinkPlayer *arg0);
 	ArkBinkPlayer *CreatePlayerInternal(const char *arg0, EArkBinkMovieType arg1, EArkBinkLoadFlags arg2);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FEF_UpdateTextureMovie = PreyFunction<void(ArkBinkManager *const _this, ArkBinkPlayer *_pPlayer)>(0xECD4E0);
 	static inline auto FUseTelemetry = PreyFunction<void(ArkBinkManager const *const _this, void *_pApi, unsigned _binkMask)>(0xA13080);
 	static inline auto FEF_Update = PreyFunction<void(ArkBinkManager *const _this, int *_nFullscreenMovieCount)>(0xECD150);
@@ -93,86 +92,7 @@ public:
 	static inline auto FOnSystemEvent = PreyFunction<void(ArkBinkManager *const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0xECDC60);
 	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle(ArkBinkManager *const _this, const char *_szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xECCBA0);
 	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager *const _this, ArkBinkPlayer *_pPlayer)>(0xECDD50);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CrySystem/ISystem.h>
-#include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
-#include <_unknown/CryLockT.h>
-#include <_unknown/IArkBinkManager.h>
-
-struct ArkBinkPlaybackInfo;
-class ArkBinkPlayer;
-class ArkBinkRenderer;
-class ArkBinkRendererCPU;
-struct BINK;
-enum class EArkBinkLoadFlags;
-enum class EArkBinkMovieType;
-enum ESystemEvent;
-struct ICVar;
-
-// ArkBinkManager
-// Header:  CryEngine/renderdll/common/ArkBinkManager.h
-class ArkBinkManager : public IArkBinkManager, public ISystemEventListener
-{ // Size=248 (0xF8)
-public:
-	// ArkBinkManager::SDeletionEntry
-	// Header:  CryEngine/renderdll/common/ArkBinkManager.h
-	struct SDeletionEntry
-	{ // Size=16 (0x10)
-		ArkBinkPlayer* pPlayer;
-		int nDelay;
-
-	#if 0
-		SDeletionEntry(ArkBinkPlayer* _arg0_, int _arg1_);
-	#endif
-	};
-
-	using PlayerMap = std::unordered_map<ArkBinkPlayerHandle, _smart_ptr<ArkBinkPlayer>>;
-
-	ArkBinkRendererCPU* m_pRendererCPU;
-	std::unordered_map<ArkBinkPlayerHandle, _smart_ptr<ArkBinkPlayer>> m_players;
-	std::vector<ArkBinkPlayer*> m_fullscreenPlayers;
-	std::vector<ArkBinkPlayer*> m_backgroundPlayers;
-	std::vector<ArkBinkPlayer*> m_playersToRender;
-	std::vector<ArkBinkManager::SDeletionEntry> m_deletionQueue;
-	unsigned m_threads[4];
-	int m_threadCount;
-	CryCriticalSection m_playersLock;
-
-	ArkBinkManager();
-	virtual ~ArkBinkManager();
-	void EF_UpdateTextureMovie(ArkBinkPlayer* _pPlayer) { FEF_UpdateTextureMovie(this, _pPlayer); }
-	virtual void UseTelemetry(void* _pApi, unsigned _binkMask) const;
-	virtual void EF_Update(int* _nFullscreenMovieCount);
-	virtual void EF_Render();
-	virtual ArkBinkPlayerHandle MT_LoadMovie(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags);
-	virtual void MT_ReleaseMovie(ArkBinkPlayerHandle _handle);
-	virtual bool MT_StartMovie(ArkBinkPlayerHandle _handle);
-	virtual bool MT_StopMovie(ArkBinkPlayerHandle _handle);
-	virtual bool MT_PauseMovie(ArkBinkPlayerHandle _handle, bool _bPaused);
-	virtual bool MT_IsMoviePlaying(ArkBinkPlayerHandle _handle) const;
-	virtual bool MT_GetMoviePlaybackInfo(ArkBinkPlayerHandle _handle, ArkBinkPlaybackInfo& _out_info) const;
-	virtual bool MT_IsFullScreenMoviePlaying() const;
-	virtual void MT_PauseMovies(const bool _bPause) const;
-	ArkBinkPlayer* RT_LoadMovie(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { return FRT_LoadMovie(this, _szPath, _instanceId, _type, _flags); }
-	void RT_RenderInternal(ArkBinkPlayer* _pPlayer, int _frame) { FRT_RenderInternal(this, _pPlayer, _frame); }
-	const ArkBinkPlayer* GetPlayer(ArkBinkPlayerHandle _handle) const { return FGetPlayerOv0(this, _handle); }
-	void DoFrameAsync(BINK* _hBink) { FDoFrameAsync(this, _hBink); }
-	ArkBinkRenderer* GetCurrentRenderer() { return FGetCurrentRenderer(this); }
-	static void OnAudioVolumeChange(ICVar* _pCVar, bool _bDialog) { FOnAudioVolumeChange(_pCVar, _bDialog); }
-	void UpdateAudioVolumes(unsigned _trackID, unsigned _volume) { FUpdateAudioVolumes(this, _trackID, _volume); }
-	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
-	ArkBinkPlayerHandle CreatePlayer(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { alignas(ArkBinkPlayerHandle) std::byte _return_buf_[sizeof(ArkBinkPlayerHandle)]; return *FCreatePlayer(this, reinterpret_cast<ArkBinkPlayerHandle*>(_return_buf_), _szPath, _instanceId, _type, _flags); }
-	void QueuePlayerDelete(ArkBinkPlayer* _pPlayer) { FQueuePlayerDelete(this, _pPlayer); }
-
-#if 0
-	ArkBinkPlayer* GetPlayer(ArkBinkPlayerHandle _arg0_);
-	void SetPlayerInitialVolumes(ArkBinkPlayer* _arg0_);
-	ArkBinkPlayer* CreatePlayerInternal(const char* _arg0_, EArkBinkMovieType _arg1_, EArkBinkLoadFlags _arg2_);
-#endif
-
+#else
 	static inline auto FArkBinkManager = PreyFunction<void(ArkBinkManager* const _this)>(0xEE8920);
 	static inline auto FEF_UpdateTextureMovie = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9750);
 	static inline auto FUseTelemetry = PreyFunction<void(const ArkBinkManager* const _this, void* _pApi, unsigned _binkMask)>(0x1333E90);
@@ -197,5 +117,6 @@ public:
 	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0xEE9ED0);
 	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle*(ArkBinkManager* const _this, ArkBinkPlayerHandle* _return_value_, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEE8D80);
 	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9FC0);
+#endif
+
 };
-#endif // !MOONCRASH

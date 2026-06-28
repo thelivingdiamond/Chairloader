@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef __RESFILELOOKUPDATAMAN_H__
@@ -122,6 +120,7 @@ public:
 	void chair_RemoveData(uint32 CRC);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC8BA0);
 	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9200);
 	static inline auto FFlush = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9240);
@@ -130,50 +129,7 @@ public:
 	static inline auto FSaveData = PreyFunction<void(CResFileLookupDataMan const* const _this, const char* acFilename)>(0xFC9700);
 	static inline auto FAddData = PreyFunction<void(CResFileLookupDataMan* const _this, CResFile const* pResFile, unsigned CRC)>(0xFC8C90);
 	static inline auto FGetData = PreyFunction<SResFileLookupData* (CResFileLookupDataMan* const _this, CCryNameTSCRC const& name)>(0xFC9270);
-};
-
-#endif //  __RESFILELOOKUPDATAMAN_H__
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/RenderDll/Common/CryNameR.h>
-#include <Prey/RenderDll/Common/ResFileLookupDataMan.h>
-
-class CResFile;
-
-// CResFileLookupDataMan
-// Header:  CryEngine/renderdll/common/ResFileLookupDataMan.h
-// Include: Prey/RenderDll/Common/ResFileLookupDataMan.h
-class CResFileLookupDataMan
-{ // Size=72 (0x48)
-public:
-	string m_Path;
-	SVersionInfo m_VersionInfo;
-	std::map<CCryNameTSCRC, SResFileLookupData> m_Data;
-	std::map<CCryNameTSCRC, SCFXLookupData> m_CFXData;
-	unsigned m_TotalDirStored;
-	uint8_t m_bDirty : 1;
-	uint8_t m_bReadOnly : 1;
-
-	CResFileLookupDataMan();
-	~CResFileLookupDataMan();
-	void Clear() { FClear(this); }
-	void Flush() { FFlush(this); }
-	CCryNameTSCRC AdjustName(const char* szName) { alignas(CCryNameTSCRC) std::byte _return_buf_[sizeof(CCryNameTSCRC)]; return *FAdjustName(this, reinterpret_cast<CCryNameTSCRC*>(_return_buf_), szName); }
-	bool LoadData(const char* acFilename, bool bReadOnly) { return FLoadData(this, acFilename, bReadOnly); }
-	void SaveData(const char* acFilename) const { FSaveData(this, acFilename); }
-	void AddData(const CResFile* pResFile, unsigned CRC) { FAddData(this, pResFile, CRC); }
-	SResFileLookupData* GetData(const CCryNameTSCRC& name) { return FGetData(this, name); }
-
-#if 0
-	int GetResVersion() const;
-	bool IsReadOnly();
-	void AddDataCFX(const char* _arg0_, unsigned _arg1_);
-	void RemoveData(unsigned _arg0_);
-	SCFXLookupData* GetDataCFX(const char* _arg0_);
-	void MarkDirty(bool _arg0_);
-#endif
-
+#else
 	static inline auto FCResFileLookupDataManOv1 = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE4F30);
 	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE4FD0);
 	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE5630);
@@ -183,5 +139,7 @@ public:
 	static inline auto FSaveData = PreyFunction<void(const CResFileLookupDataMan* const _this, const char* acFilename)>(0xFE5B30);
 	static inline auto FAddData = PreyFunction<void(CResFileLookupDataMan* const _this, const CResFile* pResFile, unsigned CRC)>(0xFE50C0);
 	static inline auto FGetData = PreyFunction<SResFileLookupData* (CResFileLookupDataMan* const _this, const CCryNameTSCRC& name)>(0xFE56A0);
+#endif
 };
-#endif // !MOONCRASH
+
+#endif //  __RESFILELOOKUPDATAMAN_H__

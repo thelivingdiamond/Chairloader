@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef __RESFILE_H__
@@ -282,6 +280,7 @@ public:
 	bool chair_mfIsDirStreaming() { return m_bDirStreaming; }
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFC53A0);
 	static inline auto FUnlink = PreyFunction<void(CResFile* const _this)>(0xFC4F20);
 	static inline auto FBitNotCResFile = PreyFunction<void(CResFile* const _this)>(0xFC4650);
@@ -313,141 +312,7 @@ public:
 
 	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x226FC90);
 	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2B31104);
-};
-
-// Get the sub-string starting at the last . in the string, or NULL if the string contains no dot
-// Note: The returned pointer refers to a location inside the provided string, no allocation is performed
-const char* fpGetExtension(const char* in);
-
-// Remove extension from string, including the .
-// If the string has no extension, the whole string will be copied into the buffer
-// Note: The out buffer must have space to store a copy of the in-string and a null-terminator
-void fpStripExtension(const char* in, char* out, size_t bytes);
-template<size_t bytes>
-void fpStripExtension(const char* in, char(&out)[bytes]) { fpStripExtension(in, out, bytes); }
-
-// Adds an extension to the path, if an extension is already present the function does nothing
-// The extension should include the .
-// Note: The path buffer must have enough unused space to store a copy of the extension string
-void fpAddExtension(char* path, const char* extension, size_t bytes);
-template<size_t bytes>
-void fpAddExtension(char(&path)[bytes], const char* extension) { fpAddExtension(path, extension, bytes); }
-
-#endif //  __RESFILE_H__
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CrySystem/IStreamEngine.h>
-#include <Prey/RenderDll/Common/ResFile.h>
-
-class CCryNameTSCRC;
-class CResFileLookupDataMan;
-class ICrySizer;
-class IReadStream;
-struct SResFileLookupData;
-struct SResStreamInfo;
-
-// CResFile
-// Header:  CryEngine/renderdll/common/ResFile.h
-// Include: Prey/RenderDll/Common/ResFile.h
-class CResFile
-{ // Size=208 (0xD0)
-public:
-	string m_name;
-	char* m_szAccess;
-	_iobuf* m_handle;
-	std::vector<SDirEntry> m_Dir;
-	std::vector<SDirEntryRef> m_DirRef;
-	std::vector<SDirEntryOpen> m_DirOpen;
-	uint8_t* m_pCompressedDir;
-	int m_typeaccess;
-	unsigned m_nNumFilesUnique;
-	unsigned m_nNumFilesRef;
-	unsigned m_nOffsDir;
-	unsigned m_nComprDirSize;
-	int m_nOffset;
-	uint8_t m_bDirty : 1;
-	uint8_t m_bDirValid : 1;
-	uint8_t m_bDirStreaming : 1;
-	uint8_t m_bDirCompressed : 1;
-	uint8_t m_bActive : 1;
-	unsigned m_nLastTickStreamed;
-	string m_ermes;
-	int m_version;
-	SResStreamInfo* m_pStreamInfo;
-	const SResFileLookupData* m_pLookupData;
-	CResFileLookupDataMan* m_pLookupDataMan;
-	static inline auto m_Root = PreyGlobal<CResFile>(0x23DCCA0);
-	static inline auto m_RootStream = PreyGlobal<CResFile>(0x23DCD70);
-	static inline auto m_nSizeComprDir = PreyGlobal<unsigned>(0x2CA0360);
-	CResFile* m_Next;
-	CResFile* m_Prev;
-	CResFile* m_NextStream;
-	CResFile* m_PrevStream;
-	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x23DCC90);
-	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2CA0364);
-
-	bool mfActivate(bool bFirstTime) { return FmfActivate(this, bFirstTime); }
-	void Unlink() { FUnlink(this); }
-	CResFile(const char* name);
-	~CResFile();
-	SResFileLookupData* GetLookupData(bool bCreate, unsigned CRC, float fVersion) const { return FGetLookupData(this, bCreate, CRC, fVersion); }
-	const char* mfGetError() { return FmfGetError(this); }
-	void mfSetError(const char* er, ... buffer) { FmfSetError(this, er, buffer); }
-	void mfDeactivate(bool bReleaseDir) { FmfDeactivate(this, bReleaseDir); }
-	void mfTickStreaming() { FmfTickStreaming(this); }
-	int mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo) { return FmfOpen(this, type, pMan, pStreamInfo); }
-	bool mfClose() { return FmfClose(this); }
-	int mfFlush(bool bOptimise) { return FmfFlush(this, bOptimise); }
-	int mfFlushDir(long nOffset, bool bOptimise) { return FmfFlushDir(this, nOffset, bOptimise); }
-	bool mfPrepareDir() { return FmfPrepareDir(this); }
-	int mfLoadDir(SResStreamInfo* pStreamInfo) { return FmfLoadDir(this, pStreamInfo); }
-	void mfReleaseDir() { FmfReleaseDir(this); }
-	uint8_t* mfFileReadCompressed(SDirEntry* de, unsigned& nSizeDecomp, unsigned& nSizeComp) { return FmfFileReadCompressed(this, de, nSizeDecomp, nSizeComp); }
-	int mfFileRead(SDirEntry* de) { return FmfFileReadOv2(this, de); }
-	void* mfFileGetBuf(SDirEntry* de) { return FmfFileGetBufOv1(this, de); }
-	int mfFileAdd(SDirEntry* de) { return FmfFileAdd(this, de); }
-	bool mfFileExist(const char* name) { return FmfFileExistOv0(this, name); }
-	int mfFileClose(SDirEntry* de) { return FmfFileClose(this, de); }
-	bool mfCloseEntry(SDirEntry* de, bool bEraseOpenEntry) { return FmfCloseEntry(this, de, bEraseOpenEntry); }
-	SDirEntryOpen* mfOpenEntry(SDirEntry* de) { return FmfOpenEntry(this, de); }
-	SDirEntryOpen* mfGetOpenEntry(SDirEntry* de) { return FmfGetOpenEntry(this, de); }
-	SDirEntry* mfGetEntry(CCryNameTSCRC name, bool* pAsync) { return FmfGetEntry(this, name, pAsync); }
-	std::vector<SDirEntry>* mfGetDirectory() { return FmfGetDirectory(this); }
-	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
-	static void Tick() { FTick(); }
-
-#if 0
-	void Relink(CResFile* _arg0_);
-	void Link(CResFile* _arg0_);
-	void UnlinkStream();
-	void LinkStream(CResFile* _arg0_);
-	CResFileLookupDataMan* GetLookupMan() const;
-	const char* mfGetFileName() const;
-	int mfGetVersion();
-	int mfGetNumFiles();
-	int mfFileRead(const char* _arg0_);
-	int mfFileRead(CCryNameTSCRC _arg0_);
-	int mfFileWrite(CCryNameTSCRC _arg0_, void* _arg1_);
-	void mfFileRead2(SDirEntry* _arg0_, int _arg1_, void* _arg2_);
-	void mfFileRead2(CCryNameTSCRC _arg0_, int _arg1_, void* _arg2_);
-	void* mfFileGetBuf(CCryNameTSCRC _arg0_);
-	int mfFileSeek(SDirEntry* _arg0_, int _arg1_, int _arg2_);
-	int mfFileSeek(CCryNameTSCRC _arg0_, int _arg1_, int _arg2_);
-	int mfFileSeek(char* _arg0_, int _arg1_, int _arg2_);
-	int mfFileLength(SDirEntry* _arg0_);
-	int mfFileLength(CCryNameTSCRC _arg0_);
-	int mfFileLength(char* _arg0_);
-	bool mfIsDirty();
-	bool mfIsDirStreaming();
-	bool mfFileExist(CCryNameTSCRC _arg0_);
-	_iobuf* mfGetHandle();
-	int mfGetResourceSize();
-	uint64_t mfGetModifTime();
-	int Size();
-	static bool IsStreaming();
-#endif
-
+#else
 	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFE17D0);
 	static inline auto FUnlink = PreyFunction<void(CResFile* const _this)>(0xFE13D0);
 	static inline auto FCResFileOv1 = PreyFunction<void(CResFile* const _this, const char* name)>(0xFE0800);
@@ -477,31 +342,28 @@ public:
 	static inline auto FmfGetDirectory = PreyFunction<std::vector<SDirEntry>* (CResFile* const _this)>(0x1369170);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CResFile* const _this, ICrySizer* pSizer)>(0xFE0DB0);
 	static inline auto FTick = PreyFunction<void()>(0xFE1280);
+
+	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x23DCC90);
+	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2CA0364);
+#endif
 };
 
-// CResStreamCallback
-// Header:  CryEngine/renderdll/common/ResFile.h
-// Include: Prey/RenderDll/Common/Shaders/ShaderCache.h
-class CResStreamCallback : public IStreamCallback
-{ // Size=8 (0x8)
-public:
-	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
-	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
+// Get the sub-string starting at the last . in the string, or NULL if the string contains no dot
+// Note: The returned pointer refers to a location inside the provided string, no allocation is performed
+const char* fpGetExtension(const char* in);
 
-	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE1020);
-	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE0EA0);
-};
+// Remove extension from string, including the .
+// If the string has no extension, the whole string will be copied into the buffer
+// Note: The out buffer must have space to store a copy of the in-string and a null-terminator
+void fpStripExtension(const char* in, char* out, size_t bytes);
+template<size_t bytes>
+void fpStripExtension(const char* in, char(&out)[bytes]) { fpStripExtension(in, out, bytes); }
 
-// CResStreamDirCallback
-// Header:  CryEngine/renderdll/common/ResFile.h
-// Include: Prey/RenderDll/Common/Shaders/ShaderCache.h
-class CResStreamDirCallback : public IStreamCallback
-{ // Size=8 (0x8)
-public:
-	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
-	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
+// Adds an extension to the path, if an extension is already present the function does nothing
+// The extension should include the .
+// Note: The path buffer must have enough unused space to store a copy of the extension string
+void fpAddExtension(char* path, const char* extension, size_t bytes);
+template<size_t bytes>
+void fpAddExtension(char(&path)[bytes], const char* extension) { fpAddExtension(path, extension, bytes); }
 
-	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE1130);
-	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0x1333E90);
-};
-#endif // !MOONCRASH
+#endif //  __RESFILE_H__

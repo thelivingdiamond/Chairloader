@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -362,6 +360,7 @@ struct CRY_ALIGN(128) SRenderThread
 	void RC_PushSkinningPoolId(unsigned poolId) { FRC_PushSkinningPoolId(this, poolId); }
 	void RC_ReleaseRemappedBoneIndices(IRenderMesh* pRenderMesh, unsigned guid) { FRC_ReleaseRemappedBoneIndices(this, pRenderMesh, guid); }
 
+#ifndef MOONCRASH
 	static inline auto FBitNotSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFBCE60);
 	static inline auto FGetLocalThreadCommandBufferId = PreyFunction<int()>(0xFBD0B0);
 	static inline auto FStartRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFC2DB0);
@@ -454,358 +453,7 @@ struct CRY_ALIGN(128) SRenderThread
 	static inline auto FRC_RenderDebug = PreyFunction<void(SRenderThread* const _this, bool bRenderStats)>(0xFC1BE0);
 	static inline auto FRC_PushSkinningPoolId = PreyFunction<void(SRenderThread* const _this, unsigned poolId)>(0xFC12B0);
 	static inline auto FRC_ReleaseRemappedBoneIndices = PreyFunction<void(SRenderThread* const _this, IRenderMesh* pRenderMesh, unsigned guid)>(0xFC1840);
-};
-
-static_assert(sizeof(SRenderThread) == 256);
-
-inline threadID SRenderThread::GetCurrentThreadId(bool bAlwaysCheck) const
-{
-#ifdef STRIP_RENDER_THREAD
-	return m_nRenderThread;
 #else
-	if (!bAlwaysCheck && m_nRenderThread == m_nMainThread)
-		return m_nRenderThread;
-	return ::GetCurrentThreadId();
-#endif
-}
-
-inline int SRenderThread::GetThreadList() const
-{
-#ifdef STRIP_RENDER_THREAD
-	return m_nCurThreadFill;
-#else
-	if (IsRenderThread()) return m_nCurThreadProcess;
-
-	return m_nCurThreadFill;
-#endif
-}
-
-inline bool SRenderThread::IsRenderThread(bool bAlwaysCheck) const
-{
-#ifdef STRIP_RENDER_THREAD
-	return true;
-#else
-	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
-	if (d == m_nRenderThreadLoading || d == m_nRenderThread)
-		return true;
-	return false;
-#endif
-}
-
-inline bool SRenderThread::IsRenderLoadingThread(bool bAlwaysCheck)
-{
-#ifdef STRIP_RENDER_THREAD
-	return false;
-#else
-	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
-	if (d == m_nRenderThreadLoading)
-		return true;
-	return false;
-#endif
-}
-
-inline bool SRenderThread::IsMainThread(bool bAlwaysCheck) const
-{
-#ifdef STRIP_RENDER_THREAD
-	return false;
-#else
-	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
-	if (d == m_nMainThread)
-		return true;
-	return false;
-#endif
-}
-
-inline bool SRenderThread::IsMultithreaded()
-{
-#ifdef STRIP_RENDER_THREAD
-	return false;
-#else
-	return m_pThread != NULL;
-#endif
-}
-
-inline int SRenderThread::CurThreadFill() const
-{
-#ifdef STRIP_RENDER_THREAD
-	return 0;
-#else
-	return m_nCurThreadFill;
-#endif
-}
-
-#ifdef STRIP_RENDER_THREAD
-inline void SRenderThread::FlushAndWait()
-{
-	return;
-}
-#endif
-
-#endif  // __RENDERTHREAD_H__
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/tarray.h>
-#include <Prey/CryMath/Cry_Color.h>
-#include <Prey/CryThreading/CryThread_win32.h>
-#include <_unknown/CryLockT.h>
-#include <_unknown/CrySimpleThread.h>
-
-class ArkBinkPlayer;
-class CBaseResource;
-class CREOcclusionQuery;
-class CRendElementBase;
-class CRenderMesh;
-class CRenderObject;
-class CRenderView;
-class CShader;
-class CShaderResources;
-class CTexture;
-enum ERenderCommand;
-enum EShaderQuality;
-enum EShaderType;
-enum ETEX_Format;
-struct HWND__;
-struct ICVar;
-struct IColorGradingControllerInt;
-class ICrySizer;
-struct IFFont_RenderProxy;
-struct IFlashPlayer_RenderProxy;
-struct ILoadtimeCallback;
-struct IMaterial;
-struct IRenderAuxGeomImpl;
-struct IRenderMesh;
-struct IRenderNode;
-struct IShader;
-class ITexture;
-enum class PublicRenderPrimitiveType;
-struct SAuxGeomCBRawDataPackaged;
-struct SColorChartLayer;
-struct SDepthTexture;
-struct SDynTexture;
-struct SRenderingPassInfo;
-struct SResourceAsync;
-struct SShaderItem;
-struct STextDrawContext;
-struct SThreadInfo;
-struct SVF_P3F_C4B_T2F;
-
-// CRenderThread
-// Header:  CryEngine/renderdll/common/RenderThread.h
-// Include: Prey/RenderDll/Common/RenderThread.h
-struct CRenderThread : public CrySimpleThread<CryRunnable>
-{ // Size=72 (0x48)
-	int m_nCPU;
-	CryEvent m_started;
-
-	virtual ~CRenderThread();
-	virtual void Run();
-
-#if 0
-	CRenderThread(int _arg0_);
-#endif
-
-	static inline auto FRun = PreyFunction<void(CRenderThread* const _this)>(0xFDEFE0);
-};
-
-// CRenderThreadLoading
-// Header:  CryEngine/renderdll/common/RenderThread.h
-// Include: Prey/RenderDll/Common/RenderThread.h
-struct CRenderThreadLoading : public CRenderThread
-{ // Size=72 (0x48)
-	virtual void Run();
-
-#if 0
-	CRenderThreadLoading(int _arg0_);
-#endif
-
-	static inline auto FRun = PreyFunction<void(CRenderThreadLoading* const _this)>(0xFDF090);
-};
-
-// SRenderThread
-// Header:  CryEngine/renderdll/common/RenderThread.h
-// Include: Prey/RenderDll/Common/RenderThread.h
-struct SRenderThread
-{ // Size=256 (0x100)
-	enum EVideoThreadMode
-	{
-		eVTM_Disabled = 0,
-		eVTM_RequestStart = 1,
-		eVTM_Active = 2,
-		eVTM_RequestStop = 3,
-		eVTM_ProcessingStop = 4,
-	};
-
-	CRenderThread* m_pThread;
-	CRenderThreadLoading* m_pThreadLoading;
-	ILoadtimeCallback* m_pLoadtimeCallback;
-	CryCriticalSection m_rdldLock;
-	bool m_bQuit;
-	bool m_bQuitLoading;
-	bool m_bSuccessful;
-	bool m_bBeginFrameCalled;
-	bool m_bEndFrameCalled;
-	int m_nCurThreadProcess;
-	int m_nCurThreadFill;
-	volatile int m_nFlush;
-	unsigned long m_nRenderThread;
-	unsigned long m_nRenderThreadLoading;
-	unsigned long m_nMainThread;
-	HRESULT m_hResult;
-	float m_fTimeIdleDuringLoading;
-	float m_fTimeBusyDuringLoading;
-	TArray<unsigned char> m_Commands[2];
-	TArray<unsigned char> m_CommandsLoading;
-	static inline auto s_rcLock = PreyGlobal<CryCriticalSection>(0x2CA0338);
-	SRenderThread::EVideoThreadMode m_eVideoThreadMode;
-
-	SRenderThread();
-	~SRenderThread();
-	static int GetLocalThreadCommandBufferId() { return FGetLocalThreadCommandBufferId(); }
-	void StartRenderThread() { FStartRenderThread(this); }
-	void SwitchMode(bool bEnableVideo) { FSwitchMode(this, bEnableVideo); }
-	void QuitRenderLoadingThread() { FQuitRenderLoadingThread(this); }
-	void SyncMainWithRender() { FSyncMainWithRender(this); }
-	void FlushAndWait() { FFlushAndWait(this); }
-	void ProcessCommands() { FProcessCommands(this); }
-	void Process() { FProcess(this); }
-	int GetThreadList() const { return FGetThreadList(this); }
-	void RC_Init() { FRC_Init(this); }
-	void RC_ShutDown(unsigned nFlags) { FRC_ShutDown(this, nFlags); }
-	bool RC_CreateDevice() { return FRC_CreateDevice(this); }
-	void RC_ResetDevice() { FRC_ResetDevice(this); }
-	void RC_SuspendDevice() { FRC_SuspendDevice(this); }
-	void RC_ResumeDevice() { FRC_ResumeDevice(this); }
-	void RC_PreloadTextures() { FRC_PreloadTextures(this); }
-	bool RC_CreateDeviceTexture(CTexture* pTex, uint8_t* * pData) { return FRC_CreateDeviceTexture(this, pTex, pData); }
-	void RC_ClearTarget(void* pkVoid, const ColorF& kColor) { FRC_ClearTarget(this, pkVoid, kColor); }
-	void RC_CreateResource(SResourceAsync* pRes) { FRC_CreateResource(this, pRes); }
-	void RC_ReleaseRenderResources(unsigned nFlags) { FRC_ReleaseRenderResources(this, nFlags); }
-	void RC_PrecacheDefaultShaders() { FRC_PrecacheDefaultShaders(this); }
-	void RC_UnbindResources() { FRC_UnbindResources(this); }
-	void RC_UnbindTMUs() { FRC_UnbindTMUs(this); }
-	void RC_CreateRenderResources() { FRC_CreateRenderResources(this); }
-	void RC_CreateSystemTargets() { FRC_CreateSystemTargets(this); }
-	void RC_ReleaseShaderResource(CShaderResources* pRes) { FRC_ReleaseShaderResource(this, pRes); }
-	void RC_ReleaseBaseResource(CBaseResource* pRes) { FRC_ReleaseBaseResource(this, pRes); }
-	void RC_ReleaseSurfaceResource(SDepthTexture* pRes) { FRC_ReleaseSurfaceResource(this, pRes); }
-	void RC_ReleaseResource(SResourceAsync* pRes) { FRC_ReleaseResource(this, pRes); }
-	void RC_RelinkTexture(CTexture* pTex) { FRC_RelinkTexture(this, pTex); }
-	void RC_UnlinkTexture(CTexture* pTex) { FRC_UnlinkTexture(this, pTex); }
-	bool RC_CheckUpdate2(CRenderMesh* pMesh, CRenderMesh* pVContainer, unsigned nStreamMask) { return FRC_CheckUpdate2(this, pMesh, pVContainer, nStreamMask); }
-	void RC_ReleaseCB(void* pCB) { FRC_ReleaseCB(this, pCB); }
-	void RC_ReleaseRS(std::shared_ptr<CDeviceResourceSet>& pRS) { FRC_ReleaseRS(this, pRS); }
-	void RC_DrawDynVB(SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, int nVerts, int nInds, const PublicRenderPrimitiveType nPrimType) { FRC_DrawDynVB(this, pBuf, pInds, nVerts, nInds, nPrimType); }
-	void RC_Draw2dImage(float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z) { FRC_Draw2dImage(this, xpos, ypos, w, h, pTexture, s0, t0, s1, t1, angle, r, g, b, a, z); }
-	void RC_Draw2dImageStretchMode(bool bStretch) { FRC_Draw2dImageStretchMode(this, bStretch); }
-	void RC_Push2dImage(float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z) { FRC_Push2dImage(this, xpos, ypos, w, h, pTexture, s0, t0, s1, t1, angle, r, g, b, a, z); }
-	void RC_Draw2dImageList() { FRC_Draw2dImageList(this); }
-	void RC_DrawImageWithUV(float xpos, float ypos, float z, float w, float h, int textureid, float* s, float* t, float r, float g, float b, float a, bool filtered) { FRC_DrawImageWithUV(this, xpos, ypos, z, w, h, textureid, s, t, r, g, b, a, filtered); }
-	void RC_UpdateTextureRegion(CTexture* pTex, uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc) { FRC_UpdateTextureRegion(this, pTex, data, nX, nY, nZ, USize, VSize, ZSize, eTFSrc); }
-	void RC_SetState(int State, int AlphaRef) { FRC_SetState(this, State, AlphaRef); }
-	void RC_PushWireframeMode(int nMode) { FRC_PushWireframeMode(this, nMode); }
-	void RC_PopWireframeMode() { FRC_PopWireframeMode(this); }
-	void RC_SetCull(int nMode) { FRC_SetCull(this, nMode); }
-	void RC_SetScissor(bool bEnable, int sX, int sY, int sWdt, int sHgt) { FRC_SetScissor(this, bEnable, sX, sY, sWdt, sHgt); }
-	void RC_PushProfileMarker(char* label) { FRC_PushProfileMarker(this, label); }
-	void RC_PopProfileMarker(char* label) { FRC_PopProfileMarker(this, label); }
-	void RC_DrawLines(Vec3* v, int nump, ColorF& col, int flags, float fGround) { FRC_DrawLines(this, v, nump, col, flags, fGround); }
-	void RC_DrawStringW(IFFont_RenderProxy* pFont, float x, float y, float z, const wchar_t* pStr, const bool asciiMultiLine, const STextDrawContext& ctx) { FRC_DrawStringW(this, pFont, x, y, z, pStr, asciiMultiLine, ctx); }
-	void RC_DisableStreamingForTexture(CTexture* _pTex) { FRC_DisableStreamingForTexture(this, _pTex); }
-	void RC_ReleaseDeviceTexture(CTexture* pTexture) { FRC_ReleaseDeviceTexture(this, pTexture); }
-	void RC_PrecacheResource(ITexture* pTP, float fMipFactor, float fTimeToReady, int Flags, int nUpdateId, int nCounter) { FRC_PrecacheResource(this, pTP, fMipFactor, fTimeToReady, Flags, nUpdateId, nCounter); }
-	void RC_ClearTargetsImmediately(int8_t nType, unsigned nFlags, const ColorF& vColor, float depth) { FRC_ClearTargetsImmediately(this, nType, nFlags, vColor, depth); }
-	void RC_FlushTextMessages() { FRC_FlushTextMessages(this); }
-	void RC_FlushTextureStreaming(bool bAbort) { FRC_FlushTextureStreaming(this, bAbort); }
-	void RC_ForceTrimTextureStreaming() { FRC_ForceTrimTextureStreaming(this); }
-	void RC_ReleaseSystemTextures() { FRC_ReleaseSystemTextures(this); }
-	void RC_FlashRender(IFlashPlayer_RenderProxy* pPlayer) { FRC_FlashRender(this, pPlayer); }
-	void RC_FlashRenderPlaybackLockless(IFlashPlayer_RenderProxy* pPlayer, int cbIdx, bool finalPlayback) { FRC_FlashRenderPlaybackLockless(this, pPlayer, cbIdx, finalPlayback); }
-	void RC_BinkRender(ArkBinkPlayer* _pPlayer, int _frame) { FRC_BinkRender(this, _pPlayer, _frame); }
-	void RC_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRC_ParseShader(this, pSH, nMaskGen, flags, pRes); }
-	void RC_SetShaderQuality(EShaderType eST, EShaderQuality eSQ) { FRC_SetShaderQuality(this, eST, eSQ); }
-	void RC_UpdateShaderItem(SShaderItem* pShaderItem, IMaterial* pMaterial) { FRC_UpdateShaderItem(this, pShaderItem, pMaterial); }
-	void RC_RefreshShaderResourceConstants(SShaderItem* pShaderItem, IMaterial* pMaterial) { FRC_RefreshShaderResourceConstants(this, pShaderItem, pMaterial); }
-	void RC_SetCamera() { FRC_SetCamera(this); }
-	void RC_RenderScene(CRenderView* pRenderView, int nFlags, void (*pRenderFunc)()) { FRC_RenderScene(this, pRenderView, nFlags, pRenderFunc); }
-	void RC_BeginFrame() { FRC_BeginFrame(this); }
-	void RC_EndFrame(bool bWait) { FRC_EndFrame(this, bWait); }
-	void RC_TryFlush() { FRC_TryFlush(this); }
-	bool RC_DynTexUpdate(SDynTexture* pTex, int nNewWidth, int nNewHeight) { return FRC_DynTexUpdate(this, pTex, nNewWidth, nNewHeight); }
-	void RC_SwitchToNativeResolutionBackbuffer() { FRC_SwitchToNativeResolutionBackbuffer(this); }
-	void RC_StartVideoThread() { FRC_StartVideoThread(this); }
-	void RC_StopVideoThread() { FRC_StopVideoThread(this); }
-	void RC_PrecacheTick() { FRC_PrecacheTick(this); }
-	void RC_PostLoadLevel() { FRC_PostLoadLevel(this); }
-	void RC_EntityDelete(IRenderNode* pRenderNode) { FRC_EntityDelete(this, pRenderNode); }
-	void RC_UpdateMaterialConstants(CShaderResources* pSR, IShader* pSH) { FRC_UpdateMaterialConstants(this, pSR, pSH); }
-	bool RC_OC_ReadResult_Try(unsigned nDefaultNumSamples, CREOcclusionQuery* pRE) { return FRC_OC_ReadResult_Try(this, nDefaultNumSamples, pRE); }
-	void RC_SetViewport(int x, int y, int width, int height, int id) { FRC_SetViewport(this, x, y, width, height, id); }
-	void RC_ForceMeshGC(bool instant, bool wait) { FRC_ForceMeshGC(this, instant, wait); }
-	void RC_DevBufferSync() { FRC_DevBufferSync(this); }
-	void RC_ReleasePostEffects() { FRC_ReleasePostEffects(this); }
-	void RC_ReleaseGraphicsPipeline() { FRC_ReleaseGraphicsPipeline(this); }
-	void RC_ResetPostEffects(bool bOnSpecChange) { FRC_ResetPostEffects(this, bOnSpecChange); }
-	void RC_DisableTemporalEffects() { FRC_DisableTemporalEffects(this); }
-	void RC_ResetToDefault() { FRC_ResetToDefault(this); }
-	void RC_CGCSetLayers(IColorGradingControllerInt* pController, const SColorChartLayer* pLayers, unsigned numLayers) { FRC_CGCSetLayers(this, pController, pLayers, numLayers); }
-	void RC_SetRendererCVar(ICVar* pCVar, const char* pArgText, const bool bSilentMode) { FRC_SetRendererCVar(this, pCVar, pArgText, bSilentMode); }
-	void RC_RenderDebug(bool bRenderStats) { FRC_RenderDebug(this, bRenderStats); }
-	void RC_PushSkinningPoolId(unsigned poolId) { FRC_PushSkinningPoolId(this, poolId); }
-	void RC_ReleaseRemappedBoneIndices(IRenderMesh* pRenderMesh, unsigned guid) { FRC_ReleaseRemappedBoneIndices(this, pRenderMesh, guid); }
-
-#if 0
-	void SignalFlushFinishedCond();
-	void SignalFlushCond();
-	void SignalQuitCond();
-	void WaitFlushCond();
-	HWND__* GetRenderWindowHandle();
-	void WaitFlushFinishedCond();
-	void InitFlushCond();
-	bool CheckFlushCond();
-	void StartRenderLoadingThread();
-	bool IsFailed();
-	void ValidateThreadAccess(ERenderCommand _arg0_);
-	uint64_t Align4(uint64_t _arg0_);
-	uint8_t* AddCommandTo(ERenderCommand _arg0_, uint64_t _arg1_, TArray<unsigned char>& _arg2_);
-	void EndCommandTo(uint8_t* _arg0_, TArray<unsigned char>& _arg1_);
-	uint8_t* AddCommand(ERenderCommand _arg0_, uint64_t _arg1_);
-	void EndCommand(uint8_t* _arg0_);
-	void AddDWORD(uint8_t* & _arg0_, unsigned _arg1_);
-	void AddDWORD64(uint8_t* & _arg0_, uint64_t _arg1_);
-	void AddTI(uint8_t* & _arg0_, SThreadInfo& _arg1_);
-	void AddRenderingPassInfo(uint8_t* & _arg0_, const SRenderingPassInfo* _arg1_);
-	void AddFloat(uint8_t* & _arg0_, const float _arg1_);
-	void AddVec3(uint8_t* & _arg0_, const Vec3& _arg1_);
-	void AddColor(uint8_t* & _arg0_, const ColorF& _arg1_);
-	void AddColorB(uint8_t* & _arg0_, const ColorB& _arg1_);
-	void AddPointer(uint8_t* & _arg0_, const void* _arg1_);
-	void AddData(uint8_t* & _arg0_, const void* _arg1_, int _arg2_);
-	void AddText(uint8_t* & _arg0_, const char* _arg1_);
-	void AddText(uint8_t* & _arg0_, const wchar_t* _arg1_);
-	uint64_t TextCommandSize(const char* _arg0_);
-	uint64_t TextCommandSize(const wchar_t* _arg0_);
-	unsigned long GetCurrentThreadId(bool _arg0_) const;
-	void Init(int _arg0_);
-	void QuitRenderThread();
-	void ProcessLoading();
-	bool IsRenderThread(bool _arg0_) const;
-	bool IsRenderLoadingThread(bool _arg0_);
-	bool IsRenderThreadWhileLoading(bool _arg0_);
-	bool IsMainThread(bool _arg0_) const;
-	bool IsMultithreaded();
-	int CurThreadFill() const;
-	void RC_CopyDataToTexture(void* _arg0_, unsigned _arg1_, unsigned _arg2_);
-	void RC_FreeObject(CRenderObject* _arg0_);
-	void RC_CreateREPostProcess(CRendElementBase* * _arg0_);
-	void RC_ReleaseVB(uint64_t _arg0_);
-	void RC_ReleaseIB(uint64_t _arg0_);
-	void RC_AuxFlush(IRenderAuxGeomImpl* _arg0_, SAuxGeomCBRawDataPackaged& _arg1_, uint64_t _arg2_, uint64_t _arg3_, bool _arg4_);
-	void RT_StartVideoThread();
-	void RT_StopVideoThread();
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-#endif
-
 	static inline auto FSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFD9040);
 	static inline auto FBitNotSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFD9280);
 	static inline auto FGetLocalThreadCommandBufferId = PreyFunction<int()>(0xFD94D0);
@@ -900,5 +548,92 @@ struct SRenderThread
 	static inline auto FRC_RenderDebug = PreyFunction<void(SRenderThread* const _this, bool bRenderStats)>(0xFDE080);
 	static inline auto FRC_PushSkinningPoolId = PreyFunction<void(SRenderThread* const _this, unsigned poolId)>(0xFDD750);
 	static inline auto FRC_ReleaseRemappedBoneIndices = PreyFunction<void(SRenderThread* const _this, IRenderMesh* pRenderMesh, unsigned guid)>(0xFDDCE0);
+#endif
 };
-#endif // !MOONCRASH
+
+static_assert(sizeof(SRenderThread) == 256);
+
+inline threadID SRenderThread::GetCurrentThreadId(bool bAlwaysCheck) const
+{
+#ifdef STRIP_RENDER_THREAD
+	return m_nRenderThread;
+#else
+	if (!bAlwaysCheck && m_nRenderThread == m_nMainThread)
+		return m_nRenderThread;
+	return ::GetCurrentThreadId();
+#endif
+}
+
+inline int SRenderThread::GetThreadList() const
+{
+#ifdef STRIP_RENDER_THREAD
+	return m_nCurThreadFill;
+#else
+	if (IsRenderThread()) return m_nCurThreadProcess;
+
+	return m_nCurThreadFill;
+#endif
+}
+
+inline bool SRenderThread::IsRenderThread(bool bAlwaysCheck) const
+{
+#ifdef STRIP_RENDER_THREAD
+	return true;
+#else
+	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
+	if (d == m_nRenderThreadLoading || d == m_nRenderThread)
+		return true;
+	return false;
+#endif
+}
+
+inline bool SRenderThread::IsRenderLoadingThread(bool bAlwaysCheck)
+{
+#ifdef STRIP_RENDER_THREAD
+	return false;
+#else
+	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
+	if (d == m_nRenderThreadLoading)
+		return true;
+	return false;
+#endif
+}
+
+inline bool SRenderThread::IsMainThread(bool bAlwaysCheck) const
+{
+#ifdef STRIP_RENDER_THREAD
+	return false;
+#else
+	threadID d = this->GetCurrentThreadId(bAlwaysCheck);
+	if (d == m_nMainThread)
+		return true;
+	return false;
+#endif
+}
+
+inline bool SRenderThread::IsMultithreaded()
+{
+#ifdef STRIP_RENDER_THREAD
+	return false;
+#else
+	return m_pThread != NULL;
+#endif
+}
+
+inline int SRenderThread::CurThreadFill() const
+{
+#ifdef STRIP_RENDER_THREAD
+	return 0;
+#else
+	return m_nCurThreadFill;
+#endif
+}
+
+#ifdef STRIP_RENDER_THREAD
+inline void SRenderThread::FlushAndWait()
+{
+	return;
+}
+#endif
+
+#endif  // __RENDERTHREAD_H__

@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef SHADERALLOCATOR_H
@@ -13,7 +11,10 @@
 typedef cry_crt_node_allocator ShaderBucketAllocator;
 
 extern ShaderBucketAllocator g_shaderBucketAllocator;
+//TODO: handle this in mooncrash
+#ifndef MOONCRASH
 inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2BA5FE8);
+#endif
 
 template<class T>
 class STLShaderAllocator : public stl::SAllocatorConstruct
@@ -115,60 +116,3 @@ public:
 };
 
 #endif
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-// WARNING: Contains templates
-#pragma once
-#include <_unknown/STLShaderAllocator.h>
-
-class ICrySizer;
-struct SParamCacheInfo;
-
-// STLShaderAllocator<SParamCacheInfo>
-// Header:  CryEngine/renderdll/common/shaders/shaderallocator.h
-class STLShaderAllocator<SParamCacheInfo> : public stl::SAllocatorConstruct
-{ // Size=1 (0x1)
-public:
-	// STLShaderAllocator<SParamCacheInfo>::rebind<struct SParamCacheInfo>
-	// Header:  CryEngine/renderdll/common/shaders/shaderallocator.h
-	struct rebind<struct SParamCacheInfo>
-	{ // Size=1 (0x1)
-		using other = STLShaderAllocator<SParamCacheInfo>;
-	};
-
-	// STLShaderAllocator<SParamCacheInfo>::rebind<struct std::_Container_proxy>
-	// Header:  CryEngine/renderdll/common/shaders/shaderallocator.h
-	struct rebind<struct std::_Container_proxy>
-	{ // Size=1 (0x1)
-		using other = STLShaderAllocator<std::_Container_proxy>;
-	};
-
-	using size_type = uint64_t;
-	using difference_type = int64_t;
-	using pointer = SParamCacheInfo*;
-	using const_pointer = const SParamCacheInfo*;
-	using reference = SParamCacheInfo&;
-	using const_reference = const SParamCacheInfo&;
-	using value_type = SParamCacheInfo;
-
-	void deallocate(SParamCacheInfo* p, uint64_t n) { Fdeallocate(this, p, n); }
-
-#if 0
-	STLShaderAllocator<SParamCacheInfo>();
-	STLShaderAllocator<SParamCacheInfo>(const STLShaderAllocator<SParamCacheInfo>& _arg0_);
-	SParamCacheInfo* address(SParamCacheInfo& _arg0_) const;
-	const SParamCacheInfo* address(const SParamCacheInfo& _arg0_) const;
-	SParamCacheInfo* allocate(uint64_t _arg0_, const void* _arg1_);
-	uint64_t max_size() const;
-	void destroy(SParamCacheInfo* _arg0_);
-	SParamCacheInfo* new_pointer();
-	SParamCacheInfo* new_pointer(const SParamCacheInfo& _arg0_);
-	void delete_pointer(SParamCacheInfo* _arg0_);
-	bool operator==(const STLShaderAllocator<SParamCacheInfo>& _arg0_);
-	bool operator!=(const STLShaderAllocator<SParamCacheInfo>& _arg0_);
-	static void GetMemoryUsage(ICrySizer* _arg0_);
-#endif
-
-	static inline auto Fdeallocate = PreyFunction<void(STLShaderAllocator<SParamCacheInfo>* const _this, SParamCacheInfo* p, uint64_t n)>(0x1050C30);
-};
-#endif // !MOONCRASH

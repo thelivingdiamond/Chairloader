@@ -743,7 +743,11 @@ class CParserBin
 	SParserFrame m_Value;
 	SParserFrame m_Data;
 
+#ifndef MOONCRASH
 	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2BA7198);
+#else
+	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2D163F8);
+#endif
 
 public:
 	CParserBin(SShaderBin* pBin)
@@ -934,9 +938,15 @@ public:
 	static constexpr bool m_bEditable = false;
 	static constexpr uint32 m_nPlatform = SF_D3D11;
 	static constexpr bool m_bEndians = false;
+#ifndef MOONCRASH
 	static inline auto m_bParseFX = PreyGlobal<bool>(0x2270BF8);
 	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2BA5FE1);
+#else
+	static inline auto m_bParseFX = PreyGlobal<bool>(0x23DDBF8);
+	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2D15241);
+#endif
 
+#ifndef MOONCRASH
 	static inline auto FConstructor = PreyFunction<void (CParserBin* _this, SShaderBin* pBin, CShader* pSH)>(0x100BFA0);
 	static inline auto FGetStringOv2 = PreyFunction<const char* (unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey)>(0x100DDA0);
 	static inline auto FGetStringOv1 = PreyFunction<const char* (CParserBin* const _this, unsigned nToken, bool bOnlyKey)>(0x100DD90);
@@ -977,6 +987,48 @@ public:
 	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x1013310);
 	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x100D8C0);
 	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x100D8B0);
+#else
+	static inline auto FCParserBinOv2 = PreyFunction<void(CParserBin* const _this, SShaderBin* pBin, CShader* pSH)>(0x1028200);
+	static inline auto FGetStringOv2 = PreyFunction<const char* (unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey)>(0x102A020);
+	static inline auto FGetStringOv1 = PreyFunction<const char* (CParserBin* const _this, unsigned nToken, bool bOnlyKey)>(0x102A010);
+	static inline auto FGetStringOv0 = PreyFunction<string*(CParserBin* const _this, string* _return_value_, SParserFrame& Frame)>(0x1029CC0);
+	static inline auto FGetNameString = PreyFunction<CCryNameR*(CParserBin* const _this, CCryNameR* _return_value_, SParserFrame& Frame)>(0x1029300);
+	static inline auto FPreprocessTokens = PreyFunction<bool(CParserBin* const _this, TArray<unsigned int>& Tokens, int nPass, PodArray<unsigned int,0>& tokensBuffer)>(0x102E200);
+	static inline auto FPreprocess = PreyFunction<bool(CParserBin* const _this, int nPass, TArray<unsigned int>& Tokens, std::vector<STokenD>* pSrcTable)>(0x102E030);
+	static inline auto FFindMacro = PreyFunction<const SMacroBinFX* (unsigned dwName, std::map<unsigned int, SMacroBinFX>& Macro)>(0x1028DD0);
+	static inline auto FAddMacro = PreyFunction<bool(unsigned dwName, const unsigned* pMacro, int nMacroTokens, uint64_t nMask, std::map<unsigned int, SMacroBinFX>& Macro)>(0x1028400);
+	static inline auto FCleanPlatformMacros = PreyFunction<void()>(0x1028890);
+	static inline auto FNewUserToken = PreyFunction<unsigned(CParserBin* const _this, unsigned nToken, const char* psToken, bool bUseFinalTable)>(0x102C7D0);
+	static inline auto FMergeTable = PreyFunction<void(CParserBin* const _this, SShaderBin* pBin)>(0x102C650);
+	static inline auto FCheckIfExpression = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nPass, uint64_t* nMask)>(0x1028560);
+	static inline auto FIgnorePreprocessBlock = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nMaxTokens, PodArray<unsigned int,0>& tokensBuffer, int nPass)>(0x102A1A0);
+	static inline auto FGetBool = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x1028EF0);
+	static inline auto FGetInt = PreyFunction<int(CParserBin* const _this, unsigned nToken)>(0x1029230);
+	static inline auto FNextTokenOv0 = PreyFunction<unsigned(char* & buf, char* com, bool& bKey)>(0x102C960);
+	static inline auto FBeginFrame = PreyFunction<SParserFrame*(CParserBin* const _this, SParserFrame* _return_value_, SParserFrame& Frame)>(0x1028520);
+	static inline auto FEndFrame = PreyFunction<void(CParserBin* const _this, SParserFrame& Frame)>(0x1028DB0);
+	static inline auto FGetCompareFunc = PreyFunction<uint8_t(CParserBin* const _this, EToken eT)>(0x1028F80);
+	static inline auto FGetSrcBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x1029B60);
+	static inline auto FGetDstBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x10290D0);
+	static inline auto FInsertSkipTokens = PreyFunction<void(CParserBin* const _this, const unsigned* pTokens, unsigned nStart, unsigned nTokens, bool bSingle, PodArray<unsigned int,0>& tokensBuffer)>(0x102C4A0);
+	static inline auto FParseObjectOv1 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens, int& nIndex)>(0x102CDF0);
+	static inline auto FParseObjectOv0 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens)>(0x102CA00);
+	static inline auto FGetNextToken = PreyFunction<int(CParserBin* const _this, unsigned& nStart, ETokenStorageClass& nTokenStorageClass)>(0x1029670);
+	static inline auto FGetAssignmentData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x1028E60);
+	static inline auto FGetSubData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame, EToken eT1, EToken eT2)>(0x102A0A0);
+	static inline auto FFindTokenOv2 = PreyFunction<int(unsigned nStart, unsigned nLast, const unsigned* pTokens, unsigned nToken)>(0x1028E40);
+	static inline auto FFindTokenOv1 = PreyFunction<int(CParserBin* const _this, unsigned nStart, unsigned nLast, unsigned nToken)>(0x1028E10);
+	static inline auto FCopyTokensOv1 = PreyFunction<int(CParserBin* const _this, SParserFrame& Fragment, std::vector<unsigned int>& NewTokens)>(0x1028AF0);
+	static inline auto FCopyTokensOv0 = PreyFunction<int(CParserBin* const _this, SCodeFragment* pCF, PodArray<unsigned int,0>& SHData, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, unsigned nID)>(0x1028B90);
+	static inline auto FfxToken = PreyFunction<unsigned(const char* szToken, bool* bKey)>(0x102FE70);
+	static inline auto FfxTokenKey = PreyFunction<unsigned(char* szToken, EToken eTC)>(0x102FEE0);
+	static inline auto FGetCRC32 = PreyFunction<unsigned(const char* szStr)>(0x1028F30);
+	static inline auto FInit = PreyFunction<void()>(0x102A330);
+	static inline auto FSetupForD3D11 = PreyFunction<void()>(0x102F8B0);
+	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x102F590);
+	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x1029B40);
+	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x1029B30);
+#endif
 };
 
 #endif
@@ -1140,77 +1192,5 @@ public:
 	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x102F590);
 	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x1029B40);
 	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x1029B30);
-};
-
-// SFXParam
-// Header:  CryEngine/renderdll/common/shaders/ParserBin.h
-// Include: Prey/RenderDll/Common/Shaders/Shader.h
-struct SFXParam
-{ // Size=80 (0x50)
-	CCryNameR m_Name;
-	std::vector<unsigned int> m_dwName;
-	unsigned m_nFlags;
-	int16_t m_nParameters;
-	int16_t m_nComps;
-	CCryNameR m_Annotations;
-	CCryNameR m_Semantic;
-	CCryNameR m_Values;
-	uint8_t m_eType;
-	int8_t m_nCB;
-	int16_t m_nRegister[6];
-
-	~SFXParam();
-	void GetParamComp(unsigned nOffset, CryFixedStringT<128>& param) { FGetParamComp(this, nOffset, param); }
-	void GetCompName(unsigned nId, CryFixedStringT<128>& name) { FGetCompName(this, nId, name); }
-	string GetValueForName(const char* szName, EParamType& eType) { alignas(string) std::byte _return_buf_[sizeof(string)]; return *FGetValueForName(this, reinterpret_cast<string*>(_return_buf_), szName, eType); }
-	void PostLoad(CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign) { FPostLoadOv1(this, Parser, Name, Annotations, Values, Assign); }
-
-#if 0
-	SFXParam();
-	unsigned GetComponent(EHWShaderClass _arg0_);
-	unsigned GetParamFlags();
-	void PostLoad();
-	unsigned Size();
-	bool operator==(const SFXParam& _arg0_) const;
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-#endif
-
-	static inline auto FBitNotSFXParam = PreyFunction<void(SFXParam* const _this)>(0x10437E0);
-	static inline auto FGetParamComp = PreyFunction<void(SFXParam* const _this, unsigned nOffset, CryFixedStringT<128>& param)>(0x10461F0);
-	static inline auto FGetCompName = PreyFunction<void(SFXParam* const _this, unsigned nId, CryFixedStringT<128>& name)>(0x1045C10);
-	static inline auto FGetValueForName = PreyFunction<string*(SFXParam* const _this, string* _return_value_, const char* szName, EParamType& eType)>(0x1046A90);
-	static inline auto FPostLoadOv1 = PreyFunction<void(SFXParam* const _this, CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign)>(0x102D150);
-};
-
-// SFXSampler
-// Header:  CryEngine/renderdll/common/shaders/ParserBin.h
-// Include: Prey/RenderDll/Common/Shaders/Shader.h
-struct SFXSampler
-{ // Size=88 (0x58)
-	CCryNameR m_Name;
-	std::vector<unsigned int> m_dwName;
-	unsigned m_nFlags;
-	int16_t m_nArray;
-	CCryNameR m_Annotations;
-	CCryNameR m_Semantic;
-	CCryNameR m_Values;
-	uint8_t m_eType;
-	int16_t m_nRegister[6];
-	int m_nTexState;
-
-	~SFXSampler();
-	void PostLoad(CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign) { FPostLoadOv1(this, Parser, Name, Annotations, Values, Assign); }
-
-#if 0
-	SFXSampler();
-	unsigned GetFlags();
-	void PostLoad();
-	unsigned Size();
-	bool operator==(const SFXSampler& _arg0_) const;
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-#endif
-
-	static inline auto FBitNotSFXSampler = PreyFunction<void(SFXSampler* const _this)>(0x10437E0);
-	static inline auto FPostLoadOv1 = PreyFunction<void(SFXSampler* const _this, CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign)>(0x102D5D0);
 };
 #endif // !MOONCRASH

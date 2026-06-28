@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 struct ICVar;
 struct IConsole;
@@ -10,6 +8,7 @@ struct IConsoleCmdArgs;
 class CRendererCVars // Id=80106E2 Size=88
 {
 public:
+#ifndef MOONCRASH
 	static inline auto CV_r_ShowDynTexturesFilter = PreyGlobal<ICVar*>(0x2B0EFB0);
 	static inline auto CV_r_ShaderCompilerServer = PreyGlobal<ICVar*>(0x2B0EFB8);
 	static inline auto CV_r_ShaderCompilerFolderName = PreyGlobal<ICVar*>(0x2B0EFC0);
@@ -442,138 +441,7 @@ public:
 	static inline auto s_overscanBorders = PreyGlobal<Vec2>(0x2B0F010);
 	static inline auto CV_r_LightBeamDepthPass = PreyGlobal<int>(0x2B0EFA4);
 	static inline auto CV_r_EnableRenderDoc = PreyGlobal<int>(0x2B0EFA8);
-
-	void InitCVars() { FInitCVars(this); }
-	static void Cmd_ShowRenderTarget(IConsoleCmdArgs* pArgs) { FCmd_ShowRenderTarget(pArgs); }
-	static void OnChange_CachedShadows(ICVar* pCVar) { FOnChange_CachedShadows(pCVar); }
-	static void OnChange_GeomInstancingThreshold(ICVar* pVar) { FOnChange_GeomInstancingThreshold(pVar); }
-	static void OnChange_ArkSSR(ICVar* _pVar) { FOnChange_ArkSSR(_pVar); }
-	static void OnChange_ArkSSDO(ICVar* _pVar) { FOnChange_ArkSSDO(_pVar); }
-
-#if 0
-	static int GetTexturesStreamPoolSize();
-	void InitExternalCVars();
-	void CacheCaptureCVars();
-#endif
-
-	static inline auto FInitCVars = PreyFunction<void(CRendererCVars* const _this)>(0xE9AD50);
-	static inline auto FCmd_ShowRenderTarget = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0xE99BD0);
-	static inline auto FOnChange_CachedShadows = PreyFunction<void(ICVar* pCVar)>(0xEA2560);
-	static inline auto FOnChange_GeomInstancingThreshold = PreyFunction<void(ICVar* pVar)>(0xEA25A0);
-	static inline auto FOnChange_ArkSSR = PreyFunction<void(ICVar* _pVar)>(0xEA2440);
-	static inline auto FOnChange_ArkSSDO = PreyFunction<void(ICVar* _pVar)>(0xEA23F0);
-};
-
-static_assert(sizeof(CRendererCVars) == 88);
-
-// CCVarUpdateRecorder
-// Header:  CryEngine/renderdll/common/RendererCVars.h
-// Include: Prey/RenderDll/Common/RendererCVars.h
-class CCVarUpdateRecorder : public IConsoleVarSink
-{ // Size=64 (0x40)
-public:
-	// CCVarUpdateRecorder::SUpdateRecord
-	// Header:  CryEngine/renderdll/common/RendererCVars.h
-	struct SUpdateRecord
-	{ // Size=80 (0x50)
-		union
-		{
-			int intValue;
-			float floatValue;
-			char stringValue[64];
-		};
-
-		const char* name;
-		int type;
-
-#if 0
-		SUpdateRecord(ICVar* _arg0_);
-#endif
-	};
-
-	using CVarList = std::vector<CCVarUpdateRecorder::SUpdateRecord>;
-
-	std::vector<CCVarUpdateRecorder::SUpdateRecord> m_updatedCVars[2];
-	IConsole* m_pConsole;
-
-	CCVarUpdateRecorder(IConsole* pConsole);
-	virtual ~CCVarUpdateRecorder();
-	virtual bool OnBeforeVarChange(ICVar* pVar, const char* sNewValue);
-	virtual void OnAfterVarChange(ICVar* pVar);
-	void Reset() { FReset(this); }
-	const std::vector<CCVarUpdateRecorder::SUpdateRecord>& GetCVars() const { return FGetCVars(this); }
-	const CCVarUpdateRecorder::SUpdateRecord* GetCVar(const char* cvarName) const { return FGetCVar(this, cvarName); }
-
-	static inline auto FCCVarUpdateRecorderOv1 = PreyFunction<void(CCVarUpdateRecorder* const _this, IConsole* pConsole)>(0xE99960);
-	static inline auto FBitNotCCVarUpdateRecorder = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xE999B0);
-	static inline auto FOnBeforeVarChange = PreyFunction<bool(CCVarUpdateRecorder* const _this, ICVar* pVar, const char* sNewValue)>(0x1B933B0);
-	static inline auto FOnAfterVarChange = PreyFunction<void(CCVarUpdateRecorder* const _this, ICVar* pVar)>(0xEA2390);
-	static inline auto FReset = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEA2670);
-	static inline auto FGetCVars = PreyFunction<const std::vector<CCVarUpdateRecorder::SUpdateRecord>& (const CCVarUpdateRecorder* const _this)>(0xE9AD30);
-	static inline auto FGetCVar = PreyFunction<const CCVarUpdateRecorder::SUpdateRecord* (const CCVarUpdateRecorder* const _this, const char* cvarName)>(0xE9ACC0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CrySystem/IConsole.h>
-
-struct ICVar;
-struct IConsole;
-struct IConsoleCmdArgs;
-
-// CCVarUpdateRecorder
-// Header:  CryEngine/renderdll/common/RendererCVars.h
-// Include: Prey/RenderDll/Common/RendererCVars.h
-class CCVarUpdateRecorder : public IConsoleVarSink
-{ // Size=64 (0x40)
-public:
-	// CCVarUpdateRecorder::SUpdateRecord
-	// Header:  CryEngine/renderdll/common/RendererCVars.h
-	struct SUpdateRecord
-	{ // Size=80 (0x50)
-		union
-		{
-			int intValue;
-			float floatValue;
-			char stringValue[64];
-		};
-
-		const char* name;
-		int type;
-
-	#if 0
-		SUpdateRecord(ICVar* _arg0_);
-	#endif
-	};
-
-	using CVarList = std::vector<CCVarUpdateRecorder::SUpdateRecord>;
-
-	std::vector<CCVarUpdateRecorder::SUpdateRecord> m_updatedCVars[2];
-	IConsole* m_pConsole;
-
-	CCVarUpdateRecorder(IConsole* pConsole);
-	virtual ~CCVarUpdateRecorder();
-	virtual bool OnBeforeVarChange(ICVar* pVar, const char* sNewValue);
-	virtual void OnAfterVarChange(ICVar* pVar);
-	void Reset() { FReset(this); }
-	const std::vector<CCVarUpdateRecorder::SUpdateRecord>& GetCVars() const { return FGetCVars(this); }
-	const CCVarUpdateRecorder::SUpdateRecord* GetCVar(const char* cvarName) const { return FGetCVar(this, cvarName); }
-
-	static inline auto FCCVarUpdateRecorderOv1 = PreyFunction<void(CCVarUpdateRecorder* const _this, IConsole* pConsole)>(0xEB5E60);
-	static inline auto FBitNotCCVarUpdateRecorder = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEB5EB0);
-	static inline auto FOnBeforeVarChange = PreyFunction<bool(CCVarUpdateRecorder* const _this, ICVar* pVar, const char* sNewValue)>(0x1A302A0);
-	static inline auto FOnAfterVarChange = PreyFunction<void(CCVarUpdateRecorder* const _this, ICVar* pVar)>(0xEBE870);
-	static inline auto FReset = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEBEB50);
-	static inline auto FGetCVars = PreyFunction<const std::vector<CCVarUpdateRecorder::SUpdateRecord>& (const CCVarUpdateRecorder* const _this)>(0xEB7230);
-	static inline auto FGetCVar = PreyFunction<const CCVarUpdateRecorder::SUpdateRecord* (const CCVarUpdateRecorder* const _this, const char* cvarName)>(0xEB71C0);
-};
-
-// CRendererCVars
-// Header:  CryEngine/renderdll/common/RendererCVars.h
-// Include: Prey/RenderDll/Common/RendererCVars.h
-class CRendererCVars
-{ // Size=88 (0x58)
-public:
+#else
 	static inline auto CV_r_ShowDynTexturesFilter = PreyGlobal<ICVar*>(0x2C7DBC8);
 	static inline auto CV_r_ShaderCompilerServer = PreyGlobal<ICVar*>(0x2C7DBD0);
 	static inline auto CV_r_ShaderCompilerFolderName = PreyGlobal<ICVar*>(0x2C7DBD8);
@@ -1006,6 +874,7 @@ public:
 	static inline auto s_overscanBorders = PreyGlobal<Vec2>(0x2C7E280);
 	static inline auto CV_r_LightBeamDepthPass = PreyGlobal<int>(0x2C7E278);
 	static inline auto CV_r_EnableRenderDoc = PreyGlobal<int>(0x2C7E27C);
+#endif
 
 	void InitCVars() { FInitCVars(this); }
 	static void Cmd_ShowRenderTarget(IConsoleCmdArgs* pArgs) { FCmd_ShowRenderTarget(pArgs); }
@@ -1020,23 +889,78 @@ public:
 	void CacheCaptureCVars();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FInitCVars = PreyFunction<void(CRendererCVars* const _this)>(0xE9AD50);
+	static inline auto FCmd_ShowRenderTarget = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0xE99BD0);
+	static inline auto FOnChange_CachedShadows = PreyFunction<void(ICVar* pCVar)>(0xEA2560);
+	static inline auto FOnChange_GeomInstancingThreshold = PreyFunction<void(ICVar* pVar)>(0xEA25A0);
+	static inline auto FOnChange_ArkSSR = PreyFunction<void(ICVar* _pVar)>(0xEA2440);
+	static inline auto FOnChange_ArkSSDO = PreyFunction<void(ICVar* _pVar)>(0xEA23F0);
+#else
 	static inline auto FInitCVars = PreyFunction<void(CRendererCVars* const _this)>(0xEB7250);
 	static inline auto FCmd_ShowRenderTarget = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0xEB60D0);
 	static inline auto FOnChange_CachedShadows = PreyFunction<void(ICVar* pCVar)>(0xEBEA40);
 	static inline auto FOnChange_GeomInstancingThreshold = PreyFunction<void(ICVar* pVar)>(0xEBEA80);
 	static inline auto FOnChange_ArkSSR = PreyFunction<void(ICVar* _pVar)>(0xEBE920);
 	static inline auto FOnChange_ArkSSDO = PreyFunction<void(ICVar* _pVar)>(0xEBE8D0);
+#endif
 };
 
-// STextureNameAutoComplete
+static_assert(sizeof(CRendererCVars) == 88);
+
+// CCVarUpdateRecorder
 // Header:  CryEngine/renderdll/common/RendererCVars.h
-// Include: Prey/RenderDll/Common/RendererCVars.cpp
-struct STextureNameAutoComplete : public IConsoleArgumentAutoComplete
-{ // Size=8 (0x8)
-	virtual int GetCount() const;
-	virtual const char* GetValue(int nIndex) const;
+// Include: Prey/RenderDll/Common/RendererCVars.h
+class CCVarUpdateRecorder : public IConsoleVarSink
+{ // Size=64 (0x40)
+public:
+	// CCVarUpdateRecorder::SUpdateRecord
+	// Header:  CryEngine/renderdll/common/RendererCVars.h
+	struct SUpdateRecord
+	{ // Size=80 (0x50)
+		union
+		{
+			int intValue;
+			float floatValue;
+			char stringValue[64];
+		};
 
-	static inline auto FGetCount = PreyFunction<int(const STextureNameAutoComplete* const _this)>(0xEB5550);
-	static inline auto FGetValue = PreyFunction<const char* (const STextureNameAutoComplete* const _this, int nIndex)>(0xEB5580);
+		const char* name;
+		int type;
+
+#if 0
+		SUpdateRecord(ICVar* _arg0_);
+#endif
+	};
+
+	using CVarList = std::vector<CCVarUpdateRecorder::SUpdateRecord>;
+
+	std::vector<CCVarUpdateRecorder::SUpdateRecord> m_updatedCVars[2];
+	IConsole* m_pConsole;
+
+	CCVarUpdateRecorder(IConsole* pConsole);
+	virtual ~CCVarUpdateRecorder();
+	virtual bool OnBeforeVarChange(ICVar* pVar, const char* sNewValue);
+	virtual void OnAfterVarChange(ICVar* pVar);
+	void Reset() { FReset(this); }
+	const std::vector<CCVarUpdateRecorder::SUpdateRecord>& GetCVars() const { return FGetCVars(this); }
+	const CCVarUpdateRecorder::SUpdateRecord* GetCVar(const char* cvarName) const { return FGetCVar(this, cvarName); }
+
+#ifndef MOONCRASH
+	static inline auto FCCVarUpdateRecorderOv1 = PreyFunction<void(CCVarUpdateRecorder* const _this, IConsole* pConsole)>(0xE99960);
+	static inline auto FBitNotCCVarUpdateRecorder = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xE999B0);
+	static inline auto FOnBeforeVarChange = PreyFunction<bool(CCVarUpdateRecorder* const _this, ICVar* pVar, const char* sNewValue)>(0x1B933B0);
+	static inline auto FOnAfterVarChange = PreyFunction<void(CCVarUpdateRecorder* const _this, ICVar* pVar)>(0xEA2390);
+	static inline auto FReset = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEA2670);
+	static inline auto FGetCVars = PreyFunction<const std::vector<CCVarUpdateRecorder::SUpdateRecord>& (const CCVarUpdateRecorder* const _this)>(0xE9AD30);
+	static inline auto FGetCVar = PreyFunction<const CCVarUpdateRecorder::SUpdateRecord* (const CCVarUpdateRecorder* const _this, const char* cvarName)>(0xE9ACC0);
+#else
+	static inline auto FCCVarUpdateRecorderOv1 = PreyFunction<void(CCVarUpdateRecorder* const _this, IConsole* pConsole)>(0xEB5E60);
+	static inline auto FBitNotCCVarUpdateRecorder = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEB5EB0);
+	static inline auto FOnBeforeVarChange = PreyFunction<bool(CCVarUpdateRecorder* const _this, ICVar* pVar, const char* sNewValue)>(0x1A302A0);
+	static inline auto FOnAfterVarChange = PreyFunction<void(CCVarUpdateRecorder* const _this, ICVar* pVar)>(0xEBE870);
+	static inline auto FReset = PreyFunction<void(CCVarUpdateRecorder* const _this)>(0xEBEB50);
+	static inline auto FGetCVars = PreyFunction<const std::vector<CCVarUpdateRecorder::SUpdateRecord>& (const CCVarUpdateRecorder* const _this)>(0xEB7230);
+	static inline auto FGetCVar = PreyFunction<const CCVarUpdateRecorder::SUpdateRecord* (const CCVarUpdateRecorder* const _this, const char* cvarName)>(0xEB71C0);
+#endif
 };
-#endif // !MOONCRASH

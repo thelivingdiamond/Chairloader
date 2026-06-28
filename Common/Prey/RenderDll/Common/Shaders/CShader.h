@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef __CSHADER_H__
@@ -231,6 +229,7 @@ public:
 	int m_nFrameForceReload;
 	char m_HWPath[128];
 	CShader* m_pCurShader;
+#ifndef MOONCRASH
 	static inline auto s_pContainer = PreyGlobal<SResourceContainer*>(0x2BA7370);
 	std::vector<string> m_ShaderNames;
 	static inline auto s_cNameHEAD = PreyGlobal<CCryNameTSCRC>(0x2BA7428);
@@ -256,6 +255,33 @@ public:
 	static inline auto s_ShaderOcclTest = PreyGlobal<CShader*>(0x2BA7410);
 	static inline auto s_ShaderClouds = PreyGlobal<CShader*>(0x2BA7418);
 	static inline auto m_shArkPostEffects = PreyGlobal<CShader*>(0x2BA7420);
+#else
+	static inline auto s_pContainer = PreyGlobal<SResourceContainer*>(0x2D165D0);
+	std::vector<string> m_ShaderNames;
+	static inline auto s_cNameHEAD = PreyGlobal<CCryNameTSCRC>(0x2D16688);
+	static inline auto s_DefaultShader = PreyGlobal<CShader*>(0x2D165D8);
+	static inline auto s_shPostEffects = PreyGlobal<CShader*>(0x2D165E0);
+	static inline auto s_shPostMotionBlur = PreyGlobal<CShader*>(0x2D165E8);
+	static inline auto s_shPostSunShafts = PreyGlobal<CShader*>(0x2D165F0);
+	static inline auto s_shDeferredShading = PreyGlobal<CShader*>(0x2D165F8);
+	static inline auto s_ShaderDeferredCaustics = PreyGlobal<CShader*>(0x2D16600);
+	static inline auto s_ShaderFPEmu = PreyGlobal<CShader*>(0x2D16608);
+	static inline auto s_ShaderScaleForm = PreyGlobal<CShader*>(0x2D16610);
+	static inline auto s_ShaderStars = PreyGlobal<CShader*>(0x2D16618);
+	static inline auto s_ShaderShadowBlur = PreyGlobal<CShader*>(0x2D16620);
+	static inline auto s_ShaderShadowMaskGen = PreyGlobal<CShader*>(0x2D16628);
+	static inline auto s_shHDRPostProcess = PreyGlobal<CShader*>(0x2D16630);
+	static inline auto s_shPostEffectsGame = PreyGlobal<CShader*>(0x2D16638);
+	static inline auto s_shPostAA = PreyGlobal<CShader*>(0x2D16640);
+	static inline auto s_ShaderDebug = PreyGlobal<CShader*>(0x2D16648);
+	static inline auto s_ShaderLensOptics = PreyGlobal<CShader*>(0x2D16650);
+	static inline auto s_ShaderSoftOcclusionQuery = PreyGlobal<CShader*>(0x2D16658);
+	static inline auto s_ShaderLightStyles = PreyGlobal<CShader*>(0x2D16660);
+	static inline auto s_ShaderCommon = PreyGlobal<CShader*>(0x2D16668);
+	static inline auto s_ShaderOcclTest = PreyGlobal<CShader*>(0x2D16670);
+	static inline auto s_ShaderClouds = PreyGlobal<CShader*>(0x2D16678);
+	static inline auto m_shArkPostEffects = PreyGlobal<CShader*>(0x2D16680);
+#endif
 	SInputShaderResources const* m_pCurInputResources;
 	SShaderGen* m_pGlobalExt;
 	SShaderLevelPolicies* m_pLevelsPolicies;
@@ -440,6 +466,7 @@ public:
 	static float EvalWaveForm2(SWaveForm* arg0, float arg1);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xA13080);
 	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x103C5E0);
 	static inline auto FmfNewShader = PreyFunction<CShader* (CShaderMan* const _this, const char* szName)>(0x1020900);
@@ -510,299 +537,7 @@ public:
 	static inline auto FLoadShaderStartupCache = PreyFunction<bool(CShaderMan* const _this)>(0x101A4B0);
 	static inline auto FUnloadShaderStartupCache = PreyFunction<void(CShaderMan* const _this)>(0x101AED0);
 	static inline auto FBitNotCShaderMan = PreyFunction<void(CShaderMan* const _this)>(0xFB1AD0);
-};
-
-//=====================================================================
-
-#endif                   // __CSHADER_H__
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/IRenderer.h>
-#include <CryEngine/crycommon/cryfixedstring.h>
-#include <Prey/CryRenderer/IRenderer.h>
-#include <Prey/CryRenderer/IShader.h>
-#include <Prey/CrySystem/ISystem.h>
-#include <Prey/RenderDll/Common/CryNameR.h>
-#include <Prey/RenderDll/Common/ResFileLookupDataMan.h>
-#include <Prey/RenderDll/Common/Shaders/CShaderBin.h>
-#include <Prey/RenderDll/Common/Shaders/Shader.h>
-#include <Prey/RenderDll/Common/Shaders/ShaderCache.h>
-#include <Prey/RenderDll/Common/Shaders/ShaderComponents.h>
-#include <_unknown/TArray.h>
-
-class CLightStyle;
-class CShader;
-class CShaderResources;
-class CTexture;
-enum ECGParam;
-enum EEfResTextures;
-enum EHWShaderClass;
-enum EParamType;
-enum EShaderQuality;
-enum EShaderType;
-enum ESystemEvent;
-enum ETEX_Type;
-class ICrySizer;
-struct SEfResTexture;
-struct SInputShaderResources;
-struct SParamDB;
-struct SResourceContainer;
-struct SShaderCombIdent;
-struct SShaderFXParams;
-struct SShaderGen;
-struct SShaderGenBit;
-struct SShaderItem;
-struct SShaderLevelPolicies;
-struct SShaderPass;
-struct SShaderTechnique;
-struct STexAnim;
-struct STexSamplerRT;
-struct SWaveForm;
-struct SWaveForm2;
-
-// CShaderParserHelper
-// Header:  CryEngine/renderdll/common/shaders/cshader.h
-// Include: Prey/RenderDll/Common/Shaders/CShader.h
-struct CShaderParserHelper
-{ // Size=792 (0x318)
-	std::vector<char> m_tempStringArray[32];
-	std::vector<char> m_tempString;
-
-	~CShaderParserHelper();
-
-#if 0
-	CShaderParserHelper();
-	char* GetTempStringArray(int _arg0_, int _arg1_);
-#endif
-
-	static inline auto FBitNotCShaderParserHelper = PreyFunction<void(CShaderParserHelper* const _this)>(0xFCE140);
-};
-
-// CShaderMan
-// Header:  CryEngine/renderdll/common/shaders/cshader.h
-// Include: Prey/RenderDll/Common/Shaders/CShader.h
-class CShaderMan : public ISystemEventListener
-{ // Size=3768 (0xEB8)
-public:
-	// CShaderMan::SShaderMapNameFlagsContainerDelete
-	// Header:  CryEngine/renderdll/common/shaders/cshader.h
-	struct SShaderMapNameFlagsContainerDelete
-	{ // Size=1 (0x1)
-	#if 0
-		void operator()(std::pair<const string, std::map<CryStringT<char>, unsigned __int64, std::less<CryStringT<char>>, std::allocator<std::pair<const CryStringT<char>, unsigned __int64>>>*>& _arg0_);
-	#endif
-	};
-
-	using ShaderCacheMissesVec = std::vector<CCryNameTSCRC, stl::STLGlobalAllocator<CCryNameTSCRC>>;
-	using MapNameFlags = std::map<string, uint64_t>;
-	using MapNameFlagsItor = std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,unsigned __int64> > > >;
-	using ShaderMapNameFlags = std::map<string, std::map<CryStringT<char>, unsigned __int64, std::less<CryStringT<char>>, std::allocator<std::pair<const CryStringT<char>, unsigned __int64>>>*>;
-	using ShaderMapNameFlagsItor = std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,std::map<CryStringT<char>,unsigned __int64,std::less<CryStringT<char> >,std::allocator<std::pair<CryStringT<char> const ,unsigned __int64> > > *> > > >;
-	using ShaderExt = std::map<CCryNameTSCRC, SShaderGen*>;
-	using ShaderExtItor = std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CCryNameTSCRC const ,SShaderGen *> > > >;
-
-	char* m_pCurScript;
-	CShaderManBin m_Bin;
-	CResFileLookupDataMan m_ResLookupDataMan[2];
-	bool m_bInitialized;
-	bool m_bLoadedSystem;
-	const char* m_ShadersPath;
-	const char* m_ShadersExtPath;
-	const char* m_ShadersCache;
-	const char* m_ShadersFilter;
-	const char* m_ShadersMergeCachePath;
-	string m_szUserPath;
-	int m_nFrameForceReload;
-	char m_HWPath[128];
-	CShader* m_pCurShader;
-	static inline auto s_pContainer = PreyGlobal<SResourceContainer*>(0x2D165D0);
-	std::vector<string> m_ShaderNames;
-	static inline auto s_cNameHEAD = PreyGlobal<CCryNameTSCRC>(0x2D16688);
-	static inline auto s_DefaultShader = PreyGlobal<CShader*>(0x2D165D8);
-	static inline auto s_shPostEffects = PreyGlobal<CShader*>(0x2D165E0);
-	static inline auto s_shPostMotionBlur = PreyGlobal<CShader*>(0x2D165E8);
-	static inline auto s_shPostSunShafts = PreyGlobal<CShader*>(0x2D165F0);
-	static inline auto s_shDeferredShading = PreyGlobal<CShader*>(0x2D165F8);
-	static inline auto s_ShaderDeferredCaustics = PreyGlobal<CShader*>(0x2D16600);
-	static inline auto s_ShaderFPEmu = PreyGlobal<CShader*>(0x2D16608);
-	static inline auto s_ShaderScaleForm = PreyGlobal<CShader*>(0x2D16610);
-	static inline auto s_ShaderStars = PreyGlobal<CShader*>(0x2D16618);
-	static inline auto s_ShaderShadowBlur = PreyGlobal<CShader*>(0x2D16620);
-	static inline auto s_ShaderShadowMaskGen = PreyGlobal<CShader*>(0x2D16628);
-	static inline auto s_shHDRPostProcess = PreyGlobal<CShader*>(0x2D16630);
-	static inline auto s_shPostEffectsGame = PreyGlobal<CShader*>(0x2D16638);
-	static inline auto s_shPostAA = PreyGlobal<CShader*>(0x2D16640);
-	static inline auto s_ShaderDebug = PreyGlobal<CShader*>(0x2D16648);
-	static inline auto s_ShaderLensOptics = PreyGlobal<CShader*>(0x2D16650);
-	static inline auto s_ShaderSoftOcclusionQuery = PreyGlobal<CShader*>(0x2D16658);
-	static inline auto s_ShaderLightStyles = PreyGlobal<CShader*>(0x2D16660);
-	static inline auto s_ShaderCommon = PreyGlobal<CShader*>(0x2D16668);
-	static inline auto s_ShaderOcclTest = PreyGlobal<CShader*>(0x2D16670);
-	static inline auto s_ShaderClouds = PreyGlobal<CShader*>(0x2D16678);
-	static inline auto m_shArkPostEffects = PreyGlobal<CShader*>(0x2D16680);
-	const SInputShaderResources* m_pCurInputResources;
-	SShaderGen* m_pGlobalExt;
-	SShaderLevelPolicies* m_pLevelsPolicies;
-	Vec4 m_TempVecs[16];
-	Vec4 m_RTRect;
-	std::vector<SShaderGenComb> m_SGC;
-	int m_nCombinationsProcess;
-	int m_nCombinationsProcessOverall;
-	int m_nCombinationsCompiled;
-	int m_nCombinationsEmpty;
-	EShaderCacheMode m_eCacheMode;
-	char* m_szShaderPrecache;
-	std::map<CCryNameR, SCacheCombination> m_ShaderCacheCombinations[2];
-	std::map<CCryNameR, SCacheCombination> m_ShaderCacheExportCombinations;
-	_iobuf* m_FPCacheCombinations[2];
-	std::vector<CCryNameTSCRC, stl::STLGlobalAllocator<CCryNameTSCRC>> m_ShaderCacheMisses;
-	string m_ShaderCacheMissPath;
-	void (*m_ShaderCacheMissCallback)(const char*);
-	SShaderCacheStatistics m_ShaderCacheStats;
-	unsigned m_nFrameLastSubmitted;
-	unsigned m_nFrameSubmit;
-	SShaderProfile m_ShaderProfiles[14];
-	SShaderProfile m_ShaderFixedProfiles[4];
-	int m_bActivated;
-	CShaderParserHelper m_shaderParserHelper;
-	bool m_bReload;
-	std::map<string, uint64_t> m_pShaderCommonGlobalFlag;
-	std::map<string, uint64_t> m_pSCGFlagLegacyFix;
-	uint64_t m_nSGFlagsFix;
-	std::map<string, std::map<CryStringT<char>, unsigned __int64, std::less<CryStringT<char>>, std::allocator<std::pair<const CryStringT<char>, unsigned __int64>>>*> m_pShadersGlobalFlags;
-	std::map<CCryNameTSCRC, SShaderGen*> m_ShaderExts;
-	SCGParamsPF m_PF[2];
-	string m_pShadersRemapList;
-
-	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	STexAnim* mfReadTexSequence(const char* na, int Flags, bool bFindOnly) { return FmfReadTexSequenceOv1(this, na, Flags, bFindOnly); }
-	CShader* mfNewShader(const char* szName) { return FmfNewShader(this, szName); }
-	void mfCompileLevelsList(std::vector<string>& List, char* scr) { FmfCompileLevelsList(this, List, scr); }
-	bool mfCompileShaderLevelPolicies(SShaderLevelPolicies* pPL, char* scr) { return FmfCompileShaderLevelPolicies(this, pPL, scr); }
-	bool mfCompileShaderGen(SShaderGen* shg, char* scr) { return FmfCompileShaderGen(this, shg, scr); }
-	SShaderGenBit* mfCompileShaderGenProperty(char* scr) { return FmfCompileShaderGenProperty(this, scr); }
-	void mfSetResourceTexState(SEfResTexture* Tex) { FmfSetResourceTexState(this, Tex); }
-	CTexture* mfTryToLoadTexture(const char* nameTex, STexSamplerRT* smp, int Flags, bool bFindOnly) { return FmfTryToLoadTexture(this, nameTex, smp, Flags, bFindOnly); }
-	CTexture* mfLoadResourceTexture(const char* nameTex, int Flags, SEfResTexture* Tex) { return FmfLoadResourceTextureOv2(this, nameTex, Flags, Tex); }
-	bool mfLoadResourceTexture(EEfResTextures Id, CShaderResources& RS, unsigned CustomFlags, bool bReplaceMeOnFail) { return FmfLoadResourceTextureOv0(this, Id, RS, CustomFlags, bReplaceMeOnFail); }
-	CTexture* mfCheckTemplateTexName(const char* mapname, ETEX_Type eTT) { return FmfCheckTemplateTexName(this, mapname, eTT); }
-	void mfRefreshResources(CShaderResources* Res, bool _bDisableStreaming, const IRenderer::SLoadShaderItemArgs* pArgs) { FmfRefreshResources(this, Res, _bDisableStreaming, pArgs); }
-	SShaderGenComb* mfGetShaderGenInfo(const char* nmFX) { return FmfGetShaderGenInfo(this, nmFX); }
-	bool mfReloadShaderIncludes(const char* szPath, int nFlags) { return FmfReloadShaderIncludes(this, szPath, nFlags); }
-	bool mfReloadAllShaders(int nFlags, unsigned nFlagsHW) { return FmfReloadAllShaders(this, nFlags, nFlagsHW); }
-	bool mfReloadFile(const char* szPath, const char* szName, int nFlags) { return FmfReloadFile(this, szPath, szName, nFlags); }
-	void ParseShaderProfiles() { FParseShaderProfiles(this); }
-	bool mfParseParamComp(int comp, SCGParam* pCurParam, const char* szSemantic, char* params, const char* szAnnotations, SShaderFXParams& FXParams, CShader* ef, unsigned nParamFlags, EHWShaderClass eSHClass, bool bExpressionOperand) { return FmfParseParamComp(this, comp, pCurParam, szSemantic, params, szAnnotations, FXParams, ef, nParamFlags, eSHClass, bExpressionOperand); }
-	bool mfParseCGParam(char* scr, const char* szAnnotations, SShaderFXParams& FXParams, CShader* ef, std::vector<SCGParam>* pParams, int nComps, unsigned nParamFlags, EHWShaderClass eSHClass, bool bExpressionOperand) { return FmfParseCGParam(this, scr, szAnnotations, FXParams, ef, pParams, nComps, nParamFlags, eSHClass, bExpressionOperand); }
-	bool mfParseFXParameter(SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, CShader* ef, bool bInstParam, int nParams, std::vector<SCGParam>* pParams, EHWShaderClass eSHClass, bool bExpressionOperand) { return FmfParseFXParameter(this, FXParams, pr, ParamName, ef, bInstParam, nParams, pParams, eSHClass, bExpressionOperand); }
-	bool mfParseFXTexture(SShaderFXParams& FXParams, SFXTexture* pr, const char* ParamName, CShader* ef, int nParams, std::vector<SCGTexture>* pParams, EHWShaderClass eSHClass) { return FmfParseFXTexture(this, FXParams, pr, ParamName, ef, nParams, pParams, eSHClass); }
-	bool mfParseFXSampler(SShaderFXParams& FXParams, SFXSampler* pr, const char* ParamName, CShader* ef, int nParams, std::vector<SCGSampler>* pParams, EHWShaderClass eSHClass) { return FmfParseFXSamplerOv1(this, FXParams, pr, ParamName, ef, nParams, pParams, eSHClass); }
-	void mfCheckObjectDependParams(std::vector<SCGParam>& PNoObj, std::vector<SCGParam>& PObj, EHWShaderClass eSH, CShader* pFXShader) { FmfCheckObjectDependParams(this, PNoObj, PObj, eSH, pFXShader); }
-	void mfBeginFrame() { FmfBeginFrame(this); }
-	void mfGetShaderListPath(CryStackStringT<char,512>& nameOut, int nType) { FmfGetShaderListPath(this, nameOut, nType); }
-	CShaderMan();
-	void ShutDown() { FShutDown(this); }
-	SShaderGen* mfCreateShaderGenInfo(const char* szName, bool bRuntime) { return FmfCreateShaderGenInfo(this, szName, bRuntime); }
-	void mfRemapShaderGenInfoBits(const char* szName, SShaderGen* pShGen) { FmfRemapShaderGenInfoBits(this, szName, pShGen); }
-	uint64_t mfGetRemapedShaderMaskGen(const char* szName, uint64_t nMaskGen, bool bFixup) { return FmfGetRemapedShaderMaskGen(this, szName, nMaskGen, bFixup); }
-	bool mfUsesGlobalFlags(const char* szShaderName) { return FmfUsesGlobalFlags(this, szShaderName); }
-	const char* mfGetShaderBitNamesFromGlobalMaskGen(uint64_t nMaskGen) { return FmfGetShaderBitNamesFromGlobalMaskGen(this, nMaskGen); }
-	uint64_t mfGetShaderGlobalMaskGenFromString(const char* szShaderGen) { return FmfGetShaderGlobalMaskGenFromString(this, szShaderGen); }
-	void mfInitGlobal() { FmfInitGlobal(this); }
-	void mfInitLevelPolicies() { FmfInitLevelPolicies(this); }
-	void mfInitLookups() { FmfInitLookups(this); }
-	void mfInitCommonGlobalFlags() { FmfInitCommonGlobalFlags(this); }
-	void mfInitCommonGlobalFlagsLegacyFix() { FmfInitCommonGlobalFlagsLegacyFix(this); }
-	bool mfRemapCommonGlobalFlagsWithLegacy() { return FmfRemapCommonGlobalFlagsWithLegacy(this); }
-	void mfCreateCommonGlobalFlags(const char* szName) { FmfCreateCommonGlobalFlags(this, szName); }
-	void mfInit() { FmfInit(this); }
-	void mfPostInit() { FmfPostInit(this); }
-	void mfSortResources() { FmfSortResources(this); }
-	CShaderResources* mfCreateShaderResources(const SInputShaderResources* Res, bool bShare) { return FmfCreateShaderResources(this, Res, bShare); }
-	bool mfRefreshResourceConstants(CShaderResources* Res) { return FmfRefreshResourceConstantsOv1(this, Res); }
-	bool mfUpdateTechnik(SShaderItem& SI, CCryNameTSCRC& Name) { return FmfUpdateTechnik(this, SI, Name); }
-	SShaderItem mfShaderItemForName(const char* nameEf, bool bShare, int flags, SInputShaderResources* Res, uint64_t nMaskGen, const IRenderer::SLoadShaderItemArgs* pArgs) { alignas(SShaderItem) std::byte _return_buf_[sizeof(SShaderItem)]; return *FmfShaderItemForName(this, reinterpret_cast<SShaderItem*>(_return_buf_), nameEf, bShare, flags, Res, nMaskGen, pArgs); }
-	CShader* mfForName(const char* nameSh, int flags, const CShaderResources* Res, uint64_t nMaskGen) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }
-	bool mfRefreshSystemShader(const char* szName, CShader* & pSysShader) { return FmfRefreshSystemShader(this, szName, pSysShader); }
-	void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRT_ParseShader(this, pSH, nMaskGen, flags, pRes); }
-	void RT_SetShaderQuality(EShaderType eST, EShaderQuality eSQ) { FRT_SetShaderQuality(this, eST, eSQ); }
-	SFXParam* mfGetFXParameter(std::vector<SFXParam>& Params, const char* param) { return FmfGetFXParameter(this, Params, param); }
-	SFXSampler* mfGetFXSampler(std::vector<SFXSampler>& Params, const char* param) { return FmfGetFXSampler(this, Params, param); }
-	SFXTexture* mfGetFXTexture(std::vector<SFXTexture>& Params, const char* param) { return FmfGetFXTexture(this, Params, param); }
-	CTexture* mfParseFXTechnique_LoadShaderTexture(STexSamplerRT* smp, const char* szName, SShaderPass* pShPass, CShader* ef, int nIndex, uint8_t ColorOp, uint8_t AlphaOp, uint8_t ColorArg, uint8_t AlphaArg) { return FmfParseFXTechnique_LoadShaderTexture(this, smp, szName, pShPass, ef, nIndex, ColorOp, AlphaOp, ColorArg, AlphaArg); }
-	void mfPostLoadFX(CShader* ef, std::vector<SShaderTechParseParams>& techParams, CCryNameR* techStart) { FmfPostLoadFX(this, ef, techParams, techStart); }
-	bool mfModifyGenFlags(CShader* efGen, const CShaderResources* pRes, uint64_t& nMaskGen, uint64_t& nMaskGenH) { return FmfModifyGenFlags(this, efGen, pRes, nMaskGen, nMaskGenH); }
-	void mfReleaseSystemShaders() { FmfReleaseSystemShaders(this); }
-	void mfLoadBasicSystemShaders() { FmfLoadBasicSystemShaders(this); }
-	void mfLoadDefaultSystemShaders() { FmfLoadDefaultSystemShaders(this); }
-	void mfCloseShadersCache(int nID) { FmfCloseShadersCache(this, nID); }
-	void mfInitShadersCacheMissLog() { FmfInitShadersCacheMissLog(this); }
-	void mfInsertNewCombination(SShaderCombIdent& Ident, EHWShaderClass eCL, const char* name, int nID, string* Str, uint8_t bStore) { FmfInsertNewCombination(this, Ident, eCL, name, nID, Str, bStore); }
-	bool mfReleasePreactivatedShaderData() { return FmfReleasePreactivatedShaderData(this); }
-	bool mfPreactivateShaders2(const char* szPak, const char* szPath, bool bPersistent, const char* szBindRoot) { return FmfPreactivateShaders2(this, szPak, szPath, bPersistent, szBindRoot); }
-	bool mfPreactivate2(CResFileLookupDataMan& LevelLookup, string szPathPerLevel, string szPathGlobal, bool bVS, bool bPersistent) { return FmfPreactivate2(this, LevelLookup, szPathPerLevel, szPathGlobal, bVS, bPersistent); }
-	bool mfPreloadBinaryShaders() { return FmfPreloadBinaryShaders(this); }
-	bool LoadShaderStartupCache() { return FLoadShaderStartupCache(this); }
-	void UnloadShaderStartupCache() { FUnloadShaderStartupCache(this); }
-
-#if 0
-	int mfReadTexSequence(STexSamplerRT* _arg0_, const char* _arg1_, int _arg2_, bool _arg3_);
-	CTexture* mfFindResourceTexture(const char* _arg0_, int _arg1_, SEfResTexture* _arg2_);
-	bool mfLoadResourceTexture(EEfResTextures _arg0_, SInputShaderResources& _arg1_, unsigned _arg2_, bool _arg3_);
-	void mfLoadDefaultTexture(EEfResTextures _arg0_, CShaderResources& _arg1_, EEfResTextures _arg2_);
-	void mfCheckShaderResTextures(TArray<SShaderPass>& _arg0_, CShader* _arg1_, CShaderResources* _arg2_);
-	void mfCheckShaderResTexturesHW(TArray<SShaderPass>& _arg0_, CShader* _arg1_, CShaderResources* _arg2_);
-	bool mfUpdateMergeStatus(SShaderTechnique* _arg0_, std::vector<SCGParam>* _arg1_);
-	bool mfReloadShaderFile(const char* _arg0_, int _arg1_);
-	static void FilterShaderCacheGenListForOrbis(std::map<CCryNameR, SCacheCombination>& _arg0_);
-	void ParseShaderProfile(char* _arg0_, SShaderProfile* _arg1_);
-	SParamDB* mfGetShaderParamDB(const char* _arg0_);
-	const char* mfGetShaderParamName(ECGParam _arg0_);
-	bool mfParseFXSampler(char* _arg0_, char* _arg1_, char* _arg2_, CShader* _arg3_, std::vector<STexSamplerFX>& _arg4_, std::vector<SFXStruct>& _arg5_);
-	void mfReleaseShaders();
-	string mfGetShaderBitNamesFromMaskGen(const char* _arg0_, uint64_t _arg1_);
-	void mfPreloadShaderExts();
-	void mfSaveCommonGlobalFlagsToDisk(const char* _arg0_, unsigned _arg1_);
-	bool mfRefreshResourceConstants(SShaderItem& _arg0_);
-	const char* mfParseFX_Parameter(const string& _arg0_, EParamType _arg1_, const char* _arg2_);
-	void mfParseFX_Annotations_Script(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, bool* _arg3_, CCryNameR* _arg4_);
-	void mfParseFX_Annotations(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, bool* _arg3_, CCryNameR* _arg4_);
-	void mfParseFXTechnique_Annotations_Script(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, SShaderTechnique* _arg3_, bool* _arg4_, std::vector<SShaderTechParseParams>& _arg5_);
-	void mfParseFXTechnique_Annotations(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, SShaderTechnique* _arg3_, bool* _arg4_, std::vector<SShaderTechParseParams>& _arg5_);
-	void mfParseFXSampler_Annotations_Script(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, STexSamplerFX* _arg3_);
-	void mfParseFXSampler_Annotations(char* _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, STexSamplerFX* _arg3_);
-	void mfParseFX_Global(SFXParam& _arg0_, CShader* _arg1_, std::vector<SFXStruct>& _arg2_, CCryNameR* _arg3_);
-	bool mfParseDummyFX_Global(std::vector<SFXStruct>& _arg0_, char* _arg1_, CCryNameR* _arg2_);
-	const string& mfParseFXTechnique_GenerateShaderScript(std::vector<SFXStruct>& _arg0_, std::unordered_map<CryStringT<char>,SMacroFX,stl::hash_strcmp<char const *>,stl::hash_strcmp<char const *>,std::allocator<std::pair<CryStringT<char> const ,SMacroFX> > >& _arg1_, std::vector<SFXParam>& _arg2_, std::vector<SFXParam>& _arg3_, const char* _arg4_, CShader* _arg5_, EHWShaderClass _arg6_, const char* _arg7_, unsigned& _arg8_, const char* _arg9_);
-	bool mfParseFXTechnique_MergeParameters(std::vector<SFXStruct>& _arg0_, std::vector<SFXParam>& _arg1_, std::vector<int>& _arg2_, SFXStruct* _arg3_, CShader* _arg4_, EHWShaderClass _arg5_, const char* _arg6_, std::vector<SFXParam>& _arg7_);
-	bool mfParseFXTechnique_LoadShader(const char* _arg0_, SShaderPass* _arg1_, CShader* _arg2_, std::vector<STexSamplerFX>& _arg3_, std::vector<SFXStruct>& _arg4_, std::vector<SFXParam>& _arg5_, std::unordered_map<CryStringT<char>,SMacroFX,stl::hash_strcmp<char const *>,stl::hash_strcmp<char const *>,std::allocator<std::pair<CryStringT<char> const ,SMacroFX> > >& _arg6_, EHWShaderClass _arg7_);
-	bool mfParseFXTechniquePass(char* _arg0_, char* _arg1_, SShaderTechnique* _arg2_, CShader* _arg3_, std::vector<STexSamplerFX>& _arg4_, std::vector<SFXStruct>& _arg5_, std::vector<SFXParam>& _arg6_);
-	bool mfParseFXTechnique_CustomRE(char* _arg0_, const char* _arg1_, SShaderTechnique* _arg2_, CShader* _arg3_);
-	SShaderTechnique* mfParseFXTechnique(char* _arg0_, char* _arg1_, CShader* _arg2_, std::vector<STexSamplerFX>& _arg3_, std::vector<SFXStruct>& _arg4_, std::vector<SFXParam>& _arg5_, bool* _arg6_, std::vector<SShaderTechParseParams>& _arg7_);
-	bool mfParseLightStyle(CLightStyle* _arg0_, char* _arg1_);
-	bool mfParseFXLightStyle(char* _arg0_, int _arg1_, CShader* _arg2_, std::vector<SFXStruct>& _arg3_);
-	CShader* mfParseFX(char* _arg0_, CShader* _arg1_, CShader* _arg2_, uint64_t _arg3_);
-	bool mfParseDummyFX(char* _arg0_, std::vector<string>& _arg1_, const char* _arg2_);
-	bool mfAddFXShaderNames(const char* _arg0_, std::vector<string>* _arg1_, bool _arg2_);
-	bool mfInitShadersDummy(bool _arg0_);
-	uint64_t mfGetRTForName(char* _arg0_);
-	unsigned mfGetGLForName(char* _arg0_, CShader* _arg1_);
-	void mfFillGenMacroses(SShaderGen* _arg0_, TArray<char>& _arg1_, uint64_t _arg2_);
-	bool mfGatherShadersList(const char* _arg0_, bool _arg1_, bool _arg2_, std::vector<string>* _arg3_);
-	void mfGatherFilesList(const char* _arg0_, std::vector<CCryNameR>& _arg1_, int _arg2_, bool _arg3_, bool _arg4_);
-	int mfInitShadersList(std::vector<string>* _arg0_);
-	void mfSetDefaults();
-	void mfInitShadersCache(uint8_t _arg0_, std::map<CCryNameR, SCacheCombination>* _arg1_, const char* _arg2_, int _arg3_);
-	void mfMergeShadersCombinations(std::map<CCryNameR, SCacheCombination>* _arg0_, int _arg1_);
-	const char* mfGetLevelListName() const;
-	int Size();
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-	static float EvalWaveForm(SWaveForm* _arg0_);
-	static float EvalWaveForm(SWaveForm2* _arg0_);
-	static float EvalWaveForm2(SWaveForm* _arg0_, float _arg1_);
-#endif
-
+#else
 	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x1333E90);
 	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x1058B50);
 	static inline auto FmfNewShader = PreyFunction<CShader* (CShaderMan* const _this, const char* szName)>(0x103CB10);
@@ -873,5 +608,9 @@ public:
 	static inline auto FmfPreloadBinaryShaders = PreyFunction<bool(CShaderMan* const _this)>(0x1032A70);
 	static inline auto FLoadShaderStartupCache = PreyFunction<bool(CShaderMan* const _this)>(0x10366C0);
 	static inline auto FUnloadShaderStartupCache = PreyFunction<void(CShaderMan* const _this)>(0x10370E0);
+#endif
 };
-#endif // !MOONCRASH
+
+//=====================================================================
+
+#endif                   // __CSHADER_H__
