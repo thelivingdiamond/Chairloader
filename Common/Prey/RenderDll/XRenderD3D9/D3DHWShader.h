@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -160,7 +158,12 @@ class CGParamManager
 	friend class CHWShader_D3D;
 	//friend struct CHWShader_D3D::SHWSInstance;
 
+#ifndef MOONCRASH
 	static inline auto s_FreeGroups = PreyGlobal<std::vector<unsigned int, stl::STLGlobalAllocator<unsigned int> >>(0x2B16808);
+#else
+	static inline auto s_FreeGroups = PreyGlobal<std::vector<unsigned int, stl::STLGlobalAllocator<unsigned int>>>(0x2C85A78);
+#endif
+
 
 public:
 	static void          Init();
@@ -170,10 +173,17 @@ public:
 	static int GetParametersGroup(SParamsGroup& InGr, int nId) { return FGetParametersGroup(InGr, nId); }
 	static bool FreeParametersGroup(int nIDGroup) { return FFreeParametersGroup(nIDGroup); }
 
+#ifndef MOONCRASH
 	static inline auto s_Groups = PreyGlobal<std::vector<SCGParamsGroup>>(0x2B167F0);
 	static inline auto s_Pools = PreyGlobal<DynArray<SCGParamPool>>(0x2B167E8);
 	static inline auto FGetParametersGroup = PreyFunction<int(SParamsGroup& InGr, int nId)>(0xEEB600);
 	static inline auto FFreeParametersGroup = PreyFunction<bool(int nIDGroup)>(0xEEB110);
+#else
+	static inline auto s_Groups = PreyGlobal<std::vector<SCGParamsGroup>>(0x2C85A60);
+	static inline auto s_Pools = PreyGlobal<DynArray<SCGParamPool>>(0x2C85A58);
+	static inline auto FGetParametersGroup = PreyFunction<int(SParamsGroup& InGr, int nId)>(0xF07720);
+	static inline auto FFreeParametersGroup = PreyFunction<bool(int nIDGroup)>(0xF07230);
+#endif
 };
 
 //=========================================================================================
@@ -336,11 +346,17 @@ struct SShaderAsyncInfo
 	}
 
 	~SShaderAsyncInfo();
+	//TODO: MOONCRASH
+#ifndef MOONCRASH
 	static inline auto s_nPendingAsyncShaders = PreyGlobal<volatile int>(0x2B168A4);
 	static inline auto s_nPendingAsyncShadersFXC = PreyGlobal<int>(0x2B168A8);
+#endif
 	static SShaderAsyncInfo& PendingList();
 	static SShaderAsyncInfo& PendingListT();
+	//TODO: MOONCRASH
+#ifndef MOONCRASH
 	static inline auto s_RequestEv = PreyGlobal<CryEvent>(0x2B168D8);
+#endif
 };
 
 #ifdef SHADER_ASYNC_COMPILATION
@@ -601,9 +617,15 @@ public:
 			return false;
 		}
 
+#ifndef MOONCRASH
 		static inline auto FRelease = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, SShaderDevCache* pCache, bool bReleaseData)>(0xEEBCB0);
 		static inline auto FGetInstancingAttribInfo = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, uint8_t* Attributes, int& nUsedAttr, int& nInstAttrMask)>(0xEEB350);
 		static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D::SHWSInstance const* const _this, ICrySizer* pSizer)>(0xEEB4F0);
+#else
+		static inline auto FRelease = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, SShaderDevCache* pCache, bool bReleaseData)>(0xF07DC0);
+		static inline auto FGetInstancingAttribInfo = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, uint8_t* Attributes, int& nUsedAttr, int& nInstAttrMask)>(0xF07470);
+		static inline auto FGetMemoryUsage = PreyFunction<void(const CHWShader_D3D::SHWSInstance* const _this, ICrySizer* pSizer)>(0xF07610);
+#endif
 	};
 
 	static_assert(sizeof(SHWSInstance) == 256);
@@ -626,7 +648,7 @@ public:
 	// Bin FX support
 	//FXShaderToken  m_TokenTable;
 	//TArray<uint32> m_TokenData;
-
+#ifndef MOONCRASH
 	static inline auto s_CurPSParams = PreyGlobal<Vec4[0]>(0x2B127A0);
 	static inline auto s_CurVSParams = PreyGlobal<Vec4[0]>(0x2B147A0);
 	static inline auto s_pCB = PreyGlobal<CConstantBuffer** [6][8]>(0x2B11840);
@@ -660,6 +682,41 @@ public:
 	static inline auto s_nDevicePSDataSize = PreyGlobal<int>(0x2B16898);
 	static inline auto s_nDeviceVSDataSize = PreyGlobal<int>(0x2B1689C);
 	static inline auto s_PF_Samplers = PreyGlobal<std::vector<STexSamplerRT>>(0x2B167A0);
+#else
+	static inline auto s_CurPSParams = PreyGlobal<Vec4 [0]>(0x2C81A10);
+	static inline auto s_CurVSParams = PreyGlobal<Vec4 [0]>(0x2C83A10);
+	static inline auto s_pCB = PreyGlobal<CConstantBuffer* * [6][8]>(0x2C80AE0);
+	static inline auto s_pCurReqCB = PreyGlobal<CConstantBuffer* [6][8]>(0x2C80C60);
+	static inline auto s_pCurDevCB = PreyGlobal<uint64_t [6][8]>(0x2C80DE0);
+	static inline auto s_pDataCB = PreyGlobal<Vec4* [6][8]>(0x2C80F60);
+	static inline auto s_nCurMaxVecs = PreyGlobal<int [6][8]>(0x2C810E0);
+	static inline auto s_nMax_PF_Vecs = PreyGlobal<int [6]>(0x2C811A0);
+	static inline auto s_nMax_SG_Vecs = PreyGlobal<int [6]>(0x2C811B8);
+	static inline auto s_nMax_CM_Vecs = PreyGlobal<int [6]>(0x0);
+	static inline auto s_pCurInstGS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811D0);
+	static inline auto s_bFirstGS = PreyGlobal<bool>(0x23DA160);
+	static inline auto s_pCurInstDS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811D8);
+	static inline auto s_bFirstDS = PreyGlobal<bool>(0x23DA161);
+	static inline auto s_pCurInstHS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811E0);
+	static inline auto s_bFirstHS = PreyGlobal<bool>(0x23DA162);
+	static inline auto s_pCurInstCS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811E8);
+	static inline auto s_bFirstCS = PreyGlobal<bool>(0x23DA163);
+	static inline auto s_pCurInstVS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811F0);
+	static inline auto s_bFirstVS = PreyGlobal<bool>(0x23DA164);
+	static inline auto s_pCurInstPS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811F8);
+	static inline auto s_bFirstPS = PreyGlobal<bool>(0x23DA165);
+	static inline auto s_nActivationFailMask = PreyGlobal<int>(0x2C81200);
+	static inline auto s_PSParamsToCommit = PreyGlobal<int [0]>(0x2C81210);
+	static inline auto s_NumPSParamsToCommit = PreyGlobal<int>(0x2C81204);
+	static inline auto s_VSParamsToCommit = PreyGlobal<int [0]>(0x2C81610);
+	static inline auto s_NumVSParamsToCommit = PreyGlobal<int>(0x2C81208);
+	static inline auto s_bInitShaders = PreyGlobal<bool>(0x23DA166);
+	static inline auto s_nResetDeviceFrame = PreyGlobal<int>(0x23DA168);
+	static inline auto s_nInstFrame = PreyGlobal<int>(0x23DA16C);
+	static inline auto s_nDevicePSDataSize = PreyGlobal<int>(0x2C85B14);
+	static inline auto s_nDeviceVSDataSize = PreyGlobal<int>(0x2C85B18);
+	static inline auto s_PF_Samplers = PreyGlobal<std::vector<STexSamplerRT>>(0x2C85A10);
+#endif
 
 	virtual int Size();
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
@@ -827,6 +884,7 @@ public:
 	}
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FSize = PreyFunction<int(CHWShader_D3D* const _this)>(0xEEC3C0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CHWShader_D3D const* const _this, ICrySizer* pSizer)>(0xEEB420);
 	static inline auto FmfInit = PreyFunction<void()>(0xEEE1D0);
@@ -909,353 +967,7 @@ public:
 	static inline auto FGetVolumetricFogSunDir = PreyFunction<Vec4()>(0xEEBBB0);
 	static inline auto FGetFogColorGradientConstants = PreyFunction<void(Vec4& fogColGradColBase, Vec4& fogColGradColDelta)>(0xEEB320);
 	static inline auto FGetFogColorGradientRadial = PreyFunction<Vec4()>(0xEEB330);
-
-	friend struct SShaderTechniqueStat;
-};
-
-struct SShaderTechniqueStat
-{
-	SShaderTechnique*            pTech;
-	CShader*                     pShader;
-	CHWShader_D3D*               pVS;
-	CHWShader_D3D*               pPS;
-	CHWShader_D3D::SHWSInstance* pVSInst;
-	CHWShader_D3D::SHWSInstance* pPSInst;
-};
-
-extern std::vector<SShaderTechniqueStat> g_SelectedTechs;
-
-#endif  // __D3DHWSHADER_H__
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/tarray.h>
-#include <Prey/CryRenderer/IShader.h>
-#include <Prey/RenderDll/Common/Shaders/Shader.h>
-#include <Prey/RenderDll/Common/Shaders/ShaderCache.h>
-#include <Prey/RenderDll/Common/Shaders/ShaderComponents.h>
-#include <Prey/RenderDll/XRenderD3D9/D3DHWShader.h>
-#include <_unknown/DynArray.h>
-#include <_unknown/TArray.h>
-
-class CConstantBuffer;
-class CCryNameR;
-class CCryNameTSCRC;
-class CParserBin;
-class CRenderObject;
-class CResFile;
-class CShader;
-class CShaderResources;
-struct D3D11_INPUT_ELEMENT_DESC;
-enum ED3DShError;
-enum EVertexFormat;
-class ICrySizer;
-struct ID3D10Blob;
-struct SCGParam;
-struct SCGParamPool;
-struct SD3DShader;
-struct SDirEntry;
-struct SEmptyCombination;
-struct SFXParam;
-struct SFXSampler;
-struct SFXTexture;
-struct SParamsGroup;
-struct SShaderAsyncInfo;
-struct SShaderCache;
-struct SShaderCacheHeaderItem;
-struct SShaderCombination;
-struct SShaderDevCache;
-struct SShaderFXParams;
-struct SShaderItem;
-
-// CGParamManager
-// Header:  CryEngine/renderdll/xrenderd3d9/d3dhwshader.h
-// Include: Prey/RenderDll/XRenderD3D9/D3DHWShader.h
-class CGParamManager
-{ // Size=1 (0x1)
-public:
-	static inline auto s_FreeGroups = PreyGlobal<std::vector<unsigned int, stl::STLGlobalAllocator<unsigned int>>>(0x2C85A78);
-	static inline auto s_Groups = PreyGlobal<std::vector<SCGParamsGroup>>(0x2C85A60);
-	static inline auto s_Pools = PreyGlobal<DynArray<SCGParamPool,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >>(0x2C85A58);
-
-	static int GetParametersGroup(SParamsGroup& InGr, int nId) { return FGetParametersGroup(InGr, nId); }
-	static bool FreeParametersGroup(int nIDGroup) { return FFreeParametersGroup(nIDGroup); }
-
-#if 0
-	static void Init();
-	static void Shutdown();
-	static SCGParamPool* NewPool(int _arg0_);
-#endif
-
-	static inline auto FGetParametersGroup = PreyFunction<int(SParamsGroup& InGr, int nId)>(0xF07720);
-	static inline auto FFreeParametersGroup = PreyFunction<bool(int nIDGroup)>(0xF07230);
-};
-
-// SD3DShaderHandle
-// Header:  CryEngine/renderdll/xrenderd3d9/d3dhwshader.h
-// Include: Prey/RenderDll/XRenderD3D9/D3DHWShader.h
-struct SD3DShaderHandle
-{ // Size=24 (0x18)
-	SD3DShader* m_pShader;
-	uint8_t* m_pData;
-	int m_nData;
-	uint8_t m_bStatus;
-
-	int Release(EHWShaderClass eSHClass, int nSize) { return FRelease(this, eSHClass, nSize); }
-
-#if 0
-	SD3DShaderHandle();
-	void SetShader(SD3DShader* _arg0_);
-	void SetFake();
-	void SetNonCompilable();
-	int AddRef();
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-#endif
-
-	static inline auto FRelease = PreyFunction<int(SD3DShaderHandle* const _this, EHWShaderClass eSHClass, int nSize)>(0xF07D20);
-};
-
-// CHWShader_D3D
-// Header:  CryEngine/renderdll/xrenderd3d9/d3dhwshader.h
-// Include: Prey/RenderDll/XRenderD3D9/D3DHWShader.h
-class CHWShader_D3D : public CHWShader
-{ // Size=176 (0xB0)
-public:
-	// CHWShader_D3D::SHWSInstance
-	// Header:  CryEngine/renderdll/xrenderd3d9/d3dhwshader.h
-	struct SHWSInstance
-	{ // Size=256 (0x100)
-		SShaderCombIdent m_Ident;
-		SD3DShaderHandle m_Handle;
-		EHWShaderClass m_eClass;
-		int m_nParams[2];
-		std::vector<STexSamplerRT> m_pSamplers;
-		std::vector<SCGSampler> m_Samplers;
-		std::vector<SCGTexture> m_Textures;
-		std::vector<SCGBind> m_pBindVars;
-		int m_nParams_Inst;
-		float m_fLastAccess;
-		int m_nUsed;
-		int m_nUsedFrame;
-		int m_nFrameSubmit;
-		void* m_pShaderData;
-		int m_nMaxVecs[3];
-		int16_t m_nInstMatrixID;
-		int16_t m_nInstIndex;
-		int16_t m_nInstructions;
-		int16_t m_nTempRegs;
-		uint16_t m_VStreamMask_Stream;
-		uint16_t m_VStreamMask_Decl;
-		int16_t m_nCache;
-		int16_t m_nParent;
-		uint8_t m_bDeleted : 1;
-		uint8_t m_bHasPMParams : 1;
-		uint8_t m_bCompressed : 1;
-		uint8_t m_bAsyncActivating : 1;
-		uint8_t m_bHasSendRequest : 1;
-		uint8_t m_nVertexFormat;
-		uint8_t m_nNumInstAttributes;
-		int m_nDataSize;
-		int m_DeviceObjectID;
-		SShaderAsyncInfo* m_pAsync;
-
-		void Release(SShaderDevCache* pCache, bool bReleaseData) { FRelease(this, pCache, bReleaseData); }
-		void GetInstancingAttribInfo(uint8_t* Attributes, int& nUsedAttr, int& nInstAttrMask) { FGetInstancingAttribInfo(this, Attributes, nUsedAttr, nInstAttrMask); }
-		void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
-
-	#if 0
-		SHWSInstance();
-		int Size();
-		bool IsAsyncCompiling();
-	#endif
-
-		static inline auto FRelease = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, SShaderDevCache* pCache, bool bReleaseData)>(0xF07DC0);
-		static inline auto FGetInstancingAttribInfo = PreyFunction<void(CHWShader_D3D::SHWSInstance* const _this, uint8_t* Attributes, int& nUsedAttr, int& nInstAttrMask)>(0xF07470);
-		static inline auto FGetMemoryUsage = PreyFunction<void(const CHWShader_D3D::SHWSInstance* const _this, ICrySizer* pSizer)>(0xF07610);
-	};
-
-	using InstContainer = std::vector<CHWShader_D3D::SHWSInstance*>;
-	using InstContainerIt = std::_Vector_iterator<std::_Vector_val<std::_Simple_types<CHWShader_D3D::SHWSInstance *> > >;
-
-	SShaderDevCache* m_pDevCache;
-	CHWShader_D3D::SHWSInstance* m_pCurInst;
-	std::vector<CHWShader_D3D::SHWSInstance*> m_Insts;
-	static inline auto m_FrameObj = PreyGlobal<int>(0x0);
-	int m_nCurInstFrame;
-	static inline auto s_CurPSParams = PreyGlobal<Vec4 [0]>(0x2C81A10);
-	static inline auto s_CurVSParams = PreyGlobal<Vec4 [0]>(0x2C83A10);
-	static inline auto s_pCB = PreyGlobal<CConstantBuffer* * [6][8]>(0x2C80AE0);
-	static inline auto s_pCurReqCB = PreyGlobal<CConstantBuffer* [6][8]>(0x2C80C60);
-	static inline auto s_pCurDevCB = PreyGlobal<uint64_t [6][8]>(0x2C80DE0);
-	static inline auto s_pDataCB = PreyGlobal<Vec4* [6][8]>(0x2C80F60);
-	static inline auto s_nCurMaxVecs = PreyGlobal<int [6][8]>(0x2C810E0);
-	static inline auto s_nMax_PF_Vecs = PreyGlobal<int [6]>(0x2C811A0);
-	static inline auto s_nMax_SG_Vecs = PreyGlobal<int [6]>(0x2C811B8);
-	static inline auto s_nMax_CM_Vecs = PreyGlobal<int [6]>(0x0);
-	static inline auto s_pCurInstGS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811D0);
-	static inline auto s_bFirstGS = PreyGlobal<bool>(0x23DA160);
-	static inline auto s_pCurInstDS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811D8);
-	static inline auto s_bFirstDS = PreyGlobal<bool>(0x23DA161);
-	static inline auto s_pCurInstHS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811E0);
-	static inline auto s_bFirstHS = PreyGlobal<bool>(0x23DA162);
-	static inline auto s_pCurInstCS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811E8);
-	static inline auto s_bFirstCS = PreyGlobal<bool>(0x23DA163);
-	static inline auto s_pCurInstVS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811F0);
-	static inline auto s_bFirstVS = PreyGlobal<bool>(0x23DA164);
-	static inline auto s_pCurInstPS = PreyGlobal<CHWShader_D3D::SHWSInstance*>(0x2C811F8);
-	static inline auto s_bFirstPS = PreyGlobal<bool>(0x23DA165);
-	static inline auto s_nActivationFailMask = PreyGlobal<int>(0x2C81200);
-	static inline auto s_PSParamsToCommit = PreyGlobal<int [0]>(0x2C81210);
-	static inline auto s_NumPSParamsToCommit = PreyGlobal<int>(0x2C81204);
-	static inline auto s_VSParamsToCommit = PreyGlobal<int [0]>(0x2C81610);
-	static inline auto s_NumVSParamsToCommit = PreyGlobal<int>(0x2C81208);
-	static inline auto s_bInitShaders = PreyGlobal<bool>(0x23DA166);
-	static inline auto s_nResetDeviceFrame = PreyGlobal<int>(0x23DA168);
-	static inline auto s_nInstFrame = PreyGlobal<int>(0x23DA16C);
-	static inline auto s_nDevicePSDataSize = PreyGlobal<int>(0x2C85B14);
-	static inline auto s_nDeviceVSDataSize = PreyGlobal<int>(0x2C85B18);
-	static inline auto s_PF_Samplers = PreyGlobal<std::vector<STexSamplerRT>>(0x2C85A10);
-
-	virtual int Size();
-	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
-	static void mfInit() { FmfInit(); }
-	SShaderCacheHeaderItem* mfGetCompressedItem(unsigned nFlags, int& nSize) { return FmfGetCompressedItem(this, nFlags, nSize); }
-	SShaderCacheHeaderItem* mfGetCacheItem(unsigned& nFlags, int& nSize) { return FmfGetCacheItem(this, nFlags, nSize); }
-	bool mfActivateCacheItem(CShader* pSH, SShaderCacheHeaderItem* pItem, unsigned nSize, unsigned nFlags) { return FmfActivateCacheItem(this, pSH, pItem, nSize, nFlags); }
-	static bool mfCreateCacheItem(CHWShader_D3D::SHWSInstance* pInst, std::vector<SCGBind>& InstBinds, uint8_t* pData, int nLen, CHWShader_D3D* pSH) { return FmfCreateCacheItem(pInst, InstBinds, pData, nLen, pSH); }
-	void mfOutputCompilerError(string& strErr, const char* szSrc) { FmfOutputCompilerError(this, strErr, szSrc); }
-	static bool mfCreateShaderEnv(int nThread, CHWShader_D3D::SHWSInstance* pInst, ID3D10Blob* pShader, void* pConstantTable, ID3D10Blob* pErrorMsgs, std::vector<SCGBind>& InstBindVars, CHWShader_D3D* pSH, CShader* pFXShader, int nCombination, const char* src) { return FmfCreateShaderEnv(nThread, pInst, pShader, pConstantTable, pErrorMsgs, InstBindVars, pSH, pFXShader, nCombination, src); }
-	void mfPrintCompileInfo(CHWShader_D3D::SHWSInstance* pInst) { FmfPrintCompileInfo(this, pInst); }
-	int mfAsyncCompileReady(CHWShader_D3D::SHWSInstance* pInst) { return FmfAsyncCompileReady(this, pInst); }
-	bool mfUploadHW(CHWShader_D3D::SHWSInstance* pInst, uint8_t* pBuf, unsigned nSize, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv1(this, pInst, pBuf, nSize, pSH, nFlags); }
-	bool mfUploadHW(ID3D10Blob* pShader, CHWShader_D3D::SHWSInstance* pInst, CShader* pSH, unsigned nFlags) { return FmfUploadHWOv0(this, pShader, pInst, pSH, nFlags); }
-	ED3DShError mfIsValid_Int(CHWShader_D3D::SHWSInstance* & pInst, bool bFinalise) { return FmfIsValid_Int(this, pInst, bFinalise); }
-	void mfLogShaderCacheMiss(CHWShader_D3D::SHWSInstance* pInst) { FmfLogShaderCacheMiss(this, pInst); }
-	void mfLogShaderRequest(CHWShader_D3D::SHWSInstance* pInst) { FmfLogShaderRequest(this, pInst); }
-	void mfBind() { FmfBind(this); }
-	static void mfCommitParamsMaterial() { FmfCommitParamsMaterial(); }
-	static void mfCommitParamsGlobal() { FmfCommitParamsGlobal(); }
-	static void mfCommitParams() { FmfCommitParams(); }
-	static void mfBindGS(SD3DShader* pShader, void* pHandle) { FmfBindGS(pShader, pHandle); }
-	static void mfBindDS(SD3DShader* pShader, void* pHandle) { FmfBindDS(pShader, pHandle); }
-	static void mfBindHS(SD3DShader* pShader, void* pHandle) { FmfBindHS(pShader, pHandle); }
-	static void mfSetCB(int eClass, int nSlot, CConstantBuffer* pBuffer) { FmfSetCB(eClass, nSlot, pBuffer); }
-	static void mfUnbindCB(CConstantBuffer* pCB) { FmfUnbindCB(pCB); }
-	static void mfCommitCB(int nCBufSlot, EHWShaderClass eSHData, EHWShaderClass eSH) { FmfCommitCB(nCBufSlot, eSHData, eSH); }
-	static void mfSetCBConst(int nReg, int nCBufSlot, EHWShaderClass eSH, const float* fData, const int nVecs, int nMaxVecs) { FmfSetCBConst(nReg, nCBufSlot, eSH, fData, nVecs, nMaxVecs); }
-	SCGBind* mfGetParameterBind(const CCryNameR& Name) { return FmfGetParameterBind(this, Name); }
-	static float* mfSetParametersPI(SCGParam* pParams, const int nINParams, float* pDst, EHWShaderClass eSH, int nMaxVecs) { return FmfSetParametersPIOv1(pParams, nINParams, pDst, eSH, nMaxVecs); }
-	void mfSetParametersPI(CRenderObject* pObj, CShader* pFXShader) { FmfSetParametersPIOv0(this, pObj, pFXShader); }
-	static void mfSetParameters(SCGParam* pParams, const int nINParams, EHWShaderClass eSH, int nMaxVecs, float* pOutBuffer, unsigned* pOutBufferSize) { FmfSetParameters(pParams, nINParams, eSH, nMaxVecs, pOutBuffer, pOutBufferSize); }
-	static void mfSetGeneralParametersPI(SCGParam* pParams, const int nINParams, EHWShaderClass eSH, int nMaxVecs) { FmfSetGeneralParametersPI(pParams, nINParams, eSH, nMaxVecs); }
-	static void mfSetGeneralParameters(SCGParam* pParams, const int nINParams, EHWShaderClass eSH, int nMaxVecs) { FmfSetGeneralParameters(pParams, nINParams, eSH, nMaxVecs); }
-	void mfSetParametersPB() { FmfSetParametersPB(this); }
-	void mfSetSamplers(const std::vector<STexSamplerRT>& Samplers, EHWShaderClass eHWClass) { FmfSetSamplersOv1(this, Samplers, eHWClass); }
-	static bool mfSetSamplers(const std::vector<SCGSampler>& Samplers, EHWShaderClass eSHClass) { return FmfSetSamplersOv0(Samplers, eSHClass); }
-	static bool mfSetTextures(const std::vector<SCGTexture>& Textures, EHWShaderClass eSHClass) { return FmfSetTextures(Textures, eSHClass); }
-	static bool mfSetSamplers_Old(const std::vector<STexSamplerRT>& Samplers, EHWShaderClass eSHClass) { return FmfSetSamplers_Old(Samplers, eSHClass); }
-	CHWShader_D3D::SHWSInstance* mfGetInstance(CShader* pSH, SShaderCombIdent& Ident, unsigned nFlags) { return FmfGetInstanceOv1(this, pSH, Ident, nFlags); }
-	CHWShader_D3D::SHWSInstance* mfGetInstance(CShader* pSH, int nHashInstance, SShaderCombIdent& Ident) { return FmfGetInstanceOv0(this, pSH, nHashInstance, Ident); }
-	CHWShader_D3D::SHWSInstance* mfGetHashInst(std::vector<CHWShader_D3D::SHWSInstance*>* pInstCont, unsigned identHash, SShaderCombIdent& Ident, std::_Vector_iterator<std::_Vector_val<std::_Simple_types<CHWShader_D3D::SHWSInstance *> > >& it) { return FmfGetHashInst(this, pInstCont, identHash, Ident, it); }
-	static void mfPrepareShaderDebugInfo(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, const char* szAsm, std::vector<SCGBind>& InstBindVars, void* pConstantTable) { FmfPrepareShaderDebugInfo(pInst, pSH, szAsm, InstBindVars, pConstantTable); }
-	static void mfGetDstFileName(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, char* dstname, int nSize, uint8_t bType) { FmfGetDstFileName(pInst, pSH, dstname, nSize, bType); }
-	bool mfStoreCacheTokenMap(std::vector<STokenD>* & Table, TArray<unsigned int>* & pSHData, const char* szName) { return FmfStoreCacheTokenMap(this, Table, pSHData, szName); }
-	void mfGetTokenMap(CResFile* pRes, SDirEntry* pDE, std::vector<STokenD>* & Table, TArray<unsigned int>* & pSHData) { FmfGetTokenMap(this, pRes, pDE, Table, pSHData); }
-	void mfSetDefaultRT(uint64_t& nAndMask, uint64_t& nOrMask) { FmfSetDefaultRT(this, nAndMask, nOrMask); }
-	bool mfGetCacheTokenMap(std::vector<STokenD>* & Table, TArray<unsigned int>* & pSHData, uint64_t nMaskGenFX) { return FmfGetCacheTokenMap(this, Table, pSHData, nMaskGenFX); }
-	bool mfActivate(CShader* pSH, unsigned nFlags, std::vector<STokenD>* Table, TArray<unsigned int>* pSHData, bool bCompressedOnly) { return FmfActivate(this, pSH, nFlags, Table, pSHData, bCompressedOnly); }
-	uint64_t CheckIfExpr_r(unsigned* pTokens, unsigned& nCur, unsigned nSize) { return FCheckIfExpr_r(this, pTokens, nCur, nSize); }
-	void mfConstructFX_Mask_RT(std::vector<STokenD>* Table, TArray<unsigned int>* pSHData) { FmfConstructFX_Mask_RT(this, Table, pSHData); }
-	static void mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, SCGBind* pBind, CShader* ef, bool bInstParam, EHWShaderClass eSHClass) { FmfAddFXParameterOv1(pInst, OutParams, FXParams, pr, ParamName, pBind, ef, bInstParam, eSHClass); }
-	static bool mfAddFXParameter(CHWShader_D3D::SHWSInstance* pInst, SParamsGroup& OutParams, SShaderFXParams& FXParams, const char* param, SCGBind* bn, bool bInstParam, EHWShaderClass eSHClass, CShader* pFXShader) { return FmfAddFXParameterOv0(pInst, OutParams, FXParams, param, bn, bInstParam, eSHClass, pFXShader); }
-	static void mfGatherFXParameters(CHWShader_D3D::SHWSInstance* pInst, std::vector<SCGBind>* BindVars, std::vector<SCGBind>* InstBindVars, CHWShader_D3D* pSH, CShader* pFXShader) { FmfGatherFXParameters(pInst, BindVars, InstBindVars, pSH, pFXShader); }
-	static void mfCreateBinds(CHWShader_D3D::SHWSInstance* pInst, void* pConstantTable, uint8_t* pShader, int nSize) { FmfCreateBinds(pInst, pConstantTable, pShader, nSize); }
-	bool mfUpdateSamplers(CShader* pSH) { return FmfUpdateSamplers(this, pSH); }
-	void mfUpdateFXVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CShader* pSH) { FmfUpdateFXVertexFormat(this, pInst, pSH); }
-	virtual ~CHWShader_D3D();
-	bool mfSetVS(int nFlags) { return FmfSetVS(this, nFlags); }
-	bool mfSetPS(int nFlags) { return FmfSetPS(this, nFlags); }
-	bool mfSetGS(int nFlags) { return FmfSetGS(this, nFlags); }
-	bool mfSetHS(int nFlags) { return FmfSetHS(this, nFlags); }
-	bool mfSetCS(int nFlags) { return FmfSetCS(this, nFlags); }
-	bool mfSetDS(int nFlags) { return FmfSetDS(this, nFlags); }
-	bool mfSet(int nFlags) { return FmfSet(this, nFlags); }
-	virtual bool mfAddEmptyCombination(CShader* pSH, uint64_t nRT, uint64_t nGL, unsigned nLT);
-	virtual bool mfStoreEmptyCombination(SEmptyCombination& Comb);
-	virtual bool mfSetV(int nFlags);
-	virtual void mfReset(unsigned CRC32);
-	virtual const char* mfGetEntryName();
-	virtual bool mfFlushCacheFile();
-	virtual bool mfPrecache(SShaderCombination& cmb, bool bForce, bool bCompressedOnly, CShader* pSH, CShaderResources* pRes);
-	virtual EVertexFormat mfVertexFormat(bool& bUseTangents, bool& bUseLM, bool& bUseHWSkin);
-	static EVertexFormat mfVertexFormat(CHWShader_D3D::SHWSInstance* pInst, CHWShader_D3D* pSH, ID3D10Blob* pShader) { return FmfVertexFormatOv0(pInst, pSH, pShader); }
-	virtual const char* mfGetActivatedCombinations(bool bForLevel);
-	static void mfSetGlobalParams() { FmfSetGlobalParams(); }
-	static void mfSetCameraParams() { FmfSetCameraParams(); }
-	static bool mfAddGlobalSampler(STexSamplerRT& Sampler) { return FmfAddGlobalSampler(Sampler); }
-	static void ShutDown() { FShutDown(); }
-	static Vec4 GetVolumetricFogParams() { return FGetVolumetricFogParams(); }
-	static Vec4 GetVolumetricFogRampParams() { return FGetVolumetricFogRampParams(); }
-	static Vec4 GetVolumetricFogSunDir() { return FGetVolumetricFogSunDir(); }
-	static void GetFogColorGradientConstants(Vec4& fogColGradColBase, Vec4& fogColGradColDelta) { FGetFogColorGradientConstants(fogColGradColBase, fogColGradColDelta); }
-	static Vec4 GetFogColorGradientRadial() { return FGetFogColorGradientRadial(); }
-
-#if 0
-	CHWShader_D3D();
-	static void InitialiseContainers();
-	void mfConstruct();
-	void mfFree(unsigned _arg0_);
-	static bool mfAddCacheItem(SShaderCache* _arg0_, SShaderCacheHeaderItem* _arg1_, const uint8_t* _arg2_, int _arg3_, bool _arg4_, CCryNameTSCRC _arg5_);
-	bool mfCloseCacheFile();
-	static uint8_t* mfBindsToCache(CHWShader_D3D::SHWSInstance* _arg0_, std::vector<SCGBind>* _arg1_, int _arg2_, uint8_t* _arg3_);
-	uint8_t* mfBindsFromCache(std::vector<SCGBind>* & _arg0_, int _arg1_, uint8_t* _arg2_);
-	int mfGetParams(int _arg0_);
-	bool mfSetHWStartProfile(unsigned _arg0_);
-	void mfSaveCGFile(const char* _arg0_, const char* _arg1_);
-	ED3DShError mfIsValid(CHWShader_D3D::SHWSInstance* & _arg0_, bool _arg1_);
-	ED3DShError mfFallBack(CHWShader_D3D::SHWSInstance* & _arg0_, int _arg1_);
-	void mfCommitCombinations(int _arg0_, int _arg1_);
-	void mfCommitCombination(CHWShader_D3D::SHWSInstance* _arg0_, int _arg1_, int _arg2_);
-	void mfBindInstance(CHWShader_D3D::SHWSInstance* _arg0_, EHWShaderClass _arg1_);
-	static void mfBindCS(SD3DShader* _arg0_, void* _arg1_);
-	static void mfClearCB();
-	static void mfFreeCB(int _arg0_, EHWShaderClass _arg1_);
-	static void mfSetGSConst(int _arg0_, int _arg1_, const float* _arg2_, int _arg3_, int _arg4_);
-	static void mfSetGSConst(int _arg0_, const float* _arg1_, int _arg2_, int _arg3_);
-	static void mfSetPSConst(int _arg0_, int _arg1_, const float* _arg2_, int _arg3_, int _arg4_);
-	static void mfSetPSConst(int _arg0_, const float* _arg1_, int _arg2_, int _arg3_);
-	static void mfSetPSConstA(int _arg0_, int _arg1_, const float* _arg2_, int _arg3_, int _arg4_);
-	static void mfSetVSConst(int _arg0_, int _arg1_, const float* _arg2_, int _arg3_, int _arg4_);
-	static void mfSetVSConst(int _arg0_, const float* _arg1_, int _arg2_, int _arg3_);
-	static void mfSetVSConstA(int _arg0_, int _arg1_, const float* _arg2_, int _arg3_, int _arg4_);
-	static void mfParameterReg(int _arg0_, int _arg1_, EHWShaderClass _arg2_, const float* _arg3_, int _arg4_, int _arg5_);
-	static void mfParameterf(const SCGBind* _arg0_, const float* _arg1_, int _arg2_, EHWShaderClass _arg3_, int _arg4_);
-	static void mfParameterf(const SCGBind* _arg0_, const float* _arg1_, EHWShaderClass _arg2_, int _arg3_);
-	void mfParameterf(const CCryNameR& _arg0_, const float* _arg1_);
-	static void mfParameterfA(const SCGBind* _arg0_, const float* _arg1_, int _arg2_, EHWShaderClass _arg3_, int _arg4_);
-	static void mfParameterfA(const SCGBind* _arg0_, const float* _arg1_, EHWShaderClass _arg2_, int _arg3_);
-	static void mfParameteri(const SCGBind* _arg0_, const float* _arg1_, EHWShaderClass _arg2_, int _arg3_);
-	static void mfParameterb(const SCGBind* _arg0_, const float* _arg1_, EHWShaderClass _arg2_, int _arg3_);
-	void GetReflectedShaderParameters(CRenderObject* _arg0_, const SShaderItem& _arg1_, CHWShader_D3D::SHWSInstance* _arg2_, uint8_t* _arg3_, unsigned& _arg4_);
-	void mfLostDevice(CHWShader_D3D::SHWSInstance* _arg0_, uint8_t* _arg1_, int _arg2_);
-	int mfCheckActivation(CShader* _arg0_, CHWShader_D3D::SHWSInstance* & _arg1_, unsigned _arg2_);
-	void mfGetSrcFileName(char* _arg0_, int _arg1_);
-	static void mfGenName(CHWShader_D3D::SHWSInstance* _arg0_, char* _arg1_, int _arg2_, uint8_t _arg3_);
-	void CorrectScriptEnums(CParserBin& _arg0_, CHWShader_D3D::SHWSInstance* _arg1_, std::vector<SCGBind>& _arg2_, std::vector<STokenD>* _arg3_);
-	bool ConvertBinScriptToASCII(CParserBin& _arg0_, CHWShader_D3D::SHWSInstance* _arg1_, std::vector<SCGBind>& _arg2_, std::vector<STokenD>* _arg3_, TArray<char>& _arg4_);
-	void RemoveUnaffectedParameters_D3D10(CParserBin& _arg0_, CHWShader_D3D::SHWSInstance* _arg1_, std::vector<SCGBind>& _arg2_);
-	void SetTokenFlags(unsigned _arg0_);
-	uint64_t CheckToken(unsigned _arg0_);
-	void mfConstructFX(std::vector<STokenD>* _arg0_, TArray<unsigned int>* _arg1_);
-	static bool mfAddFXSampler(CHWShader_D3D::SHWSInstance* _arg0_, SShaderFXParams& _arg1_, SFXSampler* _arg2_, const char* _arg3_, SCGBind* _arg4_, CShader* _arg5_, EHWShaderClass _arg6_);
-	static bool mfAddFXTexture(CHWShader_D3D::SHWSInstance* _arg0_, SShaderFXParams& _arg1_, SFXTexture* _arg2_, const char* _arg3_, SCGBind* _arg4_, CShader* _arg5_, EHWShaderClass _arg6_);
-	static void mfPostVertexFormat(CHWShader_D3D::SHWSInstance* _arg0_, CHWShader_D3D* _arg1_, bool _arg2_, uint8_t _arg3_, bool _arg4_, bool* _arg5_, bool _arg6_, bool* _arg7_, bool* _arg8_, bool _arg9_, bool* _arg10_, bool _arg11_, bool _arg12_);
-	void ModifyLTMask(unsigned& _arg0_);
-	static void mfSetPV();
-	static void* GetVSDataForDecl(const D3D11_INPUT_ELEMENT_DESC* _arg0_, int _arg1_, int& _arg2_);
-	static uint16_t GetDeclaredVertexStreamMask(void* _arg0_);
-#endif
-
+#else
 	static inline auto FSize = PreyFunction<int(CHWShader_D3D* const _this)>(0xF084D0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CHWShader_D3D* const _this, ICrySizer* pSizer)>(0xF07540);
 	static inline auto FmfInit = PreyFunction<void()>(0xF0A2E0);
@@ -1338,5 +1050,21 @@ public:
 	static inline auto FGetVolumetricFogSunDir = PreyFunction<Vec4()>(0xF07CC0);
 	static inline auto FGetFogColorGradientConstants = PreyFunction<void(Vec4& fogColGradColBase, Vec4& fogColGradColDelta)>(0xF07440);
 	static inline auto FGetFogColorGradientRadial = PreyFunction<Vec4()>(0xF07450);
+#endif
+
+	friend struct SShaderTechniqueStat;
 };
-#endif // !MOONCRASH
+
+struct SShaderTechniqueStat
+{
+	SShaderTechnique*            pTech;
+	CShader*                     pShader;
+	CHWShader_D3D*               pVS;
+	CHWShader_D3D*               pPS;
+	CHWShader_D3D::SHWSInstance* pVSInst;
+	CHWShader_D3D::SHWSInstance* pPSInst;
+};
+
+extern std::vector<SShaderTechniqueStat> g_SelectedTechs;
+
+#endif  // __D3DHWSHADER_H__
