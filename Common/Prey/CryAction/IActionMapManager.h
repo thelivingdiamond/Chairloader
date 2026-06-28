@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*************************************************************************
@@ -479,3 +481,98 @@ private:
 };
 
 #endif //__IACTIONMAPMANAGER_H__
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryAction/IActionMapManager.h>
+
+class ArkPlayerInput;
+class CCryName;
+class CUIInput;
+class ICrySizer;
+
+// SActionInput
+// Header:  CryEngine/cryaction/iactionmapmanager.h
+// Include: Prey/CryAction/IActionMapManager.h
+struct SActionInput
+{ // Size=224 (0xE0)
+	EActionInputDevice inputDevice;
+	CryFixedStringT<32> input;
+	CryFixedStringT<32> defaultInput;
+	SActionInputBlockData inputBlockData;
+	unsigned inputCRC;
+	float fPressedTime;
+	float fPressTriggerDelay;
+	float fPressTriggerDelayRepeatOverride;
+	float fLastRepeatTime;
+	float fAnalogCompareVal;
+	float fHoldTriggerDelay;
+	float fCurrentHoldValue;
+	float fReleaseTriggerThreshold;
+	float fHoldRepeatDelay;
+	float fHoldTriggerDelayRepeatOverride;
+	int activationMode;
+	int modifiers;
+	int iPressDelayPriority;
+	EInputState currentState;
+	EActionAnalogCompareOperation analogCompareOp;
+	bool bHoldTriggerFired;
+	bool bAnalogConditionFulfilled;
+
+	SActionInput();
+
+#if 0
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FSActionInputOv2 = PreyFunction<void(SActionInput* const _this)>(0x3DE890);
+};
+
+// TActionHandler<ArkPlayerInput>
+// Header:  CryEngine/cryaction/iactionmapmanager.h
+class TActionHandler<ArkPlayerInput>
+{ // Size=16 (0x10)
+public:
+	using TOnActionHandler = bool (*)(unsigned, const CCryName&, int, float);
+	using TActionHandlerMap = std::multimap<CCryName,bool (__cdecl ArkPlayerInput::*)(unsigned int,CCryName const &,int,float),std::less<CCryName>,std::allocator<std::pair<CCryName const ,bool (__cdecl ArkPlayerInput::*)(unsigned int,CCryName const &,int,float)> > >;
+
+	std::multimap<CCryName,bool (__cdecl ArkPlayerInput::*)(unsigned int,CCryName const &,int,float),std::less<CCryName>,std::allocator<std::pair<CCryName const ,bool (__cdecl ArkPlayerInput::*)(unsigned int,CCryName const &,int,float)> > > m_actionHandlers;
+
+	void AddHandler(const CCryName& actionId, bool (*fnHandler)(unsigned, const CCryName&, int, float)) { FAddHandler(this, actionId, fnHandler); }
+
+#if 0
+	uint64_t GetNumHandlers() const;
+	bool Dispatch(ArkPlayerInput* _arg0_, unsigned _arg1_, const CCryName& _arg2_, int _arg3_, float _arg4_);
+	bool Dispatch(ArkPlayerInput* _arg0_, unsigned _arg1_, const CCryName& _arg2_, int _arg3_, float _arg4_, bool& _arg5_);
+	bool (*)(unsigned, const CCryName&, int, float) GetHandler(const CCryName& _arg0_);
+	void Clear();
+#endif
+
+	static inline auto FAddHandler = PreyFunction<void(TActionHandler<ArkPlayerInput>* const _this, const CCryName& actionId, bool (*fnHandler)(unsigned, const CCryName&, int, float))>(0x1687D00);
+};
+
+// TActionHandler<CUIInput>
+// Header:  CryEngine/cryaction/iactionmapmanager.h
+class TActionHandler<CUIInput>
+{ // Size=16 (0x10)
+public:
+	using TOnActionHandler = bool (*)(unsigned, const CCryName&, int, float);
+	using TActionHandlerMap = std::multimap<CCryName,bool (__cdecl CUIInput::*)(unsigned int,CCryName const &,int,float),std::less<CCryName>,std::allocator<std::pair<CCryName const ,bool (__cdecl CUIInput::*)(unsigned int,CCryName const &,int,float)> > >;
+
+	std::multimap<CCryName,bool (__cdecl CUIInput::*)(unsigned int,CCryName const &,int,float),std::less<CCryName>,std::allocator<std::pair<CCryName const ,bool (__cdecl CUIInput::*)(unsigned int,CCryName const &,int,float)> > > m_actionHandlers;
+
+	bool Dispatch(CUIInput* pThis, unsigned entityId, const CCryName& actionId, int activationMode, float value) { return FDispatchOv1(this, pThis, entityId, actionId, activationMode, value); }
+
+#if 0
+	void AddHandler(const CCryName& _arg0_, bool (*_arg1_)(unsigned, const CCryName&, int, float));
+	uint64_t GetNumHandlers() const;
+	bool Dispatch(CUIInput* _arg0_, unsigned _arg1_, const CCryName& _arg2_, int _arg3_, float _arg4_, bool& _arg5_);
+	bool (*)(unsigned, const CCryName&, int, float) GetHandler(const CCryName& _arg0_);
+	void Clear();
+#endif
+
+	static inline auto FDispatchOv1 = PreyFunction<bool(TActionHandler<CUIInput>* const _this, CUIInput* pThis, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x19236B0);
+};
+#endif // !MOONCRASH

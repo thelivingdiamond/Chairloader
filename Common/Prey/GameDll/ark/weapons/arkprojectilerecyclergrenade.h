@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -147,4 +149,93 @@ public:
 	static inline auto FPullPlayer = PreyFunction<void(CArkProjectileRecyclerGrenade *const _this, const float _radius, const float _pullForce)>(0x1659F80);
 	static inline auto FCalculateIngredientInfo = PreyFunction<void(CArkProjectileRecyclerGrenade *const _this)>(0x16573C0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/weapons/ArkProjectile.h>
+#include <Prey/GameDll/ark/weapons/ArkProjectileGrenade.h>
 
+class ICrySizer;
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// CArkProjectileRecyclerGrenade
+// Header:  Prey/GameDll/ark/weapons/ArkProjectileRecyclerGrenade.h
+class CArkProjectileRecyclerGrenade : public CArkProjectileGrenade
+{ // Size=2800 (0xAF0)
+public:
+	enum class EArkRecyclerGrenadeState
+	{
+		none = 0,
+		initialize = 1,
+		launch = 2,
+		detonate = 3,
+		vibrateObjects = 4,
+		gravityPull = 5,
+		recycle = 6,
+		destroyed = 7,
+	};
+
+	float m_vibrationRadius;
+	float m_gravitationalPullRadius;
+	float m_gravitationalPull;
+	float m_gravitationalPullPlayer;
+	float m_raiseGravityZ;
+	float m_vibrationAmount;
+	CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState m_state;
+	ArkSimpleTimer m_pullTimer;
+	ArkSimpleTimer m_vibrateTimer;
+	ArkSimpleTimer m_recycleTimer;
+	CArkProjectile::ArkProjectileEntityEffect m_pullEffect;
+	CArkProjectile::ArkProjectileEntityEffect m_popEffect;
+	CArkProjectile::ArkProjectileEntityEffect m_flashEffect;
+
+	CArkProjectileRecyclerGrenade();
+	virtual ~CArkProjectileRecyclerGrenade();
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void ReInitFromPool();
+	virtual bool Detonate();
+	static CArkProjectileRecyclerGrenade* GetProjectileGrenadeFromEntityId(const unsigned _entityId) { return FGetProjectileGrenadeFromEntityId(_entityId); }
+	virtual void AttachToPhysicsEntity(const int _physicsEntityId, const Vec3& _attachPosition, const int _partId, const bool _bTerrain);
+	virtual void SetOwnerIdAndWeaponClassName(const unsigned _ownerId, const uint64_t _ownerWeaponId, const string& _weaponName);
+	virtual void Pulse();
+	virtual void Destroy(const bool _bDeleting, const bool _bDestroyImmediate);
+	virtual void LoadCachedProperties();
+	void StateUpdate(const SEntityUpdateContext& _ctx) { FStateUpdate(this, _ctx); }
+	void StateEnter(const CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState _state) { FStateEnter(this, _state); }
+	void ChangeState(const CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState _state) { FChangeState(this, _state); }
+
+#if 0
+	void StateExit(const CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState _arg0_);
+#endif
+
+	static inline auto FCArkProjectileRecyclerGrenadeOv1 = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this)>(0x177B360);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkProjectileRecyclerGrenade* const _this, ICrySizer* _s)>(0x177BA60);
+	static inline auto FInit = PreyFunction<bool(CArkProjectileRecyclerGrenade* const _this, IGameObject* _pGameObject)>(0x177BB30);
+	static inline auto FPostInit = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, IGameObject* _pGameObject)>(0x177C2B0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, TSerialize _ser)>(0x177B900);
+	static inline auto FPostSerialize = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this)>(0x177C310);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x177D000);
+	static inline auto FProcessEvent = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, SEntityEvent& _event)>(0x177C340);
+	static inline auto FReInitFromPool = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this)>(0x177C830);
+	static inline auto FDetonate = PreyFunction<bool(CArkProjectileRecyclerGrenade* const _this)>(0x177B830);
+	static inline auto FGetProjectileGrenadeFromEntityId = PreyFunction<CArkProjectileRecyclerGrenade* (const unsigned _entityId)>(0x177BA80);
+	static inline auto FAttachToPhysicsEntity = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const int _physicsEntityId, const Vec3& _attachPosition, const int _partId, const bool _bTerrain)>(0x177B5D0);
+	static inline auto FSetOwnerIdAndWeaponClassName = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const unsigned _ownerId, const uint64_t _ownerWeaponId, const string& _weaponName)>(0x177C8B0);
+	static inline auto FPulse = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this)>(0x177C630);
+	static inline auto FDestroy = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const bool _bDeleting, const bool _bDestroyImmediate)>(0x177B7C0);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this)>(0x177BB80);
+	static inline auto FStateUpdate = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const SEntityUpdateContext& _ctx)>(0x177CCB0);
+	static inline auto FStateEnter = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState _state)>(0x177C900);
+	static inline auto FChangeState = PreyFunction<void(CArkProjectileRecyclerGrenade* const _this, const CArkProjectileRecyclerGrenade::EArkRecyclerGrenadeState _state)>(0x177B610);
+};
+#endif // !MOONCRASH

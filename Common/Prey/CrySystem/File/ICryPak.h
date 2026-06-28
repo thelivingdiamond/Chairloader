@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -457,3 +459,4 @@ inline FILE* fxopen(const char* file, const char* mode, bool bGameRelativePath =
     else
         return 0;
 }
+#endif // !MOONCRASH

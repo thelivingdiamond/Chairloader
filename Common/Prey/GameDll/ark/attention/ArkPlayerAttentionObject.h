@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
@@ -77,4 +79,97 @@ public:
 	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x1B933B0);
 	static inline auto FDoGetCurrentRoomEntityId = PreyFunction<unsigned(const ArkComplexRoomPerceivable* const _this)>(0x985E40);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
+#include <Prey/GameDll/ark/perception/ArkComplexRoomPerceivable.h>
+#include <Prey/GameDll/ark/perception/ArkComplexVisualPerceivable.h>
+#include <_unknown/ArkComplexAttentionObject.h>
+#include <_unknown/ArkSeismicPerceivable.h>
 
+struct ArkAttentionLevelChange;
+class ArkPlayer;
+struct ArkSeismicBounds;
+struct IPhysicalEntity;
+
+// ArkPlayerAttentionObject
+// Header:  Prey/GameDll/ark/attention/ArkPlayerAttentionObject.h
+class ArkPlayerAttentionObject
+	: public ArkComplexAttentionObject
+	, public ArkAuralPerceivable
+	, public ArkComplexVisualPerceivable
+	, public ArkComplexRoomPerceivable
+	, public ArkSeismicPerceivable
+{ // Size=56 (0x38)
+public:
+	ArkPlayer* m_pPlayer;
+	unsigned m_roomEntityId;
+
+	ArkPlayerAttentionObject(ArkPlayer& _player);
+	void EnableAttentionObject() { FEnableAttentionObject(this); }
+	void DisableAttentionObject() { FDisableAttentionObject(this); }
+	bool IsAttentionObjectEnabled() const { return FIsAttentionObjectEnabled(this); }
+	void EnableVisualPerceivable() { FEnableVisualPerceivable(this); }
+	void DisableVisualPerceivable() { FDisableVisualPerceivable(this); }
+	bool IsVisualPerceivableEnabled() const { return FIsVisualPerceivableEnabled(this); }
+	void EnableAuralPerceivable() { FEnableAuralPerceivable(this); }
+	void DisableAuralPerceivable() { FDisableAuralPerceivable(this); }
+	bool IsAuralPerceivableEnabled() const { return FIsAuralPerceivableEnabled(this); }
+	void EnableRoomPerceivable() { FEnableRoomPerceivable(this); }
+	void DisableRoomPerceivable() { FDisableRoomPerceivable(this); }
+	bool IsRoomPerceivableEnabled() const { return FIsRoomPerceivableEnabled(this); }
+	void EnableSeismicPerceivable() { FEnableSeismicPerceivable(this); }
+	void DisableSeismicPerceivable() { FDisableSeismicPerceivable(this); }
+	bool IsSeismicPerceivableEnabled() const { return FIsSeismicPerceivableEnabled(this); }
+	void SetRoomEntityId(unsigned _id) { FSetRoomEntityId(this, _id); }
+	virtual unsigned DoGetEntityId() const;
+	virtual bool DoGetIsGlood() const;
+	virtual Vec3 DoGetAttentionPosition() const;
+	virtual void DoOnAttentionLevelsChanged(const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange);
+	virtual std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *> DoGetComplexVisualPerceivableWorldPoints(Vec3* _pFirstAnyWorldPoint, Vec3* _pLastAnyWorldPoint, Vec3* _pFirstAcuteWorldPoint, Vec3* _pLastAcuteWorldPoint, Vec3* _pFirstAllWorldPoint, Vec3* _pLastAllWorldPoint) const;
+	virtual IPhysicalEntity* * DoGetIgnoredPhysicalEntitiesInLineOfSight(IPhysicalEntity* * _ppFirstPhysicalEntity, IPhysicalEntity* * _ppLastPhysicalEntity) const;
+	virtual float DoGetVisibilityScalar() const;
+	virtual bool DoGetIsInMimicryHidden() const;
+	virtual bool DoGetAuralPerceivableIsInVacuum() const;
+	virtual bool DoGetAuralPerceivableIsComplexAttentionObject() const;
+	virtual unsigned DoGetCurrentRoomEntityId() const;
+	virtual ArkSeismicBounds DoGetSeismicBounds() const;
+
+#if 0
+	ArkPlayerAttentionObject(const ArkPlayerAttentionObject& _arg0_);
+	unsigned GetRoomEntityId() const;
+	ArkPlayerAttentionObject& operator=(const ArkPlayerAttentionObject& _arg0_);
+#endif
+
+	static inline auto FArkPlayerAttentionObjectOv1 = PreyFunction<void(ArkPlayerAttentionObject* const _this, ArkPlayer& _player)>(0x15079F0);
+	static inline auto FEnableAttentionObject = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x15082B0);
+	static inline auto FDisableAttentionObject = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1507A40);
+	static inline auto FIsAttentionObjectEnabled = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x1508390);
+	static inline auto FEnableVisualPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1508360);
+	static inline auto FDisableVisualPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1507AC0);
+	static inline auto FIsVisualPerceivableEnabled = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x1508410);
+	static inline auto FEnableAuralPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x15082D0);
+	static inline auto FDisableAuralPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1507A60);
+	static inline auto FIsAuralPerceivableEnabled = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x15083B0);
+	static inline auto FEnableRoomPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1508300);
+	static inline auto FDisableRoomPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1507A80);
+	static inline auto FIsRoomPerceivableEnabled = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x15083D0);
+	static inline auto FEnableSeismicPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1508330);
+	static inline auto FDisableSeismicPerceivable = PreyFunction<void(ArkPlayerAttentionObject* const _this)>(0x1507AA0);
+	static inline auto FIsSeismicPerceivableEnabled = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x15083F0);
+	static inline auto FSetRoomEntityId = PreyFunction<void(ArkPlayerAttentionObject* const _this, unsigned _id)>(0x1508430);
+	static inline auto FDoGetEntityId = PreyFunction<unsigned(const ArkPlayerAttentionObject* const _this)>(0x1508070);
+	static inline auto FDoGetIsGlood = PreyFunction<bool(const ArkPlayerAttentionObject* const _this)>(0x15080D0);
+	static inline auto FDoGetAttentionPosition = PreyFunction<Vec3*(const ArkPlayerAttentionObject* const _this, Vec3* _return_value_)>(0x1507AE0);
+	static inline auto FDoOnAttentionLevelsChanged = PreyFunction<void(ArkPlayerAttentionObject* const _this, const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange)>(0x1508250);
+	static inline auto FDoGetComplexVisualPerceivableWorldPoints = PreyFunction<std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>*(const ArkComplexVisualPerceivable* const _this, std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>* _return_value_, Vec3* _pFirstAnyWorldPoint, Vec3* _pLastAnyWorldPoint, Vec3* _pFirstAcuteWorldPoint, Vec3* _pLastAcuteWorldPoint, Vec3* _pFirstAllWorldPoint, Vec3* _pLastAllWorldPoint)>(0x1507B00);
+	static inline auto FDoGetIgnoredPhysicalEntitiesInLineOfSight = PreyFunction<IPhysicalEntity* * (const ArkComplexVisualPerceivable* const _this, IPhysicalEntity* * _ppFirstPhysicalEntity, IPhysicalEntity* * _ppLastPhysicalEntity)>(0x15080A0);
+	static inline auto FDoGetVisibilityScalar = PreyFunction<float(const ArkComplexVisualPerceivable* const _this)>(0x1508170);
+	static inline auto FDoGetIsInMimicryHidden = PreyFunction<bool(const ArkComplexRoomPerceivable* const _this)>(0x1508100);
+	static inline auto FDoGetAuralPerceivableIsInVacuum = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x122F8A0);
+	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x1A302A0);
+	static inline auto FDoGetCurrentRoomEntityId = PreyFunction<unsigned(const ArkComplexRoomPerceivable* const _this)>(0x1508060);
+	static inline auto FDoGetSeismicBounds = PreyFunction<ArkSeismicBounds*(const ArkSeismicPerceivable* const _this, ArkSeismicBounds* _return_value_)>(0x1508140);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -167,4 +169,188 @@ public:
 	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileGrenade *const _this)>(0x165FE40);
 	static inline auto FCheckForCheapParticleUse = PreyFunction<void(CArkProjectileGrenade *const _this)>(0x165DB00);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkDisruptable.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
+#include <Prey/GameDll/ark/iface/IGameRulesKillListener.h>
+#include <Prey/GameDll/ark/perception/ArkGameNoise.h>
+#include <Prey/GameDll/ark/player/IArkPlayerCarryListener.h>
+#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
+#include <Prey/GameDll/ark/weapons/ArkGrenadeSignalReceiver.h>
+#include <Prey/GameDll/ark/weapons/ArkProjectile.h>
 
+struct ArkInteractionTestResult;
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+struct HitInfo;
+struct IAttachment;
+class ICrySizer;
+struct IEntity;
+struct IEntityArchetype;
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+
+// CArkProjectileGrenade
+// Header:  Prey/GameDll/ark/weapons/ArkProjectileGrenade.h
+class CArkProjectileGrenade
+	: public CArkProjectile
+	, public IArkPlayerInteractionListener
+	, public IArkPlayerCarryListener
+	, public IGameRulesKillListener
+	, public IArkDisruptableListener
+	, public IEntityEventListener
+{ // Size=1904 (0x770)
+public:
+	bool m_bIsProximity;
+	int m_proximityPhysicsEntityId;
+	int m_proximityEntityId;
+	int m_proximityPartId;
+	bool m_bProximityTerrain;
+	ArkSimpleTimer m_proximityTimer;
+	bool m_bExploded;
+	bool m_bTriggered;
+	std::vector<int> m_ignoreEntities;
+	float m_explosionRadius;
+	float m_explosionImpulse;
+	float m_proximityRadius;
+	float m_proximitySpeed;
+	bool m_bAutoDeploy;
+	bool m_bImpendingDanger;
+	string m_useMessage;
+	string m_equipMessage;
+	uint64_t m_cameraShakeId;
+	float m_hitNPCTime;
+	ArkSimpleTimer m_armingTimer;
+	ArkSimpleTimer m_detonationTimer;
+	ArkSimpleTimer m_pulseTimer;
+	bool m_bShouldCheckLOS;
+	bool m_bShouldBreakGlass;
+	ArkDisruptable m_disruptable;
+	bool m_bDisrupted;
+	bool m_bArmFriendly;
+	ArkEntityEffect m_armedFriendlyEffect;
+	ArkEntityEffect m_armedEnemyEffect;
+	ArkEntityEffect m_detonatedEffect;
+	CArkProjectile::ArkProjectileEntityEffect m_AOEEffect;
+	ArkGameNoise::Params m_explosionNoise;
+	IAttachment* m_pAttachment;
+	int m_constraintId;
+	float m_originalMass;
+	static inline auto s_attachNameID = PreyGlobal<int>(0x2D82010);
+	ArkSimpleTimer m_hitNPCTimer;
+	ArkGrenadeSignalReceiver m_signalReceiver;
+	CArkProjectile::ArkProjectileFFEffect m_destroyEffect;
+
+	CArkProjectileGrenade();
+	virtual ~CArkProjectileGrenade();
+	virtual bool IsGrenade() const;
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void Release();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void HandleEvent(const SGameObjectEvent& _event);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual const void* GetRMIBase() const;
+	virtual void OnEntityKilledEarly(const HitInfo& _hitInfo);
+	virtual void OnEntityKilled(const HitInfo& _hitInfo);
+	virtual void OnEntityBroken(const unsigned _brokenEntityId);
+	virtual void OnDisruptedChanged(bool _bDisrupted, bool _bWasForced);
+	virtual QuatT GetSparkLoc() const;
+	virtual void OnStartCarry(IEntity* const _pEntity);
+	void TakeDamage(const float _damage, const unsigned _responsibleEntityId) { FTakeDamage(this, _damage, _responsibleEntityId); }
+	virtual bool Detonate();
+	virtual void DoDetonation();
+	static CArkProjectileGrenade* GetProjectileGrenadeFromEntityId(const unsigned _entityId) { return FGetProjectileGrenadeFromEntityId(_entityId); }
+	virtual void AttachToPhysicsEntity(const int _physicsEntityId, const Vec3& _attachPosition, const int _partId, const bool _bTerrain);
+	virtual void SetOwnerIdAndWeaponClassName(const unsigned _ownerId, const uint64_t _ownerWeaponId, const string& _weaponName);
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual bool PopulateRemoteManipulationInteraction(const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo) const;
+	virtual bool HideDisplayName(const IEntity* const _pEntity) const;
+	virtual void OnEntityEvent(IEntity* _pEntity, SEntityEvent& _event);
+	static bool GivePlayerGrenadeAmmo(const char* _pArchetypeName, bool _bEquip) { return FGivePlayerGrenadeAmmo(_pArchetypeName, _bEquip); }
+	virtual void ReInitFromPool();
+	virtual bool IsUsingExpensiveParticles() const;
+	void TriggerGrenade() { FTriggerGrenade(this); }
+	virtual void Destroy(const bool _bDeleting, const bool _bDestroyImmediate);
+	virtual void StartDestroy();
+	void CleanupVisuals() { FCleanupVisuals(this); }
+	virtual void InitializeLiveProjectile();
+	static CArkProjectileGrenade* SpawnProjectile(IEntityArchetype* const _pArchetype, const Vec3& _position, const Vec3& _direction, const unsigned _ownerEntityId, const uint64_t _ownerWeaponId, const string _weaponClassName, const bool _bIsCritical, const bool _bIsPooled, const unsigned _extendedFlags, const unsigned _groupId, const bool _bSpawnFromCamera) { return FSpawnProjectile(_pArchetype, _position, _direction, _ownerEntityId, _ownerWeaponId, _weaponClassName, _bIsCritical, _bIsPooled, _extendedFlags, _groupId, _bSpawnFromCamera); }
+	void ClearProximityAttachment() { FClearProximityAttachment(this); }
+	void SetupProximityAttachment(const int _physicsEntityId, const int _partId, const bool _bTerrain) { FSetupProximityAttachment(this, _physicsEntityId, _partId, _bTerrain); }
+	virtual void Pulse();
+	virtual void CheckProximity(const float _frametime);
+	virtual void LoadCachedProperties();
+	virtual void CheckForCheapParticleUse();
+	void InitializeArmedEffect() { FInitializeArmedEffect(this); }
+
+#if 0
+	ArkDisruptable& GetArkDisruptable();
+	bool CanBeDisrupted() const;
+	bool IsProximity() const;
+	bool CanPickup() const;
+#endif
+
+	static inline auto FCArkProjectileGrenadeOv1 = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177D1A0);
+	static inline auto FBitNotCArkProjectileGrenade = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177D3E0);
+	static inline auto FIsGrenade = PreyFunction<bool(const CArkProjectileGrenade* const _this)>(0x1A302A0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkProjectileGrenade* const _this, ICrySizer* _s)>(0x177FD80);
+	static inline auto FInit = PreyFunction<bool(CArkProjectileGrenade* const _this, IGameObject* _pGameObject)>(0x1773A60);
+	static inline auto FPostInit = PreyFunction<void(CArkProjectileGrenade* const _this, IGameObject* _pGameObject)>(0x1781F20);
+	static inline auto FRelease = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x17825B0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkProjectileGrenade* const _this, TSerialize _ser)>(0x177F960);
+	static inline auto FPostSerialize = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1781FD0);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectileGrenade* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x1782B60);
+	static inline auto FHandleEvent = PreyFunction<void(CArkProjectileGrenade* const _this, const SGameObjectEvent& _event)>(0x1780550);
+	static inline auto FProcessEvent = PreyFunction<void(CArkProjectileGrenade* const _this, SEntityEvent& _event)>(0x1782140);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkProjectileGrenade* const _this)>(0x1CBB0B0);
+	static inline auto FOnEntityKilledEarly = PreyFunction<void(IGameRulesKillListener* const _this, const HitInfo& _hitInfo)>(0x1333E90);
+	static inline auto FOnEntityKilled = PreyFunction<void(IGameRulesKillListener* const _this, const HitInfo& _hitInfo)>(0x1781B50);
+	static inline auto FOnEntityBroken = PreyFunction<void(IGameRulesKillListener* const _this, const unsigned _brokenEntityId)>(0x1781A20);
+	static inline auto FOnDisruptedChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bDisrupted, bool _bWasForced)>(0x17819C0);
+	static inline auto FGetSparkLoc = PreyFunction<QuatT*(const IArkDisruptableListener* const _this, QuatT* _return_value_)>(0x17801C0);
+	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0x1781C40);
+	static inline auto FTakeDamage = PreyFunction<void(CArkProjectileGrenade* const _this, const float _damage, const unsigned _responsibleEntityId)>(0x1782950);
+	static inline auto FDetonate = PreyFunction<bool(CArkProjectileGrenade* const _this)>(0x177F320);
+	static inline auto FDoDetonation = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177F410);
+	static inline auto FGetProjectileGrenadeFromEntityId = PreyFunction<CArkProjectileGrenade* (const unsigned _entityId)>(0x177FDA0);
+	static inline auto FAttachToPhysicsEntity = PreyFunction<void(CArkProjectileGrenade* const _this, const int _physicsEntityId, const Vec3& _attachPosition, const int _partId, const bool _bTerrain)>(0x177D760);
+	static inline auto FSetOwnerIdAndWeaponClassName = PreyFunction<void(CArkProjectileGrenade* const _this, const unsigned _ownerId, const uint64_t _ownerWeaponId, const string& _weaponName)>(0x1782660);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x1781B60);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x1782A90);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x1781CB0);
+	static inline auto FPopulateRemoteManipulationInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo)>(0x1781D30);
+	static inline auto FHideDisplayName = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity)>(0x1780A00);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x1781B30);
+	static inline auto FGivePlayerGrenadeAmmo = PreyFunction<bool(const char* _pArchetypeName, bool _bEquip)>(0x1780240);
+	static inline auto FReInitFromPool = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x17824D0);
+	static inline auto FIsUsingExpensiveParticles = PreyFunction<bool(const CArkProjectileGrenade* const _this)>(0x1780B80);
+	static inline auto FTriggerGrenade = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1782AD0);
+	static inline auto FDestroy = PreyFunction<void(CArkProjectileGrenade* const _this, const bool _bDeleting, const bool _bDestroyImmediate)>(0x177F240);
+	static inline auto FStartDestroy = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1782930);
+	static inline auto FCleanupVisuals = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177F0B0);
+	static inline auto FInitializeLiveProjectile = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1780B30);
+	static inline auto FSpawnProjectile = PreyFunction<CArkProjectileGrenade* (IEntityArchetype* const _pArchetype, const Vec3& _position, const Vec3& _direction, const unsigned _ownerEntityId, const uint64_t _ownerWeaponId, const string _weaponClassName, const bool _bIsCritical, const bool _bIsPooled, const unsigned _extendedFlags, const unsigned _groupId, const bool _bSpawnFromCamera)>(0x17827A0);
+	static inline auto FClearProximityAttachment = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177F120);
+	static inline auto FSetupProximityAttachment = PreyFunction<void(CArkProjectileGrenade* const _this, const int _physicsEntityId, const int _partId, const bool _bTerrain)>(0x1782680);
+	static inline auto FPulse = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x17822F0);
+	static inline auto FCheckProximity = PreyFunction<void(CArkProjectileGrenade* const _this, const float _frametime)>(0x177E900);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1780BB0);
+	static inline auto FCheckForCheapParticleUse = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x177E8C0);
+	static inline auto FInitializeArmedEffect = PreyFunction<void(CArkProjectileGrenade* const _this)>(0x1780A20);
+};
+#endif // !MOONCRASH

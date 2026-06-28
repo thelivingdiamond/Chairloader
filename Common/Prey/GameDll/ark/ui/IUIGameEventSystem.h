@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -20,4 +22,4 @@ struct IUIGameEventSystem : public IUIPseudoRTTI // Id=8014CC9 Size=8
 };
 
 typedef std::shared_ptr<IUIGameEventSystem> TUIEventSystemPtr;
-
+#endif // !MOONCRASH

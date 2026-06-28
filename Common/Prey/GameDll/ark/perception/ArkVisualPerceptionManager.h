@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -512,4 +514,587 @@ public:
 	static inline auto FCalcVisionConeMagnitudeOv1 = PreyFunction<float(ArkVisualPerceptionManager const *const _this, uint64_t _perceiverIndex, Vec3 const &_worldPosition)>(0x1532660);
 	static inline auto FCalculatePlayerMagnitude = PreyFunction<float(float _distance, ArkVisualPerceptionManager::VisionConeProperties const &_visionConeProperties)>(0x1532B80);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <Prey/Ark/arklineofsightcheck.h>
+#include <Prey/GameDll/ark/perception/ArkComplexVisualPerceptionInfo.h>
+#include <_unknown/ArkInterval.h>
+#include <_unknown/RayCastQueue.h>
 
+struct AABB;
+class ArkComplexVisualPerceivable;
+class ArkSimpleVisualPerceivable;
+class ArkVisualPerceiver;
+enum class EArkLineOfSightCheckStatus;
+struct IPhysicalEntity;
+struct RayCastRequest;
+class XmlNodeRef;
+
+// ArkVisualPerceptionManager
+// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+class ArkVisualPerceptionManager
+{ // Size=1800 (0x708)
+public:
+	enum class EBoundsEndpointType : unsigned
+	{
+		perceiver = 0,
+		simplePerceivable = 1,
+		complexPerceivable = 2,
+	};
+
+	enum class EBoundsEndpointExtent : unsigned
+	{
+		minimum = 0,
+		maximum = 1,
+	};
+
+	enum class EBoundsEndpointDescription
+	{
+		perceiverMinimum = 0,
+		perceiverMaximum = 1,
+		simplePerceivableMinimum = 2,
+		simplePerceivableMaximum = 3,
+		complexPerceivableMinimum = 4,
+		complexPerceivableMaximum = 5,
+	};
+
+	enum class EBoundsEndpointNeighborsDescription
+	{
+		perceiverMinimumPerceiverMinimum = 0,
+		perceiverMinimumPerceiverMaximum = 1,
+		perceiverMinimumSimplePerceivableMinimum = 2,
+		perceiverMinimumSimplePerceivableMaximum = 3,
+		perceiverMinimumComplexPerceivableMinimum = 4,
+		perceiverMinimumComplexPerceivableMaximum = 5,
+		perceiverMaximumPerceiverMinimum = 8,
+		perceiverMaximumPerceiverMaximum = 9,
+		perceiverMaximumSimplePerceivableMinimum = 10,
+		perceiverMaximumSimplePerceivableMaximum = 11,
+		perceiverMaximumComplexPerceivableMinimum = 12,
+		perceiverMaximumComplexPerceivableMaximum = 13,
+		simplePerceivableMinimumPerceiverMinimum = 16,
+		simplePerceivableMinimumPerceiverMaximum = 17,
+		simplePerceivableMinimumSimplePerceivableMinimum = 18,
+		simplePerceivableMinimumSimplePerceivableMaximum = 19,
+		simplePerceivableMinimumComplexPerceivableMinimum = 20,
+		simplePerceivableMinimumComplexPerceivableMaximum = 21,
+		simplePerceivableMaximumPerceiverMinimum = 24,
+		simplePerceivableMaximumPerceiverMaximum = 25,
+		simplePerceivableMaximumSimplePerceivableMinimum = 26,
+		simplePerceivableMaximumSimplePerceivableMaximum = 27,
+		simplePerceivableMaximumComplexPerceivableMinimum = 28,
+		simplePerceivableMaximumComplexPerceivableMaximum = 29,
+		complexPerceivableMinimumPerceiverMinimum = 32,
+		complexPerceivableMinimumPerceiverMaximum = 33,
+		complexPerceivableMinimumSimplePerceivableMinimum = 34,
+		complexPerceivableMinimumSimplePerceivableMaximum = 35,
+		complexPerceivableMinimumComplexPerceivableMinimum = 36,
+		complexPerceivableMinimumComplexPerceivableMaximum = 37,
+		complexPerceivableMaximumPerceiverMinimum = 40,
+		complexPerceivableMaximumPerceiverMaximum = 41,
+		complexPerceivableMaximumSimplePerceivableMinimum = 42,
+		complexPerceivableMaximumSimplePerceivableMaximum = 43,
+		complexPerceivableMaximumComplexPerceivableMinimum = 44,
+		complexPerceivableMaximumComplexPerceivableMaximum = 45,
+	};
+
+	// ArkVisualPerceptionManager::VisionConeDefinition
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct VisionConeDefinition
+	{ // Size=44 (0x2C)
+		float m_forwardRadius;
+		float m_meridianRadius;
+		float m_horizontalSemiangle;
+		float m_upSemiangle;
+		float m_downSemiangle;
+		float m_nearDistance;
+		float m_nearMagnitude;
+		float m_midDistance;
+		float m_midMagnitude;
+		float m_farDistance;
+		float m_farMagnitude;
+
+		void Load(const XmlNodeRef& _node) { FLoad(this, _node); }
+
+	#if 0
+		VisionConeDefinition();
+	#endif
+
+		static inline auto FLoad = PreyFunction<void(ArkVisualPerceptionManager::VisionConeDefinition* const _this, const XmlNodeRef& _node)>(0x1653420);
+	};
+
+	// ArkVisualPerceptionManager::VisionConeProperties
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct VisionConeProperties
+	{ // Size=100 (0x64)
+		float m_minRadius;
+		float m_maxRadius;
+		float m_forwardRadiusSquared;
+		float m_meridianRadiusSquared;
+		float m_minRadiusSquared;
+		float m_maxRadiusSquared;
+		float m_radiiProductSquared;
+		float m_minimumContainedUpUnitVectorForwardComponent;
+		float m_maximumExcludedUpUnitVectorForwardComponent;
+		float m_unitConeUpSemiaxisRatio;
+		float m_oneHalfCos2HorizontalSemianglePlusCos2UpSemiangle;
+		float m_oneHalfCos2HorizontalSemiangleMinusCos2UpSemiangle;
+		float m_minimumContainedDownUnitVectorForwardComponent;
+		float m_maximumExcludedDownUnitVectorForwardComponent;
+		float m_unitConeDownSemiaxisRatio;
+		float m_oneHalfCos2HorizontalSemianglePlusCos2DownSemiangle;
+		float m_oneHalfCos2HorizontalSemiangleMinusCos2DownSemiangle;
+		float m_nearDistance;
+		float m_nearMagnitude;
+		float m_midDistance;
+		float m_midMagnitude;
+		float m_oneOverMidMinusNear;
+		float m_farDistance;
+		float m_farMagnitude;
+		float m_oneOverFarMinusMid;
+
+	#if 0
+		VisionConeProperties();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::VisionConeAabb
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct VisionConeAabb
+	{ // Size=12 (0xC)
+		float m_horizontalExtent;
+		float m_depthExtent;
+		float m_verticalExtent;
+
+	#if 0
+		VisionConeAabb();
+		ArkVisualPerceptionManager::VisionConeAabb& operator+=(const ArkVisualPerceptionManager::VisionConeAabb& _arg0_);
+		void Clear();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::BoundsEndpoint
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct BoundsEndpoint
+	{ // Size=8 (0x8)
+		ArkVisualPerceptionManager::EBoundsEndpointType m_type : 2;
+		ArkVisualPerceptionManager::EBoundsEndpointExtent m_extent : 1;
+		unsigned m_index : 29;
+		float m_value;
+
+	#if 0
+		BoundsEndpoint(ArkVisualPerceptionManager::EBoundsEndpointType _arg0_, ArkVisualPerceptionManager::EBoundsEndpointExtent _arg1_, uint64_t _arg2_, float _arg3_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::PerceiverPerceivableIndexPair
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct PerceiverPerceivableIndexPair
+	{ // Size=16 (0x10)
+		uint64_t m_perceiverIndex;
+		uint64_t m_perceivableIndex;
+
+	#if 0
+		PerceiverPerceivableIndexPair(uint64_t _arg0_, uint64_t _arg1_);
+		bool operator==(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_) const;
+		bool operator<(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_) const;
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::RemovedPerceivable
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct RemovedPerceivable
+	{ // Size=16 (0x10)
+		uint64_t m_perceiverIndex;
+		unsigned m_perceivableEntityId;
+
+	#if 0
+		RemovedPerceivable(uint64_t _arg0_, unsigned _arg1_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHash
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct PerceiverPerceivableIndexPairHash
+	{ // Size=1 (0x1)
+	#if 0
+		uint64_t operator()(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_) const;
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::SimplePerceivableWorldPoints
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct SimplePerceivableWorldPoints
+	{ // Size=12 (0xC)
+		using AnyPointArray = std::array<Vec3, 1>;
+
+		std::array<Vec3, 1> m_any;
+
+	#if 0
+		SimplePerceivableWorldPoints();
+		void Clear();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexPerceivableWorldPoints
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct ComplexPerceivableWorldPoints
+	{ // Size=60 (0x3C)
+		using AnyPointArray = std::array<Vec3, 2>;
+		using AcutePointArray = std::array<Vec3, 1>;
+		using AllPointArray = std::array<Vec3, 2>;
+
+		std::array<Vec3, 2> m_any;
+		std::array<Vec3, 1> m_acute;
+		std::array<Vec3, 2> m_all;
+
+		void Clear() { FClear(this); }
+
+	#if 0
+		ComplexPerceivableWorldPoints();
+	#endif
+
+		static inline auto FClear = PreyFunction<void(ArkVisualPerceptionManager::ComplexPerceivableWorldPoints* const _this)>(0x1652B40);
+	};
+
+	// ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class SimpleLineOfSightCheckImpl
+	{ // Size=1 (0x1)
+	public:
+	#if 0
+		static bool ShouldRayCast(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_, uint64_t _arg3_);
+		static Vec3 GetRayCastTarget(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_);
+		static IPhysicalEntity* * GetPerceivableIgnoredPhysicalEntities(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, IPhysicalEntity* * _arg2_, IPhysicalEntity* * _arg3_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::LineOfSightCheckImpl<class ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class LineOfSightCheckImpl<class ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl> : private ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl
+	{ // Size=16 (0x10)
+	public:
+		using RayCasterType = RayCastQueue<41>;
+
+		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
+
+	#if 0
+		void LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_);
+		RayCastQueue<41>& GetRayCaster() const;
+		bool GetRayCastRequest(uint64_t _arg0_, RayCastRequest& _arg1_) const;
+		void OnSucceeded();
+		void OnFailed();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class ComplexLineOfSightCheckImplBase
+	{ // Size=1 (0x1)
+	public:
+	#if 0
+		static IPhysicalEntity* * GetPerceivableIgnoredPhysicalEntities(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, IPhysicalEntity* * _arg2_, IPhysicalEntity* * _arg3_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class ComplexAnyLineOfSightCheckImpl : protected ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase
+	{ // Size=1 (0x1)
+	public:
+	#if 0
+		static bool ShouldRayCast(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_, uint64_t _arg3_);
+		static Vec3 GetRayCastTarget(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl> : private ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl
+	{ // Size=16 (0x10)
+	public:
+		using RayCasterType = RayCastQueue<41>;
+
+		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
+
+	#if 0
+		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_);
+		RayCastQueue<41>& GetRayCaster() const;
+		bool GetRayCastRequest(uint64_t _arg0_, RayCastRequest& _arg1_) const;
+		void OnSucceeded();
+		void OnFailed();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class ComplexAcuteLineOfSightCheckImpl : protected ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase
+	{ // Size=1 (0x1)
+	public:
+	#if 0
+		static bool ShouldRayCast(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_, uint64_t _arg3_);
+		static Vec3 GetRayCastTarget(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl> : private ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl
+	{ // Size=16 (0x10)
+	public:
+		using RayCasterType = RayCastQueue<41>;
+
+		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
+
+	#if 0
+		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_);
+		RayCastQueue<41>& GetRayCaster() const;
+		bool GetRayCastRequest(uint64_t _arg0_, RayCastRequest& _arg1_) const;
+		void OnSucceeded();
+		void OnFailed();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class ComplexAllLineOfSightCheckImpl : protected ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase
+	{ // Size=1 (0x1)
+	public:
+	#if 0
+		static bool ShouldRayCast(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_, uint64_t _arg3_);
+		static Vec3 GetRayCastTarget(const ArkVisualPerceptionManager& _arg0_, uint64_t _arg1_, uint64_t _arg2_);
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl>
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	class LineOfSightCheckImpl<class ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl> : private ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl
+	{ // Size=16 (0x10)
+	public:
+		using RayCasterType = RayCastQueue<41>;
+
+		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
+
+	#if 0
+		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl>(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_);
+		RayCastQueue<41>& GetRayCaster() const;
+		bool GetRayCastRequest(uint64_t _arg0_, RayCastRequest& _arg1_) const;
+		void OnSucceeded();
+		void OnFailed();
+	#endif
+	};
+
+	// ArkVisualPerceptionManager::ComplexLineOfSightChecks
+	// Header:  Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+	struct ComplexLineOfSightChecks
+	{ // Size=1832 (0x728)
+		ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>,2> m_any;
+		ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>,1> m_acute;
+		ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl>,2> m_all;
+
+		void Begin() { FBegin(this); }
+		void Reset() { FReset(this); }
+
+	#if 0
+		ComplexLineOfSightChecks(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair& _arg0_);
+		ComplexLineOfSightChecks(ArkVisualPerceptionManager::ComplexLineOfSightChecks&& _arg0_);
+		void Cancel();
+		EArkLineOfSightCheckStatus GetStatus() const;
+	#endif
+
+		static inline auto FBegin = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks* const _this)>(0x1652260);
+		static inline auto FReset = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks* const _this)>(0x1656720);
+	};
+
+	using SimpleLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>,1>;
+	using ComplexAnyLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>,2>;
+	using ComplexAcuteLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>,1>;
+	using ComplexAllLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl>,2>;
+	using BoundsEndpointVector = std::vector<ArkVisualPerceptionManager::BoundsEndpoint>;
+	using ComplexLineOfSightChecksMap = std::unordered_map<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair,ArkVisualPerceptionManager::ComplexLineOfSightChecks,ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHash,std::equal_to<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>,std::allocator<std::pair<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const ,ArkVisualPerceptionManager::ComplexLineOfSightChecks> > >;
+	using ComplexPerceivableWorldPointsVector = std::vector<ArkVisualPerceptionManager::ComplexPerceivableWorldPoints>;
+	using ComplexVisualPerceivableVector = std::vector<const ArkComplexVisualPerceivable*>;
+	using ComplexVisualPerceptionInfoVector = std::vector<ArkComplexVisualPerceptionInfo>;
+	using EntityIdToIndexMap = std::unordered_map<unsigned int, uint64_t>;
+	using EntityIdVector = std::vector<unsigned int>;
+	using FlagVector = std::vector<bool>;
+	using FloatVector = std::vector<float>;
+	using IndexVector = std::vector<uint64_t>;
+	using Matrix34Vector = std::vector<Matrix34>;
+	using PerceiverPerceivableIndexPairVector = std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>;
+	using RemovedPerceivableVector = std::vector<ArkVisualPerceptionManager::RemovedPerceivable>;
+	using SimpleLineOfSightCheckMap = std::unordered_map<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair,ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>,1>,ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHash,std::equal_to<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>,std::allocator<std::pair<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const ,ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>,1> > > >;
+	using SimplePerceivableWorldPointsVector = std::vector<ArkVisualPerceptionManager::SimplePerceivableWorldPoints>;
+	using SimpleVisualPerceivableVector = std::vector<const ArkSimpleVisualPerceivable*>;
+	using SizeIntervalVector = std::vector<ArkInterval<unsigned __int64>>;
+	using UniqueIdToIndexMap = std::unordered_map<uint64_t, uint64_t>;
+	using Vec3Vector = std::vector<Vec3>;
+	using VisionConeAabbVector = std::vector<ArkVisualPerceptionManager::VisionConeAabb>;
+	using VisionConeDefinitionVector = std::vector<ArkVisualPerceptionManager::VisionConeDefinition>;
+	using VisionConeIndexVector = std::vector<std::array<uint64_t, 2>>;
+	using VisionConePropertiesVector = std::vector<ArkVisualPerceptionManager::VisionConeProperties>;
+	using VisualPerceiverVector = std::vector<ArkVisualPerceiver*>;
+
+	static constexpr const uint64_t k_maxSimpleRayCastCount = 1;
+	static constexpr const uint64_t k_maxComplexAnyRayCastCount = 2;
+	static constexpr const uint64_t k_maxComplexAcuteRayCastCount = 1;
+	static constexpr const uint64_t k_maxComplexAllRayCastCount = 2;
+	static constexpr const uint64_t k_maxComplexRayCastCount = 5;
+	static constexpr const uint64_t k_maxVisionConeCount = 2;
+	std::unordered_map<unsigned int, uint64_t> m_perceiverIndexMap;
+	std::unordered_map<unsigned int, uint64_t> m_simplePerceivableIndexMap;
+	std::unordered_map<unsigned int, uint64_t> m_complexPerceivableIndexMap;
+	std::unordered_map<uint64_t, uint64_t> m_visionConeIdMap;
+	std::vector<ArkVisualPerceptionManager::VisionConeDefinition> m_visionConeDefinitions;
+	std::vector<ArkVisualPerceptionManager::VisionConeProperties> m_visionConeProperties;
+	std::vector<ArkVisualPerceptionManager::VisionConeAabb> m_visionConeLocalAabbs;
+	std::vector<uint64_t> m_freePerceiverIndexes;
+	std::vector<ArkVisualPerceiver*> m_perceivers;
+	std::vector<std::array<uint64_t, 2>> m_perceiverVisionConeIndexes;
+	std::vector<ArkVisualPerceptionManager::VisionConeAabb> m_perceiverVisionLocalAabbs;
+	std::vector<Matrix34> m_perceiverVisionConeLocalToWorldMatrixes;
+	std::vector<Matrix34> m_perceiverVisionConeWorldToLocalMatrixes;
+	std::vector<ArkInterval<unsigned __int64>> m_perceiverXAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_perceiverYAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_perceiverZAxisBoundsEndpointIndexes;
+	std::vector<Vec3> m_perceiverEyePositions;
+	std::vector<uint64_t> m_freeSimplePerceivableIndexes;
+	std::vector<const ArkSimpleVisualPerceivable*> m_simplePerceivables;
+	std::vector<unsigned int> m_simplePerceivableEntityIds;
+	std::vector<ArkVisualPerceptionManager::SimplePerceivableWorldPoints> m_simplePerceivableWorldPoints;
+	std::vector<ArkInterval<unsigned __int64>> m_simplePerceivableXAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_simplePerceivableYAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_simplePerceivableZAxisBoundsEndpointIndexes;
+	std::vector<uint64_t> m_freeComplexPerceivableIndexes;
+	std::vector<const ArkComplexVisualPerceivable*> m_complexPerceivables;
+	std::vector<unsigned int> m_complexPerceivableEntityIds;
+	std::vector<ArkVisualPerceptionManager::ComplexPerceivableWorldPoints> m_complexPerceivableWorldPoints;
+	std::vector<float> m_complexPerceivableVisibilityScalars;
+	std::vector<ArkInterval<unsigned __int64>> m_complexPerceivableXAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_complexPerceivableYAxisBoundsEndpointIndexes;
+	std::vector<ArkInterval<unsigned __int64>> m_complexPerceivableZAxisBoundsEndpointIndexes;
+	std::vector<ArkVisualPerceptionManager::BoundsEndpoint> m_xAxisBoundsEndpoints;
+	std::vector<ArkVisualPerceptionManager::BoundsEndpoint> m_yAxisBoundsEndpoints;
+	std::vector<ArkVisualPerceptionManager::BoundsEndpoint> m_zAxisBoundsEndpoints;
+	std::vector<bool> m_simpleSweepAndPruneXAxisFlags;
+	std::vector<bool> m_simpleSweepAndPruneYAxisFlags;
+	std::vector<bool> m_simpleSweepAndPruneZAxisFlags;
+	std::vector<bool> m_complexSweepAndPruneXAxisFlags;
+	std::vector<bool> m_complexSweepAndPruneYAxisFlags;
+	std::vector<bool> m_complexSweepAndPruneZAxisFlags;
+	std::vector<bool> m_simplePerceivableWorldPointFlags;
+	std::vector<bool> m_complexPerceivableWorldPointFlags;
+	std::vector<float> m_complexVisionConeMagnitudes;
+	std::vector<bool> m_complexAcuteVisionFlags;
+	std::vector<bool> m_complexXRayVisionFlags;
+	std::unordered_map<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair,ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>,1>,ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHash,std::equal_to<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>,std::allocator<std::pair<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const ,ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>,1> > > > m_simpleLineOfSightChecks;
+	std::unordered_map<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair,ArkVisualPerceptionManager::ComplexLineOfSightChecks,ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHash,std::equal_to<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>,std::allocator<std::pair<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const ,ArkVisualPerceptionManager::ComplexLineOfSightChecks> > > m_complexLineOfSightChecks;
+	std::vector<bool> m_simplePerceptionFlags;
+	std::vector<bool> m_complexPerceptionFlags;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_simpleStartPerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_simpleContinuePerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_simpleStopPerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_complexStartPerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_complexContinuePerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair> m_complexStopPerceivingIndexPairs;
+	std::vector<ArkVisualPerceptionManager::RemovedPerceivable> m_removedSimplePerceivables;
+	std::vector<ArkVisualPerceptionManager::RemovedPerceivable> m_removedComplexPerceivables;
+	std::vector<unsigned int> m_simpleNotificationBuffer;
+	std::vector<ArkComplexVisualPerceptionInfo> m_complexStartContinueNotificationBuffer;
+	std::vector<unsigned int> m_complexStopNotificationBuffer;
+
+	ArkVisualPerceptionManager();
+	~ArkVisualPerceptionManager();
+	void Initialize() { FInitialize(this); }
+	void OnLevelLoadStart() { FOnLevelLoadStart(this); }
+	void Reset(bool _bEnteringGameMode) { FReset(this, _bEnteringGameMode); }
+	void RegisterPerceiver(unsigned _perceiverEntityId, ArkVisualPerceiver& _perceiver) { FRegisterPerceiver(this, _perceiverEntityId, _perceiver); }
+	bool IsPerceiverRegistered(unsigned _perceiverEntityId) const { return FIsPerceiverRegistered(this, _perceiverEntityId); }
+	void UnregisterPerceiver(unsigned _perceiverEntityId) { FUnregisterPerceiver(this, _perceiverEntityId); }
+	void RegisterSimplePerceivable(unsigned _simplePerceivableEntityId, const ArkSimpleVisualPerceivable& _perceivable) { FRegisterSimplePerceivable(this, _simplePerceivableEntityId, _perceivable); }
+	bool IsSimplePerceivableRegistered(unsigned _simplePerceivableEntityId) const { return FIsSimplePerceivableRegistered(this, _simplePerceivableEntityId); }
+	void UnregisterSimplePerceivable(unsigned _simplePerceivableEntityId) { FUnregisterSimplePerceivable(this, _simplePerceivableEntityId); }
+	void RegisterComplexPerceivable(unsigned _complexPerceivableEntityId, const ArkComplexVisualPerceivable& _perceivable) { FRegisterComplexPerceivable(this, _complexPerceivableEntityId, _perceivable); }
+	bool IsComplexPerceivableRegistered(unsigned _complexPerceivableEntityId) const { return FIsComplexPerceivableRegistered(this, _complexPerceivableEntityId); }
+	void UnregisterComplexPerceivable(unsigned _complexPerceivableEntityId) { FUnregisterComplexPerceivable(this, _complexPerceivableEntityId); }
+	bool PerceiverCanSeeSimplePerceivable(unsigned _perceiverEntityId, unsigned _simplePerceivableEntityId) const { return FPerceiverCanSeeSimplePerceivable(this, _perceiverEntityId, _simplePerceivableEntityId); }
+	bool PerceiverCanSeeComplexPerceivable(unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId) const { return FPerceiverCanSeeComplexPerceivable(this, _perceiverEntityId, _complexPerceivableEntityId); }
+	void ResetVisionCones(unsigned _perceiverEntityId, const ArkVisualPerceiver& _perceiver) { FResetVisionCones(this, _perceiverEntityId, _perceiver); }
+	void SetAcuteVision(unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled) { FSetAcuteVision(this, _perceiverEntityId, _complexPerceivableEntityId, _bEnabled); }
+	void SetXRayVision(unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled) { FSetXRayVision(this, _perceiverEntityId, _complexPerceivableEntityId, _bEnabled); }
+	bool HasXRayVision(unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId) const { return FHasXRayVisionOv1(this, _perceiverEntityId, _complexPerceivableEntityId); }
+	void Update(float _elapsedTime) { FUpdate(this, _elapsedTime); }
+	bool GetVisionConeSemiangles(uint64_t _visionConeId, float& _outHorizontalSemiangle, float& _outUpSemiangle, float& _outDownSemiangle) const { return FGetVisionConeSemiangles(this, _visionConeId, _outHorizontalSemiangle, _outUpSemiangle, _outDownSemiangle); }
+	void LoadVisionCones() { FLoadVisionCones(this); }
+	void AssignVisionCones(uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver) { FAssignVisionCones(this, _perceiverIndex, _perceiver); }
+	void AddBoundsEndpoints(uint64_t _index, ArkVisualPerceptionManager::EBoundsEndpointType _type, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes) { FAddBoundsEndpoints(this, _index, _type, _xAxisBoundsEndpointIndexes, _yAxisBoundsEndpointIndexes, _zAxisBoundsEndpointIndexes); }
+	void RemoveBoundsEndpoints(uint64_t _index, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes) { FRemoveBoundsEndpoints(this, _index, _xAxisBoundsEndpointIndexes, _yAxisBoundsEndpointIndexes, _zAxisBoundsEndpointIndexes); }
+	void AcquireAllPerceivableInfo() { FAcquireAllPerceivableInfo(this); }
+	void CollectCandidates() { FCollectCandidates(this); }
+	void VerifyCandidates() { FVerifyCandidates(this); }
+	void UpdatePerceptionFlags(uint64_t _perceivableCount, std::vector<bool>& _perceptionFlags, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _startPerceivingIndexPairs, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _stopPerceivingIndexPairs) { FUpdatePerceptionFlagsOv0(this, _perceivableCount, _perceptionFlags, _startPerceivingIndexPairs, _stopPerceivingIndexPairs); }
+	void NotifyPerceivers() { FNotifyPerceivers(this); }
+	void AcquirePerceiverVisionTransforms(uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver) { FAcquirePerceiverVisionTransforms(this, _perceiverIndex, _perceiver); }
+	void CalculatePerceiverBoundsEndpoints(uint64_t _perceiverIndex) { FCalculatePerceiverBoundsEndpoints(this, _perceiverIndex); }
+	float CalcVisionConeMagnitude(uint64_t _perceiverIndex, const Vec3& _worldPosition) const { return FCalcVisionConeMagnitudeOv1(this, _perceiverIndex, _worldPosition); }
+	static float CalculatePlayerMagnitude(float _distance, const ArkVisualPerceptionManager::VisionConeProperties& _visionConeProperties) { return FCalculatePlayerMagnitude(_distance, _visionConeProperties); }
+
+#if 0
+	ArkVisualPerceptionManager(const ArkVisualPerceptionManager& _arg0_);
+	void ClearAcuteVision(unsigned _arg0_);
+	bool HasAcuteVision(unsigned _arg0_, unsigned _arg1_) const;
+	bool HasAcuteVision(uint64_t _arg0_, uint64_t _arg1_) const;
+	void ClearXRayVision(unsigned _arg0_);
+	bool HasXRayVision(uint64_t _arg0_, uint64_t _arg1_) const;
+	ArkVisualPerceptionManager& operator=(const ArkVisualPerceptionManager& _arg0_);
+	void SortFreeIndexes();
+	static ArkVisualPerceptionManager::EBoundsEndpointDescription MakeBoundsEndpointDescription(const ArkVisualPerceptionManager::BoundsEndpoint& _arg0_);
+	static ArkVisualPerceptionManager::EBoundsEndpointNeighborsDescription MakeBoundsEndpointNeighborsDescription(const ArkVisualPerceptionManager::BoundsEndpoint& _arg0_, const ArkVisualPerceptionManager::BoundsEndpoint& _arg1_);
+	void AcquireAllPerceiverInfo();
+	void CalculateAllPerceiverBoundsEndpoints();
+	void SweepAndPrune();
+	void TestCandidates();
+	void UpdatePerceptionFlags();
+	void SetPerceivableBoundsEndpoints(uint64_t _arg0_, const AABB& _arg1_, const std::vector<ArkInterval<unsigned __int64>>& _arg2_, const std::vector<ArkInterval<unsigned __int64>>& _arg3_, const std::vector<ArkInterval<unsigned __int64>>& _arg4_);
+	float CalcVisionConeMagnitude(const ArkVisualPerceptionManager::VisionConeProperties& _arg0_, const Vec3& _arg1_, float _arg2_) const;
+#endif
+
+	static inline auto FArkVisualPerceptionManagerOv1 = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x164E730);
+	static inline auto FBitNotArkVisualPerceptionManager = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x164EF90);
+	static inline auto FInitialize = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x16532B0);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1654A60);
+	static inline auto FReset = PreyFunction<void(ArkVisualPerceptionManager* const _this, bool _bEnteringGameMode)>(0x1656680);
+	static inline auto FRegisterPerceiver = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, ArkVisualPerceiver& _perceiver)>(0x1656300);
+	static inline auto FIsPerceiverRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x16532C0);
+	static inline auto FUnregisterPerceiver = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x1656D20);
+	static inline auto FRegisterSimplePerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId, const ArkSimpleVisualPerceivable& _perceivable)>(0x1656400);
+	static inline auto FIsSimplePerceivableRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId)>(0x1653370);
+	static inline auto FUnregisterSimplePerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId)>(0x16571E0);
+	static inline auto FRegisterComplexPerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId, const ArkComplexVisualPerceivable& _perceivable)>(0x1656120);
+	static inline auto FIsComplexPerceivableRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x14F75F0);
+	static inline auto FUnregisterComplexPerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x1656BD0);
+	static inline auto FPerceiverCanSeeSimplePerceivable = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _simplePerceivableEntityId)>(0x1655D00);
+	static inline auto FPerceiverCanSeeComplexPerceivable = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId)>(0x1655B40);
+	static inline auto FResetVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, const ArkVisualPerceiver& _perceiver)>(0x16568D0);
+	static inline auto FSetAcuteVision = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled)>(0x1656910);
+	static inline auto FSetXRayVision = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled)>(0x1656B30);
+	static inline auto FHasXRayVisionOv1 = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId)>(0x16530F0);
+	static inline auto FUpdate = PreyFunction<void(ArkVisualPerceptionManager* const _this, float _elapsedTime)>(0x1657310);
+	static inline auto FGetVisionConeSemiangles = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, uint64_t _visionConeId, float& _outHorizontalSemiangle, float& _outUpSemiangle, float& _outDownSemiangle)>(0x1652FA0);
+	static inline auto FLoadVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1653790);
+	static inline auto FAssignVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver)>(0x1651F20);
+	static inline auto FAddBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _index, ArkVisualPerceptionManager::EBoundsEndpointType _type, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes)>(0x1651D60);
+	static inline auto FRemoveBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _index, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes)>(0x16565C0);
+	static inline auto FAcquireAllPerceivableInfo = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1651540);
+	static inline auto FCollectCandidates = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1652BB0);
+	static inline auto FVerifyCandidates = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1657770);
+	static inline auto FUpdatePerceptionFlagsOv0 = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceivableCount, std::vector<bool>& _perceptionFlags, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _startPerceivingIndexPairs, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _stopPerceivingIndexPairs)>(0x16576D0);
+	static inline auto FNotifyPerceivers = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1654290);
+	static inline auto FAcquirePerceiverVisionTransforms = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver)>(0x1651820);
+	static inline auto FCalculatePerceiverBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex)>(0x16527F0);
+	static inline auto FCalcVisionConeMagnitudeOv1 = PreyFunction<float(const ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const Vec3& _worldPosition)>(0x16524D0);
+	static inline auto FCalculatePlayerMagnitude = PreyFunction<float(float _distance, const ArkVisualPerceptionManager::VisionConeProperties& _visionConeProperties)>(0x16529F0);
+};
+#endif // !MOONCRASH

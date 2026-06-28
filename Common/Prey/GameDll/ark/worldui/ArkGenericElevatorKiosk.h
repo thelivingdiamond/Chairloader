@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -65,4 +67,75 @@ public:
 	static inline auto FHandleInteraction = PreyFunction<void(ArkGenericElevatorKiosk *const _this, IUIElement *_pUIInstance)>(0x13972E0);
 	static inline auto FIsProcessing = PreyFunction<bool(ArkGenericElevatorKiosk const *const _this)>(0x13972F0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/worldui/ArkKioskBase.h>
 
+struct IEntity;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkGenericElevatorKiosk
+// Header:  Prey/GameDll/ark/worldui/ArkGenericElevatorKiosk.h
+class ArkGenericElevatorKiosk : public ArkKioskBase
+{ // Size=624 (0x270)
+public:
+	// ArkGenericElevatorKiosk::ArkElevatorKioskButton
+	// Header:  Prey/GameDll/ark/worldui/ArkGenericElevatorKiosk.h
+	class ArkElevatorKioskButton
+	{ // Size=24 (0x18)
+	public:
+		string m_secondaryText;
+		string m_floorText;
+		bool m_bVisible;
+
+	#if 0
+		ArkElevatorKioskButton();
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	EArkElevatorKioskState m_state;
+	std::array<ArkGenericElevatorKiosk::ArkElevatorKioskButton, 3> m_buttons;
+	string m_currentFloorText;
+	string m_defaultStateText;
+	string m_failStateText;
+	bool m_bStateChangeRefresh;
+
+	ArkGenericElevatorKiosk();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	void SetButtonSecondaryText(int _button, const string& _secondary) { FSetButtonSecondaryText(this, _button, _secondary); }
+	void SetButtonFloorText(int _button, const string& _floor) { FSetButtonFloorText(this, _button, _floor); }
+	void SetButtonVisible(int _button, bool _bVisible) { FSetButtonVisible(this, _button, _bVisible); }
+	void SetCurrentFloorText(const string& _text) { FSetCurrentFloorText(this, _text); }
+	void SetDefaultStateText(const string& _text) { FSetDefaultStateText(this, _text); }
+	void SetFailStateText(const string& _text) { FSetFailStateText(this, _text); }
+	void SetState(EArkElevatorKioskState _state) { FSetState(this, _state); }
+	virtual void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void RefreshUI(bool _bReinit);
+	virtual void HandleInteraction(IUIElement* _pUIInstance);
+	virtual bool IsProcessing() const;
+
+	static inline auto FArkGenericElevatorKioskOv2 = PreyFunction<void(ArkGenericElevatorKiosk* const _this)>(0x14A1500);
+	static inline auto FFullSerialize = PreyFunction<void(ArkGenericElevatorKiosk* const _this, TSerialize _ser)>(0x14A16E0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkGenericElevatorKiosk* const _this)>(0x14A1A80);
+	static inline auto FSetButtonSecondaryText = PreyFunction<void(ArkGenericElevatorKiosk* const _this, int _button, const string& _secondary)>(0x14A1D80);
+	static inline auto FSetButtonFloorText = PreyFunction<void(ArkGenericElevatorKiosk* const _this, int _button, const string& _floor)>(0x14A1D00);
+	static inline auto FSetButtonVisible = PreyFunction<void(ArkGenericElevatorKiosk* const _this, int _button, bool _bVisible)>(0x14A1E00);
+	static inline auto FSetCurrentFloorText = PreyFunction<void(ArkGenericElevatorKiosk* const _this, const string& _text)>(0x14A1E20);
+	static inline auto FSetDefaultStateText = PreyFunction<void(ArkGenericElevatorKiosk* const _this, const string& _text)>(0x14A1E50);
+	static inline auto FSetFailStateText = PreyFunction<void(ArkGenericElevatorKiosk* const _this, const string& _text)>(0x14A1E90);
+	static inline auto FSetState = PreyFunction<void(ArkGenericElevatorKiosk* const _this, EArkElevatorKioskState _state)>(0x14A1ED0);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkGenericElevatorKiosk* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14A18D0);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x14A19D0);
+	static inline auto FRefreshUI = PreyFunction<void(ArkGenericElevatorKiosk* const _this, bool _bReinit)>(0x14A1AE0);
+	static inline auto FHandleInteraction = PreyFunction<void(ArkGenericElevatorKiosk* const _this, IUIElement* _pUIInstance)>(0x14A18B0);
+	static inline auto FIsProcessing = PreyFunction<bool(const ArkGenericElevatorKiosk* const _this)>(0x14A18C0);
+};
+#endif // !MOONCRASH

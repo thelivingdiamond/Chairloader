@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -182,4 +184,198 @@ public:
     static inline auto FReleaseActionIfActiveInternal = PreyFunction<void(CActionMap *const _this, CActionMapAction &action)>(0x3C95B0);
     static inline auto FLoadActionInputAttributesFromXML = PreyFunction<bool(CActionMap *const _this, XmlNodeRef const &actionInputNode, SActionInput &actionInput)>(0x3C6460);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryAction/IActionMapManager.h>
+#include <Prey/CryString/CryName.h>
+#include <_unknown/CListenerSet.h>
 
+class CActionMap;
+class CActionMapManager;
+enum EActionActivationMode;
+enum EActionAnalogCompareOperation;
+enum EActionInputDevice;
+struct IActionListener;
+struct IActionMapActionIterator;
+struct IActionMapPopulateCallBack;
+class ICrySizer;
+struct SActionInput;
+struct SInputEvent;
+class XmlNodeRef;
+
+// CActionMapAction
+// Header:  CryEngine/cryaction/ActionMap.h
+// Include: Prey/CryAction/ActionMap.h
+class CActionMapAction : public IActionMapAction
+{ // Size=112 (0x70)
+public:
+	CryFixedStringT<32> m_triggeredInput;
+	CCryName m_actionId;
+	std::vector<SActionInput*> m_actionInputs;
+	CActionMap* m_pParentActionMap;
+	int m_iNumRebindedInputs;
+
+	CActionMapAction();
+	virtual ~CActionMapAction();
+	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
+	virtual void Release();
+	virtual int GetNumActionInputs() const;
+	virtual const SActionInput* FindActionInput(const char* szInput) const;
+	virtual const SActionInput* GetActionInput(const int iIndex) const;
+	virtual const SActionInput* GetActionInput(const EActionInputDevice device, const int iIndexByDevice) const;
+	SActionInput* GetActionInput(const EActionInputDevice device, const int iIndexByDevice) { return FGetActionInputOv0(this, device, iIndexByDevice); }
+	virtual const CCryName& GetActionId() const;
+	virtual const char* GetTriggeredActionInput() const;
+	bool AddActionInput(const SActionInput& actionInput, const int iByDeviceIndex) { return FAddActionInput(this, actionInput, iByDeviceIndex); }
+	bool RemoveActionInput(unsigned inputCRC) { return FRemoveActionInput(this, inputCRC); }
+	SActionInput* AddAndGetActionInput(const SActionInput& actionInput) { return FAddAndGetActionInput(this, actionInput); }
+
+#if 0
+	SActionInput* FindActionInput(unsigned _arg0_);
+	SActionInput* GetActionInput(const int _arg0_);
+	void RemoveAllActionInputs();
+	void SetParentActionMap(CActionMap* _arg0_);
+	void SetActionId(const CCryName& _arg0_);
+	void SetNumRebindedInputs(const int _arg0_);
+	int GetNumRebindedInputs() const;
+#endif
+
+	static inline auto FCActionMapActionOv1 = PreyFunction<void(CActionMapAction* const _this)>(0x3DE5B0);
+	static inline auto FBitNotCActionMapAction = PreyFunction<void(CActionMapAction* const _this)>(0x3DE9E0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CActionMapAction* const _this, ICrySizer* pSizer)>(0x1333E90);
+	static inline auto FRelease = PreyFunction<void(CActionMapAction* const _this)>(0x3E3960);
+	static inline auto FGetNumActionInputs = PreyFunction<int(const CActionMapAction* const _this)>(0xA56640);
+	static inline auto FFindActionInputOv1 = PreyFunction<const SActionInput* (const CActionMapAction* const _this, const char* szInput)>(0x3DFFC0);
+	static inline auto FGetActionInputOv3 = PreyFunction<const SActionInput* (const CActionMapAction* const _this, const int iIndex)>(0x3E01E0);
+	static inline auto FGetActionInputOv2 = PreyFunction<const SActionInput* (const CActionMapAction* const _this, const EActionInputDevice device, const int iIndexByDevice)>(0x3E0190);
+	static inline auto FGetActionInputOv0 = PreyFunction<SActionInput* (CActionMapAction* const _this, const EActionInputDevice device, const int iIndexByDevice)>(0x3E0190);
+	static inline auto FGetActionId = PreyFunction<const CCryName& (const CActionMapAction* const _this)>(0x1368F30);
+	static inline auto FGetTriggeredActionInput = PreyFunction<const char* (const CActionMapAction* const _this)>(0x598E60);
+	static inline auto FAddActionInput = PreyFunction<bool(CActionMapAction* const _this, const SActionInput& actionInput, const int iByDeviceIndex)>(0x3DF280);
+	static inline auto FRemoveActionInput = PreyFunction<bool(CActionMapAction* const _this, unsigned inputCRC)>(0x3E4300);
+	static inline auto FAddAndGetActionInput = PreyFunction<SActionInput* (CActionMapAction* const _this, const SActionInput& actionInput)>(0x3DF640);
+};
+
+// CActionMap
+// Header:  CryEngine/cryaction/ActionMap.h
+// Include: Prey/CryAction/ActionMap.h
+class CActionMap : public IActionMap
+{ // Size=104 (0x68)
+public:
+	using TActionMap = std::map<CCryName, CActionMapAction>;
+	using TActionMapListeners = CListenerSet<IActionListener *>;
+
+	bool m_enabled;
+	CActionMapManager* m_pActionMapManager;
+	std::map<CCryName, CActionMapAction> m_actions;
+	unsigned m_listenerId;
+	CListenerSet<IActionListener *> m_actionMapListeners;
+	string m_name;
+	int m_iNumRebindedInputs;
+
+	CActionMap(CActionMapManager* pActionMapManager, const char* name);
+	virtual ~CActionMap();
+	virtual void GetMemoryUsage(ICrySizer* s) const;
+	virtual void Release();
+	virtual void Clear();
+	virtual const IActionMapAction* GetAction(const CCryName& actionId) const;
+	virtual IActionMapAction* GetAction(const CCryName& actionId);
+	virtual const IActionMapAction& GetAction(const int _index) const;
+	virtual IActionMapAction& GetAction(const int _index);
+	virtual bool CreateAction(const CCryName& actionId);
+	virtual bool RemoveAction(const CCryName& actionId);
+	virtual int GetActionsCount() const;
+	virtual bool AddActionInput(const CCryName& actionId, const SActionInput& actionInput, const int iByDeviceIndex);
+	virtual bool AddAndBindActionInput(const CCryName& actionId, const SActionInput& actionInput);
+	bool AddAndBindActionInput(CActionMapAction* pAction, const SActionInput& actionInput) { return FAddAndBindActionInputOv0(this, pAction, actionInput); }
+	virtual bool RemoveActionInput(const CCryName& actionId, const char* szInput);
+	virtual bool ReBindActionInput(const CCryName& actionId, const char* szCurrentInput, const char* szNewInput);
+	virtual bool ReBindActionInput(const CCryName& actionId, const char* szNewInput, const EActionInputDevice device, const int iByDeviceIndex);
+	bool ReBindActionInput(CActionMapAction* pAction, const char* szCurrentInput, const char* szNewInput) { return FReBindActionInputOv2(this, pAction, szCurrentInput, szNewInput); }
+	bool ReBindActionInput(CActionMapAction* pAction, SActionInput& actionInput, const char* szNewInput) { return FReBindActionInputOv1(this, pAction, actionInput, szNewInput); }
+	bool ReBindActionInput(CActionMapAction* pAction, const char* szNewInput, const EActionInputDevice device, const int iByDeviceIndex) { return FReBindActionInputOv0(this, pAction, szNewInput, device, iByDeviceIndex); }
+	virtual int GetNumRebindedInputs();
+	virtual bool Reset();
+	virtual bool ResetBindings();
+	virtual bool LoadFromXML(const XmlNodeRef& actionMapNode);
+	virtual bool LoadRebindingDataFromXML(const XmlNodeRef& actionMapNode);
+	virtual bool SaveRebindingDataToXML(XmlNodeRef& actionMapNode) const;
+	virtual _smart_ptr<IActionMapActionIterator> CreateActionIterator();
+	virtual void SetActionListener(unsigned id);
+	virtual unsigned GetActionListener() const;
+	virtual const char* GetName();
+	virtual void Enable(bool enable);
+	virtual bool Enabled() const;
+	void EnumerateActions(IActionMapPopulateCallBack* pCallBack) const { FEnumerateActions(this, pCallBack); }
+	bool CanProcessInput(const SInputEvent& inputEvent, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) { return FCanProcessInput(this, inputEvent, pActionMap, pAction, pActionInput); }
+	bool IsActionInputTriggered(const SInputEvent& inputEvent, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) const { return FIsActionInputTriggered(this, inputEvent, pActionMap, pAction, pActionInput); }
+	void InputProcessed() { FInputProcessed(this); }
+	void ReleaseActionsIfActive() { FReleaseActionsIfActive(this); }
+	void ReleaseActionIfActive(const CCryName& actionId) { FReleaseActionIfActive(this, actionId); }
+	void ReleaseFilteredActions() { FReleaseFilteredActions(this); }
+	void AddExtraActionListener(IActionListener* pExtraActionListener) { FAddExtraActionListener(this, pExtraActionListener); }
+	void RemoveExtraActionListener(IActionListener* pExtraActionListener) { FRemoveExtraActionListener(this, pExtraActionListener); }
+	void NotifyExtraActionListeners(const CCryName& action, int currentState, float value) { FNotifyExtraActionListeners(this, action, currentState, value); }
+	CActionMapAction* CreateAndGetAction(const CCryName& actionId) { return FCreateAndGetAction(this, actionId); }
+	void ReleaseActionIfActiveInternal(CActionMapAction& action) { FReleaseActionIfActiveInternal(this, action); }
+	bool LoadActionInputAttributesFromXML(const XmlNodeRef& actionInputNode, SActionInput& actionInput) { return FLoadActionInputAttributesFromXML(this, actionInputNode, actionInput); }
+
+#if 0
+	EActionAnalogCompareOperation GetAnalogCompareOpTypeFromStr(const char* _arg0_);
+	const char* GetAnalogCompareOpStr(EActionAnalogCompareOperation _arg0_) const;
+	void SetNumRebindedInputs(const int _arg0_);
+	bool LoadModifiersFromXML(const char* _arg0_, int& _arg1_);
+	bool SaveActionInputAttributesToXML(XmlNodeRef& _arg0_, const SActionInput& _arg1_) const;
+	void LoadActivationModeBitAttributeFromXML(const XmlNodeRef& _arg0_, int& _arg1_, const char* _arg2_, EActionActivationMode _arg3_);
+	void SaveActivationModeBitAttributeToXML(XmlNodeRef& _arg0_, const int _arg1_, const char* _arg2_, EActionActivationMode _arg3_) const;
+#endif
+
+	static inline auto FCActionMapOv1 = PreyFunction<void(CActionMap* const _this, CActionMapManager* pActionMapManager, const char* name)>(0x3DE4F0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CActionMap* const _this, ICrySizer* s)>(0x3E0210);
+	static inline auto FRelease = PreyFunction<void(CActionMap* const _this)>(0x3E3940);
+	static inline auto FClear = PreyFunction<void(CActionMap* const _this)>(0x3DFAD0);
+	static inline auto FGetActionOv3 = PreyFunction<const IActionMapAction* (const CActionMap* const _this, const CCryName& actionId)>(0x3E0140);
+	static inline auto FGetActionOv2 = PreyFunction<IActionMapAction* (CActionMap* const _this, const CCryName& actionId)>(0x3E0140);
+	static inline auto FGetActionOv1 = PreyFunction<const IActionMapAction& (const CActionMap* const _this, const int _index)>(0x3E0060);
+	static inline auto FGetActionOv0 = PreyFunction<IActionMapAction& (CActionMap* const _this, const int _index)>(0x3E0060);
+	static inline auto FCreateAction = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId)>(0x3DFB30);
+	static inline auto FRemoveAction = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId)>(0x3E4080);
+	static inline auto FGetActionsCount = PreyFunction<int(const CActionMap* const _this)>(0xD8FD10);
+	static inline auto FAddActionInput = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId, const SActionInput& actionInput, const int iByDeviceIndex)>(0x3DF1B0);
+	static inline auto FAddAndBindActionInputOv1 = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId, const SActionInput& actionInput)>(0x3DF560);
+	static inline auto FAddAndBindActionInputOv0 = PreyFunction<bool(CActionMap* const _this, CActionMapAction* pAction, const SActionInput& actionInput)>(0x3DF4A0);
+	static inline auto FRemoveActionInput = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId, const char* szInput)>(0x3E41E0);
+	static inline auto FReBindActionInputOv4 = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId, const char* szCurrentInput, const char* szNewInput)>(0x3E3820);
+	static inline auto FReBindActionInputOv3 = PreyFunction<bool(CActionMap* const _this, const CCryName& actionId, const char* szNewInput, const EActionInputDevice device, const int iByDeviceIndex)>(0x3E38B0);
+	static inline auto FReBindActionInputOv2 = PreyFunction<bool(CActionMap* const _this, CActionMapAction* pAction, const char* szCurrentInput, const char* szNewInput)>(0x3E3470);
+	static inline auto FReBindActionInputOv1 = PreyFunction<bool(CActionMap* const _this, CActionMapAction* pAction, SActionInput& actionInput, const char* szNewInput)>(0x3E3220);
+	static inline auto FReBindActionInputOv0 = PreyFunction<bool(CActionMap* const _this, CActionMapAction* pAction, const char* szNewInput, const EActionInputDevice device, const int iByDeviceIndex)>(0x3E3570);
+	static inline auto FGetNumRebindedInputs = PreyFunction<int(CActionMap* const _this)>(0x10E1790);
+	static inline auto FReset = PreyFunction<bool(CActionMap* const _this)>(0x3E4400);
+	static inline auto FResetBindings = PreyFunction<bool(CActionMap* const _this)>(0x3E4440);
+	static inline auto FLoadFromXML = PreyFunction<bool(CActionMap* const _this, const XmlNodeRef& actionMapNode)>(0x3E1540);
+	static inline auto FLoadRebindingDataFromXML = PreyFunction<bool(CActionMap* const _this, const XmlNodeRef& actionMapNode)>(0x3E2D50);
+	static inline auto FSaveRebindingDataToXML = PreyFunction<bool(const CActionMap* const _this, XmlNodeRef& actionMapNode)>(0x3E45A0);
+	static inline auto FCreateActionIterator = PreyFunction<_smart_ptr<IActionMapActionIterator>*(CActionMap* const _this, _smart_ptr<IActionMapActionIterator>* _return_value_)>(0x3DFC40);
+	static inline auto FSetActionListener = PreyFunction<void(CActionMap* const _this, unsigned id)>(0x87C030);
+	static inline auto FGetActionListener = PreyFunction<unsigned(const CActionMap* const _this)>(0x13BEF60);
+	static inline auto FGetName = PreyFunction<const char* (CActionMap* const _this)>(0x3E0300);
+	static inline auto FEnable = PreyFunction<void(CActionMap* const _this, bool enable)>(0x3DFDC0);
+	static inline auto FEnabled = PreyFunction<bool(const CActionMap* const _this)>(0x119FB50);
+	static inline auto FEnumerateActions = PreyFunction<void(const CActionMap* const _this, IActionMapPopulateCallBack* pCallBack)>(0x3DFF10);
+	static inline auto FCanProcessInput = PreyFunction<bool(CActionMap* const _this, const SInputEvent& inputEvent, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3DF830);
+	static inline auto FIsActionInputTriggered = PreyFunction<bool(const CActionMap* const _this, const SInputEvent& inputEvent, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3E0410);
+	static inline auto FInputProcessed = PreyFunction<void(CActionMap* const _this)>(0x3E0310);
+	static inline auto FReleaseActionsIfActive = PreyFunction<void(CActionMap* const _this)>(0x3E3DA0);
+	static inline auto FReleaseActionIfActive = PreyFunction<void(CActionMap* const _this, const CCryName& actionId)>(0x3E3980);
+	static inline auto FReleaseFilteredActions = PreyFunction<void(CActionMap* const _this)>(0x3E3E40);
+	static inline auto FAddExtraActionListener = PreyFunction<void(CActionMap* const _this, IActionListener* pExtraActionListener)>(0x3DF7E0);
+	static inline auto FRemoveExtraActionListener = PreyFunction<void(CActionMap* const _this, IActionListener* pExtraActionListener)>(0x3E4390);
+	static inline auto FNotifyExtraActionListeners = PreyFunction<void(CActionMap* const _this, const CCryName& action, int currentState, float value)>(0x3E3130);
+	static inline auto FCreateAndGetAction = PreyFunction<CActionMapAction* (CActionMap* const _this, const CCryName& actionId)>(0x3DFCC0);
+	static inline auto FReleaseActionIfActiveInternal = PreyFunction<void(CActionMap* const _this, CActionMapAction& action)>(0x3E39D0);
+	static inline auto FLoadActionInputAttributesFromXML = PreyFunction<bool(CActionMap* const _this, const XmlNodeRef& actionInputNode, SActionInput& actionInput)>(0x3E07B0);
+};
+#endif // !MOONCRASH

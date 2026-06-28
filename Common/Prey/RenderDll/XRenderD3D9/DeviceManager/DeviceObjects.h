@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -1026,3 +1028,431 @@ struct SScopedComputeCommandList
 };
 
 //#include "DeviceCommandList.inl"
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <CryEngine/crycommon/vectormap.h>
+#include <CryEngine/renderdll/xrenderd3d9/graphicspipeline/shadowmask.h>
+#include <Prey/CryCore/Platform/platform.h>
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <_unknown/DeviceResourceBinding__SResourceData.h>
+#include <_unknown/VectorMap.h>
+
+class CConstantBuffer;
+class CCryNameR;
+class CDeviceResourceLayout;
+struct CGpuBuffer;
+class CHWShader_D3D;
+class CShader;
+class CShaderResources;
+class CTexture;
+struct D3D11_BLEND_DESC;
+struct D3D11_DEPTH_STENCIL_DESC;
+struct D3D11_RASTERIZER_DESC;
+namespace DeviceResourceBinding
+{
+struct SShaderSlot;
+} // namespace DeviceResourceBinding
+enum class EShaderTechniqueID;
+struct SComputePipelineStateDescription;
+struct SDepthTexture;
+struct SGraphicsPipelineStateDescription;
+struct SReflectionsConstants;
+struct SShaderItem;
+union UPipelineState;
+
+// #lambda_05acc6311f1c27daf9d4f02b64605dbb
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+class #lambda_05acc6311f1c27daf9d4f02b64605dbb
+{ // Size=1 (0x1)
+public:
+	using <lambda_typedef_cdecl> = char16_t (*)(void*, unsigned);
+	using <lambda_typedef_vectorcall> = char16_t (*)(void*, unsigned);
+
+	void operator()(void* set, unsigned dirtyFlags) const { FoperatorRBLRBR(this, set, dirtyFlags); }
+
+#if 0
+	static void #lambda_invoker_cdecl(void* _arg0_, unsigned _arg1_);
+	void (*)(void*, unsigned) operator void (__cdecl *)(void *,unsigned int)() const;
+	static void #lambda_invoker_vectorcall(void* _arg0_, unsigned _arg1_);
+	void (*)(void*, unsigned) operator void (__vectorcall *)(void *,unsigned int)() const;
+	#lambda_05acc6311f1c27daf9d4f02b64605dbb();
+	#lambda_05acc6311f1c27daf9d4f02b64605dbb(#lambda_05acc6311f1c27daf9d4f02b64605dbb&& _arg0_);
+	#lambda_05acc6311f1c27daf9d4f02b64605dbb& operator=(const #lambda_05acc6311f1c27daf9d4f02b64605dbb& _arg0_);
+#endif
+
+	static inline auto FoperatorRBLRBR = PreyFunction<void(const #lambda_05acc6311f1c27daf9d4f02b64605dbb* const _this, void* set, unsigned dirtyFlags)>(0xF5ED10);
+};
+
+// CDeviceComputePSODesc
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceObjects.h
+class CDeviceComputePSODesc
+{ // Size=40 (0x28)
+public:
+	_smart_ptr<CShader> m_pShader;
+	CCryNameTSCRC m_technique;
+	uint64_t m_ShaderFlags_RT;
+	unsigned m_ShaderFlags_MD;
+	unsigned m_ShaderFlags_MDV;
+	CDeviceResourceLayout* m_pResourceLayout;
+
+	CDeviceComputePSODesc(CDeviceResourceLayout* pResourceLayout, CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags, unsigned mdFlags, unsigned mdvFlags);
+
+#if 0
+	CDeviceComputePSODesc(const CDeviceComputePSODesc& _arg0_);
+	CDeviceComputePSODesc(CDeviceResourceLayout* _arg0_, const SComputePipelineStateDescription& _arg1_);
+	CDeviceComputePSODesc& operator=(const CDeviceComputePSODesc& _arg0_);
+	bool operator==(const CDeviceComputePSODesc& _arg0_) const;
+	uint64_t GetHash() const;
+	void InitWithDefaults();
+#endif
+
+	static inline auto FCDeviceComputePSODescOv0 = PreyFunction<void(CDeviceComputePSODesc* const _this, CDeviceResourceLayout* pResourceLayout, CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags, unsigned mdFlags, unsigned mdvFlags)>(0xF5DCF0);
+};
+
+// CDeviceGraphicsPSODesc
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceObjects.h
+class CDeviceGraphicsPSODesc
+{ // Size=88 (0x58)
+public:
+	_smart_ptr<CShader> m_pShader;
+	CCryNameTSCRC m_technique;
+	bool m_bAllowTesselation;
+	bool m_bForceNullPS;
+	uint64_t m_ShaderFlags_RT;
+	unsigned m_ShaderFlags_MD;
+	unsigned m_ShaderFlags_MDV;
+	EShaderQuality m_ShaderQuality;
+	unsigned m_RenderState;
+	unsigned m_StencilState;
+	uint8_t m_StencilReadMask;
+	uint8_t m_StencilWriteMask;
+	EVertexFormat m_VertexFormat;
+	uint8_t m_ObjectStreamMask;
+	std::array<enum::ETEX_Format, 4> m_RenderTargetFormats;
+	ETEX_Format m_DepthStencilFormat;
+	ECull m_CullMode;
+	ERenderPrimitiveType m_PrimitiveType;
+	CDeviceResourceLayout* m_pResourceLayout;
+	bool m_bDepthClip;
+
+	CDeviceGraphicsPSODesc(CDeviceResourceLayout* pResourceLayout, const SGraphicsPipelineStateDescription& pipelineDesc);
+	CDeviceGraphicsPSODesc(unsigned renderTargetCount, CTexture* const * pRenderTargets, const SDepthTexture* pDepthTarget, uint64_t* pRenderTargetViews);
+	void FillDescs(D3D11_RASTERIZER_DESC& rasterizerDesc, D3D11_BLEND_DESC& blendDesc, D3D11_DEPTH_STENCIL_DESC& depthStencilDesc) const { FFillDescs(this, rasterizerDesc, blendDesc, depthStencilDesc); }
+	uint8_t CombineVertexStreamMasks(uint8_t fromShader, uint8_t fromObject) const { return FCombineVertexStreamMasks(this, fromShader, fromObject); }
+
+#if 0
+	CDeviceGraphicsPSODesc(const CDeviceGraphicsPSODesc& _arg0_);
+	CDeviceGraphicsPSODesc& operator=(const CDeviceGraphicsPSODesc& _arg0_);
+	bool operator==(const CDeviceGraphicsPSODesc& _arg0_) const;
+	uint64_t GetHash() const;
+	void InitWithDefaults();
+#endif
+
+	static inline auto FCDeviceGraphicsPSODescOv1 = PreyFunction<void(CDeviceGraphicsPSODesc* const _this, CDeviceResourceLayout* pResourceLayout, const SGraphicsPipelineStateDescription& pipelineDesc)>(0xF5DE60);
+	static inline auto FCDeviceGraphicsPSODescOv0 = PreyFunction<void(CDeviceGraphicsPSODesc* const _this, unsigned renderTargetCount, CTexture* const * pRenderTargets, const SDepthTexture* pDepthTarget, uint64_t* pRenderTargetViews)>(0xF5DD70);
+	static inline auto FFillDescs = PreyFunction<void(const CDeviceGraphicsPSODesc* const _this, D3D11_RASTERIZER_DESC& rasterizerDesc, D3D11_BLEND_DESC& blendDesc, D3D11_DEPTH_STENCIL_DESC& depthStencilDesc)>(0xF60750);
+	static inline auto FCombineVertexStreamMasks = PreyFunction<uint8_t(const CDeviceGraphicsPSODesc* const _this, uint8_t fromShader, uint8_t fromObject)>(0xF5F580);
+};
+
+// CDeviceResourceSet
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceObjects.h
+class CDeviceResourceSet
+{ // Size=120 (0x78)
+public:
+	enum EFlags
+	{
+		EFlags_None = 0,
+		EFlags_ForceSetAllState = 1,
+		EFlags_ContainsVolatileBuffers = 2,
+		EFlags_DynamicUpdates = 4,
+		EFlags_PendingAllocation = 8,
+		EFlags_Multibuffered = 16,
+		EFlags_AnimatedSequence = 32,
+	};
+
+	// CDeviceResourceSet::DelayedResourceDesc
+	// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+	struct DelayedResourceDesc
+	{ // Size=16 (0x10)
+		int frameNumber;
+		CDeviceResourceSet* pResourceSet;
+	};
+
+	using STextureData = DeviceResourceBinding::SResourceData<_smart_ptr<CTexture> >;
+	using SSamplerData = DeviceResourceBinding::SResourceData<int>;
+	using SConstantBufferData = DeviceResourceBinding::SResourceData<_smart_ptr<CConstantBuffer> >;
+	using SBufferData = DeviceResourceBinding::SResourceData<CGpuBuffer>;
+
+	VectorMap<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<_smart_ptr<CTexture> >,std::less<DeviceResourceBinding::SShaderSlot>,std::allocator<std::pair<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<_smart_ptr<CTexture> > > > > m_Textures;
+	VectorMap<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<int>,std::less<DeviceResourceBinding::SShaderSlot>,std::allocator<std::pair<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<int> > > > m_Samplers;
+	VectorMap<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<CGpuBuffer>,std::less<DeviceResourceBinding::SShaderSlot>,std::allocator<std::pair<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<CGpuBuffer> > > > m_Buffers;
+	VectorMap<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<_smart_ptr<CConstantBuffer> >,std::less<DeviceResourceBinding::SShaderSlot>,std::allocator<std::pair<DeviceResourceBinding::SShaderSlot,DeviceResourceBinding::SResourceData<_smart_ptr<CConstantBuffer> > > > > m_ConstantBuffers;
+	CDeviceResourceSet::EFlags m_Flags;
+	bool m_bValid;
+	bool m_bDirty;
+	bool m_bEmpty;
+	bool m_bDirtyLayout;
+	unsigned m_lastUseFrame;
+	static inline auto s_delayedResourceRelease = PreyGlobal<std::unordered_map<void*, CDeviceResourceSet::DelayedResourceDesc>>(0x2C86740);
+
+	CDeviceResourceSet(CDeviceResourceSet::EFlags flags);
+	CDeviceResourceSet(const CDeviceResourceSet& other);
+	virtual ~CDeviceResourceSet();
+	void SetDirty(bool bDirty) { FSetDirty(this, bDirty); }
+	virtual void DelayedRelease();
+	void Clear(bool bTextures, bool bConstantBuffers) { FClear(this, bTextures, bConstantBuffers); }
+	void SetTexture(int shaderSlot, CTexture* pTexture, uint64_t resourceViewID, EShaderStage shaderStages) { FSetTexture(this, shaderSlot, pTexture, resourceViewID, shaderStages); }
+	void SetSampler(int shaderSlot, int sampler, EShaderStage shaderStages) { FSetSampler(this, shaderSlot, sampler, shaderStages); }
+	void SetConstantBuffer(int shaderSlot, CConstantBuffer* pBuffer, EShaderStage shaderStages) { FSetConstantBuffer(this, shaderSlot, pBuffer, shaderStages); }
+	void SetBuffer(int shaderSlot, const CGpuBuffer& buffer, bool bUnorderedAccess, EShaderStage shaderStages) { FSetBuffer(this, shaderSlot, buffer, bUnorderedAccess, shaderStages); }
+	EShaderStage GetShaderStages() const { return FGetShaderStages(this); }
+	bool Fill(CShader* pShader, CShaderResources* pResources, EShaderStage shaderStages) { return FFill(this, pShader, pResources, shaderStages); }
+	void Build() { FBuild(this); }
+	virtual bool BuildImpl(CDeviceResourceSet::EFlags updatedFlags) = 0;
+	static void DelayedResourceRelease() { FDelayedResourceRelease(); }
+
+#if 0
+	bool IsValid() const;
+	bool IsEmpty() const;
+	bool IsDirty() const;
+	bool IsLayoutDirty() const;
+	CDeviceResourceSet::EFlags GetFlags() const;
+	static void AddToDelayedRelease(CDeviceResourceSet* _arg0_);
+	static void RemoveFromDelayedRelease(CDeviceResourceSet* _arg0_);
+#endif
+
+	static inline auto FCDeviceResourceSetOv1 = PreyFunction<void(CDeviceResourceSet* const _this, CDeviceResourceSet::EFlags flags)>(0xF5E0D0);
+	static inline auto FCDeviceResourceSetOv0 = PreyFunction<void(CDeviceResourceSet* const _this, const CDeviceResourceSet& other)>(0xF5DF40);
+	static inline auto FBitNotCDeviceResourceSet = PreyFunction<void(CDeviceResourceSet* const _this)>(0xF5E430);
+	static inline auto FSetDirty = PreyFunction<void(CDeviceResourceSet* const _this, bool bDirty)>(0xF62990);
+	static inline auto FDelayedRelease = PreyFunction<void(CDeviceResourceSet* const _this)>(0x1333E90);
+	static inline auto FClear = PreyFunction<void(CDeviceResourceSet* const _this, bool bTextures, bool bConstantBuffers)>(0xF5F310);
+	static inline auto FSetTexture = PreyFunction<void(CDeviceResourceSet* const _this, int shaderSlot, CTexture* pTexture, uint64_t resourceViewID, EShaderStage shaderStages)>(0xF62D30);
+	static inline auto FSetSampler = PreyFunction<void(CDeviceResourceSet* const _this, int shaderSlot, int sampler, EShaderStage shaderStages)>(0xF62BF0);
+	static inline auto FSetConstantBuffer = PreyFunction<void(CDeviceResourceSet* const _this, int shaderSlot, CConstantBuffer* pBuffer, EShaderStage shaderStages)>(0xF62800);
+	static inline auto FSetBuffer = PreyFunction<void(CDeviceResourceSet* const _this, int shaderSlot, const CGpuBuffer& buffer, bool bUnorderedAccess, EShaderStage shaderStages)>(0xF625C0);
+	static inline auto FGetShaderStages = PreyFunction<EShaderStage(const CDeviceResourceSet* const _this)>(0xF61000);
+	static inline auto FFill = PreyFunction<bool(CDeviceResourceSet* const _this, CShader* pShader, CShaderResources* pResources, EShaderStage shaderStages)>(0xF60340);
+	static inline auto FBuild = PreyFunction<void(CDeviceResourceSet* const _this)>(0xF5F170);
+	static inline auto FDelayedResourceRelease = PreyFunction<void()>(0xF5FE90);
+};
+
+// SDeviceObjectHelpers
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceObjects.h
+struct SDeviceObjectHelpers
+{ // Size=1 (0x1)
+	// SDeviceObjectHelpers::SShaderInstanceInfo
+	// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+	struct SShaderInstanceInfo
+	{ // Size=24 (0x18)
+		CHWShader_D3D* pHwShader;
+		void* pHwShaderInstance;
+		void* pDeviceShader;
+
+	#if 0
+		SShaderInstanceInfo();
+	#endif
+	};
+
+	// SDeviceObjectHelpers::SConstantBufferBindInfo
+	// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+	struct SConstantBufferBindInfo
+	{ // Size=16 (0x10)
+		EConstantBufferShaderSlot shaderSlot;
+		EShaderStage shaderStages;
+		_smart_ptr<CConstantBuffer> pBuffer;
+
+	#if 0
+		void swap(SDeviceObjectHelpers::SConstantBufferBindInfo& _arg0_);
+	#endif
+	};
+
+	// SDeviceObjectHelpers::CShaderConstantManager
+	// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+	class CShaderConstantManager
+	{ // Size=32 (0x20)
+	public:
+		// SDeviceObjectHelpers::CShaderConstantManager::SReflectedBufferUpdateContext
+		// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+		struct SReflectedBufferUpdateContext
+		{ // Size=40 (0x28)
+			EHWShaderClass shaderClass;
+			int vectorCount;
+			_smart_ptr<CConstantBuffer> pPreviousBuffer;
+			SDeviceObjectHelpers::SShaderInstanceInfo shaderInfo;
+
+		#if 0
+			SReflectedBufferUpdateContext();
+		#endif
+		};
+
+		// SDeviceObjectHelpers::CShaderConstantManager::SShaderReflection
+		// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+		struct SShaderReflection
+		{ // Size=40 (0x28)
+			CShader* pShader;
+			CCryNameTSCRC technique;
+			bool bValid;
+			VectorMap<int,SDeviceObjectHelpers::CShaderConstantManager::SReflectedBufferUpdateContext,std::less<int>,std::allocator<std::pair<int,SDeviceObjectHelpers::CShaderConstantManager::SReflectedBufferUpdateContext> > > bufferUpdateContexts;
+
+		#if 0
+			SShaderReflection();
+		#endif
+		};
+
+		std::vector<SDeviceObjectHelpers::SConstantBufferBindInfo> m_constantBuffers;
+		std::unique_ptr<SDeviceObjectHelpers::CShaderConstantManager::SShaderReflection> m_pShaderReflection;
+
+		CShaderConstantManager();
+		CShaderConstantManager(SDeviceObjectHelpers::CShaderConstantManager&& other);
+		~CShaderConstantManager();
+		void Reset() { FReset(this); }
+		bool InitShaderReflection(CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags) { return FInitShaderReflection(this, pShader, technique, rtFlags); }
+		void BeginNamedConstantUpdate() { FBeginNamedConstantUpdate(this); }
+		void EndNamedConstantUpdate() { FEndNamedConstantUpdate(this); }
+		bool SetNamedConstant(const CCryNameR& paramName, const Vec4 param, EHWShaderClass shaderClass) { return FSetNamedConstant(this, paramName, param, shaderClass); }
+		bool SetNamedConstantArray(const CCryNameR& paramName, const Vec4* params, unsigned numParams, EHWShaderClass shaderClass) { return FSetNamedConstantArray(this, paramName, params, numParams, shaderClass); }
+		bool SetTypedConstantBuffer(EConstantBufferShaderSlot shaderSlot, CConstantBuffer* pBuffer, EShaderStage shaderStages) { return FSetTypedConstantBuffer(this, shaderSlot, pBuffer, shaderStages); }
+		void ReleaseReflectedBuffers() { FReleaseReflectedBuffers(this); }
+
+	#if 0
+		bool IsShaderReflectionValid() const;
+		void ReleaseShaderReflection();
+		const std::vector<SDeviceObjectHelpers::SConstantBufferBindInfo>& GetBuffers() const;
+	#endif
+
+		static inline auto FCShaderConstantManagerOv1 = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0x1500AC0);
+		static inline auto FCShaderConstantManagerOv0 = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this, SDeviceObjectHelpers::CShaderConstantManager&& other)>(0xF5E1B0);
+		static inline auto FBitNotCShaderConstantManager = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0xFA90E0);
+		static inline auto FReset = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0xF625B0);
+		static inline auto FInitShaderReflection = PreyFunction<bool(SDeviceObjectHelpers::CShaderConstantManager* const _this, CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags)>(0xF61070);
+		static inline auto FBeginNamedConstantUpdate = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0xF5F000);
+		static inline auto FEndNamedConstantUpdate = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0xF600C0);
+		static inline auto FSetNamedConstant = PreyFunction<bool(SDeviceObjectHelpers::CShaderConstantManager* const _this, const CCryNameR& paramName, const Vec4 param, EHWShaderClass shaderClass)>(0xF62A50);
+		static inline auto FSetNamedConstantArray = PreyFunction<bool(SDeviceObjectHelpers::CShaderConstantManager* const _this, const CCryNameR& paramName, const Vec4* params, unsigned numParams, EHWShaderClass shaderClass)>(0xF62AA0);
+		static inline auto FSetTypedConstantBuffer = PreyFunction<bool(SDeviceObjectHelpers::CShaderConstantManager* const _this, EConstantBufferShaderSlot shaderSlot, CConstantBuffer* pBuffer, EShaderStage shaderStages)>(0xF62EF0);
+		static inline auto FReleaseReflectedBuffers = PreyFunction<void(SDeviceObjectHelpers::CShaderConstantManager* const _this)>(0xF61F30);
+	};
+
+	static std::array<SDeviceObjectHelpers::SShaderInstanceInfo, 6> GetShaderInstanceInfo(CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags, unsigned mdFlags, unsigned mdvFlags, UPipelineState* pipelineState, bool bAllowTesselation) { return FGetShaderInstanceInfo(pShader, technique, rtFlags, mdFlags, mdvFlags, pipelineState, bAllowTesselation); }
+	static bool CheckTessellationSupport(SShaderItem& shaderItem) { return FCheckTessellationSupportOv1(shaderItem); }
+
+#if 0
+	static bool CheckTessellationSupport(SShaderItem& _arg0_, EShaderTechniqueID _arg1_);
+#endif
+
+	static inline auto FGetShaderInstanceInfo = PreyFunction<std::array<SDeviceObjectHelpers::SShaderInstanceInfo, 6>(CShader* pShader, const CCryNameTSCRC& technique, uint64_t rtFlags, unsigned mdFlags, unsigned mdvFlags, UPipelineState* pipelineState, bool bAllowTesselation)>(0xF60C90);
+	static inline auto FCheckTessellationSupportOv1 = PreyFunction<bool(SShaderItem& shaderItem)>(0xF5F280);
+};
+
+// SDeviceObjectHelpers::STypedConstants<SReflectionsConstants,16>
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+class STypedConstants<SReflectionsConstants,16> : private NoCopy
+{ // Size=176 (0xB0)
+public:
+	uint8_t m_CachedMemory[159];
+	SReflectionsConstants* m_pCachedData;
+	_smart_ptr<CConstantBuffer> m_pBuffer;
+
+	STypedConstants<SReflectionsConstants,16>(SDeviceObjectHelpers::STypedConstants<SReflectionsConstants,16>&& other);
+
+#if 0
+	STypedConstants<SReflectionsConstants,16>(_smart_ptr<CConstantBuffer> _arg0_);
+	void CommitChanges();
+	SReflectionsConstants* operator->();
+	SReflectionsConstants& operator struct SReflectionsConstants &();
+	SReflectionsConstants* AlignCachedData();
+#endif
+
+	static inline auto FSTypedConstantsLessSReflectionsConstantsComma16GreaterOv0 = PreyFunction<void(SDeviceObjectHelpers::STypedConstants<SReflectionsConstants,16>* const _this, SDeviceObjectHelpers::STypedConstants<SReflectionsConstants,16>&& other)>(0xF8FA10);
+};
+
+// SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+class STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16> : private NoCopy
+{ // Size=208 (0xD0)
+public:
+	uint8_t m_CachedMemory[191];
+	ShadowMaskInternal::CLocalLightShadows::STypedConstants* m_pCachedData;
+	_smart_ptr<CConstantBuffer> m_pBuffer;
+
+	STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>(SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>&& other);
+
+#if 0
+	STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>(_smart_ptr<CConstantBuffer> _arg0_);
+	void CommitChanges();
+	ShadowMaskInternal::CLocalLightShadows::STypedConstants* operator->();
+	ShadowMaskInternal::CLocalLightShadows::STypedConstants& STypedConstants &();
+	ShadowMaskInternal::CLocalLightShadows::STypedConstants* AlignCachedData();
+#endif
+
+	static inline auto FSTypedConstantsLessShadowMaskInternal::CLocalLightShadows::STypedConstantsComma16GreaterOv0 = PreyFunction<void(SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>* const _this, SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CLocalLightShadows::STypedConstants,16>&& other)>(0xF976A0);
+};
+
+// SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+class STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16> : private NoCopy
+{ // Size=432 (0x1B0)
+public:
+	uint8_t m_CachedMemory[415];
+	ShadowMaskInternal::CSunShadows::STypedConstants* m_pCachedData;
+	_smart_ptr<CConstantBuffer> m_pBuffer;
+
+	STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>(SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>&& other);
+
+#if 0
+	STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>(_smart_ptr<CConstantBuffer> _arg0_);
+	void CommitChanges();
+	ShadowMaskInternal::CSunShadows::STypedConstants* operator->();
+	ShadowMaskInternal::CSunShadows::STypedConstants& STypedConstants &();
+	ShadowMaskInternal::CSunShadows::STypedConstants* AlignCachedData();
+#endif
+
+	static inline auto FSTypedConstantsLessShadowMaskInternal::CSunShadows::STypedConstantsComma16GreaterOv0 = PreyFunction<void(SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>* const _this, SDeviceObjectHelpers::STypedConstants<ShadowMaskInternal::CSunShadows::STypedConstants,16>&& other)>(0xF97820);
+};
+
+// SDeviceResourceLayoutDesc
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceObjects.h
+struct SDeviceResourceLayoutDesc
+{ // Size=56 (0x38)
+	// SDeviceResourceLayoutDesc::SInlineConstantBuffer
+	// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/deviceobjects.h
+	struct SInlineConstantBuffer
+	{ // Size=8 (0x8)
+		EConstantBufferShaderSlot shaderSlot;
+		EShaderStage shaderStages;
+
+	#if 0
+		DeviceResourceBinding::SShaderSlot SShaderSlot() const;
+	#endif
+	};
+
+	unsigned m_InlineConstantCount;
+	VectorMap<unsigned int,SDeviceResourceLayoutDesc::SInlineConstantBuffer,std::less<unsigned int>,std::allocator<std::pair<unsigned int,SDeviceResourceLayoutDesc::SInlineConstantBuffer> > > m_ConstantBuffers;
+	VectorMap<unsigned int,std::shared_ptr<CDeviceResourceSet>,std::less<unsigned int>,std::allocator<std::pair<unsigned int,std::shared_ptr<CDeviceResourceSet> > > > m_ResourceSets;
+
+	void SetResourceSet(unsigned bindSlot, const std::shared_ptr<CDeviceResourceSet>& pResourceSet) { FSetResourceSet(this, bindSlot, pResourceSet); }
+	void SetConstantBuffer(unsigned bindSlot, EConstantBufferShaderSlot shaderSlot, EShaderStage shaderStages) { FSetConstantBuffer(this, bindSlot, shaderSlot, shaderStages); }
+	bool IsValid() const { return FIsValid(this); }
+	std::bitset<8> GetRequiredResourceBindings() const { alignas(std::bitset<8>) std::byte _return_buf_[sizeof(std::bitset<8>)]; return *FGetRequiredResourceBindings(this, reinterpret_cast<std::bitset<8>*>(_return_buf_)); }
+	bool operator<(const SDeviceResourceLayoutDesc& other) const { return FoperatorLess(this, other); }
+
+#if 0
+	SDeviceResourceLayoutDesc();
+	void SetInlineConstants(unsigned _arg0_);
+#endif
+
+	static inline auto FSetResourceSet = PreyFunction<void(SDeviceResourceLayoutDesc* const _this, unsigned bindSlot, const std::shared_ptr<CDeviceResourceSet>& pResourceSet)>(0xF62AF0);
+	static inline auto FSetConstantBuffer = PreyFunction<void(SDeviceResourceLayoutDesc* const _this, unsigned bindSlot, EConstantBufferShaderSlot shaderSlot, EShaderStage shaderStages)>(0xF62940);
+	static inline auto FIsValid = PreyFunction<bool(const SDeviceResourceLayoutDesc* const _this)>(0xF61970);
+	static inline auto FGetRequiredResourceBindings = PreyFunction<std::bitset<8>*(const SDeviceResourceLayoutDesc* const _this, std::bitset<8>* _return_value_)>(0xF60BE0);
+	static inline auto FoperatorLess = PreyFunction<bool(const SDeviceResourceLayoutDesc* const _this, const SDeviceResourceLayoutDesc& other)>(0xF5E890);
+};
+#endif // !MOONCRASH

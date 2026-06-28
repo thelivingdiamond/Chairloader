@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -21,4 +22,3 @@ public:
 	virtual std::vector<IArkGlobalAction const *> GetActions() const = 0;
 	virtual _smart_ptr<IFlowGraph> CreateAction(string const &arg0) = 0;
 };
-

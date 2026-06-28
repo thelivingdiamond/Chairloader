@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -143,4 +145,120 @@ namespace UIEvents
 
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryInput/IInput.h>
+#include <Prey/CrySystem/ISystem.h>
+#include <_unknown/CListenerSet.h>
+#include <_unknown/SUIEventSenderDispatcher.h>
 
+class CProfileOptions;
+enum EInputDeviceType;
+enum ESystemEvent;
+class ICrySizer;
+struct ILoadGame;
+struct ISaveGame;
+struct IUIControlSchemeListener;
+struct IUIEventSystem;
+struct IUIGameEventSystem;
+struct SActionEvent;
+struct SInputEvent;
+struct SViewParams;
+
+// CUIManager
+// Header:  Prey/GameDll/ui/UIManager.h
+class CUIManager
+	: public ISystemEventListener
+	, public IGameFrameworkListener
+	, public IInputEventListener
+{ // Size=152 (0x98)
+public:
+	enum EUIEvent
+	{
+		eUIE_OnControlSchemeChanged = 0,
+	};
+
+	using TUIEventSystems = std::map<string, std::shared_ptr<IUIGameEventSystem>>;
+
+	unsigned m_soundListener;
+	bool m_bRegistered;
+	CProfileOptions* m_pOptions;
+	EControlScheme m_curControlScheme;
+	EControlScheme m_actualControlScheme;
+	std::array<int, 4> m_lastDeviceIndices;
+	CListenerSet<IUIControlSchemeListener *> m_controlSchemeListeners;
+	std::map<string, std::shared_ptr<IUIGameEventSystem>> m_EventSystems;
+	SUIEventSenderDispatcher<enum CUIManager::EUIEvent> m_eventSender;
+	IUIEventSystem* m_pUIFunctions;
+
+	CUIManager();
+	virtual ~CUIManager();
+	void Init() { FInit(this); }
+	void Shutdown() { FShutdown(this); }
+	void PostSerialize() { FPostSerialize(this); }
+	virtual bool OnInputEvent(const SInputEvent& event);
+	virtual int GetPriority() const;
+	IUIGameEventSystem* GetUIEventSystem(const char* type) const { return FGetUIEventSystem(this, type); }
+	void ProcessViewParams(const SViewParams& viewParams) { FProcessViewParams(this, viewParams); }
+	void ActivateState(const char* state) { FActivateState(this, state); }
+	void ActivateDefaultState() { FActivateDefaultState(this); }
+	bool IsInMenu() { return FIsInMenu(this); }
+	void InitGameType(bool multiplayer, bool fromInit) { FInitGameType(this, multiplayer, fromInit); }
+	bool RegisterControlSchemeListener(IUIControlSchemeListener* pListener) { return FRegisterControlSchemeListener(this, pListener); }
+	bool UnregisterControlSchemeListener(IUIControlSchemeListener* pListener) { return FUnregisterControlSchemeListener(this, pListener); }
+	void SetCurControlScheme(const EControlScheme controlScheme) { FSetCurControlScheme(this, controlScheme); }
+	void RefreshControlScheme() { FRefreshControlScheme(this); }
+	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
+	virtual void OnPostUpdate(float fDeltaTime);
+	virtual void OnSaveGame(ISaveGame* pSaveGame);
+	virtual void OnLoadGame(ILoadGame* pLoadGame);
+	virtual void OnLevelEnd(const char* nextLevel);
+	virtual void OnActionEvent(const SActionEvent& event);
+	virtual void OnPreRender();
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+
+#if 0
+	CProfileOptions* GetOptions() const;
+	void ActivateStateImmediate(const char* _arg0_);
+	void ActivateDefaultStateImmediate();
+	bool IsLoading();
+	bool IsPreGameDone();
+	void ForceCompletePreGame();
+	void ClearControlSchemeListeners();
+	void SetDefaultControlScheme();
+	EControlScheme GetCurControlScheme() const;
+	EControlScheme GetFunctionalControlScheme() const;
+	int GetDeviceIndexForDevice(const EInputDeviceType _arg0_) const;
+	static bool IsController(const EControlScheme _arg0_);
+	void InitSound();
+	void ShutdownSound();
+#endif
+
+	static inline auto FCUIManagerOv1 = PreyFunction<void(CUIManager* const _this)>(0x1926260);
+	static inline auto FInit = PreyFunction<void(CUIManager* const _this)>(0x1926750);
+	static inline auto FShutdown = PreyFunction<void(CUIManager* const _this)>(0x1927330);
+	static inline auto FPostSerialize = PreyFunction<void(CUIManager* const _this)>(0x1333E90);
+	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x1926DE0);
+	static inline auto FGetPriority = PreyFunction<int(const IInputEventListener* const _this)>(0x1948930);
+	static inline auto FGetUIEventSystem = PreyFunction<IUIGameEventSystem* (const CUIManager* const _this, const char* type)>(0x1926610);
+	static inline auto FProcessViewParams = PreyFunction<void(CUIManager* const _this, const SViewParams& viewParams)>(0x1926F60);
+	static inline auto FActivateState = PreyFunction<void(CUIManager* const _this, const char* state)>(0x1333E90);
+	static inline auto FActivateDefaultState = PreyFunction<void(CUIManager* const _this)>(0x1333E90);
+	static inline auto FIsInMenu = PreyFunction<bool(CUIManager* const _this)>(0x13B0900);
+	static inline auto FInitGameType = PreyFunction<void(CUIManager* const _this, bool multiplayer, bool fromInit)>(0x1333E90);
+	static inline auto FRegisterControlSchemeListener = PreyFunction<bool(CUIManager* const _this, IUIControlSchemeListener* pListener)>(0x19270D0);
+	static inline auto FUnregisterControlSchemeListener = PreyFunction<bool(CUIManager* const _this, IUIControlSchemeListener* pListener)>(0x1927470);
+	static inline auto FSetCurControlScheme = PreyFunction<void(CUIManager* const _this, const EControlScheme controlScheme)>(0x1927120);
+	static inline auto FRefreshControlScheme = PreyFunction<void(CUIManager* const _this)>(0x1927000);
+	static inline auto FOnSystemEvent = PreyFunction<void(CUIManager* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x1333E90);
+	static inline auto FOnPostUpdate = PreyFunction<void(IGameFrameworkListener* const _this, float fDeltaTime)>(0x1926EC0);
+	static inline auto FOnSaveGame = PreyFunction<void(IGameFrameworkListener* const _this, ISaveGame* pSaveGame)>(0x1333E90);
+	static inline auto FOnLoadGame = PreyFunction<void(IGameFrameworkListener* const _this, ILoadGame* pLoadGame)>(0x1333E90);
+	static inline auto FOnLevelEnd = PreyFunction<void(IGameFrameworkListener* const _this, const char* nextLevel)>(0x1333E90);
+	static inline auto FOnActionEvent = PreyFunction<void(IGameFrameworkListener* const _this, const SActionEvent& event)>(0x1333E90);
+	static inline auto FOnPreRender = PreyFunction<void(IGameFrameworkListener* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CUIManager* const _this, ICrySizer* pSizer)>(0x19265C0);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -76,4 +78,4 @@ struct SMFXRunTimeEffectParams // Id=8001FBC Size=208
 	void ResetAudioRtpcs();
 #endif
 };
-
+#endif // !MOONCRASH

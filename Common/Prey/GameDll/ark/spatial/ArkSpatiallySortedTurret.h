@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -41,4 +43,4 @@ public:
 	static inline auto FIsValid = PreyFunction<bool(ArkSpatiallySortedTurret const *const _this)>(0x12F72B0);
 	static inline auto FGetPosition = PreyFunction<Vec3(ArkSpatiallySortedTurret const *const _this)>(0x12F72C0);
 };
-
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -293,4 +295,317 @@ public:
 	static inline auto FGetPoint = PreyFunction<Vec3*(const ClimbPosInfo* const _this, Vec3* _return_value_)>(0x155AD70);
 	static inline auto FGetStance = PreyFunction<EStance(const ClimbPosInfo* const _this)>(0x1A4D090);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/dialog/arkspeaker.h>
 
+class ArkAbilityComponent;
+class ArkAimAssistComponent;
+class ArkAudioLogComponent;
+class ArkBountyComponent;
+class ArkChecklistComponent;
+class ArkEmailComponent;
+class ArkFabricationPlanComponent;
+class ArkFocusModeComponent;
+class ArkGameMetricsComponent;
+class ArkKeyCardComponent;
+class ArkKeyCodeComponent;
+class ArkLiveTranscribeComponent;
+class ArkLocationComponent;
+class ArkLoreComponent;
+class ArkMarkedEnemyComponent;
+class ArkNoteComponent;
+class ArkPDAComponent;
+class ArkPOIComponent;
+class ArkPharmaComponent;
+class ArkPlayerAchievementComponent;
+class ArkPlayerAwarenessComponent;
+class ArkPlayerEntitlementComponent;
+class ArkPlayerFXComponent;
+class ArkPlayerFatigueComponent;
+class ArkPlayerHealthComponent;
+class ArkPlayerLightManager;
+class ArkPlayerPropulsionComponent;
+class ArkPlayerRadiationComponent;
+class ArkPlayerScopeComponent;
+class ArkPlayerSignalReceiver;
+class ArkPlayerStatusComponent;
+class ArkPlayerUIComponent;
+class ArkQuickSelectComponent;
+class ArkRosterComponent;
+class ArkSpeakerBase;
+class ArkStationAccessComponent;
+class ArkUtilityComponent;
+class CArkPsiComponent;
+class CCryName;
+class XmlNodeRef;
+
+// ArkPlayerComponent
+// Header:  Prey/GameDll/ark/player/ArkPlayerComponent.h
+class ArkPlayerComponent
+{ // Size=352 (0x160)
+public:
+	std::unique_ptr<CArkPsiComponent> m_pPsiComponent;
+	std::unique_ptr<ArkAbilityComponent> m_pAbilityComponent;
+	std::unique_ptr<ArkAudioLogComponent> m_pAudioLogComponent;
+	std::unique_ptr<ArkBountyComponent> m_pBountyComponent;
+	std::unique_ptr<ArkChecklistComponent> m_pChecklistComponent;
+	std::unique_ptr<ArkNoteComponent> m_pNoteComponent;
+	std::unique_ptr<ArkKeyCodeComponent> m_pKeyCodeComponent;
+	std::unique_ptr<ArkLocationComponent> m_pLocationComponent;
+	std::unique_ptr<ArkLoreComponent> m_pLoreComponent;
+	std::unique_ptr<ArkKeyCardComponent> m_pKeyCardComponent;
+	std::unique_ptr<ArkEmailComponent> m_pEmailComponent;
+	std::unique_ptr<ArkQuickSelectComponent> m_pQuickSelectComponent;
+	std::unique_ptr<ArkRosterComponent> m_pRosterComponent;
+	std::unique_ptr<ArkUtilityComponent> m_pUtilityComponent;
+	std::unique_ptr<ArkPharmaComponent> m_pPharmaComponent;
+	std::unique_ptr<ArkPDAComponent> m_pPDAComponent;
+	std::unique_ptr<ArkPlayerAchievementComponent> m_pAchievementComponent;
+	std::unique_ptr<ArkPlayerAwarenessComponent> m_pAwarenessComponent;
+	std::unique_ptr<ArkPlayerEntitlementComponent> m_pEntitlementComponent;
+	std::unique_ptr<ArkPlayerFatigueComponent> m_pFatigueComponent;
+	std::unique_ptr<ArkPlayerHealthComponent> m_pHealthComponent;
+	std::unique_ptr<ArkPlayerRadiationComponent> m_pRadiationComponent;
+	std::unique_ptr<ArkPlayerLightManager> m_pLightManager;
+	std::unique_ptr<ArkPlayerFXComponent> m_pFXComponent;
+	std::unique_ptr<ArkPlayerUIComponent> m_pUIComponent;
+	std::unique_ptr<ArkFabricationPlanComponent> m_pFabricationPlanComponent;
+	std::unique_ptr<ArkPlayerStatusComponent> m_pStatusComponent;
+	std::unique_ptr<ArkPlayerPropulsionComponent> m_pPropulsionComponent;
+	std::unique_ptr<ArkPlayerSignalReceiver> m_pSignalReceiver;
+	std::unique_ptr<ArkAimAssistComponent> m_pAimAssistComponent;
+	std::unique_ptr<ArkMarkedEnemyComponent> m_pMarkedEnemyComponent;
+	std::unique_ptr<ArkPlayerScopeComponent> m_pScopeComponent;
+	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pPlayerSpeaker;
+	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pSuitSpeaker;
+	std::unique_ptr<ArkSpeaker<ArkDialogPlayer>> m_pDiscRifleSpeaker;
+	std::unique_ptr<ArkSpeaker<ArkDialogPlayerPlayer>> m_pTelepathSpeaker;
+	std::unique_ptr<ArkSpeaker<ArkDialogPlayerTranscribe>> m_pTranscribeSpeaker;
+	std::unique_ptr<ArkGameMetricsComponent> m_pGameMetricsComponent;
+	std::unique_ptr<ArkFocusModeComponent> m_pFocusModeComponent;
+	std::unique_ptr<ArkLiveTranscribeComponent> m_pLiveTranscribeComponent;
+	std::unique_ptr<ArkStationAccessComponent> m_pStationAccessComponent;
+	std::unique_ptr<ArkPOIComponent> m_pPOIComponent;
+	float m_fShadowDissolveBlend;
+	float m_fShadowDissolveTarget;
+	float m_fShadowDissolveTimeScale;
+	bool m_bItemsRestricted;
+	bool m_bMarkerTextDisplayed;
+
+	ArkPlayerComponent();
+	~ArkPlayerComponent();
+	void Init() { FInit(this); }
+	void Release() { FRelease(this); }
+	void Update(const float _deltaTime) { FUpdate(this, _deltaTime); }
+	void UpdateHUDMarkerElements() { FUpdateHUDMarkerElements(this); }
+	void UpdateAimAssist() { FUpdateAimAssist(this); }
+	void Reset() { FReset(this); }
+	void ResetForCharacterChange() { FResetForCharacterChange(this); }
+	void ResetSimulation() { FResetSimulation(this); }
+	void LoadConfig(const XmlNodeRef& _node) { FLoadConfig(this, _node); }
+	CArkPsiComponent& GetPsiComponent() { return FGetPsiComponentOv1(this); }
+	const CArkPsiComponent& GetPsiComponent() const { return FGetPsiComponentOv0(this); }
+	ArkAbilityComponent& GetAbilityComponent() { return FGetAbilityComponentOv1(this); }
+	const ArkAbilityComponent& GetAbilityComponent() const { return FGetAbilityComponentOv0(this); }
+	ArkAudioLogComponent& GetAudioLogComponent() { return FGetAudioLogComponentOv1(this); }
+	ArkBountyComponent& GetBountyComponent() { return FGetBountyComponentOv1(this); }
+	ArkChecklistComponent& GetChecklistComponent() { return FGetChecklistComponentOv1(this); }
+	const ArkChecklistComponent& GetChecklistComponent() const { return FGetChecklistComponentOv0(this); }
+	ArkNoteComponent& GetNoteComponent() { return FGetNoteComponentOv1(this); }
+	const ArkNoteComponent& GetNoteComponent() const { return FGetNoteComponentOv0(this); }
+	ArkKeyCodeComponent& GetKeyCodeComponent() { return FGetKeyCodeComponentOv1(this); }
+	ArkLocationComponent& GetLocationComponent() { return FGetLocationComponentOv1(this); }
+	const ArkLocationComponent& GetLocationComponent() const { return FGetLocationComponentOv0(this); }
+	ArkLoreComponent& GetLoreComponent() { return FGetLoreComponentOv1(this); }
+	ArkKeyCardComponent& GetKeyCardComponent() { return FGetKeyCardComponentOv1(this); }
+	ArkEmailComponent& GetEmailComponent() { return FGetEmailComponentOv1(this); }
+	const ArkEmailComponent& GetEmailComponent() const { return FGetEmailComponentOv0(this); }
+	ArkQuickSelectComponent& GetQuickSelectComponent() { return FGetQuickSelectComponentOv1(this); }
+	const ArkQuickSelectComponent& GetQuickSelectComponent() const { return FGetQuickSelectComponentOv0(this); }
+	ArkRosterComponent& GetRosterComponent() { return FGetRosterComponentOv1(this); }
+	const ArkRosterComponent& GetRosterComponent() const { return FGetRosterComponentOv0(this); }
+	ArkPDAComponent& GetPDAComponent() { return FGetPDAComponentOv1(this); }
+	const ArkPDAComponent& GetPDAComponent() const { return FGetPDAComponentOv0(this); }
+	ArkPlayerAwarenessComponent& GetAwarenessComponent() { return FGetAwarenessComponentOv1(this); }
+	const ArkPlayerAwarenessComponent& GetAwarenessComponent() const { return FGetAwarenessComponentOv0(this); }
+	ArkPlayerFatigueComponent& GetFatigueComponent() { return FGetFatigueComponentOv1(this); }
+	const ArkPlayerFatigueComponent& GetFatigueComponent() const { return FGetFatigueComponentOv0(this); }
+	ArkPlayerHealthComponent& GetHealthComponent() { return FGetHealthComponentOv1(this); }
+	const ArkPlayerHealthComponent& GetHealthComponent() const { return FGetHealthComponentOv0(this); }
+	ArkPlayerRadiationComponent& GetRadiationComponent() { return FGetRadiationComponentOv1(this); }
+	ArkPlayerFXComponent& GetFXComponent() { return FGetFXComponentOv1(this); }
+	ArkUtilityComponent& GetUtilityComponent() { return FGetUtilityComponentOv1(this); }
+	const ArkUtilityComponent& GetUtilityComponent() const { return FGetUtilityComponentOv0(this); }
+	ArkPharmaComponent& GetPharmaComponent() { return FGetPharmaComponentOv1(this); }
+	ArkPlayerUIComponent& GetUIComponent() { return FGetUIComponentOv1(this); }
+	ArkPlayerLightManager& GetLightManager() { return FGetLightManagerOv1(this); }
+	ArkFabricationPlanComponent& GetFabricationPlanComponent() { return FGetFabricationPlanComponentOv1(this); }
+	const ArkFabricationPlanComponent& GetFabricationPlanComponent() const { return FGetFabricationPlanComponentOv0(this); }
+	ArkPlayerStatusComponent& GetStatusComponent() { return FGetStatusComponentOv1(this); }
+	const ArkPlayerStatusComponent& GetStatusComponent() const { return FGetStatusComponentOv0(this); }
+	ArkPlayerAchievementComponent& GetAchievementComponent() { return FGetAchievementComponent(this); }
+	ArkPlayerEntitlementComponent& GetEntitlementComponent() { return FGetEntitlementComponent(this); }
+	ArkPlayerPropulsionComponent& GetPropulsionComponent() { return FGetPropulsionComponentOv1(this); }
+	const ArkPlayerPropulsionComponent& GetPropulsionComponent() const { return FGetPropulsionComponentOv0(this); }
+	const ArkAimAssistComponent& GetAimAssistComponent() const { return FGetAimAssistComponent(this); }
+	ArkMarkedEnemyComponent& GetMarkedEnemyComponent() { return FGetMarkedEnemyComponentOv1(this); }
+	const ArkMarkedEnemyComponent& GetMarkedEnemyComponent() const { return FGetMarkedEnemyComponentOv0(this); }
+	ArkPlayerScopeComponent& GetScopeComponent() { return FGetScopeComponentOv1(this); }
+	const ArkPlayerScopeComponent& GetScopeComponent() const { return FGetScopeComponentOv0(this); }
+	ArkGameMetricsComponent& GetGameMetricComponent() { return FGetGameMetricComponentOv1(this); }
+	const ArkGameMetricsComponent& GetGameMetricComponent() const { return FGetGameMetricComponentOv0(this); }
+	ArkFocusModeComponent& GetFocusModeComponent() { return FGetFocusModeComponentOv1(this); }
+	const ArkFocusModeComponent& GetFocusModeComponent() const { return FGetFocusModeComponentOv0(this); }
+	ArkLiveTranscribeComponent& GetLiveTranscribeComponent() { return FGetLiveTranscribeComponentOv1(this); }
+	ArkStationAccessComponent& GetStationAccessComponent() { return FGetStationAccessComponentOv1(this); }
+	ArkPOIComponent& GetPOIComponent() { return FGetPOIComponentOv1(this); }
+	ArkSpeakerBase* GetPlayerSpeaker() { return FGetPlayerSpeaker(this); }
+	ArkSpeakerBase* GetSuitSpeaker() { return FGetSuitSpeaker(this); }
+	ArkSpeakerBase* GetDiscRifleSpeaker() { return FGetDiscRifleSpeaker(this); }
+	ArkSpeakerBase* GetTelepathSpeaker() { return FGetTelepathSpeaker(this); }
+	ArkSpeaker<ArkDialogPlayerTranscribe>* GetTranscribeSpeaker() { return FGetTranscribeSpeaker(this); }
+	void ProcessInput(const CCryName& _rActionId, const int _activationMode, const float _fValue) { FProcessInput(this, _rActionId, _activationMode, _fValue); }
+	void PreSerialize() { FPreSerialize(this); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void SerializeForLevelTransition(TSerialize _ser) { FSerializeForLevelTransition(this, _ser); }
+	void PostSerialize() { FPostSerialize(this); }
+	void PostSerializeForLevelTransition() { FPostSerializeForLevelTransition(this); }
+	void CollectNote(uint64_t _id) { FCollectNote(this, _id); }
+	void OnDeadOrEscape() { FOnDeadOrEscape(this); }
+	void OnGameEnded() { FOnGameEnded(this); }
+	void TriggerDamageDialog(const float _damage) const { FTriggerDamageDialog(this, _damage); }
+	void SetItemsRestricted(const bool _bRestricted) { FSetItemsRestricted(this, _bRestricted); }
+	void SerializeEither(TSerialize _ser) { FSerializeEither(this, _ser); }
+
+#if 0
+	const ArkAudioLogComponent& GetAudioLogComponent() const;
+	const ArkBountyComponent& GetBountyComponent() const;
+	const ArkKeyCodeComponent& GetKeyCodeComponent() const;
+	const ArkLoreComponent& GetLoreComponent() const;
+	const ArkKeyCardComponent& GetKeyCardComponent() const;
+	const ArkPlayerRadiationComponent& GetRadiationComponent() const;
+	const ArkPlayerFXComponent& GetFXComponent() const;
+	const ArkPharmaComponent& GetPharmaComponent() const;
+	const ArkPlayerUIComponent& GetUIComponent() const;
+	const ArkPlayerLightManager& GetLightManager() const;
+	const ArkLiveTranscribeComponent& GetLiveTranscribeComponent() const;
+	const ArkPlayerSignalReceiver& GetSignalReceiver() const;
+	const ArkStationAccessComponent& GetStationAccessComponent() const;
+	const ArkPOIComponent& GetPOIComponent() const;
+	void DissolveShadow(bool _arg0_, float _arg1_);
+	void CollectAllData();
+	bool GetItemsRestricted() const;
+	bool IsMarkerTextDisplayed() const;
+	void SetMarkerTextDisplayed();
+#endif
+
+	static inline auto FArkPlayerComponent = PreyFunction<void(ArkPlayerComponent* const _this)>(0x167EB40);
+	static inline auto FBitNotArkPlayerComponent = PreyFunction<void(ArkPlayerComponent* const _this)>(0x167FCE0);
+	static inline auto FInit = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680520);
+	static inline auto FRelease = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680F30);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerComponent* const _this, const float _deltaTime)>(0x1681D60);
+	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1681F90);
+	static inline auto FUpdateAimAssist = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1681F80);
+	static inline auto FReset = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680F60);
+	static inline auto FResetForCharacterChange = PreyFunction<void(ArkPlayerComponent* const _this)>(0x16815D0);
+	static inline auto FResetSimulation = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1681680);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerComponent* const _this, const XmlNodeRef& _node)>(0x16805B0);
+	static inline auto FGetPsiComponentOv1 = PreyFunction<CArkPsiComponent& (ArkPlayerComponent* const _this)>(0x1112EA0);
+	static inline auto FGetPsiComponentOv0 = PreyFunction<const CArkPsiComponent& (const ArkPlayerComponent* const _this)>(0x1112EA0);
+	static inline auto FGetAbilityComponentOv1 = PreyFunction<ArkAbilityComponent& (ArkPlayerComponent* const _this)>(0x12DC700);
+	static inline auto FGetAbilityComponentOv0 = PreyFunction<const ArkAbilityComponent& (const ArkPlayerComponent* const _this)>(0x12DC700);
+	static inline auto FGetAudioLogComponentOv1 = PreyFunction<ArkAudioLogComponent& (ArkPlayerComponent* const _this)>(0x547450);
+	static inline auto FGetBountyComponentOv1 = PreyFunction<ArkBountyComponent& (ArkPlayerComponent* const _this)>(0x598E60);
+	static inline auto FGetChecklistComponentOv1 = PreyFunction<ArkChecklistComponent& (ArkPlayerComponent* const _this)>(0xD77240);
+	static inline auto FGetChecklistComponentOv0 = PreyFunction<const ArkChecklistComponent& (const ArkPlayerComponent* const _this)>(0xD77240);
+	static inline auto FGetNoteComponentOv1 = PreyFunction<ArkNoteComponent& (ArkPlayerComponent* const _this)>(0x7E3C90);
+	static inline auto FGetNoteComponentOv0 = PreyFunction<const ArkNoteComponent& (const ArkPlayerComponent* const _this)>(0x7E3C90);
+	static inline auto FGetKeyCodeComponentOv1 = PreyFunction<ArkKeyCodeComponent& (ArkPlayerComponent* const _this)>(0x19B580);
+	static inline auto FGetLocationComponentOv1 = PreyFunction<ArkLocationComponent& (ArkPlayerComponent* const _this)>(0xEDF820);
+	static inline auto FGetLocationComponentOv0 = PreyFunction<const ArkLocationComponent& (const ArkPlayerComponent* const _this)>(0xEDF820);
+	static inline auto FGetLoreComponentOv1 = PreyFunction<ArkLoreComponent& (ArkPlayerComponent* const _this)>(0x8715F0);
+	static inline auto FGetKeyCardComponentOv1 = PreyFunction<ArkKeyCardComponent& (ArkPlayerComponent* const _this)>(0x9F24D0);
+	static inline auto FGetEmailComponentOv1 = PreyFunction<ArkEmailComponent& (ArkPlayerComponent* const _this)>(0x20D640);
+	static inline auto FGetEmailComponentOv0 = PreyFunction<const ArkEmailComponent& (const ArkPlayerComponent* const _this)>(0x20D640);
+	static inline auto FGetQuickSelectComponentOv1 = PreyFunction<ArkQuickSelectComponent& (ArkPlayerComponent* const _this)>(0x3E0300);
+	static inline auto FGetQuickSelectComponentOv0 = PreyFunction<const ArkQuickSelectComponent& (const ArkPlayerComponent* const _this)>(0x3E0300);
+	static inline auto FGetRosterComponentOv1 = PreyFunction<ArkRosterComponent& (ArkPlayerComponent* const _this)>(0x1680510);
+	static inline auto FGetRosterComponentOv0 = PreyFunction<const ArkRosterComponent& (const ArkPlayerComponent* const _this)>(0x1680510);
+	static inline auto FGetPDAComponentOv1 = PreyFunction<ArkPDAComponent& (ArkPlayerComponent* const _this)>(0x83F4B0);
+	static inline auto FGetPDAComponentOv0 = PreyFunction<const ArkPDAComponent& (const ArkPlayerComponent* const _this)>(0x83F4B0);
+	static inline auto FGetAwarenessComponentOv1 = PreyFunction<ArkPlayerAwarenessComponent& (ArkPlayerComponent* const _this)>(0x11E6CB0);
+	static inline auto FGetAwarenessComponentOv0 = PreyFunction<const ArkPlayerAwarenessComponent& (const ArkPlayerComponent* const _this)>(0x11E6CB0);
+	static inline auto FGetFatigueComponentOv1 = PreyFunction<ArkPlayerFatigueComponent& (ArkPlayerComponent* const _this)>(0x1B7C8C0);
+	static inline auto FGetFatigueComponentOv0 = PreyFunction<const ArkPlayerFatigueComponent& (const ArkPlayerComponent* const _this)>(0x1B7C8C0);
+	static inline auto FGetHealthComponentOv1 = PreyFunction<ArkPlayerHealthComponent& (ArkPlayerComponent* const _this)>(0x16804D0);
+	static inline auto FGetHealthComponentOv0 = PreyFunction<const ArkPlayerHealthComponent& (const ArkPlayerComponent* const _this)>(0x16804D0);
+	static inline auto FGetRadiationComponentOv1 = PreyFunction<ArkPlayerRadiationComponent& (ArkPlayerComponent* const _this)>(0xAB5630);
+	static inline auto FGetFXComponentOv1 = PreyFunction<ArkPlayerFXComponent& (ArkPlayerComponent* const _this)>(0x9FCEC0);
+	static inline auto FGetUtilityComponentOv1 = PreyFunction<ArkUtilityComponent& (ArkPlayerComponent* const _this)>(0x16D6740);
+	static inline auto FGetUtilityComponentOv0 = PreyFunction<const ArkUtilityComponent& (const ArkPlayerComponent* const _this)>(0x16D6740);
+	static inline auto FGetPharmaComponentOv1 = PreyFunction<ArkPharmaComponent& (ArkPlayerComponent* const _this)>(0xB48DC0);
+	static inline auto FGetUIComponentOv1 = PreyFunction<ArkPlayerUIComponent& (ArkPlayerComponent* const _this)>(0x9FCC40);
+	static inline auto FGetLightManagerOv1 = PreyFunction<ArkPlayerLightManager& (ArkPlayerComponent* const _this)>(0x11C8520);
+	static inline auto FGetFabricationPlanComponentOv1 = PreyFunction<ArkFabricationPlanComponent& (ArkPlayerComponent* const _this)>(0x11E6C10);
+	static inline auto FGetFabricationPlanComponentOv0 = PreyFunction<const ArkFabricationPlanComponent& (const ArkPlayerComponent* const _this)>(0x11E6C10);
+	static inline auto FGetStatusComponentOv1 = PreyFunction<ArkPlayerStatusComponent& (ArkPlayerComponent* const _this)>(0x84FDC0);
+	static inline auto FGetStatusComponentOv0 = PreyFunction<const ArkPlayerStatusComponent& (const ArkPlayerComponent* const _this)>(0x84FDC0);
+	static inline auto FGetAchievementComponent = PreyFunction<ArkPlayerAchievementComponent& (ArkPlayerComponent* const _this)>(0x510580);
+	static inline auto FGetEntitlementComponent = PreyFunction<ArkPlayerEntitlementComponent& (ArkPlayerComponent* const _this)>(0x5105A0);
+	static inline auto FGetPropulsionComponentOv1 = PreyFunction<ArkPlayerPropulsionComponent& (ArkPlayerComponent* const _this)>(0x105410);
+	static inline auto FGetPropulsionComponentOv0 = PreyFunction<const ArkPlayerPropulsionComponent& (const ArkPlayerComponent* const _this)>(0x105410);
+	static inline auto FGetAimAssistComponent = PreyFunction<const ArkAimAssistComponent& (const ArkPlayerComponent* const _this)>(0x9FCC50);
+	static inline auto FGetMarkedEnemyComponentOv1 = PreyFunction<ArkMarkedEnemyComponent& (ArkPlayerComponent* const _this)>(0x5D9010);
+	static inline auto FGetMarkedEnemyComponentOv0 = PreyFunction<const ArkMarkedEnemyComponent& (const ArkPlayerComponent* const _this)>(0x5D9010);
+	static inline auto FGetScopeComponentOv1 = PreyFunction<ArkPlayerScopeComponent& (ArkPlayerComponent* const _this)>(0x9ED890);
+	static inline auto FGetScopeComponentOv0 = PreyFunction<const ArkPlayerScopeComponent& (const ArkPlayerComponent* const _this)>(0x9ED890);
+	static inline auto FGetGameMetricComponentOv1 = PreyFunction<ArkGameMetricsComponent& (ArkPlayerComponent* const _this)>(0x16804C0);
+	static inline auto FGetGameMetricComponentOv0 = PreyFunction<const ArkGameMetricsComponent& (const ArkPlayerComponent* const _this)>(0x16804C0);
+	static inline auto FGetFocusModeComponentOv1 = PreyFunction<ArkFocusModeComponent& (ArkPlayerComponent* const _this)>(0x16804B0);
+	static inline auto FGetFocusModeComponentOv0 = PreyFunction<const ArkFocusModeComponent& (const ArkPlayerComponent* const _this)>(0x16804B0);
+	static inline auto FGetLiveTranscribeComponentOv1 = PreyFunction<ArkLiveTranscribeComponent& (ArkPlayerComponent* const _this)>(0xD77230);
+	static inline auto FGetStationAccessComponentOv1 = PreyFunction<ArkStationAccessComponent& (ArkPlayerComponent* const _this)>(0x5D90C0);
+	static inline auto FGetPOIComponentOv1 = PreyFunction<ArkPOIComponent& (ArkPlayerComponent* const _this)>(0x16804E0);
+	static inline auto FGetPlayerSpeaker = PreyFunction<ArkSpeakerBase* (ArkPlayerComponent* const _this)>(0x84FDB0);
+	static inline auto FGetSuitSpeaker = PreyFunction<ArkSpeakerBase* (ArkPlayerComponent* const _this)>(0x1834030);
+	static inline auto FGetDiscRifleSpeaker = PreyFunction<ArkSpeakerBase* (ArkPlayerComponent* const _this)>(0x5D8F30);
+	static inline auto FGetTelepathSpeaker = PreyFunction<ArkSpeakerBase* (ArkPlayerComponent* const _this)>(0x11E6CA0);
+	static inline auto FGetTranscribeSpeaker = PreyFunction<ArkSpeaker<ArkDialogPlayerTranscribe>* (ArkPlayerComponent* const _this)>(0x19E85A0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPlayerComponent* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x1680E10);
+	static inline auto FPreSerialize = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680DE0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerComponent* const _this, TSerialize _ser)>(0x16816E0);
+	static inline auto FSerializeForLevelTransition = PreyFunction<void(ArkPlayerComponent* const _this, TSerialize _ser)>(0x1681AD0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680BE0);
+	static inline auto FPostSerializeForLevelTransition = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680D60);
+	static inline auto FCollectNote = PreyFunction<void(ArkPlayerComponent* const _this, uint64_t _id)>(0x1680400);
+	static inline auto FOnDeadOrEscape = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680930);
+	static inline auto FOnGameEnded = PreyFunction<void(ArkPlayerComponent* const _this)>(0x1680A40);
+	static inline auto FTriggerDamageDialog = PreyFunction<void(const ArkPlayerComponent* const _this, const float _damage)>(0x1681C50);
+	static inline auto FSetItemsRestricted = PreyFunction<void(ArkPlayerComponent* const _this, const bool _bRestricted)>(0x1681B30);
+	static inline auto FSerializeEither = PreyFunction<void(ArkPlayerComponent* const _this, TSerialize _ser)>(0x1681780);
+};
+
+// ClimbPosInfo
+// Header:  Prey/GameDll/ark/player/ArkPlayerComponent.h
+class ClimbPosInfo
+{ // Size=16 (0x10)
+public:
+	Vec3 m_point;
+	EStance m_stance;
+
+	ClimbPosInfo(Vec3 _point, EStance _stance);
+	Vec3 GetPoint() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetPoint(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	EStance GetStance() const { return FGetStance(this); }
+
+#if 0
+	ClimbPosInfo();
+#endif
+
+	static inline auto FClimbPosInfoOv2 = PreyFunction<void(ClimbPosInfo* const _this, Vec3 _point, EStance _stance)>(0x167F3B0);
+	static inline auto FGetPoint = PreyFunction<Vec3*(const ClimbPosInfo* const _this, Vec3* _return_value_)>(0x16804F0);
+	static inline auto FGetStance = PreyFunction<EStance(const ClimbPosInfo* const _this)>(0x528760);
+};
+#endif // !MOONCRASH

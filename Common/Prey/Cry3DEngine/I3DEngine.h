@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -3085,3 +3087,4 @@ inline SRenderingPassInfo SRenderingPassInfo::CreateTempRenderingInfo(uint32 nRe
 	return passInfo;
 }
 #endif
+#endif // !MOONCRASH

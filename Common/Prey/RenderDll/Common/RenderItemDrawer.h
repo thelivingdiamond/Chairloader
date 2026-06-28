@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -43,3 +45,50 @@ public:
 	static inline auto FJobifyDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this, bool bForceImmediateExecution)>(0xEAD2C0);
 	static inline auto FWaitForDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0xEAD7D0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/ijobmanager.h>
+#include <Prey/RenderDll/XRenderD3D9/GraphicsPipeline/Common/GraphicsPipelineStage.h>
+
+// CRenderItemDrawer
+// Header:  CryEngine/renderdll/common/RenderItemDrawer.h
+// Include: Prey/RenderDll/Common/RenderItemDrawer.h
+class CRenderItemDrawer
+{ // Size=96 (0x60)
+public:
+	// CRenderItemDrawer::SRenderListCollection
+	// Header:  CryEngine/renderdll/common/RenderItemDrawer.h
+	struct SRenderListCollection
+	{ // Size=96 (0x60)
+		std::vector<SGraphicsPipelinePassContext> rendList;
+		SGraphicsPipelinePassContext* pStart;
+		SGraphicsPipelinePassContext* pEnd;
+		std::vector<std::unique_ptr<CDeviceCommandList>> pCommandLists;
+		JobManager::SJobState jobState;
+
+		void WaitForJobs() { FWaitForJobs(this); }
+
+	#if 0
+		void Init();
+		void Reserve(uint64_t _arg0_);
+		void Expand(const SGraphicsPipelinePassContext& _arg0_);
+		void PrepareJobs(unsigned _arg0_);
+	#endif
+
+		static inline auto FWaitForJobs = PreyFunction<void(CRenderItemDrawer::SRenderListCollection* const _this)>(0xEC9CD0);
+	};
+
+	CRenderItemDrawer::SRenderListCollection m_CoalescedContexts;
+
+	void DrawCompiledRenderItems(const SGraphicsPipelinePassContext& passContext) const { FDrawCompiledRenderItems(this, passContext); }
+	void InitDrawSubmission() { FInitDrawSubmission(this); }
+	void JobifyDrawSubmission(bool bForceImmediateExecution) { FJobifyDrawSubmission(this, bForceImmediateExecution); }
+	void WaitForDrawSubmission() { FWaitForDrawSubmission(this); }
+
+	static inline auto FDrawCompiledRenderItems = PreyFunction<void(const CRenderItemDrawer* const _this, const SGraphicsPipelinePassContext& passContext)>(0xEC94D0);
+	static inline auto FInitDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0x129D270);
+	static inline auto FJobifyDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this, bool bForceImmediateExecution)>(0xEC97A0);
+	static inline auto FWaitForDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0xEC9CB0);
+};
+#endif // !MOONCRASH

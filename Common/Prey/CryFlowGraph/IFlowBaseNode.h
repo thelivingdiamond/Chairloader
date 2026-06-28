@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -206,3 +208,4 @@ public:
 
 	static const int myCloneType = eNCT_Singleton;
 };
+#endif // !MOONCRASH

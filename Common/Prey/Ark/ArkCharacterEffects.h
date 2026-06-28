@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -185,4 +187,232 @@ public:
 	static inline auto FInit = PreyFunction<bool(ArkCharacterEffects *const _this)>(0x105EB80);
 	static inline auto FGetCharacterEffectByIdOv1 = PreyFunction<ArkCharacterEffect const *(ArkCharacterEffects const *const _this, const uint64_t _characterEffectId)>(0x105E920);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkAttachmentEffect
+// Header:  Prey/Ark/ArkCharacterEffects.h
+class ArkAttachmentEffect : public ArkReflectedObject
+{ // Size=40 (0x28)
+public:
+	// ArkAttachmentEffect::ArkAttachmentProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkAttachmentProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAttachmentProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkAttachmentEffect::ArkAttachmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkAttachmentEffect::ArkAttachmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkAttachmentEffect::ArkParticleEffectProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkAttachmentEffect::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkAttachmentEffect::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkAttachmentEffect::ArkPositionOffsetProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkPositionOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkAttachmentEffect::ArkPositionOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107F590);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkAttachmentEffect::ArkPositionOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkAttachmentEffect::ArkRotationOffsetProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkRotationOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRotationOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkAttachmentEffect::ArkRotationOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107F5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkAttachmentEffect::ArkRotationOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x13B26B0);
+	};
+
+	static inline auto s_ArkAttachmentProperty = PreyGlobal<ArkAttachmentEffect::ArkAttachmentProperty>(0x2D225E0);
+	string m_Attachment;
+	static inline auto s_ArkParticleEffectProperty = PreyGlobal<ArkAttachmentEffect::ArkParticleEffectProperty>(0x2D22600);
+	string m_ParticleEffect;
+	static inline auto s_ArkPositionOffsetProperty = PreyGlobal<ArkAttachmentEffect::ArkPositionOffsetProperty>(0x2D22620);
+	Vec3 m_PositionOffset;
+	static inline auto s_ArkRotationOffsetProperty = PreyGlobal<ArkAttachmentEffect::ArkRotationOffsetProperty>(0x2D22640);
+	Vec3 m_RotationOffset;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetAttachment(string _arg0_);
+	const string& GetAttachment() const;
+	void SetParticleEffect(string _arg0_);
+	const string& GetParticleEffect() const;
+	void SetPositionOffset(Vec3 _arg0_);
+	const Vec3& GetPositionOffset() const;
+	void SetRotationOffset(Vec3 _arg0_);
+	const Vec3& GetRotationOffset() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10804D0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10805A0);
+};
+
+// ArkCharacterEffect
+// Header:  Prey/Ark/ArkCharacterEffects.h
+class ArkCharacterEffect : public ArkReflectedObject
+{ // Size=40 (0x28)
+public:
+	// ArkCharacterEffect::ArkIdProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCharacterEffect::ArkIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCharacterEffect::ArkIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkCharacterEffect::ArkNameProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCharacterEffect::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCharacterEffect::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkCharacterEffect::ArkAttachEffectsProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkAttachEffectsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkAttachEffectsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCharacterEffect::ArkAttachEffectsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107F5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCharacterEffect::ArkAttachEffectsProperty* const _this, ArkReflectedObject* const _pObject)>(0x107F6A0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkCharacterEffect::ArkAttachEffectsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkCharacterEffect::ArkAttachEffectsProperty* const _this, ArkReflectedObject* _pObject)>(0x107F6C0);
+	};
+
+	static inline auto s_ArkIdProperty = PreyGlobal<ArkCharacterEffect::ArkIdProperty>(0x2D22660);
+	uint64_t m_Id;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkCharacterEffect::ArkNameProperty>(0x2D22680);
+	string m_Name;
+	static inline auto s_ArkAttachEffectsProperty = PreyGlobal<ArkCharacterEffect::ArkAttachEffectsProperty>(0x2D226A0);
+	std::vector<ArkAttachmentEffect> m_AttachEffects;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetId(uint64_t _arg0_);
+	const uint64_t& GetId() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	std::vector<ArkAttachmentEffect>& GetAttachEffects();
+	const std::vector<ArkAttachmentEffect>& GetAttachEffects() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10972A0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1080640);
+};
+
+// ArkCharacterEffects
+// Header:  Prey/Ark/ArkCharacterEffects.h
+class ArkCharacterEffects : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkCharacterEffects::ArkEffectsProperty
+	// Header:  Prey/Ark/ArkCharacterEffects.h
+	class ArkEffectsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkEffectsProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkEffectsPropertyOv2 = PreyFunction<void(ArkCharacterEffects::ArkEffectsProperty* const _this)>(0x10801B0);
+		static inline auto FSetValue = PreyFunction<void(const ArkCharacterEffects::ArkEffectsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107F6F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCharacterEffects::ArkEffectsProperty* const _this, ArkReflectedObject* const _pObject)>(0x107F780);
+		static inline auto FIsArray = PreyFunction<bool(const ArkCharacterEffects::ArkEffectsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkCharacterEffects::ArkEffectsProperty* const _this, ArkReflectedObject* _pObject)>(0x107F7C0);
+	};
+
+	static inline auto s_ArkEffectsProperty = PreyGlobal<ArkCharacterEffects::ArkEffectsProperty>(0x2D226C0);
+	std::vector<ArkCharacterEffect> m_Effects;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+	const ArkCharacterEffect* GetCharacterEffectById(const uint64_t _characterEffectId) const { return FGetCharacterEffectByIdOv1(this, _characterEffectId); }
+
+#if 0
+	std::vector<ArkCharacterEffect>& GetEffects();
+	const std::vector<ArkCharacterEffect>& GetEffects() const;
+	ArkCharacterEffect* GetCharacterEffectById(const uint64_t _arg0_);
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1080510);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10806E0);
+	static inline auto FInit = PreyFunction<bool(ArkCharacterEffects* const _this)>(0x10807D0);
+	static inline auto FGetCharacterEffectByIdOv1 = PreyFunction<const ArkCharacterEffect* (const ArkCharacterEffects* const _this, const uint64_t _characterEffectId)>(0x1080570);
+};
+#endif // !MOONCRASH

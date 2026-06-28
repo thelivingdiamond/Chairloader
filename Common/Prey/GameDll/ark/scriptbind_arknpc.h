@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -97,4 +99,104 @@ public:
 	static inline auto FGetHitInfoFromScript = PreyFunction<bool(SmartScriptTable const &_scriptTable, HitInfo &_info)>(0x15C4FA0);
 	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_ArkNpc const *const _this)>(0x15C6B50);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
 
+class ArkNpc;
+class ArkNpcPlayer;
+struct HitInfo;
+struct IFunctionHandler;
+struct IGameFramework;
+struct ISystem;
+class SmartScriptTable;
+
+// CScriptBind_ArkNpc
+// Header:  Prey/GameDll/ark/ScriptBind_ArkNpc.h
+class CScriptBind_ArkNpc : public CScriptableBase
+{ // Size=112 (0x70)
+public:
+	ISystem* m_pSystem;
+	IGameFramework* m_pGameFW;
+
+	CScriptBind_ArkNpc(ISystem* pSystem);
+	virtual ~CScriptBind_ArkNpc();
+	void AttachTo(ArkNpc* const _pArkNpc) { FAttachTo(this, _pArkNpc); }
+	int IsAlive(IFunctionHandler* _pH) { return FIsAlive(this, _pH); }
+	int IsDead(IFunctionHandler* _pH) { return FIsDead(this, _pH); }
+	int IsCorrupted(IFunctionHandler* _pH) { return FIsCorrupted(this, _pH); }
+	int IsHacked(IFunctionHandler* _pH) { return FIsHacked(this, _pH); }
+	int IsBroken(IFunctionHandler* _pH) { return FIsBroken(this, _pH); }
+	int IsDestroyed(IFunctionHandler* _pH) { return FIsDestroyed(this, _pH); }
+	int IsStunned(IFunctionHandler* _pH) { return FIsStunned(this, _pH); }
+	int IsAsleep(IFunctionHandler* _pH) { return FIsAsleep(this, _pH); }
+	int IsGlooed(IFunctionHandler* _pH) { return FIsGlooed(this, _pH); }
+	int IsRaisedCorpse(IFunctionHandler* _pH) { return FIsRaisedCorpse(this, _pH); }
+	int OnHit(IFunctionHandler* _pH) { return FOnHit(this, _pH); }
+	int Kill(IFunctionHandler* _pH) { return FKill(this, _pH); }
+	int Corrupt(IFunctionHandler* _pH) { return FCorrupt(this, _pH); }
+	int Hack(IFunctionHandler* _pH) { return FHack(this, _pH); }
+	int HasArkMetaTag(IFunctionHandler* _pH) { return FHasArkMetaTag(this, _pH); }
+	int LightOnFire(IFunctionHandler* _pH) { return FLightOnFire(this, _pH); }
+	int OnLured(IFunctionHandler* _pH) { return FOnLured(this, _pH); }
+	int HasUseDialog(IFunctionHandler* _pH) { return FHasUseDialog(this, _pH); }
+	int OnGlooSignal(IFunctionHandler* _pH) { return FOnGlooSignal(this, _pH); }
+	int OnRecycle(IFunctionHandler* _pH) { return FOnRecycle(this, _pH); }
+	int IsEtherform(IFunctionHandler* _pH) { return FIsEtherform(this, _pH); }
+	int RestrictToEtherForm(IFunctionHandler* _pH) { return FRestrictToEtherForm(this, _pH); }
+	int ClearRestrictToEtherForm(IFunctionHandler* _pH) { return FClearRestrictToEtherForm(this, _pH); }
+	int AttachGameEffect(IFunctionHandler* _pH) { return FAttachGameEffect(this, _pH); }
+	int HasGameEffect(IFunctionHandler* _pH) { return FHasGameEffect(this, _pH); }
+	int DetachGameEffect(IFunctionHandler* _pH) { return FDetachGameEffect(this, _pH); }
+	int StartCharacterEffect(IFunctionHandler* _pH) { return FStartCharacterEffect(this, _pH); }
+	int StopCharacterEffect(IFunctionHandler* _pH) { return FStopCharacterEffect(this, _pH); }
+	int GetAttentionLevelOnPlayer(IFunctionHandler* _pH) { return FGetAttentionLevelOnPlayer(this, _pH); }
+	int WakeFromDormant(IFunctionHandler* _pH) { return FWakeFromDormant(this, _pH); }
+	int GoToSleep(IFunctionHandler* _pH) { return FGoToSleep(this, _pH); }
+	static bool GetHitInfoFromScript(const SmartScriptTable& _scriptTable, HitInfo& _info) { return FGetHitInfoFromScript(_scriptTable, _info); }
+	void RegisterGlobals() const { FRegisterGlobals(this); }
+
+#if 0
+	static unsigned GetEntityIdArg(IFunctionHandler* _arg0_);
+	static ArkNpc* GetArkNpcArg(IFunctionHandler* _arg0_);
+	static ArkNpcPlayer* GetArkNpcPlayerArg(IFunctionHandler* _arg0_);
+#endif
+
+	static inline auto FCScriptBind_ArkNpcOv1 = PreyFunction<void(CScriptBind_ArkNpc* const _this, ISystem* pSystem)>(0x16EA740);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkNpc* const _this, ArkNpc* const _pArkNpc)>(0x16EB620);
+	static inline auto FIsAlive = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC720);
+	static inline auto FIsDead = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECA20);
+	static inline auto FIsCorrupted = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC960);
+	static inline auto FIsHacked = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECD00);
+	static inline auto FIsBroken = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC8A0);
+	static inline auto FIsDestroyed = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECAE0);
+	static inline auto FIsStunned = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECE60);
+	static inline auto FIsAsleep = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC7E0);
+	static inline auto FIsGlooed = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECC40);
+	static inline auto FIsRaisedCorpse = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECDC0);
+	static inline auto FOnHit = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED290);
+	static inline auto FKill = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECF20);
+	static inline auto FCorrupt = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB850);
+	static inline auto FHack = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC2E0);
+	static inline auto FHasArkMetaTag = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC390);
+	static inline auto FLightOnFire = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED130);
+	static inline auto FOnLured = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED480);
+	static inline auto FHasUseDialog = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC660);
+	static inline auto FOnGlooSignal = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED1E0);
+	static inline auto FOnRecycle = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED5D0);
+	static inline auto FIsEtherform = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECBA0);
+	static inline auto FRestrictToEtherForm = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDD70);
+	static inline auto FClearRestrictToEtherForm = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB780);
+	static inline auto FAttachGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB4A0);
+	static inline auto FHasGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC4E0);
+	static inline auto FDetachGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB900);
+	static inline auto FStartCharacterEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDE40);
+	static inline auto FStopCharacterEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDF70);
+	static inline auto FGetAttentionLevelOnPlayer = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EBA80);
+	static inline auto FWakeFromDormant = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EE0A0);
+	static inline auto FGoToSleep = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC220);
+	static inline auto FGetHitInfoFromScript = PreyFunction<bool(const SmartScriptTable& _scriptTable, HitInfo& _info)>(0x16EBB60);
+	static inline auto FRegisterGlobals = PreyFunction<void(const CScriptBind_ArkNpc* const _this)>(0x16ED720);
+};
+#endif // !MOONCRASH

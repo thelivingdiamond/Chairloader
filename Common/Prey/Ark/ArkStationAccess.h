@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -219,4 +221,192 @@ public:
 	static inline auto FFindAirlockByLocation = PreyFunction<ArkStationAirlock const *(ArkStationAccess const *const _this, uint64_t _locationId)>(0x107F8E0);
 	static inline auto FFindAirlock = PreyFunction<ArkStationAirlock const *(ArkStationAccess const *const _this, uint64_t _airlockId)>(0x107F8B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkStationPath
+// Header:  Prey/Ark/ArkStationAccess.h
+class ArkStationPath : public ArkReflectedObject
+{ // Size=48 (0x30)
+public:
+	// ArkStationPath::ArkIDProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkStationPath::ArkNameProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkStationPath::ArkFlashIDProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkFlashIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFlashIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkFlashIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkFlashIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkStationPath::ArkLocationAProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkLocationAProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLocationAProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkLocationAProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084740);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkLocationAProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkStationPath::ArkLocationBProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkLocationBProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLocationBProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkLocationBProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1077BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkLocationBProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkStationPath::ArkStartsLockedProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkStartsLockedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkStartsLockedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkStationPath::ArkStartsLockedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD180);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationPath::ArkStartsLockedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkStationPath::ArkIDProperty>(0x2D28390);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkStationPath::ArkNameProperty>(0x2D283B0);
+	string m_Name;
+	static inline auto s_ArkFlashIDProperty = PreyGlobal<ArkStationPath::ArkFlashIDProperty>(0x2D283D0);
+	string m_FlashID;
+	static inline auto s_ArkLocationAProperty = PreyGlobal<ArkStationPath::ArkLocationAProperty>(0x2D283F0);
+	uint64_t m_LocationA;
+	static inline auto s_ArkLocationBProperty = PreyGlobal<ArkStationPath::ArkLocationBProperty>(0x2D28410);
+	uint64_t m_LocationB;
+	static inline auto s_ArkStartsLockedProperty = PreyGlobal<ArkStationPath::ArkStartsLockedProperty>(0x2D28430);
+	bool m_StartsLocked;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetFlashID(string _arg0_);
+	const string& GetFlashID() const;
+	void SetLocationA(uint64_t _arg0_);
+	const uint64_t& GetLocationA() const;
+	void SetLocationB(uint64_t _arg0_);
+	const uint64_t& GetLocationB() const;
+	void SetStartsLocked(bool _arg0_);
+	const bool& GetStartsLocked() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A9CE0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A9E10);
+};
+
+// ArkStationAccess
+// Header:  Prey/Ark/ArkStationAccess.h
+class ArkStationAccess : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkStationAccess::ArkPathsProperty
+	// Header:  Prey/Ark/ArkStationAccess.h
+	class ArkPathsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkPathsProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkPathsPropertyOv2 = PreyFunction<void(ArkStationAccess::ArkPathsProperty* const _this)>(0x10A99A0);
+		static inline auto FSetValue = PreyFunction<void(const ArkStationAccess::ArkPathsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A93B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStationAccess::ArkPathsProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A9470);
+		static inline auto FIsArray = PreyFunction<bool(const ArkStationAccess::ArkPathsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkStationAccess::ArkPathsProperty* const _this, ArkReflectedObject* _pObject)>(0x10A94B0);
+	};
+
+	static inline auto s_ArkPathsProperty = PreyGlobal<ArkStationAccess::ArkPathsProperty>(0x2D28450);
+	std::vector<ArkStationPath> m_Paths;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+	uint64_t GetPathIdForConnection(uint64_t _locationA, uint64_t _locationB) const { return FGetPathIdForConnection(this, _locationA, _locationB); }
+
+#if 0
+	std::vector<ArkStationPath>& GetPaths();
+	const std::vector<ArkStationPath>& GetPaths() const;
+	const ArkStationPath* FindPath(uint64_t _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A9C80);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A9D20);
+	static inline auto FInit = PreyFunction<bool(ArkStationAccess* const _this)>(0x10A9EF0);
+	static inline auto FGetPathIdForConnection = PreyFunction<uint64_t(const ArkStationAccess* const _this, uint64_t _locationA, uint64_t _locationB)>(0x10A9EB0);
+};
+#endif // !MOONCRASH

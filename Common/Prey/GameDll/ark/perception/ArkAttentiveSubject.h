@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -28,4 +30,39 @@ public:
 	static inline auto FOnAttentionLevelsChanged = PreyFunction<void(ArkAttentiveSubject *const _this, ArkAttentionLevelChange const *_pFirstChange, ArkAttentionLevelChange const *_pLastChange)>(0x12941A0);
 	static inline auto FOnAttentionProxiesUpdated = PreyFunction<void(ArkAttentiveSubject *const _this, const unsigned *_pFirstEntityId, const unsigned *_pLastEntityId)>(0x12B5B30);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+struct ArkAttentionLevelChange;
+
+// ArkAttentiveSubject
+// Header:  Prey/GameDll/ark/perception/ArkAttentiveSubject.h
+class ArkAttentiveSubject
+{ // Size=8 (0x8)
+public:
+	uint64_t GetAttentionModelId() const { return FGetAttentionModelId(this); }
+	void GetAttentiveSubjectInfo(bool& _bUpdateAttentionLevels, Vec3& _position) const { FGetAttentiveSubjectInfo(this, _bUpdateAttentionLevels, _position); }
+	void OnAttentionLevelsChanged(const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange) { FOnAttentionLevelsChanged(this, _pFirstChange, _pLastChange); }
+	void OnAttentionProxiesUpdated(const unsigned* _pFirstEntityId, const unsigned* _pLastEntityId) { FOnAttentionProxiesUpdated(this, _pFirstEntityId, _pLastEntityId); }
+	bool GetDoesIgnoredGloodTargets() const { return FGetDoesIgnoredGloodTargets(this); }
+	virtual unsigned DoGetEntityId() const = 0;
+	virtual uint64_t DoGetAttentionModelId() const = 0;
+	virtual void DoGetAttentiveSubjectInfo(bool& _bUpdateAttentionLevels, Vec3& _position) const = 0;
+	virtual void DoOnAttentionLevelsChanged(const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange) = 0;
+	virtual void DoOnAttentionProxiesUpdated(const unsigned* _pFirstEntityId, const unsigned* _pLastEntityId) = 0;
+	virtual bool DoGetDoesIgnoredGloodTargets() const = 0;
+
+#if 0
+	unsigned GetEntityId() const;
+	~ArkAttentiveSubject();
+	ArkAttentiveSubject& operator=(const ArkAttentiveSubject& _arg0_);
+#endif
+
+	static inline auto FGetAttentionModelId = PreyFunction<uint64_t(const ArkAttentiveSubject* const _this)>(0x1855F90);
+	static inline auto FGetAttentiveSubjectInfo = PreyFunction<void(const ArkAttentiveSubject* const _this, bool& _bUpdateAttentionLevels, Vec3& _position)>(0x6CBC30);
+	static inline auto FOnAttentionLevelsChanged = PreyFunction<void(ArkAttentiveSubject* const _this, const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange)>(0x1338520);
+	static inline auto FOnAttentionProxiesUpdated = PreyFunction<void(ArkAttentiveSubject* const _this, const unsigned* _pFirstEntityId, const unsigned* _pLastEntityId)>(0x1727910);
+	static inline auto FGetDoesIgnoredGloodTargets = PreyFunction<bool(const ArkAttentiveSubject* const _this)>(0x5A35F0);
+};
+#endif // !MOONCRASH

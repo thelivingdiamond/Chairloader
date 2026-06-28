@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -60,4 +62,71 @@ public:
 	static inline auto FSetLaserEntitySlots = PreyFunction<void(CArkLaserBeam *const _this, const bool _freeSlots, const bool _bInitialAmmo, const bool bIsPlayerWeapon)>(0x1643A10);
 	static inline auto FUpdateLaserMaterial = PreyFunction<void(CArkLaserBeam *const _this)>(0x1644190);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+class ICrySizer;
+struct IEntity;
+
+// CArkLaserBeam
+// Header:  Prey/GameDll/ark/weapons/arklaser.h
+class CArkLaserBeam : public _i_reference_target<int>
+{ // Size=48 (0x30)
+public:
+	// CArkLaserBeam::ArkLaserParams
+	// Header:  Prey/GameDll/ark/weapons/arklaser.h
+	struct ArkLaserParams
+	{ // Size=32 (0x20)
+		string m_initialBeamGeometry;
+		string m_reflectedBeamGeometry;
+		float m_minThickness;
+		float m_maxThickness;
+		int m_numReflections;
+		int m_laserSubMaterial;
+
+	#if 0
+		ArkLaserParams();
+		void GetMemoryUsage(ICrySizer* _arg0_) const;
+	#endif
+	};
+
+	const CArkLaserBeam::ArkLaserParams* m_pLaserParams;
+	bool m_bLaserOn;
+	unsigned m_ownerEntityId;
+	unsigned m_laserEntityId;
+	int m_laserGeometrySlot;
+	float m_lastLength;
+	float m_thicknessScale;
+
+	CArkLaserBeam();
+	virtual ~CArkLaserBeam();
+	void Initialize(const bool _bInitialAmmo, const unsigned _ownerEntityId, const float _range, const CArkLaserBeam::ArkLaserParams* _pParams, const bool bIsPlayerWeapon) { FInitialize(this, _bInitialAmmo, _ownerEntityId, _range, _pParams, bIsPlayerWeapon); }
+	void UpdateLaser(const Vec3& _position, const Vec3& _direction, const Vec3& _upVector) { FUpdateLaser(this, _position, _direction, _upVector); }
+	void SetLastLength(const float _lastLength) { FSetLastLength(this, _lastLength); }
+	void TurnOnLaser() { FTurnOnLaser(this); }
+	void TurnOffLaser() { FTurnOffLaser(this); }
+	void SetLaserEntitySlots(const bool _freeSlots, const bool _bInitialAmmo, const bool bIsPlayerWeapon) { FSetLaserEntitySlots(this, _freeSlots, _bInitialAmmo, bIsPlayerWeapon); }
+	void UpdateLaserMaterial() { FUpdateLaserMaterial(this); }
+
+#if 0
+	float GetLastLength() const;
+	void SetThicknessScale(const float _arg0_);
+	float GetThicknessScale() const;
+	void SetLaserEntityId(unsigned _arg0_);
+	bool IsLaserActivated() const;
+	IEntity* CreateLaserEntity(const bool _arg0_, const bool _arg1_);
+	IEntity* GetLaserEntity();
+#endif
+
+	static inline auto FCArkLaserBeamOv1 = PreyFunction<void(CArkLaserBeam* const _this)>(0x17674B0);
+	static inline auto FBitNotCArkLaserBeam = PreyFunction<void(CArkLaserBeam* const _this)>(0x17674E0);
+	static inline auto FInitialize = PreyFunction<void(CArkLaserBeam* const _this, const bool _bInitialAmmo, const unsigned _ownerEntityId, const float _range, const CArkLaserBeam::ArkLaserParams* _pParams, const bool bIsPlayerWeapon)>(0x1767650);
+	static inline auto FUpdateLaser = PreyFunction<void(CArkLaserBeam* const _this, const Vec3& _position, const Vec3& _direction, const Vec3& _upVector)>(0x17679E0);
+	static inline auto FSetLastLength = PreyFunction<void(CArkLaserBeam* const _this, const float _lastLength)>(0x1767930);
+	static inline auto FTurnOnLaser = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767990);
+	static inline auto FTurnOffLaser = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767950);
+	static inline auto FSetLaserEntitySlots = PreyFunction<void(CArkLaserBeam* const _this, const bool _freeSlots, const bool _bInitialAmmo, const bool bIsPlayerWeapon)>(0x1767800);
+	static inline auto FUpdateLaserMaterial = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767F80);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 #include <Prey/CryRenderer/CryDX.h>
 
@@ -72,3 +74,34 @@ class CDeviceBufferManager
 {
 	// No fields
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+
+// SRecursiveSpinLock
+// Header:  CryEngine/renderdll/common/devbuffer.h
+// Include: Prey/RenderDll/Common/DevBuffer.h
+class SRecursiveSpinLock
+{ // Size=12 (0xC)
+public:
+	enum class #unnamed_enum_SPIN_COUNT
+	{
+		SPIN_COUNT = 10,
+	};
+
+	volatile long m_lock;
+	volatile unsigned long m_owner;
+	volatile uint16_t m_counter;
+
+	void Lock() { FLock(this); }
+
+#if 0
+	SRecursiveSpinLock();
+	~SRecursiveSpinLock();
+	bool TryLock();
+	void Unlock();
+#endif
+
+	static inline auto FLock = PreyFunction<void(SRecursiveSpinLock* const _this)>(0x106D260);
+};
+#endif // !MOONCRASH

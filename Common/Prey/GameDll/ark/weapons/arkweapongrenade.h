@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -105,4 +107,112 @@ public:
 	static inline auto FUpdateAmmoCountUI = PreyFunction<void(CArkWeaponGrenade const *const _this)>(0x1679460);
 	static inline auto FDisableDeployTutorial = PreyFunction<void(CArkWeaponGrenade *const _this)>(0x1677860);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/weapons/ArkWeapon.h>
 
+class CCryName;
+class IAction;
+class ICrySizer;
+struct SEntityUpdateContext;
+
+// CArkWeaponGrenade
+// Header:  Prey/GameDll/ark/weapons/ArkWeaponGrenade.h
+class CArkWeaponGrenade : public CArkWeapon
+{ // Size=1712 (0x6B0)
+public:
+	float m_proximityRange;
+	uint64_t m_packageProximityId;
+	string m_cancelHintString;
+	string m_deployHintString;
+	float m_minSpeed;
+	float m_maxSpeed;
+	float m_attachDistance;
+	bool m_bDeployed;
+	bool m_bIsProximity;
+	int m_proximityPhysicsEntityId;
+	int m_proximityPartId;
+	bool m_bProximityTerrain;
+	Vec3 m_proximityPosition;
+	Vec3 m_proximityNormal;
+	bool m_bIdling;
+	bool m_bCharging;
+	bool m_bCancelledAttack;
+	bool m_bDeployTutorialEnabled;
+	ArkSimpleTimer m_chargeTimer;
+	_smart_ptr<IAction> m_pWeaponThrowIdleAction;
+
+	CArkWeaponGrenade();
+	virtual ~CArkWeaponGrenade();
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual bool OnActionAttackUse(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual bool OnActionAttackPrimary(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual void ExitAttackAction();
+	virtual bool IsEquippable() const;
+	virtual void OnEquip();
+	virtual void OnUnequip(const bool _bUnselect, const bool _bImmediate);
+	virtual bool IsProximity() const;
+	void FinishDeploying() { FFinishDeploying(this); }
+	virtual bool ForceCancelCharge(const bool _bPlayAnim);
+	static CArkWeaponGrenade* GetWeaponGrenadeFromEntityId(const unsigned _entityId) { return FGetWeaponGrenadeFromEntityId(_entityId); }
+	virtual CCryName GetReticleName() const;
+	virtual bool ShowsAmmoOnHUD() const;
+	virtual bool CanStartAttack();
+	virtual bool StartAttack();
+	virtual bool ContinueAttack();
+	virtual bool StopAttack();
+	void CancelCharging() { FCancelCharging(this); }
+	void StartCharging() { FStartCharging(this); }
+	virtual void ThrowingIdle();
+	virtual void ThrowingCancel(const bool _bCheckIdle);
+	virtual void ThrowGrenade();
+	virtual void DeployGrenade();
+	virtual void ReloadGrenade();
+	virtual void StartReloadAmmo();
+	virtual void LoadCachedProperties();
+	virtual void UpdateAmmoCountUI() const;
+	void DisableDeployTutorial() { FDisableDeployTutorial(this); }
+
+#if 0
+	static CArkWeaponGrenade* GetWeaponRecycleGrenadeFromEntityId(const unsigned _arg0_);
+	void EnableDeployTutorial(const string _arg0_);
+#endif
+
+	static inline auto FCArkWeaponGrenadeOv1 = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x1799FA0);
+	static inline auto FUpdate = PreyFunction<void(CArkItem* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x179C420);
+	static inline auto FFullSerialize = PreyFunction<void(CArkItem* const _this, TSerialize _ser)>(0x179AE60);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkItem* const _this, ICrySizer* _s)>(0x179AF30);
+	static inline auto FOnActionAttackUse = PreyFunction<bool(CArkWeaponGrenade* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x179BAC0);
+	static inline auto FOnActionAttackPrimary = PreyFunction<bool(CArkWeaponGrenade* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x179B930);
+	static inline auto FExitAttackAction = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179AC30);
+	static inline auto FIsEquippable = PreyFunction<bool(const CArkItem* const _this)>(0x179B360);
+	static inline auto FOnEquip = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179BAE0);
+	static inline auto FOnUnequip = PreyFunction<void(CArkWeaponGrenade* const _this, const bool _bUnselect, const bool _bImmediate)>(0x179BBA0);
+	static inline auto FIsProximity = PreyFunction<bool(const CArkWeaponGrenade* const _this)>(0x179B3B0);
+	static inline auto FFinishDeploying = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179AD60);
+	static inline auto FForceCancelCharge = PreyFunction<bool(CArkWeaponGrenade* const _this, const bool _bPlayAnim)>(0x179AD90);
+	static inline auto FGetWeaponGrenadeFromEntityId = PreyFunction<CArkWeaponGrenade* (const unsigned _entityId)>(0x179AFD0);
+	static inline auto FGetReticleName = PreyFunction<CCryName*(const CArkWeaponGrenade* const _this, CCryName* _return_value_)>(0x179AF50);
+	static inline auto FShowsAmmoOnHUD = PreyFunction<bool(const CArkWeaponGrenade* const _this)>(0x1A302A0);
+	static inline auto FCanStartAttack = PreyFunction<bool(CArkWeaponGrenade* const _this)>(0x179A1F0);
+	static inline auto FStartAttack = PreyFunction<bool(CArkWeaponGrenade* const _this)>(0x179BD50);
+	static inline auto FContinueAttack = PreyFunction<bool(CArkWeaponGrenade* const _this)>(0x13B0900);
+	static inline auto FStopAttack = PreyFunction<bool(CArkWeaponGrenade* const _this)>(0x17A1370);
+	static inline auto FCancelCharging = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179A2E0);
+	static inline auto FStartCharging = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179BE60);
+	static inline auto FThrowingIdle = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179C340);
+	static inline auto FThrowingCancel = PreyFunction<void(CArkWeaponGrenade* const _this, const bool _bCheckIdle)>(0x179C320);
+	static inline auto FThrowGrenade = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179C010);
+	static inline auto FDeployGrenade = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179A3B0);
+	static inline auto FReloadGrenade = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179BCC0);
+	static inline auto FStartReloadAmmo = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179BF60);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkItem* const _this)>(0x179B3C0);
+	static inline auto FUpdateAmmoCountUI = PreyFunction<void(const CArkWeaponGrenade* const _this)>(0x179CAE0);
+	static inline auto FDisableDeployTutorial = PreyFunction<void(CArkWeaponGrenade* const _this)>(0x179AB40);
+};
+#endif // !MOONCRASH

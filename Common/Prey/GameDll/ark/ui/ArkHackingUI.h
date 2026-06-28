@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -265,4 +267,315 @@ public:
 	static inline auto FUpdatePrompt = PreyFunction<void(ArkHackingUI const *const _this, bool _bUpdateLabel, bool _bShowCursor)>(0x15FB870);
 	static inline auto FReloadXmlCmd = PreyFunction<void(IConsoleCmdArgs *_pArgs)>(0x15F9D90);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CryString/CryName.h>
+#include <Prey/CrySystem/ISystem.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/player/ArkExaminationMode.h>
+#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <_unknown/ArkUIMenuBase.h>
+#include <_unknown/Functor1.h>
+#include <_unknown/IArkHealthListener.h>
+#include <_unknown/Lineseg_tpl.h>
 
+enum EControlScheme;
+enum ESystemEvent;
+struct IConsoleCmdArgs;
+struct IEntity;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkHackingUI
+// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+class ArkHackingUI
+	: public ArkUIMenuBase<ArkHackingUI>
+	, public ISystemEventListener
+	, public IUIControlSchemeListener
+	, public IArkHealthListener
+{ // Size=544 (0x220)
+public:
+	enum class HackingCircleState
+	{
+		Off = 0,
+		Inactive = 1,
+		Upcoming = 2,
+		Active = 3,
+		Completed = 4,
+	};
+
+	enum class HackingState
+	{
+		inactive = 0,
+		bootup = 1,
+		initializing = 2,
+		phaseIn = 3,
+		presentCursor = 4,
+		hacking = 5,
+		result = 6,
+		closing = 7,
+		failSignal = 8,
+	};
+
+	// ArkHackingUI::SKeyInputPressed
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	struct SKeyInputPressed
+	{ // Size=4 (0x4)
+		bool left;
+		bool right;
+		bool up;
+		bool down;
+
+	#if 0
+		SKeyInputPressed();
+		void Reset();
+	#endif
+	};
+
+	// ArkHackingUI::HackingCircle
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	class HackingCircle
+	{ // Size=8 (0x8)
+	public:
+		float m_radius;
+		ArkHackingUI::HackingCircleState m_state;
+
+	#if 0
+		HackingCircle();
+		HackingCircle(float _arg0_, ArkHackingUI::HackingCircleState _arg1_);
+	#endif
+	};
+
+	// ArkHackingUI::ObstacleSpawnDesc
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	struct ObstacleSpawnDesc
+	{ // Size=20 (0x14)
+		unsigned minWidth;
+		unsigned maxWidth;
+		unsigned minHeight;
+		unsigned maxHeight;
+		unsigned count;
+
+	#if 0
+		ObstacleSpawnDesc();
+	#endif
+	};
+
+	// ArkHackingUI::Obstacle
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	struct Obstacle
+	{ // Size=20 (0x14)
+		Vec2 min;
+		Vec2 max;
+		bool bSuperStun;
+
+	#if 0
+		Obstacle();
+		Obstacle(const Vec2& _arg0_, const Vec2& _arg1_);
+		void Randomize(Vec2 _arg0_, const ArkHackingUI::ObstacleSpawnDesc& _arg1_, float _arg2_, float _arg3_);
+		void Randomize(const ArkHackingUI::ObstacleSpawnDesc& _arg0_, float _arg1_, float _arg2_);
+		Lineseg_tpl<float> GetSide(unsigned _arg0_, float _arg1_, float _arg2_) const;
+		Vec2 GetNormal(unsigned _arg0_) const;
+		static Vec2i GetRandomSize(const ArkHackingUI::ObstacleSpawnDesc& _arg0_);
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	// ArkHackingUI::HackingDifficultyLevel
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	struct HackingDifficultyLevel
+	{ // Size=24 (0x18)
+		float m_minTravelDistance;
+		float m_maxTravelDistance;
+		float m_timePerPuzzle;
+		int m_chainLength;
+		uint8_t m_minObstacles;
+		uint8_t m_maxObstacles;
+		uint8_t m_pathObstacles;
+		uint8_t m_pathStunObstacles;
+		uint8_t m_otherStunObstacles;
+
+	#if 0
+		HackingDifficultyLevel();
+	#endif
+	};
+
+	// ArkHackingUI::ArkHackingPuzzle
+	// Header:  Prey/GameDll/ark/ui/ArkHackingUI.h
+	class ArkHackingPuzzle
+	{ // Size=56 (0x38)
+	public:
+		Vec2 m_startPos;
+		std::vector<Vec2> m_targets;
+		std::vector<ArkHackingUI::Obstacle> m_obstacles;
+
+		void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+
+	#if 0
+		ArkHackingPuzzle();
+		const std::vector<ArkHackingUI::Obstacle>& GetObstacles() const;
+		std::vector<ArkHackingUI::Obstacle>& GetObstacles();
+		const std::vector<Vec2>& GetTargets() const;
+		std::vector<Vec2>& GetTargets();
+		const Vec2& GetStartPos() const;
+		void Reset();
+		unsigned GetChainLength() const;
+	#endif
+
+		static inline auto FSerialize = PreyFunction<void(ArkHackingUI::ArkHackingPuzzle* const _this, TSerialize _ser)>(0x171AF30);
+	};
+
+	using HackingCallback = Functor1<bool>;
+
+	Functor1<bool> m_callback;
+	Vec2 m_gamepadMovementInput;
+	Vec2 m_keyboardMovementInput;
+	ArkHackingUI::SKeyInputPressed m_keyboardInputPressed;
+	bool m_bInCircle;
+	bool m_bFailed;
+	bool m_bQueueHide;
+	bool m_bUnregisterHealthListenerOnUpdate;
+	CCryName m_requiredButton;
+	Vec2 m_promptPos;
+	Vec2 m_promptVel;
+	ArkTimeRemaining m_timeRemaining;
+	ArkTimeRemaining m_puzzleTimeRemaining;
+	int m_currentNode;
+	unsigned m_entityToHack;
+	unsigned m_currentDifficulty;
+	int m_numCirclesDrawn;
+	float m_aspectRatio;
+	int m_inputHandle;
+	int m_timeScaleHandle;
+	std::array<CCryName, 4> m_finalButtons;
+	unsigned m_examinedWorldUI;
+	ArkExaminationMode::ExamineMode m_examineMode;
+	int m_nCollisions;
+	ArkSimpleTimer m_stunTimer;
+	std::vector<ArkHackingUI::HackingCircle> m_circles;
+	ArkHackingUI::HackingState m_state;
+	std::vector<uint64_t> m_hackingAbilities;
+	std::vector<ArkHackingUI::HackingDifficultyLevel> m_difficultyLevels;
+	std::vector<ArkHackingUI::ObstacleSpawnDesc> m_obstacleSpawners;
+	std::vector<std::vector<ArkHackingUI::ArkHackingPuzzle>> m_puzzles;
+	ArkHackingUI::ArkHackingPuzzle m_generatedPuzzle;
+	const ArkHackingUI::ArkHackingPuzzle* m_pCurrentPuzzle;
+	float m_timeForInitialization;
+	float m_timeForPhaseIn;
+	float m_timeForResult;
+	float m_cursorPhaseIn;
+	float m_failSignalDelay;
+	float m_maxVelocity;
+	float m_keyboardAcceleration;
+	float m_gamepadAcceleration;
+	float m_inactiveRadius;
+	float m_activeRadius;
+	float m_gridStepWidth;
+	float m_gridStepHeight;
+	float m_cursorFriction;
+	float m_targetFriction;
+	float m_cursorElasticity;
+	float m_stunElasticity;
+	float m_obstacleBufferDistance;
+	float m_pathObstacleVariance;
+	float m_pathObstacleNormalVariance;
+	float m_obstacleGridSize;
+	float m_stunTime;
+	float m_superStunTime;
+	float m_collideForce;
+	float m_stunForce;
+	float m_invalidInputStunForce;
+	float m_invalidInputStunTime;
+	bool m_bDrawGrid;
+	int m_nFailCollisions;
+	uint64_t m_failureSignalPackageId;
+	uint64_t m_collisionSignalPackageId;
+
+	ArkHackingUI();
+	virtual ~ArkHackingUI();
+	void Init() { FInit(this); }
+	void OpenTranscribe(const unsigned _entityToHack, const Functor1<bool> _callback) { FOpenTranscribe(this, _entityToHack, _callback); }
+	bool AttemptToHack(unsigned _entityToHack, Functor1<bool> _callback, uint64_t _hackingRequirement) { return FAttemptToHack(this, _entityToHack, _callback, _hackingRequirement); }
+	void Close(bool _bImmediate) { FClose(this, _bImmediate); }
+	bool IsOpen() const { return FIsOpen(this); }
+	void PostSerialize() { FPostSerialize(this); }
+	void Reset() { FReset(this); }
+	void Update() { FUpdate(this); }
+	int GetDifficultyLevel(const IEntity* const _pEntity) const { return FGetDifficultyLevelOv1(this, _pEntity); }
+	int GetDifficultyLevel(const uint64_t _abilityId) const { return FGetDifficultyLevelOv0(this, _abilityId); }
+	uint64_t GetRequirement(const int _hackingLevel) const { return FGetRequirement(this, _hackingLevel); }
+	int GetPlayerAbilityLevel() const { return FGetPlayerAbilityLevel(this); }
+	void ProcessInput(const CCryName& _actionId, const int _activationMode, const float _fValue) { FProcessInput(this, _actionId, _activationMode, _fValue); }
+	void OnSetAspectRatio(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSetAspectRatio(this, _pSender, _event, _args); }
+	void OnBootupComplete(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnBootupComplete(this, _pSender, _event, _args); }
+	void OnCloseComplete(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnCloseComplete(this, _pSender, _event, _args); }
+	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
+	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+	virtual void OnDead(const unsigned _entityId);
+	void TutorialCallbackTriggered() { FTutorialCallbackTriggered(this); }
+	void Open(const unsigned _entityToHack, const Functor1<bool> _callback) { FOpen(this, _entityToHack, _callback); }
+	void ResetLayout() { FResetLayout(this); }
+	void GenerateRandomPuzzle() { FGenerateRandomPuzzle(this); }
+	void PhaseInStarted(bool _bShowCursor) { FPhaseInStarted(this, _bShowCursor); }
+	void PhaseInComplete() { FPhaseInComplete(this); }
+	void Success() { FSuccess(this); }
+	void Failure(bool _bExpired) { FFailure(this, _bExpired); }
+	void SendPlayerSignalPackage(IEntity* _pSourceEntity, uint64_t _packageId) { FSendPlayerSignalPackage(this, _pSourceEntity, _packageId); }
+	int GetDifficultyLevelWithOverride(const IEntity* const _pEntity) const { return FGetDifficultyLevelWithOverride(this, _pEntity); }
+	void LoadConfigFile() { FLoadConfigFile(this); }
+	void UpdateUIForCircle(int _circleIndex) { FUpdateUIForCircle(this, _circleIndex); }
+	void Close_Internal() { FClose_Internal(this); }
+	void SendFailSignal() { FSendFailSignal(this); }
+	void UpdatePrompt(bool _bUpdateLabel, bool _bShowCursor) const { FUpdatePrompt(this, _bUpdateLabel, _bShowCursor); }
+	static void ReloadXmlCmd(IConsoleCmdArgs* _pArgs) { FReloadXmlCmd(_pArgs); }
+
+#if 0
+	void TriggerNextNode();
+	void CursorPresentation();
+	void Enable(bool _arg0_);
+	string GetDefaultPromptString() const;
+	static IUIElement* GetUIElement();
+#endif
+
+	static inline auto FArkHackingUIOv1 = PreyFunction<void(ArkHackingUI* const _this)>(0x1715DC0);
+	static inline auto FBitNotArkHackingUI = PreyFunction<void(ArkHackingUI* const _this)>(0x1716150);
+	static inline auto FInit = PreyFunction<void(ArkHackingUI* const _this)>(0x1718650);
+	static inline auto FOpenTranscribe = PreyFunction<void(ArkHackingUI* const _this, const unsigned _entityToHack, const Functor1<bool> _callback)>(0x1719C60);
+	static inline auto FAttemptToHack = PreyFunction<bool(ArkHackingUI* const _this, unsigned _entityToHack, Functor1<bool> _callback, uint64_t _hackingRequirement)>(0x1716750);
+	static inline auto FClose = PreyFunction<void(ArkHackingUI* const _this, bool _bImmediate)>(0x1716AF0);
+	static inline auto FIsOpen = PreyFunction<bool(const ArkHackingUI* const _this)>(0x17188B0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkHackingUI* const _this)>(0x171A1E0);
+	static inline auto FReset = PreyFunction<void(ArkHackingUI* const _this)>(0x171A7A0);
+	static inline auto FUpdate = PreyFunction<void(ArkHackingUI* const _this)>(0x171B420);
+	static inline auto FGetDifficultyLevelOv1 = PreyFunction<int(const ArkHackingUI* const _this, const IEntity* const _pEntity)>(0x1718490);
+	static inline auto FGetDifficultyLevelOv0 = PreyFunction<int(const ArkHackingUI* const _this, const uint64_t _abilityId)>(0x17184E0);
+	static inline auto FGetRequirement = PreyFunction<uint64_t(const ArkHackingUI* const _this, const int _hackingLevel)>(0x1718620);
+	static inline auto FGetPlayerAbilityLevel = PreyFunction<int(const ArkHackingUI* const _this)>(0x17185A0);
+	static inline auto FProcessInput = PreyFunction<void(ArkHackingUI* const _this, const CCryName& _actionId, const int _activationMode, const float _fValue)>(0x171A210);
+	static inline auto FOnSetAspectRatio = PreyFunction<void(ArkHackingUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1719810);
+	static inline auto FOnBootupComplete = PreyFunction<void(ArkHackingUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1719770);
+	static inline auto FOnCloseComplete = PreyFunction<void(ArkHackingUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1719780);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0x1719830);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1719790);
+	static inline auto FOnDead = PreyFunction<void(IArkHealthListener* const _this, const unsigned _entityId)>(0x17197E0);
+	static inline auto FTutorialCallbackTriggered = PreyFunction<void(ArkHackingUI* const _this)>(0x171B400);
+	static inline auto FOpen = PreyFunction<void(ArkHackingUI* const _this, const unsigned _entityToHack, const Functor1<bool> _callback)>(0x17198A0);
+	static inline auto FResetLayout = PreyFunction<void(ArkHackingUI* const _this)>(0x171A7B0);
+	static inline auto FGenerateRandomPuzzle = PreyFunction<void(ArkHackingUI* const _this)>(0x17171D0);
+	static inline auto FPhaseInStarted = PreyFunction<void(ArkHackingUI* const _this, bool _bShowCursor)>(0x1719EE0);
+	static inline auto FPhaseInComplete = PreyFunction<void(ArkHackingUI* const _this)>(0x1719E90);
+	static inline auto FSuccess = PreyFunction<void(ArkHackingUI* const _this)>(0x171B110);
+	static inline auto FFailure = PreyFunction<void(ArkHackingUI* const _this, bool _bExpired)>(0x17170F0);
+	static inline auto FSendPlayerSignalPackage = PreyFunction<void(ArkHackingUI* const _this, IEntity* _pSourceEntity, uint64_t _packageId)>(0x171AD20);
+	static inline auto FGetDifficultyLevelWithOverride = PreyFunction<int(const ArkHackingUI* const _this, const IEntity* const _pEntity)>(0x1718520);
+	static inline auto FLoadConfigFile = PreyFunction<void(ArkHackingUI* const _this)>(0x17188C0);
+	static inline auto FUpdateUIForCircle = PreyFunction<void(ArkHackingUI* const _this, int _circleIndex)>(0x171C780);
+	static inline auto FClose_Internal = PreyFunction<void(ArkHackingUI* const _this)>(0x1716CD0);
+	static inline auto FSendFailSignal = PreyFunction<void(ArkHackingUI* const _this)>(0x171ACD0);
+	static inline auto FUpdatePrompt = PreyFunction<void(const ArkHackingUI* const _this, bool _bUpdateLabel, bool _bShowCursor)>(0x171C300);
+	static inline auto FReloadXmlCmd = PreyFunction<void(IConsoleCmdArgs* _pArgs)>(0x171A780);
+};
+#endif // !MOONCRASH

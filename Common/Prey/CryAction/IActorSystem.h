@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 
 #include <Prey/CryAction/IGameObject.h>
@@ -157,3 +159,165 @@ public:
 
 	static inline auto FToCryActor = PreyFunction<CCryActor* (CActor* const _this)>(0x158AEF0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/CryNetwork/ISerialize.h>
+
+enum class EStance;
+struct HitInfo;
+struct IAnimatedCharacter;
+struct IAnimationGraphState;
+class IArkSpeaker;
+struct IEntity;
+struct IInventory;
+struct IItem;
+struct IMovementController;
+struct IPhysicalEntity;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+class XmlNodeRef;
+
+// IActor
+// Header:  CryEngine/cryaction/iactorsystem.h
+// Include: Prey/CryAction/IActorSystem.h
+struct IActor : public IGameObjectExtension
+{ // Size=64 (0x40)
+	// IActor::TrackviewLookPoseData
+	// Header:  CryEngine/cryaction/iactorsystem.h
+	struct TrackviewLookPoseData
+	{ // Size=20 (0x14)
+		float m_blendInTime;
+		float m_smoothTime;
+		float m_blendOutTime;
+		float m_maxRadiansYaw;
+		float m_maxRadiansPitch;
+
+	#if 0
+		TrackviewLookPoseData();
+	#endif
+	};
+
+	virtual ~IActor();
+	virtual void SetHealth(float health) = 0;
+	virtual float GetHealth() const = 0;
+	virtual int GetHealthAsRoundedPercentage() const = 0;
+	virtual void SetMaxHealth(float maxHealth) = 0;
+	virtual float GetMaxHealth() const = 0;
+	virtual int GetArmor() const = 0;
+	virtual int GetMaxArmor() const = 0;
+	virtual int GetTeamId() const = 0;
+	virtual bool IsFallen() const = 0;
+	virtual bool IsDead() const = 0;
+	virtual int IsGod() = 0;
+	virtual void Fall(Vec3 hitPos) = 0;
+	virtual bool AllowLandingBob() = 0;
+	virtual EStance GetLockedStance();
+	virtual EStance GetStance() const = 0;
+	virtual void PlayAction(const char* action, const char* extension, bool looping) = 0;
+	virtual IAnimationGraphState* GetAnimationGraphState() = 0;
+	virtual void ResetAnimationState() = 0;
+	virtual void CreateScriptEvent(const char* event, float value, const char* str) = 0;
+	virtual bool BecomeAggressiveToAgent(unsigned agentID) = 0;
+	virtual void SetFacialAlertnessLevel(int alertness) = 0;
+	virtual void RequestFacialExpression(const char* pExpressionName, float* sequenceLength) = 0;
+	virtual void PrecacheFacialExpression(const char* pExpressionName) = 0;
+	virtual unsigned GetGrabbedEntityId() const = 0;
+	virtual void HideAllAttachments(bool isHiding) = 0;
+	virtual void SetIKPos(const char* pLimbName, const Vec3& goalPos, int priority) = 0;
+	virtual void SetViewRotation(const Quat& rotation) = 0;
+	virtual Quat GetViewRotation() const = 0;
+	virtual bool IsFriendlyEntity(unsigned entityId, bool bUsingAIIgnorePlayer) const = 0;
+	virtual Vec3 GetLocalEyePos() const = 0;
+	virtual void CameraShake(float angle, float shift, float duration, float frequency, Vec3 pos, int ID, const char* source) = 0;
+	virtual IItem* GetHolsteredItem() const = 0;
+	virtual void HolsterItem(bool holster, bool playSelect, float selectSpeedBias, bool hideLeftHandObject) = 0;
+	virtual IItem* GetCurrentItem() const = 0;
+	virtual bool DropItem(unsigned itemId, float impulseScale, bool selectNext, bool bydeath) = 0;
+	virtual IInventory* GetInventory() const = 0;
+	virtual void NotifyCurrentItemChanged(IItem* newItem) = 0;
+	virtual IMovementController* GetMovementController() const = 0;
+	virtual IEntity* GetLinkedEntity() const = 0;
+	virtual uint8_t GetSpectatorMode() const = 0;
+	virtual bool IsThirdPerson() const = 0;
+	virtual void ToggleThirdPerson() = 0;
+	virtual bool IsStillWaitingOnServerUseResponse() const;
+	virtual void SetStillWaitingOnServerUseResponse(bool waiting);
+	virtual void SetFlyMode(uint8_t flyMode, const float _fSpeed);
+	virtual uint8_t GetFlyMode() const;
+	virtual void Release() = 0;
+	virtual bool IsPlayer() const = 0;
+	virtual bool IsClient() const = 0;
+	virtual bool IsMigrating() const = 0;
+	virtual void SetMigrating(bool isMigrating) = 0;
+	virtual void InitLocalPlayer() = 0;
+	virtual const char* GetActorClassName() const = 0;
+	virtual int GetActorClass() const = 0;
+	virtual const char* GetEntityClassName() const = 0;
+	virtual void SerializeXML(XmlNodeRef& node, bool bLoading) = 0;
+	virtual void SerializeLevelToLevel(TSerialize& ser) = 0;
+	virtual void ProcessEvent(SEntityEvent& event) = 0;
+	virtual IAnimatedCharacter* GetAnimatedCharacter() = 0;
+	virtual const IAnimatedCharacter* GetAnimatedCharacter() const = 0;
+	virtual void PlayExactPositioningAnimation(const char* sAnimationName, bool bSignal, const Vec3& vPosition, const Vec3& vDirection, float startWidth, float startArcAngle, float directionTolerance) = 0;
+	virtual void CancelExactPositioningAnimation() = 0;
+	virtual void PlayAnimation(const char* sAnimationName, bool bSignal) = 0;
+	virtual void SetTrackviewArkLookAt(IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _torso, const IActor::TrackviewLookPoseData& _head, const IActor::TrackviewLookPoseData& _eyes);
+	virtual void SetTrackviewArkAimAt(IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _aim);
+	virtual IArkSpeaker* GetArkSpeaker() = 0;
+	virtual bool Respawn();
+	virtual void ResetToSpawnLocation();
+	virtual bool CanBreakGlass() const;
+	virtual bool MustBreakGlass() const;
+	virtual void EnableTimeDemo(bool bTimeDemo) = 0;
+	virtual void SetChannelId(uint16_t id);
+	virtual void SwitchDemoModeSpectator(bool activate) = 0;
+	virtual void SetCustomHead(const char* customHead);
+	virtual void OnAIProxyEnabled(bool enabled) = 0;
+	virtual void OnReturnedToPool() = 0;
+	virtual void OnPreparedFromPool() = 0;
+	virtual void MountedGunControllerEnabled(bool val);
+	virtual bool MountedGunControllerEnabled() const;
+	virtual bool ShouldMuteWeaponSoundStimulus() const = 0;
+	virtual int GetPhysicalSkipEntities(IPhysicalEntity* * pSkipList, const int maxSkipSize) const;
+	virtual void OnReused(IEntity* pEntity, SEntitySpawnParams& params) = 0;
+	virtual void OnFakeHitToHitReactions(const HitInfo& _hitInfo);
+	virtual Vec3 GetAttackTargetPos() const;
+	virtual bool IsArkNpcPlayer();
+	virtual void IgnoreCollisionSignals(unsigned _entityId, float _timeOut);
+	virtual bool IsIgnoringCollisionSignals(unsigned _entityId) const;
+	virtual bool IsNormalG() const;
+	virtual bool IsLowG() const;
+	virtual bool IsZeroG() const;
+
+#if 0
+	uint16_t GetChannelId() const;
+#endif
+
+	static inline auto FGetLockedStance = PreyFunction<EStance(IActor* const _this)>(0x1674B80);
+	static inline auto FIsStillWaitingOnServerUseResponse = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetStillWaitingOnServerUseResponse = PreyFunction<void(IActor* const _this, bool waiting)>(0x1333E90);
+	static inline auto FSetFlyMode = PreyFunction<void(IActor* const _this, uint8_t flyMode, const float _fSpeed)>(0x1333E90);
+	static inline auto FGetFlyMode = PreyFunction<uint8_t(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetTrackviewArkLookAt = PreyFunction<void(IActor* const _this, IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _torso, const IActor::TrackviewLookPoseData& _head, const IActor::TrackviewLookPoseData& _eyes)>(0x1333E90);
+	static inline auto FSetTrackviewArkAimAt = PreyFunction<void(IActor* const _this, IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _aim)>(0x1333E90);
+	static inline auto FRespawn = PreyFunction<bool(IActor* const _this)>(0x1630730);
+	static inline auto FResetToSpawnLocation = PreyFunction<void(IActor* const _this)>(0x1630710);
+	static inline auto FCanBreakGlass = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FMustBreakGlass = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetChannelId = PreyFunction<void(IActor* const _this, uint16_t id)>(0x167BED0);
+	static inline auto FSetCustomHead = PreyFunction<void(IActor* const _this, const char* customHead)>(0x1333E90);
+	static inline auto FMountedGunControllerEnabledOv1 = PreyFunction<void(IActor* const _this, bool val)>(0x1333E90);
+	static inline auto FMountedGunControllerEnabledOv0 = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FGetPhysicalSkipEntities = PreyFunction<int(const IActor* const _this, IPhysicalEntity* * pSkipList, const int maxSkipSize)>(0x1CBB0B0);
+	static inline auto FOnFakeHitToHitReactions = PreyFunction<void(IActor* const _this, const HitInfo& _hitInfo)>(0x1333E90);
+	static inline auto FGetAttackTargetPos = PreyFunction<Vec3*(const IActor* const _this, Vec3* _return_value_)>(0x9F8FF0);
+	static inline auto FIsArkNpcPlayer = PreyFunction<bool(IActor* const _this)>(0x13B0900);
+	static inline auto FIgnoreCollisionSignals = PreyFunction<void(IActor* const _this, unsigned _entityId, float _timeOut)>(0x1333E90);
+	static inline auto FIsIgnoringCollisionSignals = PreyFunction<bool(const IActor* const _this, unsigned _entityId)>(0x13B0900);
+	static inline auto FIsNormalG = PreyFunction<bool(const IActor* const _this)>(0x1A302A0);
+	static inline auto FIsLowG = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FIsZeroG = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+};
+#endif // !MOONCRASH

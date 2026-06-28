@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -50,4 +52,4 @@ public:
 	bool IsEquivalent(Matrix34 const &arg0, const float arg1) const;
 #endif
 };
-
+#endif // !MOONCRASH

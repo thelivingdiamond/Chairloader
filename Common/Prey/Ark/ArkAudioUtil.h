@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAudio/IAudioSystem.h>
@@ -124,3 +126,63 @@ public:
 
 	static inline auto FSetState = PreyFunction<void(TArkAudioSwitch const* const _this, T _state, IEntity * _pEntity)>(0x132BC80);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+
+struct IEntity;
+
+// ArkAudioControl
+// Header:  Prey/Ark/ArkAudioUtil.h
+class ArkAudioControl
+{ // Size=4 (0x4)
+public:
+	unsigned m_controlId;
+
+#if 0
+	bool IsValid() const;
+	void Invalidate();
+	ArkAudioControl();
+	ArkAudioControl(unsigned _arg0_);
+	unsigned GetId() const;
+	void SetName(const char* _arg0_);
+#endif
+};
+
+// ArkAudioRtpc
+// Header:  Prey/Ark/ArkAudioUtil.h
+class ArkAudioRtpc : public ArkAudioControl
+{ // Size=4 (0x4)
+public:
+	void SetValue(float _value, IEntity* _pEntity) const { FSetValue(this, _value, _pEntity); }
+
+#if 0
+	ArkAudioRtpc();
+	ArkAudioRtpc(const char* _arg0_);
+	ArkAudioRtpc(unsigned _arg0_);
+	bool Load(const char* _arg0_);
+#endif
+
+	static inline auto FSetValue = PreyFunction<void(const ArkAudioRtpc* const _this, float _value, IEntity* _pEntity)>(0x12E0F30);
+};
+
+// ArkAudioTrigger
+// Header:  Prey/Ark/ArkAudioUtil.h
+class ArkAudioTrigger : public ArkAudioControl
+{ // Size=4 (0x4)
+public:
+	bool Load(const char* _pName) { return FLoad(this, _pName); }
+	void Execute(IEntity* _pEntity) const { FExecute(this, _pEntity); }
+	void Stop(IEntity* _pEntity) const { FStop(this, _pEntity); }
+
+#if 0
+	ArkAudioTrigger();
+	ArkAudioTrigger(const char* _arg0_);
+	ArkAudioTrigger(unsigned _arg0_);
+#endif
+
+	static inline auto FLoad = PreyFunction<bool(ArkAudioTrigger* const _this, const char* _pName)>(0x10E2860);
+	static inline auto FExecute = PreyFunction<void(const ArkAudioTrigger* const _this, IEntity* _pEntity)>(0x10E0140);
+	static inline auto FStop = PreyFunction<void(const ArkAudioTrigger* const _this, IEntity* _pEntity)>(0x11CC730);
+};
+#endif // !MOONCRASH

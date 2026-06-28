@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -16,4 +17,3 @@ struct SAudioRequest // Id=80021AA Size=40
 	void *pUserDataOwner;
 	SAudioRequestDataBase *pData;
 };
-

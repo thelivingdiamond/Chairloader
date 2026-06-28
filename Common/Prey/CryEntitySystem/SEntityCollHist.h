@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -25,4 +26,3 @@ struct SEntityCollHist // Id=8004C21 Size=64
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 };
-

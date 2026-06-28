@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -538,4 +540,631 @@ public:
 	static inline auto FCheckForCoral = PreyFunction<void(const ArkPlayer* const _this)>(0x154E570);
 	static inline auto FSetFaction = PreyFunction<void(ArkPlayer* const _this)>(0x15573B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/icrymannequin.h>
+#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CrySystem/TimeValue.h>
+#include <Prey/GameDll/ark/ArkGroundColliderComponent.h>
+#include <Prey/GameDll/ark/ArkMaterialAnimationManager.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/ArkStatsComponent.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/attention/ArkPlayerAttentionObject.h>
+#include <Prey/GameDll/ark/player/ArkExaminationMode.h>
+#include <Prey/GameDll/ark/player/ArkPlayerAudio.h>
+#include <Prey/GameDll/ark/player/ArkPlayerCamera.h>
+#include <Prey/GameDll/ark/player/ArkPlayerComponent.h>
+#include <Prey/GameDll/ark/player/ArkPlayerFlashlight.h>
+#include <Prey/GameDll/ark/player/ArkPlayerHelmet.h>
+#include <Prey/GameDll/ark/player/ArkPlayerInput.h>
+#include <Prey/GameDll/ark/player/ArkPlayerInteraction.h>
+#include <Prey/GameDll/ark/player/ArkPlayerMovementFSM.h>
+#include <Prey/GameDll/ark/player/ArkPlayerWeaponComponent.h>
+#include <Prey/GameDll/ark/player/ArkPlayerZoomManager.h>
+#include <Prey/GameDll/ark/player/IArkPlayer.h>
+#include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
+#include <Prey/GameDll/ark/player/StanceInfo.h>
+#include <Prey/GameDll/ark/player/pda/ArkChipsetComponent.h>
+#include <_unknown/Functor2.h>
 
+struct ArkDamageInfo;
+class ArkInventory;
+enum class ArkMaterialAnimationType;
+class ArkPlayerMovementController;
+class ArkPsiPowerComponent;
+class ArkSafeScriptTable;
+class CFragmentCache;
+class CTagDefinition;
+enum class EArkSaveFailure;
+enum EEntityAspects;
+enum class EPlayerSex;
+class IAction;
+struct IAnimatedCharacter;
+struct IAnimationGraphState;
+class IArkSpeaker;
+struct IAttachment;
+class ICrySizer;
+struct IEntity;
+struct IGameObject;
+struct IInventory;
+struct IItem;
+struct IMaterial;
+struct IMovementController;
+struct IPlayerEventListener;
+struct ISerializableInfo;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+struct SMFXRunTimeEffectParams;
+class XmlNodeRef;
+
+// ArkPlayer
+// Header:  Prey/GameDll/ark/player/ArkPlayer.h
+class ArkPlayer
+	: public CGameObjectExtensionHelper<ArkPlayer, CActor>
+	, public IArkPlayer
+	, public IArkPlayerCombatListener
+{ // Size=8120 (0x1FB8)
+public:
+	enum class EArkPlayerCharacterSlot
+	{
+		model = 0,
+		shadow = 5,
+		bleed = 6,
+		zerog = 7,
+		gloo = 8,
+	};
+
+	enum class EArkPlayerMovementState
+	{
+		idle = 0,
+		movement = 1,
+		inAir = 2,
+		last = 3,
+	};
+
+	using FragmentIdsArray = std::array<int, 3>;
+	using RotationModifier = Functor2<Ang3_tpl<float> &,float>;
+
+	_smart_ptr<IMaterial> m_pGlooReplacementMaterial;
+	Vec3 m_defaultDiffuseColor;
+	Vec3 m_defaultSpecularColor;
+	ArkFireAndForgetEffect m_glooBreakEffect;
+	ArkAudioTrigger m_glooBreakTrigger;
+	ArkAudioTrigger m_glooHardenTrigger;
+	_smart_ptr<TAction<SAnimationContext>> m_pGlooedAction;
+	int m_glooedInputHandle;
+	CTimeValue m_timeSinceLastGlooEnded;
+	bool m_bStartedGlooing;
+	bool m_bIsGlooed;
+	bool m_bIsDisarmStarted;
+	bool m_bIsDisarming;
+	float m_disarmImpulse;
+	float m_disarmHeightAdjust;
+	ArkSimpleTimer m_stopAttackTimer;
+	_smart_ptr<TAction<SAnimationContext>> m_pDisarmAction;
+	ArkPlayerMovementFSM m_movementFSM;
+	ArkPlayerComponent m_playerComponent;
+	ArkStatsComponent m_statsComponent;
+	ArkChipsetComponent m_chipsetComponent;
+	ArkPlayerInput m_input;
+	ArkExaminationMode m_examinationMode;
+	ArkPlayerInteraction m_interaction;
+	ArkGroundColliderComponent m_groundColliderComponent;
+	ArkPlayerFlashlight m_flashlight;
+	ArkPlayerAudio m_audio;
+	ArkPlayerCamera m_camera;
+	ArkPlayerHelmet m_helmet;
+	ArkPlayerWeaponComponent m_weaponComponent;
+	std::vector<IPlayerEventListener*> m_playerEventListeners;
+	std::vector<std::pair<string, unsigned int>> m_attachmentFlags;
+	std::vector<uint64_t> m_learnedNames;
+	std::vector<uint64_t> m_criticalHitMetaTags;
+	std::vector<string> m_animationTagsSetFromFG;
+	std::array<StanceInfo, 18> m_stanceInfos;
+	string m_modelName;
+	Vec3 m_serializedVelocity;
+	Vec3 m_cachedReticlePos;
+	Vec3 m_cachedReticleDir;
+	Vec2 m_reticlePos;
+	_smart_ptr<IAction> m_pHeadBobbingAction;
+	std::unique_ptr<ArkPlayerMovementController> m_pMovementController;
+	IAnimatedCharacter* m_pAnimatedCharacter;
+	ArkInventory* m_pInventory;
+	ArkInventory* m_pMuleInventory;
+	std::unique_ptr<CFragmentCache> m_pFragmentCache;
+	uint64_t m_coralSignalPackageId;
+	ArkSimpleTimer m_coralInteractionTimer;
+	float m_knockdownLoopDuration;
+	float m_idleFragmentSpeedThreshold;
+	EStance m_stance;
+	ArkPlayerAttentionObject m_attentionObject;
+	float m_fearNoiseAmplitude;
+	float m_attackTargetPosHeightPercent;
+	float m_lookAtFarRange;
+	float m_cryptoCurrency;
+	float m_timeSinceLastButtonMash;
+	bool m_bInTrackview;
+	bool m_bInAir;
+	bool m_bShowArmor;
+	bool m_bShowHealth;
+	bool m_bAllowIdleBreak;
+	bool m_bJustPhysicalized;
+	bool m_bShowContinuePrompt;
+	bool m_bReceivedStartLevelEvent;
+	bool m_bReticleViewPositionValid;
+	bool m_bWasRecycled;
+	ArkPlayerZoomManager m_zoomManager;
+	unsigned m_rotationModifierHandleGenerator;
+	std::vector<std::pair<unsigned int, Functor2<Ang3_tpl<float>&, float>>> m_rotationModifiers;
+	unsigned m_mimicGrabSequenceEntityId;
+	ArkMaterialAnimationManager m_materialAnimationManager;
+
+	ArkPlayer();
+	virtual ~ArkPlayer();
+	static ArkPlayer& GetInstance() { return FGetInstance(); }
+	static ArkPlayer* GetInstancePtr() { return FGetInstancePtr(); }
+	ArkPsiPowerComponent& GetPsiPowerComponent() { return FGetPsiPowerComponentOv1(this); }
+	const ArkPsiPowerComponent& GetPsiPowerComponent() const { return FGetPsiPowerComponentOv0(this); }
+	virtual EStance GetStance() const;
+	virtual bool IsZeroG() const;
+	virtual IInventory* GetInventory() const;
+	virtual float GetHealth() const;
+	virtual void SetHealth(float _health);
+	void IncreaseHealth(float _increase) { FIncreaseHealth(this, _increase); }
+	void TakeDamage(float _damage, const ArkDamageInfo& _damageInfo) { FTakeDamage(this, _damage, _damageInfo); }
+	virtual float GetMaxHealth() const;
+	virtual void SetViewRotation(const Quat& _rotation);
+	virtual Quat GetViewRotation() const;
+	virtual void GetMemoryUsage(ICrySizer* _pSizer) const;
+	virtual IItem* GetCurrentItem() const;
+	virtual IEntity* GetLinkedEntity() const;
+	virtual uint8_t GetSpectatorMode() const;
+	virtual bool IsDead() const;
+	virtual void Release();
+	bool IsPsiTargeting() const { return FIsPsiTargeting(this); }
+	virtual const IAnimatedCharacter* GetAnimatedCharacter() const;
+	virtual IAnimatedCharacter* GetAnimatedCharacter();
+	virtual Vec3 GetLocalEyePos() const;
+	virtual IMovementController* GetMovementController() const;
+	int GetGodMode() { return FGetGodMode(this); }
+	virtual int IsGod();
+	void SetCustomCameraUpdateFunction(std::function<Quat_tpl<float> __cdecl(float)> _function) { FSetCustomCameraUpdateFunction(this, _function); }
+	void SetCustomViewFunction(std::function<void __cdecl(SViewParams &)> _function) { FSetCustomViewFunction(this, _function); }
+	void SetStance(EStance _stance) { FSetStance(this, _stance); }
+	void HideLegs(bool _bHide) const { FHideLegs(this, _bHide); }
+	void UpdatePropulsionPackVisibility() const { FUpdatePropulsionPackVisibility(this); }
+	Ang3 GetScaledInputRotation(float _frameTime) { alignas(Ang3) std::byte _return_buf_[sizeof(Ang3)]; return *FGetScaledInputRotation(this, reinterpret_cast<Ang3*>(_return_buf_), _frameTime); }
+	void Physicalize() { FPhysicalize(this); }
+	void ResetReticle() { FResetReticle(this); }
+	void Revive() { FRevive(this); }
+	void SetAnimationTag(const char* _tagName, const bool _bTagState) const { FSetAnimationTag(this, _tagName, _bTagState); }
+	void SetAnimationTagFromFG(const char* const _tagName, const bool _bTagState) { FSetAnimationTagFromFG(this, _tagName, _bTagState); }
+	_smart_ptr<TAction<SAnimationContext>> PlayFragment(const char* _pName, IArkPlayer::EArkPlayerAnimationPriority _priority, const unsigned _flags) { alignas(_smart_ptr<TAction<SAnimationContext>>) std::byte _return_buf_[sizeof(_smart_ptr<TAction<SAnimationContext>>)]; return *FPlayFragment(this, reinterpret_cast<_smart_ptr<TAction<SAnimationContext>>*>(_return_buf_), _pName, _priority, _flags); }
+	void Stage(Vec3 _viewLimitDir, bool _bLocalSpace, float _viewLimitYaw, float _viewLimitPitch, bool _bLockPlayer, int _stance) { FStage(this, _viewLimitDir, _bLocalSpace, _viewLimitYaw, _viewLimitPitch, _bLockPlayer, _stance); }
+	void ExecuteGroundMaterialEffectByName(const char* const _pName, SMFXRunTimeEffectParams& _params) const { FExecuteGroundMaterialEffectByName(this, _pName, _params); }
+	void Hide(const bool _bHide) const { FHide(this, _bHide); }
+	void OnJump() { FOnJump(this); }
+	void ShowThirdPerson(const bool _bShow) const { FShowThirdPerson(this, _bShow); }
+	EPlayerSex GetSex() const { return FGetSex(this); }
+	virtual IArkSpeaker* GetArkSpeaker();
+	void PhysicalizeAndResetAnimatedCharacter() { FPhysicalizeAndResetAnimatedCharacter(this); }
+	bool HasAbility(const uint64_t _abilityID) const { return FHasAbility(this, _abilityID); }
+	void SetModel(const char* const _modelName) { FSetModel(this, _modelName); }
+	bool IsGlooedCooldownUp() const { return FIsGlooedCooldownUp(this); }
+	bool IsInGravShaft() const { return FIsInGravShaft(this); }
+	void LimitAttentionOnUnseenPlayer() const { FLimitAttentionOnUnseenPlayer(this); }
+	void ReleaseAttentionLimitOnPlayer() const { FReleaseAttentionLimitOnPlayer(this); }
+	bool IsInCombat() const { return FIsInCombat(this); }
+	virtual void OnCombatChange(bool _bInCombat);
+	void CompensateStanceHeightChange(const EStance _oldStance, const EStance _newStance) { FCompensateStanceHeightChange(this, _oldStance, _newStance); }
+	virtual Vec3 GetAttackTargetPos() const;
+	void UpdateCachedReticleViewPosAndDir() { FUpdateCachedReticleViewPosAndDir(this); }
+	virtual std::pair<Vec3, Vec3> GetReticleViewPositionAndDir() const;
+	void OnNewGame() { FOnNewGame(this); }
+	Vec3 GetPlayerWorldEyePos() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetPlayerWorldEyePos(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	const CTagDefinition* GetFragmentIds() const { return FGetFragmentIds(this); }
+	void Knockdown() { FKnockdown(this); }
+	float StartBecomingGlooed() { return FStartBecomingGlooed(this); }
+	void EnterGlooedSequence() { FEnterGlooedSequence(this); }
+	void ExitGlooedSequence() { FExitGlooedSequence(this); }
+	void FinishGlooedAnimation() { FFinishGlooedAnimation(this); }
+	void EnterDisarmSequence() { FEnterDisarmSequence(this); }
+	void BeginDisarming(const bool _bFail, const float _impulse, unsigned _disarmNpcId) { FBeginDisarming(this, _bFail, _impulse, _disarmNpcId); }
+	void UpdateDisarmFacing(const float _elapsedTime, const Vec3& _npcPosition, const float _facingAngle, const float _facingDuration) { FUpdateDisarmFacing(this, _elapsedTime, _npcPosition, _facingAngle, _facingDuration); }
+	void ExitDisarmSequence(const bool _bFail) { FExitDisarmSequence(this, _bFail); }
+	void ForceEndAllButtonMashSequences() { FForceEndAllButtonMashSequences(this); }
+	void EnterMimicGrabSequence(const IEntity& _mimicEntity) { FEnterMimicGrabSequence(this, _mimicEntity); }
+	void ExitMimicGrabSequence() { FExitMimicGrabSequence(this); }
+	bool CanEnterButtonMashSequence(const ArkPlayerInput::ButtonMashMode _buttonMashMode) const { return FCanEnterButtonMashSequence(this, _buttonMashMode); }
+	float GetTimeSinceLastButtonMashSequence() const { return FGetTimeSinceLastButtonMashSequence(this); }
+	void EnterButtonMashSequence(const ArkPlayerInput::ButtonMashMode _buttonMashMode) { FEnterButtonMashSequence(this, _buttonMashMode); }
+	void ExitButtonMashSequence() { FExitButtonMashSequence(this); }
+	void SetRoomEntityId(unsigned _id) { FSetRoomEntityId(this, _id); }
+	bool IsMimic() const { return FIsMimicOv1(this); }
+	bool IsMimic(const unsigned _entityId) const { return FIsMimicOv0(this, _entityId); }
+	const IEntity* GetMimicEntity() const { return FGetMimicEntity(this); }
+	unsigned GetMimicEntityId() const { return FGetMimicEntityId(this); }
+	bool IsAlternateForm() const { return FIsAlternateForm(this); }
+	bool IsShifting() const { return FIsShifting(this); }
+	void DestroyPet() { FDestroyPet(this); }
+	void KillPet() { FKillPet(this); }
+	unsigned GetPetEntityId() const { return FGetPetEntityId(this); }
+	void OnPetMimicStartMimicking() { FOnPetMimicStartMimicking(this); }
+	void OnPetMimicStopMimicking() { FOnPetMimicStopMimicking(this); }
+	void OnActivatePower() { FOnActivatePower(this); }
+	void SetShowArmor(bool _bShowArmor, bool _bForce) { FSetShowArmor(this, _bShowArmor, _bForce); }
+	void SetShowHealth(bool _bShowHealth, bool _bForce) { FSetShowHealth(this, _bShowHealth, _bForce); }
+	virtual void EnableIdleBreak(const bool _bEnable);
+	virtual void SerializeLevelToLevel(TSerialize& _ser);
+	bool ShouldGenerateGameNoises() const { return FShouldGenerateGameNoises(this); }
+	void SetPlaybackScale(const float _scale) const { FSetPlaybackScale(this, _scale); }
+	void AdjustCryptoCurrency(const float _delta) { FAdjustCryptoCurrency(this, _delta); }
+	void UpdateShadow(bool _b3PShadow) const { FUpdateShadow(this, _b3PShadow); }
+	void InitializePerception() { FInitializePerception(this); }
+	void FinalizePerception() { FFinalizePerception(this); }
+	void HideAttachment(const char* _attachmentName, bool _bHide) const { FHideAttachment(this, _attachmentName, _bHide); }
+	void Reset() { FReset(this); }
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void InitLocalPlayer();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void InitClient(int _channelId);
+	virtual void PostInitClient(int _channelId);
+	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual bool GetEntityPoolSignature(TSerialize _signature);
+	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags);
+	virtual void SerializeSpawnInfo(TSerialize _ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void HandleEvent(const SGameObjectEvent& _event);
+	virtual void SetAuthority(bool _auth);
+	virtual void PostUpdate(float _frameTime);
+	virtual void PostRemoteSpawn();
+	virtual int GetHealthAsRoundedPercentage() const;
+	virtual void SetMaxHealth(float _maxHealth);
+	virtual int GetArmor() const;
+	virtual int GetMaxArmor() const;
+	virtual bool IsFallen() const;
+	virtual void Fall(Vec3 _hitPos);
+	virtual bool AllowLandingBob();
+	virtual void PlayAction(const char* _pAction, const char* _pExtension, bool _bLooping);
+	virtual IAnimationGraphState* GetAnimationGraphState();
+	virtual void ResetAnimationState();
+	virtual void CreateScriptEvent(const char* _pEvent, float _value, const char* _pStr);
+	virtual bool BecomeAggressiveToAgent(unsigned _entityID);
+	virtual void SetFacialAlertnessLevel(int _alertness);
+	virtual void PrecacheFacialExpression(const char* _pExpressionName);
+	virtual unsigned GetGrabbedEntityId() const;
+	virtual void HideAllAttachments(bool _bIsHiding);
+	virtual void SetIKPos(const char* _pLimbName, const Vec3& _goalPos, int _priority);
+	virtual bool IsFriendlyEntity(unsigned _entityId, bool _bUsingAIIgnorePlayer) const;
+	virtual void CameraShake(float _angle, float _shift, float _duration, float _frequency, Vec3 _pos, int _ID, const char* _pSource);
+	virtual IItem* GetHolsteredItem() const;
+	virtual void HolsterItem(bool _bHolster, bool _bPlaySelect, float _selectSpeedBias, bool _bHideLeftHandObject);
+	virtual bool DropItem(unsigned _itemId, float _impulseScale, bool _bSelectNext, bool _bByDeath);
+	virtual void NotifyCurrentItemChanged(IItem* _pNewItem);
+	virtual bool IsThirdPerson() const;
+	virtual void ToggleThirdPerson();
+	virtual bool IsPlayer() const;
+	virtual bool IsClient() const;
+	virtual bool IsMigrating() const;
+	virtual void SetMigrating(bool _bIsMigrating);
+	virtual const char* GetActorClassName() const;
+	virtual int GetActorClass() const;
+	virtual void SerializeXML(XmlNodeRef& _node, bool _bLoading);
+	virtual void PlayExactPositioningAnimation(const char* _pAnimationName, bool _bSignal, const Vec3& _position, const Vec3& _direction, float _startWidth, float _startArcAngle, float _directionTolerance);
+	virtual void CancelExactPositioningAnimation();
+	virtual void PlayAnimation(const char* _pAnimationName, bool _bSignal);
+	virtual void EnableTimeDemo(bool _bTimeDemo);
+	virtual void SwitchDemoModeSpectator(bool _bActivate);
+	virtual void OnAIProxyEnabled(bool _bEnabled);
+	virtual void OnReturnedToPool();
+	virtual bool ShouldMuteWeaponSoundStimulus() const;
+	virtual void OnReused(IEntity* _pEntity, SEntitySpawnParams& _params);
+	virtual void RequestFacialExpression(const char* _pExpressionName, float* _pSequenceLength);
+	virtual const char* GetEntityClassName() const;
+	virtual void OnPreparedFromPool();
+	virtual int GetEventPriority(const int _eventID) const;
+	virtual int GetTeamId() const;
+	virtual const QuatT& GetBoneTransform(int ID) const;
+	virtual void InhibitRotation(const bool _bInhibit);
+	void CheckForCoral() const { FCheckForCoral(this); }
+	void SetFaction() { FSetFaction(this); }
+	ArkSafeScriptTable GetArkGlooedTable(IEntity& _entity) { alignas(ArkSafeScriptTable) std::byte _return_buf_[sizeof(ArkSafeScriptTable)]; return *FGetArkGlooedTable(this, reinterpret_cast<ArkSafeScriptTable*>(_return_buf_), _entity); }
+	IAttachment* GetGlooSkinAttachment(IEntity& _entity) { return FGetGlooSkinAttachment(this, _entity); }
+	float UpdateGlooed() { return FUpdateGlooed(this); }
+	void EndBeingGlooed(bool _bFromFullyGlooed) { FEndBeingGlooed(this, _bFromFullyGlooed); }
+
+#if 0
+	ArkPlayerComponent& GetPlayerComponent();
+	const ArkPlayerComponent& GetPlayerComponent() const;
+	ArkStatsComponent& GetStatsComponent();
+	const ArkStatsComponent& GetStatsComponent() const;
+	const ArkChipsetComponent& GetChipsetComponent() const;
+	ArkChipsetComponent& GetChipsetComponent();
+	const ArkGroundColliderComponent& GetGroundColliderComponent() const;
+	void RequestStance(EStance _arg0_);
+	ArkInventory& GetArkInventory() const;
+	ArkInventory& GetMuleInventory() const;
+	void SetViewCameraRotation(const Quat& _arg0_);
+	const StanceInfo& GetStanceInfo(EStance _arg0_) const;
+	bool IsJumpButtonPressed() const;
+	void RemoveCustomCameraUpdateFunction(float _arg0_);
+	void SetCustomCameraOffsetFunction(std::function<Vec3_tpl<float> __cdecl(float)> _arg0_);
+	void RemoveCustomCameraOffsetFunction();
+	void RemoveCustomViewFunction();
+	void SetCameraAnimationControlled();
+	ArkPlayerCamera::Mode GetCameraMode() const;
+	ArkPlayerCamera& GetPlayerCamera();
+	const ArkPlayerCamera& GetPlayerCamera() const;
+	void HideHead(bool _arg0_) const;
+	const StanceInfo& GetCurrentStanceInfo() const;
+	void RegisterPlayerEventListener(IPlayerEventListener& _arg0_);
+	void UnregisterPlayerEventListener(IPlayerEventListener& _arg0_);
+	void CenterReticle();
+	void RestrictMovement(bool _arg0_);
+	void EnterCinematicMode();
+	void ExitCinematicMode();
+	const ArkPlayerAudio& GetAudio() const;
+	void OnFlyModeCommand();
+	ArkPlayerMovementFSM& GetMovementFSM();
+	const ArkPlayerMovementFSM& GetMovementFSM() const;
+	void StopSneaking();
+	const ArkPlayerInput& GetInput() const;
+	ArkPlayerInput& GetInput();
+	float GetLastRegisteredInputTime() const;
+	ArkExaminationMode& GetExaminationMode();
+	const ArkExaminationMode& GetExaminationMode() const;
+	ArkPlayerInteraction& GetInteraction();
+	const ArkPlayerInteraction& GetInteraction() const;
+	Vec2 GetReticlePos() const;
+	void UpdateReticleUI() const;
+	void SyncEyeOffsetToStanceViewHeight();
+	ArkPlayerFlashlight& GetFlashlight();
+	const ArkPlayerFlashlight& GetFlashlight() const;
+	ArkPlayerZoomManager& GetZoomManager();
+	const ArkPlayerZoomManager& GetZoomManager() const;
+	float GetIdleFragmentSpeedThreshold() const;
+	void LookAtRagdoll(const bool _arg0_);
+	void Ragdollize(const float _arg0_);
+	void LearnNameForResearchTopic(const uint64_t _arg0_);
+	bool HasLearnedNameForResearchTopic(const uint64_t _arg0_) const;
+	const std::vector<uint64_t>& GetCriticalHitMetaTags() const;
+	unsigned AddCameraRotationModifier(Functor2<Ang3_tpl<float> &,float> _arg0_);
+	void RemoveCameraRotationModifier(unsigned _arg0_);
+	bool IsInQTE() const;
+	bool IsInAir() const;
+	bool IsGlooed() const;
+	bool IsDisarming() const;
+	bool IsUnequipping() const;
+	void StopAttacks();
+	bool CanAttack() const;
+	float GetTimeSinceLastGlooEnded() const;
+	void IncreaseCombatIntensity(const float _arg0_);
+	void DecreaseCombatIntensity(const float _arg0_);
+	float GetFearCameraNoiseAmplitude() const;
+	ArkPlayerHelmet& GetHelmet();
+	ArkPlayerWeaponComponent& GetWeaponComponent();
+	const ArkPlayerWeaponComponent& GetWeaponComponent() const;
+	void AssignWeaponIdsToWeapons();
+	void HideShadow() const;
+	void ShowShadow() const;
+	Vec3 GetReticleViewPosition() const;
+	Vec2 GetReticleScreenPosition() const;
+	bool IsReticleVewPositionValid() const;
+	void OnSpawn(const Vec3 _arg0_, const Ang3 _arg1_);
+	IEntity* GetMimicGrabSequenceEntity() const;
+	float GetLookAtFarRange() const;
+	bool IsInVacuum() const;
+	EArkSaveFailure IsSafeForSave(bool _arg0_) const;
+	bool HasReceivedStartLevelEvent() const;
+	bool GetWasRecycled() const;
+	void MarkAsRecycled();
+	unsigned GetPsiScannerTarget() const;
+	unsigned GetRoomEntityId() const;
+	void UpdateHUDMarkerElements();
+	bool IsSmoke() const;
+	void StartMaterialAnimation(const ArkMaterialAnimationType _arg0_);
+	void UpdateMaterialAnimation(const ArkMaterialAnimationType _arg0_, const float _arg1_, const float _arg2_);
+	bool GetShowArmor() const;
+	bool GetShowHealth() const;
+	bool IsIdleBreakAllowed() const;
+	bool HasJustBeenPhysicalized() const;
+	unsigned GetPickedUpEntityId() const;
+	float GetCryptoCurrency() const;
+	void SetReticlePos(const Vec2 _arg0_);
+	void CloneGlooSkinMaterial(IEntity& _arg0_);
+	void StartGlooSkinAnimation(IEntity& _arg0_);
+	void UpdateGlooSkinAnimation(IEntity& _arg0_, const float _arg1_);
+	void StopGlooSkinAnimation(IEntity& _arg0_);
+#endif
+
+	static inline auto FArkPlayer = PreyFunction<void(ArkPlayer* const _this)>(0x166FC20);
+	static inline auto FBitNotArkPlayer = PreyFunction<void(ArkPlayer* const _this)>(0x16706E0);
+	static inline auto FGetInstance = PreyFunction<ArkPlayer& ()>(0x1674AE0);
+	static inline auto FGetInstancePtr = PreyFunction<ArkPlayer* ()>(0x1674B10);
+	static inline auto FGetPsiPowerComponentOv1 = PreyFunction<ArkPsiPowerComponent& (ArkPlayer* const _this)>(0x1674D70);
+	static inline auto FGetPsiPowerComponentOv0 = PreyFunction<const ArkPsiPowerComponent& (const ArkPlayer* const _this)>(0x1674D70);
+	static inline auto FGetStance = PreyFunction<EStance(const ArkPlayer* const _this)>(0x1675060);
+	static inline auto FIsZeroG = PreyFunction<bool(const ArkPlayer* const _this)>(0x1676BC0);
+	static inline auto FGetInventory = PreyFunction<IInventory* (const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FGetHealth = PreyFunction<float(const ArkPlayer* const _this)>(0x1674AC0);
+	static inline auto FSetHealth = PreyFunction<void(ArkPlayer* const _this, float _health)>(0x167C0C0);
+	static inline auto FIncreaseHealth = PreyFunction<void(ArkPlayer* const _this, float _increase)>(0x16755C0);
+	static inline auto FTakeDamage = PreyFunction<void(ArkPlayer* const _this, float _damage, const ArkDamageInfo& _damageInfo)>(0x167D150);
+	static inline auto FGetMaxHealth = PreyFunction<float(const ArkPlayer* const _this)>(0x1674B90);
+	static inline auto FSetViewRotation = PreyFunction<void(ArkPlayer* const _this, const Quat& _rotation)>(0x167CC10);
+	static inline auto FGetViewRotation = PreyFunction<Quat*(const ArkPlayer* const _this, Quat* _return_value_)>(0x1675080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkPlayer* const _this, ICrySizer* _pSizer)>(0x1674BB0);
+	static inline auto FGetCurrentItem = PreyFunction<IItem* (const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FGetLinkedEntity = PreyFunction<IEntity* (const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FGetSpectatorMode = PreyFunction<uint8_t(const ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FIsDead = PreyFunction<bool(const ArkPlayer* const _this)>(0x1676610);
+	static inline auto FRelease = PreyFunction<void(ArkPlayer* const _this)>(0x3E3960);
+	static inline auto FIsPsiTargeting = PreyFunction<bool(const ArkPlayer* const _this)>(0x16769B0);
+	static inline auto FGetAnimatedCharacterOv1 = PreyFunction<const IAnimatedCharacter* (const ArkPlayer* const _this)>(0x1674620);
+	static inline auto FGetAnimatedCharacterOv0 = PreyFunction<IAnimatedCharacter* (ArkPlayer* const _this)>(0x1674620);
+	static inline auto FGetLocalEyePos = PreyFunction<Vec3*(const ArkPlayer* const _this, Vec3* _return_value_)>(0x1674B50);
+	static inline auto FGetMovementController = PreyFunction<IMovementController* (const ArkPlayer* const _this)>(0x1674CC0);
+	static inline auto FGetGodMode = PreyFunction<int(ArkPlayer* const _this)>(0x1674AA0);
+	static inline auto FIsGod = PreyFunction<int(ArkPlayer* const _this)>(0x16768C0);
+	static inline auto FSetCustomCameraUpdateFunction = PreyFunction<void(ArkPlayer* const _this, std::function<Quat_tpl<float> __cdecl(float)> _function)>(0x17F9780);
+	static inline auto FSetCustomViewFunction = PreyFunction<void(ArkPlayer* const _this, std::function<void __cdecl(SViewParams &)> _function)>(0x16C0E60);
+	static inline auto FSetStance = PreyFunction<void(ArkPlayer* const _this, EStance _stance)>(0x167C920);
+	static inline auto FHideLegs = PreyFunction<void(const ArkPlayer* const _this, bool _bHide)>(0x1675560);
+	static inline auto FUpdatePropulsionPackVisibility = PreyFunction<void(const ArkPlayer* const _this)>(0x167E480);
+	static inline auto FGetScaledInputRotation = PreyFunction<Ang3*(ArkPlayer* const _this, Ang3* _return_value_, float _frameTime)>(0x1674DE0);
+	static inline auto FPhysicalize = PreyFunction<void(ArkPlayer* const _this)>(0x1677100);
+	static inline auto FResetReticle = PreyFunction<void(ArkPlayer* const _this)>(0x167B410);
+	static inline auto FRevive = PreyFunction<void(ArkPlayer* const _this)>(0x167B490);
+	static inline auto FSetAnimationTag = PreyFunction<void(const ArkPlayer* const _this, const char* _tagName, const bool _bTagState)>(0x167BB50);
+	static inline auto FSetAnimationTagFromFG = PreyFunction<void(ArkPlayer* const _this, const char* const _tagName, const bool _bTagState)>(0x167BC90);
+	static inline auto FPlayFragment = PreyFunction<_smart_ptr<TAction<SAnimationContext>>*(ArkPlayer* const _this, _smart_ptr<TAction<SAnimationContext>>* _return_value_, const char* _pName, IArkPlayer::EArkPlayerAnimationPriority _priority, const unsigned _flags)>(0x16782F0);
+	static inline auto FStage = PreyFunction<void(ArkPlayer* const _this, Vec3 _viewLimitDir, bool _bLocalSpace, float _viewLimitYaw, float _viewLimitPitch, bool _bLockPlayer, int _stance)>(0x18A8780);
+	static inline auto FExecuteGroundMaterialEffectByName = PreyFunction<void(const ArkPlayer* const _this, const char* const _pName, SMFXRunTimeEffectParams& _params)>(0x1673390);
+	static inline auto FHide = PreyFunction<void(const ArkPlayer* const _this, const bool _bHide)>(0x16754A0);
+	static inline auto FOnJump = PreyFunction<void(ArkPlayer* const _this)>(0x1676F50);
+	static inline auto FShowThirdPerson = PreyFunction<void(const ArkPlayer* const _this, const bool _bShow)>(0x167CCA0);
+	static inline auto FGetSex = PreyFunction<EPlayerSex(const ArkPlayer* const _this)>(0x1674F40);
+	static inline auto FGetArkSpeaker = PreyFunction<IArkSpeaker* (ArkPlayer* const _this)>(0x1674750);
+	static inline auto FPhysicalizeAndResetAnimatedCharacter = PreyFunction<void(ArkPlayer* const _this)>(0x1678280);
+	static inline auto FHasAbility = PreyFunction<bool(const ArkPlayer* const _this, const uint64_t _abilityID)>(0x1675460);
+	static inline auto FSetModel = PreyFunction<void(ArkPlayer* const _this, const char* const _modelName)>(0x167C0F0);
+	static inline auto FIsGlooedCooldownUp = PreyFunction<bool(const ArkPlayer* const _this)>(0x1676630);
+	static inline auto FIsInGravShaft = PreyFunction<bool(const ArkPlayer* const _this)>(0x1676910);
+	static inline auto FLimitAttentionOnUnseenPlayer = PreyFunction<void(const ArkPlayer* const _this)>(0x1676CD0);
+	static inline auto FReleaseAttentionLimitOnPlayer = PreyFunction<void(const ArkPlayer* const _this)>(0x167A2C0);
+	static inline auto FIsInCombat = PreyFunction<bool(const ArkPlayer* const _this)>(0x16768F0);
+	static inline auto FOnCombatChange = PreyFunction<void(IArkPlayerCombatListener* const _this, bool _bInCombat)>(0x1676F30);
+	static inline auto FCompensateStanceHeightChange = PreyFunction<void(ArkPlayer* const _this, const EStance _oldStance, const EStance _newStance)>(0x1671A10);
+	static inline auto FGetAttackTargetPos = PreyFunction<Vec3*(const ArkPlayer* const _this, Vec3* _return_value_)>(0x1674760);
+	static inline auto FUpdateCachedReticleViewPosAndDir = PreyFunction<void(ArkPlayer* const _this)>(0x167D670);
+	static inline auto FGetReticleViewPositionAndDir = PreyFunction<std::pair<Vec3, Vec3>*(const IArkPlayer* const _this, std::pair<Vec3, Vec3>* _return_value_)>(0x1674DA0);
+	static inline auto FOnNewGame = PreyFunction<void(ArkPlayer* const _this)>(0x1676FE0);
+	static inline auto FGetPlayerWorldEyePos = PreyFunction<Vec3*(const ArkPlayer* const _this, Vec3* _return_value_)>(0x13B3870);
+	static inline auto FGetFragmentIds = PreyFunction<const CTagDefinition* (const ArkPlayer* const _this)>(0x1674980);
+	static inline auto FKnockdown = PreyFunction<void(ArkPlayer* const _this)>(0x1676C50);
+	static inline auto FStartBecomingGlooed = PreyFunction<float(ArkPlayer* const _this)>(0x167CE20);
+	static inline auto FEnterGlooedSequence = PreyFunction<void(ArkPlayer* const _this)>(0x1672810);
+	static inline auto FExitGlooedSequence = PreyFunction<void(ArkPlayer* const _this)>(0x1673A10);
+	static inline auto FFinishGlooedAnimation = PreyFunction<void(ArkPlayer* const _this)>(0x1673E90);
+	static inline auto FEnterDisarmSequence = PreyFunction<void(ArkPlayer* const _this)>(0x16721F0);
+	static inline auto FBeginDisarming = PreyFunction<void(ArkPlayer* const _this, const bool _bFail, const float _impulse, unsigned _disarmNpcId)>(0x16711B0);
+	static inline auto FUpdateDisarmFacing = PreyFunction<void(ArkPlayer* const _this, const float _elapsedTime, const Vec3& _npcPosition, const float _facingAngle, const float _facingDuration)>(0x167DF30);
+	static inline auto FExitDisarmSequence = PreyFunction<void(ArkPlayer* const _this, const bool _bFail)>(0x16734B0);
+	static inline auto FForceEndAllButtonMashSequences = PreyFunction<void(ArkPlayer* const _this)>(0x1673F20);
+	static inline auto FEnterMimicGrabSequence = PreyFunction<void(ArkPlayer* const _this, const IEntity& _mimicEntity)>(0x1672E30);
+	static inline auto FExitMimicGrabSequence = PreyFunction<void(ArkPlayer* const _this)>(0x1673DF0);
+	static inline auto FCanEnterButtonMashSequence = PreyFunction<bool(const ArkPlayer* const _this, const ArkPlayerInput::ButtonMashMode _buttonMashMode)>(0x1671470);
+	static inline auto FGetTimeSinceLastButtonMashSequence = PreyFunction<float(const ArkPlayer* const _this)>(0x1675070);
+	static inline auto FEnterButtonMashSequence = PreyFunction<void(ArkPlayer* const _this, const ArkPlayerInput::ButtonMashMode _buttonMashMode)>(0x1671CD0);
+	static inline auto FExitButtonMashSequence = PreyFunction<void(ArkPlayer* const _this)>(0x1673440);
+	static inline auto FSetRoomEntityId = PreyFunction<void(ArkPlayer* const _this, unsigned _id)>(0x167C660);
+	static inline auto FIsMimicOv1 = PreyFunction<bool(const ArkPlayer* const _this)>(0x1676980);
+	static inline auto FIsMimicOv0 = PreyFunction<bool(const ArkPlayer* const _this, const unsigned _entityId)>(0x1676920);
+	static inline auto FGetMimicEntity = PreyFunction<const IEntity* (const ArkPlayer* const _this)>(0x1674C00);
+	static inline auto FGetMimicEntityId = PreyFunction<unsigned(const ArkPlayer* const _this)>(0x1674C70);
+	static inline auto FIsAlternateForm = PreyFunction<bool(const ArkPlayer* const _this)>(0x16765B0);
+	static inline auto FIsShifting = PreyFunction<bool(const ArkPlayer* const _this)>(0x16769D0);
+	static inline auto FDestroyPet = PreyFunction<void(ArkPlayer* const _this)>(0x1671BA0);
+	static inline auto FKillPet = PreyFunction<void(ArkPlayer* const _this)>(0x1676BD0);
+	static inline auto FGetPetEntityId = PreyFunction<unsigned(const ArkPlayer* const _this)>(0x1674CD0);
+	static inline auto FOnPetMimicStartMimicking = PreyFunction<void(ArkPlayer* const _this)>(0x1677010);
+	static inline auto FOnPetMimicStopMimicking = PreyFunction<void(ArkPlayer* const _this)>(0x1677050);
+	static inline auto FOnActivatePower = PreyFunction<void(ArkPlayer* const _this)>(0x1676D70);
+	static inline auto FSetShowArmor = PreyFunction<void(ArkPlayer* const _this, bool _bShowArmor, bool _bForce)>(0x167C670);
+	static inline auto FSetShowHealth = PreyFunction<void(ArkPlayer* const _this, bool _bShowHealth, bool _bForce)>(0x167C7D0);
+	static inline auto FEnableIdleBreak = PreyFunction<void(IArkPlayer* const _this, const bool _bEnable)>(0x1671C20);
+	static inline auto FSerializeLevelToLevel = PreyFunction<void(ArkPlayer* const _this, TSerialize& _ser)>(0x167B560);
+	static inline auto FShouldGenerateGameNoises = PreyFunction<bool(const ArkPlayer* const _this)>(0x167CC70);
+	static inline auto FSetPlaybackScale = PreyFunction<void(const ArkPlayer* const _this, const float _scale)>(0x167C600);
+	static inline auto FAdjustCryptoCurrency = PreyFunction<void(ArkPlayer* const _this, const float _delta)>(0x1671110);
+	static inline auto FUpdateShadow = PreyFunction<void(const ArkPlayer* const _this, bool _b3PShadow)>(0x167E500);
+	static inline auto FInitializePerception = PreyFunction<void(ArkPlayer* const _this)>(0x1676530);
+	static inline auto FFinalizePerception = PreyFunction<void(ArkPlayer* const _this)>(0x1673E10);
+	static inline auto FHideAttachment = PreyFunction<void(const ArkPlayer* const _this, const char* _attachmentName, bool _bHide)>(0x16754E0);
+	static inline auto FReset = PreyFunction<void(ArkPlayer* const _this)>(0x167A330);
+	static inline auto FProcessEvent = PreyFunction<void(ArkPlayer* const _this, SEntityEvent& _event)>(0x1678A30);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayer* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x167D280);
+	static inline auto FFullSerialize = PreyFunction<void(ArkPlayer* const _this, TSerialize _ser)>(0x1673FD0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayer* const _this)>(0x1678600);
+	static inline auto FInitLocalPlayer = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FInit = PreyFunction<bool(ArkPlayer* const _this, IGameObject* _pGameObject)>(0x1675600);
+	static inline auto FPostInit = PreyFunction<void(ArkPlayer* const _this, IGameObject* _pGameObject)>(0x16784C0);
+	static inline auto FInitClient = PreyFunction<void(ArkPlayer* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(ArkPlayer* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(ArkPlayer* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(ArkPlayer* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(ArkPlayer* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FNetSerialize = PreyFunction<bool(ArkPlayer* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x13B0900);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkPlayer* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(ArkPlayer* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FHandleEvent = PreyFunction<void(ArkPlayer* const _this, const SGameObjectEvent& _event)>(0x16750B0);
+	static inline auto FSetAuthority = PreyFunction<void(ArkPlayer* const _this, bool _auth)>(0x1333E90);
+	static inline auto FPostUpdate = PreyFunction<void(ArkPlayer* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FGetHealthAsRoundedPercentage = PreyFunction<int(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FSetMaxHealth = PreyFunction<void(ArkPlayer* const _this, float _maxHealth)>(0x1333E90);
+	static inline auto FGetArmor = PreyFunction<int(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FGetMaxArmor = PreyFunction<int(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FIsFallen = PreyFunction<bool(const ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FFall = PreyFunction<void(ArkPlayer* const _this, Vec3 _hitPos)>(0x1333E90);
+	static inline auto FAllowLandingBob = PreyFunction<bool(ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FPlayAction = PreyFunction<void(ArkPlayer* const _this, const char* _pAction, const char* _pExtension, bool _bLooping)>(0x1333E90);
+	static inline auto FGetAnimationGraphState = PreyFunction<IAnimationGraphState* (ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FResetAnimationState = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FCreateScriptEvent = PreyFunction<void(ArkPlayer* const _this, const char* _pEvent, float _value, const char* _pStr)>(0x1333E90);
+	static inline auto FBecomeAggressiveToAgent = PreyFunction<bool(ArkPlayer* const _this, unsigned _entityID)>(0x13B0900);
+	static inline auto FSetFacialAlertnessLevel = PreyFunction<void(ArkPlayer* const _this, int _alertness)>(0x1333E90);
+	static inline auto FPrecacheFacialExpression = PreyFunction<void(ArkPlayer* const _this, const char* _pExpressionName)>(0x1333E90);
+	static inline auto FGetGrabbedEntityId = PreyFunction<unsigned(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FHideAllAttachments = PreyFunction<void(ArkPlayer* const _this, bool _bIsHiding)>(0x1333E90);
+	static inline auto FSetIKPos = PreyFunction<void(ArkPlayer* const _this, const char* _pLimbName, const Vec3& _goalPos, int _priority)>(0x1333E90);
+	static inline auto FIsFriendlyEntity = PreyFunction<bool(const ArkPlayer* const _this, unsigned _entityId, bool _bUsingAIIgnorePlayer)>(0x13B0900);
+	static inline auto FCameraShake = PreyFunction<void(ArkPlayer* const _this, float _angle, float _shift, float _duration, float _frequency, Vec3 _pos, int _ID, const char* _pSource)>(0x1333E90);
+	static inline auto FGetHolsteredItem = PreyFunction<IItem* (const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FHolsterItem = PreyFunction<void(ArkPlayer* const _this, bool _bHolster, bool _bPlaySelect, float _selectSpeedBias, bool _bHideLeftHandObject)>(0x1333E90);
+	static inline auto FDropItem = PreyFunction<bool(ArkPlayer* const _this, unsigned _itemId, float _impulseScale, bool _bSelectNext, bool _bByDeath)>(0x13B0900);
+	static inline auto FNotifyCurrentItemChanged = PreyFunction<void(ArkPlayer* const _this, IItem* _pNewItem)>(0x1333E90);
+	static inline auto FIsThirdPerson = PreyFunction<bool(const ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FToggleThirdPerson = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FIsPlayer = PreyFunction<bool(const ArkPlayer* const _this)>(0x1A302A0);
+	static inline auto FIsClient = PreyFunction<bool(const ArkPlayer* const _this)>(0x1A302A0);
+	static inline auto FIsMigrating = PreyFunction<bool(const ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FSetMigrating = PreyFunction<void(ArkPlayer* const _this, bool _bIsMigrating)>(0x1333E90);
+	static inline auto FGetActorClassName = PreyFunction<const char* (const ArkPlayer* const _this)>(0x1674610);
+	static inline auto FGetActorClass = PreyFunction<int(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FSerializeXML = PreyFunction<void(ArkPlayer* const _this, XmlNodeRef& _node, bool _bLoading)>(0x1333E90);
+	static inline auto FPlayExactPositioningAnimation = PreyFunction<void(ArkPlayer* const _this, const char* _pAnimationName, bool _bSignal, const Vec3& _position, const Vec3& _direction, float _startWidth, float _startArcAngle, float _directionTolerance)>(0x1333E90);
+	static inline auto FCancelExactPositioningAnimation = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FPlayAnimation = PreyFunction<void(ArkPlayer* const _this, const char* _pAnimationName, bool _bSignal)>(0x1333E90);
+	static inline auto FEnableTimeDemo = PreyFunction<void(ArkPlayer* const _this, bool _bTimeDemo)>(0x1333E90);
+	static inline auto FSwitchDemoModeSpectator = PreyFunction<void(ArkPlayer* const _this, bool _bActivate)>(0x1333E90);
+	static inline auto FOnAIProxyEnabled = PreyFunction<void(ArkPlayer* const _this, bool _bEnabled)>(0x1333E90);
+	static inline auto FOnReturnedToPool = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FShouldMuteWeaponSoundStimulus = PreyFunction<bool(const ArkPlayer* const _this)>(0x13B0900);
+	static inline auto FOnReused = PreyFunction<void(ArkPlayer* const _this, IEntity* _pEntity, SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FRequestFacialExpression = PreyFunction<void(ArkPlayer* const _this, const char* _pExpressionName, float* _pSequenceLength)>(0x1333E90);
+	static inline auto FGetEntityClassName = PreyFunction<const char* (const ArkPlayer* const _this)>(0x1674950);
+	static inline auto FOnPreparedFromPool = PreyFunction<void(ArkPlayer* const _this)>(0x1333E90);
+	static inline auto FGetEventPriority = PreyFunction<int(const ArkPlayer* const _this, const int _eventID)>(0x1674960);
+	static inline auto FGetTeamId = PreyFunction<int(const ArkPlayer* const _this)>(0x1CBB0B0);
+	static inline auto FGetBoneTransform = PreyFunction<const QuatT& (const ArkPlayer* const _this, int ID)>(0x16748B0);
+	static inline auto FInhibitRotation = PreyFunction<void(IArkPlayer* const _this, const bool _bInhibit)>(0x16755F0);
+	static inline auto FCheckForCoral = PreyFunction<void(const ArkPlayer* const _this)>(0x1671520);
+	static inline auto FSetFaction = PreyFunction<void(ArkPlayer* const _this)>(0x167BEE0);
+	static inline auto FGetArkGlooedTable = PreyFunction<ArkSafeScriptTable*(ArkPlayer* const _this, ArkSafeScriptTable* _return_value_, IEntity& _entity)>(0x1674630);
+	static inline auto FGetGlooSkinAttachment = PreyFunction<IAttachment* (ArkPlayer* const _this, IEntity& _entity)>(0x16749C0);
+	static inline auto FUpdateGlooed = PreyFunction<float(ArkPlayer* const _this)>(0x167E280);
+	static inline auto FEndBeingGlooed = PreyFunction<void(ArkPlayer* const _this, bool _bFromFullyGlooed)>(0x1671C30);
+};
+#endif // !MOONCRASH

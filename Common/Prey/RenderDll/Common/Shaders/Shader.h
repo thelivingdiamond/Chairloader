@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -1250,3 +1252,319 @@ public:
 //////////////////////////////////////////////////////////////////////////
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/cryarray.h>
+#include <CryEngine/crycommon/tarray.h>
+#include <Prey/CryRenderer/IShader.h>
+#include <Prey/RenderDll/Common/CommonRender.h>
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <Prey/RenderDll/Common/Shaders/Shader.h>
+#include <_unknown/TArray.h>
+
+class CParserBin;
+class CResFile;
+class CShader;
+class CShaderResources;
+class CTexture;
+class ICrySizer;
+class ITexture;
+struct SD3DShader;
+struct SEmptyCombination;
+struct SHWActivatedShader;
+struct SInputShaderResources;
+struct SParserFrame;
+struct SShaderCache;
+struct SShaderCombination;
+struct SShaderDevCache;
+struct SShaderGen;
+struct SShaderTechnique;
+struct SShaderTexSlots;
+
+// CHWShader
+// Header:  CryEngine/renderdll/common/shaders/Shader.h
+// Include: Prey/RenderDll/Common/Shaders/Shader.h
+class CHWShader : public CBaseResource
+{ // Size=128 (0x80)
+public:
+	static inline auto s_sClassNameVS = PreyGlobal<CCryNameTSCRC>(0x2C86824);
+	static inline auto s_sClassNamePS = PreyGlobal<CCryNameTSCRC>(0x2C86828);
+	EHWShaderClass m_eSHClass;
+	SShaderCache* m_pGlobalCache;
+	static inline auto s_pCurPS = PreyGlobal<SD3DShader*>(0x2C80AB0);
+	static inline auto s_pCurVS = PreyGlobal<SD3DShader*>(0x2C80AB8);
+	static inline auto s_pCurGS = PreyGlobal<SD3DShader*>(0x2C80AC0);
+	static inline auto s_pCurDS = PreyGlobal<SD3DShader*>(0x2C80AC8);
+	static inline auto s_pCurHS = PreyGlobal<SD3DShader*>(0x2C80AD0);
+	static inline auto s_pCurCS = PreyGlobal<SD3DShader*>(0x2C80AD8);
+	string m_Name;
+	string m_NameSourceFX;
+	string m_EntryFunc;
+	uint64_t m_nMaskAnd_RT;
+	uint64_t m_nMaskOr_RT;
+	uint64_t m_nMaskGenShader;
+	uint64_t m_nMaskGenFX;
+	uint64_t m_nMaskSetFX;
+	unsigned m_nPreprocessFlags;
+	int m_nFrame;
+	int m_nFrameLoad;
+	int m_Flags;
+	unsigned m_CRC32;
+	unsigned m_dwShaderType;
+	static inline auto m_ShaderCacheList = PreyGlobal<std::map<string, unsigned int>>(0x2C85A48);
+	static inline auto m_ShaderCache = PreyGlobal<std::map<CCryNameR, SShaderCache*>>(0x2C85A28);
+	static inline auto m_ShaderDevCache = PreyGlobal<std::map<CCryNameR, SShaderDevCache*>>(0x2C85A38);
+	static inline auto m_CompressedShaders = PreyGlobal<std::map<CCryNameTSCRC, SHWActivatedShader*>>(0x2D166A0);
+
+	virtual ~CHWShader();
+	static CHWShader* mfForName(const char* name, const char* nameSource, unsigned CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<unsigned int>& SHData, std::vector<STokenD>* pTable, unsigned dwType, CShader* pFX, uint64_t nMaskGen, uint64_t nMaskGenFX) { return FmfForName(name, nameSource, CRC32, szEntryFunc, eClass, SHData, pTable, dwType, pFX, nMaskGen, nMaskGenFX); }
+	static void mfFlushPendedShadersWait(int nMaxAllowed) { FmfFlushPendedShadersWait(nMaxAllowed); }
+	virtual int Size() = 0;
+	virtual void GetMemoryUsage(ICrySizer* pSizer) const = 0;
+	virtual void mfReset(unsigned CRC32);
+	virtual bool mfSetV(int nFlags) = 0;
+	virtual bool mfAddEmptyCombination(CShader* pSH, uint64_t nRT, uint64_t nGL, unsigned nLT) = 0;
+	virtual bool mfStoreEmptyCombination(SEmptyCombination& Comb) = 0;
+	virtual const char* mfGetCurScript();
+	virtual const char* mfGetEntryName() = 0;
+	virtual bool mfFlushCacheFile() = 0;
+	virtual bool mfPrecache(SShaderCombination& cmb, bool bForce, bool bCompressedOnly, CShader* pSH, CShaderResources* pRes) = 0;
+	virtual EVertexFormat mfVertexFormat(bool& bUseTangents, bool& bUseLM, bool& bUseHWSkin) = 0;
+	virtual const char* mfGetActivatedCombinations(bool bForLevel) = 0;
+	static const char* mfProfileString(EHWShaderClass eClass) { return FmfProfileString(eClass); }
+	static const char* mfClassString(EHWShaderClass eClass) { return FmfClassString(eClass); }
+	static void mfGenName(uint64_t GLMask, uint64_t RTMask, unsigned LightMask, unsigned MDMask, unsigned MDVMask, uint64_t PSS, EHWShaderClass eClass, char* dstname, int nSize, uint8_t bType) { FmfGenName(GLMask, RTMask, LightMask, MDMask, MDVMask, PSS, eClass, dstname, nSize, bType); }
+	static void mfCleanupCache() { FmfCleanupCache(); }
+	static SShaderCache* mfInitCache(const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync) { return FmfInitCache(name, pSH, bCheckValid, CRC32, bReadOnly, bAsync); }
+	static bool _OpenCacheFile(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly) { return F_OpenCacheFile(fVersion, pCache, pSH, bCheckValid, CRC32, nCache, pRF, bReadOnly); }
+	static bool mfOpenCacheFile(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly) { return FmfOpenCacheFile(szName, fVersion, pCache, pSH, bCheckValid, CRC32, bReadOnly); }
+
+#if 0
+	CHWShader();
+	static void mfReloadScript(const char* _arg0_, const char* _arg1_, int _arg2_, uint64_t _arg3_);
+	const char* GetName();
+	static EHWShaderClass mfStringProfile(const char* _arg0_);
+	static EHWShaderClass mfStringClass(const char* _arg0_);
+	static void mfLazyUnload();
+	static CCryNameTSCRC mfGetClassName(EHWShaderClass _arg0_);
+	static const char* GetCurrentShaderCombinations(bool _arg0_);
+	static uint8_t* mfIgnoreRemapsFromCache(int _arg0_, uint8_t* _arg1_);
+	static uint8_t* mfIgnoreBindsFromCache(int _arg0_, uint8_t* _arg1_);
+	static SShaderDevCache* mfInitDevCache(const char* _arg0_, CHWShader* _arg1_);
+	static void mfValidateTokenData(CResFile* _arg0_);
+#endif
+
+	static inline auto FBitNotCHWShader = PreyFunction<void(CHWShader* const _this)>(0xF06DB0);
+	static inline auto FmfForName = PreyFunction<CHWShader* (const char* name, const char* nameSource, unsigned CRC32, const char* szEntryFunc, EHWShaderClass eClass, TArray<unsigned int>& SHData, std::vector<STokenD>* pTable, unsigned dwType, CShader* pFX, uint64_t nMaskGen, uint64_t nMaskGenFX)>(0xF09AC0);
+	static inline auto FmfFlushPendedShadersWait = PreyFunction<void(int nMaxAllowed)>(0xF175A0);
+	static inline auto FmfReset = PreyFunction<void(CHWShader* const _this, unsigned CRC32)>(0x1333E90);
+	static inline auto FmfGetCurScript = PreyFunction<const char* (CHWShader* const _this)>(0x1CBB0B0);
+	static inline auto FmfProfileString = PreyFunction<const char* (EHWShaderClass eClass)>(0x103CD40);
+	static inline auto FmfClassString = PreyFunction<const char* (EHWShaderClass eClass)>(0x1039130);
+	static inline auto FmfGenName = PreyFunction<void(uint64_t GLMask, uint64_t RTMask, unsigned LightMask, unsigned MDMask, unsigned MDVMask, uint64_t PSS, EHWShaderClass eClass, char* dstname, int nSize, uint8_t bType)>(0x1030EC0);
+	static inline auto FmfCleanupCache = PreyFunction<void()>(0x10391B0);
+	static inline auto FmfInitCache = PreyFunction<SShaderCache* (const char* name, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly, bool bAsync)>(0xF1A400);
+	static inline auto F_OpenCacheFile = PreyFunction<bool(float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, int nCache, CResFile* pRF, bool bReadOnly)>(0xF14440);
+	static inline auto FmfOpenCacheFile = PreyFunction<bool(const char* szName, float fVersion, SShaderCache* pCache, CHWShader* pSH, bool bCheckValid, unsigned CRC32, bool bReadOnly)>(0xF1A860);
+};
+
+// CShader
+// Header:  CryEngine/renderdll/common/shaders/Shader.h
+class CShader : public IShader, public CBaseResource
+{ // Size=208 (0xD0)
+public:
+	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2C8682C);
+	string m_NameFile;
+	string m_NameShader;
+	EShaderDrawType m_eSHDType;
+	unsigned m_Flags;
+	unsigned m_Flags2;
+	unsigned m_nMDV;
+	unsigned m_NameShaderICRC;
+	EVertexFormat m_eVertexFormat;
+	ECull m_eCull;
+	TArray<SShaderTechnique *> m_HWTechniques;
+	int m_nMaskCB;
+	EShaderType m_eShaderType;
+	uint64_t m_nMaskGenFX;
+	SShaderGen* m_ShaderGenParams;
+	SShaderTexSlots* m_ShaderTexSlots[7];
+	std::vector<CShader*>* m_DerivedShaders;
+	CShader* m_pGenShader;
+	int m_nRefreshFrame;
+	unsigned m_SourceCRC32;
+	unsigned m_CRC32;
+	static inline auto s_ShaderResources_known = PreyGlobal<TArray<CShaderResources *>>(0x23DEE00);
+
+	void mfFree() { FmfFree(this); }
+	virtual ~CShader();
+	virtual int AddRef();
+	virtual int Release();
+	virtual int ReleaseForce();
+	virtual int GetID();
+	virtual int GetRefCounter() const;
+	virtual const char* GetName();
+	virtual const char* GetName() const;
+	bool FXSetTechnique(const CCryNameTSCRC& Name) { return FFXSetTechnique(this, Name); }
+	bool FXSetPSFloat(const CCryNameR& NameParam, const Vec4* fParams, int nParams) { return FFXSetPSFloat(this, NameParam, fParams, nParams); }
+	bool FXSetCSFloat(const CCryNameR& NameParam, const Vec4* fParams, int nParams) { return FFXSetCSFloat(this, NameParam, fParams, nParams); }
+	bool FXSetVSFloat(const CCryNameR& NameParam, const Vec4* fParams, int nParams) { return FFXSetVSFloat(this, NameParam, fParams, nParams); }
+	bool FXSetGSFloat(const CCryNameR& NameParam, const Vec4* fParams, int nParams) { return FFXSetGSFloat(this, NameParam, fParams, nParams); }
+	bool FXBegin(unsigned* uiPassCount, unsigned nFlags) { return FFXBegin(this, uiPassCount, nFlags); }
+	bool FXBeginPass(unsigned uiPass) { return FFXBeginPass(this, uiPass); }
+	bool FXEndPass() { return FFXEndPass(this); }
+	bool FXEnd() { return FFXEnd(this); }
+	virtual int GetFlags() const;
+	virtual int GetFlags2() const;
+	virtual void SetFlags2(int Flags);
+	virtual void ClearFlags2(int Flags);
+	virtual bool Reload(int nFlags, const char* szShaderName);
+	virtual int GetTechniqueID(int nTechnique, int nRegisteredTechnique);
+	virtual TArray<CRendElementBase *>* GetREs(int nTech);
+	virtual int GetTexId();
+	virtual unsigned GetUsedTextureTypes();
+	virtual EVertexFormat GetVertexFormat();
+	virtual uint64_t GetGenerationMask();
+	virtual ECull GetCull();
+	virtual SShaderGen* GetGenerationParams();
+	virtual SShaderTexSlots* GetUsedTextureSlots(int nTechnique);
+	virtual DynArray<SShaderParam,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >& GetPublicParams();
+	virtual void CopyPublicParamsTo(SInputShaderResources& copyToResource);
+	virtual EShaderType GetShaderType();
+	virtual unsigned GetVertexModificator();
+	bool mfPrecache(SShaderCombination& cmb, bool bForce, bool bCompressedOnly, CShaderResources* pRes) { return FmfPrecache(this, cmb, bForce, bCompressedOnly, pRes); }
+	SShaderTechnique* mfGetStartTechnique(int nTechnique) { return FmfGetStartTechnique(this, nTechnique); }
+	SShaderTechnique* GetTechnique(int nStartTechnique, int nRequestedTechnique, bool bSilent) { return FGetTechnique(this, nStartTechnique, nRequestedTechnique, bSilent); }
+	virtual ITexture* GetBaseTexture(int* nPass, int* nTU);
+	virtual int Size(int Flags);
+	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
+
+#if 0
+	int mfGetID();
+	CShader();
+	bool FXCommit(const unsigned _arg0_);
+	void mfFlushPendedShaders();
+	SShaderTechnique* mfFindTechnique(const CCryNameTSCRC& _arg0_);
+	CShader& operator=(const CShader& _arg0_);
+	CTexture* mfFindBaseTexture(TArray<SShaderPass>& _arg0_, int* _arg1_, int* _arg2_);
+	int mfSize();
+	static void* operator new(uint64_t _arg0_);
+	static void* operator new(uint64_t _arg0_, const std::nothrow_t& _arg1_);
+	static void operator delete(void* _arg0_);
+	static CCryNameTSCRC mfGetClassName();
+#endif
+
+	static inline auto FmfFree = PreyFunction<void(CShader* const _this)>(0x1039A60);
+	static inline auto FBitNotCShader = PreyFunction<void(CShader* const _this)>(0x1035900);
+	static inline auto FAddRef = PreyFunction<int(CShader* const _this)>(0xE9A4C0);
+	static inline auto FRelease = PreyFunction<int(CShader* const _this)>(0x1036B70);
+	static inline auto FReleaseForce = PreyFunction<int(CShader* const _this)>(0x1036BE0);
+	static inline auto FGetID = PreyFunction<int(CShader* const _this)>(0x11883D0);
+	static inline auto FGetRefCounter = PreyFunction<int(const CBaseResource* const _this)>(0x899030);
+	static inline auto FGetNameOv1 = PreyFunction<const char* (CShader* const _this)>(0x7E3C90);
+	static inline auto FGetNameOv0 = PreyFunction<const char* (const CShader* const _this)>(0x7E3C90);
+	static inline auto FFXSetTechnique = PreyFunction<bool(CShader* const _this, const CCryNameTSCRC& Name)>(0xF36510);
+	static inline auto FFXSetPSFloat = PreyFunction<bool(CShader* const _this, const CCryNameR& NameParam, const Vec4* fParams, int nParams)>(0xF36450);
+	static inline auto FFXSetCSFloat = PreyFunction<bool(CShader* const _this, const CCryNameR& NameParam, const Vec4* fParams, int nParams)>(0xF362D0);
+	static inline auto FFXSetVSFloat = PreyFunction<bool(CShader* const _this, const CCryNameR& NameParam, const Vec4* fParams, int nParams)>(0xF365A0);
+	static inline auto FFXSetGSFloat = PreyFunction<bool(CShader* const _this, const CCryNameR& NameParam, const Vec4* fParams, int nParams)>(0xF36390);
+	static inline auto FFXBegin = PreyFunction<bool(CShader* const _this, unsigned* uiPassCount, unsigned nFlags)>(0xF35F90);
+	static inline auto FFXBeginPass = PreyFunction<bool(CShader* const _this, unsigned uiPass)>(0xF35FE0);
+	static inline auto FFXEndPass = PreyFunction<bool(CShader* const _this)>(0xF36290);
+	static inline auto FFXEnd = PreyFunction<bool(CShader* const _this)>(0xF36260);
+	static inline auto FGetFlags = PreyFunction<int(const CShader* const _this)>(0x19E8500);
+	static inline auto FGetFlags2 = PreyFunction<int(const CShader* const _this)>(0x1036290);
+	static inline auto FSetFlags2 = PreyFunction<void(CShader* const _this, int Flags)>(0x1036C10);
+	static inline auto FClearFlags2 = PreyFunction<void(CShader* const _this, int Flags)>(0x1035E40);
+	static inline auto FReload = PreyFunction<bool(CShader* const _this, int nFlags, const char* szShaderName)>(0x1055C00);
+	static inline auto FGetTechniqueID = PreyFunction<int(CShader* const _this, int nTechnique, int nRegisteredTechnique)>(0x1036640);
+	static inline auto FGetREs = PreyFunction<TArray<CRendElementBase *>* (CShader* const _this, int nTech)>(0x1036530);
+	static inline auto FGetTexId = PreyFunction<int(CShader* const _this)>(0x1036670);
+	static inline auto FGetUsedTextureTypes = PreyFunction<unsigned(CShader* const _this)>(0xA554A0);
+	static inline auto FGetVertexFormat = PreyFunction<EVertexFormat(CShader* const _this)>(0xFFD010);
+	static inline auto FGetGenerationMask = PreyFunction<uint64_t(CShader* const _this)>(0x16D6740);
+	static inline auto FGetCull = PreyFunction<ECull(CShader* const _this)>(0x1036260);
+	static inline auto FGetGenerationParams = PreyFunction<SShaderGen* (CShader* const _this)>(0x10362A0);
+	static inline auto FGetUsedTextureSlots = PreyFunction<SShaderTexSlots* (CShader* const _this, int nTechnique)>(0x10366A0);
+	static inline auto FGetPublicParams = PreyFunction<DynArray<SShaderParam,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >& (CShader* const _this)>(0x1036500);
+	static inline auto FCopyPublicParamsTo = PreyFunction<void(CShader* const _this, SInputShaderResources& copyToResource)>(0x1035E50);
+	static inline auto FGetShaderType = PreyFunction<EShaderType(CShader* const _this)>(0x1036560);
+	static inline auto FGetVertexModificator = PreyFunction<unsigned(CShader* const _this)>(0xA554C0);
+	static inline auto FmfPrecache = PreyFunction<bool(CShader* const _this, SShaderCombination& cmb, bool bForce, bool bCompressedOnly, CShaderResources* pRes)>(0x10328D0);
+	static inline auto FmfGetStartTechnique = PreyFunction<SShaderTechnique* (CShader* const _this, int nTechnique)>(0x1039AE0);
+	static inline auto FGetTechnique = PreyFunction<SShaderTechnique* (CShader* const _this, int nStartTechnique, int nRequestedTechnique, bool bSilent)>(0x1036570);
+	static inline auto FGetBaseTexture = PreyFunction<ITexture* (CShader* const _this, int* nPass, int* nTU)>(0x1036240);
+	static inline auto FSize = PreyFunction<int(CShader* const _this, int Flags)>(0x1037080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CShader* const _this, ICrySizer* pSizer)>(0x10362C0);
+};
+
+// SFXTexture
+// Header:  CryEngine/renderdll/common/shaders/Shader.h
+// Include: Prey/RenderDll/Common/Shaders/Shader.h
+struct SFXTexture
+{ // Size=112 (0x70)
+	CCryNameR m_Name;
+	std::vector<unsigned int> m_dwName;
+	unsigned m_nFlags;
+	unsigned m_nTexFlags;
+	int16_t m_nArray;
+	CCryNameR m_Annotations;
+	CCryNameR m_Semantic;
+	CCryNameR m_Values;
+	string m_szTexture;
+	string m_szUIName;
+	string m_szUIDesc;
+	bool m_bSRGBLookup;
+	uint8_t m_eType;
+	uint8_t m_Type;
+	int16_t m_nRegister[6];
+
+	~SFXTexture();
+	void PostLoad(CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign) { FPostLoadOv1(this, Parser, Name, Annotations, Values, Assign); }
+
+#if 0
+	SFXTexture();
+	unsigned GetFlags();
+	unsigned GetTexFlags();
+	void PostLoad();
+	unsigned Size();
+	bool operator==(const SFXTexture& _arg0_) const;
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FBitNotSFXTexture = PreyFunction<void(SFXTexture* const _this)>(0xFCE220);
+	static inline auto FPostLoadOv1 = PreyFunction<void(SFXTexture* const _this, CParserBin& Parser, SParserFrame& Name, SParserFrame& Annotations, SParserFrame& Values, SParserFrame& Assign)>(0x102DA90);
+};
+
+// SShaderTechnique
+// Header:  CryEngine/renderdll/common/shaders/Shader.h
+// Include: Prey/RenderDll/Common/Shaders/Shader.h
+struct SShaderTechnique
+{ // Size=80 (0x50)
+	CShader* m_shader;
+	CCryNameR m_NameStr;
+	CCryNameTSCRC m_NameCRC;
+	TArray<SShaderPass> m_Passes;
+	int m_Flags;
+	unsigned m_nPreprocessFlags;
+	int8_t m_nTechnique[7];
+	TArray<CRendElementBase *> m_REs;
+	float m_fProfileTime;
+
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+	~SShaderTechnique();
+
+#if 0
+	int Size();
+	SShaderTechnique(CShader* _arg0_);
+	SShaderTechnique& operator=(const SShaderTechnique& _arg0_);
+	static void* operator new(uint64_t _arg0_);
+	static void* operator new(uint64_t _arg0_, const std::nothrow_t& _arg1_);
+	static void operator delete(void* _arg0_);
+#endif
+
+	static inline auto FGetMemoryUsage = PreyFunction<void(const SShaderTechnique* const _this, ICrySizer* pSizer)>(0x10363A0);
+	static inline auto FBitNotSShaderTechnique = PreyFunction<void(SShaderTechnique* const _this)>(0x1035C50);
+};
+#endif // !MOONCRASH

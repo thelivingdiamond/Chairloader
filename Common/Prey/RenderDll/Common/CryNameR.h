@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -445,3 +447,151 @@ inline bool operator!=(const char* s, const CCryNameTSCRC& n)
 }
 
 #endif //__CryNameTS_h__
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+
+class CNameTableR;
+struct CTypeInfo;
+class ICrySizer;
+
+// CCryNameR
+// Header:  CryEngine/renderdll/common/CryNameR.h
+// Include: Prey/RenderDll/Common/CryNameR.h
+class CCryNameR
+{ // Size=8 (0x8)
+public:
+	// CCryNameR::SNameEntry
+	// Header:  CryEngine/renderdll/common/CryNameR.h
+	struct SNameEntry
+	{ // Size=12 (0xC)
+		int nRefCount;
+		int nLength;
+		int nAllocSize;
+
+	#if 0
+		const char* GetStr();
+		void AddRef();
+		int Release();
+		int GetMemoryUsage();
+		int GetLength();
+	#endif
+	};
+
+	static inline auto ms_table = PreyGlobal<CNameTableR*>(0x2C93C90);
+	const char* m_str;
+
+	CCryNameR(const char* s);
+	~CCryNameR();
+	CCryNameR& operator=(const CCryNameR& n) { return FoperatorEqOv1(this, n); }
+	CCryNameR& operator=(const char* s) { return FoperatorEqOv0(this, s); }
+	static CNameTableR* GetNameTable() { return FGetNameTable(); }
+
+#if 0
+	CCryNameR();
+	CCryNameR(const CCryNameR& _arg0_);
+	bool operator==(const CCryNameR& _arg0_) const;
+	bool operator<(const CCryNameR& _arg0_) const;
+	bool empty() const;
+	void reset();
+	void addref();
+	const char* c_str() const;
+	int length() const;
+	static bool find(const char* _arg0_);
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+	static int GetMemoryUsage();
+	static int GetNumberOfEntries();
+	CNameTableR::SNameEntryR* _entry(const char* _arg0_) const;
+	void _release(const char* _arg0_);
+	int _length() const;
+	void _addref(const char* _arg0_);
+#endif
+
+	static inline auto FCCryNameROv0 = PreyFunction<void(CCryNameR* const _this, const char* s)>(0xE9A0F0);
+	static inline auto FBitNotCCryNameR = PreyFunction<void(CCryNameR* const _this)>(0xE9A370);
+	static inline auto FoperatorEqOv1 = PreyFunction<CCryNameR& (CCryNameR* const _this, const CCryNameR& n)>(0x10282E0);
+	static inline auto FoperatorEqOv0 = PreyFunction<CCryNameR& (CCryNameR* const _this, const char* s)>(0xF13E90);
+	static inline auto FGetNameTable = PreyFunction<CNameTableR* ()>(0xE9AD60);
+};
+
+// CCryNameTSCRC
+// Header:  CryEngine/renderdll/common/CryNameR.h
+// Include: Prey/RenderDll/Common/CryNameR.h
+class CCryNameTSCRC
+{ // Size=4 (0x4)
+public:
+	unsigned m_nID;
+
+	CCryNameTSCRC(const char* s);
+	CCryNameTSCRC& operator=(const char* s) { return FoperatorEqOv0(this, s); }
+
+#if 0
+	CCryNameTSCRC();
+	CCryNameTSCRC(const CCryNameTSCRC& _arg0_);
+	CCryNameTSCRC(const char* _arg0_, bool _arg1_);
+	CCryNameTSCRC(unsigned _arg0_);
+	~CCryNameTSCRC();
+	CCryNameTSCRC& operator=(const CCryNameTSCRC& _arg0_);
+	bool operator==(const CCryNameTSCRC& _arg0_) const;
+	bool operator==(const char* _arg0_) const;
+	bool operator!=(const CCryNameTSCRC& _arg0_) const;
+	bool operator!=(const char* _arg0_) const;
+	bool operator<(const CCryNameTSCRC& _arg0_) const;
+	bool operator>(const CCryNameTSCRC& _arg0_) const;
+	bool empty() const;
+	void reset();
+	unsigned get() const;
+	void add(int _arg0_);
+	const CTypeInfo& TypeInfo() const;
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FCCryNameTSCRCOv2 = PreyFunction<void(CCryNameTSCRC* const _this, const char* s)>(0xFE0780);
+	static inline auto FoperatorEqOv0 = PreyFunction<CCryNameTSCRC& (CCryNameTSCRC* const _this, const char* s)>(0x1043D60);
+};
+
+// CNameTableR
+// Header:  CryEngine/renderdll/common/CryNameR.h
+// Include: Prey/RenderDll/Common/CryNameR.h
+class CNameTableR
+{ // Size=64 (0x40)
+public:
+	// CNameTableR::SNameEntryR
+	// Header:  CryEngine/renderdll/common/CryNameR.h
+	struct SNameEntryR
+	{ // Size=12 (0xC)
+		int nRefCount;
+		int nLength;
+		int nAllocSize;
+
+	#if 0
+		const char* GetStr();
+		void AddRef();
+		int Release();
+		int GetMemoryUsage();
+		int GetLength();
+	#endif
+	};
+
+	using NameMap = std::unordered_map<char const *,CNameTableR::SNameEntryR *,stl::hash_stricmp<char const *>,stl::hash_stricmp<char const *>,std::allocator<std::pair<char const * const,CNameTableR::SNameEntryR *> > >;
+
+	static inline auto m_nRenderThread = PreyGlobal<unsigned long>(0x2CA0324);
+	std::unordered_map<char const *,CNameTableR::SNameEntryR *,stl::hash_stricmp<char const *>,stl::hash_stricmp<char const *>,std::allocator<std::pair<char const * const,CNameTableR::SNameEntryR *> > > m_nameMap;
+
+	CNameTableR::SNameEntryR* GetEntry(const char* str) { return FGetEntry(this, str); }
+
+#if 0
+	void CheckThread();
+	CNameTableR();
+	~CNameTableR();
+	CNameTableR::SNameEntryR* FindEntry(const char* _arg0_);
+	void Release(CNameTableR::SNameEntryR* _arg0_);
+	int GetMemoryUsage();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+	int GetNumberOfEntries();
+	void LogNames();
+#endif
+
+	static inline auto FGetEntry = PreyFunction<CNameTableR::SNameEntryR* (CNameTableR* const _this, const char* str)>(0xEF3430);
+};
+#endif // !MOONCRASH

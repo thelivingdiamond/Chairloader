@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -87,4 +89,100 @@ public:
 	static inline auto FGetCharacterStatusOv0 = PreyFunction<const CArkCharacterStatus* (const ArkRosterComponent* const _this, const uint64_t _id)>(0x15B8840);
 	static inline auto FIsPlayerCharacter = PreyFunction<bool(const ArkRosterComponent* const _this, const uint64_t _characterId)>(0x15B8DC0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkDataComponentBase.h>
 
+class CArkFlowNodeCharacterPasswordAcquired;
+struct IEntity;
+
+// CArkCharacterStatus
+// Header:  Prey/GameDll/ark/player/pda/ArkRosterComponent.h
+class CArkCharacterStatus
+{ // Size=24 (0x18)
+public:
+	uint64_t m_id;
+	uint64_t m_location;
+	EArkVitalSign m_vitalSign;
+	bool m_bIsAlive;
+	bool m_bWasDiscovered;
+	bool m_bHasTrackingChip;
+
+	void NotifyListeners() { FNotifyListeners(this); }
+
+#if 0
+	CArkCharacterStatus();
+	CArkCharacterStatus(const uint64_t _arg0_, const uint64_t _arg1_, const EArkVitalSign _arg2_, const bool _arg3_, const bool _arg4_, const bool _arg5_);
+	void Serialize(TSerialize _arg0_);
+	uint64_t GetID() const;
+	uint64_t GetLocation() const;
+	bool GetIsAlive() const;
+	bool GetWasDiscovered() const;
+	bool GetHasTrackingChip() const;
+	EArkVitalSign GetVitalSign() const;
+	void SetLocation(const uint64_t _arg0_);
+	void SetIsAlive(const bool _arg0_);
+	void SetVitalSign(const EArkVitalSign _arg0_);
+	void SetWasDiscovered(const bool _arg0_);
+	void SetHasTrackingChip(const bool _arg0_);
+	bool operator==(const uint64_t _arg0_) const;
+#endif
+
+	static inline auto FNotifyListeners = PreyFunction<void(CArkCharacterStatus* const _this)>(0x16DE520);
+};
+
+// ArkRosterComponent
+// Header:  Prey/GameDll/ark/player/pda/ArkRosterComponent.h
+class ArkRosterComponent : public ArkDataComponentBase
+{ // Size=128 (0x80)
+public:
+	std::vector<CArkCharacterStatus> m_characterStatus;
+	std::vector<uint64_t> m_passwords;
+	std::vector<uint64_t> m_passwordsThatResetOnCharacterChange;
+	std::vector<CArkFlowNodeCharacterPasswordAcquired*> m_flowNodeListeners;
+
+	static void FormatStringWithPassword(wstring& _input, const uint64_t _id) { FFormatStringWithPassword(_input, _id); }
+	void GivePassword(uint64_t _characterId, bool _bShowHUDNotification) { FGivePassword(this, _characterId, _bShowHUDNotification); }
+	bool HasPassword(const uint64_t _id) const { return FHasPassword(this, _id); }
+	void Reset() { FReset(this); }
+	void ResetCollected() { FResetCollected(this); }
+	void ResetForCharacterChange() { FResetForCharacterChange(this); }
+	void ResetSimulation() { FResetSimulation(this); }
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+	void KillCharacter(const uint64_t _id) { FKillCharacter(this, _id); }
+	void SetCharacterWasDiscovered(const uint64_t _characterId) { FSetCharacterWasDiscovered(this, _characterId); }
+	const char* GetCharacterName(const uint64_t _characterId) const { return FGetCharacterName(this, _characterId); }
+	void AddFlowNodeListener(CArkFlowNodeCharacterPasswordAcquired* _pListener) { FAddFlowNodeListener(this, _pListener); }
+	void RemoveFlowNodeListener(CArkFlowNodeCharacterPasswordAcquired* _pListener) { FRemoveFlowNodeListener(this, _pListener); }
+	const IEntity* GetEntityForCharacter(const uint64_t _characterId) const { return FGetEntityForCharacter(this, _characterId); }
+	CArkCharacterStatus* GetCharacterStatus(const uint64_t _id) { return FGetCharacterStatusOv1(this, _id); }
+	const CArkCharacterStatus* GetCharacterStatus(const uint64_t _id) const { return FGetCharacterStatusOv0(this, _id); }
+	bool IsPlayerCharacter(const uint64_t _characterId) const { return FIsPlayerCharacter(this, _characterId); }
+
+#if 0
+	void CollectAllPasswords();
+	const std::vector<uint64_t>& GetPasswords() const;
+#endif
+
+	static inline auto FFormatStringWithPassword = PreyFunction<void(wstring& _input, const uint64_t _id)>(0x16DDCA0);
+	static inline auto FGivePassword = PreyFunction<void(ArkRosterComponent* const _this, uint64_t _characterId, bool _bShowHUDNotification)>(0x16DE210);
+	static inline auto FHasPassword = PreyFunction<bool(const ArkRosterComponent* const _this, const uint64_t _id)>(0x16DE470);
+	static inline auto FReset = PreyFunction<void(ArkRosterComponent* const _this)>(0x16DE5F0);
+	static inline auto FResetCollected = PreyFunction<void(ArkRosterComponent* const _this)>(0x16DE780);
+	static inline auto FResetForCharacterChange = PreyFunction<void(ArkRosterComponent* const _this)>(0x16DE7A0);
+	static inline auto FResetSimulation = PreyFunction<void(ArkRosterComponent* const _this)>(0x16DE840);
+	static inline auto FSerialize = PreyFunction<void(ArkRosterComponent* const _this, TSerialize ser)>(0x16DE910);
+	static inline auto FKillCharacter = PreyFunction<void(ArkRosterComponent* const _this, const uint64_t _id)>(0x16DE4C0);
+	static inline auto FSetCharacterWasDiscovered = PreyFunction<void(ArkRosterComponent* const _this, const uint64_t _characterId)>(0x16DEB00);
+	static inline auto FGetCharacterName = PreyFunction<const char* (const ArkRosterComponent* const _this, const uint64_t _characterId)>(0x16DDE60);
+	static inline auto FAddFlowNodeListener = PreyFunction<void(ArkRosterComponent* const _this, CArkFlowNodeCharacterPasswordAcquired* _pListener)>(0x16DDC50);
+	static inline auto FRemoveFlowNodeListener = PreyFunction<void(ArkRosterComponent* const _this, CArkFlowNodeCharacterPasswordAcquired* _pListener)>(0x16DE5A0);
+	static inline auto FGetEntityForCharacter = PreyFunction<const IEntity* (const ArkRosterComponent* const _this, const uint64_t _characterId)>(0x16DDEF0);
+	static inline auto FGetCharacterStatusOv1 = PreyFunction<CArkCharacterStatus* (ArkRosterComponent* const _this, const uint64_t _id)>(0x16DDEC0);
+	static inline auto FGetCharacterStatusOv0 = PreyFunction<const CArkCharacterStatus* (const ArkRosterComponent* const _this, const uint64_t _id)>(0x16DDEC0);
+	static inline auto FIsPlayerCharacter = PreyFunction<bool(const ArkRosterComponent* const _this, const uint64_t _characterId)>(0x16DE4A0);
+};
+#endif // !MOONCRASH

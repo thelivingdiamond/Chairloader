@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -31,4 +33,42 @@ public:
 	static inline auto FGetDataOv0 = PreyFunction<const void *(ArkContiguousMemory const *const _this)>(0x12E5E70);
 	static inline auto FAllocateAligned = PreyFunction<void *(ArkContiguousMemory *const _this, uint64_t _byteCount, uint64_t _alignment)>(0x1056320);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+// ArkContiguousMemory
+// Header:  Prey/ArkCommon/ArkContiguousMemory.h
+class ArkContiguousMemory
+{ // Size=24 (0x18)
+public:
+	std::vector<unsigned char> m_memory;
+
+	ArkContiguousMemory();
+	ArkContiguousMemory(uint64_t _reservedByteCount);
+	ArkContiguousMemory(ArkContiguousMemory&& _other);
+	uint64_t GetAllocatedByteCount() const { return FGetAllocatedByteCount(this); }
+	void* GetData() { return FGetDataOv1(this); }
+	const void* GetData() const { return FGetDataOv0(this); }
+	void* AllocateAligned(uint64_t _byteCount, uint64_t _alignment) { return FAllocateAligned(this, _byteCount, _alignment); }
+
+#if 0
+	ArkContiguousMemory(ArkContiguousMemory& _arg0_);
+	ArkContiguousMemory& operator=(ArkContiguousMemory _arg0_);
+	bool IsEmpty() const;
+	uint64_t GetAvailableByteCount() const;
+	uint64_t GetReservedByteCount() const;
+	bool CanAllocate(uint64_t _arg0_) const;
+	bool CanAllocateAligned(uint64_t _arg0_, uint64_t _arg1_) const;
+	void* Allocate(uint64_t _arg0_);
+#endif
+
+	static inline auto FArkContiguousMemoryOv3 = PreyFunction<void(ArkContiguousMemory* const _this)>(0x1F4DF0);
+	static inline auto FArkContiguousMemoryOv2 = PreyFunction<void(ArkContiguousMemory* const _this, uint64_t _reservedByteCount)>(0x1072900);
+	static inline auto FArkContiguousMemoryOv0 = PreyFunction<void(ArkContiguousMemory* const _this, ArkContiguousMemory&& _other)>(0x10728C0);
+	static inline auto FGetAllocatedByteCount = PreyFunction<uint64_t(const ArkContiguousMemory* const _this)>(0x10729A0);
+	static inline auto FGetDataOv1 = PreyFunction<void* (ArkContiguousMemory* const _this)>(0x1112EA0);
+	static inline auto FGetDataOv0 = PreyFunction<const void* (const ArkContiguousMemory* const _this)>(0x1112EA0);
+	static inline auto FAllocateAligned = PreyFunction<void* (ArkContiguousMemory* const _this, uint64_t _byteCount, uint64_t _alignment)>(0x1072940);
+};
+#endif // !MOONCRASH

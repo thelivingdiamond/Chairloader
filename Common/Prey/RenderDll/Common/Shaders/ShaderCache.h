@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -472,3 +474,60 @@ typedef std::map<CCryNameR, std::vector<SCacheCombination>> FXShaderCacheCombina
 typedef FXShaderCacheCombinationsList::iterator             FXShaderCacheCombinationsListItor;
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <_unknown/UPipelineState.h>
+
+class ICrySizer;
+struct SShaderGen;
+
+// SShaderCombIdent
+// Header:  CryEngine/renderdll/common/shaders/shadercache.h
+// Include: Prey/RenderDll/Common/Shaders/ShaderCache.h
+struct SShaderCombIdent
+{ // Size=40 (0x28)
+	uint64_t m_RTMask;
+	uint64_t m_GLMask;
+	UPipelineState m_pipelineState;
+	unsigned m_LightMask;
+	unsigned m_MDMask;
+	unsigned m_MDVMask;
+	unsigned m_nHash;
+	uint64_t m_FastCompare1;
+	uint64_t m_FastCompare2;
+
+	bool operator==(const SShaderCombIdent& other) const { return FoperatorEqEq(this, other); }
+	unsigned PostCreate() { return FPostCreate(this); }
+
+#if 0
+	SShaderCombIdent(uint64_t _arg0_, uint64_t _arg1_, unsigned _arg2_, unsigned _arg3_, unsigned _arg4_);
+	SShaderCombIdent(uint64_t _arg0_, const SShaderCombIdent& _arg1_);
+	SShaderCombIdent();
+#endif
+
+	static inline auto FoperatorEqEq = PreyFunction<bool(const SShaderCombIdent* const _this, const SShaderCombIdent& other)>(0x1030D90);
+	static inline auto FPostCreate = PreyFunction<unsigned(SShaderCombIdent* const _this)>(0x1030DD0);
+};
+
+// SShaderGenComb
+// Header:  CryEngine/renderdll/common/shaders/shadercache.h
+// Include: Prey/RenderDll/Common/Shaders/ShaderCache.h
+struct SShaderGenComb
+{ // Size=16 (0x10)
+	CCryNameR Name;
+	SShaderGen* pGen;
+
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+
+#if 0
+	SShaderGenComb();
+	SShaderGenComb(const SShaderGenComb& _arg0_);
+	~SShaderGenComb();
+	SShaderGenComb& operator=(const SShaderGenComb& _arg0_);
+#endif
+
+	static inline auto FGetMemoryUsage = PreyFunction<void(const SShaderGenComb* const _this, ICrySizer* pSizer)>(0xF6ABA0);
+};
+#endif // !MOONCRASH

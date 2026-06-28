@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -63,4 +65,69 @@ public:
 	static inline auto FSetLeftDebugOffset = PreyFunction<void(CWeaponOffsetInput *const _this, SWeaponOffset const &offset)>(0x18031D0);
 	static inline auto FAddOffset = PreyFunction<void(CWeaponOffsetInput *const _this, Vec3 pos, Ang3 ang)>(0x1802F30);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryInput/IInput.h>
+#include <Prey/GameDll/weaponoffset.h>
 
+struct SInputEvent;
+
+// CWeaponOffsetInput
+// Header:  Prey/GameDll/WeaponOffsetInput.h
+class CWeaponOffsetInput : public IInputEventListener
+{ // Size=80 (0x50)
+public:
+	enum Mode
+	{
+		EMode_None = 0,
+		EMode_PositionOffset = 1,
+		EMode_RotationOffset = 2,
+		EMode_ZAxisOffset = 3,
+	};
+
+	enum Sensibility
+	{
+		ESensibility_Slow = 0,
+		ESensibility_Medium = 1,
+		ESensibility_Fast = 2,
+	};
+
+	enum Hand
+	{
+		EHand_Right = 0,
+		EHand_Left = 1,
+	};
+
+	using TWeaponOffsetInput = std::shared_ptr<CWeaponOffsetInput>;
+
+	SWeaponOffset m_debugRightOffset;
+	SWeaponOffset m_debugLeftOffset;
+	Vec2 m_offset;
+	CWeaponOffsetInput::Mode m_mode;
+	CWeaponOffsetInput::Sensibility m_sensibility;
+	CWeaponOffsetInput::Hand m_hand;
+
+	virtual void Update();
+	virtual bool OnInputEvent(const SInputEvent& inputEvent);
+	static std::shared_ptr<CWeaponOffsetInput> Get() { return FGet(); }
+	void SetRightDebugOffset(const SWeaponOffset& offset) { FSetRightDebugOffset(this, offset); }
+	void SetLeftDebugOffset(const SWeaponOffset& offset) { FSetLeftDebugOffset(this, offset); }
+	void AddOffset(Vec3 pos, Ang3 ang) { FAddOffset(this, pos, ang); }
+
+#if 0
+	CWeaponOffsetInput();
+	void AddRightDebugOffset(const SWeaponOffset& _arg0_);
+	SWeaponOffset GetRightDebugOffset() const;
+	void AddLeftDebugOffset(const SWeaponOffset& _arg0_);
+	SWeaponOffset GetLeftDebugOffset() const;
+#endif
+
+	static inline auto FUpdate = PreyFunction<void(CWeaponOffsetInput* const _this)>(0x192ADA0);
+	static inline auto FOnInputEvent = PreyFunction<bool(CWeaponOffsetInput* const _this, const SInputEvent& inputEvent)>(0x192AC80);
+	static inline auto FGet = PreyFunction<std::shared_ptr<CWeaponOffsetInput>()>(0x192ABF0);
+	static inline auto FSetRightDebugOffset = PreyFunction<void(CWeaponOffsetInput* const _this, const SWeaponOffset& offset)>(0x192AD80);
+	static inline auto FSetLeftDebugOffset = PreyFunction<void(CWeaponOffsetInput* const _this, const SWeaponOffset& offset)>(0x17E54E0);
+	static inline auto FAddOffset = PreyFunction<void(CWeaponOffsetInput* const _this, Vec3 pos, Ang3 ang)>(0x192AAE0);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -82,4 +84,88 @@ public:
 	static inline auto FOnStatChange = PreyFunction<void(CArkWeaponDiscRifle *const _this, const unsigned _ownerId, CCryName const &_stat64i32, const float _previousValue, const float _newValue)>(0x138A970);
 	static inline auto FOnAmmoDepleted = PreyFunction<void(CArkWeaponDiscRifle *const _this)>(0x138A850);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/player/IArkPsiScanningComponentListener.h>
+#include <Prey/GameDll/ark/weapons/ArkWeapon.h>
 
+class ArkPsiScanningComponent;
+class CCryName;
+class ICrySizer;
+struct IEntityClass;
+struct IGameObject;
+struct SEntityUpdateContext;
+
+// CArkWeaponDiscRifle
+// Header:  Prey/GameDll/ark/weapons/ArkWeaponDiscRifle.h
+class CArkWeaponDiscRifle : public CArkWeapon, public IArkPsiScanningComponentListener
+{ // Size=1680 (0x690)
+public:
+	string m_cancelHintString;
+	string m_outOfAmmoString;
+	IEntityClass* m_pAmmoClass;
+	ArkPsiScanningComponent* m_pPsiScanningComponent;
+	ArkSimpleTimer m_targetAcquireTimer;
+	ArkSimpleTimer m_targetAcquireTimeOutTimer;
+	ArkRandomizedAutoResetTimer m_periodicDialogTimer;
+	bool m_bCancelledAttack;
+	bool m_bAcquiringTarget;
+
+	CArkWeaponDiscRifle();
+	virtual ~CArkWeaponDiscRifle();
+	virtual void Release();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual void OnLockTargetReticle(const unsigned _targetEntityId);
+	virtual void OnUnlockTargetReticle(const unsigned _targetEntityId);
+	virtual void OnUpdateTargetReticle(const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime);
+	virtual bool OnActionAttackUse(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual bool OnActionAttackPrimary(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual void OnEquip();
+	virtual void OnUnequip(const bool _bUnselect, const bool _bImmediate);
+	virtual void OnMalfunctionStart();
+	virtual void OnReloadStart();
+	virtual bool HasTarget() const;
+	virtual float GetTargetLockPercentage() const;
+	virtual float GetTargetLockTimeOutElapsedSec() const;
+	void TriggerDialogEvent(const char* _concept, unsigned _entityId) { FTriggerDialogEvent(this, _concept, _entityId); }
+	virtual bool StartAttack();
+	virtual void LoadCachedProperties();
+	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+	virtual void OnAmmoDepleted();
+
+#if 0
+	void UpdateDialogEventPeriod();
+	void AcquireTarget();
+#endif
+
+	static inline auto FCArkWeaponDiscRifleOv1 = PreyFunction<void(CArkWeaponDiscRifle* const _this)>(0x148D1B0);
+	static inline auto FRelease = PreyFunction<void(CArkItem* const _this)>(0x148E090);
+	static inline auto FInit = PreyFunction<bool(CArkItem* const _this, IGameObject* _pGameObject)>(0x148D5E0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkItem* const _this, TSerialize _ser)>(0x148D4B0);
+	static inline auto FUpdate = PreyFunction<void(CArkItem* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x148E550);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkItem* const _this, ICrySizer* _s)>(0x1490040);
+	static inline auto FOnLockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _targetEntityId)>(0x148DE20);
+	static inline auto FOnUnlockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _targetEntityId)>(0x148DF70);
+	static inline auto FOnUpdateTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime)>(0x148DFA0);
+	static inline auto FOnActionAttackUse = PreyFunction<bool(CArkWeaponDiscRifle* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x148DD20);
+	static inline auto FOnActionAttackPrimary = PreyFunction<bool(CArkWeaponDiscRifle* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x148DBD0);
+	static inline auto FOnEquip = PreyFunction<void(CArkWeaponDiscRifle* const _this)>(0x148DDC0);
+	static inline auto FOnUnequip = PreyFunction<void(CArkWeaponDiscRifle* const _this, const bool _bUnselect, const bool _bImmediate)>(0x148DF10);
+	static inline auto FOnMalfunctionStart = PreyFunction<void(CArkWeaponDiscRifle* const _this)>(0x148DE70);
+	static inline auto FOnReloadStart = PreyFunction<void(CArkWeaponDiscRifle* const _this)>(0x148DE90);
+	static inline auto FHasTarget = PreyFunction<bool(const CArkWeaponDiscRifle* const _this)>(0x148D5C0);
+	static inline auto FGetTargetLockPercentage = PreyFunction<float(const CArkWeaponDiscRifle* const _this)>(0x148D540);
+	static inline auto FGetTargetLockTimeOutElapsedSec = PreyFunction<float(const CArkWeaponDiscRifle* const _this)>(0x148D5A0);
+	static inline auto FTriggerDialogEvent = PreyFunction<void(CArkWeaponDiscRifle* const _this, const char* _concept, unsigned _entityId)>(0x148E170);
+	static inline auto FStartAttack = PreyFunction<bool(CArkWeaponDiscRifle* const _this)>(0x148E140);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkItem* const _this)>(0x148D630);
+	static inline auto FOnStatChange = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x148DEB0);
+	static inline auto FOnAmmoDepleted = PreyFunction<void(CArkWeaponDiscRifle* const _this)>(0x148DD90);
+};
+#endif // !MOONCRASH

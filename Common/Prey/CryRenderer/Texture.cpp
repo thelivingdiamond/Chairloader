@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #include "Texture.h"
 #include <Prey/RenderDll/Common/Textures/Texture.h>
 

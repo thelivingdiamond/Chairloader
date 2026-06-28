@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -24,4 +26,31 @@ public:
 	static inline auto FOnStatChange = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x12F6FB0);
 	static inline auto FIsHarmful = PreyFunction<bool(const ArkStatusGoodDrunk* const _this)>(0xDD23F0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
 
+class CCryName;
+
+// ArkStatusGoodDrunk
+// Header:  Prey/GameDll/ark/player/trauma/ArkStatusGoodDrunk.h
+class ArkStatusGoodDrunk : public ArkTraumaBase, public IArkStatsListener
+{ // Size=336 (0x150)
+public:
+	ArkStatusGoodDrunk();
+	virtual ~ArkStatusGoodDrunk();
+	virtual void Serialize(TSerialize _ser);
+	virtual void Activate(int _level);
+	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+	virtual bool IsHarmful() const;
+
+	static inline auto FArkStatusGoodDrunkOv1 = PreyFunction<void(ArkStatusGoodDrunk* const _this)>(0x13C1B60);
+	static inline auto FSerialize = PreyFunction<void(ArkStatusGoodDrunk* const _this, TSerialize _ser)>(0x13C1D70);
+	static inline auto FActivate = PreyFunction<void(ArkStatusGoodDrunk* const _this, int _level)>(0x13C1C50);
+	static inline auto FOnStatChange = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x13C1CA0);
+	static inline auto FIsHarmful = PreyFunction<bool(const ArkStatusGoodDrunk* const _this)>(0x13B0900);
+};
+#endif // !MOONCRASH

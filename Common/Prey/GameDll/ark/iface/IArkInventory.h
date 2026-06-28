@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -35,4 +36,3 @@ public:
 	virtual void NotifyOfItemCountChange(unsigned arg0) const = 0;
 	virtual void DoMetricsSnapshot(XmlNodeRef const &arg0) const = 0;
 };
-

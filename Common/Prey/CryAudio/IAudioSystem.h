@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -62,4 +63,3 @@ struct IAudioSystem // Id=80021A9 Size=8
 	virtual const char *GetAudioControlName(EAudioControlType arg0, const unsigned arg1, const unsigned arg2) = 0;
 	virtual void GetMemoryInfo(SAudioImplMemoryInfo &arg0) = 0;
 };
-

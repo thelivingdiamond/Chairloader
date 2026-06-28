@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -28,4 +30,34 @@ struct IArkWeapon // Id=8015F10 Size=8
 	static inline auto FOnJump = PreyFunction<void(IArkWeapon *const _this)>(0xA13080);
 	static inline auto FOnSlide = PreyFunction<void(IArkWeapon *const _this)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+class CCryName;
+struct IArkWeaponEventListener;
+
+// IArkWeapon
+// Header:  Prey/GameDll/ark/weapons/IArkWeapon.h
+struct IArkWeapon
+{ // Size=8 (0x8)
+	virtual ~IArkWeapon();
+	virtual void OnEquip() = 0;
+	virtual void OnUnequip(const bool _bUnselect, const bool _bImmediate) = 0;
+	virtual void SetWeaponAmmoCount(const int _weaponAmmoCount) = 0;
+	virtual int GetWeaponAmmoCount() const = 0;
+	virtual int GetInventoryAmmoCount() const = 0;
+	virtual int GetClipSize() const = 0;
+	virtual void OnJump();
+	virtual void OnSlide();
+	virtual bool OnActionAttackUse(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value) = 0;
+	virtual bool OnActionAttackPrimary(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value) = 0;
+	virtual bool OnActionReload(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value) = 0;
+	virtual void RegisterListener(IArkWeaponEventListener* _pListener) = 0;
+	virtual void UnregisterListener(IArkWeaponEventListener* _pListener) = 0;
+	virtual const string& GetAmmoArchetypeName() const = 0;
+
+	static inline auto FOnJump = PreyFunction<void(IArkWeapon* const _this)>(0x1333E90);
+	static inline auto FOnSlide = PreyFunction<void(IArkWeapon* const _this)>(0x1333E90);
+};
+#endif // !MOONCRASH

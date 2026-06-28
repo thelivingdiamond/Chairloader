@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header test file for path Prey/GameDll/ark/turret/turretanimfsm/arkturretanimfsm_fsm.h
 #if 0
 #include "arkturretanimfsm_fsm.h"

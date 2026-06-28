@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -188,4 +189,3 @@ template<typename F> ILINE F sqr(const Vec2_tpl<F>& op)
 {
 	return op | op;
 }
-

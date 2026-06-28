@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -80,4 +82,4 @@ public:
 	static inline auto FGetAttentionPosition = PreyFunction<Vec3(ArkComplexAttentionObject const *const _this)>(0x13EF180);
 	static inline auto FOnAttentionLevelsChanged = PreyFunction<void(ArkComplexAttentionObject *const _this, ArkAttentionLevelChange const *_pFirstChange, ArkAttentionLevelChange const *_pLastChange)>(0x15AAEA0);
 };
-
+#endif // !MOONCRASH

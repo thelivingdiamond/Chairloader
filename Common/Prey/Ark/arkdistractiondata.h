@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -988,4 +990,1062 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x107F840);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x107FA00);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <_unknown/DistractionEvent.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// DistractionAnimation
+// Header:  Prey/Ark/arkdistractiondata.h
+class DistractionAnimation : public ArkReflectedObject
+{ // Size=24 (0x18)
+public:
+	enum class Type
+	{
+		normal = 0,
+		multiStage = 1,
+	};
+
+	// DistractionAnimation::ArkFragmentProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkFragmentProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFragmentProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionAnimation::ArkFragmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionAnimation::ArkFragmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// DistractionAnimation::ArkLoopMinTimeProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkLoopMinTimeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLoopMinTimeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionAnimation::ArkLoopMinTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionAnimation::ArkLoopMinTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// DistractionAnimation::ArkLoopMaxTimeProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkLoopMaxTimeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLoopMaxTimeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionAnimation::ArkLoopMaxTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionAnimation::ArkLoopMaxTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035F0);
+	};
+
+	// DistractionAnimation::ArkTypeProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkTypeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTypeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionAnimation::ArkTypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionAnimation::ArkTypeProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// DistractionAnimation::ArkHoverAddRootMotionProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkHoverAddRootMotionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkHoverAddRootMotionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionAnimation::ArkHoverAddRootMotionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084730);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionAnimation::ArkHoverAddRootMotionProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+	};
+
+	static inline auto s_ArkFragmentProperty = PreyGlobal<DistractionAnimation::ArkFragmentProperty>(0x2D22EA0);
+	string m_Fragment;
+	static inline auto s_ArkLoopMinTimeProperty = PreyGlobal<DistractionAnimation::ArkLoopMinTimeProperty>(0x2D22EC0);
+	float m_LoopMinTime;
+	static inline auto s_ArkLoopMaxTimeProperty = PreyGlobal<DistractionAnimation::ArkLoopMaxTimeProperty>(0x2D22EE0);
+	float m_LoopMaxTime;
+	static inline auto s_ArkTypeProperty = PreyGlobal<DistractionAnimation::ArkTypeProperty>(0x2D22F00);
+	int m_Type;
+	static inline auto s_ArkHoverAddRootMotionProperty = PreyGlobal<DistractionAnimation::ArkHoverAddRootMotionProperty>(0x2D22F20);
+	bool m_HoverAddRootMotion;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	DistractionAnimation();
+	void SetFragment(string _arg0_);
+	const string& GetFragment() const;
+	void SetLoopMinTime(float _arg0_);
+	const float& GetLoopMinTime() const;
+	void SetLoopMaxTime(float _arg0_);
+	const float& GetLoopMaxTime() const;
+	void SetType(int _arg0_);
+	const int& GetType() const;
+	void SetHoverAddRootMotion(bool _arg0_);
+	const bool& GetHoverAddRootMotion() const;
+	DistractionAnimation::Type GetActionType() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10851C0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1085390);
+};
+
+// DistractionLookAt
+// Header:  Prey/Ark/arkdistractiondata.h
+class DistractionLookAt : public ArkReflectedObject
+{ // Size=16 (0x10)
+public:
+	enum class Mode
+	{
+		EntityPosition = 0,
+		EntityCenterBounds = 1,
+		Disabled = 2,
+	};
+
+	// DistractionLookAt::ArkLookAtRelativePosXProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkLookAtRelativePosXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLookAtRelativePosXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionLookAt::ArkLookAtRelativePosXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A56F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionLookAt::ArkLookAtRelativePosXProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// DistractionLookAt::ArkLookAtRelativePosYProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkLookAtRelativePosYProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLookAtRelativePosYProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionLookAt::ArkLookAtRelativePosYProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionLookAt::ArkLookAtRelativePosYProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035E0);
+	};
+
+	// DistractionLookAt::ArkLookAtRelativePosZProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkLookAtRelativePosZProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLookAtRelativePosZProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionLookAt::ArkLookAtRelativePosZProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionLookAt::ArkLookAtRelativePosZProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// DistractionLookAt::ArkModeProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkModeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionLookAt::ArkModeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionLookAt::ArkModeProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035F0);
+	};
+
+	static inline auto s_ArkLookAtRelativePosXProperty = PreyGlobal<DistractionLookAt::ArkLookAtRelativePosXProperty>(0x2D22D00);
+	float m_LookAtRelativePosX;
+	static inline auto s_ArkLookAtRelativePosYProperty = PreyGlobal<DistractionLookAt::ArkLookAtRelativePosYProperty>(0x2D22D20);
+	float m_LookAtRelativePosY;
+	static inline auto s_ArkLookAtRelativePosZProperty = PreyGlobal<DistractionLookAt::ArkLookAtRelativePosZProperty>(0x2D22D40);
+	float m_LookAtRelativePosZ;
+	static inline auto s_ArkModeProperty = PreyGlobal<DistractionLookAt::ArkModeProperty>(0x2D22D60);
+	int m_Mode;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	DistractionLookAt();
+	void SetLookAtRelativePosX(float _arg0_);
+	const float& GetLookAtRelativePosX() const;
+	void SetLookAtRelativePosY(float _arg0_);
+	const float& GetLookAtRelativePosY() const;
+	void SetLookAtRelativePosZ(float _arg0_);
+	const float& GetLookAtRelativePosZ() const;
+	void SetMode(int _arg0_);
+	const int& GetMode() const;
+	Vec3 GetRelativePos() const;
+	DistractionLookAt::Mode GetLookAtMode() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10895D0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1085430);
+};
+
+// DistractionPositioning
+// Header:  Prey/Ark/arkdistractiondata.h
+class DistractionPositioning : public ArkReflectedObject
+{ // Size=36 (0x24)
+public:
+	enum Mode
+	{
+		EntityPosition = 0,
+		EntityCenterBounds = 1,
+	};
+
+	enum class MoveSpeed
+	{
+		Normal = 0,
+		Fast = 1,
+		Fastest = 2,
+	};
+
+	// DistractionPositioning::ArkMinValidStandRadiusProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMinValidStandRadiusProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMinValidStandRadiusProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkMinValidStandRadiusProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A56F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkMinValidStandRadiusProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// DistractionPositioning::ArkMaxValidStandRadiusProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxValidStandRadiusProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxValidStandRadiusProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkMaxValidStandRadiusProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkMaxValidStandRadiusProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035E0);
+	};
+
+	// DistractionPositioning::ArkPositionRelativePosXProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkPositionRelativePosXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionRelativePosXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkPositionRelativePosXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkPositionRelativePosXProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// DistractionPositioning::ArkPositionRelativePosYProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkPositionRelativePosYProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionRelativePosYProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkPositionRelativePosYProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkPositionRelativePosYProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035F0);
+	};
+
+	// DistractionPositioning::ArkPositionRelativePosZProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkPositionRelativePosZProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionRelativePosZProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkPositionRelativePosZProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkPositionRelativePosZProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// DistractionPositioning::ArkValidStandAngleProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkValidStandAngleProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkValidStandAngleProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkValidStandAngleProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkValidStandAngleProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+	};
+
+	// DistractionPositioning::ArkAngleOffsetProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkAngleOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAngleOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkAngleOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkAngleOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// DistractionPositioning::ArkModeProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkModeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkModeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkModeProperty* const _this, ArkReflectedObject* const _pObject)>(0x13B26B0);
+	};
+
+	// DistractionPositioning::ArkMoveSpeedProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMoveSpeedProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMoveSpeedProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const DistractionPositioning::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const DistractionPositioning::ArkMoveSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	static inline auto s_ArkMinValidStandRadiusProperty = PreyGlobal<DistractionPositioning::ArkMinValidStandRadiusProperty>(0x2D22D80);
+	float m_MinValidStandRadius;
+	static inline auto s_ArkMaxValidStandRadiusProperty = PreyGlobal<DistractionPositioning::ArkMaxValidStandRadiusProperty>(0x2D22DA0);
+	float m_MaxValidStandRadius;
+	static inline auto s_ArkPositionRelativePosXProperty = PreyGlobal<DistractionPositioning::ArkPositionRelativePosXProperty>(0x2D22DC0);
+	float m_PositionRelativePosX;
+	static inline auto s_ArkPositionRelativePosYProperty = PreyGlobal<DistractionPositioning::ArkPositionRelativePosYProperty>(0x2D22DE0);
+	float m_PositionRelativePosY;
+	static inline auto s_ArkPositionRelativePosZProperty = PreyGlobal<DistractionPositioning::ArkPositionRelativePosZProperty>(0x2D22E00);
+	float m_PositionRelativePosZ;
+	static inline auto s_ArkValidStandAngleProperty = PreyGlobal<DistractionPositioning::ArkValidStandAngleProperty>(0x2D22E20);
+	float m_ValidStandAngle;
+	static inline auto s_ArkAngleOffsetProperty = PreyGlobal<DistractionPositioning::ArkAngleOffsetProperty>(0x2D22E40);
+	float m_AngleOffset;
+	static inline auto s_ArkModeProperty = PreyGlobal<DistractionPositioning::ArkModeProperty>(0x2D22E60);
+	int m_Mode;
+	static inline auto s_ArkMoveSpeedProperty = PreyGlobal<DistractionPositioning::ArkMoveSpeedProperty>(0x2D22E80);
+	int m_MoveSpeed;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	DistractionPositioning();
+	void SetMinValidStandRadius(float _arg0_);
+	const float& GetMinValidStandRadius() const;
+	void SetMaxValidStandRadius(float _arg0_);
+	const float& GetMaxValidStandRadius() const;
+	void SetPositionRelativePosX(float _arg0_);
+	const float& GetPositionRelativePosX() const;
+	void SetPositionRelativePosY(float _arg0_);
+	const float& GetPositionRelativePosY() const;
+	void SetPositionRelativePosZ(float _arg0_);
+	const float& GetPositionRelativePosZ() const;
+	void SetValidStandAngle(float _arg0_);
+	const float& GetValidStandAngle() const;
+	void SetAngleOffset(float _arg0_);
+	const float& GetAngleOffset() const;
+	void SetMode(int _arg0_);
+	const int& GetMode() const;
+	void SetMoveSpeed(int _arg0_);
+	const int& GetMoveSpeed() const;
+	DistractionPositioning::Mode GetPositionMode() const;
+	DistractionPositioning::MoveSpeed GetMoveSpeedMode() const;
+	Vec3 GetOffset() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10851F0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10854D0);
+};
+
+// Distraction
+// Header:  Prey/Ark/arkdistractiondata.h
+class Distraction : public ArkReflectedObject
+{ // Size=176 (0xB0)
+public:
+	// Distraction::ArkIDProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// Distraction::ArkNameProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// Distraction::ArkDebugProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDebugProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDebugProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkDebugProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x108CF40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkDebugProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// Distraction::ArkAbilityContextIdProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkAbilityContextIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAbilityContextIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkAbilityContextIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084740);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkAbilityContextIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// Distraction::ArkIgnoreNpcFacingCheckProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkIgnoreNpcFacingCheckProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIgnoreNpcFacingCheckProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkIgnoreNpcFacingCheckProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084750);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkIgnoreNpcFacingCheckProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// Distraction::ArkOnUseCooldownProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkOnUseCooldownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkOnUseCooldownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkOnUseCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3110);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkOnUseCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x107C370);
+	};
+
+	// Distraction::ArkCanBeUsedInZeroGProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkCanBeUsedInZeroGProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCanBeUsedInZeroGProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkCanBeUsedInZeroGProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD180);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkCanBeUsedInZeroGProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// Distraction::ArkReusableProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkReusableProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReusableProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkReusableProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084760);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkReusableProperty* const _this, ArkReflectedObject* const _pObject)>(0x108B5E0);
+	};
+
+	// Distraction::ArkSkipMovementProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkSkipMovementProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSkipMovementProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkSkipMovementProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x108B5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkSkipMovementProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084770);
+	};
+
+	// Distraction::ArkCanBeSimultaneousProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkCanBeSimultaneousProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCanBeSimultaneousProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkCanBeSimultaneousProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084780);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkCanBeSimultaneousProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084790);
+	};
+
+	// Distraction::ArkCanRetreatToProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkCanRetreatToProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCanRetreatToProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkCanRetreatToProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084400);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkCanRetreatToProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3130);
+	};
+
+	// Distraction::ArkTriggersAreaCooldownProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkTriggersAreaCooldownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTriggersAreaCooldownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkTriggersAreaCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084410);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkTriggersAreaCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084420);
+	};
+
+	// Distraction::ArkUsesAreaCooldownProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkUsesAreaCooldownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUsesAreaCooldownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkUsesAreaCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084430);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkUsesAreaCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084440);
+	};
+
+	// Distraction::ArkUseableByTagProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkUseableByTagProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUseableByTagProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkUseableByTagProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B6480);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkUseableByTagProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// Distraction::ArkTryDistractRateSecProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkTryDistractRateSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTryDistractRateSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkTryDistractRateSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkTryDistractRateSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// Distraction::ArkMaxDistractDistanceProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxDistractDistanceProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxDistractDistanceProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMaxDistractDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089EB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMaxDistractDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3160);
+	};
+
+	// Distraction::ArkMaxDistractDistanceVerticalProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxDistractDistanceVerticalProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxDistractDistanceVerticalProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMaxDistractDistanceVerticalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMaxDistractDistanceVerticalProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// Distraction::ArkMaxDistractionAngleDegreesOffForwardProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxDistractionAngleDegreesOffForwardProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxDistractionAngleDegreesOffForwardProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMaxDistractionAngleDegreesOffForwardProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084460);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMaxDistractionAngleDegreesOffForwardProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3170);
+	};
+
+	// Distraction::ArkMinDurationProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMinDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMinDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMinDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMinDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// Distraction::ArkMaxDurationProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMaxDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3180);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMaxDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084470);
+	};
+
+	// Distraction::ArkNpcUseColdownProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkNpcUseColdownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNpcUseColdownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkNpcUseColdownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084480);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkNpcUseColdownProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// Distraction::ArkMinHeightDifferenceProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMinHeightDifferenceProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMinHeightDifferenceProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMinHeightDifferenceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084490);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMinHeightDifferenceProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3190);
+	};
+
+	// Distraction::ArkMaxHeightDifferenceProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkMaxHeightDifferenceProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMaxHeightDifferenceProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkMaxHeightDifferenceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A31A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkMaxHeightDifferenceProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+	};
+
+	// Distraction::ArkDistractionLookAtProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDistractionLookAtProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDistractionLookAtProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkDistractionLookAtProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10844B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkDistractionLookAtProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A31B0);
+	};
+
+	// Distraction::ArkDistractionPositioningProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDistractionPositioningProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDistractionPositioningProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkDistractionPositioningProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10844C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkDistractionPositioningProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844E0);
+	};
+
+	// Distraction::ArkDistractionAnimationProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDistractionAnimationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDistractionAnimationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkDistractionAnimationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10844F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkDistractionAnimationProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF6A0);
+	};
+
+	// Distraction::ArkDistractionEventProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDistractionEventProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDistractionEventProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const Distraction::ArkDistractionEventProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10845C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const Distraction::ArkDistractionEventProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084620);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<Distraction::ArkIDProperty>(0x2D22F40);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<Distraction::ArkNameProperty>(0x2D22F60);
+	string m_Name;
+	static inline auto s_ArkDebugProperty = PreyGlobal<Distraction::ArkDebugProperty>(0x2D22F80);
+	bool m_Debug;
+	static inline auto s_ArkAbilityContextIdProperty = PreyGlobal<Distraction::ArkAbilityContextIdProperty>(0x2D22FA0);
+	uint64_t m_AbilityContextId;
+	static inline auto s_ArkIgnoreNpcFacingCheckProperty = PreyGlobal<Distraction::ArkIgnoreNpcFacingCheckProperty>(0x2D22FC0);
+	bool m_IgnoreNpcFacingCheck;
+	static inline auto s_ArkOnUseCooldownProperty = PreyGlobal<Distraction::ArkOnUseCooldownProperty>(0x2D22FE0);
+	float m_OnUseCooldown;
+	static inline auto s_ArkCanBeUsedInZeroGProperty = PreyGlobal<Distraction::ArkCanBeUsedInZeroGProperty>(0x2D23000);
+	bool m_CanBeUsedInZeroG;
+	static inline auto s_ArkReusableProperty = PreyGlobal<Distraction::ArkReusableProperty>(0x2D23020);
+	bool m_Reusable;
+	static inline auto s_ArkSkipMovementProperty = PreyGlobal<Distraction::ArkSkipMovementProperty>(0x2D23040);
+	bool m_SkipMovement;
+	static inline auto s_ArkCanBeSimultaneousProperty = PreyGlobal<Distraction::ArkCanBeSimultaneousProperty>(0x2D23060);
+	bool m_CanBeSimultaneous;
+	static inline auto s_ArkCanRetreatToProperty = PreyGlobal<Distraction::ArkCanRetreatToProperty>(0x2D23080);
+	bool m_CanRetreatTo;
+	static inline auto s_ArkTriggersAreaCooldownProperty = PreyGlobal<Distraction::ArkTriggersAreaCooldownProperty>(0x2D230A0);
+	bool m_TriggersAreaCooldown;
+	static inline auto s_ArkUsesAreaCooldownProperty = PreyGlobal<Distraction::ArkUsesAreaCooldownProperty>(0x2D230C0);
+	bool m_UsesAreaCooldown;
+	static inline auto s_ArkUseableByTagProperty = PreyGlobal<Distraction::ArkUseableByTagProperty>(0x2D230E0);
+	uint64_t m_UseableByTag;
+	static inline auto s_ArkTryDistractRateSecProperty = PreyGlobal<Distraction::ArkTryDistractRateSecProperty>(0x2D23100);
+	float m_TryDistractRateSec;
+	static inline auto s_ArkMaxDistractDistanceProperty = PreyGlobal<Distraction::ArkMaxDistractDistanceProperty>(0x2D23120);
+	float m_MaxDistractDistance;
+	static inline auto s_ArkMaxDistractDistanceVerticalProperty = PreyGlobal<Distraction::ArkMaxDistractDistanceVerticalProperty>(0x2D23140);
+	float m_MaxDistractDistanceVertical;
+	static inline auto s_ArkMaxDistractionAngleDegreesOffForwardProperty = PreyGlobal<Distraction::ArkMaxDistractionAngleDegreesOffForwardProperty>(0x2D23160);
+	float m_MaxDistractionAngleDegreesOffForward;
+	static inline auto s_ArkMinDurationProperty = PreyGlobal<Distraction::ArkMinDurationProperty>(0x2D23180);
+	float m_MinDuration;
+	static inline auto s_ArkMaxDurationProperty = PreyGlobal<Distraction::ArkMaxDurationProperty>(0x2D231A0);
+	float m_MaxDuration;
+	static inline auto s_ArkNpcUseColdownProperty = PreyGlobal<Distraction::ArkNpcUseColdownProperty>(0x2D231C0);
+	float m_NpcUseColdown;
+	static inline auto s_ArkMinHeightDifferenceProperty = PreyGlobal<Distraction::ArkMinHeightDifferenceProperty>(0x2D231E0);
+	float m_MinHeightDifference;
+	static inline auto s_ArkMaxHeightDifferenceProperty = PreyGlobal<Distraction::ArkMaxHeightDifferenceProperty>(0x2D23200);
+	float m_MaxHeightDifference;
+	static inline auto s_ArkDistractionLookAtProperty = PreyGlobal<Distraction::ArkDistractionLookAtProperty>(0x2D23220);
+	DistractionLookAt m_DistractionLookAt;
+	static inline auto s_ArkDistractionPositioningProperty = PreyGlobal<Distraction::ArkDistractionPositioningProperty>(0x2D23240);
+	DistractionPositioning m_DistractionPositioning;
+	static inline auto s_ArkDistractionAnimationProperty = PreyGlobal<Distraction::ArkDistractionAnimationProperty>(0x2D23260);
+	DistractionAnimation m_DistractionAnimation;
+	static inline auto s_ArkDistractionEventProperty = PreyGlobal<Distraction::ArkDistractionEventProperty>(0x2D23280);
+	DistractionEvent m_DistractionEvent;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	Distraction();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetDebug(bool _arg0_);
+	const bool& GetDebug() const;
+	void SetAbilityContextId(uint64_t _arg0_);
+	const uint64_t& GetAbilityContextId() const;
+	void SetIgnoreNpcFacingCheck(bool _arg0_);
+	const bool& GetIgnoreNpcFacingCheck() const;
+	void SetOnUseCooldown(float _arg0_);
+	const float& GetOnUseCooldown() const;
+	void SetCanBeUsedInZeroG(bool _arg0_);
+	const bool& GetCanBeUsedInZeroG() const;
+	void SetReusable(bool _arg0_);
+	const bool& GetReusable() const;
+	void SetSkipMovement(bool _arg0_);
+	const bool& GetSkipMovement() const;
+	void SetCanBeSimultaneous(bool _arg0_);
+	const bool& GetCanBeSimultaneous() const;
+	void SetCanRetreatTo(bool _arg0_);
+	const bool& GetCanRetreatTo() const;
+	void SetTriggersAreaCooldown(bool _arg0_);
+	const bool& GetTriggersAreaCooldown() const;
+	void SetUsesAreaCooldown(bool _arg0_);
+	const bool& GetUsesAreaCooldown() const;
+	void SetUseableByTag(uint64_t _arg0_);
+	const uint64_t& GetUseableByTag() const;
+	void SetTryDistractRateSec(float _arg0_);
+	const float& GetTryDistractRateSec() const;
+	void SetMaxDistractDistance(float _arg0_);
+	const float& GetMaxDistractDistance() const;
+	void SetMaxDistractDistanceVertical(float _arg0_);
+	const float& GetMaxDistractDistanceVertical() const;
+	void SetMaxDistractionAngleDegreesOffForward(float _arg0_);
+	const float& GetMaxDistractionAngleDegreesOffForward() const;
+	void SetMinDuration(float _arg0_);
+	const float& GetMinDuration() const;
+	void SetMaxDuration(float _arg0_);
+	const float& GetMaxDuration() const;
+	void SetNpcUseColdown(float _arg0_);
+	const float& GetNpcUseColdown() const;
+	void SetMinHeightDifference(float _arg0_);
+	const float& GetMinHeightDifference() const;
+	void SetMaxHeightDifference(float _arg0_);
+	const float& GetMaxHeightDifference() const;
+	void SetDistractionLookAt(DistractionLookAt _arg0_);
+	const DistractionLookAt& GetDistractionLookAt() const;
+	void SetDistractionPositioning(DistractionPositioning _arg0_);
+	const DistractionPositioning& GetDistractionPositioning() const;
+	void SetDistractionAnimation(DistractionAnimation _arg0_);
+	const DistractionAnimation& GetDistractionAnimation() const;
+	void SetDistractionEvent(DistractionEvent _arg0_);
+	const DistractionEvent& GetDistractionEvent() const;
+	bool GetShouldSkipMovement() const;
+	float GetWaitDuration() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1085180);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10852F0);
+};
+
+// ArkDistractions
+// Header:  Prey/Ark/arkdistractiondata.h
+class ArkDistractions : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkDistractions::ArkDistractionsProperty
+	// Header:  Prey/Ark/arkdistractiondata.h
+	class ArkDistractionsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkDistractionsProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkDistractionsPropertyOv2 = PreyFunction<void(ArkDistractions::ArkDistractionsProperty* const _this)>(0x1084C60);
+		static inline auto FSetValue = PreyFunction<void(const ArkDistractions::ArkDistractionsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084630);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDistractions::ArkDistractionsProperty* const _this, ArkReflectedObject* const _pObject)>(0x10846D0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkDistractions::ArkDistractionsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkDistractions::ArkDistractionsProperty* const _this, ArkReflectedObject* _pObject)>(0x1084710);
+	};
+
+	static inline auto s_ArkDistractionsProperty = PreyGlobal<ArkDistractions::ArkDistractionsProperty>(0x2D232A0);
+	std::vector<Distraction> m_Distractions;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	std::vector<Distraction>& GetDistractions();
+	const std::vector<Distraction>& GetDistractions() const;
+	const Distraction* GetDistractor(const uint64_t& _arg0_) const;
+	const Distraction* GetDistractorByIndex(const int _arg0_) const;
+	bool IsValidIndex(const int _arg0_) const;
+	bool IsValidId(const uint64_t& _arg0_) const;
+	int GetDistractionIndex(const uint64_t& _arg0_) const;
+	uint64_t GetDistractionIDByIndex(const int _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1085120);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1085200);
+	static inline auto FInit = PreyFunction<bool(ArkDistractions* const _this)>(0x1085570);
+};
+#endif // !MOONCRASH

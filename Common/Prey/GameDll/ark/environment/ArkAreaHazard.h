@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -62,4 +64,72 @@ public:
 	static inline auto FGetLocalAreaBounds = PreyFunction<AABB(ArkAreaHazard const *const _this)>(0x127A630);
 	static inline auto FShouldUpdateWithTargets = PreyFunction<bool(ArkAreaHazard const *const _this)>(0x127B240);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/arksignalsystemdata.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/environment/ArkEnvironmentalHazard.h>
 
+struct AABB;
+namespace ArkSignalSystem
+{
+class Package;
+} // namespace ArkSignalSystem
+class ICrySizer;
+struct IGameObject;
+struct SEntityUpdateContext;
+
+// ArkAreaHazard
+// Header:  Prey/GameDll/ark/environment/ArkAreaHazard.h
+class ArkAreaHazard : public ArkEnvironmentalHazard
+{ // Size=360 (0x168)
+public:
+	ArkAutoResetTimer m_timer;
+	ArkEntityEffect m_hazardVfx;
+	bool m_bHazardActive;
+	float m_areaHazardRadius;
+	const ArkSignalSystem::Data::SignalGroupData* m_pDamagingSignalGroup;
+	string m_intactMaterial;
+	string m_hazardMaterial;
+	bool m_bHazardStartsActive;
+	bool m_bShowDangerIcon;
+
+	ArkAreaHazard();
+	virtual ~ArkAreaHazard();
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	void DynamicSpawnStart() { FDynamicSpawnStart(this); }
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	virtual void OnReceiveSignal(const ArkSignalSystem::Package& _package);
+	virtual void RegisterForSignals(bool _bRegister);
+	void StartHazard() { FStartHazard(this); }
+	void ClearHazard() { FClearHazard(this); }
+	void PulseHazard() { FPulseHazard(this); }
+	virtual AABB GetLocalAreaBounds() const;
+	virtual bool ShouldUpdateWithTargets() const;
+
+	static inline auto FArkAreaHazardOv1 = PreyFunction<void(ArkAreaHazard* const _this)>(0x131BB40);
+	static inline auto FPostInit = PreyFunction<void(ArkAreaHazard* const _this, IGameObject* _pGameObject)>(0x131C6E0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkAreaHazard* const _this, TSerialize _ser)>(0x131BE70);
+	static inline auto FPostSerialize = PreyFunction<void(ArkAreaHazard* const _this)>(0x131C710);
+	static inline auto FUpdate = PreyFunction<void(ArkAreaHazard* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x131CCB0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkAreaHazard* const _this, ICrySizer* _s)>(0x131BF80);
+	static inline auto FDynamicSpawnStart = PreyFunction<void(ArkAreaHazard* const _this)>(0x131BE40);
+	static inline auto FOnReset = PreyFunction<void(ArkAreaHazard* const _this, bool _bEnteringGameMode)>(0x131C6A0);
+	static inline auto FLoadProperties = PreyFunction<void(ArkAreaHazard* const _this)>(0x131BFC0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkAreaHazard* const _this, const ArkSignalSystem::Package& _package)>(0x131C5C0);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkAreaHazard* const _this, bool _bRegister)>(0x131CAD0);
+	static inline auto FStartHazard = PreyFunction<void(ArkAreaHazard* const _this)>(0x131CBD0);
+	static inline auto FClearHazard = PreyFunction<void(ArkAreaHazard* const _this)>(0x131BD70);
+	static inline auto FPulseHazard = PreyFunction<void(ArkAreaHazard* const _this)>(0x131C750);
+	static inline auto FGetLocalAreaBounds = PreyFunction<AABB*(const ArkAreaHazard* const _this, AABB* _return_value_)>(0x131BF30);
+	static inline auto FShouldUpdateWithTargets = PreyFunction<bool(const ArkAreaHazard* const _this)>(0x131CBB0);
+};
+#endif // !MOONCRASH

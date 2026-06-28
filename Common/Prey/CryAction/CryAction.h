@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -774,4 +776,769 @@ struct CSystemEventListner_Action : public ISystemEventListener // Id=800731B Si
 	
 	static inline auto FOnSystemEvent = PreyFunction<void(CSystemEventListner_Action *const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x5B8030);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/ark/ArkAudioSwitchManager.h>
+#include <CryEngine/cryaction/ark/ArkSaveLoadSystem.h>
+#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/Ark/arkgamenoise.h>
+#include <Prey/CryAudio/IAudioInterfacesCommonData.h>
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CrySystem/ISystem.h>
+#include <_unknown/Functor2.h>
+#include <_unknown/IGameFramework.h>
+#include <_unknown/SAudioManagerRequestData.h>
 
+namespace ArkGameNoise
+{
+struct Params;
+} // namespace ArkGameNoise
+class ArkGameNoiseLoudness;
+class CAIDebugRenderer;
+class CAINetworkDebugRenderer;
+class CAIProxyManager;
+class CActionGame;
+class CActionMapManager;
+class CActorSystem;
+struct CAnimationGraphCVars;
+class CCryActionCVars;
+class CCryActionPhysicQueues;
+class CCustomActionManager;
+class CCustomEventManager;
+class CDevMode;
+class CDialogSystem;
+class CFlowSystem;
+class CForceFeedBackSystem;
+class CGameClientNub;
+class CGameContext;
+class CGameObjectSystem;
+class CGameQueryListener;
+class CGameRulesSystem;
+class CGameSerialize;
+class CGameServerNub;
+class CGameStatsConfig;
+class CGameplayAnalyst;
+class CGameplayRecorder;
+class CItemSystem;
+class CLevelSystem;
+class CMaterialEffects;
+class CMaterialEffectsCVars;
+class CNetMessageDistpatcher;
+class CNetworkCVars;
+class CNetworkStallTickerThread;
+class CPersistantDebug;
+class CPlayerProfileManager;
+class CRConClientListener;
+class CRangeSignaling;
+class CRuntimeAreaManager;
+class CScriptBind_Action;
+class CScriptBind_ActionMapManager;
+class CScriptBind_ActorSystem;
+class CScriptBind_DialogSystem;
+class CScriptBind_MaterialEffects;
+class CScriptBind_Network;
+class CScriptBind_UIAction;
+class CScriptRMI;
+class CSharedParamsManager;
+class CSignalTimer;
+class CSubtitleManager;
+class CTimeDemoRecorder;
+class CTimeOfDayScheduler;
+class CTimeValue;
+class CUIDraw;
+class CViewSystem;
+class CVisualLog;
+class CallbackTimer;
+struct CryGUID;
+enum ELoadGameResult;
+enum ESystemEvent;
+struct I3DEngine;
+struct IAIActorProxy;
+struct IActionMapManager;
+struct IActor;
+struct IActorSystem;
+class IArkSaveLoadSystem;
+struct IBreakEventListener;
+struct ICVar;
+struct ICheckpointSystem;
+struct IConsoleCmdArgs;
+struct ICooperativeAnimationManager;
+class ICrySizer;
+struct ICustomActionManager;
+struct ICustomEventManager;
+struct IDebugHistoryManager;
+struct IDialogSystem;
+struct IEffectSystem;
+struct IEntity;
+struct IEntityProxy;
+struct IEntitySystem;
+struct IFlowSystem;
+struct IForceFeedbackSystem;
+struct IFunctionHandler;
+struct IGameFrameworkListener;
+struct IGameObject;
+struct IGameObjectExtension;
+struct IGameObjectSystem;
+struct IGameRulesSystem;
+struct IGameSessionHandler;
+struct IGameStatistics;
+struct IGameStatsConfig;
+struct IGameTokenSystem;
+struct IGameVolumes;
+struct IGameplayRecorder;
+struct IItemSystem;
+struct ILanQueryListener;
+struct ILevelSystem;
+struct ILoadGame;
+struct ILog;
+struct IMannequin;
+struct IMaterialEffects;
+struct INetChannel;
+struct INetContext;
+struct INetNub;
+struct INetwork;
+struct IPersistantDebug;
+struct IPhysicalEntity;
+struct IPlayerProfileManager;
+struct IRemoteControlClient;
+struct IRemoteControlServer;
+struct ISaveGame;
+struct IScriptSystem;
+struct IScriptTable;
+struct ISerializeHelper;
+class ISharedParamsManager;
+struct ISimpleHttpServer;
+struct ISubtitleManager;
+struct ISystem;
+struct ITimer;
+struct ITweakMenuController;
+struct IUIDraw;
+struct IViewSystem;
+struct IVisualLog;
+struct SActionEvent;
+struct SGameContextParams;
+struct SGameStartParams;
+struct SSystemInitParams;
+
+// CCryAction
+// Header:  CryEngine/cryaction/CryAction.h
+// Include: Prey/CryAction/CryAction.h
+class CCryAction : public IGameFramework
+{ // Size=1424 (0x590)
+public:
+	enum ESaveGameMethod
+	{
+		eSGM_NoSave = 0,
+		eSGM_QuickSave = 1,
+		eSGM_Save = 2,
+	};
+
+	// CCryAction::SLocalAllocs
+	// Header:  CryEngine/cryaction/CryAction.h
+	struct SLocalAllocs
+	{ // Size=24 (0x18)
+		string m_delayedSaveGameName;
+		string m_checkPointName;
+		string m_nextLevelToLoad;
+	};
+
+	// CCryAction::SGameFrameworkListener
+	// Header:  CryEngine/cryaction/CryAction.h
+	struct SGameFrameworkListener
+	{ // Size=104 (0x68)
+		IGameFrameworkListener* pListener;
+		CryStackStringT<char,64> name;
+		EFRAMEWORKLISTENERPRIORITY eFrameworkListenerPriority;
+
+	#if 0
+		SGameFrameworkListener();
+		void GetMemoryUsage(ICrySizer* _arg0_) const;
+	#endif
+	};
+
+	using TFrameworkExtensions = std::vector<std::shared_ptr<ICryUnknown>>;
+	using TGameFrameworkListeners = std::vector<CCryAction::SGameFrameworkListener>;
+
+	static inline auto s_rcon_server = PreyGlobal<IRemoteControlServer*>(0x260E6C8);
+	static inline auto s_rcon_client = PreyGlobal<IRemoteControlClient*>(0x260E6D0);
+	static inline auto s_rcon_client_listener = PreyGlobal<CRConClientListener*>(0x260E6D8);
+	static inline auto s_http_server = PreyGlobal<ISimpleHttpServer*>(0x260E6E0);
+	bool m_paused;
+	bool m_forcedpause;
+	bool m_levelPrecachingDone;
+	bool m_usingLevelHeap;
+	static inline auto m_pThis = PreyGlobal<CCryAction*>(0x260E6E8);
+	ISystem* m_pSystem;
+	INetwork* m_pNetwork;
+	I3DEngine* m_p3DEngine;
+	IScriptSystem* m_pScriptSystem;
+	IEntitySystem* m_pEntitySystem;
+	ITimer* m_pTimer;
+	ILog* m_pLog;
+	void* m_systemDll;
+	_smart_ptr<CActionGame> m_pGame;
+	char m_gameGUID[128];
+	CLevelSystem* m_pLevelSystem;
+	CActorSystem* m_pActorSystem;
+	CItemSystem* m_pItemSystem;
+	CSharedParamsManager* m_pSharedParamsManager;
+	CActionMapManager* m_pActionMapManager;
+	CViewSystem* m_pViewSystem;
+	CGameplayRecorder* m_pGameplayRecorder;
+	CGameRulesSystem* m_pGameRulesSystem;
+	CFlowSystem* m_pFlowSystem;
+	CGameObjectSystem* m_pGameObjectSystem;
+	CUIDraw* m_pUIDraw;
+	CScriptRMI* m_pScriptRMI;
+	CAnimationGraphCVars* m_pAnimationGraphCvars;
+	IMannequin* m_pMannequin;
+	CMaterialEffects* m_pMaterialEffects;
+	CPlayerProfileManager* m_pPlayerProfileManager;
+	CDialogSystem* m_pDialogSystem;
+	CSubtitleManager* m_pSubtitleManager;
+	IGameTokenSystem* m_pGameTokenSystem;
+	IEffectSystem* m_pEffectSystem;
+	CGameSerialize* m_pGameSerialize;
+	CallbackTimer* m_pCallbackTimer;
+	CGameplayAnalyst* m_pGameplayAnalyst;
+	CVisualLog* m_pVisualLog;
+	CForceFeedBackSystem* m_pForceFeedBackSystem;
+	ILanQueryListener* m_pLanQueryListener;
+	CCustomActionManager* m_pCustomActionManager;
+	CCustomEventManager* m_pCustomEventManager;
+	CGameStatsConfig* m_pGameStatsConfig;
+	IGameStatistics* m_pGameStatistics;
+	ICooperativeAnimationManager* m_pCooperativeAnimationManager;
+	IGameSessionHandler* m_pGameSessionHandler;
+	CAIProxyManager* m_pAIProxyManager;
+	IGameVolumes* m_pGameVolumesManager;
+	CDevMode* m_pDevMode;
+	CTimeDemoRecorder* m_pTimeDemoRecorder;
+	CGameQueryListener* m_pGameQueryListener;
+	CRuntimeAreaManager* m_pRuntimeAreaManager;
+	CScriptBind_Action* m_pScriptA;
+	CScriptBind_ActorSystem* m_pScriptAS;
+	CScriptBind_Network* m_pScriptNet;
+	CScriptBind_ActionMapManager* m_pScriptAMM;
+	CScriptBind_DialogSystem* m_pScriptBindDS;
+	CScriptBind_MaterialEffects* m_pScriptBindMFX;
+	CScriptBind_UIAction* m_pScriptBindUIAction;
+	CTimeOfDayScheduler* m_pTimeOfDayScheduler;
+	CPersistantDebug* m_pPersistantDebug;
+	CAIDebugRenderer* m_pAIDebugRenderer;
+	CAINetworkDebugRenderer* m_pAINetworkDebugRenderer;
+	CNetworkCVars* m_pNetworkCVars;
+	CCryActionCVars* m_pCryActionCVars;
+	CNetworkStallTickerThread* m_pNetworkStallTickerThread;
+	unsigned m_networkStallTickerReferences;
+	CMaterialEffectsCVars* m_pMaterialEffectsCVars;
+	CCryActionPhysicQueues* m_pPhysicsQueues;
+	std::vector<std::shared_ptr<ICryUnknown>> m_frameworkExtensions;
+	ICVar* m_pEnableLoadingScreen;
+	ICVar* m_pCheats;
+	ICVar* m_pShowLanBrowserCVAR;
+	ICVar* m_pDebugSignalTimers;
+	ICVar* m_pDebugRangeSignaling;
+	bool m_bShowLanBrowser;
+	bool m_isEditing;
+	bool m_bScheduleLevelEnd;
+	CCryAction::ESaveGameMethod m_delayedSaveGameMethod;
+	ESaveGameReason m_delayedSaveGameReason;
+	int m_delayedSaveCountDown;
+	CCryAction::SLocalAllocs* m_pLocalAllocs;
+	std::vector<CCryAction::SGameFrameworkListener>* m_pGFListeners;
+	IBreakEventListener* m_pBreakEventListener;
+	std::vector<bool> m_validListeners;
+	int m_VoiceRecordingEnabled;
+	bool m_bAllowSave;
+	bool m_bAllowLoad;
+	string* m_nextFrameCommand;
+	string* m_connectServer;
+	float m_lastSaveLoad;
+	float m_lastFrameTimeUI;
+	bool m_pbSvEnabled;
+	bool m_pbClEnabled;
+	unsigned m_PreUpdateTicks;
+	CNetMessageDistpatcher* m_pNetMsgDispatcher;
+	ArkSaveLoadSystem m_arkSaveLoadSystem;
+	ArkGameNoises m_arkGameNoiseData;
+	std::vector<int> m_projectileExtensionIds;
+	ArkAudioSwitchManager m_arkAudioSwitchManager;
+	SAudioRequest m_pauseAudioRequest;
+	SAudioRequest m_resumeAudioRequest;
+	SAudioManagerRequestData<16777216> m_pauseAudioRequestData;
+	SAudioManagerRequestData<33554432> m_resumeAudioRequestData;
+
+	CCryAction();
+	virtual ~CCryAction();
+	virtual void ClearTimers();
+	virtual unsigned AddTimer(CTimeValue interval, bool repeating, Functor2<void *,unsigned int> callback, void* userdata);
+	virtual void* RemoveTimer(unsigned timerID);
+	virtual unsigned GetPreUpdateTicks();
+	virtual void RegisterFactory(const char* name, IGameFramework::IActorCreator* pCreator, bool isAI);
+	virtual void RegisterFactory(const char* name, IGameFramework::IItemCreator* pCreator, bool isAI);
+	virtual void RegisterFactory(const char* name, IGameFramework::IGameObjectExtensionCreator* pCreator, bool isAI);
+	virtual void RegisterFactory(const char* name, ISaveGame* (*func)(), bool __unnamed1);
+	virtual void RegisterFactory(const char* name, ILoadGame* (*func)(), bool __unnamed1);
+	virtual bool Init(SSystemInitParams& startupParams);
+	virtual void InitGameType(bool multiplayer, bool fromInit);
+	virtual bool CompleteInit();
+	virtual void Shutdown();
+	virtual bool PreUpdate(bool haveFocus, unsigned updateFlags);
+	virtual void PostUpdate(bool haveFocus, unsigned updateFlags);
+	virtual void Reset(bool clients);
+	virtual void GetMemoryUsage(ICrySizer* s) const;
+	virtual void PauseGame(bool pause, bool force, unsigned nFadeOutInMS, bool bPauseAudio);
+	virtual bool IsGamePaused();
+	virtual bool IsGameStarted();
+	virtual bool IsInLevelLoad();
+	virtual bool IsLoadingSaveGame();
+	virtual const char* GetLevelName();
+	virtual const char* GetAbsLevelPath(char* const pPath, const unsigned cPathMaxLen);
+	virtual bool IsInTimeDemo();
+	virtual bool IsTimeDemoRecording();
+	virtual bool IsLevelPrecachingDone() const;
+	virtual void SetLevelPrecachingDone(bool bValue);
+	virtual ISystem* GetISystem();
+	virtual ILanQueryListener* GetILanQueryListener();
+	virtual IUIDraw* GetIUIDraw();
+	virtual IMannequin& GetMannequinInterface();
+	virtual ILevelSystem* GetILevelSystem();
+	virtual IActorSystem* GetIActorSystem();
+	virtual IItemSystem* GetIItemSystem();
+	virtual IActionMapManager* GetIActionMapManager();
+	virtual IViewSystem* GetIViewSystem();
+	virtual IGameplayRecorder* GetIGameplayRecorder();
+	virtual IGameRulesSystem* GetIGameRulesSystem();
+	virtual IGameObjectSystem* GetIGameObjectSystem();
+	virtual IFlowSystem* GetIFlowSystem();
+	virtual IGameTokenSystem* GetIGameTokenSystem();
+	virtual IEffectSystem* GetIEffectSystem();
+	virtual IMaterialEffects* GetIMaterialEffects();
+	virtual IPlayerProfileManager* GetIPlayerProfileManager();
+	virtual ISubtitleManager* GetISubtitleManager();
+	virtual IDialogSystem* GetIDialogSystem();
+	virtual ICooperativeAnimationManager* GetICooperativeAnimationManager();
+	virtual ICheckpointSystem* GetICheckpointSystem();
+	virtual IForceFeedbackSystem* GetIForceFeedbackSystem() const;
+	virtual ICustomActionManager* GetICustomActionManager() const;
+	virtual ICustomEventManager* GetICustomEventManager() const;
+	virtual ITweakMenuController* CreateITweakMenuController();
+	virtual bool StartGameContext(const SGameStartParams* pGameStartParams);
+	virtual bool ChangeGameContext(const SGameContextParams* pGameContextParams);
+	virtual void EndGameContext();
+	virtual bool StartedGameContext() const;
+	virtual bool StartingGameContext() const;
+	virtual bool BlockingSpawnPlayer();
+	virtual void ReleaseGameStats();
+	virtual void ResetBrokenGameObjects();
+	virtual IEntityProxy* CreateGameObject(unsigned _entityId);
+	virtual void RegisterProjectileExtension(const char* name);
+	virtual void DeleteAllProjectiles();
+	virtual IArkSaveLoadSystem& GetIArkSaveLoadSystem();
+	virtual void OnGameModeChanged() const;
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+	virtual void FlushBreakableObjects();
+	void ClearBreakHistory() { FClearBreakHistory(this); }
+	void FullSerialize(TSerialize _ser) { FFullSerialize(this, _ser); }
+	void PostSerialize() { FPostSerialize(this); }
+	virtual void BeginLanQuery();
+	virtual void EndCurrentQuery();
+	virtual IActor* GetClientActor() const;
+	virtual unsigned GetClientActorId() const;
+	virtual IEntity* GetClientEntity() const;
+	virtual unsigned GetClientEntityId() const;
+	virtual INetChannel* GetClientChannel() const;
+	virtual CTimeValue GetServerTime();
+	virtual uint16_t GetGameChannelId(INetChannel* pNetChannel);
+	virtual INetChannel* GetNetChannel(uint16_t channelId);
+	virtual bool IsChannelOnHold(uint16_t channelId);
+	virtual IGameObject* GetGameObject(unsigned id);
+	virtual bool GetNetworkSafeClassId(uint16_t& id, const char* className);
+	virtual bool GetNetworkSafeClassName(char* className, uint64_t maxn, uint16_t id);
+	virtual IGameObjectExtension* QueryGameObjectExtension(unsigned id, const char* name);
+	virtual void DelegateAuthority(unsigned entityId, uint16_t channelId);
+	virtual INetContext* GetNetContext();
+	virtual bool SaveGame(const char* path, bool bQuick, bool bForceImmediate, ESaveGameReason reason, bool ignoreDelay, const char* checkPointName);
+	virtual ELoadGameResult LoadGame(const char* path, bool quick, bool ignoreDelay);
+	virtual void ScheduleEndLevel(const char* nextLevel);
+	virtual void ScheduleEndLevelNow(const char* nextLevel);
+	virtual void OnEditorSetGameMode(int iMode);
+	virtual bool IsEditing();
+	virtual void OnBreakageSpawnedEntity(IEntity* pEntity, IPhysicalEntity* pPhysEntity, IPhysicalEntity* pSrcPhysEntity);
+	virtual bool IsImmersiveMPEnabled();
+	virtual void AllowSave(bool bAllow);
+	virtual void AllowLoad(bool bAllow);
+	virtual bool CanSave();
+	virtual bool CanLoad();
+	virtual ISerializeHelper* GetSerializeHelper() const;
+	virtual bool CanCheat();
+	virtual INetNub* GetServerNetNub();
+	virtual INetNub* GetClientNetNub();
+	virtual void SetGameGUID(const char* gameGUID);
+	virtual const char* GetGameGUID();
+	virtual bool IsVoiceRecordingEnabled();
+	virtual bool IsGameSession(unsigned sessionHandle);
+	virtual bool ShouldMigrateNub(unsigned sessionHandle);
+	virtual ISharedParamsManager* GetISharedParamsManager();
+	virtual float GetLoadSaveDelay() const;
+	virtual IGameVolumes* GetIGameVolumesManager() const;
+	virtual void PreloadAnimatedCharacter(IScriptTable* pEntityScript);
+	virtual void RegisterExtension(std::shared_ptr<ICryUnknown> pExtension);
+	virtual void ReleaseExtensions();
+	virtual std::shared_ptr<ICryUnknown> QueryExtensionInterfaceById(const CryGUID& interfaceID) const;
+	virtual CGameServerNub* GetGameServerNub();
+	CGameClientNub* GetGameClientNub() { return FGetGameClientNub(this); }
+	CGameContext* GetGameContext() { return FGetGameContext(this); }
+	virtual void ReloadArkGameNoises();
+	virtual void EmitArkGameNoise(const unsigned _emitter, const Vec3& _position, const ArkGameNoise::Params& _params) const;
+	virtual const ArkGameNoiseLoudness* FindArkGameNoiseLoudness(uint64_t _loudnessId) const;
+	CSignalTimer* GetSignalTimer() { return FGetSignalTimer(this); }
+	CRangeSignaling* GetRangeSignaling() { return FGetRangeSignaling(this); }
+	virtual IPersistantDebug* GetIPersistantDebug();
+	virtual IGameStatsConfig* GetIGameStatsConfig();
+	virtual IVisualLog* GetIVisualLog();
+	virtual void AddBreakEventListener(IBreakEventListener* pListener);
+	virtual void RemoveBreakEventListener(IBreakEventListener* pListener);
+	void OnBreakEvent(uint16_t uBreakEventIndex) { FOnBreakEvent(this, uBreakEventIndex); }
+	virtual void RegisterListener(IGameFrameworkListener* pGameFrameworkListener, const char* name, EFRAMEWORKLISTENERPRIORITY eFrameworkListenerPriority);
+	virtual void UnregisterListener(IGameFrameworkListener* pGameFrameworkListener);
+	CGameStatsConfig* GetGameStatsConfig() { return FGetGameStatsConfig(this); }
+	virtual IGameStatistics* GetIGameStatistics();
+	virtual IGameSessionHandler* GetIGameSessionHandler();
+	virtual void SetGameSessionHandler(IGameSessionHandler* pSessionHandler);
+	int NetworkExposeClass(IFunctionHandler* pFH) { return FNetworkExposeClass(this, pFH); }
+	void NotifyGameFrameworkListeners(ISaveGame* pSaveGame) { FNotifyGameFrameworkListenersOv1(this, pSaveGame); }
+	void NotifyGameFrameworkListeners(ILoadGame* pLoadGame) { FNotifyGameFrameworkListenersOv0(this, pLoadGame); }
+	void NotifySavegameFileLoadedToListeners(const char* pLevelName) { FNotifySavegameFileLoadedToListeners(this, pLevelName); }
+	virtual void EnableVoiceRecording(const bool enable);
+	virtual void MutePlayerById(unsigned playerId);
+	virtual IDebugHistoryManager* CreateDebugHistoryManager();
+	virtual void ExecuteCommandNextFrame(const char* cmd);
+	virtual const char* GetNextFrameCommand() const;
+	virtual void ClearNextFrameCommand();
+	virtual void PrefetchLevelAssets(const bool bEnforceAll);
+	virtual void ShowPageInBrowser(const char* URL);
+	virtual bool StartProcess(const char* cmd_line);
+	virtual bool SaveServerConfig(const char* path);
+	void OnActionEvent(const SActionEvent& ev) { FOnActionEvent(this, ev); }
+	virtual void DumpMemInfo(const char* format, ... memInfo);
+	const char* GetStartLevelSaveGameName() { return FGetStartLevelSaveGameName(this); }
+	virtual IAIActorProxy* GetAIActorProxy(unsigned id) const;
+	void CreatePhysicsQueues() { FCreatePhysicsQueues(this); }
+	void ClearPhysicsQueues() { FClearPhysicsQueues(this); }
+	CCryActionPhysicQueues& GetPhysicQueues() { return FGetPhysicQueues(this); }
+	bool IsGameSessionMigrating() { return FIsGameSessionMigrating(this); }
+	void SwitchToLevelHeap(const char* acLevelName) { FSwitchToLevelHeap(this, acLevelName); }
+	virtual void StartNetworkStallTicker(bool includeMinimalUpdate);
+	virtual void StopNetworkStallTicker();
+	virtual ArkSaveLoadSystem& GetArkSaveLoadSystem();
+	void GlobalActionsPostSerialize() const { FGlobalActionsPostSerialize(this); }
+	virtual void FinishWritingSave() const;
+	virtual bool IsSavePending() const;
+	virtual bool IsWritingSave() const;
+	void InitCVars() { FInitCVars(this); }
+	void InitCommands() { FInitCommands(this); }
+	static void OpenLogCmd(IConsoleCmdArgs* args) { FOpenLogCmd(args); }
+	static void PauseCmd(IConsoleCmdArgs* _pArgs) { FPauseCmd(_pArgs); }
+	static void DumpMapsCmd(IConsoleCmdArgs* args) { FDumpMapsCmd(args); }
+	static void MapCmd(IConsoleCmdArgs* args) { FMapCmd(args); }
+	static void ReloadReadabilityXML(IConsoleCmdArgs* __unnamed1) { FReloadReadabilityXML(__unnamed1); }
+	static void UnloadCmd(IConsoleCmdArgs* args) { FUnloadCmd(args); }
+	static void PlayCmd(IConsoleCmdArgs* args) { FPlayCmd(args); }
+	static void ConnectCmd(IConsoleCmdArgs* args) { FConnectCmd(args); }
+	static void DisconnectCmd(IConsoleCmdArgs* args) { FDisconnectCmd(args); }
+	static void DisconnectChannelCmd(IConsoleCmdArgs* args) { FDisconnectChannelCmd(args); }
+	static void StatusCmd(IConsoleCmdArgs* pArgs) { FStatusCmd(pArgs); }
+	static void LegacyStatusCmd(IConsoleCmdArgs* args) { FLegacyStatusCmd(args); }
+	static void VersionCmd(IConsoleCmdArgs* args) { FVersionCmd(args); }
+	static void SaveGameCmd(IConsoleCmdArgs* args) { FSaveGameCmd(args); }
+	static void GenStringsSaveGameCmd(IConsoleCmdArgs* pArgs) { FGenStringsSaveGameCmd(pArgs); }
+	static void KickPlayerCmd(IConsoleCmdArgs* pArgs) { FKickPlayerCmd(pArgs); }
+	static void KickPlayerByIdCmd(IConsoleCmdArgs* pArgs) { FKickPlayerByIdCmd(pArgs); }
+	static void BanPlayerCmd(IConsoleCmdArgs* pArgs) { FBanPlayerCmd(pArgs); }
+	static void BanStatusCmd(IConsoleCmdArgs* pArgs) { FBanStatusCmd(pArgs); }
+	static void UnbanPlayerCmd(IConsoleCmdArgs* pArgs) { FUnbanPlayerCmd(pArgs); }
+	static void OpenURLCmd(IConsoleCmdArgs* args) { FOpenURLCmd(args); }
+	static void TestResetCmd(IConsoleCmdArgs* args) { FTestResetCmd(args); }
+	static void DumpAnalysisStatsCmd(IConsoleCmdArgs* args) { FDumpAnalysisStatsCmd(args); }
+	static void TestPlayerBoundsCmd(IConsoleCmdArgs* args) { FTestPlayerBoundsCmd(args); }
+	static void DelegateCmd(IConsoleCmdArgs* args) { FDelegateCmd(args); }
+	static void DumpStatsCmd(IConsoleCmdArgs* args) { FDumpStatsCmd(args); }
+	static void rcon_startserver(IConsoleCmdArgs* args) { Frcon_startserver(args); }
+	static void rcon_stopserver(IConsoleCmdArgs* args) { Frcon_stopserver(args); }
+	static void rcon_connect(IConsoleCmdArgs* args) { Frcon_connect(args); }
+	static void rcon_disconnect(IConsoleCmdArgs* args) { Frcon_disconnect(args); }
+	static void rcon_command(IConsoleCmdArgs* args) { Frcon_command(args); }
+	static void http_startserver(IConsoleCmdArgs* args) { Fhttp_startserver(args); }
+	static void http_stopserver(IConsoleCmdArgs* args) { Fhttp_stopserver(args); }
+	void CheckEndLevelSchedule() { FCheckEndLevelSchedule(this); }
+	static void MutePlayer(IConsoleCmdArgs* pArgs) { FMutePlayer(pArgs); }
+	static void VerifyMaxPlayers(ICVar* pVar) { FVerifyMaxPlayers(pVar); }
+	static void ResetComments(ICVar* pVar) { FResetComments(pVar); }
+	static void StaticSetPbSvEnabled(IConsoleCmdArgs* pArgs) { FStaticSetPbSvEnabled(pArgs); }
+	static void StaticSetPbClEnabled(IConsoleCmdArgs* pArgs) { FStaticSetPbClEnabled(pArgs); }
+
+#if 0
+	ArkAudioSwitchManager& GetArkAudioSwitchManager();
+	static CCryAction* GetCryAction();
+	static void SeedRandomGenerator(unsigned _arg0_);
+	bool ControlsEntity(unsigned _arg0_) const;
+	CPersistantDebug* GetPersistantDebug();
+	CVisualLog* GetVisualLog();
+	void OnPartRemoveEvent(int _arg0_);
+	CDialogSystem* GetDialogSystem();
+	CTimeOfDayScheduler* GetTimeOfDayScheduler() const;
+	CNetMessageDistpatcher* GetNetMessageDispatcher();
+	bool LoadingScreenEnabled() const;
+	void NotifyForceFlashLoadingListeners();
+	bool IsPbSvEnabled() const;
+	bool IsPbClEnabled() const;
+	CAIProxyManager* GetAIProxyManager();
+	const CAIProxyManager* GetAIProxyManager() const;
+	void RestoreLevelState();
+	const ArkGameNoises& GetArkGameNoiseData() const;
+	void InitScriptBinds();
+	void ReleaseScriptBinds();
+	void InitForceFeedbackSystem();
+	void InitGameVolumesManager();
+	void ReleaseCVars();
+	static void FlowTest(IConsoleCmdArgs* _arg0_);
+	static void SaveTagCmd(IConsoleCmdArgs* _arg0_);
+	static void LoadTagCmd(IConsoleCmdArgs* _arg0_);
+	static void LegacyKickPlayerCmd(IConsoleCmdArgs* _arg0_);
+	static void LegacyKickPlayerByIdCmd(IConsoleCmdArgs* _arg0_);
+	static void LegacyBanPlayerCmd(IConsoleCmdArgs* _arg0_);
+	static void LegacyBanStatusCmd(IConsoleCmdArgs* _arg0_);
+	static void LegacyUnbanPlayerCmd(IConsoleCmdArgs* _arg0_);
+	static void TestTimeout(IConsoleCmdArgs* _arg0_);
+	static void TestNSServerBrowser(IConsoleCmdArgs* _arg0_);
+	static void TestNSServerReport(IConsoleCmdArgs* _arg0_);
+	static void TestNSChat(IConsoleCmdArgs* _arg0_);
+	static void TestNSStats(IConsoleCmdArgs* _arg0_);
+	static void TestNSNat(IConsoleCmdArgs* _arg0_);
+	void SetGameQueryListener(CGameQueryListener* _arg0_);
+#endif
+
+	static inline auto FCCryAction = PreyFunction<void(CCryAction* const _this)>(0x5D4FE0);
+	static inline auto FClearTimers = PreyFunction<void(CCryAction* const _this)>(0x5D7460);
+	static inline auto FAddTimer = PreyFunction<unsigned(CCryAction* const _this, CTimeValue interval, bool repeating, Functor2<void *,unsigned int> callback, void* userdata)>(0x5D6680);
+	static inline auto FRemoveTimer = PreyFunction<void* (CCryAction* const _this, unsigned timerID)>(0x5E0F40);
+	static inline auto FGetPreUpdateTicks = PreyFunction<unsigned(CCryAction* const _this)>(0x5D98F0);
+	static inline auto FRegisterFactoryOv4 = PreyFunction<void(CCryAction* const _this, const char* name, IGameFramework::IActorCreator* pCreator, bool isAI)>(0x5E0B90);
+	static inline auto FRegisterFactoryOv3 = PreyFunction<void(CCryAction* const _this, const char* name, IGameFramework::IItemCreator* pCreator, bool isAI)>(0x5E0BC0);
+	static inline auto FRegisterFactoryOv2 = PreyFunction<void(CCryAction* const _this, const char* name, IGameFramework::IGameObjectExtensionCreator* pCreator, bool isAI)>(0x5E0BA0);
+	static inline auto FRegisterFactoryOv1 = PreyFunction<void(CCryAction* const _this, const char* name, ISaveGame* (*func)(), bool __unnamed1)>(0x5E0B70);
+	static inline auto FRegisterFactoryOv0 = PreyFunction<void(CCryAction* const _this, const char* name, ILoadGame* (*func)(), bool __unnamed1)>(0x5E0B50);
+	static inline auto FInit = PreyFunction<bool(CCryAction* const _this, SSystemInitParams& startupParams)>(0x5D9C70);
+	static inline auto FInitGameType = PreyFunction<void(CCryAction* const _this, bool multiplayer, bool fromInit)>(0x5DBC40);
+	static inline auto FCompleteInit = PreyFunction<bool(CCryAction* const _this)>(0x5D7470);
+	static inline auto FShutdown = PreyFunction<void(CCryAction* const _this)>(0x5E1D40);
+	static inline auto FPreUpdate = PreyFunction<bool(CCryAction* const _this, bool haveFocus, unsigned updateFlags)>(0x5E0600);
+	static inline auto FPostUpdate = PreyFunction<void(CCryAction* const _this, bool haveFocus, unsigned updateFlags)>(0x5DFD20);
+	static inline auto FReset = PreyFunction<void(CCryAction* const _this, bool clients)>(0x5E0F50);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CCryAction* const _this, ICrySizer* s)>(0x5D90D0);
+	static inline auto FPauseGame = PreyFunction<void(CCryAction* const _this, bool pause, bool force, unsigned nFadeOutInMS, bool bPauseAudio)>(0x5DF9B0);
+	static inline auto FIsGamePaused = PreyFunction<bool(CCryAction* const _this)>(0x5DBE10);
+	static inline auto FIsGameStarted = PreyFunction<bool(CCryAction* const _this)>(0x5DBE90);
+	static inline auto FIsInLevelLoad = PreyFunction<bool(CCryAction* const _this)>(0x5DBED0);
+	static inline auto FIsLoadingSaveGame = PreyFunction<bool(CCryAction* const _this)>(0x5DBF30);
+	static inline auto FGetLevelName = PreyFunction<const char* (CCryAction* const _this)>(0x5D9040);
+	static inline auto FGetAbsLevelPath = PreyFunction<const char* (CCryAction* const _this, char* const pPath, const unsigned cPathMaxLen)>(0x5D8B30);
+	static inline auto FIsInTimeDemo = PreyFunction<bool(CCryAction* const _this)>(0x5DBEF0);
+	static inline auto FIsTimeDemoRecording = PreyFunction<bool(CCryAction* const _this)>(0x5DBF60);
+	static inline auto FIsLevelPrecachingDone = PreyFunction<bool(const CCryAction* const _this)>(0x5DBF20);
+	static inline auto FSetLevelPrecachingDone = PreyFunction<void(CCryAction* const _this, bool bValue)>(0x5E1CC0);
+	static inline auto FGetISystem = PreyFunction<ISystem* (CCryAction* const _this)>(0x547450);
+	static inline auto FGetILanQueryListener = PreyFunction<ILanQueryListener* (CCryAction* const _this)>(0x5D8FE0);
+	static inline auto FGetIUIDraw = PreyFunction<IUIDraw* (CCryAction* const _this)>(0x16804C0);
+	static inline auto FGetMannequinInterface = PreyFunction<IMannequin& (CCryAction* const _this)>(0x5D90C0);
+	static inline auto FGetILevelSystem = PreyFunction<ILevelSystem* (CCryAction* const _this)>(0x105410);
+	static inline auto FGetIActorSystem = PreyFunction<IActorSystem* (CCryAction* const _this)>(0x84FDD0);
+	static inline auto FGetIItemSystem = PreyFunction<IItemSystem* (CCryAction* const _this)>(0x5D8FC0);
+	static inline auto FGetIActionMapManager = PreyFunction<IActionMapManager* (CCryAction* const _this)>(0x9ED890);
+	static inline auto FGetIViewSystem = PreyFunction<IViewSystem* (CCryAction* const _this)>(0x84FDB0);
+	static inline auto FGetIGameplayRecorder = PreyFunction<IGameplayRecorder* (CCryAction* const _this)>(0x1834030);
+	static inline auto FGetIGameRulesSystem = PreyFunction<IGameRulesSystem* (CCryAction* const _this)>(0x5D8F30);
+	static inline auto FGetIGameObjectSystem = PreyFunction<IGameObjectSystem* (CCryAction* const _this)>(0x19E85A0);
+	static inline auto FGetIFlowSystem = PreyFunction<IFlowSystem* (CCryAction* const _this)>(0x11E6CA0);
+	static inline auto FGetIGameTokenSystem = PreyFunction<IGameTokenSystem* (CCryAction* const _this)>(0x5D8FA0);
+	static inline auto FGetIEffectSystem = PreyFunction<IEffectSystem* (CCryAction* const _this)>(0x5D8F10);
+	static inline auto FGetIMaterialEffects = PreyFunction<IMaterialEffects* (CCryAction* const _this)>(0x16804E0);
+	static inline auto FGetIPlayerProfileManager = PreyFunction<IPlayerProfileManager* (CCryAction* const _this)>(0x5D9000);
+	static inline auto FGetISubtitleManager = PreyFunction<ISubtitleManager* (CCryAction* const _this)>(0x5D9020);
+	static inline auto FGetIDialogSystem = PreyFunction<IDialogSystem* (CCryAction* const _this)>(0x5D8F00);
+	static inline auto FGetICooperativeAnimationManager = PreyFunction<ICooperativeAnimationManager* (CCryAction* const _this)>(0x8AA2A0);
+	static inline auto FGetICheckpointSystem = PreyFunction<ICheckpointSystem* (CCryAction* const _this)>(0x5D8EF0);
+	static inline auto FGetIForceFeedbackSystem = PreyFunction<IForceFeedbackSystem* (const CCryAction* const _this)>(0x5D8F20);
+	static inline auto FGetICustomActionManager = PreyFunction<ICustomActionManager* (const CCryAction* const _this)>(0x206060);
+	static inline auto FGetICustomEventManager = PreyFunction<ICustomEventManager* (const CCryAction* const _this)>(0x8D8D70);
+	static inline auto FCreateITweakMenuController = PreyFunction<ITweakMenuController* (CCryAction* const _this)>(0x5D80A0);
+	static inline auto FStartGameContext = PreyFunction<bool(CCryAction* const _this, const SGameStartParams* pGameStartParams)>(0x5E2680);
+	static inline auto FChangeGameContext = PreyFunction<bool(CCryAction* const _this, const SGameContextParams* pGameContextParams)>(0x5D6D70);
+	static inline auto FEndGameContext = PreyFunction<void(CCryAction* const _this)>(0x5D87A0);
+	static inline auto FStartedGameContext = PreyFunction<bool(const CCryAction* const _this)>(0x5E2890);
+	static inline auto FStartingGameContext = PreyFunction<bool(const CCryAction* const _this)>(0x5E28B0);
+	static inline auto FBlockingSpawnPlayer = PreyFunction<bool(CCryAction* const _this)>(0x5D6A90);
+	static inline auto FReleaseGameStats = PreyFunction<void(CCryAction* const _this)>(0x5E0F00);
+	static inline auto FResetBrokenGameObjects = PreyFunction<void(CCryAction* const _this)>(0x5E1000);
+	static inline auto FCreateGameObject = PreyFunction<IEntityProxy* (CCryAction* const _this, unsigned _entityId)>(0x5D8040);
+	static inline auto FRegisterProjectileExtension = PreyFunction<void(CCryAction* const _this, const char* name)>(0x5E0E80);
+	static inline auto FDeleteAllProjectiles = PreyFunction<void(CCryAction* const _this)>(0x5D8310);
+	static inline auto FGetIArkSaveLoadSystem = PreyFunction<IArkSaveLoadSystem& (CCryAction* const _this)>(0x5D8C90);
+	static inline auto FOnGameModeChanged = PreyFunction<void(const CCryAction* const _this)>(0x5DF570);
+	static inline auto FSerialize = PreyFunction<void(CCryAction* const _this, TSerialize ser)>(0x5CC0E0);
+	static inline auto FFlushBreakableObjects = PreyFunction<void(CCryAction* const _this)>(0x5C3880);
+	static inline auto FClearBreakHistory = PreyFunction<void(CCryAction* const _this)>(0x5C2680);
+	static inline auto FFullSerialize = PreyFunction<void(CCryAction* const _this, TSerialize _ser)>(0x5D8AB0);
+	static inline auto FPostSerialize = PreyFunction<void(CCryAction* const _this)>(0x5DFD10);
+	static inline auto FBeginLanQuery = PreyFunction<void(CCryAction* const _this)>(0x5D6A10);
+	static inline auto FEndCurrentQuery = PreyFunction<void(CCryAction* const _this)>(0x5D8770);
+	static inline auto FGetClientActor = PreyFunction<IActor* (const CCryAction* const _this)>(0x5D8CC0);
+	static inline auto FGetClientActorId = PreyFunction<unsigned(const CCryAction* const _this)>(0x5D8CD0);
+	static inline auto FGetClientEntity = PreyFunction<IEntity* (const CCryAction* const _this)>(0x5D8D30);
+	static inline auto FGetClientEntityId = PreyFunction<unsigned(const CCryAction* const _this)>(0x5D8D60);
+	static inline auto FGetClientChannel = PreyFunction<INetChannel* (const CCryAction* const _this)>(0x5D8D00);
+	static inline auto FGetServerTime = PreyFunction<CTimeValue*(CCryAction* const _this, CTimeValue* _return_value_)>(0x5D99B0);
+	static inline auto FGetGameChannelId = PreyFunction<uint16_t(CCryAction* const _this, INetChannel* pNetChannel)>(0x5D8DA0);
+	static inline auto FGetNetChannel = PreyFunction<INetChannel* (CCryAction* const _this, uint16_t channelId)>(0x5D96D0);
+	static inline auto FIsChannelOnHold = PreyFunction<bool(CCryAction* const _this, uint16_t channelId)>(0x5DBDC0);
+	static inline auto FGetGameObject = PreyFunction<IGameObject* (CCryAction* const _this, unsigned id)>(0x5D8E00);
+	static inline auto FGetNetworkSafeClassId = PreyFunction<bool(CCryAction* const _this, uint16_t& id, const char* className)>(0x5D9740);
+	static inline auto FGetNetworkSafeClassName = PreyFunction<bool(CCryAction* const _this, char* className, uint64_t maxn, uint16_t id)>(0x5D9840);
+	static inline auto FQueryGameObjectExtension = PreyFunction<IGameObjectExtension* (CCryAction* const _this, unsigned id, const char* name)>(0x5E0A90);
+	static inline auto FDelegateAuthority = PreyFunction<void(CCryAction* const _this, unsigned entityId, uint16_t channelId)>(0x5D81C0);
+	static inline auto FGetNetContext = PreyFunction<INetContext* (CCryAction* const _this)>(0x5D9720);
+	static inline auto FSaveGame = PreyFunction<bool(CCryAction* const _this, const char* path, bool bQuick, bool bForceImmediate, ESaveGameReason reason, bool ignoreDelay, const char* checkPointName)>(0x5E1120);
+	static inline auto FLoadGame = PreyFunction<ELoadGameResult(CCryAction* const _this, const char* path, bool quick, bool ignoreDelay)>(0x5DCA70);
+	static inline auto FScheduleEndLevel = PreyFunction<void(CCryAction* const _this, const char* nextLevel)>(0x5E1BC0);
+	static inline auto FScheduleEndLevelNow = PreyFunction<void(CCryAction* const _this, const char* nextLevel)>(0x5E1C00);
+	static inline auto FOnEditorSetGameMode = PreyFunction<void(CCryAction* const _this, int iMode)>(0x5DF440);
+	static inline auto FIsEditing = PreyFunction<bool(CCryAction* const _this)>(0x5DBE00);
+	static inline auto FOnBreakageSpawnedEntity = PreyFunction<void(CCryAction* const _this, IEntity* pEntity, IPhysicalEntity* pPhysEntity, IPhysicalEntity* pSrcPhysEntity)>(0x5DEAD0);
+	static inline auto FIsImmersiveMPEnabled = PreyFunction<bool(CCryAction* const _this)>(0x5DBEB0);
+	static inline auto FAllowSave = PreyFunction<void(CCryAction* const _this, bool bAllow)>(0x5D66C0);
+	static inline auto FAllowLoad = PreyFunction<void(CCryAction* const _this, bool bAllow)>(0x5D66B0);
+	static inline auto FCanSave = PreyFunction<bool(CCryAction* const _this)>(0x5D6B90);
+	static inline auto FCanLoad = PreyFunction<bool(CCryAction* const _this)>(0x5D6B40);
+	static inline auto FGetSerializeHelper = PreyFunction<ISerializeHelper* (const CCryAction* const _this)>(0x5D9940);
+	static inline auto FCanCheat = PreyFunction<bool(CCryAction* const _this)>(0x5D6B10);
+	static inline auto FGetServerNetNub = PreyFunction<INetNub* (CCryAction* const _this)>(0x5D99A0);
+	static inline auto FGetClientNetNub = PreyFunction<INetNub* (CCryAction* const _this)>(0x5D8D90);
+	static inline auto FSetGameGUID = PreyFunction<void(CCryAction* const _this, const char* gameGUID)>(0x5E1C40);
+	static inline auto FGetGameGUID = PreyFunction<const char* (CCryAction* const _this)>(0x10ED470);
+	static inline auto FIsVoiceRecordingEnabled = PreyFunction<bool(CCryAction* const _this)>(0x5DBF80);
+	static inline auto FIsGameSession = PreyFunction<bool(CCryAction* const _this, unsigned sessionHandle)>(0x5DBE40);
+	static inline auto FShouldMigrateNub = PreyFunction<bool(CCryAction* const _this, unsigned sessionHandle)>(0x5E1CD0);
+	static inline auto FGetISharedParamsManager = PreyFunction<ISharedParamsManager* (CCryAction* const _this)>(0x5D9010);
+	static inline auto FGetLoadSaveDelay = PreyFunction<float(const CCryAction* const _this)>(0x5D90B0);
+	static inline auto FGetIGameVolumesManager = PreyFunction<IGameVolumes* (const CCryAction* const _this)>(0x5D8FB0);
+	static inline auto FPreloadAnimatedCharacter = PreyFunction<void(CCryAction* const _this, IScriptTable* pEntityScript)>(0x5E09C0);
+	static inline auto FRegisterExtension = PreyFunction<void(CCryAction* const _this, std::shared_ptr<ICryUnknown> pExtension)>(0x5E0AF0);
+	static inline auto FReleaseExtensions = PreyFunction<void(CCryAction* const _this)>(0x5E0ED0);
+	static inline auto FQueryExtensionInterfaceById = PreyFunction<std::shared_ptr<ICryUnknown>*(const CCryAction* const _this, std::shared_ptr<ICryUnknown>* _return_value_, const CryGUID& interfaceID)>(0x5E09D0);
+	static inline auto FGetGameServerNub = PreyFunction<CGameServerNub* (CCryAction* const _this)>(0x5D8EC0);
+	static inline auto FGetGameClientNub = PreyFunction<CGameClientNub* (CCryAction* const _this)>(0x5D8DE0);
+	static inline auto FGetGameContext = PreyFunction<CGameContext* (CCryAction* const _this)>(0x5D8DF0);
+	static inline auto FReloadArkGameNoises = PreyFunction<void(CCryAction* const _this)>(0x5E0F10);
+	static inline auto FEmitArkGameNoise = PreyFunction<void(const CCryAction* const _this, const unsigned _emitter, const Vec3& _position, const ArkGameNoise::Params& _params)>(0x5D8730);
+	static inline auto FFindArkGameNoiseLoudness = PreyFunction<const ArkGameNoiseLoudness* (const CCryAction* const _this, uint64_t _loudnessId)>(0x5D8A30);
+	static inline auto FGetSignalTimer = PreyFunction<CSignalTimer* (CCryAction* const _this)>(0x5D9A40);
+	static inline auto FGetRangeSignaling = PreyFunction<CRangeSignaling* (CCryAction* const _this)>(0x5D9930);
+	static inline auto FGetIPersistantDebug = PreyFunction<IPersistantDebug* (CCryAction* const _this)>(0x5D8FF0);
+	static inline auto FGetIGameStatsConfig = PreyFunction<IGameStatsConfig* (CCryAction* const _this)>(0x5D8ED0);
+	static inline auto FGetIVisualLog = PreyFunction<IVisualLog* (CCryAction* const _this)>(0x5D9030);
+	static inline auto FAddBreakEventListener = PreyFunction<void(CCryAction* const _this, IBreakEventListener* pListener)>(0x2A39E0);
+	static inline auto FRemoveBreakEventListener = PreyFunction<void(CCryAction* const _this, IBreakEventListener* pListener)>(0x5E0F30);
+	static inline auto FOnBreakEvent = PreyFunction<void(CCryAction* const _this, uint16_t uBreakEventIndex)>(0x5DEAB0);
+	static inline auto FRegisterListener = PreyFunction<void(CCryAction* const _this, IGameFrameworkListener* pGameFrameworkListener, const char* name, EFRAMEWORKLISTENERPRIORITY eFrameworkListenerPriority)>(0x5E0BE0);
+	static inline auto FUnregisterListener = PreyFunction<void(CCryAction* const _this, IGameFrameworkListener* pGameFrameworkListener)>(0x5E3380);
+	static inline auto FGetGameStatsConfig = PreyFunction<CGameStatsConfig* (CCryAction* const _this)>(0x5D8ED0);
+	static inline auto FGetIGameStatistics = PreyFunction<IGameStatistics* (CCryAction* const _this)>(0x8AA2B0);
+	static inline auto FGetIGameSessionHandler = PreyFunction<IGameSessionHandler* (CCryAction* const _this)>(0x5D8F40);
+	static inline auto FSetGameSessionHandler = PreyFunction<void(CCryAction* const _this, IGameSessionHandler* pSessionHandler)>(0x5E1C90);
+	static inline auto FNetworkExposeClass = PreyFunction<int(CCryAction* const _this, IFunctionHandler* pFH)>(0x5DE240);
+	static inline auto FNotifyGameFrameworkListenersOv1 = PreyFunction<void(CCryAction* const _this, ISaveGame* pSaveGame)>(0x5DE440);
+	static inline auto FNotifyGameFrameworkListenersOv0 = PreyFunction<void(CCryAction* const _this, ILoadGame* pLoadGame)>(0x5DE250);
+	static inline auto FNotifySavegameFileLoadedToListeners = PreyFunction<void(CCryAction* const _this, const char* pLevelName)>(0x5DE630);
+	static inline auto FEnableVoiceRecording = PreyFunction<void(CCryAction* const _this, const bool enable)>(0x5D8760);
+	static inline auto FMutePlayerById = PreyFunction<void(CCryAction* const _this, unsigned playerId)>(0x1333E90);
+	static inline auto FCreateDebugHistoryManager = PreyFunction<IDebugHistoryManager* (CCryAction* const _this)>(0x5D7F70);
+	static inline auto FExecuteCommandNextFrame = PreyFunction<void(CCryAction* const _this, const char* cmd)>(0x5D89F0);
+	static inline auto FGetNextFrameCommand = PreyFunction<const char* (const CCryAction* const _this)>(0x5D98D0);
+	static inline auto FClearNextFrameCommand = PreyFunction<void(CCryAction* const _this)>(0x5D73F0);
+	static inline auto FPrefetchLevelAssets = PreyFunction<void(CCryAction* const _this, const bool bEnforceAll)>(0x5E09A0);
+	static inline auto FShowPageInBrowser = PreyFunction<void(CCryAction* const _this, const char* URL)>(0x5E1D10);
+	static inline auto FStartProcess = PreyFunction<bool(CCryAction* const _this, const char* cmd_line)>(0x5E2820);
+	static inline auto FSaveServerConfig = PreyFunction<bool(CCryAction* const _this, const char* path)>(0x5E1A20);
+	static inline auto FOnActionEvent = PreyFunction<void(CCryAction* const _this, const SActionEvent& ev)>(0x5DE820);
+	static inline auto FDumpMemInfo = PreyFunction<void(CCryAction* const _this, const char* format, ... memInfo)>(0x5D8670);
+	static inline auto FGetStartLevelSaveGameName = PreyFunction<const char* (CCryAction* const _this)>(0x5D9A50);
+	static inline auto FGetAIActorProxy = PreyFunction<IAIActorProxy* (const CCryAction* const _this, unsigned id)>(0x5D8B20);
+	static inline auto FCreatePhysicsQueues = PreyFunction<void(CCryAction* const _this)>(0x5D80D0);
+	static inline auto FClearPhysicsQueues = PreyFunction<void(CCryAction* const _this)>(0x5D7410);
+	static inline auto FGetPhysicQueues = PreyFunction<CCryActionPhysicQueues& (CCryAction* const _this)>(0x5D98E0);
+	static inline auto FIsGameSessionMigrating = PreyFunction<bool(CCryAction* const _this)>(0x5DBE70);
+	static inline auto FSwitchToLevelHeap = PreyFunction<void(CCryAction* const _this, const char* acLevelName)>(0x5E2CB0);
+	static inline auto FStartNetworkStallTicker = PreyFunction<void(CCryAction* const _this, bool includeMinimalUpdate)>(0x5E2720);
+	static inline auto FStopNetworkStallTicker = PreyFunction<void(CCryAction* const _this)>(0x5E2C10);
+	static inline auto FGetArkSaveLoadSystem = PreyFunction<ArkSaveLoadSystem& (CCryAction* const _this)>(0x5D8C90);
+	static inline auto FGlobalActionsPostSerialize = PreyFunction<void(const CCryAction* const _this)>(0x5D9BD0);
+	static inline auto FFinishWritingSave = PreyFunction<void(const CCryAction* const _this)>(0x5D8A40);
+	static inline auto FIsSavePending = PreyFunction<bool(const CCryAction* const _this)>(0x5DBF50);
+	static inline auto FIsWritingSave = PreyFunction<bool(const CCryAction* const _this)>(0x5DBF90);
+	static inline auto FInitCVars = PreyFunction<void(CCryAction* const _this)>(0x5DAAE0);
+	static inline auto FInitCommands = PreyFunction<void(CCryAction* const _this)>(0x5DB4E0);
+	static inline auto FOpenLogCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5DF7A0);
+	static inline auto FPauseCmd = PreyFunction<void(IConsoleCmdArgs* _pArgs)>(0x5DF880);
+	static inline auto FDumpMapsCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8580);
+	static inline auto FMapCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5DD0B0);
+	static inline auto FReloadReadabilityXML = PreyFunction<void(IConsoleCmdArgs* __unnamed1)>(0x5E0F20);
+	static inline auto FUnloadCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E3340);
+	static inline auto FPlayCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5DFBC0);
+	static inline auto FConnectCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D7A40);
+	static inline auto FDisconnectCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8460);
+	static inline auto FDisconnectChannelCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8410);
+	static inline auto FStatusCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5E2B80);
+	static inline auto FLegacyStatusCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5DC5D0);
+	static inline auto FVersionCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E4080);
+	static inline auto FSaveGameCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E15C0);
+	static inline auto FGenStringsSaveGameCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5D8AE0);
+	static inline auto FKickPlayerCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5DC320);
+	static inline auto FKickPlayerByIdCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5DC130);
+	static inline auto FBanPlayerCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5D66D0);
+	static inline auto FBanStatusCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5D69A0);
+	static inline auto FUnbanPlayerCmd = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5E31F0);
+	static inline auto FOpenURLCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5DF820);
+	static inline auto FTestResetCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E31E0);
+	static inline auto FDumpAnalysisStatsCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8560);
+	static inline auto FTestPlayerBoundsCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E2D50);
+	static inline auto FDelegateCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8230);
+	static inline auto FDumpStatsCmd = PreyFunction<void(IConsoleCmdArgs* args)>(0x5D8710);
+	static inline auto Frcon_startserver = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E59D0);
+	static inline auto Frcon_stopserver = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E5E60);
+	static inline auto Frcon_connect = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E5470);
+	static inline auto Frcon_disconnect = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E5960);
+	static inline auto Frcon_command = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E5310);
+	static inline auto Fhttp_startserver = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E4BF0);
+	static inline auto Fhttp_stopserver = PreyFunction<void(IConsoleCmdArgs* args)>(0x5E5050);
+	static inline auto FCheckEndLevelSchedule = PreyFunction<void(CCryAction* const _this)>(0x5D6D90);
+	static inline auto FMutePlayer = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x1333E90);
+	static inline auto FVerifyMaxPlayers = PreyFunction<void(ICVar* pVar)>(0x5E4030);
+	static inline auto FResetComments = PreyFunction<void(ICVar* pVar)>(0x5E1030);
+	static inline auto FStaticSetPbSvEnabled = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5E2A20);
+	static inline auto FStaticSetPbClEnabled = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5E28D0);
+};
+
+// CSystemEventListner_Action
+// Header:  CryEngine/cryaction/CryAction.h
+// Include: Prey/CryAction/CryAction.cpp
+struct CSystemEventListner_Action : public ISystemEventListener
+{ // Size=8 (0x8)
+	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
+
+	static inline auto FOnSystemEvent = PreyFunction<void(CSystemEventListner_Action* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x5D15C0);
+};
+#endif // !MOONCRASH

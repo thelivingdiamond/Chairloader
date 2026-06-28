@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 
 class CDeviceManager
@@ -27,3 +29,46 @@ inline void CDeviceManager::UploadContents(D3DBuffer* buffer, uint32 subresource
 	static_assert(!bDirectAccess, "Only bDirectAccess is supported");
 	FUploadContents(buffer, subresource, offset, size, mode, pInDataCPU, pOutDataGPU, numDataBlocks);
 }
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <CryEngine/renderdll/xrenderd3d9/devbuffer.h>
+#include <_unknown/CTrackedItemAllocatorBase.h>
+
+// CTrackedItemAllocator<CGpuBuffer::STrackedGpuBuffer>
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/devicemanager.h
+class CTrackedItemAllocator<CGpuBuffer::STrackedGpuBuffer> : public CTrackedItemAllocatorBase<CGpuBuffer::STrackedGpuBuffer>
+{ // Size=24 (0x18)
+public:
+	~CTrackedItemAllocator<CGpuBuffer::STrackedGpuBuffer>();
+
+#if 0
+	CTrackedItemAllocator<CGpuBuffer::STrackedGpuBuffer>();
+	void Reset();
+	CGpuBuffer::STrackedGpuBuffer* Allocate(bool* _arg0_);
+#endif
+
+	static inline auto FBitNotCTrackedItemAllocatorLessCGpuBuffer::STrackedGpuBufferGreater = PreyFunction<void(CTrackedItemAllocator<CGpuBuffer::STrackedGpuBuffer>* const _this)>(0x1066B30);
+};
+
+// SUsageTrackedItem
+// Header:  CryEngine/renderdll/xrenderd3d9/devicemanager/devicemanager.h
+// Include: Prey/RenderDll/XRenderD3D9/DeviceManager/DeviceManager.h
+class SUsageTrackedItem
+{ // Size=4 (0x4)
+public:
+	unsigned m_lastUseFrame;
+
+	void MarkUsed() { FMarkUsed(this); }
+	bool IsInUse() const { return FIsInUse(this); }
+
+#if 0
+	SUsageTrackedItem();
+	SUsageTrackedItem(unsigned _arg0_);
+#endif
+
+	static inline auto FMarkUsed = PreyFunction<void(SUsageTrackedItem* const _this)>(0x1071EC0);
+	static inline auto FIsInUse = PreyFunction<bool(const SUsageTrackedItem* const _this)>(0x1071D90);
+};
+#endif // !MOONCRASH

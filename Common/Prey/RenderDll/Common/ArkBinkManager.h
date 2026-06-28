@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/ISystem.h>
@@ -92,4 +94,108 @@ public:
 	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle(ArkBinkManager *const _this, const char *_szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xECCBA0);
 	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager *const _this, ArkBinkPlayer *_pPlayer)>(0xECDD50);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CrySystem/ISystem.h>
+#include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
+#include <_unknown/CryLockT.h>
+#include <_unknown/IArkBinkManager.h>
 
+struct ArkBinkPlaybackInfo;
+class ArkBinkPlayer;
+class ArkBinkRenderer;
+class ArkBinkRendererCPU;
+struct BINK;
+enum class EArkBinkLoadFlags;
+enum class EArkBinkMovieType;
+enum ESystemEvent;
+struct ICVar;
+
+// ArkBinkManager
+// Header:  CryEngine/renderdll/common/ArkBinkManager.h
+class ArkBinkManager : public IArkBinkManager, public ISystemEventListener
+{ // Size=248 (0xF8)
+public:
+	// ArkBinkManager::SDeletionEntry
+	// Header:  CryEngine/renderdll/common/ArkBinkManager.h
+	struct SDeletionEntry
+	{ // Size=16 (0x10)
+		ArkBinkPlayer* pPlayer;
+		int nDelay;
+
+	#if 0
+		SDeletionEntry(ArkBinkPlayer* _arg0_, int _arg1_);
+	#endif
+	};
+
+	using PlayerMap = std::unordered_map<ArkBinkPlayerHandle, _smart_ptr<ArkBinkPlayer>>;
+
+	ArkBinkRendererCPU* m_pRendererCPU;
+	std::unordered_map<ArkBinkPlayerHandle, _smart_ptr<ArkBinkPlayer>> m_players;
+	std::vector<ArkBinkPlayer*> m_fullscreenPlayers;
+	std::vector<ArkBinkPlayer*> m_backgroundPlayers;
+	std::vector<ArkBinkPlayer*> m_playersToRender;
+	std::vector<ArkBinkManager::SDeletionEntry> m_deletionQueue;
+	unsigned m_threads[4];
+	int m_threadCount;
+	CryCriticalSection m_playersLock;
+
+	ArkBinkManager();
+	virtual ~ArkBinkManager();
+	void EF_UpdateTextureMovie(ArkBinkPlayer* _pPlayer) { FEF_UpdateTextureMovie(this, _pPlayer); }
+	virtual void UseTelemetry(void* _pApi, unsigned _binkMask) const;
+	virtual void EF_Update(int* _nFullscreenMovieCount);
+	virtual void EF_Render();
+	virtual ArkBinkPlayerHandle MT_LoadMovie(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags);
+	virtual void MT_ReleaseMovie(ArkBinkPlayerHandle _handle);
+	virtual bool MT_StartMovie(ArkBinkPlayerHandle _handle);
+	virtual bool MT_StopMovie(ArkBinkPlayerHandle _handle);
+	virtual bool MT_PauseMovie(ArkBinkPlayerHandle _handle, bool _bPaused);
+	virtual bool MT_IsMoviePlaying(ArkBinkPlayerHandle _handle) const;
+	virtual bool MT_GetMoviePlaybackInfo(ArkBinkPlayerHandle _handle, ArkBinkPlaybackInfo& _out_info) const;
+	virtual bool MT_IsFullScreenMoviePlaying() const;
+	virtual void MT_PauseMovies(const bool _bPause) const;
+	ArkBinkPlayer* RT_LoadMovie(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { return FRT_LoadMovie(this, _szPath, _instanceId, _type, _flags); }
+	void RT_RenderInternal(ArkBinkPlayer* _pPlayer, int _frame) { FRT_RenderInternal(this, _pPlayer, _frame); }
+	const ArkBinkPlayer* GetPlayer(ArkBinkPlayerHandle _handle) const { return FGetPlayerOv0(this, _handle); }
+	void DoFrameAsync(BINK* _hBink) { FDoFrameAsync(this, _hBink); }
+	ArkBinkRenderer* GetCurrentRenderer() { return FGetCurrentRenderer(this); }
+	static void OnAudioVolumeChange(ICVar* _pCVar, bool _bDialog) { FOnAudioVolumeChange(_pCVar, _bDialog); }
+	void UpdateAudioVolumes(unsigned _trackID, unsigned _volume) { FUpdateAudioVolumes(this, _trackID, _volume); }
+	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
+	ArkBinkPlayerHandle CreatePlayer(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { alignas(ArkBinkPlayerHandle) std::byte _return_buf_[sizeof(ArkBinkPlayerHandle)]; return *FCreatePlayer(this, reinterpret_cast<ArkBinkPlayerHandle*>(_return_buf_), _szPath, _instanceId, _type, _flags); }
+	void QueuePlayerDelete(ArkBinkPlayer* _pPlayer) { FQueuePlayerDelete(this, _pPlayer); }
+
+#if 0
+	ArkBinkPlayer* GetPlayer(ArkBinkPlayerHandle _arg0_);
+	void SetPlayerInitialVolumes(ArkBinkPlayer* _arg0_);
+	ArkBinkPlayer* CreatePlayerInternal(const char* _arg0_, EArkBinkMovieType _arg1_, EArkBinkLoadFlags _arg2_);
+#endif
+
+	static inline auto FArkBinkManager = PreyFunction<void(ArkBinkManager* const _this)>(0xEE8920);
+	static inline auto FEF_UpdateTextureMovie = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9750);
+	static inline auto FUseTelemetry = PreyFunction<void(const ArkBinkManager* const _this, void* _pApi, unsigned _binkMask)>(0x1333E90);
+	static inline auto FEF_Update = PreyFunction<void(ArkBinkManager* const _this, int* _nFullscreenMovieCount)>(0xEE93C0);
+	static inline auto FEF_Render = PreyFunction<void(ArkBinkManager* const _this)>(0xEE9320);
+	static inline auto FMT_LoadMovie = PreyFunction<ArkBinkPlayerHandle*(ArkBinkManager* const _this, ArkBinkPlayerHandle* _return_value_, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEE9B10);
+	static inline auto FMT_ReleaseMovie = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9CD0);
+	static inline auto FMT_StartMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9D70);
+	static inline auto FMT_StopMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9DF0);
+	static inline auto FMT_PauseMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle, bool _bPaused)>(0xEE9BC0);
+	static inline auto FMT_IsMoviePlaying = PreyFunction<bool(const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9AB0);
+	static inline auto FMT_GetMoviePlaybackInfo = PreyFunction<bool(const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle, ArkBinkPlaybackInfo& _out_info)>(0xEE99D0);
+	static inline auto FMT_IsFullScreenMoviePlaying = PreyFunction<bool(const ArkBinkManager* const _this)>(0xEE9A40);
+	static inline auto FMT_PauseMovies = PreyFunction<void(const ArkBinkManager* const _this, const bool _bPause)>(0xEE9C40);
+	static inline auto FRT_LoadMovie = PreyFunction<ArkBinkPlayer* (ArkBinkManager* const _this, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEEA0B0);
+	static inline auto FRT_RenderInternal = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer, int _frame)>(0xEEA160);
+	static inline auto FGetPlayerOv0 = PreyFunction<const ArkBinkPlayer* (const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9900);
+	static inline auto FDoFrameAsync = PreyFunction<void(ArkBinkManager* const _this, BINK* _hBink)>(0xEE9300);
+	static inline auto FGetCurrentRenderer = PreyFunction<ArkBinkRenderer* (ArkBinkManager* const _this)>(0x547450);
+	static inline auto FOnAudioVolumeChange = PreyFunction<void(ICVar* _pCVar, bool _bDialog)>(0xEE9E70);
+	static inline auto FUpdateAudioVolumes = PreyFunction<void(ArkBinkManager* const _this, unsigned _trackID, unsigned _volume)>(0xEEA170);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0xEE9ED0);
+	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle*(ArkBinkManager* const _this, ArkBinkPlayerHandle* _return_value_, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEE8D80);
+	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9FC0);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -292,4 +294,319 @@ public:
 	static inline auto FAddGooToDynamicEntity = PreyFunction<void(CArkProjectileGoo *const _this, IPhysicalEntity *const _pEntityPhysics, const bool _bIsEntityStatic, IPhysicalEntity *const _pAttachedPhysics)>(0x164C6A0);
 	static inline auto FCheckCollisionForAttachEntity = PreyFunction<IPhysicalEntity *(Vec3 const &_position, const float _scale, const int _attachedPhysicsId, ArkWeaponUtils::PhysicsMaterialInfo &_materialInfo)>(0x164D250);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/weapons/ArkGooSignalReceiver.h>
+#include <Prey/GameDll/ark/weapons/ArkProjectile.h>
+#include <Prey/GameDll/ark/weapons/ArkWeaponUtils.h>
 
+class ArkSafeScriptTable;
+enum EEntityAspects;
+struct EventPhysCollision;
+class ICrySizer;
+struct IEntity;
+struct IGameObject;
+struct IMaterial;
+struct IPhysicalEntity;
+struct ISerializableInfo;
+struct IStatObj;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+
+// CArkProjectileGoo
+// Header:  Prey/GameDll/ark/weapons/ArkProjectileGoo.h
+class CArkProjectileGoo : public CArkProjectile
+{ // Size=1680 (0x690)
+public:
+	enum class EArkGooState
+	{
+		none = 0,
+		adding = 1,
+		locked = 2,
+	};
+
+	// CArkProjectileGoo::ArkGooSpawnParameters
+	// Header:  Prey/GameDll/ark/weapons/ArkProjectileGoo.h
+	struct ArkGooSpawnParameters
+	{ // Size=88 (0x58)
+		unsigned m_projectileId;
+		string m_weaponClassName;
+		int m_hitPhysicsId;
+		unsigned m_spawnerId;
+		unsigned m_ownerEntityId;
+		unsigned m_grenadeId;
+		uint64_t m_ownerWeaponId;
+		Vec3 m_finalPoint;
+		Vec3 m_spawnDirection;
+		int m_partId;
+		float m_spawnSize;
+		float m_speedScale;
+		int m_surfaceIndex;
+		int m_attachedPhysicsId;
+		bool m_bTerrain;
+
+		void FullSerialize(TSerialize _ser) { FFullSerialize(this, _ser); }
+
+	#if 0
+		ArkGooSpawnParameters();
+	#endif
+
+		static inline auto FFullSerialize = PreyFunction<void(CArkProjectileGoo::ArkGooSpawnParameters* const _this, TSerialize _ser)>(0x17729A0);
+	};
+
+	// CArkProjectileGoo::GooSpawningProperties
+	// Header:  Prey/GameDll/ark/weapons/ArkProjectileGoo.h
+	struct GooSpawningProperties
+	{ // Size=20 (0x14)
+		float m_gooImpulseApplied;
+		float m_gooMovementSpeed;
+		float m_offsetAttachOfInitialSpawn;
+		ArkInterval<float> m_gooAttachOffsetAsPercentScaleRange;
+
+	#if 0
+		GooSpawningProperties();
+	#endif
+	};
+
+	CArkProjectileGoo::GooSpawningProperties m_spawnProperties;
+	bool m_bAutomaticallyScaleInitial;
+	bool m_bStopFiringOnBurst;
+	int m_maxNumberGooBallsToSpawn;
+	unsigned m_decalId;
+	float m_offsetFromCenterBurstPercentScale;
+	float m_gooSpawnScaleFactor;
+	float m_gooSpawnConeAngleSpread;
+	float m_gooSpawnRandomSpread;
+	float m_timeCurrentScale;
+	float m_timeBeforeEachChildBursts;
+	float m_gooPercentOfOverlapBeforeCombine;
+	float m_timeToMinDelayForGooSpawn;
+	float m_gooMinSpawnDelay;
+	float m_gooPenetrationAllowedBeforeDestroying;
+	float m_maxCollisionDamage;
+	float m_collisionDamageScale;
+	float m_gooCollisionDamageSpeed;
+	float m_gooMass;
+	float m_gooAOEScaleFactor;
+	string m_scaleUpMaterial;
+	ArkInterval<float> m_timeToScaleChildrenRange;
+	ArkInterval<float> m_timeToScaleAutomaticallyRange;
+	ArkInterval<float> m_finalScaleStaticRange;
+	ArkInterval<float> m_finalScaleDynamicRange;
+	ArkInterval<float> m_initialScaleStaticRange;
+	ArkInterval<float> m_initialScaleDynamicRange;
+	uint64_t m_collisionSignalPackage;
+	uint64_t m_hardenedGooSignalPackage;
+	uint64_t m_maxedGooSignalPackage;
+	static inline auto k_playerMinDistanceToPush = PreyGlobal<float>(0x2D81F68);
+	static inline auto k_playerPushSpeed = PreyGlobal<float>(0x2D81F6C);
+	static inline auto k_playerPushAngle = PreyGlobal<float>(0x2D81F70);
+	static inline auto k_minGooBallSize = PreyGlobal<float>(0x23EEFB0);
+	static inline auto k_ratioOuterToInnerSpheres = PreyGlobal<float>(0x23EEFB4);
+	CArkProjectileGoo::EArkGooState m_state;
+	bool m_bAmmoIsPooled;
+	float m_spawnSize;
+	float m_initialScale;
+	float m_currentScale;
+	float m_finalScale;
+	ArkSimpleTimer m_startScaleTimer;
+	float m_timeToScaleChildren;
+	float m_timeToAutoScale;
+	ArkSimpleTimer m_lockingTimer;
+	ArkSimpleTimer m_burstAndSpawnTimer;
+	ArkSimpleTimer m_blendTimer;
+	bool m_bConstrained;
+	int m_constraintId;
+	int m_gooNetworkId;
+	int m_surfaceIndex;
+	bool m_bNeedBursting;
+	Vec3 m_initialNormalLocal;
+	Vec3 m_initialPositionLocal;
+	Vec3 m_finalPosition;
+	bool m_bIsStatic;
+	bool m_bAttachedToMovableStatic;
+	int m_staticPhysicsId;
+	int m_attachedPhysicsId;
+	int m_attachedPartId;
+	bool m_bAttachedTerrain;
+	AABB m_regenNavMeshAABB;
+	bool m_bHasRegeneratedNavMesh;
+	IMaterial* m_pMaterial;
+	IMaterial* m_pClonedScaleUpMaterial;
+	unsigned m_grenadeId;
+	unsigned m_spawnerId;
+	ArkSimpleTimer m_spawnChildrenTimer;
+	float m_offsetPercent;
+	ArkEntityEffect m_burstAndSpawnEffect;
+	ArkEntityEffect m_lockedEffect;
+	std::vector<CArkProjectileGoo::ArkGooSpawnParameters> m_spawningGooList;
+	ArkGooSignalReceiver m_signalReceiver;
+	static inline auto m_pStaticGooMesh = PreyGlobal<IStatObj*>(0x2D81F78);
+	static inline auto m_pDynamicGooMesh = PreyGlobal<IStatObj*>(0x2D81F80);
+	CArkProjectile::ArkProjectileFFEffect m_collisionLockedEffect;
+	CArkProjectile::ArkProjectileFFEffect m_collisionNotLockedEffect;
+	std::vector<unsigned int> m_attachedGrenadeIds;
+
+	CArkProjectileGoo();
+	virtual ~CArkProjectileGoo();
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void InitClient(int _channelId);
+	virtual void PostInitClient(int _channelId);
+	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual bool GetEntityPoolSignature(TSerialize _signature);
+	virtual void Release();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
+	virtual void PostSerialize();
+	virtual void SerializeSpawnInfo(TSerialize _ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void HandleEvent(const SGameObjectEvent& _event);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void SetChannelId(uint16_t _id);
+	virtual void SetAuthority(bool _auth);
+	virtual const void* GetRMIBase() const;
+	virtual void PostUpdate(float _frameTime);
+	virtual void PostRemoteSpawn();
+	virtual void ReInitFromPool();
+	static CArkProjectileGoo* SpawnProjectileGoo(const CArkProjectileGoo::ArkGooSpawnParameters& _gooSpawnParams, const bool _bAmmoIsPooled) { return FSpawnProjectileGoo(_gooSpawnParams, _bAmmoIsPooled); }
+	static CArkProjectileGoo* GetProjectileGooFromEntityId(const unsigned _entityId) { return FGetProjectileGooFromEntityId(_entityId); }
+	static CArkProjectileGoo* GetProjectileGooFromEntity(const IEntity* const _pEntity) { return FGetProjectileGooFromEntity(_pEntity); }
+	void IncreaseGoo() { FIncreaseGoo(this); }
+	void SetCurrentScale(const float _newScale, const bool _bCanBurst) { FSetCurrentScale(this, _newScale, _bCanBurst); }
+	int AddToNetwork(const int _networkId) { return FAddToNetwork(this, _networkId); }
+	void ChangeState(const CArkProjectileGoo::EArkGooState _state) { FChangeState(this, _state); }
+	bool BurstAndSpawnGoo() { return FBurstAndSpawnGoo(this); }
+	void UpdateFinalPosition(const Vec3& _finalPosition) { FUpdateFinalPosition(this, _finalPosition); }
+	Vec3 GetWorldInitialNormal() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetWorldInitialNormal(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	bool OnCollision(IPhysicalEntity* const _pTargetPhysics, const Vec3& _position, const Vec3& _normal, const float _impulseAmount, const int _partId, const int _surfaceIdx) { return FOnCollision(this, _pTargetPhysics, _position, _normal, _impulseAmount, _partId, _surfaceIdx); }
+	void DoCollisionDamage(const EventPhysCollision* const pCollision, IEntity* pInstigator, const int targetIndex) { FDoCollisionDamage(this, pCollision, pInstigator, targetIndex); }
+	void TakeDamage(const float _damage, const unsigned _instigatorId, const bool _bExplosion) { FTakeDamage(this, _damage, _instigatorId, _bExplosion); }
+	virtual void Destroy(const bool _bDeleting, const bool _bDestroyImmediate);
+	virtual void StartDestroy();
+	void SwitchToStaticPhysics() { FSwitchToStaticPhysics(this); }
+	virtual void LoadCachedProperties();
+	void SetupScaleValues(const int _physicsId) { FSetupScaleValues(this, _physicsId); }
+	void StopScalingAndMoving() { FStopScalingAndMoving(this); }
+	void SendOutMaxGooPackage(const float _scale) { FSendOutMaxGooPackage(this, _scale); }
+	virtual void Physicalize(const string& _physicsType);
+	virtual string GetModelFilename(const ArkSafeScriptTable& _propertiesTable);
+	virtual void LoadModel();
+	virtual void CheckForCheapParticleUse();
+	bool IsOverlapping(const Vec3& _position, const float _scale) { return FIsOverlapping(this, _position, _scale); }
+	void UpdateBlendTimer() { FUpdateBlendTimer(this); }
+	void StateUpdate(const SEntityUpdateContext& _ctx) { FStateUpdate(this, _ctx); }
+	void StateEnter(const CArkProjectileGoo::EArkGooState _state) { FStateEnter(this, _state); }
+	bool TryToSpawnGoo(const CArkProjectileGoo::ArkGooSpawnParameters& _gooSpawnParams) { return FTryToSpawnGoo(this, _gooSpawnParams); }
+	bool UpdateMovement(const float _frameTime) { return FUpdateMovement(this, _frameTime); }
+	void SetupConstraint(IPhysicalEntity* _pOwnerPhysics, IPhysicalEntity* _pConstrainedEntityPhysics, const Vec3& _position, const int _partId) { FSetupConstraint(this, _pOwnerPhysics, _pConstrainedEntityPhysics, _position, _partId); }
+	boost::optional<float> CheckGooForCollisions(const Vec3& _position, const float _scale, const int _entTypes) { alignas(boost::optional<float>) std::byte _return_buf_[sizeof(boost::optional<float>)]; return *FCheckGooForCollisions(this, reinterpret_cast<boost::optional<float>*>(_return_buf_), _position, _scale, _entTypes); }
+	void AddGooToDynamicEntity(IPhysicalEntity* const _pEntityPhysics, const bool _bIsEntityStatic, IPhysicalEntity* const _pAttachedPhysics) { FAddGooToDynamicEntity(this, _pEntityPhysics, _bIsEntityStatic, _pAttachedPhysics); }
+	static IPhysicalEntity* CheckCollisionForAttachEntity(const Vec3& _position, const float _scale, const int _attachedPhysicsId, ArkWeaponUtils::PhysicsMaterialInfo& _materialInfo) { return FCheckCollisionForAttachEntity(_position, _scale, _attachedPhysicsId, _materialInfo); }
+
+#if 0
+	float GetMaxScale() const;
+	bool IsMaxScale() const;
+	bool IsLocked() const;
+	void GrowGooToMaxSize();
+	float GetCurrentScale() const;
+	float GetFinalScale() const;
+	void SetGooNetworkId(const int _arg0_);
+	int GetGooNetworkId() const;
+	IPhysicalEntity* GetConstrainedPhysicalEntity() const;
+	void SetGrenadeId(const unsigned _arg0_);
+	unsigned GetGrenadeId() const;
+	Vec3 GetFinalPosition() const;
+	void SetFinalPosition(const Vec3& _arg0_);
+	void CalculateFinalPosition(const float _arg0_, const Vec3& _arg1_);
+	void SetSpawnerId(unsigned _arg0_);
+	float GetOffsetPercent() const;
+	void SetOffsetPercent(const float _arg0_);
+	Vec3 GetWorldInitialPosition() const;
+	static float GetPlayerPushMinDistance();
+	static float GetPlayerPushSpeed();
+	static float GetPlayerPushAngle();
+	Vec3 GetPositionOfTop() const;
+	void EnableConstraint(const bool _arg0_);
+	const CArkProjectileGoo::GooSpawningProperties& GetSpawnProperties() const;
+	void SetAttachedGrenadeId(const unsigned _arg0_);
+	void CheckMaxScale();
+	void SetIsStatic(const bool _arg0_);
+	void UpdateBurstAndSpawnTimer(const float _arg0_);
+	void AddToSpawnQueue(const CArkProjectileGoo::ArkGooSpawnParameters& _arg0_);
+	void ResetNavMesh();
+	boost::optional<float> CheckGooForCollisionsWithPlayers(const Vec3& _arg0_, const float _arg1_, const int _arg2_);
+	std::vector<const CArkProjectileGoo*> GetGooProjectilesInBox(const Vec3& _arg0_, const float _arg1_) const;
+#endif
+
+	static inline auto FCArkProjectileGooOv1 = PreyFunction<void(CArkProjectileGoo* const _this)>(0x176FC90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkProjectileGoo* const _this, ICrySizer* _s)>(0x1773370);
+	static inline auto FInit = PreyFunction<bool(CArkProjectileGoo* const _this, IGameObject* _pGameObject)>(0x1773A60);
+	static inline auto FPostInit = PreyFunction<void(CArkProjectileGoo* const _this, IGameObject* _pGameObject)>(0x1775BF0);
+	static inline auto FInitClient = PreyFunction<void(CArkProjectileGoo* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkProjectileGoo* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkProjectileGoo* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkProjectileGoo* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkProjectileGoo* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkProjectileGoo* const _this)>(0x17764E0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkProjectileGoo* const _this, TSerialize _ser)>(0x1772B30);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkProjectileGoo* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0x13B0900);
+	static inline auto FPostSerialize = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1775F30);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkProjectileGoo* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkProjectileGoo* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectileGoo* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x1778C90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkProjectileGoo* const _this, const SGameObjectEvent& _event)>(0x17736D0);
+	static inline auto FProcessEvent = PreyFunction<void(CArkProjectileGoo* const _this, SEntityEvent& _event)>(0x17761E0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkProjectileGoo* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkProjectileGoo* const _this, bool _auth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkProjectileGoo* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkProjectileGoo* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1333E90);
+	static inline auto FReInitFromPool = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1776220);
+	static inline auto FSpawnProjectileGoo = PreyFunction<CArkProjectileGoo* (const CArkProjectileGoo::ArkGooSpawnParameters& _gooSpawnParams, const bool _bAmmoIsPooled)>(0x17774C0);
+	static inline auto FGetProjectileGooFromEntityId = PreyFunction<CArkProjectileGoo* (const unsigned _entityId)>(0x17734E0);
+	static inline auto FGetProjectileGooFromEntity = PreyFunction<CArkProjectileGoo* (const IEntity* const _pEntity)>(0x17734B0);
+	static inline auto FIncreaseGoo = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1773980);
+	static inline auto FSetCurrentScale = PreyFunction<void(CArkProjectileGoo* const _this, const float _newScale, const bool _bCanBurst)>(0x1776CB0);
+	static inline auto FAddToNetwork = PreyFunction<int(CArkProjectileGoo* const _this, const int _networkId)>(0x1770BF0);
+	static inline auto FChangeState = PreyFunction<void(CArkProjectileGoo* const _this, const CArkProjectileGoo::EArkGooState _state)>(0x17714E0);
+	static inline auto FBurstAndSpawnGoo = PreyFunction<bool(CArkProjectileGoo* const _this)>(0x1770C90);
+	static inline auto FUpdateFinalPosition = PreyFunction<void(CArkProjectileGoo* const _this, const Vec3& _finalPosition)>(0x1778E30);
+	static inline auto FGetWorldInitialNormal = PreyFunction<Vec3*(const CArkProjectileGoo* const _this, Vec3* _return_value_)>(0x1773590);
+	static inline auto FOnCollision = PreyFunction<bool(CArkProjectileGoo* const _this, IPhysicalEntity* const _pTargetPhysics, const Vec3& _position, const Vec3& _normal, const float _impulseAmount, const int _partId, const int _surfaceIdx)>(0x1775190);
+	static inline auto FDoCollisionDamage = PreyFunction<void(CArkProjectileGoo* const _this, const EventPhysCollision* const pCollision, IEntity* pInstigator, const int targetIndex)>(0x1772630);
+	static inline auto FTakeDamage = PreyFunction<void(CArkProjectileGoo* const _this, const float _damage, const unsigned _instigatorId, const bool _bExplosion)>(0x17788B0);
+	static inline auto FDestroy = PreyFunction<void(CArkProjectileGoo* const _this, const bool _bDeleting, const bool _bDestroyImmediate)>(0x1772470);
+	static inline auto FStartDestroy = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1777C60);
+	static inline auto FSwitchToStaticPhysics = PreyFunction<void(CArkProjectileGoo* const _this)>(0x17786A0);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1773D50);
+	static inline auto FSetupScaleValues = PreyFunction<void(CArkProjectileGoo* const _this, const int _physicsId)>(0x17772D0);
+	static inline auto FStopScalingAndMoving = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1778640);
+	static inline auto FSendOutMaxGooPackage = PreyFunction<void(CArkProjectileGoo* const _this, const float _scale)>(0x1776670);
+	static inline auto FPhysicalize = PreyFunction<void(CArkProjectileGoo* const _this, const string& _physicsType)>(0x1775900);
+	static inline auto FGetModelFilename = PreyFunction<string*(CArkProjectileGoo* const _this, string* _return_value_, const ArkSafeScriptTable& _propertiesTable)>(0x17733F0);
+	static inline auto FLoadModel = PreyFunction<void(CArkProjectileGoo* const _this)>(0x17750F0);
+	static inline auto FCheckForCheapParticleUse = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1771B00);
+	static inline auto FIsOverlapping = PreyFunction<bool(CArkProjectileGoo* const _this, const Vec3& _position, const float _scale)>(0x1773AB0);
+	static inline auto FUpdateBlendTimer = PreyFunction<void(CArkProjectileGoo* const _this)>(0x1778D20);
+	static inline auto FStateUpdate = PreyFunction<void(CArkProjectileGoo* const _this, const SEntityUpdateContext& _ctx)>(0x1778070);
+	static inline auto FStateEnter = PreyFunction<void(CArkProjectileGoo* const _this, const CArkProjectileGoo::EArkGooState _state)>(0x1777D10);
+	static inline auto FTryToSpawnGoo = PreyFunction<bool(CArkProjectileGoo* const _this, const CArkProjectileGoo::ArkGooSpawnParameters& _gooSpawnParams)>(0x1778A20);
+	static inline auto FUpdateMovement = PreyFunction<bool(CArkProjectileGoo* const _this, const float _frameTime)>(0x1779080);
+	static inline auto FSetupConstraint = PreyFunction<void(CArkProjectileGoo* const _this, IPhysicalEntity* _pOwnerPhysics, IPhysicalEntity* _pConstrainedEntityPhysics, const Vec3& _position, const int _partId)>(0x1776FC0);
+	static inline auto FCheckGooForCollisions = PreyFunction<boost::optional<float>*(CArkProjectileGoo* const _this, boost::optional<float>* _return_value_, const Vec3& _position, const float _scale, const int _entTypes)>(0x1771B40);
+	static inline auto FAddGooToDynamicEntity = PreyFunction<void(CArkProjectileGoo* const _this, IPhysicalEntity* const _pEntityPhysics, const bool _bIsEntityStatic, IPhysicalEntity* const _pAttachedPhysics)>(0x1770930);
+	static inline auto FCheckCollisionForAttachEntity = PreyFunction<IPhysicalEntity* (const Vec3& _position, const float _scale, const int _attachedPhysicsId, ArkWeaponUtils::PhysicsMaterialInfo& _materialInfo)>(0x17714F0);
+};
+#endif // !MOONCRASH

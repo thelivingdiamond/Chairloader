@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -250,4 +252,288 @@ public:
 	static inline auto FOnInventoryOpen = PreyFunction<void(CArkInventoryUI *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x15FF9E0);
 	static inline auto FDoUpdateGrid = PreyFunction<void(CArkInventoryUI *const _this, IUIElement *_pUIElement)>(0x15FE6C0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/GameDll/ark/iface/IArkItem.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
+class ArkInventory;
+class ArkItemSystem;
+class CArkItem;
+class IArkInventoryUIOwner;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// CArkInventoryUI
+// Header:  Prey/GameDll/ark/ui/ArkInventoryUI.h
+class CArkInventoryUI : public ArkUIMenuBase<CArkInventoryUI>
+{ // Size=88 (0x58)
+public:
+	enum class EArkMoveDir
+	{
+		right = 0,
+		left = 1,
+		up = 2,
+		down = 3,
+	};
+
+	// CArkInventoryUI::SelectedWeaponInfo_ModInfo
+	// Header:  Prey/GameDll/ark/ui/ArkInventoryUI.h
+	struct SelectedWeaponInfo_ModInfo
+	{ // Size=48 (0x30)
+		int m_currentLevel;
+		int m_maxLevel;
+		int m_prereqMetLevels;
+		string m_name;
+		string m_description;
+		uint64_t m_modId;
+		uint64_t m_prereq;
+
+	#if 0
+		SelectedWeaponInfo_ModInfo();
+	#endif
+	};
+
+	// CArkInventoryUI::SelectedWeaponInfo
+	// Header:  Prey/GameDll/ark/ui/ArkInventoryUI.h
+	struct SelectedWeaponInfo
+	{ // Size=48 (0x30)
+		bool m_bIsWeapon;
+		bool m_bShowDurability;
+		float m_durability;
+		int m_maxDurability;
+		bool m_bIsFortified;
+		string m_updateInfo;
+		std::vector<CArkInventoryUI::SelectedWeaponInfo_ModInfo> m_weaponMods;
+
+	#if 0
+		SelectedWeaponInfo();
+	#endif
+	};
+
+	// CArkInventoryUI::SelectedItemInfo
+	// Header:  Prey/GameDll/ark/ui/ArkInventoryUI.h
+	struct SelectedItemInfo
+	{ // Size=96 (0x60)
+		int m_id;
+		int m_x;
+		int m_y;
+		int m_width;
+		int m_height;
+		int m_dismantleCount;
+		IArkItem::EArkQualityTier m_quality;
+		bool m_bConflicts;
+		bool m_bCanQuickSelect;
+		bool m_bIsTrash;
+		bool m_bCanBeLooted;
+		wstring m_name;
+		wstring m_description;
+		CArkInventoryUI::SelectedWeaponInfo m_weaponInfo;
+
+	#if 0
+		SelectedItemInfo();
+	#endif
+	};
+
+	Vec2i m_dragOffset;
+	int m_x;
+	int m_y;
+	unsigned m_currentId;
+	unsigned m_itemDetailId;
+	unsigned m_stackId;
+	bool m_bIsMoving;
+	bool m_bDragging;
+	bool m_bIsProcessingMouseInput;
+	bool m_bQueueInventoryRefresh;
+	const char* m_uiElementName;
+	ArkInventory* m_pInventory;
+	ArkInventory* m_pExternal;
+	IArkInventoryUIOwner& m_owner;
+
+	CArkInventoryUI(IArkInventoryUIOwner& _owner, const char* _uiElementName);
+	virtual ~CArkInventoryUI();
+	bool MoveHighlight(const CArkInventoryUI::EArkMoveDir _moveDir) { return FMoveHighlight(this, _moveDir); }
+	void SetHighlightToItem(unsigned _id) { FSetHighlightToItem(this, _id); }
+	unsigned ResetPosition(bool _bExternal) { return FResetPosition(this, _bExternal); }
+	void UpdateHighlight(const CArkInventoryUI::SelectedItemInfo& itemInfo) { FUpdateHighlight(this, itemInfo); }
+	void SetInventory(ArkInventory& _inventory) { FSetInventory(this, _inventory); }
+	void Open(ArkInventory* _pExternal) { FOpen(this, _pExternal); }
+	void Close() { FClose(this); }
+	void ForceClose() { FForceClose(this); }
+	void Update(float _frametime) { FUpdate(this, _frametime); }
+	unsigned PickItem(unsigned _itemId) { return FPickItemOv1(this, _itemId); }
+	unsigned PickItem() { return FPickItemOv0(this); }
+	std::pair<unsigned int, bool> PlaceItem() { alignas(std::pair<unsigned int, bool>) std::byte _return_buf_[sizeof(std::pair<unsigned int, bool>)]; return *FPlaceItem(this, reinterpret_cast<std::pair<unsigned int, bool>*>(_return_buf_)); }
+	bool CancelPickItem() { return FCancelPickItem(this); }
+	bool SplitStack() { return FSplitStack(this); }
+	void CancelSplit() { FCancelSplit(this); }
+	bool CombineStacks() { return FCombineStacks(this); }
+	bool UpdateStackCounts(bool _bToStack) { return FUpdateStackCounts(this, _bToStack); }
+	void UpdateStackInputPrompts() const { FUpdateStackInputPrompts(this); }
+	bool GiveItem(unsigned _id, bool _bToExternal) { return FGiveItem(this, _id, _bToExternal); }
+	CArkInventoryUI::SelectedItemInfo GetSelectedItemInfo(unsigned _id) const { alignas(CArkInventoryUI::SelectedItemInfo) std::byte _return_buf_[sizeof(CArkInventoryUI::SelectedItemInfo)]; return *FGetSelectedItemInfo(this, reinterpret_cast<CArkInventoryUI::SelectedItemInfo*>(_return_buf_), _id); }
+	unsigned SelectEntityAtCurrentLocation() { return FSelectEntityAtCurrentLocation(this); }
+	unsigned GetOverlappedItem() const { return FGetOverlappedItem(this); }
+	std::vector<unsigned int> GetAllItems(bool _bExternal) const { alignas(std::vector<unsigned int>) std::byte _return_buf_[sizeof(std::vector<unsigned int>)]; return *FGetAllItems(this, reinterpret_cast<std::vector<unsigned int>*>(_return_buf_), _bExternal); }
+	void RefreshUI() { FRefreshUI(this); }
+	void UIUpdateGrid() { FUIUpdateGrid(this); }
+	void UISetCombinable(const std::vector<unsigned int>& _dimmedIds, const std::vector<unsigned int>& _flashIds) const { FUISetCombinable(this, _dimmedIds, _flashIds); }
+	void UIItemDetails(const CArkInventoryUI::SelectedItemInfo& _paneInfo, bool _bForce) { FUIItemDetails(this, _paneInfo, _bForce); }
+	void UIUpdateOne(const CArkItem& _item) const { FUIUpdateOne(this, _item); }
+	void ReleaseEmpty(unsigned _itemId) { FReleaseEmpty(this, _itemId); }
+	void Sort(ArkInventory& _inventory) { FSort(this, _inventory); }
+	ArkInventory* GetCurrentInventory() const { return FGetCurrentInventory(this); }
+	void AddItem(const CArkItem* const _pItem, const std::pair<int, int>& _location, bool _bEquipped) const { FAddItem(this, _pItem, _location, _bEquipped); }
+	void FillInItems(const ArkInventory& _inventory, int _offset) const { FFillInItems(this, _inventory, _offset); }
+	unsigned GetItemAtLocation(int _x, int _y, unsigned _ignoreId) const { return FGetItemAtLocation(this, _x, _y, _ignoreId); }
+	std::pair<int, int> GetLocationOfItem(unsigned _id) const { alignas(std::pair<int, int>) std::byte _return_buf_[sizeof(std::pair<int, int>)]; return *FGetLocationOfItem(this, reinterpret_cast<std::pair<int, int>*>(_return_buf_), _id); }
+	bool CanPlaceItem(unsigned _id, int _x, int _y, bool _bCanDisplace) const { return FCanPlaceItem(this, _id, _x, _y, _bCanDisplace); }
+	void UIItemNav(const CArkInventoryUI::SelectedItemInfo& _navInfo) const { FUIItemNav(this, _navInfo); }
+	void UIReleaseMove(const CArkInventoryUI::SelectedItemInfo& _itemInfo) const { FUIReleaseMove(this, _itemInfo); }
+	void UIMovingHelper(const CArkInventoryUI::SelectedItemInfo& _itemInfo, const char* functionName) const { FUIMovingHelper(this, _itemInfo, functionName); }
+	void OnSetHighlight(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSetHighlight(this, _pSender, _event, _args); }
+	void OnPickItem(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPickItem(this, _pSender, _event, _args); }
+	void OnPlaceItem(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPlaceItem(this, _pSender, _event, _args); }
+	void OnDragItem(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnDragItem(this, _pSender, _event, _args); }
+	void OnDoubleClickItem(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnDoubleClickItem(this, _pSender, _event, _args); }
+	void OnSetContainerFocus(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSetContainerFocus(this, _pSender, _event, _args); }
+	void OnRightClick(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnRightClick(this, _pSender, _event, _args); }
+	void OnInventoryOpen(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnInventoryOpen(this, _pSender, _event, _args); }
+	void DoUpdateGrid(IUIElement* _pUIElement) { FDoUpdateGrid(this, _pUIElement); }
+
+#if 0
+	ArkInventory* GetInventory() const;
+	ArkInventory* GetExternal() const;
+	void Drop();
+	bool IsMoving() const;
+	void SetLocation(int _arg0_, int _arg1_);
+	void SetLocationToFirstItem(bool _arg0_, bool _arg1_);
+	unsigned GetEntityAtCurrentLocation(unsigned _arg0_);
+	int GetMaxWidth() const;
+	int GetMaxHeight() const;
+	std::pair<int, int> GetCurrentLocation() const;
+	unsigned SelectNextEntity(unsigned _arg0_, bool _arg1_);
+	unsigned GetCurrentId() const;
+	unsigned GetStackId() const;
+	bool IsInExternal() const;
+	bool IsDragging() const;
+	void SetProcessingMouse(const bool _arg0_);
+	static ArkItemSystem& GetArkItemSystem();
+	IUIElement* GetUIElement() const;
+	void UIStartMove(const CArkInventoryUI::SelectedItemInfo& _arg0_) const;
+	void UIMoveItem(const CArkInventoryUI::SelectedItemInfo& _arg0_) const;
+	void ReleaseMouseDrag(IUIElement* _arg0_);
+#endif
+
+	static inline auto FCArkInventoryUIOv1 = PreyFunction<void(CArkInventoryUI* const _this, IArkInventoryUIOwner& _owner, const char* _uiElementName)>(0x171E660);
+	static inline auto FBitNotCArkInventoryUI = PreyFunction<void(CArkInventoryUI* const _this)>(0x171E7C0);
+	static inline auto FMoveHighlight = PreyFunction<bool(CArkInventoryUI* const _this, const CArkInventoryUI::EArkMoveDir _moveDir)>(0x171FEB0);
+	static inline auto FSetHighlightToItem = PreyFunction<void(CArkInventoryUI* const _this, unsigned _id)>(0x1721DF0);
+	static inline auto FResetPosition = PreyFunction<unsigned(CArkInventoryUI* const _this, bool _bExternal)>(0x1721810);
+	static inline auto FUpdateHighlight = PreyFunction<void(CArkInventoryUI* const _this, const CArkInventoryUI::SelectedItemInfo& itemInfo)>(0x1723C60);
+	static inline auto FSetInventory = PreyFunction<void(CArkInventoryUI* const _this, ArkInventory& _inventory)>(0x2D7D80);
+	static inline auto FOpen = PreyFunction<void(CArkInventoryUI* const _this, ArkInventory* _pExternal)>(0x1720F70);
+	static inline auto FClose = PreyFunction<void(CArkInventoryUI* const _this)>(0x171F1F0);
+	static inline auto FForceClose = PreyFunction<void(CArkInventoryUI* const _this)>(0x171F580);
+	static inline auto FUpdate = PreyFunction<void(CArkInventoryUI* const _this, float _frametime)>(0x1723BF0);
+	static inline auto FPickItemOv1 = PreyFunction<unsigned(CArkInventoryUI* const _this, unsigned _itemId)>(0x1720FC0);
+	static inline auto FPickItemOv0 = PreyFunction<unsigned(CArkInventoryUI* const _this)>(0x1721170);
+	static inline auto FPlaceItem = PreyFunction<std::pair<unsigned int, bool>*(CArkInventoryUI* const _this, std::pair<unsigned int, bool>* _return_value_)>(0x17211F0);
+	static inline auto FCancelPickItem = PreyFunction<bool(CArkInventoryUI* const _this)>(0x171EED0);
+	static inline auto FSplitStack = PreyFunction<bool(CArkInventoryUI* const _this)>(0x17220F0);
+	static inline auto FCancelSplit = PreyFunction<void(CArkInventoryUI* const _this)>(0x171F140);
+	static inline auto FCombineStacks = PreyFunction<bool(CArkInventoryUI* const _this)>(0x171F240);
+	static inline auto FUpdateStackCounts = PreyFunction<bool(CArkInventoryUI* const _this, bool _bToStack)>(0x1723DE0);
+	static inline auto FUpdateStackInputPrompts = PreyFunction<void(const CArkInventoryUI* const _this)>(0x1723EC0);
+	static inline auto FGiveItem = PreyFunction<bool(CArkInventoryUI* const _this, unsigned _id, bool _bToExternal)>(0x171FCD0);
+	static inline auto FGetSelectedItemInfo = PreyFunction<CArkInventoryUI::SelectedItemInfo*(const CArkInventoryUI* const _this, CArkInventoryUI::SelectedItemInfo* _return_value_, unsigned _id)>(0x171FA30);
+	static inline auto FSelectEntityAtCurrentLocation = PreyFunction<unsigned(CArkInventoryUI* const _this)>(0x1721D20);
+	static inline auto FGetOverlappedItem = PreyFunction<unsigned(const CArkInventoryUI* const _this)>(0x171F7C0);
+	static inline auto FGetAllItems = PreyFunction<std::vector<unsigned int>*(const CArkInventoryUI* const _this, std::vector<unsigned int>* _return_value_, bool _bExternal)>(0x171F5E0);
+	static inline auto FRefreshUI = PreyFunction<void(CArkInventoryUI* const _this)>(0x1721610);
+	static inline auto FUIUpdateGrid = PreyFunction<void(CArkInventoryUI* const _this)>(0x1723830);
+	static inline auto FUISetCombinable = PreyFunction<void(const CArkInventoryUI* const _this, const std::vector<unsigned int>& _dimmedIds, const std::vector<unsigned int>& _flashIds)>(0x1723340);
+	static inline auto FUIItemDetails = PreyFunction<void(CArkInventoryUI* const _this, const CArkInventoryUI::SelectedItemInfo& _paneInfo, bool _bForce)>(0x1722260);
+	static inline auto FUIUpdateOne = PreyFunction<void(const CArkInventoryUI* const _this, const CArkItem& _item)>(0x17238F0);
+	static inline auto FReleaseEmpty = PreyFunction<void(CArkInventoryUI* const _this, unsigned _itemId)>(0x17216C0);
+	static inline auto FSort = PreyFunction<void(CArkInventoryUI* const _this, ArkInventory& _inventory)>(0x1721F60);
+	static inline auto FGetCurrentInventory = PreyFunction<ArkInventory* (const CArkInventoryUI* const _this)>(0x171F690);
+	static inline auto FAddItem = PreyFunction<void(const CArkInventoryUI* const _this, const CArkItem* const _pItem, const std::pair<int, int>& _location, bool _bEquipped)>(0x171EA90);
+	static inline auto FFillInItems = PreyFunction<void(const CArkInventoryUI* const _this, const ArkInventory& _inventory, int _offset)>(0x171F3A0);
+	static inline auto FGetItemAtLocation = PreyFunction<unsigned(const CArkInventoryUI* const _this, int _x, int _y, unsigned _ignoreId)>(0x171F6C0);
+	static inline auto FGetLocationOfItem = PreyFunction<std::pair<int, int>*(const CArkInventoryUI* const _this, std::pair<int, int>* _return_value_, unsigned _id)>(0x171F730);
+	static inline auto FCanPlaceItem = PreyFunction<bool(const CArkInventoryUI* const _this, unsigned _id, int _x, int _y, bool _bCanDisplace)>(0x171EDA0);
+	static inline auto FUIItemNav = PreyFunction<void(const CArkInventoryUI* const _this, const CArkInventoryUI::SelectedItemInfo& _navInfo)>(0x1722F50);
+	static inline auto FUIReleaseMove = PreyFunction<void(const CArkInventoryUI* const _this, const CArkInventoryUI::SelectedItemInfo& _itemInfo)>(0x1723280);
+	static inline auto FUIMovingHelper = PreyFunction<void(const CArkInventoryUI* const _this, const CArkInventoryUI::SelectedItemInfo& _itemInfo, const char* functionName)>(0x1723110);
+	static inline auto FOnSetHighlight = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1720EE0);
+	static inline auto FOnPickItem = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17208C0);
+	static inline auto FOnPlaceItem = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1720C10);
+	static inline auto FOnDragItem = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1720450);
+	static inline auto FOnDoubleClickItem = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17203A0);
+	static inline auto FOnSetContainerFocus = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1720E40);
+	static inline auto FOnRightClick = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1720DC0);
+	static inline auto FOnInventoryOpen = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17208B0);
+	static inline auto FDoUpdateGrid = PreyFunction<void(CArkInventoryUI* const _this, IUIElement* _pUIElement)>(0x171F360);
+};
+
+// IArkInventoryUIOwner
+// Header:  Prey/GameDll/ark/ui/ArkInventoryUI.h
+class IArkInventoryUIOwner
+{ // Size=8 (0x8)
+public:
+	virtual void UpdateInputPrompt(bool _bUpdateUI) const = 0;
+	virtual void OnDoubleClick(unsigned _itemId);
+	virtual void OnPickItem(unsigned _itemId);
+	virtual void OnDragItem(unsigned _itemId);
+	virtual void OnPlaceItem(unsigned _itemId);
+	virtual void OnTransferItem(CArkItem& _item, ArkInventory* _pSourceInventory, ArkInventory* _pTargetInventory);
+	virtual void OnSwapItem(unsigned _placedItem, unsigned _swapToItem);
+	virtual void OnSetHighlight(unsigned _itemId);
+	virtual void OnRightClick(unsigned _itemId);
+	virtual bool CanLootItem(unsigned _itemId);
+	virtual bool CanDragItem(unsigned _itemId);
+	virtual bool IsInDefaultMode() const;
+	virtual bool CanCombine(unsigned _selectedId, unsigned _overId) const;
+	virtual bool Combine(unsigned _selectedId, unsigned _overId);
+	virtual void PlayErrorSound();
+	virtual const char* GetHighlightFn() const;
+	virtual const char* GetDetailsFn() const;
+	virtual const char* GetStartMoveFn() const;
+	virtual const char* GetMoveFn() const;
+	virtual const char* GetMoveReleaseFn() const;
+	virtual const char* GetClearFn() const;
+	virtual const char* GetUpdateFn() const;
+	virtual const char* GetAddItemFn() const;
+	virtual const char* GetPickResultFn() const;
+	virtual const char* GetDragReleaseFn() const;
+
+	static inline auto FOnDoubleClick = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FOnPickItem = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FOnDragItem = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FOnPlaceItem = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FOnTransferItem = PreyFunction<void(IArkInventoryUIOwner* const _this, CArkItem& _item, ArkInventory* _pSourceInventory, ArkInventory* _pTargetInventory)>(0x1333E90);
+	static inline auto FOnSwapItem = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _placedItem, unsigned _swapToItem)>(0x1333E90);
+	static inline auto FOnSetHighlight = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FOnRightClick = PreyFunction<void(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x1333E90);
+	static inline auto FCanLootItem = PreyFunction<bool(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x146EBE0);
+	static inline auto FCanDragItem = PreyFunction<bool(IArkInventoryUIOwner* const _this, unsigned _itemId)>(0x146EB90);
+	static inline auto FIsInDefaultMode = PreyFunction<bool(const IArkInventoryUIOwner* const _this)>(0x1A302A0);
+	static inline auto FCanCombine = PreyFunction<bool(const IArkInventoryUIOwner* const _this, unsigned _selectedId, unsigned _overId)>(0x13B0900);
+	static inline auto FCombine = PreyFunction<bool(IArkInventoryUIOwner* const _this, unsigned _selectedId, unsigned _overId)>(0x13B0900);
+	static inline auto FPlayErrorSound = PreyFunction<void(IArkInventoryUIOwner* const _this)>(0x1333E90);
+	static inline auto FGetHighlightFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE60);
+	static inline auto FGetDetailsFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE40);
+	static inline auto FGetStartMoveFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EEB0);
+	static inline auto FGetMoveFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE80);
+	static inline auto FGetMoveReleaseFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE90);
+	static inline auto FGetClearFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE30);
+	static inline auto FGetUpdateFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EEE0);
+	static inline auto FGetAddItemFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE10);
+	static inline auto FGetPickResultFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EEA0);
+	static inline auto FGetDragReleaseFn = PreyFunction<const char* (const IArkInventoryUIOwner* const _this)>(0x146EE50);
+};
+#endif // !MOONCRASH

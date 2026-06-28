@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -271,3 +273,94 @@ public:
 };
 
 */
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryInput/InputDevice.h>
+#include <_unknown/IThreadTask.h>
+#include <_unknown/SThreadTaskInfo.h>
+
+enum EFFEffectId;
+enum EInputDeviceType;
+struct IFFParams;
+struct IInput;
+struct SInputSymbol;
+
+// CInputConnectionThreadTask
+// Header:  CryEngine/cryinput/XInputDevice.h
+// Include: Prey/CryInput/XInputDevice.cpp
+class CInputConnectionThreadTask : public IThreadTask
+{ // Size=80 (0x50)
+public:
+	IInput* m_pInput;
+	volatile bool m_bQuit;
+	SThreadTaskInfo m_TaskInfo;
+
+	virtual void Stop();
+	virtual void OnUpdate();
+	virtual SThreadTaskInfo* GetTaskInfo();
+
+#if 0
+	CInputConnectionThreadTask(IInput* _arg0_);
+#endif
+
+	static inline auto FStop = PreyFunction<void(CInputConnectionThreadTask* const _this)>(0x9F69C0);
+	static inline auto FOnUpdate = PreyFunction<void(CInputConnectionThreadTask* const _this)>(0x9F6400);
+	static inline auto FGetTaskInfo = PreyFunction<SThreadTaskInfo* (CInputConnectionThreadTask* const _this)>(0x1369170);
+};
+
+// CXInputDevice
+// Header:  CryEngine/cryinput/XInputDevice.h
+// Include: Prey/CryInput/XInputDevice.h
+class CXInputDevice : public CInputDevice
+{ // Size=168 (0xA8)
+public:
+	int m_deviceNo;
+	bool m_connected;
+	bool m_forceResendSticks;
+	_XINPUT_STATE m_state;
+	_XINPUT_VIBRATION m_currentVibrationSettings;
+	float m_basicLeftMotorRumble;
+	float m_basicRightMotorRumble;
+	float m_frameLeftMotorRumble;
+	float m_frameRightMotorRumble;
+	float m_fVibrationTimer;
+	float m_fDeadZone;
+	static inline auto ProductGUID = PreyGlobal<_GUID>(0x23B9038);
+
+	CXInputDevice(IInput& input, int deviceNo);
+	virtual ~CXInputDevice();
+	virtual int GetDeviceIndex() const;
+	virtual bool Init();
+	virtual void PostInit();
+	virtual void Update(bool bFocus);
+	virtual void ClearKeyState();
+	virtual void ClearAnalogKeyState(std::vector<SInputSymbol*>& clearedSymbols);
+	virtual bool SetForceFeedback(IFFParams params);
+	virtual bool IsOfDeviceType(EInputDeviceType type) const;
+	virtual void SetDeadZone(float fThreshold);
+	virtual void RestoreDefaultDeadZone();
+	bool SetVibration(uint16_t leftMotor, uint16_t rightMotor, float timing, EFFEffectId effectId) { return FSetVibration(this, leftMotor, rightMotor, timing, effectId); }
+	void ProcessAnalogStick(SInputSymbol* pSymbol, int16_t prev, int16_t current, int16_t threshold) { FProcessAnalogStick(this, pSymbol, prev, current, threshold); }
+
+#if 0
+	void UpdateConnectedState(bool _arg0_);
+	float GetClampedLeftMotorAccumulatedVibration() const;
+	float GetClampedRightMotorAccumulatedVibration() const;
+#endif
+
+	static inline auto FCXInputDeviceOv1 = PreyFunction<void(CXInputDevice* const _this, IInput& input, int deviceNo)>(0x9F5870);
+	static inline auto FGetDeviceIndex = PreyFunction<int(const CXInputDevice* const _this)>(0xDBA4B0);
+	static inline auto FInit = PreyFunction<bool(CXInputDevice* const _this)>(0x9F5EA0);
+	static inline auto FPostInit = PreyFunction<void(CXInputDevice* const _this)>(0x9F6490);
+	static inline auto FUpdate = PreyFunction<void(CXInputDevice* const _this, bool bFocus)>(0x9F69D0);
+	static inline auto FClearKeyState = PreyFunction<void(CXInputDevice* const _this)>(0x9F5DF0);
+	static inline auto FClearAnalogKeyState = PreyFunction<void(CXInputDevice* const _this, std::vector<SInputSymbol*>& clearedSymbols)>(0x9F59C0);
+	static inline auto FSetForceFeedback = PreyFunction<bool(CXInputDevice* const _this, IFFParams params)>(0x9F66A0);
+	static inline auto FIsOfDeviceType = PreyFunction<bool(const CXInputDevice* const _this, EInputDeviceType type)>(0x9F63E0);
+	static inline auto FSetDeadZone = PreyFunction<void(CXInputDevice* const _this, float fThreshold)>(0x9F6670);
+	static inline auto FRestoreDefaultDeadZone = PreyFunction<void(CXInputDevice* const _this)>(0x9F6650);
+	static inline auto FSetVibration = PreyFunction<bool(CXInputDevice* const _this, uint16_t leftMotor, uint16_t rightMotor, float timing, EFFEffectId effectId)>(0x9F6700);
+	static inline auto FProcessAnalogStick = PreyFunction<void(CXInputDevice* const _this, SInputSymbol* pSymbol, int16_t prev, int16_t current, int16_t threshold)>(0x9F6590);
+};
+#endif // !MOONCRASH

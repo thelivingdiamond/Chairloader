@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 #include "CryDX.h"
 #include <Prey/CryRenderer/ITexture.h>
@@ -104,3 +106,4 @@ struct SResourceView
 	static inline auto FRenderTargetView = PreyFunction<SResourceView(
 		ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample)>(0xFE6550);
 };
+#endif // !MOONCRASH

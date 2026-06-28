@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -98,4 +100,4 @@ struct AgentParameters // Id=800103B Size=240
 	
 	static inline auto FSerialize = PreyFunction<void(AgentParameters *const _this, TSerialize ser)>(0x7050E0);
 };
-
+#endif // !MOONCRASH

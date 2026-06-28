@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/Ark/IArkDlcSystem.h>
@@ -97,3 +99,4 @@ public:
 	static inline auto FFindDlcInfoByDlcIdOv1 = PreyFunction<const CArkDlcSystem::ArkDlcInfo* (const CArkDlcSystem* const _this, unsigned _dlcId)>(0x949A0);
 	static inline auto FFindDlcInfoByDlcIdOv0 = PreyFunction<CArkDlcSystem::ArkDlcInfo* (CArkDlcSystem* const _this, unsigned _dlcId)>(0x948E0);
 };
+#endif // !MOONCRASH

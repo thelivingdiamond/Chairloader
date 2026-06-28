@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -112,4 +114,122 @@ public:
 	static inline auto FBeginTransit = PreyFunction<void(ArkDockingStation *const _this, float _transitDuration)>(0x13941D0);
 	static inline auto FHasClock = PreyFunction<bool(ArkDockingStation const *const _this)>(0x1B933B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
 
+class ArkCargoContainer;
+struct ArkInteractionTestResult;
+enum class EArkDockingBay;
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+struct IEntity;
+struct IMaterial;
+struct IUIElement;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkDockingStation
+// Header:  Prey/GameDll/ark/worldui/ArkDockingStation.h
+class ArkDockingStation : public ArkInteractiveScreen, public ArkUIMenuBase<ArkDockingStation>
+{ // Size=592 (0x250)
+public:
+	enum class EArkCurrentPage
+	{
+		keypad = 0,
+		cargoBays = 1,
+		help = 2,
+	};
+
+	unsigned m_cargoBay1Transition;
+	unsigned m_cargoBay2Transition;
+	std::vector<unsigned int> m_containers;
+	ArkSimpleTimer m_searchingTimer;
+	ArkSimpleTimer m_transitTimer;
+	string m_currentCode;
+	ArkDockingStation::EArkCurrentPage m_currentPage;
+	unsigned m_currentlySelectedContainer;
+	ArkAudioTrigger m_triggerPowerLoop;
+	_smart_ptr<IMaterial> m_pScreensaverMaterial;
+	_smart_ptr<IMaterial> m_pPowerOffMaterial;
+
+	ArkDockingStation();
+	virtual ~ArkDockingStation();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void SetupStaticMaterial();
+	virtual void OnWorldUIInstanceGranted(IUIElement* _pUIInstance);
+	virtual void OnWorldUIInstanceRevoked(IUIElement* _pUIInstance);
+	virtual bool OnWorldUIBack();
+	bool KeypadButtonPressed(const string& _buttonName) { return FKeypadButtonPressed(this, _buttonName); }
+	void ContainerTransitFinished(EArkDockingBay _dockedBay) { FContainerTransitFinished(this, _dockedBay); }
+	virtual void LoadProperties();
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void OnEnabledChanged(bool _bForce);
+	void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnButtonPress(this, _pSender, _event, _args); }
+	void OnShowDetail(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnShowDetail(this, _pSender, _event, _args); }
+	void OnKeypadPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnKeypadPress(this, _pSender, _event, _args); }
+	void OnSoundEvent(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSoundEvent(this, _pSender, _event, _args); }
+	void RefreshUI() { FRefreshUI(this); }
+	void ClearKeypad() { FClearKeypad(this); }
+	void ShowContainerControls() { FShowContainerControls(this); }
+	void ShowSearchingProgress() { FShowSearchingProgress(this); }
+	void ShowTransitProgress() { FShowTransitProgress(this); }
+	void RefreshCargoBaysUI() { FRefreshCargoBaysUI(this); }
+	bool CanUndockBay(EArkDockingBay _dockedBay) const { return FCanUndockBay(this, _dockedBay); }
+	void UndockBay(EArkDockingBay _dockedBay) { FUndockBay(this, _dockedBay); }
+	void BeginTransit(float _transitDuration) { FBeginTransit(this, _transitDuration); }
+	virtual bool HasClock() const;
+
+#if 0
+	float GetElapsedTransitTime() const;
+	void HandleScriptEvent(const char* _arg0_);
+	ArkCargoContainer* GetContainerInBay(EArkDockingBay _arg0_) const;
+#endif
+
+	static inline auto FArkDockingStationOv1 = PreyFunction<void(ArkDockingStation* const _this)>(0x149E1E0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkDockingStation* const _this, TSerialize _ser)>(0x149EA20);
+	static inline auto FPostSerialize = PreyFunction<void(ArkDockingStation* const _this)>(0x14A04E0);
+	static inline auto FProcessEvent = PreyFunction<void(ArkDockingStation* const _this, SEntityEvent& _event)>(0x14A0500);
+	static inline auto FUpdate = PreyFunction<void(ArkDockingStation* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x14A11E0);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x149FC10);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x14B5F80);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x14A0480);
+	static inline auto FSetupStaticMaterial = PreyFunction<void(ArkDockingStation* const _this)>(0x14A0E10);
+	static inline auto FOnWorldUIInstanceGranted = PreyFunction<void(ArkDockingStation* const _this, IUIElement* _pUIInstance)>(0x14A03D0);
+	static inline auto FOnWorldUIInstanceRevoked = PreyFunction<void(ArkDockingStation* const _this, IUIElement* _pUIInstance)>(0x14A0440);
+	static inline auto FOnWorldUIBack = PreyFunction<bool(ArkDockingStation* const _this)>(0x14A02E0);
+	static inline auto FKeypadButtonPressed = PreyFunction<bool(ArkDockingStation* const _this, const string& _buttonName)>(0x149EDA0);
+	static inline auto FContainerTransitFinished = PreyFunction<void(ArkDockingStation* const _this, EArkDockingBay _dockedBay)>(0x149E970);
+	static inline auto FLoadProperties = PreyFunction<void(ArkDockingStation* const _this)>(0x149F0E0);
+	static inline auto FOnReset = PreyFunction<void(ArkDockingStation* const _this, bool _bEnteringGameMode)>(0x149FD30);
+	static inline auto FOnEnabledChanged = PreyFunction<void(ArkDockingStation* const _this, bool _bForce)>(0x149F990);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkDockingStation* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x149F630);
+	static inline auto FOnShowDetail = PreyFunction<void(ArkDockingStation* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x149FDD0);
+	static inline auto FOnKeypadPress = PreyFunction<void(ArkDockingStation* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x149FC90);
+	static inline auto FOnSoundEvent = PreyFunction<void(ArkDockingStation* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14A0180);
+	static inline auto FRefreshUI = PreyFunction<void(ArkDockingStation* const _this)>(0x14A08B0);
+	static inline auto FClearKeypad = PreyFunction<void(ArkDockingStation* const _this)>(0x149E6D0);
+	static inline auto FShowContainerControls = PreyFunction<void(ArkDockingStation* const _this)>(0x14A0E70);
+	static inline auto FShowSearchingProgress = PreyFunction<void(ArkDockingStation* const _this)>(0x14A0F80);
+	static inline auto FShowTransitProgress = PreyFunction<void(ArkDockingStation* const _this)>(0x14A1010);
+	static inline auto FRefreshCargoBaysUI = PreyFunction<void(ArkDockingStation* const _this)>(0x14A0770);
+	static inline auto FCanUndockBay = PreyFunction<bool(const ArkDockingStation* const _this, EArkDockingBay _dockedBay)>(0x149E670);
+	static inline auto FUndockBay = PreyFunction<void(ArkDockingStation* const _this, EArkDockingBay _dockedBay)>(0x14A10E0);
+	static inline auto FBeginTransit = PreyFunction<void(ArkDockingStation* const _this, float _transitDuration)>(0x149E620);
+	static inline auto FHasClock = PreyFunction<bool(const ArkDockingStation* const _this)>(0x1A302A0);
+};
+#endif // !MOONCRASH

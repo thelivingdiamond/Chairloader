@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -610,4 +612,613 @@ public:
 	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const int _level)>(0x1593AF0);
 	static inline auto FOnFilterDamage = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator, const Vec3& _direction)>(0x1593500);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/Ark/ArkPsiPowerCommonProperties.h>
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 
+class ArkClass;
+namespace ArkSignalSystem
+{
+class CArkSignalContext;
+} // namespace ArkSignalSystem
+enum class EArkPsiPowers;
+class IArkValueBase;
+struct IEntity;
+
+// CArkPsiPowerKineticShield
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+class CArkPsiPowerKineticShield : public CArkPsiPower<KineticShieldPowerProperties>
+{ // Size=704 (0x2C0)
+public:
+	ArkLooseEffect m_enabledParticleEmitter;
+	ArkLooseEffect m_disableParticleEmitter;
+	ArkLooseEffect m_warningParticleEmitter;
+	ArkLooseEffect m_absorbDamageParticleEmitter;
+	ArkLooseEffect m_reflectDamageParticleEmitter;
+	int m_numCharges;
+	float m_elapsedSec;
+	float m_durationSec;
+	float m_warningDurationSec;
+	uint64_t m_currentSignalPackageId;
+	ArkAudioTrigger m_hitAudioTrigger;
+	ArkAudioTrigger m_absorbDamageAudioTrigger;
+	ArkAudioTrigger m_reflectDamageAudioTrigger;
+	ArkAudioTrigger m_enableAudioTrigger;
+	ArkAudioTrigger m_disableAudioTrigger;
+	ArkAudioTrigger m_firstWarningAudioTrigger;
+	ArkAudioTrigger m_secondWarningAudioTrigger;
+	std::vector<uint64_t> m_instigatorMetatags;
+
+	CArkPsiPowerKineticShield();
+	virtual ~CArkPsiPowerKineticShield();
+	virtual bool Stop();
+	virtual bool Start_Derived();
+	virtual void Update(const float _fFrameTime);
+	virtual bool StartTargeting();
+	virtual void Serialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual EArkPsiPowers GetEnum() const;
+	void ClearCurrentSignalPackage() { FClearCurrentSignalPackage(this); }
+	bool FilterMimicGrabAttack(const IEntity& _instigator) { return FFilterMimicGrabAttack(this, _instigator); }
+	bool FilterDamage(const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context) { return FFilterDamage(this, _signalPackageId, _context); }
+	void CleanUp() { FCleanUp(this); }
+	void OnDisable() { FOnDisable(this); }
+	virtual void SetLevel_Derived(const int _level);
+	void OnFilterDamage(const IEntity& _instigator, const Vec3& _direction) { FOnFilterDamage(this, _instigator, _direction); }
+
+#if 0
+	bool IsEnabled() const;
+	void OnEnable();
+	bool IsWarning() const;
+#endif
+
+	static inline auto FCArkPsiPowerKineticShieldOv1 = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B89B0);
+	static inline auto FStop = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA530);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA2F0);
+	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const float _fFrameTime)>(0x16BA540);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x14022B0);
+	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this, TSerialize _ser)>(0x16B9DC0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9CA0);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerKineticShield* const _this)>(0x1C657B0);
+	static inline auto FClearCurrentSignalPackage = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8F90);
+	static inline auto FFilterMimicGrabAttack = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator)>(0x16B91C0);
+	static inline auto FFilterDamage = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context)>(0x16B90F0);
+	static inline auto FCleanUp = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8E10);
+	static inline auto FOnDisable = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9870);
+	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const int _level)>(0x16B9F60);
+	static inline auto FOnFilterDamage = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator, const Vec3& _direction)>(0x16B9970);
+};
+
+// ArkPsiPowerKineticShieldProperties
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+class ArkPsiPowerKineticShieldProperties : public ArkReflectedObject
+{ // Size=168 (0xA8)
+public:
+	// ArkPsiPowerKineticShieldProperties::ArkDisplayNameProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkDisplayNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisplayNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkDescriptionProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkCooldownDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkCooldownDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkChargeCountProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkChargeCountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkChargeCountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkChargeCountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkChargeCountProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkWarningDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkWarningDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkWarningDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkWarningDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkWarningDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13B26B0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkAbsorbDamageParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAbsorbDamageParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkReflectDamageParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkReflectDamageParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReflectDamageParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkReflectDamageParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A04B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkReflectDamageParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkEnableParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkEnableParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEnableParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkEnableParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0510);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkEnableParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkDisableParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkDisableParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisableParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkDisableParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkDisableParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkTimeoutParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkTimeoutParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTimeoutParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkTimeoutParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C8B40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkTimeoutParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkHitImpactAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkHitImpactAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkHitImpactAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkHitImpactAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10917B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkHitImpactAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkAbsorbDamageAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAbsorbDamageAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkReflectDamageAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkReflectDamageAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReflectDamageAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkReflectDamageAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1A70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkReflectDamageAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkEnableAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkEnableAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEnableAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkEnableAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD500);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkEnableAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B80);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkDisableAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkDisableAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisableAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkDisableAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0B90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkDisableAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x10B7840);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkFirstTimeoutWarningAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkFirstTimeoutWarningAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFirstTimeoutWarningAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkFirstTimeoutWarningAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0BF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkFirstTimeoutWarningAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x1403090);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkSecondTimeoutWarningAudioTriggerProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkSecondTimeoutWarningAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSecondTimeoutWarningAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkSecondTimeoutWarningAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0C50);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkSecondTimeoutWarningAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BE110);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkReflectedSignalPackageIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkReflectedSignalPackageIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReflectedSignalPackageIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkReflectedSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD560);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkReflectedSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x16B7F00);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkReflectedDamageSignalPackageIdProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkReflectedDamageSignalPackageIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReflectedDamageSignalPackageIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkReflectedDamageSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD570);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkReflectedDamageSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x107C570);
+	};
+
+	// ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkInstigatorMetaTagsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkInstigatorMetaTagsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7F10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty* const _this, ArkReflectedObject* const _pObject)>(0x16B7F40);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty* const _this, ArkReflectedObject* _pObject)>(0x16B7F70);
+	};
+
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkDisplayNameProperty>(0x2D7DFD8);
+	string m_DisplayName;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkDescriptionProperty>(0x2D7DFF8);
+	string m_Description;
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkCooldownDurationSecProperty>(0x2D7E018);
+	float m_CooldownDurationSec;
+	static inline auto s_ArkChargeCountProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkChargeCountProperty>(0x2D7E038);
+	int m_ChargeCount;
+	static inline auto s_ArkDurationSecProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkDurationSecProperty>(0x2D7E058);
+	float m_DurationSec;
+	static inline auto s_ArkWarningDurationSecProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkWarningDurationSecProperty>(0x2D7E078);
+	float m_WarningDurationSec;
+	static inline auto s_ArkAbsorbDamageParticleEffectProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageParticleEffectProperty>(0x2D7E098);
+	string m_AbsorbDamageParticleEffect;
+	static inline auto s_ArkReflectDamageParticleEffectProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkReflectDamageParticleEffectProperty>(0x2D7E0B8);
+	string m_ReflectDamageParticleEffect;
+	static inline auto s_ArkEnableParticleEffectProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkEnableParticleEffectProperty>(0x2D7E0D8);
+	string m_EnableParticleEffect;
+	static inline auto s_ArkDisableParticleEffectProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkDisableParticleEffectProperty>(0x2D7E0F8);
+	string m_DisableParticleEffect;
+	static inline auto s_ArkTimeoutParticleEffectProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkTimeoutParticleEffectProperty>(0x2D7E118);
+	string m_TimeoutParticleEffect;
+	static inline auto s_ArkHitImpactAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkHitImpactAudioTriggerProperty>(0x2D7E138);
+	string m_HitImpactAudioTrigger;
+	static inline auto s_ArkAbsorbDamageAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkAbsorbDamageAudioTriggerProperty>(0x2D7E158);
+	string m_AbsorbDamageAudioTrigger;
+	static inline auto s_ArkReflectDamageAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkReflectDamageAudioTriggerProperty>(0x2D7E178);
+	string m_ReflectDamageAudioTrigger;
+	static inline auto s_ArkEnableAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkEnableAudioTriggerProperty>(0x2D7E198);
+	string m_EnableAudioTrigger;
+	static inline auto s_ArkDisableAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkDisableAudioTriggerProperty>(0x2D7E1B8);
+	string m_DisableAudioTrigger;
+	static inline auto s_ArkFirstTimeoutWarningAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkFirstTimeoutWarningAudioTriggerProperty>(0x2D7E1D8);
+	string m_FirstTimeoutWarningAudioTrigger;
+	static inline auto s_ArkSecondTimeoutWarningAudioTriggerProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkSecondTimeoutWarningAudioTriggerProperty>(0x2D7E1F8);
+	string m_SecondTimeoutWarningAudioTrigger;
+	static inline auto s_ArkReflectedSignalPackageIdProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkReflectedSignalPackageIdProperty>(0x2D7E218);
+	uint64_t m_ReflectedSignalPackageId;
+	static inline auto s_ArkReflectedDamageSignalPackageIdProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkReflectedDamageSignalPackageIdProperty>(0x2D7E238);
+	uint64_t m_ReflectedDamageSignalPackageId;
+	static inline auto s_ArkInstigatorMetaTagsProperty = PreyGlobal<ArkPsiPowerKineticShieldProperties::ArkInstigatorMetaTagsProperty>(0x2D7E258);
+	std::vector<uint64_t> m_InstigatorMetaTags;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetDisplayName(string _arg0_);
+	const string& GetDisplayName() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetCooldownDurationSec(float _arg0_);
+	const float& GetCooldownDurationSec() const;
+	void SetChargeCount(int _arg0_);
+	const int& GetChargeCount() const;
+	void SetDurationSec(float _arg0_);
+	const float& GetDurationSec() const;
+	void SetWarningDurationSec(float _arg0_);
+	const float& GetWarningDurationSec() const;
+	void SetAbsorbDamageParticleEffect(string _arg0_);
+	const string& GetAbsorbDamageParticleEffect() const;
+	void SetReflectDamageParticleEffect(string _arg0_);
+	const string& GetReflectDamageParticleEffect() const;
+	void SetEnableParticleEffect(string _arg0_);
+	const string& GetEnableParticleEffect() const;
+	void SetDisableParticleEffect(string _arg0_);
+	const string& GetDisableParticleEffect() const;
+	void SetTimeoutParticleEffect(string _arg0_);
+	const string& GetTimeoutParticleEffect() const;
+	void SetHitImpactAudioTrigger(string _arg0_);
+	const string& GetHitImpactAudioTrigger() const;
+	void SetAbsorbDamageAudioTrigger(string _arg0_);
+	const string& GetAbsorbDamageAudioTrigger() const;
+	void SetReflectDamageAudioTrigger(string _arg0_);
+	const string& GetReflectDamageAudioTrigger() const;
+	void SetEnableAudioTrigger(string _arg0_);
+	const string& GetEnableAudioTrigger() const;
+	void SetDisableAudioTrigger(string _arg0_);
+	const string& GetDisableAudioTrigger() const;
+	void SetFirstTimeoutWarningAudioTrigger(string _arg0_);
+	const string& GetFirstTimeoutWarningAudioTrigger() const;
+	void SetSecondTimeoutWarningAudioTrigger(string _arg0_);
+	const string& GetSecondTimeoutWarningAudioTrigger() const;
+	void SetReflectedSignalPackageId(uint64_t _arg0_);
+	const uint64_t& GetReflectedSignalPackageId() const;
+	void SetReflectedDamageSignalPackageId(uint64_t _arg0_);
+	const uint64_t& GetReflectedDamageSignalPackageId() const;
+	std::vector<uint64_t>& GetInstigatorMetaTags();
+	const std::vector<uint64_t>& GetInstigatorMetaTags() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16B8FA0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16B9340);
+};
+
+// KineticShieldPowerProperties
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+class KineticShieldPowerProperties : public ArkReflectedLibrary
+{ // Size=248 (0xF8)
+public:
+	// KineticShieldPowerProperties::ArkCommonProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkCommonProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCommonProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticShieldPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticShieldPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+	};
+
+	// KineticShieldPowerProperties::ArkUniqueProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkUniqueProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUniqueProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticShieldPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B8620);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticShieldPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+	};
+
+	// KineticShieldPowerProperties::ArkLevelsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+	class ArkLevelsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkLevelsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const KineticShieldPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7F80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticShieldPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x16B7FD0);
+		static inline auto FIsArray = PreyFunction<bool(const KineticShieldPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const KineticShieldPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x16B8020);
+	};
+
+	using LevelProperties = ArkPsiPowerKineticShieldProperties;
+	using UniqueProperties = bool;
+
+	static inline auto s_ArkCommonProperty = PreyGlobal<KineticShieldPowerProperties::ArkCommonProperty>(0x2D7E278);
+	ArkPsiPowerCommonProperties m_Common;
+	static inline auto s_ArkUniqueProperty = PreyGlobal<KineticShieldPowerProperties::ArkUniqueProperty>(0x2D7E298);
+	bool m_Unique;
+	static inline auto s_ArkLevelsProperty = PreyGlobal<KineticShieldPowerProperties::ArkLevelsProperty>(0x2D7E2B8);
+	std::vector<ArkPsiPowerKineticShieldProperties> m_Levels;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	void SetCommon(ArkPsiPowerCommonProperties _arg0_);
+	const ArkPsiPowerCommonProperties& GetCommon() const;
+	void SetUnique(bool _arg0_);
+	const bool& GetUnique() const;
+	std::vector<ArkPsiPowerKineticShieldProperties>& GetLevels();
+	const std::vector<ArkPsiPowerKineticShieldProperties>& GetLevels() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16B9020);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16B93E0);
+	static inline auto FInit = PreyFunction<bool(KineticShieldPowerProperties* const _this)>(0x16B9690);
+};
+#endif // !MOONCRASH

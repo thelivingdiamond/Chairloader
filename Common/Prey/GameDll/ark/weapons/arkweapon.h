@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -573,3 +575,658 @@ public:
 	static inline auto FDisplayTutorialCard = PreyFunction<void(const CArkWeapon* const _this)>(0x1664F90);
 	static inline auto FUpdateStatusIcon = PreyFunction<void(const CArkWeapon* const _this, bool _bForceRemove)>(0x166F620);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/ArkCommon/ArkRegularOutcome.h>
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ArkItem.h>
+#include <Prey/GameDll/EntityUtility/EntityEffects.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/ArkStatsComponent.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/iface/IArkInventoryListener.h>
+#include <Prey/GameDll/ark/iface/IArkItem.h>
+#include <Prey/GameDll/ark/player/ArkPlayerLight.h>
+#include <Prey/GameDll/ark/player/IArkPlayerLightOwner.h>
+#include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/playerIArkCombatFocusListener.h>
+#include <Prey/GameDll/ark/ui/ArkInventoryUI.h>
+#include <Prey/GameDll/ark/weapons/IArkWeapon.h>
+#include <Prey/GameDll/itemanimation.h>
+#include <_unknown/ArkMaterialParamOverride.h>
+
+struct ArkInteractionTestResult;
+class ArkInventory;
+class ArkWeaponEnchantmentInfo;
+class ArkWeaponModifier;
+class CArkProjectile;
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+class IAction;
+class IActionController;
+struct IArkWeaponEventListener;
+struct IAttachment;
+struct IAttachmentManager;
+class ICrySizer;
+struct IEntity;
+struct IEntityArchetype;
+struct IEntityClass;
+struct IGameObject;
+struct ILoadGame;
+struct IParticleEffect;
+struct ISaveGame;
+struct IUIElement;
+struct SActionEvent;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// CArkWeapon
+// Header:  Prey/GameDll/ark/weapons/ArkWeapon.h
+class CArkWeapon
+	: public IArkWeapon
+	, public CArkItem
+	, public IArkInventoryListener
+	, public IArkStatsListener
+	, public IEntityEventListener
+	, public IArkCombatFocusListener
+	, public IGameFrameworkListener
+	, public IArkPlayerLightOwner
+{ // Size=1608 (0x648)
+public:
+	enum class EArkWeaponStatus
+	{
+		normal = 0,
+		damaged = 1,
+		broken = 2,
+		invalid = 3,
+	};
+
+	// CArkWeapon::ReticleInfo
+	// Header:  Prey/GameDll/ark/weapons/ArkWeapon.h
+	struct ReticleInfo
+	{ // Size=24 (0x18)
+		IEntity* m_pEntity;
+		Vec3 m_position;
+
+	#if 0
+		ReticleInfo();
+	#endif
+	};
+
+	// CArkWeapon::ArkWeaponMods
+	// Header:  Prey/GameDll/ark/weapons/ArkWeapon.h
+	struct ArkWeaponMods
+	{ // Size=64 (0x40)
+		std::unordered_map<uint64_t, int> m_weaponModIds;
+
+		void AddMod(const uint64_t _modId) { FAddMod(this, _modId); }
+		int GetCurrentLevel(const uint64_t _modId) const { return FGetCurrentLevel(this, _modId); }
+		void Clear() { FClear(this); }
+		unsigned GetTotalLevel() const { return FGetTotalLevel(this); }
+
+	#if 0
+		void Serialize(TSerialize _arg0_);
+	#endif
+
+		static inline auto FAddMod = PreyFunction<void(CArkWeapon::ArkWeaponMods* const _this, const uint64_t _modId)>(0x17843F0);
+		static inline auto FGetCurrentLevel = PreyFunction<int(const CArkWeapon::ArkWeaponMods* const _this, const uint64_t _modId)>(0x1787590);
+		static inline auto FClear = PreyFunction<void(CArkWeapon::ArkWeaponMods* const _this)>(0x1785B90);
+		static inline auto FGetTotalLevel = PreyFunction<unsigned(const CArkWeapon::ArkWeaponMods* const _this)>(0x17892B0);
+	};
+
+	// CArkWeapon::ArkWeaponEnchant
+	// Header:  Prey/GameDll/ark/weapons/ArkWeapon.h
+	struct ArkWeaponEnchant
+	{ // Size=8 (0x8)
+		uint64_t m_weaponEnchantmentId;
+
+	#if 0
+		ArkWeaponEnchant();
+		void AddEnchantment(const uint64_t _arg0_);
+		void Clear();
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	// CArkWeapon::ArkIronsightsTargetInfo
+	// Header:  Prey/GameDll/ark/weapons/ArkWeapon.h
+	struct ArkIronsightsTargetInfo
+	{ // Size=16 (0x10)
+		IEntityClass* m_entityClass;
+		string m_targetBoneOrAttachName;
+
+	#if 0
+		ArkIronsightsTargetInfo(IEntityClass* _arg0_, const string _arg1_);
+		bool operator==(IEntityClass* _arg0_) const;
+	#endif
+	};
+
+	ArkRegularOutcome m_criticalOutcome;
+	ArkStatsComponent m_statsComponent;
+	CArkWeapon::ArkWeaponMods m_weaponMods;
+	CArkWeapon::ArkWeaponEnchant m_weaponEnchantment;
+	EntityEffects::CEffectsController m_effectController;
+	EntityEffects::ArkEffectsCharacterController m_characterEffectController;
+	IAttachment* m_pAttachment;
+	ArkSimpleTimer m_attackTimer;
+	ArkSimpleTimer m_hudDamageIconTimer;
+	bool m_bAmmoIsPooled;
+	bool m_bIsAttacking;
+	bool m_bWantsToAttack;
+	bool m_bWantsToReload;
+	_smart_ptr<IAction> m_pWeaponIdleAction;
+	_smart_ptr<IAction> m_pWeaponFireAction;
+	string m_pWeaponClassName;
+	string m_ammoArchetypeName;
+	string m_ammoSpawnPointName;
+	string m_uiElementName;
+	unsigned m_weaponUIType;
+	Vec3 m_defaultLightColor;
+	Vec3 m_damagedLightColor;
+	Vec3 m_brokenLightColor;
+	bool m_bAutoload;
+	bool m_bAllowInterruptReloading;
+	bool m_bAffectedByDisruption;
+	bool m_bTakesHazardDamage;
+	float m_idleBreakDelayTime;
+	float m_ironsightsTargetDistance;
+	float m_ironsightsTargetWidth;
+	float m_ironsightsTargetSpeed;
+	float m_ironsightsMaxAngularVelocity;
+	float m_ironsightsSuccessDistance;
+	float m_aimAssistRangeMax;
+	float m_ammoLootImpulse;
+	float m_condition;
+	float m_malfunctionThreshold;
+	float m_malfunctionRate;
+	uint64_t m_disrepairModifier;
+	uint64_t m_tutorialPrompt;
+	uint64_t m_tutorialCard;
+	int m_minStartAmmo;
+	int m_maxStartAmmo;
+	int m_disruptionSubMatIndex;
+	ArkEntityAttachmentEffect m_disruptionVFX;
+	std::vector<ArkMaterialParamOverride> m_originalInterferenceValues;
+	float m_spawnFromCameraTestDistance;
+	float m_spawnBehindCameraDistance;
+	string m_upgradeInfoDesc;
+	string m_focusDecription;
+	CCryName m_leverageBaseName;
+	string m_muzzleLightAttachName;
+	_smart_ptr<IParticleEffect> m_pMuzzleLight;
+	string m_enchantmentEffectAttachName;
+	string m_enchantmentEffectAttachNameAdd;
+	ArkCharacterAttachmentEffect m_enchantmentEffect;
+	ArkCharacterAttachmentEffect m_enchantmentEffectAdd;
+	ArkEntityAttachmentEffect m_disarmEffect;
+	IEntityArchetype* m_pAmmoArchetype;
+	static inline auto m_ironsightsTargetClasses = PreyGlobal<std::vector<CArkWeapon::ArkIronsightsTargetInfo>>(0x2D82098);
+	static inline auto m_bIronsightsTargetClassesLoaded = PreyGlobal<bool>(0x2D82090);
+	std::vector<IArkWeaponEventListener*> m_listeners;
+	ArkPlayerLightEntity m_playerLight;
+	const SMannequinItemParams::FragmentIDs* m_pFragmentIDs;
+	IUIElement* m_pUIElement;
+	int m_zoomHandle;
+	int m_numAmmoLoaded;
+	bool m_bIdleBreakEnabled;
+	bool m_bShouldFinishReloading;
+	bool m_bCancelTutorialEnabled;
+	bool m_bIsReadyToAttack;
+	bool m_bIsReloading;
+	bool m_bIsUnequipping;
+	const bool m_bRetainPhysicsOnEquip;
+	unsigned m_ironsightsTargetId;
+	string m_ironsightsBoneOrAttachName;
+	bool m_bHasAmmoBeenLooted;
+	IEntityArchetype* m_pAmmoPickupArchetype;
+	ArkAudioTrigger m_startMalfunctionTrigger;
+	ArkAudioTrigger m_stopMalfunctionTrigger;
+	ArkAudioTrigger m_brokeTrigger;
+	ArkAudioTrigger m_ammoPickupTrigger;
+	uint64_t m_skinId;
+	uint64_t m_weaponId;
+	wstring m_descKeyword;
+	uint64_t m_keywordSignalId;
+
+	CArkWeapon(bool _bRetainPhysicsOnEquip);
+	virtual ~CArkWeapon();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void Release();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void SerializeLTL(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual void OnPostUpdate(float fDeltaTime);
+	virtual void OnSaveGame(ISaveGame* pSaveGame);
+	virtual void OnLoadGame(ILoadGame* pLoadGame);
+	virtual void OnLevelEnd(const char* nextLevel);
+	virtual void OnActionEvent(const SActionEvent& event);
+	virtual void OnPreRender();
+	static uint64_t GetWeaponModArchetypeId() { return FGetWeaponModArchetypeId(); }
+	virtual bool PickUp(const unsigned _pickerId, bool _bScale);
+	virtual bool GiveOwner(ArkInventory* _pInventory);
+	virtual IEntity* Drop(int _count, const Vec3* const _altPosition);
+	virtual bool IsWeapon() const;
+	virtual bool IsEquippable() const;
+	virtual bool IsTwoHanded() const;
+	virtual const char* GetIcon() const;
+	virtual const char* GetHUDIcon() const;
+	virtual bool ShowsAmmoOnHUD() const;
+	virtual wstring GetDisplayName(const int _count) const;
+	void SetupAttachment() { FSetupAttachment(this); }
+	virtual void OnEquip();
+	virtual void OnUnequip(const bool _bUnselect, const bool _bImmediate);
+	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory);
+	virtual void OnItemRemoved(unsigned _itemId, bool _bPrimaryInventory);
+	virtual void OnItemCountChanged(unsigned _itemId, bool _bPrimaryInventory);
+	virtual void OnEntityEvent(IEntity* _pEntity, SEntityEvent& _event);
+	virtual bool OnActionAttackUse(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual bool OnActionAttackPrimary(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual bool OnActionReload(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual void SustainedAttack();
+	virtual bool CanStartAttack();
+	virtual void CancelCharge();
+	virtual void ThrowingIdle();
+	virtual void ThrowingCancel(const bool _bCheckIdle);
+	virtual void OnReloadStart();
+	static CArkWeapon* GetWeaponFromEntityId(const unsigned _entityId) { return FGetWeaponFromEntityId(_entityId); }
+	virtual void AutoloadAmmo();
+	virtual void StartReloadAmmo();
+	virtual void ContinueReloadAmmo();
+	virtual void ReloadAmmo(const bool _bContinueReload);
+	virtual void StopReloadAmmo(const bool _bInterrupted);
+	virtual void ReadjustAmmo();
+	virtual void SetWeaponAmmoCount(const int _weaponAmmoCount);
+	virtual int GetWeaponAmmoCount() const;
+	virtual int GetInventoryAmmoCount() const;
+	virtual string GetUIAmmoCountString() const;
+	virtual const string& GetAmmoArchetypeName() const;
+	virtual void RegisterListener(IArkWeaponEventListener* _pListener);
+	virtual void UnregisterListener(IArkWeaponEventListener* _pListener);
+	virtual bool StartAttack();
+	virtual bool ContinueAttack();
+	virtual bool StopAttack();
+	virtual void EnterAttackAction();
+	virtual void ExitAttackAction();
+	virtual void CancelAllWeaponActions();
+	virtual void ExitSelectAction();
+	virtual void ThrowGrenade();
+	virtual void DeployGrenade();
+	virtual void ReloadGrenade();
+	virtual void ProjectileDestroyed();
+	virtual void StartSprinting();
+	virtual float GetAimRange(const bool _bProjectile) const;
+	virtual Vec3 GetReticlePosition() const;
+	float GetStatFloat(const CCryName& _statName) const { return FGetStatFloat(this, _statName); }
+	int GetStatInt(const CCryName& _statName) const { return FGetStatInt(this, _statName); }
+	float GetStatFloatPlayer(const CCryName& _statName) const { return FGetStatFloatPlayer(this, _statName); }
+	virtual int GetAmmoCost() const;
+	virtual int GetClipSize() const;
+	virtual float GetDegradationRate() const;
+	void SetWeaponCondition(float _condition) { FSetWeaponCondition(this, _condition); }
+	bool DoesWeaponDegrade() const { return FDoesWeaponDegrade(this); }
+	void DegradeWeaponCondition() { FDegradeWeaponCondition(this); }
+	void RepairWeapon(int _numRepairs) { FRepairWeapon(this, _numRepairs); }
+	int GetNumPartsToFullyRepair() const { return FGetNumPartsToFullyRepair(this); }
+	bool CanRepair() const { return FCanRepair(this); }
+	bool IsBroken(float _condition) const { return FIsBroken(this, _condition); }
+	void ShowWeaponDamageIndicator() { FShowWeaponDamageIndicator(this); }
+	float GetWalkSpeedMultiplier() const { return FGetWalkSpeedMultiplier(this); }
+	float GetCameraSpeedMultiplier() const { return FGetCameraSpeedMultiplier(this); }
+	virtual float GetWalkSpeedStat() const;
+	virtual float GetZoomedWalkSpeedStat() const;
+	virtual float GetCameraSpeedStat() const;
+	virtual float GetZoomedCameraSpeedStat() const;
+	virtual float GetDispersion() const;
+	void PopulateWeaponInfo(CArkInventoryUI::SelectedWeaponInfo& _weaponInfo) const { FPopulateWeaponInfo(this, _weaponInfo); }
+	virtual void SetQualityTier(IArkItem::EArkQualityTier _tier);
+	wstring GetWeaponModDescription(uint64_t _modId, int _modLevel) const { alignas(wstring) std::byte _return_buf_[sizeof(wstring)]; return *FGetWeaponModDescription(this, reinterpret_cast<wstring*>(_return_buf_), _modId, _modLevel); }
+	bool InstallEnchantment(const uint64_t _enchantmentId) { return FInstallEnchantment(this, _enchantmentId); }
+	virtual void UpdateDispersion();
+	void ApplySignalModifiers(const unsigned _entityId) const { FApplySignalModifiers(this, _entityId); }
+	void RemoveSignalModifiers(const unsigned _entityId) const { FRemoveSignalModifiers(this, _entityId); }
+	Vec3 GetIronsightsTargetPos() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetIronsightsTargetPos(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	virtual bool IsProximity() const;
+	virtual CCryName GetReticleName() const;
+	void PlayAction(_smart_ptr<IAction> _pAction, float _speedOverride) const { FPlayAction(this, _pAction, _speedOverride); }
+	bool DetachFromHand() { return FDetachFromHand(this); }
+	float GetImpulseScaleForEntity(const IEntity* const _pEntity) const { return FGetImpulseScaleForEntity(this, _pEntity); }
+	IUIElement* GetUIElement() { return FGetUIElement(this); }
+	bool IsEquipped() const { return FIsEquipped(this); }
+	void FindIronsightsTarget() { FFindIronsightsTarget(this); }
+	virtual bool HasTarget() const;
+	virtual float GetTargetLockPercentage() const;
+	virtual float GetTargetLockTimeOutElapsedSec() const;
+	virtual void OnAttackStopped();
+	virtual void OnMalfunctionStart();
+	virtual void OnMalfunctionEvent();
+	void OnMuzzleFlash() { FOnMuzzleFlash(this); }
+	virtual float GetDamageScale(const float _distance, CArkProjectile* const _pProjectile) const;
+	IEntityArchetype* GetAmmoPickupArchetype() const { return FGetAmmoPickupArchetype(this); }
+	bool ShouldTreatAsFirstPickup() const { return FShouldTreatAsFirstPickup(this); }
+	bool IsDisrupted() const { return FIsDisrupted(this); }
+	virtual bool ForceCancelCharge(const bool _bPlayAnim);
+	virtual bool IsCharging() const;
+	void UpdateDisruptedVisuals(bool _bDisrupted) { FUpdateDisruptedVisuals(this, _bDisrupted); }
+	const ArkWeaponEnchantmentInfo* GetEnchantmentInfo() const { return FGetEnchantmentInfoOv1(this); }
+	const Matrix34 GetWorldTM() const { alignas(const Matrix34) std::byte _return_buf_[sizeof(const Matrix34)]; return *FGetWorldTM(this, reinterpret_cast<const Matrix34*>(_return_buf_)); }
+	void AddEnchantmentIcon(wstring& _nameString, const bool _bUseSmallIcon, const int _vspace) const { FAddEnchantmentIcon(this, _nameString, _bUseSmallIcon, _vspace); }
+	wstring GetEnchantmentDescription(const int _vspace) const { alignas(wstring) std::byte _return_buf_[sizeof(wstring)]; return *FGetEnchantmentDescription(this, reinterpret_cast<wstring*>(_return_buf_), _vspace); }
+	virtual bool CanCollideWithEntity(const IEntity* const _pEntity) const;
+	virtual float CalculateFatigue(const bool _bIsCharged, const bool _bIsExhausted) const;
+	Matrix33 GetWorldMuzzleRotation() const { alignas(Matrix33) std::byte _return_buf_[sizeof(Matrix33)]; return *FGetWorldMuzzleRotation(this, reinterpret_cast<Matrix33*>(_return_buf_)); }
+	void StartDisarmEffect(const Vec3& _npcPosition) { FStartDisarmEffect(this, _npcPosition); }
+	void StopDisarmEffect(const bool _bKill) { FStopDisarmEffect(this, _bKill); }
+	void SetSkin(uint64_t _skinId) { FSetSkin(this, _skinId); }
+	float GetMaxDurability() const { return FGetMaxDurability(this); }
+	bool IsFortified() const { return FIsFortified(this); }
+	std::vector<unsigned int> GiveAmmoClip(const unsigned _pickerId, int _amount, bool _bForce) { alignas(std::vector<unsigned int>) std::byte _return_buf_[sizeof(std::vector<unsigned int>)]; return *FGiveAmmoClip(this, reinterpret_cast<std::vector<unsigned int>*>(_return_buf_), _pickerId, _amount, _bForce); }
+	virtual void ActivateBlade(const bool _activate);
+	CArkWeapon::ReticleInfo GetReticleInfoForFiring() const { alignas(CArkWeapon::ReticleInfo) std::byte _return_buf_[sizeof(CArkWeapon::ReticleInfo)]; return *FGetReticleInfoForFiring(this, reinterpret_cast<CArkWeapon::ReticleInfo*>(_return_buf_)); }
+	void ApplyRecoil() const { FApplyRecoil(this); }
+	virtual void LoadCachedProperties();
+	virtual void InitializeStats();
+	void UpdateTimers(float _frameTime) { FUpdateTimers(this, _frameTime); }
+	void UpdateAnimationTag(bool _bSelected, const char* _tagName) { FUpdateAnimationTag(this, _bSelected, _tagName); }
+	virtual _smart_ptr<IAction> ConstructReloadAction(const int _fragmentId) const;
+	virtual const char* GetPickupModel() const;
+	virtual const char* GetEquippedMaterial() const;
+	void AttachToShadowHand(bool _bAttach) { FAttachToShadowHand(this, _bAttach); }
+	virtual void ConsumeAmmo();
+	virtual bool CanLoadAmmo() const;
+	virtual bool HasAmmo() const;
+	void StopSprinting() const { FStopSprinting(this); }
+	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+	virtual void OnCombatFocusChanged(bool _bActive);
+	void UpdateCritical() { FUpdateCritical(this); }
+	bool ShouldMalfunction() const { return FShouldMalfunction(this); }
+	void DoMalfunction() { FDoMalfunction(this); }
+	void FireWeapon() { FFireWeapon(this); }
+	std::pair<bool, Vec3> GetSpawnPosition(const int _ignoreCollisionType, IEntity* const _pAttachEntity) const { alignas(std::pair<bool, Vec3>) std::byte _return_buf_[sizeof(std::pair<bool, Vec3>)]; return *FGetSpawnPosition(this, reinterpret_cast<std::pair<bool, Vec3>*>(_return_buf_), _ignoreCollisionType, _pAttachEntity); }
+	virtual void OnAmmoDepleted();
+	virtual void UpdateAmmoCountUI() const;
+	virtual void EnableCancelTutorial(const string _tutorialHintString);
+	virtual void DisableCancelTutorial();
+	void EnableChargeFilter(const bool _bEnable) { FEnableChargeFilter(this, _bEnable); }
+	virtual int GetBaseDamage() const;
+	virtual int GetModifiedDamage(const std::vector<uint64_t>& _modifiers, const bool _bIncludeEnchantments) const;
+	float CalculateEnchantmentSignal() const { return FCalculateEnchantmentSignalOv1(this); }
+	std::vector<uint64_t> GetSignalModifiers() const { alignas(std::vector<uint64_t>) std::byte _return_buf_[sizeof(std::vector<uint64_t>)]; return *FGetSignalModifiers(this, reinterpret_cast<std::vector<uint64_t>*>(_return_buf_)); }
+	float CalculateBaseDamage(uint64_t _pkgId, uint64_t _dmgSignal) const { return FCalculateBaseDamage(this, _pkgId, _dmgSignal); }
+	void HideEnchantmentModel(const bool _bHidden) { FHideEnchantmentModel(this, _bHidden); }
+	void SpawnMuzzleLight(bool _bAttach) { FSpawnMuzzleLight(this, _bAttach); }
+	void StopMuzzleLight() { FStopMuzzleLight(this); }
+	void UpdateConditionFeedback() const { FUpdateConditionFeedback(this); }
+	void UpdateArkLightColor(CArkWeapon::EArkWeaponStatus _condition) const { FUpdateArkLightColor(this, _condition); }
+	void InitializeCondition() { FInitializeCondition(this); }
+	void RandomizeWeaponMods(const uint64_t _id, const IArkItem::EArkQualityTier _qualityTier) { FRandomizeWeaponMods(this, _id, _qualityTier); }
+	unsigned SpawnAmmo() { return FSpawnAmmo(this); }
+	bool AttachToHand() { return FAttachToHand(this); }
+	IActionController* GetOwnerActionController() const { return FGetOwnerActionController(this); }
+	void UpdateAnimationScopeContexts() { FUpdateAnimationScopeContexts(this); }
+	bool IsItemWeaponAmmo(unsigned _itemId) { return FIsItemWeaponAmmo(this, _itemId); }
+	virtual CCryName GetPlayerWeaponSpecificCritChanceStatName() const;
+	void InitializeAmmoCount() { FInitializeAmmoCount(this); }
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	void DisplayTutorialCard() const { FDisplayTutorialCard(this); }
+	void UpdateStatusIcon(bool _bForceRemove) const { FUpdateStatusIcon(this, _bForceRemove); }
+
+#if 0
+	bool CanPickUp(unsigned _arg0_) const;
+	void UnequipOnPlayer() const;
+	bool IsZoomingIn() const;
+	void HideAttachment(const bool _arg0_) const;
+	void ClearAttachment();
+	bool IsAttacking() const;
+	bool IsReadyToAttack() const;
+	void SetIsReadyToAttack(const bool _arg0_);
+	bool IsReloading() const;
+	void SetIsReloading(const bool _arg0_);
+	bool ShouldFinishReloading() const;
+	void SetShouldFinishReloading(const bool _arg0_);
+	const SMannequinItemParams::FragmentIDs* const GetFragmentIDs() const;
+	float GetReticlePositionRange() const;
+	const ArkStatsComponent& GetStatsComponent() const;
+	float GetWeaponCondition() const;
+	int GetUIWeaponCondition() const;
+	bool TakesHazardDamage() const;
+	void BreakAndUnequip();
+	bool CanInstallMod(const uint64_t _arg0_) const;
+	bool CanInstallMod(const ArkWeaponModifier* _arg0_) const;
+	bool CanUpgrade() const;
+	void InstallMod(const uint64_t _arg0_, const unsigned _arg1_);
+	void InstallMod(const ArkWeaponModifier* _arg0_, unsigned _arg1_);
+	static int GetWeaponKitCount();
+	float GetIdleBreakDelayTme() const;
+	bool IsIdleBreakEnabled() const;
+	void EnableIdleBreaks(const bool _arg0_);
+	float GetIronsightsMaxAngularVelocity() const;
+	float GetIronsightsSuccessDistance() const;
+	float GetIronsightsSpeed() const;
+	unsigned GetIronsightsTargetId() const;
+	void SetIronsightsTargetId(const unsigned _arg0_);
+	bool IsUnequipping() const;
+	float GetAimAssistRangeMax() const;
+	bool RollCritical() const;
+	string GetFocusModeDescription() const;
+	const ArkWeaponEnchantmentInfo* GetEnchantmentInfo(const uint64_t _arg0_) const;
+	uint64_t GetSkin() const;
+	int GetUIMaxDurability() const;
+	uint64_t GetWeaponId() const;
+	void SetWeaponId(const uint64_t _arg0_);
+	void CloseWeaponDamageIndicator();
+	void InhibitSprinting(const bool _arg0_) const;
+	Vec3 GetSpawnDirection(const Vec3& _arg0_) const;
+	float CalculateEnchantmentSignal(const uint64_t _arg0_) const;
+	CArkWeapon::EArkWeaponStatus GetConditionStatus() const;
+	void RandomizeWeaponEnchantment(const uint64_t _arg0_, IArkItem::EArkQualityTier _arg1_);
+	void DrawSlot(int _arg0_, bool _arg1_, bool _arg2_);
+	void ClearAnimationScopeContexts();
+	IAttachmentManager* GetAttachmentManager(const unsigned _arg0_);
+	void TriggerOutOfAmmoUI() const;
+	void InstallRandomMod(const ArkWeaponModifier* _arg0_);
+	bool AreAllModsInstalled() const;
+	void AdjustSignalMods(const bool _arg0_);
+#endif
+
+	static inline auto FCArkWeaponOv1 = PreyFunction<void(CArkWeapon* const _this, bool _bRetainPhysicsOnEquip)>(0x1783730);
+	static inline auto FBitNotCArkWeapon = PreyFunction<void(CArkWeapon* const _this)>(0x1783CB0);
+	static inline auto FInit = PreyFunction<bool(CArkItem* const _this, IGameObject* _pGameObject)>(0x178A7F0);
+	static inline auto FPostInit = PreyFunction<void(CArkItem* const _this, IGameObject* _pGameObject)>(0x178F470);
+	static inline auto FRelease = PreyFunction<void(CArkItem* const _this)>(0x178FD90);
+	static inline auto FFullSerialize = PreyFunction<void(CArkItem* const _this, TSerialize _ser)>(0x1787070);
+	static inline auto FSerializeLTL = PreyFunction<void(CArkItem* const _this, TSerialize _ser)>(0x1790220);
+	static inline auto FPostSerialize = PreyFunction<void(CArkItem* const _this)>(0x178F560);
+	static inline auto FUpdate = PreyFunction<void(CArkItem* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x1791A50);
+	static inline auto FProcessEvent = PreyFunction<void(CArkItem* const _this, SEntityEvent& _event)>(0x178F820);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkItem* const _this, ICrySizer* _s)>(0x17888A0);
+	static inline auto FOnPostUpdate = PreyFunction<void(IGameFrameworkListener* const _this, float fDeltaTime)>(0x1333E90);
+	static inline auto FOnSaveGame = PreyFunction<void(IGameFrameworkListener* const _this, ISaveGame* pSaveGame)>(0x1333E90);
+	static inline auto FOnLoadGame = PreyFunction<void(IGameFrameworkListener* const _this, ILoadGame* pLoadGame)>(0x1333E90);
+	static inline auto FOnLevelEnd = PreyFunction<void(IGameFrameworkListener* const _this, const char* nextLevel)>(0x1333E90);
+	static inline auto FOnActionEvent = PreyFunction<void(IGameFrameworkListener* const _this, const SActionEvent& event)>(0x1333E90);
+	static inline auto FOnPreRender = PreyFunction<void(IGameFrameworkListener* const _this)>(0x1333E90);
+	static inline auto FGetWeaponModArchetypeId = PreyFunction<uint64_t()>(0x1789550);
+	static inline auto FPickUp = PreyFunction<bool(CArkItem* const _this, const unsigned _pickerId, bool _bScale)>(0x178ED40);
+	static inline auto FGiveOwner = PreyFunction<bool(CArkItem* const _this, ArkInventory* _pInventory)>(0x178A620);
+	static inline auto FDrop = PreyFunction<IEntity* (CArkItem* const _this, int _count, const Vec3* const _altPosition)>(0x17865E0);
+	static inline auto FIsWeapon = PreyFunction<bool(const CArkItem* const _this)>(0x1A302A0);
+	static inline auto FIsEquippable = PreyFunction<bool(const CArkItem* const _this)>(0x1A302A0);
+	static inline auto FIsTwoHanded = PreyFunction<bool(const CArkWeapon* const _this)>(0x13B0900);
+	static inline auto FGetIcon = PreyFunction<const char* (const CArkItem* const _this)>(0x1787F70);
+	static inline auto FGetHUDIcon = PreyFunction<const char* (const CArkItem* const _this)>(0x1787CF0);
+	static inline auto FShowsAmmoOnHUD = PreyFunction<bool(const CArkWeapon* const _this)>(0x13B0900);
+	static inline auto FGetDisplayName = PreyFunction<wstring*(const CArkItem* const _this, wstring* _return_value_, const int _count)>(0x17876D0);
+	static inline auto FSetupAttachment = PreyFunction<void(CArkWeapon* const _this)>(0x1790AC0);
+	static inline auto FOnEquip = PreyFunction<void(CArkWeapon* const _this)>(0x178E070);
+	static inline auto FOnUnequip = PreyFunction<void(CArkWeapon* const _this, const bool _bUnselect, const bool _bImmediate)>(0x178E9D0);
+	static inline auto FOnItemAdded = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory)>(0x178E820);
+	static inline auto FOnItemRemoved = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x178E8A0);
+	static inline auto FOnItemCountChanged = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x178E860);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x178DFF0);
+	static inline auto FOnActionAttackUse = PreyFunction<bool(CArkWeapon* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x13B0900);
+	static inline auto FOnActionAttackPrimary = PreyFunction<bool(CArkWeapon* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x178DDD0);
+	static inline auto FOnActionReload = PreyFunction<bool(CArkWeapon* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x178DF30);
+	static inline auto FSustainedAttack = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FCanStartAttack = PreyFunction<bool(CArkWeapon* const _this)>(0x1785860);
+	static inline auto FCancelCharge = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FThrowingIdle = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FThrowingCancel = PreyFunction<void(CArkWeapon* const _this, const bool _bCheckIdle)>(0x1333E90);
+	static inline auto FOnReloadStart = PreyFunction<void(CArkWeapon* const _this)>(0x148DE80);
+	static inline auto FGetWeaponFromEntityId = PreyFunction<CArkWeapon* (const unsigned _entityId)>(0x1789500);
+	static inline auto FAutoloadAmmo = PreyFunction<void(CArkWeapon* const _this)>(0x1785600);
+	static inline auto FStartReloadAmmo = PreyFunction<void(CArkWeapon* const _this)>(0x1791550);
+	static inline auto FContinueReloadAmmo = PreyFunction<void(CArkWeapon* const _this)>(0x1785D60);
+	static inline auto FReloadAmmo = PreyFunction<void(CArkWeapon* const _this, const bool _bContinueReload)>(0x178FF30);
+	static inline auto FStopReloadAmmo = PreyFunction<void(CArkWeapon* const _this, const bool _bInterrupted)>(0x1791780);
+	static inline auto FReadjustAmmo = PreyFunction<void(CArkWeapon* const _this)>(0x178FCF0);
+	static inline auto FSetWeaponAmmoCount = PreyFunction<void(CArkWeapon* const _this, const int _weaponAmmoCount)>(0x17908D0);
+	static inline auto FGetWeaponAmmoCount = PreyFunction<int(const CArkWeapon* const _this)>(0x148D5B0);
+	static inline auto FGetInventoryAmmoCount = PreyFunction<int(const CArkWeapon* const _this)>(0x1788620);
+	static inline auto FGetUIAmmoCountString = PreyFunction<string*(const CArkWeapon* const _this, string* _return_value_)>(0x17892D0);
+	static inline auto FGetAmmoArchetypeName = PreyFunction<const string& (const CArkWeapon* const _this)>(0x12EBFB0);
+	static inline auto FRegisterListener = PreyFunction<void(CArkWeapon* const _this, IArkWeaponEventListener* _pListener)>(0x178FD30);
+	static inline auto FUnregisterListener = PreyFunction<void(CArkWeapon* const _this, IArkWeaponEventListener* _pListener)>(0x17919F0);
+	static inline auto FStartAttack = PreyFunction<bool(CArkWeapon* const _this)>(0x1791410);
+	static inline auto FContinueAttack = PreyFunction<bool(CArkWeapon* const _this)>(0x1785CF0);
+	static inline auto FStopAttack = PreyFunction<bool(CArkWeapon* const _this)>(0x1791660);
+	static inline auto FEnterAttackAction = PreyFunction<void(CArkWeapon* const _this)>(0x1786810);
+	static inline auto FExitAttackAction = PreyFunction<void(CArkWeapon* const _this)>(0x1786820);
+	static inline auto FCancelAllWeaponActions = PreyFunction<void(CArkWeapon* const _this)>(0x1785B40);
+	static inline auto FExitSelectAction = PreyFunction<void(CArkWeapon* const _this)>(0x1786900);
+	static inline auto FThrowGrenade = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FDeployGrenade = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FReloadGrenade = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FProjectileDestroyed = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FStartSprinting = PreyFunction<void(CArkWeapon* const _this)>(0x19BD890);
+	static inline auto FGetAimRange = PreyFunction<float(const CArkWeapon* const _this, const bool _bProjectile)>(0x1787490);
+	static inline auto FGetReticlePosition = PreyFunction<Vec3*(const CArkWeapon* const _this, Vec3* _return_value_)>(0x1788C30);
+	static inline auto FGetStatFloat = PreyFunction<float(const CArkWeapon* const _this, const CCryName& _statName)>(0x1789240);
+	static inline auto FGetStatInt = PreyFunction<int(const CArkWeapon* const _this, const CCryName& _statName)>(0x1789290);
+	static inline auto FGetStatFloatPlayer = PreyFunction<float(const CArkWeapon* const _this, const CCryName& _statName)>(0x1789250);
+	static inline auto FGetAmmoCost = PreyFunction<int(const CArkWeapon* const _this)>(0x17874B0);
+	static inline auto FGetClipSize = PreyFunction<int(const CArkWeapon* const _this)>(0x1787570);
+	static inline auto FGetDegradationRate = PreyFunction<float(const CArkWeapon* const _this)>(0x1787680);
+	static inline auto FSetWeaponCondition = PreyFunction<void(CArkWeapon* const _this, float _condition)>(0x1790970);
+	static inline auto FDoesWeaponDegrade = PreyFunction<bool(const CArkWeapon* const _this)>(0x17865A0);
+	static inline auto FDegradeWeaponCondition = PreyFunction<void(CArkWeapon* const _this)>(0x1785E10);
+	static inline auto FRepairWeapon = PreyFunction<void(CArkWeapon* const _this, int _numRepairs)>(0x17901A0);
+	static inline auto FGetNumPartsToFullyRepair = PreyFunction<int(const CArkWeapon* const _this)>(0x17888C0);
+	static inline auto FCanRepair = PreyFunction<bool(const CArkWeapon* const _this)>(0x1785820);
+	static inline auto FIsBroken = PreyFunction<bool(const CArkWeapon* const _this, float _condition)>(0x178C420);
+	static inline auto FShowWeaponDamageIndicator = PreyFunction<void(CArkWeapon* const _this)>(0x1790E90);
+	static inline auto FGetWalkSpeedMultiplier = PreyFunction<float(const CArkWeapon* const _this)>(0x1789360);
+	static inline auto FGetCameraSpeedMultiplier = PreyFunction<float(const CArkWeapon* const _this)>(0x17874E0);
+	static inline auto FGetWalkSpeedStat = PreyFunction<float(const CArkWeapon* const _this)>(0x17893D0);
+	static inline auto FGetZoomedWalkSpeedStat = PreyFunction<float(const CArkWeapon* const _this)>(0x178A450);
+	static inline auto FGetCameraSpeedStat = PreyFunction<float(const CArkWeapon* const _this)>(0x1787550);
+	static inline auto FGetZoomedCameraSpeedStat = PreyFunction<float(const CArkWeapon* const _this)>(0x178A430);
+	static inline auto FGetDispersion = PreyFunction<float(const CArkWeapon* const _this)>(0x714650);
+	static inline auto FPopulateWeaponInfo = PreyFunction<void(const CArkWeapon* const _this, CArkInventoryUI::SelectedWeaponInfo& _weaponInfo)>(0x178F150);
+	static inline auto FSetQualityTier = PreyFunction<void(CArkItem* const _this, IArkItem::EArkQualityTier _tier)>(0x17903B0);
+	static inline auto FGetWeaponModDescription = PreyFunction<wstring*(const CArkWeapon* const _this, wstring* _return_value_, uint64_t _modId, int _modLevel)>(0x17895D0);
+	static inline auto FInstallEnchantment = PreyFunction<bool(CArkWeapon* const _this, const uint64_t _enchantmentId)>(0x178C0F0);
+	static inline auto FUpdateDispersion = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FApplySignalModifiers = PreyFunction<void(const CArkWeapon* const _this, const unsigned _entityId)>(0x1784D60);
+	static inline auto FRemoveSignalModifiers = PreyFunction<void(const CArkWeapon* const _this, const unsigned _entityId)>(0x1790020);
+	static inline auto FGetIronsightsTargetPos = PreyFunction<Vec3*(const CArkWeapon* const _this, Vec3* _return_value_)>(0x1788680);
+	static inline auto FIsProximity = PreyFunction<bool(const CArkWeapon* const _this)>(0x13B0900);
+	static inline auto FGetReticleName = PreyFunction<CCryName*(const CArkWeapon* const _this, CCryName* _return_value_)>(0x148D520);
+	static inline auto FPlayAction = PreyFunction<void(const CArkWeapon* const _this, _smart_ptr<IAction> _pAction, float _speedOverride)>(0x178F020);
+	static inline auto FDetachFromHand = PreyFunction<bool(CArkWeapon* const _this)>(0x1785E40);
+	static inline auto FGetImpulseScaleForEntity = PreyFunction<float(const CArkWeapon* const _this, const IEntity* const _pEntity)>(0x1788330);
+	static inline auto FGetUIElement = PreyFunction<IUIElement* (CArkWeapon* const _this)>(0x1789350);
+	static inline auto FIsEquipped = PreyFunction<bool(const CArkWeapon* const _this)>(0x178C480);
+	static inline auto FFindIronsightsTarget = PreyFunction<void(CArkWeapon* const _this)>(0x1786A50);
+	static inline auto FHasTarget = PreyFunction<bool(const CArkWeapon* const _this)>(0x13B0900);
+	static inline auto FGetTargetLockPercentage = PreyFunction<float(const CArkWeapon* const _this)>(0x714650);
+	static inline auto FGetTargetLockTimeOutElapsedSec = PreyFunction<float(const CArkWeapon* const _this)>(0x714650);
+	static inline auto FOnAttackStopped = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FOnMalfunctionStart = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FOnMalfunctionEvent = PreyFunction<void(CArkWeapon* const _this)>(0x1333E90);
+	static inline auto FOnMuzzleFlash = PreyFunction<void(CArkWeapon* const _this)>(0x178E8F0);
+	static inline auto FGetDamageScale = PreyFunction<float(const CArkWeapon* const _this, const float _distance, CArkProjectile* const _pProjectile)>(0x1AE7A80);
+	static inline auto FGetAmmoPickupArchetype = PreyFunction<IEntityArchetype* (const CArkWeapon* const _this)>(0x17874D0);
+	static inline auto FShouldTreatAsFirstPickup = PreyFunction<bool(const CArkWeapon* const _this)>(0x1790E40);
+	static inline auto FIsDisrupted = PreyFunction<bool(const CArkWeapon* const _this)>(0x178C430);
+	static inline auto FForceCancelCharge = PreyFunction<bool(CArkWeapon* const _this, const bool _bPlayAnim)>(0x13B0900);
+	static inline auto FIsCharging = PreyFunction<bool(const CArkWeapon* const _this)>(0x13B0900);
+	static inline auto FUpdateDisruptedVisuals = PreyFunction<void(CArkWeapon* const _this, bool _bDisrupted)>(0x1792510);
+	static inline auto FGetEnchantmentInfoOv1 = PreyFunction<const ArkWeaponEnchantmentInfo* (const CArkWeapon* const _this)>(0x1787C60);
+	static inline auto FGetWorldTM = PreyFunction<const Matrix34*(const CArkWeapon* const _this, const Matrix34* _return_value_)>(0x178A1C0);
+	static inline auto FAddEnchantmentIcon = PreyFunction<void(const CArkWeapon* const _this, wstring& _nameString, const bool _bUseSmallIcon, const int _vspace)>(0x1784200);
+	static inline auto FGetEnchantmentDescription = PreyFunction<wstring*(const CArkWeapon* const _this, wstring* _return_value_, const int _vspace)>(0x1787910);
+	static inline auto FCanCollideWithEntity = PreyFunction<bool(const CArkWeapon* const _this, const IEntity* const _pEntity)>(0x1A302A0);
+	static inline auto FCalculateFatigue = PreyFunction<float(const CArkWeapon* const _this, const bool _bIsCharged, const bool _bIsExhausted)>(0x714650);
+	static inline auto FGetWorldMuzzleRotation = PreyFunction<Matrix33*(const CArkWeapon* const _this, Matrix33* _return_value_)>(0x178A150);
+	static inline auto FStartDisarmEffect = PreyFunction<void(CArkWeapon* const _this, const Vec3& _npcPosition)>(0x1791510);
+	static inline auto FStopDisarmEffect = PreyFunction<void(CArkWeapon* const _this, const bool _bKill)>(0x17916F0);
+	static inline auto FSetSkin = PreyFunction<void(CArkWeapon* const _this, uint64_t _skinId)>(0x1790880);
+	static inline auto FGetMaxDurability = PreyFunction<float(const CArkWeapon* const _this)>(0x1788870);
+	static inline auto FIsFortified = PreyFunction<bool(const CArkWeapon* const _this)>(0x178C4B0);
+	static inline auto FGiveAmmoClip = PreyFunction<std::vector<unsigned int>*(CArkWeapon* const _this, std::vector<unsigned int>* _return_value_, const unsigned _pickerId, int _amount, bool _bForce)>(0x178A470);
+	static inline auto FActivateBlade = PreyFunction<void(CArkWeapon* const _this, const bool _activate)>(0x1333E90);
+	static inline auto FGetReticleInfoForFiring = PreyFunction<CArkWeapon::ReticleInfo*(const CArkWeapon* const _this, CArkWeapon::ReticleInfo* _return_value_)>(0x1788AA0);
+	static inline auto FApplyRecoil = PreyFunction<void(const CArkWeapon* const _this)>(0x1784590);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkItem* const _this)>(0x178C590);
+	static inline auto FInitializeStats = PreyFunction<void(CArkWeapon* const _this)>(0x178AFA0);
+	static inline auto FUpdateTimers = PreyFunction<void(CArkWeapon* const _this, float _frameTime)>(0x1792850);
+	static inline auto FUpdateAnimationTag = PreyFunction<void(CArkWeapon* const _this, bool _bSelected, const char* _tagName)>(0x17920A0);
+	static inline auto FConstructReloadAction = PreyFunction<_smart_ptr<IAction>*(const CArkWeapon* const _this, _smart_ptr<IAction>* _return_value_, const int _fragmentId)>(0x1785BF0);
+	static inline auto FGetPickupModel = PreyFunction<const char* (const CArkItem* const _this)>(0x1788A00);
+	static inline auto FGetEquippedMaterial = PreyFunction<const char* (const CArkItem* const _this)>(0x1787CA0);
+	static inline auto FAttachToShadowHand = PreyFunction<void(CArkWeapon* const _this, bool _bAttach)>(0x17851E0);
+	static inline auto FConsumeAmmo = PreyFunction<void(CArkWeapon* const _this)>(0x1785C50);
+	static inline auto FCanLoadAmmo = PreyFunction<bool(const CArkWeapon* const _this)>(0x17857B0);
+	static inline auto FHasAmmo = PreyFunction<bool(const CArkWeapon* const _this)>(0x178A650);
+	static inline auto FStopSprinting = PreyFunction<void(const CArkWeapon* const _this)>(0x1791910);
+	static inline auto FOnStatChange = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x178E980);
+	static inline auto FOnCombatFocusChanged = PreyFunction<void(IArkCombatFocusListener* const _this, bool _bActive)>(0x178DFE0);
+	static inline auto FUpdateCritical = PreyFunction<void(CArkWeapon* const _this)>(0x17923A0);
+	static inline auto FShouldMalfunction = PreyFunction<bool(const CArkWeapon* const _this)>(0x1790DF0);
+	static inline auto FDoMalfunction = PreyFunction<void(CArkWeapon* const _this)>(0x1786450);
+	static inline auto FFireWeapon = PreyFunction<void(CArkWeapon* const _this)>(0x1786E10);
+	static inline auto FGetSpawnPosition = PreyFunction<std::pair<bool, Vec3>*(const CArkWeapon* const _this, std::pair<bool, Vec3>* _return_value_, const int _ignoreCollisionType, IEntity* const _pAttachEntity)>(0x1788DE0);
+	static inline auto FOnAmmoDepleted = PreyFunction<void(CArkWeapon* const _this)>(0x178DF50);
+	static inline auto FUpdateAmmoCountUI = PreyFunction<void(const CArkWeapon* const _this)>(0x1791BE0);
+	static inline auto FEnableCancelTutorial = PreyFunction<void(CArkWeapon* const _this, const string _tutorialHintString)>(0x1786670);
+	static inline auto FDisableCancelTutorial = PreyFunction<void(CArkWeapon* const _this)>(0x1786300);
+	static inline auto FEnableChargeFilter = PreyFunction<void(CArkWeapon* const _this, const bool _bEnable)>(0x17867F0);
+	static inline auto FGetBaseDamage = PreyFunction<int(const CArkWeapon* const _this)>(0x1CBB0B0);
+	static inline auto FGetModifiedDamage = PreyFunction<int(const CArkWeapon* const _this, const std::vector<uint64_t>& _modifiers, const bool _bIncludeEnchantments)>(0x1CBB0B0);
+	static inline auto FCalculateEnchantmentSignalOv1 = PreyFunction<float(const CArkWeapon* const _this)>(0x17856C0);
+	static inline auto FGetSignalModifiers = PreyFunction<std::vector<uint64_t>*(const CArkWeapon* const _this, std::vector<uint64_t>* _return_value_)>(0x1788CE0);
+	static inline auto FCalculateBaseDamage = PreyFunction<float(const CArkWeapon* const _this, uint64_t _pkgId, uint64_t _dmgSignal)>(0x1785640);
+	static inline auto FHideEnchantmentModel = PreyFunction<void(CArkWeapon* const _this, const bool _bHidden)>(0x178A680);
+	static inline auto FSpawnMuzzleLight = PreyFunction<void(CArkWeapon* const _this, bool _bAttach)>(0x1791220);
+	static inline auto FStopMuzzleLight = PreyFunction<void(CArkWeapon* const _this)>(0x1791710);
+	static inline auto FUpdateConditionFeedback = PreyFunction<void(const CArkWeapon* const _this)>(0x1792340);
+	static inline auto FUpdateArkLightColor = PreyFunction<void(const CArkWeapon* const _this, CArkWeapon::EArkWeaponStatus _condition)>(0x17921D0);
+	static inline auto FInitializeCondition = PreyFunction<void(CArkWeapon* const _this)>(0x178AA60);
+	static inline auto FRandomizeWeaponMods = PreyFunction<void(CArkWeapon* const _this, const uint64_t _id, const IArkItem::EArkQualityTier _qualityTier)>(0x178F880);
+	static inline auto FSpawnAmmo = PreyFunction<unsigned(CArkWeapon* const _this)>(0x1791050);
+	static inline auto FAttachToHand = PreyFunction<bool(CArkWeapon* const _this)>(0x1784EE0);
+	static inline auto FGetOwnerActionController = PreyFunction<IActionController* (const CArkWeapon* const _this)>(0x1788970);
+	static inline auto FUpdateAnimationScopeContexts = PreyFunction<void(CArkWeapon* const _this)>(0x1791D90);
+	static inline auto FIsItemWeaponAmmo = PreyFunction<bool(CArkWeapon* const _this, unsigned _itemId)>(0x178C4E0);
+	static inline auto FGetPlayerWeaponSpecificCritChanceStatName = PreyFunction<CCryName*(const CArkWeapon* const _this, CCryName* _return_value_)>(0x361570);
+	static inline auto FInitializeAmmoCount = PreyFunction<void(CArkWeapon* const _this)>(0x178A880);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x178E590);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x1791960);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x178F0A0);
+	static inline auto FDisplayTutorialCard = PreyFunction<void(const CArkWeapon* const _this)>(0x1786400);
+	static inline auto FUpdateStatusIcon = PreyFunction<void(const CArkWeapon* const _this, bool _bForceRemove)>(0x17926C0);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -544,3 +546,98 @@ struct SCGTexture : SCGBind
 };
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <Prey/RenderDll/Common/Shaders/ShaderComponents.h>
+
+class CTexture;
+class ICrySizer;
+struct SParamData;
+struct STexAnim;
+
+// SCGParam
+// Header:  CryEngine/renderdll/common/shaders/shadercomponents.h
+// Include: Prey/RenderDll/Common/Shaders/ShaderComponents.h
+struct SCGParam : public SCGBind
+{ // Size=48 (0x30)
+	ECGParam m_eCGParamType;
+	SParamData* m_pData;
+	uint64_t m_nID;
+
+	SCGParam(const SCGParam& sp);
+	~SCGParam();
+
+#if 0
+	SCGParam();
+	SCGParam& operator=(const SCGParam& _arg0_);
+	bool operator!=(const SCGParam& _arg0_) const;
+	const CCryNameR GetParamCompName(int _arg0_) const;
+	int Size();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FSCGParamOv0 = PreyFunction<void(SCGParam* const _this, const SCGParam& sp)>(0xF35EB0);
+	static inline auto FBitNotSCGParam = PreyFunction<void(SCGParam* const _this)>(0xF06E30);
+};
+
+// SCGTexture
+// Header:  CryEngine/renderdll/common/shaders/shadercomponents.h
+// Include: Prey/RenderDll/Common/Shaders/ShaderComponents.h
+struct SCGTexture : public SCGBind
+{ // Size=48 (0x30)
+	CTexture* m_pTexture;
+	STexAnim* m_pAnimInfo;
+	ECGTexture m_eCGTextureType;
+	bool m_bSRGBLookup;
+	bool m_bGlobal;
+
+	SCGTexture(const SCGTexture& sp);
+	~SCGTexture();
+	CTexture* GetTexture() const { return FGetTexture(this); }
+
+#if 0
+	SCGTexture();
+	SCGTexture& operator=(const SCGTexture& _arg0_);
+	bool operator!=(const SCGTexture& _arg0_) const;
+	int Size();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FSCGTextureOv0 = PreyFunction<void(SCGTexture* const _this, const SCGTexture& sp)>(0x1033800);
+	static inline auto FBitNotSCGTexture = PreyFunction<void(SCGTexture* const _this)>(0x1033950);
+	static inline auto FGetTexture = PreyFunction<CTexture* (const SCGTexture* const _this)>(0x1033BD0);
+};
+
+// SParamData
+// Header:  CryEngine/renderdll/common/shaders/shadercomponents.h
+// Include: Prey/RenderDll/Common/Shaders/ShaderComponents.h
+struct SParamData
+{ // Size=64 (0x40)
+	// SParamData::UData
+	// Header:  CryEngine/renderdll/common/shaders/shadercomponents.h
+	union UData
+	{ // Size=32 (0x20)
+		uint64_t nData64[4];
+		unsigned nData32[4];
+		float fData[4];
+	};
+
+	CCryNameR m_CompNames[4];
+	SParamData::UData d;
+
+	SParamData(const SParamData& sp);
+	~SParamData();
+
+#if 0
+	SParamData();
+	SParamData& operator=(const SParamData& _arg0_);
+	unsigned Size();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FSParamDataOv0 = PreyFunction<void(SParamData* const _this, const SParamData& sp)>(0x1033890);
+	static inline auto FBitNotSParamData = PreyFunction<void(SParamData* const _this)>(0x1033AA0);
+};
+#endif // !MOONCRASH

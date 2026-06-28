@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -56,4 +58,44 @@ struct ArkSpaceSettings // Id=8002857 Size=240
 	
 	ArkSpaceSettings();
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+// ArkSpaceObject
+// Header:  Prey/Ark/iarkspacemanager.h
+struct ArkSpaceObject
+{ // Size=56 (0x38)
+	string name;
+	string mesh;
+	Ang3 offsets;
+	Ang3 orientation;
+	float radius;
+	float distanceToSurface;
+	float scale;
+	float rotationSpeed;
+
+#if 0
+	ArkSpaceObject();
+#endif
+};
+
+// SHDRParams
+// Header:  Prey/Ark/iarkspacemanager.h
+struct SHDRParams
+{ // Size=60 (0x3C)
+	float shoulderScale;
+	float midtonesScale;
+	float toeScale;
+	float whitepoint;
+	float saturation;
+	Vec3 colorBalance;
+	float sceneKey;
+	float minExposure;
+	float maxExposure;
+	float evMin;
+	float evMax;
+	float evAutoCompensation;
+	float bloomAmount;
+};
+#endif // !MOONCRASH

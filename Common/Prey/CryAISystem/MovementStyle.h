@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -184,4 +186,4 @@ struct MovementStyleDictionaryCollection // Id=80069DE Size=96
 	MovementStyleDictionaryCollection();
 };
 #endif
-
+#endif // !MOONCRASH

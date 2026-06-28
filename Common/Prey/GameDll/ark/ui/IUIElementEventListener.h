@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -28,4 +30,35 @@ struct IUIElementEventListener // Id=80022C0 Size=8
 	static inline auto FOnInstanceCreated = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, IUIElement *pNewInstance)>(0xA13080);
 	static inline auto FOnInstanceDestroyed = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, IUIElement *pDeletedInstance)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+struct IFlashPlayer;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// IUIElementEventListener
+// Header:  Prey/GameDll/ark/ui/IUIElementEventListener.h
+// Include: Prey/CrySystem/Scaleform/IFlashUI.h
+struct IUIElementEventListener
+{ // Size=8 (0x8)
+	virtual void OnUIEvent(IUIElement* pSender, const SUIEventDesc& event, const SUIArguments& args);
+	virtual void OnUIEventEx(IUIElement* pSender, const char* fscommand, const SUIArguments& args, void* pUserData);
+	virtual void OnInit(IUIElement* pSender, IFlashPlayer* pFlashPlayer);
+	virtual void OnUnload(IUIElement* pSender);
+	virtual void OnSetVisible(IUIElement* pSender, bool bVisible);
+	virtual void OnInstanceCreated(IUIElement* pSender, IUIElement* pNewInstance);
+	virtual void OnInstanceDestroyed(IUIElement* pSender, IUIElement* pDeletedInstance);
+	virtual ~IUIElementEventListener();
+
+	static inline auto FOnUIEvent = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, const SUIEventDesc& event, const SUIArguments& args)>(0x1333E90);
+	static inline auto FOnUIEventEx = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, const char* fscommand, const SUIArguments& args, void* pUserData)>(0x1333E90);
+	static inline auto FOnInit = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IFlashPlayer* pFlashPlayer)>(0x1333E90);
+	static inline auto FOnUnload = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender)>(0x1333E90);
+	static inline auto FOnSetVisible = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, bool bVisible)>(0x1333E90);
+	static inline auto FOnInstanceCreated = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IUIElement* pNewInstance)>(0x1333E90);
+	static inline auto FOnInstanceDestroyed = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IUIElement* pDeletedInstance)>(0x1333E90);
+};
+#endif // !MOONCRASH

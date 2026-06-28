@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -149,4 +151,4 @@ public:
 	static inline auto FClearAssignedDispositionsForEntity = PreyFunction<void(ArkFactionManager *const _this, unsigned _entityId)>(0x1430790);
 	static inline auto FStopFighting = PreyFunction<void(unsigned _fromEntityId, unsigned _toEntityId)>(0x1434210);
 };
-
+#endif // !MOONCRASH

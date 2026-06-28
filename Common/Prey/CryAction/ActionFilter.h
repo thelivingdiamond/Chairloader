@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -44,4 +46,51 @@ public:
     static inline auto FActionFiltered = PreyFunction<bool(CActionFilter *const _this, CCryName const &action)>(0x3C3040);
     static inline auto FGetMemoryUsage = PreyFunction<void(CActionFilter const *const _this, ICrySizer *s)>(0x3C32E0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryAction/IActionMapManager.h>
+#include <Prey/CryString/CryName.h>
 
+class CActionMapManager;
+class ICrySizer;
+struct IInput;
+class XmlNodeRef;
+
+// CActionFilter
+// Header:  CryEngine/cryaction/ActionFilter.h
+// Include: Prey/CryAction/ActionFilter.h
+class CActionFilter : public IActionFilter
+{ // Size=64 (0x40)
+public:
+	bool m_enabled;
+	CActionMapManager* m_pActionMapManager;
+	IInput* m_pInput;
+	std::set<CCryName> m_filterActions;
+	EActionFilterType m_type;
+	string m_name;
+
+	CActionFilter(CActionMapManager* pActionMapManager, IInput* pInput, const char* name, EActionFilterType type);
+	virtual ~CActionFilter();
+	virtual void Release();
+	virtual void Filter(const CCryName& action);
+	virtual void ClearFilters();
+	virtual bool SerializeXML(const XmlNodeRef& root, bool bLoading);
+	virtual const char* GetName();
+	virtual void Enable(bool enable);
+	virtual bool Enabled();
+	bool ActionFiltered(const CCryName& action) { return FActionFiltered(this, action); }
+	virtual void GetMemoryUsage(ICrySizer* s) const;
+
+	static inline auto FCActionFilterOv1 = PreyFunction<void(CActionFilter* const _this, CActionMapManager* pActionMapManager, IInput* pInput, const char* name, EActionFilterType type)>(0x3DD250);
+	static inline auto FRelease = PreyFunction<void(CActionFilter* const _this)>(0x3E3960);
+	static inline auto FFilter = PreyFunction<void(CActionFilter* const _this, const CCryName& action)>(0x3DD620);
+	static inline auto FClearFilters = PreyFunction<void(CActionFilter* const _this)>(0x3DD4E0);
+	static inline auto FSerializeXML = PreyFunction<bool(CActionFilter* const _this, const XmlNodeRef& root, bool bLoading)>(0x3DD720);
+	static inline auto FGetName = PreyFunction<const char* (CActionFilter* const _this)>(0xEDF820);
+	static inline auto FEnable = PreyFunction<void(CActionFilter* const _this, bool enable)>(0x3DD520);
+	static inline auto FEnabled = PreyFunction<bool(CActionFilter* const _this)>(0x119FB50);
+	static inline auto FActionFiltered = PreyFunction<bool(CActionFilter* const _this, const CCryName& action)>(0x3DD3B0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CActionFilter* const _this, ICrySizer* s)>(0x3DD650);
+};
+#endif // !MOONCRASH

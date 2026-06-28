@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -76,4 +78,72 @@ public:
 	static inline auto FOnGameEnded = PreyFunction<void(ArkPlayerAchievementComponent* const _this)>(0x122B6E0);
 	static inline auto FMimickingPlayerBlasted = PreyFunction<void(ArkPlayerAchievementComponent* const _this)>(0x122B520);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
+class ArkMetricComparison;
+struct IEntity;
+
+// ArkPlayerAchievementComponent
+// Header:  Prey/GameDll/ark/player/ArkPlayerAchievementComponent.h
+class ArkPlayerAchievementComponent
+{ // Size=120 (0x78)
+public:
+	// ArkPlayerAchievementComponent::GlooHit
+	// Header:  Prey/GameDll/ark/player/ArkPlayerAchievementComponent.h
+	class GlooHit
+	{ // Size=40 (0x28)
+	public:
+		unsigned m_sourceGrenade;
+		std::vector<unsigned int> m_glooedEnemies;
+		ArkSimpleTimer m_window;
+
+		void GlooedEnemy(unsigned _entity) { FGlooedEnemy(this, _entity); }
+
+	#if 0
+		GlooHit(const unsigned _arg0_, float _arg1_, unsigned _arg2_);
+		GlooHit();
+		bool operator==(const unsigned _arg0_) const;
+		bool Update(const float _arg0_);
+		void Serialize(TSerialize _arg0_);
+	#endif
+
+		static inline auto FGlooedEnemy = PreyFunction<void(ArkPlayerAchievementComponent::GlooHit* const _this, unsigned _entity)>(0x12CC880);
+	};
+
+	std::vector<uint64_t> m_mimickedObjects;
+	std::vector<unsigned int> m_repairedWeapons;
+	std::vector<uint64_t> m_consumedFoodAndDrink;
+	std::vector<uint64_t> m_starbendersRead;
+	std::vector<ArkPlayerAchievementComponent::GlooHit> m_glooHits;
+
+	ArkPlayerAchievementComponent();
+	void Reset() { FReset(this); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void Update(float _frameTime) { FUpdate(this, _frameTime); }
+	void ObjectMimicked(const IEntity& _entity) { FObjectMimicked(this, _entity); }
+	void WeaponRepaired(const unsigned _entity) { FWeaponRepaired(this, _entity); }
+	void ConsumedItem(const IEntity& _entity) { FConsumedItem(this, _entity); }
+	void NoteRead(const uint64_t _noteId) { FNoteRead(this, _noteId); }
+	void OnEnemyGlooed(const unsigned _sourceGrenade, const unsigned _hitEntity) { FOnEnemyGlooed(this, _sourceGrenade, _hitEntity); }
+	bool TriggerAchievement(uint64_t _id) { return FTriggerAchievement(this, _id); }
+
+#if 0
+	bool CompareMetric(const ArkMetricComparison& _arg0_) const;
+#endif
+
+	static inline auto FArkPlayerAchievementComponentOv2 = PreyFunction<void(ArkPlayerAchievementComponent* const _this)>(0x12CC710);
+	static inline auto FReset = PreyFunction<void(ArkPlayerAchievementComponent* const _this)>(0x12CCAB0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerAchievementComponent* const _this, TSerialize _ser)>(0x12CCB20);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerAchievementComponent* const _this, float _frameTime)>(0x12CCE00);
+	static inline auto FObjectMimicked = PreyFunction<void(ArkPlayerAchievementComponent* const _this, const IEntity& _entity)>(0x12CC9B0);
+	static inline auto FWeaponRepaired = PreyFunction<void(ArkPlayerAchievementComponent* const _this, const unsigned _entity)>(0x12CCF10);
+	static inline auto FConsumedItem = PreyFunction<void(ArkPlayerAchievementComponent* const _this, const IEntity& _entity)>(0x12CC760);
+	static inline auto FNoteRead = PreyFunction<void(ArkPlayerAchievementComponent* const _this, const uint64_t _noteId)>(0x12CC910);
+	static inline auto FOnEnemyGlooed = PreyFunction<void(ArkPlayerAchievementComponent* const _this, const unsigned _sourceGrenade, const unsigned _hitEntity)>(0x12CCA50);
+	static inline auto FTriggerAchievement = PreyFunction<bool(ArkPlayerAchievementComponent* const _this, uint64_t _id)>(0x12CCBA0);
+};
+#endif // !MOONCRASH

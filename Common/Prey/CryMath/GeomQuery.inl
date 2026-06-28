@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 //
 //	Implementation of GeomQuery.h. Should be included in all DLLs

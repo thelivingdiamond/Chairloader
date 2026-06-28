@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -72,4 +74,79 @@ public:
 	static inline auto FSetAuthority = PreyFunction<void(ArkEmotionExtension *const _this, bool auth)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkEmotionExtension const *const _this, ICrySizer *)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryNetwork/ISerialize.h>
 
+enum EEntityAspects;
+class ICrySizer;
+struct IGameObject;
+struct ISerializableInfo;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+
+// ArkEmotionExtension
+// Header:  Prey/GameDll/ark/ArkEmotionExtension.h
+class ArkEmotionExtension : public CGameObjectExtensionHelper<ArkEmotionExtension, IArkEmotionExtension>
+{ // Size=80 (0x50)
+public:
+	uint64_t m_emotionId;
+	int m_nAnimLayer;
+
+	ArkEmotionExtension();
+	virtual void SetEmotion(uint64_t _emotionId, float _blend);
+	virtual void ClearEmotion(float _blend);
+	virtual uint64_t GetCurrentEmotion() const;
+	virtual void Release();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void InitClient(int channelId);
+	virtual void PostInit(IGameObject* pGameObject);
+	virtual void PostInitClient(int channelId);
+	virtual bool ReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
+	virtual void PostReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
+	virtual bool GetEntityPoolSignature(TSerialize signature);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool NetSerialize(TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags);
+	virtual void PostSerialize();
+	virtual void SerializeSpawnInfo(TSerialize ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void PostUpdate(float frameTime);
+	virtual void PostRemoteSpawn();
+	virtual void HandleEvent(const SGameObjectEvent& __unnamed1);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void SetChannelId(uint16_t id);
+	virtual void SetAuthority(bool auth);
+	virtual void GetMemoryUsage(ICrySizer* __unnamed1) const;
+
+	static inline auto FArkEmotionExtensionOv2 = PreyFunction<void(ArkEmotionExtension* const _this)>(0x11A8DC0);
+	static inline auto FSetEmotion = PreyFunction<void(ArkEmotionExtension* const _this, uint64_t _emotionId, float _blend)>(0x11A9170);
+	static inline auto FClearEmotion = PreyFunction<void(ArkEmotionExtension* const _this, float _blend)>(0x11A8E00);
+	static inline auto FGetCurrentEmotion = PreyFunction<uint64_t(const ArkEmotionExtension* const _this)>(0x8715F0);
+	static inline auto FRelease = PreyFunction<void(ArkEmotionExtension* const _this)>(0x3E3960);
+	static inline auto FInit = PreyFunction<bool(ArkEmotionExtension* const _this, IGameObject* _pGameObject)>(0x11A8FD0);
+	static inline auto FInitClient = PreyFunction<void(ArkEmotionExtension* const _this, int channelId)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(ArkEmotionExtension* const _this, IGameObject* pGameObject)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(ArkEmotionExtension* const _this, int channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(ArkEmotionExtension* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1A302A0);
+	static inline auto FPostReloadExtension = PreyFunction<void(ArkEmotionExtension* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(ArkEmotionExtension* const _this, TSerialize signature)>(0x1A302A0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkEmotionExtension* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(ArkEmotionExtension* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkEmotionExtension* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkEmotionExtension* const _this, TSerialize ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(ArkEmotionExtension* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(ArkEmotionExtension* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1333E90);
+	static inline auto FPostUpdate = PreyFunction<void(ArkEmotionExtension* const _this, float frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkEmotionExtension* const _this)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(ArkEmotionExtension* const _this, const SGameObjectEvent& __unnamed1)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(ArkEmotionExtension* const _this, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FSetChannelId = PreyFunction<void(ArkEmotionExtension* const _this, uint16_t id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(ArkEmotionExtension* const _this, bool auth)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkEmotionExtension* const _this, ICrySizer* __unnamed1)>(0x1333E90);
+};
+#endif // !MOONCRASH

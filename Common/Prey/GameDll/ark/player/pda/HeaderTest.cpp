@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header test file for path Prey/GameDll/ark/player/pda/
 #include "ArkAudioLogComponent.h"
 static_assert(sizeof(ArkAudioLogComponent) == 128);
@@ -38,4 +40,46 @@ static_assert(sizeof(ArkNoteComponent) == 32);
 #include "ArkRosterComponent.h"
 static_assert(sizeof(ArkRosterComponent) == 104);
 static_assert(sizeof(CArkCharacterStatus) == 24);
+#else // MOONCRASH
+// Header test file for path Prey/GameDll/ark/player/pda/
+#include "ArkAudioLogComponent.h"
+static_assert(sizeof(ArkAudioLogComponent) == 128);
+static_assert(sizeof(ArkAudioLogComponent::UnheardAudioLog) == 16);
 
+#include "ArkChipsetComponent.h"
+static_assert(sizeof(ArkChipsetComponent) == 352);
+static_assert(sizeof(ArkChipsetComponent::InstalledChipset) == 32);
+
+#include "ArkEmailComponent.h"
+static_assert(sizeof(ArkEmailComponent) == 232);
+static_assert(sizeof(ArkEmailComponent::SEmailUIContent) == 48);
+
+#include "ArkFabricationPlanComponent.h"
+static_assert(sizeof(ArkFabricationPlanComponent) == 40);
+static_assert(sizeof(ArkFabricationPlanComponent::Data) == 40);
+
+#include "ArkKeyCardComponent.h"
+static_assert(sizeof(ArkKeyCardComponent) == 48);
+
+#include "ArkKeyCodeComponent.h"
+static_assert(sizeof(ArkKeyCodeComponent) == 24);
+static_assert(sizeof(ArkKeyCodeEntry) == 24);
+
+#include "ArkLiveTranscribeComponent.h"
+static_assert(sizeof(ArkLiveTranscribeComponent) == 152);
+
+#include "ArkLocationComponent.h"
+static_assert(sizeof(ArkLocationComponent) == 48);
+static_assert(sizeof(ArkLocationComponent::ArkLocationCooldown) == 16);
+
+#include "ArkLoreComponent.h"
+static_assert(sizeof(ArkLoreComponent) == 24);
+static_assert(sizeof(ArkLoreComponent::LoreData) == 16);
+
+#include "ArkNoteComponent.h"
+static_assert(sizeof(ArkNoteComponent) == 56);
+
+#include "ArkRosterComponent.h"
+static_assert(sizeof(ArkRosterComponent) == 128);
+static_assert(sizeof(CArkCharacterStatus) == 24);
+#endif // !MOONCRASH

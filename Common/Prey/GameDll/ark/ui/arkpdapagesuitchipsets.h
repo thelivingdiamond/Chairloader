@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -26,4 +28,4 @@ public:
 	static inline auto FGetChipsetComponent = PreyFunction<ArkEquipmentModComponent &(CArkPDAPageSuitChipsets const *const _this)>(0x134EB40);
 	static inline auto FGetChipsetType = PreyFunction<int(CArkPDAPageSuitChipsets const *const _this)>(0x134EB60);
 };
-
+#endif // !MOONCRASH

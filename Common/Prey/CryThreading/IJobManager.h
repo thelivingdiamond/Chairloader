@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 #include <functional>
 #include <Prey/CryThreading/CryThread.h>

@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -48,4 +50,4 @@ public:
 	static inline auto FBuildDescString = PreyFunction<wstring(ArkNewGamePlus const *const _this)>(0x11A3340);
 	static inline auto FGetEntitlementId = PreyFunction<uint64_t()>(0x11A3890);
 };
-
+#endif // !MOONCRASH

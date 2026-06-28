@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -16,4 +18,4 @@ public:
 	static inline auto FArkTraumaConcussionOv2 = PreyFunction<void(ArkTraumaConcussion* const _this)>(0x132C250);
 	static inline auto FRepeatEffect = PreyFunction<void(ArkTraumaConcussion* const _this)>(0x132C2B0);
 };
-
+#endif // !MOONCRASH

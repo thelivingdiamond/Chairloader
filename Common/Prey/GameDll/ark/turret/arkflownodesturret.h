@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -110,4 +112,4 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNode_ArkTurret_WeaponProperties *const _this, IFlowNode::SActivationInfo *, TSerialize ser)>(0xA13080);
 	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNode_ArkTurret_WeaponProperties *const _this, IFlowNode::SActivationInfo *)>(0xA13080);
 };
-
+#endif // !MOONCRASH

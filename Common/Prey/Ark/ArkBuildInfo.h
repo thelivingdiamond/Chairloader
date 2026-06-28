@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -39,4 +41,46 @@ public:
 	static inline auto FIterateBuildInfoEntries = PreyFunction<const void(ArkBuildInfo const *const _this, std::function<void __cdecl(char const *,char const *)> OnEntry)>(0x5C2DF0);
 	static inline auto FAddRuntimeBuildInfo = PreyFunction<void(ArkBuildInfo *const _this, const char *key, const char *value)>(0xDCB310);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+// ArkBuildInfo
+// Header:  Prey/Ark/ArkBuildInfo.h
+class ArkBuildInfo
+{ // Size=144 (0x90)
+public:
+	bool m_isLocalBuild;
+	std::map<string, string> m_buildInfo;
+	const string k_buildIDKey;
+	const string k_branchKey;
+	const string k_changeListKey;
+	string m_Description;
+	string m_FullInfo;
+	std::mutex m_buildInfoMutex;
+
+	ArkBuildInfo();
+	string GetBuildInfo(const string& _key) const { alignas(string) std::byte _return_buf_[sizeof(string)]; return *FGetBuildInfo(this, reinterpret_cast<string*>(_return_buf_), _key); }
+	const void IterateBuildInfoEntries(std::function<void __cdecl(char const *,char const *)> OnEntry) const { FIterateBuildInfoEntries(this, OnEntry); }
+	void AddRuntimeBuildInfo(const char* key, const char* value) { FAddRuntimeBuildInfo(this, key, value); }
+
+#if 0
+	const bool ValidateCurrentBranch() const;
+	string GetChangelist() const;
+	string GetBuildID() const;
+	string GetArkClientBranch() const;
+	string GetBranch() const;
+	bool IsLocalBuild() const;
+	int GetDanielleToolsVersion() const;
+	const string& GetDescription() const;
+	const string& GetFullInfo() const;
+	const void DumpBuildInfoToFile(const char* _arg0_) const;
+	string parseBranchFromFile();
+#endif
+
+	static inline auto FArkBuildInfo = PreyFunction<void(ArkBuildInfo* const _this)>(0xDDFA00);
+	static inline auto FGetBuildInfo = PreyFunction<string*(const ArkBuildInfo* const _this, string* _return_value_, const string& _key)>(0x4D7F90);
+	static inline auto FIterateBuildInfoEntries = PreyFunction<const void(const ArkBuildInfo* const _this, std::function<void __cdecl(char const *,char const *)> OnEntry)>(0x5DBFB0);
+	static inline auto FAddRuntimeBuildInfo = PreyFunction<void(ArkBuildInfo* const _this, const char* key, const char* value)>(0xDE83F0);
+};
+#endif // !MOONCRASH

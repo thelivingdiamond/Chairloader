@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -231,4 +233,71 @@ public:
 	static inline auto FOnActiveUserControllerRemoved = PreyFunction<void(ArkActiveUserManagerBase *const _this, const unsigned _userId)>(0xA13080);
 	static inline auto FOnActiveUserControllerInvalid = PreyFunction<void(ArkActiveUserManagerBase *const _this, const unsigned _userId)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/dialog/IArkConversation.h>
 
+class ArkSpeakerBase;
+class IArkConversationListener;
+class IArkSpeaker;
+struct SConversationParams;
+
+// ArkConversation
+// Header:  Prey/GameDll/ark/dialog/ArkConversation.h
+class ArkConversation : public IArkConversation
+{ // Size=96 (0x60)
+public:
+	std::vector<IArkConversationListener*> m_listeners;
+	std::vector<ArkSpeakerBase*> m_speakers;
+	uint64_t m_conversationId;
+	uint64_t m_hookId;
+	int8_t m_nPAChannel;
+	EArkConversationDominance m_dominance;
+	EArkConversationPriority m_priority;
+	EArkConversationType m_type;
+	bool m_bIgnoreVoiceRequirement;
+	bool m_bLiveAudio;
+	bool m_bImportant;
+
+	ArkConversation();
+	ArkConversation(const uint64_t _conversationId, const bool _bImportant, const SConversationParams& _params);
+	bool CanJoin(const uint64_t _voiceId) const { return FCanJoin(this, _voiceId); }
+	virtual void AddSpeaker(IArkSpeaker* _pSpeaker);
+	void OnComplete(const bool _bComplete) { FOnComplete(this, _bComplete); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void SetDuckAudio(bool _bEnable) const { FSetDuckAudio(this, _bEnable); }
+	virtual uint64_t GetConversationId() const;
+	virtual void AddListener(IArkConversationListener* const _pListener);
+	virtual void RemoveListener(IArkConversationListener* const _pListener);
+
+#if 0
+	const std::vector<ArkSpeakerBase*>& GetSpeakers() const;
+	void SetIgnoreVoiceRequirement(const bool _arg0_);
+	bool CanIgnoreVoiceRequirement() const;
+	void SetPAChannel(const int8_t _arg0_);
+	int GetPAChannel() const;
+	uint64_t GetHookId() const;
+	bool IsLiveAudio() const;
+	void SetIsLiveAudio(const bool _arg0_);
+	EArkConversationType GetType() const;
+	EArkConversationPriority GetPriority() const;
+	void SetPriority(EArkConversationPriority _arg0_);
+	bool IsImportant() const;
+	EArkConversationDominance GetDominance() const;
+	bool CanSerialize() const;
+#endif
+
+	static inline auto FArkConversationOv3 = PreyFunction<void(ArkConversation* const _this)>(0x159BFB0);
+	static inline auto FArkConversationOv2 = PreyFunction<void(ArkConversation* const _this, const uint64_t _conversationId, const bool _bImportant, const SConversationParams& _params)>(0x159C000);
+	static inline auto FCanJoin = PreyFunction<bool(const ArkConversation* const _this, const uint64_t _voiceId)>(0x159C0F0);
+	static inline auto FAddSpeaker = PreyFunction<void(ArkConversation* const _this, IArkSpeaker* _pSpeaker)>(0x159C0B0);
+	static inline auto FOnComplete = PreyFunction<void(ArkConversation* const _this, const bool _bComplete)>(0x159C120);
+	static inline auto FSerialize = PreyFunction<void(ArkConversation* const _this, TSerialize _ser)>(0x159C220);
+	static inline auto FSetDuckAudio = PreyFunction<void(const ArkConversation* const _this, bool _bEnable)>(0x159C360);
+	static inline auto FGetConversationId = PreyFunction<uint64_t(const ArkConversation* const _this)>(0xEDF820);
+	static inline auto FAddListener = PreyFunction<void(ArkConversation* const _this, IArkConversationListener* const _pListener)>(0x159C060);
+	static inline auto FRemoveListener = PreyFunction<void(ArkConversation* const _this, IArkConversationListener* const _pListener)>(0x159C1E0);
+};
+#endif // !MOONCRASH

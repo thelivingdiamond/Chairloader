@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
@@ -438,4 +440,445 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12FD650);
 	static inline auto FInit = PreyFunction<bool(ArkSignalFXLibrary* const _this)>(0x12FD7E0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
 
+class ArkClass;
+namespace ArkSignalSystem
+{
+class Package;
+} // namespace ArkSignalSystem
+class IArkValueBase;
+struct IEntity;
+
+// ArkPlayerFXComponent
+// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+class ArkPlayerFXComponent
+{ // Size=160 (0xA0)
+public:
+	// ArkPlayerFXComponent::FXTimerData
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class FXTimerData
+	{ // Size=16 (0x10)
+	public:
+		uint64_t m_fxId;
+		ArkTimeRemaining m_timer;
+
+	#if 0
+		FXTimerData();
+		FXTimerData(uint64_t _arg0_, float _arg1_);
+		bool operator==(const uint64_t _arg0_) const;
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	// ArkPlayerFXComponent::ArkPlayerEffect
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkPlayerEffect : public ArkEntityEffect
+	{ // Size=136 (0x88)
+	public:
+	#if 0
+		ArkPlayerEffect();
+	#endif
+	};
+
+	std::vector<ArkPlayerFXComponent::FXTimerData> m_loopingSFX;
+	std::vector<ArkPlayerFXComponent::FXTimerData> m_loopingPostFX;
+	std::vector<ArkPlayerFXComponent::FXTimerData> m_loopingVFX;
+	std::vector<ArkPlayerFXComponent::FXTimerData> m_cooldowns;
+	std::unordered_map<uint64_t, ArkPlayerFXComponent::ArkPlayerEffect> m_activeVFX;
+
+	void Reset() { FReset(this); }
+	void Update(const float _frameTime) { FUpdate(this, _frameTime); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void PostSerialize() { FPostSerialize(this); }
+	void OnReceiveSignal(const ArkSignalSystem::Package& _package) { FOnReceiveSignal(this, _package); }
+	void StopAllLoopingSFX() { FStopAllLoopingSFX(this); }
+	void StopAllLoopingPostFX() { FStopAllLoopingPostFX(this); }
+	void StopAllLoopingVFX() { FStopAllLoopingVFX(this); }
+	void StopLoopingSFX(uint64_t _id, IEntity* _pEntity) { FStopLoopingSFX(this, _id, _pEntity); }
+	void StopLoopingPostFX(uint64_t _id) { FStopLoopingPostFX(this, _id); }
+	void StopLoopingVFX(uint64_t _id, bool _bKill) { FStopLoopingVFX(this, _id, _bKill); }
+
+	static inline auto FReset = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D9680);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerFXComponent* const _this, const float _frameTime)>(0x13D9CE0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerFXComponent* const _this, TSerialize _ser)>(0x13D96B0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D91D0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkPlayerFXComponent* const _this, const ArkSignalSystem::Package& _package)>(0x13D8550);
+	static inline auto FStopAllLoopingSFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D97F0);
+	static inline auto FStopAllLoopingPostFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D9740);
+	static inline auto FStopAllLoopingVFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D98E0);
+	static inline auto FStopLoopingSFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, IEntity* _pEntity)>(0x13D9B00);
+	static inline auto FStopLoopingPostFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id)>(0x13D9A80);
+	static inline auto FStopLoopingVFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, bool _bKill)>(0x13D9B90);
+};
+
+// ArkSignalFXSignalEntry
+// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+class ArkSignalFXSignalEntry : public ArkReflectedObject
+{ // Size=16 (0x10)
+public:
+	// ArkSignalFXSignalEntry::ArkSignalProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkSignalProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSignalProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkSignalFXSignalEntry::ArkValueThresholdProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkValueThresholdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkValueThresholdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	static inline auto s_ArkSignalProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkSignalProperty>(0x2D53C50);
+	uint64_t m_Signal;
+	static inline auto s_ArkValueThresholdProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkValueThresholdProperty>(0x2D53C70);
+	float m_ValueThreshold;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkSignalFXSignalEntry();
+	ArkSignalFXSignalEntry(const uint64_t _arg0_, const float _arg1_);
+	void SetSignal(uint64_t _arg0_);
+	const uint64_t& GetSignal() const;
+	void SetValueThreshold(float _arg0_);
+	const float& GetValueThreshold() const;
+	bool operator==(const ArkSignalFXSignalEntry& _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D8120);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D82E0);
+};
+
+// ArkSignalFX
+// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+class ArkSignalFX : public ArkReflectedObject
+{ // Size=104 (0x68)
+public:
+	// ArkSignalFX::ArkIDProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkSignalFX::ArkNameProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkSignalFX::ArkSignalsProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkSignalsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkSignalsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D6AB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject)>(0x13D6AE0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFX::ArkSignalsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* _pObject)>(0x1093020);
+	};
+
+	// ArkSignalFX::ArkPostEffectProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkPostEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPostEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkSignalFX::ArkPostEffectLoopDurationProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkPostEffectLoopDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPostEffectLoopDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1080CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkSignalFX::ArkParticleEffectProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkParticleEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkParticleEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkSignalFX::ArkParticleLoopDurationProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkParticleLoopDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkParticleLoopDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// ArkSignalFX::ArkAudioTriggerStartProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkAudioTriggerStartProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAudioTriggerStartProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10917B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// ArkSignalFX::ArkAudioTriggerStopProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkAudioTriggerStopProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAudioTriggerStopProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// ArkSignalFX::ArkLoopDurationProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkLoopDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLoopDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A31A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+	};
+
+	// ArkSignalFX::ArkCooldownProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkCooldownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D69A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A31B0);
+	};
+
+	// ArkSignalFX::ArkForceFeedbackProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkForceFeedbackProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkForceFeedbackProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD500);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B80);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkSignalFX::ArkIDProperty>(0x2D53C90);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkSignalFX::ArkNameProperty>(0x2D53CB0);
+	string m_Name;
+	static inline auto s_ArkSignalsProperty = PreyGlobal<ArkSignalFX::ArkSignalsProperty>(0x2D53CD0);
+	std::vector<ArkSignalFXSignalEntry> m_Signals;
+	static inline auto s_ArkPostEffectProperty = PreyGlobal<ArkSignalFX::ArkPostEffectProperty>(0x2D53CF0);
+	uint64_t m_PostEffect;
+	static inline auto s_ArkPostEffectLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkPostEffectLoopDurationProperty>(0x2D53D10);
+	float m_PostEffectLoopDuration;
+	static inline auto s_ArkParticleEffectProperty = PreyGlobal<ArkSignalFX::ArkParticleEffectProperty>(0x2D53D30);
+	string m_ParticleEffect;
+	static inline auto s_ArkParticleLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkParticleLoopDurationProperty>(0x2D53D50);
+	float m_ParticleLoopDuration;
+	static inline auto s_ArkAudioTriggerStartProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStartProperty>(0x2D53D70);
+	string m_AudioTriggerStart;
+	static inline auto s_ArkAudioTriggerStopProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStopProperty>(0x2D53D90);
+	string m_AudioTriggerStop;
+	static inline auto s_ArkLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkLoopDurationProperty>(0x2D53DB0);
+	float m_LoopDuration;
+	static inline auto s_ArkCooldownProperty = PreyGlobal<ArkSignalFX::ArkCooldownProperty>(0x2D53DD0);
+	float m_Cooldown;
+	static inline auto s_ArkForceFeedbackProperty = PreyGlobal<ArkSignalFX::ArkForceFeedbackProperty>(0x2D53DF0);
+	string m_ForceFeedback;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	std::vector<ArkSignalFXSignalEntry>& GetSignals();
+	const std::vector<ArkSignalFXSignalEntry>& GetSignals() const;
+	void SetPostEffect(uint64_t _arg0_);
+	const uint64_t& GetPostEffect() const;
+	void SetPostEffectLoopDuration(float _arg0_);
+	const float& GetPostEffectLoopDuration() const;
+	void SetParticleEffect(string _arg0_);
+	const string& GetParticleEffect() const;
+	void SetParticleLoopDuration(float _arg0_);
+	const float& GetParticleLoopDuration() const;
+	void SetAudioTriggerStart(string _arg0_);
+	const string& GetAudioTriggerStart() const;
+	void SetAudioTriggerStop(string _arg0_);
+	const string& GetAudioTriggerStop() const;
+	void SetLoopDuration(float _arg0_);
+	const float& GetLoopDuration() const;
+	void SetCooldown(float _arg0_);
+	const float& GetCooldown() const;
+	void SetForceFeedback(string _arg0_);
+	const string& GetForceFeedback() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D8060);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D8150);
+};
+
+// ArkSignalFXLibrary
+// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+class ArkSignalFXLibrary : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkSignalFXLibrary::ArkFXProperty
+	// Header:  Prey/GameDll/ark/player/ArkPlayerFXComponent.h
+	class ArkFXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkFXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D69B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x13D6A00);
+		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFXLibrary::ArkFXProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* _pObject)>(0x13D6A40);
+	};
+
+	static inline auto s_ArkFXProperty = PreyGlobal<ArkSignalFXLibrary::ArkFXProperty>(0x2D53E10);
+	std::vector<ArkSignalFX> m_FX;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	std::vector<ArkSignalFX>& GetFX();
+	const std::vector<ArkSignalFX>& GetFX() const;
+	const ArkSignalFX* FindSignalFX(const uint64_t _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D80C0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D81F0);
+	static inline auto FInit = PreyFunction<bool(ArkSignalFXLibrary* const _this)>(0x13D8380);
+};
+#endif // !MOONCRASH

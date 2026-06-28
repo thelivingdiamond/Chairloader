@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -67,4 +69,75 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkCaptureVolume *const _this, float _frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkCaptureVolume *const _this)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <_unknown/CGameObjectExtensionHelper.h>
+#include <_unknown/IGame.h>
 
+enum EEntityAspects;
+class ICrySizer;
+struct IGameObject;
+struct ISerializableInfo;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+
+// ArkCaptureVolume
+// Header:  Prey/GameDll/ark/ArkCaptureVolume.h
+class ArkCaptureVolume : public CGameObjectExtensionHelper<ArkCaptureVolume, IGameObjectExtension>
+{ // Size=64 (0x40)
+public:
+	virtual void Release();
+	static std::vector<IGame::CaptureVolumeInfo> GetInfos() { return FGetInfos(); }
+	boost::optional<IGame::CaptureVolumeInfo> GetInfo() const { alignas(boost::optional<IGame::CaptureVolumeInfo>) std::byte _return_buf_[sizeof(boost::optional<IGame::CaptureVolumeInfo>)]; return *FGetInfo(this, reinterpret_cast<boost::optional<IGame::CaptureVolumeInfo>*>(_return_buf_)); }
+	virtual void GetMemoryUsage(ICrySizer* _pSizer) const;
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void InitClient(int _channelId);
+	virtual void PostInitClient(int _channelId);
+	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual bool GetEntityPoolSignature(TSerialize _signature);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
+	virtual void PostSerialize();
+	virtual void SerializeSpawnInfo(TSerialize _ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void HandleEvent(const SGameObjectEvent& _event);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void SetChannelId(uint16_t _id);
+	virtual void SetAuthority(bool _auth);
+	virtual const void* GetRMIBase() const;
+	virtual void PostUpdate(float _frameTime);
+	virtual void PostRemoteSpawn();
+
+	static inline auto FRelease = PreyFunction<void(ArkCaptureVolume* const _this)>(0x3E3960);
+	static inline auto FGetInfos = PreyFunction<std::vector<IGame::CaptureVolumeInfo>()>(0x1537440);
+	static inline auto FGetInfo = PreyFunction<boost::optional<IGame::CaptureVolumeInfo>*(const ArkCaptureVolume* const _this, boost::optional<IGame::CaptureVolumeInfo>* _return_value_)>(0x15369B0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkCaptureVolume* const _this, ICrySizer* _pSizer)>(0x1333E90);
+	static inline auto FInit = PreyFunction<bool(ArkCaptureVolume* const _this, IGameObject* _pGameObject)>(0x37A880);
+	static inline auto FPostInit = PreyFunction<void(ArkCaptureVolume* const _this, IGameObject* _pGameObject)>(0x1333E90);
+	static inline auto FInitClient = PreyFunction<void(ArkCaptureVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(ArkCaptureVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(ArkCaptureVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x379E70);
+	static inline auto FPostReloadExtension = PreyFunction<void(ArkCaptureVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(ArkCaptureVolume* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FFullSerialize = PreyFunction<void(ArkCaptureVolume* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(ArkCaptureVolume* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0x13B0900);
+	static inline auto FPostSerialize = PreyFunction<void(ArkCaptureVolume* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkCaptureVolume* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(ArkCaptureVolume* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(ArkCaptureVolume* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(ArkCaptureVolume* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(ArkCaptureVolume* const _this, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FSetChannelId = PreyFunction<void(ArkCaptureVolume* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(ArkCaptureVolume* const _this, bool _auth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const ArkCaptureVolume* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(ArkCaptureVolume* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkCaptureVolume* const _this)>(0x1333E90);
+};
+#endif // !MOONCRASH

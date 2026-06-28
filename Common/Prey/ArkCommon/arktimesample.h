@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -31,4 +33,69 @@ public:
 	void __dflt_ctor_closure();
 #endif
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
 
+// ArkTimeSample<float,10>
+// Header:  Prey/ArkCommon/arktimesample.h
+class ArkTimeSample<float,10>
+{ // Size=48 (0x30)
+public:
+	using ValueType = float;
+	using SampleArray = std::array<float, 10>;
+
+	static constexpr const uint64_t k_sampleCount = 10;
+	std::array<float, 10> m_sampleArray;
+	float m_currentTime;
+	float m_sampleTime;
+
+	void Serialize(TSerialize _serializer) { FSerialize(this, _serializer); }
+
+#if 0
+	ArkTimeSample<float,10>(float _arg0_);
+	float GetSampleTime() const;
+	void AddSample(const float& _arg0_);
+	void Advance(float _arg0_);
+	float GetTotal() const;
+	float GetDerivative() const;
+	void Clear();
+	void Reset(float _arg0_);
+	void SetSampleTime(float _arg0_);
+#endif
+
+	static inline auto FSerialize = PreyFunction<void(ArkTimeSample<float,10>* const _this, TSerialize _serializer)>(0x1115330);
+};
+
+// ArkTimeSample<int,10>
+// Header:  Prey/ArkCommon/arktimesample.h
+class ArkTimeSample<int,10>
+{ // Size=48 (0x30)
+public:
+	using ValueType = int;
+	using SampleArray = std::array<int, 10>;
+
+	static constexpr const uint64_t k_sampleCount = 10;
+	std::array<int, 10> m_sampleArray;
+	float m_currentTime;
+	float m_sampleTime;
+
+	void Serialize(TSerialize _serializer) { FSerialize(this, _serializer); }
+
+#if 0
+	ArkTimeSample<int,10>(float _arg0_);
+	float GetSampleTime() const;
+	void AddSample(const int& _arg0_);
+	void Advance(float _arg0_);
+	int GetTotal() const;
+	float GetDerivative() const;
+	void Clear();
+	void Reset(float _arg0_);
+	void SetSampleTime(float _arg0_);
+#endif
+
+	static inline auto FSerialize = PreyFunction<void(ArkTimeSample<int,10>* const _this, TSerialize _serializer)>(0x12A8590);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 #include <Chairloader/PreyFunction.h>
 
@@ -355,3 +357,4 @@ public:
 static_assert(sizeof(CGame) == 0x450);
 
 inline CGame* g_pGame = nullptr;
+#endif // !MOONCRASH

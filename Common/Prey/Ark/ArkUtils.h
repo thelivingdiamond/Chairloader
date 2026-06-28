@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -53,4 +55,57 @@ public:
 };
 
 } // namespace ArkUtils
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+struct IEntityClass;
+class XmlNodeRef;
+
+namespace ArkUtils
+{
+
+// ArkUtils::ClassList
+// Header:  Prey/Ark/ArkUtils.h
+class ClassList
+{ // Size=24 (0x18)
+public:
+	std::vector<IEntityClass*> m_classes;
+
+	void Init(const XmlNodeRef& _root) { FInit(this, _root); }
+
+#if 0
+	bool Contains(const IEntityClass* const _arg0_) const;
+#endif
+
+	static inline auto FInit = PreyFunction<void(ArkUtils::ClassList* const _this, const XmlNodeRef& _root)>(0x5C5A60);
+};
+
+// ArkUtils::CollisionCache
+// Header:  Prey/Ark/ArkUtils.h
+class CollisionCache
+{ // Size=24 (0x18)
+public:
+	// ArkUtils::CollisionCache::Collision
+	// Header:  Prey/Ark/ArkUtils.h
+	struct Collision
+	{ // Size=12 (0xC)
+		unsigned m_src;
+		unsigned m_trg;
+		float m_time;
+
+	#if 0
+		bool operator<(const float _arg0_);
+	#endif
+	};
+
+	std::vector<ArkUtils::CollisionCache::Collision> m_collisions;
+
+#if 0
+	boost::optional<float> Process(const unsigned _arg0_, const unsigned _arg1_, const float _arg2_, const float _arg3_);
+#endif
+};
+
+
+} // namespace ArkUtils
+#endif // !MOONCRASH

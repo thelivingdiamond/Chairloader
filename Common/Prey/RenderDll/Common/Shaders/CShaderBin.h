@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef __CSHADERBIN_H__
@@ -358,3 +360,93 @@ public:
 //=====================================================================
 
 #endif  // __CSHADERBIN_H__
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/tarray.h>
+#include <CryEngine/renderdll/common/shaders/shaderallocator.h>
+#include <Prey/RenderDll/Common/Shaders/Shader.h>
+#include <_unknown/STLShaderAllocator.h>
+#include <_unknown/TArray.h>
+
+class ICrySizer;
+struct SShaderBinParamsHeader;
+
+// SParamCacheInfo
+// Header:  CryEngine/renderdll/common/shaders/cshaderbin.h
+// Include: Prey/RenderDll/Common/Shaders/CShaderBin.h
+struct SParamCacheInfo
+{ // Size=112 (0x70)
+	using AffectedFuncsVec = std::vector<int, STLShaderAllocator<int>>;
+	using AffectedParamsVec = std::vector<int, STLShaderAllocator<int>>;
+
+	unsigned m_dwName;
+	uint64_t m_nMaskGenFX;
+	std::vector<int, STLShaderAllocator<int>> m_AffectedFuncs;
+	std::vector<int, STLShaderAllocator<int>> m_AffectedParams;
+	std::vector<int, STLShaderAllocator<int>> m_AffectedSamplers;
+	std::vector<int, STLShaderAllocator<int>> m_AffectedTextures;
+
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+
+#if 0
+	SParamCacheInfo(const SShaderBinParamsHeader& _arg0_);
+	SParamCacheInfo(const TArray<int>& _arg0_, const TArray<int>& _arg1_, const TArray<int>& _arg2_, const TArray<int>& _arg3_);
+	int Size();
+#endif
+
+	static inline auto FGetMemoryUsage = PreyFunction<void(const SParamCacheInfo* const _this, ICrySizer* pSizer)>(0x10460F0);
+};
+
+// SShaderBin
+// Header:  CryEngine/renderdll/common/shaders/cshaderbin.h
+// Include: Prey/RenderDll/Common/Shaders/CShaderBin.h
+struct SShaderBin
+{ // Size=120 (0x78)
+	using ParamsCacheVec = std::vector<SParamCacheInfo, STLShaderAllocator<SParamCacheInfo>>;
+
+	static inline auto s_Root = PreyGlobal<SShaderBin>(0x23DEEA0);
+	static inline auto s_nCache = PreyGlobal<unsigned>(0x2D166B4);
+	static inline auto s_nMaxFXBinCache = PreyGlobal<unsigned>(0x23DEE90);
+	SShaderBin* m_Next;
+	SShaderBin* m_Prev;
+	unsigned m_CRC32;
+	unsigned m_dwName;
+	char* m_szName;
+	unsigned m_SourceCRC32;
+	bool m_bLocked;
+	bool m_bReadOnly;
+	bool m_bInclude;
+	std::vector<STokenD> m_TokenTable;
+	TArray<unsigned int> m_Tokens;
+	unsigned m_nOffsetLocalInfo;
+	unsigned m_nCurCacheParamsID;
+	unsigned m_nCurParamsID;
+	std::vector<SParamCacheInfo, STLShaderAllocator<SParamCacheInfo>> m_ParamsCache;
+
+	SShaderBin();
+	~SShaderBin();
+	unsigned ComputeCRC() { return FComputeCRC(this); }
+
+#if 0
+	SShaderBin(const SShaderBin& _arg0_);
+	void SetName(const char* _arg0_);
+	void Unlink();
+	void Link(SShaderBin* _arg0_);
+	bool IsReadOnly();
+	void Lock();
+	void Unlock();
+	void SetCRC(unsigned _arg0_);
+	void CryptData();
+	int Size();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+	static void* operator new(uint64_t _arg0_);
+	static void operator delete(void* _arg0_);
+	SShaderBin& operator=(const SShaderBin& _arg0_);
+#endif
+
+	static inline auto FSShaderBinOv1 = PreyFunction<void(SShaderBin* const _this)>(0x10434D0);
+	static inline auto FBitNotSShaderBin = PreyFunction<void(SShaderBin* const _this)>(0x10438E0);
+	static inline auto FComputeCRC = PreyFunction<unsigned(SShaderBin* const _this)>(0x1045180);
+};
+#endif // !MOONCRASH

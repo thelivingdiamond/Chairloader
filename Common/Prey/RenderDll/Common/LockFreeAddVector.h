@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -153,3 +155,258 @@ private:
 
 	CryCriticalSectionNonRecursive m_temp_lock;
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <CryEngine/crysystem/scaleform/scaleformrecording.h>
+#include <CryEngine/renderdll/common/RenderView.h>
+#include <_unknown/CryLockT.h>
+
+struct SRendItem;
+
+// lockfree_add_vector<CRenderView::SCompiledPair>
+// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+struct lockfree_add_vector<CRenderView::SCompiledPair>
+{ // Size=144 (0x90)
+	enum class #unnamed_enum_safety_preallocated_items
+	{
+		safety_preallocated_items = 128,
+	};
+
+	// lockfree_add_vector<CRenderView::SCompiledPair>::SMemoryBuffer
+	// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+	struct SMemoryBuffer
+	{ // Size=16 (0x10)
+		CRenderView::SCompiledPair* pBuffer;
+		uint64_t size;
+
+		SMemoryBuffer(uint64_t sz, CRenderView::SCompiledPair* pPrevBuffer, uint64_t prevSize);
+
+	#if 0
+		~SMemoryBuffer();
+	#endif
+
+		static inline auto FSMemoryBuffer = PreyFunction<void(lockfree_add_vector<CRenderView::SCompiledPair>::SMemoryBuffer* const _this, uint64_t sz, CRenderView::SCompiledPair* pPrevBuffer, uint64_t prevSize)>(0xED03F0);
+	};
+
+	using SMemoryBufferPtr = std::shared_ptr<lockfree_add_vector<CRenderView::SCompiledPair>::SMemoryBuffer>;
+
+	volatile int m_capacity;
+	volatile int m_safe_capacity;
+	volatile int m_lastIndex;
+	volatile int m_new_capacity;
+	CRenderView::SCompiledPair* m_pCurrentBuffer;
+	std::shared_ptr<lockfree_add_vector<CRenderView::SCompiledPair>::SMemoryBuffer> m_pMemoryBuffer;
+	std::vector<std::shared_ptr<lockfree_add_vector<CRenderView::SCompiledPair>::SMemoryBuffer>> m_freeList;
+	CryCriticalSectionNonRecursive m_resize_lock;
+	CryCriticalSectionNonRecursive m_temp_lock;
+
+	void reserve(uint64_t sz) { Freserve(this, sz); }
+
+#if 0
+	lockfree_add_vector<CRenderView::SCompiledPair>();
+	lockfree_add_vector<CRenderView::SCompiledPair>(const lockfree_add_vector<CRenderView::SCompiledPair>& _arg0_);
+	void push_back(const CRenderView::SCompiledPair& _arg0_);
+	void lockfree_push_back(const CRenderView::SCompiledPair& _arg0_);
+	void CoalesceMemory();
+	void Init();
+	void SetNoneWorkerThreadID(uint64_t _arg0_);
+	uint64_t size() const;
+	CRenderView::SCompiledPair* begin();
+	const CRenderView::SCompiledPair* begin() const;
+	CRenderView::SCompiledPair* end();
+	const CRenderView::SCompiledPair* end() const;
+	CRenderView::SCompiledPair& operator[](uint64_t _arg0_);
+	const CRenderView::SCompiledPair& operator[](uint64_t _arg0_) const;
+	void clear();
+	bool empty() const;
+#endif
+
+	static inline auto Freserve = PreyFunction<void(lockfree_add_vector<CRenderView::SCompiledPair>* const _this, uint64_t sz)>(0xED93A0);
+};
+
+// lockfree_add_vector<CRenderView::SPermanentObjectRecord>
+// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+struct lockfree_add_vector<CRenderView::SPermanentObjectRecord>
+{ // Size=144 (0x90)
+	enum class #unnamed_enum_safety_preallocated_items
+	{
+		safety_preallocated_items = 128,
+	};
+
+	// lockfree_add_vector<CRenderView::SPermanentObjectRecord>::SMemoryBuffer
+	// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+	struct SMemoryBuffer
+	{ // Size=16 (0x10)
+		CRenderView::SPermanentObjectRecord* pBuffer;
+		uint64_t size;
+
+		SMemoryBuffer(uint64_t sz, CRenderView::SPermanentObjectRecord* pPrevBuffer, uint64_t prevSize);
+
+	#if 0
+		~SMemoryBuffer();
+	#endif
+
+		static inline auto FSMemoryBuffer = PreyFunction<void(lockfree_add_vector<CRenderView::SPermanentObjectRecord>::SMemoryBuffer* const _this, uint64_t sz, CRenderView::SPermanentObjectRecord* pPrevBuffer, uint64_t prevSize)>(0xED0560);
+	};
+
+	using SMemoryBufferPtr = std::shared_ptr<lockfree_add_vector<CRenderView::SPermanentObjectRecord>::SMemoryBuffer>;
+
+	volatile int m_capacity;
+	volatile int m_safe_capacity;
+	volatile int m_lastIndex;
+	volatile int m_new_capacity;
+	CRenderView::SPermanentObjectRecord* m_pCurrentBuffer;
+	std::shared_ptr<lockfree_add_vector<CRenderView::SPermanentObjectRecord>::SMemoryBuffer> m_pMemoryBuffer;
+	std::vector<std::shared_ptr<lockfree_add_vector<CRenderView::SPermanentObjectRecord>::SMemoryBuffer>> m_freeList;
+	CryCriticalSectionNonRecursive m_resize_lock;
+	CryCriticalSectionNonRecursive m_temp_lock;
+
+	void reserve(uint64_t sz) { Freserve(this, sz); }
+
+#if 0
+	lockfree_add_vector<CRenderView::SPermanentObjectRecord>();
+	lockfree_add_vector<CRenderView::SPermanentObjectRecord>(const lockfree_add_vector<CRenderView::SPermanentObjectRecord>& _arg0_);
+	void push_back(const CRenderView::SPermanentObjectRecord& _arg0_);
+	void lockfree_push_back(const CRenderView::SPermanentObjectRecord& _arg0_);
+	void CoalesceMemory();
+	void Init();
+	void SetNoneWorkerThreadID(uint64_t _arg0_);
+	uint64_t size() const;
+	CRenderView::SPermanentObjectRecord* begin();
+	const CRenderView::SPermanentObjectRecord* begin() const;
+	CRenderView::SPermanentObjectRecord* end();
+	const CRenderView::SPermanentObjectRecord* end() const;
+	CRenderView::SPermanentObjectRecord& operator[](uint64_t _arg0_);
+	const CRenderView::SPermanentObjectRecord& operator[](uint64_t _arg0_) const;
+	void clear();
+	bool empty() const;
+#endif
+
+	static inline auto Freserve = PreyFunction<void(lockfree_add_vector<CRenderView::SPermanentObjectRecord>* const _this, uint64_t sz)>(0xED94C0);
+};
+
+// lockfree_add_vector<GRendererXRender::STexturesToRelease>
+// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+struct lockfree_add_vector<GRendererXRender::STexturesToRelease>
+{ // Size=144 (0x90)
+	enum class #unnamed_enum_safety_preallocated_items
+	{
+		safety_preallocated_items = 128,
+	};
+
+	// lockfree_add_vector<GRendererXRender::STexturesToRelease>::SMemoryBuffer
+	// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+	struct SMemoryBuffer
+	{ // Size=16 (0x10)
+		GRendererXRender::STexturesToRelease* pBuffer;
+		uint64_t size;
+
+		SMemoryBuffer(uint64_t sz, GRendererXRender::STexturesToRelease* pPrevBuffer, uint64_t prevSize);
+
+	#if 0
+		~SMemoryBuffer();
+	#endif
+
+		static inline auto FSMemoryBuffer = PreyFunction<void(lockfree_add_vector<GRendererXRender::STexturesToRelease>::SMemoryBuffer* const _this, uint64_t sz, GRendererXRender::STexturesToRelease* pPrevBuffer, uint64_t prevSize)>(0xDA9050);
+	};
+
+	using SMemoryBufferPtr = std::shared_ptr<lockfree_add_vector<GRendererXRender::STexturesToRelease>::SMemoryBuffer>;
+
+	volatile int m_capacity;
+	volatile int m_safe_capacity;
+	volatile int m_lastIndex;
+	volatile int m_new_capacity;
+	GRendererXRender::STexturesToRelease* m_pCurrentBuffer;
+	std::shared_ptr<lockfree_add_vector<GRendererXRender::STexturesToRelease>::SMemoryBuffer> m_pMemoryBuffer;
+	std::vector<std::shared_ptr<lockfree_add_vector<GRendererXRender::STexturesToRelease>::SMemoryBuffer>> m_freeList;
+	CryCriticalSectionNonRecursive m_resize_lock;
+	CryCriticalSectionNonRecursive m_temp_lock;
+
+	void reserve(uint64_t sz) { Freserve(this, sz); }
+
+#if 0
+	lockfree_add_vector<GRendererXRender::STexturesToRelease>();
+	lockfree_add_vector<GRendererXRender::STexturesToRelease>(const lockfree_add_vector<GRendererXRender::STexturesToRelease>& _arg0_);
+	void push_back(const GRendererXRender::STexturesToRelease& _arg0_);
+	void lockfree_push_back(const GRendererXRender::STexturesToRelease& _arg0_);
+	void CoalesceMemory();
+	void Init();
+	void SetNoneWorkerThreadID(uint64_t _arg0_);
+	uint64_t size() const;
+	GRendererXRender::STexturesToRelease* begin();
+	const GRendererXRender::STexturesToRelease* begin() const;
+	GRendererXRender::STexturesToRelease* end();
+	const GRendererXRender::STexturesToRelease* end() const;
+	GRendererXRender::STexturesToRelease& operator[](uint64_t _arg0_);
+	const GRendererXRender::STexturesToRelease& operator[](uint64_t _arg0_) const;
+	void clear();
+	bool empty() const;
+#endif
+
+	static inline auto Freserve = PreyFunction<void(lockfree_add_vector<GRendererXRender::STexturesToRelease>* const _this, uint64_t sz)>(0xDAF7C0);
+};
+
+// lockfree_add_vector<SRendItem>
+// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+struct lockfree_add_vector<SRendItem>
+{ // Size=144 (0x90)
+	enum class #unnamed_enum_safety_preallocated_items
+	{
+		safety_preallocated_items = 128,
+	};
+
+	// lockfree_add_vector<SRendItem>::SMemoryBuffer
+	// Header:  CryEngine/renderdll/common/lockfreeaddvector.h
+	struct SMemoryBuffer
+	{ // Size=16 (0x10)
+		SRendItem* pBuffer;
+		uint64_t size;
+
+		SMemoryBuffer(uint64_t sz, SRendItem* pPrevBuffer, uint64_t prevSize);
+
+	#if 0
+		~SMemoryBuffer();
+	#endif
+
+		static inline auto FSMemoryBuffer = PreyFunction<void(lockfree_add_vector<SRendItem>::SMemoryBuffer* const _this, uint64_t sz, SRendItem* pPrevBuffer, uint64_t prevSize)>(0xED06E0);
+	};
+
+	using SMemoryBufferPtr = std::shared_ptr<lockfree_add_vector<SRendItem>::SMemoryBuffer>;
+
+	volatile int m_capacity;
+	volatile int m_safe_capacity;
+	volatile int m_lastIndex;
+	volatile int m_new_capacity;
+	SRendItem* m_pCurrentBuffer;
+	std::shared_ptr<lockfree_add_vector<SRendItem>::SMemoryBuffer> m_pMemoryBuffer;
+	std::vector<std::shared_ptr<lockfree_add_vector<SRendItem>::SMemoryBuffer>> m_freeList;
+	CryCriticalSectionNonRecursive m_resize_lock;
+	CryCriticalSectionNonRecursive m_temp_lock;
+
+	void lockfree_push_back(const SRendItem& value) { Flockfree_push_back(this, value); }
+	void reserve(uint64_t sz) { Freserve(this, sz); }
+
+#if 0
+	lockfree_add_vector<SRendItem>();
+	lockfree_add_vector<SRendItem>(const lockfree_add_vector<SRendItem>& _arg0_);
+	void push_back(const SRendItem& _arg0_);
+	void CoalesceMemory();
+	void Init();
+	void SetNoneWorkerThreadID(uint64_t _arg0_);
+	uint64_t size() const;
+	SRendItem* begin();
+	const SRendItem* begin() const;
+	SRendItem* end();
+	const SRendItem* end() const;
+	SRendItem& operator[](uint64_t _arg0_);
+	const SRendItem& operator[](uint64_t _arg0_) const;
+	void clear();
+	bool empty() const;
+#endif
+
+	static inline auto Flockfree_push_back = PreyFunction<void(lockfree_add_vector<SRendItem>* const _this, const SRendItem& value)>(0xED9100);
+	static inline auto Freserve = PreyFunction<void(lockfree_add_vector<SRendItem>* const _this, uint64_t sz)>(0xED95E0);
+};
+#endif // !MOONCRASH

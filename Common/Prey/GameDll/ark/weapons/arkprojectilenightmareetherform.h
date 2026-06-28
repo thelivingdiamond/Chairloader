@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -42,4 +44,49 @@ public:
 	static inline auto FStartDestroy = PreyFunction<void(CArkProjectileNightmareEtherForm *const _this)>(0x1389330);
 	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileNightmareEtherForm *const _this)>(0x1389320);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/weapons/ArkProjectile.h>
 
+struct EventPhysCollision;
+class ICrySizer;
+struct IGameObject;
+struct SEntityUpdateContext;
+
+// CArkProjectileNightmareEtherForm
+// Header:  Prey/GameDll/ark/weapons/ArkProjectileNightmareEtherForm.h
+class CArkProjectileNightmareEtherForm : public CArkProjectile
+{ // Size=688 (0x2B0)
+public:
+	unsigned m_targetID;
+	Vec3 m_destination;
+
+	CArkProjectileNightmareEtherForm();
+	virtual ~CArkProjectileNightmareEtherForm();
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void Update(SEntityUpdateContext& _ctx, int _slot);
+	virtual void DoDamage(const EventPhysCollision& _collision, const unsigned& _targetId, const int _targetIndex);
+	virtual void StartDestroy();
+	virtual void LoadCachedProperties();
+
+#if 0
+	void SetDestination(unsigned _arg0_);
+	void SetDestination(const Vec3& _arg0_);
+#endif
+
+	static inline auto FCArkProjectileNightmareEtherFormOv1 = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this)>(0x1489F70);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkProjectileNightmareEtherForm* const _this, ICrySizer* _s)>(0x148A5C0);
+	static inline auto FInit = PreyFunction<bool(CArkProjectileNightmareEtherForm* const _this, IGameObject* _pGameObject)>(0x148A5E0);
+	static inline auto FPostInit = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this, IGameObject* _pGameObject)>(0x148B6B0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this, SEntityUpdateContext& _ctx, int _slot)>(0x148A660);
+	static inline auto FDoDamage = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this, const EventPhysCollision& _collision, const unsigned& _targetId, const int _targetIndex)>(0x148A010);
+	static inline auto FStartDestroy = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this)>(0x148A600);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkProjectileNightmareEtherForm* const _this)>(0x148A5F0);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -72,4 +74,82 @@ public:
 	static inline auto FLoadProperties = PreyFunction<void(ArkTurretCountArea *const _this)>(0x11B16D0);
 	static inline auto FGetTurretState = PreyFunction<ArkTurretCountArea::EArkTurretState(ArkTurretCountArea const *const _this, unsigned _turret)>(0x11B14B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <_unknown/CArkGameObjectExtension.h>
 
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// ArkTurretCountArea
+// Header:  Prey/GameDll/ark/ArkTurretCountArea.h
+class ArkTurretCountArea : public CArkGameObjectExtension<ArkTurretCountArea>
+{ // Size=128 (0x80)
+public:
+	enum class EArkTurretState
+	{
+		invalid = 0,
+		good = 1,
+		broken = 2,
+		undeployed = 3,
+	};
+
+	// ArkTurretCountArea::TurretEntry
+	// Header:  Prey/GameDll/ark/ArkTurretCountArea.h
+	class TurretEntry
+	{ // Size=8 (0x8)
+	public:
+		unsigned m_turret;
+		ArkTurretCountArea::EArkTurretState m_state;
+
+	#if 0
+		TurretEntry();
+		TurretEntry(unsigned _arg0_, ArkTurretCountArea::EArkTurretState _arg1_);
+		void Serialize(TSerialize _arg0_);
+		bool operator==(unsigned _arg0_) const;
+	#endif
+	};
+
+	bool m_bEnabled;
+	std::vector<ArkTurretCountArea::TurretEntry> m_turrets;
+	int m_goodTurrets;
+	int m_brokenTurrets;
+	int m_undeployedTurrets;
+	Vec3 m_area;
+	bool m_bStartsEnabled;
+
+	ArkTurretCountArea();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void Release();
+	virtual void ProcessEvent(SEntityEvent& _event);
+	void Enable() { FEnable(this); }
+	void Disable() { FDisable(this); }
+	void TestAndAddTarget(unsigned _target, bool _bSendOutputs) { FTestAndAddTarget(this, _target, _bSendOutputs); }
+	void LoadProperties() { FLoadProperties(this); }
+	ArkTurretCountArea::EArkTurretState GetTurretState(unsigned _turret) const { return FGetTurretState(this, _turret); }
+
+#if 0
+	void RemoveTarget(unsigned _arg0_);
+	void OnReset(bool _arg0_);
+#endif
+
+	static inline auto FArkTurretCountAreaOv2 = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E5F0);
+	static inline auto FInit = PreyFunction<bool(ArkTurretCountArea* const _this, IGameObject* _pGameObject)>(0x122EB20);
+	static inline auto FPostInit = PreyFunction<void(ArkTurretCountArea* const _this, IGameObject* _pGameObject)>(0x122EF90);
+	static inline auto FFullSerialize = PreyFunction<void(ArkTurretCountArea* const _this, TSerialize _ser)>(0x122E990);
+	static inline auto FUpdate = PreyFunction<void(ArkTurretCountArea* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x122F2E0);
+	static inline auto FRelease = PreyFunction<void(ArkTurretCountArea* const _this)>(0x3E3960);
+	static inline auto FProcessEvent = PreyFunction<void(ArkTurretCountArea* const _this, SEntityEvent& _event)>(0x122EFF0);
+	static inline auto FEnable = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E6F0);
+	static inline auto FDisable = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E6A0);
+	static inline auto FTestAndAddTarget = PreyFunction<void(ArkTurretCountArea* const _this, unsigned _target, bool _bSendOutputs)>(0x122F1E0);
+	static inline auto FLoadProperties = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122EC20);
+	static inline auto FGetTurretState = PreyFunction<ArkTurretCountArea::EArkTurretState(const ArkTurretCountArea* const _this, unsigned _turret)>(0x122EAA0);
+};
+#endif // !MOONCRASH

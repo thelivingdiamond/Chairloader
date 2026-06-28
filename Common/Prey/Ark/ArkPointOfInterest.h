@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -104,4 +106,131 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x107A2E0);
 	static inline auto FInit = PreyFunction<bool(ArkPointOfInterestLibrary *const _this)>(0x107A3D0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkPointOfInterest
+// Header:  Prey/Ark/ArkPointOfInterest.h
+class ArkPointOfInterest : public ArkReflectedObject
+{ // Size=24 (0x18)
+public:
+	// ArkPointOfInterest::ArkIDProperty
+	// Header:  Prey/Ark/ArkPointOfInterest.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkPointOfInterest::ArkNameProperty
+	// Header:  Prey/Ark/ArkPointOfInterest.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkPointOfInterest::ArkLabelProperty
+	// Header:  Prey/Ark/ArkPointOfInterest.h
+	class ArkLabelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLabelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkPointOfInterest::ArkIDProperty>(0x2D27430);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkPointOfInterest::ArkNameProperty>(0x2D27450);
+	string m_Name;
+	static inline auto s_ArkLabelProperty = PreyGlobal<ArkPointOfInterest::ArkLabelProperty>(0x2D27470);
+	string m_Label;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkPointOfInterest();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetLabel(string _arg0_);
+	const string& GetLabel() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x108AE00);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A2AB0);
+};
+
+// ArkPointOfInterestLibrary
+// Header:  Prey/Ark/ArkPointOfInterest.h
+class ArkPointOfInterestLibrary : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkPointOfInterestLibrary::ArkPOIsProperty
+	// Header:  Prey/Ark/ArkPointOfInterest.h
+	class ArkPOIsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkPOIsProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkPOIsPropertyOv2 = PreyFunction<void(ArkPointOfInterestLibrary::ArkPOIsProperty* const _this)>(0x10A27C0);
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2360);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A2400);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* _pObject)>(0x107D820);
+	};
+
+	static inline auto s_ArkPOIsProperty = PreyGlobal<ArkPointOfInterestLibrary::ArkPOIsProperty>(0x2D27490);
+	std::vector<ArkPointOfInterest> m_POIs;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	std::vector<ArkPointOfInterest>& GetPOIs();
+	const std::vector<ArkPointOfInterest>& GetPOIs() const;
+	const ArkPointOfInterest* FindPOI(const uint64_t _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A2A50);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A2B50);
+	static inline auto FInit = PreyFunction<bool(ArkPointOfInterestLibrary* const _this)>(0x10A2C40);
+};
+#endif // !MOONCRASH

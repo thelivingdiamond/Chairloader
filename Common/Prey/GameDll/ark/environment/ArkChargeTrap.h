@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -64,4 +66,78 @@ public:
 	static inline auto FLoadProperties = PreyFunction<void(ArkChargeTrap *const _this)>(0x11B8AB0);
 	static inline auto FTriggerExplosion = PreyFunction<void(ArkChargeTrap *const _this)>(0x11B92D0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/arksignalsystemdata.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkRepairable.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
+#include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
+#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 
+struct ArkInteractionTestResult;
+namespace ArkSignalSystem
+{
+class Package;
+} // namespace ArkSignalSystem
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+struct IEntity;
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// ArkChargeTrap
+// Header:  Prey/GameDll/ark/environment/ArkChargeTrap.h
+class ArkChargeTrap
+	: public ArkEnvironmentalObject
+	, public IArkRepairableListener
+	, public IArkPlayerInteractionListener
+{ // Size=368 (0x170)
+public:
+	ArkRepairable m_repairable;
+	ArkFireAndForgetEffect m_disarmVfx;
+	string m_displayText;
+	string m_chargeArchetype;
+	Vec3 m_chargeOffset;
+	const ArkSignalSystem::Data::SignalGroupData* m_pDamagingSignalGroup;
+
+	ArkChargeTrap();
+	virtual ~ArkChargeTrap();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void OnBrokenChanged(bool _bBroken, bool _bWasForced);
+	virtual void OnReceiveSignal(const ArkSignalSystem::Package& _package);
+	virtual void RegisterForSignals(bool _bRegister);
+	virtual void HandleScriptEvent(const char* _pEvent, SEntityEvent& _event);
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	void TriggerExplosion() { FTriggerExplosion(this); }
+
+	static inline auto FArkChargeTrapOv1 = PreyFunction<void(ArkChargeTrap* const _this)>(0x1239E00);
+	static inline auto FInit = PreyFunction<bool(ArkChargeTrap* const _this, IGameObject* _pGameObject)>(0x123A070);
+	static inline auto FPostInit = PreyFunction<void(ArkChargeTrap* const _this, IGameObject* _pGameObject)>(0x123ABE0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkChargeTrap* const _this, TSerialize _ser)>(0x1239F80);
+	static inline auto FPostSerialize = PreyFunction<void(ArkChargeTrap* const _this)>(0x123AC20);
+	static inline auto FUpdate = PreyFunction<void(ArkChargeTrap* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x123AFD0);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x123AA70);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x123AD10);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x123ABB0);
+	static inline auto FOnBrokenChanged = PreyFunction<void(IArkRepairableListener* const _this, bool _bBroken, bool _bWasForced)>(0x123A4F0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkChargeTrap* const _this, const ArkSignalSystem::Package& _package)>(0x123AA90);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkChargeTrap* const _this, bool _bRegister)>(0x123AC30);
+	static inline auto FHandleScriptEvent = PreyFunction<void(ArkChargeTrap* const _this, const char* _pEvent, SEntityEvent& _event)>(0x1239FF0);
+	static inline auto FOnReset = PreyFunction<void(ArkChargeTrap* const _this, bool _bEnteringGameMode)>(0x123AB80);
+	static inline auto FLoadProperties = PreyFunction<void(ArkChargeTrap* const _this)>(0x123A0A0);
+	static inline auto FTriggerExplosion = PreyFunction<void(ArkChargeTrap* const _this)>(0x123AD30);
+};
+#endif // !MOONCRASH

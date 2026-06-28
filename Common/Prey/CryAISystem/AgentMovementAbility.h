@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -59,4 +60,3 @@ struct AgentMovementAbility // Id=8000FD3 Size=1284
 	AgentMovementSpeeds movementSpeeds;
 	AgentPathfindingProperties pathfindingProperties;
 };
-

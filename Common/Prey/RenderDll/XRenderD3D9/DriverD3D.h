@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 # pragma once 
@@ -1508,3 +1510,1205 @@ void HDR_DrawDebug();
 #define STREAMED_TEXTURE_USAGE (CDeviceManager::USAGE_STREAMING)
 
 void EnableCloseButton(void* hWnd, bool enabled);
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/IRenderer.h>
+#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#include <CryEngine/crycommon/cryrenderer/iscaleform.h>
+#include <CryEngine/renderdll/common/Renderer.h>
+#include <CryEngine/renderdll/common/lockfreeaddvector.h>
+#include <CryEngine/renderdll/xrenderd3d9/arkd3dvideoinfo.h>
+#include <CryEngine/renderdll/xrenderd3d9/devicemanager/d3d11/deviceobjects_d3d11.h>
+#include <Prey/CryMath/Cry_Color.h>
+#include <Prey/CrySystem/IEngineModule.h>
+#include <Prey/CrySystem/ISystem.h>
+#include <Prey/RenderDll/Common/CryDeviceWrapper.h>
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <Prey/RenderDll/Common/RenderAuxGeom.h>
+#include <Prey/RenderDll/Common/Renderer.h>
+#include <Prey/RenderDll/Common/Textures/Texture.h>
+#include <Prey/RenderDll/XRenderD3D9/DXGL/Definitions/DXGL_dxgi.h>
+#include <Prey/RenderDll/XRenderD3D9/DeviceInfo.h>
+#include <Prey/RenderDll/XRenderD3D9/ShadowTextureGroupManager.h>
+#include <_unknown/CArkRenderPersistentAuxGeom_Null.h>
+#include <_unknown/TArray.h>
+#include <_unknown/TL__Typelist.h>
+#include <_unknown/util__list.h>
+
+struct AABB;
+class ArkHighlightSystem;
+class CCamera;
+class CColorGradingControllerD3D;
+class CConstantBuffer;
+class CFBitmap;
+class CHWShader_D3D;
+class CRendElementBase;
+class CRenderCamera;
+class CRenderObject;
+class CRenderPipelineProfiler;
+class CRenderView;
+class CShader;
+class CShaderResources;
+class CStandardGraphicsPipeline;
+class CTexture;
+class CTiledShading;
+class CVertexBuffer;
+class CVolumetricCloudManager;
+struct CryGUID;
+struct D3D11_BLEND_DESC;
+struct D3D11_DEPTH_STENCIL_DESC;
+struct D3D11_RASTERIZER_DESC;
+struct DXGI_SWAP_CHAIN_DESC;
+enum ECull;
+enum ERenderListID;
+enum class ERenderPipelineProfilerStats;
+enum ERenderPrimitiveType;
+enum EScreenShotMode;
+enum ESystemEvent;
+enum ETEX_Type;
+enum EVertexCostTypes;
+enum EVertexFormat;
+struct HINSTANCE__;
+struct HWND__;
+struct IArkRenderPersistentAuxGeom;
+struct IArkVideoInfo;
+struct ICVar;
+struct IColorGradingController;
+struct ICryDeviceWrapperHook;
+struct ICryFactory;
+class ICrySizer;
+struct ID3D11Buffer;
+struct ID3D11DepthStencilView;
+struct ID3D11Device;
+struct ID3D11InputLayout;
+struct ID3D11RenderTargetView;
+struct ID3D11Resource;
+struct IDXGISwapChain;
+struct IFFont_RenderProxy;
+struct IFlashPlayer_RenderProxy;
+struct IGraphicsDeviceConstantBuffer;
+struct ILoadtimeCallback;
+struct IRenderAuxGeom;
+struct IRenderNode;
+class ITexture;
+namespace N3DEngineCommon
+{
+struct SCausticInfo;
+} // namespace N3DEngineCommon
+enum class PublicRenderPrimitiveType;
+struct RPProfilerStats;
+struct RectI;
+enum class RenderIndexType;
+struct SCustomRenderInitArgs;
+struct SD3DContext;
+struct SGraphicsPipelinePassContext;
+struct SRenderLight;
+struct SRenderingPassInfo;
+struct SResourceAsync;
+struct SSF_GlobalDrawParams;
+struct SSF_ResourcesD3D;
+struct SShaderItem;
+struct SShaderPass;
+struct SShaderTechnique;
+struct SSkinningData;
+struct SStateBlend;
+struct SStateDepth;
+struct SStateRaster;
+struct SSystemGlobalEnvironment;
+struct SSystemInitParams;
+struct STextDrawContext;
+struct SThreadInfo;
+struct SVF_P3F_C4B_T2F;
+struct SViewport;
+struct ShadowMapFrustum;
+namespace gpu_pfx2
+{
+class IManager;
+} // namespace gpu_pfx2
+struct tagRECT;
+
+// CD3D9Renderer
+// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+class CD3D9Renderer : public CRenderer
+{ // Size=46080 (0xB400)
+public:
+	enum class EDefShadows_Passes
+	{
+		DS_SHADOW_CULL_PASS = 0,
+		DS_PASS_MAX = 1,
+	};
+
+	enum class #unnamed_enum_kUnitObjectIndexSizeof
+	{
+		kUnitObjectIndexSizeof = 2,
+	};
+
+	enum class #unnamed_enum_MAX_WIREFRAME_STACK
+	{
+		MAX_WIREFRAME_STACK = 10,
+	};
+
+	enum PresentStatus
+	{
+		epsOccluded = 1,
+		epsNonExclusive = 2,
+	};
+
+	enum class LoadtimeThreadType
+	{
+		None = 0,
+		Flash = 1,
+		Bink = 2,
+	};
+
+	// CD3D9Renderer::S2DImage
+	// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+	struct S2DImage
+	{ // Size=64 (0x40)
+		CTexture* pTex;
+		CTexture* pTarget;
+		float xpos;
+		float ypos;
+		float w;
+		float h;
+		float s0;
+		float t0;
+		float s1;
+		float t1;
+		float angle;
+		float z;
+		unsigned long col;
+
+	#if 0
+		S2DImage(float _arg0_, float _arg1_, float _arg2_, float _arg3_, CTexture* _arg4_, float _arg5_, float _arg6_, float _arg7_, float _arg8_, float _arg9_, unsigned long _arg10_, float _arg11_, CTexture* _arg12_);
+	#endif
+	};
+
+	// CD3D9Renderer::SCharacterInstanceCB
+	// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+	struct SCharacterInstanceCB
+	{ // Size=40 (0x28)
+		_smart_ptr<CConstantBuffer> boneTransformsBuffer;
+		SSkinningData* m_pSD;
+		util::list<CD3D9Renderer::SCharacterInstanceCB> list;
+		bool updated;
+
+	#if 0
+		SCharacterInstanceCB();
+		~SCharacterInstanceCB();
+	#endif
+	};
+
+	// CD3D9Renderer::SRenderTargetStack
+	// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+	struct SRenderTargetStack
+	{ // Size=72 (0x48)
+		ID3D11RenderTargetView* m_pTarget;
+		ID3D11DepthStencilView* m_pDepth;
+		CTexture* m_pTex;
+		SDepthTexture* m_pSurfDepth;
+		int m_Width;
+		int m_Height;
+		unsigned m_bNeedReleaseRT : 1;
+		unsigned m_bWasSetRT : 1;
+		unsigned m_bWasSetD : 1;
+		unsigned m_bScreenVP : 1;
+		unsigned m_ClearFlags;
+		ColorF m_ReqColor;
+		float m_fReqDepth;
+		uint8_t m_nReqStencil;
+	};
+
+	// CD3D9Renderer::SGammaRamp
+	// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+	struct SGammaRamp
+	{ // Size=1536 (0x600)
+		uint16_t red[256];
+		uint16_t green[256];
+		uint16_t blue[256];
+	};
+
+	TArray<COcclusionQuery> m_OcclQueries;
+	unsigned m_OcclQueriesUsed;
+	unsigned long m_DeviceOwningthreadID;
+	volatile int m_nAsyncDeviceState;
+	ID3D11InputLayout* m_pLastVDeclaration;
+	DXGI_SURFACE_DESC m_d3dsdBackBuffer;
+	DXGI_FORMAT m_ZFormat;
+	D3D_PRIMITIVE_TOPOLOGY m_CurTopology;
+	TArray<SStateBlend> m_StatesBL;
+	TArray<SStateRaster> m_StatesRS;
+	TArray<SStateDepth> m_StatesDP;
+	unsigned m_nCurStateBL;
+	unsigned m_nCurStateRS;
+	unsigned m_nCurStateDP;
+	uint8_t m_nCurStencRef;
+	SDepthTexture m_DepthBufferOrig;
+	SDepthTexture m_DepthBufferOrigMSAA;
+	SDepthTexture m_DepthBufferNative;
+	Vec4 m_vSceneLuminanceInfo;
+	float m_fScotopicSceneScale;
+	float m_fAdaptedSceneScale;
+	float m_fAdaptedSceneScaleLBuffer;
+	ETEX_Format m_HDR_FloatFormat_Scalar;
+	ETEX_Format m_HDR_FloatFormat;
+	int m_MaxAnisotropyLevel;
+	int m_nMaterialAnisoHighSampler;
+	int m_nMaterialAnisoLowSampler;
+	int m_nMaterialAnisoSamplerBorder;
+	int m_nPointWrapSampler;
+	int m_nPointClampSampler;
+	int m_nLinearClampComparisonSampler;
+	int m_nBilinearWrapSampler;
+	int m_nBilinearClampSampler;
+	int m_nBilinearBorderSampler;
+	int m_nTrilinearWrapSampler;
+	int m_nTrilinearClampSampler;
+	int m_nTrilinearBorderSampler;
+	ID3D11Buffer* m_pUnitFrustumVB[5];
+	ID3D11Buffer* m_pUnitFrustumIB[5];
+	int m_UnitFrustVBSize[5];
+	int m_UnitFrustIBSize[5];
+	ID3D11Buffer* m_pQuadVB;
+	int16_t m_nQuadVBSize;
+	SPixFormatSupport m_hwTexFormatSupport;
+	uint8_t m_GammmaTable[256];
+	int m_fontBlendMode;
+	CCryNameTSCRC m_LevelShaderCacheMissIcon;
+	CColorGradingControllerD3D* m_pColorGradingControllerD3D;
+	CRenderPipelineProfiler* m_pPipelineProfiler;
+	Matrix44 m_matPsmWarp;
+	Matrix44 m_matViewInv;
+	int m_MatDepth;
+	string m_Description;
+	EFullscreenMode m_fullscreenMode;
+	TArray<SD3DContext *> m_RContexts;
+	SD3DContext* m_CurrContext;
+	TArray<CTexture *> m_RTargets;
+	int16_t m_nPrepareShadowFrame;
+	static constexpr const int MAX_RT_STACK = 8;
+	static constexpr const int RT_STACK_WIDTH = 4;
+	int m_nRTStackLevel[4];
+	CD3D9Renderer::SRenderTargetStack m_RTStack[4][8];
+	int m_nMaxRT2Commit;
+	CD3D9Renderer::SRenderTargetStack* m_pNewTarget[4];
+	CTexture* m_pCurTarget[4];
+	TArray<SDepthTexture *> m_TempDepths;
+	int m_arrWireFrameStack[10];
+	int m_nWireFrameStack;
+	bool m_bDepthBoundsEnabled;
+	float m_fDepthBoundsMin;
+	float m_fDepthBoundsMax;
+	int m_scissorPrevX;
+	int m_scissorPrevY;
+	int m_scissorPrevWidth;
+	int m_scissorPrevHeight;
+	bool m_bScissorPrev;
+	char m_WinTitle[80];
+	HINSTANCE__* m_hInst;
+	HWND__* m_hWnd;
+	HWND__* m_hWndDesktop;
+	unsigned m_frameFenceCounter;
+	unsigned m_completedFrameFenceCounter;
+	uint64_t m_frameFences[2];
+	int m_bDraw2dImageStretchMode;
+	int m_nPointState;
+	unsigned m_uLastBlendFlagsPassGroup;
+	unsigned long m_FenceOcclusionReady;
+	unsigned long m_PrevFenceOcclusionReady;
+	int m_numOcclusionDownsampleStages;
+	uint16_t m_occlusionDownsampleSizeX;
+	uint16_t m_occlusionDownsampleSizeY;
+	uint16_t m_occlusionRequestedSizeX;
+	uint16_t m_occlusionRequestedSizeY;
+	uint16_t m_occlusionSourceSizeX;
+	uint16_t m_occlusionSourceSizeY;
+	std::vector<float> m_occlusionZBuffer;
+	Matrix44 m_occlusionViewProjBuffer[4];
+	Matrix44 m_occlusionViewProj;
+	uint64_t m_occlusionBuffer;
+	bool m_bOcclusionTexturesValid;
+	CStandardGraphicsPipeline* m_pGraphicsPipeline;
+	CTiledShading* m_pTiledShading;
+	CVolumetricCloudManager* m_pVolumetricCloudMan;
+	std::vector<_smart_ptr<ID3D11RenderTargetView>> m_pBackBuffers;
+	ID3D11RenderTargetView* m_pBackBuffer;
+	unsigned m_pCurrentBackBufferIndex;
+	CTexture* m_pBackBufferTexture;
+	CTexture* m_pZTexture;
+	CTexture* m_pZTextureMSAA;
+	CTexture* m_pNativeZTexture;
+	volatile int m_lockCharCB;
+	util::list<CD3D9Renderer::SCharacterInstanceCB> m_CharCBFreeList;
+	util::list<CD3D9Renderer::SCharacterInstanceCB> m_CharCBActiveList[3];
+	volatile int m_CharCBFrameRequired[3];
+	volatile int m_CharCBAllocated;
+	IDXGISwapChain* m_pSwapChain;
+	unsigned long m_dwPresentStatus;
+	unsigned long m_dwCreateFlags;
+	unsigned long m_dwWindowStyle;
+	char m_strDeviceStats[90];
+	int m_SceneRecurseCount;
+	SRenderTileInfo m_RenderTileInfo;
+	TArray<CD3D9Renderer::S2DImage> m_2dImages;
+	unsigned m_nConnectedMonitors;
+	bool m_bDisplayChanged;
+	CCryDeviceWrapper m_DeviceWrapper;
+	CCryDeviceContextWrapper m_DeviceContextWrapper;
+	stl::aligned_vector<unsigned short,16> m_arrDeferredInds;
+	stl::aligned_vector<SVF_P3F_C4B_T2F,16> m_arrDeferredVerts;
+	DeviceInfo m_devInfo;
+	ArkVideoInfo m_arkVideoInfo;
+	SSF_ResourcesD3D* m_pSFResD3D;
+	CAuxGeomCB_Null m_renderAuxGeomNull;
+	CArkRenderPersistentAuxGeom_Null m_renderPersistentAuxGeomNull;
+	CShadowTextureGroupManager m_ShadowTextureGroupManager;
+	static inline auto s_tempObjects = PreyGlobal<TArray<CRenderObject *> [2]>(0x2C80528);
+	static inline auto s_tempRIs = PreyGlobal<TArray<SRendItem *>>(0x2C80548);
+	bool m_windowParametersOverridden;
+	Vec2i m_overriddenWindowSize;
+	bool m_overriddenWindowFullscreenState;
+	CD3D9Renderer::LoadtimeThreadType m_loadtimeThreadType;
+	CFrameTimestamps m_frameTimestamps;
+	ArkHighlightSystem* m_pIArkHighlightsSystem;
+
+	CD3D9Renderer();
+	virtual ~CD3D9Renderer();
+	virtual void InitRenderer();
+	virtual void Release();
+	static unsigned GetNumBackBufferIndices(const DXGI_SWAP_CHAIN_DESC& scDesc) { return FGetNumBackBufferIndices(scDesc); }
+	static unsigned GetCurrentBackBufferIndex(IDXGISwapChain* pSwapChain) { return FGetCurrentBackBufferIndex(pSwapChain); }
+	void ReleaseBackBuffers() { FReleaseBackBuffers(this); }
+	unsigned GetOrCreateBlendState(const D3D11_BLEND_DESC& desc) { return FGetOrCreateBlendState(this, desc); }
+	bool SetBlendState(const SStateBlend* pNewState) { return FSetBlendState(this, pNewState); }
+	unsigned GetOrCreateRasterState(const D3D11_RASTERIZER_DESC& rasterizerDec, const bool bAllowMSAA) { return FGetOrCreateRasterState(this, rasterizerDec, bAllowMSAA); }
+	void PreCreateRasterStates(float _constBias, float _slopeBias, float _biasClamp) { FPreCreateRasterStates(this, _constBias, _slopeBias, _biasClamp); }
+	unsigned GetRasterStateModified(unsigned _baseIndex, float _constBias, float _slopeBias, float _biasClamp) { return FGetRasterStateModified(this, _baseIndex, _constBias, _slopeBias, _biasClamp); }
+	bool SetRasterState(const SStateRaster* pNewState, const bool bAllowMSAA) { return FSetRasterState(this, pNewState, bAllowMSAA); }
+	unsigned GetOrCreateDepthState(const D3D11_DEPTH_STENCIL_DESC& desc) { return FGetOrCreateDepthState(this, desc); }
+	bool SetDepthState(const SStateDepth* pNewState, uint8_t newStencRef) { return FSetDepthState(this, pNewState, newStencRef); }
+	void UnLockParticleVideoMemory() { FUnLockParticleVideoMemory(this); }
+	virtual void ActivateLayer(const char* pLayerName, bool activate);
+	CCryDeviceContextWrapper& GetDeviceContext() { return FGetDeviceContext(this); }
+	void EF_PrepareShadowGenRenderList(CRenderView* pRenderView) { FEF_PrepareShadowGenRenderList(this, pRenderView); }
+	bool EF_PrepareShadowGenForLight(CRenderView* pRenderView, SRenderLight* pLight, int nLightID) { return FEF_PrepareShadowGenForLight(this, pRenderView, pLight, nLightID); }
+	bool PrepareShadowGenForFrustum(CRenderView* pRenderView, ShadowMapFrustum* pCurFrustum, SRenderLight* pLight, int nLightID, int nLOD) { return FPrepareShadowGenForFrustum(this, pRenderView, pCurFrustum, pLight, nLightID, nLOD); }
+	virtual void EF_InvokeShadowMapRenderJobs(CRenderView* pRenderView, const int nFlags);
+	void SetDepthBoundTest(float fMin, float fMax, bool bEnable) { FSetDepthBoundTest(this, fMin, fMax, bEnable); }
+	void CreateDeferredUnitBox(stl::aligned_vector<unsigned short,16>& indBuff, stl::aligned_vector<SVF_P3F_C4B_T2F,16>& vertBuff) { FCreateDeferredUnitBox(this, indBuff, vertBuff); }
+	const stl::aligned_vector<unsigned short,16>& GetDeferredUnitBoxIndexBuffer() const { return FGetDeferredUnitBoxIndexBuffer(this); }
+	const stl::aligned_vector<SVF_P3F_C4B_T2F,16>& GetDeferredUnitBoxVertexBuffer() const { return FGetDeferredUnitBoxVertexBuffer(this); }
+	void ConfigShadowTexgen(int Num, ShadowMapFrustum* pFr, int nFrustNum, bool bScreenToLocalBasis, bool bUseComparisonSampling) { FConfigShadowTexgen(this, Num, pFr, nFrustNum, bScreenToLocalBasis, bUseComparisonSampling); }
+	virtual void DrawAllShadowsOnTheScreen();
+	virtual void OnEntityDeleted(IRenderNode* pRenderNode);
+	void D3DSetCull(ECull eCull, bool bSkipMirrorCull) { FD3DSetCull(this, eCull, bSkipMirrorCull); }
+	HRESULT AdjustWindowForChange() { return FAdjustWindowForChange(this); }
+	static HWND__* CreateWindowCallback() { return FCreateWindowCallback(); }
+	bool SetWindow(int width, int height, EFullscreenMode _fullscreenMode, void* hWnd) { return FSetWindow(this, width, height, _fullscreenMode, hWnd); }
+	bool SetRes() { return FSetRes(this); }
+	virtual void RestoreGamma();
+	void SetGamma(float fGamma, float fBrightness, float fContrast, bool bForce) { FSetGamma(this, fGamma, fBrightness, fContrast, bForce); }
+	static HRESULT OnD3D11CreateDevice(ID3D11Device* pd3dDevice) { return FOnD3D11CreateDevice(pd3dDevice); }
+	static HRESULT OnD3D11PostCreateDevice(ID3D11Device* pd3dDevice) { return FOnD3D11PostCreateDevice(pd3dDevice); }
+	virtual void RT_BeginFrame();
+	virtual void RT_EndFrame();
+	virtual void RT_BeginLoadingFrame(unsigned _frameId);
+	virtual void RT_EndLoadingFrame(unsigned _frameId);
+	virtual void RT_SwitchToNativeResolutionBackbuffer(bool resolveBackBuffer);
+	virtual void RT_Init();
+	virtual void RT_RenderWatermark();
+	virtual bool RT_CreateDevice();
+	virtual void RT_Reset();
+	virtual void RT_RenderScene(CRenderView* pRenderView, int nFlags, SThreadInfo& TI, void (*RenderFunc)());
+	virtual void RT_SetCull(int mode);
+	virtual void RT_SetScissor(bool bEnable, int sX, int sY, int sWdt, int sHgt);
+	virtual void RT_SetCameraInfo();
+	virtual void RT_CreateResource(SResourceAsync* pRes);
+	virtual void RT_ReleaseResource(SResourceAsync* pRes);
+	virtual void RT_ReleaseRenderResources(unsigned nFlags);
+	virtual void RT_UnbindResources();
+	virtual void RT_UnbindTMUs();
+	virtual void RT_CreateRenderResources();
+	virtual void RT_PrecacheDefaultShaders();
+	virtual void RT_ClearTarget(CTexture* pTex, const ColorF& color);
+	virtual void RT_ReleaseCB(void* pVCB);
+	virtual void RT_ReleaseRS(std::shared_ptr<CDeviceResourceSet>& pRS);
+	virtual void RT_DrawDynVB(SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, unsigned nVerts, unsigned nInds, const PublicRenderPrimitiveType nPrimType);
+	virtual void RT_DrawStringW(IFFont_RenderProxy* pFont, float x, float y, float z, const wchar_t* pStr, const bool asciiMultiLine, const STextDrawContext& ctx) const;
+	virtual void RT_DrawLines(Vec3* v, int nump, ColorF& col, int flags, float fGround);
+	virtual void RT_Draw2dImage(float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, unsigned long col, float z);
+	virtual void RT_Draw2dImageStretchMode(bool bStretch);
+	virtual void RT_Push2dImage(float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, unsigned long col, float z);
+	virtual void RT_Draw2dImageList();
+	virtual void RT_DrawImageWithUV(float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered);
+	void RT_DrawImageWithUVInternal(float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered) { FRT_DrawImageWithUVInternal(this, xpos, ypos, z, w, h, texture_id, s, t, col, filtered); }
+	void RT_Draw2dImageInternal(CD3D9Renderer::S2DImage* images, unsigned numImages) { FRT_Draw2dImageInternal(this, images, numImages); }
+	virtual void RT_SetViewport(int x, int y, int width, int height, int id);
+	virtual void RT_RenderDebug(bool bRenderStats);
+	virtual void RT_SetRendererCVar(ICVar* pCVar, const char* pArgText, const bool bSilentMode);
+	virtual void RT_PresentFast();
+	virtual void FlashRenderInternal(IFlashPlayer_RenderProxy* pPlayer, bool bDoRealRender);
+	virtual void FlashRenderPlaybackLocklessInternal(IFlashPlayer_RenderProxy* pPlayer, int cbIdx, bool bFinalPlayback, bool bDoRealRender);
+	virtual void* Init(int x, int y, int width, int height, unsigned cbpp, int zbpp, int sbits, EFullscreenMode _fullscreenMode, void* hinst, void* Glhwnd, bool bReInit, const SCustomRenderInitArgs* pCustomArgs, bool bShaderCacheGen);
+	virtual void GetVideoMemoryUsageStats(uint64_t& vidMemUsedThisFrame, uint64_t& vidMemUsedRecently, bool bGetPoolsSizes);
+	virtual bool SetCurrentContext(void* hWnd);
+	virtual bool CreateContext(void* hWnd, bool bAllowMSAA, int SSX, int SSY, bool isMain);
+	virtual bool DeleteContext(void* hWnd);
+	virtual void MakeMainContextActive();
+	virtual bool IsMainContextActive();
+	virtual void* GetMainContextHWND();
+	virtual void* GetCurrentContextHWND();
+	virtual bool IsCurrentContextMainVP();
+	virtual int GetCurrentContextViewportWidth() const;
+	virtual int GetCurrentContextViewportHeight() const;
+	virtual int CreateRenderTarget(int nWidth, int nHeight, const ColorF& cClear, ETEX_Format eTF);
+	virtual bool DestroyRenderTarget(int nHandle);
+	virtual bool SetRenderTarget(int nHandle);
+	virtual bool ChangeDisplay(unsigned width, unsigned height, unsigned cbpp);
+	virtual void ChangeViewport(unsigned x, unsigned y, unsigned width, unsigned height, bool bMainViewport);
+	virtual IArkVideoInfo& GetIArkVideoInfo();
+	virtual bool ChangeResolution(int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, EFullscreenMode _fullscreenMode, bool bForceReset);
+	virtual void Reset();
+	virtual void SwitchToNativeResolutionBackbuffer();
+	void CalculateResolutions(int width, int height, bool bUseNativeRes, int* pRenderWidth, int* pRenderHeight, int* pNativeWidth, int* pNativeHeight, int* pBackbufferWidth, int* pBackbufferHeight) { FCalculateResolutions(this, width, height, bUseNativeRes, pRenderWidth, pRenderHeight, pNativeWidth, pNativeHeight, pBackbufferWidth, pBackbufferHeight); }
+	virtual void BeginFrame(const bool _bUpdateFrameId);
+	virtual void ShutDown(bool bReInit);
+	virtual void ShutDownFast();
+	virtual void RenderDebug(bool bRenderStats);
+	virtual void RT_ShutDown(unsigned nFlags);
+	virtual void EndFrame();
+	virtual void LimitFramerate(const int maxFPS, const bool bUseSleep);
+	virtual void LimitLoadingFramerate();
+	virtual void GetMemoryUsage(ICrySizer* Sizer);
+	virtual void GetLogVBuffers();
+	virtual void TryFlush();
+	virtual void Draw2dImage(float xpos, float ypos, float w, float h, int textureid, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z);
+	virtual void Push2dImage(float xpos, float ypos, float w, float h, int textureid, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z);
+	virtual void Draw2dImageStretchMode(bool bStretch);
+	virtual void Draw2dImageList();
+	virtual void DrawImage(float xpos, float ypos, float w, float h, int texture_id, float s0, float t0, float s1, float t1, float r, float g, float b, float a, bool filtered);
+	virtual void DrawImageWithUV(float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, float r, float g, float b, float a, bool filtered);
+	virtual void SetCullMode(int mode);
+	virtual void PushProfileMarker(char* label);
+	virtual void PopProfileMarker(char* label);
+	virtual bool EnableFog(bool enable);
+	virtual void SetFogColor(const ColorF& color);
+	virtual void CreateResourceAsync(SResourceAsync* pResource);
+	virtual void ReleaseResourceAsync(SResourceAsync* pResource);
+	virtual unsigned DownLoadToVideoMemory(uint8_t* data, int w, int h, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nummipmap, bool repeat, int filter, int Id, const char* szCacheName, int flags, bool eEndian, RectI* pRegion, bool bAsyncDevTexCreation);
+	unsigned DownLoadToVideoMemory(uint8_t* data, int w, int h, int d, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nummipmap, ETEX_Type eTT, bool repeat, int filter, int Id, const char* szCacheName, int flags, bool eEndian, RectI* pRegion, bool bAsyncDevTexCreation) { return FDownLoadToVideoMemoryOv0(this, data, w, h, d, eTFSrc, eTFDst, nummipmap, eTT, repeat, filter, Id, szCacheName, flags, eEndian, pRegion, bAsyncDevTexCreation); }
+	virtual void UpdateTextureInVideoMemory(unsigned tnum, uint8_t* newdata, int posx, int posy, int w, int h, ETEX_Format eTFSrc, int posz, int sizez);
+	virtual bool EF_PrecacheResource(SShaderItem* pSI, float fMipFactorSI, float fTimeToReady, int Flags, int nUpdateId, int nCounter);
+	virtual bool EF_PrecacheResource(ITexture* pTP, float fMipFactor, float fTimeToReady, int Flags, int nUpdateId, int nCounter);
+	virtual void RemoveTexture(unsigned TextureId);
+	virtual void PrecacheTick();
+	virtual void PostLevelLoading();
+	virtual void PostLevelUnload();
+	void SetRCamera(const CRenderCamera& cam) { FSetRCamera(this, cam); }
+	virtual void SetCamera(const CCamera& cam);
+	virtual void SetViewport(int x, int y, int width, int height, int id);
+	virtual void GetViewport(int* x, int* y, int* width, int* height);
+	SViewport GetViewport() const { alignas(SViewport) std::byte _return_buf_[sizeof(SViewport)]; return *FGetViewportOv0(this, reinterpret_cast<SViewport*>(_return_buf_)); }
+	virtual void SetScissor(int x, int y, int width, int height);
+	virtual void SetRenderTile(float nTilesPosX, float nTilesPosY, float nTilesGridSizeX, float nTilesGridSizeY);
+	virtual void Graph(uint8_t* g, int x, int y, int wdt, int hgt, int nC, int type, char* text, ColorF& color, float fScale);
+	virtual void DrawDynVB(SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, int nVerts, int nInds, const PublicRenderPrimitiveType nPrimType);
+	virtual void PrintResourcesLeaks();
+	virtual void FX_PushWireframeMode(int mode);
+	virtual void FX_PopWireframeMode();
+	virtual void DrawPrimitivesInternal(CVertexBuffer* src, int vert_num, const ERenderPrimitiveType prim_type);
+	virtual void ResetToDefault();
+	virtual void SetMaterialColor(float r, float g, float b, float a);
+	virtual bool ProjectToScreen(float ptx, float pty, float ptz, float* sx, float* sy, float* sz);
+	virtual int UnProjectFromScreen(float sx, float sy, float sz, float* px, float* py, float* pz);
+	virtual void GetModelViewMatrix(float* mat);
+	virtual void GetProjectionMatrix(float* mat);
+	virtual void GetCameraZeroMatrix(float* mat);
+	virtual void SetMatrices(float* pProjMat, float* pViewMat, float* pZeroMat);
+	void DrawQuad(float x0, float y0, float x1, float y1, const ColorF& color, float z, float s0, float t0, float s1, float t1) { FDrawQuad(this, x0, y0, x1, y1, color, z, s0, t0, s1, t1); }
+	void DrawFullScreenTriangle() { FDrawFullScreenTriangle(this); }
+	virtual void ClearTargetsImmediately(unsigned nFlags);
+	virtual void ClearTargetsImmediately(unsigned nFlags, const ColorF& Colors, float fDepth);
+	virtual void ClearTargetsImmediately(unsigned nFlags, const ColorF& Colors);
+	virtual void ClearTargetsImmediately(unsigned nFlags, float fDepth);
+	virtual void ClearTargetsLater(unsigned nFlags);
+	virtual void ClearTargetsLater(unsigned nFlags, const ColorF& Colors, float fDepth);
+	virtual void ClearTargetsLater(unsigned nFlags, const ColorF& Colors);
+	virtual void ClearTargetsLater(unsigned nFlags, float fDepth);
+	virtual void SetRendererCVar(ICVar* pCVar, const char* pArgText, const bool bSilentMode);
+	virtual bool ScreenShot(const char* filename, int iPreWidth, EScreenShotMode eScreenShotMode);
+	virtual void Set2DMode(bool enable, int ortox, int ortoy, float znear, float zfar);
+	virtual int ScreenToTexture(int nTexID);
+	virtual bool SetGammaDelta(const float fGamma);
+	virtual bool FontUploadTexture(CFBitmap* pBmp, ETEX_Format eTF);
+	virtual int FontCreateTexture(int Width, int Height, uint8_t* pData, ETEX_Format eTF, bool genMips);
+	virtual bool FontUpdateTexture(int nTexId, int nX, int nY, int USize, int VSize, uint8_t* pData);
+	virtual void FontReleaseTexture(CFBitmap* pBmp);
+	virtual void FontSetTexture(CFBitmap* pBmp, int nFilterMode);
+	virtual void FontSetTexture(int nTexId, int nFilterMode);
+	virtual void FontSetRenderingState(unsigned nVPWidth, unsigned nVPHeight);
+	virtual void FontSetBlending(int blendSrc, int blendDest);
+	virtual void FontRestoreRenderingState();
+	void FontSetState(bool bRestore) { FFontSetState(this, bRestore); }
+	void SF_CreateResources() { FSF_CreateResources(this); }
+	void SF_PrecacheShaders() { FSF_PrecacheShaders(this); }
+	void SF_DestroyResources() { FSF_DestroyResources(this); }
+	bool SF_SetVertexDeclaration(SSF_GlobalDrawParams::EVertexFmt vertexFmt) { return FSF_SetVertexDeclaration(this, vertexFmt); }
+	void SF_SetBlendOp(SSF_GlobalDrawParams::EAlphaBlendOp blendOp, bool reset) { FSF_SetBlendOp(this, blendOp, reset); }
+	virtual void SF_DrawIndexedTriList(int baseVertexIndex, int minVertexIndex, int numVertices, int startIndex, int triangleCount, const SSF_GlobalDrawParams& params);
+	virtual void SF_DrawLineStrip(int baseVertexIndex, int lineCount, const SSF_GlobalDrawParams& params);
+	virtual void SF_DrawGlyphClear(const SSF_GlobalDrawParams& params);
+	virtual void SF_DrawBlurRect(const SSF_GlobalDrawParams& params);
+	virtual void SF_Flush();
+	virtual bool SF_UpdateTexture(int texId, int mipLevel, int numRects, const IRenderer::SUpdateRect* pRects, uint8_t* pData, uint64_t pitch, uint64_t size, ETEX_Format eTF);
+	virtual void SetProfileMarker(const char* label, CRenderer::ESPM mode) const;
+	void EF_Scene3D(SViewport& VP, int nFlags, const SRenderingPassInfo& passInfo) { FEF_Scene3D(this, VP, nFlags, passInfo); }
+	bool CheckMSAAChange() { return FCheckMSAAChange(this); }
+	bool CheckSSAAChange() { return FCheckSSAAChange(this); }
+	void FX_DrawInstances(CShader* ef, SShaderPass* slw, int nRE, unsigned nStartInst, unsigned nLastInst, unsigned nUsedAttr, uint8_t* InstanceData, int nInstAttrMask, uint8_t* Attributes, int16_t dwCBufSlot) { FFX_DrawInstances(this, ef, slw, nRE, nStartInst, nLastInst, nUsedAttr, InstanceData, nInstAttrMask, Attributes, dwCBufSlot); }
+	void FX_DrawShader_InstancedHW(CShader* ef, SShaderPass* slw) { FFX_DrawShader_InstancedHW(this, ef, slw); }
+	void FX_DrawShader_General(CShader* ef, SShaderTechnique* pTech) { FFX_DrawShader_General(this, ef, pTech); }
+	void FX_SetupForwardShadows(CRenderView* pRenderView, bool bUseShaderPermutations) { FFX_SetupForwardShadows(this, pRenderView, bUseShaderPermutations); }
+	void FX_SetupShadowsForTransp() { FFX_SetupShadowsForTransp(this); }
+	void CopyFramebufferDX11(CTexture* pDst, ID3D11Resource* pSrcResource, DXGI_FORMAT srcFormat) { FCopyFramebufferDX11(this, pDst, pSrcResource, srcFormat); }
+	void FX_ScreenStretchRect(CTexture* pDst) { FFX_ScreenStretchRect(this, pDst); }
+	virtual int GetOcclusionBuffer(float* pOutOcclBuffer, int nSizeX, int nSizeY, Matrix44* pmCamBuffer);
+	virtual void WaitForParticleBuffer();
+	void InsertParticleVideoDataFence() { FInsertParticleVideoDataFence(this); }
+	void FX_ZTargetReadBack() { FFX_ZTargetReadBack(this); }
+	void FX_UpdateCharCBs() { FFX_UpdateCharCBs(this); }
+	virtual void* FX_AllocateCharInstCB(SSkinningData* pSkinningData, unsigned frameId);
+	virtual void FX_ClearCharInstCB(unsigned frameId);
+	bool CreateAuxiliaryMeshes() { return FCreateAuxiliaryMeshes(this); }
+	bool ReleaseAuxiliaryMeshes() { return FReleaseAuxiliaryMeshes(this); }
+	bool FX_DeferredShadowPassSetup(const Matrix44& mShadowTexGen, const CCamera& cam, ShadowMapFrustum* pShadowFrustum, float maskRTWidth, float maskRTHeight, Matrix44& mScreenToShadow, bool bNearest) { return FFX_DeferredShadowPassSetup(this, mShadowTexGen, cam, pShadowFrustum, maskRTWidth, maskRTHeight, mScreenToShadow, bNearest); }
+	bool FX_DeferredShadowPassSetupBlend(const Matrix44& mShadowTexGen, const CCamera& cam, int nFrustumNum, float maskRTWidth, float maskRTHeight) { return FFX_DeferredShadowPassSetupBlend(this, mShadowTexGen, cam, nFrustumNum, maskRTWidth, maskRTHeight); }
+	void FX_DrawTechnique(CShader* ef, SShaderTechnique* pTech) { FFX_DrawTechnique(this, ef, pTech); }
+	void FX_RefractionPartialResolve() { FFX_RefractionPartialResolve(this); }
+	bool FX_HDRScene(bool bEnableHDR, bool bClear) { return FFX_HDRScene(this, bEnableHDR, bClear); }
+	void FX_HDRRangeAdaptUpdate() { FFX_HDRRangeAdaptUpdate(this); }
+	void FX_RenderForwardOpaque(void (*RenderFunc)(), const bool bLighting, const bool bAllowDeferred) { FFX_RenderForwardOpaque(this, RenderFunc, bLighting, bAllowDeferred); }
+	void FX_RenderWater(void (*RenderFunc)()) { FFX_RenderWater(this, RenderFunc); }
+	bool FX_ZScene(bool bEnable, bool bUseHDR, bool bClearZBuffer, bool bRenderNormalsOnly, bool bZPrePass) { return FFX_ZScene(this, bEnable, bUseHDR, bClearZBuffer, bRenderNormalsOnly, bZPrePass); }
+	bool FX_DeferredWaterVolumeCaustics(const N3DEngineCommon::SCausticInfo& causticInfo) { return FFX_DeferredWaterVolumeCaustics(this, causticInfo); }
+	bool FX_CustomRenderScene(bool bEnable) { return FFX_CustomRenderScene(this, bEnable); }
+	bool FX_PostProcessScene(bool bEnable) { return FFX_PostProcessScene(this, bEnable); }
+	bool FX_DeferredRendering(CRenderView* pRenderView, bool bUpdateRTOnly) { return FFX_DeferredRendering(this, pRenderView, bUpdateRTOnly); }
+	bool FX_DeferredDecals() { return FFX_DeferredDecals(this); }
+	bool FX_ForwardDecals() { return FFX_ForwardDecals(this); }
+	void FX_LinearizeDepth() { FFX_LinearizeDepth(this); }
+	void FX_DepthFixupMerge() { FFX_DepthFixupMerge(this); }
+	void FX_SceneMaskGen(CRenderView* pRenderView) { FFX_SceneMaskGen(this, pRenderView); }
+	virtual float GetGPUFrameTime();
+	virtual void GetRenderTimes(IRenderer::SRenderTimes& outTimes);
+	virtual void FX_PipelineShutdown(bool bFastShutdown);
+	virtual void RT_GraphicsPipelineShutdown();
+	virtual void EF_ClearTargetsImmediately(unsigned nFlags);
+	virtual void EF_ClearTargetsImmediately(unsigned nFlags, const ColorF& Colors, float fDepth, uint8_t nStencil);
+	virtual void EF_ClearTargetsImmediately(unsigned nFlags, const ColorF& Colors);
+	virtual void EF_ClearTargetsImmediately(unsigned nFlags, float fDepth, uint8_t nStencil);
+	virtual void EF_ClearTargetsLater(unsigned nFlags);
+	virtual void EF_ClearTargetsLater(unsigned nFlags, const ColorF& Colors, float fDepth, uint8_t nStencil);
+	virtual void EF_ClearTargetsLater(unsigned nFlags, const ColorF& Colors);
+	virtual void EF_ClearTargetsLater(unsigned nFlags, float fDepth, uint8_t nStencil);
+	void EF_Restore() { FEF_Restore(this); }
+	virtual void FX_SetState(int st, int AlphaRef, int RestoreState);
+	void ChangeLog() { FChangeLog(this); }
+	virtual void SetCurDownscaleFactor(Vec2 sf);
+	virtual bool CheckDeviceLost();
+	void EF_DirtyMatrix() { FEF_DirtyMatrix(this); }
+	void EF_PushMatrix() { FEF_PushMatrix(this); }
+	void EF_PopMatrix() { FEF_PopMatrix(this); }
+	void FX_ResetPipe() { FFX_ResetPipe(this); }
+	void EF_SetVertColor() { FEF_SetVertColor(this); }
+	HRESULT FX_SetVertexDeclaration(int StreamMask, EVertexFormat eVF) { return FFX_SetVertexDeclaration(this, StreamMask, eVF); }
+	void FX_DrawBatch(CShader* pSh, SShaderPass* pPass) { FFX_DrawBatch(this, pSh, pPass); }
+	void FX_DrawBatchSkinned(CShader* pSh, SShaderPass* pPass, SSkinningData* pSkinningData) { FFX_DrawBatchSkinned(this, pSh, pPass, pSkinningData); }
+	void FX_SetActiveRenderTargets() { FFX_SetActiveRenderTargets(this); }
+	void FX_SetViewport() { FFX_SetViewport(this); }
+	void FX_ClearTargets() { FFX_ClearTargets(this); }
+	void FX_ClearTarget(ID3D11RenderTargetView* pView, const ColorF& cClear, const unsigned numRects, const tagRECT* pRects) { FFX_ClearTargetOv8(this, pView, cClear, numRects, pRects); }
+	void FX_ClearTarget(CTexture* pTex, const ColorF& cClear, const unsigned numRects, const tagRECT* pRects, const bool bOptionalRects) { FFX_ClearTargetOv7(this, pTex, cClear, numRects, pRects, bOptionalRects); }
+	void FX_ClearTarget(CTexture* pTex, const ColorF& cClear) { FFX_ClearTargetOv6(this, pTex, cClear); }
+	void FX_ClearTarget(CTexture* pTex) { FFX_ClearTargetOv5(this, pTex); }
+	void FX_ClearTarget(ID3D11DepthStencilView* pView, const int nFlags, const float cDepth, const uint8_t cStencil, const unsigned numRects, const tagRECT* pRects) { FFX_ClearTargetOv4(this, pView, nFlags, cDepth, cStencil, numRects, pRects); }
+	void FX_ClearTarget(SDepthTexture* pTex, const int nFlags, const float cDepth, const uint8_t cStencil, const unsigned numRects, const tagRECT* pRects, const bool bOptionalRects) { FFX_ClearTargetOv3(this, pTex, nFlags, cDepth, cStencil, numRects, pRects, bOptionalRects); }
+	void FX_ClearTarget(SDepthTexture* pTex, const int nFlags, const float cDepth, const uint8_t cStencil) { FFX_ClearTargetOv2(this, pTex, nFlags, cDepth, cStencil); }
+	void FX_ClearTarget(SDepthTexture* pTex, const int nFlags) { FFX_ClearTargetOv1(this, pTex, nFlags); }
+	void FX_ClearTarget(SDepthTexture* pTex) { FFX_ClearTargetOv0(this, pTex); }
+	bool FX_SetRenderTarget(int nTarget, ID3D11RenderTargetView* pTargetSurf, SDepthTexture* pDepthTarget, unsigned nTileCount) { return FFX_SetRenderTargetOv1(this, nTarget, pTargetSurf, pDepthTarget, nTileCount); }
+	bool FX_SetRenderTarget(int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, bool bPush, int nCMSide, bool bScreenVP, unsigned nTileCount) { return FFX_SetRenderTargetOv0(this, nTarget, pTarget, pDepthTarget, bPush, nCMSide, bScreenVP, nTileCount); }
+	bool FX_PushRenderTarget(int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, int nCMSide, bool bScreenVP, unsigned nTileCount) { return FFX_PushRenderTargetOv0(this, nTarget, pTarget, pDepthTarget, nCMSide, bScreenVP, nTileCount); }
+	bool FX_RestoreRenderTarget(int nTarget) { return FFX_RestoreRenderTarget(this, nTarget); }
+	bool FX_PopRenderTarget(int nTarget) { return FFX_PopRenderTarget(this, nTarget); }
+	SDepthTexture* FX_GetDepthSurface(int nWidth, int nHeight, bool bAA, bool bExactMatch) { return FFX_GetDepthSurface(this, nWidth, nHeight, bAA, bExactMatch); }
+	void FX_Commit() { FFX_Commit(this); }
+	bool FX_SetFPMode() { return FFX_SetFPMode(this); }
+	void FX_CommitStates(const SShaderTechnique* pTech, const SShaderPass* pPass, bool bUseMaterialState) { FFX_CommitStates(this, pTech, pPass, bUseMaterialState); }
+	HRESULT FX_SetVStream(int nID, const void* pB, unsigned nOffs, unsigned nStride) { return FFX_SetVStream(this, nID, pB, nOffs, nStride); }
+	HRESULT FX_SetIStream(const void* pB, unsigned nOffs, RenderIndexType idxType) { return FFX_SetIStream(this, pB, nOffs, idxType); }
+	void FX_DrawIndexedPrimitive(const ERenderPrimitiveType eType, const int nVBOffset, const int nMinVertexIndex, const int nVerticesCount, const int nStartIndex, const int nNumIndices, bool bInstanced) { FFX_DrawIndexedPrimitive(this, eType, nVBOffset, nMinVertexIndex, nVerticesCount, nStartIndex, nNumIndices, bInstanced); }
+	void FX_DrawPrimitive(const ERenderPrimitiveType eType, const int nStartVertex, const int nVerticesCount, const int nInstanceVertices) { FFX_DrawPrimitive(this, eType, nStartVertex, nVerticesCount, nInstanceVertices); }
+	bool FX_CommitStreams(SShaderPass* sl, bool bSetVertexDecl) { return FFX_CommitStreams(this, sl, bSetVertexDecl); }
+	void EF_SetColorOp(uint8_t eCo, uint8_t eAo, uint8_t eCa, uint8_t eAa) { FEF_SetColorOp(this, eCo, eAo, eCa, eAa); }
+	void FX_PreRender() { FFX_PreRender(this); }
+	void FX_PostRender() { FFX_PostRender(this); }
+	void EF_Init() { FEF_Init(this); }
+	void EF_SetCameraInfo() { FEF_SetCameraInfo(this); }
+	bool FX_ObjectChange(CShader* Shader, CShaderResources* Res, CRenderObject* obj, CRendElementBase* pRE) { return FFX_ObjectChange(this, Shader, Res, obj, pRE); }
+	bool ScreenShotInternal(const char* filename, int width, EScreenShotMode eScreenShotMode) { return FScreenShotInternal(this, filename, width, eScreenShotMode); }
+	void UpdateNearestChange(int flags) { FUpdateNearestChange(this, flags); }
+	void UpdatePrevMatrix(bool bEnable) { FUpdatePrevMatrix(this, bEnable); }
+	void FX_SetAdjacencyOffsetBuffer() { FFX_SetAdjacencyOffsetBuffer(this); }
+	static void FX_FlushShader_General() { FFX_FlushShader_General(); }
+	static void FX_FlushShader_ZPass() { FFX_FlushShader_ZPass(); }
+	static bool FX_UpdateAnimatedShaderResources(const CShaderResources* shaderResources) { return FFX_UpdateAnimatedShaderResources(shaderResources); }
+	static bool FX_UpdateDynamicShaderResources(const CShaderResources* shaderResources, unsigned batchFilter, unsigned flags2) { return FFX_UpdateDynamicShaderResources(shaderResources, batchFilter, flags2); }
+	void FX_UnbindBuffer(ID3D11Buffer* buffer) { FFX_UnbindBuffer(this, buffer); }
+	void EF_Scissor(bool bEnable, int sX, int sY, int sWdt, int sHgt) { FEF_Scissor(this, bEnable, sX, sY, sWdt, sHgt); }
+	bool EF_GetScissorState(int& sX, int& sY, int& sWdt, int& sHgt) { return FEF_GetScissorState(this, sX, sY, sWdt, sHgt); }
+	void EF_SetFogColor(const ColorF& Color) { FEF_SetFogColor(this, Color); }
+	void FX_FogCorrection() { FFX_FogCorrection(this); }
+	void FX_DrawIndexedMesh(const ERenderPrimitiveType nPrimType) { FFX_DrawIndexedMesh(this, nPrimType); }
+	bool FX_SetResourcesState() { return FFX_SetResourcesState(this); }
+	void DrawRenderItems(const SGraphicsPipelinePassContext& passContext) { FDrawRenderItems(this, passContext); }
+	void FX_ProcessZPassRenderLists() { FFX_ProcessZPassRenderLists(this); }
+	void FX_ProcessZPassRender_List(ERenderListID list, unsigned filter) { FFX_ProcessZPassRender_List(this, list, filter); }
+	void FX_ProcessSkinRenderLists(int nList, void (*RenderFunc)(), bool bLighting) { FFX_ProcessSkinRenderLists(this, nList, RenderFunc, bLighting); }
+	void FX_ProcessEyeOverlayRenderLists(int nList, void (*RenderFunc)(), bool bLighting) { FFX_ProcessEyeOverlayRenderLists(this, nList, RenderFunc, bLighting); }
+	void FX_ProcessHalfResParticlesRenderList(CRenderView* pRenderView, int nList, void (*RenderFunc)(), bool bLighting) { FFX_ProcessHalfResParticlesRenderList(this, pRenderView, nList, RenderFunc, bLighting); }
+	void FX_WaterVolumesPreprocess() { FFX_WaterVolumesPreprocess(this); }
+	void FX_ProcessPostRenderLists(unsigned nBatchFilter) { FFX_ProcessPostRenderLists(this, nBatchFilter); }
+	void FX_ProcessRenderList(int nList, unsigned nBatchFilter) { FFX_ProcessRenderListOv1(this, nList, nBatchFilter); }
+	void FX_ProcessRenderList(int nList, void (*RenderFunc)(), bool bLighting, unsigned nBatchFilter, unsigned nBatchExcludeFilter) { FFX_ProcessRenderListOv0(this, nList, RenderFunc, bLighting, nBatchFilter, nBatchExcludeFilter); }
+	void OldPipeline_ProcessRenderList(lockfree_add_vector<SRendItem>& renderItems, int nums, int nume, int nList, void (*RenderFunc)(), bool bLighting, unsigned nBatchFilter, unsigned nBatchExcludeFilter) { FOldPipeline_ProcessRenderList(this, renderItems, nums, nume, nList, RenderFunc, bLighting, nBatchFilter, nBatchExcludeFilter); }
+	void OldPipeline_ProcessBatchesList(lockfree_add_vector<SRendItem>& renderItems, int nums, int nume, unsigned nBatchFilter, unsigned nBatchExcludeFilter) { FOldPipeline_ProcessBatchesList(this, renderItems, nums, nume, nBatchFilter, nBatchExcludeFilter); }
+	void FX_WaterVolumesCaustics(CRenderView* pRenderView) { FFX_WaterVolumesCaustics(this, pRenderView); }
+	void FX_WaterVolumesCausticsPreprocess(N3DEngineCommon::SCausticInfo& causticInfo) { FFX_WaterVolumesCausticsPreprocess(this, causticInfo); }
+	bool FX_WaterVolumesCausticsUpdateGrid(N3DEngineCommon::SCausticInfo& causticInfo) { return FFX_WaterVolumesCausticsUpdateGrid(this, causticInfo); }
+	virtual void EF_EndEf3D(const int nFlags, const int nPrecacheUpdateIdSlow, const int nPrecacheUpdateIdFast, const SRenderingPassInfo& passInfo);
+	virtual void* GetHWND();
+	virtual void SetColorOp(uint8_t eCo, uint8_t eAo, uint8_t eCa, uint8_t eAa);
+	void AdjustHDROutputMode() { FAdjustHDROutputMode(this); }
+	virtual IRenderAuxGeom* GetIRenderAuxGeom(void* jobID);
+	virtual IArkRenderPersistentAuxGeom* GetIArkRenderPersistentAuxGeom();
+	virtual IColorGradingController* GetIColorGradingController();
+	virtual void StartLoadtimeFlashPlayback(ILoadtimeCallback* pCallback);
+	virtual void StopLoadtimeFlashPlayback();
+	virtual void StartLoadtimeBinkPlayback(ILoadtimeCallback* pCallback);
+	virtual void StopLoadtimeBinkPlayback();
+	virtual const RPProfilerStats* GetRPPStats(ERenderPipelineProfilerStats eStat, bool bCalledFromMainThread);
+	virtual const RPProfilerStats* GetRPPStatsArray(bool bCalledFromMainThread);
+	virtual int GetPolygonCountByType(unsigned EFSList, EVertexCostTypes vct, unsigned z, bool bCalledFromMainThread);
+	virtual _smart_ptr<IGraphicsDeviceConstantBuffer> CreateGraphiceDeviceConstantBuffer();
+	virtual gpu_pfx2::IManager* GetGpuParticleManager();
+	void HandleDisplayPropertyChanges() { FHandleDisplayPropertyChanges(this); }
+	bool CaptureFrameBufferToFile(const char* pFilePath, CTexture* pRenderTarget) { return FCaptureFrameBufferToFile(this, pFilePath, pRenderTarget); }
+	virtual void EnablePipelineProfiler(bool bEnable);
+	virtual void ClearPerFrameData(const SRenderingPassInfo& passInfo);
+	void CheckUpdateDimensions(int& _width, int& _height) { FCheckUpdateDimensions(this, _width, _height); }
+	virtual void PeekWindowMessage(unsigned message, uint64_t wParam, uint64_t lParam);
+
+#if 0
+	static void StaticCleanup();
+	CD3D9Renderer* operator->();
+	const bool operator!() const;
+	bool operator bool() const;
+	CD3D9Renderer* operator class CD3D9Renderer *();
+	const SRenderTileInfo& GetRenderTileInfo() const;
+	CTexture* GetBackBufferTexture();
+	void SetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY _arg0_);
+	void LockParticleVideoMemory();
+	void SetDefaultTexParams(bool _arg0_, bool _arg1_, bool _arg2_);
+	const CCryDeviceWrapper& GetDevice() const;
+	CCryDeviceWrapper& GetDevice();
+	CCryDeviceWrapper& GetDevice_Unsynchronized();
+	CCryDeviceContextWrapper& GetDeviceContext_Unsynchronized();
+	CCryDeviceContextWrapper& GetDeviceContext_ForMapAndUnmap();
+	void BindContextToThread(unsigned long _arg0_);
+	unsigned long GetBoundThreadID() const;
+	void CheckContextThreadAccess() const;
+	void WaitForAsynchronousDevice() const;
+	volatile int* GetAsynchronousDeviceState();
+	void RegisterDeviceWrapperHook(ICryDeviceWrapperHook* _arg0_);
+	void UnregisterDeviceWrapperHook(const char* _arg0_);
+	void PrepareShadowGenForFrustumNonJobs(const int _arg0_);
+	void GetReprojectionMatrix(Matrix44& _arg0_, const Matrix44& _arg1_, const Matrix44& _arg2_, const Matrix44& _arg3_, const Matrix44& _arg4_, float _arg5_) const;
+	bool GetDepthBoundTestState(float& _arg0_, float& _arg1_) const;
+	void DrawAllDynTextures(const char* _arg0_, const bool _arg1_, const bool _arg2_);
+	void GetDeviceGamma();
+	void SetDeviceGamma(CD3D9Renderer::SGammaRamp* _arg0_);
+	EFullscreenMode GetFullscreenMode() const;
+	EFullscreenMode GetFullscreenModeFromCVar() const;
+	bool IsSuperSamplingEnabled();
+	bool IsNativeScalingEnabled();
+	bool IsDirectX11Supported() const;
+	DeviceInfo& DevInfo();
+	unsigned GetCurrentFrameCounter() const;
+	unsigned GetCompletedFrameCounter() const;
+	void DebugShowRenderTarget();
+	void UnSetRes();
+	void DisplaySplash();
+	void DestroyWindow();
+	int FindTextureInRegistry(const char* _arg0_, int* _arg1_);
+	int RegisterTextureInRegistry(const char* _arg0_, int _arg1_, int _arg2_, int _arg3_);
+	unsigned MakeTextureREAL(const char* _arg0_, int* _arg1_, unsigned _arg2_);
+	unsigned CheckTexturePlus(const char* _arg0_, const char* _arg1_);
+	void PostDeviceReset();
+	void IssueFrameFences();
+	ArkVideoInfo& GetArkVideoInfo();
+	void DebugPrintShader(CHWShader_D3D* _arg0_, void* _arg1_, int _arg2_, int _arg3_, ColorF _arg4_);
+	void DebugPerfBars(int _arg0_, int _arg1_);
+	void DebugVidResourcesBars(int _arg0_, int _arg1_);
+	void DebugDrawStats1();
+	void DebugDrawStats2();
+	void DebugDrawStats8();
+	void DebugDrawStats20();
+	void DebugDrawStats();
+	void DebugDrawRect(float _arg0_, float _arg1_, float _arg2_, float _arg3_, float* _arg4_);
+	void VidMemLog();
+	void DebugDrawDeviceMemoryStats();
+	void Draw2dImage(float _arg0_, float _arg1_, float _arg2_, float _arg3_, int _arg4_, float _arg5_, float _arg6_, float _arg7_, float _arg8_, float _arg9_, const ColorF& _arg10_, float _arg11_);
+	void DrawLines(Vec3* _arg0_, int _arg1_, ColorF& _arg2_, int _arg3_, float _arg4_);
+	void FX_SetWireframeMode(int _arg0_);
+	void UnloadOldTextures();
+	void SF_ResetResources();
+	SSF_ResourcesD3D& SF_GetResources();
+	CShader* SF_SetTechnique(const CCryNameTSCRC& _arg0_);
+	unsigned SF_AdjustBlendStateForMeasureOverdraw(unsigned _arg0_);
+	void FX_ApplyThreadState(SThreadInfo& _arg0_, SThreadInfo* _arg1_);
+	void EF_RenderScene(int _arg0_, SViewport& _arg1_, const SRenderingPassInfo& _arg2_);
+	void FX_UpdateGpuParticles();
+	void FX_StencilTestCurRef(bool _arg0_, bool _arg1_, bool _arg2_);
+	void FX_PostProcessSceneHDR();
+	bool FX_SkinRendering(bool _arg0_);
+	bool FX_NearTransparency();
+	void FX_Invalidate();
+	void FX_StateRestore(int _arg0_);
+	void SetFullscreenViewport();
+	void SetLogFuncs(bool _arg0_);
+	void MemReplayWrapD3DDevice();
+	bool CreateMSAADepthBuffer();
+	void PostMeasureOverdraw();
+	void DrawTexelsPerMeterInfo();
+	void EF_SetGlobalColor(float _arg0_, float _arg1_, float _arg2_, float _arg3_);
+	bool FX_SetStreamFlags(SShaderPass* _arg0_);
+	void FX_FlushSkinVSParams(CHWShader_D3D* _arg0_, int _arg1_, int _arg2_, int _arg3_, int _arg4_, int _arg5_, DualQuat* _arg6_, DualQuat* _arg7_);
+	bool FX_GetTargetSurfaces(CTexture* _arg0_, ID3D11RenderTargetView* & _arg1_, CD3D9Renderer::SRenderTargetStack* _arg2_, int _arg3_, int _arg4_, unsigned _arg5_);
+	bool FX_PushRenderTarget(int _arg0_, ID3D11RenderTargetView* _arg1_, SDepthTexture* _arg2_, unsigned _arg3_);
+	SDepthTexture* FX_CreateDepthSurface(int _arg0_, int _arg1_, bool _arg2_);
+	void FX_ZState(unsigned& _arg0_);
+	void FX_HairState(unsigned& _arg0_, const SShaderPass* _arg1_);
+	unsigned PackBlendModeAndPassGroup();
+	bool ShouldApplyFogCorrection();
+	void FX_DrawRE(CShader* _arg0_, SShaderPass* _arg1_);
+	unsigned ApplyIndexBufferBindOffset(unsigned _arg0_);
+	HRESULT FX_ResetVertexDeclaration();
+	D3D_PRIMITIVE_TOPOLOGY FX_ConvertPrimitiveType(const ERenderPrimitiveType _arg0_) const;
+	void FX_SetObjectTransform(CRenderObject* _arg0_, CShader* _arg1_, uint64_t _arg2_);
+	void HandleDefaultObject();
+	bool FX_SetTessellationShaders(CHWShader_D3D* & _arg0_, CHWShader_D3D* & _arg1_, const SShaderPass* _arg2_);
+	void FX_Flush_ForProfiler(int _arg0_);
+	bool FX_DebugCheckConsistency(int _arg0_, int _arg1_, int _arg2_, int _arg3_);
+	void FX_StartBatching();
+	void FX_ProcessRenderStates(int _arg0_, int _arg1_, const SGraphicsPipelinePassContext& _arg2_);
+	void SubmitRenderViewForRendering(void (*_arg0_)(), int _arg1_, SViewport& _arg2_, const SRenderingPassInfo& _arg3_, bool _arg4_);
+	void FX_ProcessPostGroups(int _arg0_, int _arg1_);
+	bool IsDeviceLost();
+	CStandardGraphicsPipeline& GetGraphicsPipeline();
+	CTiledShading& GetTiledShading();
+	CVolumetricCloudManager& GetVolumetricCloud();
+	void BeginRenderDocCapture();
+	void EndRenderDocCapture();
+	void HandlePresentError(HRESULT _arg0_);
+	void CacheCaptureCVars();
+	void CaptureFrameBuffer();
+	void ResolveSupersampledBackbuffer();
+	void ScaleBackbufferToViewport();
+	void OverrideWindowParameters(bool _arg0_, int _arg1_, int _arg2_, bool _arg3_);
+	void CalcAABBScreenRect(const AABB& _arg0_, const CRenderCamera& _arg1_, const Matrix44& _arg2_, Vec3* _arg3_, Vec3* _arg4_);
+#endif
+
+	static inline auto FCD3D9Renderer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF66380);
+	static inline auto FBitNotCD3D9Renderer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF66DF0);
+	static inline auto FInitRenderer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6BF70);
+	static inline auto FRelease = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EE50);
+	static inline auto FGetNumBackBufferIndices = PreyFunction<unsigned(const DXGI_SWAP_CHAIN_DESC& scDesc)>(0x1948930);
+	static inline auto FGetCurrentBackBufferIndex = PreyFunction<unsigned(IDXGISwapChain* pSwapChain)>(0x1CBB0B0);
+	static inline auto FReleaseBackBuffers = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EE90);
+	static inline auto FGetOrCreateBlendState = PreyFunction<unsigned(CD3D9Renderer* const _this, const D3D11_BLEND_DESC& desc)>(0xF6ADD0);
+	static inline auto FSetBlendState = PreyFunction<bool(CD3D9Renderer* const _this, const SStateBlend* pNewState)>(0xF6FF80);
+	static inline auto FGetOrCreateRasterState = PreyFunction<unsigned(CD3D9Renderer* const _this, const D3D11_RASTERIZER_DESC& rasterizerDec, const bool bAllowMSAA)>(0xF6B140);
+	static inline auto FPreCreateRasterStates = PreyFunction<void(CD3D9Renderer* const _this, float _constBias, float _slopeBias, float _biasClamp)>(0xF6D300);
+	static inline auto FGetRasterStateModified = PreyFunction<unsigned(CD3D9Renderer* const _this, unsigned _baseIndex, float _constBias, float _slopeBias, float _biasClamp)>(0xF6B480);
+	static inline auto FSetRasterState = PreyFunction<bool(CD3D9Renderer* const _this, const SStateRaster* pNewState, const bool bAllowMSAA)>(0xF70FD0);
+	static inline auto FGetOrCreateDepthState = PreyFunction<unsigned(CD3D9Renderer* const _this, const D3D11_DEPTH_STENCIL_DESC& desc)>(0xF6AFB0);
+	static inline auto FSetDepthState = PreyFunction<bool(CD3D9Renderer* const _this, const SStateDepth* pNewState, uint8_t newStencRef)>(0xF70850);
+	static inline auto FUnLockParticleVideoMemory = PreyFunction<void(CD3D9Renderer* const _this)>(0xF71270);
+	static inline auto FActivateLayer = PreyFunction<void(CD3D9Renderer* const _this, const char* pLayerName, bool activate)>(0xF671B0);
+	static inline auto FGetDeviceContext = PreyFunction<CCryDeviceContextWrapper& (CD3D9Renderer* const _this)>(0xEE6700);
+	static inline auto FEF_PrepareShadowGenRenderList = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView)>(0xF3C0E0);
+	static inline auto FEF_PrepareShadowGenForLight = PreyFunction<bool(CD3D9Renderer* const _this, CRenderView* pRenderView, SRenderLight* pLight, int nLightID)>(0xF3BEE0);
+	static inline auto FPrepareShadowGenForFrustum = PreyFunction<bool(CD3D9Renderer* const _this, CRenderView* pRenderView, ShadowMapFrustum* pCurFrustum, SRenderLight* pLight, int nLightID, int nLOD)>(0xF3CDA0);
+	static inline auto FEF_InvokeShadowMapRenderJobs = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView, const int nFlags)>(0xF28D10);
+	static inline auto FSetDepthBoundTest = PreyFunction<void(CD3D9Renderer* const _this, float fMin, float fMax, bool bEnable)>(0xEF2B00);
+	static inline auto FCreateDeferredUnitBox = PreyFunction<void(CD3D9Renderer* const _this, stl::aligned_vector<unsigned short,16>& indBuff, stl::aligned_vector<SVF_P3F_C4B_T2F,16>& vertBuff)>(0xEF2900);
+	static inline auto FGetDeferredUnitBoxIndexBuffer = PreyFunction<const stl::aligned_vector<unsigned short,16>& (const CD3D9Renderer* const _this)>(0xEF2AE0);
+	static inline auto FGetDeferredUnitBoxVertexBuffer = PreyFunction<const stl::aligned_vector<SVF_P3F_C4B_T2F,16>& (const CD3D9Renderer* const _this)>(0xEF2AF0);
+	static inline auto FConfigShadowTexgen = PreyFunction<void(CD3D9Renderer* const _this, int Num, ShadowMapFrustum* pFr, int nFrustNum, bool bScreenToLocalBasis, bool bUseComparisonSampling)>(0xF394F0);
+	static inline auto FDrawAllShadowsOnTheScreen = PreyFunction<void(CD3D9Renderer* const _this)>(0xF3B060);
+	static inline auto FOnEntityDeleted = PreyFunction<void(CD3D9Renderer* const _this, IRenderNode* pRenderNode)>(0xF3CD80);
+	static inline auto FD3DSetCull = PreyFunction<void(CD3D9Renderer* const _this, ECull eCull, bool bSkipMirrorCull)>(0xEFCF80);
+	static inline auto FAdjustWindowForChange = PreyFunction<HRESULT(CD3D9Renderer* const _this)>(0xF3E4A0);
+	static inline auto FCreateWindowCallback = PreyFunction<HWND__* ()>(0xF40AE0);
+	static inline auto FSetWindow = PreyFunction<bool(CD3D9Renderer* const _this, int width, int height, EFullscreenMode _fullscreenMode, void* hWnd)>(0xF443D0);
+	static inline auto FSetRes = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF441D0);
+	static inline auto FRestoreGamma = PreyFunction<void(CD3D9Renderer* const _this)>(0xF43A80);
+	static inline auto FSetGamma = PreyFunction<void(CD3D9Renderer* const _this, float fGamma, float fBrightness, float fContrast, bool bForce)>(0xF43D00);
+	static inline auto FOnD3D11CreateDevice = PreyFunction<HRESULT(ID3D11Device* pd3dDevice)>(0xF42130);
+	static inline auto FOnD3D11PostCreateDevice = PreyFunction<HRESULT(ID3D11Device* pd3dDevice)>(0xF42540);
+	static inline auto FRT_BeginFrame = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6D8C0);
+	static inline auto FRT_EndFrame = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6E3C0);
+	static inline auto FRT_BeginLoadingFrame = PreyFunction<void(CD3D9Renderer* const _this, unsigned _frameId)>(0xF6E100);
+	static inline auto FRT_EndLoadingFrame = PreyFunction<void(CD3D9Renderer* const _this, unsigned _frameId)>(0xF6E9D0);
+	static inline auto FRT_SwitchToNativeResolutionBackbuffer = PreyFunction<void(CD3D9Renderer* const _this, bool resolveBackBuffer)>(0xF6ECD0);
+	static inline auto FRT_Init = PreyFunction<void(CD3D9Renderer* const _this)>(0xF25870);
+	static inline auto FRT_RenderWatermark = PreyFunction<void(CD3D9Renderer* const _this)>(0x1333E90);
+	static inline auto FRT_CreateDevice = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF246F0);
+	static inline auto FRT_Reset = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EB90);
+	static inline auto FRT_RenderScene = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView, int nFlags, SThreadInfo& TI, void (*RenderFunc)())>(0xF31950);
+	static inline auto FRT_SetCull = PreyFunction<void(CD3D9Renderer* const _this, int mode)>(0xF6EC00);
+	static inline auto FRT_SetScissor = PreyFunction<void(CD3D9Renderer* const _this, bool bEnable, int sX, int sY, int sWdt, int sHgt)>(0xF02FB0);
+	static inline auto FRT_SetCameraInfo = PreyFunction<void(CD3D9Renderer* const _this)>(0xF32900);
+	static inline auto FRT_CreateResource = PreyFunction<void(CD3D9Renderer* const _this, SResourceAsync* pRes)>(0xF24780);
+	static inline auto FRT_ReleaseResource = PreyFunction<void(CD3D9Renderer* const _this, SResourceAsync* pRes)>(0xF25DC0);
+	static inline auto FRT_ReleaseRenderResources = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xF25BA0);
+	static inline auto FRT_UnbindResources = PreyFunction<void(CD3D9Renderer* const _this)>(0xF25EC0);
+	static inline auto FRT_UnbindTMUs = PreyFunction<void(CD3D9Renderer* const _this)>(0xF261B0);
+	static inline auto FRT_CreateRenderResources = PreyFunction<void(CD3D9Renderer* const _this)>(0xF24700);
+	static inline auto FRT_PrecacheDefaultShaders = PreyFunction<void(CD3D9Renderer* const _this)>(0xF25880);
+	static inline auto FRT_ClearTarget = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pTex, const ColorF& color)>(0xF24620);
+	static inline auto FRT_ReleaseCB = PreyFunction<void(CD3D9Renderer* const _this, void* pVCB)>(0xF259E0);
+	static inline auto FRT_ReleaseRS = PreyFunction<void(CD3D9Renderer* const _this, std::shared_ptr<CDeviceResourceSet>& pRS)>(0xF25B40);
+	static inline auto FRT_DrawDynVB = PreyFunction<void(CD3D9Renderer* const _this, SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, unsigned nVerts, unsigned nInds, const PublicRenderPrimitiveType nPrimType)>(0xF25150);
+	static inline auto FRT_DrawStringW = PreyFunction<void(const CD3D9Renderer* const _this, IFFont_RenderProxy* pFont, float x, float y, float z, const wchar_t* pStr, const bool asciiMultiLine, const STextDrawContext& ctx)>(0xF257D0);
+	static inline auto FRT_DrawLines = PreyFunction<void(CD3D9Renderer* const _this, Vec3* v, int nump, ColorF& col, int flags, float fGround)>(0xF25340);
+	static inline auto FRT_Draw2dImage = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, unsigned long col, float z)>(0xF248B0);
+	static inline auto FRT_Draw2dImageStretchMode = PreyFunction<void(CD3D9Renderer* const _this, bool bStretch)>(0xF25140);
+	static inline auto FRT_Push2dImage = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, unsigned long col, float z)>(0xF25890);
+	static inline auto FRT_Draw2dImageList = PreyFunction<void(CD3D9Renderer* const _this)>(0xF250D0);
+	static inline auto FRT_DrawImageWithUV = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered)>(0xF6E140);
+	static inline auto FRT_DrawImageWithUVInternal = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, unsigned long col, bool filtered)>(0xF6E160);
+	static inline auto FRT_Draw2dImageInternal = PreyFunction<void(CD3D9Renderer* const _this, CD3D9Renderer::S2DImage* images, unsigned numImages)>(0xF249A0);
+	static inline auto FRT_SetViewport = PreyFunction<void(CD3D9Renderer* const _this, int x, int y, int width, int height, int id)>(0xF6EC40);
+	static inline auto FRT_RenderDebug = PreyFunction<void(CD3D9Renderer* const _this, bool bRenderStats)>(0x1333E90);
+	static inline auto FRT_SetRendererCVar = PreyFunction<void(CD3D9Renderer* const _this, ICVar* pCVar, const char* pArgText, const bool bSilentMode)>(0xF25E50);
+	static inline auto FRT_PresentFast = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EAD0);
+	static inline auto FFlashRenderInternal = PreyFunction<void(CD3D9Renderer* const _this, IFlashPlayer_RenderProxy* pPlayer, bool bDoRealRender)>(0xF244C0);
+	static inline auto FFlashRenderPlaybackLocklessInternal = PreyFunction<void(CD3D9Renderer* const _this, IFlashPlayer_RenderProxy* pPlayer, int cbIdx, bool bFinalPlayback, bool bDoRealRender)>(0xF24530);
+	static inline auto FInit = PreyFunction<void* (CD3D9Renderer* const _this, int x, int y, int width, int height, unsigned cbpp, int zbpp, int sbits, EFullscreenMode _fullscreenMode, void* hinst, void* Glhwnd, bool bReInit, const SCustomRenderInitArgs* pCustomArgs, bool bShaderCacheGen)>(0xF40E40);
+	static inline auto FGetVideoMemoryUsageStats = PreyFunction<void(CD3D9Renderer* const _this, uint64_t& vidMemUsedThisFrame, uint64_t& vidMemUsedRecently, bool bGetPoolsSizes)>(0xF40DF0);
+	static inline auto FSetCurrentContext = PreyFunction<bool(CD3D9Renderer* const _this, void* hWnd)>(0xF43C90);
+	static inline auto FCreateContext = PreyFunction<bool(CD3D9Renderer* const _this, void* hWnd, bool bAllowMSAA, int SSX, int SSY, bool isMain)>(0xF400C0);
+	static inline auto FDeleteContext = PreyFunction<bool(CD3D9Renderer* const _this, void* hWnd)>(0xF40B30);
+	static inline auto FMakeMainContextActive = PreyFunction<void(CD3D9Renderer* const _this)>(0xF41D90);
+	static inline auto FIsMainContextActive = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF41D30);
+	static inline auto FGetMainContextHWND = PreyFunction<void* (CD3D9Renderer* const _this)>(0xF6A150);
+	static inline auto FGetCurrentContextHWND = PreyFunction<void* (CD3D9Renderer* const _this)>(0xF69DF0);
+	static inline auto FIsCurrentContextMainVP = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF6CDA0);
+	static inline auto FGetCurrentContextViewportWidth = PreyFunction<int(const CD3D9Renderer* const _this)>(0xF69E30);
+	static inline auto FGetCurrentContextViewportHeight = PreyFunction<int(const CD3D9Renderer* const _this)>(0xF69E10);
+	static inline auto FCreateRenderTarget = PreyFunction<int(CD3D9Renderer* const _this, int nWidth, int nHeight, const ColorF& cClear, ETEX_Format eTF)>(0xF68420);
+	static inline auto FDestroyRenderTarget = PreyFunction<bool(CD3D9Renderer* const _this, int nHandle)>(0xF68700);
+	static inline auto FSetRenderTarget = PreyFunction<bool(CD3D9Renderer* const _this, int nHandle)>(0xF71030);
+	static inline auto FChangeDisplay = PreyFunction<bool(CD3D9Renderer* const _this, unsigned width, unsigned height, unsigned cbpp)>(0x13B0900);
+	static inline auto FChangeViewport = PreyFunction<void(CD3D9Renderer* const _this, unsigned x, unsigned y, unsigned width, unsigned height, bool bMainViewport)>(0xF67970);
+	static inline auto FGetIArkVideoInfo = PreyFunction<IArkVideoInfo& (CD3D9Renderer* const _this)>(0xF69E80);
+	static inline auto FChangeResolution = PreyFunction<bool(CD3D9Renderer* const _this, int nNewWidth, int nNewHeight, int nNewColDepth, int nNewRefreshHZ, EFullscreenMode _fullscreenMode, bool bForceReset)>(0xF3E870);
+	static inline auto FReset = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EFD0);
+	static inline auto FSwitchToNativeResolutionBackbuffer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF71250);
+	static inline auto FCalculateResolutions = PreyFunction<void(CD3D9Renderer* const _this, int width, int height, bool bUseNativeRes, int* pRenderWidth, int* pRenderHeight, int* pNativeWidth, int* pNativeHeight, int* pBackbufferWidth, int* pBackbufferHeight)>(0xF67430);
+	static inline auto FBeginFrame = PreyFunction<void(CD3D9Renderer* const _this, const bool _bUpdateFrameId)>(0xF671C0);
+	static inline auto FShutDown = PreyFunction<void(CD3D9Renderer* const _this, bool bReInit)>(0xF446D0);
+	static inline auto FShutDownFast = PreyFunction<void(CD3D9Renderer* const _this)>(0xF447F0);
+	static inline auto FRenderDebug = PreyFunction<void(CD3D9Renderer* const _this, bool bRenderStats)>(0xF6EFB0);
+	static inline auto FRT_ShutDown = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xF435C0);
+	static inline auto FEndFrame = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69A00);
+	static inline auto FLimitFramerate = PreyFunction<void(CD3D9Renderer* const _this, const int maxFPS, const bool bUseSleep)>(0xF6CDC0);
+	static inline auto FLimitLoadingFramerate = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6CEC0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(CD3D9Renderer* const _this, ICrySizer* Sizer)>(0xF6A180);
+	static inline auto FGetLogVBuffers = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69EB0);
+	static inline auto FTryFlush = PreyFunction<void(CD3D9Renderer* const _this)>(0xF71260);
+	static inline auto FDraw2dImageOv0 = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float w, float h, int textureid, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z)>(0xF68B60);
+	static inline auto FPush2dImage = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float w, float h, int textureid, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z)>(0xF6D770);
+	static inline auto FDraw2dImageStretchMode = PreyFunction<void(CD3D9Renderer* const _this, bool bStretch)>(0xF68CA0);
+	static inline auto FDraw2dImageList = PreyFunction<void(CD3D9Renderer* const _this)>(0xF68C90);
+	static inline auto FDrawImage = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float w, float h, int texture_id, float s0, float t0, float s1, float t1, float r, float g, float b, float a, bool filtered)>(0xF68DC0);
+	static inline auto FDrawImageWithUV = PreyFunction<void(CD3D9Renderer* const _this, float xpos, float ypos, float z, float w, float h, int texture_id, float* s, float* t, float r, float g, float b, float a, bool filtered)>(0xF68EF0);
+	static inline auto FSetCullMode = PreyFunction<void(CD3D9Renderer* const _this, int mode)>(0xF70740);
+	static inline auto FPushProfileMarker = PreyFunction<void(CD3D9Renderer* const _this, char* label)>(0xF6D8A0);
+	static inline auto FPopProfileMarker = PreyFunction<void(CD3D9Renderer* const _this, char* label)>(0xF6D010);
+	static inline auto FEnableFog = PreyFunction<bool(CD3D9Renderer* const _this, bool enable)>(0xF69990);
+	static inline auto FSetFogColor = PreyFunction<void(CD3D9Renderer* const _this, const ColorF& color)>(0xF708E0);
+	static inline auto FCreateResourceAsync = PreyFunction<void(CD3D9Renderer* const _this, SResourceAsync* pResource)>(0xF685E0);
+	static inline auto FReleaseResourceAsync = PreyFunction<void(CD3D9Renderer* const _this, SResourceAsync* pResource)>(0xF6EF00);
+	static inline auto FDownLoadToVideoMemoryOv1 = PreyFunction<unsigned(CD3D9Renderer* const _this, uint8_t* data, int w, int h, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nummipmap, bool repeat, int filter, int Id, const char* szCacheName, int flags, bool eEndian, RectI* pRegion, bool bAsyncDevTexCreation)>(0xF68AB0);
+	static inline auto FDownLoadToVideoMemoryOv0 = PreyFunction<unsigned(CD3D9Renderer* const _this, uint8_t* data, int w, int h, int d, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nummipmap, ETEX_Type eTT, bool repeat, int filter, int Id, const char* szCacheName, int flags, bool eEndian, RectI* pRegion, bool bAsyncDevTexCreation)>(0xF68720);
+	static inline auto FUpdateTextureInVideoMemory = PreyFunction<void(CD3D9Renderer* const _this, unsigned tnum, uint8_t* newdata, int posx, int posy, int w, int h, ETEX_Format eTFSrc, int posz, int sizez)>(0xF71450);
+	static inline auto FEF_PrecacheResourceOv1 = PreyFunction<bool(CD3D9Renderer* const _this, SShaderItem* pSI, float fMipFactorSI, float fTimeToReady, int Flags, int nUpdateId, int nCounter)>(0xF69500);
+	static inline auto FEF_PrecacheResourceOv0 = PreyFunction<bool(CD3D9Renderer* const _this, ITexture* pTP, float fMipFactor, float fTimeToReady, int Flags, int nUpdateId, int nCounter)>(0xF69800);
+	static inline auto FRemoveTexture = PreyFunction<void(CD3D9Renderer* const _this, unsigned TextureId)>(0xF6EF10);
+	static inline auto FPrecacheTick = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6D560);
+	static inline auto FPostLevelLoading = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6D020);
+	static inline auto FPostLevelUnload = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6D0E0);
+	static inline auto FSetRCamera = PreyFunction<void(CD3D9Renderer* const _this, const CRenderCamera& cam)>(0xF70B50);
+	static inline auto FSetCamera = PreyFunction<void(CD3D9Renderer* const _this, const CCamera& cam)>(0xF70040);
+	static inline auto FSetViewport = PreyFunction<void(CD3D9Renderer* const _this, int x, int y, int width, int height, int id)>(0xF71180);
+	static inline auto FGetViewportOv1 = PreyFunction<void(CD3D9Renderer* const _this, int* x, int* y, int* width, int* height)>(0xF6B610);
+	static inline auto FGetViewportOv0 = PreyFunction<SViewport*(const CD3D9Renderer* const _this, SViewport* _return_value_)>(0xF6B5A0);
+	static inline auto FSetScissor = PreyFunction<void(CD3D9Renderer* const _this, int x, int y, int width, int height)>(0xF71110);
+	static inline auto FSetRenderTile = PreyFunction<void(CD3D9Renderer* const _this, float nTilesPosX, float nTilesPosY, float nTilesGridSizeX, float nTilesGridSizeY)>(0xF710E0);
+	static inline auto FGraph = PreyFunction<void(CD3D9Renderer* const _this, uint8_t* g, int x, int y, int wdt, int hgt, int nC, int type, char* text, ColorF& color, float fScale)>(0xF6B6B0);
+	static inline auto FDrawDynVB = PreyFunction<void(CD3D9Renderer* const _this, SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, int nVerts, int nInds, const PublicRenderPrimitiveType nPrimType)>(0xEFC6E0);
+	static inline auto FPrintResourcesLeaks = PreyFunction<void(CD3D9Renderer* const _this)>(0x1333E90);
+	static inline auto FFX_PushWireframeMode = PreyFunction<void(CD3D9Renderer* const _this, int mode)>(0xF69B60);
+	static inline auto FFX_PopWireframeMode = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69AD0);
+	static inline auto FDrawPrimitivesInternal = PreyFunction<void(CD3D9Renderer* const _this, CVertexBuffer* src, int vert_num, const ERenderPrimitiveType prim_type)>(0xF68FC0);
+	static inline auto FResetToDefault = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6EFE0);
+	static inline auto FSetMaterialColor = PreyFunction<void(CD3D9Renderer* const _this, float r, float g, float b, float a)>(0xF70960);
+	static inline auto FProjectToScreen = PreyFunction<bool(CD3D9Renderer* const _this, float ptx, float pty, float ptz, float* sx, float* sy, float* sz)>(0xF6D570);
+	static inline auto FUnProjectFromScreen = PreyFunction<int(CD3D9Renderer* const _this, float sx, float sy, float sz, float* px, float* py, float* pz)>(0xF71290);
+	static inline auto FGetModelViewMatrix = PreyFunction<void(CD3D9Renderer* const _this, float* mat)>(0xF6ACF0);
+	static inline auto FGetProjectionMatrix = PreyFunction<void(CD3D9Renderer* const _this, float* mat)>(0xF6B340);
+	static inline auto FGetCameraZeroMatrix = PreyFunction<void(CD3D9Renderer* const _this, float* mat)>(0xF69CF0);
+	static inline auto FSetMatrices = PreyFunction<void(CD3D9Renderer* const _this, float* pProjMat, float* pViewMat, float* pZeroMat)>(0xF70A20);
+	static inline auto FDrawQuad = PreyFunction<void(CD3D9Renderer* const _this, float x0, float y0, float x1, float y1, const ColorF& color, float z, float s0, float t0, float s1, float t1)>(0xF691D0);
+	static inline auto FDrawFullScreenTriangle = PreyFunction<void(CD3D9Renderer* const _this)>(0xF68CC0);
+	static inline auto FClearTargetsImmediatelyOv3 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xF68120);
+	static inline auto FClearTargetsImmediatelyOv2 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors, float fDepth)>(0xF68190);
+	static inline auto FClearTargetsImmediatelyOv1 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors)>(0xF68160);
+	static inline auto FClearTargetsImmediatelyOv0 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, float fDepth)>(0xF681C0);
+	static inline auto FClearTargetsLaterOv3 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xF681F0);
+	static inline auto FClearTargetsLaterOv2 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors, float fDepth)>(0xF68210);
+	static inline auto FClearTargetsLaterOv1 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors)>(0xF68200);
+	static inline auto FClearTargetsLaterOv0 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, float fDepth)>(0xF68230);
+	static inline auto FSetRendererCVar = PreyFunction<void(CD3D9Renderer* const _this, ICVar* pCVar, const char* pArgText, const bool bSilentMode)>(0xF263E0);
+	static inline auto FScreenShot = PreyFunction<bool(CD3D9Renderer* const _this, const char* filename, int iPreWidth, EScreenShotMode eScreenShotMode)>(0xF6F3D0);
+	static inline auto FSet2DMode = PreyFunction<void(CD3D9Renderer* const _this, bool enable, int ortox, int ortoy, float znear, float zfar)>(0xF6FBE0);
+	static inline auto FScreenToTexture = PreyFunction<int(CD3D9Renderer* const _this, int nTexID)>(0xF6FBA0);
+	static inline auto FSetGammaDelta = PreyFunction<bool(CD3D9Renderer* const _this, const float fGamma)>(0xF44190);
+	static inline auto FFontUploadTexture = PreyFunction<bool(CD3D9Renderer* const _this, CFBitmap* pBmp, ETEX_Format eTF)>(0xEFCD90);
+	static inline auto FFontCreateTexture = PreyFunction<int(CD3D9Renderer* const _this, int Width, int Height, uint8_t* pData, ETEX_Format eTF, bool genMips)>(0xEFC720);
+	static inline auto FFontUpdateTexture = PreyFunction<bool(CD3D9Renderer* const _this, int nTexId, int nX, int nY, int USize, int VSize, uint8_t* pData)>(0xEFCD20);
+	static inline auto FFontReleaseTexture = PreyFunction<void(CD3D9Renderer* const _this, CFBitmap* pBmp)>(0xEFC7D0);
+	static inline auto FFontSetTextureOv1 = PreyFunction<void(CD3D9Renderer* const _this, CFBitmap* pBmp, int nFilterMode)>(0xEFCCC0);
+	static inline auto FFontSetTextureOv0 = PreyFunction<void(CD3D9Renderer* const _this, int nTexId, int nFilterMode)>(0xEFCC50);
+	static inline auto FFontSetRenderingState = PreyFunction<void(CD3D9Renderer* const _this, unsigned nVPWidth, unsigned nVPHeight)>(0xEFC950);
+	static inline auto FFontSetBlending = PreyFunction<void(CD3D9Renderer* const _this, int blendSrc, int blendDest)>(0xEFC910);
+	static inline auto FFontRestoreRenderingState = PreyFunction<void(CD3D9Renderer* const _this)>(0xEFC850);
+	static inline auto FFontSetState = PreyFunction<void(CD3D9Renderer* const _this, bool bRestore)>(0xEFCAE0);
+	static inline auto FSF_CreateResources = PreyFunction<void(CD3D9Renderer* const _this)>(0xEE67E0);
+	static inline auto FSF_PrecacheShaders = PreyFunction<void(CD3D9Renderer* const _this)>(0xEE7690);
+	static inline auto FSF_DestroyResources = PreyFunction<void(CD3D9Renderer* const _this)>(0xEE68E0);
+	static inline auto FSF_SetVertexDeclaration = PreyFunction<bool(CD3D9Renderer* const _this, SSF_GlobalDrawParams::EVertexFmt vertexFmt)>(0xEE7FF0);
+	static inline auto FSF_SetBlendOp = PreyFunction<void(CD3D9Renderer* const _this, SSF_GlobalDrawParams::EAlphaBlendOp blendOp, bool reset)>(0xEE7C90);
+	static inline auto FSF_DrawIndexedTriList = PreyFunction<void(CD3D9Renderer* const _this, int baseVertexIndex, int minVertexIndex, int numVertices, int startIndex, int triangleCount, const SSF_GlobalDrawParams& params)>(0xEE6E90);
+	static inline auto FSF_DrawLineStrip = PreyFunction<void(CD3D9Renderer* const _this, int baseVertexIndex, int lineCount, const SSF_GlobalDrawParams& params)>(0xEE72B0);
+	static inline auto FSF_DrawGlyphClear = PreyFunction<void(CD3D9Renderer* const _this, const SSF_GlobalDrawParams& params)>(0xEE6BD0);
+	static inline auto FSF_DrawBlurRect = PreyFunction<void(CD3D9Renderer* const _this, const SSF_GlobalDrawParams& params)>(0xEE6910);
+	static inline auto FSF_Flush = PreyFunction<void(CD3D9Renderer* const _this)>(0xEE7560);
+	static inline auto FSF_UpdateTexture = PreyFunction<bool(CD3D9Renderer* const _this, int texId, int mipLevel, int numRects, const IRenderer::SUpdateRect* pRects, uint8_t* pData, uint64_t pitch, uint64_t size, ETEX_Format eTF)>(0xEE8050);
+	static inline auto FSetProfileMarker = PreyFunction<void(const CD3D9Renderer* const _this, const char* label, CRenderer::ESPM mode)>(0x1333E90);
+	static inline auto FEF_Scene3D = PreyFunction<void(CD3D9Renderer* const _this, SViewport& VP, int nFlags, const SRenderingPassInfo& passInfo)>(0xF28D90);
+	static inline auto FCheckMSAAChange = PreyFunction<bool(CD3D9Renderer* const _this)>(0x13B0900);
+	static inline auto FCheckSSAAChange = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF3F630);
+	static inline auto FFX_DrawInstances = PreyFunction<void(CD3D9Renderer* const _this, CShader* ef, SShaderPass* slw, int nRE, unsigned nStartInst, unsigned nLastInst, unsigned nUsedAttr, uint8_t* InstanceData, int nInstAttrMask, uint8_t* Attributes, int16_t dwCBufSlot)>(0xEFF2E0);
+	static inline auto FFX_DrawShader_InstancedHW = PreyFunction<void(CD3D9Renderer* const _this, CShader* ef, SShaderPass* slw)>(0xEFF8F0);
+	static inline auto FFX_DrawShader_General = PreyFunction<void(CD3D9Renderer* const _this, CShader* ef, SShaderTechnique* pTech)>(0xEFF720);
+	static inline auto FFX_SetupForwardShadows = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView, bool bUseShaderPermutations)>(0xF3C210);
+	static inline auto FFX_SetupShadowsForTransp = PreyFunction<void(CD3D9Renderer* const _this)>(0xF3C380);
+	static inline auto FCopyFramebufferDX11 = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pDst, ID3D11Resource* pSrcResource, DXGI_FORMAT srcFormat)>(0xF279F0);
+	static inline auto FFX_ScreenStretchRect = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pDst)>(0xF2C130);
+	static inline auto FGetOcclusionBuffer = PreyFunction<int(CD3D9Renderer* const _this, float* pOutOcclBuffer, int nSizeX, int nSizeY, Matrix44* pmCamBuffer)>(0xF30180);
+	static inline auto FWaitForParticleBuffer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6C460);
+	static inline auto FInsertParticleVideoDataFence = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6C460);
+	static inline auto FFX_ZTargetReadBack = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2E4E0);
+	static inline auto FFX_UpdateCharCBs = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2C8D0);
+	static inline auto FFX_AllocateCharInstCB = PreyFunction<void* (CD3D9Renderer* const _this, SSkinningData* pSkinningData, unsigned frameId)>(0xF29100);
+	static inline auto FFX_ClearCharInstCB = PreyFunction<void(CD3D9Renderer* const _this, unsigned frameId)>(0xF293D0);
+	static inline auto FCreateAuxiliaryMeshes = PreyFunction<bool(CD3D9Renderer* const _this)>(0xEF4D50);
+	static inline auto FReleaseAuxiliaryMeshes = PreyFunction<bool(CD3D9Renderer* const _this)>(0xEF5EF0);
+	static inline auto FFX_DeferredShadowPassSetup = PreyFunction<bool(CD3D9Renderer* const _this, const Matrix44& mShadowTexGen, const CCamera& cam, ShadowMapFrustum* pShadowFrustum, float maskRTWidth, float maskRTHeight, Matrix44& mScreenToShadow, bool bNearest)>(0xEF5380);
+	static inline auto FFX_DeferredShadowPassSetupBlend = PreyFunction<bool(CD3D9Renderer* const _this, const Matrix44& mShadowTexGen, const CCamera& cam, int nFrustumNum, float maskRTWidth, float maskRTHeight)>(0xEF5C60);
+	static inline auto FFX_DrawTechnique = PreyFunction<void(CD3D9Renderer* const _this, CShader* ef, SShaderTechnique* pTech)>(0xF002C0);
+	static inline auto FFX_RefractionPartialResolve = PreyFunction<void(CD3D9Renderer* const _this)>(0xF01220);
+	static inline auto FFX_HDRScene = PreyFunction<bool(CD3D9Renderer* const _this, bool bEnableHDR, bool bClear)>(0xF29630);
+	static inline auto FFX_HDRRangeAdaptUpdate = PreyFunction<void(CD3D9Renderer* const _this)>(0xF04FC0);
+	static inline auto FFX_RenderForwardOpaque = PreyFunction<void(CD3D9Renderer* const _this, void (*RenderFunc)(), const bool bLighting, const bool bAllowDeferred)>(0xF2B510);
+	static inline auto FFX_RenderWater = PreyFunction<void(CD3D9Renderer* const _this, void (*RenderFunc)())>(0xF2BD60);
+	static inline auto FFX_ZScene = PreyFunction<bool(CD3D9Renderer* const _this, bool bEnable, bool bUseHDR, bool bClearZBuffer, bool bRenderNormalsOnly, bool bZPrePass)>(0xF2E260);
+	static inline auto FFX_DeferredWaterVolumeCaustics = PreyFunction<bool(CD3D9Renderer* const _this, const N3DEngineCommon::SCausticInfo& causticInfo)>(0xEF4AF0);
+	static inline auto FFX_CustomRenderScene = PreyFunction<bool(CD3D9Renderer* const _this, bool bEnable)>(0xFC0260);
+	static inline auto FFX_PostProcessScene = PreyFunction<bool(CD3D9Renderer* const _this, bool bEnable)>(0xF753E0);
+	static inline auto FFX_DeferredRendering = PreyFunction<bool(CD3D9Renderer* const _this, CRenderView* pRenderView, bool bUpdateRTOnly)>(0xEF9E70);
+	static inline auto FFX_DeferredDecals = PreyFunction<bool(CD3D9Renderer* const _this)>(0xEF9C50);
+	static inline auto FFX_ForwardDecals = PreyFunction<bool(CD3D9Renderer* const _this)>(0xEF9EB0);
+	static inline auto FFX_LinearizeDepth = PreyFunction<void(CD3D9Renderer* const _this)>(0xF29770);
+	static inline auto FFX_DepthFixupMerge = PreyFunction<void(CD3D9Renderer* const _this)>(0xF29470);
+	static inline auto FFX_SceneMaskGen = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView)>(0xEEBBF0);
+	static inline auto FGetGPUFrameTime = PreyFunction<float(CD3D9Renderer* const _this)>(0xF69E60);
+	static inline auto FGetRenderTimes = PreyFunction<void(CD3D9Renderer* const _this, IRenderer::SRenderTimes& outTimes)>(0xF6B570);
+	static inline auto FFX_PipelineShutdown = PreyFunction<void(CD3D9Renderer* const _this, bool bFastShutdown)>(0xF29D10);
+	static inline auto FRT_GraphicsPipelineShutdown = PreyFunction<void(CD3D9Renderer* const _this)>(0xF31910);
+	static inline auto FEF_ClearTargetsImmediatelyOv3 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xEFD050);
+	static inline auto FEF_ClearTargetsImmediatelyOv2 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors, float fDepth, uint8_t nStencil)>(0xEFD0B0);
+	static inline auto FEF_ClearTargetsImmediatelyOv1 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors)>(0xEFD080);
+	static inline auto FEF_ClearTargetsImmediatelyOv0 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, float fDepth, uint8_t nStencil)>(0xEFD0E0);
+	static inline auto FEF_ClearTargetsLaterOv3 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags)>(0xEFD100);
+	static inline auto FEF_ClearTargetsLaterOv2 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors, float fDepth, uint8_t nStencil)>(0xEFD130);
+	static inline auto FEF_ClearTargetsLaterOv1 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, const ColorF& Colors)>(0xEFD110);
+	static inline auto FEF_ClearTargetsLaterOv0 = PreyFunction<void(CD3D9Renderer* const _this, unsigned nFlags, float fDepth, uint8_t nStencil)>(0xEFD300);
+	static inline auto FEF_Restore = PreyFunction<void(CD3D9Renderer* const _this)>(0xF28D20);
+	static inline auto FFX_SetState = PreyFunction<void(CD3D9Renderer* const _this, int st, int AlphaRef, int RestoreState)>(0xF01F60);
+	static inline auto FChangeLog = PreyFunction<void(CD3D9Renderer* const _this)>(0x1333E90);
+	static inline auto FSetCurDownscaleFactor = PreyFunction<void(CD3D9Renderer* const _this, Vec2 sf)>(0xF70750);
+	static inline auto FCheckDeviceLost = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF68060);
+	static inline auto FEF_DirtyMatrix = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69400);
+	static inline auto FEF_PushMatrix = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69910);
+	static inline auto FEF_PopMatrix = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69460);
+	static inline auto FFX_ResetPipe = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2C020);
+	static inline auto FEF_SetVertColor = PreyFunction<void(CD3D9Renderer* const _this)>(0xF69970);
+	static inline auto FFX_SetVertexDeclaration = PreyFunction<HRESULT(CD3D9Renderer* const _this, int StreamMask, EVertexFormat eVF)>(0xF02A50);
+	static inline auto FFX_DrawBatch = PreyFunction<void(CD3D9Renderer* const _this, CShader* pSh, SShaderPass* pPass)>(0xEFE430);
+	static inline auto FFX_DrawBatchSkinned = PreyFunction<void(CD3D9Renderer* const _this, CShader* pSh, SShaderPass* pPass, SSkinningData* pSkinningData)>(0xEFECC0);
+	static inline auto FFX_SetActiveRenderTargets = PreyFunction<void(CD3D9Renderer* const _this)>(0xF01750);
+	static inline auto FFX_SetViewport = PreyFunction<void(CD3D9Renderer* const _this)>(0xF02C20);
+	static inline auto FFX_ClearTargets = PreyFunction<void(CD3D9Renderer* const _this)>(0xEFD8D0);
+	static inline auto FFX_ClearTargetOv8 = PreyFunction<void(CD3D9Renderer* const _this, ID3D11RenderTargetView* pView, const ColorF& cClear, const unsigned numRects, const tagRECT* pRects)>(0xEFD4E0);
+	static inline auto FFX_ClearTargetOv7 = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pTex, const ColorF& cClear, const unsigned numRects, const tagRECT* pRects, const bool bOptionalRects)>(0xEFD810);
+	static inline auto FFX_ClearTargetOv6 = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pTex, const ColorF& cClear)>(0xEFD7B0);
+	static inline auto FFX_ClearTargetOv5 = PreyFunction<void(CD3D9Renderer* const _this, CTexture* pTex)>(0xEFD740);
+	static inline auto FFX_ClearTargetOv4 = PreyFunction<void(CD3D9Renderer* const _this, ID3D11DepthStencilView* pView, const int nFlags, const float cDepth, const uint8_t cStencil, const unsigned numRects, const tagRECT* pRects)>(0xEFD480);
+	static inline auto FFX_ClearTargetOv3 = PreyFunction<void(CD3D9Renderer* const _this, SDepthTexture* pTex, const int nFlags, const float cDepth, const uint8_t cStencil, const unsigned numRects, const tagRECT* pRects, const bool bOptionalRects)>(0xEFD660);
+	static inline auto FFX_ClearTargetOv2 = PreyFunction<void(CD3D9Renderer* const _this, SDepthTexture* pTex, const int nFlags, const float cDepth, const uint8_t cStencil)>(0xEFD610);
+	static inline auto FFX_ClearTargetOv1 = PreyFunction<void(CD3D9Renderer* const _this, SDepthTexture* pTex, const int nFlags)>(0xEFD590);
+	static inline auto FFX_ClearTargetOv0 = PreyFunction<void(CD3D9Renderer* const _this, SDepthTexture* pTex)>(0xEFD520);
+	static inline auto FFX_SetRenderTargetOv1 = PreyFunction<bool(CD3D9Renderer* const _this, int nTarget, ID3D11RenderTargetView* pTargetSurf, SDepthTexture* pDepthTarget, unsigned nTileCount)>(0xF019D0);
+	static inline auto FFX_SetRenderTargetOv0 = PreyFunction<bool(CD3D9Renderer* const _this, int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, bool bPush, int nCMSide, bool bScreenVP, unsigned nTileCount)>(0xF01A70);
+	static inline auto FFX_PushRenderTargetOv0 = PreyFunction<bool(CD3D9Renderer* const _this, int nTarget, CTexture* pTarget, SDepthTexture* pDepthTarget, int nCMSide, bool bScreenVP, unsigned nTileCount)>(0xF011C0);
+	static inline auto FFX_RestoreRenderTarget = PreyFunction<bool(CD3D9Renderer* const _this, int nTarget)>(0xF015E0);
+	static inline auto FFX_PopRenderTarget = PreyFunction<bool(CD3D9Renderer* const _this, int nTarget)>(0xF01190);
+	static inline auto FFX_GetDepthSurface = PreyFunction<SDepthTexture* (CD3D9Renderer* const _this, int nWidth, int nHeight, bool bAA, bool bExactMatch)>(0xF00E50);
+	static inline auto FFX_Commit = PreyFunction<void(CD3D9Renderer* const _this)>(0xEFDA40);
+	static inline auto FFX_SetFPMode = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF36660);
+	static inline auto FFX_CommitStates = PreyFunction<void(CD3D9Renderer* const _this, const SShaderTechnique* pTech, const SShaderPass* pPass, bool bUseMaterialState)>(0xEFDAB0);
+	static inline auto FFX_SetVStream = PreyFunction<HRESULT(CD3D9Renderer* const _this, int nID, const void* pB, unsigned nOffs, unsigned nStride)>(0xF69C70);
+	static inline auto FFX_SetIStream = PreyFunction<HRESULT(CD3D9Renderer* const _this, const void* pB, unsigned nOffs, RenderIndexType idxType)>(0xF69C10);
+	static inline auto FFX_DrawIndexedPrimitive = PreyFunction<void(CD3D9Renderer* const _this, const ERenderPrimitiveType eType, const int nVBOffset, const int nMinVertexIndex, const int nVerticesCount, const int nStartIndex, const int nNumIndices, bool bInstanced)>(0xF69A20);
+	static inline auto FFX_DrawPrimitive = PreyFunction<void(CD3D9Renderer* const _this, const ERenderPrimitiveType eType, const int nStartVertex, const int nVerticesCount, const int nInstanceVertices)>(0xF69A80);
+	static inline auto FFX_CommitStreams = PreyFunction<bool(CD3D9Renderer* const _this, SShaderPass* sl, bool bSetVertexDecl)>(0xEFE010);
+	static inline auto FEF_SetColorOp = PreyFunction<void(CD3D9Renderer* const _this, uint8_t eCo, uint8_t eAo, uint8_t eCa, uint8_t eAa)>(0xF33A70);
+	static inline auto FFX_PreRender = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2A3D0);
+	static inline auto FFX_PostRender = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2A330);
+	static inline auto FEF_Init = PreyFunction<void(CD3D9Renderer* const _this)>(0xF27E20);
+	static inline auto FEF_SetCameraInfo = PreyFunction<void(CD3D9Renderer* const _this)>(0xF29050);
+	static inline auto FFX_ObjectChange = PreyFunction<bool(CD3D9Renderer* const _this, CShader* Shader, CShaderResources* Res, CRenderObject* obj, CRendElementBase* pRE)>(0xF29AB0);
+	static inline auto FScreenShotInternal = PreyFunction<bool(CD3D9Renderer* const _this, const char* filename, int width, EScreenShotMode eScreenShotMode)>(0xF6F3E0);
+	static inline auto FUpdateNearestChange = PreyFunction<void(CD3D9Renderer* const _this, int flags)>(0xF33B80);
+	static inline auto FUpdatePrevMatrix = PreyFunction<void(CD3D9Renderer* const _this, bool bEnable)>(0xF33E10);
+	static inline auto FFX_SetAdjacencyOffsetBuffer = PreyFunction<void(CD3D9Renderer* const _this)>(0xF01970);
+	static inline auto FFX_FlushShader_General = PreyFunction<void()>(0xF003F0);
+	static inline auto FFX_FlushShader_ZPass = PreyFunction<void()>(0xF008B0);
+	static inline auto FFX_UpdateAnimatedShaderResources = PreyFunction<bool(const CShaderResources* shaderResources)>(0xF02DC0);
+	static inline auto FFX_UpdateDynamicShaderResources = PreyFunction<bool(const CShaderResources* shaderResources, unsigned batchFilter, unsigned flags2)>(0xF02E20);
+	static inline auto FFX_UnbindBuffer = PreyFunction<void(CD3D9Renderer* const _this, ID3D11Buffer* buffer)>(0xF2C810);
+	static inline auto FEF_Scissor = PreyFunction<void(CD3D9Renderer* const _this, bool bEnable, int sX, int sY, int sWdt, int sHgt)>(0xF02FB0);
+	static inline auto FEF_GetScissorState = PreyFunction<bool(CD3D9Renderer* const _this, int& sX, int& sY, int& sWdt, int& sHgt)>(0xEFD440);
+	static inline auto FEF_SetFogColor = PreyFunction<void(CD3D9Renderer* const _this, const ColorF& Color)>(0xF29060);
+	static inline auto FFX_FogCorrection = PreyFunction<void(CD3D9Renderer* const _this)>(0xF00D30);
+	static inline auto FFX_DrawIndexedMesh = PreyFunction<void(CD3D9Renderer* const _this, const ERenderPrimitiveType nPrimType)>(0xEFF1D0);
+	static inline auto FFX_SetResourcesState = PreyFunction<bool(CD3D9Renderer* const _this)>(0xF01D70);
+	static inline auto FDrawRenderItems = PreyFunction<void(CD3D9Renderer* const _this, const SGraphicsPipelinePassContext& passContext)>(0xF27D10);
+	static inline auto FFX_ProcessZPassRenderLists = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2AD20);
+	static inline auto FFX_ProcessZPassRender_List = PreyFunction<void(CD3D9Renderer* const _this, ERenderListID list, unsigned filter)>(0xF2AAD0);
+	static inline auto FFX_ProcessSkinRenderLists = PreyFunction<void(CD3D9Renderer* const _this, int nList, void (*RenderFunc)(), bool bLighting)>(0xF2ABC0);
+	static inline auto FFX_ProcessEyeOverlayRenderLists = PreyFunction<void(CD3D9Renderer* const _this, int nList, void (*RenderFunc)(), bool bLighting)>(0xF2A490);
+	static inline auto FFX_ProcessHalfResParticlesRenderList = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView, int nList, void (*RenderFunc)(), bool bLighting)>(0xF2A560);
+	static inline auto FFX_WaterVolumesPreprocess = PreyFunction<void(CD3D9Renderer* const _this)>(0xF2DEE0);
+	static inline auto FFX_ProcessPostRenderLists = PreyFunction<void(CD3D9Renderer* const _this, unsigned nBatchFilter)>(0xF2A9F0);
+	static inline auto FFX_ProcessRenderListOv1 = PreyFunction<void(CD3D9Renderer* const _this, int nList, unsigned nBatchFilter)>(0xF2AAD0);
+	static inline auto FFX_ProcessRenderListOv0 = PreyFunction<void(CD3D9Renderer* const _this, int nList, void (*RenderFunc)(), bool bLighting, unsigned nBatchFilter, unsigned nBatchExcludeFilter)>(0xF2AB40);
+	static inline auto FOldPipeline_ProcessRenderList = PreyFunction<void(CD3D9Renderer* const _this, lockfree_add_vector<SRendItem>& renderItems, int nums, int nume, int nList, void (*RenderFunc)(), bool bLighting, unsigned nBatchFilter, unsigned nBatchExcludeFilter)>(0xF31390);
+	static inline auto FOldPipeline_ProcessBatchesList = PreyFunction<void(CD3D9Renderer* const _this, lockfree_add_vector<SRendItem>& renderItems, int nums, int nume, unsigned nBatchFilter, unsigned nBatchExcludeFilter)>(0xF30F90);
+	static inline auto FFX_WaterVolumesCaustics = PreyFunction<void(CD3D9Renderer* const _this, CRenderView* pRenderView)>(0xF2CA60);
+	static inline auto FFX_WaterVolumesCausticsPreprocess = PreyFunction<void(CD3D9Renderer* const _this, N3DEngineCommon::SCausticInfo& causticInfo)>(0xF2D230);
+	static inline auto FFX_WaterVolumesCausticsUpdateGrid = PreyFunction<bool(CD3D9Renderer* const _this, N3DEngineCommon::SCausticInfo& causticInfo)>(0xF2DB40);
+	static inline auto FEF_EndEf3D = PreyFunction<void(CD3D9Renderer* const _this, const int nFlags, const int nPrecacheUpdateIdSlow, const int nPrecacheUpdateIdFast, const SRenderingPassInfo& passInfo)>(0xF27D30);
+	static inline auto FGetHWND = PreyFunction<void* (CD3D9Renderer* const _this)>(0xF40D50);
+	static inline auto FSetColorOp = PreyFunction<void(CD3D9Renderer* const _this, uint8_t eCo, uint8_t eAo, uint8_t eCa, uint8_t eAa)>(0xF33A70);
+	static inline auto FAdjustHDROutputMode = PreyFunction<void(CD3D9Renderer* const _this)>(0x1333E90);
+	static inline auto FGetIRenderAuxGeom = PreyFunction<IRenderAuxGeom* (CD3D9Renderer* const _this, void* jobID)>(0xF69EA0);
+	static inline auto FGetIArkRenderPersistentAuxGeom = PreyFunction<IArkRenderPersistentAuxGeom* (CD3D9Renderer* const _this)>(0xF69E70);
+	static inline auto FGetIColorGradingController = PreyFunction<IColorGradingController* (CD3D9Renderer* const _this)>(0xF69E90);
+	static inline auto FStartLoadtimeFlashPlayback = PreyFunction<void(CD3D9Renderer* const _this, ILoadtimeCallback* pCallback)>(0xF264D0);
+	static inline auto FStopLoadtimeFlashPlayback = PreyFunction<void(CD3D9Renderer* const _this)>(0xF26760);
+	static inline auto FStartLoadtimeBinkPlayback = PreyFunction<void(CD3D9Renderer* const _this, ILoadtimeCallback* pCallback)>(0xF263F0);
+	static inline auto FStopLoadtimeBinkPlayback = PreyFunction<void(CD3D9Renderer* const _this)>(0xF265B0);
+	static inline auto FGetRPPStats = PreyFunction<const RPProfilerStats* (CD3D9Renderer* const _this, ERenderPipelineProfilerStats eStat, bool bCalledFromMainThread)>(0xF6B400);
+	static inline auto FGetRPPStatsArray = PreyFunction<const RPProfilerStats* (CD3D9Renderer* const _this, bool bCalledFromMainThread)>(0xF6B440);
+	static inline auto FGetPolygonCountByType = PreyFunction<int(CD3D9Renderer* const _this, unsigned EFSList, EVertexCostTypes vct, unsigned z, bool bCalledFromMainThread)>(0x1CBB0B0);
+	static inline auto FCreateGraphiceDeviceConstantBuffer = PreyFunction<_smart_ptr<IGraphicsDeviceConstantBuffer>*(CD3D9Renderer* const _this, _smart_ptr<IGraphicsDeviceConstantBuffer>* _return_value_)>(0xF683B0);
+	static inline auto FGetGpuParticleManager = PreyFunction<gpu_pfx2::IManager* (CD3D9Renderer* const _this)>(0x1CBB0B0);
+	static inline auto FHandleDisplayPropertyChanges = PreyFunction<void(CD3D9Renderer* const _this)>(0xF6BD80);
+	static inline auto FCaptureFrameBufferToFile = PreyFunction<bool(CD3D9Renderer* const _this, const char* pFilePath, CTexture* pRenderTarget)>(0xF674C0);
+	static inline auto FEnablePipelineProfiler = PreyFunction<void(CD3D9Renderer* const _this, bool bEnable)>(0x1333E90);
+	static inline auto FClearPerFrameData = PreyFunction<void(CD3D9Renderer* const _this, const SRenderingPassInfo& passInfo)>(0x18C9930);
+	static inline auto FCheckUpdateDimensions = PreyFunction<void(CD3D9Renderer* const _this, int& _width, int& _height)>(0xF3F970);
+	static inline auto FPeekWindowMessage = PreyFunction<void(CD3D9Renderer* const _this, unsigned message, uint64_t wParam, uint64_t lParam)>(0xF431C0);
+};
+
+// CEngineModule_CryRenderer
+// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+// Include: Prey/RenderDll/XRenderD3D9/DriverD3D.cpp
+class CEngineModule_CryRenderer : public IEngineModule
+{ // Size=8 (0x8)
+public:
+	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IEngineModule,TL::NullType> >;
+	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IEngineModule,TL::NullType> >;
+
+	static inline auto s_factory = PreyGlobal<CSingletonFactory<CEngineModule_CryRenderer>>(0x23DA6A0);
+
+	virtual ICryFactory* GetFactory() const;
+	virtual void* QueryInterface(const CryGUID& iid) const;
+	virtual void* QueryComposite(const char* name) const;
+	virtual ~CEngineModule_CryRenderer();
+	virtual const char* GetName();
+	virtual const char* GetCategory();
+	virtual bool Initialize(SSystemGlobalEnvironment& env, const SSystemInitParams& initParams);
+
+#if 0
+	static const char* GetCName();
+	static const CryGUID& GetCID();
+	static std::shared_ptr<CEngineModule_CryRenderer> CreateClassInstance();
+	CEngineModule_CryRenderer();
+#endif
+
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CEngineModule_CryRenderer* const _this)>(0xF69E50);
+	static inline auto FQueryInterface = PreyFunction<void* (const CEngineModule_CryRenderer* const _this, const CryGUID& iid)>(0x1949360);
+	static inline auto FQueryComposite = PreyFunction<void* (const CEngineModule_CryRenderer* const _this, const char* name)>(0x1CBB0B0);
+	static inline auto FGetName = PreyFunction<const char* (CEngineModule_CryRenderer* const _this)>(0xF6ADB0);
+	static inline auto FGetCategory = PreyFunction<const char* (CEngineModule_CryRenderer* const _this)>(0xD29A50);
+	static inline auto FInitialize = PreyFunction<bool(CEngineModule_CryRenderer* const _this, SSystemGlobalEnvironment& env, const SSystemInitParams& initParams)>(0xF6C3A0);
+};
+
+// CSystemEventListner_Render
+// Header:  CryEngine/renderdll/xrenderd3d9/driverd3d.h
+// Include: Prey/RenderDll/XRenderD3D9/DriverD3D.cpp
+struct CSystemEventListner_Render : public ISystemEventListener
+{ // Size=8 (0x8)
+	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
+
+	static inline auto FOnSystemEvent = PreyFunction<void(CSystemEventListner_Render* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xF656F0);
+};
+#endif // !MOONCRASH

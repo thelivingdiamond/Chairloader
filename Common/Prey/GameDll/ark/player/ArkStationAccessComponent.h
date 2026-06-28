@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -37,4 +39,32 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkStationAccessComponent* const _this, TSerialize _ser)>(0x130C9D0);
 	static inline auto FNotifyAirlockUnlocked = PreyFunction<void(const ArkStationAccessComponent* const _this, uint64_t _id)>(0x130C570);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
 
+enum class EArkAccessState;
+
+// ArkStationAccessComponent
+// Header:  Prey/GameDll/ark/player/ArkStationAccessComponent.h
+class ArkStationAccessComponent
+{ // Size=24 (0x18)
+public:
+	std::vector<uint64_t> m_lockedPaths;
+
+	bool IsPathLocked(uint64_t _id) const { return FIsPathLocked(this, _id); }
+	void SetPathLocked(uint64_t _id, bool _bLocked) { FSetPathLocked(this, _id, _bLocked); }
+	EArkAccessState GetConnectionState(uint64_t _locationA, uint64_t _locationB) const { return FGetConnectionState(this, _locationA, _locationB); }
+	void Init() { FInit(this); }
+	void Reset() { FReset(this); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+
+	static inline auto FIsPathLocked = PreyFunction<bool(const ArkStationAccessComponent* const _this, uint64_t _id)>(0x13E6FE0);
+	static inline auto FSetPathLocked = PreyFunction<void(ArkStationAccessComponent* const _this, uint64_t _id, bool _bLocked)>(0x13E71B0);
+	static inline auto FGetConnectionState = PreyFunction<EArkAccessState(const ArkStationAccessComponent* const _this, uint64_t _locationA, uint64_t _locationB)>(0x13E6E40);
+	static inline auto FInit = PreyFunction<void(ArkStationAccessComponent* const _this)>(0x13E6F20);
+	static inline auto FReset = PreyFunction<void(ArkStationAccessComponent* const _this)>(0x13E7040);
+	static inline auto FSerialize = PreyFunction<void(ArkStationAccessComponent* const _this, TSerialize _ser)>(0x13E7050);
+};
+#endif // !MOONCRASH

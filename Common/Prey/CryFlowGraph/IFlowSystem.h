@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -1148,3 +1150,4 @@ ILINE bool IsOutputConnected(IFlowNode::SActivationInfo* pActInfo, int nPort)
     SFlowAddress addr(pActInfo->myID, nPort, true);
     return pActInfo->pGraph->IsOutputConnected(addr);
 }
+#endif // !MOONCRASH

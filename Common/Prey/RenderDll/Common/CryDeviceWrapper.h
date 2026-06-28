@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*=============================================================================
@@ -4990,3 +4992,217 @@ inline void CCryPerformanceDeviceContextWrapper::HSGetLastUsedTessellationParame
 	#undef _CRY_DEVICE_WRAPPER_DETAIL_INVOKE_POST_FUNCTION_HOOK_
 
 #endif // CRY_DEVICE_WRAPPER_H_
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+
+struct D3D11_BOX;
+enum class D3D11_DEVICE_CONTEXT_TYPE;
+enum class D3D11_MAP;
+struct D3D11_MAPPED_SUBRESOURCE;
+struct D3D11_VIEWPORT;
+enum class D3D_PRIMITIVE_TOPOLOGY;
+enum class DXGI_FORMAT;
+struct ICryDeviceWrapperHook;
+struct ID3D11Asynchronous;
+struct ID3D11BlendState;
+struct ID3D11Buffer;
+struct ID3D11ClassInstance;
+struct ID3D11CommandList;
+struct ID3D11ComputeShader;
+struct ID3D11DepthStencilState;
+struct ID3D11DepthStencilView;
+struct ID3D11Device;
+struct ID3D11DeviceContext;
+struct ID3D11DomainShader;
+struct ID3D11GeometryShader;
+struct ID3D11HullShader;
+struct ID3D11InputLayout;
+struct ID3D11PixelShader;
+struct ID3D11Predicate;
+struct ID3D11RasterizerState;
+struct ID3D11RenderTargetView;
+struct ID3D11Resource;
+struct ID3D11SamplerState;
+struct ID3D11ShaderResourceView;
+struct ID3D11UnorderedAccessView;
+struct ID3D11VertexShader;
+struct ID3DUserDefinedAnnotation;
+struct IUnknown;
+struct tagRECT;
+
+// CCryDeviceContextWrapper
+// Header:  CryEngine/renderdll/common/crydevicewrapper.h
+// Include: Prey/RenderDll/Common/CryDeviceWrapper.h
+class CCryDeviceContextWrapper
+{ // Size=24 (0x18)
+public:
+	ID3D11DeviceContext* m_pDeviceContext;
+	ID3DUserDefinedAnnotation* m_pUserDefinedAnnotation;
+	_smart_ptr<ICryDeviceWrapperHook> m_pDeviceHooks;
+
+	void CopySubresourcesRegion(ID3D11Resource* pDstResource, unsigned DstSubresource, unsigned DstX, unsigned DstY, unsigned DstZ, ID3D11Resource* pSrcResource, unsigned SrcSubresource, const D3D11_BOX* pSrcBox, unsigned NumSubresources) { FCopySubresourcesRegion(this, pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox, NumSubresources); }
+
+#if 0
+	CCryDeviceContextWrapper();
+	bool IsValid() const;
+	void AssignDeviceContext(ID3D11DeviceContext* _arg0_);
+	void AcquireUserDefinedAnnotation();
+	void AssignUserDefinedAnnotation(ID3DUserDefinedAnnotation* _arg0_);
+	void SwitchToDeviceNode(unsigned _arg0_);
+	void ReleaseDeviceContext();
+	ID3D11DeviceContext* GetRealDeviceContext() const;
+	void RegisterHook(ICryDeviceWrapperHook* _arg0_);
+	void UnregisterHook(const char* _arg0_);
+	HRESULT QueryInterface(const _GUID& _arg0_, void* * _arg1_);
+	unsigned long AddRef();
+	unsigned long Release();
+	void GetDevice(ID3D11Device* * _arg0_);
+	HRESULT GetPrivateData(const _GUID& _arg0_, unsigned* _arg1_, void* _arg2_);
+	HRESULT SetPrivateData(const _GUID& _arg0_, unsigned _arg1_, const void* _arg2_);
+	HRESULT SetPrivateDataInterface(const _GUID& _arg0_, const IUnknown* _arg1_);
+	void PSSetShader(ID3D11PixelShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void PSGetShader(ID3D11PixelShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void PSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void PSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void PSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void PSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void PSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void PSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void VSSetShader(ID3D11VertexShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void VSGetShader(ID3D11VertexShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void VSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void VSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void VSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void VSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void VSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void VSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void GSSetShader(ID3D11GeometryShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void GSGetShader(ID3D11GeometryShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void GSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void GSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void GSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void GSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void GSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void GSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void HSSetShader(ID3D11HullShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void HSGetShader(ID3D11HullShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void HSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void HSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void HSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void HSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void HSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void HSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void DSSetShader(ID3D11DomainShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void DSGetShader(ID3D11DomainShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void DSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void DSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void DSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void DSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void DSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void DSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void CSSetShader(ID3D11ComputeShader* _arg0_, ID3D11ClassInstance* const * _arg1_, unsigned _arg2_);
+	void CSGetShader(ID3D11ComputeShader* * _arg0_, ID3D11ClassInstance* * _arg1_, unsigned* _arg2_);
+	void CSSetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* const * _arg2_);
+	void CSGetSamplers(unsigned _arg0_, unsigned _arg1_, ID3D11SamplerState* * _arg2_);
+	void CSSetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_);
+	void CSGetConstantBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_);
+	void CSSetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* const * _arg2_);
+	void CSGetShaderResources(unsigned _arg0_, unsigned _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	void CSSetUnorderedAccessViews(unsigned _arg0_, unsigned _arg1_, ID3D11UnorderedAccessView* const * _arg2_, const unsigned* _arg3_);
+	void CSGetUnorderedAccessViews(unsigned _arg0_, unsigned _arg1_, ID3D11UnorderedAccessView* * _arg2_);
+	void DrawAuto();
+	void Draw(unsigned _arg0_, unsigned _arg1_);
+	void DrawInstanced(unsigned _arg0_, unsigned _arg1_, unsigned _arg2_, unsigned _arg3_);
+	void DrawInstancedIndirect(ID3D11Buffer* _arg0_, unsigned _arg1_);
+	void DrawIndexed(unsigned _arg0_, unsigned _arg1_, int _arg2_);
+	void DrawIndexedInstanced(unsigned _arg0_, unsigned _arg1_, unsigned _arg2_, int _arg3_, unsigned _arg4_);
+	void DrawIndexedInstancedIndirect(ID3D11Buffer* _arg0_, unsigned _arg1_);
+	HRESULT Map(ID3D11Resource* _arg0_, unsigned _arg1_, D3D11_MAP _arg2_, unsigned _arg3_, D3D11_MAPPED_SUBRESOURCE* _arg4_);
+	HRESULT Map(ID3D11Resource* _arg0_, unsigned _arg1_, uint64_t* _arg2_, D3D11_MAP _arg3_, unsigned _arg4_, D3D11_MAPPED_SUBRESOURCE* _arg5_);
+	void Unmap(ID3D11Resource* _arg0_, unsigned _arg1_);
+	void Unmap(ID3D11Resource* _arg0_, unsigned _arg1_, uint64_t* _arg2_);
+	void IASetInputLayout(ID3D11InputLayout* _arg0_);
+	void IAGetInputLayout(ID3D11InputLayout* * _arg0_);
+	void IASetVertexBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* const * _arg2_, const unsigned* _arg3_, const unsigned* _arg4_);
+	void IAGetVertexBuffers(unsigned _arg0_, unsigned _arg1_, ID3D11Buffer* * _arg2_, unsigned* _arg3_, unsigned* _arg4_);
+	void IASetIndexBuffer(ID3D11Buffer* _arg0_, DXGI_FORMAT _arg1_, unsigned _arg2_);
+	void IAGetIndexBuffer(ID3D11Buffer* * _arg0_, DXGI_FORMAT* _arg1_, unsigned* _arg2_);
+	void IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY _arg0_);
+	void IAGetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY* _arg0_);
+	void Begin(ID3D11Asynchronous* _arg0_);
+	void End(ID3D11Asynchronous* _arg0_);
+	HRESULT GetData(ID3D11Asynchronous* _arg0_, void* _arg1_, unsigned _arg2_, unsigned _arg3_);
+	void SetPredication(ID3D11Predicate* _arg0_, int _arg1_);
+	void GetPredication(ID3D11Predicate* * _arg0_, int* _arg1_);
+	void OMSetRenderTargets(unsigned _arg0_, ID3D11RenderTargetView* const * _arg1_, ID3D11DepthStencilView* _arg2_);
+	void OMGetRenderTargets(unsigned _arg0_, ID3D11RenderTargetView* * _arg1_, ID3D11DepthStencilView* * _arg2_);
+	void OMSetRenderTargetsAndUnorderedAccessViews(unsigned _arg0_, ID3D11RenderTargetView* const * _arg1_, ID3D11DepthStencilView* _arg2_, unsigned _arg3_, unsigned _arg4_, ID3D11UnorderedAccessView* const * _arg5_, const unsigned* _arg6_);
+	void OMGetRenderTargetsAndUnorderedAccessViews(unsigned _arg0_, ID3D11RenderTargetView* * _arg1_, ID3D11DepthStencilView* * _arg2_, unsigned _arg3_, unsigned _arg4_, ID3D11UnorderedAccessView* * _arg5_);
+	void OMSetBlendState(ID3D11BlendState* _arg0_, const float* _arg1_, unsigned _arg2_);
+	void OMGetBlendState(ID3D11BlendState* * _arg0_, float* _arg1_, unsigned* _arg2_);
+	void OMSetDepthStencilState(ID3D11DepthStencilState* _arg0_, unsigned _arg1_);
+	void OMGetDepthStencilState(ID3D11DepthStencilState* * _arg0_, unsigned* _arg1_);
+	void SOSetTargets(unsigned _arg0_, ID3D11Buffer* const * _arg1_, const unsigned* _arg2_);
+	void SOGetTargets(unsigned _arg0_, ID3D11Buffer* * _arg1_);
+	void Dispatch(unsigned _arg0_, unsigned _arg1_, unsigned _arg2_);
+	void DispatchIndirect(ID3D11Buffer* _arg0_, unsigned _arg1_);
+	void RSSetState(ID3D11RasterizerState* _arg0_);
+	void RSGetState(ID3D11RasterizerState* * _arg0_);
+	void RSSetViewports(unsigned _arg0_, const D3D11_VIEWPORT* _arg1_);
+	void RSGetViewports(unsigned* _arg0_, D3D11_VIEWPORT* _arg1_);
+	void RSSetScissorRects(unsigned _arg0_, const tagRECT* _arg1_);
+	void RSGetScissorRects(unsigned* _arg0_, tagRECT* _arg1_);
+	void CopyResource(ID3D11Resource* _arg0_, ID3D11Resource* _arg1_);
+	void CopySubresourceRegion(ID3D11Resource* _arg0_, unsigned _arg1_, unsigned _arg2_, unsigned _arg3_, unsigned _arg4_, ID3D11Resource* _arg5_, unsigned _arg6_, const D3D11_BOX* _arg7_);
+	void UpdateSubresource(ID3D11Resource* _arg0_, unsigned _arg1_, const D3D11_BOX* _arg2_, const void* _arg3_, unsigned _arg4_, unsigned _arg5_);
+	void CopyStructureCount(ID3D11Buffer* _arg0_, unsigned _arg1_, ID3D11UnorderedAccessView* _arg2_);
+	void ClearRenderTargetView(ID3D11RenderTargetView* _arg0_, const float* _arg1_);
+	void ClearUnorderedAccessViewUint(ID3D11UnorderedAccessView* _arg0_, const unsigned* _arg1_);
+	void ClearUnorderedAccessViewFloat(ID3D11UnorderedAccessView* _arg0_, const float* _arg1_);
+	void ClearDepthStencilView(ID3D11DepthStencilView* _arg0_, unsigned _arg1_, float _arg2_, uint8_t _arg3_);
+	void GenerateMips(ID3D11ShaderResourceView* _arg0_);
+	void SetResourceMinLOD(ID3D11Resource* _arg0_, float _arg1_);
+	float GetResourceMinLOD(ID3D11Resource* _arg0_);
+	void ResolveSubresource(ID3D11Resource* _arg0_, unsigned _arg1_, ID3D11Resource* _arg2_, unsigned _arg3_, DXGI_FORMAT _arg4_);
+	void ExecuteCommandList(ID3D11CommandList* _arg0_, int _arg1_);
+	HRESULT FinishCommandList(int _arg0_, ID3D11CommandList* * _arg1_);
+	void ClearState();
+	void Flush();
+	D3D11_DEVICE_CONTEXT_TYPE GetType();
+	unsigned GetContextFlags();
+	void ClearRectsRenderTargetView(ID3D11RenderTargetView* _arg0_, const float* _arg1_, unsigned _arg2_, const tagRECT* _arg3_);
+	void ClearRectsUnorderedAccessViewUint(ID3D11UnorderedAccessView* _arg0_, const unsigned* _arg1_, unsigned _arg2_, const tagRECT* _arg3_);
+	void ClearRectsUnorderedAccessViewFloat(ID3D11UnorderedAccessView* _arg0_, const float* _arg1_, unsigned _arg2_, const tagRECT* _arg3_);
+	void ClearRectsDepthStencilView(ID3D11DepthStencilView* _arg0_, unsigned _arg1_, float _arg2_, uint8_t _arg3_, unsigned _arg4_, const tagRECT* _arg5_);
+	void CopyResourceOvercross(ID3D11Resource* _arg0_, ID3D11Resource* _arg1_);
+	void JoinSubresourceRegion(ID3D11Resource* _arg0_, unsigned _arg1_, unsigned _arg2_, unsigned _arg3_, unsigned _arg4_, ID3D11Resource* _arg5_, ID3D11Resource* _arg6_, unsigned _arg7_, const D3D11_BOX* _arg8_);
+	HRESULT CopyStagingResource(ID3D11Resource* _arg0_, ID3D11Resource* _arg1_, unsigned _arg2_, int _arg3_);
+	HRESULT TestStagingResource(ID3D11Resource* _arg0_);
+	HRESULT WaitStagingResource(ID3D11Resource* _arg0_);
+	HRESULT MapStagingResource(ID3D11Resource* _arg0_, int _arg1_, void* * _arg2_);
+	void UnmapStagingResource(ID3D11Resource* _arg0_, int _arg1_);
+	HRESULT MappedWriteToSubresource(ID3D11Resource* _arg0_, unsigned _arg1_, uint64_t _arg2_, uint64_t _arg3_, D3D11_MAP _arg4_, const void* _arg5_, unsigned _arg6_);
+	HRESULT MappedReadFromSubresource(ID3D11Resource* _arg0_, unsigned _arg1_, uint64_t _arg2_, uint64_t _arg3_, D3D11_MAP _arg4_, void* _arg5_, unsigned _arg6_);
+	uint64_t GetTimestampFrequency();
+	void ResetTimestamps();
+	int ReserveTimestamp();
+	void InsertTimestamp(int _arg0_, int _arg1_);
+	void ResolveTimestamps();
+	void QueryTimestamp(int _arg0_, uint64_t* _arg1_);
+	void QueryTimestamps(int _arg0_, int _arg1_, uint64_t* _arg2_);
+	void QueryTimestampBuffer(ID3D11Buffer* * _arg0_);
+	uint64_t InsertFence();
+	HRESULT TestForFence(uint64_t _arg0_);
+	HRESULT FlushToFence(uint64_t _arg0_);
+	HRESULT WaitForFence(uint64_t _arg0_);
+	void ResetCachedState(bool _arg0_, bool _arg1_);
+	int PIXBeginEvent(const wchar_t* _arg0_);
+	int PIXEndEvent();
+	void PIXSetMarker(const wchar_t* _arg0_);
+	int PIXGetStatus();
+#endif
+
+	static inline auto FCopySubresourcesRegion = PreyFunction<void(CCryDeviceContextWrapper* const _this, ID3D11Resource* pDstResource, unsigned DstSubresource, unsigned DstX, unsigned DstY, unsigned DstZ, ID3D11Resource* pSrcResource, unsigned SrcSubresource, const D3D11_BOX* pSrcBox, unsigned NumSubresources)>(0xF4E010);
+};
+#endif // !MOONCRASH

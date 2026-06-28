@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef _ZIP_DIR_DEFINITIONS
@@ -542,3 +544,122 @@ extern void Decrypt(char* buffer, size_t size);
 }
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <_unknown/ZipFile__DataDescriptor.h>
+
+class ICrySizer;
+struct ICustomMemoryBlock;
+struct IMemoryBlock;
+namespace ZipDir
+{
+struct DirEntry;
+struct FileEntry;
+struct SExtraZipFileData;
+} // namespace ZipDir
+namespace ZipFile
+{
+struct CDRFileHeader;
+} // namespace ZipFile
+
+namespace ZipDir
+{
+
+// ZipDir::CZipFile
+// Header:  CryEngine/crysystem/zipdirstructures.h
+struct CZipFile
+{ // Size=64 (0x40)
+	_iobuf* m_file;
+	void* m_unbufferedFile;
+	uint64_t m_nSectorSize;
+	void* m_pReadTarget;
+	int64_t m_nSize;
+	int64_t m_nCursor;
+	const char* m_szFilename;
+	ICustomMemoryBlock* m_pInMemoryData;
+
+	void LoadToMemory(IMemoryBlock* pData) { FLoadToMemory(this, pData); }
+	void UnloadFromMemory() { FUnloadFromMemory(this); }
+	void Close(bool bUnloadFromMem) { FClose(this, bUnloadFromMem); }
+	bool OpenUnbuffered(const char* filename) { return FOpenUnbuffered(this, filename); }
+
+#if 0
+	CZipFile();
+	CZipFile(const ZipDir::CZipFile& _arg0_);
+	void Swap(ZipDir::CZipFile& _arg0_);
+	bool IsInMemory() const;
+	bool EvaluateSectorSize(const char* _arg0_);
+	ZipDir::CZipFile& operator=(const ZipDir::CZipFile& _arg0_);
+#endif
+
+	static inline auto FLoadToMemory = PreyFunction<void(ZipDir::CZipFile* const _this, IMemoryBlock* pData)>(0xE66B50);
+	static inline auto FUnloadFromMemory = PreyFunction<void(ZipDir::CZipFile* const _this)>(0xE66FB0);
+	static inline auto FClose = PreyFunction<void(ZipDir::CZipFile* const _this, bool bUnloadFromMem)>(0xE66690);
+	static inline auto FOpenUnbuffered = PreyFunction<bool(ZipDir::CZipFile* const _this, const char* filename)>(0xE66D60);
+};
+
+// ZipDir::DirHeader
+// Header:  CryEngine/crysystem/zipdirstructures.h
+struct DirHeader
+{ // Size=4 (0x4)
+	uint16_t numDirs;
+	uint16_t numFiles;
+
+	ZipDir::DirEntry* FindSubdirEntry(const char* szName) { return FFindSubdirEntry(this, szName); }
+	ZipDir::FileEntry* FindFileEntry(const char* szName) { return FFindFileEntry(this, szName); }
+
+#if 0
+	const char* GetNamePool() const;
+	char* GetNamePool();
+	const ZipDir::DirEntry* GetSubdirEntry(unsigned _arg0_) const;
+	ZipDir::DirEntry* GetSubdirEntry(unsigned _arg0_);
+	const ZipDir::FileEntry* GetFileEntry(unsigned _arg0_) const;
+	ZipDir::FileEntry* GetFileEntry(unsigned _arg0_);
+#endif
+
+	static inline auto FFindSubdirEntry = PreyFunction<ZipDir::DirEntry* (ZipDir::DirHeader* const _this, const char* szName)>(0xE669B0);
+	static inline auto FFindFileEntry = PreyFunction<ZipDir::FileEntry* (ZipDir::DirHeader* const _this, const char* szName)>(0xE668A0);
+};
+
+// ZipDir::FileEntry
+// Header:  CryEngine/crysystem/zipdirstructures.h
+struct FileEntry
+{ // Size=48 (0x30)
+	enum class #unnamed_enum_INVALID_DATA_OFFSET
+	{
+		INVALID_DATA_OFFSET = -1,
+	};
+
+	ZipFile::DataDescriptor desc;
+	unsigned nFileDataOffset;
+	unsigned nFileHeaderOffset;
+	unsigned nNameOffset;
+	uint16_t nMethod;
+	uint16_t nReserved0;
+	uint16_t nLastModTime;
+	uint16_t nLastModDate;
+	uint64_t nNTFS_LastModifyTime;
+	unsigned nEOFOffset;
+
+	FileEntry(const ZipFile::CDRFileHeader& header, const ZipDir::SExtraZipFileData& extra);
+	void OnNewFileData(void* pUncompressed, unsigned nSize, unsigned nCompressedSize, unsigned nCompressionMethod, bool bContinuous) { FOnNewFileData(this, pUncompressed, nSize, nCompressedSize, nCompressionMethod, bContinuous); }
+	uint64_t GetModificationTime() { return FGetModificationTime(this); }
+
+#if 0
+	FileEntry();
+	bool IsInitialized();
+	const char* GetName(const char* _arg0_) const;
+	bool IsEncrypted() const;
+	bool IsCompressed() const;
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FFileEntryOv0 = PreyFunction<void(ZipDir::FileEntry* const _this, const ZipFile::CDRFileHeader& header, const ZipDir::SExtraZipFileData& extra)>(0xE66620);
+	static inline auto FOnNewFileData = PreyFunction<void(ZipDir::FileEntry* const _this, void* pUncompressed, unsigned nSize, unsigned nCompressedSize, unsigned nCompressionMethod, bool bContinuous)>(0xE66C60);
+	static inline auto FGetModificationTime = PreyFunction<uint64_t(ZipDir::FileEntry* const _this)>(0xE66AA0);
+};
+
+
+} // namespace ZipDir
+#endif // !MOONCRASH

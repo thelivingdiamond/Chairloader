@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -38,4 +40,46 @@ public:
 	static inline auto FClearKeyState = PreyFunction<void(CDXInput *const _this)>(0x9D04D0);
 	static inline auto FSetExclusiveMode = PreyFunction<void(CDXInput *const _this, EInputDeviceType deviceType, bool exclusive, void *pUser)>(0x9D06A0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryinput/BaseInput.h>
 
+enum EInputDeviceType;
+struct HWND__;
+struct IDirectInput8A;
+struct ISystem;
+
+// CDXInput
+// Header:  CryEngine/cryinput/DXInput.h
+class CDXInput : public CBaseInput
+{ // Size=288 (0x120)
+public:
+	HWND__* m_hwnd;
+	IDirectInput8A* m_pDI;
+	int64_t (*m_prevWndProc)(HWND__*, unsigned, uint64_t, int64_t);
+	static inline auto This = PreyGlobal<CDXInput*>(0x28D59E0);
+
+	CDXInput(ISystem* pSystem, HWND__* hwnd);
+	virtual ~CDXInput();
+	virtual bool Init();
+	virtual void Update(bool bFocus);
+	virtual void ShutDown();
+	virtual void ClearKeyState();
+	virtual void SetExclusiveMode(EInputDeviceType deviceType, bool exclusive, void* pUser);
+
+#if 0
+	HWND__* GetHWnd() const;
+	IDirectInput8A* GetDirectInput() const;
+	static int64_t InputWndProc(HWND__* _arg0_, unsigned _arg1_, uint64_t _arg2_, int64_t _arg3_);
+	int64_t OnInputWndProc(HWND__* _arg0_, unsigned _arg1_, uint64_t _arg2_, int64_t _arg3_);
+#endif
+
+	static inline auto FCDXInput = PreyFunction<void(CDXInput* const _this, ISystem* pSystem, HWND__* hwnd)>(0x9ED770);
+	static inline auto FInit = PreyFunction<bool(CDXInput* const _this)>(0x9ED8B0);
+	static inline auto FUpdate = PreyFunction<void(CDXInput* const _this, bool bFocus)>(0x9EDA90);
+	static inline auto FShutDown = PreyFunction<void(CDXInput* const _this)>(0x9EDA40);
+	static inline auto FClearKeyState = PreyFunction<void(CDXInput* const _this)>(0x9ED840);
+	static inline auto FSetExclusiveMode = PreyFunction<void(CDXInput* const _this, EInputDeviceType deviceType, bool exclusive, void* pUser)>(0x9EDA20);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -105,4 +107,103 @@ public:
 	static inline auto FCheckLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_start, Vec3 const &_dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1417990);
 	static inline auto FValidateLink = PreyFunction<int(CArkNavIslandJumpLink const *const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, Vec3 const &_startPos, Vec3 const &_dir, unsigned _islandStart, Vec3 const &_endPos, std::vector<std::tuple<Vec3,Vec3>> &_links, CArkNavIslandJumpLink::LinkError &_error)>(0x1418930);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+#include <_unknown/TNavigationID.h>
 
+enum EEntityAspects;
+class ICrySizer;
+struct IGameObject;
+struct ISerializableInfo;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+class SmartScriptTable;
+
+// CArkNavIslandJumpLink
+// Header:  Prey/GameDll/ark/ArkNavIslandJumpLink.h
+class CArkNavIslandJumpLink : public CGameObjectExtensionHelper<CArkNavIslandJumpLink, IGameObjectExtension>
+{ // Size=208 (0xD0)
+public:
+	using LinkPosition = std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >;
+	using Links = std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>;
+
+	std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>> m_links;
+	ArkOffMeshLinkHelper m_navLinksForward;
+	ArkOffMeshLinkHelper m_navLinksReverse;
+	ENavLinkError m_linkStatus;
+	Vec3 m_lastLinkPos;
+	float m_updateEditorPosTimer;
+	bool m_bRebuildLinks;
+
+	CArkNavIslandJumpLink();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void InitClient(int _channelId);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void PostInitClient(int _channelId);
+	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
+	virtual bool GetEntityPoolSignature(TSerialize _signature);
+	virtual void Release();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags);
+	virtual void PostSerialize();
+	virtual void SerializeSpawnInfo(TSerialize _ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void PostUpdate(float _frameTime);
+	virtual void PostRemoteSpawn();
+	virtual void HandleEvent(const SGameObjectEvent& _event);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void SetChannelId(uint16_t _id);
+	virtual void SetAuthority(bool _bAuth);
+	virtual void GetMemoryUsage(ICrySizer* _pS) const;
+	void OnNavMeshChange() { FOnNavMeshChange(this); }
+	void ClearLinks() { FClearLinks(this); }
+	void RebuildLinks() { FRebuildLinks(this); }
+	ENavLinkError CalculateLinkPositions(TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links) const { return FCalculateLinkPositions(this, _navAgentID, _links); }
+	int CheckLinkRow(TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLinkRow(this, _navAgentID, _start, _fwdDir, _fwdDist, _linkDir, _linkDist, _islandId, _links, _error); }
+	int CheckLink(TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLink(this, _navAgentID, _start, _dir, _dist, _islandId, _links, _error); }
+	int ValidateLink(TNavigationID<1> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FValidateLink(this, _navAgentID, _startPos, _dir, _islandStart, _endPos, _links, _error); }
+
+#if 0
+	Vec3 GetTriggerSize() const;
+	SmartScriptTable GetPropertiesTable() const;
+#endif
+
+	static inline auto FCArkNavIslandJumpLinkOv2 = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152CB70);
+	static inline auto FInit = PreyFunction<bool(CArkNavIslandJumpLink* const _this, IGameObject* _pGameObject)>(0x152DF50);
+	static inline auto FInitClient = PreyFunction<void(CArkNavIslandJumpLink* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(CArkNavIslandJumpLink* const _this, IGameObject* _pGameObject)>(0x152E070);
+	static inline auto FPostInitClient = PreyFunction<void(CArkNavIslandJumpLink* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkNavIslandJumpLink* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkNavIslandJumpLink* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkNavIslandJumpLink* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E950);
+	static inline auto FFullSerialize = PreyFunction<void(CArkNavIslandJumpLink* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkNavIslandJumpLink* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E090);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkNavIslandJumpLink* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkNavIslandJumpLink* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkNavIslandJumpLink* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x152E9A0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkNavIslandJumpLink* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkNavIslandJumpLink* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkNavIslandJumpLink* const _this, SEntityEvent& _event)>(0x152E0D0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkNavIslandJumpLink* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkNavIslandJumpLink* const _this, bool _bAuth)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkNavIslandJumpLink* const _this, ICrySizer* _pS)>(0xFD50A0);
+	static inline auto FOnNavMeshChange = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E040);
+	static inline auto FClearLinks = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152DEC0);
+	static inline auto FRebuildLinks = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E200);
+	static inline auto FCalculateLinkPositions = PreyFunction<ENavLinkError(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links)>(0x152CCA0);
+	static inline auto FCheckLinkRow = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DC50);
+	static inline auto FCheckLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DA50);
+	static inline auto FValidateLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152EA40);
+};
+#endif // !MOONCRASH

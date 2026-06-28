@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
@@ -29,4 +31,36 @@ public:
 	static inline auto FSetUpCameraRotation = PreyFunction<void(ArkTraumaFear* const _this)>(0x1464D20);
 	static inline auto FCleanUpFear = PreyFunction<void(ArkTraumaFear* const _this)>(0x1464710);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
 
+// ArkTraumaFear
+// Header:  Prey/GameDll/ark/player/trauma/ArkTraumaFear.h
+class ArkTraumaFear : public ArkTraumaBase
+{ // Size=344 (0x158)
+public:
+	unsigned m_cameraModifierHandle;
+	Ang3 m_storedRotation;
+
+	ArkTraumaFear();
+	virtual ~ArkTraumaFear();
+	virtual void PostSerialize();
+	virtual void Activate(int _level);
+	virtual void ReevaluatePhase(bool _bImmediate);
+	virtual void ForceRemove(bool _bImmediate);
+	void HandleFearCameraRotation(Ang3& _cameraRotation, float _frameTime) { FHandleFearCameraRotation(this, _cameraRotation, _frameTime); }
+	void SetUpCameraRotation() { FSetUpCameraRotation(this); }
+	void CleanUpFear() { FCleanUpFear(this); }
+
+	static inline auto FArkTraumaFearOv1 = PreyFunction<void(ArkTraumaFear* const _this)>(0x157C040);
+	static inline auto FPostSerialize = PreyFunction<void(ArkTraumaFear* const _this)>(0x157C6A0);
+	static inline auto FActivate = PreyFunction<void(ArkTraumaFear* const _this, int _level)>(0x157C0E0);
+	static inline auto FReevaluatePhase = PreyFunction<void(ArkTraumaFear* const _this, bool _bImmediate)>(0x157C6F0);
+	static inline auto FForceRemove = PreyFunction<void(ArkTraumaFear* const _this, bool _bImmediate)>(0x157C270);
+	static inline auto FHandleFearCameraRotation = PreyFunction<void(ArkTraumaFear* const _this, Ang3& _cameraRotation, float _frameTime)>(0x157C290);
+	static inline auto FSetUpCameraRotation = PreyFunction<void(ArkTraumaFear* const _this)>(0x157C730);
+	static inline auto FCleanUpFear = PreyFunction<void(ArkTraumaFear* const _this)>(0x157C120);
+};
+#endif // !MOONCRASH

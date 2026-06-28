@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #include <Prey/CryGame/Game.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/GameDll/ark/player/ArkPlayer.h>

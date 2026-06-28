@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -100,3 +102,106 @@ public:
     static inline auto FLoadFromXML = PreyFunction<void(CEntityArchetype *const _this, XmlNodeRef &propertiesNode, XmlNodeRef &objectVarsNode)>(0x910260);
     static inline auto FReload = PreyFunction<void(CEntityArchetype *const _this)>(0x910C20);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/cryarray.h>
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#include <Prey/CrySystem/XML/IXml.h>
+
+class IEntityArchetypeListener;
+struct IEntityClass;
+struct IScriptTable;
+
+// CEntityArchetype
+// Header:  CryEngine/cryentitysystem/EntityArchetype.h
+class CEntityArchetype : public IEntityArchetype, public _i_reference_target<int>
+{ // Size=64 (0x40)
+public:
+	string m_name;
+	uint64_t m_id;
+	SmartScriptTable m_pProperties;
+	XmlNodeRef m_ObjectVars;
+	IEntityClass* m_pClass;
+
+	virtual IEntityClass* GetClass() const;
+	virtual const char* GetName() const;
+	virtual uint64_t GetId() const;
+	virtual IScriptTable* GetProperties();
+	virtual const IScriptTable* GetProperties() const;
+	virtual XmlNodeRef GetObjectVars();
+	virtual void LoadFromXML(XmlNodeRef& propertiesNode, XmlNodeRef& objectVarsNode);
+	void Reload() { FReload(this); }
+
+#if 0
+	CEntityArchetype(IEntityClass* _arg0_, uint64_t _arg1_);
+	void SetName(const string& _arg0_);
+	void SetId(const uint64_t _arg0_);
+#endif
+
+	static inline auto FGetClass = PreyFunction<IEntityClass* (const CEntityArchetype* const _this)>(0xEDF820);
+	static inline auto FGetName = PreyFunction<const char* (const CEntityArchetype* const _this)>(0x598E60);
+	static inline auto FGetId = PreyFunction<uint64_t(const CEntityArchetype* const _this)>(0xD77240);
+	static inline auto FGetPropertiesOv1 = PreyFunction<IScriptTable* (CEntityArchetype* const _this)>(0x7E3C90);
+	static inline auto FGetPropertiesOv0 = PreyFunction<const IScriptTable* (const CEntityArchetype* const _this)>(0x7E3C90);
+	static inline auto FGetObjectVars = PreyFunction<XmlNodeRef*(CEntityArchetype* const _this, XmlNodeRef* _return_value_)>(0x92C360);
+	static inline auto FLoadFromXML = PreyFunction<void(CEntityArchetype* const _this, XmlNodeRef& propertiesNode, XmlNodeRef& objectVarsNode)>(0x92C510);
+	static inline auto FReload = PreyFunction<void(CEntityArchetype* const _this)>(0x92D3D0);
+};
+
+// CEntityArchetypeManager
+// Header:  CryEngine/cryentitysystem/EntityArchetype.h
+// Include: Prey/CryEntitySystem/EntityArchetype.h
+class CEntityArchetypeManager
+{ // Size=112 (0x70)
+public:
+	using ArchetypesNameMap = std::map<const char*, _smart_ptr<CEntityArchetype>, stl::less_stricmp<const char*>>;
+	using ArchetypesIdMap = std::unordered_map<uint64_t, _smart_ptr<CEntityArchetype>>;
+
+	std::map<const char*, _smart_ptr<CEntityArchetype>, stl::less_stricmp<const char*>> m_nameToArchetypeMap;
+	std::unordered_map<uint64_t, _smart_ptr<CEntityArchetype>> m_idToArchetypeMap;
+	DynArray<CryStringT<char>,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_loadedLibs;
+	std::vector<IEntityArchetypeListener*> m_listeners;
+
+	IEntityArchetype* CreateArchetype(IEntityClass* pClass, const char* sArchetype, uint64_t _id) { return FCreateArchetype(this, pClass, sArchetype, _id); }
+	IEntityArchetype* FindArchetype(const char* sArchetype) { return FFindArchetypeOv1(this, sArchetype); }
+	IEntityArchetype* LoadArchetype(const char* sArchetype) { return FLoadArchetype(this, sArchetype); }
+	IEntityArchetype* GetArchetype(uint64_t _id) { return FGetArchetypeOv1(this, _id); }
+	void DeleteArchetype(const char* sArchetype) { FDeleteArchetype(this, sArchetype); }
+	void ReloadAllArchetypes() { FReloadAllArchetypes(this); }
+	void ReloadArchetype(const char* _sArchetypeName) { FReloadArchetype(this, _sArchetypeName); }
+	void RenameArchetype(const char* _archetypeName, const char* _newArchetypeName) { FRenameArchetype(this, _archetypeName, _newArchetypeName); }
+	bool PreloadArchetypes(const char* _szLevelPath) { return FPreloadArchetypes(this, _szLevelPath); }
+	void Reset() { FReset(this); }
+	std::vector<string> GetArchetypeNames(const string& _libraryName) const { alignas(std::vector<string>) std::byte _return_buf_[sizeof(std::vector<string>)]; return *FGetArchetypeNames(this, reinterpret_cast<std::vector<string>*>(_return_buf_), _libraryName); }
+	std::vector<IEntityArchetype*> GetArchetypes(const string& _libraryName) const { alignas(std::vector<IEntityArchetype*>) std::byte _return_buf_[sizeof(std::vector<IEntityArchetype*>)]; return *FGetArchetypes(this, reinterpret_cast<std::vector<IEntityArchetype*>*>(_return_buf_), _libraryName); }
+	bool LoadLibrary(const string& library) { return FLoadLibrary(this, library); }
+	void RegisterListener(IEntityArchetypeListener* _pListener) { FRegisterListener(this, _pListener); }
+	void UnregisterListener(IEntityArchetypeListener* _pListener) { FUnregisterListener(this, _pListener); }
+	std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>> GetArchetypeInfoFromMap(const string& _libraryName) const { alignas(std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>) std::byte _return_buf_[sizeof(std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>)]; return *FGetArchetypeInfoFromMap(this, reinterpret_cast<std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>*>(_return_buf_), _libraryName); }
+
+#if 0
+	const IEntityArchetype* FindArchetype(const char* _arg0_) const;
+	const IEntityArchetype* GetArchetype(uint64_t _arg0_) const;
+	static string GetLibraryFromName(const string& _arg0_);
+#endif
+
+	static inline auto FCreateArchetype = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, IEntityClass* pClass, const char* sArchetype, uint64_t _id)>(0x92B920);
+	static inline auto FFindArchetypeOv1 = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92BEB0);
+	static inline auto FLoadArchetype = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92C390);
+	static inline auto FGetArchetypeOv1 = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, uint64_t _id)>(0x92BF70);
+	static inline auto FDeleteArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92BE10);
+	static inline auto FReloadAllArchetypes = PreyFunction<void(CEntityArchetypeManager* const _this)>(0x92D440);
+	static inline auto FReloadArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* _sArchetypeName)>(0x92D590);
+	static inline auto FRenameArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* _archetypeName, const char* _newArchetypeName)>(0x92D650);
+	static inline auto FPreloadArchetypes = PreyFunction<bool(CEntityArchetypeManager* const _this, const char* _szLevelPath)>(0x92CEA0);
+	static inline auto FReset = PreyFunction<void(CEntityArchetypeManager* const _this)>(0x92D810);
+	static inline auto FGetArchetypeNames = PreyFunction<std::vector<string>*(const CEntityArchetypeManager* const _this, std::vector<string>* _return_value_, const string& _libraryName)>(0x92C200);
+	static inline auto FGetArchetypes = PreyFunction<std::vector<IEntityArchetype*>*(const CEntityArchetypeManager* const _this, std::vector<IEntityArchetype*>* _return_value_, const string& _libraryName)>(0x92C2B0);
+	static inline auto FLoadLibrary = PreyFunction<bool(CEntityArchetypeManager* const _this, const string& library)>(0x92C6E0);
+	static inline auto FRegisterListener = PreyFunction<void(CEntityArchetypeManager* const _this, IEntityArchetypeListener* _pListener)>(0x92D380);
+	static inline auto FUnregisterListener = PreyFunction<void(CEntityArchetypeManager* const _this, IEntityArchetypeListener* _pListener)>(0x92DA40);
+	static inline auto FGetArchetypeInfoFromMap = PreyFunction<std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>*(const CEntityArchetypeManager* const _this, std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>* _return_value_, const string& _libraryName)>(0x92BFC0);
+};
+#endif // !MOONCRASH

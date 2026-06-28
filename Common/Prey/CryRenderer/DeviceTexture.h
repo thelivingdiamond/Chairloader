@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 #include <functional>
 #include <Chairloader/PreyFunction.h>
@@ -117,3 +119,4 @@ public:
 private:
 	int Cleanup();
 };
+#endif // !MOONCRASH

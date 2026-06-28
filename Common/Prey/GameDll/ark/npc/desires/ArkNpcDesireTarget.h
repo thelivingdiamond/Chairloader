@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -208,6 +210,219 @@ public:
 	static inline auto FSetTolerance = PreyFunction<void(ArkNpcDesireTarget *const _this, float _tolerance)>(0x1525CA0);
 	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcDesireTarget *const _this)>(0x1525940);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+enum class EArkNpcDesireTargetRefreshResult;
+enum class EArkNpcDesireTargetType;
+struct IEntity;
 
+// ArkNpcAttentionProxyDesireTargetImpl
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcAttentionProxyDesireTargetImpl
+{ // Size=28 (0x1C)
+public:
+	float m_tolerance;
+	unsigned m_npcEntityId;
+	unsigned m_targetEntityId;
+	boost::optional<Vec3_tpl<float> > m_maybePosition;
 
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	ArkNpcAttentionProxyDesireTargetImpl(unsigned _arg0_, unsigned _arg1_);
+	bool operator==(const ArkNpcAttentionProxyDesireTargetImpl& _arg0_) const;
+	bool IsValid() const;
+	bool HasPosition() const;
+	bool IsStatic() const;
+	Vec3 GetPosition() const;
+	bool HasDirection() const;
+	Vec3 GetDirection() const;
+	unsigned GetEntityId() const;
+	float GetTolerance() const;
+	void SetTolerance(float _arg0_);
+#endif
+
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcAttentionProxyDesireTargetImpl* const _this)>(0x1645150);
+};
+
+// ArkNpcCameraDesireTargetImpl
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcCameraDesireTargetImpl
+{ // Size=16 (0x10)
+public:
+	float m_tolerance;
+	Vec3 m_position;
+
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	ArkNpcCameraDesireTargetImpl();
+	bool operator==(const ArkNpcCameraDesireTargetImpl& _arg0_) const;
+	bool IsValid() const;
+	bool HasPosition() const;
+	bool IsStatic() const;
+	Vec3 GetPosition() const;
+	bool HasDirection() const;
+	Vec3 GetDirection() const;
+	unsigned GetEntityId() const;
+	float GetTolerance() const;
+	void SetTolerance(float _arg0_);
+#endif
+
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcCameraDesireTargetImpl* const _this)>(0x1645240);
+};
+
+// ArkNpcDesireTarget
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcDesireTarget
+{ // Size=36 (0x24)
+public:
+	using ArkNpcDesireTargetVariant = boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<10>,ArkNpcNoDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<9>,ArkNpcPositionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<8>,ArkNpcEntityDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<7>,ArkNpcEntityBoneDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<6>,ArkNpcEntityOffsetTargetImpl,boost::mpl::l_item<boost::mpl::long_<5>,ArkNpcEntityBoundsCenterTargetImpl,boost::mpl::l_item<boost::mpl::long_<4>,ArkNpcAttentionProxyDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<3>,ArkNpcCameraDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<2>,ArkNpcDirectionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<1>,ArkNpcAttackPositionDesireTargetImpl,boost::mpl::l_end> > > > > > > > > > > >;
+
+	boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<10>,ArkNpcNoDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<9>,ArkNpcPositionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<8>,ArkNpcEntityDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<7>,ArkNpcEntityBoneDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<6>,ArkNpcEntityOffsetTargetImpl,boost::mpl::l_item<boost::mpl::long_<5>,ArkNpcEntityBoundsCenterTargetImpl,boost::mpl::l_item<boost::mpl::long_<4>,ArkNpcAttentionProxyDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<3>,ArkNpcCameraDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<2>,ArkNpcDirectionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<1>,ArkNpcAttackPositionDesireTargetImpl,boost::mpl::l_end> > > > > > > > > > > > m_target;
+
+	static ArkNpcDesireTarget None() { return FNone(); }
+	static ArkNpcDesireTarget LookAtPos(const IEntity& _entity) { return FLookAtPos(_entity); }
+	static ArkNpcDesireTarget AttentionProxy(unsigned _npcEntityId, unsigned _targetEntityId) { return FAttentionProxyOv1(_npcEntityId, _targetEntityId); }
+	static ArkNpcDesireTarget AttentionProxy(const IEntity& _npcEntity, const IEntity& _targetEntity) { return FAttentionProxyOv0(_npcEntity, _targetEntity); }
+	static ArkNpcDesireTarget AttackPosition(const IEntity& _entity) { return FAttackPosition(_entity); }
+	static ArkNpcDesireTarget Direction(const Vec3& _dir) { return FDirection(_dir); }
+	ArkNpcDesireTarget();
+	ArkNpcDesireTarget(const Vec3& _position);
+	ArkNpcDesireTarget(const IEntity& _entity);
+	ArkNpcDesireTarget(const IEntity& _entity, float _tolerance);
+	bool operator!=(const ArkNpcDesireTarget& _other) const { return FoperatorNotEq(this, _other); }
+	EArkNpcDesireTargetType GetTargetType() const { return FGetTargetType(this); }
+	bool IsValid() const { return FIsValid(this); }
+	bool HasPosition() const { return FHasPosition(this); }
+	bool HasDirection() const { return FHasDirection(this); }
+	Vec3 GetPosition() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetPosition(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	Vec3 GetDirection() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetDirection(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	unsigned GetEntityId() const { return FGetEntityId(this); }
+	float GetTolerance() const { return FGetTolerance(this); }
+	void SetTolerance(float _tolerance) { FSetTolerance(this, _tolerance); }
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	static ArkNpcDesireTarget Player();
+	static ArkNpcDesireTarget BoundsCenter(const IEntity& _arg0_);
+	static ArkNpcDesireTarget EntityOffset(const IEntity& _arg0_, const Vec3& _arg1_);
+	ArkNpcDesireTarget(const Vec3& _arg0_, float _arg1_);
+	ArkNpcDesireTarget(const IEntity& _arg0_, int _arg1_);
+	ArkNpcDesireTarget(const boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<10>,ArkNpcNoDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<9>,ArkNpcPositionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<8>,ArkNpcEntityDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<7>,ArkNpcEntityBoneDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<6>,ArkNpcEntityOffsetTargetImpl,boost::mpl::l_item<boost::mpl::long_<5>,ArkNpcEntityBoundsCenterTargetImpl,boost::mpl::l_item<boost::mpl::long_<4>,ArkNpcAttentionProxyDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<3>,ArkNpcCameraDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<2>,ArkNpcDirectionDesireTargetImpl,boost::mpl::l_item<boost::mpl::long_<1>,ArkNpcAttackPositionDesireTargetImpl,boost::mpl::l_end> > > > > > > > > > > >& _arg0_);
+	bool operator==(const ArkNpcDesireTarget& _arg0_) const;
+	bool IsStatic() const;
+#endif
+
+	static inline auto FNone = PreyFunction<ArkNpcDesireTarget()>(0x1643FB0);
+	static inline auto FLookAtPos = PreyFunction<ArkNpcDesireTarget(const IEntity& _entity)>(0x1644E30);
+	static inline auto FAttentionProxyOv1 = PreyFunction<ArkNpcDesireTarget(unsigned _npcEntityId, unsigned _targetEntityId)>(0x16448B0);
+	static inline auto FAttentionProxyOv0 = PreyFunction<ArkNpcDesireTarget(const IEntity& _npcEntity, const IEntity& _targetEntity)>(0x1644760);
+	static inline auto FAttackPosition = PreyFunction<ArkNpcDesireTarget(const IEntity& _entity)>(0x1644660);
+	static inline auto FDirection = PreyFunction<ArkNpcDesireTarget(const Vec3& _dir)>(0x16449E0);
+	static inline auto FArkNpcDesireTargetOv8 = PreyFunction<void(ArkNpcDesireTarget* const _this)>(0x1643FB0);
+	static inline auto FArkNpcDesireTargetOv7 = PreyFunction<void(ArkNpcDesireTarget* const _this, const Vec3& _position)>(0x1643EC0);
+	static inline auto FArkNpcDesireTargetOv5 = PreyFunction<void(ArkNpcDesireTarget* const _this, const IEntity& _entity)>(0x1643EF0);
+	static inline auto FArkNpcDesireTargetOv4 = PreyFunction<void(ArkNpcDesireTarget* const _this, const IEntity& _entity, float _tolerance)>(0x1643F40);
+	static inline auto FoperatorNotEq = PreyFunction<bool(const ArkNpcDesireTarget* const _this, const ArkNpcDesireTarget& _other)>(0x1643FC0);
+	static inline auto FGetTargetType = PreyFunction<EArkNpcDesireTargetType(const ArkNpcDesireTarget* const _this)>(0x1644C80);
+	static inline auto FIsValid = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644DD0);
+	static inline auto FHasPosition = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644D70);
+	static inline auto FHasDirection = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644D20);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkNpcDesireTarget* const _this, Vec3* _return_value_)>(0x1644C20);
+	static inline auto FGetDirection = PreyFunction<Vec3*(const ArkNpcDesireTarget* const _this, Vec3* _return_value_)>(0x1644B70);
+	static inline auto FGetEntityId = PreyFunction<unsigned(const ArkNpcDesireTarget* const _this)>(0x1644BD0);
+	static inline auto FGetTolerance = PreyFunction<float(const ArkNpcDesireTarget* const _this)>(0x1644CD0);
+	static inline auto FSetTolerance = PreyFunction<void(ArkNpcDesireTarget* const _this, float _tolerance)>(0x1645630);
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcDesireTarget* const _this)>(0x16452D0);
+};
+
+// ArkNpcEntityBoneDesireTargetImpl
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcEntityBoneDesireTargetImpl
+{ // Size=24 (0x18)
+public:
+	unsigned m_entityId;
+	float m_tolerance;
+	int m_boneId;
+	Vec3 m_position;
+
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	ArkNpcEntityBoneDesireTargetImpl(const IEntity& _arg0_, int _arg1_);
+	ArkNpcEntityBoneDesireTargetImpl(const IEntity& _arg0_, int _arg1_, float _arg2_);
+	bool operator==(const ArkNpcEntityBoneDesireTargetImpl& _arg0_) const;
+	bool IsValid() const;
+	bool HasPosition() const;
+	bool IsStatic() const;
+	Vec3 GetPosition() const;
+	bool HasDirection() const;
+	Vec3 GetDirection() const;
+	unsigned GetEntityId() const;
+	float GetTolerance() const;
+	void SetTolerance(float _arg0_);
+#endif
+
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoneDesireTargetImpl* const _this)>(0x1645330);
+};
+
+// ArkNpcEntityBoundsCenterTargetImpl
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcEntityBoundsCenterTargetImpl
+{ // Size=20 (0x14)
+public:
+	unsigned m_entityId;
+	float m_tolerance;
+	Vec3 m_position;
+
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	ArkNpcEntityBoundsCenterTargetImpl(const IEntity& _arg0_);
+	bool operator==(const ArkNpcEntityBoundsCenterTargetImpl& _arg0_) const;
+	bool IsValid() const;
+	bool HasPosition() const;
+	bool IsStatic() const;
+	Vec3 GetPosition() const;
+	bool HasDirection() const;
+	Vec3 GetDirection() const;
+	unsigned GetEntityId() const;
+	float GetTolerance() const;
+	void SetTolerance(float _arg0_);
+#endif
+
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoundsCenterTargetImpl* const _this)>(0x16454A0);
+};
+
+// ArkNpcEntityDesireTargetImpl
+// Header:  Prey/GameDll/ark/npc/desires/ArkNpcDesireTarget.h
+class ArkNpcEntityDesireTargetImpl
+{ // Size=20 (0x14)
+public:
+	unsigned m_entityId;
+	float m_tolerance;
+	Vec3 m_position;
+
+	EArkNpcDesireTargetRefreshResult Refresh() { return FRefresh(this); }
+
+#if 0
+	ArkNpcEntityDesireTargetImpl(const IEntity& _arg0_);
+	ArkNpcEntityDesireTargetImpl(const IEntity& _arg0_, float _arg1_);
+	bool operator==(const ArkNpcEntityDesireTargetImpl& _arg0_) const;
+	bool IsValid() const;
+	bool HasPosition() const;
+	bool IsStatic() const;
+	Vec3 GetPosition() const;
+	bool HasDirection() const;
+	Vec3 GetDirection() const;
+	unsigned GetEntityId() const;
+	float GetTolerance() const;
+	void SetTolerance(float _arg0_);
+#endif
+
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityDesireTargetImpl* const _this)>(0x1645580);
+};
+#endif // !MOONCRASH

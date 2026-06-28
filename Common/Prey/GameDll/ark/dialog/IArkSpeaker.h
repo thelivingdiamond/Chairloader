@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -14,4 +16,21 @@ public:
 	virtual IArkConversation const *GetConversation() const = 0;
 	virtual void Stop(bool arg0, bool arg1) = 0;
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+class IArkConversation;
+struct SDialogParams;
+
+// IArkSpeaker
+// Header:  Prey/GameDll/ark/dialog/IArkSpeaker.h
+class IArkSpeaker
+{ // Size=8 (0x8)
+public:
+	virtual bool PlayDialog(SDialogParams& _params) = 0;
+	virtual const char* GetName() const = 0;
+	virtual const IArkConversation* GetConversation() const = 0;
+	virtual void Stop(bool _bLoading, bool _bConversationComplete) = 0;
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -75,4 +77,87 @@ public:
 	static inline auto FOnEntityEvent = PreyFunction<void(ArkInteractiveMachine *const _this, IEntity *_pEntity, SEntityEvent &_event)>(0x1183EF0);
 	static inline auto FTriggerGameNoise = PreyFunction<void(ArkInteractiveMachine *const _this, float _estimatedDuration)>(0x1184210);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkRepairable.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
+#include <Prey/GameDll/ark/perception/ArkGameNoise.h>
+#include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
+#include <_unknown/ArkInteractiveMachinePerceivable.h>
 
+struct IEntity;
+struct IGameObject;
+struct IMaterial;
+struct SEntityEvent;
+
+// ArkInteractiveMachine
+// Header:  Prey/GameDll/ark/ArkInteractiveMachine.h
+class ArkInteractiveMachine
+	: public ArkInteractiveScreen
+	, public IArkRepairableListener
+	, public IEntityEventListener
+{ // Size=784 (0x310)
+public:
+	ArkInteractiveMachinePerceivable m_perceivable;
+	ArkRepairableLite m_repairable;
+	unsigned m_repairBox;
+	ArkEntityEffect m_idleVfx;
+	QuatT m_repairBoxLoc;
+	string m_repairBoxAttachmentName;
+	string m_repairBoxArchetype;
+	_smart_ptr<IMaterial> m_pScreensaverMaterial;
+	_smart_ptr<IMaterial> m_pPowerOffMaterial;
+	ArkGameNoise::Params m_gameNoiseParams;
+
+	ArkInteractiveMachine();
+	virtual ~ArkInteractiveMachine();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void SetPowered(bool _bPowered, bool _bForce);
+	virtual void LoadProperties();
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void InitCachedPositionData();
+	virtual bool IsEnabled() const;
+	virtual bool IsInteractive() const;
+	virtual void OnEnabledChanged(bool _bForce);
+	void CreateRepairBox() { FCreateRepairBox(this); }
+	virtual bool HasClock() const;
+	virtual void OnBrokenChanged(bool _bBroken, bool _bWasForced);
+	virtual void OnDisruptedChanged(bool _bDisrupted, bool _bWasForced);
+	virtual void SetupStaticMaterial();
+	virtual void OnEntityEvent(IEntity* _pEntity, SEntityEvent& _event);
+	void TriggerGameNoise(float _estimatedDuration) { FTriggerGameNoise(this, _estimatedDuration); }
+
+	static inline auto FArkInteractiveMachineOv1 = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FDBD0);
+	static inline auto FBitNotArkInteractiveMachine = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FDCA0);
+	static inline auto FInit = PreyFunction<bool(ArkInteractiveMachine* const _this, IGameObject* _pGameObject)>(0x11FE3A0);
+	static inline auto FPostInit = PreyFunction<void(ArkInteractiveMachine* const _this, IGameObject* _pGameObject)>(0x11FF390);
+	static inline auto FFullSerialize = PreyFunction<void(ArkInteractiveMachine* const _this, TSerialize _ser)>(0x11FE300);
+	static inline auto FPostSerialize = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FF3C0);
+	static inline auto FProcessEvent = PreyFunction<void(ArkInteractiveMachine* const _this, SEntityEvent& _event)>(0x11FF420);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x11FF2C0);
+	static inline auto FSetPowered = PreyFunction<void(ArkInteractiveMachine* const _this, bool _bPowered, bool _bForce)>(0x11FF470);
+	static inline auto FLoadProperties = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FEA80);
+	static inline auto FOnReset = PreyFunction<void(ArkInteractiveMachine* const _this, bool _bEnteringGameMode)>(0x11FF270);
+	static inline auto FInitCachedPositionData = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FE400);
+	static inline auto FIsEnabled = PreyFunction<bool(const ArkInteractiveMachine* const _this)>(0x11FEA60);
+	static inline auto FIsInteractive = PreyFunction<bool(const ArkInteractiveMachine* const _this)>(0x1A302A0);
+	static inline auto FOnEnabledChanged = PreyFunction<void(ArkInteractiveMachine* const _this, bool _bForce)>(0x14A95A0);
+	static inline auto FCreateRepairBox = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FDFB0);
+	static inline auto FHasClock = PreyFunction<bool(const ArkInteractiveMachine* const _this)>(0x1A302A0);
+	static inline auto FOnBrokenChanged = PreyFunction<void(IArkRepairableListener* const _this, bool _bBroken, bool _bWasForced)>(0x11FF160);
+	static inline auto FOnDisruptedChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bDisrupted, bool _bWasForced)>(0x11FF1D0);
+	static inline auto FSetupStaticMaterial = PreyFunction<void(ArkInteractiveMachine* const _this)>(0x11FF4B0);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x11FF200);
+	static inline auto FTriggerGameNoise = PreyFunction<void(ArkInteractiveMachine* const _this, float _estimatedDuration)>(0x11FF520);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 #pragma once
 #include <Prey/CryRenderer/CryDX.h>
 #include <Prey/CryRenderer/IShader.h>
@@ -924,3 +926,1444 @@ public:
 };
 
 static_assert(sizeof(CTexture) == 264);
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#include <CryEngine/crycommon/IRenderer.h>
+#include <CryEngine/renderdll/common/textures/texturearrayalloc.h>
+#include <Prey/CryMath/Cry_Color.h>
+#include <Prey/CryRenderer/IShader.h>
+#include <Prey/CryRenderer/ITexture.h>
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/CrySystem/TimeValue.h>
+#include <Prey/RenderDll/Common/CommonRender.h>
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <Prey/RenderDll/Common/Textures/Texture.h>
+#include <Prey/RenderDll/Common/Textures/TextureStreamPool.h>
+#include <_unknown/CFlashTextureSourceBase__AutoReleasedPlayerPtr.h>
+#include <_unknown/CTextureArrayAlloc.h>
+#include <_unknown/CryLockT.h>
+#include <_unknown/IDynTextureSource.h>
+#include <_unknown/TArray.h>
+
+class CDeviceTexture;
+class CImageFile;
+class CRendElementBase;
+class CRenderObject;
+class CShader;
+class CShaderResources;
+class CTextureStreamPoolMgr;
+enum EHWShaderClass;
+enum class EShadowBuffers_Pool;
+enum EStreamTaskPriority;
+class ICrySizer;
+struct ID3D11CommandList;
+struct ID3D11DepthStencilView;
+struct ID3D11DeviceContext;
+struct ID3D11RenderTargetView;
+struct ID3D11ShaderResourceView;
+struct ID3D11UnorderedAccessView;
+struct IFlashPlayer;
+struct IFlashPlayerBootStrapper;
+class IReadStream;
+struct IRenderNode;
+class ITextureStreamer;
+struct IUIElement;
+struct RenderTargetData;
+struct ResourceViewData;
+struct SDepthTexture;
+struct SDynTexture;
+struct SDynTexture_Shadow;
+struct SPixFormat;
+struct SResourceView;
+struct STexData;
+struct STexMipHeader;
+struct STexPool;
+struct STexPoolItem;
+struct STexStreamInMipState;
+struct STexStreamInState;
+struct STexStreamingInfo;
+struct ShadowMapFrustum;
+struct tagRECT;
+
+// CDynTextureSourceLayerActivator
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+class CDynTextureSourceLayerActivator
+{ // Size=1 (0x1)
+public:
+	using PerLayerDynSrcMtls = std::map<string, std::vector<string>>;
+
+	static inline auto s_perLayerDynSrcMtls = PreyGlobal<std::map<string, std::vector<string>>>(0x2CA33B0);
+
+	static void LoadLevelInfo() { FLoadLevelInfo(); }
+	static void ReleaseData() { FReleaseData(); }
+	static void ActivateLayer(const char* pLayerName, bool activate) { FActivateLayer(pLayerName, activate); }
+
+	static inline auto FLoadLevelInfo = PreyFunction<void()>(0x1000180);
+	static inline auto FReleaseData = PreyFunction<void()>(0x1001E00);
+	static inline auto FActivateLayer = PreyFunction<void(const char* pLayerName, bool activate)>(0xFFA190);
+};
+
+// CFlashTextureSourceBase
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+class CFlashTextureSourceBase : public IDynTextureSourceImpl, private IUIModule
+{ // Size=88 (0x58)
+public:
+	// CFlashTextureSourceBase::IFlashPlayerInstanceWrapper
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	struct IFlashPlayerInstanceWrapper
+	{ // Size=8 (0x8)
+		virtual ~IFlashPlayerInstanceWrapper();
+		virtual void Release() = 0;
+		virtual bool CheckPtr() const = 0;
+		virtual bool CanDeactivate() const = 0;
+		virtual IFlashPlayer* GetTempPtr() const = 0;
+		virtual IFlashPlayer* GetPermPtr(CFlashTextureSourceBase* pSrc) = 0;
+		virtual void Activate(bool activate, CFlashTextureSourceBase* pSrc) = 0;
+		virtual void Clear(CFlashTextureSourceBase* pSrc) = 0;
+		virtual const char* GetSourceFilePath() const = 0;
+		virtual void UpdatePlayer(CFlashTextureSourceBase* pSrc) = 0;
+		virtual void Advance(float delta) = 0;
+		virtual int GetWidth() const = 0;
+		virtual int GetHeight() const = 0;
+	};
+
+	// CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	struct CFlashPlayerInstanceWrapperNULL : public CFlashTextureSourceBase::IFlashPlayerInstanceWrapper
+	{ // Size=8 (0x8)
+		virtual void Release();
+		virtual bool CheckPtr() const;
+		virtual bool CanDeactivate() const;
+		virtual IFlashPlayer* GetTempPtr() const;
+		virtual IFlashPlayer* GetPermPtr(CFlashTextureSourceBase* pSrc);
+		virtual void Activate(bool activate, CFlashTextureSourceBase* pSrc);
+		virtual void Clear(CFlashTextureSourceBase* pSrc);
+		virtual const char* GetSourceFilePath() const;
+		virtual void UpdatePlayer(CFlashTextureSourceBase* pSrc);
+		virtual void Advance(float delta);
+		virtual int GetWidth() const;
+		virtual int GetHeight() const;
+		virtual ~CFlashPlayerInstanceWrapperNULL();
+
+	#if 0
+		static CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* Get();
+		CFlashPlayerInstanceWrapperNULL();
+	#endif
+
+		static inline auto FRelease = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x1333E90);
+		static inline auto FCheckPtr = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x13B0900);
+		static inline auto FCanDeactivate = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x1A302A0);
+		static inline auto FGetTempPtr = PreyFunction<IFlashPlayer* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x1CBB0B0);
+		static inline auto FGetPermPtr = PreyFunction<IFlashPlayer* (CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this, CFlashTextureSourceBase* pSrc)>(0x1CBB0B0);
+		static inline auto FActivate = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this, bool activate, CFlashTextureSourceBase* pSrc)>(0x1333E90);
+		static inline auto FClear = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this, CFlashTextureSourceBase* pSrc)>(0x1333E90);
+		static inline auto FGetSourceFilePath = PreyFunction<const char* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0xFFCDC0);
+		static inline auto FUpdatePlayer = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this, CFlashTextureSourceBase* pSrc)>(0x1333E90);
+		static inline auto FAdvance = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this, float delta)>(0x1333E90);
+		static inline auto FGetWidth = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x13B7CD0);
+		static inline auto FGetHeight = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperNULL* const _this)>(0x13B7CD0);
+	};
+
+	// CFlashTextureSourceBase::CFlashPlayerInstanceWrapper
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	class CFlashPlayerInstanceWrapper : public CFlashTextureSourceBase::IFlashPlayerInstanceWrapper
+	{ // Size=80 (0x50)
+	public:
+		IFlashPlayerBootStrapper* m_pBootStrapper;
+		IFlashPlayer* m_pPlayer;
+		CryCriticalSection m_lock;
+		bool m_canDeactivate;
+		int m_width;
+		int m_height;
+
+		virtual ~CFlashPlayerInstanceWrapper();
+		virtual void Release();
+		virtual bool CheckPtr() const;
+		virtual bool CanDeactivate() const;
+		virtual IFlashPlayer* GetTempPtr() const;
+		virtual IFlashPlayer* GetPermPtr(CFlashTextureSourceBase* pSrc);
+		virtual void Activate(bool activate, CFlashTextureSourceBase* pSrc);
+		virtual void Clear(CFlashTextureSourceBase* pSrc);
+		virtual const char* GetSourceFilePath() const;
+		void CreateInstance(CFlashTextureSourceBase* pSrc) { FCreateInstance(this, pSrc); }
+		virtual void UpdatePlayer(CFlashTextureSourceBase* pSrc);
+		virtual void Advance(float delta);
+		virtual int GetWidth() const;
+		virtual int GetHeight() const;
+
+	#if 0
+		CFlashPlayerInstanceWrapper();
+		void SetBootStrapper(IFlashPlayerBootStrapper* _arg0_);
+		IFlashPlayerBootStrapper* GetBootStrapper() const;
+	#endif
+
+		static inline auto FRelease = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0x3E3960);
+		static inline auto FCheckPtr = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xFFA790);
+		static inline auto FCanDeactivate = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xFFA780);
+		static inline auto FGetTempPtr = PreyFunction<IFlashPlayer* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xFFCE50);
+		static inline auto FGetPermPtr = PreyFunction<IFlashPlayer* (CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, CFlashTextureSourceBase* pSrc)>(0xFFCB70);
+		static inline auto FActivate = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, bool activate, CFlashTextureSourceBase* pSrc)>(0xFFA090);
+		static inline auto FClear = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, CFlashTextureSourceBase* pSrc)>(0x1333E90);
+		static inline auto FGetSourceFilePath = PreyFunction<const char* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xFFCDA0);
+		static inline auto FCreateInstance = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, CFlashTextureSourceBase* pSrc)>(0xFFACA0);
+		static inline auto FUpdatePlayer = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, CFlashTextureSourceBase* pSrc)>(0x1333E90);
+		static inline auto FAdvance = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this, float delta)>(0xFFA3D0);
+		static inline auto FGetWidth = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xFFD010);
+		static inline auto FGetHeight = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapper* const _this)>(0xA1F860);
+	};
+
+	// CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	class CFlashPlayerInstanceWrapperUIElement : public CFlashTextureSourceBase::IFlashPlayerInstanceWrapper
+	{ // Size=80 (0x50)
+	public:
+		IUIElement* m_pUIElement;
+		IFlashPlayer* m_pPlayer;
+		CryCriticalSection m_lock;
+		bool m_canDeactivate;
+		bool m_activated;
+		int m_width;
+		int m_height;
+
+		virtual ~CFlashPlayerInstanceWrapperUIElement();
+		virtual void Release();
+		virtual bool CheckPtr() const;
+		virtual bool CanDeactivate() const;
+		virtual IFlashPlayer* GetTempPtr() const;
+		virtual IFlashPlayer* GetPermPtr(CFlashTextureSourceBase* pSrc);
+		virtual void Activate(bool activate, CFlashTextureSourceBase* pSrc);
+		virtual void Clear(CFlashTextureSourceBase* pSrc);
+		virtual const char* GetSourceFilePath() const;
+		virtual void UpdatePlayer(CFlashTextureSourceBase* pSrc);
+		virtual void Advance(float delta);
+		virtual int GetWidth() const;
+		virtual int GetHeight() const;
+		void UpdateUIElementPlayer(CFlashTextureSourceBase* pSrc) { FUpdateUIElementPlayer(this, pSrc); }
+
+	#if 0
+		CFlashPlayerInstanceWrapperUIElement();
+		void SetUIElement(IUIElement* _arg0_);
+		IUIElement* GetUIElement() const;
+	#endif
+
+		static inline auto FRelease = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0x3E3960);
+		static inline auto FCheckPtr = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xFFA790);
+		static inline auto FCanDeactivate = PreyFunction<bool(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xFFA780);
+		static inline auto FGetTempPtr = PreyFunction<IFlashPlayer* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xFFCE50);
+		static inline auto FGetPermPtr = PreyFunction<IFlashPlayer* (CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, CFlashTextureSourceBase* pSrc)>(0xFFCC00);
+		static inline auto FActivate = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, bool activate, CFlashTextureSourceBase* pSrc)>(0xFFA110);
+		static inline auto FClear = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, CFlashTextureSourceBase* pSrc)>(0xFFA7A0);
+		static inline auto FGetSourceFilePath = PreyFunction<const char* (const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xFFCDD0);
+		static inline auto FUpdatePlayer = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, CFlashTextureSourceBase* pSrc)>(0x1005080);
+		static inline auto FAdvance = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, float delta)>(0x1333E90);
+		static inline auto FGetWidth = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xFFD010);
+		static inline auto FGetHeight = PreyFunction<int(const CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this)>(0xA1F860);
+		static inline auto FUpdateUIElementPlayer = PreyFunction<void(CFlashTextureSourceBase::CFlashPlayerInstanceWrapperUIElement* const _this, CFlashTextureSourceBase* pSrc)>(0x10050D0);
+	};
+
+	// CFlashTextureSourceBase::AutoReleasedPlayerPtr<struct IFlashPlayer>
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	class AutoReleasedPlayerPtr<struct IFlashPlayer>
+	{ // Size=8 (0x8)
+	public:
+		IFlashPlayer* m_pPlayer;
+
+	#if 0
+		void AutoReleasedPlayerPtr<IFlashPlayer>(IFlashPlayer* _arg0_);
+		void AutoReleasedPlayerPtr<IFlashPlayer>(const CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& _arg0_);
+		~AutoReleasedPlayerPtr<IFlashPlayer>();
+		IFlashPlayer* operator->();
+		const IFlashPlayer* operator->() const;
+		bool operator bool() const;
+		CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& operator=(const CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& _arg0_);
+	#endif
+	};
+
+	// CFlashTextureSourceBase::AutoReleasedFlashPlayerPtr
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	class AutoReleasedFlashPlayerPtr
+	{ // Size=8 (0x8)
+	public:
+		IFlashPlayer* m_pPlayer;
+
+	#if 0
+		void AutoReleasedPlayerPtr<IFlashPlayer>(IFlashPlayer* _arg0_);
+		void AutoReleasedPlayerPtr<IFlashPlayer>(const CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& _arg0_);
+		~AutoReleasedPlayerPtr<IFlashPlayer>();
+		IFlashPlayer* operator->();
+		const IFlashPlayer* operator->() const;
+		bool operator bool() const;
+		CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& operator=(const CFlashTextureSourceBase::AutoReleasedPlayerPtr<IFlashPlayer>& _arg0_);
+	#endif
+	};
+
+	// CFlashTextureSourceBase::CachedTexStateID
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	struct CachedTexStateID
+	{ // Size=8 (0x8)
+		int orig;
+		int patched;
+	};
+
+	static constexpr const uint64_t NumCachedTexStateIDs = 2;
+	volatile int m_refCount;
+	CTimeValue m_lastVisible;
+	int m_lastVisibleFrameID;
+	unsigned m_width;
+	unsigned m_height;
+	bool m_autoUpdate;
+	bool m_perFrameRendering;
+	string m_pFlashFileName;
+	CFlashTextureSourceBase::IFlashPlayerInstanceWrapper* m_pFlashPlayer;
+	IUIElement* m_pElement;
+	CFlashTextureSourceBase::CachedTexStateID m_texStateIDs[2];
+
+	virtual void AddRef();
+	virtual void Release();
+	virtual void Reload();
+	virtual void EnablePerFrameRendering(bool enable);
+	virtual void Activate(bool activate);
+	virtual bool Update();
+	virtual bool Apply(int nTUnit, int nTS);
+	virtual void GetTexGenInfo(float& offsX, float& offsY, float& scaleX, float& scaleY) const;
+	virtual void* GetSourceTemp(IDynTextureSource::EDynTextureSource type) const;
+	virtual void* GetSourcePerm(IDynTextureSource::EDynTextureSource type);
+	virtual const char* GetSourceFilePath() const;
+	virtual IDynTextureSource::EDynTextureSource GetSourceType() const;
+	virtual void SetSize(unsigned width, unsigned height);
+	static bool IsFlashFile(const char* pFlashFileName) { return FIsFlashFile(pFlashFileName); }
+	virtual bool CreateTexFromFlashFile(const char* name);
+	CFlashTextureSourceBase(const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs);
+	virtual void AutoUpdate(float delta, bool isEditing, bool isPaused);
+	virtual void AutoUpdateRT(int frameID);
+	virtual ~CFlashTextureSourceBase();
+	virtual int GetWidth() const = 0;
+	virtual int GetHeight() const = 0;
+	virtual SDynTexture* GetDynTexture() const = 0;
+	virtual bool UpdateDynTex(int rtWidth, int rtHeight) = 0;
+
+#if 0
+	static bool IsFlashUIFile(const char* _arg0_);
+	static bool DestroyTexOfFlashFile(const char* _arg0_);
+	CFlashTextureSourceBase::IFlashPlayerInstanceWrapper* GetFlashPlayerInstanceWrapper() const;
+	static int Align8(int _arg0_);
+#endif
+
+	static inline auto FAddRef = PreyFunction<void(CFlashTextureSourceBase* const _this)>(0xE78980);
+	static inline auto FRelease = PreyFunction<void(CFlashTextureSourceBase* const _this)>(0x1001DD0);
+	static inline auto FReload = PreyFunction<void(IUIModule* const _this)>(0x1002180);
+	static inline auto FEnablePerFrameRendering = PreyFunction<void(CFlashTextureSourceBase* const _this, bool enable)>(0x1B4A290);
+	static inline auto FActivate = PreyFunction<void(CFlashTextureSourceBase* const _this, bool activate)>(0xFFA170);
+	static inline auto FUpdate = PreyFunction<bool(CFlashTextureSourceBase* const _this)>(0xF49980);
+	static inline auto FApply = PreyFunction<bool(CFlashTextureSourceBase* const _this, int nTUnit, int nTS)>(0xFFA3F0);
+	static inline auto FGetTexGenInfo = PreyFunction<void(const CFlashTextureSourceBase* const _this, float& offsX, float& offsY, float& scaleX, float& scaleY)>(0xFFCEA0);
+	static inline auto FGetSourceTemp = PreyFunction<void* (const CFlashTextureSourceBase* const _this, IDynTextureSource::EDynTextureSource type)>(0xFFCE30);
+	static inline auto FGetSourcePerm = PreyFunction<void* (CFlashTextureSourceBase* const _this, IDynTextureSource::EDynTextureSource type)>(0xFFCE10);
+	static inline auto FGetSourceFilePath = PreyFunction<const char* (const CFlashTextureSourceBase* const _this)>(0xFFCDF0);
+	static inline auto FGetSourceType = PreyFunction<IDynTextureSource::EDynTextureSource(const CFlashTextureSourceBase* const _this)>(0x1948930);
+	static inline auto FSetSize = PreyFunction<void(CFlashTextureSourceBase* const _this, unsigned width, unsigned height)>(0x1002E70);
+	static inline auto FIsFlashFile = PreyFunction<bool(const char* pFlashFileName)>(0xFFD240);
+	static inline auto FCreateTexFromFlashFile = PreyFunction<bool(CFlashTextureSourceBase* const _this, const char* name)>(0xFFAE00);
+	static inline auto FCFlashTextureSourceBaseOv1 = PreyFunction<void(CFlashTextureSourceBase* const _this, const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs)>(0xFF9370);
+	static inline auto FAutoUpdate = PreyFunction<void(CFlashTextureSourceBase* const _this, float delta, bool isEditing, bool isPaused)>(0xFFA650);
+	static inline auto FAutoUpdateRT = PreyFunction<void(CFlashTextureSourceBase* const _this, int frameID)>(0xFFA740);
+	static inline auto FBitNotCFlashTextureSourceBase = PreyFunction<void(CFlashTextureSourceBase* const _this)>(0xFF9A90);
+};
+
+// CFlashTextureSource
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+class CFlashTextureSource : public CFlashTextureSourceBase
+{ // Size=96 (0x60)
+public:
+	SDynTexture* m_pDynTexture;
+
+	CFlashTextureSource(const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs);
+	virtual IDynTextureSource::EDynTextureRTType GetRTType() const;
+	virtual ITexture* GetTexture() const;
+	virtual ~CFlashTextureSource();
+	virtual int GetWidth() const;
+	virtual int GetHeight() const;
+	virtual SDynTexture* GetDynTexture() const;
+	virtual bool UpdateDynTex(int rtWidth, int rtHeight);
+
+	static inline auto FCFlashTextureSourceOv1 = PreyFunction<void(CFlashTextureSource* const _this, const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs)>(0xFF9270);
+	static inline auto FGetRTType = PreyFunction<IDynTextureSource::EDynTextureRTType(const CFlashTextureSource* const _this)>(0x1948930);
+	static inline auto FGetTexture = PreyFunction<ITexture* (const CFlashTextureSource* const _this)>(0xFFCF90);
+	static inline auto FGetWidth = PreyFunction<int(const CFlashTextureSource* const _this)>(0xFFD020);
+	static inline auto FGetHeight = PreyFunction<int(const CFlashTextureSource* const _this)>(0xFFC980);
+	static inline auto FGetDynTexture = PreyFunction<SDynTexture* (const CFlashTextureSource* const _this)>(0x3E0300);
+	static inline auto FUpdateDynTex = PreyFunction<bool(CFlashTextureSource* const _this, int rtWidth, int rtHeight)>(0x1005000);
+};
+
+// CFlashTextureSourceSharedRT
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+class CFlashTextureSourceSharedRT : public CFlashTextureSourceBase
+{ // Size=88 (0x58)
+public:
+	static inline auto ms_pDynTexture = PreyGlobal<SDynTexture*>(0x2CA10A8);
+	static inline auto ms_sharedRTWidth = PreyGlobal<int>(0x23DD044);
+	static inline auto ms_sharedRTHeight = PreyGlobal<int>(0x23DD048);
+	static inline auto ms_instCount = PreyGlobal<int>(0x2CA0904);
+
+	CFlashTextureSourceSharedRT(const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs);
+	virtual IDynTextureSource::EDynTextureRTType GetRTType() const;
+	virtual ITexture* GetTexture() const;
+	static void SetSharedRTDim(int width, int height) { FSetSharedRTDim(width, height); }
+	static void SetupSharedRenderTargetRT() { FSetupSharedRenderTargetRT(); }
+	virtual ~CFlashTextureSourceSharedRT();
+	virtual int GetWidth() const;
+	virtual int GetHeight() const;
+	virtual SDynTexture* GetDynTexture() const;
+	virtual bool UpdateDynTex(int rtWidth, int rtHeight);
+	static void ProbeDepthStencilSurfaceCreation(int width, int height) { FProbeDepthStencilSurfaceCreation(width, height); }
+
+#if 0
+	static int GetSharedRTWidth();
+	static int GetSharedRTHeight();
+	static int NearestPowerOfTwo(int _arg0_);
+#endif
+
+	static inline auto FCFlashTextureSourceSharedRTOv1 = PreyFunction<void(CFlashTextureSourceSharedRT* const _this, const char* pFlashFileName, const IRenderer::SLoadShaderItemArgs* pArgs)>(0xFF96F0);
+	static inline auto FGetRTType = PreyFunction<IDynTextureSource::EDynTextureRTType(const CFlashTextureSourceSharedRT* const _this)>(0x1CBB0B0);
+	static inline auto FGetTexture = PreyFunction<ITexture* (const CFlashTextureSourceSharedRT* const _this)>(0xFFCFA0);
+	static inline auto FSetSharedRTDim = PreyFunction<void(int width, int height)>(0x1002DC0);
+	static inline auto FSetupSharedRenderTargetRT = PreyFunction<void()>(0x1002E80);
+	static inline auto FGetWidth = PreyFunction<int(const CFlashTextureSourceSharedRT* const _this)>(0xFFD060);
+	static inline auto FGetHeight = PreyFunction<int(const CFlashTextureSourceSharedRT* const _this)>(0xFFC9C0);
+	static inline auto FGetDynTexture = PreyFunction<SDynTexture* (const CFlashTextureSourceSharedRT* const _this)>(0xFFC950);
+	static inline auto FUpdateDynTex = PreyFunction<bool(CFlashTextureSourceSharedRT* const _this, int rtWidth, int rtHeight)>(0x1005070);
+	static inline auto FProbeDepthStencilSurfaceCreation = PreyFunction<void(int width, int height)>(0xF47AB0);
+};
+
+// CTexture
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+class CTexture : public ITexture, public CBaseResource
+{ // Size=264 (0x108)
+public:
+	enum EDeviceDirtyFlags
+	{
+		eDeviceResourceDirty = 1,
+		eDeviceResourceViewDirty = 2,
+	};
+
+	enum class #unnamed_enum_MaxStreamTasks
+	{
+		MaxStreamTasks = 512,
+		MaxStreamPrepTasks = 8192,
+		StreamOutMask = 32768,
+		StreamPrepMask = 16384,
+		StreamIdxMask = 16383,
+		InvalidStreamSlot = 65535,
+	};
+
+	// CTexture::WantedStat
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	struct WantedStat
+	{ // Size=16 (0x10)
+		_smart_ptr<ITexture> pTex;
+		unsigned nWanted;
+	};
+
+	using InvalidateCallbackType = std::function<void __cdecl(void *,unsigned int)>;
+	using TStreamFormatCodeKeyMap = std::map<SStreamFormatCodeKey, unsigned int>;
+
+	ID3D11RenderTargetView* m_pDeviceRTV;
+	ID3D11RenderTargetView* m_pDeviceRTVMS;
+	CDeviceTexture* m_pDevTexture;
+	const SPixFormat* m_pPixelFormat;
+	STexStreamingInfo* m_pFileTexMips;
+	uint16_t m_nWidth;
+	uint16_t m_nHeight;
+	uint16_t m_nDepth;
+	ETEX_Format m_eTFDst;
+	ETEX_TileMode m_eSrcTileMode;
+	uint8_t m_nStreamFormatCode;
+	EDeviceMemoryHeap m_memoryHeap;
+	unsigned m_nFlags;
+	bool m_bStreamed : 1;
+	bool m_bStreamPrepared : 1;
+	bool m_bStreamRequested : 1;
+	bool m_bWasUnloaded : 1;
+	bool m_bPostponed : 1;
+	bool m_bForceStreamHighRes : 1;
+	bool m_bIsLocked : 1;
+	bool m_bNoTexture : 1;
+	bool m_bResolved : 1;
+	bool m_bUseMultisampledRTV : 1;
+	bool m_bCustomFormat : 1;
+	bool m_bVertexTexture : 1;
+	bool m_bUseDecalBorderCol : 1;
+	bool m_bIsSRGB : 1;
+	bool m_bNoDevTexture : 1;
+	bool m_bAsyncDevTexCreation : 1;
+	bool m_bInDistanceSortedList : 1;
+	bool m_bUsedRecently : 1;
+	bool m_bStatTracked : 1;
+	bool m_bStreamHighPriority : 1;
+	int8_t m_nCustomID;
+	uint8_t m_nArraySize;
+	int8_t m_nMips;
+	ETEX_Type m_eTT;
+	ETEX_Format m_eTFSrc;
+	int8_t m_nStreamingPriority;
+	int8_t m_nMinMipVidUploaded;
+	int8_t m_nMinMipVidActive;
+	uint16_t m_nStreamSlot;
+	int16_t m_fpMinMipCur;
+	STexCacheFileHeader m_CacheFileHeader;
+	uint16_t m_nDefState;
+	int m_nActualSize;
+	int m_nPersistentSize;
+	int m_nAccessFrameID;
+	STexStreamRoundInfo m_streamRounds[2];
+	float m_fCurrentMipBias;
+	float m_fAvgBrightness;
+	ColorF m_cClearColor;
+	RenderTargetData* m_pRenderTargetData;
+	ResourceViewData* m_pResourceViewData;
+	string m_SrcName;
+	ID3D11ShaderResourceView* m_pDeviceShaderResource;
+	ID3D11ShaderResourceView* m_pDeviceShaderResourceSRGB;
+	std::unordered_map<void *,std::function<void __cdecl(void *,unsigned int)>,std::hash<void *>,std::equal_to<void *>,std::allocator<std::pair<void * const,std::function<void __cdecl(void *,unsigned int)> > > > m_invalidateCallbacks;
+	int m_nUpdateFrameID;
+	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2C86820);
+	static inline auto s_nStreamingMode = PreyGlobal<int>(0x2CA12CC);
+	static inline auto s_nStreamingUpdateMode = PreyGlobal<int>(0x2CA1460);
+	static inline auto s_nStreamingThroughput = PreyGlobal<int>(0x2CA1464);
+	static inline auto s_nStreamingTotalTime = PreyGlobal<float>(0x2CA1468);
+	static inline auto s_bStreamDontKeepSystem = PreyGlobal<bool>(0x2CA3400);
+	static inline auto s_bPrecachePhase = PreyGlobal<bool>(0x2CA0902);
+	static inline auto s_bPrestreamPhase = PreyGlobal<bool>(0x2CA0903);
+	static inline auto s_nTexturesDataBytesLoaded = PreyGlobal<int>(0x2CA3404);
+	static inline auto s_nTexturesDataBytesUploaded = PreyGlobal<volatile int>(0x2CA3408);
+	static inline auto s_nStatsAllocFails = PreyGlobal<int>(0x2CA340C);
+	static inline auto s_bOutOfMemoryTotally = PreyGlobal<bool>(0x2CA3401);
+	static inline auto s_nStatsStreamPoolInUseMem = PreyGlobal<volatile uint64_t>(0x2CA3410);
+	static inline auto s_nStatsStreamPoolBoundMem = PreyGlobal<volatile uint64_t>(0x2CA3418);
+	static inline auto s_nStatsStreamPoolBoundPersMem = PreyGlobal<volatile uint64_t>(0x2CA3420);
+	static inline auto s_nStatsCurManagedNonStreamedTexMem = PreyGlobal<volatile int>(0x2CA3428);
+	static inline auto s_nStatsCurDynamicTexMem = PreyGlobal<volatile int>(0x2CA342C);
+	static inline auto s_nStatsStreamPoolWanted = PreyGlobal<volatile uint64_t>(0x2CA3430);
+	static inline auto s_bStatsComputeStreamPoolWanted = PreyGlobal<bool>(0x2CA3402);
+	static inline auto s_pStatsTexWantedLists = PreyGlobal<std::vector<CTexture::WantedStat>*>(0x2CA3438);
+	static inline auto s_vTexReloadRequests = PreyGlobal<std::set<string>>(0x2CA2690);
+	static inline auto s_xTexReloadLock = PreyGlobal<CryCriticalSection>(0x2CA26A0);
+	static inline auto s_pPoolMgr = PreyGlobal<CTextureStreamPoolMgr*>(0x2CA1470);
+	static inline auto s_pTextureStreamer = PreyGlobal<ITextureStreamer*>(0x2CA3440);
+	static inline auto s_streamFormatLock = PreyGlobal<CryCriticalSection>(0x2D01088);
+	static inline auto s_formatCodes = PreyGlobal<SStreamFormatCode [256]>(0x2CA3450);
+	static inline auto s_nFormatCodes = PreyGlobal<unsigned>(0x23DD060);
+	static inline auto s_formatCodeMap = PreyGlobal<std::map<SStreamFormatCodeKey, unsigned int>>(0x2D150B8);
+	static inline auto s_RenderLoadingThreadStreamLock = PreyGlobal<CryCriticalSection>(0x2CA6C58);
+	static inline auto s_StreamInTasks = PreyGlobal<CTextureArrayAlloc<STexStreamInState,512>>(0x2CA6C80);
+	static inline auto s_StreamPrepTasks = PreyGlobal<CTextureArrayAlloc<STexStreamPrepState *,8192>>(0x2D010B0);
+	static inline auto s_nBytesSubmittedToStreaming = PreyGlobal<volatile int>(0x2CA3448);
+	static inline auto s_nMipsSubmittedToStreaming = PreyGlobal<volatile int>(0x2CA6C50);
+	static inline auto s_nBytesRequiredNotSubmitted = PreyGlobal<int>(0x2CA6C54);
+	static inline auto s_TexStates = PreyGlobal<std::vector<STexState>>(0x2CA1478);
+	static inline auto m_bLoadedSystem = PreyGlobal<bool>(0x2CA0900);
+	static inline auto s_sDefState = PreyGlobal<STexState>(0x2CA33C0);
+	static inline auto s_TexStages = PreyGlobal<STexStageInfo [64]>(0x2CA1490);
+	static inline auto s_TexStateIDs = PreyGlobal<int [6][64]>(0x2CA0910);
+	static inline auto s_TexState_MipSRGBMask = PreyGlobal<unsigned [64]>(0x0);
+	static inline auto s_eTFZ = PreyGlobal<ETEX_Format>(0x23DD040);
+	static inline auto s_ptexNoTexture = PreyGlobal<CTexture*>(0x2CA0908);
+	static inline auto s_ptexNoTextureCM = PreyGlobal<CTexture*>(0x2CA0F10);
+	static inline auto s_ptexWhite = PreyGlobal<CTexture*>(0x2CA0F18);
+	static inline auto s_ptexGray = PreyGlobal<CTexture*>(0x2CA0F20);
+	static inline auto s_ptexBlack = PreyGlobal<CTexture*>(0x2CA0F28);
+	static inline auto s_ptexBlackAlpha = PreyGlobal<CTexture*>(0x2CA0F30);
+	static inline auto s_ptexBlackCM = PreyGlobal<CTexture*>(0x2CA0F38);
+	static inline auto s_ptexDefaultProbeCM = PreyGlobal<CTexture*>(0x2CA0F40);
+	static inline auto s_ptexFlatBump = PreyGlobal<CTexture*>(0x2CA0F48);
+	static inline auto s_ptexPaletteTexelsPerMeter = PreyGlobal<CTexture*>(0x2CA0F50);
+	static inline auto s_ptexShadowJitterMap = PreyGlobal<CTexture*>(0x2CA0F58);
+	static inline auto s_ptexEnvironmentBRDF = PreyGlobal<CTexture*>(0x2CA0F60);
+	static inline auto s_ptexScreenNoiseMap = PreyGlobal<CTexture*>(0x2CA0F68);
+	static inline auto s_ptexDissolveNoiseMap = PreyGlobal<CTexture*>(0x2CA0F70);
+	static inline auto s_ptexGrainFilterMap = PreyGlobal<CTexture*>(0x2CA0F78);
+	static inline auto s_ptexFilmGrainMap = PreyGlobal<CTexture*>(0x2CA0F80);
+	static inline auto s_ptexVignettingMap = PreyGlobal<CTexture*>(0x2CA0F88);
+	static inline auto s_ptexAOJitter = PreyGlobal<CTexture*>(0x2CA0F90);
+	static inline auto s_ptexAOVOJitter = PreyGlobal<CTexture*>(0x2CA0F98);
+	static inline auto s_ptexShadowMask = PreyGlobal<CTexture*>(0x2CA0FA0);
+	static inline auto s_ptexCachedShadowMap = PreyGlobal<CTexture* [16]>(0x2CA0FB0);
+	static inline auto s_ptexNearestShadowMap = PreyGlobal<CTexture*>(0x2CA0FA8);
+	static inline auto s_ptexNormalsFitting = PreyGlobal<CTexture*>(0x2CA1030);
+	static inline auto s_ptexSceneNormalsMap = PreyGlobal<CTexture*>(0x2CA1038);
+	static inline auto s_ptexSceneNormalsMapMS = PreyGlobal<CTexture*>(0x2CA1040);
+	static inline auto s_ptexSceneNormalsBent = PreyGlobal<CTexture*>(0x2CA1048);
+	static inline auto s_ptexAOColorBleed = PreyGlobal<CTexture*>(0x2CA1050);
+	static inline auto s_ptexSceneDiffuse = PreyGlobal<CTexture*>(0x2CA1058);
+	static inline auto s_ptexSceneSpecular = PreyGlobal<CTexture*>(0x2CA1060);
+	static inline auto s_ptexBackBuffer = PreyGlobal<CTexture*>(0x2CA1068);
+	static inline auto s_ptexPrevBackBuffer = PreyGlobal<CTexture* [2]>(0x2CA1070);
+	static inline auto s_ptexBackBufferScaled = PreyGlobal<CTexture* [3]>(0x2CA1080);
+	static inline auto s_ptexBackBufferScaledTemp = PreyGlobal<CTexture* [2]>(0x2CA1098);
+	static inline auto s_ptexPrevFrameScaled = PreyGlobal<CTexture*>(0x2CA10B0);
+	static inline auto s_ptexDepthBufferQuarter = PreyGlobal<CTexture*>(0x2CA10B8);
+	static inline auto s_ptexDepthBufferHalfQuarter = PreyGlobal<CTexture*>(0x2CA10C0);
+	static inline auto s_ptexWaterVolumeDDN = PreyGlobal<CTexture*>(0x2CA10C8);
+	static inline auto s_ptexWaterVolumeTemp = PreyGlobal<CTexture* [2]>(0x2CA10D0);
+	static inline auto s_ptexWaterRipplesDDN = PreyGlobal<CTexture*>(0x2CA10E0);
+	static inline auto s_ptexWaterVolumeRefl = PreyGlobal<CTexture* [2]>(0x2CA10E8);
+	static inline auto s_ptexWaterCaustics = PreyGlobal<CTexture* [2]>(0x2CA10F8);
+	static inline auto s_ptexRT_ShadowPool = PreyGlobal<CTexture*>(0x2CA1108);
+	static inline auto s_ptexFarPlane = PreyGlobal<CTexture*>(0x2CA1110);
+	static inline auto s_ptexSceneTarget = PreyGlobal<CTexture*>(0x2CA1118);
+	static inline auto s_ptexCurrSceneTarget = PreyGlobal<CTexture*>(0x2CA1120);
+	static inline auto s_ptexSceneTargetR11G11B10F = PreyGlobal<CTexture* [2]>(0x2CA1128);
+	static inline auto s_ptexSceneTargetScaledR11G11B10F = PreyGlobal<CTexture* [4]>(0x2CA1138);
+	static inline auto s_ptexZTarget = PreyGlobal<CTexture*>(0x2CA1158);
+	static inline auto s_ptexZOcclusion = PreyGlobal<CTexture* [2]>(0x2CA1160);
+	static inline auto s_ptexZTargetReadBack = PreyGlobal<CTexture* [4]>(0x2CA1170);
+	static inline auto s_ptexZTargetDownSample = PreyGlobal<CTexture* [4]>(0x2CA1190);
+	static inline auto s_ptexZTargetScaled = PreyGlobal<CTexture*>(0x2CA11B0);
+	static inline auto s_ptexZTargetScaled2 = PreyGlobal<CTexture*>(0x2CA11B8);
+	static inline auto s_ptexZTargetScaled3 = PreyGlobal<CTexture*>(0x2CA11C0);
+	static inline auto s_ptexHDRTarget = PreyGlobal<CTexture*>(0x2CA11C8);
+	static inline auto s_ptexVelocityObjects = PreyGlobal<CTexture*>(0x2CA11D0);
+	static inline auto s_ptexVelocity = PreyGlobal<CTexture*>(0x2CA11D8);
+	static inline auto s_ptexVelocityTiles = PreyGlobal<CTexture* [3]>(0x2CA11E0);
+	static inline auto s_ptexHDRTargetPrev = PreyGlobal<CTexture*>(0x2CA11F8);
+	static inline auto s_ptexHDRTargetScaled = PreyGlobal<CTexture* [4]>(0x2CA1200);
+	static inline auto s_ptexHDRTargetScaledTmp = PreyGlobal<CTexture* [4]>(0x2CA1220);
+	static inline auto s_ptexHDRTargetScaledTempRT = PreyGlobal<CTexture* [4]>(0x2CA1240);
+	static inline auto s_ptexHDRDofLayers = PreyGlobal<CTexture* [2]>(0x2CA1260);
+	static inline auto s_ptexBaseLuminance = PreyGlobal<CTexture*>(0x2CA1270);
+	static inline auto s_ptexSceneCoC = PreyGlobal<CTexture* [6]>(0x2CA1278);
+	static inline auto s_ptexSceneCoCTemp = PreyGlobal<CTexture*>(0x2CA12A8);
+	static inline auto s_ptexHDRTempBloom = PreyGlobal<CTexture* [2]>(0x2CA12B0);
+	static inline auto s_ptexHDRFinalBloom = PreyGlobal<CTexture*>(0x2CA12C0);
+	static inline auto s_ptexHDRAdaptedLuminanceCur = PreyGlobal<CTexture* [8]>(0x2CA12D0);
+	static inline auto s_nCurLumTextureIndex = PreyGlobal<int>(0x2CA12C8);
+	static inline auto s_ptexCurLumTexture = PreyGlobal<CTexture*>(0x2CA1310);
+	static inline auto s_ptexHDRToneMaps = PreyGlobal<CTexture* [4]>(0x2CA1318);
+	static inline auto s_ptexHDRMeasuredLuminance = PreyGlobal<CTexture* [4]>(0x2CA1338);
+	static inline auto s_ptexSkyDomeMie = PreyGlobal<CTexture*>(0x2CA1358);
+	static inline auto s_ptexSkyDomeRayleigh = PreyGlobal<CTexture*>(0x2CA1360);
+	static inline auto s_ptexText_FromSF = PreyGlobal<CTexture* [6]>(0x2CA1368);
+	static inline auto s_ptexSceneTargetScaled = PreyGlobal<CTexture*>(0x2CA1398);
+	static inline auto s_ptexSceneTargetScaledBlurred = PreyGlobal<CTexture*>(0x2CA13A0);
+	static inline auto s_ptexVolObj_Density = PreyGlobal<CTexture*>(0x2CA13A8);
+	static inline auto s_ptexVolObj_Shadow = PreyGlobal<CTexture*>(0x2CA13B0);
+	static inline auto s_ptexColorChart = PreyGlobal<CTexture*>(0x2CA13B8);
+	static inline auto s_ptexFlaresOcclusionRing = PreyGlobal<CTexture* [8]>(0x2CA13C0);
+	static inline auto s_ptexFlaresGather = PreyGlobal<CTexture*>(0x2CA1400);
+	static inline auto s_ptexDepthStencilRemapped = PreyGlobal<CTexture*>(0x0);
+	static inline auto s_EnvTexts = PreyGlobal<SEnvTexture [16]>(0x2CA26E0);
+	static inline auto s_CustomRT_2D = PreyGlobal<TArray<SEnvTexture>>(0x2CA3360);
+	static inline auto s_ShaderTemplates = PreyGlobal<TArray<CTexture>>(0x23DD050);
+	static inline auto s_ShaderTemplatesInitialized = PreyGlobal<bool>(0x2CA0901);
+	static inline auto s_pTexNULL = PreyGlobal<CTexture*>(0x2CA1408);
+	static inline auto s_pBackBuffer = PreyGlobal<CTexture*>(0x2CA1410);
+	static inline auto s_FrontBufferTextures = PreyGlobal<CTexture* [2]>(0x2CA1418);
+	static inline auto s_ptexVolumetricFog = PreyGlobal<CTexture*>(0x2CA1428);
+	static inline auto s_ptexVolumetricClipVolumeStencil = PreyGlobal<CTexture*>(0x2CA1430);
+	static inline auto s_ptexVolFogShadowBuf = PreyGlobal<CTexture* [2]>(0x2CA1438);
+	static inline auto s_ptexSceneMask = PreyGlobal<CTexture*>(0x2CA1448);
+	static inline auto s_ptexSceneMaskDevice = PreyGlobal<CTexture*>(0x2CA1450);
+	static inline auto s_pStreamDeferredCtx = PreyGlobal<ID3D11DeviceContext*>(0x2CA1458);
+
+	static CCryNameTSCRC GenName(const char* name, unsigned nFlags) { return FGenName(name, nFlags); }
+	ETEX_Format FormatFixup(ETEX_Format src) { return FFormatFixupOv1(this, src); }
+	virtual ~CTexture();
+	CTexture(const unsigned nFlags, const ColorF& clearColor, CDeviceTexture* devTexToOwn);
+	virtual int AddRef();
+	virtual int Release();
+	virtual int ReleaseForce();
+	virtual const char* GetName() const;
+	virtual const int GetWidth() const;
+	virtual const int GetHeight() const;
+	virtual const int GetDepth() const;
+	virtual const int GetTextureID() const;
+	virtual const unsigned GetFlags() const;
+	virtual const int GetNumMips() const;
+	virtual const int GetRequiredMip() const;
+	virtual const ETEX_Type GetTextureType() const;
+	virtual void SetClamp(bool bEnable);
+	virtual const bool IsTextureLoaded() const;
+	virtual void PrecacheAsynchronously(float fMipFactor, int nFlags, int nUpdateId, int nCounter);
+	virtual uint8_t* GetData32(int nSide, int nLevel, uint8_t* pDst, ETEX_Format eDstFormat);
+	virtual const int GetDeviceDataSize() const;
+	virtual const int GetDataSize() const;
+	virtual bool SetFilter(int nFilter);
+	virtual bool Clear();
+	virtual bool Clear(const ColorF& cClear);
+	virtual float GetAvgBrightness() const;
+	virtual void SetAvgBrightness(float fBrightness);
+	virtual const ColorF& GetClearColor() const;
+	virtual void SetClearColor(const ColorF& cClearColor);
+	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
+	virtual const char* GetFormatName() const;
+	virtual const char* GetTypeName() const;
+	virtual const bool IsShared() const;
+	virtual const ETEX_Format GetTextureDstFormat() const;
+	virtual const ETEX_Format GetTextureSrcFormat() const;
+	virtual const bool IsParticularMipStreamed(float fMipFactor) const;
+	const unsigned StreamGetNumSlices() const { return FStreamGetNumSlices(this); }
+	void RT_ReleaseDevice() { FRT_ReleaseDevice(this); }
+	virtual bool IsPostponed() const;
+	virtual const bool IsStreamedVirtual() const;
+	virtual bool IsStreamedIn(const int* nMinPrecacheRoundIds) const;
+	virtual const int GetAccessFrameId() const;
+	virtual const int GetCustomID() const;
+	virtual void SetCustomID(int nID);
+	virtual const bool IsStreamable() const;
+	virtual void SetRenderTargetTile(uint8_t nTile);
+	void SetDevTexture(CDeviceTexture* pDeviceTex) { FSetDevTexture(this, pDeviceTex); }
+	void OwnDevTexture(unsigned nFlags, CDeviceTexture* pDeviceTex) { FOwnDevTexture(this, nFlags, pDeviceTex); }
+	bool GenerateMipMaps(bool bSetOrthoProj, bool bUseHW, bool bNormalMap) { return FGenerateMipMaps(this, bSetOrthoProj, bUseHW, bNormalMap); }
+	ID3D11ShaderResourceView* GetShaderResourceView(uint64_t resourceViewID, bool bLegacySrgbLookup) { return FGetShaderResourceViewOv1(this, resourceViewID, bLegacySrgbLookup); }
+	void SetShaderResourceView(ID3D11ShaderResourceView* pDeviceShaderResource, bool bMultisampled) { FSetShaderResourceView(this, pDeviceShaderResource, bMultisampled); }
+	ID3D11UnorderedAccessView* GetDeviceUAV() { return FGetDeviceUAVOv1(this); }
+	void* GetResourceView(const SResourceView& rvDesc) { return FGetResourceViewOv1(this, rvDesc); }
+	void* CreateDeviceResourceView(const SResourceView& rv) { return FCreateDeviceResourceView(this, rv); }
+	ID3D11DepthStencilView* GetDeviceDepthStencilView(int nFirstSlice, int nSliceCount, bool bMultisampled, bool readOnly) { return FGetDeviceDepthStencilView(this, nFirstSlice, nSliceCount, bMultisampled, readOnly); }
+	ID3D11ShaderResourceView* GetDeviceDepthReadOnlySRV(int nFirstSlice, int nSliceCount, bool bMultisampled) { return FGetDeviceDepthReadOnlySRV(this, nFirstSlice, nSliceCount, bMultisampled); }
+	ID3D11ShaderResourceView* GetDeviceStencilReadOnlySRV(int nFirstSlice, int nSliceCount, bool bMultisampled) { return FGetDeviceStencilReadOnlySRV(this, nFirstSlice, nSliceCount, bMultisampled); }
+	ID3D11RenderTargetView* GetSurface(int nCMSide, int nLevel) { return FGetSurfaceOv1(this, nCMSide, nLevel); }
+	bool Invalidate(int nNewWidth, int nNewHeight, ETEX_Format eTF) { return FInvalidate(this, nNewWidth, nNewHeight, eTF); }
+	void PostCreate() { FPostCreate(this); }
+	virtual void InvalidateDeviceResource(unsigned dirtyFlags);
+	void AddInvalidateCallback(void* listener, std::function<void __cdecl(void *,unsigned int)> callback) { FAddInvalidateCallback(this, listener, callback); }
+	void RemoveInvalidateCallbacks(void* listener) { FRemoveInvalidateCallbacks(this, listener); }
+	static void Precache() { FPrecache(); }
+	static void RT_Precache(bool _bStepping) { FRT_Precache(_bStepping); }
+	static void StreamValidateTexSize() { FStreamValidateTexSize(); }
+	static uint8_t StreamComputeFormatCode(unsigned nWidth, unsigned nHeight, unsigned nMips, ETEX_Format fmt) { return FStreamComputeFormatCode(nWidth, nHeight, nMips, fmt); }
+	int StreamComputeDevDataSize(int nFromMip) const { return FStreamComputeDevDataSize(this, nFromMip); }
+	void StreamExpandMip(const void* vpRawData, int nMip, int nBaseMipOffset, int nSideDelta) { FStreamExpandMip(this, vpRawData, nMip, nBaseMipOffset, nSideDelta); }
+	static void RT_FlushAllStreamingTasks(const bool bAbort) { FRT_FlushAllStreamingTasks(bAbort); }
+	static void AbortStreamingTasks(CTexture* pTex) { FAbortStreamingTasks(pTex); }
+	static bool StartStreaming(CTexture* pTex, STexPoolItem* pNewPoolItem, const int nStartMip, const int nEndMip, const int nActivateMip, EStreamTaskPriority estp) { return FStartStreaming(pTex, pNewPoolItem, nStartMip, nEndMip, nActivateMip, estp); }
+	void StreamCopyMipsTexToMem(int nStartMip, int nEndMip, bool bToDevice, STexPoolItem* pNewPoolItem) { FStreamCopyMipsTexToMem(this, nStartMip, nEndMip, bToDevice, pNewPoolItem); }
+	static void StreamCopyMipsTexToTex(STexPoolItem* pSrcItem, int nMipSrc, STexPoolItem* pDestItem, int nMipDest, int nNumMips) { FStreamCopyMipsTexToTex(pSrcItem, nMipSrc, pDestItem, nMipDest, nNumMips); }
+	static void CopySliceChain(CDeviceTexture* const pDevTexture, int ownerMips, int nDstSlice, int nDstMip, CDeviceTexture* pSrcDevTex, int nSrcSlice, int nSrcMip, int nSrcMips, int nNumMips) { FCopySliceChain(pDevTexture, ownerMips, nDstSlice, nDstMip, pSrcDevTex, nSrcSlice, nSrcMip, nSrcMips, nNumMips); }
+	ID3D11CommandList* StreamCreateDeferred(int nStartMip, int nEndMip, STexPoolItem* pNewPoolItem, STexPoolItem* pSrcPoolItem) { return FStreamCreateDeferred(this, nStartMip, nEndMip, pNewPoolItem, pSrcPoolItem); }
+	void StreamApplyDeferred(ID3D11CommandList* pCmdList) { FStreamApplyDeferred(this, pCmdList); }
+	void StreamReleaseMipsData(int nStartMip, int nEndMip) { FStreamReleaseMipsData(this, nStartMip, nEndMip); }
+	int16_t StreamCalculateMipsSignedFP(float fMipFactor) const { return FStreamCalculateMipsSignedFP(this, fMipFactor); }
+	float StreamCalculateMipFactor(int16_t nMipsSigned) const { return FStreamCalculateMipFactor(this, nMipsSigned); }
+	virtual int StreamCalculateMipsSigned(float fMipFactor) const;
+	virtual int GetStreamableMipNumber() const;
+	virtual int GetStreamableMemoryUsage(int nStartMip) const;
+	virtual int GetMinLoadedMip() const;
+	void SetMinLoadedMip(int nMinMip) { FSetMinLoadedMip(this, nMinMip); }
+	int StreamTrim(int nToMip) { return FStreamTrim(this, nToMip); }
+	void StreamLoadFromCache(const int Flags) { FStreamLoadFromCache(this, Flags); }
+	bool StreamPrepare(bool bFromLoad) { return FStreamPrepareOv1(this, bFromLoad); }
+	bool StreamPrepare(CImageFile* pIM) { return FStreamPrepareOv0(this, pIM); }
+	bool StreamPrepare_Platform() { return FStreamPrepare_Platform(this); }
+	bool StreamPrepare_Finalise(bool bFromLoad) { return FStreamPrepare_Finalise(this, bFromLoad); }
+	STexPool* StreamGetPool(int nStartMip, int nMips) { return FStreamGetPool(this, nStartMip, nMips); }
+	STexPoolItem* StreamGetPoolItem(int nStartMip, int nMips, bool bShouldBeCreated, bool bCreateFromMipData, bool bCanCreate, bool bForStreamOut) { return FStreamGetPoolItem(this, nStartMip, nMips, bShouldBeCreated, bCreateFromMipData, bCanCreate, bForStreamOut); }
+	void StreamRemoveFromPool() { FStreamRemoveFromPool(this); }
+	void StreamAssignPoolItem(STexPoolItem* pItem, int nMinMip) { FStreamAssignPoolItem(this, pItem, nMinMip); }
+	static void StreamState_Update() { FStreamState_Update(); }
+	static void StreamState_UpdatePrep() { FStreamState_UpdatePrep(); }
+	static void StreamState_ReleaseIn(STexStreamInState* pState) { FStreamState_ReleaseIn(pState); }
+	static void StreamState_ReleaseInfo(CTexture* pOwnerTex, STexStreamingInfo* pInfo) { FStreamState_ReleaseInfo(pOwnerTex, pInfo); }
+	void Relink() { FRelink(this); }
+	void Unlink() { FUnlink(this); }
+	static const CCryNameTSCRC& mfGetClassName() { return FmfGetClassName(); }
+	static CTexture* GetByID(int nID) { return FGetByID(nID); }
+	static CTexture* GetByName(const char* szName, unsigned flags) { return FGetByName(szName, flags); }
+	static CTexture* ForName(const char* name, unsigned nFlags, ETEX_Format eTFDst) { return FForName(name, nFlags, eTFDst); }
+	static CTexture* CreateTextureArray(const char* name, ETEX_Type eType, unsigned nWidth, unsigned nHeight, unsigned nArraySize, int nMips, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId) { return FCreateTextureArray(name, eType, nWidth, nHeight, nArraySize, nMips, nFlags, eTF, nCustomID, _heapId); }
+	static CTexture* CreateRenderTarget(const char* name, unsigned nWidth, unsigned nHeight, const ColorF& cClear, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID) { return FCreateRenderTargetOv1(name, nWidth, nHeight, cClear, eTT, nFlags, eTF, nCustomID); }
+	bool CreateRenderTarget(ETEX_Format eTF, const ColorF& cClear) { return FCreateRenderTargetOv0(this, eTF, cClear); }
+	static CTexture* CreateTextureObject(const char* name, unsigned nWidth, unsigned nHeight, int nDepth, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId) { return FCreateTextureObject(name, nWidth, nHeight, nDepth, eTT, nFlags, eTF, nCustomID, _heapId); }
+	static CTexture* NewTexture(const char* name, unsigned nFlags, ETEX_Format eTFDst, EDeviceMemoryHeap _heapId, bool& bFound) { return FNewTexture(name, nFlags, eTFDst, _heapId, bFound); }
+	static void InitStreaming() { FInitStreaming(); }
+	static void InitStreamingDev() { FInitStreamingDev(); }
+	static void Init() { FInit(); }
+	static void PostInit() { FPostInit(); }
+	static void RT_FlushStreaming(bool bAbort) { FRT_FlushStreaming(bAbort); }
+	static void RT_ForceTrimStreaming() { FRT_ForceTrimStreaming(); }
+	static void ShutDown() { FShutDown(); }
+	static void CreateSystemTargets() { FCreateSystemTargets(); }
+	static void ReleaseMiscTargets() { FReleaseMiscTargets(); }
+	static void ReleaseSystemTextures(bool bFinalRelease) { FReleaseSystemTextures(bFinalRelease); }
+	static void LoadDefaultSystemTextures() { FLoadDefaultSystemTextures(); }
+	static void LoadScaleformSystemTextures() { FLoadScaleformSystemTextures(); }
+	static bool ReloadFile(const char* szFileName) { return FReloadFile(szFileName); }
+	static bool ReloadFile_Request(const char* szFileName) { return FReloadFile_Request(szFileName); }
+	static void ReloadTextures() { FReloadTextures(); }
+	static CTexture* Create2DTexture(const char* szName, int nWidth, int nHeight, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst, EDeviceMemoryHeap heapId, bool bAsyncDevTexCreation) { return FCreate2DTextureOv1(szName, nWidth, nHeight, nMips, nFlags, pData, eTFSrc, eTFDst, heapId, bAsyncDevTexCreation); }
+	bool Create2DTexture(int nWidth, int nHeight, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst) { return FCreate2DTextureOv0(this, nWidth, nHeight, nMips, nFlags, pData, eTFSrc, eTFDst); }
+	static CTexture* Create3DTexture(const char* szName, int nWidth, int nHeight, int nDepth, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst, EDeviceMemoryHeap heapId) { return FCreate3DTextureOv1(szName, nWidth, nHeight, nDepth, nMips, nFlags, pData, eTFSrc, eTFDst, heapId); }
+	bool Create3DTexture(int nWidth, int nHeight, int nDepth, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst) { return FCreate3DTextureOv0(this, nWidth, nHeight, nDepth, nMips, nFlags, pData, eTFSrc, eTFDst); }
+	static void Update() { FUpdate(); }
+	static void RT_LoadingUpdate() { FRT_LoadingUpdate(); }
+	static void RLT_LoadingUpdate() { FRLT_LoadingUpdate(); }
+	bool Load(ETEX_Format eTFDst) { return FLoadOv1(this, eTFDst); }
+	bool Load(CImageFile* pImage) { return FLoadOv0(this, pImage); }
+	bool LoadFromImage(const char* name, ETEX_Format eTFDst) { return FLoadFromImage(this, name, eTFDst); }
+	bool Reload() { return FReload(this); }
+	bool ToggleStreaming(const bool bEnable) { return FToggleStreaming(this, bEnable); }
+	bool CreateTexture(STexData& td) { return FCreateTexture(this, td); }
+	void Unbind() { FUnbind(this); }
+	bool Resolve(int nTarget, bool bUseViewportSize) { return FResolve(this, nTarget, bUseViewportSize); }
+	bool CreateDeviceTexture(uint8_t* * pData) { return FCreateDeviceTexture(this, pData); }
+	bool RT_CreateDeviceTexture(uint8_t* * pData) { return FRT_CreateDeviceTexture(this, pData); }
+	void DisableStreaming() { FDisableStreaming(this); }
+	void ReleaseDeviceTexture(bool bKeepLastMips, bool bFromUnload) { FReleaseDeviceTexture(this, bKeepLastMips, bFromUnload); }
+	void Apply(int nTUnit, int nState, int nTexMatSlot, int nSUnit, uint64_t nResViewKey, EHWShaderClass eHWSC) { FApply(this, nTUnit, nState, nTexMatSlot, nSUnit, nResViewKey, eHWSC); }
+	void ApplyTexture(int nTUnit, EHWShaderClass eHWSC, uint64_t nResViewKey) { FApplyTexture(this, nTUnit, eHWSC, nResViewKey); }
+	ETEX_Format ClosestFormatSupported(ETEX_Format eTFDst) { return FClosestFormatSupportedOv1(this, eTFDst); }
+	static ETEX_Format ClosestFormatSupported(ETEX_Format eTFDst, const SPixFormat* & pPF) { return FClosestFormatSupportedOv0(eTFDst, pPF); }
+	void SetTexStates() { FSetTexStates(this); }
+	void UpdateTexStates() { FUpdateTexStates(this); }
+	bool SetFilterMode(int nFilter) { return FSetFilterMode(this, nFilter); }
+	bool SetClampingMode(int nAddressU, int nAddressV, int nAddressW) { return FSetClampingMode(this, nAddressU, nAddressV, nAddressW); }
+	void UpdateTextureRegion(uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc) { FUpdateTextureRegion(this, data, nX, nY, nZ, USize, VSize, ZSize, eTFSrc); }
+	void RT_UpdateTextureRegion(uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc) { FRT_UpdateTextureRegion(this, data, nX, nY, nZ, USize, VSize, ZSize, eTFSrc); }
+	bool SetNoTexture(CTexture* pDefaultTexture, bool _bOutOfMemory) { return FSetNoTexture(this, pDefaultTexture, _bOutOfMemory); }
+	static void SetSamplerState(int nTS, int nSUnit, EHWShaderClass eHWSC) { FSetSamplerState(nTS, nSUnit, eHWSC); }
+	static void GenerateZMaps() { FGenerateZMaps(); }
+	static void DestroyZMaps() { FDestroyZMaps(); }
+	static void GenerateHDRMaps() { FGenerateHDRMaps(); }
+	static void GenerateSceneMap(ETEX_Format eTF) { FGenerateSceneMap(eTF); }
+	static void GenerateCachedShadowMaps() { FGenerateCachedShadowMaps(); }
+	static void GenerateLookingGlassMaps() { FGenerateLookingGlassMaps(); }
+	static uint8_t* Convert(uint8_t* pSrc, int nWidth, int nHeight, int nMips, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nOutMips, int& nOutSize, bool bLinear) { return FConvert(pSrc, nWidth, nHeight, nMips, eTFSrc, eTFDst, nOutMips, nOutSize, bLinear); }
+	static int CalcNumMips(int nWidth, int nHeight) { return FCalcNumMips(nWidth, nHeight); }
+	static void ExpandMipFromFile(uint8_t* dest, const int destSize, const uint8_t* src, const int srcSize, const ETEX_Format fmt) { FExpandMipFromFile(dest, destSize, src, srcSize, fmt); }
+	static unsigned TextureDataSize(unsigned nWidth, unsigned nHeight, unsigned nDepth, unsigned nMips, unsigned nSlices, const ETEX_Format eTF, ETEX_TileMode eTM) { return FTextureDataSize(nWidth, nHeight, nDepth, nMips, nSlices, eTF, eTM); }
+	static const char* NameForTextureType(ETEX_Type eTT) { return FNameForTextureType(eTT); }
+	static bool IsDeviceFormatTypeless(DXGI_FORMAT nFormat) { return FIsDeviceFormatTypeless(nFormat); }
+	static bool IsDeviceFormatSRGBReadable(DXGI_FORMAT nFormat) { return FIsDeviceFormatSRGBReadable(nFormat); }
+	static DXGI_FORMAT DeviceFormatFromTexFormat(ETEX_Format eTF) { return FDeviceFormatFromTexFormat(eTF); }
+	static ETEX_Format TexFormatFromDeviceFormat(DXGI_FORMAT nFormat) { return FTexFormatFromDeviceFormat(nFormat); }
+	static DXGI_FORMAT ConvertToDepthStencilFmt(DXGI_FORMAT nFormat) { return FConvertToDepthStencilFmt(nFormat); }
+	static DXGI_FORMAT ConvertToSRGBFmt(DXGI_FORMAT fmt) { return FConvertToSRGBFmt(fmt); }
+	static DXGI_FORMAT ConvertToTypelessFmt(DXGI_FORMAT fmt) { return FConvertToTypelessFmt(fmt); }
+	static int GetTexState(const STexState& TS) { return FGetTexState(TS); }
+
+#if 0
+	bool FormatFixup(STexData& _arg0_);
+	bool ImagePreprocessing(STexData& _arg0_);
+	const int GetWidthNonVirtual() const;
+	const int GetHeightNonVirtual() const;
+	const int GetDepthNonVirtual() const;
+	const int GetNumSides() const;
+	const int8_t GetNumPersistentMips() const;
+	const bool IsForceStreamHighRes() const;
+	const bool IsStreamHighPriority() const;
+	void SetFlags(unsigned _arg0_);
+	const int GetNumMipsNonVirtual() const;
+	const int GetRequiredMipNonVirtual() const;
+	const int GetRequiredMipNonVirtualFP() const;
+	const ETEX_Format GetDstFormat() const;
+	const ETEX_Format GetSrcFormat() const;
+	const ETEX_Type GetTexType() const;
+	static bool IsTextureExist(const CTexture* _arg0_);
+	const bool IsNoTexture() const;
+	void SetWasUnload(bool _arg0_);
+	const bool IsPartiallyLoaded() const;
+	const bool IsUnloaded() const;
+	void SetStreamingInProgress(uint16_t _arg0_);
+	void SetStreamingPriority(const uint8_t _arg0_);
+	const STexStreamRoundInfo& GetStreamRoundInfo(int _arg0_) const;
+	const int StreamGetLoadedMip() const;
+	const uint8_t StreamGetFormatCode() const;
+	const int StreamGetActiveMip() const;
+	const int StreamGetPriority() const;
+	const bool IsResolved() const;
+	void SetUseMultisampledRTV(bool _arg0_);
+	const bool UseMultisampledRTV() const;
+	const bool IsVertexTexture() const;
+	void SetVertexTexture(bool _arg0_);
+	const bool IsDynamic() const;
+	bool IsStillUsedByGPU();
+	void Lock();
+	void Unlock();
+	const bool IsLoaded() const;
+	const bool IsLocked() const;
+	const bool IsStreamed() const;
+	const bool IsInDistanceSortedList() const;
+	const bool IsStreaming() const;
+	const int GetAccessFrameIdNonVirtual() const;
+	void SetResolved(bool _arg0_);
+	const bool UseDecalBorderCol() const;
+	const bool IsSRGB() const;
+	void SRGBRead(bool _arg0_);
+	const bool IsCustomFormat() const;
+	void SetCustomFormat();
+	void SetWidth(int16_t _arg0_);
+	void SetHeight(int16_t _arg0_);
+	void SetMemoryHeap(EDeviceMemoryHeap _arg0_);
+	EDeviceMemoryHeap GetMemoryHeap() const;
+	int GetUpdateFrameID() const;
+	const int GetActualSize() const;
+	const int GetPersistentSize() const;
+	void PrefetchStreamingInfo() const;
+	const STexStreamingInfo* GetStreamingInfo() const;
+	const bool IsStreamableNonVirtual() const;
+	void DisableMgpuSync();
+	void MgpuResourceUpdate(bool _arg0_);
+	void SetRenderTargetTileOffset(uint8_t _arg0_);
+	const uint8_t GetRenderTargetTile() const;
+	const uint8_t GetRenderTargetTileOffset() const;
+	bool IsFPFormat() const;
+	void* GetDeviceRT() const;
+	CDeviceTexture* GetDevTexture() const;
+	void AddDirtRect(tagRECT& _arg0_, unsigned _arg1_, unsigned _arg2_);
+	bool IsAsyncDevTexCreation() const;
+	ID3D11ShaderResourceView* GetShaderResourceView(uint64_t _arg0_, bool _arg1_) const;
+	ID3D11UnorderedAccessView* GetDeviceUAV() const;
+	void* GetResourceView(const SResourceView& _arg0_) const;
+	void SetResourceView(const SResourceView& _arg0_, void* _arg1_);
+	ID3D11RenderTargetView* GetSurface(int _arg0_, int _arg1_) const;
+	_D3DPOOL GetPool();
+	const SPixFormat* GetPixelFormat() const;
+	const char* GetSourceName() const;
+	const int GetSize(bool _arg0_) const;
+	void StreamUploadMip(IReadStream* _arg0_, int _arg1_, int _arg2_, STexPoolItem* _arg3_, STexStreamInMipState& _arg4_);
+	void StreamUploadMipSide(const int _arg0_, const int _arg1_, const uint8_t* const _arg2_, int _arg3_, const STexMipHeader& _arg4_, const bool _arg5_, const int _arg6_, const int _arg7_, const int _arg8_, CDeviceTexture* _arg9_, unsigned _arg10_, unsigned _arg11_, int _arg12_);
+	static bool IsStreamingInProgress();
+	bool CanStreamInPlace(int _arg0_, STexPoolItem* _arg1_);
+	void StreamUploadMips(int _arg0_, int _arg1_, STexPoolItem* _arg2_);
+	int StreamUnload();
+	void StreamActivateLod(int _arg0_);
+	static STexStreamInState* StreamState_AllocateIn();
+	static STexStreamingInfo* StreamState_AllocateInfo(int _arg0_);
+	void RT_Relink();
+	void RT_Unlink();
+	static void ApplyForID(int _arg0_, int _arg1_, int _arg2_, int _arg3_);
+	static CTexture* GetByNameCRC(CCryNameTSCRC _arg0_);
+	static void ReleaseSystemTargets();
+	static void ResetTMUs();
+	uint8_t* GetSubImageData32(int _arg0_, int _arg1_, int _arg2_, int _arg3_, int& _arg4_);
+	void ApplySamplerState(int _arg0_, EHWShaderClass _arg1_, int _arg2_);
+	static bool IsFormatSupported(ETEX_Format _arg0_);
+	static void DestroyHDRMaps();
+	static void DestroySceneMap();
+	static void DestroyCachedShadowMaps();
+	static void GenerateNearestShadowMap();
+	static void DestroyNearestShadowMap();
+	static void DestroyLookingGlassMaps();
+	static bool IsInPlaceFormat(const ETEX_Format _arg0_);
+	static bool IsBlockCompressed(const ETEX_Format _arg0_);
+	static bool IsFourBit(ETEX_Format _arg0_);
+	static int BytesPerBlock(ETEX_Format _arg0_);
+	static int BitsPerPixel(const ETEX_Format _arg0_);
+	static int BytesPerPixel(ETEX_Format _arg0_);
+	static const char* NameForTextureFormat(ETEX_Format _arg0_);
+	static ETEX_Format TextureFormatForName(const char* _arg0_);
+	static ETEX_Type TextureTypeForName(const char* _arg0_);
+	static unsigned WriteMaskFromTexFormat(ETEX_Format _arg0_);
+	static DXGI_FORMAT GetD3DLinFormat(DXGI_FORMAT _arg0_);
+	static DXGI_FORMAT ConvertToStencilOnlyFmt(DXGI_FORMAT _arg0_);
+	static DXGI_FORMAT ConvertToDepthOnlyFmt(DXGI_FORMAT _arg0_);
+	static DXGI_FORMAT ConvertToSignedFmt(DXGI_FORMAT _arg0_);
+	static SEnvTexture* FindSuitableEnvTex(Vec3& _arg0_, Ang3& _arg1_, bool _arg2_, int _arg3_, bool _arg4_, CShader* _arg5_, CShaderResources* _arg6_, CRenderObject* _arg7_, bool _arg8_, CRendElementBase* _arg9_, bool* _arg10_);
+	static CTexture* GetSceneSpecularTarget();
+	static CTexture* GetDecalsSpecularTarget();
+	static CTexture* GetRefractionTarget();
+	static CTexture* GetLensFlareTarget();
+#endif
+
+	static inline auto FGenName = PreyFunction<CCryNameTSCRC(const char* name, unsigned nFlags)>(0xFFC1E0);
+	static inline auto FFormatFixupOv1 = PreyFunction<ETEX_Format(CTexture* const _this, ETEX_Format src)>(0xFFC180);
+	static inline auto FCTextureOv1 = PreyFunction<void(CTexture* const _this, const unsigned nFlags, const ColorF& clearColor, CDeviceTexture* devTexToOwn)>(0xFF97C0);
+	static inline auto FAddRef = PreyFunction<int(CTexture* const _this)>(0xE9A4C0);
+	static inline auto FRelease = PreyFunction<int(CTexture* const _this)>(0xE9C7E0);
+	static inline auto FReleaseForce = PreyFunction<int(CTexture* const _this)>(0x1001ED0);
+	static inline auto FGetName = PreyFunction<const char* (const CTexture* const _this)>(0xAB5630);
+	static inline auto FGetWidth = PreyFunction<const int(const CTexture* const _this)>(0xFFD090);
+	static inline auto FGetHeight = PreyFunction<const int(const CTexture* const _this)>(0xFFC9F0);
+	static inline auto FGetDepth = PreyFunction<const int(const CTexture* const _this)>(0xFFC7B0);
+	static inline auto FGetTextureID = PreyFunction<const int(const CTexture* const _this)>(0x11883D0);
+	static inline auto FGetFlags = PreyFunction<const unsigned(const CTexture* const _this)>(0xFFC960);
+	static inline auto FGetNumMips = PreyFunction<const int(const CTexture* const _this)>(0xFFCB60);
+	static inline auto FGetRequiredMip = PreyFunction<const int(const CTexture* const _this)>(0xFFCC50);
+	static inline auto FGetTextureType = PreyFunction<const ETEX_Type(const CTexture* const _this)>(0xFFCFE0);
+	static inline auto FSetClamp = PreyFunction<void(CTexture* const _this, bool bEnable)>(0x1002B00);
+	static inline auto FIsTextureLoaded = PreyFunction<const bool(const CTexture* const _this)>(0xFFD2F0);
+	static inline auto FPrecacheAsynchronously = PreyFunction<void(CTexture* const _this, float fMipFactor, int nFlags, int nUpdateId, int nCounter)>(0x1007A40);
+	static inline auto FGetData32 = PreyFunction<uint8_t* (CTexture* const _this, int nSide, int nLevel, uint8_t* pDst, ETEX_Format eDstFormat)>(0xFFC670);
+	static inline auto FGetDeviceDataSize = PreyFunction<const int(const CTexture* const _this)>(0xFFC7C0);
+	static inline auto FGetDataSize = PreyFunction<const int(const CTexture* const _this)>(0xFFC6F0);
+	static inline auto FSetFilter = PreyFunction<bool(CTexture* const _this, int nFilter)>(0x1002C60);
+	static inline auto FClearOv1 = PreyFunction<bool(CTexture* const _this)>(0xF45430);
+	static inline auto FClearOv0 = PreyFunction<bool(CTexture* const _this, const ColorF& cClear)>(0xF453F0);
+	static inline auto FGetAvgBrightness = PreyFunction<float(const CTexture* const _this)>(0xFFC5F0);
+	static inline auto FSetAvgBrightness = PreyFunction<void(CTexture* const _this, float fBrightness)>(0x1002AF0);
+	static inline auto FGetClearColor = PreyFunction<const ColorF& (const CTexture* const _this)>(0x671030);
+	static inline auto FSetClearColor = PreyFunction<void(CTexture* const _this, const ColorF& cClearColor)>(0x1002B10);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CBaseResource* const _this, ICrySizer* pSizer)>(0xFFCA00);
+	static inline auto FGetFormatName = PreyFunction<const char* (const CTexture* const _this)>(0xFFC970);
+	static inline auto FGetTypeName = PreyFunction<const char* (const CTexture* const _this)>(0xFFCFF0);
+	static inline auto FIsShared = PreyFunction<const bool(const CTexture* const _this)>(0xFFD2D0);
+	static inline auto FGetTextureDstFormat = PreyFunction<const ETEX_Format(const CTexture* const _this)>(0xFFCFC0);
+	static inline auto FGetTextureSrcFormat = PreyFunction<const ETEX_Format(const CTexture* const _this)>(0xFFCFD0);
+	static inline auto FIsParticularMipStreamed = PreyFunction<const bool(const CTexture* const _this, float fMipFactor)>(0x1007960);
+	static inline auto FStreamGetNumSlices = PreyFunction<const unsigned(const CTexture* const _this)>(0xF49710);
+	static inline auto FRT_ReleaseDevice = PreyFunction<void(CTexture* const _this)>(0x1001DC0);
+	static inline auto FIsPostponed = PreyFunction<bool(const CTexture* const _this)>(0xFFD2C0);
+	static inline auto FIsStreamedVirtual = PreyFunction<const bool(const CTexture* const _this)>(0xFFD2E0);
+	static inline auto FIsStreamedIn = PreyFunction<bool(const CTexture* const _this, const int* nMinPrecacheRoundIds)>(0x10079A0);
+	static inline auto FGetAccessFrameId = PreyFunction<const int(const CTexture* const _this)>(0xD17EA0);
+	static inline auto FGetCustomID = PreyFunction<const int(const CTexture* const _this)>(0xF07430);
+	static inline auto FSetCustomID = PreyFunction<void(CTexture* const _this, int nID)>(0x1002B40);
+	static inline auto FIsStreamable = PreyFunction<const bool(const CTexture* const _this)>(0xFFD2E0);
+	static inline auto FSetRenderTargetTile = PreyFunction<void(CTexture* const _this, uint8_t nTile)>(0x1333E90);
+	static inline auto FSetDevTexture = PreyFunction<void(CTexture* const _this, CDeviceTexture* pDeviceTex)>(0x1002B50);
+	static inline auto FOwnDevTexture = PreyFunction<void(CTexture* const _this, unsigned nFlags, CDeviceTexture* pDeviceTex)>(0x1001560);
+	static inline auto FGenerateMipMaps = PreyFunction<bool(CTexture* const _this, bool bSetOrthoProj, bool bUseHW, bool bNormalMap)>(0xF472E0);
+	static inline auto FGetShaderResourceViewOv1 = PreyFunction<ID3D11ShaderResourceView* (CTexture* const _this, uint64_t resourceViewID, bool bLegacySrgbLookup)>(0xFFCD50);
+	static inline auto FSetShaderResourceView = PreyFunction<void(CTexture* const _this, ID3D11ShaderResourceView* pDeviceShaderResource, bool bMultisampled)>(0x1002D90);
+	static inline auto FGetDeviceUAVOv1 = PreyFunction<ID3D11UnorderedAccessView* (CTexture* const _this)>(0xFFC900);
+	static inline auto FGetResourceViewOv1 = PreyFunction<void* (CTexture* const _this, const SResourceView& rvDesc)>(0xFFCC60);
+	static inline auto FCreateDeviceResourceView = PreyFunction<void* (CTexture* const _this, const SResourceView& rv)>(0xF46220);
+	static inline auto FGetDeviceDepthStencilView = PreyFunction<ID3D11DepthStencilView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled, bool readOnly)>(0xFFC830);
+	static inline auto FGetDeviceDepthReadOnlySRV = PreyFunction<ID3D11ShaderResourceView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled)>(0xFFC7D0);
+	static inline auto FGetDeviceStencilReadOnlySRV = PreyFunction<ID3D11ShaderResourceView* (CTexture* const _this, int nFirstSlice, int nSliceCount, bool bMultisampled)>(0xFFC8A0);
+	static inline auto FGetSurfaceOv1 = PreyFunction<ID3D11RenderTargetView* (CTexture* const _this, int nCMSide, int nLevel)>(0xF47610);
+	static inline auto FInvalidate = PreyFunction<bool(CTexture* const _this, int nNewWidth, int nNewHeight, ETEX_Format eTF)>(0xFFD150);
+	static inline auto FPostCreate = PreyFunction<void(CTexture* const _this)>(0x10017A0);
+	static inline auto FInvalidateDeviceResource = PreyFunction<void(CBaseResource* const _this, unsigned dirtyFlags)>(0xFFD1D0);
+	static inline auto FAddInvalidateCallback = PreyFunction<void(CTexture* const _this, void* listener, std::function<void __cdecl(void *,unsigned int)> callback)>(0xF5EF30);
+	static inline auto FRemoveInvalidateCallbacks = PreyFunction<void(CTexture* const _this, void* listener)>(0xF62470);
+	static inline auto FPrecache = PreyFunction<void()>(0x10017E0);
+	static inline auto FRT_Precache = PreyFunction<void(bool _bStepping)>(0x10018D0);
+	static inline auto FStreamValidateTexSize = PreyFunction<void()>(0x1333E90);
+	static inline auto FStreamComputeFormatCode = PreyFunction<uint8_t(unsigned nWidth, unsigned nHeight, unsigned nMips, ETEX_Format fmt)>(0x10086F0);
+	static inline auto FStreamComputeDevDataSize = PreyFunction<int(const CTexture* const _this, int nFromMip)>(0xEE2280);
+	static inline auto FStreamExpandMip = PreyFunction<void(CTexture* const _this, const void* vpRawData, int nMip, int nBaseMipOffset, int nSideDelta)>(0xF4AC60);
+	static inline auto FRT_FlushAllStreamingTasks = PreyFunction<void(const bool bAbort)>(0x1007AB0);
+	static inline auto FAbortStreamingTasks = PreyFunction<void(CTexture* pTex)>(0x1007340);
+	static inline auto FStartStreaming = PreyFunction<bool(CTexture* pTex, STexPoolItem* pNewPoolItem, const int nStartMip, const int nEndMip, const int nActivateMip, EStreamTaskPriority estp)>(0x1007F60);
+	static inline auto FStreamCopyMipsTexToMem = PreyFunction<void(CTexture* const _this, int nStartMip, int nEndMip, bool bToDevice, STexPoolItem* pNewPoolItem)>(0xF4A370);
+	static inline auto FStreamCopyMipsTexToTex = PreyFunction<void(STexPoolItem* pSrcItem, int nMipSrc, STexPoolItem* pDestItem, int nMipDest, int nNumMips)>(0xF4A800);
+	static inline auto FCopySliceChain = PreyFunction<void(CDeviceTexture* const pDevTexture, int ownerMips, int nDstSlice, int nDstMip, CDeviceTexture* pSrcDevTex, int nSrcSlice, int nSrcMip, int nSrcMips, int nNumMips)>(0xF46110);
+	static inline auto FStreamCreateDeferred = PreyFunction<ID3D11CommandList* (CTexture* const _this, int nStartMip, int nEndMip, STexPoolItem* pNewPoolItem, STexPoolItem* pSrcPoolItem)>(0xF4A8C0);
+	static inline auto FStreamApplyDeferred = PreyFunction<void(CTexture* const _this, ID3D11CommandList* pCmdList)>(0xF4A050);
+	static inline auto FStreamReleaseMipsData = PreyFunction<void(CTexture* const _this, int nStartMip, int nEndMip)>(0x1009DB0);
+	static inline auto FStreamCalculateMipsSignedFP = PreyFunction<int16_t(const CTexture* const _this, float fMipFactor)>(0xEC8940);
+	static inline auto FStreamCalculateMipFactor = PreyFunction<float(const CTexture* const _this, int16_t nMipsSigned)>(0xEC88B0);
+	static inline auto FStreamCalculateMipsSigned = PreyFunction<int(const CTexture* const _this, float fMipFactor)>(0x10086D0);
+	static inline auto FGetStreamableMipNumber = PreyFunction<int(const CTexture* const _this)>(0x10075C0);
+	static inline auto FGetStreamableMemoryUsage = PreyFunction<int(const CTexture* const _this, int nStartMip)>(0x10075A0);
+	static inline auto FGetMinLoadedMip = PreyFunction<int(const CTexture* const _this)>(0xFFCB50);
+	static inline auto FSetMinLoadedMip = PreyFunction<void(CTexture* const _this, int nMinMip)>(0x1007F50);
+	static inline auto FStreamTrim = PreyFunction<int(CTexture* const _this, int nToMip)>(0xF4B470);
+	static inline auto FStreamLoadFromCache = PreyFunction<void(CTexture* const _this, const int Flags)>(0x1008A50);
+	static inline auto FStreamPrepareOv1 = PreyFunction<bool(CTexture* const _this, bool bFromLoad)>(0x10096F0);
+	static inline auto FStreamPrepareOv0 = PreyFunction<bool(CTexture* const _this, CImageFile* pIM)>(0x1008AA0);
+	static inline auto FStreamPrepare_Platform = PreyFunction<bool(CTexture* const _this)>(0x1A302A0);
+	static inline auto FStreamPrepare_Finalise = PreyFunction<bool(CTexture* const _this, bool bFromLoad)>(0x1009B80);
+	static inline auto FStreamGetPool = PreyFunction<STexPool* (CTexture* const _this, int nStartMip, int nMips)>(0xF4ADB0);
+	static inline auto FStreamGetPoolItem = PreyFunction<STexPoolItem* (CTexture* const _this, int nStartMip, int nMips, bool bShouldBeCreated, bool bCreateFromMipData, bool bCanCreate, bool bForStreamOut)>(0xF4AE80);
+	static inline auto FStreamRemoveFromPool = PreyFunction<void(CTexture* const _this)>(0xF4B380);
+	static inline auto FStreamAssignPoolItem = PreyFunction<void(CTexture* const _this, STexPoolItem* pItem, int nMinMip)>(0xF4A0C0);
+	static inline auto FStreamState_Update = PreyFunction<void()>(0x100A040);
+	static inline auto FStreamState_UpdatePrep = PreyFunction<void()>(0x100A120);
+	static inline auto FStreamState_ReleaseIn = PreyFunction<void(STexStreamInState* pState)>(0x1009EA0);
+	static inline auto FStreamState_ReleaseInfo = PreyFunction<void(CTexture* pOwnerTex, STexStreamingInfo* pInfo)>(0x1009F50);
+	static inline auto FRelink = PreyFunction<void(CTexture* const _this)>(0x1007E90);
+	static inline auto FUnlink = PreyFunction<void(CTexture* const _this)>(0x100A3B0);
+	static inline auto FmfGetClassName = PreyFunction<const CCryNameTSCRC& ()>(0x1005730);
+	static inline auto FGetByID = PreyFunction<CTexture* (int nID)>(0xFFC600);
+	static inline auto FGetByName = PreyFunction<CTexture* (const char* szName, unsigned flags)>(0xFFC630);
+	static inline auto FForName = PreyFunction<CTexture* (const char* name, unsigned nFlags, ETEX_Format eTFDst)>(0xFFC080);
+	static inline auto FCreateTextureArray = PreyFunction<CTexture* (const char* name, ETEX_Type eType, unsigned nWidth, unsigned nHeight, unsigned nArraySize, int nMips, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId)>(0xFFB1D0);
+	static inline auto FCreateRenderTargetOv1 = PreyFunction<CTexture* (const char* name, unsigned nWidth, unsigned nHeight, const ColorF& cClear, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID)>(0xFFAD10);
+	static inline auto FCreateRenderTargetOv0 = PreyFunction<bool(CTexture* const _this, ETEX_Format eTF, const ColorF& cClear)>(0xF466B0);
+	static inline auto FCreateTextureObject = PreyFunction<CTexture* (const char* name, unsigned nWidth, unsigned nHeight, int nDepth, ETEX_Type eTT, unsigned nFlags, ETEX_Format eTF, int nCustomID, EDeviceMemoryHeap _heapId)>(0xFFB3D0);
+	static inline auto FNewTexture = PreyFunction<CTexture* (const char* name, unsigned nFlags, ETEX_Format eTFDst, EDeviceMemoryHeap _heapId, bool& bFound)>(0x1001470);
+	static inline auto FInitStreaming = PreyFunction<void()>(0x10075E0);
+	static inline auto FInitStreamingDev = PreyFunction<void()>(0xF4A010);
+	static inline auto FInit = PreyFunction<void()>(0xFFD0A0);
+	static inline auto FPostInit = PreyFunction<void()>(0x10017D0);
+	static inline auto FRT_FlushStreaming = PreyFunction<void(bool bAbort)>(0x1007DB0);
+	static inline auto FRT_ForceTrimStreaming = PreyFunction<void()>(0x1007E20);
+	static inline auto FShutDown = PreyFunction<void()>(0x1002FF0);
+	static inline auto FCreateSystemTargets = PreyFunction<void()>(0xF467D0);
+	static inline auto FReleaseMiscTargets = PreyFunction<void()>(0xF48FF0);
+	static inline auto FReleaseSystemTextures = PreyFunction<void(bool bFinalRelease)>(0x1001F40);
+	static inline auto FLoadDefaultSystemTextures = PreyFunction<void()>(0xFFD900);
+	static inline auto FLoadScaleformSystemTextures = PreyFunction<void()>(0x1000520);
+	static inline auto FReloadFile = PreyFunction<bool(const char* szFileName)>(0x1002300);
+	static inline auto FReloadFile_Request = PreyFunction<bool(const char* szFileName)>(0x1002620);
+	static inline auto FReloadTextures = PreyFunction<void()>(0x1002700);
+	static inline auto FCreate2DTextureOv1 = PreyFunction<CTexture* (const char* szName, int nWidth, int nHeight, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst, EDeviceMemoryHeap heapId, bool bAsyncDevTexCreation)>(0xFFA910);
+	static inline auto FCreate2DTextureOv0 = PreyFunction<bool(CTexture* const _this, int nWidth, int nHeight, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst)>(0xFFA810);
+	static inline auto FCreate3DTextureOv1 = PreyFunction<CTexture* (const char* szName, int nWidth, int nHeight, int nDepth, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst, EDeviceMemoryHeap heapId)>(0xFFAB60);
+	static inline auto FCreate3DTextureOv0 = PreyFunction<bool(CTexture* const _this, int nWidth, int nHeight, int nDepth, int nMips, int nFlags, uint8_t* pData, ETEX_Format eTFSrc, ETEX_Format eTFDst)>(0xFFAA90);
+	static inline auto FUpdate = PreyFunction<void()>(0x10036F0);
+	static inline auto FRT_LoadingUpdate = PreyFunction<void()>(0x1001860);
+	static inline auto FRLT_LoadingUpdate = PreyFunction<void()>(0x1001850);
+	static inline auto FLoadOv1 = PreyFunction<bool(CTexture* const _this, ETEX_Format eTFDst)>(0xFFD890);
+	static inline auto FLoadOv0 = PreyFunction<bool(CTexture* const _this, CImageFile* pImage)>(0xFFD300);
+	static inline auto FLoadFromImage = PreyFunction<bool(CTexture* const _this, const char* name, ETEX_Format eTFDst)>(0xFFFEE0);
+	static inline auto FReload = PreyFunction<bool(CTexture* const _this)>(0x10021A0);
+	static inline auto FToggleStreaming = PreyFunction<bool(CTexture* const _this, const bool bEnable)>(0x1003630);
+	static inline auto FCreateTexture = PreyFunction<bool(CTexture* const _this, STexData& td)>(0xFFAF40);
+	static inline auto FUnbind = PreyFunction<void(CTexture* const _this)>(0xF49970);
+	static inline auto FResolve = PreyFunction<bool(CTexture* const _this, int nTarget, bool bUseViewportSize)>(0x1A302A0);
+	static inline auto FCreateDeviceTexture = PreyFunction<bool(CTexture* const _this, uint8_t* * pData)>(0xF46640);
+	static inline auto FRT_CreateDeviceTexture = PreyFunction<bool(CTexture* const _this, uint8_t* * pData)>(0xF47AE0);
+	static inline auto FDisableStreaming = PreyFunction<void(CTexture* const _this)>(0xF46CC0);
+	static inline auto FReleaseDeviceTexture = PreyFunction<void(CTexture* const _this, bool bKeepLastMips, bool bFromUnload)>(0xF48D50);
+	static inline auto FApply = PreyFunction<void(CTexture* const _this, int nTUnit, int nState, int nTexMatSlot, int nSUnit, uint64_t nResViewKey, EHWShaderClass eHWSC)>(0xF44BE0);
+	static inline auto FApplyTexture = PreyFunction<void(CTexture* const _this, int nTUnit, EHWShaderClass eHWSC, uint64_t nResViewKey)>(0xF45020);
+	static inline auto FClosestFormatSupportedOv1 = PreyFunction<ETEX_Format(CTexture* const _this, ETEX_Format eTFDst)>(0xF45490);
+	static inline auto FClosestFormatSupportedOv0 = PreyFunction<ETEX_Format(ETEX_Format eTFDst, const SPixFormat* & pPF)>(0xF454A0);
+	static inline auto FSetTexStates = PreyFunction<void(CTexture* const _this)>(0xF49660);
+	static inline auto FUpdateTexStates = PreyFunction<void(CTexture* const _this)>(0xF49D20);
+	static inline auto FSetFilterMode = PreyFunction<bool(CTexture* const _this, int nFilter)>(0xF491B0);
+	static inline auto FSetClampingMode = PreyFunction<bool(CTexture* const _this, int nAddressU, int nAddressV, int nAddressW)>(0xF49160);
+	static inline auto FUpdateTextureRegion = PreyFunction<void(CTexture* const _this, uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc)>(0xF49D40);
+	static inline auto FRT_UpdateTextureRegion = PreyFunction<void(CTexture* const _this, uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc)>(0xF48710);
+	static inline auto FSetNoTexture = PreyFunction<bool(CTexture* const _this, CTexture* pDefaultTexture, bool _bOutOfMemory)>(0x1002C70);
+	static inline auto FSetSamplerState = PreyFunction<void(int nTS, int nSUnit, EHWShaderClass eHWSC)>(0xF49530);
+	static inline auto FGenerateZMaps = PreyFunction<void()>(0xF47540);
+	static inline auto FDestroyZMaps = PreyFunction<void()>(0x1333E90);
+	static inline auto FGenerateHDRMaps = PreyFunction<void()>(0xF05110);
+	static inline auto FGenerateSceneMap = PreyFunction<void(ETEX_Format eTF)>(0xF473B0);
+	static inline auto FGenerateCachedShadowMaps = PreyFunction<void()>(0xF46D10);
+	static inline auto FGenerateLookingGlassMaps = PreyFunction<void()>(0xEEBF70);
+	static inline auto FConvert = PreyFunction<uint8_t* (uint8_t* pSrc, int nWidth, int nHeight, int nMips, ETEX_Format eTFSrc, ETEX_Format eTFDst, int nOutMips, int& nOutSize, bool bLinear)>(0xF45A20);
+	static inline auto FCalcNumMips = PreyFunction<int(int nWidth, int nHeight)>(0xFFA760);
+	static inline auto FExpandMipFromFile = PreyFunction<void(uint8_t* dest, const int destSize, const uint8_t* src, const int srcSize, const ETEX_Format fmt)>(0xFFBC00);
+	static inline auto FTextureDataSize = PreyFunction<unsigned(unsigned nWidth, unsigned nHeight, unsigned nDepth, unsigned nMips, unsigned nSlices, const ETEX_Format eTF, ETEX_TileMode eTM)>(0x10032F0);
+	static inline auto FNameForTextureType = PreyFunction<const char* (ETEX_Type eTT)>(0x10013D0);
+	static inline auto FIsDeviceFormatTypeless = PreyFunction<bool(DXGI_FORMAT nFormat)>(0xF47780);
+	static inline auto FIsDeviceFormatSRGBReadable = PreyFunction<bool(DXGI_FORMAT nFormat)>(0xF47700);
+	static inline auto FDeviceFormatFromTexFormat = PreyFunction<DXGI_FORMAT(ETEX_Format eTF)>(0xF46AC0);
+	static inline auto FTexFormatFromDeviceFormat = PreyFunction<ETEX_Format(DXGI_FORMAT nFormat)>(0xF49740);
+	static inline auto FConvertToDepthStencilFmt = PreyFunction<DXGI_FORMAT(DXGI_FORMAT nFormat)>(0xF45EA0);
+	static inline auto FConvertToSRGBFmt = PreyFunction<DXGI_FORMAT(DXGI_FORMAT fmt)>(0xF45ED0);
+	static inline auto FConvertToTypelessFmt = PreyFunction<DXGI_FORMAT(DXGI_FORMAT fmt)>(0xF45FB0);
+	static inline auto FGetTexState = PreyFunction<int(const STexState& TS)>(0xE9AF00);
+};
+
+// SDynTexture
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+struct SDynTexture : public IDynTexture
+{ // Size=240 (0xF0)
+	using TextureSubset = std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >;
+	using TextureSubsetItor = std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<unsigned int const ,CTexture *> > > >;
+	using TextureSet = std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >;
+	using TextureSetItor = std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<unsigned int const ,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *> > > >;
+
+	static inline auto s_nMemoryOccupied = PreyGlobal<int>(0x2CA04E0);
+	static inline auto s_Root = PreyGlobal<SDynTexture>(0x23DCE60);
+	SDynTexture* m_Next;
+	SDynTexture* m_Prev;
+	char m_sSource[128];
+	CTexture* m_pTexture;
+	ETEX_Format m_eTF;
+	ETEX_Type m_eTT;
+	unsigned m_nWidth;
+	unsigned m_nHeight;
+	unsigned m_nReqWidth;
+	unsigned m_nReqHeight;
+	unsigned m_nTexFlags;
+	unsigned m_nFrameReset;
+	bool m_bLocked;
+	uint8_t m_nUpdateMask;
+	int m_nUniqueID;
+	SDynTexture_Shadow* m_NextShadow;
+	SDynTexture_Shadow* m_PrevShadow;
+	ShadowMapFrustum* m_pFrustumOwner;
+	IRenderNode* pLightOwner;
+	int nObjectsRenderedCount;
+	static inline auto s_availableTexturePool2D_BC1 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA04F8);
+	static inline auto s_checkedOutTexturePool2D_BC1 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0508);
+	static inline auto s_availableTexturePool2D_R8G8B8A8 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0518);
+	static inline auto s_checkedOutTexturePool2D_R8G8B8A8 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0528);
+	static inline auto s_availableTexturePool2D_R8 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0538);
+	static inline auto s_checkedOutTexturePool2D_R8 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0548);
+	static inline auto s_availableTexturePool2D_R32F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0558);
+	static inline auto s_checkedOutTexturePool2D_R32F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0568);
+	static inline auto s_availableTexturePool2D_R16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0578);
+	static inline auto s_checkedOutTexturePool2D_R16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0588);
+	static inline auto s_availableTexturePool2D_R16G16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0598);
+	static inline auto s_checkedOutTexturePool2D_R16G16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA05A8);
+	static inline auto s_availableTexturePool2D_R8G8B8A8S = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA05B8);
+	static inline auto s_checkedOutTexturePool2D_R8G8B8A8S = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA05C8);
+	static inline auto s_availableTexturePool2D_R16G16B16A16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA05D8);
+	static inline auto s_checkedOutTexturePool2D_R16G16B16A16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA05E8);
+	static inline auto s_availableTexturePool2D_R10G10B10A2 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA05F8);
+	static inline auto s_checkedOutTexturePool2D_R10G10B10A2 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0608);
+	static inline auto s_availableTexturePool2D_R11G11B10F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0618);
+	static inline auto s_checkedOutTexturePool2D_R11G11B10F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0628);
+	static inline auto s_availableTexturePoolCube_R11G11B10F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0638);
+	static inline auto s_checkedOutTexturePoolCube_R11G11B10F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0648);
+	static inline auto s_availableTexturePool2D_R8G8S = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0658);
+	static inline auto s_checkedOutTexturePool2D_R8G8S = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0668);
+	static inline auto s_availableTexturePoolCube_R8G8S = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0678);
+	static inline auto s_checkedOutTexturePoolCube_R8G8S = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0688);
+	static inline auto s_availableTexturePool2D_Shadows = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> > [4]>(0x2CA06A0);
+	static inline auto s_checkedOutTexturePool2D_Shadows = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > [4]>(0x2CA06E0);
+	static inline auto s_availableTexturePoolCube_Shadows = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> > [4]>(0x2CA0720);
+	static inline auto s_checkedOutTexturePoolCube_Shadows = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > [4]>(0x2CA0760);
+	static inline auto s_availableTexturePool2DCustom_R16G16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA07A0);
+	static inline auto s_checkedOutTexturePool2DCustom_R16G16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA07B0);
+	static inline auto s_availableTexturePoolCube_BC1 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA07C0);
+	static inline auto s_checkedOutTexturePoolCube_BC1 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA07D0);
+	static inline auto s_availableTexturePoolCube_R8G8B8A8 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA07E0);
+	static inline auto s_checkedOutTexturePoolCube_R8G8B8A8 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA07F0);
+	static inline auto s_availableTexturePoolCube_R32F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0800);
+	static inline auto s_checkedOutTexturePoolCube_R32F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0810);
+	static inline auto s_availableTexturePoolCube_R16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0820);
+	static inline auto s_checkedOutTexturePoolCube_R16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0830);
+	static inline auto s_availableTexturePoolCube_R16G16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0840);
+	static inline auto s_checkedOutTexturePoolCube_R16G16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0850);
+	static inline auto s_availableTexturePoolCube_R8G8B8A8S = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0860);
+	static inline auto s_checkedOutTexturePoolCube_R8G8B8A8S = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0870);
+	static inline auto s_availableTexturePoolCube_R16G16B16A16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA0880);
+	static inline auto s_checkedOutTexturePoolCube_R16G16B16A16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA0890);
+	static inline auto s_availableTexturePoolCube_R10G10B10A2 = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA08A0);
+	static inline auto s_checkedOutTexturePoolCube_R10G10B10A2 = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA08B0);
+	static inline auto s_availableTexturePoolCubeCustom_R16G16F = PreyGlobal<std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >>(0x2CA08C0);
+	static inline auto s_checkedOutTexturePoolCubeCustom_R16G16F = PreyGlobal<std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> >>(0x2CA08D0);
+	static inline auto s_iNumTextureBytesCheckedOut = PreyGlobal<unsigned>(0x2CA04E4);
+	static inline auto s_iNumTextureBytesCheckedIn = PreyGlobal<unsigned>(0x2CA04E8);
+	static inline auto s_SuggestedDynTexMaxSize = PreyGlobal<unsigned>(0x2CA04EC);
+	static inline auto s_CurDynTexMaxSize = PreyGlobal<unsigned>(0x2CA04F0);
+
+	SDynTexture(int nWidth, int nHeight, ETEX_Format eTF, ETEX_Type eTT, int nTexFlags, const char* szSource);
+	virtual ~SDynTexture();
+	virtual int GetTextureID();
+	virtual bool Update(int nNewWidth, int nNewHeight);
+	bool RT_Update(int nNewWidth, int nNewHeight) { return FRT_Update(this, nNewWidth, nNewHeight); }
+	virtual void Apply(int nTUnit, int nTS);
+	virtual bool ClearRT();
+	virtual bool SetRT(int nRT, bool bPush, SDepthTexture* pDepthSurf, bool bScreenVP);
+	virtual bool SetRectStates();
+	virtual bool RestoreRT(int nRT, bool bPop);
+	virtual ITexture* GetTexture();
+	virtual void Release();
+	virtual void ReleaseForce();
+	virtual void SetUpdateMask();
+	virtual void ResetUpdateMask();
+	virtual bool IsSecondFrame();
+	virtual uint8_t GetFlags() const;
+	virtual void GetSubImageRect(unsigned& nX, unsigned& nY, unsigned& nWidth, unsigned& nHeight);
+	virtual void GetImageRect(unsigned& nX, unsigned& nY, unsigned& nWidth, unsigned& nHeight);
+	virtual int GetWidth();
+	virtual int GetHeight();
+	virtual void Lock();
+	virtual void UnLock();
+	virtual void AdjustRealSize();
+	virtual bool IsValid();
+	virtual void Unlink();
+	virtual void Link();
+	bool FreeTextures(bool bOldOnly, int nNeedSpace) { return FFreeTextures(this, bOldOnly, nNeedSpace); }
+	CTexture* CreateDynamicRT() { return FCreateDynamicRT(this); }
+	CTexture* GetDynamicRT() { return FGetDynamicRT(this); }
+	void ReleaseDynamicRT(bool bForce) { FReleaseDynamicRT(this, bForce); }
+	EShadowBuffers_Pool ConvertTexFormatToShadowsPool(ETEX_Format e) { return FConvertTexFormatToShadowsPool(this, e); }
+	static bool FreeAvailableDynamicRT(int nNeedSpace, std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >* pSet, bool bOldOnly) { return FFreeAvailableDynamicRT(nNeedSpace, pSet, bOldOnly); }
+	static void ShutDown() { FShutDown(); }
+	static void Init() { FInit(); }
+	static void Tick() { FTick(); }
+
+#if 0
+	SDynTexture(const char* _arg0_);
+	static void* operator new(uint64_t _arg0_);
+	static void operator delete(void* _arg0_);
+	void UnlinkGlobal();
+	void LinkGlobal(SDynTexture* _arg0_);
+	ETEX_Format GetFormat();
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FSDynTextureOv1 = PreyFunction<void(SDynTexture* const _this, int nWidth, int nHeight, ETEX_Format eTF, ETEX_Type eTT, int nTexFlags, const char* szSource)>(0xFF4430);
+	static inline auto FBitNotSDynTexture = PreyFunction<void(SDynTexture* const _this)>(0xFF4680);
+	static inline auto FGetTextureID = PreyFunction<int(SDynTexture* const _this)>(0xFF5C60);
+	static inline auto FUpdate = PreyFunction<bool(SDynTexture* const _this, int nNewWidth, int nNewHeight)>(0xFF6910);
+	static inline auto FRT_Update = PreyFunction<bool(SDynTexture* const _this, int nNewWidth, int nNewHeight)>(0xFF5EE0);
+	static inline auto FApply = PreyFunction<void(SDynTexture* const _this, int nTUnit, int nTS)>(0xFF48D0);
+	static inline auto FClearRT = PreyFunction<bool(SDynTexture* const _this)>(0xF45470);
+	static inline auto FSetRT = PreyFunction<bool(SDynTexture* const _this, int nRT, bool bPush, SDepthTexture* pDepthSurf, bool bScreenVP)>(0xF49480);
+	static inline auto FSetRectStates = PreyFunction<bool(SDynTexture* const _this)>(0x1A302A0);
+	static inline auto FRestoreRT = PreyFunction<bool(SDynTexture* const _this, int nRT, bool bPop)>(0xF49010);
+	static inline auto FGetTexture = PreyFunction<ITexture* (SDynTexture* const _this)>(0x1B7C8C0);
+	static inline auto FRelease = PreyFunction<void(SDynTexture* const _this)>(0x3E3960);
+	static inline auto FReleaseForce = PreyFunction<void(SDynTexture* const _this)>(0xFF6660);
+	static inline auto FSetUpdateMask = PreyFunction<void(SDynTexture* const _this)>(0xFF66B0);
+	static inline auto FResetUpdateMask = PreyFunction<void(SDynTexture* const _this)>(0xFF6690);
+	static inline auto FIsSecondFrame = PreyFunction<bool(SDynTexture* const _this)>(0xFF5CB0);
+	static inline auto FGetFlags = PreyFunction<uint8_t(const SDynTexture* const _this)>(0x13B0900);
+	static inline auto FGetSubImageRect = PreyFunction<void(SDynTexture* const _this, unsigned& nX, unsigned& nY, unsigned& nWidth, unsigned& nHeight)>(0xFF5C40);
+	static inline auto FGetImageRect = PreyFunction<void(SDynTexture* const _this, unsigned& nX, unsigned& nY, unsigned& nWidth, unsigned& nHeight)>(0xFF5C40);
+	static inline auto FGetWidth = PreyFunction<int(SDynTexture* const _this)>(0xFF5C80);
+	static inline auto FGetHeight = PreyFunction<int(SDynTexture* const _this)>(0x199B520);
+	static inline auto FLock = PreyFunction<void(SDynTexture* const _this)>(0xFF5E60);
+	static inline auto FUnLock = PreyFunction<void(SDynTexture* const _this)>(0xFF6880);
+	static inline auto FAdjustRealSize = PreyFunction<void(SDynTexture* const _this)>(0xFF4830);
+	static inline auto FIsValid = PreyFunction<bool(SDynTexture* const _this)>(0xFF5CC0);
+	static inline auto FUnlink = PreyFunction<void(SDynTexture* const _this)>(0xFF3BA0);
+	static inline auto FLink = PreyFunction<void(SDynTexture* const _this)>(0xFF5DA0);
+	static inline auto FFreeTextures = PreyFunction<bool(SDynTexture* const _this, bool bOldOnly, int nNeedSpace)>(0xFF51A0);
+	static inline auto FCreateDynamicRT = PreyFunction<CTexture* (SDynTexture* const _this)>(0xFF49D0);
+	static inline auto FGetDynamicRT = PreyFunction<CTexture* (SDynTexture* const _this)>(0xFF5580);
+	static inline auto FReleaseDynamicRT = PreyFunction<void(SDynTexture* const _this, bool bForce)>(0xFF6110);
+	static inline auto FConvertTexFormatToShadowsPool = PreyFunction<EShadowBuffers_Pool(SDynTexture* const _this, ETEX_Format e)>(0xFF4990);
+	static inline auto FFreeAvailableDynamicRT = PreyFunction<bool(int nNeedSpace, std::multimap<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,std::multimap<unsigned int,CTexture *,std::less<unsigned int>,stl::STLPoolAllocator<std::pair<unsigned int,CTexture *>,stl::PSyncNone,0,0> > *>,stl::PSyncNone,0,0> >* pSet, bool bOldOnly)>(0xFF4ED0);
+	static inline auto FShutDown = PreyFunction<void()>(0xFF6700);
+	static inline auto FInit = PreyFunction<void()>(0xFF5C90);
+	static inline auto FTick = PreyFunction<void()>(0xFF6860);
+};
+
+// SDynTexture_Shadow
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+struct SDynTexture_Shadow : public SDynTexture
+{ // Size=240 (0xF0)
+	static inline auto s_RootShadow = PreyGlobal<SDynTexture_Shadow>(0x23DCF50);
+
+	virtual ~SDynTexture_Shadow();
+	static void RT_EntityDelete(IRenderNode* pRenderNode) { FRT_EntityDelete(pRenderNode); }
+	virtual void Unlink();
+	virtual void Link();
+	virtual void AdjustRealSize();
+	static SDynTexture_Shadow* GetForFrustum(const ShadowMapFrustum* pFrustum) { return FGetForFrustum(pFrustum); }
+
+#if 0
+	SDynTexture_Shadow(int _arg0_, int _arg1_, ETEX_Format _arg2_, ETEX_Type _arg3_, int _arg4_, const char* _arg5_);
+	SDynTexture_Shadow(const char* _arg0_);
+	void UnlinkShadow();
+	void LinkShadow(SDynTexture_Shadow* _arg0_);
+	SDynTexture_Shadow* GetByID(int _arg0_);
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+	static void ShutDown();
+#endif
+
+	static inline auto FRT_EntityDelete = PreyFunction<void(IRenderNode* pRenderNode)>(0xFF5E70);
+	static inline auto FUnlink = PreyFunction<void(SDynTexture_Shadow* const _this)>(0xFF6890);
+	static inline auto FLink = PreyFunction<void(SDynTexture_Shadow* const _this)>(0xFF5DE0);
+	static inline auto FAdjustRealSize = PreyFunction<void(SDynTexture_Shadow* const _this)>(0xFF4850);
+	static inline auto FGetForFrustum = PreyFunction<SDynTexture_Shadow* (const ShadowMapFrustum* pFrustum)>(0xFF5950);
+};
+
+// SMipData
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+struct SMipData
+{ // Size=16 (0x10)
+	uint8_t* DataArray;
+	bool m_bNative : 1;
+
+	~SMipData();
+
+#if 0
+	SMipData();
+	void Free();
+	void Init(int _arg0_, int _arg1_, int _arg2_);
+#endif
+
+	static inline auto FBitNotSMipData = PreyFunction<void(SMipData* const _this)>(0x1007290);
+};
+
+// SResourceView
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/Texture.h
+struct SResourceView
+{ // Size=16 (0x10)
+	enum ResourceViewType
+	{
+		eShaderResourceView = 0,
+		eRenderTargetView = 1,
+		eDepthStencilView = 2,
+		eUnorderedAccessView = 3,
+		eNumResourceViews = 4,
+	};
+
+	enum ResourceViewFlags
+	{
+		eSRV_DepthOnly = 0,
+		eSRV_StencilOnly = 1,
+		eDSV_ReadWrite = 0,
+		eDSV_ReadOnly = 1,
+		eUAV_WriteOnly = 0,
+		eUAV_ReadWrite = 1,
+	};
+
+	// SResourceView::ResourceViewDesc
+	// Header:  CryEngine/renderdll/common/textures/Texture.h
+	union ResourceViewDesc
+	{ // Size=8 (0x8)
+		uint64_t nDefaultMarker : 1;
+		uint64_t eViewType : 3;
+		uint64_t nFormat : 6;
+		uint64_t nFirstSlice : 11;
+		uint64_t nSliceCount : 11;
+		uint64_t nMostDetailedMip : 4;
+		uint64_t nMipCount : 4;
+		uint64_t bSrgbRead : 1;
+		uint64_t bMultisample : 1;
+		uint64_t nFlags : 2;
+		uint64_t nUnused : 19;
+		uint64_t Key;
+	};
+
+	using KeyType = uint64_t;
+
+	static constexpr const uint64_t DefaultView = -1;
+	static constexpr const uint64_t DefaultViewMS = -2;
+	static constexpr const uint64_t DefaultViewSRGB = -3;
+	static constexpr const uint64_t DefaultRendertargetView = -4;
+	static constexpr const uint64_t DefaultDepthStencilView = -5;
+	static constexpr const uint64_t DefaultUnordererdAccessView = -6;
+	SResourceView::ResourceViewDesc m_Desc;
+	void* m_pDeviceResourceView;
+
+	static SResourceView ShaderResourceView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip, int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags) { return FShaderResourceView(nFormat, nFirstSlice, nSliceCount, nMostDetailedMip, nMipCount, bSrgbRead, bMultisample, nFlags); }
+	static SResourceView RenderTargetView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample) { return FRenderTargetView(nFormat, nFirstSlice, nSliceCount, nMipLevel, bMultisample); }
+
+#if 0
+	SResourceView(uint64_t _arg0_);
+	static SResourceView DepthStencilView(ETEX_Format _arg0_, int _arg1_, int _arg2_, int _arg3_, bool _arg4_, int _arg5_);
+	static SResourceView UnorderedAccessView(ETEX_Format _arg0_, int _arg1_, int _arg2_, int _arg3_, int _arg4_);
+	static bool IsDefaultView(uint64_t _arg0_);
+	static bool IsShaderResourceView(uint64_t _arg0_);
+	static bool IsRenderTargetView(uint64_t _arg0_);
+	static bool IsDepthStencilView(uint64_t _arg0_);
+	static bool IsUnorderedAccessView(uint64_t _arg0_);
+	bool operator==(const SResourceView& _arg0_) const;
+#endif
+
+	static inline auto FShaderResourceView = PreyFunction<SResourceView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip, int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags)>(0x1002F70);
+	static inline auto FRenderTargetView = PreyFunction<SResourceView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample)>(0x1002A80);
+};
+
+// STexPool
+// Header:  CryEngine/renderdll/common/textures/Texture.h
+// Include: Prey/RenderDll/Common/Textures/TextureStreamPool.h
+struct STexPool
+{ // Size=72 (0x48)
+	uint16_t m_Width;
+	uint16_t m_Height;
+	uint16_t m_nArraySize;
+	DXGI_FORMAT m_eFormat;
+	uint64_t m_Size;
+	STexPoolItemHdr m_ItemsList;
+	ETEX_Type m_eTT;
+	uint8_t m_nMips;
+	int m_nItems;
+	int m_nItemsFree;
+
+	~STexPool();
+
+#if 0
+	uint64_t GetSize();
+	unsigned GetNumSlices() const;
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FBitNotSTexPool = PreyFunction<void(STexPool* const _this)>(0xFF9C50);
+};
+#endif // !MOONCRASH

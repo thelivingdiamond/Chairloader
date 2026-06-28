@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef _BASERESOURCE_H_
@@ -416,3 +418,219 @@ unsigned sizeOfMapS(Map& map)
 }
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/RenderDll/Common/CryNameR.h>
+#include <_unknown/CryLockT.h>
+
+class CDeviceObjectFactory;
+struct D3D11_BLEND_DESC;
+struct D3D11_BUFFER_DESC;
+struct D3D11_COUNTER_DESC;
+struct D3D11_COUNTER_INFO;
+enum class D3D11_COUNTER_TYPE;
+struct D3D11_DEPTH_STENCIL_DESC;
+struct D3D11_DEPTH_STENCIL_VIEW_DESC;
+enum class D3D11_FEATURE;
+struct D3D11_INPUT_ELEMENT_DESC;
+struct D3D11_QUERY_DESC;
+struct D3D11_RASTERIZER_DESC;
+struct D3D11_RENDER_TARGET_VIEW_DESC;
+enum class D3D11_RESOURCE_DIMENSION;
+struct D3D11_SAMPLER_DESC;
+struct D3D11_SHADER_RESOURCE_VIEW_DESC;
+struct D3D11_SO_DECLARATION_ENTRY;
+struct D3D11_SUBRESOURCE_DATA;
+struct D3D11_TEXTURE1D_DESC;
+struct D3D11_TEXTURE2D_DESC;
+struct D3D11_TEXTURE3D_DESC;
+struct D3D11_UNORDERED_ACCESS_VIEW_DESC;
+enum class D3D_FEATURE_LEVEL;
+enum class DXGI_FORMAT;
+struct ICryDeviceWrapperHook;
+class ICrySizer;
+struct ID3D11BlendState;
+struct ID3D11Buffer;
+struct ID3D11ClassLinkage;
+struct ID3D11ComputeShader;
+struct ID3D11Counter;
+struct ID3D11DepthStencilState;
+struct ID3D11DepthStencilView;
+struct ID3D11Device;
+struct ID3D11DeviceContext;
+struct ID3D11DomainShader;
+struct ID3D11GeometryShader;
+struct ID3D11HullShader;
+struct ID3D11InputLayout;
+struct ID3D11PixelShader;
+struct ID3D11Predicate;
+struct ID3D11Query;
+struct ID3D11RasterizerState;
+struct ID3D11RenderTargetView;
+struct ID3D11Resource;
+struct ID3D11SamplerState;
+struct ID3D11ShaderResourceView;
+struct ID3D11Texture1D;
+struct ID3D11Texture2D;
+struct ID3D11Texture3D;
+struct ID3D11UnorderedAccessView;
+struct ID3D11VertexShader;
+struct IUnknown;
+struct SResourceContainer;
+
+// CBaseResource
+// Header:  CryEngine/renderdll/common/commonrender.h
+// Include: Prey/RenderDll/Common/CommonRender.h
+class CBaseResource
+{ // Size=24 (0x18)
+public:
+	enum EDirtyFlags
+	{
+		eDeviceResourceDirty = 1,
+		eDeviceResourceViewDirty = 2,
+	};
+
+	volatile int m_nRefCount;
+	int m_nID;
+	CCryNameTSCRC m_ClassName;
+	CCryNameTSCRC m_NameCRC;
+	static inline auto m_sResources = PreyGlobal<std::map<CCryNameTSCRC, SResourceContainer*>>(0x2C93C98);
+	static inline auto s_cResLock = PreyGlobal<CryCriticalSection>(0x2C93CA8);
+
+	void UnregisterAndDelete() { FUnregisterAndDelete(this); }
+	virtual int GetRefCounter() const;
+	virtual int AddRef();
+	virtual int Release();
+	virtual ~CBaseResource();
+	virtual bool IsValid();
+	static CBaseResource* GetResource(const CCryNameTSCRC& className, int nID, bool bAddRef) { return FGetResourceOv1(className, nID, bAddRef); }
+	static CBaseResource* GetResource(const CCryNameTSCRC& className, const CCryNameTSCRC& Name, bool bAddRef) { return FGetResourceOv0(className, Name, bAddRef); }
+	static SResourceContainer* GetResourcesForClass(const CCryNameTSCRC& className) { return FGetResourcesForClass(className); }
+	bool Register(const CCryNameTSCRC& className, const CCryNameTSCRC& Name) { return FRegister(this, className, Name); }
+	virtual void GetMemoryUsage(ICrySizer* pSizer) const = 0;
+	virtual void InvalidateDeviceResource(unsigned dirtyFlags);
+
+#if 0
+	void SetRefCounter(int _arg0_);
+	int TryAddRef();
+	CBaseResource();
+	CBaseResource(const CBaseResource& _arg0_);
+	CBaseResource& operator=(const CBaseResource& _arg0_);
+	CCryNameTSCRC GetNameCRC();
+	int GetID() const;
+	void SetID(int _arg0_);
+	static int RListIndexFromId(int _arg0_);
+	static int IdFromRListIndex(int _arg0_);
+	static std::map<CCryNameTSCRC, SResourceContainer*>& GetMaps();
+	static void ShutDown();
+	bool UnRegister();
+#endif
+
+	static inline auto FUnregisterAndDelete = PreyFunction<void(CBaseResource* const _this)>(0xFCA4B0);
+	static inline auto FGetRefCounter = PreyFunction<int(const CBaseResource* const _this)>(0x899030);
+	static inline auto FAddRef = PreyFunction<int(CBaseResource* const _this)>(0xDC0880);
+	static inline auto FRelease = PreyFunction<int(CBaseResource* const _this)>(0xE9C780);
+	static inline auto FIsValid = PreyFunction<bool(CBaseResource* const _this)>(0xFCA120);
+	static inline auto FGetResourceOv1 = PreyFunction<CBaseResource* (const CCryNameTSCRC& className, int nID, bool bAddRef)>(0xFCA010);
+	static inline auto FGetResourceOv0 = PreyFunction<CBaseResource* (const CCryNameTSCRC& className, const CCryNameTSCRC& Name, bool bAddRef)>(0xFC9F30);
+	static inline auto FGetResourcesForClass = PreyFunction<SResourceContainer* (const CCryNameTSCRC& className)>(0xFCA0E0);
+	static inline auto FRegister = PreyFunction<bool(CBaseResource* const _this, const CCryNameTSCRC& className, const CCryNameTSCRC& Name)>(0xFCA230);
+	static inline auto FInvalidateDeviceResource = PreyFunction<void(CBaseResource* const _this, unsigned dirtyFlags)>(0x1333E90);
+};
+
+// CCryDeviceWrapper
+// Header:  CryEngine/renderdll/common/commonrender.h
+// Include: Prey/RenderDll/Common/CryDeviceWrapper.h
+class CCryDeviceWrapper
+{ // Size=16 (0x10)
+public:
+	ID3D11Device* m_pDevice;
+	_smart_ptr<ICryDeviceWrapperHook> m_pDeviceHooks;
+
+	static CDeviceObjectFactory& GetObjectFactory() { return FGetObjectFactory(); }
+
+#if 0
+	CCryDeviceWrapper();
+	bool IsValid() const;
+	void AssignDevice(ID3D11Device* _arg0_);
+	void SwitchNodeVisibility(unsigned _arg0_);
+	void ReleaseDevice();
+	ID3D11Device* GetRealDevice() const;
+	void RegisterHook(ICryDeviceWrapperHook* _arg0_);
+	void UnregisterHook(const char* _arg0_);
+	HRESULT QueryInterface(const _GUID& _arg0_, void* * _arg1_);
+	unsigned long AddRef();
+	unsigned long Release();
+	HRESULT GetDeviceRemovedReason();
+	HRESULT SetExceptionMode(unsigned _arg0_);
+	unsigned GetExceptionMode();
+	HRESULT GetPrivateData(const _GUID& _arg0_, unsigned* _arg1_, void* _arg2_);
+	HRESULT SetPrivateData(const _GUID& _arg0_, unsigned _arg1_, const void* _arg2_);
+	HRESULT SetPrivateDataInterface(const _GUID& _arg0_, const IUnknown* _arg1_);
+	HRESULT CreateBuffer(const D3D11_BUFFER_DESC* _arg0_, const D3D11_SUBRESOURCE_DATA* _arg1_, ID3D11Buffer* * _arg2_);
+	HRESULT CreateTexture1D(const D3D11_TEXTURE1D_DESC* _arg0_, const D3D11_SUBRESOURCE_DATA* _arg1_, ID3D11Texture1D* * _arg2_);
+	HRESULT CreateTexture2D(const D3D11_TEXTURE2D_DESC* _arg0_, const D3D11_SUBRESOURCE_DATA* _arg1_, ID3D11Texture2D* * _arg2_);
+	HRESULT CreateTexture3D(const D3D11_TEXTURE3D_DESC* _arg0_, const D3D11_SUBRESOURCE_DATA* _arg1_, ID3D11Texture3D* * _arg2_);
+	HRESULT CreateShaderResourceView(ID3D11Resource* _arg0_, const D3D11_SHADER_RESOURCE_VIEW_DESC* _arg1_, ID3D11ShaderResourceView* * _arg2_);
+	HRESULT CreateRenderTargetView(ID3D11Resource* _arg0_, const D3D11_RENDER_TARGET_VIEW_DESC* _arg1_, ID3D11RenderTargetView* * _arg2_);
+	HRESULT CreateDepthStencilView(ID3D11Resource* _arg0_, const D3D11_DEPTH_STENCIL_VIEW_DESC* _arg1_, ID3D11DepthStencilView* * _arg2_);
+	HRESULT CreateUnorderedAccessView(ID3D11Resource* _arg0_, const D3D11_UNORDERED_ACCESS_VIEW_DESC* _arg1_, ID3D11UnorderedAccessView* * _arg2_);
+	HRESULT CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* _arg0_, unsigned _arg1_, const void* _arg2_, uint64_t _arg3_, ID3D11InputLayout* * _arg4_);
+	HRESULT CreateVertexShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11VertexShader* * _arg3_);
+	HRESULT CreateGeometryShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11GeometryShader* * _arg3_);
+	HRESULT CreateGeometryShaderWithStreamOutput(const void* _arg0_, uint64_t _arg1_, const D3D11_SO_DECLARATION_ENTRY* _arg2_, unsigned _arg3_, const unsigned* _arg4_, unsigned _arg5_, unsigned _arg6_, ID3D11ClassLinkage* _arg7_, ID3D11GeometryShader* * _arg8_);
+	HRESULT CreatePixelShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11PixelShader* * _arg3_);
+	HRESULT CreateHullShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11HullShader* * _arg3_);
+	HRESULT CreateDomainShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11DomainShader* * _arg3_);
+	HRESULT CreateComputeShader(const void* _arg0_, uint64_t _arg1_, ID3D11ClassLinkage* _arg2_, ID3D11ComputeShader* * _arg3_);
+	HRESULT CreateBlendState(const D3D11_BLEND_DESC* _arg0_, ID3D11BlendState* * _arg1_);
+	HRESULT CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* _arg0_, ID3D11DepthStencilState* * _arg1_);
+	HRESULT CreateRasterizerState(const D3D11_RASTERIZER_DESC* _arg0_, ID3D11RasterizerState* * _arg1_);
+	HRESULT CreateSamplerState(const D3D11_SAMPLER_DESC* _arg0_, ID3D11SamplerState* * _arg1_);
+	HRESULT CreateQuery(const D3D11_QUERY_DESC* _arg0_, ID3D11Query* * _arg1_);
+	HRESULT CreatePredicate(const D3D11_QUERY_DESC* _arg0_, ID3D11Predicate* * _arg1_);
+	HRESULT CreateClassLinkage(ID3D11ClassLinkage* * _arg0_);
+	unsigned GetCreationFlags();
+	void GetImmediateContext(ID3D11DeviceContext* * _arg0_);
+	HRESULT CreateDeferredContext(unsigned _arg0_, ID3D11DeviceContext* * _arg1_);
+	D3D_FEATURE_LEVEL GetFeatureLevel();
+	unsigned GetNodeCount();
+	HRESULT CheckFeatureSupport(D3D11_FEATURE _arg0_, void* _arg1_, unsigned _arg2_);
+	HRESULT CheckFormatSupport(DXGI_FORMAT _arg0_, unsigned* _arg1_);
+	HRESULT CheckMultisampleQualityLevels(DXGI_FORMAT _arg0_, unsigned _arg1_, unsigned* _arg2_);
+	void CheckCounterInfo(D3D11_COUNTER_INFO* _arg0_);
+	HRESULT CreateCounter(const D3D11_COUNTER_DESC* _arg0_, ID3D11Counter* * _arg1_);
+	HRESULT CheckCounter(const D3D11_COUNTER_DESC* _arg0_, D3D11_COUNTER_TYPE* _arg1_, unsigned* _arg2_, char* _arg3_, unsigned* _arg4_, char* _arg5_, unsigned* _arg6_, char* _arg7_, unsigned* _arg8_);
+	HRESULT OpenSharedResource(void* _arg0_, const _GUID& _arg1_, void* * _arg2_);
+	HRESULT CreateTarget1D(const D3D11_TEXTURE1D_DESC* _arg0_, const float* _arg1_, const D3D11_SUBRESOURCE_DATA* _arg2_, ID3D11Texture1D* * _arg3_);
+	HRESULT CreateTarget2D(const D3D11_TEXTURE2D_DESC* _arg0_, const float* _arg1_, const D3D11_SUBRESOURCE_DATA* _arg2_, ID3D11Texture2D* * _arg3_);
+	HRESULT CreateTarget3D(const D3D11_TEXTURE3D_DESC* _arg0_, const float* _arg1_, const D3D11_SUBRESOURCE_DATA* _arg2_, ID3D11Texture3D* * _arg3_);
+	HRESULT CreateNullResource(D3D11_RESOURCE_DIMENSION _arg0_, ID3D11Resource* * _arg1_);
+	HRESULT ReleaseNullResource(ID3D11Resource* _arg0_);
+	HRESULT CreateStagingResource(ID3D11Resource* _arg0_, ID3D11Resource* * _arg1_, int _arg2_);
+	HRESULT ReleaseStagingResource(ID3D11Resource* _arg0_);
+#endif
+
+	static inline auto FGetObjectFactory = PreyFunction<CDeviceObjectFactory& ()>(0xFC9EB0);
+};
+
+// SResourceContainer
+// Header:  CryEngine/renderdll/common/commonrender.h
+// Include: Prey/RenderDll/Common/CommonRender.h
+struct SResourceContainer
+{ // Size=64 (0x40)
+	std::vector<CBaseResource*, stl::STLGlobalAllocator<CBaseResource*>> m_RList;
+	std::map<CCryNameTSCRC, CBaseResource*> m_RMap;
+	std::vector<int, stl::STLGlobalAllocator<int>> m_AvailableIDs;
+
+	void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
+
+#if 0
+	SResourceContainer();
+	~SResourceContainer();
+#endif
+
+	static inline auto FGetMemoryUsage = PreyFunction<void(const SResourceContainer* const _this, ICrySizer* pSizer)>(0xF6AA20);
+};
+#endif // !MOONCRASH
