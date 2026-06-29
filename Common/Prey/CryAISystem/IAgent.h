@@ -5,7 +5,7 @@
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/CryAISystem/AgentParams.h>
+#include <Prey/CryAISystem/AIObject.h>
 #include <Prey/CryAISystem/IAIMannequin.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
