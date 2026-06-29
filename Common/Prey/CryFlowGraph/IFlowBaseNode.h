@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -75,8 +73,13 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	const char*                  m_sClassName;
 	CAutoRegFlowNodeBase*        m_pNext;
+#ifndef MOONCRASH
 	static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase*>(0x24808D0);
 	static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase*>(0x24808D8);
+#else
+	static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase*>(0x25EFEF0);
+	static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase*>(0x25EFEF8);
+#endif
 	//////////////////////////////////////////////////////////////////////////
 };
 
@@ -208,4 +211,3 @@ public:
 
 	static const int myCloneType = eNCT_Singleton;
 };
-#endif // !MOONCRASH
