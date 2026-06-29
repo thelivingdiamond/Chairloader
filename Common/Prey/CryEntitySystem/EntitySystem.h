@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -302,6 +300,7 @@ public:
 	static IEntityClass *GetClassForEntity(CEntity *arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FBitNotCEntitySystem = PreyFunction<void(CEntitySystem *const _this)>(0x91E880);
     static inline auto FInit = PreyFunction<bool(CEntitySystem *const _this, ISystem *pSystem)>(0x923A90);
     static inline auto FRegisterCharactersForRendering = PreyFunction<void(CEntitySystem *const _this)>(0x9254A0);
@@ -441,344 +440,8 @@ public:
     static inline auto FClearEntityArray = PreyFunction<void(CEntitySystem *const _this)>(0x91FC90);
     static inline auto FDumpEntity = PreyFunction<void(CEntitySystem *const _this, IEntity *pEntity)>(0x9221B0);
     static inline auto FUpdateTempActiveEntities = PreyFunction<void(CEntitySystem *const _this)>(0x9280C0);
-};
-
-// Header: Exact
-// CryEngine/cryentitysystem/entitysystem.h
-struct SEntityLoadParams // Id=800C790 Size=160
-{
-    SEntitySpawnParams spawnParams;
-    CEntity *pReuseEntity;
-    bool bCallInit;
-    int clonedLayerId;
-
-    SEntityLoadParams();
-    SEntityLoadParams(SEntityLoadParams const &other);
-    ~SEntityLoadParams() { FBitNotSEntityLoadParams(this); }
-    SEntityLoadParams &operator=(SEntityLoadParams const &other) { return FoperatorEq(this,other); }
-    void UseClonedEntityNode(XmlNodeRef sourceEntityNode, XmlNodeRef parentNode) { FUseClonedEntityNode(this,sourceEntityNode,parentNode); }
-    static bool CloneXmlNode(XmlNodeRef sourceNode, XmlNodeRef destNode) { return FCloneXmlNode(sourceNode,destNode); }
-
-#if 0
-    void AddRef();
-	void RemoveRef();
-#endif
-
-    static inline auto FBitNotSEntityLoadParams = PreyFunction<void(SEntityLoadParams *const _this)>(0x91EFF0);
-    static inline auto FoperatorEq = PreyFunction<SEntityLoadParams &(SEntityLoadParams *const _this, SEntityLoadParams const &other)>(0x91F050);
-    static inline auto FUseClonedEntityNode = PreyFunction<void(SEntityLoadParams *const _this, XmlNodeRef sourceEntityNode, XmlNodeRef parentNode)>(0x928410);
-    static inline auto FCloneXmlNode = PreyFunction<bool(XmlNodeRef sourceNode, XmlNodeRef destNode)>(0x91FDC0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/cryarray.h>
-#include <CryEngine/cryentitysystem/saltbufferarray.h>
-#include <Prey/CryEntitySystem/EntityLayer.h>
-#include <Prey/CryEntitySystem/EntitySystem.h>
-#include <Prey/CryEntitySystem/EntityTimeoutList.h>
-#include <Prey/CryEntitySystem/IEntity.h>
-#include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryMath/Cry_Geo.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/CrySystem/TimeValue.h>
-#include <_unknown/CSaltHandle.h>
-
-class CAreaManager;
-class CCharacterBoneAttachmentManager;
-class CComponentEventDistributer;
-class CEntity;
-class CEntityArchetypeManager;
-class CEntityClassRegistry;
-class CEntityLayer;
-class CEntityLoadManager;
-class CEntityPoolManager;
-class CGeomCacheAttachmentManager;
-class CPartitionGrid;
-class CPhysicsEventListener;
-class CProximityTriggerSystem;
-class CScriptBind_Entity;
-enum EEntityEvent;
-struct IAreaManager;
-struct IBSPTree3D;
-struct IBreakableManager;
-class ICrySizer;
-struct IEntity;
-struct IEntityArchetype;
-class IEntityArchetypeListener;
-struct IEntityClass;
-struct IEntityClassRegistry;
-struct IEntityEventListener;
-struct IEntityIt;
-struct IEntityPoolManager;
-struct IEntitySystemSink;
-struct IPhysicalEntity;
-struct ISystem;
-struct SEntityEvent;
-struct SEntityProximityQuery;
-struct SEntityUpdateContext;
-class XmlNodeRef;
-
-// CEntitySystem
-// Header:  CryEngine/cryentitysystem/EntitySystem.h
-// Include: Prey/CryEntitySystem/EntitySystem.h
-class CEntitySystem : public IEntitySystem
-{ // Size=263808 (0x40680)
-public:
-	// CEntitySystem::OnEventSink
-	// Header:  CryEngine/cryentitysystem/EntitySystem.h
-	struct OnEventSink
-	{ // Size=16 (0x10)
-		uint64_t subscriptions;
-		IEntitySystemSink* pSink;
-
-	#if 0
-		OnEventSink(uint64_t _arg0_, IEntitySystemSink* _arg1_);
-	#endif
-	};
-
-	// CEntitySystem::CCompareEntityIdsByClass
-	// Header:  CryEngine/cryentitysystem/EntitySystem.h
-	// Include: Prey/CryEntitySystem/EntitySystem.cpp
-	class CCompareEntityIdsByClass
-	{ // Size=8 (0x8)
-	public:
-		CEntity* * m_ppEntities;
-
-	#if 0
-		CCompareEntityIdsByClass(CEntity* * _arg0_);
-		bool operator()(unsigned _arg0_, unsigned _arg1_) const;
-	#endif
-	};
-
-	using EntitySystemOnEventSinks = std::vector<CEntitySystem::OnEventSink, stl::STLGlobalAllocator<CEntitySystem::OnEventSink>>;
-	using EntitySystemSinks = std::vector<IEntitySystemSink*, stl::STLGlobalAllocator<IEntitySystemSink*>>;
-	using DeletedEntities = std::vector<CEntity*>;
-	using EntityTimersMap = std::multimap<CTimeValue,SEntityTimerEvent,std::less<CTimeValue>,stl::STLPoolAllocator<std::pair<CTimeValue,SEntityTimerEvent>,stl::PSyncNone,0,0> >;
-	using EntityNamesMap = std::multimap<char const *,unsigned int,stl::less_stricmp<char const *>,std::allocator<std::pair<char const * const,unsigned int> > >;
-	using EntitiesMap = std::map<unsigned int, CEntity*>;
-	using EntitiesSet = std::set<unsigned int>;
-	using EntityTimersVector = std::vector<SEntityTimerEvent>;
-	using EventListenersMap = std::multimap<unsigned int,IEntityEventListener *,std::less<unsigned int>,std::allocator<std::pair<unsigned int const ,IEntityEventListener *> > >;
-	using EntityGuidMap = std::map<uint64_t, unsigned int>;
-	using TLayers = std::map<string, CEntityLayer*>;
-	using THeaps = std::vector<SEntityLayerGarbage>;
-
-	std::unordered_map<unsigned int, float> m_queuedEntityVisibilities;
-	std::vector<IEntitySystemSink*, stl::STLGlobalAllocator<IEntitySystemSink*>> m_sinks[5];
-	std::vector<CEntitySystem::OnEventSink, stl::STLGlobalAllocator<CEntitySystem::OnEventSink>> m_onEventSinks;
-	ISystem* m_pISystem;
-	std::vector<CEntity*> m_EntityArray;
-	std::vector<CEntity*> m_deletedEntities;
-	std::vector<CEntity*> m_deferredUsedEntities;
-	std::map<unsigned int, CEntity*> m_mapActiveEntities;
-	bool m_tempActiveEntitiesValid;
-	std::set<unsigned int> m_mapPrePhysicsEntities;
-	std::multimap<char const *,unsigned int,stl::less_stricmp<char const *>,std::allocator<std::pair<char const * const,unsigned int> > > m_mapEntityNames;
-	CSaltBufferArray<unsigned short,unsigned short,65533> m_EntitySaltBuffer;
-	std::vector<unsigned int> m_tempActiveEntities;
-	CComponentEventDistributer* m_pEventDistributer;
-	std::multimap<CTimeValue,SEntityTimerEvent,std::less<CTimeValue>,stl::STLPoolAllocator<std::pair<CTimeValue,SEntityTimerEvent>,stl::PSyncNone,0,0> > m_timersMap;
-	std::vector<SEntityTimerEvent> m_currentTimers;
-	bool m_bTimersPause;
-	CTimeValue m_nStartPause;
-	CScriptBind_Entity* m_pEntityScriptBinding;
-	CEntityClassRegistry* m_pClassRegistry;
-	CPhysicsEventListener* m_pPhysicsEventListener;
-	CAreaManager* m_pAreaManager;
-	CEntityLoadManager* m_pEntityLoadManager;
-	CEntityPoolManager* m_pEntityPoolManager;
-	std::multimap<unsigned int,IEntityEventListener *,std::less<unsigned int>,std::allocator<std::pair<unsigned int const ,IEntityEventListener *> > > m_eventListeners[60];
-	int m_eventListenerBeingProcessedRefCount;
-	std::map<uint64_t, unsigned int> m_guidMap;
-	std::map<uint64_t, unsigned int> m_genIdMap;
-	IBreakableManager* m_pBreakableManager;
-	CEntityArchetypeManager* m_pEntityArchetypeManager;
-	CGeomCacheAttachmentManager* m_pGeomCacheAttachmentManager;
-	CCharacterBoneAttachmentManager* m_pCharacterBoneAttachmentManager;
-	CPartitionGrid* m_pPartitionGrid;
-	CProximityTriggerSystem* m_pProximityTriggerSystem;
-	unsigned m_idForced;
-	bool m_bLocked;
-	CEntityTimeoutList m_entityTimeoutList;
-	std::map<string, CEntityLayer*> m_layers;
-	std::vector<SEntityLayerGarbage> m_garbageLayerHeaps;
-	std::set<const IEntity*> m_EntitiesUsingPlayerTime;
-	std::vector<const IEntityClass*> m_areaTriggeringClasses;
-	AABB m_safeBounds;
-	bool m_bReseting;
-
-	CEntitySystem(ISystem* pSystem);
-	virtual ~CEntitySystem();
-	bool Init(ISystem* pSystem) { return FInit(this, pSystem); }
-	virtual void RegisterCharactersForRendering();
-	virtual void Release();
-	virtual void Update();
-	virtual void DeletePendingEntities();
-	virtual void PrePhysicsUpdate();
-	virtual void Reset();
-	virtual void Unload();
-	virtual void PurgeHeaps();
-	virtual void EditorReset(bool _bEnteringGameMode);
-	virtual IEntityClassRegistry* GetClassRegistry();
-	IEntity* SpawnEntityInternal(SEntitySpawnParams& params, bool bAutoInit) { return FSpawnEntityInternal(this, params, bAutoInit); }
-	virtual IEntity* SpawnEntityFromArchetype(IEntityArchetype* _pArchetype, SEntitySpawnParams& _params, bool _bAutoInit);
-	virtual IEntity* SpawnEntity(SEntitySpawnParams& _params, bool _bAutoInit);
-	virtual bool InitEntity(IEntity* pEntity, SEntitySpawnParams& params);
-	virtual IEntity* GetEntity(unsigned id) const;
-	virtual IEntity* ArkSafeGetEntity(unsigned _id) const;
-	virtual unsigned GetClonedEntityId(unsigned origId, unsigned refId) const;
-	virtual IEntity* FindEntityByName(const char* sEntityName) const;
-	virtual void ReserveEntityId(const unsigned id);
-	virtual unsigned ReserveUnknownEntityId();
-	virtual void RemoveEntity(unsigned entity, bool bForceRemoveNow);
-	virtual unsigned GetNumEntities() const;
-	virtual IEntityIt* GetEntityIterator();
-	virtual void SendEventViaEntityEvent(IEntity* piEntity, SEntityEvent& event);
-	virtual void SendEventToAll(SEntityEvent& event);
-	virtual int QueryProximity(SEntityProximityQuery& query);
-	virtual void ResizeProximityGrid(int nWidth, int nHeight);
-	virtual int GetPhysicalEntitiesInBox(const Vec3& origin, float radius, IPhysicalEntity* * & pList, int physFlags, const char* _debugString) const;
-	virtual IEntity* GetEntityFromPhysics(IPhysicalEntity* pPhysEntity) const;
-	virtual void AddSink(IEntitySystemSink* pSink, unsigned subscriptions, uint64_t onEventSubscriptions);
-	virtual void RemoveSink(IEntitySystemSink* pSink);
-	virtual void PauseTimers(bool bPause, bool bResume);
-	virtual bool IsIDUsed(unsigned nID) const;
-	virtual void GetMemoryStatistics(ICrySizer* pSizer) const;
-	virtual ISystem* GetSystem() const;
-	virtual void SetNextSpawnId(unsigned id);
-	virtual void ResetAreas();
-	virtual void UnloadAreas();
-	virtual void AddEntityEventListener(unsigned nEntity, EEntityEvent event, IEntityEventListener* pListener);
-	virtual void RemoveEntityEventListener(unsigned nEntity, EEntityEvent event, IEntityEventListener* pListener);
-	virtual bool HasEntityEventListener(const IEntityEventListener& _listener) const;
-	virtual bool IsEntityStatic(unsigned _id) const;
-	virtual unsigned FindEntityByGuid(const uint64_t& guid) const;
-	virtual unsigned FindEntityByEditorGuid(const char* pGuid) const;
-	virtual IEntityArchetype* LoadEntityArchetype(XmlNodeRef oArchetype);
-	virtual IEntityArchetype* LoadEntityArchetype(const char* sArchetype);
-	virtual IEntityArchetype* FindEntityArchetype(const char* _archetypeName) const;
-	virtual IEntityArchetype* CreateEntityArchetype(IEntityClass* pClass, const char* sArchetype, uint64_t _id);
-	virtual IEntityArchetype* GetEntityArchetype(uint64_t _id);
-	virtual const IEntityArchetype* GetEntityArchetype(uint64_t _id) const;
-	virtual uint64_t GetArchetypeId(const char* _archetypeName) const;
-	virtual void DeleteEntityArchetype(const char* _archetypeName);
-	virtual void RenameArchetype(const char* _archetypeName, const char* _newArchetypeName) const;
-	virtual std::vector<string> GetArchetypeNames(const string& _libraryName) const;
-	virtual std::vector<IEntityArchetype*> GetArchetypes(const string& _libraryName) const;
-	virtual bool LoadArchetypeLibrary(const string& _libraryName);
-	virtual void RegisterEntityArchetypeListener(IEntityArchetypeListener* _pListener);
-	virtual void UnregisterEntityArchetypeListener(IEntityArchetypeListener* _pListener);
-	virtual void Serialize(TSerialize ser);
-	virtual void DumpEntities();
-	virtual int GetLayerId(const char* szLayerName) const;
-	virtual const char* GetLayerName(int layerId) const;
-	virtual int GetLayerChildCount(const char* szLayerName) const;
-	virtual const char* GetLayerChild(const char* szLayerName, int childIdx) const;
-	virtual int GetVisibleLayerIDs(uint8_t* pLayerMask, const unsigned maxCount) const;
-	virtual void LockSpawning(bool lock);
-	virtual bool IsSpawningLocked() const;
-	virtual bool OnLoadLevel(const char* szLevelPath);
-	virtual void OnLevelEnd();
-	void OnLevelLoadStart() { FOnLevelLoadStart(this); }
-	virtual CEntityLayer* AddLayer(const char* name, const char* parent, uint16_t id, bool bHasPhysics, int specs, bool bDefaultLoaded, int _loadTokenId, int _loadTokenValue);
-	virtual std::vector<bool> GetLayersState() const;
-	virtual void LoadLayers(const char* dataFile);
-	virtual void LinkLayerChildren();
-	virtual void AddEntityToLayer(const char* layer, unsigned id);
-	virtual void RemoveEntityFromLayers(unsigned id);
-	virtual const char* GetLayerNameForEntity(unsigned id);
-	virtual void ClearLayers();
-	virtual void EnableDefaultLayers(bool isSerialized);
-	virtual void EnableLayer(const char* layer, bool _bIsVisible, bool isEnable, bool isSerialized);
-	virtual bool IsLayerEnabled(const char* layer, bool bMustBeLoaded) const;
-	virtual bool ShouldSerializedEntity(IEntity* pEntity);
-	virtual void RegisterPhysicCallbacks();
-	virtual void UnregisterPhysicCallbacks();
-	CEntityLayer* FindLayer(const char* layer) { return FFindLayer(this, layer); }
-	virtual void MarkEntityAsUsingPlayerTime(const IEntity& rEntity);
-	virtual void UnmarkEntityAsUsingPlayerTime(const IEntity& rEntity);
-	virtual bool ShouldEntityUsePlayerTime(const IEntity& rEntity) const;
-	CEntityLayer* GetLayerForEntity(unsigned id) { return FGetLayerForEntity(this, id); }
-	bool OnBeforeSpawn(SEntitySpawnParams& params) { return FOnBeforeSpawn(this, params); }
-	void OnEntityReused(IEntity* pEntity, SEntitySpawnParams& params) { FOnEntityReused(this, pEntity, params); }
-	void AddTimerEvent(SEntityTimerEvent& event, CTimeValue startTime) { FAddTimerEvent(this, event, startTime); }
-	virtual void LoadEntities(XmlNodeRef& objectsNode, bool bIsLoadingLevelFile);
-	virtual void LoadEntities(XmlNodeRef& objectsNode, bool bIsLoadingLevelFile, const Vec3& segmentOffset, std::vector<IEntity*>* outGlobalEntityIds, std::vector<IEntity*>* outLocalEntityIds);
-	virtual void HoldLayerEntities(const char* pLayerName);
-	virtual void CloneHeldLayerEntities(const char* pLayerName, const Vec3& localOffset, const Matrix34& l2w, const char* * pExcludeLayers, int numExcludeLayers);
-	virtual void ReleaseHeldEntities();
-	virtual bool ExtractEntityLoadParams(XmlNodeRef& entityNode, SEntitySpawnParams& spawnParams) const;
-	virtual void BeginCreateEntities(int nAmtToCreate);
-	virtual bool CreateEntity(XmlNodeRef& entityNode, SEntitySpawnParams& pParams, unsigned& outUsingId);
-	virtual void EndCreateEntities();
-	void RemoveTimerEvent(unsigned id, int nTimerId) { FRemoveTimerEvent(this, id, nTimerId); }
-	void ActivateEntity(CEntity* pEntity, bool bActivate) { FActivateEntity(this, pEntity, bActivate); }
-	void ActivatePrePhysicsUpdateForEntity(CEntity* pEntity, bool bActivate) { FActivatePrePhysicsUpdateForEntity(this, pEntity, bActivate); }
-	bool IsPrePhysicsActive(CEntity* pEntity) { return FIsPrePhysicsActive(this, pEntity); }
-	void OnEntityEvent(CEntity* pEntity, SEntityEvent& event) { FOnEntityEvent(this, pEntity, event); }
-	virtual IAreaManager* GetAreaManager() const;
-	virtual IBreakableManager* GetBreakableManager() const;
-	virtual IEntityPoolManager* GetIEntityPoolManager() const;
-	virtual void ReloadAllEntityArchetypes();
-	virtual void ReloadEntityArchetype(const char* _sArchetype);
-	unsigned GenerateEntityId(bool bStaticId) { return FGenerateEntityId(this, bStaticId); }
-	bool ResetEntityId(CEntity* pEntity, unsigned newEntityId) { return FResetEntityId(this, pEntity, newEntityId); }
-	void RegisterEntityGuid(const uint64_t& guid, unsigned id) { FRegisterEntityGuid(this, guid, id); }
-	void UnregisterEntityGuid(const uint64_t& guid) { FUnregisterEntityGuid(this, guid); }
-	void ChangeEntityName(CEntity* pEntity, const char* sNewName) { FChangeEntityName(this, pEntity, sNewName); }
-	void RemoveEntityEventListeners(CEntity* pEntity) { FRemoveEntityEventListeners(this, pEntity); }
-	CEntity* GetEntityFromID(unsigned id) const { return FGetEntityFromID(this, id); }
-	virtual void PurgeDeferredCollisionEvents(bool bForce);
-	void ComponentRegister(unsigned id, std::shared_ptr<IComponent> pComponent, const int flags) { FComponentRegister(this, id, pComponent, flags); }
-	virtual void ComponentEnableEvent(const unsigned id, const int eventID, const bool enable);
-	virtual void DebugDraw();
-	void DebugDraw(CEntity* ce, float timeMs) { FDebugDrawOv0(this, ce, timeMs); }
-	virtual IBSPTree3D* CreateBSPTree3D(const DynArray<DynArray<Vec3_tpl<float>,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >& faceList);
-	virtual void ReleaseBSPTree3D(IBSPTree3D* & pTree);
-	virtual void SetSafeBounds(const AABB& _safeBounds);
-	virtual bool IsInSafeBounds(const Vec3& _pos) const;
-	void QueueEntityVisibilityNotify(unsigned _entityId, float _distance) { FQueueEntityVisibilityNotify(this, _entityId, _distance); }
-	void DoUpdateLoop(float fFrameTime) { FDoUpdateLoop(this, fFrameTime); }
-	void DeleteEntity(CEntity* pEntity) { FDeleteEntity(this, pEntity); }
-	void RemoveEntityFromActiveList(CEntity* pEntity) { FRemoveEntityFromActiveList(this, pEntity); }
-	void UpdateEngineCVars() { FUpdateEngineCVars(this); }
-	void UpdateTimers() { FUpdateTimers(this); }
-	void DebugDrawEntityUsage() { FDebugDrawEntityUsage(this); }
-	void DebugDrawProximityTriggers() { FDebugDrawProximityTriggers(this); }
-	void ClearEntityArray() { FClearEntityArray(this); }
-	void DumpEntity(IEntity* pEntity) { FDumpEntity(this, pEntity); }
-	void UpdateTempActiveEntities() { FUpdateTempActiveEntities(this); }
-
-#if 0
-	void RemoveEntityEventListener(std::multimap<unsigned int,IEntityEventListener *,std::less<unsigned int>,std::allocator<std::pair<unsigned int const ,IEntityEventListener *> > >& _arg0_, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<unsigned int const ,IEntityEventListener *> > > > _arg1_);
-	CComponentEventDistributer* GetEventDistributer();
-	void ChangeEntityNameRemoveTimerEvent(unsigned _arg0_);
-	CScriptBind_Entity* GetScriptBindEntity();
-	CEntityPoolManager* GetEntityPoolManager() const;
-	CEntityLoadManager* GetEntityLoadManager() const;
-	CGeomCacheAttachmentManager* GetGeomCacheAttachmentManager() const;
-	CCharacterBoneAttachmentManager* GetCharacterBoneAttachmentManager() const;
-	static uint16_t IdToIndex(const unsigned _arg0_);
-	static CSaltHandle<unsigned short,unsigned short> IdToHandle(const unsigned _arg0_);
-	static unsigned HandleToId(const CSaltHandle<unsigned short,unsigned short> _arg0_);
-	CPartitionGrid* GetPartitionGrid();
-	CProximityTriggerSystem* GetProximityTriggerSystem();
-	bool HasEntity(unsigned _arg0_) const;
-	void ProcessQueuedEntityVisbilityNotifications();
-	void DoPrePhysicsUpdate();
-	void DoPrePhysicsUpdateFast();
-	void UpdateEntity(CEntity* _arg0_, SEntityUpdateContext& _arg1_);
-	void UpdateDeletedEntities();
-	void UpdateNotSeenTimeouts();
-	void OnBind(unsigned _arg0_, unsigned _arg1_);
-	void OnUnbind(unsigned _arg0_, unsigned _arg1_);
-	void DebugDrawLayerInfo();
-	void CheckInternalConsistency() const;
-	static IEntityClass* GetClassForEntity(CEntity* _arg0_);
-#endif
-
-	static inline auto FCEntitySystemOv1 = PreyFunction<void(CEntitySystem* const _this, ISystem* pSystem)>(0x93A380);
+#else
+    static inline auto FCEntitySystemOv1 = PreyFunction<void(CEntitySystem* const _this, ISystem* pSystem)>(0x93A380);
 	static inline auto FBitNotCEntitySystem = PreyFunction<void(CEntitySystem* const _this)>(0x93AF10);
 	static inline auto FInit = PreyFunction<bool(CEntitySystem* const _this, ISystem* pSystem)>(0x940120);
 	static inline auto FRegisterCharactersForRendering = PreyFunction<void(CEntitySystem* const _this)>(0x941B70);
@@ -919,36 +582,41 @@ public:
 	static inline auto FClearEntityArray = PreyFunction<void(CEntitySystem* const _this)>(0x93C320);
 	static inline auto FDumpEntity = PreyFunction<void(CEntitySystem* const _this, IEntity* pEntity)>(0x93E840);
 	static inline auto FUpdateTempActiveEntities = PreyFunction<void(CEntitySystem* const _this)>(0x944710);
+#endif
 };
 
-// SEntityLoadParams
-// Header:  CryEngine/cryentitysystem/EntitySystem.h
-// Include: Prey/CryEntitySystem/EntitySystem.h
-struct SEntityLoadParams
-{ // Size=160 (0xA0)
-	SEntitySpawnParams spawnParams;
-	CEntity* pReuseEntity;
-	bool bCallInit;
-	int clonedLayerId;
+// Header: Exact
+// CryEngine/cryentitysystem/entitysystem.h
+struct SEntityLoadParams // Id=800C790 Size=160
+{
+    SEntitySpawnParams spawnParams;
+    CEntity *pReuseEntity;
+    bool bCallInit;
+    int clonedLayerId;
 
-	SEntityLoadParams();
-	SEntityLoadParams(const SEntityLoadParams& other);
-	~SEntityLoadParams();
-	SEntityLoadParams& operator=(const SEntityLoadParams& other) { return FoperatorEq(this, other); }
-	void UseClonedEntityNode(const XmlNodeRef sourceEntityNode, XmlNodeRef parentNode) { FUseClonedEntityNode(this, sourceEntityNode, parentNode); }
-	static bool CloneXmlNode(const XmlNodeRef sourceNode, XmlNodeRef destNode) { return FCloneXmlNode(sourceNode, destNode); }
+    SEntityLoadParams();
+    SEntityLoadParams(SEntityLoadParams const &other);
+    ~SEntityLoadParams() { FBitNotSEntityLoadParams(this); }
+    SEntityLoadParams &operator=(SEntityLoadParams const &other) { return FoperatorEq(this,other); }
+    void UseClonedEntityNode(XmlNodeRef sourceEntityNode, XmlNodeRef parentNode) { FUseClonedEntityNode(this,sourceEntityNode,parentNode); }
+    static bool CloneXmlNode(XmlNodeRef sourceNode, XmlNodeRef destNode) { return FCloneXmlNode(sourceNode,destNode); }
 
 #if 0
-	SEntityLoadParams(CEntity* _arg0_, SEntitySpawnParams& _arg1_);
-	void AddRef();
+    void AddRef();
 	void RemoveRef();
 #endif
 
+#ifndef MOONCRASH
+    static inline auto FBitNotSEntityLoadParams = PreyFunction<void(SEntityLoadParams *const _this)>(0x91EFF0);
+    static inline auto FoperatorEq = PreyFunction<SEntityLoadParams &(SEntityLoadParams *const _this, SEntityLoadParams const &other)>(0x91F050);
+    static inline auto FUseClonedEntityNode = PreyFunction<void(SEntityLoadParams *const _this, XmlNodeRef sourceEntityNode, XmlNodeRef parentNode)>(0x928410);
+    static inline auto FCloneXmlNode = PreyFunction<bool(XmlNodeRef sourceNode, XmlNodeRef destNode)>(0x91FDC0);
+#else
 	static inline auto FSEntityLoadParamsOv2 = PreyFunction<void(SEntityLoadParams* const _this)>(0x93ACE0);
 	static inline auto FSEntityLoadParamsOv0 = PreyFunction<void(SEntityLoadParams* const _this, const SEntityLoadParams& other)>(0x9CB850);
 	static inline auto FBitNotSEntityLoadParams = PreyFunction<void(SEntityLoadParams* const _this)>(0x93B680);
 	static inline auto FoperatorEq = PreyFunction<SEntityLoadParams& (SEntityLoadParams* const _this, const SEntityLoadParams& other)>(0x93B6E0);
 	static inline auto FUseClonedEntityNode = PreyFunction<void(SEntityLoadParams* const _this, const XmlNodeRef sourceEntityNode, XmlNodeRef parentNode)>(0x944A60);
 	static inline auto FCloneXmlNode = PreyFunction<bool(const XmlNodeRef sourceNode, XmlNodeRef destNode)>(0x93C450);
+#endif
 };
-#endif // !MOONCRASH

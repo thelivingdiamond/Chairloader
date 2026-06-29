@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -52,6 +50,7 @@ public:
 	void GetMemoryUsage(ICrySizer *arg0) const;
 	void LoadClassDescription(XmlNodeRef &arg0, bool arg1);
 #endif
+#ifndef MOONCRASH
 	static inline auto FRegisterEntityClass = PreyFunction<bool(CEntityClassRegistry *const _this, IEntityClass *pClass)>(0x986820);
 	static inline auto FUnregisterEntityClass = PreyFunction<bool(CEntityClassRegistry *const _this, IEntityClass *pClass)>(0x986BC0);
 	static inline auto FFindClass = PreyFunction<IEntityClass *(CEntityClassRegistry const *const _this, const char *sClassName)>(0x985D70);
@@ -65,57 +64,7 @@ public:
 	static inline auto FGetClassCount = PreyFunction<int(CEntityClassRegistry const *const _this)>(0x985E40);
 	static inline auto FInitializeDefaultClasses = PreyFunction<void(CEntityClassRegistry *const _this)>(0x985E50);
 	static inline auto FNotifyListeners = PreyFunction<void(CEntityClassRegistry *const _this, EEntityClassRegistryEvent event, IEntityClass const *pEntityClass)>(0x986740);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/ientityclass.h>
-#include <Prey/CryEntitySystem/IEntityClass.h>
-#include <_unknown/CListenerSet.h>
-
-enum EEntityClassRegistryEvent;
-class ICrySizer;
-struct IEntityClass;
-struct IEntityClassRegistryListener;
-struct ISystem;
-class XmlNodeRef;
-
-// CEntityClassRegistry
-// Header:  CryEngine/cryentitysystem/EntityClassRegistry.h
-// Include: Prey/CryEntitySystem/EntityClassRegistry.h
-class CEntityClassRegistry : public IEntityClassRegistry
-{ // Size=88 (0x58)
-public:
-	using ClassNameMap = std::map<string, IEntityClass*>;
-	using TListenerSet = CListenerSet<IEntityClassRegistryListener *>;
-
-	std::map<string, IEntityClass*> m_mapClassName;
-	IEntityClass* m_pDefaultClass;
-	ISystem* m_pSystem;
-	std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,IEntityClass *> > > > m_currentMapIterator;
-	CListenerSet<IEntityClassRegistryListener *> m_listeners;
-
-	CEntityClassRegistry();
-	virtual ~CEntityClassRegistry();
-	virtual bool RegisterEntityClass(IEntityClass* pClass);
-	virtual bool UnregisterEntityClass(IEntityClass* pClass);
-	virtual IEntityClass* FindClass(const char* sClassName) const;
-	virtual IEntityClass* GetDefaultClass() const;
-	virtual IEntityClass* RegisterStdClass(const IEntityClassRegistry::SEntityClassDesc& entityClassDesc);
-	virtual void RegisterListener(IEntityClassRegistryListener* pListener);
-	virtual void UnregisterListener(IEntityClassRegistryListener* pListener);
-	virtual void LoadClasses(const char* sRootPath, bool bOnlyNewClasses);
-	virtual void IteratorMoveFirst();
-	virtual IEntityClass* IteratorNext();
-	virtual int GetClassCount() const;
-	void InitializeDefaultClasses() { FInitializeDefaultClasses(this); }
-	void NotifyListeners(EEntityClassRegistryEvent event, const IEntityClass* pEntityClass) { FNotifyListeners(this, event, pEntityClass); }
-
-#if 0
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-	void LoadClassDescription(XmlNodeRef& _arg0_, bool _arg1_);
-#endif
-
+#else
 	static inline auto FCEntityClassRegistryOv1 = PreyFunction<void(CEntityClassRegistry* const _this)>(0x9A2850);
 	static inline auto FRegisterEntityClass = PreyFunction<bool(CEntityClassRegistry* const _this, IEntityClass* pClass)>(0x9A3400);
 	static inline auto FUnregisterEntityClass = PreyFunction<bool(CEntityClassRegistry* const _this, IEntityClass* pClass)>(0x9A37A0);
@@ -130,5 +79,5 @@ public:
 	static inline auto FGetClassCount = PreyFunction<int(const CEntityClassRegistry* const _this)>(0x387590);
 	static inline auto FInitializeDefaultClasses = PreyFunction<void(CEntityClassRegistry* const _this)>(0x9A2A30);
 	static inline auto FNotifyListeners = PreyFunction<void(CEntityClassRegistry* const _this, EEntityClassRegistryEvent event, const IEntityClass* pEntityClass)>(0x9A3320);
+#endif
 };
-#endif // !MOONCRASH
