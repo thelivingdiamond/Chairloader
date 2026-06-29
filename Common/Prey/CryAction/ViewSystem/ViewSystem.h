@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/ILevelSystem.h>
@@ -96,6 +94,7 @@ public:
 	void ClearCutsceneViews();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreateView = PreyFunction<IView* (CViewSystem* const _this)>(0x3DB3E0);
 	static inline auto FRemoveViewOv1 = PreyFunction<void(CViewSystem* const _this, IView* pView)>(0x3DBFE0);
 	static inline auto FRemoveViewOv0 = PreyFunction<void(CViewSystem* const _this, unsigned viewId)>(0x3DBFD0);
@@ -134,104 +133,7 @@ public:
 	static inline auto FClearAllViews = PreyFunction<void(CViewSystem* const _this)>(0x3DB2F0);
 	static inline auto FRemoveViewById = PreyFunction<void(CViewSystem* const _this, unsigned viewId)>(0x3DC000);
 	static inline auto FDebugDraw = PreyFunction<void(CViewSystem* const _this)>(0x3DB480);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryAction/ILevelSystem.h>
-#include <Prey/CryAction/IViewSystem.h>
-#include <Prey/CryMovie/IMovieSystem.h>
-#include <Prey/CryNetwork/ISerialize.h>
-
-class CView;
-struct IAnimSequence;
-class ICrySizer;
-struct ILevel;
-struct ILevelInfo;
-struct ISystem;
-struct IView;
-struct IViewSystemListener;
-struct SCameraParams;
-
-// CViewSystem
-// Header:  CryEngine/cryaction/viewsystem/ViewSystem.h
-class CViewSystem
-	: public IViewSystem
-	, public IMovieUser
-	, public ILevelSystemListener
-{ // Size=168 (0xA8)
-public:
-	using TViewMap = std::map<unsigned int, CView*>;
-	using TViewIdVector = std::vector<unsigned int>;
-
-	ISystem* m_pSystem;
-	std::map<unsigned int, CView*> m_views;
-	std::vector<unsigned int> m_cutsceneViewIdVector;
-	std::vector<IViewSystemListener*> m_listeners;
-	unsigned m_activeViewId;
-	unsigned m_nextViewIdToAssign;
-	unsigned m_preSequenceViewId;
-	unsigned m_cutsceneViewId;
-	unsigned m_cutsceneCount;
-	bool m_bActiveViewFromSequence;
-	bool m_bOverridenCameraRotation;
-	Quat m_overridenCameraRotation;
-	float m_fCameraNoise;
-	float m_fCameraNoiseFrequency;
-	float m_fDefaultCameraNearZ;
-	float m_fBlendInPosSpeed;
-	float m_fBlendInRotSpeed;
-	bool m_bPerformBlendOut;
-	int m_nViewSystemDebug;
-	bool m_useDeferredViewSystemUpdate;
-	bool m_bControlsAudioListeners;
-	bool m_bInvalidateAudioListeners;
-
-	virtual IView* CreateView();
-	virtual void RemoveView(IView* pView);
-	virtual void RemoveView(unsigned viewId);
-	virtual void SetActiveView(IView* pView);
-	virtual void SetActiveView(unsigned viewId);
-	virtual IView* GetView(unsigned viewId);
-	virtual IView* GetActiveView();
-	virtual unsigned GetViewId(IView* pView);
-	virtual unsigned GetActiveViewId();
-	virtual void Serialize(TSerialize ser);
-	virtual void PostSerialize();
-	virtual IView* GetViewByEntityId(unsigned id, bool forceCreate);
-	virtual float GetDefaultZNear();
-	virtual void SetBlendParams(float fBlendPosSpeed, float fBlendRotSpeed, bool performBlendOut);
-	virtual void SetOverrideCameraRotation(bool bOverride, Quat rotation);
-	virtual bool IsPlayingCutScene() const;
-	virtual void UpdateSoundListeners();
-	virtual bool UseDeferredViewSystemUpdate() const;
-	virtual void SetControlAudioListeners(const bool bActive);
-	virtual void SetActiveCamera(const SCameraParams& params);
-	virtual void BeginCutScene(IAnimSequence* pSeq, unsigned long dwFlags, bool bResetFX);
-	virtual void EndCutScene(IAnimSequence* pSeq, unsigned long dwFlags);
-	virtual void SendGlobalEvent(const char* pszEvent);
-	virtual void OnLevelNotFound(const char* levelName);
-	virtual void OnLoadingStart(ILevelInfo* pLevel);
-	virtual void OnLoadingLevelEntitiesStart(ILevelInfo* pLevel);
-	virtual void OnLoadingComplete(ILevel* pLevel);
-	virtual void OnLoadingError(ILevelInfo* pLevel, const char* error);
-	virtual void OnLoadingProgress(ILevelInfo* pLevel, int progressAmount);
-	virtual void OnUnloadComplete(ILevel* pLevel);
-	CViewSystem(ISystem* pSystem);
-	virtual ~CViewSystem();
-	void Update(float frameTime) { FUpdate(this, frameTime); }
-	virtual bool AddListener(IViewSystemListener* pListener);
-	virtual bool RemoveListener(IViewSystemListener* pListener);
-	void GetMemoryUsage(ICrySizer* s) const { FGetMemoryUsage(this, s); }
-	void ClearAllViews() { FClearAllViews(this); }
-	void RemoveViewById(unsigned viewId) { FRemoveViewById(this, viewId); }
-	void DebugDraw() { FDebugDraw(this); }
-
-#if 0
-	void Release();
-	void ClearCutsceneViews();
-#endif
-
+#else
 	static inline auto FCreateView = PreyFunction<IView* (CViewSystem* const _this)>(0x3F5270);
 	static inline auto FRemoveViewOv1 = PreyFunction<void(CViewSystem* const _this, IView* pView)>(0x3F5E70);
 	static inline auto FRemoveViewOv0 = PreyFunction<void(CViewSystem* const _this, unsigned viewId)>(0x3F5E60);
@@ -270,5 +172,5 @@ public:
 	static inline auto FClearAllViews = PreyFunction<void(CViewSystem* const _this)>(0x3F5180);
 	static inline auto FRemoveViewById = PreyFunction<void(CViewSystem* const _this, unsigned viewId)>(0x3F5E90);
 	static inline auto FDebugDraw = PreyFunction<void(CViewSystem* const _this)>(0x3F5310);
+#endif
 };
-#endif // !MOONCRASH

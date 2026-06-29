@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -43,42 +41,15 @@ public:
 	void Serialize(TSerialize arg0) const;
 	void PostSerialize() const;
 #endif
-	
+#ifndef MOONCRASH
 	static inline auto FLoadActions = PreyFunction<void(ArkGlobalActionManager *const _this)>(0x2A44B0);
 	static inline auto FReset = PreyFunction<void(ArkGlobalActionManager *const _this)>(0x2A47B0);
 	static inline auto FCreateAction = PreyFunction<_smart_ptr<IFlowGraph>(ArkGlobalActionManager *const _this, string const &_fileName)>(0x2A43C0);
 	static inline auto FGetActions = PreyFunction<std::vector<IArkGlobalAction const *>(ArkGlobalActionManager const *const _this)>(0x2A4400);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/ark/ArkGlobalAction.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/IArkGlobalActionManager.h>
-
-class IArkGlobalAction;
-struct IFlowGraph;
-
-// ArkGlobalActionManager
-// Header:  CryEngine/cryaction/ark/ArkGlobalActionManager.h
-class ArkGlobalActionManager : public IArkGlobalActionManager
-{ // Size=32 (0x20)
-public:
-	std::vector<ArkGlobalAction> m_actions;
-
-	void LoadActions() { FLoadActions(this); }
-	void Reset() { FReset(this); }
-	virtual _smart_ptr<IFlowGraph> CreateAction(const string& _fileName);
-	virtual std::vector<const IArkGlobalAction*> GetActions() const;
-
-#if 0
-	void Serialize(TSerialize _arg0_) const;
-	void PostSerialize() const;
-#endif
-
+#else
 	static inline auto FLoadActions = PreyFunction<void(ArkGlobalActionManager* const _this)>(0x2BCA60);
 	static inline auto FReset = PreyFunction<void(ArkGlobalActionManager* const _this)>(0x2BCD60);
 	static inline auto FCreateAction = PreyFunction<_smart_ptr<IFlowGraph>*(ArkGlobalActionManager* const _this, _smart_ptr<IFlowGraph>* _return_value_, const string& _fileName)>(0x2BC970);
 	static inline auto FGetActions = PreyFunction<std::vector<const IArkGlobalAction*>*(const ArkGlobalActionManager* const _this, std::vector<const IArkGlobalAction*>* _return_value_)>(0x2BC9B0);
+#endif
 };
-#endif // !MOONCRASH

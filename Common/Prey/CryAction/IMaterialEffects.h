@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -39,9 +37,12 @@ struct SMFXResourceList // Id=8001FAF Size=56
 	static _smart_ptr<SMFXResourceList> Create();
 	static void FreePool();
 #endif
-	
+#ifndef MOONCRASH
 	static inline auto FDestroy = PreyFunction<void(SMFXResourceList *const _this)>(0x50EEC0);
 	static inline auto FBitNotSMFXResourceList = PreyFunction<void(SMFXResourceList *const _this)>(0x50E7D0);
+#else
+	//TODO: MOONCRASH
+#endif
 };
 
 // Header: Exact
@@ -78,4 +79,3 @@ struct SMFXRunTimeEffectParams // Id=8001FBC Size=208
 	void ResetAudioRtpcs();
 #endif
 };
-#endif // !MOONCRASH

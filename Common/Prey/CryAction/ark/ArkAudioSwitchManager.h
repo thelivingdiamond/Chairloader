@@ -30,11 +30,18 @@ public:
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
 	void Reset() { FReset(this); }
-	
+
+#ifndef MOONCRASH
 	static inline auto FUpdateSwitchState = PreyFunction<void(ArkAudioSwitchManager *const _this, unsigned _entityId, const unsigned _switch, const unsigned _state)>(0x2A33B0);
 	static inline auto FSerialize = PreyFunction<void(ArkAudioSwitchManager *const _this, TSerialize _ser)>(0x2A3390);
 	static inline auto FPostSerialize = PreyFunction<void(ArkAudioSwitchManager *const _this)>(0x2A31E0);
 	static inline auto FReset = PreyFunction<void(ArkAudioSwitchManager *const _this)>(0x2A3380);
+#else
+	static inline auto FUpdateSwitchState = PreyFunction<void(ArkAudioSwitchManager* const _this, unsigned _entityId, const unsigned _switch, const unsigned _state)>(0x2BB910);
+	static inline auto FSerialize = PreyFunction<void(ArkAudioSwitchManager* const _this, TSerialize _ser)>(0x2BB8F0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkAudioSwitchManager* const _this)>(0x2BB750);
+	static inline auto FReset = PreyFunction<void(ArkAudioSwitchManager* const _this)>(0x13E7040);
+#endif
 };
 #else // MOONCRASH
 // Header file automatically created from a PDB.

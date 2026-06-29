@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -142,7 +140,12 @@ public:
 	};
 
 	uint8_t m_proceduralBreakFlags;
+#ifndef MOONCRASH
 	static inline auto s_this = PreyGlobal<CActionGame *>(0x249EFF0);
+#else
+	static inline auto s_this = PreyGlobal<CActionGame*>(0x260E628);
+#endif
+
 	IEntitySystem *m_pEntitySystem;
 	INetwork *m_pNetwork;
 	INetNub *m_pClientNub;
@@ -206,6 +209,7 @@ public:
 	std::map<unsigned int,CActionGame::SVegCollisionStatus *,std::less<unsigned int>> m_treeBreakStatus;
 	int m_nEffectCounter;
 	SMFXRunTimeEffectParams m_lstCachedEffects[8];
+#ifndef MOONCRASH
 	static inline auto g_procedural_breaking = PreyGlobal<int>(0x249EFF8);
 	static inline auto g_joint_breaking = PreyGlobal<int>(0x224A3E8);
 	static inline auto g_tree_cut_reuse_dist = PreyGlobal<float>(0x249EFFC);
@@ -214,6 +218,16 @@ public:
 	static inline auto g_breakage_mem_limit = PreyGlobal<int>(0x249F008);
 	static inline auto g_breakage_debug = PreyGlobal<int>(0x249F00C);
 	static inline auto s_waterMaterialId = PreyGlobal<int>(0x224A3EC);
+#else
+	static inline auto g_procedural_breaking = PreyGlobal<int>(0x260E5D8);
+	static inline auto g_joint_breaking = PreyGlobal<int>(0x23B7420);
+	static inline auto g_tree_cut_reuse_dist = PreyGlobal<float>(0x260E5DC);
+	static inline auto g_no_secondary_breaking = PreyGlobal<int>(0x260E5E0);
+	static inline auto g_no_breaking_by_objects = PreyGlobal<int>(0x260E5E4);
+	static inline auto g_breakage_mem_limit = PreyGlobal<int>(0x260E5E8);
+	static inline auto g_breakage_debug = PreyGlobal<int>(0x260E5EC);
+	static inline auto s_waterMaterialId = PreyGlobal<int>(0x23B7424);
+#endif
 	
 	enum eDisconnectState
 	{
@@ -380,7 +394,8 @@ public:
 	void AddProtectedPath(const char *arg0);
 	bool AllowProceduralBreaking(uint8_t arg0);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FBitNotCActionGame = PreyFunction<void(CActionGame *const _this)>(0x5A7D20);
 	static inline auto FInit = PreyFunction<bool(CActionGame *const _this, SGameStartParams const *pGameStartParams)>(0x5AB470);
 	static inline auto FClientInit = PreyFunction<void(CActionGame *const _this, SGameStartParams const *pGameStartParams, bool *io_ok, bool *io_hasPbSvStarted, bool *io_requireBlockingConnection)>(0x5A9100);
@@ -448,454 +463,7 @@ public:
 	static inline auto FConditionInGame = PreyFunction<bool(CActionGame *const _this, CGameClientChannel *pChannel)>(0x5A9370);
 	static inline auto FBlockingConnect = PreyFunction<bool(CActionGame *const _this, bool (*condition)(CGameClientChannel *), bool requireClientChannel, const char *conditionText)>(0x5A8A80);
 	static inline auto FBackupGameStartParams = PreyFunction<void(CActionGame *const _this, SGameStartParams const *pGameStartParams)>(0x5A88A0);
-};
-
-// Header: Exact
-// CryEngine/cryaction/actiongame.h
-struct SBreakEvent // Id=8004A07 Size=164
-{
-	int16_t itype;
-	int16_t bFirstBreak;
-	unsigned idEnt;
-	Vec3 eventPos;
-	unsigned hash;
-	Vec3 pos;
-	Quat rot;
-	Vec3 scale;
-	Vec3 pt;
-	Vec3 n;
-	Vec3 vloc[2];
-	float mass[2];
-	int partid[2];
-	int idmat[2];
-	float penetration;
-	float energy;
-	float radius;
-	float time;
-	int16_t iPrim[2];
-	int16_t iBrokenObjectIndex;
-	int16_t iState;
-	int seed;
-	
-	void Serialize(TSerialize ser) { FSerialize(this,ser); }
-	
-#if 0
-	void GetMemoryUsage(ICrySizer *arg0) const;
-#endif
-	
-	static inline auto FSerialize = PreyFunction<void(SBreakEvent *const _this, TSerialize ser)>(0x5B2A70);
-};
-
-// Header: FromCpp
-// CryEngine/cryaction/actiongame.h
-class CAdjustLocalConnectionPacketRate // Id=80072E4 Size=12
-{
-public:
-	float m_old;
-	float m_oldInactivityTimeout;
-	float m_oldInactivityTimeoutDev;
-
-	CAdjustLocalConnectionPacketRate(float rate, float inactivityTimeout);
-	~CAdjustLocalConnectionPacketRate();
-
-	static inline auto FBitNotCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate *const _this)>(0x5A8360);
-};
-
-// Header: FromCpp
-// CryEngine/cryaction/actiongame.h
-struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
-{
-	uint64_t m_count;
-	uint64_t m_size;
-	
-	virtual void Release();
-	virtual uint64_t GetTotalSize();
-	virtual uint64_t GetObjectCount();
-	virtual IResourceCollector *GetResourceCollector();
-	virtual void Push(const char *);
-	virtual void PushSubcomponent(const char *);
-	virtual void Pop();
-	virtual bool AddObject(const void *id, uint64_t size, int count);
-	virtual void Reset();
-	virtual void End();
-	virtual void SetResourceCollector(IResourceCollector *pColl);
-	virtual ~CrySizerNaive();
-	
-	static inline auto FRelease = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
-	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0xD87500);
-	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0x5BFB50);
-	static inline auto FGetResourceCollector = PreyFunction<IResourceCollector *(CrySizerNaive *const _this)>(0x158AEF0);
-	static inline auto FPush = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
-	static inline auto FPushSubcomponent = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
-	static inline auto FPop = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
-	static inline auto FAddObject = PreyFunction<bool(CrySizerNaive *const _this, const void *id, uint64_t size, int count)>(0x5A8880);
-	static inline auto FReset = PreyFunction<void(CrySizerNaive *const _this)>(0x1800CA0);
-	static inline auto FEnd = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
-	static inline auto FSetResourceCollector = PreyFunction<void(CrySizerNaive *const _this, IResourceCollector *pColl)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/ark/ArkActionGame.h>
-#include <Prey/CryAction/ActionGame.h>
-#include <Prey/CryAction/IGameRulesSystem.h>
-#include <Prey/CryAction/IMaterialEffects.h>
-#include <Prey/CryCore/smartptr.h>
-#include <Prey/CryGame/IGameFramework.h>
-#include <Prey/CryMemory/CrySizer.h>
-#include <Prey/CryNetwork/INetwork.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/DynArray.h>
-#include <_unknown/IHostMigrationEventListener.h>
-
-namespace CActionGame
-{
-struct SVegCollisionStatus;
-} // namespace CActionGame
-class CGameClientChannel;
-class CGameClientNub;
-class CGameContext;
-class CGameServerNub;
-class CGameStats;
-class CScriptRMI;
-struct EventPhys;
-struct EventPhysCollision;
-struct ExplosionInfo;
-struct HitInfo;
-struct IActor;
-struct IEntity;
-struct IEntitySystem;
-struct IGameObject;
-struct IGameTokenSystem;
-struct IGeometry;
-struct IMaterialEffects;
-struct INetContext;
-struct INetNub;
-struct INetwork;
-struct IPhysicalEntity;
-struct IPhysicalWorld;
-struct IRenderNode;
-struct IResourceCollector;
-struct IStatObj;
-struct ISurfaceType;
-struct SEntityCollHist;
-struct SEntityHits;
-struct SHostMigrationInfo;
-struct STreeBreakInst;
-struct STreePieceThunk;
-
-// SBreakEvent
-// Header:  CryEngine/cryaction/ActionGame.h
-// Include: Prey/CryAction/ActionGame.h
-struct SBreakEvent
-{ // Size=164 (0xA4)
-	int16_t itype;
-	int16_t bFirstBreak;
-	unsigned idEnt;
-	Vec3 eventPos;
-	unsigned hash;
-	Vec3 pos;
-	Quat rot;
-	Vec3 scale;
-	Vec3 pt;
-	Vec3 n;
-	Vec3 vloc[2];
-	float mass[2];
-	int partid[2];
-	int idmat[2];
-	float penetration;
-	float energy;
-	float radius;
-	float time;
-	int16_t iPrim[2];
-	int16_t iBrokenObjectIndex;
-	int16_t iState;
-	int seed;
-
-	void Serialize(TSerialize ser) { FSerialize(this, ser); }
-
-#if 0
-	SBreakEvent();
-	SBreakEvent& operator=(const SBreakEvent& _arg0_);
-	void GetMemoryUsage(ICrySizer* _arg0_) const;
-#endif
-
-	static inline auto FSerialize = PreyFunction<void(SBreakEvent* const _this, TSerialize ser)>(0x5CC150);
-};
-
-// CActionGame
-// Header:  CryEngine/cryaction/ActionGame.h
-class CActionGame
-	: public IHitListener
-	, public CMultiThreadRefCount
-	, public IHostMigrationEventListener
-{ // Size=2576 (0xA10)
-public:
-	enum eInitTaskState
-	{
-		eITS_InProgress = 0,
-		eITS_Done = 1,
-		eITS_Error = 2,
-	};
-
-	enum EProceduralBreakType
-	{
-		ePBT_Normal = 16,
-		ePBT_Glass = 1,
-	};
-
-	enum EProceduralBreakFlags
-	{
-		ePBF_ObeyCVar = 1,
-		ePBF_AllowGlass = 2,
-		ePBF_DefaultAllow = 8,
-	};
-
-	enum eDisconnectState
-	{
-		eDS_Disconnect = 0,
-		eDS_Disconnecting = 1,
-		eDS_Disconnected = 2,
-	};
-
-	enum eReconnectState
-	{
-		eRS_Reconnect = 0,
-		eRS_Reconnecting = 1,
-		eRS_Terminated = 2,
-		eRS_Reconnected = 3,
-	};
-
-	enum eInitState
-	{
-		eIS_Uninited = 0,
-		eIS_Initing = 1,
-		eIS_WaitForConnection = 2,
-		eIS_WaitForPlayer = 3,
-		eIS_WaitForInGame = 4,
-		eIS_InitDone = 5,
-		eIS_InitError = 6,
-	};
-
-	// CActionGame::SPhysCallbacks
-	// Header:  CryEngine/cryaction/ActionGame.h
-	struct SPhysCallbacks
-	{ // Size=160 (0xA0)
-		std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > > collision[2];
-		std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > > postStep[2];
-		std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > > stateChange[2];
-		std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > > createEntityPart[2];
-		std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > > updateMesh[2];
-	};
-
-	// CActionGame::SVegCollisionStatus
-	// Header:  CryEngine/cryaction/ActionGame.h
-	struct SVegCollisionStatus
-	{ // Size=24 (0x18)
-		IRenderNode* rn;
-		IStatObj* pStat;
-		int branchNum;
-
-	#if 0
-		SVegCollisionStatus();
-		void GetMemoryUsage(ICrySizer* _arg0_) const;
-	#endif
-	};
-
-	// CActionGame::SEntityFadeState
-	// Header:  CryEngine/cryaction/ActionGame.h
-	struct SEntityFadeState
-	{ // Size=12 (0xC)
-		unsigned entId;
-		float time;
-		int bCollisions;
-	};
-
-	// CActionGame::SBreakageThrottling
-	// Header:  CryEngine/cryaction/ActionGame.h
-	struct SBreakageThrottling
-	{ // Size=2 (0x2)
-		int16_t m_brokenTreeCounter;
-	};
-
-	using BlockingConditionFunction = bool (*)(CGameClientChannel*);
-	using TGlobalPhysicsCallback = std::pair<void (__cdecl*)(EventPhys const *,void *),void *>;
-	using TGlobalPhysicsCallbackSet = std::set<std::pair<void (__cdecl*)(EventPhys const *,void *),void *>,std::less<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> >,std::allocator<std::pair<void (__cdecl*)(EventPhys const *,void *),void *> > >;
-
-	uint8_t m_proceduralBreakFlags;
-	static inline auto s_this = PreyGlobal<CActionGame*>(0x260E628);
-	IEntitySystem* m_pEntitySystem;
-	INetwork* m_pNetwork;
-	INetNub* m_pClientNub;
-	INetNub* m_pServerNub;
-	CGameClientNub* m_pGameClientNub;
-	CGameServerNub* m_pGameServerNub;
-	CGameContext* m_pGameContext;
-	INetContext* m_pNetContext;
-	IGameTokenSystem* m_pGameTokenSystem;
-	IPhysicalWorld* m_pPhysicalWorld;
-	IMaterialEffects* m_pMaterialEffects;
-	CActionGame::SPhysCallbacks m_globalPhysicsCallbacks;
-	std::vector<SProcBrokenObjRec> m_brokenObjs;
-	std::vector<SBreakEvent> m_breakEvents;
-	std::vector<SBrokenEntPart> m_brokenEntParts;
-	std::vector<SBrokenVegPart> m_brokenVegParts;
-	std::vector<unsigned int> m_broken2dChunkIds;
-	std::map<unsigned int, int> m_entPieceIdx;
-	std::map<IPhysicalEntity*, STreeBreakInst*> m_mapBrokenTreesByPhysEnt;
-	std::map<IStatObj*, STreeBreakInst*> m_mapBrokenTreesByCGF;
-	std::map<IPhysicalEntity*, STreePieceThunk*> m_mapBrokenTreesChunks;
-	std::map<int, SBrokenMeshSize> m_mapBrokenMeshes;
-	std::vector<int> m_brokenMeshRemovals;
-	bool m_bLoading;
-	int m_iCurBreakEvent;
-	int m_totBreakageSize;
-	int m_inDeleteEntityCallback;
-	CGameStats* m_pGameStats;
-	SEntityCollHist* m_pCHSlotPool;
-	SEntityCollHist* m_pFreeCHSlot0;
-	std::map<int, SEntityCollHist*> m_mapECH;
-	SEntityHits* m_pEntHits0;
-	std::map<int, SEntityHits*> m_mapEntHits;
-	std::map<unsigned int, Vec3> m_vegStatus;
-	std::map<unsigned int, CActionGame::SVegCollisionStatus*> m_treeStatus;
-	std::map<unsigned int, CActionGame::SVegCollisionStatus*> m_treeBreakStatus;
-	int m_nEffectCounter;
-	SMFXRunTimeEffectParams m_lstCachedEffects[8];
-	static inline auto g_procedural_breaking = PreyGlobal<int>(0x260E5D8);
-	static inline auto g_joint_breaking = PreyGlobal<int>(0x23B7420);
-	static inline auto g_tree_cut_reuse_dist = PreyGlobal<float>(0x260E5DC);
-	static inline auto g_no_secondary_breaking = PreyGlobal<int>(0x260E5E0);
-	static inline auto g_no_breaking_by_objects = PreyGlobal<int>(0x260E5E4);
-	static inline auto g_breakage_mem_limit = PreyGlobal<int>(0x260E5E8);
-	static inline auto g_breakage_debug = PreyGlobal<int>(0x260E5EC);
-	static inline auto s_waterMaterialId = PreyGlobal<int>(0x23B7424);
-	CActionGame::eInitState m_initState;
-	DynArray<CActionGame::SEntityFadeState,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > m_fadeEntities;
-	SGameContextParams m_gameContextParams;
-	SGameStartParams m_startGameParams;
-	string m_levelName;
-	string m_gameRules;
-	string m_demoRecorderFilename;
-	string m_demoPlaybackFilename;
-	string m_hostname;
-	string m_connectionString;
-	unsigned m_lastDynPoolSize;
-	uint8_t* m_clientReserveForMigrate;
-	CActionGame::SBreakageThrottling m_throttling;
-	unsigned m_clientActorID;
-	IActor* m_pClientActor;
-	ArkActionGame m_arkActionGame;
-
-	CActionGame(CScriptRMI* pScriptRMI);
-	virtual ~CActionGame();
-	bool Init(const SGameStartParams* pGameStartParams) { return FInit(this, pGameStartParams); }
-	void ClientInit(const SGameStartParams* pGameStartParams, bool* io_ok, bool* io_hasPbSvStarted, bool* io_requireBlockingConnection) { FClientInit(this, pGameStartParams, io_ok, io_hasPbSvStarted, io_requireBlockingConnection); }
-	bool ChangeGameContext(const SGameContextParams* pGameContextParams) { return FChangeGameContext(this, pGameContextParams); }
-	bool BlockingSpawnPlayer() { return FBlockingSpawnPlayer(this); }
-	void FixBrokenObjects(bool bRestoreBroken) { FFixBrokenObjects(this, bRestoreBroken); }
-	IActor* GetClientActor() { return FGetClientActor(this); }
-	bool Update() { return FUpdate(this); }
-	void AddGlobalPhysicsCallback(int event, void (*proc)(const EventPhys*, void*), void* userdata) { FAddGlobalPhysicsCallback(this, event, proc, userdata); }
-	void RemoveGlobalPhysicsCallback(int event, void (*proc)(const EventPhys*, void*), void* userdata) { FRemoveGlobalPhysicsCallback(this, event, proc, userdata); }
-	void SerializeBreakableObjects(TSerialize ser) { FSerializeBreakableObjects(this, ser); }
-	void FlushBreakableObjects() { FFlushBreakableObjects(this); }
-	void ClearBreakHistory() { FClearBreakHistory(this); }
-	void OnBreakageSpawnedEntity(IEntity* pEntity, IPhysicalEntity* pPhysEntity, IPhysicalEntity* pSrcPhysEntity) { FOnBreakageSpawnedEntity(this, pEntity, pPhysEntity, pSrcPhysEntity); }
-	void InitImmersiveness() { FInitImmersiveness(this); }
-	void UpdateImmersiveness() { FUpdateImmersiveness(this); }
-	void OnEditorSetGameMode(bool bGameMode) { FOnEditorSetGameMode(this, bGameMode); }
-	void DumpStats() { FDumpStats(this); }
-	void GetMemoryUsage(ICrySizer* s) const { FGetMemoryUsage(this, s); }
-	void ReleaseGameStats() { FReleaseGameStats(this); }
-	void FreeBrokenMeshesForEntity(IPhysicalEntity* pent) { FFreeBrokenMeshesForEntity(this, pent); }
-	void OnEntitySystemReset() { FOnEntitySystemReset(this); }
-	static void RegisterCVars() { FRegisterCVars(); }
-	static bool ImpactBreaksGlass(const EventPhysCollision& _epc, const ISurfaceType* _pSurfType) { return FImpactBreaksGlass(_epc, _pSurfType); }
-	void EnablePhysicsEvents(bool enable) { FEnablePhysicsEvents(this, enable); }
-	static int OnBBoxOverlap(const EventPhys* pEvent) { return FOnBBoxOverlap(pEvent); }
-	static int OnCollisionLogged(const EventPhys* pEvent) { return FOnCollisionLogged(pEvent); }
-	static int OnPostStepLogged(const EventPhys* pEvent) { return FOnPostStepLogged(pEvent); }
-	static int OnStateChangeLogged(const EventPhys* pEvent) { return FOnStateChangeLogged(pEvent); }
-	static int OnCreatePhysicalEntityLogged(const EventPhys* pEvent) { return FOnCreatePhysicalEntityLogged(pEvent); }
-	static int OnUpdateMeshLogged(const EventPhys* pEvent) { return FOnUpdateMeshLogged(pEvent); }
-	static int OnRemovePhysicalEntityPartsLogged(const EventPhys* pEvent) { return FOnRemovePhysicalEntityPartsLogged(pEvent); }
-	static int OnPhysEntityDeleted(const EventPhys* pEvent) { return FOnPhysEntityDeleted(pEvent); }
-	static int OnCollisionImmediate(const EventPhys* pEvent) { return FOnCollisionImmediate(pEvent); }
-	static int OnPostStepImmediate(const EventPhys* pEvent) { return FOnPostStepImmediate(pEvent); }
-	static int OnStateChangeImmediate(const EventPhys* pEvent) { return FOnStateChangeImmediate(pEvent); }
-	static int OnCreatePhysicalEntityImmediate(const EventPhys* pEvent) { return FOnCreatePhysicalEntityImmediate(pEvent); }
-	static int OnUpdateMeshImmediate(const EventPhys* pEvent) { return FOnUpdateMeshImmediate(pEvent); }
-	virtual void OnHit(const HitInfo& __unnamed1);
-	virtual void OnExplosion(const ExplosionInfo& ei);
-	virtual void OnServerExplosion(const ExplosionInfo& __unnamed1);
-	static void OnCollisionLogged_MaterialFX(const EventPhys* pEvent) { FOnCollisionLogged_MaterialFX(pEvent); }
-	static void OnCollisionLogged_Breakable(const EventPhys* pEvent) { FOnCollisionLogged_Breakable(pEvent); }
-	static void OnPostStepLogged_MaterialFX(const EventPhys* pEvent) { FOnPostStepLogged_MaterialFX(pEvent); }
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnInitiate(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnDisconnectClient(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnDemoteToClient(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnPromoteToServer(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnReconnectClient(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnFinalise(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual void OnComplete(SHostMigrationInfo& hostMigrationInfo);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnTerminate(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	virtual IHostMigrationEventListener::EHostMigrationReturn OnReset(SHostMigrationInfo& hostMigrationInfo, unsigned& state);
-	SBreakEvent& RegisterBreakEvent(const EventPhysCollision* pColl, float energy) { return FRegisterBreakEvent(this, pColl, energy); }
-	unsigned UpdateEntityIdForBrokenPart(unsigned idSrc) { return FUpdateEntityIdForBrokenPart(this, idSrc); }
-	unsigned UpdateEntityIdForVegetationBreak(IRenderNode* pVeg) { return FUpdateEntityIdForVegetationBreak(this, pVeg); }
-	void RegisterEntsForBreakageReuse(IPhysicalEntity* pPhysEnt, int partid, IPhysicalEntity* pPhysEntNew, float h, float size) { FRegisterEntsForBreakageReuse(this, pPhysEnt, partid, pPhysEntNew, h, size); }
-	void RemoveEntFromBreakageReuse(IPhysicalEntity* pEntity, int bRemoveOnlyIfSecondary) { FRemoveEntFromBreakageReuse(this, pEntity, bRemoveOnlyIfSecondary); }
-	void ClearTreeBreakageReuseLog() { FClearTreeBreakageReuseLog(this); }
-	int FreeBrokenMesh(IPhysicalEntity* pent, SBrokenMeshSize& bm) { return FFreeBrokenMesh(this, pent, bm); }
-	void RegisterBrokenMesh(IPhysicalEntity* pPhysEnt, IGeometry* pPhysGeom, int partid, IStatObj* pStatObj, IGeometry* pSkel, float timeout, const char* fractureFX) { FRegisterBrokenMesh(this, pPhysEnt, pPhysGeom, partid, pStatObj, pSkel, timeout, fractureFX); }
-	void DrawBrokenMeshes() { FDrawBrokenMeshes(this); }
-	bool ConditionHavePlayer(CGameClientChannel* pChannel) { return FConditionHavePlayer(this, pChannel); }
-	bool ConditionHaveConnection(CGameClientChannel* pChannel) { return FConditionHaveConnection(this, pChannel); }
-	bool ConditionInGame(CGameClientChannel* pChannel) { return FConditionInGame(this, pChannel); }
-	bool BlockingConnect(bool (*condition)(CGameClientChannel*), bool requireClientChannel, const char* conditionText) { return FBlockingConnect(this, condition, requireClientChannel, conditionText); }
-	void BackupGameStartParams(const SGameStartParams* pGameStartParams) { FBackupGameStartParams(this, pGameStartParams); }
-
-#if 0
-	void ServerInit(const SGameStartParams* _arg0_, bool* _arg1_, bool* _arg2_);
-	void PostInit(const SGameStartParams* _arg0_, bool* _arg1_, bool* _arg2_);
-	bool IsInited();
-	bool IsIniting();
-	const string& GetLevelName() const;
-	void UnloadLevel();
-	void UnloadPhysicsData();
-	SBreakEvent& StoreBreakEvent(const SBreakEvent& _arg0_);
-	void CryLobbyServerInit(const SGameStartParams* _arg0_);
-	bool IsServer() const;
-	bool IsClient() const;
-	CGameServerNub* GetGameServerNub();
-	CGameClientNub* GetGameClientNub();
-	CGameContext* GetGameContext();
-	bool ControlsEntity(unsigned _arg0_);
-	void Serialize(TSerialize _arg0_);
-	INetNub* GetServerNetNub();
-	INetNub* GetClientNetNub();
-	static CActionGame* Get();
-	const ArkActionGame& GetArkActionGame() const;
-	static IGameObject* GetEntityGameObject(IEntity* _arg0_);
-	static IGameObject* GetPhysicalEntityGameObject(IPhysicalEntity* _arg0_);
-	static void ArkPerformPlaneBreak(const EventPhysCollision& _arg0_);
-	static IEntity* GetEntity(int _arg0_, void* _arg1_);
-	void CreateGameStats();
-	void LogModeInformation(const bool _arg0_, const char* _arg1_) const;
-	static void OnStateChangeLogged_MaterialFX(const EventPhys* _arg0_);
-	bool ProcessHitpoints(const Vec3& _arg0_, IPhysicalEntity* _arg1_, int _arg2_, ISurfaceType* _arg3_, int _arg4_);
-	int ReuseBrokenTrees(const EventPhysCollision* _arg0_, float _arg1_, int _arg2_);
-	static void AddBroken2DChunkId(int _arg0_);
-	void UpdateBrokenMeshes(float _arg0_);
-	void UpdateFadeEntities(float _arg0_);
-	CActionGame::eInitTaskState NonBlockingConnect(bool (*_arg0_)(CGameClientChannel*), bool _arg1_, const char* _arg2_);
-	void CallOnEditorSetGameMode(IEntity* _arg0_, bool _arg1_);
-	bool IsStale();
-	void AddProtectedPath(const char* _arg0_);
-	bool AllowProceduralBreaking(uint8_t _arg0_);
-#endif
-
+#else
 	static inline auto FCActionGameOv1 = PreyFunction<void(CActionGame* const _this, CScriptRMI* pScriptRMI)>(0x5C0A90);
 	static inline auto FBitNotCActionGame = PreyFunction<void(CActionGame* const _this)>(0x5C1440);
 	static inline auto FInit = PreyFunction<bool(CActionGame* const _this, const SGameStartParams* pGameStartParams)>(0x5C4B60);
@@ -964,13 +532,53 @@ public:
 	static inline auto FConditionInGame = PreyFunction<bool(CActionGame* const _this, CGameClientChannel* pChannel)>(0x5C2A60);
 	static inline auto FBlockingConnect = PreyFunction<bool(CActionGame* const _this, bool (*condition)(CGameClientChannel*), bool requireClientChannel, const char* conditionText)>(0x5C2170);
 	static inline auto FBackupGameStartParams = PreyFunction<void(CActionGame* const _this, const SGameStartParams* pGameStartParams)>(0x5C1F90);
+#endif
 };
 
-// CAdjustLocalConnectionPacketRate
-// Header:  CryEngine/cryaction/ActionGame.h
-// Include: Prey/CryAction/ActionGame.cpp
-class CAdjustLocalConnectionPacketRate
-{ // Size=12 (0xC)
+// Header: Exact
+// CryEngine/cryaction/actiongame.h
+struct SBreakEvent // Id=8004A07 Size=164
+{
+	int16_t itype;
+	int16_t bFirstBreak;
+	unsigned idEnt;
+	Vec3 eventPos;
+	unsigned hash;
+	Vec3 pos;
+	Quat rot;
+	Vec3 scale;
+	Vec3 pt;
+	Vec3 n;
+	Vec3 vloc[2];
+	float mass[2];
+	int partid[2];
+	int idmat[2];
+	float penetration;
+	float energy;
+	float radius;
+	float time;
+	int16_t iPrim[2];
+	int16_t iBrokenObjectIndex;
+	int16_t iState;
+	int seed;
+	
+	void Serialize(TSerialize ser) { FSerialize(this,ser); }
+	
+#if 0
+	void GetMemoryUsage(ICrySizer *arg0) const;
+#endif
+
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(SBreakEvent *const _this, TSerialize ser)>(0x5B2A70);
+#else
+	static inline auto FSerialize = PreyFunction<void(SBreakEvent* const _this, TSerialize ser)>(0x5CC150);
+#endif
+};
+
+// Header: FromCpp
+// CryEngine/cryaction/actiongame.h
+class CAdjustLocalConnectionPacketRate // Id=80072E4 Size=12
+{
 public:
 	float m_old;
 	float m_oldInactivityTimeout;
@@ -979,34 +587,47 @@ public:
 	CAdjustLocalConnectionPacketRate(float rate, float inactivityTimeout);
 	~CAdjustLocalConnectionPacketRate();
 
+#ifndef MOONCRASH
+	static inline auto FBitNotCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate *const _this)>(0x5A8360);
+#else
 	static inline auto FCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate* const _this, float rate, float inactivityTimeout)>(0x5C1080);
 	static inline auto FBitNotCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate* const _this)>(0x5C1A80);
+#endif
 };
 
-// CrySizerNaive
-// Header:  CryEngine/cryaction/ActionGame.h
-// Include: Prey/CryAction/ActionGame.cpp
-struct CrySizerNaive : public ICrySizer
-{ // Size=32 (0x20)
+// Header: FromCpp
+// CryEngine/cryaction/actiongame.h
+struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
+{
 	uint64_t m_count;
 	uint64_t m_size;
-
+	
 	virtual void Release();
 	virtual uint64_t GetTotalSize();
 	virtual uint64_t GetObjectCount();
-	virtual IResourceCollector* GetResourceCollector();
-	virtual void Push(const char* __unnamed1);
-	virtual void PushSubcomponent(const char* __unnamed1);
+	virtual IResourceCollector *GetResourceCollector();
+	virtual void Push(const char *);
+	virtual void PushSubcomponent(const char *);
 	virtual void Pop();
-	virtual bool AddObject(const void* id, uint64_t size, int count);
+	virtual bool AddObject(const void *id, uint64_t size, int count);
 	virtual void Reset();
 	virtual void End();
-	virtual void SetResourceCollector(IResourceCollector* pColl);
+	virtual void SetResourceCollector(IResourceCollector *pColl);
+	virtual ~CrySizerNaive();
 
-#if 0
-	CrySizerNaive();
-#endif
-
+#ifndef MOONCRASH
+	static inline auto FRelease = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
+	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0xD87500);
+	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0x5BFB50);
+	static inline auto FGetResourceCollector = PreyFunction<IResourceCollector *(CrySizerNaive *const _this)>(0x158AEF0);
+	static inline auto FPush = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
+	static inline auto FPushSubcomponent = PreyFunction<void(CrySizerNaive *const _this, const char *)>(0xA13080);
+	static inline auto FPop = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
+	static inline auto FAddObject = PreyFunction<bool(CrySizerNaive *const _this, const void *id, uint64_t size, int count)>(0x5A8880);
+	static inline auto FReset = PreyFunction<void(CrySizerNaive *const _this)>(0x1800CA0);
+	static inline auto FEnd = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
+	static inline auto FSetResourceCollector = PreyFunction<void(CrySizerNaive *const _this, IResourceCollector *pColl)>(0xA13080);
+#else
 	static inline auto FRelease = PreyFunction<void(CrySizerNaive* const _this)>(0x1333E90);
 	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive* const _this)>(0x598E60);
 	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive* const _this)>(0x547450);
@@ -1018,5 +639,5 @@ struct CrySizerNaive : public ICrySizer
 	static inline auto FReset = PreyFunction<void(CrySizerNaive* const _this)>(0x1924F90);
 	static inline auto FEnd = PreyFunction<void(CrySizerNaive* const _this)>(0x1333E90);
 	static inline auto FSetResourceCollector = PreyFunction<void(CrySizerNaive* const _this, IResourceCollector* pColl)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

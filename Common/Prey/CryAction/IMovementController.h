@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include <Prey/CryMath/Cry_Math.h>
 
@@ -40,46 +38,19 @@ struct IMovementController
 	virtual void CancelMovementTransition() = 0;
 	virtual void BlockMovementTransitions() = 0;
 	virtual void UnblockMovementTransitions() = 0;
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryMath/Cry_Geo.h>
 
-class CMovementRequest;
-struct IExactPositioningListener;
-struct SExactPositioningTarget;
-struct SMovementState;
-struct SStanceState;
-struct SStanceStateQuery;
-
-// IMovementController
-// Header:  CryEngine/cryaction/IMovementController.h
-// Include: Prey/CryAction/IMovementController.h
-struct IMovementController
-{ // Size=8 (0x8)
-	virtual ~IMovementController();
-	virtual bool RequestMovement(CMovementRequest& request) = 0;
-	virtual void GetMovementState(SMovementState& state) = 0;
-	virtual bool GetStanceState(const SStanceStateQuery& query, SStanceState& state) = 0;
-	virtual Vec2 GetDesiredMoveDir() const;
-	virtual void SetExactPositioningListener(IExactPositioningListener* pExactPositioningListener);
-	virtual const SExactPositioningTarget* GetExactPositioningTarget();
-	virtual void CancelMovementTransition();
-	virtual void BlockMovementTransitions();
-	virtual void UnblockMovementTransitions();
-
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
 	static inline auto FGetDesiredMoveDir = PreyFunction<Vec2*(const IMovementController* const _this, Vec2* _return_value_)>(0x1674930);
 	static inline auto FSetExactPositioningListener = PreyFunction<void(IMovementController* const _this, IExactPositioningListener* pExactPositioningListener)>(0x1333E90);
 	static inline auto FGetExactPositioningTarget = PreyFunction<const SExactPositioningTarget* (IMovementController* const _this)>(0x1CBB0B0);
 	static inline auto FCancelMovementTransition = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
 	static inline auto FBlockMovementTransitions = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
 	static inline auto FUnblockMovementTransitions = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
+#endif
 };
 
-// SStanceState
-// Header:  CryEngine/cryaction/IMovementController.h
-// Include: Prey/CryAction/IMovementController.h
 struct SStanceState
 { // Size=164 (0xA4)
 	Vec3 pos;
@@ -98,7 +69,11 @@ struct SStanceState
 
 	SStanceState();
 
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
 	static inline auto FSStanceStateOv2 = PreyFunction<void(SStanceState* const _this)>(0x417CE0);
+#endif
 };
 
 // SMovementState
@@ -125,6 +100,9 @@ struct SMovementState : public SStanceState
 
 	SMovementState();
 
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
 	static inline auto FSMovementStateOv2 = PreyFunction<void(SMovementState* const _this)>(0x417C50);
+#endif
 };
-#endif // !MOONCRASH

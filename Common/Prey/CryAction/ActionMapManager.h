@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -91,7 +89,11 @@ public:
 	
 	std::list<IActionMapEventListener *,std::allocator<IActionMapEventListener *> > m_actionMapEventListeners;
 	unsigned m_defaultEntityId;
+#ifndef MOONCRASH
 	static inline auto s_pThis = PreyGlobal<CActionMapManager *>(0x247FAE0);
+#else
+	static inline auto s_pThis = PreyGlobal<CActionMapManager*>(0x25EF100);
+#endif
 	
 	CActionMapManager(IInput *pInput);
 	virtual bool OnInputEvent(SInputEvent const &event);
@@ -186,7 +188,8 @@ public:
 	bool ProcessAlwaysListeners(CCryName const &arg0, int arg1, float arg2, SInputEvent const &arg3);
 	void SetCurrentlyRefiringInput(bool arg0);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FOnInputEvent = PreyFunction<bool(CActionMapManager *const _this, SInputEvent const &event)>(0x3D0640);
 	static inline auto FUpdate = PreyFunction<void(CActionMapManager *const _this)>(0x3D1F70);
 	static inline auto FReset = PreyFunction<void(CActionMapManager *const _this)>(0x3D1B40);
@@ -262,212 +265,7 @@ public:
 	static inline auto FCreateEventPriorityList = PreyFunction<bool(CActionMapManager *const _this, SInputEvent const &inputEvent, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &priorityList)>(0x3CE750);
 	static inline auto FCreateRefiredEventPriorityList = PreyFunction<bool(CActionMapManager *const _this, CActionMapManager::SRefireData *pRefireData, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &priorityList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &removeList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &delayPressNeedsReleaseList)>(0x3CE980);
 	static inline auto FUpdateRefiringInputs = PreyFunction<void(CActionMapManager *const _this)>(0x3D2230);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/ArkActionFilterStack.h>
-#include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryInput/IInput.h>
-#include <Prey/CrySystem/XML/IXml.h>
-
-class CActionFilter;
-class CActionMap;
-class CActionMapAction;
-class CCryName;
-enum EActionFilterType;
-enum EActionInputDevice;
-struct IActionFilter;
-struct IActionFilterIterator;
-class IActionFilterStack;
-struct IActionListener;
-struct IActionMap;
-struct IActionMapEventListener;
-struct IActionMapIterator;
-struct IActionMapPopulateCallBack;
-struct IConsoleCmdArgs;
-class ICrySizer;
-struct IInput;
-struct SActionInput;
-struct SActionMapEvent;
-
-// CActionMapManager
-// Header:  CryEngine/cryaction/ActionMapManager.h
-// Include: Prey/CryAction/ActionMapManager.h
-class CActionMapManager : public IActionMapManager, public IInputEventListener
-{ // Size=256 (0x100)
-public:
-	// CActionMapManager::SBindData
-	// Header:  CryEngine/cryaction/ActionMapManager.h
-	struct SBindData
-	{ // Size=24 (0x18)
-		SActionInput* m_pActionInput;
-		CActionMapAction* m_pAction;
-		CActionMap* m_pActionMap;
-
-	#if 0
-		SBindData(CActionMap* _arg0_, CActionMapAction* _arg1_, SActionInput* _arg2_);
-	#endif
-	};
-
-	// CActionMapManager::SRefireBindData
-	// Header:  CryEngine/cryaction/ActionMapManager.h
-	struct SRefireBindData
-	{ // Size=32 (0x20)
-		CActionMapManager::SBindData m_bindData;
-		bool m_bIgnoreNextUpdate;
-		bool m_bDelayedPressNeedsRelease;
-
-	#if 0
-		SRefireBindData(CActionMap* _arg0_, CActionMapAction* _arg1_, SActionInput* _arg2_);
-	#endif
-	};
-
-	// CActionMapManager::SRefireData
-	// Header:  CryEngine/cryaction/ActionMapManager.h
-	struct SRefireData
-	{ // Size=88 (0x58)
-		unsigned m_inputCRC;
-		SInputEvent m_inputEvent;
-		std::vector<CActionMapManager::SRefireBindData> m_refireBindData;
-
-	#if 0
-		SRefireData(const SInputEvent& _arg0_, CActionMap* _arg1_, CActionMapAction* _arg2_, SActionInput* _arg3_);
-	#endif
-	};
-
-	// CActionMapManager::SRefireReleaseListData
-	// Header:  CryEngine/cryaction/ActionMapManager.h
-	struct SRefireReleaseListData
-	{ // Size=72 (0x48)
-		SInputEvent m_inputEvent;
-		std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > m_inputsList;
-	};
-
-	using TRefireBindData = std::vector<CActionMapManager::SRefireBindData>;
-	using TInputCRCToBind = std::multimap<unsigned int,CActionMapManager::SBindData,std::less<unsigned int>,std::allocator<std::pair<unsigned int const ,CActionMapManager::SBindData> > >;
-	using TBindPriorityList = std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >;
-	using TBlockingActionListeners = std::list<std::shared_ptr<IBlockingActionListener>,std::allocator<std::shared_ptr<IBlockingActionListener> > >;
-	using TInputDeviceData = std::vector<SActionInputDeviceData>;
-	using TInputCRCToRefireData = std::map<unsigned int, CActionMapManager::SRefireData*>;
-	using TActionMapEventListeners = std::list<IActionMapEventListener *,std::allocator<IActionMapEventListener *> >;
-
-	std::vector<IActionListener*> m_ExtraActionListeners;
-	string m_loadedXMLPath;
-	IInput* m_pInput;
-	std::map<string, CActionMap*> m_actionMaps;
-	std::map<string, CActionFilter*> m_actionFilters;
-	std::multimap<unsigned int,CActionMapManager::SBindData,std::less<unsigned int>,std::allocator<std::pair<unsigned int const ,CActionMapManager::SBindData> > > m_inputCRCToBind;
-	std::map<unsigned int, CActionMapManager::SRefireData*> m_inputCRCToRefireData;
-	std::list<std::shared_ptr<IBlockingActionListener>,std::allocator<std::shared_ptr<IBlockingActionListener> > > m_alwaysActionListeners;
-	std::map<string, XmlNodeRef> m_preloadedControllerLayouts;
-	std::vector<SActionInputDeviceData> m_inputDeviceData;
-	EKeyId m_currentInputKeyID;
-	ArkActionFilterStack m_actionFilterStack;
-	int m_version;
-	bool m_enabled;
-	bool m_bRefiringInputs;
-	bool m_bDelayedRemoveAllRefiringData;
-	bool m_bIncomingInputRepeated;
-	bool m_bRepeatedInputHoldTriggerFired;
-	std::list<IActionMapEventListener *,std::allocator<IActionMapEventListener *> > m_actionMapEventListeners;
-	unsigned m_defaultEntityId;
-	static inline auto s_pThis = PreyGlobal<CActionMapManager*>(0x25EF100);
-
-	CActionMapManager(IInput* pInput);
-	virtual bool OnInputEvent(const SInputEvent& event);
-	virtual void Update();
-	virtual void Reset();
-	virtual void ResetBindings();
-	virtual void Clear();
-	virtual bool InitActionMaps(const char* filename);
-	virtual void SetLoadFromXMLPath(const char* szPath);
-	virtual const char* GetLoadFromXMLPath() const;
-	virtual bool LoadFromXML(const XmlNodeRef& node);
-	virtual bool LoadRebindDataFromXML(const XmlNodeRef& node);
-	virtual bool SaveRebindDataToXML(XmlNodeRef& node);
-	virtual bool AddExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap);
-	virtual bool RemoveExtraActionListener(IActionListener* pExtraActionListener, const char* actionMap);
-	virtual const std::vector<IActionListener*>& GetExtraActionListeners() const;
-	virtual void AddAlwaysActionListener(std::shared_ptr<IBlockingActionListener> pActionListener);
-	virtual void RemoveAlwaysActionListener(std::shared_ptr<IBlockingActionListener> pActionListener);
-	virtual void RemoveAllAlwaysActionListeners();
-	virtual IActionMap* CreateActionMap(const char* name);
-	virtual bool RemoveActionMap(const char* name);
-	virtual void RemoveAllActionMaps();
-	virtual IActionMap* GetActionMap(const char* name);
-	virtual const IActionMap* GetActionMap(const char* name) const;
-	virtual IActionFilter* CreateActionFilter(const char* name, EActionFilterType type);
-	virtual IActionFilter* GetActionFilter(const char* name);
-	virtual _smart_ptr<IActionMapIterator> CreateActionMapIterator();
-	virtual _smart_ptr<IActionFilterIterator> CreateActionFilterIterator();
-	virtual void Enable(const bool enable, const bool resetStateOnDisable);
-	virtual void EnableActionMap(const char* name, bool enable);
-	virtual void EnableFilter(const char* name, bool enable);
-	virtual bool IsFilterEnabled(const char* name);
-	virtual void RemoveAllFilters();
-	virtual void ReleaseFilteredActions();
-	virtual void ClearStoredCurrentInputData();
-	virtual bool ReBindActionInput(const char* actionMapName, const CCryName& actionId, const char* szCurrentInput, const char* szNewInput);
-	virtual bool ReBindActionInput(const char* actionMapName, const CCryName& actionId, const EActionInputDevice deviceType, const int iDeviceIndex, const char* szNewInput);
-	virtual const SActionInput* GetActionInput(const char* actionMapName, const CCryName& actionId, const EActionInputDevice device, const int iByDeviceIndex) const;
-	virtual int GetVersion() const;
-	virtual void SetVersion(int version);
-	virtual void EnumerateActions(IActionMapPopulateCallBack* pCallBack) const;
-	virtual int GetActionsCount() const;
-	virtual int GetActionMapsCount() const;
-	virtual bool AddInputDeviceMapping(const EActionInputDevice deviceType, const char* szDeviceTypeStr);
-	virtual bool RemoveInputDeviceMapping(const EActionInputDevice deviceType);
-	virtual void ClearInputDevicesMappings();
-	virtual int GetNumInputDeviceData() const;
-	virtual const SActionInputDeviceData* GetInputDeviceDataByIndex(const int iIndex);
-	virtual const SActionInputDeviceData* GetInputDeviceDataByType(const EActionInputDevice deviceType);
-	virtual const SActionInputDeviceData* GetInputDeviceDataByType(const char* szDeviceType);
-	virtual void RemoveAllRefireData();
-	virtual bool LoadControllerLayoutFile(const char* szLayoutKeyName);
-	virtual void SetDefaultActionEntity(unsigned id, bool bUpdateAll);
-	virtual unsigned GetDefaultActionEntity() const;
-	virtual void RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener);
-	virtual void UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener);
-	void BroadcastActionMapEvent(const SActionMapEvent& event) { FBroadcastActionMapEvent(this, event); }
-	virtual bool ActionFiltered(const CCryName& action);
-	void ReleaseActionIfActive(const CCryName& actionId) { FReleaseActionIfActive(this, actionId); }
-	bool AddBind(CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) { return FAddBind(this, pActionMap, pAction, pActionInput); }
-	bool RemoveBind(CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) { return FRemoveBindOv2(this, pActionMap, pAction, pActionInput); }
-	void RemoveBind(CActionMap* pActionMap) { FRemoveBindOv1(this, pActionMap); }
-	void RemoveBind(CActionMapAction* pAction) { FRemoveBindOv0(this, pAction); }
-	bool HasBind(CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) const { return FHasBind(this, pActionMap, pAction, pActionInput); }
-	bool UpdateRefireData(const SInputEvent& event, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) { return FUpdateRefireData(this, event, pActionMap, pAction, pActionInput); }
-	bool RemoveRefireData(CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput) { return FRemoveRefireDataOv2(this, pActionMap, pAction, pActionInput); }
-	bool SetRefireDataDelayedPressNeedsRelease(const SInputEvent& event, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput, const bool bDelayedPressNeedsRelease) { return FSetRefireDataDelayedPressNeedsRelease(this, event, pActionMap, pAction, pActionInput, bDelayedPressNeedsRelease); }
-	void RemoveAllDelayedPressRefireData() { FRemoveAllDelayedPressRefireData(this); }
-	int GetHighestPressDelayPriority() const { return FGetHighestPressDelayPriority(this); }
-	void GetMemoryStatistics(ICrySizer* pSizer) { FGetMemoryStatistics(this, pSizer); }
-	virtual IActionFilterStack* GetActionFilterStack();
-	virtual ~CActionMapManager();
-	bool PreloadControllerLayout(const XmlNodeRef& controllerLayout) { return FPreloadControllerLayout(this, controllerLayout); }
-	bool HandleAcceptedEvents(const SInputEvent& event, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList) { return FHandleAcceptedEvents(this, event, priorityList); }
-	bool CreateEventPriorityList(const SInputEvent& inputEvent, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList) { return FCreateEventPriorityList(this, inputEvent, priorityList); }
-	bool CreateRefiredEventPriorityList(CActionMapManager::SRefireData* pRefireData, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& removeList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& delayPressNeedsReleaseList) { return FCreateRefiredEventPriorityList(this, pRefireData, priorityList, removeList, delayPressNeedsReleaseList); }
-	void UpdateRefiringInputs() { FUpdateRefiringInputs(this); }
-
-#if 0
-	void Release();
-	void RemoveActionFilter(CActionFilter* _arg0_);
-	void RemoveRefireData(CActionMap* _arg0_);
-	void RemoveRefireData(CActionMapAction* _arg0_);
-	static void ReloadActionMaps(IConsoleCmdArgs* _arg0_);
-	bool IsCurrentlyRefiringInput() const;
-	bool IsIncomingInputRepeated() const;
-	EKeyId GetIncomingInputKeyID() const;
-	void SetRepeatedInputHoldTriggerFired(const bool _arg0_);
-	bool IsRepeatedInputHoldTriggerFired() const;
-	void HandleInputBlocking(const SInputEvent& _arg0_, const SActionInput* _arg1_, const float _arg2_);
-	CActionMapManager::SBindData* GetBindData(CActionMap* _arg0_, CActionMapAction* _arg1_, SActionInput* _arg2_);
-	bool ProcessAlwaysListeners(const CCryName& _arg0_, int _arg1_, float _arg2_, const SInputEvent& _arg3_);
-	void SetCurrentlyRefiringInput(bool _arg0_);
-#endif
-
+#else
 	static inline auto FCActionMapManagerOv1 = PreyFunction<void(CActionMapManager* const _this, IInput* pInput)>(0x3E7810);
 	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x3EA840);
 	static inline auto FUpdate = PreyFunction<void(CActionMapManager* const _this)>(0x3EC170);
@@ -544,5 +342,5 @@ public:
 	static inline auto FCreateEventPriorityList = PreyFunction<bool(CActionMapManager* const _this, const SInputEvent& inputEvent, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList)>(0x3E8940);
 	static inline auto FCreateRefiredEventPriorityList = PreyFunction<bool(CActionMapManager* const _this, CActionMapManager::SRefireData* pRefireData, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& removeList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& delayPressNeedsReleaseList)>(0x3E8B70);
 	static inline auto FUpdateRefiringInputs = PreyFunction<void(CActionMapManager* const _this)>(0x3EC430);
+#endif
 };
-#endif // !MOONCRASH

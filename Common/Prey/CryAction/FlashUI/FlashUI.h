@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -269,6 +267,7 @@ public:
 
 	static constexpr size_t OFFSET_m_bHudVisible = 0x01C8;
 
+#ifndef MOONCRASH
 	static inline auto CV_gfx_draw = PreyGlobal<int>(0x2473B28);
 
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (CFlashUI const* const _this)>(0x2CD760);
@@ -362,93 +361,7 @@ public:
 	static inline auto FShowLoadingScreen = PreyFunction<void(CFlashUI* const _this)>(0x2D8D00);
 	static inline auto FHideLoadingScreen = PreyFunction<void(CFlashUI* const _this)>(0x2D6300);
 	static inline auto FCheckFilter = PreyFunction<bool(string const& str)>(0x2D4D70);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-// WARNING: Contains templates
-#pragma once
-#include <CryEngine/crycommon/IFlashUI.h>
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
-#include <CryEngine/crycommon/ijobmanager.h>
-#include <Prey/CryAction/ILevelSystem.h>
-#include <Prey/CryGame/IGameFramework.h>
-#include <Prey/CryInput/IHardwareMouse.h>
-#include <Prey/CryInput/IInput.h>
-#include <Prey/CryRenderer/IRenderer.h>
-#include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
-#include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
-#include <_unknown/CListenerSet.h>
-#include <_unknown/Functor0wRet.h>
-#include <_unknown/Functor1.h>
-#include <_unknown/Functor2.h>
-#include <_unknown/IUIAction.h>
-#include <_unknown/IUIElement.h>
-#include <_unknown/IUIEventSystem.h>
-#include <_unknown/SFlashCursorEvent.h>
-#include <_unknown/SUIItemLookupSet_Impl.h>
-#include <_unknown/TL__Typelist.h>
-
-class CAutoRegUIFlowNode;
-class CFlashUIActionEvents;
-class CFlashUIEventSystem;
-struct CUIActionManager;
-struct CryGUID;
-enum class EHARDWAREMOUSEEVENT;
-enum ESystemEvent;
-struct ICVar;
-struct IConsoleCmdArgs;
-struct ICryFactory;
-class ICrySizer;
-struct IEntity;
-struct IFlashPlayer;
-struct ILevel;
-struct ILevelInfo;
-struct ILoadGame;
-struct ISaveGame;
-class ITexture;
-struct IUIAction;
-struct IUIActionManager;
-struct IUIElement;
-struct IUIEventSystem;
-struct IUIEventSystemIterator;
-struct IUIModule;
-struct IVirtualKeyboardEvents;
-struct SActionEvent;
-struct SFlashKeyEvent;
-struct SInputEvent;
-class XmlNodeRef;
-
-// CFlashUI
-// Header:  CryEngine/cryaction/flashui/FlashUI.h
-// Include: Prey/CryAction/FlashUI/FlashUI.h
-class CFlashUI
-	: public IFlashUI
-	, public IHardwareMouseEventListener
-	, public IInputEventListener
-	, public IGameFrameworkListener
-	, public ILevelSystemListener
-	, public ISystemEventListener
-	, public ILoadtimeCallback
-{ // Size=480 (0x1E0)
-public:
-	enum ESystemState
-	{
-		eSS_NoLevel = 0,
-		eSS_Loading = 1,
-		eSS_LoadingDone = 2,
-		eSS_GameStarted = 3,
-		eSS_Unloading = 4,
-	};
-
-	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IFlashUI,TL::NullType> >;
-	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IFlashUI,TL::NullType> >;
-	using TUIFlowNodes = std::vector<CAutoRegUIFlowNode*>;
-	using TSortedElementList = std::multimap<int,IUIElement *,std::less<int>,std::allocator<std::pair<int const ,IUIElement *> > >;
-	using TPlayerList = std::vector<IFlashPlayer*>;
-	using TTextureMap = std::map<ITexture*, string>;
-	using TUIModules = CListenerSet<IUIModule *>;
-
+#else
 	static inline auto s_factory = PreyGlobal<CSingletonFactory<CFlashUI>>(0x23B0010);
 	static inline auto CV_gfx_draw = PreyGlobal<int>(0x25E3138);
 	static inline auto CV_gfx_debugdraw = PreyGlobal<int>(0x25E313C);
@@ -463,155 +376,6 @@ public:
 	static inline auto CV_gfx_inputevents_triggerrepeat = PreyGlobal<float>(0x25E3160);
 	static inline auto CV_gfx_uiaction_log_filter = PreyGlobal<ICVar*>(0x25E3168);
 	static inline auto CV_gfx_uiaction_folder = PreyGlobal<ICVar*>(0x25E3170);
-	CFlashUIActionEvents* m_pFlashUIActionEvents;
-	ArkBinkPlayerHandle m_spinnyPlayer;
-	std::map<string, CFlashUIEventSystem*> m_eventSystemsUiToSys;
-	std::map<string, CFlashUIEventSystem*> m_eventSystemsSysToUi;
-	SUIItemLookupSet_Impl<IUIElement> m_elements;
-	SUIItemLookupSet_Impl<IUIAction> m_actions;
-	JobManager::SJobState m_flashUpdateJobState;
-	std::multimap<int,IUIElement *,std::less<int>,std::allocator<std::pair<int const ,IUIElement *> > > m_sortedElements;
-	bool m_bSortedElementsInvalidated;
-	bool m_bLockSortedElements;
-	bool m_bLoadtimeThread;
-	std::vector<IFlashPlayer*> m_loadtimePlayerList;
-	std::vector<CAutoRegUIFlowNode*> m_UINodes;
-	std::map<ITexture*, string> m_preloadedTextures;
-	CUIActionManager* m_pUIActionManager;
-	CListenerSet<IUIModule *> m_modules;
-	int m_iWidth;
-	int m_iHeight;
-	Functor2<int &,int &> m_ScreenSizeCB;
-	Functor1<IFlashUI::SUILogEvent const &> m_LogCallback;
-	Functor0wRet<enum IFlashUI::EPlatformUI> m_plattformCallback;
-	bool m_bWorldUIInteraction;
-	int m_steamMenuActionSetRefCount;
-	CFlashUI::ESystemState m_systemState;
-	float m_fLastAdvance;
-	float m_lastTimeTriggered;
-	unsigned m_worldUICursorDisabledCount;
-	bool m_bHudVisible;
-	bool m_bReturningToFrontEnd;
-	bool m_bMovieRequestedByLoadSave;
-	string m_lastPressedElementName;
-	int m_lastPressedElementID;
-
-	virtual ICryFactory* GetFactory() const;
-	virtual void* QueryInterface(const CryGUID& iid) const;
-	virtual void* QueryComposite(const char* name) const;
-	CFlashUI();
-	virtual ~CFlashUI();
-	virtual void Init();
-	virtual bool PostInit();
-	void PreUpdate() { FPreUpdate(this); }
-	virtual void Update(float fDeltaTimeUI, float fDeltaTimeGame);
-	void Render(bool _bAnyFullscreenBinkPlaying) { FRender(this, _bAnyFullscreenBinkPlaying); }
-	void UpdateElements(float fDeltaTimeUI, float fDeltaTimeGame) { FUpdateElements(this, fDeltaTimeUI, fDeltaTimeGame); }
-	virtual void Reload(bool _bFullUnload);
-	virtual void Shutdown();
-	virtual bool LoadElementsFromFile(const char* sFileName);
-	virtual bool LoadActionFromFile(const char* sFileName, IUIAction::EUIActionType type);
-	virtual IUIElement* GetUIElement(const char* sName) const;
-	virtual IUIElement* GetUIElement(int index) const;
-	virtual int GetUIElementCount() const;
-	virtual IUIElement* GetUIElementByInstanceStr(const char* sUIInstanceStr) const;
-	virtual IUIAction* GetUIAction(const char* sName) const;
-	virtual IUIAction* GetUIAction(int index) const;
-	virtual int GetUIActionCount() const;
-	virtual IUIActionManager* GetUIActionManager() const;
-	virtual void UpdateFG();
-	virtual void EnableEventStack(bool bEnable);
-	virtual void RegisterModule(IUIModule* pModule, const char* name);
-	virtual void UnregisterModule(IUIModule* pModule);
-	virtual void SetHudElementsVisible(bool bVisible);
-	virtual IUIEventSystem* CreateEventSystem(const char* sName, IUIEventSystem::EEventSystemType eType);
-	virtual IUIEventSystem* GetEventSystem(const char* name, IUIEventSystem::EEventSystemType eType);
-	virtual _smart_ptr<IUIEventSystemIterator> CreateEventSystemIterator(IUIEventSystem::EEventSystemType eType);
-	virtual void DispatchControllerEvent(IUIElement::EControllerInputEvent event, IUIElement::EControllerInputState state, float value);
-	virtual void SendFlashMouseEvent(SFlashCursorEvent::ECursorState evt, int iX, int iY, int iButton, float fWheel, bool bFromController);
-	virtual bool DisplayVirtualKeyboard(unsigned flags, const wchar_t* title, const wchar_t* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback);
-	virtual bool IsVirtualKeyboardRunning();
-	virtual bool CancelVirtualKeyboard();
-	virtual void GetScreenSize(int& width, int& height);
-	virtual void SetEditorScreenSizeCallback(Functor2<int &,int &>& cb);
-	virtual void RemoveEditorScreenSizeCallback();
-	virtual void SetEditorUILogEventCallback(Functor1<IFlashUI::SUILogEvent const &>& cb);
-	virtual void RemoveEditorUILogEventCallback();
-	virtual void SetEditorPlatformCallback(Functor0wRet<enum IFlashUI::EPlatformUI>& cb);
-	virtual void RemoveEditorPlatformCallback();
-	virtual bool UseSharedRT(const char* instanceStr, bool defVal) const;
-	virtual void CheckPreloadedTexture(ITexture* pTexture) const;
-	virtual void GetMemoryStatistics(ICrySizer* s) const;
-	virtual bool IsWorldUIInteraction() const;
-	virtual void SetWorldUICursorDisabled(bool _bDisabled);
-	virtual std::pair<bool, bool> IsWorldUIEntity(const IEntity* const _pEntity) const;
-	virtual void OnHardwareMouseEvent(int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta);
-	virtual bool OnInputEvent(const SInputEvent& event);
-	virtual bool OnInputEventUI(const SInputEvent& event);
-	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	virtual void OnPostUpdate(float fDeltaTime);
-	virtual void OnSaveGame(ISaveGame* pSaveGame);
-	virtual void OnLoadGame(ILoadGame* pLoadGame);
-	virtual void OnLevelEnd(const char* nextLevel);
-	virtual void OnActionEvent(const SActionEvent& event);
-	virtual void OnLevelNotFound(const char* levelName);
-	virtual void OnLoadingStart(ILevelInfo* pLevel);
-	virtual void OnLoadingLevelEntitiesStart(ILevelInfo* pLevel);
-	virtual void OnLoadingComplete(ILevel* pLevel);
-	virtual void OnLoadingError(ILevelInfo* pLevel, const char* error);
-	virtual void OnLoadingProgress(ILevelInfo* pLevel, int progressAmount);
-	virtual void OnUnloadComplete(ILevel* pLevel);
-	virtual void LoadtimeUpdate(float fDeltaTime);
-	virtual void LoadtimeRender();
-	void UpdateSteamMenuState(bool _bEnable) { FUpdateSteamMenuState(this, _bEnable); }
-	static void LogUIAction(IFlashUI::ELogEventLevel level, const char* format, ... tmp) { FLogUIAction(level, format, tmp); }
-	static void ReloadAllElements(IConsoleCmdArgs* __unnamed1) { FReloadAllElements(__unnamed1); }
-	void InvalidateSortedElements() { FInvalidateSortedElements(this); }
-	void LoadElements() { FLoadElements(this); }
-	void LoadActions() { FLoadActions(this); }
-	void ResetActions() { FResetActions(this); }
-	void CreateNodes() { FCreateNodes(this); }
-	void ClearNodes() { FClearNodes(this); }
-	void LoadFromFile(const char* pFolderName, const char* pSearch, bool (*fhFileLoader)(const char*)) { FLoadFromFile(this, pFolderName, pSearch, fhFileLoader); }
-	bool LoadFGActionFromFile(const char* sFileName) { return FLoadFGActionFromFile(this, sFileName); }
-	bool LoadLuaActionFromFile(const char* sFileName) { return FLoadLuaActionFromFile(this, sFileName); }
-	void PreloadTextures(const char* pLevelName) { FPreloadTextures(this, pLevelName); }
-	void PreloadTexturesFromNode(const XmlNodeRef& node) { FPreloadTexturesFromNode(this, node); }
-	bool PreloadTexture(const char* pFileName) { return FPreloadTexture(this, pFileName); }
-	void ReleasePreloadedTextures(bool bReleaseTextures) { FReleasePreloadedTextures(this, bReleaseTextures); }
-	const std::multimap<int,IUIElement *,std::less<int>,std::allocator<std::pair<int const ,IUIElement *> > >& GetSortedElements() { return FGetSortedElements(this); }
-	void UpdateSortedElements() { FUpdateSortedElements(this); }
-	void StartRenderThread() { FStartRenderThread(this); }
-	void StopRenderThread() { FStopRenderThread(this); }
-	void CheckResolutionChange() { FCheckResolutionChange(this); }
-	void ReloadAllBootStrapper(bool _bUnloadBootStrapper) { FReloadAllBootStrapper(this, _bUnloadBootStrapper); }
-	void ShowLoadingScreen() { FShowLoadingScreen(this); }
-	void HideLoadingScreen() { FHideLoadingScreen(this); }
-	static bool CheckFilter(const string& str) { return FCheckFilter(str); }
-
-#if 0
-	static const char* GetCName();
-	static const CryGUID& GetCID();
-	static std::shared_ptr<CFlashUI> CreateClassInstance();
-	CFlashUI(const CFlashUI& _arg0_);
-	bool IsWorldUICursorDisabled() const;
-	bool IsLoadtimeThread() const;
-	IFlashUI::EPlatformUI GetCurrentPlatform();
-	void WaitForFlashUpdate();
-	void operator=(const CFlashUI& _arg0_);
-	void RegisterListeners();
-	void UnregisterListeners();
-	void ReloadAll();
-	void ClearElements();
-	void ClearActions();
-	void ReloadScripts();
-	void CreateMouseClick(IUIElement::EControllerInputState _arg0_);
-	void TriggerEvent(const SInputEvent& _arg0_);
-	SFlashKeyEvent MapToFlashKeyEvent(const SInputEvent& _arg0_);
-	std::map<string, CFlashUIEventSystem*>* GetEventSystemMap(IUIEventSystem::EEventSystemType _arg0_);
-	void CheckLanguageChanged();
-	void ResetDirtyFlags();
-#endif
 
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CFlashUI* const _this)>(0x2E8020);
 	static inline auto FQueryInterface = PreyFunction<void* (const CFlashUI* const _this, const CryGUID& iid)>(0x2E8030);
@@ -705,20 +469,5 @@ public:
 	static inline auto FShowLoadingScreen = PreyFunction<void(CFlashUI* const _this)>(0x2F33A0);
 	static inline auto FHideLoadingScreen = PreyFunction<void(CFlashUI* const _this)>(0x2F0990);
 	static inline auto FCheckFilter = PreyFunction<bool(const string& str)>(0x2EF400);
+#endif
 };
-
-namespace JobManager::Detail
-{
-
-// JobManager::Detail::SGenInvokerTFlashUpdateElements<CFlashUI,float,float,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType>
-// Header:  CryEngine/cryaction/flashui/FlashUI.h
-struct SGenInvokerTFlashUpdateElements<CFlashUI,float,float,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType,JobManager::Detail::SNullType>
-{ // Size=1 (0x1)
-	static void Invoke(void* p) { FInvoke(p); }
-
-	static inline auto FInvoke = PreyFunction<void(void* p)>(0x2F0A00);
-};
-
-
-} // namespace JobManager::Detail
-#endif // !MOONCRASH

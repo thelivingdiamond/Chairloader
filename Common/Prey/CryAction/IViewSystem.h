@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 /*************************************************************************
@@ -288,58 +286,3 @@ struct IViewSystem
 	virtual bool UseDeferredViewSystemUpdate() const = 0;
 	virtual void SetControlAudioListeners(bool const bActive) = 0;
 };
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-// SViewParams
-// Header:  CryEngine/cryaction/iviewsystem.h
-// Include: Prey/CryAction/IViewSystem.h
-struct SViewParams
-{ // Size=208 (0xD0)
-	Vec3 position;
-	Quat rotation;
-	Quat localRotationLast;
-	float nearplane;
-	float fov;
-	float fovBase;
-	uint8_t viewID;
-	bool groundOnly;
-	float shakingRatio;
-	Quat currentShakeQuat;
-	Vec3 currentShakeShift;
-	unsigned idTarget;
-	Vec3 targetPos;
-	float frameTime;
-	float angleVel;
-	float vel;
-	float dist;
-	bool blend;
-	float blendPosSpeed;
-	float blendRotSpeed;
-	float blendFOVSpeed;
-	Vec3 blendPosOffset;
-	Quat blendRotOffset;
-	float blendFOVOffset;
-	bool justActivated;
-	uint8_t viewIDLast;
-	Vec3 positionLast;
-	Quat rotationLast;
-	float FOVLast;
-
-	SViewParams();
-	void UpdateBlending(float frameTime) { FUpdateBlending(this, frameTime); }
-
-#if 0
-	void SetViewID(uint8_t _arg0_, bool _arg1_);
-	void BlendFrom(const SViewParams& _arg0_);
-	void SaveLast();
-	void ResetBlending();
-	const Vec3& GetPositionLast();
-	const Quat& GetRotationLast();
-#endif
-
-	static inline auto FSViewParamsOv2 = PreyFunction<void(SViewParams* const _this)>(0x43D3F0);
-	static inline auto FUpdateBlending = PreyFunction<void(SViewParams* const _this, float frameTime)>(0x3F3E40);
-};
-#endif // !MOONCRASH
