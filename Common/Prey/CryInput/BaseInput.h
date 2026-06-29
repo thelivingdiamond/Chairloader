@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include <list>
 #include <Prey/CryCore/Containers/CryListenerSet.h>
@@ -117,6 +115,7 @@ public:
 	void RemoveDeviceHoldSymbols(EInputDeviceType arg0, uint8_t arg1);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FBitNotCBaseInput = PreyFunction<void(CBaseInput *const _this)>(0x9D4530);
     static inline auto FInit = PreyFunction<bool(CBaseInput *const _this)>(0x9D5510);
     static inline auto FPostInit = PreyFunction<void(CBaseInput *const _this)>(0x9D5880);
@@ -174,130 +173,8 @@ public:
     static inline auto FGrabInput = PreyFunction<bool(CBaseInput *const _this, bool bGrab)>(0xDD23F0);
     static inline auto FClearHoldEvent = PreyFunction<void(CBaseInput *const _this, SInputSymbol *pSymbol)>(0x9D4CC0);
     static inline auto FSendEventToListeners = PreyFunction<bool(CBaseInput *const _this, SInputEvent const &event)>(0x9D5FD0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryInput/IInput.h>
-#include <Prey/CrySystem/ISystem.h>
-#include <_unknown/CListenerSet.h>
-#include <_unknown/CryLockT.h>
-
-class CInputCVars;
-class CKinectInputNULL;
-struct CNaturalPointInputNull;
-enum EInputDeviceType;
-enum EInputState;
-enum EKeyId;
-enum ESystemEvent;
-struct IInputDevice;
-struct IInputEventListener;
-struct IKinectInput;
-struct INaturalPointInput;
-struct ITouchEventListener;
-struct SFFOutputEvent;
-struct SInputBlockData;
-struct SInputEvent;
-struct SInputSymbol;
-struct STouchEvent;
-struct TKeyName;
-
-// CBaseInput
-// Header:  CryEngine/cryinput/BaseInput.h
-class CBaseInput : public IInput, public ISystemEventListener
-{ // Size=264 (0x108)
-public:
-	using TInputDevices = std::vector<IInputDevice*>;
-	using TInputEventListeners = std::list<IInputEventListener *,std::allocator<IInputEventListener *> >;
-	using TInputBlockData = std::list<SInputBlockData,std::allocator<SInputBlockData> >;
-
-	std::vector<SInputSymbol*> m_holdSymbols;
-	std::list<IInputEventListener *,std::allocator<IInputEventListener *> > m_listeners;
-	std::list<IInputEventListener *,std::allocator<IInputEventListener *> > m_consoleListeners;
-	IInputEventListener* m_pExclusiveListener;
-	CListenerSet<ITouchEventListener *> m_touchListeners;
-	bool m_enableEventPosting;
-	bool m_retriggering;
-	CryCriticalSection m_postInputEventMutex;
-	bool m_hasFocus;
-	std::vector<IInputDevice*> m_inputDevices;
-	int m_forceFeedbackDeviceIndex;
-	std::list<SInputBlockData,std::allocator<SInputBlockData> > m_inputBlockData;
-	int m_modifiers;
-	CInputCVars* m_pCVars;
-	CKinectInputNULL* m_pKinectInput;
-	CNaturalPointInputNull* m_pNaturalPointInput;
-	unsigned m_platformFlags;
-
-	CBaseInput();
-	virtual ~CBaseInput();
-	virtual bool Init();
-	virtual void PostInit();
-	virtual void Update(bool bFocus);
-	virtual void ShutDown();
-	virtual void SetExclusiveMode(EInputDeviceType deviceType, bool exclusive, void* pUser);
-	virtual bool InputState(const TKeyName& keyName, EInputState state);
-	virtual const char* GetKeyName(const SInputEvent& event) const;
-	virtual const char* GetKeyName(EKeyId keyId) const;
-	virtual char GetInputCharAscii(const SInputEvent& event);
-	virtual SInputSymbol* LookupSymbol(EInputDeviceType deviceType, int deviceIndex, EKeyId keyId);
-	virtual const SInputSymbol* LookupSymbolByName(EInputDeviceType deviceType, int deviceIndex, const char* name) const;
-	virtual const SInputSymbol* GetSymbolByName(const char* name) const;
-	virtual const wchar_t* GetOSKeyName(const SInputEvent& event);
-	virtual void ClearKeyState();
-	virtual void ClearAnalogKeyState();
-	virtual void RetriggerKeyState();
-	virtual bool Retriggering();
-	virtual bool HasInputDeviceOfType(EInputDeviceType type);
-	virtual bool HasGamepadConnected();
-	virtual void RefreshDevices();
-	virtual void SetDeadZone(float fThreshold);
-	virtual void RestoreDefaultDeadZone();
-	virtual IInputDevice* GetDevice(uint16_t id, EInputDeviceType deviceType);
-	virtual IInputDevice* GetDevice(uint64_t deviceId);
-	virtual void AddEventListener(IInputEventListener* pListener);
-	virtual void RemoveEventListener(IInputEventListener* pListener);
-	virtual bool AddTouchEventListener(ITouchEventListener* pListener, const char* name);
-	virtual void RemoveTouchEventListener(ITouchEventListener* pListener);
-	virtual void AddConsoleEventListener(IInputEventListener* pListener);
-	virtual void RemoveConsoleEventListener(IInputEventListener* pListener);
-	virtual void SetExclusiveListener(IInputEventListener* pListener);
-	virtual IInputEventListener* GetExclusiveListener();
-	virtual bool AddInputDevice(IInputDevice* pDevice);
-	virtual void EnableEventPosting(bool bEnable);
-	virtual bool IsEventPostingEnabled() const;
-	virtual void PostInputEvent(const SInputEvent& event, bool bForce);
-	virtual void PostTouchEvent(const STouchEvent& event, bool bForce);
-	virtual void ForceFeedbackEvent(const SFFOutputEvent& event);
-	virtual void ForceFeedbackSetDeviceIndex(int index);
-	virtual void EnableDevice(EInputDeviceType deviceType, bool enable);
-	virtual void ProcessKey(unsigned key, bool pressed, wchar_t unicode, bool repeat);
-	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	virtual int GetModifiers() const;
-	virtual unsigned GetPlatformFlags() const;
-	virtual bool SetBlockingInput(const SInputBlockData& inputBlockData);
-	virtual bool RemoveBlockingInput(const SInputBlockData& inputBlockData);
-	virtual bool HasBlockingInput(const SInputBlockData& inputBlockData) const;
-	virtual int GetNumBlockingInputs() const;
-	virtual void ClearBlockingInputs();
-	virtual bool ShouldBlockInputEventPosting(const EKeyId keyId, const EInputDeviceType deviceType, const uint8_t deviceIndex) const;
-	virtual IKinectInput* GetKinectInput();
-	virtual INaturalPointInput* GetNaturalPointInput();
-	virtual IInputDevice* GetSteamInputDevice();
-	virtual bool GrabInput(bool bGrab);
-	void ClearHoldEvent(SInputSymbol* pSymbol) { FClearHoldEvent(this, pSymbol); }
-	bool SendEventToListeners(const SInputEvent& event) { return FSendEventToListeners(this, event); }
-
-#if 0
-	bool HasFocus() const;
-	void SetModifiers(int _arg0_);
-	void UpdateBlockingInputs();
-	void PostHoldEvents();
-	void AddEventToHoldSymbols(const SInputEvent& _arg0_);
-	void RemoveDeviceHoldSymbols(EInputDeviceType _arg0_, uint8_t _arg1_);
-#endif
-
-	static inline auto FCBaseInput = PreyFunction<void(CBaseInput* const _this)>(0x9F1710);
+#else
+    static inline auto FCBaseInput = PreyFunction<void(CBaseInput* const _this)>(0x9F1710);
 	static inline auto FBitNotCBaseInput = PreyFunction<void(CBaseInput* const _this)>(0x9F18C0);
 	static inline auto FInit = PreyFunction<bool(CBaseInput* const _this)>(0x9F28E0);
 	static inline auto FPostInit = PreyFunction<void(CBaseInput* const _this)>(0x9F2C40);
@@ -355,5 +232,5 @@ public:
 	static inline auto FGrabInput = PreyFunction<bool(CBaseInput* const _this, bool bGrab)>(0x13B0900);
 	static inline auto FClearHoldEvent = PreyFunction<void(CBaseInput* const _this, SInputSymbol* pSymbol)>(0x9F2080);
 	static inline auto FSendEventToListeners = PreyFunction<bool(CBaseInput* const _this, const SInputEvent& event)>(0x9F33E0);
+#endif
 };
-#endif // !MOONCRASH

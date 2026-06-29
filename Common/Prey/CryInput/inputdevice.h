@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -80,7 +78,8 @@ public:
 	SInputSymbol* IdToSymbol(EKeyId _arg0_) const;
 	SInputSymbol* NameToSymbol(const TKeyName& _arg0_) const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FCInputDeviceOv1 = PreyFunction<void(CInputDevice* const _this, IInput& input, const char* deviceName)>(0x9D7830);
 	static inline auto FBitNotCInputDevice = PreyFunction<void(CInputDevice* const _this)>(0x9D7940);
 	static inline auto FGetDeviceName = PreyFunction<const char* (const CInputDevice* const _this)>(0xD87510);
@@ -110,77 +109,7 @@ public:
 	static inline auto FNameToId = PreyFunction<unsigned(const CInputDevice* const _this, const TKeyName& name)>(0x9D8100);
 	static inline auto FDevSpecIdToSymbol = PreyFunction<SInputSymbol* (const CInputDevice* const _this, unsigned devSpecId)>(0x9D7C10);
 	static inline auto FMapSymbol = PreyFunction<SInputSymbol* (CInputDevice* const _this, unsigned deviceSpecificId, EKeyId keyId, const TKeyName& name, SInputSymbol::EType type, unsigned user)>(0x9D7E70);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryInput/IInput.h>
-#include <_unknown/SInputSymbol.h>
-
-enum EInputState;
-enum EKeyId;
-struct IFFParams;
-struct IInput;
-struct SInputEvent;
-struct SInputSymbol;
-
-// CInputDevice
-// Header:  CryEngine/cryinput/InputDevice.h
-// Include: Prey/CryInput/InputDevice.h
-class CInputDevice : public IInputDevice
-{ // Size=112 (0x70)
-public:
-	using TNameToIdMap = std::map<TKeyName, unsigned int>;
-	using TNameToSymbolMap = std::map<TKeyName, SInputSymbol*>;
-	using TIdToSymbolMap = std::map<enum::EKeyId, SInputSymbol*>;
-	using TDevSpecIdToSymbolMap = std::map<unsigned int, SInputSymbol*>;
-
-	EInputDeviceType m_deviceType;
-	uint64_t m_deviceId;
-	bool m_enabled;
-	IInput& m_input;
-	string m_deviceName;
-	std::map<TKeyName, unsigned int> m_nameToId;
-	std::map<TKeyName, SInputSymbol*> m_nameToInfo;
-	std::map<enum::EKeyId, SInputSymbol*> m_idToInfo;
-	std::map<unsigned int, SInputSymbol*> m_devSpecIdToSymbol;
-
-	CInputDevice(IInput& input, const char* deviceName);
-	virtual ~CInputDevice();
-	virtual const char* GetDeviceName() const;
-	virtual bool IsOfDeviceType(EInputDeviceType type) const;
-	virtual EInputDeviceType GetDeviceType() const;
-	virtual uint64_t GetDeviceId() const;
-	virtual bool Init();
-	virtual void PostInit();
-	virtual void Update(bool bFocus);
-	virtual bool SetForceFeedback(IFFParams params);
-	virtual bool InputState(const TKeyName& keyName, EInputState state);
-	virtual bool SetExclusiveMode(bool value);
-	virtual void ClearKeyState();
-	virtual void ClearAnalogKeyState(std::vector<SInputSymbol*>& clearedSymbols);
-	virtual const char* GetKeyName(const SInputEvent& event) const;
-	virtual const char* GetKeyName(const EKeyId keyId) const;
-	virtual char GetInputCharAscii(const SInputEvent& event);
-	virtual const wchar_t* GetOSKeyName(const SInputEvent& event);
-	virtual SInputSymbol* LookupSymbol(EKeyId id) const;
-	virtual const SInputSymbol* GetSymbolByName(const char* name) const;
-	virtual void Enable(bool enable);
-	virtual bool IsEnabled() const;
-	virtual bool IsConnected() const;
-	virtual void OnLanguageChange();
-	virtual void SetDeadZone(float fThreshold);
-	virtual void RestoreDefaultDeadZone();
-	unsigned NameToId(const TKeyName& name) const { return FNameToId(this, name); }
-	SInputSymbol* DevSpecIdToSymbol(unsigned devSpecId) const { return FDevSpecIdToSymbol(this, devSpecId); }
-	SInputSymbol* MapSymbol(unsigned deviceSpecificId, EKeyId keyId, const TKeyName& name, SInputSymbol::EType type, unsigned user) { return FMapSymbol(this, deviceSpecificId, keyId, name, type, user); }
-
-#if 0
-	IInput& GetIInput() const;
-	SInputSymbol* IdToSymbol(EKeyId _arg0_) const;
-	SInputSymbol* NameToSymbol(const TKeyName& _arg0_) const;
-#endif
-
+#else
 	static inline auto FCInputDeviceOv1 = PreyFunction<void(CInputDevice* const _this, IInput& input, const char* deviceName)>(0x9F4C40);
 	static inline auto FBitNotCInputDevice = PreyFunction<void(CInputDevice* const _this)>(0x9F4D50);
 	static inline auto FGetDeviceName = PreyFunction<const char* (const CInputDevice* const _this)>(0x7E3C90);
@@ -210,5 +139,5 @@ public:
 	static inline auto FNameToId = PreyFunction<unsigned(const CInputDevice* const _this, const TKeyName& name)>(0x9F5510);
 	static inline auto FDevSpecIdToSymbol = PreyFunction<SInputSymbol* (const CInputDevice* const _this, unsigned devSpecId)>(0x9F5020);
 	static inline auto FMapSymbol = PreyFunction<SInputSymbol* (CInputDevice* const _this, unsigned deviceSpecificId, EKeyId keyId, const TKeyName& name, SInputSymbol::EType type, unsigned user)>(0x9F5280);
+#endif
 };
-#endif // !MOONCRASH
