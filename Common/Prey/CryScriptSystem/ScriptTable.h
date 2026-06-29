@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/IScriptSystem.h>
@@ -16,8 +14,13 @@ struct lua_State;
 class CScriptTable : public IScriptTable
 { // Size=16 (0x10)
 public:
+#ifndef MOONCRASH
 	static inline auto L = PreyGlobal<lua_State*>(0x2977348);
 	static inline auto m_pSS = PreyGlobal<CScriptSystem*>(0x2977350);
+#else
+	static inline auto L = PreyGlobal<lua_State*>(0x2AE65D8);
+	static inline auto m_pSS = PreyGlobal<CScriptSystem*>(0x2AE65E0);
+#endif
 	int m_nRefCount;
 	int m_nRef;
 
@@ -63,6 +66,7 @@ public:
 	static void CloneTable(int _arg0_, int _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FAddRef = PreyFunction<void(CScriptTable* const _this)>(0x49B5B0);
 	static inline auto FRelease = PreyFunction<void(CScriptTable* const _this)>(0xD122A0);
 	static inline auto FGetScriptSystem = PreyFunction<IScriptSystem* (const CScriptTable* const _this)>(0xD14AD0);
@@ -94,73 +98,7 @@ public:
 	static inline auto FStdCUserDataFunction = PreyFunction<int(lua_State* L)>(0xD157E0);
 	static inline auto FCloneTable_r = PreyFunction<void(int srcTable, int trgTable)>(0xD14200);
 	static inline auto FReferenceTable_r = PreyFunction<void(int srcTable, int trgTable)>(0xD151E0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/IScriptSystem.h>
-#include <Prey/CryScriptSystem/IScriptSystem.h>
-
-class CScriptSystem;
-struct IScriptSystem;
-struct IScriptTableDumpSink;
-struct ScriptAnyValue;
-enum class ScriptVarType;
-struct lua_State;
-
-// CScriptTable
-// Header:  CryEngine/cryscriptsystem/ScriptTable.h
-// Include: Prey/CryScriptSystem/ScriptTable.h
-class CScriptTable : public IScriptTable
-{ // Size=16 (0x10)
-public:
-	static inline auto L = PreyGlobal<lua_State*>(0x2AE65D8);
-	static inline auto m_pSS = PreyGlobal<CScriptSystem*>(0x2AE65E0);
-	int m_nRefCount;
-	int m_nRef;
-
-	virtual void AddRef();
-	virtual void Release();
-	virtual IScriptSystem* GetScriptSystem() const;
-	virtual void Delegate(IScriptTable* pMetatable);
-	virtual void* GetUserDataValue();
-	virtual bool BeginSetGetChain();
-	virtual void EndSetGetChain();
-	virtual void SetValueAny(const char* sKey, const ScriptAnyValue& any, bool bChain);
-	virtual bool GetValueAny(const char* sKey, ScriptAnyValue& any, bool bChain);
-	virtual void SetAtAny(int nIndex, const ScriptAnyValue& any);
-	virtual bool GetAtAny(int nIndex, ScriptAnyValue& any);
-	virtual ScriptVarType GetValueType(const char* sKey);
-	virtual ScriptVarType GetAtType(int nIdx);
-	virtual IScriptTable::Iterator BeginIteration(bool resolvePrototypeTableAsWell);
-	virtual bool MoveNext(IScriptTable::Iterator& iter);
-	virtual void EndIteration(const IScriptTable::Iterator& iterr);
-	virtual void Clear();
-	virtual int Count();
-	virtual bool Clone(IScriptTable* pSrcTable, bool bDeepCopy, bool bCopyByReference);
-	virtual void Dump(IScriptTableDumpSink* p);
-	virtual bool AddFunction(const IScriptTable::SUserFunctionDesc& fd);
-	void CreateNew() { FCreateNew(this); }
-	void Attach() { FAttach(this); }
-	void DeleteThis() { FDeleteThis(this); }
-	void PushRef() { FPushRefOv1(this); }
-	static void* operator new(uint64_t nSize) { return Foperator new(nSize); }
-	static void operator delete(void* ptr) { Foperator delete(ptr); }
-	static int StdCFunction(lua_State* L) { return FStdCFunction(L); }
-	static int StdCUserDataFunction(lua_State* L) { return FStdCUserDataFunction(L); }
-	static void CloneTable_r(int srcTable, int trgTable) { FCloneTable_r(srcTable, trgTable); }
-	static void ReferenceTable_r(int srcTable, int trgTable) { FReferenceTable_r(srcTable, trgTable); }
-
-#if 0
-	CScriptTable();
-	int GetRef();
-	void AttachToObject(IScriptTable* _arg0_);
-	void Recreate();
-	void SetMetatable(IScriptTable* _arg0_);
-	void PushRef(IScriptTable* _arg0_);
-	static void CloneTable(int _arg0_, int _arg1_);
-#endif
-
+#else
 	static inline auto FAddRef = PreyFunction<void(CScriptTable* const _this)>(0x4678B0);
 	static inline auto FRelease = PreyFunction<void(CScriptTable* const _this)>(0xD30030);
 	static inline auto FGetScriptSystem = PreyFunction<IScriptSystem* (const CScriptTable* const _this)>(0xD32890);
@@ -192,5 +130,5 @@ public:
 	static inline auto FStdCUserDataFunction = PreyFunction<int(lua_State* L)>(0xD335A0);
 	static inline auto FCloneTable_r = PreyFunction<void(int srcTable, int trgTable)>(0xD31FC0);
 	static inline auto FReferenceTable_r = PreyFunction<void(int srcTable, int trgTable)>(0xD32FA0);
+#endif
 };
-#endif // !MOONCRASH
