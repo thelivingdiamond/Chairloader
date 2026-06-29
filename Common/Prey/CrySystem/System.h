@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CrySystem/ITimer.h>
@@ -143,6 +141,7 @@ public:
 		bool m_HardFailure;
 	};
 
+#ifndef MOONCRASH
 	static inline auto FSetDevMode = PreyFunction<void(CSystem* _this, bool bEnable)>(0xDC7720);
 	static inline auto FInitializeEngineModule = PreyFunction<bool(
 		CSystem* _this,
@@ -160,896 +159,7 @@ public:
 	static inline auto FOpenBasicPaks = PreyFunction<void(CSystem* const _this)>(0xDD95F0);
 	static inline auto FCreateFlashPlayerInstance = PreyFunction<IFlashPlayer*(CSystem* const _this)>(0xE5CC10);
 	static inline auto FCreateFlashPlayerBootStrapper = PreyFunction<IFlashPlayerBootStrapper*(CSystem* const _this)>(0xE5CB40);
-	//! Sets whether dev mode is enabled.
-	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
-
-	SSystemGlobalEnvironment* m_env;
-	CTimer m_Time;
-	CCamera m_ViewCamera;
-	volatile bool m_bQuit;
-	bool m_bShaderCacheGenMode;
-	bool m_bRelaunch;
-	int m_iLoadingMode;
-	bool m_bTestMode;
-	bool m_bEditor;
-	bool m_bNoCrashDialog;
-	bool m_bAutoSubmitCrash;
-	bool m_bPreviewMode;
-	bool m_bUIFrameworkMode;
-	bool m_bDedicatedServer;
-	bool m_bIgnoreUpdates;
-	IValidator* m_pValidator;
-	bool m_bForceNonDevMode;
-	bool m_bWasInDevMode;
-	bool m_bInDevMode;
-	bool m_bGameFolderWritable;
-	SDefaultValidator* m_pDefaultValidator;
-	int m_nStrangeRatio;
-	string m_sDelayedScreeenshot;
-	CCpuFeatures* m_pCpu;
-	int m_ttMemStatSS;
-	string m_szCmdLine;
-	int m_iTraceAllocations;
-	SDllHandles m_dll;
-	std::map<CCryNameCRC, void*> m_moduleDLLHandles;
-	CStreamEngine* m_pStreamEngine;
-	IProcess* m_pProcess;
-	IMemoryManager* m_pMemoryManager;
-	CPhysRenderer* m_pPhysRenderer;
-	CCamera m_PhysRendererCamera;
-	ICVar* m_p_draw_helpers_str;
-	int m_iJumpToPhysProfileEnt;
-	CTimeValue m_lastTickTime;
-	ISystemEventDispatcher* m_pSystemEventDispatcher;
-	IFFont* m_pIFont;
-	IBudgetingSystem* m_pIBudgetingSystem;
-	IZLibCompressor* m_pIZLibCompressor;
-	IZLibDecompressor* m_pIZLibDecompressor;
-	ILZ4Decompressor* m_pILZ4Decompressor;
-	CXmlUtils* m_pXMLUtils;
-	Serialization::IArchiveHost* m_pArchiveHost;
-	string m_root;
-	int m_iApplicationInstance;
-	int m_iHeight;
-	int m_iWidth;
-	int m_iColorBits;
-	ICVar* m_sys_dll_ai;
-	ICVar* m_sys_dll_game;
-	ICVar* m_sys_game_folder;
-	ICVar* m_sys_user_folder;
-	ICVar* m_sys_initpreloadpacks;
-	ICVar* m_sys_menupreloadpacks;
-	ICVar* m_cvAIUpdate;
-	ICVar* m_rWidth;
-	ICVar* m_rHeight;
-	ICVar* m_rColorBits;
-	ICVar* m_rDepthBits;
-	ICVar* m_rStencilBits;
-	ICVar* m_rFullscreen;
-	ICVar* m_rDriver;
-	ICVar* m_cvGameName;
-	ICVar* m_rDisplayInfo;
-	ICVar* m_rLogDisplayInfo;
-	ICVar* m_rDisplayInfoTargetFPS;
-	ICVar* m_rOverscanBordersDrawDebugView;
-	ICVar* m_sysNoUpdate;
-	ICVar* m_cvEntitySuppressionLevel;
-	ICVar* m_pCVarQuit;
-	ICVar* m_cvMemStats;
-	ICVar* m_cvMemStatsThreshold;
-	ICVar* m_cvMemStatsMaxDepth;
-	ICVar* m_sysKeyboard;
-	ICVar* m_sysWarnings;
-	ICVar* m_cvSSInfo;
-	ICVar* m_svDedicatedMaxRate;
-	ICVar* m_svAISystem;
-	ICVar* m_clAISystem;
-	ICVar* m_sys_profile;
-	ICVar* m_sys_profile_additionalsub;
-	ICVar* m_sys_profile_graph;
-	ICVar* m_sys_profile_graphScale;
-	ICVar* m_sys_profile_pagefaultsgraph;
-	ICVar* m_sys_profile_filter;
-	ICVar* m_sys_profile_filter_thread;
-	ICVar* m_sys_profile_allThreads;
-	ICVar* m_sys_profile_network;
-	ICVar* m_sys_profile_peak;
-	ICVar* m_sys_profile_peak_time;
-	ICVar* m_sys_profile_memory;
-	ICVar* m_sys_profile_sampler;
-	ICVar* m_sys_profile_sampler_max_samples;
-	ICVar* m_sys_job_system_filter;
-	ICVar* m_sys_job_system_enable;
-	ICVar* m_sys_job_system_profiler;
-	ICVar* m_sys_job_system_max_worker;
-	ICVar* m_sys_spec;
-	ICVar* m_sys_firstlaunch;
-	ICVar* m_sys_audio_disable;
-	ICVar* m_sys_SimulateTask;
-	ICVar* m_sys_min_step;
-	ICVar* m_sys_max_step;
-	ICVar* m_sys_budget;
-	ICVar* m_sys_enable_budgetmonitoring;
-	ICVar* m_ark_budget;
-	ICVar* m_sys_memory_debug;
-	ICVar* m_sys_preload;
-	ICVar* m_gpu_particle_physics;
-	string m_sSavedRDriver;
-	ISystemUserCallback* m_pUserCallback;
-	ICVarsWhitelist* m_pCVarsWhitelist;
-	ILoadConfigurationEntrySink* m_pCVarsWhitelistConfigSink;
-	void* m_hWnd;
-	void* m_hInst;
-	std::vector<SArkFrameProfileInfo> m_profileStats;
-	CrySizerStats* m_pMemStats;
-	CrySizerImpl* m_pSizer;
-	CFrameProfileSystem m_FrameProfileSystem;
-	CThreadProfiler* m_pThreadProfiler;
-	struct IDiskProfiler* m_pDiskProfiler;
-	std::unique_ptr<IPlatformOS> m_pPlatformOS;
-	ICryPerfHUD* m_pPerfHUD;
-	minigui::IMiniGUI* m_pMiniGUI;
-	std::unique_ptr<IArkBethesdaNetManager> m_pBethesdaNetManager;
-	SFileVersion m_fileVersion;
-	SFileVersion m_productVersion;
-	SFileVersion m_buildVersion;
-	ArkBuildInfo m_buildInfo;
-	IDataProbe* m_pDataProbe;
-	CLocalizedStringsManager* m_pLocalizationManager;
-	CNameTable m_nameTable;
-	IThreadTask* m_PhysThread;
-	Telemetry::CFileStream* m_pTelemetryFileStream;
-	Telemetry::CUDPStream* m_pTelemetryUDPStream;
-	ESystemConfigSpec m_nServerConfigSpec;
-	ESystemConfigSpec m_nMaxConfigSpec;
-	std::unique_ptr<CServerThrottle> m_pServerThrottle;
-	CProfilingSystem m_ProfilingSystem;
-	sUpdateTimes m_UpdateTimes[128];
-	unsigned int m_UpdateTimesIdx;
-	bool m_bPaused;
-	unsigned __int8 m_PlatformOSCreateFlags;
-	bool m_bNoUpdate;
-	unsigned __int64 m_nUpdateCounter;
-	int sys_ProfileLevelLoading;
-	int sys_ProfileLevelLoadingDump;
-	CDownloadManager* m_pDownloadManager;
-	std::vector<IErrorObserver*> m_errorObservers;
-	ESystemGlobalState m_systemGlobalState;
-	ISystem::ILoadingProgressListener* m_pProgressListener;
-	CCmdLine* m_pCmdLine;
-	ITestSystem* m_pTestSystem;
-	CThreadTaskManager* m_pThreadTaskManager;
-	CResourceManager* m_pResourceManager;
-	ITextModeConsole* m_pTextModeConsole;
-	INotificationNetwork* m_pNotificationNetwork;
-	string m_binariesDir;
-	string m_currentLanguageAudio;
-	std::vector<std::pair<CTimeValue, float>> m_updateTimes;
-	CMemoryFragmentationProfiler m_MemoryFragmentationProfiler;
-	std::list<CSystem::SErrorMessage> m_ErrorMessages;
-	bool m_bHasRenderedErrorMessage;
-	bool m_bNeedDoWorkDuringOcclusionChecks;
-	ESystemEvent m_eRuntimeState;
-	bool m_bIsAsserting;
-	bool m_bIsSteamInitialized;
-	std::unordered_map<string, string, std::hash<string >, std::equal_to<string >, std::allocator<std::pair<string const, string > > > m_mappedPathLocations;
-	string m_LastSaveFile;
-};
-
-static_assert(sizeof(CSystem) == 0x2E38);
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
-#include <Prey/Ark/ArkBuildInfo.h>
-#include <Prey/CryInput/IInput.h>
-#include <Prey/CryMath/Cry_Camera.h>
-#include <Prey/CryString/CryName.h>
-#include <Prey/CrySystem/CryVersion.h>
-#include <Prey/CrySystem/FrameProfileSystem.h>
-#include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/MemoryFragmentationProfiler.h>
-#include <Prey/CrySystem/System.h>
-#include <Prey/CrySystem/TimeValue.h>
-#include <Prey/CrySystem/Timer.h>
-#include <Prey/CryThreading/CryThread_win32.h>
-#include <_unknown/ISystem.h>
-#include <_unknown/IThreadTask.h>
-#include <_unknown/SArkFrameProfileInfo.h>
-#include <_unknown/SThreadTaskInfo.h>
-
-class CBootProfilerRecord;
-class CCmdLine;
-class CCpuFeatures;
-class CDownloadManager;
-struct CLoadingTimeProfiler;
-class CLocalizedStringsManager;
-class CPNoise3;
-class CPhysRenderer;
-class CResourceManager;
-class CServerThrottle;
-class CStreamEngine;
-class CThreadProfiler;
-class CThreadTaskManager;
-class CXmlUtils;
-class CrySizerImpl;
-class CrySizerStats;
-enum EPLM_Event;
-enum ESubsystem;
-enum class EValidatorModule;
-enum class EValidatorSeverity;
-struct I3DEngine;
-struct IAISystem;
-struct IAVI_Reader;
-class IArkBethesdaNetManager;
-class IArkRoomVolumeManager;
-struct IAudioSystem;
-struct IBudgetingSystem;
-struct ICVar;
-struct ICVarsWhitelist;
-struct ICharacterManager;
-class ICmdLine;
-struct IConsole;
-struct ICryFactoryRegistry;
-struct ICryFont;
-struct ICryPak;
-struct ICryPerfHUD;
-class ICrySizer;
-struct IDataProbe;
-class IDebugCallStack;
-struct IDialogSystem;
-class IDiskProfiler;
-struct IEntitySystem;
-struct IErrorObserver;
-struct IEvaluationManager;
-struct IFFont;
-struct IFileChangeMonitor;
-struct IFlashLoadMovieHandler;
-struct IFlashPlayer;
-struct IFlashPlayerBootStrapper;
-struct IFlashUI;
-struct IFlowSystem;
-struct IFrameProfileSystem;
-struct IGame;
-struct IGameStartup;
-struct IHardwareMouse;
-struct IInput;
-struct ILZ4Decompressor;
-struct ILevelEncrypter;
-struct ILocalizationManager;
-struct ILog;
-struct IMaterialEffects;
-struct IMemoryManager;
-struct IMovieSystem;
-struct INameTable;
-struct INetwork;
-struct INotificationNetwork;
-class IOpticsManager;
-struct IParticleManager;
-struct IPhysRenderer;
-struct IPhysicalWorld;
-struct IPhysicsDebugRenderer;
-struct IPlatformOS;
-struct IProcess;
-struct IRemoteConsole;
-struct IRenderer;
-struct IResourceCollector;
-struct IResourceManager;
-struct IScriptSystem;
-struct IStreamEngine;
-struct ISystemEventDispatcher;
-struct ISystemUserCallback;
-struct ITestSystem;
-struct ITextModeConsole;
-struct IThreadTaskManager;
-struct ITimer;
-struct IValidator;
-struct IVisualLog;
-struct IXmlUtils;
-struct IZLibCompressor;
-struct IZLibDecompressor;
-struct SCryEngineStatsGlobalMemInfo;
-struct SDefaultValidator;
-struct SInputEvent;
-struct SLoadingTimeContainer;
-struct SModuleInitInfo;
-struct SSystemGlobalEnvironment;
-struct SSystemInitParams;
-struct SSystemUpdateStats;
-namespace Serialization
-{
-struct IArchiveHost;
-} // namespace Serialization
-namespace Telemetry
-{
-class CFileStream;
-class CUDPStream;
-} // namespace Telemetry
-class XmlNodeRef;
-namespace minigui
-{
-struct IMiniGUI;
-} // namespace minigui
-
-// BreakListener
-// Header:  CryEngine/crysystem/System.h
-// Include: Prey/CrySystem/System.cpp
-class BreakListener : public IInputEventListener
-{ // Size=8 (0x8)
-public:
-	virtual bool OnInputEvent(const SInputEvent& ie);
-
-	static inline auto FOnInputEvent = PreyFunction<bool(BreakListener* const _this, const SInputEvent& ie)>(0xDDEAE0);
-};
-
-// CPhysicsThreadTask
-// Header:  CryEngine/crysystem/System.h
-// Include: Prey/CrySystem/System.cpp
-class CPhysicsThreadTask : public IThreadTask
-{ // Size=120 (0x78)
-public:
-	volatile int m_bStopRequested;
-	volatile int m_bIsActive;
-	volatile float m_stepRequested;
-	volatile int m_bProcessing;
-	volatile int m_doZeroStep;
-	volatile uint64_t m_lastStepTimeTaken;
-	volatile uint64_t m_lastWaitTimeTaken;
-	CryEvent m_FrameEvent;
-	CryEvent m_FrameDone;
-	SThreadTaskInfo m_TaskInfo;
-
-	virtual void OnUpdate();
-	virtual void Stop();
-	virtual SThreadTaskInfo* GetTaskInfo();
-	virtual void Run();
-	virtual void Cancel();
-	int Pause() { return FPause(this); }
-	int Resume() { return FResume(this); }
-
-#if 0
-	CPhysicsThreadTask();
-	int IsActive();
-	int RequestStep(float _arg0_);
-	float GetRequestedStep();
-	uint64_t LastStepTaken() const;
-	uint64_t LastWaitTime() const;
-	void EnsureStepDone();
-#endif
-
-	static inline auto FOnUpdate = PreyFunction<void(CPhysicsThreadTask* const _this)>(0xDE3CF0);
-	static inline auto FStop = PreyFunction<void(CPhysicsThreadTask* const _this)>(0x5A35F0);
-	static inline auto FGetTaskInfo = PreyFunction<SThreadTaskInfo* (CPhysicsThreadTask* const _this)>(0x1368F30);
-	static inline auto FRun = PreyFunction<void(CPhysicsThreadTask* const _this)>(0xDE4420);
-	static inline auto FCancel = PreyFunction<void(CPhysicsThreadTask* const _this)>(0xDE1600);
-	static inline auto FPause = PreyFunction<int(CPhysicsThreadTask* const _this)>(0xDE4090);
-	static inline auto FResume = PreyFunction<int(CPhysicsThreadTask* const _this)>(0xDE43D0);
-};
-
-// CSystem
-// Header:  CryEngine/crysystem/System.h
-// Include: Prey/CrySystem/NullImplementation/NullResponseSystem.h
-class CSystem
-	: public ISystem
-	, public ILoadConfigurationEntrySink
-	, public ISystemEventListener
-{ // Size=11824 (0x2E30)
-public:
-	enum class MemStatsPurposeEnum
-	{
-		nMSP_ForDisplay = 0,
-		nMSP_ForDump = 1,
-		nMSP_ForCrashLog = 2,
-		nMSP_ForBudget = 3,
-	};
-
-	// CSystem::SDllHandles
-	// Header:  CryEngine/crysystem/System.h
-	struct SDllHandles
-	{ // Size=120 (0x78)
-		void* hRenderer;
-		void* hInput;
-		void* hFlash;
-		void* hSound;
-		void* hEntitySystem;
-		void* hNetwork;
-		void* hAI;
-		void* hMovie;
-		void* hPhysics;
-		void* hFont;
-		void* hScript;
-		void* h3DEngine;
-		void* hAnimation;
-		void* hIndoor;
-		void* hGame;
-	};
-
-	// CSystem::SErrorMessage
-	// Header:  CryEngine/crysystem/System.h
-	struct SErrorMessage
-	{ // Size=32 (0x20)
-		string m_Message;
-		float m_fTimeToShow;
-		float m_Color[4];
-		bool m_HardFailure;
-	};
-
-	using TErrorMessages = std::list<CSystem::SErrorMessage,std::allocator<CSystem::SErrorMessage> >;
-
-	SSystemGlobalEnvironment& m_env;
-	CTimer m_Time;
-	CCamera m_ViewCamera;
-	volatile bool m_bQuit;
-	bool m_bShaderCacheGenMode;
-	bool m_bRelaunch;
-	int m_iLoadingMode;
-	bool m_bTestMode;
-	bool m_bEditor;
-	bool m_bNoCrashDialog;
-	bool m_bAutoSubmitCrash;
-	bool m_bPreviewMode;
-	bool m_bUIFrameworkMode;
-	bool m_bDedicatedServer;
-	bool m_bIgnoreUpdates;
-	IValidator* m_pValidator;
-	bool m_bForceNonDevMode;
-	bool m_bWasInDevMode;
-	bool m_bInDevMode;
-	bool m_bGameFolderWritable;
-	SDefaultValidator* m_pDefaultValidator;
-	int m_nStrangeRatio;
-	string m_sDelayedScreeenshot;
-	CCpuFeatures* m_pCpu;
-	int m_ttMemStatSS;
-	string m_szCmdLine;
-	int m_iTraceAllocations;
-	CSystem::SDllHandles m_dll;
-	std::map<CCryNameCRC, void*> m_moduleDLLHandles;
-	CStreamEngine* m_pStreamEngine;
-	IProcess* m_pProcess;
-	IMemoryManager* m_pMemoryManager;
-	CPhysRenderer* m_pPhysRenderer;
-	CCamera m_PhysRendererCamera;
-	ICVar* m_p_draw_helpers_str;
-	int m_iJumpToPhysProfileEnt;
-	CTimeValue m_lastTickTime;
-	ISystemEventDispatcher* m_pSystemEventDispatcher;
-	IFFont* m_pIFont;
-	IBudgetingSystem* m_pIBudgetingSystem;
-	IZLibCompressor* m_pIZLibCompressor;
-	IZLibDecompressor* m_pIZLibDecompressor;
-	ILZ4Decompressor* m_pILZ4Decompressor;
-	CXmlUtils* m_pXMLUtils;
-	Serialization::IArchiveHost* m_pArchiveHost;
-	string m_root;
-	int m_iApplicationInstance;
-	int m_iHeight;
-	int m_iWidth;
-	int m_iColorBits;
-	ICVar* m_sys_dll_ai;
-	ICVar* m_sys_dll_game;
-	ICVar* m_sys_game_folder;
-	ICVar* m_sys_user_folder;
-	ICVar* m_sys_initpreloadpacks;
-	ICVar* m_sys_menupreloadpacks;
-	ICVar* m_cvAIUpdate;
-	ICVar* m_rWidth;
-	ICVar* m_rHeight;
-	ICVar* m_rColorBits;
-	ICVar* m_rDepthBits;
-	ICVar* m_rStencilBits;
-	ICVar* m_rFullscreen;
-	ICVar* m_rDriver;
-	ICVar* m_cvGameName;
-	ICVar* m_rDisplayInfo;
-	ICVar* m_rLogDisplayInfo;
-	ICVar* m_rDisplayInfoTargetFPS;
-	ICVar* m_rOverscanBordersDrawDebugView;
-	ICVar* m_sysNoUpdate;
-	ICVar* m_cvEntitySuppressionLevel;
-	ICVar* m_pCVarQuit;
-	ICVar* m_cvMemStats;
-	ICVar* m_cvMemStatsThreshold;
-	ICVar* m_cvMemStatsMaxDepth;
-	ICVar* m_sysKeyboard;
-	ICVar* m_sysWarnings;
-	ICVar* m_cvSSInfo;
-	ICVar* m_svDedicatedMaxRate;
-	ICVar* m_svAISystem;
-	ICVar* m_clAISystem;
-	ICVar* m_sys_profile;
-	ICVar* m_sys_profile_additionalsub;
-	ICVar* m_sys_profile_graph;
-	ICVar* m_sys_profile_graphScale;
-	ICVar* m_sys_profile_pagefaultsgraph;
-	ICVar* m_sys_profile_filter;
-	ICVar* m_sys_profile_filter_thread;
-	ICVar* m_sys_profile_allThreads;
-	ICVar* m_sys_profile_network;
-	ICVar* m_sys_profile_peak;
-	ICVar* m_sys_profile_peak_time;
-	ICVar* m_sys_profile_memory;
-	ICVar* m_sys_profile_sampler;
-	ICVar* m_sys_profile_sampler_max_samples;
-	ICVar* m_sys_job_system_filter;
-	ICVar* m_sys_job_system_enable;
-	ICVar* m_sys_job_system_profiler;
-	ICVar* m_sys_job_system_max_worker;
-	ICVar* m_sys_spec;
-	ICVar* m_sys_firstlaunch;
-	ICVar* m_sys_audio_disable;
-	ICVar* m_sys_SimulateTask;
-	ICVar* m_sys_min_step;
-	ICVar* m_sys_max_step;
-	ICVar* m_sys_budget;
-	ICVar* m_sys_enable_budgetmonitoring;
-	ICVar* m_ark_budget;
-	ICVar* m_sys_memory_debug;
-	ICVar* m_sys_preload;
-	ICVar* m_gpu_particle_physics;
-	string m_sSavedRDriver;
-	ISystemUserCallback* m_pUserCallback;
-	ICVarsWhitelist* m_pCVarsWhitelist;
-	ILoadConfigurationEntrySink* m_pCVarsWhitelistConfigSink;
-	void* m_hWnd;
-	void* m_hInst;
-	std::vector<SArkFrameProfileInfo> m_profileStats;
-	CrySizerStats* m_pMemStats;
-	CrySizerImpl* m_pSizer;
-	CFrameProfileSystem m_FrameProfileSystem;
-	CThreadProfiler* m_pThreadProfiler;
-	IDiskProfiler* m_pDiskProfiler;
-	std::unique_ptr<IPlatformOS> m_pPlatformOS;
-	ICryPerfHUD* m_pPerfHUD;
-	minigui::IMiniGUI* m_pMiniGUI;
-	std::unique_ptr<IArkBethesdaNetManager> m_pBethesdaNetManager;
-	SFileVersion m_fileVersion;
-	SFileVersion m_productVersion;
-	SFileVersion m_buildVersion;
-	ArkBuildInfo m_buildInfo;
-	IDataProbe* m_pDataProbe;
-	CLocalizedStringsManager* m_pLocalizationManager;
-	CNameTable m_nameTable;
-	IThreadTask* m_PhysThread;
-	Telemetry::CFileStream* m_pTelemetryFileStream;
-	Telemetry::CUDPStream* m_pTelemetryUDPStream;
-	ESystemConfigSpec m_nServerConfigSpec;
-	ESystemConfigSpec m_nMaxConfigSpec;
-	std::unique_ptr<CServerThrottle> m_pServerThrottle;
-	sUpdateTimes m_UpdateTimes[128];
-	unsigned m_UpdateTimesIdx;
-	bool m_bPaused;
-	uint8_t m_PlatformOSCreateFlags;
-	bool m_bNoUpdate;
-	uint64_t m_nUpdateCounter;
-	int sys_ProfileLevelLoading;
-	int sys_ProfileLevelLoadingDump;
-	CDownloadManager* m_pDownloadManager;
-	std::vector<IErrorObserver*> m_errorObservers;
-	ESystemGlobalState m_systemGlobalState;
-	ISystem::ILoadingProgressListener* m_pProgressListener;
-	CCmdLine* m_pCmdLine;
-	ITestSystem* m_pTestSystem;
-	CThreadTaskManager* m_pThreadTaskManager;
-	CResourceManager* m_pResourceManager;
-	ITextModeConsole* m_pTextModeConsole;
-	INotificationNetwork* m_pNotificationNetwork;
-	string m_binariesDir;
-	string m_currentLanguageAudio;
-	std::vector<std::pair<CTimeValue, float>> m_updateTimes;
-	CMemoryFragmentationProfiler m_MemoryFragmentationProfiler;
-	std::list<CSystem::SErrorMessage,std::allocator<CSystem::SErrorMessage> > m_ErrorMessages;
-	bool m_bHasRenderedErrorMessage;
-	bool m_bNeedDoWorkDuringOcclusionChecks;
-	ESystemEvent m_eRuntimeState;
-	bool m_bIsAsserting;
-	bool m_bIsSteamInitialized;
-	std::unordered_map<string, string> m_mappedPathLocations;
-	string m_LastSaveFile;
-
-	CSystem();
-	virtual ~CSystem();
-	virtual bool IsUIFrameworkMode();
-	static void OnLanguageCVarChanged(ICVar* const pLanguage) { FOnLanguageCVarChanged(pLanguage); }
-	static void OnLanguageAudioCVarChanged(ICVar* const pLanguageAudio) { FOnLanguageAudioCVarChanged(pLanguageAudio); }
-	static void OnLocalizationFolderCVarChanged(ICVar* const pLocalizationFolder) { FOnLocalizationFolderCVarChanged(pLocalizationFolder); }
-	virtual void OnLoadConfigurationEntry(const char* szKey, const char* szValue, const char* szGroup);
-	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	virtual bool Init(const SSystemInitParams& startupParams);
-	virtual void Release();
-	virtual SSystemGlobalEnvironment* GetGlobalEnvironment();
-	virtual const char* GetRootFolder() const;
-	void LimitFramerate() { FLimitFramerate(this); }
-	virtual bool Update(int updateFlags, int nPauseMode);
-	virtual bool UpdateLoadtime();
-	virtual void DoWorkDuringOcclusionChecks();
-	virtual bool NeedDoWorkDuringOcclusionChecks();
-	virtual void RenderBegin(bool _bUpdateFrameId);
-	virtual void Render();
-	virtual void RenderEnd(bool bRenderStats);
-	void UpdateLoadingScreen() { FUpdateLoadingScreen(this); }
-	virtual void SynchronousLoadingTick(const char* pFunc, int line);
-	virtual void RenderStatistics();
-	virtual void RenderPhysicsStatistics(IPhysicalWorld* pWorld);
-	virtual unsigned GetUsedMemory();
-	virtual void DumpMemoryUsageStatistics(bool bUseKB);
-	virtual void DumpMemoryCoverage();
-	virtual bool SteamInit();
-	virtual void Relaunch(bool bRelaunch);
-	virtual bool IsRelaunch() const;
-	virtual void SerializingFile(int mode);
-	virtual int IsSerializingFile() const;
-	virtual void Quit();
-	virtual bool IsQuitting() const;
-	virtual bool IsShaderCacheGenMode() const;
-	void SetAffinity() { FSetAffinity(this); }
-	virtual const char* GetUserName();
-	virtual int GetApplicationInstance();
-	virtual sUpdateTimes& GetCurrentUpdateTimeStats();
-	virtual const sUpdateTimes* GetUpdateTimeStats(unsigned& index, unsigned& num);
-	virtual IGame* GetIGame();
-	virtual INetwork* GetINetwork();
-	virtual IRenderer* GetIRenderer();
-	virtual IInput* GetIInput();
-	virtual ITimer* GetITimer();
-	virtual ICryPak* GetIPak();
-	virtual IConsole* GetIConsole();
-	virtual IRemoteConsole* GetIRemoteConsole();
-	virtual IScriptSystem* GetIScriptSystem();
-	virtual I3DEngine* GetI3DEngine();
-	virtual ICharacterManager* GetIAnimationSystem();
-	virtual IAudioSystem* GetIAudioSystem();
-	virtual IArkRoomVolumeManager* GetIArkRoomVolumeManager();
-	virtual IPhysicalWorld* GetIPhysicalWorld();
-	virtual IMovieSystem* GetIMovieSystem();
-	virtual IAISystem* GetAISystem();
-	virtual IMemoryManager* GetIMemoryManager();
-	virtual IEntitySystem* GetIEntitySystem();
-	virtual ICryFont* GetICryFont();
-	virtual ILog* GetILog();
-	virtual ICmdLine* GetICmdLine();
-	virtual IStreamEngine* GetStreamEngine();
-	virtual IValidator* GetIValidator();
-	virtual IPhysicsDebugRenderer* GetIPhysicsDebugRenderer();
-	virtual IPhysRenderer* GetIPhysRenderer();
-	virtual IFrameProfileSystem* GetIProfileSystem();
-	virtual IDiskProfiler* GetIDiskProfiler();
-	virtual INameTable* GetINameTable();
-	virtual IBudgetingSystem* GetIBudgetingSystem();
-	virtual IFlowSystem* GetIFlowSystem();
-	virtual IDialogSystem* GetIDialogSystem();
-	virtual IHardwareMouse* GetIHardwareMouse();
-	virtual ISystemEventDispatcher* GetISystemEventDispatcher();
-	virtual ITestSystem* GetITestSystem();
-	virtual IThreadTaskManager* GetIThreadTaskManager();
-	virtual IResourceManager* GetIResourceManager();
-	virtual ITextModeConsole* GetITextModeConsole();
-	virtual IFileChangeMonitor* GetIFileChangeMonitor();
-	virtual IVisualLog* GetIVisualLog();
-	virtual INotificationNetwork* GetINotificationNetwork();
-	virtual IPlatformOS* GetPlatformOS();
-	virtual ICryPerfHUD* GetPerfHUD();
-	virtual IZLibCompressor* GetIZLibCompressor();
-	virtual IZLibDecompressor* GetIZLibDecompressor();
-	virtual ILZ4Decompressor* GetLZ4Decompressor();
-	virtual IArkBethesdaNetManager* GetIArkBethesdaNetManager();
-	virtual void* GetHWND();
-	virtual CPNoise3* GetNoiseGen();
-	virtual uint64_t GetUpdateCounter();
-	virtual void SetLoadingProgressListener(ISystem::ILoadingProgressListener* pLoadingProgressListener);
-	virtual ISystem::ILoadingProgressListener* GetLoadingProgressListener() const;
-	virtual void SetIGame(IGame* pGame);
-	virtual void SetIFlowSystem(IFlowSystem* pFlowSystem);
-	virtual void SetIDialogSystem(IDialogSystem* pDialogSystem);
-	virtual void SetIMaterialEffects(IMaterialEffects* pMaterialEffects);
-	virtual void SetIParticleManager(IParticleManager* pParticleManager);
-	virtual void SetIOpticsManager(IOpticsManager* pOpticsManager);
-	virtual void SetIArkRoomVolumeManager(IArkRoomVolumeManager* pRoomVolumeManager);
-	virtual void SetIFileChangeMonitor(IFileChangeMonitor* pFileChangeMonitor);
-	virtual void SetIVisualLog(IVisualLog* pVisualLog);
-	virtual void SetIFlashUI(IFlashUI* pFlashUI);
-	virtual void ChangeUserPath(const char* sUserPath);
-	void DetectGameFolderAccessRights() { FDetectGameFolderAccessRights(this); }
-	virtual void ExecuteCommandLine();
-	virtual void GetUpdateStats(SSystemUpdateStats& stats);
-	virtual XmlNodeRef CreateXmlNode(const char* sNodeName, bool bReuseStrings);
-	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings, unsigned _nFileFlags);
-	virtual XmlNodeRef LoadXmlFromBuffer(const char* buffer, uint64_t size, bool bReuseStrings);
-	virtual IXmlUtils* GetXmlUtils();
-	virtual Serialization::IArchiveHost* GetArchiveHost() const;
-	virtual void SetViewCamera(CCamera& Camera);
-	virtual CCamera& GetViewCamera();
-	virtual unsigned GetCPUFlags();
-	virtual int GetLogicalCPUCount();
-	virtual void IgnoreUpdates(bool bIgnore);
-	virtual void SetIProcess(IProcess* process);
-	virtual IProcess* GetIProcess();
-	virtual bool IsTestMode() const;
-	virtual void DisplayErrorMessage(const char* acMessage, float fTime, const float* pfColor, bool bHardError);
-	virtual void FatalError(const char* format, ... ArgList);
-	virtual void ReportBug(const char* format, ... szBuffer);
-	virtual void OpenArkBugReporter(const char* _bugString);
-	virtual void SetLastSaveFile(const char* _saveGameFileName);
-	virtual const char* GetLastSaveFile();
-	virtual void WarningV(EValidatorModule module, EValidatorSeverity severity, int flags, const char* file, const char* format, char* args);
-	virtual void Warning(EValidatorModule module, EValidatorSeverity severity, int flags, const char* file, const char* format, ... _arg5_);
-	virtual int ShowMessage(const char* text, const char* caption, unsigned uType);
-	virtual bool CheckLogVerbosity(int verbosity);
-	virtual void DebugStats(bool checkpoint, bool leaks);
-	virtual void DumpWinHeaps();
-	virtual int DumpMMStats(bool log);
-	virtual ICVarsWhitelist* GetCVarsWhiteList() const;
-	virtual ILoadConfigurationEntrySink* GetCVarsWhiteListConfigSink() const;
-	virtual void SaveConfiguration();
-	virtual void LoadConfiguration(const char* sFilename, ILoadConfigurationEntrySink* pSink, bool allowMissing);
-	virtual ESystemConfigSpec GetConfigSpec(bool bClient);
-	virtual void SetConfigSpec(ESystemConfigSpec spec, bool bClient);
-	virtual ESystemConfigSpec GetMaxConfigSpec() const;
-	virtual int SetThreadState(ESubsystem subsys, bool bActive);
-	virtual ICrySizer* CreateSizer();
-	virtual bool IsPaused() const;
-	virtual IFlashPlayer* CreateFlashPlayerInstance() const;
-	virtual IFlashPlayerBootStrapper* CreateFlashPlayerBootStrapper() const;
-	virtual void SetFlashLoadMovieHandler(IFlashLoadMovieHandler* pHandler) const;
-	virtual void GetFlashProfileResults(float& accumTime, bool __unnamed1) const;
-	virtual void ResetFlashMeshCache() const;
-	virtual void GFxAmpEnable(bool bEnable);
-	virtual void GFxAmpAdvanceFrame();
-	virtual void ResetFlashDirtyState();
-	virtual IAVI_Reader* CreateAVIReader();
-	virtual void ReleaseAVIReader(IAVI_Reader* pAVIReader);
-	virtual ILocalizationManager* GetLocalizationManager();
-	virtual IDebugCallStack* GetIDebugCallstack();
-	virtual void debug_LogCallStack(int nMaxFuncs, int nFlags);
-	virtual ICryFactoryRegistry* GetCryFactoryRegistry() const;
-	virtual ILevelEncrypter* GetLevelEncrypter();
-	virtual IEvaluationManager* GetEvaluationManager();
-	virtual char* GetDeveloperName(char* devName);
-	void CollectMemStats(ICrySizer* pSizer, CSystem::MemStatsPurposeEnum nPurpose, std::vector<SmallModuleInfo>* pStats) { FCollectMemStats(this, pSizer, nPurpose, pStats); }
-	void GetExeSizes(ICrySizer* pSizer, CSystem::MemStatsPurposeEnum nPurpose) { FGetExeSizes(this, pSizer, nPurpose); }
-	void TickMemStats(CSystem::MemStatsPurposeEnum nPurpose, IResourceCollector* pResourceCollector) { FTickMemStats(this, nPurpose, pResourceCollector); }
-	virtual bool InitializeEngineModule(const SModuleInitInfo& _initInfo, const SSystemInitParams& initParams, bool bQuitIfNotFound);
-	virtual bool UnloadEngineModule(const SModuleInitInfo& _initInfo);
-	void ShutDown() { FShutDown(this); }
-	bool InitRenderer(void* hinst, void* hwnd, const SSystemInitParams& initParams) { return FInitRenderer(this, hinst, hwnd, initParams); }
-	bool InitPhysics(const SSystemInitParams& initParams) { return FInitPhysics(this, initParams); }
-	bool InitPhysicsRenderer(const SSystemInitParams& initParams) { return FInitPhysicsRenderer(this, initParams); }
-	bool InitFont(const SSystemInitParams& initParams) { return FInitFont(this, initParams); }
-	bool InitFileSystem(const IGameStartup* pGameStartup) { return FInitFileSystem(this, pGameStartup); }
-	bool InitFileSystem_LoadEngineFolders() { return FInitFileSystem_LoadEngineFolders(this); }
-	bool InitSoundSystem(const SSystemInitParams& _initParams) { return FInitSoundSystem(this, _initParams); }
-	bool OpenRenderLibrary(int type, const SSystemInitParams& initParams) { return FOpenRenderLibraryOv1(this, type, initParams); }
-	void LoadPathMappings() { FLoadPathMappings(this); }
-	virtual void OverridePathMappings(const char* const _mappedPathFileLoc);
-	void LoadBuildInfo() { FLoadBuildInfo(this); }
-	void ShutdownArkProfile() { FShutdownArkProfile(this); }
-	void StopArkProfile() { FStopArkProfile(this); }
-	virtual const std::vector<SArkFrameProfileInfo>& GetProfileData() const;
-	virtual void ClearProfileData();
-	void CreateRendererVars(const SSystemInitParams& startupParams) { FCreateRendererVars(this, startupParams); }
-	void CreateSystemVars() { FCreateSystemVars(this); }
-	void RenderFlashInfo() { FRenderFlashInfo(this); }
-	virtual void GetFlashMemoryUsage(ICrySizer* pSizer) const;
-	void QueryVersionInfo() { FQueryVersionInfo(this); }
-	void LogVersion() { FLogVersion(this); }
-	void LogBuildInfo() { FLogBuildInfo(this); }
-	void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
-	static void TelemetryStreamFileChanged(ICVar* pCVar) { FTelemetryStreamFileChanged(pCVar); }
-	static void TelemetryStreamIPChanged(ICVar* pCVar) { FTelemetryStreamIPChanged(pCVar); }
-	bool ReLaunchMediaCenter() { return FReLaunchMediaCenter(this); }
-	void LogSystemInfo() { FLogSystemInfo(this); }
-	void UpdateAudioSystems() { FUpdateAudioSystems(this); }
-	void AddCVarGroupDirectory(const string& sPath) { FAddCVarGroupDirectory(this, sPath); }
-	void EnableFloatExceptions(int type) { FEnableFloatExceptions(this, type); }
-	virtual string GetMappedPathLocation(const string& _identifier) const;
-	virtual IDataProbe* GetIDataProbe();
-	virtual void SetForceNonDevMode(const bool bValue);
-	virtual bool GetForceNonDevMode() const;
-	virtual bool WasInDevMode() const;
-	virtual bool IsDevMode() const;
-	virtual void AutoDetectSpec(const bool detectResolution);
-	virtual void AsyncMemcpy(void* dst, const void* src, uint64_t size, int nFlags, volatile int* sync);
-	virtual void OnPLMEvent(EPLM_Event event);
-	virtual void SetFrameProfiler(bool on, bool display, char* prefix);
-	virtual const SFileVersion& GetFileVersion();
-	virtual const SFileVersion& GetProductVersion();
-	virtual const SFileVersion& GetBuildVersion();
-	virtual const ArkBuildInfo& GetBuildInfo();
-	virtual void AddRuntimeBuildInfo(const char* key, const char* value);
-	virtual bool WriteCompressedFile(const char* filename, void* data, unsigned bitlen);
-	virtual unsigned ReadCompressedFile(const char* filename, void* data, unsigned maxbitlen);
-	virtual unsigned GetCompressedFileSizeA(const char* filename);
-	virtual bool CompressDataBlock(const void* input, uint64_t inputSize, void* output, uint64_t& outputSize, int level);
-	virtual bool DecompressDataBlock(const void* input, uint64_t inputSize, void* output, uint64_t& outputSize);
-	void OpenBasicPaks() { FOpenBasicPaks(this); }
-	void OpenLanguagePak(const char* const sLanguage) { FOpenLanguagePak(this, sLanguage); }
-	void OpenLanguageAudioPak(const char* const sLanguage) { FOpenLanguageAudioPak(this, sLanguage); }
-	void GetLocalizedPath(const char* const szLanguage, CryStackStringT<char,512>& sLocalizedPath, bool bPatchPath) { FGetLocalizedPath(this, szLanguage, sLocalizedPath, bPatchPath); }
-	void GetLocalizedAudioPath(const char* const szLanguage, CryStackStringT<char,512>& sLocalizedPath, bool bPatchPath) { FGetLocalizedAudioPath(this, szLanguage, sLocalizedPath, bPatchPath); }
-	void CloseLanguagePak(const char* const szLanguage) { FCloseLanguagePak(this, szLanguage); }
-	void CloseLanguageAudioPak(const char* const szLanguage) { FCloseLanguageAudioPak(this, szLanguage); }
-	virtual void OutputLoadingTimeStats();
-	virtual SLoadingTimeContainer* StartLoadingSectionProfiling(CLoadingTimeProfiler* pProfiler, const char* szFuncName);
-	virtual void EndLoadingSectionProfiling(CLoadingTimeProfiler* pProfiler);
-	virtual const char* GetLoadingProfilerCallstack();
-	virtual CBootProfilerRecord* StartBootSectionProfiler(const char* name, const char* args);
-	virtual void StopBootSectionProfiler(CBootProfilerRecord* record);
-	virtual void StartBootProfilerSessionFrames(const char* pName);
-	virtual void StopBootProfilerSessionFrames();
-	virtual bool RegisterErrorObserver(IErrorObserver* errorObserver);
-	virtual bool UnregisterErrorObserver(IErrorObserver* errorObserver);
-	virtual void OnAssert(const char* condition, const char* message, const char* fileName, unsigned fileLineNumber);
-	virtual void OnScriptWarning(const char* _message);
-	void OnFatalError(const char* message) { FOnFatalError(this, message); }
-	virtual bool IsAssertDialogVisible() const;
-	virtual void SetAssertVisible(bool bAssertVisble);
-	virtual void ClearErrorMessages();
-	virtual void AddPlatformOSCreateFlag(const uint8_t createFlag);
-	virtual ESystemGlobalState GetSystemGlobalState();
-	virtual void SetSystemGlobalState(const ESystemGlobalState systemGlobalState);
-	void InitLocalization(const char* languageName) { FInitLocalization(this, languageName); }
-
-#if 0
-	void RenderPhysicsHelpers();
-	void CollectMemInfo(SCryEngineStatsGlobalMemInfo& _arg0_);
-	CThreadProfiler* GetThreadProfiler();
-	void SetGCFrequency(const float _arg0_);
-	void SleepIfNeeded();
-	void LogCallStack();
-	ISystemUserCallback* GetUserCallback() const;
-	static void debug_GetCallStackRaw(void* * _arg0_, unsigned& _arg1_);
-	void SleepIfInactive();
-	bool LoadEngineDLLs();
-	bool InitNetwork(const SSystemInitParams& _arg0_);
-	bool InitOnline(const SSystemInitParams& _arg0_);
-	bool InitLobby(const SSystemInitParams& _arg0_);
-	bool InitInput(const SSystemInitParams& _arg0_);
-	bool InitConsole();
-	bool InitFlash();
-	bool InitAISystem(const SSystemInitParams& _arg0_);
-	bool InitScriptSystem(const SSystemInitParams& _arg0_);
-	void LoadPatchPaks();
-	bool InitStreamEngine();
-	bool Init3DEngine(const SSystemInitParams& _arg0_);
-	bool InitAnimationSystem(const SSystemInitParams& _arg0_);
-	bool InitMovieSystem(const SSystemInitParams& _arg0_);
-	bool InitEntitySystem(const SSystemInitParams& _arg0_);
-	bool OpenRenderLibrary(const char* _arg0_, const SSystemInitParams& _arg1_);
-	bool CloseRenderLibrary();
-	void Strange();
-	bool ParseSystemConfig(string& _arg0_);
-	bool InitArkProfile(const SSystemInitParams& _arg0_);
-	bool StartArkProfile(int _arg0_);
-	void UpdateArkProfile();
-	void CreateAudioVars();
-	void RenderStats();
-	void RenderOverscanBorders();
-	void RenderJobStats();
-	void RenderMemStats();
-	void RenderThreadInfo();
-	void* LoadDLL(const char* _arg0_, bool _arg1_);
-	bool UnloadDLL(const char* _arg0_);
-	void FreeLib(void* _arg0_);
-	void InitScriptDebugger();
-	void CreatePhysicsThread();
-	void KillPhysicsThread();
-	void* LoadDynamiclibrary(const char* _arg0_) const;
-	bool GetWinGameFolder(char* _arg0_, int _arg1_);
-	ICVar* attachVariable(const char* _arg0_, int* _arg1_, const char* _arg2_, int _arg3_);
-	CCpuFeatures* GetCPUFeatures();
-	string& GetDelayedScreeenshot();
-	const CTimeValue& GetLastTickTime() const;
-	const ICVar* GetDedicatedMaxRate() const;
-	void Deltree(const char* _arg0_, bool _arg1_);
-	void UpdateMovieSystem(const int _arg0_, const float _arg1_, const bool _arg2_);
-	bool IsLoading();
-	static const char* GetSystemGlobalStateName(const ESystemGlobalState _arg0_);
-	void UpdateUpdateTimes();
-	bool InitArkRewardSystem();
-	bool InitArkEntitlementSystem();
-	bool InitArkCommerceSystem();
-#endif
-
+#else
 	static inline auto FCSystem = PreyFunction<void(CSystem* const _this)>(0xDDFF90);
 	static inline auto FBitNotCSystem = PreyFunction<void(CSystem* const _this)>(0xDE08D0);
 	static inline auto FIsUIFrameworkMode = PreyFunction<bool(CSystem* const _this)>(0xDE32A0);
@@ -1291,37 +401,181 @@ public:
 	static inline auto FGetSystemGlobalState = PreyFunction<ESystemGlobalState(CSystem* const _this)>(0xDE30B0);
 	static inline auto FSetSystemGlobalState = PreyFunction<void(CSystem* const _this, const ESystemGlobalState systemGlobalState)>(0xDE48D0);
 	static inline auto FInitLocalization = PreyFunction<void(CSystem* const _this, const char* languageName)>(0xDF2950);
-};
-
-// SBreakListenerTask
-// Header:  CryEngine/crysystem/System.h
-// Include: Prey/CrySystem/System.cpp
-struct SBreakListenerTask : public IThreadTask
-{ // Size=72 (0x48)
-	volatile int m_bStop;
-	int m_nBreakIdle;
-	SThreadTaskInfo m_TaskInfo;
-
-	virtual void OnUpdate();
-	virtual void Stop();
-	virtual SThreadTaskInfo* GetTaskInfo();
-
-#if 0
-	SBreakListenerTask();
 #endif
+	//! Sets whether dev mode is enabled.
+	inline void SetDevMode(bool bEnable) { FSetDevMode(this, bEnable); }
 
-	static inline auto FOnUpdate = PreyFunction<void(SBreakListenerTask* const _this)>(0xDDEB10);
-	static inline auto FStop = PreyFunction<void(SBreakListenerTask* const _this)>(0xDDEBA0);
-	static inline auto FGetTaskInfo = PreyFunction<SThreadTaskInfo* (SBreakListenerTask* const _this)>(0x10ED260);
+	SSystemGlobalEnvironment* m_env;
+	CTimer m_Time;
+	CCamera m_ViewCamera;
+	volatile bool m_bQuit;
+	bool m_bShaderCacheGenMode;
+	bool m_bRelaunch;
+	int m_iLoadingMode;
+	bool m_bTestMode;
+	bool m_bEditor;
+	bool m_bNoCrashDialog;
+	bool m_bAutoSubmitCrash;
+	bool m_bPreviewMode;
+	bool m_bUIFrameworkMode;
+	bool m_bDedicatedServer;
+	bool m_bIgnoreUpdates;
+	IValidator* m_pValidator;
+	bool m_bForceNonDevMode;
+	bool m_bWasInDevMode;
+	bool m_bInDevMode;
+	bool m_bGameFolderWritable;
+	SDefaultValidator* m_pDefaultValidator;
+	int m_nStrangeRatio;
+	string m_sDelayedScreeenshot;
+	CCpuFeatures* m_pCpu;
+	int m_ttMemStatSS;
+	string m_szCmdLine;
+	int m_iTraceAllocations;
+	SDllHandles m_dll;
+	std::map<CCryNameCRC, void*> m_moduleDLLHandles;
+	CStreamEngine* m_pStreamEngine;
+	IProcess* m_pProcess;
+	IMemoryManager* m_pMemoryManager;
+	CPhysRenderer* m_pPhysRenderer;
+	CCamera m_PhysRendererCamera;
+	ICVar* m_p_draw_helpers_str;
+	int m_iJumpToPhysProfileEnt;
+	CTimeValue m_lastTickTime;
+	ISystemEventDispatcher* m_pSystemEventDispatcher;
+	IFFont* m_pIFont;
+	IBudgetingSystem* m_pIBudgetingSystem;
+	IZLibCompressor* m_pIZLibCompressor;
+	IZLibDecompressor* m_pIZLibDecompressor;
+	ILZ4Decompressor* m_pILZ4Decompressor;
+	CXmlUtils* m_pXMLUtils;
+	Serialization::IArchiveHost* m_pArchiveHost;
+	string m_root;
+	int m_iApplicationInstance;
+	int m_iHeight;
+	int m_iWidth;
+	int m_iColorBits;
+	ICVar* m_sys_dll_ai;
+	ICVar* m_sys_dll_game;
+	ICVar* m_sys_game_folder;
+	ICVar* m_sys_user_folder;
+	ICVar* m_sys_initpreloadpacks;
+	ICVar* m_sys_menupreloadpacks;
+	ICVar* m_cvAIUpdate;
+	ICVar* m_rWidth;
+	ICVar* m_rHeight;
+	ICVar* m_rColorBits;
+	ICVar* m_rDepthBits;
+	ICVar* m_rStencilBits;
+	ICVar* m_rFullscreen;
+	ICVar* m_rDriver;
+	ICVar* m_cvGameName;
+	ICVar* m_rDisplayInfo;
+	ICVar* m_rLogDisplayInfo;
+	ICVar* m_rDisplayInfoTargetFPS;
+	ICVar* m_rOverscanBordersDrawDebugView;
+	ICVar* m_sysNoUpdate;
+	ICVar* m_cvEntitySuppressionLevel;
+	ICVar* m_pCVarQuit;
+	ICVar* m_cvMemStats;
+	ICVar* m_cvMemStatsThreshold;
+	ICVar* m_cvMemStatsMaxDepth;
+	ICVar* m_sysKeyboard;
+	ICVar* m_sysWarnings;
+	ICVar* m_cvSSInfo;
+	ICVar* m_svDedicatedMaxRate;
+	ICVar* m_svAISystem;
+	ICVar* m_clAISystem;
+	ICVar* m_sys_profile;
+	ICVar* m_sys_profile_additionalsub;
+	ICVar* m_sys_profile_graph;
+	ICVar* m_sys_profile_graphScale;
+	ICVar* m_sys_profile_pagefaultsgraph;
+	ICVar* m_sys_profile_filter;
+	ICVar* m_sys_profile_filter_thread;
+	ICVar* m_sys_profile_allThreads;
+	ICVar* m_sys_profile_network;
+	ICVar* m_sys_profile_peak;
+	ICVar* m_sys_profile_peak_time;
+	ICVar* m_sys_profile_memory;
+	ICVar* m_sys_profile_sampler;
+	ICVar* m_sys_profile_sampler_max_samples;
+	ICVar* m_sys_job_system_filter;
+	ICVar* m_sys_job_system_enable;
+	ICVar* m_sys_job_system_profiler;
+	ICVar* m_sys_job_system_max_worker;
+	ICVar* m_sys_spec;
+	ICVar* m_sys_firstlaunch;
+	ICVar* m_sys_audio_disable;
+	ICVar* m_sys_SimulateTask;
+	ICVar* m_sys_min_step;
+	ICVar* m_sys_max_step;
+	ICVar* m_sys_budget;
+	ICVar* m_sys_enable_budgetmonitoring;
+	ICVar* m_ark_budget;
+	ICVar* m_sys_memory_debug;
+	ICVar* m_sys_preload;
+	ICVar* m_gpu_particle_physics;
+	string m_sSavedRDriver;
+	ISystemUserCallback* m_pUserCallback;
+	ICVarsWhitelist* m_pCVarsWhitelist;
+	ILoadConfigurationEntrySink* m_pCVarsWhitelistConfigSink;
+	void* m_hWnd;
+	void* m_hInst;
+	std::vector<SArkFrameProfileInfo> m_profileStats;
+	CrySizerStats* m_pMemStats;
+	CrySizerImpl* m_pSizer;
+	CFrameProfileSystem m_FrameProfileSystem;
+	CThreadProfiler* m_pThreadProfiler;
+	struct IDiskProfiler* m_pDiskProfiler;
+	std::unique_ptr<IPlatformOS> m_pPlatformOS;
+	ICryPerfHUD* m_pPerfHUD;
+	minigui::IMiniGUI* m_pMiniGUI;
+	std::unique_ptr<IArkBethesdaNetManager> m_pBethesdaNetManager;
+	SFileVersion m_fileVersion;
+	SFileVersion m_productVersion;
+	SFileVersion m_buildVersion;
+	ArkBuildInfo m_buildInfo;
+	IDataProbe* m_pDataProbe;
+	CLocalizedStringsManager* m_pLocalizationManager;
+	CNameTable m_nameTable;
+	IThreadTask* m_PhysThread;
+	Telemetry::CFileStream* m_pTelemetryFileStream;
+	Telemetry::CUDPStream* m_pTelemetryUDPStream;
+	ESystemConfigSpec m_nServerConfigSpec;
+	ESystemConfigSpec m_nMaxConfigSpec;
+	std::unique_ptr<CServerThrottle> m_pServerThrottle;
+	CProfilingSystem m_ProfilingSystem;
+	sUpdateTimes m_UpdateTimes[128];
+	unsigned int m_UpdateTimesIdx;
+	bool m_bPaused;
+	unsigned __int8 m_PlatformOSCreateFlags;
+	bool m_bNoUpdate;
+	unsigned __int64 m_nUpdateCounter;
+	int sys_ProfileLevelLoading;
+	int sys_ProfileLevelLoadingDump;
+	CDownloadManager* m_pDownloadManager;
+	std::vector<IErrorObserver*> m_errorObservers;
+	ESystemGlobalState m_systemGlobalState;
+	ISystem::ILoadingProgressListener* m_pProgressListener;
+	CCmdLine* m_pCmdLine;
+	ITestSystem* m_pTestSystem;
+	CThreadTaskManager* m_pThreadTaskManager;
+	CResourceManager* m_pResourceManager;
+	ITextModeConsole* m_pTextModeConsole;
+	INotificationNetwork* m_pNotificationNetwork;
+	string m_binariesDir;
+	string m_currentLanguageAudio;
+	std::vector<std::pair<CTimeValue, float>> m_updateTimes;
+	CMemoryFragmentationProfiler m_MemoryFragmentationProfiler;
+	std::list<CSystem::SErrorMessage> m_ErrorMessages;
+	bool m_bHasRenderedErrorMessage;
+	bool m_bNeedDoWorkDuringOcclusionChecks;
+	ESystemEvent m_eRuntimeState;
+	bool m_bIsAsserting;
+	bool m_bIsSteamInitialized;
+	std::unordered_map<string, string, std::hash<string >, std::equal_to<string >, std::allocator<std::pair<string const, string > > > m_mappedPathLocations;
+	string m_LastSaveFile;
 };
 
-// SCVarsWhitelistConfigSink
-// Header:  CryEngine/crysystem/System.h
-// Include: Prey/CrySystem/System.cpp
-struct SCVarsWhitelistConfigSink : public ILoadConfigurationEntrySink
-{ // Size=8 (0x8)
-	virtual void OnLoadConfigurationEntry(const char* szKey, const char* szValue, const char* szGroup);
-
-	static inline auto FOnLoadConfigurationEntry = PreyFunction<void(SCVarsWhitelistConfigSink* const _this, const char* szKey, const char* szValue, const char* szGroup)>(0xDDEBF0);
-};
-#endif // !MOONCRASH
+static_assert(sizeof(CSystem) == 0x2E38);

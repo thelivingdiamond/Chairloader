@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/Ark/IArkRewardSystem.h>
@@ -123,6 +121,7 @@ public:
 	bool SuppressRewards() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCArkRewardSystemOv1 = PreyFunction<void(CArkRewardSystem* const _this)>(0xD5C0F0);
 	static inline auto FInit = PreyFunction<bool(CArkRewardSystem* const _this)>(0xD5C710);
 	static inline auto FSetActiveUserId = PreyFunction<void(CArkRewardSystem* const _this, unsigned _userId)>(0xD5D0B0);
@@ -137,94 +136,7 @@ public:
 	static inline auto FSetCallbackHandler = PreyFunction<void(CArkRewardSystem* const _this, IArkRewardSystemCallbackHandler* _pHandler)>(0x9FBCE0);
 	static inline auto FInternalTrackableUpdated = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackableId, unsigned _oldVal, unsigned _newVal)>(0xA13080);
 	static inline auto FInternalRewardUnlocked = PreyFunction<void(CArkRewardSystem* const _this, unsigned _rewardId)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CrySystem/Ark/IArkRewardSystem.h>
-#include <_unknown/CPlatformOS_ServiceTaskBase.h>
-
-struct IArkRewardSystemCallbackHandler;
-
-// CArkRewardSystem
-// Header:  CryEngine/CrySystem/Ark/ArkRewardSystem.h
-class CArkRewardSystem : public IArkRewardSystem
-{ // Size=136 (0x88)
-public:
-	// CArkRewardSystem::ArkRewardTrackable
-	// Header:  CryEngine/CrySystem/Ark/ArkRewardSystem.h
-	struct ArkRewardTrackable
-	{ // Size=16 (0x10)
-		uint64_t associatedMetric;
-		unsigned value;
-		unsigned id;
-	};
-
-	// CArkRewardSystem::ArkRewardTrackableCriteria
-	// Header:  CryEngine/CrySystem/Ark/ArkRewardSystem.h
-	struct ArkRewardTrackableCriteria
-	{ // Size=16 (0x10)
-		CArkRewardSystem::ArkRewardTrackable* trackable;
-		unsigned value;
-		bool bCriteriaMet;
-	};
-
-	// CArkRewardSystem::ArkReward
-	// Header:  CryEngine/CrySystem/Ark/ArkRewardSystem.h
-	struct ArkReward
-	{ // Size=40 (0x28)
-		unsigned unlockId;
-		std::vector<CArkRewardSystem::ArkRewardTrackableCriteria> criteria;
-		bool bCriteriaMet;
-	};
-
-	// CArkRewardSystem::RewardUnlockJob
-	// Header:  CryEngine/CrySystem/Ark/ArkRewardSystem.h
-	class RewardUnlockJob : public CPlatformOS_ServiceTaskBase
-	{ // Size=32 (0x20)
-	public:
-		CArkRewardSystem& m_rewardSystem;
-		unsigned m_userId;
-		unsigned m_rewardId;
-
-		virtual void Run();
-
-	#if 0
-		RewardUnlockJob(CArkRewardSystem& _arg0_, unsigned _arg1_, unsigned _arg2_);
-	#endif
-	};
-
-	static constexpr const uint64_t kNoAssociatedMetric = 0;
-	IArkRewardSystemCallbackHandler* m_pHandler;
-	std::vector<CArkRewardSystem::ArkRewardTrackable> m_trackables;
-	std::unordered_map<uint64_t, CArkRewardSystem::ArkRewardTrackable*> m_trackablesByMetric;
-	unsigned m_userId;
-	std::vector<CArkRewardSystem::ArkReward> m_rewards;
-
-	CArkRewardSystem();
-	virtual ~CArkRewardSystem();
-	virtual bool Init();
-	virtual void SetActiveUserId(unsigned _userId);
-	virtual bool LoadRewardData(const string& _strRewardFile);
-	virtual void SetInitialTrackableValue(unsigned _trackable, unsigned _value);
-	virtual void SetInitialTrackableValue(uint64_t _associatedMetric, unsigned _value);
-	virtual unsigned IncrementTrackableValue(unsigned _trackable);
-	virtual unsigned IncrementTrackableValue(uint64_t _associatedMetric);
-	virtual unsigned UpdateTrackableValueMax(uint64_t _associatedMetric, unsigned _value);
-	virtual void UnlockReward(unsigned _reward);
-	virtual void ResetTrackableData();
-	virtual void SetCallbackHandler(IArkRewardSystemCallbackHandler* _pHandler);
-	virtual void InternalTrackableUpdated(unsigned _trackableId, unsigned _oldVal, unsigned _newVal);
-	virtual void InternalRewardUnlocked(unsigned _rewardId);
-
-#if 0
-	CArkRewardSystem(const CArkRewardSystem& _arg0_);
-	void TrackableChanged(unsigned _arg0_, unsigned _arg1_, unsigned _arg2_);
-	bool SuppressRewards() const;
-	void PushUnlockRequest(unsigned _arg0_, unsigned _arg1_);
-	void OnRewardUnlock(unsigned _arg0_, unsigned _arg1_);
-#endif
-
+#else
 	static inline auto FCArkRewardSystemOv1 = PreyFunction<void(CArkRewardSystem* const _this)>(0xD79C80);
 	static inline auto FInit = PreyFunction<bool(CArkRewardSystem* const _this)>(0x1A302A0);
 	static inline auto FSetActiveUserId = PreyFunction<void(CArkRewardSystem* const _this, unsigned _userId)>(0xD7A590);
@@ -239,5 +151,5 @@ public:
 	static inline auto FSetCallbackHandler = PreyFunction<void(CArkRewardSystem* const _this, IArkRewardSystemCallbackHandler* _pHandler)>(0x17DB400);
 	static inline auto FInternalTrackableUpdated = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackableId, unsigned _oldVal, unsigned _newVal)>(0x1333E90);
 	static inline auto FInternalRewardUnlocked = PreyFunction<void(CArkRewardSystem* const _this, unsigned _rewardId)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

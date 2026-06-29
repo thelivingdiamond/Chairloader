@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -72,6 +70,7 @@ public:
 	void ShowHardwareMouse(bool bShow) { FShowHardwareMouse(this, bShow); }
 	static bool IsFullscreen() { return FIsFullscreen(); }
 
+#ifndef MOONCRASH
 	static inline auto FOnPostCreateDevice = PreyFunction<void(CHardwareMouse* const _this)>(0xA13080);
 	static inline auto FOnPostResetDevice = PreyFunction<void(CHardwareMouse* const _this)>(0xA13080);
 	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& rInputEvent)>(0xDA39F0);
@@ -101,81 +100,7 @@ public:
 	static inline auto FCHardwareMouseOv1 = PreyFunction<void(CHardwareMouse* const _this, bool bVisibleByDefault)>(0xDA3110);
 	static inline auto FShowHardwareMouse = PreyFunction<void(CHardwareMouse* const _this, bool bShow)>(0xDA4090);
 	static inline auto FIsFullscreen = PreyFunction<bool()>(0xDA39B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryInput/IHardwareMouse.h>
-#include <Prey/CryInput/IInput.h>
-#include <Prey/CryRenderer/IRenderer.h>
-#include <Prey/CrySystem/ISystem.h>
-
-enum class EHARDWAREMOUSEEVENT;
-enum ESystemEvent;
-struct IHardwareMouseEventListener;
-class ITexture;
-struct SInputEvent;
-
-// CHardwareMouse
-// Header:  CryEngine/crysystem/HardwareMouse.h
-class CHardwareMouse
-	: public IRendererEventListener
-	, public IInputEventListener
-	, public IHardwareMouse
-	, public ISystemEventListener
-{ // Size=96 (0x60)
-public:
-	using TListHardwareMouseEventListeners = std::list<IHardwareMouseEventListener *,std::allocator<IHardwareMouseEventListener *> >;
-
-	std::list<IHardwareMouseEventListener *,std::allocator<IHardwareMouseEventListener *> > m_listHardwareMouseEventListeners;
-	ITexture* m_pCursorTexture;
-	int m_iReferenceCounter;
-	float m_fCursorX;
-	float m_fCursorY;
-	float m_fIncX;
-	float m_fIncY;
-	bool m_bFocus;
-	bool m_recapture;
-	const bool m_allowConfine;
-	bool m_useSystemCursor;
-	bool m_shouldUseSystemCursor;
-	bool m_paused;
-	bool m_shouldPause;
-	bool m_hide;
-	bool m_calledShowHWMouse;
-	int m_debugHardwareMouse;
-
-	virtual void OnPostCreateDevice();
-	virtual void OnPostResetDevice();
-	virtual bool OnInputEvent(const SInputEvent& rInputEvent);
-	virtual void OnSystemEvent(ESystemEvent event, uint64_t wparam, uint64_t lparam);
-	virtual void Release();
-	virtual void OnPreInitRenderer();
-	virtual void OnPostInitInput();
-	virtual void Event(int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta);
-	virtual void AddListener(IHardwareMouseEventListener* pHardwareMouseEventListener);
-	virtual void RemoveListener(IHardwareMouseEventListener* pHardwareMouseEventListener);
-	virtual void SetMouseGameMode(bool bGameMode);
-	virtual void IncrementCounter();
-	virtual void DecrementCounter();
-	virtual void PauseMouse(bool _forceUpdate);
-	virtual void UnPauseMouse();
-	virtual void GetHardwareMousePosition(float* pfX, float* pfY);
-	virtual void SetHardwareMousePosition(float fX, float fY);
-	virtual void GetHardwareMouseClientPosition(float* pfX, float* pfY);
-	virtual void SetHardwareMouseClientPosition(float fX, float fY);
-	virtual void Reset(bool bVisibleByDefault);
-	virtual void ConfineCursor(bool confine, bool centerCursor);
-	virtual void Hide(bool hide);
-	virtual void UseSystemCursor(bool useSystemCursor);
-	virtual ISystemEventListener* GetSystemEventListener();
-	virtual void Update();
-	virtual void Render();
-	CHardwareMouse(bool bVisibleByDefault);
-	virtual ~CHardwareMouse();
-	void ShowHardwareMouse(bool bShow) { FShowHardwareMouse(this, bShow); }
-	static bool IsFullscreen() { return FIsFullscreen(); }
-
+#else
 	static inline auto FOnPostCreateDevice = PreyFunction<void(CHardwareMouse* const _this)>(0x1333E90);
 	static inline auto FOnPostResetDevice = PreyFunction<void(CHardwareMouse* const _this)>(0x1333E90);
 	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& rInputEvent)>(0xDC16C0);
@@ -205,5 +130,5 @@ public:
 	static inline auto FCHardwareMouseOv1 = PreyFunction<void(CHardwareMouse* const _this, bool bVisibleByDefault)>(0xDC0DB0);
 	static inline auto FShowHardwareMouse = PreyFunction<void(CHardwareMouse* const _this, bool bShow)>(0xDC1D60);
 	static inline auto FIsFullscreen = PreyFunction<bool()>(0xDC1680);
+#endif
 };
-#endif // !MOONCRASH
