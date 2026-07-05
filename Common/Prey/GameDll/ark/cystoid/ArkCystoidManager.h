@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -277,10 +276,8 @@ public:
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/cystoid/ArkCystoidPotentialTarget.h>
-#include <_unknown/Functor1wRet.h>
 
 class ArkCystoid;
-enum class ArkGameSaveVersion;
 struct IEntity;
 struct IEntityArchetype;
 struct IParticleEffect;

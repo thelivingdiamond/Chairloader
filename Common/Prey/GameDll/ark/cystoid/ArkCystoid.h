@@ -1,4 +1,4 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#include "Prey/GameDll/ark/attention/arkgenericattentionobject.h"
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -184,7 +184,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
@@ -193,7 +193,6 @@ public:
 #include <Prey/GameDll/ark/player/IArkEtherDuplicateListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCarryListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
-#include <_unknown/ArkGenericAttentionObject.h>
 
 class ArkCystoidProperties;
 namespace ArkSignalSystem

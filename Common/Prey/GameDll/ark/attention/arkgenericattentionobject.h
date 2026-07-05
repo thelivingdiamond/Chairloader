@@ -68,4 +68,7 @@ public:
 	
 	virtual unsigned DoGetEntityId() const;
 	virtual IEntity *DoGetEntity() const;
+#ifdef MOONCRASH
+	bool DoGetIsGlood() const;
+#endif
 };

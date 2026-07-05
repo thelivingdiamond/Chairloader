@@ -22,6 +22,7 @@ static_assert(sizeof(ArkCystoidSignalReceiver) == 24);
 #else // MOONCRASH
 // Header test file for path Prey/GameDll/ark/cystoid/
 #include "ArkCystoid.h"
+//TODO: this doesn't seem right
 static_assert(sizeof(ArkCystoid) == 576);
 
 #include "ArkCystoidManager.h"
@@ -32,6 +33,7 @@ static_assert(sizeof(ArkCystoidProperties) == 440);
 static_assert(sizeof(ArkCystoidProperties::GravityDependentProperties) == 80);
 
 #include "ArkCystoidNest.h"
+//TODO: this doesn't seem right
 static_assert(sizeof(ArkCystoidNest) == 576);
 
 #include "ArkCystoidPotentialTarget.h"
