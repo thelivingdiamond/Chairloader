@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include <functional>
 #include <Chairloader/PreyFunction.h>
@@ -95,7 +93,11 @@ private:
 class CDeviceTexture : public CDeviceTextureBase
 {
 public:
+#ifndef MOONCRASH
 	static inline auto FCleanup = PreyFunction<int(CDeviceTextureBase* _this)>(0x1054080);
+#else
+	static inline auto FCleanup = PreyFunction<int(CDeviceTexture* const _this)>(0x10706B0);
+#endif
 	using CDeviceTextureBase::CDeviceTextureBase;
 	~CDeviceTexture() { Cleanup(); }
 
@@ -119,4 +121,3 @@ public:
 private:
 	int Cleanup();
 };
-#endif // !MOONCRASH

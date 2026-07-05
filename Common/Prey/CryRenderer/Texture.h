@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include "CryDX.h"
 #include <Prey/CryRenderer/ITexture.h>
@@ -100,10 +98,14 @@ struct SResourceView
 	ResourceViewDesc m_Desc;
 	void *m_pDeviceResourceView;
 
+#ifndef MOONCRASH
 	static inline auto FShaderResourceView = PreyFunction<SResourceView(
 		ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip,
 		int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags)>(0xFE6A40);
 	static inline auto FRenderTargetView = PreyFunction<SResourceView(
 		ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample)>(0xFE6550);
+#else
+	static inline auto FShaderResourceView = PreyFunction<SResourceView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMostDetailedMip, int nMipCount, bool bSrgbRead, bool bMultisample, int nFlags)>(0x1002F70);
+	static inline auto FRenderTargetView = PreyFunction<SResourceView(ETEX_Format nFormat, int nFirstSlice, int nSliceCount, int nMipLevel, bool bMultisample)>(0x1002A80);
+#endif
 };
-#endif // !MOONCRASH
