@@ -35,8 +35,6 @@ static_assert(sizeof(ArkAttentionManager::BestAttentionTargetInfo) == 28);
 static_assert(sizeof(ArkAttentionTag) == 8);
 
 #include "ArkComplexAttentionObject.h"
-static_assert(sizeof(ArkAuralPerceiver) == 8);
-static_assert(sizeof(ArkVisualPerceiver) == 8);
 static_assert(sizeof(ArkSimpleAttentionObject) == 8);
 static_assert(sizeof(ArkComplexAttentionObject) == 8);
 

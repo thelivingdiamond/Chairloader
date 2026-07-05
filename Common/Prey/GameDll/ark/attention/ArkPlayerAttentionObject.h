@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -85,8 +84,8 @@ public:
 #include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
 #include <Prey/GameDll/ark/perception/ArkComplexRoomPerceivable.h>
 #include <Prey/GameDll/ark/perception/ArkComplexVisualPerceivable.h>
-#include <_unknown/ArkComplexAttentionObject.h>
-#include <_unknown/ArkSeismicPerceivable.h>
+#include <Prey/GameDll/ark/perception/ArkSeismicPerceivable.h>
+#include <Prey/GameDll/ark/attention/ArkComplexAttentionObject.h>
 
 struct ArkAttentionLevelChange;
 class ArkPlayer;

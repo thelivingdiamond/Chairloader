@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -681,7 +680,7 @@ public:
 		ArkAttentionManager::ComplexAttentionModel m_complex;
 		ArkAttentionManager::AttentionTargetData m_attentionTargetData;
 
-		ArkAttentionManager::AttentionModel& operator=(ArkAttentionManager::AttentionModel&& _other) { return FoperatorEq(this, _other); }
+		ArkAttentionManager::AttentionModel& operator=(ArkAttentionManager::AttentionModel* _other) { return FoperatorEq(this, _other); }
 
 	#if 0
 		AttentionModel();
@@ -689,7 +688,7 @@ public:
 		AttentionModel(ArkAttentionManager::AttentionModel& _arg0_);
 	#endif
 
-		static inline auto FoperatorEq = PreyFunction<ArkAttentionManager::AttentionModel& (ArkAttentionManager::AttentionModel* const _this, ArkAttentionManager::AttentionModel&& _other)>(0x14F30A0);
+		static inline auto FoperatorEq = PreyFunction<ArkAttentionManager::AttentionModel& (ArkAttentionManager::AttentionModel* const _this, ArkAttentionManager::AttentionModel* _other)>(0x14F30A0);
 	};
 
 	// ArkAttentionManager::ComplexHearingInput

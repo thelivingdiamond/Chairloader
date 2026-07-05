@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -54,9 +53,9 @@ public:
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
+#include <Prey/GameDll/ark/attention/ArkComplexAttentionObject.h>
 #include <Prey/GameDll/ark/perception/ArkSimpleVisualPerceivable.h>
-#include <_unknown/ArkSeismicPerceivable.h>
-#include <_unknown/ArkSimpleAttentionObject.h>
+#include <Prey/GameDll/ark/perception/ArkSeismicPerceivable.h>
 
 class ArkNpc;
 struct ArkSeismicBounds;
