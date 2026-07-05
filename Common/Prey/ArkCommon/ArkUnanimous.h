@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 // Header: Exact
@@ -26,6 +24,7 @@ public:
 	int* operator int ArkSafeBool<class ArkUnanimous>::* () const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FPushTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056F20);
 	static inline auto FPopTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056EE0);
 	static inline auto FPushFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056F00);
@@ -35,6 +34,19 @@ public:
 	static inline auto FSetFalseCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _falseCount)>(0x414F30);
 	static inline auto FGetTrueCount = PreyFunction<uint64_t(ArkUnanimous const* const _this)>(0x12E5E70);
 	static inline auto FGetFalseCount = PreyFunction<uint64_t(ArkUnanimous const* const _this)>(0x12AAC70);
+#else
+	static inline auto FArkUnanimousOv2 = PreyFunction<void(ArkUnanimous* const _this)>(0x125AA70);
+	static inline auto FArkUnanimousOv1 = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x1073490);
+	static inline auto FPushTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073550);
+	static inline auto FPopTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073510);
+	static inline auto FPushFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073530);
+	static inline auto FPopFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x10734F0);
+	static inline auto FIsUnanimous = PreyFunction<bool(const ArkUnanimous* const _this)>(0x10734D0);
+	static inline auto FSetTrueCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x14AD1A0);
+	static inline auto FSetFalseCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _falseCount)>(0x17DB400);
+	static inline auto FGetTrueCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x1112EA0);
+	static inline auto FGetFalseCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x12DC700);
+#endif
 };
 
 #pragma once
@@ -54,45 +66,3 @@ struct ArkNpcBodyStateEnterParams_Busy : public ArkNpcBodyStateEnterParams // Id
 	ArkNpcBodyStateEnterParams_Busy(ArkNpc &_npc, ArkNpcBodyStateObserver_Busy &_observer);
 };
 #endif
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-// ArkUnanimous
-// Header:  Prey/ArkCommon/ArkUnanimous.h
-class ArkUnanimous
-{ // Size=16 (0x10)
-public:
-	uint64_t m_trueCount;
-	uint64_t m_falseCount;
-
-	ArkUnanimous();
-	ArkUnanimous(uint64_t _trueCount);
-	bool PushTrue() { return FPushTrue(this); }
-	bool PopTrue() { return FPopTrue(this); }
-	bool PushFalse() { return FPushFalse(this); }
-	bool PopFalse() { return FPopFalse(this); }
-	bool IsUnanimous() const { return FIsUnanimous(this); }
-	void SetTrueCount(uint64_t _trueCount) { FSetTrueCount(this, _trueCount); }
-	void SetFalseCount(uint64_t _falseCount) { FSetFalseCount(this, _falseCount); }
-	uint64_t GetTrueCount() const { return FGetTrueCount(this); }
-	uint64_t GetFalseCount() const { return FGetFalseCount(this); }
-
-#if 0
-	ArkUnanimous(uint64_t _arg0_, uint64_t _arg1_);
-	int* (*)() const;
-#endif
-
-	static inline auto FArkUnanimousOv2 = PreyFunction<void(ArkUnanimous* const _this)>(0x125AA70);
-	static inline auto FArkUnanimousOv1 = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x1073490);
-	static inline auto FPushTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073550);
-	static inline auto FPopTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073510);
-	static inline auto FPushFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073530);
-	static inline auto FPopFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x10734F0);
-	static inline auto FIsUnanimous = PreyFunction<bool(const ArkUnanimous* const _this)>(0x10734D0);
-	static inline auto FSetTrueCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x14AD1A0);
-	static inline auto FSetFalseCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _falseCount)>(0x17DB400);
-	static inline auto FGetTrueCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x1112EA0);
-	static inline auto FGetFalseCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x12DC700);
-};
-#endif // !MOONCRASH

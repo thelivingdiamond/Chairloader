@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -18,35 +16,17 @@ public:
 	virtual bool Shutdown();
 	virtual bool IsAlwaysLoaded() const;
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10586A0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x105CE70);
 	static inline auto FInit = PreyFunction<bool(ArkReflectedLibrary *const _this)>(0xDD23F0);
 	static inline auto FShutdown = PreyFunction<bool(ArkReflectedLibrary *const _this)>(0xDD23F0);
 	static inline auto FIsAlwaysLoaded = PreyFunction<bool(ArkReflectedLibrary const *const _this)>(0xDD23F0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
-
-class ArkClass;
-
-// ArkReflectedLibrary
-// Header:  Prey/ArkCommon/reflection/ArkReflectedLibrary.h
-class ArkReflectedLibrary : public ArkReflectedObject
-{ // Size=8 (0x8)
-public:
-	static ArkReflectedObject* Create() { return FCreate(); }
-	static ArkClass* GetClass() { return FGetClass(); }
-	virtual ~ArkReflectedLibrary();
-	virtual bool Init();
-	virtual bool Shutdown();
-	virtual bool IsAlwaysLoaded() const;
-
+#else
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1074D90);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x107E9D0);
 	static inline auto FInit = PreyFunction<bool(ArkReflectedLibrary* const _this)>(0x13B0900);
 	static inline auto FShutdown = PreyFunction<bool(ArkReflectedLibrary* const _this)>(0x13B0900);
 	static inline auto FIsAlwaysLoaded = PreyFunction<bool(const ArkReflectedLibrary* const _this)>(0x13B0900);
+#endif
 };
-#endif // !MOONCRASH
