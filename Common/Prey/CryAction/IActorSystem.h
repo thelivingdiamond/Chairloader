@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 
 #include <Prey/CryAction/IGameObject.h>

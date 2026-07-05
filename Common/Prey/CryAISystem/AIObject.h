@@ -105,7 +105,7 @@ struct AgentParameters // Id=800103B Size=240
 #endif
 };
 
-
+#if 0
 // CAIObject
 // Header:  CryEngine/cryaisystem/AIObject.h
 // Include: Prey/CryAISystem/AIObject.h
@@ -372,3 +372,5 @@ public:
 	static inline auto FCastToCAIObjectOv0 = PreyFunction<CAIObject* (CAIObject* const _this)>(0x3DAC90);
 #endif
 };
+
+#endif

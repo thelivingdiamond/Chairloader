@@ -283,8 +283,8 @@ public:
 	int m_nUpdateFrameID;
 #ifndef MOONCRASH
 	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2B175A0);
-	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2C86820);
 #else
+	static inline auto s_sClassName = PreyGlobal<CCryNameTSCRC>(0x2C86820);
 #endif
 
 	enum EDeviceDirtyFlags
