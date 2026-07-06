@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -274,4 +276,328 @@ public:
 	static inline auto FOnStaminaPreviewAnimationFinished = PreyFunction<void(CArkUIHUD *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x1639FE0);
 	static inline auto FOnUpdatePsiScannerRadius = PreyFunction<void(CArkUIHUD *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x163B1F0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryAction/IActionMapManager.h>
+#include <Prey/CryGame/IGameFramework.h>
+#include <Prey/CryString/CryName.h>
+#include <Prey/CrySystem/ISystem.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#include <Prey/GameDll/ark/iface/IArkItem.h>
+#include <Prey/GameDll/ark/ui/ArkHitDamageInfo.h>
+#include <Prey/GameDll/ark/ui/ArkHitDamageUI.h>
+#include <Prey/GameDll/ark/ui/IHUDEventListener.h>
+#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <_unknown/IArkDoomClockListener.h>
+#include <_unknown/SUIEventSenderDispatcher.h>
+#include <_unknown/TRect_tpl.h>
 
+struct AABB;
+class ArkInputLegend;
+class ArkObjective;
+class ArkObjectiveTask;
+class CArkItem;
+enum class EArkSilhouetteType;
+enum class EArkTaskMarkerStyle;
+enum EControlScheme;
+enum ESystemEvent;
+struct HitInfo;
+struct ICVar;
+struct IEntity;
+struct ILoadGame;
+struct ISaveGame;
+struct IUIElement;
+struct IUIEventSystem;
+struct SActionEvent;
+struct SActionMapEvent;
+struct SHUDEvent;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkLogEntry
+// Header:  Prey/GameDll/ark/ui/ArkUIHUD.h
+class ArkLogEntry
+{ // Size=48 (0x30)
+public:
+	uint64_t m_uniqueId;
+	wstring m_text;
+	wstring m_countString;
+	string m_icon;
+	bool m_bImportant;
+	int m_count;
+	EArkLogType m_logType;
+	int m_quality;
+
+#if 0
+	ArkLogEntry();
+	ArkLogEntry(const uint64_t _arg0_, const wstring& _arg1_, const wstring& _arg2_, const string& _arg3_, const bool _arg4_, int _arg5_, EArkLogType _arg6_, IArkItem::EArkQualityTier _arg7_);
+	ArkLogEntry(const uint64_t _arg0_, const wstring& _arg1_, const wstring& _arg2_, const string& _arg3_, const bool _arg4_, int _arg5_, EArkLogType _arg6_);
+	bool operator==(const ArkLogEntry& _arg0_) const;
+#endif
+};
+
+// CArkUIHUD
+// Header:  Prey/GameDll/ark/ui/ArkUIHUD.h
+class CArkUIHUD
+	: public ArkUIMenuBase<CArkUIHUD>
+	, public IUIGameEventSystem
+	, public IHUDEventListener
+	, public ISystemEventListener
+	, public IUIControlSchemeListener
+	, public IGameFrameworkListener
+	, public IActionMapEventListener
+	, public IArkDoomClockListener
+{ // Size=1000 (0x3E8)
+public:
+	enum EUIEvent
+	{
+		eUIE_SprintStaminaChanged = 0,
+		eUIE_ObjectiveMenuHighlight = 1,
+		eUIE_ScannerEquip = 2,
+		eUIE_ScannerUnequip = 3,
+		eUIE_ScannerShowTargetDetails = 4,
+		eUIE_ScannerHideTargetDetails = 5,
+		eUIE_ScannerLoseScanTarget = 6,
+		eUIE_ScannerFindLostScanTarget = 7,
+		eUIE_ScannerStartScanning = 8,
+		eUIE_ScannerStopScanning = 9,
+		eUIE_ScannerCompleteScanning = 10,
+		eUIE_ScannerUpdateEnemyMeter = 11,
+		eUIE_ScanningResearchCompleted = 12,
+		eUIE_PsiMeterEnable = 13,
+		eUIE_PsiMeterUpdate = 14,
+		eUIE_PDAToggle = 15,
+		eUIE_InitTrauma = 16,
+		eUIE_ShowpieceMusicHack = 17,
+	};
+
+	enum class HitStrength
+	{
+		ineffective = 0,
+		normal = 1,
+		effective = 2,
+	};
+
+	enum class RelativePosition
+	{
+		center = 0,
+		top = 1,
+	};
+
+	enum class StunGunEnemyRangeText
+	{
+		NotEquipped = 0,
+		ShowText = 1,
+		HideText = 2,
+	};
+
+	// CArkUIHUD::VisibleLogEntry
+	// Header:  Prey/GameDll/ark/ui/ArkUIHUD.h
+	class VisibleLogEntry : public ArkLogEntry
+	{ // Size=64 (0x40)
+	public:
+		string m_uniqueIdString;
+		ArkTimeRemaining m_timer;
+
+		VisibleLogEntry(const ArkLogEntry& _logEntry, float _duration);
+		wstring BuildFinalString() const { alignas(wstring) std::byte _return_buf_[sizeof(wstring)]; return *FBuildFinalString(this, reinterpret_cast<wstring*>(_return_buf_)); }
+		void Invalidate() { FInvalidate(this); }
+		int GetUICategory() const { return FGetUICategory(this); }
+
+	#if 0
+		VisibleLogEntry();
+		bool IsValid() const;
+	#endif
+
+		static inline auto FVisibleLogEntryOv2 = PreyFunction<void(CArkUIHUD::VisibleLogEntry* const _this, const ArkLogEntry& _logEntry, float _duration)>(0x17583D0);
+		static inline auto FBuildFinalString = PreyFunction<wstring*(const CArkUIHUD::VisibleLogEntry* const _this, wstring* _return_value_)>(0x175A530);
+		static inline auto FInvalidate = PreyFunction<void(CArkUIHUD::VisibleLogEntry* const _this)>(0x175C410);
+		static inline auto FGetUICategory = PreyFunction<int(const CArkUIHUD::VisibleLogEntry* const _this)>(0x175B820);
+	};
+
+	using ActiveLegend = std::pair<unsigned int, const ArkInputLegend*>;
+
+	ArkHitDamageUI m_hitDamageUI;
+	ArkSimpleTimer m_hitFeedbackTimer;
+	ArkHitDamageInfo::EArkHitFeedbackType m_hitFeedbackType;
+	int m_fadeCount;
+	int m_markerFadeCount;
+	SUIEventSenderDispatcher<enum CArkUIHUD::EUIEvent> m_eventSender;
+	IUIEventSystem* m_pUIFunctions;
+	int m_nextTargetID;
+	unsigned m_pickupTargetID;
+	CCryName m_currentIteractReticle;
+	CCryName m_currentWeaponReticle;
+	std::set<int> m_unavailableTargetIds;
+	float m_feedbackTimeRemaining;
+	float m_psiScannerRadius;
+	std::map<unsigned int, int> m_silhouettes;
+	unsigned m_entityUnderReticle;
+	float m_reticleDistSquared;
+	bool m_bReticleOverTransparent;
+	bool m_bReticleOverEnemy;
+	CArkUIHUD::StunGunEnemyRangeText m_stungunEnemyRangeText;
+	static inline auto pl_pickupSilhouette = PreyGlobal<int>(0x23EEEE0);
+	std::vector<std::pair<unsigned int, const ArkInputLegend*>> m_activeLegends;
+	unsigned m_legendHandleGen;
+	uint64_t m_timedTask;
+	ArkSimpleTimer m_errorTimer;
+	wstring m_errorMsg;
+	static inline auto s_cameraScreenProj = PreyGlobal<Matrix44>(0x23EEEF0);
+	ArkSimpleTimer m_doomClockLerper;
+	ArkSimpleTimer m_timeShardTimer;
+	float m_timeShardValue;
+	std::vector<ArkLogEntry> m_logQueue;
+	std::array<CArkUIHUD::VisibleLogEntry, 4> m_visibleLog;
+	float m_visibleCryptoFanfareAmount;
+
+	CArkUIHUD();
+	virtual ~CArkUIHUD();
+	virtual const char* GetTypeName() const;
+	virtual void InitEventSystem();
+	virtual void UnloadEventSystem();
+	virtual void OnUpdate(float _delta);
+	void SetPaused(bool _bPaused) { FSetPaused(this, _bPaused); }
+	void PostSerialize() { FPostSerialize(this); }
+	void FadeHUD(bool _bFadeOut) { FFadeHUD(this, _bFadeOut); }
+	void FadeMarkers(bool _bFadeOut) { FFadeMarkers(this, _bFadeOut); }
+	static Matrix44 GetScreenProjectionMatrix() { return FGetScreenProjectionMatrix(); }
+	int AddTarget(const wstring& _rText, const Vec2 _pos, const bool _bActive) { return FAddTarget(this, _rText, _pos, _bActive); }
+	void UpdateTarget(const int _Id, const Vec2 _pos, const bool _bActive) { FUpdateTarget(this, _Id, _pos, _bActive); }
+	void RemoveTarget(const int _Id) { FRemoveTarget(this, _Id); }
+	SUIEventSenderDispatcher<enum CArkUIHUD::EUIEvent>& GetEventSender() { return FGetEventSender(this); }
+	static Vec2 GetScreenPixelPos(const Vec2& _screenPos) { return FGetScreenPixelPosOv2(_screenPos); }
+	static boost::tuples::tuple<Vec2_tpl<float>,bool,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type> GetScreenPixelPos(const Vec3& _worldPos, bool _bClampSafeZone) { return FGetScreenPixelPosOv0(_worldPos, _bClampSafeZone); }
+	static Vec2 GetEntityScreenPos(const IEntity& _entity) { return FGetEntityScreenPos(_entity); }
+	static boost::tuples::tuple<Vec2_tpl<float>,bool,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type> GetScreenPos(const Vec3& _worldPos, bool _bClampSafeZone) { return FGetScreenPos(_worldPos, _bClampSafeZone); }
+	void ClearFeedback() { FClearFeedback(this); }
+	void DisplayFeedback(const string& _feedback, float _duration) { FDisplayFeedbackOv1(this, _feedback, _duration); }
+	void ShowErrorMessage(const string& _errorMessage, float _duration, bool _bBlinking) { FShowErrorMessageOv1(this, _errorMessage, _duration, _bBlinking); }
+	void ShowErrorMessage(const wstring& _errorMessage, float _duration, bool _bBlinking) { FShowErrorMessageOv0(this, _errorMessage, _duration, _bBlinking); }
+	unsigned PushInputLegend(const ArkInputLegend& _inputLegend) { return FPushInputLegend(this, _inputLegend); }
+	void RemoveInputLegend(unsigned _legendHandle) { FRemoveInputLegend(this, _legendHandle); }
+	void RefreshInputLegends() const { FRefreshInputLegends(this); }
+	static void PlayReticleHit(unsigned _targetId, CArkUIHUD::HitStrength _strength) { FPlayReticleHit(_targetId, _strength); }
+	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
+	static IUIElement* GetMarkerUIElement() { return FGetMarkerUIElement(); }
+	static IUIElement* GetHUDUIElement() { return FGetHUDUIElement(); }
+	virtual void OnHUDEvent(const SHUDEvent& _event);
+	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+	virtual void OnSetVisible(IUIElement* _pSender, bool _bVisible);
+	virtual void OnActionMapEvent(const SActionMapEvent& _event);
+	virtual void OnDoomClockEnabled(bool _bEnabled);
+	virtual void OnDoomClockPreIncrement(int _level);
+	virtual void OnDoomClockIncrement(int _level);
+	void SetTimeShardPreview(float _value) { FSetTimeShardPreview(this, _value); }
+	void ActivateTaskTimer(uint64_t _taskId, const string& _label) { FActivateTaskTimer(this, _taskId, _label); }
+	void DeactivateTaskTimer(uint64_t _taskId) { FDeactivateTaskTimer(this, _taskId); }
+	void SetHUDSilhouette(unsigned _entityId, EArkSilhouetteType _type) { FSetHUDSilhouette(this, _entityId, _type); }
+	void ClearHUDSilhouette(unsigned _entityId, EArkSilhouetteType _type) { FClearHUDSilhouette(this, _entityId, _type); }
+	bool IsVisible(const unsigned& _handle) const { return FIsVisible(this, _handle); }
+	void AddLogEntry(const ArkLogEntry& _logEntry) { FAddLogEntry(this, _logEntry); }
+	static void OnItemPickup(const CArkItem& _item, int _count) { FOnItemPickup(_item, _count); }
+	static void OnChipsetEffect(const char* _notif) { FOnChipsetEffect(_notif); }
+	void AddCryptoFanfare(const float _cryptoAmount) { FAddCryptoFanfare(this, _cryptoAmount); }
+	void ClearCryptoFanfare() { FClearCryptoFanfare(this); }
+	void OnEnemyHit(const HitInfo& _hitInfo) { FOnEnemyHit(this, _hitInfo); }
+	virtual void OnPostUpdate(float fDeltaTime);
+	virtual void OnSaveGame(ISaveGame* pSaveGame);
+	virtual void OnLoadGame(ILoadGame* pLoadGame);
+	virtual void OnLevelEnd(const char* nextLevel);
+	virtual void OnActionEvent(const SActionEvent& event);
+	virtual void OnPreRender();
+	void UpdateHUDSilhouette(unsigned _entityId) const { FUpdateHUDSilhouette(this, _entityId); }
+	static void OnPickupSilhouetteChanged(ICVar* _pArgs) { FOnPickupSilhouetteChanged(_pArgs); }
+	void UpdateLogEntry(float _frameTime) { FUpdateLogEntry(this, _frameTime); }
+	void CollapseVisibleLog_r(int _endingIndex) { FCollapseVisibleLog_r(this, _endingIndex); }
+	static void UpdateInputLegend(const ArkInputLegend& _inputLegend) { FUpdateInputLegend(_inputLegend); }
+	void OnShowObjectiveNotification(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnShowObjectiveNotification(this, _pSender, _event, _args); }
+	void OnStaminaPreviewAnimationFinished(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnStaminaPreviewAnimationFinished(this, _pSender, _event, _args); }
+	void OnUpdatePsiScannerRadius(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnUpdatePsiScannerRadius(this, _pSender, _event, _args); }
+	void OnCryptoFanfareFinished(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnCryptoFanfareFinished(this, _pSender, _event, _args); }
+
+#if 0
+	static const char* GetTypeNameS();
+	static TRect_tpl<float> GetScreenPixelPos(const AABB& _arg0_);
+	static Vec3 GetWorldPos(const Vec2& _arg0_);
+	void DisplayFeedback(const wstring& _arg0_, float _arg1_);
+	static void AddObjectiveNotification(const ArkObjective& _arg0_, EArkTaskMarkerStyle _arg1_);
+	static void AddObjectiveTaskNotification(const ArkObjective& _arg0_, const ArkObjectiveTask& _arg1_, EArkTaskMarkerStyle _arg2_);
+	static boost::optional<Vec2_tpl<float> > GetEntityScreenPosInHUD(const IEntity& _arg0_, CArkUIHUD::RelativePosition _arg1_);
+	unsigned GetEntityUnderReticle() const;
+	float GetDistanceSquaredOfRaycast() const;
+	bool IsReticleOverTransparent() const;
+	float GetPsiScannerRadius() const;
+	void ClearPickupTarget();
+#endif
+
+	static inline auto FCArkUIHUDOv1 = PreyFunction<void(CArkUIHUD* const _this)>(0x1757F50);
+	static inline auto FBitNotCArkUIHUD = PreyFunction<void(CArkUIHUD* const _this)>(0x1758620);
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x175B810);
+	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x175B880);
+	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x175F580);
+	static inline auto FOnUpdate = PreyFunction<void(IUIGameEventSystem* const _this, float _delta)>(0x175D7C0);
+	static inline auto FSetPaused = PreyFunction<void(CArkUIHUD* const _this, bool _bPaused)>(0x175F090);
+	static inline auto FPostSerialize = PreyFunction<void(CArkUIHUD* const _this)>(0x175E880);
+	static inline auto FFadeHUD = PreyFunction<void(CArkUIHUD* const _this, bool _bFadeOut)>(0x175B110);
+	static inline auto FFadeMarkers = PreyFunction<void(CArkUIHUD* const _this, bool _bFadeOut)>(0x175B190);
+	static inline auto FGetScreenProjectionMatrix = PreyFunction<Matrix44()>(0x175B7E0);
+	static inline auto FAddTarget = PreyFunction<int(CArkUIHUD* const _this, const wstring& _rText, const Vec2 _pos, const bool _bActive)>(0x175A450);
+	static inline auto FUpdateTarget = PreyFunction<void(CArkUIHUD* const _this, const int _Id, const Vec2 _pos, const bool _bActive)>(0x1760220);
+	static inline auto FRemoveTarget = PreyFunction<void(CArkUIHUD* const _this, const int _Id)>(0x175EEB0);
+	static inline auto FGetEventSender = PreyFunction<SUIEventSenderDispatcher<enum CArkUIHUD::EUIEvent>& (CArkUIHUD* const _this)>(0x175B250);
+	static inline auto FGetScreenPixelPosOv2 = PreyFunction<Vec2(const Vec2& _screenPos)>(0x175B2A0);
+	static inline auto FGetScreenPixelPosOv0 = PreyFunction<boost::tuples::tuple<Vec2_tpl<float>,bool,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type>(const Vec3& _worldPos, bool _bClampSafeZone)>(0x175B3A0);
+	static inline auto FGetEntityScreenPos = PreyFunction<Vec2(const IEntity& _entity)>(0x175B210);
+	static inline auto FGetScreenPos = PreyFunction<boost::tuples::tuple<Vec2_tpl<float>,bool,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type,boost::tuples::null_type>(const Vec3& _worldPos, bool _bClampSafeZone)>(0x175B4D0);
+	static inline auto FClearFeedback = PreyFunction<void(CArkUIHUD* const _this)>(0x175AA50);
+	static inline auto FDisplayFeedbackOv1 = PreyFunction<void(CArkUIHUD* const _this, const string& _feedback, float _duration)>(0x175B0B0);
+	static inline auto FShowErrorMessageOv1 = PreyFunction<void(CArkUIHUD* const _this, const string& _errorMessage, float _duration, bool _bBlinking)>(0x175F290);
+	static inline auto FShowErrorMessageOv0 = PreyFunction<void(CArkUIHUD* const _this, const wstring& _errorMessage, float _duration, bool _bBlinking)>(0x175F330);
+	static inline auto FPushInputLegend = PreyFunction<unsigned(CArkUIHUD* const _this, const ArkInputLegend& _inputLegend)>(0x175ECF0);
+	static inline auto FRemoveInputLegend = PreyFunction<void(CArkUIHUD* const _this, unsigned _legendHandle)>(0x175ED60);
+	static inline auto FRefreshInputLegends = PreyFunction<void(const CArkUIHUD* const _this)>(0x175ED40);
+	static inline auto FPlayReticleHit = PreyFunction<void(unsigned _targetId, CArkUIHUD::HitStrength _strength)>(0x175E780);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0x175D550);
+	static inline auto FGetMarkerUIElement = PreyFunction<IUIElement* ()>(0x175B280);
+	static inline auto FGetHUDUIElement = PreyFunction<IUIElement* ()>(0x175B260);
+	static inline auto FOnHUDEvent = PreyFunction<void(IHUDEventListener* const _this, const SHUDEvent& _event)>(0x175CC50);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x175C810);
+	static inline auto FOnSetVisible = PreyFunction<void(CArkUIHUD* const _this, IUIElement* _pSender, bool _bVisible)>(0x175D3A0);
+	static inline auto FOnActionMapEvent = PreyFunction<void(IActionMapEventListener* const _this, const SActionMapEvent& _event)>(0x175C540);
+	static inline auto FOnDoomClockEnabled = PreyFunction<void(IArkDoomClockListener* const _this, bool _bEnabled)>(0x175C880);
+	static inline auto FOnDoomClockPreIncrement = PreyFunction<void(IArkDoomClockListener* const _this, int _level)>(0x175C9E0);
+	static inline auto FOnDoomClockIncrement = PreyFunction<void(IArkDoomClockListener* const _this, int _level)>(0x175C960);
+	static inline auto FSetTimeShardPreview = PreyFunction<void(CArkUIHUD* const _this, float _value)>(0x175F220);
+	static inline auto FActivateTaskTimer = PreyFunction<void(CArkUIHUD* const _this, uint64_t _taskId, const string& _label)>(0x17597C0);
+	static inline auto FDeactivateTaskTimer = PreyFunction<void(CArkUIHUD* const _this, uint64_t _taskId)>(0x175B050);
+	static inline auto FSetHUDSilhouette = PreyFunction<void(CArkUIHUD* const _this, unsigned _entityId, EArkSilhouetteType _type)>(0x175EFD0);
+	static inline auto FClearHUDSilhouette = PreyFunction<void(CArkUIHUD* const _this, unsigned _entityId, EArkSilhouetteType _type)>(0x175AA60);
+	static inline auto FIsVisible = PreyFunction<bool(const CArkUIHUD* const _this, const unsigned& _handle)>(0x175C520);
+	static inline auto FAddLogEntry = PreyFunction<void(CArkUIHUD* const _this, const ArkLogEntry& _logEntry)>(0x1759B60);
+	static inline auto FOnItemPickup = PreyFunction<void(const CArkItem& _item, int _count)>(0x175CCE0);
+	static inline auto FOnChipsetEffect = PreyFunction<void(const char* _notif)>(0x175C560);
+	static inline auto FAddCryptoFanfare = PreyFunction<void(CArkUIHUD* const _this, const float _cryptoAmount)>(0x1759810);
+	static inline auto FClearCryptoFanfare = PreyFunction<void(CArkUIHUD* const _this)>(0x175AA10);
+	static inline auto FOnEnemyHit = PreyFunction<void(CArkUIHUD* const _this, const HitInfo& _hitInfo)>(0x175CA20);
+	static inline auto FOnPostUpdate = PreyFunction<void(IGameFrameworkListener* const _this, float fDeltaTime)>(0x1333E90);
+	static inline auto FOnSaveGame = PreyFunction<void(IGameFrameworkListener* const _this, ISaveGame* pSaveGame)>(0x1333E90);
+	static inline auto FOnLoadGame = PreyFunction<void(IGameFrameworkListener* const _this, ILoadGame* pLoadGame)>(0x1333E90);
+	static inline auto FOnLevelEnd = PreyFunction<void(IGameFrameworkListener* const _this, const char* nextLevel)>(0x1333E90);
+	static inline auto FOnActionEvent = PreyFunction<void(IGameFrameworkListener* const _this, const SActionEvent& event)>(0x1333E90);
+	static inline auto FOnPreRender = PreyFunction<void(IGameFrameworkListener* const _this)>(0x175D040);
+	static inline auto FUpdateHUDSilhouette = PreyFunction<void(const CArkUIHUD* const _this, unsigned _entityId)>(0x175F760);
+	static inline auto FOnPickupSilhouetteChanged = PreyFunction<void(ICVar* _pArgs)>(0x175CFE0);
+	static inline auto FUpdateLogEntry = PreyFunction<void(CArkUIHUD* const _this, float _frameTime)>(0x175FBE0);
+	static inline auto FCollapseVisibleLog_r = PreyFunction<void(CArkUIHUD* const _this, int _endingIndex)>(0x175AAF0);
+	static inline auto FUpdateInputLegend = PreyFunction<void(const ArkInputLegend& _inputLegend)>(0x175F7F0);
+	static inline auto FOnShowObjectiveNotification = PreyFunction<void(CArkUIHUD* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x175D3F0);
+	static inline auto FOnStaminaPreviewAnimationFinished = PreyFunction<void(CArkUIHUD* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x175D520);
+	static inline auto FOnUpdatePsiScannerRadius = PreyFunction<void(CArkUIHUD* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x175E6F0);
+	static inline auto FOnCryptoFanfareFinished = PreyFunction<void(CArkUIHUD* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x175C870);
+};
+#endif // !MOONCRASH

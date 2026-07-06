@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
@@ -514,3 +516,4 @@ public:
 	const ArkPsiPowerTargetingComponent* GetTargetingComponent() const;
 #endif
 };
+#endif // !MOONCRASH

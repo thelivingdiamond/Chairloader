@@ -1,3 +1,4 @@
+// Auto-merged: identical in PreyDll (base) and Mooncrash (DLC); no MOONCRASH guard needed.
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -9,4 +10,3 @@ public:
 	virtual void OnCharacterStatusChanged(const uint64_t _characterId) = 0;
 	virtual void OnCharacterDiscovered(const uint64_t _characterId, bool _bDiscovered) = 0;
 };
-

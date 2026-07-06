@@ -405,7 +405,11 @@ struct IFlowNodeFactory // Id=8001C5D Size=8
     virtual void Reset() = 0;
     virtual bool AllowOverride() const { return FAllowOverride(this); }
 
+#ifndef MOONCRASH
     static inline auto FAllowOverride = PreyFunction<bool(IFlowNodeFactory const *const _this)>(0xDD23F0);
+#else
+	static inline auto FAllowOverride = PreyFunction<bool(const IFlowNodeFactory* const _this)>(0x13B0900);
+#endif
 };
 
 

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -152,4 +154,164 @@ public:
 	static inline auto FStop = PreyFunction<void(ArkGlooEffectTimed *const _this, IEntity &_entity, bool _bPlayEffects)>(0x117DF20);
 	static inline auto FGetPlaybackScale = PreyFunction<float(ArkGlooEffectTimed const *const _this)>(0x117D040);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
 
+struct IArkGlooEffectObserver;
+struct IEntity;
+struct IMaterial;
+
+// ArkGlooEffects
+// Header:  Prey/GameDll/ark/arkglooeffectutils.h
+class ArkGlooEffects
+{ // Size=240 (0xF0)
+public:
+	enum class State
+	{
+		notStarted = 0,
+		slowing = 1,
+		frozenHardening = 2,
+		frozen = 3,
+	};
+
+	ArkSimpleTimer m_glooSlowFadeDuration;
+	ArkSimpleTimer m_glooHardenDuration;
+	ArkSimpleTimer m_glooFrozenDuration;
+	ArkSimpleTimer m_glooOnHitCooldown;
+	ArkFireAndForgetEffect m_glooBreakEffect;
+	ArkFireAndForgetEffect m_glooOnHitEffect;
+	ArkAudioTrigger m_glooBreakTrigger;
+	ArkAudioTrigger m_glooStartTrigger;
+	ArkAudioTrigger m_glooHardenTrigger;
+	ArkInterval<float> m_glooSlowRange;
+	_smart_ptr<IMaterial> m_pGlooReplacementMaterial;
+	Vec3 m_defaultDiffuseColor;
+	Vec3 m_defaultSpecularColor;
+	IArkGlooEffectObserver* m_pObserver;
+	ArkGlooEffects::State m_state;
+	float m_playbackScale;
+
+	ArkGlooEffects();
+	void Initialize(IEntity& _entity) { FInitialize(this, _entity); }
+	void Deinitialize(IEntity& _entity) { FDeinitialize(this, _entity); }
+	void Reset(IEntity& _entity) { FReset(this, _entity); }
+	void Start(IEntity& _entity) { FStart(this, _entity); }
+	void Update(IEntity& _entity, float _elapsedTime) { FUpdate(this, _entity, _elapsedTime); }
+	virtual void Stop(IEntity& _entity, bool _bPlayEffects);
+	void OnHit(IEntity& _entity, const Vec3& _hitPos) { FOnHit(this, _entity, _hitPos); }
+	void PostSerialize(IEntity& _entity) { FPostSerialize(this, _entity); }
+	void UpdateGlooSkinAnimation(IEntity& _entity, float _keyTime) const { FUpdateGlooSkinAnimation(this, _entity, _keyTime); }
+	void StartGlooHardening(IEntity& _entity) { FStartGlooHardening(this, _entity); }
+	void CloneGlooSkinMaterial(IEntity& _entity) { FCloneGlooSkinMaterial(this, _entity); }
+	void SetColorIntensity(float _intensity) const { FSetColorIntensity(this, _intensity); }
+
+#if 0
+	~ArkGlooEffects();
+	void Serialize(IEntity& _arg0_, TSerialize _arg1_);
+	ArkGlooEffects::State GetState();
+	bool IsHardeningInGloo() const;
+	bool IsFrozenInGloo() const;
+	void SetObserver(IArkGlooEffectObserver& _arg0_);
+	void ClearObserver();
+	float GetPlaybackScale() const;
+	const ArkInterval<float>& GetPlaybackScaleRange() const;
+	void StartGlooSkinAnimation(IEntity& _arg0_) const;
+	void StopGlooSkinAnimation(IEntity& _arg0_) const;
+	void ShowGlooSkin(IEntity& _arg0_) const;
+	void HideGlooSkin(IEntity& _arg0_) const;
+	void UpdateHardened(IEntity& _arg0_, float _arg1_);
+	void StartFrozen(IEntity& _arg0_);
+	void SetPlaybackScale(IEntity& _arg0_, float _arg1_);
+	void SetHardenedBlendFactor(float _arg0_) const;
+#endif
+
+	static inline auto FArkGlooEffectsOv1 = PreyFunction<void(ArkGlooEffects* const _this)>(0x11F7F80);
+	static inline auto FInitialize = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F83A0);
+	static inline auto FDeinitialize = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F8230);
+	static inline auto FReset = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F84C0);
+	static inline auto FStart = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F8F50);
+	static inline auto FUpdate = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity, float _elapsedTime)>(0x11F9720);
+	static inline auto FStop = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity, bool _bPlayEffects)>(0x11F9280);
+	static inline auto FOnHit = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity, const Vec3& _hitPos)>(0x11F83F0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F8480);
+	static inline auto FUpdateGlooSkinAnimation = PreyFunction<void(const ArkGlooEffects* const _this, IEntity& _entity, float _keyTime)>(0x11F98A0);
+	static inline auto FStartGlooHardening = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F9120);
+	static inline auto FCloneGlooSkinMaterial = PreyFunction<void(ArkGlooEffects* const _this, IEntity& _entity)>(0x11F8100);
+	static inline auto FSetColorIntensity = PreyFunction<void(const ArkGlooEffects* const _this, float _intensity)>(0x11F8DE0);
+};
+
+// ArkGlooEffectAccumulated
+// Header:  Prey/GameDll/ark/arkglooeffectutils.h
+class ArkGlooEffectAccumulated : public ArkGlooEffects
+{ // Size=256 (0x100)
+public:
+	float m_currentGlooEffectAccumulation;
+	float m_currentMaxGlooEffectAccumulation;
+	float m_glooFreezeThreshold;
+	float m_glooEffectAccumulationAmountPerSecond;
+
+	ArkGlooEffectAccumulated();
+	~ArkGlooEffectAccumulated();
+	void Serialize(IEntity& _entity, TSerialize _ser) { FSerialize(this, _entity, _ser); }
+	void Start(IEntity& _entity) { FStart(this, _entity); }
+	void Update(IEntity& _entity, float _elapsedTime) { FUpdate(this, _entity, _elapsedTime); }
+	virtual void Stop(IEntity& _entity, bool _bPlayEffects);
+	void SkipToFrozen(IEntity& _entity) { FSkipToFrozen(this, _entity); }
+	void SetCurrentMaxGlooEffectAccumulation(float _amount) { FSetCurrentMaxGlooEffectAccumulation(this, _amount); }
+	void SetGlooEffectAccumulationAmountPerSecond(float _amount) { FSetGlooEffectAccumulationAmountPerSecond(this, _amount); }
+	void SetGlooEffectFreezeThreshold(float _amount) { FSetGlooEffectFreezeThreshold(this, _amount); }
+	bool IsGoingToFreeze() const { return FIsGoingToFreeze(this); }
+
+#if 0
+	void Reset(IEntity& _arg0_);
+	void UpdateSlowing(IEntity& _arg0_, float _arg1_);
+#endif
+
+	static inline auto FArkGlooEffectAccumulatedOv1 = PreyFunction<void(ArkGlooEffectAccumulated* const _this)>(0x11F7F20);
+	static inline auto FBitNotArkGlooEffectAccumulated = PreyFunction<void(ArkGlooEffectAccumulated* const _this)>(0x11F8010);
+	static inline auto FSerialize = PreyFunction<void(ArkGlooEffectAccumulated* const _this, IEntity& _entity, TSerialize _ser)>(0x11F8BA0);
+	static inline auto FStart = PreyFunction<void(ArkGlooEffectAccumulated* const _this, IEntity& _entity)>(0x11F8EF0);
+	static inline auto FUpdate = PreyFunction<void(ArkGlooEffectAccumulated* const _this, IEntity& _entity, float _elapsedTime)>(0x11F94D0);
+	static inline auto FStop = PreyFunction<void(ArkGlooEffectAccumulated* const _this, IEntity& _entity, bool _bPlayEffects)>(0x11F9220);
+	static inline auto FSkipToFrozen = PreyFunction<void(ArkGlooEffectAccumulated* const _this, IEntity& _entity)>(0x11F8EE0);
+	static inline auto FSetCurrentMaxGlooEffectAccumulation = PreyFunction<void(ArkGlooEffectAccumulated* const _this, float _amount)>(0x11F8EB0);
+	static inline auto FSetGlooEffectAccumulationAmountPerSecond = PreyFunction<void(ArkGlooEffectAccumulated* const _this, float _amount)>(0x11F8EC0);
+	static inline auto FSetGlooEffectFreezeThreshold = PreyFunction<void(ArkGlooEffectAccumulated* const _this, float _amount)>(0x11F8ED0);
+	static inline auto FIsGoingToFreeze = PreyFunction<bool(const ArkGlooEffectAccumulated* const _this)>(0x11F83D0);
+};
+
+// ArkGlooEffectTimed
+// Header:  Prey/GameDll/ark/arkglooeffectutils.h
+class ArkGlooEffectTimed : public ArkGlooEffects
+{ // Size=248 (0xF8)
+public:
+	ArkSimpleTimer m_glooSlowDuration;
+
+	ArkGlooEffectTimed();
+	~ArkGlooEffectTimed();
+	void Serialize(IEntity& _entity, TSerialize _ser) { FSerialize(this, _entity, _ser); }
+	void Start(IEntity& _entity) { FStart(this, _entity); }
+	void Update(IEntity& _entity, float _elapsedTime) { FUpdate(this, _entity, _elapsedTime); }
+	virtual void Stop(IEntity& _entity, bool _bPlayEffects);
+
+#if 0
+	void Reset(IEntity& _arg0_);
+	void SkipToFrozen(IEntity& _arg0_);
+	float GetPlaybackScale() const;
+	void UpdateSlowing(IEntity& _arg0_, float _arg1_);
+#endif
+
+	static inline auto FArkGlooEffectTimedOv1 = PreyFunction<void(ArkGlooEffectTimed* const _this)>(0x11F7F50);
+	static inline auto FBitNotArkGlooEffectTimed = PreyFunction<void(ArkGlooEffectTimed* const _this)>(0x11F8010);
+	static inline auto FSerialize = PreyFunction<void(ArkGlooEffectTimed* const _this, IEntity& _entity, TSerialize _ser)>(0x11F8CF0);
+	static inline auto FStart = PreyFunction<void(ArkGlooEffectTimed* const _this, IEntity& _entity)>(0x11F8F10);
+	static inline auto FUpdate = PreyFunction<void(ArkGlooEffectTimed* const _this, IEntity& _entity, float _elapsedTime)>(0x11F95F0);
+	static inline auto FStop = PreyFunction<void(ArkGlooEffectTimed* const _this, IEntity& _entity, bool _bPlayEffects)>(0x11F9230);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -26,4 +28,36 @@ public:
 	static inline auto FReset = PreyFunction<void(ArkKeyCardComponent* const _this)>(0x2A3380);
 	static inline auto FSerialize = PreyFunction<void(ArkKeyCardComponent* const _this, TSerialize ser)>(0x15B4DE0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
 
+// ArkKeyCardComponent
+// Header:  Prey/GameDll/ark/player/pda/ArkKeyCardComponent.h
+class ArkKeyCardComponent
+{ // Size=48 (0x30)
+public:
+	std::vector<uint64_t> m_collected;
+	std::vector<uint64_t> m_keycardsThatResetOnCharacterChange;
+
+	ArkKeyCardComponent();
+	void Collect(const uint64_t _id) { FCollect(this, _id); }
+	bool HasKeyCard(const uint64_t _id) const { return FHasKeyCard(this, _id); }
+	void Reset() { FReset(this); }
+	void ResetForCharacterChange() { FResetForCharacterChange(this); }
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+
+#if 0
+	void CollectAll();
+	const std::vector<uint64_t>& GetCollected() const;
+#endif
+
+	static inline auto FArkKeyCardComponentOv2 = PreyFunction<void(ArkKeyCardComponent* const _this)>(0x16DA3C0);
+	static inline auto FCollect = PreyFunction<void(ArkKeyCardComponent* const _this, const uint64_t _id)>(0x16DA3F0);
+	static inline auto FHasKeyCard = PreyFunction<bool(const ArkKeyCardComponent* const _this, const uint64_t _id)>(0x16DAF50);
+	static inline auto FReset = PreyFunction<void(ArkKeyCardComponent* const _this)>(0x16DA5E0);
+	static inline auto FResetForCharacterChange = PreyFunction<void(ArkKeyCardComponent* const _this)>(0x16DA5F0);
+	static inline auto FSerialize = PreyFunction<void(ArkKeyCardComponent* const _this, TSerialize ser)>(0x16DA690);
+};
+#endif // !MOONCRASH

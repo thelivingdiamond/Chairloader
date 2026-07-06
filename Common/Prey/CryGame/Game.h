@@ -120,9 +120,15 @@ class ArkActiveUserManagerBase;
 class CGame : public IGame, IGameFrameworkListener, IPlatformOS::IPlatformListener, IInputEventListener, ISystemEventListener, IArkActiveUserManagerListener
 {
 public:
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CGame* _this, IGameFramework* pFramework)>(0x16D0A90);
 	static inline auto FUpdate = PreyFunction<int(CGame* _this, bool haveFocus, unsigned int updateFlags)>(0x16D6230);
 	static inline auto FShutdown = PreyFunction<void(CGame* _this)>(0x16D6150);
+#else
+	static inline auto FInit = PreyFunction<bool(CGame* const _this, IGameFramework* pFramework)>(0x17F4560);
+	static inline auto FUpdate = PreyFunction<int(CGame* const _this, bool haveFocus, unsigned updateFlags)>(0x17F9D70);
+	static inline auto FShutdown = PreyFunction<void(CGame* const _this)>(0x17F9B50);
+#endif
 
 	enum ESaveIconMode : __int32
 	{

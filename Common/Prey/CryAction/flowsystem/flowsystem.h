@@ -55,10 +55,16 @@ public:
 		virtual void Release();
 		virtual bool Next(IFlowNodeTypeIterator::SNodeType &nodeType);
 		virtual ~CNodeTypeIterator();
-		
+
+#ifndef MOONCRASH
 		static inline auto FAddRef = PreyFunction<void(CFlowSystem::CNodeTypeIterator *const _this)>(0x49B5B0);
 		static inline auto FRelease = PreyFunction<void(CFlowSystem::CNodeTypeIterator *const _this)>(0x468370);
 		static inline auto FNext = PreyFunction<bool(CFlowSystem::CNodeTypeIterator *const _this, IFlowNodeTypeIterator::SNodeType &nodeType)>(0x41AA90);
+#else
+		static inline auto FAddRef = PreyFunction<void(CFlowSystem::CNodeTypeIterator* const _this)>(0x4678B0);
+		static inline auto FRelease = PreyFunction<void(CFlowSystem::CNodeTypeIterator* const _this)>(0x552600);
+		static inline auto FNext = PreyFunction<bool(CFlowSystem::CNodeTypeIterator* const _this, IFlowNodeTypeIterator::SNodeType& nodeType)>(0x433A80);
+#endif
 	};
 
 	using TTypeNameToIdMap = std::map<string,unsigned short,std::less<string>,std::allocator<std::pair<CryStringT<char> const,unsigned short>>>;
@@ -144,7 +150,8 @@ public:
 	void RegisterAutoTypes();
 	uint16_t GenerateNodeTypeID();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FBitNotCFlowSystem = PreyFunction<void(CFlowSystem *const _this)>(0x419120);
 	static inline auto FRelease = PreyFunction<void(CFlowSystem *const _this)>(0x41B9B0);
 	static inline auto FUpdate = PreyFunction<void(CFlowSystem *const _this)>(0x41C610);
@@ -191,6 +198,55 @@ public:
 	static inline auto FRegisterEntityTypes = PreyFunction<void(CFlowSystem *const _this)>(0x41B140);
 	static inline auto FBlacklistedFlownode = PreyFunction<bool(CFlowSystem *const _this, const char **nodeName)>(0x419540);
 	static inline auto FUpdateGraphs = PreyFunction<void(CFlowSystem *const _this)>(0x41C890);
+#else
+	static inline auto FCFlowSystemOv1 = PreyFunction<void(CFlowSystem* const _this)>(0x431E50);
+	static inline auto FBitNotCFlowSystem = PreyFunction<void(CFlowSystem* const _this)>(0x432150);
+	static inline auto FRelease = PreyFunction<void(CFlowSystem* const _this)>(0x4349A0);
+	static inline auto FUpdate = PreyFunction<void(CFlowSystem* const _this)>(0x435600);
+	static inline auto FReset = PreyFunction<void(CFlowSystem* const _this, bool unload)>(0x434B90);
+	static inline auto FReloadAllNodeTypes = PreyFunction<void(CFlowSystem* const _this)>(0x1333E90);
+	static inline auto FCreateFlowGraph = PreyFunction<_smart_ptr<IFlowGraph>*(CFlowSystem* const _this, _smart_ptr<IFlowGraph>* _return_value_)>(0x432A60);
+	static inline auto FRegisterType = PreyFunction<uint16_t(CFlowSystem* const _this, const char* type, _smart_ptr<IFlowNodeFactory> factory)>(0x434540);
+	static inline auto FUnregisterType = PreyFunction<bool(CFlowSystem* const _this, const char* typeName)>(0x435400);
+	static inline auto FGetTypeName = PreyFunction<const char* (CFlowSystem* const _this, uint16_t typeId)>(0x4333F0);
+	static inline auto FGetTypeId = PreyFunction<uint16_t(CFlowSystem* const _this, const char* typeName)>(0x4332F0);
+	static inline auto FCreateNodeTypeIterator = PreyFunction<_smart_ptr<IFlowNodeTypeIterator>*(CFlowSystem* const _this, _smart_ptr<IFlowNodeTypeIterator>* _return_value_)>(0x432B30);
+	static inline auto FRegisterInspector = PreyFunction<void(CFlowSystem* const _this, _smart_ptr<IFlowGraphInspector> pInspector, _smart_ptr<IFlowGraph> pGraph)>(0x434470);
+	static inline auto FUnregisterInspector = PreyFunction<void(CFlowSystem* const _this, _smart_ptr<IFlowGraphInspector> pInspector, _smart_ptr<IFlowGraph> pGraph)>(0x4352A0);
+	static inline auto FEnableInspecting = PreyFunction<void(CFlowSystem* const _this, bool bEnable)>(0xEAF650);
+	static inline auto FIsInspectingEnabled = PreyFunction<bool(const CFlowSystem* const _this)>(0x720C90);
+	static inline auto FGetDefaultInspector = PreyFunction<_smart_ptr<IFlowGraphInspector>*(const CFlowSystem* const _this, _smart_ptr<IFlowGraphInspector>* _return_value_)>(0x432CD0);
+	static inline auto FGetGraphById = PreyFunction<IFlowGraph* (CFlowSystem* const _this, unsigned graphId)>(0x432D00);
+	static inline auto FOnEntityIdChanged = PreyFunction<void(CFlowSystem* const _this, unsigned oldId, unsigned newId)>(0x433BD0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlowSystem* const _this, ICrySizer* pSizer)>(0x432EE0);
+	static inline auto FIsConsoleFlowNodesEnabled = PreyFunction<bool(const CFlowSystem* const _this)>(0x433450);
+	static inline auto FCreateContainer = PreyFunction<bool(CFlowSystem* const _this, int id)>(0x4328D0);
+	static inline auto FDeleteContainer = PreyFunction<void(CFlowSystem* const _this, int id)>(0x432BA0);
+	static inline auto FGetContainer = PreyFunction<std::shared_ptr<IFlowSystemContainer>*(CFlowSystem* const _this, std::shared_ptr<IFlowSystemContainer>* _return_value_, int id)>(0x432C10);
+	static inline auto FSerialize = PreyFunction<void(CFlowSystem* const _this, TSerialize ser)>(0x434D80);
+	static inline auto FOnBeforeSpawn = PreyFunction<bool(IEntitySystemSink* const _this, SEntitySpawnParams& params)>(0x1A302A0);
+	static inline auto FOnSpawn = PreyFunction<void(IEntitySystemSink* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0x433D90);
+	static inline auto FOnRemove = PreyFunction<bool(IEntitySystemSink* const _this, IEntity* pEntity)>(0x1A302A0);
+	static inline auto FOnReused = PreyFunction<void(IEntitySystemSink* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0x433CB0);
+	static inline auto FOnEvent = PreyFunction<void(IEntitySystemSink* const _this, IEntity* pEntity, SEntityEvent& event)>(0x1333E90);
+	static inline auto FCreateNodeOfType = PreyFunction<_smart_ptr<IFlowNode>*(CFlowSystem* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo, uint16_t typeId)>(0x432AD0);
+	static inline auto FPreInit = PreyFunction<void(CFlowSystem* const _this)>(0x433DC0);
+	static inline auto FInit = PreyFunction<void(CFlowSystem* const _this)>(0x433420);
+	static inline auto FShutdown = PreyFunction<void(CFlowSystem* const _this)>(0x435200);
+	static inline auto FEnable = PreyFunction<void(CFlowSystem* const _this, bool enable)>(0x432C00);
+	static inline auto FRegisterGraph = PreyFunction<unsigned(CFlowSystem* const _this, CFlowGraphBase* pGraph, const char* debugName)>(0x434410);
+	static inline auto FUnregisterGraph = PreyFunction<void(CFlowSystem* const _this, CFlowGraphBase* pGraph)>(0x435230);
+	static inline auto FGetIModuleManager = PreyFunction<IFlowGraphModuleManager* (CFlowSystem* const _this)>(0x84FDC0);
+	static inline auto FGetIArkGlobalActionManager = PreyFunction<IArkGlobalActionManager& (CFlowSystem* const _this)>(0x432DF0);
+	static inline auto FNotifyFlow = PreyFunction<void(CFlowSystem* const _this, CFlowGraphBase* pGraph, const SFlowAddress from, const SFlowAddress to)>(0x433B20);
+	static inline auto FGetTypeInfo = PreyFunction<const CFlowSystem::STypeInfo& (const CFlowSystem* const _this, uint16_t typeId)>(0x4333C0);
+	static inline auto FLoadExtensions = PreyFunction<void(CFlowSystem* const _this, string path)>(0x433700);
+	static inline auto FLoadExtensionFromXml = PreyFunction<void(CFlowSystem* const _this, XmlNodeRef nodeParent)>(0x433460);
+	static inline auto FRegisterAllNodeTypes = PreyFunction<void(CFlowSystem* const _this)>(0x433E80);
+	static inline auto FRegisterEntityTypes = PreyFunction<void(CFlowSystem* const _this)>(0x434130);
+	static inline auto FBlacklistedFlownode = PreyFunction<bool(CFlowSystem* const _this, const char* * nodeName)>(0x432560);
+	static inline auto FUpdateGraphs = PreyFunction<void(CFlowSystem* const _this)>(0x435880);
+#endif
 };
 
 // Header: FromCpp
@@ -209,7 +265,8 @@ struct CFlowSystemContainer : public IFlowSystemContainer // Id=8006922 Size=16
 	virtual void GetMemoryUsage(ICrySizer *s) const;
 	virtual void Serialize(TSerialize ser);
 	virtual ~CFlowSystemContainer();
-	
+
+#ifndef MOONCRASH
 	static inline auto FAddItem = PreyFunction<void(CFlowSystemContainer *const _this, TFlowInputData item)>(0x419430);
 	static inline auto FAddItemUnique = PreyFunction<void(CFlowSystemContainer *const _this, TFlowInputData item)>(0x419490);
 	static inline auto FRemoveItem = PreyFunction<void(CFlowSystemContainer *const _this, TFlowInputData item)>(0x41BA10);
@@ -219,6 +276,17 @@ struct CFlowSystemContainer : public IFlowSystemContainer // Id=8006922 Size=16
 	static inline auto FClear = PreyFunction<void(CFlowSystemContainer *const _this)>(0x4197B0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CFlowSystemContainer const *const _this, ICrySizer *s)>(0x41A270);
 	static inline auto FSerialize = PreyFunction<void(CFlowSystemContainer *const _this, TSerialize ser)>(0x41C080);
+#else
+	static inline auto FAddItem = PreyFunction<void(CFlowSystemContainer* const _this, TFlowInputData item)>(0x432460);
+	static inline auto FAddItemUnique = PreyFunction<void(CFlowSystemContainer* const _this, TFlowInputData item)>(0x4324C0);
+	static inline auto FRemoveItem = PreyFunction<void(CFlowSystemContainer* const _this, TFlowInputData item)>(0x434A00);
+	static inline auto FGetItem = PreyFunction<TFlowInputData*(CFlowSystemContainer* const _this, TFlowInputData* _return_value_, int i)>(0x432E00);
+	static inline auto FRemoveItemAt = PreyFunction<void(CFlowSystemContainer* const _this, int i)>(0x434B70);
+	static inline auto FGetItemCount = PreyFunction<int(const CFlowSystemContainer* const _this)>(0x7BD660);
+	static inline auto FClear = PreyFunction<void(CFlowSystemContainer* const _this)>(0x4327D0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlowSystemContainer* const _this, ICrySizer* s)>(0x433270);
+	static inline auto FSerialize = PreyFunction<void(CFlowSystemContainer* const _this, TSerialize ser)>(0x435070);
+#endif
 };
 
 // Header: FromCpp
@@ -285,16 +353,22 @@ public:
 		
 		Contains(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
-		
+
+		//TODO: MOONCRASH
+#ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Contains const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE260);
+#endif
 	};
 
 	class Empty // Id=8014372 Size=1
 	{
 	public:
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
-		
+
+		//TODO: MOONCRASH
+#ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Empty const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE270);
+#endif
 	};
 
 	class EmptyOrDoesNotSortBefore // Id=8014373 Size=8
@@ -304,8 +378,11 @@ public:
 		
 		EmptyOrDoesNotSortBefore(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
-		
+
+		//TODO: MOONCRASH
+#ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::EmptyOrDoesNotSortBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE280);
+#endif
 	};
 
 	class SortsBefore // Id=8014374 Size=8
@@ -315,8 +392,11 @@ public:
 		
 		SortsBefore(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
-		
+
+		//TODO: MOONCRASH
+#ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::SortsBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE2B0);
+#endif
 	};
 
 	ArkAiTreeNode const *m_pNode;
@@ -333,10 +413,12 @@ public:
 #if 0
 	int *operator int ArkSafeBool<class ArkAiTreeInstanceNodeQueueElement>::*() const;
 #endif
-	
+
+	//TODO: MOONCRASH
+#ifndef MOONCRASH
 	static inline auto FGetNode = PreyFunction<ArkAiTreeNode const &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x12E5E70);
 	static inline auto FGetInstanceNode = PreyFunction<ArkAiTreeInstanceNode &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x12AAC70);
 	static inline auto FWantsUpdate = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x10DE2E0);
 	static inline auto FSetWantsUpdate = PreyFunction<void(ArkAiTreeInstanceNodeQueueElement *const _this, bool _bWantsUpdate)>(0x419BF0);
+#endif
 };
-

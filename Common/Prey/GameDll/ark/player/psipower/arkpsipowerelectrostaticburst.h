@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkPsiPowerCommonProperties.h>
@@ -210,4 +212,217 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1467750);
 	static inline auto FInit = PreyFunction<bool(ElectrostaticBurstPowerProperties* const _this)>(0x1467840);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkPsiPowerCommonProperties.h>
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerTargetingComponent.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiElectrostaticBurst.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkPsiPowerElectrostaticBurstProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+class ArkPsiPowerElectrostaticBurstProperties : public ArkReflectedObject
+{ // Size=248 (0xF8)
+public:
+	// ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkDisplayNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisplayNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkCooldownDurationSecProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownDurationSecProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkBlastTypePropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkBlastTypePropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157E5D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkTargetingPropertiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetingPropertiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157E610);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084620);
+	};
+
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerElectrostaticBurstProperties::ArkDisplayNameProperty>(0x2D6A858);
+	string m_DisplayName;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerElectrostaticBurstProperties::ArkDescriptionProperty>(0x2D6A878);
+	string m_Description;
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerElectrostaticBurstProperties::ArkCooldownDurationSecProperty>(0x2D6A898);
+	float m_CooldownDurationSec;
+	static inline auto s_ArkBlastTypePropertiesProperty = PreyGlobal<ArkPsiPowerElectrostaticBurstProperties::ArkBlastTypePropertiesProperty>(0x2D6A8B8);
+	ArkPsiElectrostaticBurstProperties m_BlastTypeProperties;
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerElectrostaticBurstProperties::ArkTargetingPropertiesProperty>(0x2D6A8D8);
+	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetDisplayName(string _arg0_);
+	const string& GetDisplayName() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetCooldownDurationSec(float _arg0_);
+	const float& GetCooldownDurationSec() const;
+	void SetBlastTypeProperties(ArkPsiElectrostaticBurstProperties _arg0_);
+	const ArkPsiElectrostaticBurstProperties& GetBlastTypeProperties() const;
+	void SetTargetingProperties(ArkPsiPowerTargetingComponentProperties _arg0_);
+	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16AB9E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x157F020);
+};
+
+// ElectrostaticBurstPowerProperties
+// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+class ElectrostaticBurstPowerProperties : public ArkReflectedLibrary
+{ // Size=248 (0xF8)
+public:
+	// ElectrostaticBurstPowerProperties::ArkCommonProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkCommonProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCommonProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ElectrostaticBurstPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ElectrostaticBurstPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+	};
+
+	// ElectrostaticBurstPowerProperties::ArkUniqueProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkUniqueProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUniqueProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ElectrostaticBurstPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B8620);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ElectrostaticBurstPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+	};
+
+	// ElectrostaticBurstPowerProperties::ArkLevelsProperty
+	// Header:  Prey/GameDll/ark/player/psipower/arkpsipowerelectrostaticburst.h
+	class ArkLevelsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkLevelsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ElectrostaticBurstPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157E650);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ElectrostaticBurstPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x157E750);
+		static inline auto FIsArray = PreyFunction<bool(const ElectrostaticBurstPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ElectrostaticBurstPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x157E7A0);
+	};
+
+	using LevelProperties = ArkPsiPowerElectrostaticBurstProperties;
+	using UniqueProperties = bool;
+
+	static inline auto s_ArkCommonProperty = PreyGlobal<ElectrostaticBurstPowerProperties::ArkCommonProperty>(0x2D6A8F8);
+	ArkPsiPowerCommonProperties m_Common;
+	static inline auto s_ArkUniqueProperty = PreyGlobal<ElectrostaticBurstPowerProperties::ArkUniqueProperty>(0x2D6A918);
+	bool m_Unique;
+	static inline auto s_ArkLevelsProperty = PreyGlobal<ElectrostaticBurstPowerProperties::ArkLevelsProperty>(0x2D6A938);
+	std::vector<ArkPsiPowerElectrostaticBurstProperties> m_Levels;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	void SetCommon(ArkPsiPowerCommonProperties _arg0_);
+	const ArkPsiPowerCommonProperties& GetCommon() const;
+	void SetUnique(bool _arg0_);
+	const bool& GetUnique() const;
+	std::vector<ArkPsiPowerElectrostaticBurstProperties>& GetLevels();
+	const std::vector<ArkPsiPowerElectrostaticBurstProperties>& GetLevels() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x157EF50);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x157F0C0);
+	static inline auto FInit = PreyFunction<bool(ElectrostaticBurstPowerProperties* const _this)>(0x157F1B0);
+};
+#endif // !MOONCRASH

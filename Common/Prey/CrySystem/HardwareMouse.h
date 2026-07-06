@@ -70,6 +70,7 @@ public:
 	void ShowHardwareMouse(bool bShow) { FShowHardwareMouse(this, bShow); }
 	static bool IsFullscreen() { return FIsFullscreen(); }
 
+#ifndef MOONCRASH
 	static inline auto FOnPostCreateDevice = PreyFunction<void(CHardwareMouse* const _this)>(0xA13080);
 	static inline auto FOnPostResetDevice = PreyFunction<void(CHardwareMouse* const _this)>(0xA13080);
 	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& rInputEvent)>(0xDA39F0);
@@ -99,4 +100,35 @@ public:
 	static inline auto FCHardwareMouseOv1 = PreyFunction<void(CHardwareMouse* const _this, bool bVisibleByDefault)>(0xDA3110);
 	static inline auto FShowHardwareMouse = PreyFunction<void(CHardwareMouse* const _this, bool bShow)>(0xDA4090);
 	static inline auto FIsFullscreen = PreyFunction<bool()>(0xDA39B0);
+#else
+	static inline auto FOnPostCreateDevice = PreyFunction<void(CHardwareMouse* const _this)>(0x1333E90);
+	static inline auto FOnPostResetDevice = PreyFunction<void(CHardwareMouse* const _this)>(0x1333E90);
+	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& rInputEvent)>(0xDC16C0);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xDC1860);
+	static inline auto FRelease = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1A00);
+	static inline auto FOnPreInitRenderer = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1840);
+	static inline auto FOnPostInitInput = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1810);
+	static inline auto FEvent = PreyFunction<void(IHardwareMouse* const _this, int iX, int iY, EHARDWAREMOUSEEVENT eHardwareMouseEvent, int wheelDelta)>(0xDC1480);
+	static inline auto FAddListener = PreyFunction<void(IHardwareMouse* const _this, IHardwareMouseEventListener* pHardwareMouseEventListener)>(0xDC1180);
+	static inline auto FRemoveListener = PreyFunction<void(IHardwareMouse* const _this, IHardwareMouseEventListener* pHardwareMouseEventListener)>(0xE69800);
+	static inline auto FSetMouseGameMode = PreyFunction<void(IHardwareMouse* const _this, bool bGameMode)>(0xDC1D50);
+	static inline auto FIncrementCounter = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1630);
+	static inline auto FDecrementCounter = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1430);
+	static inline auto FPauseMouse = PreyFunction<void(IHardwareMouse* const _this, bool _forceUpdate)>(0xDC19B0);
+	static inline auto FUnPauseMouse = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1E70);
+	static inline auto FGetHardwareMousePosition = PreyFunction<void(IHardwareMouse* const _this, float* pfX, float* pfY)>(0xDC15A0);
+	static inline auto FSetHardwareMousePosition = PreyFunction<void(IHardwareMouse* const _this, float fX, float fY)>(0xDC1CE0);
+	static inline auto FGetHardwareMouseClientPosition = PreyFunction<void(IHardwareMouse* const _this, float* pfX, float* pfY)>(0xDC1510);
+	static inline auto FSetHardwareMouseClientPosition = PreyFunction<void(IHardwareMouse* const _this, float fX, float fY)>(0xDC1C70);
+	static inline auto FReset = PreyFunction<void(IHardwareMouse* const _this, bool bVisibleByDefault)>(0xDC1C20);
+	static inline auto FConfineCursor = PreyFunction<void(IHardwareMouse* const _this, bool confine, bool centerCursor)>(0xDC1220);
+	static inline auto FHide = PreyFunction<void(IHardwareMouse* const _this, bool hide)>(0xDC1600);
+	static inline auto FUseSystemCursor = PreyFunction<void(IHardwareMouse* const _this, bool useSystemCursor)>(0xDC1F70);
+	static inline auto FGetSystemEventListener = PreyFunction<ISystemEventListener* (IHardwareMouse* const _this)>(0xDC15E0);
+	static inline auto FUpdate = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1EA0);
+	static inline auto FRender = PreyFunction<void(IHardwareMouse* const _this)>(0xDC1A30);
+	static inline auto FCHardwareMouseOv1 = PreyFunction<void(CHardwareMouse* const _this, bool bVisibleByDefault)>(0xDC0DB0);
+	static inline auto FShowHardwareMouse = PreyFunction<void(CHardwareMouse* const _this, bool bShow)>(0xDC1D60);
+	static inline auto FIsFullscreen = PreyFunction<bool()>(0xDC1680);
+#endif
 };

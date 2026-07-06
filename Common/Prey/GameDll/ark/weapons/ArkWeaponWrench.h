@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -114,3 +116,127 @@ public:
 	static inline auto FEndIntro = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1682D00);
 	static inline auto FCloseCancelPrompt = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1682BF0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/weapons/ArkWeapon.h>
+#include <Prey/GameDll/ark/weapons/ArkWrenchComponent.h>
+
+class ArkNpc;
+class CCryName;
+struct IEntity;
+struct SEntityUpdateContext;
+
+// ArkWeaponWrench
+// Header:  Prey/GameDll/ark/weapons/ArkWeaponWrench.h
+class ArkWeaponWrench : public CArkWeapon
+{ // Size=1768 (0x6E8)
+public:
+	enum class EArkAttackAnim
+	{
+		none = 0,
+		inLR = 1,
+		inRL = 2,
+		LR = 3,
+		RL = 4,
+		hitLR = 5,
+		hitEnemyLR = 6,
+		hitRL = 7,
+		hitEnemyRL = 8,
+		outLR = 9,
+		outRL = 10,
+		fatalityRL = 11,
+		fatalityLR = 12,
+		genericFatality = 13,
+	};
+
+	ArkWrenchComponent m_wrenchComponent;
+	ArkWeaponWrench::EArkAttackAnim m_currentAnim;
+	ArkSimpleTimer m_cancelTimer;
+	bool m_bAttackHeld;
+	bool m_bCharged;
+	bool m_bShowingCancelPrompt;
+	float m_chargeTime;
+	float m_maxChargeTime;
+	float m_maxChargeDamageBonus;
+	wstring m_quickHitBaseKeyword;
+	wstring m_quickHitFinalKeyword;
+	wstring m_chargedHitBaseKeyword;
+	wstring m_chargedHitFinalKeyword;
+	uint64_t m_damageSignal;
+
+	void OnChargeEvent() { FOnChargeEvent(this); }
+	virtual void OnFireEvent();
+	void OnActionExit() { FOnActionExit(this); }
+	virtual void OnHit(const float _dir, const float _damageScale);
+	virtual bool IsEquippable() const;
+	virtual bool CanEquipFromInventory() const;
+	virtual unsigned GetEquipId() const;
+	virtual string GetUIAmmoCountString() const;
+	void PlayAnim(const ArkWeaponWrench::EArkAttackAnim _anim, const bool _bInterrupt, ArkNpc* const _pNPC) { FPlayAnim(this, _anim, _bInterrupt, _pNPC); }
+	virtual bool ForceCancelCharge(const bool _bPlayAnim);
+	virtual void CancelCharge();
+	virtual wstring GetDescription() const;
+	virtual CCryName GetReticleName() const;
+	virtual bool CanCollideWithEntity(const IEntity* const _pEntity) const;
+	virtual float CalculateFatigue(const bool _bIsCharged, const bool _bIsExhausted) const;
+	virtual void StartChargingEffect();
+	virtual void InitializeStats();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual int GetBaseDamage() const;
+	virtual int GetModifiedDamage(const std::vector<uint64_t>& _modifiers, const bool _bIncludeEnchantments) const;
+	virtual void LoadCachedProperties();
+	virtual bool OnActionAttackPrimary(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual bool OnActionAttackUse(unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value);
+	virtual void OnUnequip(const bool _bUnselect, const bool _bImmediate);
+	virtual bool HasAmmo() const;
+	virtual float GetDegradationRate() const;
+	virtual int GetInventoryAmmoCount() const;
+	virtual void ConsumeAmmo();
+	virtual CCryName GetPlayerWeaponSpecificCritChanceStatName() const;
+	void EndIntro() { FEndIntro(this); }
+	void CloseCancelPrompt() { FCloseCancelPrompt(this); }
+
+#if 0
+	ArkWeaponWrench();
+	void OnChainEvent();
+	void OnFatalityExit(ArkNpc& _arg0_);
+	void OnDirectionParamSet(const float _arg0_);
+	void PlayHit(const ArkWeaponWrench::EArkAttackAnim _arg0_, const ArkWeaponWrench::EArkAttackAnim _arg1_);
+#endif
+
+	static inline auto FOnChargeEvent = PreyFunction<void(ArkWeaponWrench* const _this)>(0x17A8CE0);
+	static inline auto FOnFireEvent = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1333E90);
+	static inline auto FOnActionExit = PreyFunction<void(ArkWeaponWrench* const _this)>(0x17A8700);
+	static inline auto FOnHit = PreyFunction<void(ArkWeaponWrench* const _this, const float _dir, const float _damageScale)>(0x1498570);
+	static inline auto FIsEquippable = PreyFunction<bool(const CArkItem* const _this)>(0x17A7B10);
+	static inline auto FCanEquipFromInventory = PreyFunction<bool(const CArkItem* const _this)>(0x1A302A0);
+	static inline auto FGetEquipId = PreyFunction<unsigned(const CArkItem* const _this)>(0x17A7A40);
+	static inline auto FGetUIAmmoCountString = PreyFunction<string*(const ArkWeaponWrench* const _this, string* _return_value_)>(0x14972C0);
+	static inline auto FPlayAnim = PreyFunction<void(ArkWeaponWrench* const _this, const ArkWeaponWrench::EArkAttackAnim _anim, const bool _bInterrupt, ArkNpc* const _pNPC)>(0x17A8D50);
+	static inline auto FForceCancelCharge = PreyFunction<bool(ArkWeaponWrench* const _this, const bool _bPlayAnim)>(0x1497180);
+	static inline auto FCancelCharge = PreyFunction<void(ArkWeaponWrench* const _this)>(0x17A6E50);
+	static inline auto FGetDescription = PreyFunction<wstring*(const CArkItem* const _this, wstring* _return_value_)>(0x17A70F0);
+	static inline auto FGetReticleName = PreyFunction<CCryName*(const ArkWeaponWrench* const _this, CCryName* _return_value_)>(0x14972A0);
+	static inline auto FCanCollideWithEntity = PreyFunction<bool(const ArkWeaponWrench* const _this, const IEntity* const _pEntity)>(0x17A6E30);
+	static inline auto FCalculateFatigue = PreyFunction<float(const ArkWeaponWrench* const _this, const bool _bIsCharged, const bool _bIsExhausted)>(0x17A6DB0);
+	static inline auto FStartChargingEffect = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1333E90);
+	static inline auto FInitializeStats = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1832230);
+	static inline auto FUpdate = PreyFunction<void(CArkItem* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x17A8FA0);
+	static inline auto FGetBaseDamage = PreyFunction<int(const ArkWeaponWrench* const _this)>(0x17A70B0);
+	static inline auto FGetModifiedDamage = PreyFunction<int(const ArkWeaponWrench* const _this, const std::vector<uint64_t>& _modifiers, const bool _bIncludeEnchantments)>(0x17A7A80);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkItem* const _this)>(0x17A7B30);
+	static inline auto FOnActionAttackPrimary = PreyFunction<bool(ArkWeaponWrench* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x17A8430);
+	static inline auto FOnActionAttackUse = PreyFunction<bool(ArkWeaponWrench* const _this, unsigned _entityId, const CCryName& _actionId, int _activationMode, float _value)>(0x17A86E0);
+	static inline auto FOnUnequip = PreyFunction<void(ArkWeaponWrench* const _this, const bool _bUnselect, const bool _bImmediate)>(0x1498770);
+	static inline auto FHasAmmo = PreyFunction<bool(const ArkWeaponWrench* const _this)>(0x1A302A0);
+	static inline auto FGetDegradationRate = PreyFunction<float(const ArkWeaponWrench* const _this)>(0x714650);
+	static inline auto FGetInventoryAmmoCount = PreyFunction<int(const ArkWeaponWrench* const _this)>(0x1CBB0B0);
+	static inline auto FConsumeAmmo = PreyFunction<void(ArkWeaponWrench* const _this)>(0x1333E90);
+	static inline auto FGetPlayerWeaponSpecificCritChanceStatName = PreyFunction<CCryName*(const ArkWeaponWrench* const _this, CCryName* _return_value_)>(0x17A7AF0);
+	static inline auto FEndIntro = PreyFunction<void(ArkWeaponWrench* const _this)>(0x17A6FE0);
+	static inline auto FCloseCancelPrompt = PreyFunction<void(ArkWeaponWrench* const _this)>(0x17A6ED0);
+};
+#endif // !MOONCRASH

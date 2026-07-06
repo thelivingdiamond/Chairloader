@@ -15,8 +15,12 @@ public:
 	
 	virtual void PushFrame();
 	virtual void PopFrame();
-	
+
+#ifndef MOONCRASH
 	static inline auto FPushFrame = PreyFunction<void(ArkActionFilterStack *const _this)>(0x2A2AE0);
 	static inline auto FPopFrame = PreyFunction<void(ArkActionFilterStack *const _this)>(0x2A29A0);
+#else
+	static inline auto FPushFrame = PreyFunction<void(ArkActionFilterStack* const _this)>(0x2BB050);
+	static inline auto FPopFrame = PreyFunction<void(ArkActionFilterStack* const _this)>(0x2BAF10);
+#endif
 };
-

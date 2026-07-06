@@ -31,11 +31,19 @@ public:
 	static int64_t InputWndProc(HWND__ *arg0, unsigned arg1, uint64_t arg2, int64_t arg3);
 	int64_t OnInputWndProc(HWND__ *arg0, unsigned arg1, uint64_t arg2, int64_t arg3);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CDXInput *const _this)>(0x9D0540);
 	static inline auto FUpdate = PreyFunction<void(CDXInput *const _this, bool bFocus)>(0x9D0710);
 	static inline auto FShutDown = PreyFunction<void(CDXInput *const _this)>(0x9D06C0);
 	static inline auto FClearKeyState = PreyFunction<void(CDXInput *const _this)>(0x9D04D0);
 	static inline auto FSetExclusiveMode = PreyFunction<void(CDXInput *const _this, EInputDeviceType deviceType, bool exclusive, void *pUser)>(0x9D06A0);
+#else
+	static inline auto FCDXInput = PreyFunction<void(CDXInput* const _this, ISystem* pSystem, HWND__* hwnd)>(0x9ED770);
+	static inline auto FInit = PreyFunction<bool(CDXInput* const _this)>(0x9ED8B0);
+	static inline auto FUpdate = PreyFunction<void(CDXInput* const _this, bool bFocus)>(0x9EDA90);
+	static inline auto FShutDown = PreyFunction<void(CDXInput* const _this)>(0x9EDA40);
+	static inline auto FClearKeyState = PreyFunction<void(CDXInput* const _this)>(0x9ED840);
+	static inline auto FSetExclusiveMode = PreyFunction<void(CDXInput* const _this, EInputDeviceType deviceType, bool exclusive, void* pUser)>(0x9EDA20);
+#endif
 };
-

@@ -1,3 +1,4 @@
+// Auto-merged: identical in PreyDll (base) and Mooncrash (DLC); no MOONCRASH guard needed.
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -21,4 +22,3 @@ public:
 	virtual void EnableIdleBreak(const bool _bEnable) = 0;
 	virtual void InhibitRotation(const bool _bInhibit) = 0;
 };
-

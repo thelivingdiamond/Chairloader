@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -647,3 +649,4 @@ size_t CryCrtSize(void* p)
 {
 	return g_pfnCryCrtSize(p);
 }
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -337,4 +339,447 @@ public:
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x13D54A0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x13D5540);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/CryString/CryName.h>
+#include <Prey/GameDll/ark/ui/ArkInputLegend.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkPsiPowerBlackListEntry
+// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+class ArkPsiPowerBlackListEntry : public ArkReflectedObject
+{ // Size=4 (0x4)
+public:
+	// ArkPsiPowerBlackListEntry::ArkPowerProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkPowerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkPowerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerBlackListEntry::ArkPowerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E1150);
+	};
+
+	static inline auto s_ArkPowerProperty = PreyGlobal<ArkPsiPowerBlackListEntry::ArkPowerProperty>(0x2D5AF00);
+	EArkPsiPowers m_Power;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	void SetPower(string _arg0_);
+	const EArkPsiPowers& GetPower() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x14E13B0);
+};
+
+// ArkPsiPowerCommonProperties
+// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+class ArkPsiPowerCommonProperties : public ArkReflectedObject
+{ // Size=208 (0xD0)
+public:
+	// ArkPsiPowerCommonProperties::ArkDisplayNameProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkDisplayNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisplayNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkPickerLabelProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkPickerLabelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPickerLabelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkPickerLabelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkPickerLabelProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkDescriptionProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkHelpTextProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkHelpTextProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkHelpTextProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkHelpTextProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B3000);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkHelpTextProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkPsiCostProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkPsiCostProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPsiCostProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkNoiseIdProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkNoiseIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNoiseIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkNoiseIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkNoiseIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkLoudnessIdProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkLoudnessIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLoudnessIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkLoudnessIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B6480);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkLoudnessIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkActiveBlacklistProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkActiveBlacklistProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E11A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E11C0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty* const _this, ArkReflectedObject* _pObject)>(0x1077BE0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkModalLegendProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkModalLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkModalLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0E00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkModalLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkTargetingLegendProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkTargetingLegendProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetingLegendProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkTargetingLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0EA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkTargetingLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x1403090);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkPostProcessVFXProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkPostProcessVFXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPostProcessVFXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13C0750);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF6A0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkPersistentPostProcessVFXProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkPersistentPostProcessVFXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPersistentPostProcessVFXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkPersistentPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089FF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkPersistentPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF6B0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkTargetHighlightColorProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkTargetHighlightColorProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetHighlightColorProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkTargetHighlightColorProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0F40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkTargetHighlightColorProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C0760);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkTargetHighlightColorAlphaProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkTargetHighlightColorAlphaProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTargetHighlightColorAlphaProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkTargetHighlightColorAlphaProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0F80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkTargetHighlightColorAlphaProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0F90);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkExecutionPlayerEffectProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkExecutionPlayerEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkExecutionPlayerEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkExecutionPlayerEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkExecutionPlayerEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E1000);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkExecutionAudioTriggerProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkExecutionAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkExecutionAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkExecutionAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E1010);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkExecutionAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E1070);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkCameraZoomDurationProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkCameraZoomDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCameraZoomDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkCameraZoomDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E1080);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkCameraZoomDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E1090);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkInterruptsMimicGrabSequenceProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkInterruptsMimicGrabSequenceProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterruptsMimicGrabSequenceProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkInterruptsMimicGrabSequenceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E10A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkInterruptsMimicGrabSequenceProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E10B0);
+	};
+
+	// ArkPsiPowerCommonProperties::ArkCostReductionStatProperty
+	// Header:  Prey/Ark/ArkPsiPowerCommonProperties.h
+	class ArkCostReductionStatProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCostReductionStatProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerCommonProperties::ArkCostReductionStatProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E10C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerCommonProperties::ArkCostReductionStatProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E1140);
+	};
+
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkDisplayNameProperty>(0x2D5AF20);
+	string m_DisplayName;
+	static inline auto s_ArkPickerLabelProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkPickerLabelProperty>(0x2D5AF40);
+	string m_PickerLabel;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkDescriptionProperty>(0x2D5AF60);
+	string m_Description;
+	static inline auto s_ArkHelpTextProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkHelpTextProperty>(0x2D5AF80);
+	string m_HelpText;
+	static inline auto s_ArkPsiCostProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkPsiCostProperty>(0x2D5AFA0);
+	float m_PsiCost;
+	static inline auto s_ArkNoiseIdProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkNoiseIdProperty>(0x2D5AFC0);
+	uint64_t m_NoiseId;
+	static inline auto s_ArkLoudnessIdProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkLoudnessIdProperty>(0x2D5AFE0);
+	uint64_t m_LoudnessId;
+	static inline auto s_ArkActiveBlacklistProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkActiveBlacklistProperty>(0x2D5B000);
+	std::vector<ArkPsiPowerBlackListEntry> m_ActiveBlacklist;
+	static inline auto s_ArkModalLegendProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkModalLegendProperty>(0x2D5B020);
+	ArkInputLegend m_ModalLegend;
+	static inline auto s_ArkTargetingLegendProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkTargetingLegendProperty>(0x2D5B040);
+	ArkInputLegend m_TargetingLegend;
+	static inline auto s_ArkPostProcessVFXProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkPostProcessVFXProperty>(0x2D5B060);
+	uint64_t m_PostProcessVFX;
+	static inline auto s_ArkPersistentPostProcessVFXProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkPersistentPostProcessVFXProperty>(0x2D5B080);
+	uint64_t m_PersistentPostProcessVFX;
+	static inline auto s_ArkTargetHighlightColorProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkTargetHighlightColorProperty>(0x2D5B0A0);
+	Vec3 m_TargetHighlightColor;
+	static inline auto s_ArkTargetHighlightColorAlphaProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkTargetHighlightColorAlphaProperty>(0x2D5B0C0);
+	float m_TargetHighlightColorAlpha;
+	static inline auto s_ArkExecutionPlayerEffectProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkExecutionPlayerEffectProperty>(0x2D5B0E0);
+	string m_ExecutionPlayerEffect;
+	static inline auto s_ArkExecutionAudioTriggerProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkExecutionAudioTriggerProperty>(0x2D5B100);
+	string m_ExecutionAudioTrigger;
+	static inline auto s_ArkCameraZoomDurationProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkCameraZoomDurationProperty>(0x2D5B120);
+	float m_CameraZoomDuration;
+	static inline auto s_ArkInterruptsMimicGrabSequenceProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkInterruptsMimicGrabSequenceProperty>(0x2D5B140);
+	bool m_InterruptsMimicGrabSequence;
+	static inline auto s_ArkCostReductionStatProperty = PreyGlobal<ArkPsiPowerCommonProperties::ArkCostReductionStatProperty>(0x2D5B160);
+	CCryName m_CostReductionStat;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetDisplayName(string _arg0_);
+	const string& GetDisplayName() const;
+	void SetPickerLabel(string _arg0_);
+	const string& GetPickerLabel() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetHelpText(string _arg0_);
+	const string& GetHelpText() const;
+	void SetPsiCost(float _arg0_);
+	const float& GetPsiCost() const;
+	void SetNoiseId(uint64_t _arg0_);
+	const uint64_t& GetNoiseId() const;
+	void SetLoudnessId(uint64_t _arg0_);
+	const uint64_t& GetLoudnessId() const;
+	std::vector<ArkPsiPowerBlackListEntry>& GetActiveBlacklist();
+	const std::vector<ArkPsiPowerBlackListEntry>& GetActiveBlacklist() const;
+	void SetModalLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetModalLegend() const;
+	void SetTargetingLegend(ArkInputLegend _arg0_);
+	const ArkInputLegend& GetTargetingLegend() const;
+	void SetPostProcessVFX(uint64_t _arg0_);
+	const uint64_t& GetPostProcessVFX() const;
+	void SetPersistentPostProcessVFX(uint64_t _arg0_);
+	const uint64_t& GetPersistentPostProcessVFX() const;
+	void SetTargetHighlightColor(Vec3 _arg0_);
+	const Vec3& GetTargetHighlightColor() const;
+	void SetTargetHighlightColorAlpha(float _arg0_);
+	const float& GetTargetHighlightColorAlpha() const;
+	void SetExecutionPlayerEffect(string _arg0_);
+	const string& GetExecutionPlayerEffect() const;
+	void SetExecutionAudioTrigger(string _arg0_);
+	const string& GetExecutionAudioTrigger() const;
+	void SetCameraZoomDuration(float _arg0_);
+	const float& GetCameraZoomDuration() const;
+	void SetInterruptsMimicGrabSequence(bool _arg0_);
+	const bool& GetInterruptsMimicGrabSequence() const;
+	void SetCostReductionStat(CCryName _arg0_);
+	const CCryName& GetCostReductionStat() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x14E13E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x14E1480);
+};
+#endif // !MOONCRASH

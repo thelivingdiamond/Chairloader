@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -256,4 +258,161 @@ public:
 	static inline auto FShouldShowTutorialForHighlightAbility = PreyFunction<bool(CArkPDAPageAbilities const *const _this)>(0x1616350);
 	static inline auto FPopulateCategoryDetails = PreyFunction<void(CArkPDAPageAbilities const *const _this, ArkAbilityCategory const &_category, bool &_bNew, bool &_bHidden)>(0x1615470);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/GameDll/ark/player/IArkPlayerStatusListener.h>
+#include <Prey/GameDll/ark/ui/IArkPDAPage.h>
+#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
+class ArkAbility;
+class ArkAbilityCategory;
+class ArkClass;
+enum class ArkPDAPage;
+class CCryName;
+enum EControlScheme;
+class IArkValueBase;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkAbilityRow
+// Header:  Prey/GameDll/ark/ui/ArkPDAPageAbilities.h
+class ArkAbilityRow : public ArkReflectedObject
+{ // Size=24 (0x18)
+public:
+	// ArkAbilityRow::ArkAbilitiesProperty
+	// Header:  Prey/GameDll/ark/ui/ArkPDAPageAbilities.h
+	class ArkAbilitiesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkAbilitiesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkAbilityRow::ArkAbilitiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1075A30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkAbilityRow::ArkAbilitiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1075A50);
+		static inline auto FIsArray = PreyFunction<bool(const ArkAbilityRow::ArkAbilitiesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkAbilityRow::ArkAbilitiesProperty* const _this, ArkReflectedObject* _pObject)>(0x1075A70);
+	};
+
+	static inline auto s_ArkAbilitiesProperty = PreyGlobal<ArkAbilityRow::ArkAbilitiesProperty>(0x2D21170);
+	std::vector<uint64_t> m_Abilities;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	static ArkClass* GetClass();
+	std::vector<uint64_t>& GetAbilities();
+	const std::vector<uint64_t>& GetAbilities() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1077160);
+};
+
+// CArkPDAPageAbilities
+// Header:  Prey/GameDll/ark/ui/ArkPDAPageAbilities.h
+class CArkPDAPageAbilities
+	: public IArkPDAPage
+	, public ArkUIMenuBase<CArkPDAPageAbilities>
+	, public IUIControlSchemeListener
+	, public IArkPlayerStatusListener
+{ // Size=120 (0x78)
+public:
+	enum class AbilityViewState
+	{
+		invalid = 0,
+		abilities = 1,
+		tutorial = 2,
+		skins = 3,
+		store = 4,
+	};
+
+	const ArkAbilityCategory* m_pCurrentCategory;
+	uint64_t m_purchaseAbility;
+	uint64_t m_highlightedAbility;
+	CArkPDAPageAbilities::AbilityViewState m_viewState;
+	std::vector<uint64_t> m_petSkins;
+	int m_skinIndex;
+
+	CArkPDAPageAbilities();
+	virtual ~CArkPDAPageAbilities();
+	void SelectAbility(const uint64_t _abilityId) { FSelectAbility(this, _abilityId); }
+	virtual void Update(float _frameTime);
+	virtual void OnStatusChanged(uint64_t _statusId, bool _bActive);
+	void OnPressBack() { FOnPressBack(this); }
+	void OnPressUse() { FOnPressUse(this); }
+	virtual void Open();
+	virtual void Close();
+	virtual bool HasNew() const;
+	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+	virtual bool ProcessInput(const CCryName& _rActionId, const int _activationMode, const float _fValue);
+	void OnSelectCategory(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSelectCategory(this, _pSender, _event, _args); }
+	void OnSelectAbility(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSelectAbility(this, _pSender, _event, _args); }
+	void OnPurchaseAbility(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPurchaseAbility(this, _pSender, _event, _args); }
+	void OnTutorialClose(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnTutorialClose(this, _pSender, _event, _args); }
+	void SelectCategory(const char* _categoryName) { FSelectCategory(this, _categoryName); }
+	void PurchaseAbility() { FPurchaseAbility(this); }
+	void UpdateGrid() const { FUpdateGrid(this); }
+	void UpdateDisplayPane(const ArkAbility& _ability) const { FUpdateDisplayPane(this, _ability); }
+	void UpdateInputPrompt(const bool _bCanAcquire, const bool _bHasTutorial, const bool _bHasSkins, const bool _bUpdateUI) const { FUpdateInputPrompt(this, _bCanAcquire, _bHasTutorial, _bHasSkins, _bUpdateUI); }
+	virtual bool ManagesInputPrompts() const;
+	virtual void SetupInputPrompts();
+	void UpdateTutorial() const { FUpdateTutorial(this); }
+	bool ShouldShowTutorialForHighlightAbility() const { return FShouldShowTutorialForHighlightAbility(this); }
+	void PopulateCategoryDetails(const ArkAbilityCategory& _category, bool& _bNew, bool& _bHidden) const { FPopulateCategoryDetails(this, _category, _bNew, _bHidden); }
+	void OpenPetSkinMenu() { FOpenPetSkinMenu(this); }
+	void RefreshPetSkinMenu() { FRefreshPetSkinMenu(this); }
+	void UpdatePetSkinHighlight(int _index) { FUpdatePetSkinHighlight(this, _index); }
+	void OnPetSkinMenuClose(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPetSkinMenuClose(this, _pSender, _event, _args); }
+	void OnPetSkinMenuDoubleClick(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPetSkinMenuDoubleClick(this, _pSender, _event, _args); }
+	void OnPetSkinMenuHighlight(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPetSkinMenuHighlight(this, _pSender, _event, _args); }
+	void ApplyPetSkin(int _skinIndex) { FApplyPetSkin(this, _skinIndex); }
+
+#if 0
+	static ArkPDAPage GetPDAPage();
+	void ClosePetSkinMenu(bool _arg0_);
+#endif
+
+	static inline auto FCArkPDAPageAbilitiesOv1 = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x17348C0);
+	static inline auto FSelectAbility = PreyFunction<void(CArkPDAPageAbilities* const _this, const uint64_t _abilityId)>(0x17371F0);
+	static inline auto FUpdate = PreyFunction<void(CArkPDAPageAbilities* const _this, float _frameTime)>(0x1737C00);
+	static inline auto FOnStatusChanged = PreyFunction<void(IArkPlayerStatusListener* const _this, uint64_t _statusId, bool _bActive)>(0x1736320);
+	static inline auto FOnPressBack = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x17358F0);
+	static inline auto FOnPressUse = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1735A30);
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x17363A0);
+	static inline auto FClose = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1735310);
+	static inline auto FHasNew = PreyFunction<bool(const CArkPDAPageAbilities* const _this)>(0x17355F0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1735770);
+	static inline auto FProcessInput = PreyFunction<bool(CArkPDAPageAbilities* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x1736AE0);
+	static inline auto FOnSelectCategory = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1736280);
+	static inline auto FOnSelectAbility = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1735F60);
+	static inline auto FOnPurchaseAbility = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1735A90);
+	static inline auto FOnTutorialClose = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1736390);
+	static inline auto FSelectCategory = PreyFunction<void(CArkPDAPageAbilities* const _this, const char* _categoryName)>(0x1737510);
+	static inline auto FPurchaseAbility = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1736C00);
+	static inline auto FUpdateGrid = PreyFunction<void(const CArkPDAPageAbilities* const _this)>(0x17386F0);
+	static inline auto FUpdateDisplayPane = PreyFunction<void(const CArkPDAPageAbilities* const _this, const ArkAbility& _ability)>(0x1737C30);
+	static inline auto FUpdateInputPrompt = PreyFunction<void(const CArkPDAPageAbilities* const _this, const bool _bCanAcquire, const bool _bHasTutorial, const bool _bHasSkins, const bool _bUpdateUI)>(0x1738EB0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageAbilities* const _this)>(0x1A302A0);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1737A00);
+	static inline auto FUpdateTutorial = PreyFunction<void(const CArkPDAPageAbilities* const _this)>(0x1739340);
+	static inline auto FShouldShowTutorialForHighlightAbility = PreyFunction<bool(const CArkPDAPageAbilities* const _this)>(0x1737B80);
+	static inline auto FPopulateCategoryDetails = PreyFunction<void(const CArkPDAPageAbilities* const _this, const ArkAbilityCategory& _category, bool& _bNew, bool& _bHidden)>(0x1736990);
+	static inline auto FOpenPetSkinMenu = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1736700);
+	static inline auto FRefreshPetSkinMenu = PreyFunction<void(CArkPDAPageAbilities* const _this)>(0x1736E60);
+	static inline auto FUpdatePetSkinHighlight = PreyFunction<void(CArkPDAPageAbilities* const _this, int _index)>(0x17391B0);
+	static inline auto FOnPetSkinMenuClose = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17357B0);
+	static inline auto FOnPetSkinMenuDoubleClick = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17357F0);
+	static inline auto FOnPetSkinMenuHighlight = PreyFunction<void(CArkPDAPageAbilities* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1735870);
+	static inline auto FApplyPetSkin = PreyFunction<void(CArkPDAPageAbilities* const _this, int _skinIndex)>(0x1735210);
+};
+#endif // !MOONCRASH

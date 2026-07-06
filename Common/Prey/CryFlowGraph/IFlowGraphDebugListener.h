@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -21,4 +22,3 @@ struct IFlowGraphDebugListener // Id=8004714 Size=8
 	virtual void OnEnableTracepoint(STracePoint const &arg0, bool arg1) = 0;
 	virtual ~IFlowGraphDebugListener();
 };
-

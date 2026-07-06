@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -32,9 +34,15 @@ public:
 #if 0
 	static CSaltHandle<unsigned short,unsigned short> IdToHandle(const unsigned arg0);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FResetTimeout = PreyFunction<void(CEntityTimeoutList *const _this, unsigned id)>(0x929D00);
 	static inline auto FPopTimeoutEntity = PreyFunction<unsigned(CEntityTimeoutList *const _this, float timeout)>(0x929C40);
 	static inline auto FClear = PreyFunction<void(CEntityTimeoutList *const _this)>(0x929C20);
+#else
+	static inline auto FCEntityTimeoutListOv2 = PreyFunction<void(CEntityTimeoutList* const _this, ITimer* pTimer)>(0x946170);
+	static inline auto FResetTimeout = PreyFunction<void(CEntityTimeoutList* const _this, unsigned id)>(0x9462B0);
+	static inline auto FPopTimeoutEntity = PreyFunction<unsigned(CEntityTimeoutList* const _this, float timeout)>(0x9461F0);
+	static inline auto FClear = PreyFunction<void(CEntityTimeoutList* const _this)>(0x9461D0);
+#endif
 };
-

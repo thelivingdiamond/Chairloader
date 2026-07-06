@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -58,4 +60,68 @@ public:
 	static inline auto FGetPickupModel = PreyFunction<const char *(ArkCraftingIngredient const *const _this)>(0x1152900);
 	static inline auto FGetPickupMaterial = PreyFunction<const char *(ArkCraftingIngredient const *const _this)>(0x11528C0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ArkItem.h>
 
+class ArkInventory;
+struct IGameObject;
+
+// ArkCraftingIngredient
+// Header:  Prey/GameDll/ark/ArkCraftingIngredient.h
+class ArkCraftingIngredient : public CArkItem
+{ // Size=440 (0x1B8)
+public:
+	string m_scrapsIcon;
+	float m_minScrapScale;
+	float m_maxScrapScale;
+	float m_xlMaxScrapScale;
+	int m_xlMaxScaleCount;
+	string m_scrapsPickupModel;
+	string m_scrapsPickupMaterial;
+	string m_scrapsDescription;
+	bool m_bForceScrap;
+
+	static ArkCraftingIngredient* GetCraftingIngredientFromId(unsigned _entityId) { return FGetCraftingIngredientFromId(_entityId); }
+	static int GetScrapsPerIngredient() { return FGetScrapsPerIngredient(); }
+	static wstring GetDisplayCount(int _amount, bool _bEmptyIfZero) { return FGetDisplayCount(_amount, _bEmptyIfZero); }
+	static bool IsCraftingIngredient(uint64_t _archetype) { return FIsCraftingIngredient(_archetype); }
+	ArkCraftingIngredient();
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool PickUp(const unsigned _pickerId, bool _bScale);
+	virtual bool GiveOwner(ArkInventory* _pInventory);
+	virtual const char* GetIcon() const;
+	virtual wstring GetDescription() const;
+	virtual void ResetCount(int _count);
+	void ForceToScrap() { FForceToScrap(this); }
+	virtual void LoadCachedProperties();
+	virtual const char* GetPickupModel() const;
+	virtual const char* GetPickupMaterial() const;
+
+#if 0
+	bool IsScraps() const;
+	float GetIngredientCount() const;
+#endif
+
+	static inline auto FGetCraftingIngredientFromId = PreyFunction<ArkCraftingIngredient* (unsigned _entityId)>(0x10E1530);
+	static inline auto FGetScrapsPerIngredient = PreyFunction<int()>(0x119AEB0);
+	static inline auto FGetDisplayCount = PreyFunction<wstring(int _amount, bool _bEmptyIfZero)>(0x119AD80);
+	static inline auto FIsCraftingIngredient = PreyFunction<bool(uint64_t _archetype)>(0x119AEF0);
+	static inline auto FArkCraftingIngredientOv2 = PreyFunction<void(ArkCraftingIngredient* const _this)>(0x119AB00);
+	static inline auto FPostInit = PreyFunction<void(ArkCraftingIngredient* const _this, IGameObject* _pGameObject)>(0x119B710);
+	static inline auto FFullSerialize = PreyFunction<void(ArkCraftingIngredient* const _this, TSerialize _ser)>(0x119AC70);
+	static inline auto FPickUp = PreyFunction<bool(ArkCraftingIngredient* const _this, const unsigned _pickerId, bool _bScale)>(0x119B6E0);
+	static inline auto FGiveOwner = PreyFunction<bool(ArkCraftingIngredient* const _this, ArkInventory* _pInventory)>(0x119AEC0);
+	static inline auto FGetIcon = PreyFunction<const char* (const ArkCraftingIngredient* const _this)>(0x119ADF0);
+	static inline auto FGetDescription = PreyFunction<wstring*(const ArkCraftingIngredient* const _this, wstring* _return_value_)>(0x119ACC0);
+	static inline auto FResetCount = PreyFunction<void(ArkCraftingIngredient* const _this, int _count)>(0x119B740);
+	static inline auto FForceToScrap = PreyFunction<void(ArkCraftingIngredient* const _this)>(0x119AC30);
+	static inline auto FLoadCachedProperties = PreyFunction<void(ArkCraftingIngredient* const _this)>(0x119AF10);
+	static inline auto FGetPickupModel = PreyFunction<const char* (const ArkCraftingIngredient* const _this)>(0x119AE70);
+	static inline auto FGetPickupMaterial = PreyFunction<const char* (const ArkCraftingIngredient* const _this)>(0x119AE30);
+};
+#endif // !MOONCRASH

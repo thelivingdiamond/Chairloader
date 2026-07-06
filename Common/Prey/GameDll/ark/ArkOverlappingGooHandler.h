@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -38,4 +40,45 @@ public:
 	static inline auto FUpdate = PreyFunction<void(ArkOverlappingGooHandler *const _this, IEntity *const _pEntity, float _frameTime)>(0x11AB680);
 	static inline auto FSerialize = PreyFunction<void(ArkOverlappingGooHandler *const _this, TSerialize _ser)>(0x11AB630);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
 
+class IArkOverlappingGooListener;
+struct IEntity;
+struct IGameObject;
+
+// ArkOverlappingGooHandler
+// Header:  Prey/GameDll/ark/ArkOverlappingGooHandler.h
+class ArkOverlappingGooHandler
+{ // Size=32 (0x20)
+public:
+	static inline auto k_gooCheckTime = PreyGlobal<float>(0x23E0198);
+	IArkOverlappingGooListener& m_listener;
+	ArkSimpleTimer m_gooCheckTimer;
+	bool m_bReactivateWhenGooRemoved;
+	bool m_bBreaksGoo;
+	bool m_bHasGoo;
+	bool m_bActive;
+
+	ArkOverlappingGooHandler(IArkOverlappingGooListener& _listener);
+	virtual ~ArkOverlappingGooHandler();
+	void PostInit(IGameObject* _pGameObject) { FPostInit(this, _pGameObject); }
+	void Update(IEntity* const _pEntity, float _frameTime) { FUpdate(this, _pEntity, _frameTime); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+
+#if 0
+	bool HasGoo() const;
+	void SetBreaksGoo(const bool _arg0_);
+	void SetReactivateWhenGooRemoved(const bool _arg0_);
+#endif
+
+	static inline auto FArkOverlappingGooHandlerOv1 = PreyFunction<void(ArkOverlappingGooHandler* const _this, IArkOverlappingGooListener& _listener)>(0x1226520);
+	static inline auto FBitNotArkOverlappingGooHandler = PreyFunction<void(ArkOverlappingGooHandler* const _this)>(0x1226550);
+	static inline auto FPostInit = PreyFunction<void(ArkOverlappingGooHandler* const _this, IGameObject* _pGameObject)>(0x1226590);
+	static inline auto FUpdate = PreyFunction<void(ArkOverlappingGooHandler* const _this, IEntity* const _pEntity, float _frameTime)>(0x12268F0);
+	static inline auto FSerialize = PreyFunction<void(ArkOverlappingGooHandler* const _this, TSerialize _ser)>(0x12268A0);
+};
+#endif // !MOONCRASH

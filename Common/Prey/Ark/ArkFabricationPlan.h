@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -420,4 +422,821 @@ public:
 	static inline auto FGetRawMaterialModel = PreyFunction<string const &(ArkFabricationPlans const *const _this, EArkRawMaterialClass _class)>(0x1066DD0);
 	static inline auto FGetRawMaterialAnim = PreyFunction<uint64_t(ArkFabricationPlans const *const _this, EArkRawMaterialClass _class, bool _bLong)>(0x1066D70);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/GameDll/ark/iface/IArkItem.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkFabricationPlan
+// Header:  Prey/Ark/ArkFabricationPlan.h
+class ArkFabricationPlan : public ArkReflectedObject
+{ // Size=160 (0xA0)
+public:
+	// ArkFabricationPlan::ArkIDProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkFabricationPlan::ArkNameProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkFabricationPlan::ArkLabelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkLabelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLabelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkFabricationPlan::ArkArchetypeProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkArchetypeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkArchetypeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkArchetypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B3000);
+	};
+
+	// ArkFabricationPlan::ArkEntitlementProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkEntitlementProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEntitlementProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkEntitlementProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1077BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkEntitlementProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkFabricationPlan::ArkQualityTierProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkQualityTierProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkQualityTierProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkQualityTierProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089E60);
+	};
+
+	// ArkFabricationPlan::ArkDescriptionProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0510);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkFabricationPlan::ArkOrganicCountProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkOrganicCountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkOrganicCountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkOrganicCountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkOrganicCountProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkFabricationPlan::ArkMineralCountProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkMineralCountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMineralCountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkMineralCountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089EB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkMineralCountProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3160);
+	};
+
+	// ArkFabricationPlan::ArkSyntheticCountProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkSyntheticCountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSyntheticCountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkSyntheticCountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkSyntheticCountProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// ArkFabricationPlan::ArkExoticCountProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkExoticCountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkExoticCountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkExoticCountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084460);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkExoticCountProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3170);
+	};
+
+	// ArkFabricationPlan::ArkPositionOffsetProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkPositionOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkPositionOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14029F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkPositionOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// ArkFabricationPlan::ArkRotationOffsetProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkRotationOffsetProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRotationOffsetProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkRotationOffsetProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089EC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkRotationOffsetProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3190);
+	};
+
+	// ArkFabricationPlan::ArkRawMaterialClassProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkRawMaterialClassProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkRawMaterialClassProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkRawMaterialClassProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089EF0);
+	};
+
+	// ArkFabricationPlan::ArkUseShortAnimationProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkUseShortAnimationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkUseShortAnimationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkUseShortAnimationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089F40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkUseShortAnimationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089F50);
+	};
+
+	// ArkFabricationPlan::ArkCryptoCostProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkCryptoCostProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCryptoCostProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkCryptoCostProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089F60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkCryptoCostProperty* const _this, ArkReflectedObject* const _pObject)>(0x10B7840);
+	};
+
+	// ArkFabricationPlan::ArkReadyRoomArchetypeProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkReadyRoomArchetypeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkReadyRoomArchetypeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkReadyRoomArchetypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14E0BF0);
+	};
+
+	// ArkFabricationPlan::ArkReadyRoomLimitProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkReadyRoomLimitProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkReadyRoomLimitProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkReadyRoomLimitProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089F70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkReadyRoomLimitProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BE110);
+	};
+
+	// ArkFabricationPlan::ArkSharedLimitPlansProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkSharedLimitPlansProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkSharedLimitPlansProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkSharedLimitPlansProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089F80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkSharedLimitPlansProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089FB0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkFabricationPlan::ArkSharedLimitPlansProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkFabricationPlan::ArkSharedLimitPlansProperty* const _this, ArkReflectedObject* _pObject)>(0x1089FE0);
+	};
+
+	// ArkFabricationPlan::ArkCategoryProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkCategoryProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCategoryProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlan::ArkCategoryProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089FF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlan::ArkCategoryProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF6B0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkFabricationPlan::ArkIDProperty>(0x2D23C60);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkFabricationPlan::ArkNameProperty>(0x2D23C80);
+	string m_Name;
+	static inline auto s_ArkLabelProperty = PreyGlobal<ArkFabricationPlan::ArkLabelProperty>(0x2D23CA0);
+	string m_Label;
+	static inline auto s_ArkArchetypeProperty = PreyGlobal<ArkFabricationPlan::ArkArchetypeProperty>(0x2D23CC0);
+	string m_Archetype;
+	static inline auto s_ArkEntitlementProperty = PreyGlobal<ArkFabricationPlan::ArkEntitlementProperty>(0x2D23CE0);
+	uint64_t m_Entitlement;
+	static inline auto s_ArkQualityTierProperty = PreyGlobal<ArkFabricationPlan::ArkQualityTierProperty>(0x2D23D00);
+	IArkItem::EArkQualityTier m_QualityTier;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkFabricationPlan::ArkDescriptionProperty>(0x2D23D20);
+	string m_Description;
+	static inline auto s_ArkOrganicCountProperty = PreyGlobal<ArkFabricationPlan::ArkOrganicCountProperty>(0x2D23D40);
+	unsigned m_OrganicCount;
+	static inline auto s_ArkMineralCountProperty = PreyGlobal<ArkFabricationPlan::ArkMineralCountProperty>(0x2D23D60);
+	unsigned m_MineralCount;
+	static inline auto s_ArkSyntheticCountProperty = PreyGlobal<ArkFabricationPlan::ArkSyntheticCountProperty>(0x2D23D80);
+	unsigned m_SyntheticCount;
+	static inline auto s_ArkExoticCountProperty = PreyGlobal<ArkFabricationPlan::ArkExoticCountProperty>(0x2D23DA0);
+	unsigned m_ExoticCount;
+	static inline auto s_ArkPositionOffsetProperty = PreyGlobal<ArkFabricationPlan::ArkPositionOffsetProperty>(0x2D23DC0);
+	Vec3 m_PositionOffset;
+	static inline auto s_ArkRotationOffsetProperty = PreyGlobal<ArkFabricationPlan::ArkRotationOffsetProperty>(0x2D23DE0);
+	Vec3 m_RotationOffset;
+	static inline auto s_ArkRawMaterialClassProperty = PreyGlobal<ArkFabricationPlan::ArkRawMaterialClassProperty>(0x2D23E00);
+	EArkRawMaterialClass m_RawMaterialClass;
+	static inline auto s_ArkUseShortAnimationProperty = PreyGlobal<ArkFabricationPlan::ArkUseShortAnimationProperty>(0x2D23E20);
+	bool m_UseShortAnimation;
+	static inline auto s_ArkCryptoCostProperty = PreyGlobal<ArkFabricationPlan::ArkCryptoCostProperty>(0x2D23E40);
+	int m_CryptoCost;
+	static inline auto s_ArkReadyRoomArchetypeProperty = PreyGlobal<ArkFabricationPlan::ArkReadyRoomArchetypeProperty>(0x2D23E60);
+	string m_ReadyRoomArchetype;
+	static inline auto s_ArkReadyRoomLimitProperty = PreyGlobal<ArkFabricationPlan::ArkReadyRoomLimitProperty>(0x2D23E80);
+	unsigned m_ReadyRoomLimit;
+	static inline auto s_ArkSharedLimitPlansProperty = PreyGlobal<ArkFabricationPlan::ArkSharedLimitPlansProperty>(0x2D23EA0);
+	std::vector<uint64_t> m_SharedLimitPlans;
+	static inline auto s_ArkCategoryProperty = PreyGlobal<ArkFabricationPlan::ArkCategoryProperty>(0x2D23EC0);
+	uint64_t m_Category;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkFabricationPlan();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetLabel(string _arg0_);
+	const string& GetLabel() const;
+	void SetArchetype(string _arg0_);
+	uint64_t GetArchetype() const;
+	const string& GetArchetypeString() const;
+	void SetEntitlement(uint64_t _arg0_);
+	const uint64_t& GetEntitlement() const;
+	void SetQualityTier(string _arg0_);
+	const IArkItem::EArkQualityTier& GetQualityTier() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetOrganicCount(unsigned _arg0_);
+	const unsigned& GetOrganicCount() const;
+	void SetMineralCount(unsigned _arg0_);
+	const unsigned& GetMineralCount() const;
+	void SetSyntheticCount(unsigned _arg0_);
+	const unsigned& GetSyntheticCount() const;
+	void SetExoticCount(unsigned _arg0_);
+	const unsigned& GetExoticCount() const;
+	void SetPositionOffset(Vec3 _arg0_);
+	const Vec3& GetPositionOffset() const;
+	void SetRotationOffset(Vec3 _arg0_);
+	const Vec3& GetRotationOffset() const;
+	void SetRawMaterialClass(string _arg0_);
+	const EArkRawMaterialClass& GetRawMaterialClass() const;
+	void SetUseShortAnimation(bool _arg0_);
+	const bool& GetUseShortAnimation() const;
+	void SetCryptoCost(int _arg0_);
+	const int& GetCryptoCost() const;
+	void SetReadyRoomArchetype(string _arg0_);
+	uint64_t GetReadyRoomArchetype() const;
+	const string& GetReadyRoomArchetypeString() const;
+	void SetReadyRoomLimit(unsigned _arg0_);
+	const unsigned& GetReadyRoomLimit() const;
+	std::vector<uint64_t>& GetSharedLimitPlans();
+	const std::vector<uint64_t>& GetSharedLimitPlans() const;
+	void SetCategory(uint64_t _arg0_);
+	const uint64_t& GetCategory() const;
+	IArkItem::EArkQualityTier GetGuaranteedQualityTier() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x108AD80);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x108AF40);
+};
+
+// ArkFabricationPlanCategory
+// Header:  Prey/Ark/ArkFabricationPlan.h
+class ArkFabricationPlanCategory : public ArkReflectedObject
+{ // Size=24 (0x18)
+public:
+	// ArkFabricationPlanCategory::ArkIDProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlanCategory::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlanCategory::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkFabricationPlanCategory::ArkNameProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlanCategory::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlanCategory::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkFabricationPlanCategory::ArkLabelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkLabelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLabelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlanCategory::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlanCategory::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkFabricationPlanCategory::ArkIDProperty>(0x2D23C00);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkFabricationPlanCategory::ArkNameProperty>(0x2D23C20);
+	string m_Name;
+	static inline auto s_ArkLabelProperty = PreyGlobal<ArkFabricationPlanCategory::ArkLabelProperty>(0x2D23C40);
+	string m_Label;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkFabricationPlanCategory();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetLabel(string _arg0_);
+	const string& GetLabel() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x108AE00);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x108AFE0);
+};
+
+// ArkFabricationPlans
+// Header:  Prey/Ark/ArkFabricationPlan.h
+class ArkFabricationPlans : public ArkReflectedLibrary
+{ // Size=152 (0x98)
+public:
+	// ArkFabricationPlans::ArkSmallRawMaterialModelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkSmallRawMaterialModelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSmallRawMaterialModelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkSmallRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443660);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkSmallRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+	};
+
+	// ArkFabricationPlans::ArkMediumRawMaterialModelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkMediumRawMaterialModelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMediumRawMaterialModelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkMediumRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x108A000);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkMediumRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9CA0);
+	};
+
+	// ArkFabricationPlans::ArkLargeRawMaterialModelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkLargeRawMaterialModelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLargeRawMaterialModelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkLargeRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x108A060);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkLargeRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject)>(0x108A0C0);
+	};
+
+	// ArkFabricationPlans::ArkXLargeRawMaterialModelProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkXLargeRawMaterialModelProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkXLargeRawMaterialModelProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkXLargeRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443710);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkXLargeRawMaterialModelProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1FF0);
+	};
+
+	// ArkFabricationPlans::ArkSmallRawMaterialLongAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkSmallRawMaterialLongAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSmallRawMaterialLongAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkSmallRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089B00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkSmallRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B470);
+	};
+
+	// ArkFabricationPlans::ArkMediumRawMaterialLongAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkMediumRawMaterialLongAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMediumRawMaterialLongAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkMediumRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089B20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkMediumRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089B40);
+	};
+
+	// ArkFabricationPlans::ArkLargeRawMaterialLongAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkLargeRawMaterialLongAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLargeRawMaterialLongAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkLargeRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089B60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkLargeRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089B80);
+	};
+
+	// ArkFabricationPlans::ArkXLargeRawMaterialLongAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkXLargeRawMaterialLongAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkXLargeRawMaterialLongAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkXLargeRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089BA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkXLargeRawMaterialLongAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9E20);
+	};
+
+	// ArkFabricationPlans::ArkSmallRawMaterialShortAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkSmallRawMaterialShortAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSmallRawMaterialShortAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkSmallRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089BC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkSmallRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B590);
+	};
+
+	// ArkFabricationPlans::ArkMediumRawMaterialShortAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkMediumRawMaterialShortAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMediumRawMaterialShortAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkMediumRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089BE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkMediumRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B5D0);
+	};
+
+	// ArkFabricationPlans::ArkLargeRawMaterialShortAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkLargeRawMaterialShortAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkLargeRawMaterialShortAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkLargeRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089C00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkLargeRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1BC0);
+	};
+
+	// ArkFabricationPlans::ArkXLargeRawMaterialShortAnimProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkXLargeRawMaterialShortAnimProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkXLargeRawMaterialShortAnimProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkXLargeRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089C20);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkXLargeRawMaterialShortAnimProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1C90);
+	};
+
+	// ArkFabricationPlans::ArkFabricationPlansProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkFabricationPlansProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkFabricationPlansProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkFabricationPlansProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089C40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkFabricationPlansProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089C90);
+		static inline auto FIsArray = PreyFunction<bool(const ArkFabricationPlans::ArkFabricationPlansProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkFabricationPlans::ArkFabricationPlansProperty* const _this, ArkReflectedObject* _pObject)>(0x1089CD0);
+	};
+
+	// ArkFabricationPlans::ArkCategoriesProperty
+	// Header:  Prey/Ark/ArkFabricationPlan.h
+	class ArkCategoriesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkCategoriesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkFabricationPlans::ArkCategoriesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089D40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFabricationPlans::ArkCategoriesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089DE0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkFabricationPlans::ArkCategoriesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkFabricationPlans::ArkCategoriesProperty* const _this, ArkReflectedObject* _pObject)>(0x1089E20);
+	};
+
+	static inline auto s_ArkSmallRawMaterialModelProperty = PreyGlobal<ArkFabricationPlans::ArkSmallRawMaterialModelProperty>(0x2D23EE0);
+	string m_SmallRawMaterialModel;
+	static inline auto s_ArkMediumRawMaterialModelProperty = PreyGlobal<ArkFabricationPlans::ArkMediumRawMaterialModelProperty>(0x2D23F00);
+	string m_MediumRawMaterialModel;
+	static inline auto s_ArkLargeRawMaterialModelProperty = PreyGlobal<ArkFabricationPlans::ArkLargeRawMaterialModelProperty>(0x2D23F20);
+	string m_LargeRawMaterialModel;
+	static inline auto s_ArkXLargeRawMaterialModelProperty = PreyGlobal<ArkFabricationPlans::ArkXLargeRawMaterialModelProperty>(0x2D23F40);
+	string m_XLargeRawMaterialModel;
+	static inline auto s_ArkSmallRawMaterialLongAnimProperty = PreyGlobal<ArkFabricationPlans::ArkSmallRawMaterialLongAnimProperty>(0x2D23F60);
+	uint64_t m_SmallRawMaterialLongAnim;
+	static inline auto s_ArkMediumRawMaterialLongAnimProperty = PreyGlobal<ArkFabricationPlans::ArkMediumRawMaterialLongAnimProperty>(0x2D23F80);
+	uint64_t m_MediumRawMaterialLongAnim;
+	static inline auto s_ArkLargeRawMaterialLongAnimProperty = PreyGlobal<ArkFabricationPlans::ArkLargeRawMaterialLongAnimProperty>(0x2D23FA0);
+	uint64_t m_LargeRawMaterialLongAnim;
+	static inline auto s_ArkXLargeRawMaterialLongAnimProperty = PreyGlobal<ArkFabricationPlans::ArkXLargeRawMaterialLongAnimProperty>(0x2D23FC0);
+	uint64_t m_XLargeRawMaterialLongAnim;
+	static inline auto s_ArkSmallRawMaterialShortAnimProperty = PreyGlobal<ArkFabricationPlans::ArkSmallRawMaterialShortAnimProperty>(0x2D23FE0);
+	uint64_t m_SmallRawMaterialShortAnim;
+	static inline auto s_ArkMediumRawMaterialShortAnimProperty = PreyGlobal<ArkFabricationPlans::ArkMediumRawMaterialShortAnimProperty>(0x2D24000);
+	uint64_t m_MediumRawMaterialShortAnim;
+	static inline auto s_ArkLargeRawMaterialShortAnimProperty = PreyGlobal<ArkFabricationPlans::ArkLargeRawMaterialShortAnimProperty>(0x2D24020);
+	uint64_t m_LargeRawMaterialShortAnim;
+	static inline auto s_ArkXLargeRawMaterialShortAnimProperty = PreyGlobal<ArkFabricationPlans::ArkXLargeRawMaterialShortAnimProperty>(0x2D24040);
+	uint64_t m_XLargeRawMaterialShortAnim;
+	static inline auto s_ArkFabricationPlansProperty = PreyGlobal<ArkFabricationPlans::ArkFabricationPlansProperty>(0x2D24060);
+	std::vector<ArkFabricationPlan> m_FabricationPlans;
+	static inline auto s_ArkCategoriesProperty = PreyGlobal<ArkFabricationPlans::ArkCategoriesProperty>(0x2D24080);
+	std::vector<ArkFabricationPlanCategory> m_Categories;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+	const ArkFabricationPlan* Find(const uint64_t _id) const { return FFind(this, _id); }
+	const ArkFabricationPlanCategory* FindCategory(const uint64_t _id) const { return FFindCategory(this, _id); }
+	const string& GetRawMaterialModel(const EArkRawMaterialClass _class) const { return FGetRawMaterialModel(this, _class); }
+	uint64_t GetRawMaterialAnim(const EArkRawMaterialClass _class, bool _bLong) const { return FGetRawMaterialAnim(this, _class, _bLong); }
+
+#if 0
+	void SetSmallRawMaterialModel(string _arg0_);
+	const string& GetSmallRawMaterialModel() const;
+	void SetMediumRawMaterialModel(string _arg0_);
+	const string& GetMediumRawMaterialModel() const;
+	void SetLargeRawMaterialModel(string _arg0_);
+	const string& GetLargeRawMaterialModel() const;
+	void SetXLargeRawMaterialModel(string _arg0_);
+	const string& GetXLargeRawMaterialModel() const;
+	void SetSmallRawMaterialLongAnim(uint64_t _arg0_);
+	const uint64_t& GetSmallRawMaterialLongAnim() const;
+	void SetMediumRawMaterialLongAnim(uint64_t _arg0_);
+	const uint64_t& GetMediumRawMaterialLongAnim() const;
+	void SetLargeRawMaterialLongAnim(uint64_t _arg0_);
+	const uint64_t& GetLargeRawMaterialLongAnim() const;
+	void SetXLargeRawMaterialLongAnim(uint64_t _arg0_);
+	const uint64_t& GetXLargeRawMaterialLongAnim() const;
+	void SetSmallRawMaterialShortAnim(uint64_t _arg0_);
+	const uint64_t& GetSmallRawMaterialShortAnim() const;
+	void SetMediumRawMaterialShortAnim(uint64_t _arg0_);
+	const uint64_t& GetMediumRawMaterialShortAnim() const;
+	void SetLargeRawMaterialShortAnim(uint64_t _arg0_);
+	const uint64_t& GetLargeRawMaterialShortAnim() const;
+	void SetXLargeRawMaterialShortAnim(uint64_t _arg0_);
+	const uint64_t& GetXLargeRawMaterialShortAnim() const;
+	std::vector<ArkFabricationPlan>& GetFabricationPlans();
+	const std::vector<ArkFabricationPlan>& GetFabricationPlans() const;
+	std::vector<ArkFabricationPlanCategory>& GetCategories();
+	const std::vector<ArkFabricationPlanCategory>& GetCategories() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x108AE40);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x108B080);
+	static inline auto FInit = PreyFunction<bool(ArkFabricationPlans* const _this)>(0x108B200);
+	static inline auto FFind = PreyFunction<const ArkFabricationPlan* (const ArkFabricationPlans* const _this, const uint64_t _id)>(0x108AEE0);
+	static inline auto FFindCategory = PreyFunction<const ArkFabricationPlanCategory* (const ArkFabricationPlans* const _this, const uint64_t _id)>(0x108AF10);
+	static inline auto FGetRawMaterialModel = PreyFunction<const string& (const ArkFabricationPlans* const _this, const EArkRawMaterialClass _class)>(0x108B1D0);
+	static inline auto FGetRawMaterialAnim = PreyFunction<uint64_t(const ArkFabricationPlans* const _this, const EArkRawMaterialClass _class, bool _bLong)>(0x108B170);
+};
+#endif // !MOONCRASH

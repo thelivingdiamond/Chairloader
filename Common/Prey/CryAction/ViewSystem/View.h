@@ -112,6 +112,7 @@ public:
 	const float GetScale();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCViewOv1 = PreyFunction<void(CView* const _this, ISystem* const pSystem)>(0x3D5840);
 	static inline auto FRelease = PreyFunction<void(CView* const _this)>(0xA97D40);
 	static inline auto FUpdate = PreyFunction<void(CView* const _this, float frameTime, bool isActive)>(0x3D9390);
@@ -147,5 +148,41 @@ public:
 	static inline auto FCubeInterpolateQuat = PreyFunction<void(CView* const _this, float t, CView::SShake* pShake)>(0x3D63A0);
 	static inline auto FCubeInterpolateVector = PreyFunction<void(CView* const _this, float t, CView::SShake* pShake)>(0x3D67A0);
 	static inline auto FCreateAudioListener = PreyFunction<void(CView* const _this)>(0x3D6110);
+#else
+	static inline auto FCViewOv1 = PreyFunction<void(CView* const _this, ISystem* const pSystem)>(0x3EF710);
+	static inline auto FRelease = PreyFunction<void(CView* const _this)>(0x3E3960);
+	static inline auto FUpdate = PreyFunction<void(CView* const _this, float frameTime, bool isActive)>(0x3F3230);
+	static inline auto FProcessShaking = PreyFunction<void(CView* const _this, float frameTime)>(0x3F2AD0);
+	static inline auto FProcessShake = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F1020);
+	static inline auto FResetShaking = PreyFunction<void(CView* const _this)>(0x3F2BB0);
+	static inline auto FResetBlending = PreyFunction<void(CView* const _this)>(0x3F2B80);
+	static inline auto FLinkToOv1 = PreyFunction<void(CView* const _this, IGameObject* follow)>(0x3F0F30);
+	static inline auto FLinkToOv0 = PreyFunction<void(CView* const _this, IEntity* follow)>(0x3F0EE0);
+	static inline auto FGetLinkedId = PreyFunction<unsigned(CView* const _this)>(0x387590);
+	static inline auto FSetCurrentParams = PreyFunction<void(CView* const _this, SViewParams& params)>(0x3F2C30);
+	static inline auto FGetCurrentParams = PreyFunction<const SViewParams* (CView* const _this)>(0x13691F0);
+	static inline auto FSetViewShake = PreyFunction<void(CView* const _this, Ang3 shakeAngle, Vec3 shakeShift, float duration, float frequency, float randomness, int shakeID, bool bFlipVec, bool bUpdateOnly, bool bGroundOnly)>(0x3F2E20);
+	static inline auto FSetViewShakeEx = PreyFunction<void(CView* const _this, const IView::SShakeParams& params)>(0x3F2ED0);
+	static inline auto FStopShake = PreyFunction<void(CView* const _this, int shakeID)>(0x3F31C0);
+	static inline auto FSetFrameAdditiveCameraAngles = PreyFunction<void(CView* const _this, const Ang3& addFrameAngles)>(0x3F2DF0);
+	static inline auto FSetScale = PreyFunction<void(CView* const _this, const float scale)>(0x3F2E10);
+	static inline auto FSetZoomedScale = PreyFunction<void(CView* const _this, const float scale)>(0x3F31B0);
+	static inline auto FSetActive = PreyFunction<void(CView* const _this, const bool bActive)>(0x3F2C20);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* pEntity, SEntityEvent& event)>(0x3F0F70);
+	static inline auto FSerialize = PreyFunction<void(CView* const _this, TSerialize ser)>(0x3F2BF0);
+	static inline auto FPostSerialize = PreyFunction<void(CView* const _this)>(0x3F1010);
+	static inline auto FUpdateAudioListener = PreyFunction<void(CView* const _this, const Matrix34& rMatrix, bool bInvalidateListener)>(0x3F3DF0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CView* const _this, ICrySizer* s)>(0x3F08E0);
+	static inline auto FProcessShakeNormal = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F1050);
+	static inline auto FProcessShakeNormal_FinalDamping = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F1F60);
+	static inline auto FProcessShakeNormal_DoShaking = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F1320);
+	static inline auto FProcessShakeSmooth = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F2470);
+	static inline auto FProcessShakeSmooth_DoShaking = PreyFunction<void(CView* const _this, CView::SShake* pShake, float frameTime)>(0x3F28A0);
+	static inline auto FApplyFrameAdditiveAngles = PreyFunction<void(CView* const _this, Quat& cameraOrientation)>(0x3EFCB0);
+	static inline auto FGetRandomQuat = PreyFunction<void(CView* const _this, Quat& quat, CView::SShake* pShake)>(0x3F0980);
+	static inline auto FGetRandomVector = PreyFunction<void(CView* const _this, Vec3& vec, CView::SShake* pShake)>(0x3F0D40);
+	static inline auto FCubeInterpolateQuat = PreyFunction<void(CView* const _this, float t, CView::SShake* pShake)>(0x3F0240);
+	static inline auto FCubeInterpolateVector = PreyFunction<void(CView* const _this, float t, CView::SShake* pShake)>(0x3F0640);
+	static inline auto FCreateAudioListener = PreyFunction<void(CView* const _this)>(0x3EFFB0);
+#endif
 };
-

@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -10,4 +11,3 @@ public:
 	virtual void PushFrame() = 0;
 	virtual void PopFrame() = 0;
 };
-

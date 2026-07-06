@@ -24,6 +24,7 @@ public:
 	int* operator int ArkSafeBool<class ArkUnanimous>::* () const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FPushTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056F20);
 	static inline auto FPopTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056EE0);
 	static inline auto FPushFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x1056F00);
@@ -33,6 +34,19 @@ public:
 	static inline auto FSetFalseCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _falseCount)>(0x414F30);
 	static inline auto FGetTrueCount = PreyFunction<uint64_t(ArkUnanimous const* const _this)>(0x12E5E70);
 	static inline auto FGetFalseCount = PreyFunction<uint64_t(ArkUnanimous const* const _this)>(0x12AAC70);
+#else
+	static inline auto FArkUnanimousOv2 = PreyFunction<void(ArkUnanimous* const _this)>(0x125AA70);
+	static inline auto FArkUnanimousOv1 = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x1073490);
+	static inline auto FPushTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073550);
+	static inline auto FPopTrue = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073510);
+	static inline auto FPushFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x1073530);
+	static inline auto FPopFalse = PreyFunction<bool(ArkUnanimous* const _this)>(0x10734F0);
+	static inline auto FIsUnanimous = PreyFunction<bool(const ArkUnanimous* const _this)>(0x10734D0);
+	static inline auto FSetTrueCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _trueCount)>(0x14AD1A0);
+	static inline auto FSetFalseCount = PreyFunction<void(ArkUnanimous* const _this, uint64_t _falseCount)>(0x17DB400);
+	static inline auto FGetTrueCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x1112EA0);
+	static inline auto FGetFalseCount = PreyFunction<uint64_t(const ArkUnanimous* const _this)>(0x12DC700);
+#endif
 };
 
 #pragma once
@@ -52,4 +66,3 @@ struct ArkNpcBodyStateEnterParams_Busy : public ArkNpcBodyStateEnterParams // Id
 	ArkNpcBodyStateEnterParams_Busy(ArkNpc &_npc, ArkNpcBodyStateObserver_Busy &_observer);
 };
 #endif
-

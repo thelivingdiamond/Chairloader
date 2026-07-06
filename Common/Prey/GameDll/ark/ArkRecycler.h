@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -142,4 +144,161 @@ public:
 	static inline auto FOnStatSerialize = PreyFunction<void(ArkRecycler *const _this, const unsigned _ownerId, CCryName const &_stat64i32, const float _value)>(0x1253940);
 	static inline auto FRefreshUI = PreyFunction<void(ArkRecycler *const _this, bool _bInit)>(0x1253D60);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ArkInventory.h>
+#include <Prey/GameDll/ark/ArkFabricationPlanIngredients.h>
+#include <Prey/GameDll/ark/ArkInteractiveMachine.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/iface/IArkInventoryListener.h>
+#include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
+struct ArkInteractionInfo;
+struct ArkInteractionTestResult;
+class ArkInventory;
+class CCryName;
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+class ICrySizer;
+struct IEntity;
+struct IGameObject;
+struct IUIElement;
+struct SEntityUpdateContext;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkRecycler
+// Header:  Prey/GameDll/ark/ArkRecycler.h
+class ArkRecycler
+	: public ArkInteractiveMachine
+	, public IArkInventoryListener
+	, public ArkUIMenuBase<ArkRecycler>
+	, public IArkStatsListener
+{ // Size=1280 (0x500)
+public:
+	enum class ForceType
+	{
+		none = 0,
+		init = 1,
+		serialize = 2,
+	};
+
+	// ArkRecycler::RecycleData
+	// Header:  Prey/GameDll/ark/ArkRecycler.h
+	class RecycleData
+	{ // Size=24 (0x18)
+	public:
+		unsigned m_entityToRecycle;
+		ArkFabricationPlanIngredients m_scrap;
+
+	#if 0
+		RecycleData();
+		RecycleData(const unsigned _arg0_);
+		bool operator==(const unsigned _arg0_) const;
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	EArkRecyclerState m_state;
+	ArkTimeRemaining m_timer;
+	ArkInventory* m_pInventory;
+	ArkEntityEffect m_recycleVfx;
+	ArkFireAndForgetEffect m_recyclerFinishedVfx;
+	std::vector<ArkRecycler::RecycleData> m_entitiesToRecycle;
+	ArkFabricationPlanIngredients m_scraps;
+	ArkFabricationPlanIngredients m_producingScraps;
+	float m_blockMultiplier;
+	EArkCraftingIngredientType m_ingredientTypeToSpawn;
+	unsigned m_lastIngredientSpawned;
+	QuatT m_spawnLoc;
+	QuatT m_vfxLoc;
+	QuatT m_interactionLoc;
+	string m_spawnAttachmentName;
+	string m_vfxAttachmentName;
+	string m_interactionAttachmentName;
+	string m_interactText;
+	float m_recycleDelay;
+	float m_processingTimePerItem;
+	float m_spawnInterval;
+	float m_spawnIntervalLowG;
+	float m_spawnImpulse;
+	float m_spawnImpulseZLowG;
+	int m_maxNumSpawnedEntities;
+	ArkInterval<float> m_percentRecycleRange;
+	ArkInventory::EArkGridSizes m_inventorySize;
+	ArkAudioTrigger m_triggerRecyclingLP;
+	ArkAudioTrigger m_triggerCompleted;
+
+	ArkRecycler();
+	virtual ~ArkRecycler();
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory);
+	virtual void OnItemRemoved(unsigned _itemId, bool _bPrimaryInventory);
+	virtual void OnItemCountChanged(unsigned _itemId, bool _bPrimaryInventory);
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, const EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual Vec3 GetInteractionPosition(const IEntity* const _pEntity) const;
+	virtual bool PopulateRemoteManipulationInteraction(const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo) const;
+	virtual void OnWorldUIInstanceGranted(IUIElement* _pUIInstance);
+	virtual void OnWorldUIInstanceRevoked(IUIElement* _pUIInstance);
+	void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnButtonPress(this, _pSender, _event, _args); }
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	virtual void InitCachedPositionData();
+	virtual bool IsProcessing() const;
+	virtual bool IsInteractive() const;
+	virtual void OnEnabledChanged(bool _bForce);
+	void SetState(EArkRecyclerState _state, ArkRecycler::ForceType _forceType) { FSetState(this, _state, _forceType); }
+	bool PopulateScrapsForEntity(const IEntity* const _pEntity, ArkFabricationPlanIngredients& _scraps) const { return FPopulateScrapsForEntity(this, _pEntity, _scraps); }
+	void SpawnNextIngredient() { FSpawnNextIngredient(this); }
+	void RefreshUIRecycleButton(bool _bAnimate) { FRefreshUIRecycleButton(this, _bAnimate); }
+	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+	virtual void OnStatSerialize(const unsigned _ownerId, const CCryName& _stat64i32, const float _value);
+	void RefreshUI(bool _bInit) { FRefreshUI(this, _bInit); }
+
+#if 0
+	EArkCraftingIngredientType GetScrapType(const IEntity* _arg0_) const;
+#endif
+
+	static inline auto FArkRecyclerOv1 = PreyFunction<void(ArkRecycler* const _this)>(0x12F5680);
+	static inline auto FBitNotArkRecycler = PreyFunction<void(ArkRecycler* const _this)>(0x12F58E0);
+	static inline auto FPostInit = PreyFunction<void(ArkRecycler* const _this, IGameObject* _pGameObject)>(0x12F7940);
+	static inline auto FFullSerialize = PreyFunction<void(ArkRecycler* const _this, TSerialize _ser)>(0x12F6280);
+	static inline auto FPostSerialize = PreyFunction<void(ArkRecycler* const _this)>(0x12F7A00);
+	static inline auto FUpdate = PreyFunction<void(ArkRecycler* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x12F90E0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkRecycler* const _this, ICrySizer* _s)>(0x12F6480);
+	static inline auto FOnItemAdded = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory)>(0x12F73C0);
+	static inline auto FOnItemRemoved = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x12F7490);
+	static inline auto FOnItemCountChanged = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x12F7480);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x12F7300);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, const EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x12F8FB0);
+	static inline auto FGetInteractionPosition = PreyFunction<Vec3*(const IArkPlayerInteractionListener* const _this, Vec3* _return_value_, const IEntity* const _pEntity)>(0x12F6460);
+	static inline auto FPopulateRemoteManipulationInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo)>(0x12F7820);
+	static inline auto FOnWorldUIInstanceGranted = PreyFunction<void(ArkRecycler* const _this, IUIElement* _pUIInstance)>(0x12F7770);
+	static inline auto FOnWorldUIInstanceRevoked = PreyFunction<void(ArkRecycler* const _this, IUIElement* _pUIInstance)>(0x12F77E0);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkRecycler* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x12F7280);
+	static inline auto FOnReset = PreyFunction<void(ArkRecycler* const _this, bool _bEnteringGameMode)>(0x12F7530);
+	static inline auto FLoadProperties = PreyFunction<void(ArkRecycler* const _this)>(0x12F6790);
+	static inline auto FInitCachedPositionData = PreyFunction<void(ArkRecycler* const _this)>(0x12F6500);
+	static inline auto FIsProcessing = PreyFunction<bool(const ArkRecycler* const _this)>(0x12F6750);
+	static inline auto FIsInteractive = PreyFunction<bool(const ArkRecycler* const _this)>(0x12F6740);
+	static inline auto FOnEnabledChanged = PreyFunction<void(ArkRecycler* const _this, bool _bForce)>(0x12F72A0);
+	static inline auto FSetState = PreyFunction<void(ArkRecycler* const _this, EArkRecyclerState _state, ArkRecycler::ForceType _forceType)>(0x12F7DC0);
+	static inline auto FPopulateScrapsForEntity = PreyFunction<bool(const ArkRecycler* const _this, const IEntity* const _pEntity, ArkFabricationPlanIngredients& _scraps)>(0x12F7880);
+	static inline auto FSpawnNextIngredient = PreyFunction<void(ArkRecycler* const _this)>(0x12F8B40);
+	static inline auto FRefreshUIRecycleButton = PreyFunction<void(ArkRecycler* const _this, bool _bAnimate)>(0x12F7C80);
+	static inline auto FOnStatChange = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x12F7580);
+	static inline auto FOnStatSerialize = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _value)>(0x12F7650);
+	static inline auto FRefreshUI = PreyFunction<void(ArkRecycler* const _this, bool _bInit)>(0x12F7A50);
+};
+#endif // !MOONCRASH

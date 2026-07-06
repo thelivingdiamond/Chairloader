@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -13,4 +15,24 @@ public:
 	
 	static inline auto FGetSimpleVisualPerceivableWorldPoints = PreyFunction<Vec3 *(ArkSimpleVisualPerceivable const *const _this, Vec3 *_pFirstWorldPoint, Vec3 *_pLastWorldPoint)>(0x172F070);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/perception/ArkVisualPerceivable.h>
 
+// ArkSimpleVisualPerceivable
+// Header:  Prey/GameDll/ark/perception/ArkSimpleVisualPerceivable.h
+class ArkSimpleVisualPerceivable : public ArkVisualPerceivable
+{ // Size=8 (0x8)
+public:
+	Vec3* GetSimpleVisualPerceivableWorldPoints(Vec3* _pFirstWorldPoint, Vec3* _pLastWorldPoint) const { return FGetSimpleVisualPerceivableWorldPoints(this, _pFirstWorldPoint, _pLastWorldPoint); }
+	virtual Vec3* DoGetSimpleVisualPerceivableWorldPoints(Vec3* _pFirstWorldPoint, Vec3* _pLastWorldPoint) const = 0;
+
+#if 0
+	~ArkSimpleVisualPerceivable();
+	ArkSimpleVisualPerceivable& operator=(const ArkSimpleVisualPerceivable& _arg0_);
+#endif
+
+	static inline auto FGetSimpleVisualPerceivableWorldPoints = PreyFunction<Vec3* (const ArkSimpleVisualPerceivable* const _this, Vec3* _pFirstWorldPoint, Vec3* _pLastWorldPoint)>(0x1855F90);
+};
+#endif // !MOONCRASH

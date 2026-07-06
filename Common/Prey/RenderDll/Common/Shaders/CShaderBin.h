@@ -78,9 +78,15 @@ struct SParamCacheInfo
 struct SShaderBin
 {
 	typedef std::vector<SParamCacheInfo, STLShaderAllocator<SParamCacheInfo>> ParamsCacheVec;
+#ifndef MOONCRASH
 	static inline auto s_Root = PreyGlobal<SShaderBin>(0x2271EA0);
 	static inline auto s_nCache = PreyGlobal<unsigned>(0x2BA7454);
 	static inline auto s_nMaxFXBinCache = PreyGlobal<unsigned>(0x2271E70);
+#else
+	static inline auto s_Root = PreyGlobal<SShaderBin>(0x23DEEA0);
+	static inline auto s_nCache = PreyGlobal<unsigned>(0x2D166B4);
+	static inline auto s_nMaxFXBinCache = PreyGlobal<unsigned>(0x23DEE90);
+#endif
 
 	SShaderBin*       m_Next;
 	SShaderBin*       m_Prev;
@@ -320,7 +326,7 @@ public:
 	SShaderBin* chair_GetBinShader(const char* szName, bool bInclude, uint32 nRefCRC32, bool* pbChanged = NULL);
 	SShaderBin* chair_SaveBinShader(uint32 nSourceCRC32, const char* szName, bool bInclude, FILE* fpSrc);
 #endif
-
+#ifndef MOONCRASH
 	static inline auto FLoadBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, _iobuf* fpBin, const char* szName, const char* szNameBin, bool bReadParams)>(0x102AC90);
 	static inline auto FSaveBinShaderLocalInfo = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX, TArray<int>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures)>(0x1033800);
 	static inline auto FGetParamInfo = PreyFunction<SParamCacheInfo* (CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX)>(0x102A0E0);
@@ -353,6 +359,42 @@ public:
 	static inline auto FmfReleaseFXParams = PreyFunction<void(CShaderManBin* const _this)>(0x1035AF0);
 	static inline auto FInvalidateCache = PreyFunction<void(CShaderManBin* const _this, bool bIncludesOnly)>(0x102ABC0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CShaderManBin const* const _this, ICrySizer* pSizer)>(0x1029B30);
+#else
+
+	static inline auto FLoadBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, _iobuf* fpBin, const char* szName, const char* szNameBin, bool bReadParams)>(0x1046FE0);
+	static inline auto FSaveBinShaderLocalInfo = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX, TArray<int>& Funcs, std::vector<SFXParam>& Params, std::vector<SFXSampler>& Samplers, std::vector<SFXTexture>& Textures)>(0x104FBA0);
+	static inline auto FGetParamInfo = PreyFunction<SParamCacheInfo* (CShaderManBin* const _this, SShaderBin* pBin, unsigned dwName, uint64_t nMaskGenFX)>(0x1046430);
+	static inline auto FParseBinFX_Global_Annotations = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, bool* bPublic, CCryNameR* techStart)>(0x1049340);
+	static inline auto FParseBinFX_SamplerOv1 = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, unsigned dwName, EToken samplerType)>(0x104AE90);
+	static inline auto FParseBinFX_SamplerOv0 = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SFXSampler& Sampl)>(0x104A750);
+	static inline auto FParseBinFX_Texture = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SFXTexture& Tex)>(0x104F670);
+	static inline auto FInitShaderDependenciesList = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SCodeFragment* pFunc, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc)>(0x1046D90);
+	static inline auto FCheckFragmentsDependencies = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, TArray<unsigned char>& bChecked, TArray<int>& AffectedFrags)>(0x1044D80);
+	static inline auto FCheckStructuresDependencies = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SCodeFragment* pFrag, TArray<unsigned char>& bChecked, TArray<int>& AffectedFunc)>(0x1044FA0);
+	static inline auto FAddParameterToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXParam* pr, PodArray<unsigned int,0>& SHData, EHWShaderClass eSHClass, int nCB)>(0x1044150);
+	static inline auto FAddSamplerToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXSampler* pr, PodArray<unsigned int,0>& SHData, EHWShaderClass eSHClass)>(0x1044590);
+	static inline auto FAddTextureToScript = PreyFunction<void(CShaderManBin* const _this, CParserBin& Parser, SFXTexture* pr, PodArray<unsigned int,0>& SHData, EHWShaderClass eSHClass)>(0x10448A0);
+	static inline auto FParseBinFX_Technique_Pass_PackParameters = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::vector<SFXParam>& AffectedParams, TArray<int>& AffectedFunc, SCodeFragment* pFunc, EHWShaderClass eSHClass, unsigned dwSHName, std::vector<SFXParam>& PackedParams, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, TArray<unsigned char>& bMerged)>(0x104EC30);
+	static inline auto FParseBinFX_Technique_Pass_GenerateShaderData = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::map<unsigned int, SMacroBinFX>& Macros, SShaderFXParams& FXParams, unsigned dwSHName, EHWShaderClass eSHClass, uint64_t& nAffectMask, unsigned dwSHType, PodArray<unsigned int,0>& SHData, SShaderTechnique* pShTech)>(0x104D0D0);
+	static inline auto FParseBinFX_Technique_Pass_LoadShader = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, std::map<unsigned int, SMacroBinFX>& Macros, SParserFrame& SHFrame, SShaderTechnique* pShTech, SShaderPass* pPass, EHWShaderClass eSHClass, SShaderFXParams& FXParams)>(0x104E8E0);
+	static inline auto FParseBinFX_Technique_Pass = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech)>(0x104C460);
+	static inline auto FParseBinFX_Technique_Annotations_String = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SShaderTechnique* pShTech, std::vector<SShaderTechParseParams>& techParams, bool* bPublic)>(0x104C030);
+	static inline auto FParseBinFX_Technique = PreyFunction<SShaderTechnique* (CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, SParserFrame Annotations, std::vector<SShaderTechParseParams>& techParams, bool* bPublic)>(0x104BA00);
+	static inline auto FParseBinFX_LightStyle_Val = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, CLightStyle* ls)>(0x104A400);
+	static inline auto FParseBinFX_LightStyle = PreyFunction<bool(CShaderManBin* const _this, CParserBin& Parser, SParserFrame& Frame, int nStyle)>(0x1049E70);
+	static inline auto FGetTextureSlots = PreyFunction<SShaderTexSlots* (CShaderManBin* const _this, CParserBin& Parser, SShaderBin* pBin, CShader* ef, int nTech, int nPass)>(0x10464B0);
+	static inline auto FDeleteFromCache = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pSB)>(0x1045270);
+	static inline auto FmfAddFXParamOv1 = PreyFunction<SFXParam* (CShaderManBin* const _this, SShaderFXParams& FXP, const SFXParam* pParam)>(0x1051170);
+	static inline auto FmfGeneratePublicFXParams = PreyFunction<void(CShaderManBin* const _this, CShader* pSH, CParserBin& Parser)>(0x1051350);
+	static inline auto FCShaderManBinOv2 = PreyFunction<void(CShaderManBin* const _this)>(0x10431C0);
+	static inline auto FGetBinShader = PreyFunction<SShaderBin* (CShaderManBin* const _this, const char* szName, bool bInclude, unsigned nRefCRC, bool* pbChanged)>(0x10452C0);
+	static inline auto FParseBinFX = PreyFunction<bool(CShaderManBin* const _this, SShaderBin* pBin, CShader* ef, uint64_t nMaskGen)>(0x1047680);
+	static inline auto FmfGetFXParams = PreyFunction<SShaderFXParams& (CShaderManBin* const _this, CShader* pSH)>(0x1051800);
+	static inline auto FmfRemoveFXParams = PreyFunction<void(CShaderManBin* const _this, CShader* pSH)>(0x1051E50);
+	static inline auto FmfReleaseFXParams = PreyFunction<void(CShaderManBin* const _this)>(0x1051E10);
+	static inline auto FInvalidateCache = PreyFunction<void(CShaderManBin* const _this, bool bIncludesOnly)>(0x1046F10);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CShaderManBin* const _this, ICrySizer* pSizer)>(0x1045E80);
+#endif
 };
 
 //=====================================================================

@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 //
@@ -768,4 +769,3 @@ template<typename F> ILINE int32 idxmin3(const Vec3_tpl<F>& vec)
 	imin |= isneg(vec.z - vec[imin]) << 1;
 	return imin & (2 | (imin >> 1 ^ 1));
 }
-

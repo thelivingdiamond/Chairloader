@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -74,4 +76,85 @@ public:
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkSpeakerExtension const *const _this, ICrySizer *)>(0xA13080);
 	static inline auto FGetSpeaker = PreyFunction<IArkSpeaker *(ArkSpeakerExtension *const _this)>(0x855C80);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryNetwork/ISerialize.h>
 
+class ArkSpeakerBase;
+enum EEntityAspects;
+class IArkSpeaker;
+class ICrySizer;
+struct IGameObject;
+struct ISerializableInfo;
+struct SEntityEvent;
+struct SEntitySpawnParams;
+struct SEntityUpdateContext;
+struct SGameObjectEvent;
+
+// ArkSpeakerExtension
+// Header:  Prey/GameDll/ark/ArkSpeakerExtension.h
+class ArkSpeakerExtension : public CGameObjectExtensionHelper<ArkSpeakerExtension, IArkSpeakerExtension>
+{ // Size=72 (0x48)
+public:
+	enum class EArkSpeakerType
+	{
+		prop = 0,
+		npc = 1,
+		last = 2,
+	};
+
+	std::unique_ptr<ArkSpeakerBase> m_pSpeaker;
+
+	virtual void Release();
+	virtual bool Init(IGameObject* const _pGameObject);
+	virtual void InitClient(int channelId);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void PostInitClient(int channelId);
+	virtual bool ReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
+	virtual void PostReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
+	virtual bool GetEntityPoolSignature(TSerialize signature);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool NetSerialize(TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags);
+	virtual void PostSerialize();
+	virtual void SerializeSpawnInfo(TSerialize ser);
+	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void PostUpdate(float frameTime);
+	virtual void PostRemoteSpawn();
+	virtual void HandleEvent(const SGameObjectEvent& __unnamed1);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void SetChannelId(uint16_t id);
+	virtual void SetAuthority(bool auth);
+	virtual void GetMemoryUsage(ICrySizer* __unnamed1) const;
+	virtual IArkSpeaker* GetSpeaker();
+
+#if 0
+	ArkSpeakerExtension();
+#endif
+
+	static inline auto FRelease = PreyFunction<void(ArkSpeakerExtension* const _this)>(0x3E3960);
+	static inline auto FInit = PreyFunction<bool(ArkSpeakerExtension* const _this, IGameObject* const _pGameObject)>(0x14E1770);
+	static inline auto FInitClient = PreyFunction<void(ArkSpeakerExtension* const _this, int channelId)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(ArkSpeakerExtension* const _this, IGameObject* _pGameObject)>(0x152E070);
+	static inline auto FPostInitClient = PreyFunction<void(ArkSpeakerExtension* const _this, int channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(ArkSpeakerExtension* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1A302A0);
+	static inline auto FPostReloadExtension = PreyFunction<void(ArkSpeakerExtension* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(ArkSpeakerExtension* const _this, TSerialize signature)>(0x1A302A0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkSpeakerExtension* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(ArkSpeakerExtension* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkSpeakerExtension* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkSpeakerExtension* const _this, TSerialize ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(ArkSpeakerExtension* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(ArkSpeakerExtension* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x14E2070);
+	static inline auto FPostUpdate = PreyFunction<void(ArkSpeakerExtension* const _this, float frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSpeakerExtension* const _this)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(ArkSpeakerExtension* const _this, const SGameObjectEvent& __unnamed1)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(ArkSpeakerExtension* const _this, SEntityEvent& _event)>(0x14E1F60);
+	static inline auto FSetChannelId = PreyFunction<void(ArkSpeakerExtension* const _this, uint16_t id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(ArkSpeakerExtension* const _this, bool auth)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkSpeakerExtension* const _this, ICrySizer* __unnamed1)>(0x1333E90);
+	static inline auto FGetSpeaker = PreyFunction<IArkSpeaker* (ArkSpeakerExtension* const _this)>(0x8715F0);
+};
+#endif // !MOONCRASH

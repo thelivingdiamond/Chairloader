@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -43,4 +45,42 @@ public:
 };
 
 } // namespace ArkTurretDamageFsm
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <_unknown/ArkTurretDamageFsmBase_template_.h>
 
+class ArkTurret;
+
+namespace ArkTurretDamageFsm
+{
+
+// ArkTurretDamageFsm::Fsm
+// Header:  Prey/GameDll/ark/turret/turretdamagefsm/arkturretdamagefsm_fsm.h
+class Fsm : protected ArkTurretDamageFsmBase_template_<void>
+{ // Size=20 (0x14)
+public:
+	void Initiate(ArkTurret& _turret) { FInitiate(this, _turret); }
+	void Update(ArkTurret& _turret, float _frameTime) { FUpdate(this, _turret, _frameTime); }
+	void OnHealthChange(ArkTurret& _turret, float _turretNewHealth, bool _bFromDamage) { FOnHealthChange(this, _turret, _turretNewHealth, _bFromDamage); }
+	bool IsDisabled() const { return FIsDisabled(this); }
+	void Serialize(ArkTurret& _turret, TSerialize _ser) { FSerialize(this, _turret, _ser); }
+	void OnBrokenChanged(ArkTurret& _turret, bool _bBroken) { FOnBrokenChanged(this, _turret, _bBroken); }
+
+#if 0
+	void Reset(ArkTurret& _arg0_);
+	void Terminate(ArkTurret& _arg0_);
+#endif
+
+	static inline auto FInitiate = PreyFunction<void(ArkTurretDamageFsm::Fsm* const _this, ArkTurret& _turret)>(0x143DEC0);
+	static inline auto FUpdate = PreyFunction<void(ArkTurretDamageFsm::Fsm* const _this, ArkTurret& _turret, float _frameTime)>(0x143E220);
+	static inline auto FOnHealthChange = PreyFunction<void(ArkTurretDamageFsm::Fsm* const _this, ArkTurret& _turret, float _turretNewHealth, bool _bFromDamage)>(0x143E010);
+	static inline auto FIsDisabled = PreyFunction<bool(const ArkTurretDamageFsm::Fsm* const _this)>(0x143DFE0);
+	static inline auto FSerialize = PreyFunction<void(ArkTurretDamageFsm::Fsm* const _this, ArkTurret& _turret, TSerialize _ser)>(0x143E110);
+	static inline auto FOnBrokenChanged = PreyFunction<void(ArkTurretDamageFsm::Fsm* const _this, ArkTurret& _turret, bool _bBroken)>(0x143DFF0);
+};
+
+
+} // namespace ArkTurretDamageFsm
+#endif // !MOONCRASH

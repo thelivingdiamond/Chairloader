@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -44,4 +46,51 @@ public:
 	static inline auto FOnPressButton = PreyFunction<void(ArkUIOptionMenu *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x163D2E0);
 	static inline auto FIsActive = PreyFunction<bool(ArkUIOptionMenu *const _this)>(0x163D130);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/ui/ArkUIOptionMenuBase.h>
 
+enum EControlScheme;
+class IArkOptionMenuListener;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkUIOptionMenu
+// Header:  Prey/GameDll/ark/ui/ArkUIOptionMenu.h
+class ArkUIOptionMenu : public ArkUIOptionMenuBase
+{ // Size=136 (0x88)
+public:
+	IArkOptionMenuListener* m_pOptionMenuListener;
+
+	virtual const char* GetTypeName() const;
+	virtual void Reload();
+	void Show(IArkOptionMenuListener* _pCloseListener) { FShow(this, _pCloseListener); }
+	virtual void Hide();
+	void LoadPlayerProfile() { FLoadPlayerProfile(this); }
+	virtual void QueueHide();
+	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+	virtual void OnMenuClose(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	virtual void OnClickAttribute(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	virtual void OnPressButton(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	virtual bool IsActive();
+
+#if 0
+	ArkUIOptionMenu();
+	static const char* GetTypeNameS();
+#endif
+
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1760830);
+	static inline auto FReload = PreyFunction<void(IUIModule* const _this)>(0x1760AF0);
+	static inline auto FShow = PreyFunction<void(ArkUIOptionMenu* const _this, IArkOptionMenuListener* _pCloseListener)>(0x1760BF0);
+	static inline auto FHide = PreyFunction<void(ArkUIOptionMenu* const _this)>(0x1760840);
+	static inline auto FLoadPlayerProfile = PreyFunction<void(ArkUIOptionMenu* const _this)>(0x1760880);
+	static inline auto FQueueHide = PreyFunction<void(ArkUIOptionMenu* const _this)>(0x1760AC0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1760910);
+	static inline auto FOnMenuClose = PreyFunction<void(ArkUIOptionMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x17609F0);
+	static inline auto FOnClickAttribute = PreyFunction<void(ArkUIOptionMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1760890);
+	static inline auto FOnPressButton = PreyFunction<void(ArkUIOptionMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1760A20);
+	static inline auto FIsActive = PreyFunction<bool(ArkUIOptionMenu* const _this)>(0x1760870);
+};
+#endif // !MOONCRASH

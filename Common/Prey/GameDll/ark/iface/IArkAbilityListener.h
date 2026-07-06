@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -13,4 +15,19 @@ public:
 	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener *const _this, uint64_t _abilityID)>(0xA13080);
 	static inline auto FOnBecomeAlien = PreyFunction<void(IArkAbilityListener *const _this)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+// IArkAbilityListener
+// Header:  Prey/GameDll/ark/iface/IArkAbilityListener.h
+class IArkAbilityListener
+{ // Size=8 (0x8)
+public:
+	virtual void OnAbilityAdded(uint64_t _abilityID);
+	virtual void OnBecomeAlien();
+
+	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener* const _this, uint64_t _abilityID)>(0x1333E90);
+	static inline auto FOnBecomeAlien = PreyFunction<void(IArkAbilityListener* const _this)>(0x1333E90);
+};
+#endif // !MOONCRASH

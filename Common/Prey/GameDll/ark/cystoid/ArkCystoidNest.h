@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -115,4 +116,48 @@ public:
 	static inline auto FEnableAttentionObject = PreyFunction<void(ArkCystoidNest *const _this)>(0x125E3F0);
 	static inline auto FDisableAttentionObject = PreyFunction<void(ArkCystoidNest *const _this)>(0x125E3C0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/environment/ArkTyphonNest.h>
 
+enum class EArkTyphonNestState;
+
+// ArkCystoidNest
+// Header:  Prey/GameDll/ark/cystoid/ArkCystoidNest.h
+class ArkCystoidNest : public ArkTyphonNest
+{ // Size=576 (0x240)
+public:
+	ArkAutoResetTimer m_hazardTimer;
+	std::vector<QuatT> m_spawnLocs;
+	int m_cystoidsRemainingToSpawn;
+	float m_spawnImpulse;
+	float m_hazardRadius;
+	int m_cystoidsToSpawn;
+	string m_cystoidArchetype;
+	uint64_t m_hazardPackage;
+
+	ArkCystoidNest();
+	virtual ~ArkCystoidNest();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual bool SetState(EArkTyphonNestState _state, bool _bForce);
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	virtual void LoadGravityProperties();
+	virtual void InitCachedPositionData();
+	virtual bool SpawnTyphon();
+	virtual void UpdateFromCystoidManager(const float _frameTime, const int _zeroGUpdateSlice, bool& _bDidZeroGTest);
+
+	static inline auto FArkCystoidNest = PreyFunction<void(ArkCystoidNest* const _this)>(0x1301310);
+	static inline auto FFullSerialize = PreyFunction<void(ArkCystoidNest* const _this, TSerialize _ser)>(0x13013F0);
+	static inline auto FSetState = PreyFunction<bool(ArkCystoidNest* const _this, EArkTyphonNestState _state, bool _bForce)>(0x1301CA0);
+	static inline auto FOnReset = PreyFunction<void(ArkCystoidNest* const _this, bool _bEnteringGameMode)>(0x1301C60);
+	static inline auto FLoadProperties = PreyFunction<void(ArkCystoidNest* const _this)>(0x1301880);
+	static inline auto FLoadGravityProperties = PreyFunction<void(ArkCystoidNest* const _this)>(0x1301500);
+	static inline auto FInitCachedPositionData = PreyFunction<void(ArkCystoidNest* const _this)>(0x1301440);
+	static inline auto FSpawnTyphon = PreyFunction<bool(ArkCystoidNest* const _this)>(0x1301D80);
+	static inline auto FUpdateFromCystoidManager = PreyFunction<void(ArkCystoidNest* const _this, const float _frameTime, const int _zeroGUpdateSlice, bool& _bDidZeroGTest)>(0x1302180);
+};
+#endif // !MOONCRASH

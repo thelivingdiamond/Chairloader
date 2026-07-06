@@ -31,4 +31,3 @@ public:
 	void __dflt_ctor_closure();
 #endif
 };
-

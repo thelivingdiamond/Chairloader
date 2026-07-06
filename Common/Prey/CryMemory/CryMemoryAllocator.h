@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 /*
  * Part of this code coming from STLPort alloc
  *

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -58,4 +60,66 @@ public:
 	static inline auto FResumeStatModifiers = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x132BBF0);
 	static inline auto FStatModHelper = PreyFunction<void(ArkTraumaBleeding* const _this, float _amount)>(0x132BE50);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/EntityUtility/EntityEffects.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/player/ArkAudioSwitch.h>
+#include <Prey/GameDll/ark/player/trauma/ArkTraumaBase.h>
 
+// ArkTraumaBleeding
+// Header:  Prey/GameDll/ark/player/trauma/ArkTraumaBleeding.h
+class ArkTraumaBleeding : public ArkTraumaBase
+{ // Size=632 (0x278)
+public:
+	enum class EAudioBleed
+	{
+		off = 0,
+		on = 1,
+		count = 2,
+	};
+
+	ArkAutoResetTimer m_activeDrainTimer;
+	EntityEffects::CEffectsController m_bleedParticleController;
+	ArkEntityAttachmentEffect m_bleedParticle;
+	ArkEntityPointerEffect m_screenParticle;
+	ArkSimpleTimer m_screenParticleTimer;
+	TArkAudioSwitch<enum ArkTraumaBleeding::EAudioBleed> m_stepSwitch;
+	ArkAudioTrigger m_stackSFX;
+	ArkAudioTrigger m_damageSFX;
+	ArkAudioTrigger m_gruntSFX;
+
+	ArkTraumaBleeding();
+	virtual ~ArkTraumaBleeding();
+	virtual void Serialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void Update(float _frameTime);
+	virtual void Activate(int _level);
+	virtual void UpdateVisuals(bool _bImmediate, bool _bFromSerialize);
+	static void UpdateHealthUI(float _bleedIndicator, float _maxHealth) { FUpdateHealthUI(_bleedIndicator, _maxHealth); }
+	virtual float GetMinPostEffectParamValue() const;
+	void PulseDamage() { FPulseDamage(this); }
+	virtual void Stack();
+	virtual void ApplyStatModifiers();
+	virtual void ResumeStatModifiers();
+	void StatModHelper(float _amount) { FStatModHelper(this, _amount); }
+
+	static inline auto FArkTraumaBleedingOv1 = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x1405DF0);
+	static inline auto FSerialize = PreyFunction<void(ArkTraumaBleeding* const _this, TSerialize _ser)>(0x1406260);
+	static inline auto FPostSerialize = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x1406170);
+	static inline auto FUpdate = PreyFunction<void(ArkTraumaBleeding* const _this, float _frameTime)>(0x14064E0);
+	static inline auto FActivate = PreyFunction<void(ArkTraumaBleeding* const _this, int _level)>(0x1406070);
+	static inline auto FUpdateVisuals = PreyFunction<void(ArkTraumaBleeding* const _this, bool _bImmediate, bool _bFromSerialize)>(0x1406670);
+	static inline auto FUpdateHealthUI = PreyFunction<void(float _bleedIndicator, float _maxHealth)>(0x14065B0);
+	static inline auto FGetMinPostEffectParamValue = PreyFunction<float(const ArkTraumaBleeding* const _this)>(0x1406160);
+	static inline auto FPulseDamage = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x14061D0);
+	static inline auto FStack = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x14062E0);
+	static inline auto FApplyStatModifiers = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x1406150);
+	static inline auto FResumeStatModifiers = PreyFunction<void(ArkTraumaBleeding* const _this)>(0x1406250);
+	static inline auto FStatModHelper = PreyFunction<void(ArkTraumaBleeding* const _this, float _amount)>(0x1406330);
+};
+#endif // !MOONCRASH

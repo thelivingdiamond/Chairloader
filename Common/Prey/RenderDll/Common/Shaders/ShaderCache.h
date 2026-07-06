@@ -221,16 +221,21 @@ class CResStreamDirCallback : public IStreamCallback
 	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
 	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
 
+//TODO: handle this in mooncrash
+#ifndef MOONCRASH
 	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC4C80);
 	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xA13080);
+#endif
 };
 class CResStreamCallback : public IStreamCallback
 {
 	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
 	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
-
+//TODO: handle this in mooncrash
+#ifndef MOONCRASH
 	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC4B70);
 	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC49F0);
+#endif
 };
 
 struct SResStreamEntry

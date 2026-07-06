@@ -48,8 +48,12 @@ struct HitInfo // Id=8001F5A Size=112
 #if 0
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FSerializeWith = PreyFunction<void(HitInfo *const _this, TSerialize ser)>(0x172CE50);
+#else
+	static inline auto FSerializeWith = PreyFunction<void(HitInfo* const _this, TSerialize ser)>(0x1854190);
+#endif
 };
 
 // Header: Exact
@@ -97,7 +101,10 @@ struct ExplosionInfo // Id=8001FA5 Size=168
 	void SetEffectClass(const char *arg0);
 	void SetFriendlyFire(EFriendyFireType arg0);
 #endif
-	
-	static inline auto FSerializeWith = PreyFunction<void(ExplosionInfo *const _this, TSerialize ser)>(0x172CA70);
-};
 
+#ifndef MOONCRASH
+	static inline auto FSerializeWith = PreyFunction<void(ExplosionInfo *const _this, TSerialize ser)>(0x172CA70);
+#else
+	static inline auto FSerializeWith = PreyFunction<void(ExplosionInfo* const _this, TSerialize ser)>(0x1853DB0);
+#endif
+};

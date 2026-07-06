@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -266,4 +268,230 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1065C40);
 	static inline auto FInit = PreyFunction<bool(ArkEventDrivenAchievementLibrary *const _this)>(0x1065DD0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkMetricComparison
+// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+class ArkMetricComparison : public ArkReflectedObject
+{ // Size=16 (0x10)
+public:
+	// ArkMetricComparison::ArkMetricProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkMetricProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkMetricProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkMetricComparison::ArkMetricProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkMetricComparison::ArkMetricProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkMetricComparison::ArkComparisonTypeProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkComparisonTypeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+
+	#if 0
+		ArkComparisonTypeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkMetricComparison::ArkComparisonTypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1088820);
+	};
+
+	// ArkMetricComparison::ArkValueProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkValueProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkValueProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkMetricComparison::ArkValueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkMetricComparison::ArkValueProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035F0);
+	};
+
+	static inline auto s_ArkMetricProperty = PreyGlobal<ArkMetricComparison::ArkMetricProperty>(0x2D239E0);
+	uint64_t m_Metric;
+	static inline auto s_ArkComparisonTypeProperty = PreyGlobal<ArkMetricComparison::ArkComparisonTypeProperty>(0x2D23A00);
+	EArkComparisonType m_ComparisonType;
+	static inline auto s_ArkValueProperty = PreyGlobal<ArkMetricComparison::ArkValueProperty>(0x2D23A20);
+	unsigned m_Value;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkMetricComparison();
+	void SetMetric(uint64_t _arg0_);
+	const uint64_t& GetMetric() const;
+	void SetComparisonType(string _arg0_);
+	const EArkComparisonType& GetComparisonType() const;
+	void SetValue(unsigned _arg0_);
+	const unsigned& GetValue() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10895D0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1089770);
+};
+
+// ArkEventDrivenAchievement
+// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+class ArkEventDrivenAchievement : public ArkReflectedObject
+{ // Size=48 (0x30)
+public:
+	// ArkEventDrivenAchievement::ArkIDProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkEventDrivenAchievement::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkEventDrivenAchievement::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkEventDrivenAchievement::ArkNameProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkEventDrivenAchievement::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkEventDrivenAchievement::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkEventDrivenAchievement::ArkRewardIDProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkRewardIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkRewardIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkEventDrivenAchievement::ArkRewardIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkEventDrivenAchievement::ArkRewardIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkEventDrivenAchievement::ArkMetricComparisonsProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkMetricComparisonsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkMetricComparisonsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkEventDrivenAchievement::ArkMetricComparisonsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1088880);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkEventDrivenAchievement::ArkMetricComparisonsProperty* const _this, ArkReflectedObject* const _pObject)>(0x10888B0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkEventDrivenAchievement::ArkMetricComparisonsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkEventDrivenAchievement::ArkMetricComparisonsProperty* const _this, ArkReflectedObject* _pObject)>(0x10888D0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkEventDrivenAchievement::ArkIDProperty>(0x2D23A40);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkEventDrivenAchievement::ArkNameProperty>(0x2D23A60);
+	string m_Name;
+	static inline auto s_ArkRewardIDProperty = PreyGlobal<ArkEventDrivenAchievement::ArkRewardIDProperty>(0x2D23A80);
+	unsigned m_RewardID;
+	static inline auto s_ArkMetricComparisonsProperty = PreyGlobal<ArkEventDrivenAchievement::ArkMetricComparisonsProperty>(0x2D23AA0);
+	std::vector<ArkMetricComparison> m_MetricComparisons;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkEventDrivenAchievement();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetRewardID(unsigned _arg0_);
+	const unsigned& GetRewardID() const;
+	std::vector<ArkMetricComparison>& GetMetricComparisons();
+	const std::vector<ArkMetricComparison>& GetMetricComparisons() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1089530);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10895E0);
+};
+
+// ArkEventDrivenAchievementLibrary
+// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+class ArkEventDrivenAchievementLibrary : public ArkReflectedLibrary
+{ // Size=32 (0x20)
+public:
+	// ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty
+	// Header:  Prey/Ark/ArkEventDrivenAchievement.h
+	class ArkEventDrivenAchievementsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkEventDrivenAchievementsProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkEventDrivenAchievementsPropertyOv2 = PreyFunction<void(ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty* const _this)>(0x1089210);
+		static inline auto FSetValue = PreyFunction<void(const ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10888E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088970);
+		static inline auto FIsArray = PreyFunction<bool(const ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty* const _this, ArkReflectedObject* _pObject)>(0x10889B0);
+	};
+
+	static inline auto s_ArkEventDrivenAchievementsProperty = PreyGlobal<ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty>(0x2D23AC0);
+	std::vector<ArkEventDrivenAchievement> m_EventDrivenAchievements;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	std::vector<ArkEventDrivenAchievement>& GetEventDrivenAchievements();
+	const std::vector<ArkEventDrivenAchievement>& GetEventDrivenAchievements() const;
+	const ArkEventDrivenAchievement* Find(const uint64_t _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1089570);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1089680);
+	static inline auto FInit = PreyFunction<bool(ArkEventDrivenAchievementLibrary* const _this)>(0x1089810);
+};
+#endif // !MOONCRASH

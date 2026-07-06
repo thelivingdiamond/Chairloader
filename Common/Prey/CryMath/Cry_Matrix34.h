@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -1070,5 +1071,3 @@ typedef Matrix34_tpl<real> Matrix34r;  //!< Variable float precision. depending 
  */
 struct __attribute__((deprecated)) Matrix34_f32_dont_use : public Matrix34_tpl<f32> {};
 #endif
-
-

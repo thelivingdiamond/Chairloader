@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -83,4 +84,3 @@ typedef Vec4_tpl<real> Vec4r; //!< Variable float precision. depending on the ta
 typedef Plane_tpl<f32>  Planef;
 typedef Plane_tpl<f64>  Planed;
 typedef Plane_tpl<real> Planer;   //!< Variable float precision. depending on the target system it can be between 32, 64 or 80 bit.
-

@@ -28,8 +28,12 @@ struct SAudioCallBackInfos // Id=80021AF Size=32
 #if 0
 	void __dflt_ctor_closure();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FGetEmptyObject = PreyFunction<SAudioCallBackInfos const &()>(0x1A0A00);
+#else
+	static inline auto FGetEmptyObject = PreyFunction<const SAudioCallBackInfos& ()>(0x1B8AA0);
+#endif
 };
 
 // Header: Exact
@@ -50,4 +54,3 @@ public:
 	bool IsEquivalent(Matrix34 const &arg0, const float arg1) const;
 #endif
 };
-

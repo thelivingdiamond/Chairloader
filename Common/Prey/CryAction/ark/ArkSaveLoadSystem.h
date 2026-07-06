@@ -102,7 +102,8 @@ public:
 	void DeleteMetadata(string const &arg0);
 	static XmlNodeRef GetCaptureVolumeStates();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FRequestLevelStateRestore = PreyFunction<void(ArkSaveLoadSystem *const _this)>(0x2AE870);
 	static inline auto FLoadCurrentLevelState = PreyFunction<void(ArkSaveLoadSystem *const _this, CGameSerialize &_gameSerialize)>(0x2ADAF0);
 	static inline auto FInLevelTransition = PreyFunction<bool(ArkSaveLoadSystem const *const _this)>(0x2AD940);
@@ -121,6 +122,31 @@ public:
 	static inline auto FSetLevelOrigin = PreyFunction<void(ArkSaveLoadSystem const *const _this, SBasicEntityData &_bed, IEntity const &_entity)>(0x2AF920);
 	static inline auto FGetMetadata = PreyFunction<boost::optional<CPlayerProfileManager::SSaveGameMetaData>(ArkSaveLoadSystem const *const _this, string const &_saveName)>(0x52E3D0);
 	static inline auto FClearMetadataCache = PreyFunction<void(ArkSaveLoadSystem *const _this)>(0x2AD530);
+#else
+	static inline auto FArkSaveLoadSystemOv2 = PreyFunction<void(ArkSaveLoadSystem* const _this)>(0x2C4740);
+	static inline auto FRequestLevelStateRestore = PreyFunction<void(ArkSaveLoadSystem* const _this)>(0x2C89E0);
+	static inline auto FLoadCurrentLevelState = PreyFunction<void(ArkSaveLoadSystem* const _this, CGameSerialize& _gameSerialize)>(0x2C7950);
+	static inline auto FInLevelTransition = PreyFunction<bool(const ArkSaveLoadSystem* const _this)>(0x2C77A0);
+	static inline auto FIsRestoringLevelState = PreyFunction<bool(const ArkSaveLoadSystem* const _this)>(0x2C7940);
+	static inline auto FRegisterStartNode = PreyFunction<void(ArkSaveLoadSystem* const _this, CFlowStartNode& _node)>(0x2C89C0);
+	static inline auto FUnregisterStartNode = PreyFunction<void(ArkSaveLoadSystem* const _this, CFlowStartNode& _node)>(0x2C9930);
+	static inline auto FRegisterOnSaveLoadedNode = PreyFunction<void(ArkSaveLoadSystem* const _this, CArkFlowNodeOnSaveLoaded& _node)>(0x2C89A0);
+	static inline auto FUnregisterOnSaveLoadedNode = PreyFunction<void(ArkSaveLoadSystem* const _this, CArkFlowNodeOnSaveLoaded& _node)>(0x159C1E0);
+	static inline auto FSerializePersistentState = PreyFunction<void(ArkSaveLoadSystem* const _this, TSerialize _serialize)>(0x2C9760);
+	static inline auto FOnSaveGameLoaded = PreyFunction<void(ArkSaveLoadSystem* const _this)>(0x2C88F0);
+	static inline auto FSetCampaignSlot = PreyFunction<void(ArkSaveLoadSystem* const _this, const int _slot)>(0x2C97B0);
+	static inline auto FGetCampaignSlot = PreyFunction<int(const ArkSaveLoadSystem* const _this)>(0x2C7490);
+	static inline auto FSaveCurrentLevelState = PreyFunction<void(ArkSaveLoadSystem* const _this, CGameSerialize& _gameSerialize)>(0x2C89F0);
+	static inline auto FRegisterListener = PreyFunction<void(ArkSaveLoadSystem* const _this, IArkSaveLoadListener* _pListener)>(0x2C8950);
+	static inline auto FUnregisterListener = PreyFunction<void(ArkSaveLoadSystem* const _this, IArkSaveLoadListener* _pListener)>(0x2C98F0);
+	static inline auto FSetMetadata = PreyFunction<void(ArkSaveLoadSystem* const _this, const string& _saveName, CPlayerProfileManager::SSaveGameMetaData& _data)>(0x4DF270);
+	static inline auto FSetLevelOrigin = PreyFunction<void(const ArkSaveLoadSystem* const _this, SBasicEntityData& _bed, const IEntity& _entity)>(0x2C97C0);
+	static inline auto FGetMetadata = PreyFunction<boost::optional<CPlayerProfileManager::SSaveGameMetaData>*(const ArkSaveLoadSystem* const _this, boost::optional<CPlayerProfileManager::SSaveGameMetaData>* _return_value_, const string& _saveName)>(0x547800);
+	static inline auto FAddLevelVisitationDataToMetadata = PreyFunction<void(const ArkSaveLoadSystem* const _this, ISaveGame& _saveGame)>(0x2C6FC0);
+	static inline auto FLoadLevelVisitationData = PreyFunction<void(ArkSaveLoadSystem* const _this, SLoadEnvironment& _loadEnv)>(0x2C81E0);
+	static inline auto FForgetLevel = PreyFunction<void(ArkSaveLoadSystem* const _this, string _levelName)>(0x2C72F0);
+	static inline auto FClearMetadataCache = PreyFunction<void(ArkSaveLoadSystem* const _this)>(0x2C7280);
+#endif
 };
 
 class CXmlSerializeHelper;
@@ -150,7 +176,8 @@ public:
 	virtual ESaveGameReason GetSaveGameReason() const;
 	virtual void GetMemoryUsage(ICrySizer *_pSizer) const;
 	virtual ~Save();
-	
+
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(Save *const _this, const char *_pName)>(0x2AD9D0);
 	static inline auto FAddMetadataOv1 = PreyFunction<void(Save *const _this, const char *_pTag, const char *_pValue)>(0xA13080);
 	static inline auto FAddMetadataOv0 = PreyFunction<void(Save *const _this, const char *_pTag, int _value)>(0x2AD410);
@@ -163,6 +190,20 @@ public:
 	static inline auto FSetSaveGameReason = PreyFunction<void(Save *const _this, ESaveGameReason _reason)>(0xA13080);
 	static inline auto FGetSaveGameReason = PreyFunction<ESaveGameReason(Save const *const _this)>(0x1A42CE0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(Save const *const _this, ICrySizer *_pSizer)>(0x2AD770);
+#else
+	static inline auto FInit = PreyFunction<bool(Save* const _this, const char* _pName)>(0x2C7830);
+	static inline auto FAddMetadataOv1 = PreyFunction<void(Save* const _this, const char* _pTag, const char* _pValue)>(0x1333E90);
+	static inline auto FAddMetadataOv0 = PreyFunction<void(Save* const _this, const char* _pTag, int _value)>(0x2C7160);
+	static inline auto FGetMetadata = PreyFunction<XmlNodeRef*(const Save* const _this, XmlNodeRef* _return_value_)>(0x361570);
+	static inline auto FAddSection = PreyFunction<TSerialize*(Save* const _this, TSerialize* _return_value_, const char* _pSection)>(0x2C71C0);
+	static inline auto FSetThumbnail = PreyFunction<uint8_t* (Save* const _this, const uint8_t* _pImageData, int _width, int _height, int _depth)>(0x1CBB0B0);
+	static inline auto FSetThumbnailFromBMP = PreyFunction<bool(Save* const _this, const char* _pFilename)>(0x13B0900);
+	static inline auto FComplete = PreyFunction<bool(Save* const _this, bool _bSuccessfulSoFar)>(0x2C72D0);
+	static inline auto FGetFileName = PreyFunction<const char* (const Save* const _this)>(0x1CBB0B0);
+	static inline auto FSetSaveGameReason = PreyFunction<void(Save* const _this, ESaveGameReason _reason)>(0x1333E90);
+	static inline auto FGetSaveGameReason = PreyFunction<ESaveGameReason(const Save* const _this)>(0x4FD7F0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const Save* const _this, ICrySizer* _pSizer)>(0x2C75D0);
+#endif
 };
 
 // Header: FromCpp
@@ -187,7 +228,8 @@ public:
 	virtual void Complete();
 	virtual const char *GetFileName() const;
 	virtual ~Load();
-	
+
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(Load *const _this, const char *const _pName)>(0x2AD950);
 	static inline auto FGetPlatformUserId = PreyFunction<unsigned(Load const *const _this)>(0xA38740);
 	static inline auto FGetHeap = PreyFunction<IGeneralMemoryHeap *(Load *const _this)>(0x158AEF0);
@@ -198,5 +240,16 @@ public:
 	static inline auto FHaveSection = PreyFunction<bool(Load *const _this, const char *_pSection)>(0x2AD900);
 	static inline auto FComplete = PreyFunction<void(Load *const _this)>(0xA97D40);
 	static inline auto FGetFileName = PreyFunction<const char *(Load const *const _this)>(0x158AEF0);
+#else
+	static inline auto FInit = PreyFunction<bool(Load* const _this, const char* const _pName)>(0x2C77B0);
+	static inline auto FGetPlatformUserId = PreyFunction<unsigned(const Load* const _this)>(0xA554A0);
+	static inline auto FGetHeap = PreyFunction<IGeneralMemoryHeap* (Load* const _this)>(0x1CBB0B0);
+	static inline auto FGetMetadataOv1 = PreyFunction<const char* (Load* const _this, const char* _pTag)>(0x1CBB0B0);
+	static inline auto FGetMetadataOv0 = PreyFunction<bool(Load* const _this, const char* _pTag, int& _value)>(0x2C7620);
+	static inline auto FHaveMetadata = PreyFunction<bool(Load* const _this, const char* _pTag)>(0x1A302A0);
+	static inline auto FGetSection = PreyFunction<std::unique_ptr<TSerialize>*(Load* const _this, std::unique_ptr<TSerialize>* _return_value_, const char* _pSection)>(0x2C7690);
+	static inline auto FHaveSection = PreyFunction<bool(Load* const _this, const char* _pSection)>(0x2C7760);
+	static inline auto FComplete = PreyFunction<void(Load* const _this)>(0x3E3960);
+	static inline auto FGetFileName = PreyFunction<const char* (const Load* const _this)>(0x1CBB0B0);
+#endif
 };
-

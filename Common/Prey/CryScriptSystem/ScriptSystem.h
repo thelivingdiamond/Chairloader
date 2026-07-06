@@ -24,7 +24,11 @@ struct lua_State;
 class CScriptSystem : public IScriptSystem, public ISystemEventListener
 { // Size=17368 (0x43D8)
 public:
+#ifndef MOONCRASH
 	static inline auto s_mpScriptSystem = PreyGlobal<CScriptSystem*>(0x2976CF0);
+#else
+	static inline auto s_mpScriptSystem = PreyGlobal<CScriptSystem*>(0x2AE5F80);
+#endif
 	lua_State* L;
 	ICVar* m_cvar_script_debugger;
 	ICVar* m_cvar_script_coverage;
@@ -146,6 +150,7 @@ public:
 	void RemoveFileFromList(const std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<CryStringT<char> > > >& _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCScriptSystemOv1 = PreyFunction<void(CScriptSystem* const _this)>(0xD0D0B0);
 	static inline auto FInit = PreyFunction<bool(CScriptSystem* const _this, ISystem* pSystem, bool bStdLibs, int nStackSize)>(0xD10B30);
 	static inline auto FUpdate = PreyFunction<void(CScriptSystem* const _this)>(0xD13020);
@@ -226,4 +231,86 @@ public:
 	static inline auto FEnableDebugger = PreyFunction<void(CScriptSystem* const _this, ELuaDebugMode eDebugMode)>(0xD0F0C0);
 	static inline auto FDebugModeChange = PreyFunction<void(ICVar* cvar)>(0xD0EFD0);
 	static inline auto FCodeCoverageChange = PreyFunction<void(ICVar* cvar)>(0xD0ED70);
+#else
+	static inline auto FCScriptSystemOv1 = PreyFunction<void(CScriptSystem* const _this)>(0xD2AE40);
+	static inline auto FInit = PreyFunction<bool(CScriptSystem* const _this, ISystem* pSystem, bool bStdLibs, int nStackSize)>(0xD2E8C0);
+	static inline auto FUpdate = PreyFunction<void(CScriptSystem* const _this)>(0xD30DB0);
+	static inline auto FSetGCFrequency = PreyFunction<void(CScriptSystem* const _this, const float fRate)>(0xD303F0);
+	static inline auto FSetEnvironment = PreyFunction<void(CScriptSystem* const _this, SScriptFuncHandle* scriptFunction, IScriptTable* pEnv)>(0xD30390);
+	static inline auto FGetEnvironment = PreyFunction<IScriptTable* (CScriptSystem* const _this, SScriptFuncHandle* scriptFunction)>(0xD2DFE0);
+	static inline auto F_ExecuteFile = PreyFunction<bool(CScriptSystem* const _this, const char* sFileName, bool bRaiseError, IScriptTable* pEnv)>(0xD31170);
+	static inline auto FExecuteFile = PreyFunction<bool(CScriptSystem* const _this, const char* sFileName, bool bRaiseError, bool bForceReload, IScriptTable* pEnv)>(0xD2D3A0);
+	static inline auto FExecuteBuffer = PreyFunction<bool(CScriptSystem* const _this, const char* sBuffer, uint64_t nSize, const char* sBufferDescription, IScriptTable* pEnv)>(0xD2D260);
+	static inline auto FUnloadScript = PreyFunction<void(CScriptSystem* const _this, const char* sFileName)>(0xD30C50);
+	static inline auto FUnloadScripts = PreyFunction<void(CScriptSystem* const _this)>(0xD30D70);
+	static inline auto FReloadScript = PreyFunction<bool(CScriptSystem* const _this, const char* sFileName, bool bRaiseError)>(0xD30080);
+	static inline auto FReloadScripts = PreyFunction<bool(CScriptSystem* const _this)>(0xD30180);
+	static inline auto FDumpLoadedScripts = PreyFunction<void(CScriptSystem* const _this)>(0xD2CDC0);
+	static inline auto FCreateTable = PreyFunction<IScriptTable* (CScriptSystem* const _this, bool bEmpty)>(0xD2CC90);
+	static inline auto FBeginCallOv3 = PreyFunction<int(CScriptSystem* const _this, SScriptFuncHandle* hFunc)>(0xD2BB80);
+	static inline auto FBeginCallOv2 = PreyFunction<int(CScriptSystem* const _this, const char* sFuncName)>(0xD2BCB0);
+	static inline auto FBeginCallOv1 = PreyFunction<int(CScriptSystem* const _this, const char* sTableName, const char* sFuncName)>(0xD2BBE0);
+	static inline auto FBeginCallOv0 = PreyFunction<int(CScriptSystem* const _this, IScriptTable* pTable, const char* sFuncName)>(0xD2BAF0);
+	static inline auto FEndCall = PreyFunction<bool(CScriptSystem* const _this)>(0xD2CF50);
+	static inline auto FEndCallAny = PreyFunction<bool(CScriptSystem* const _this, ScriptAnyValue& any)>(0xD2CF60);
+	static inline auto FEndCallAnyN = PreyFunction<bool(CScriptSystem* const _this, int n, ScriptAnyValue* anys)>(0xD2CFC0);
+	static inline auto FGetFunctionPtrOv1 = PreyFunction<SScriptFuncHandle* (CScriptSystem* const _this, const char* sFuncName)>(0xD2E130);
+	static inline auto FGetFunctionPtrOv0 = PreyFunction<SScriptFuncHandle* (CScriptSystem* const _this, const char* sTableName, const char* sFuncName)>(0xD2E070);
+	static inline auto FReleaseFunc = PreyFunction<void(CScriptSystem* const _this, SScriptFuncHandle* f)>(0xD30060);
+	static inline auto FAddFuncRef = PreyFunction<SScriptFuncHandle* (CScriptSystem* const _this, SScriptFuncHandle* f)>(0xD2B7D0);
+	static inline auto FCompareFuncRef = PreyFunction<bool(CScriptSystem* const _this, SScriptFuncHandle* f1, SScriptFuncHandle* f2)>(0xD2CB40);
+	static inline auto FCloneAny = PreyFunction<ScriptAnyValue*(CScriptSystem* const _this, ScriptAnyValue* _return_value_, const ScriptAnyValue& any)>(0xD2C9A0);
+	static inline auto FReleaseAny = PreyFunction<void(CScriptSystem* const _this, const ScriptAnyValue& any)>(0xD30040);
+	static inline auto FPushFuncParamAny = PreyFunction<void(CScriptSystem* const _this, const ScriptAnyValue& any)>(0xD2F930);
+	static inline auto FSetGlobalAny = PreyFunction<void(CScriptSystem* const _this, const char* sKey, const ScriptAnyValue& any)>(0xD30450);
+	static inline auto FGetGlobalAny = PreyFunction<bool(CScriptSystem* const _this, const char* sKey, ScriptAnyValue& any)>(0xD2E1A0);
+	static inline auto FCreateUserData = PreyFunction<IScriptTable* (CScriptSystem* const _this, void* ptr, uint64_t size)>(0xD2CCE0);
+	static inline auto FForceGarbageCollection = PreyFunction<void(CScriptSystem* const _this)>(0xD2D950);
+	static inline auto FGetCGCount = PreyFunction<int(CScriptSystem* const _this)>(0xD2D9E0);
+	static inline auto FSetGCThreshhold = PreyFunction<void(CScriptSystem* const _this, int nKb)>(0x1333E90);
+	static inline auto FRelease = PreyFunction<void(CScriptSystem* const _this)>(0x3E3960);
+	static inline auto FShowDebugger = PreyFunction<void(CScriptSystem* const _this, const char* pszSourceFile, int iLine, const char* pszReason)>(0xD30500);
+	static inline auto FAddBreakPoint = PreyFunction<int(CScriptSystem* const _this, const char* sFile, int nLineNumber)>(0xD2B7A0);
+	static inline auto FGetLocalVariables = PreyFunction<IScriptTable* (CScriptSystem* const _this, int nLevel)>(0xD2E320);
+	static inline auto FGetCallsStack = PreyFunction<IScriptTable* (CScriptSystem* const _this)>(0xD2DCD0);
+	static inline auto FDumpCallStack = PreyFunction<void(CScriptSystem* const _this)>(0xD2CD90);
+	static inline auto FDebugContinue = PreyFunction<void(CScriptSystem* const _this)>(0x1333E90);
+	static inline auto FDebugStepNext = PreyFunction<void(CScriptSystem* const _this)>(0x1333E90);
+	static inline auto FDebugStepInto = PreyFunction<void(CScriptSystem* const _this)>(0x1333E90);
+	static inline auto FDebugDisable = PreyFunction<void(CScriptSystem* const _this)>(0x1333E90);
+	static inline auto FGetBreakState = PreyFunction<BreakState(CScriptSystem* const _this)>(0x1A2FA50);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(const CScriptSystem* const _this, ICrySizer* pSizer)>(0xD2E480);
+	static inline auto FGetScriptHash = PreyFunction<void(CScriptSystem* const _this, const char* sPath, const char* szKey, unsigned& dwHash)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(CScriptSystem* const _this)>(0xD2F5D0);
+	static inline auto FRaiseError = PreyFunction<void(CScriptSystem* const _this, const char* format, ... sBuf)>(0xD2F950);
+	static inline auto FLoadScriptedSurfaceTypes = PreyFunction<void(CScriptSystem* const _this, const char* sFolder, bool bReload)>(0xD2ED60);
+	static inline auto FSerializeTimers = PreyFunction<void(CScriptSystem* const _this, ISerialize* pSer)>(0xD30360);
+	static inline auto FResetTimers = PreyFunction<void(CScriptSystem* const _this)>(0xD30350);
+	static inline auto FGetStackSize = PreyFunction<int(CScriptSystem* const _this)>(0xD2E8B0);
+	static inline auto FGetScriptAllocSize = PreyFunction<unsigned(CScriptSystem* const _this)>(0xD2E8A0);
+	static inline auto FAllocate = PreyFunction<void* (CScriptSystem* const _this, uint64_t sz)>(0xD2B850);
+	static inline auto FDeallocate = PreyFunction<uint64_t(CScriptSystem* const _this, void* ptr)>(0xD2CD50);
+	static inline auto FPushAny = PreyFunction<void(CScriptSystem* const _this, const ScriptAnyValue& var)>(0xD2F770);
+	static inline auto FPopAny = PreyFunction<bool(CScriptSystem* const _this, ScriptAnyValue& var)>(0xD2F590);
+	static inline auto FToAny = PreyFunction<bool(CScriptSystem* const _this, ScriptAnyValue& var, int index)>(0xD30570);
+	static inline auto FToVec3 = PreyFunction<bool(CScriptSystem* const _this, Vec3& vec, int tableIndex)>(0xD30940);
+	static inline auto FGetRecursiveAny = PreyFunction<bool(CScriptSystem* const _this, IScriptTable* pTable, const char* sKey, ScriptAnyValue& any)>(0xD2E640);
+	static inline auto FTraceScriptError = PreyFunction<void(CScriptSystem* const _this, const char* file, int line, const char* errorStr)>(0xD30BB0);
+	static inline auto FLogStackTrace = PreyFunction<void(CScriptSystem* const _this)>(0xD2ED70);
+	static inline auto FGetCallStack = PreyFunction<void(CScriptSystem* const _this, std::vector<SLuaStackEntry>& callstack)>(0xD2D9F0);
+	static inline auto FIsCallStackEmpty = PreyFunction<bool(CScriptSystem* const _this)>(0xD2ED30);
+	static inline auto FCompileBuffer = PreyFunction<SScriptFuncHandle* (CScriptSystem* const _this, const char* sBuffer, uint64_t nSize, const char* sBufferDesc)>(0xD2CBE0);
+	static inline auto FPreCacheBuffer = PreyFunction<int(CScriptSystem* const _this, const char* sBuffer, uint64_t nSize, const char* sBufferDesc)>(0xD2F620);
+	static inline auto FBeginPreCachedBuffer = PreyFunction<int(CScriptSystem* const _this, int iIndex)>(0xD2BD10);
+	static inline auto FClearPreCachedBuffer = PreyFunction<void(CScriptSystem* const _this)>(0xD2C920);
+	static inline auto FReportErrors = PreyFunction<std::vector<string>*(const CScriptSystem* const _this, std::vector<string>* _return_value_, std::vector<string>& filenames)>(0xD30220);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xD2F520);
+	static inline auto FExposedCallstackPush = PreyFunction<void(CScriptSystem* const _this, const char* sFunction, int nLine, const char* sSource)>(0xD2D790);
+	static inline auto FExposedCallstackPop = PreyFunction<void(CScriptSystem* const _this)>(0xD2D710);
+	static inline auto FEndCallN = PreyFunction<bool(CScriptSystem* const _this, int nReturns)>(0xD2D070);
+	static inline auto FErrorHandler = PreyFunction<int(lua_State* L)>(0xD2D100);
+	static inline auto FEnableDebugger = PreyFunction<void(CScriptSystem* const _this, ELuaDebugMode eDebugMode)>(0xD2CE50);
+	static inline auto FDebugModeChange = PreyFunction<void(ICVar* cvar)>(0xD2CD60);
+	static inline auto FCodeCoverageChange = PreyFunction<void(ICVar* cvar)>(0xD2CB00);
+#endif
 };

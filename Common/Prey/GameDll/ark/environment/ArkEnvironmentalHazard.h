@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -61,4 +63,66 @@ public:
 	static inline auto FUpdateNpcAvoidanceField = PreyFunction<void(ArkEnvironmentalHazard *const _this)>(0x11BA5A0);
 	static inline auto FBitNotArkEnvironmentalHazard = PreyFunction<void(ArkEnvironmentalHazard *const _this)>(0x127A3B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkAvoidanceField.h>
+#include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
+#include <Prey/GameDll/ark/iface/IArkSignalManagerListener.h>
 
+struct AABB;
+class ICrySizer;
+struct IGameObject;
+struct SEntityEvent;
+
+// ArkEnvironmentalHazard
+// Header:  Prey/GameDll/ark/environment/ArkEnvironmentalHazard.h
+class ArkEnvironmentalHazard : public ArkEnvironmentalObject, public IArkSignalManagerListener
+{ // Size=176 (0xB0)
+public:
+	std::vector<unsigned int> m_hazardTargets;
+	std::vector<unsigned int> m_inertTargets;
+	unsigned m_activator;
+	uint64_t m_hazardPackage;
+	ArkAvoidanceField m_avoidanceField;
+
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void OnRegisteredSignalsChanged(unsigned _entityId, const std::vector<uint64_t>& _signals, bool _bAllSignals);
+	virtual void OnReset(bool _bEnteringGameMode);
+	void InitArea() { FInitArea(this); }
+	virtual AABB GetLocalAreaBounds() const = 0;
+	virtual bool ShouldUpdateWithTargets() const;
+	virtual void AddTarget(unsigned _target);
+	virtual void RemoveTarget(unsigned _target);
+	void ClearTargets() { FClearTargets(this); }
+	virtual bool IsPotentialTarget(unsigned _targetId, const std::vector<uint64_t>& _signals, bool _bAllSignals) const;
+	virtual bool GetNpcAvoidanceInfo(Vec3& _pos, float& _radius) const;
+	void UpdateNpcAvoidanceField() { FUpdateNpcAvoidanceField(this); }
+
+#if 0
+	ArkEnvironmentalHazard();
+	void SetActivator(unsigned _arg0_);
+#endif
+
+	static inline auto FInit = PreyFunction<bool(ArkEnvironmentalHazard* const _this, IGameObject* _pGameObject)>(0x123B680);
+	static inline auto FProcessEvent = PreyFunction<void(ArkEnvironmentalHazard* const _this, SEntityEvent& _event)>(0x123BD90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkEnvironmentalHazard* const _this, ICrySizer* _s)>(0x123B600);
+	static inline auto FFullSerialize = PreyFunction<void(ArkEnvironmentalHazard* const _this, TSerialize _ser)>(0x123B5D0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkEnvironmentalHazard* const _this)>(0x123BD80);
+	static inline auto FOnRegisteredSignalsChanged = PreyFunction<void(IArkSignalManagerListener* const _this, unsigned _entityId, const std::vector<uint64_t>& _signals, bool _bAllSignals)>(0x123BCC0);
+	static inline auto FOnReset = PreyFunction<void(ArkEnvironmentalHazard* const _this, bool _bEnteringGameMode)>(0x123BD20);
+	static inline auto FInitArea = PreyFunction<void(ArkEnvironmentalHazard* const _this)>(0x123B780);
+	static inline auto FShouldUpdateWithTargets = PreyFunction<bool(const ArkEnvironmentalHazard* const _this)>(0x1A302A0);
+	static inline auto FAddTarget = PreyFunction<void(ArkEnvironmentalHazard* const _this, unsigned _target)>(0x123B370);
+	static inline auto FRemoveTarget = PreyFunction<void(ArkEnvironmentalHazard* const _this, unsigned _target)>(0x123BE20);
+	static inline auto FClearTargets = PreyFunction<void(ArkEnvironmentalHazard* const _this)>(0x123B4C0);
+	static inline auto FIsPotentialTarget = PreyFunction<bool(const ArkEnvironmentalHazard* const _this, unsigned _targetId, const std::vector<uint64_t>& _signals, bool _bAllSignals)>(0x123BC20);
+	static inline auto FGetNpcAvoidanceInfo = PreyFunction<bool(const ArkEnvironmentalHazard* const _this, Vec3& _pos, float& _radius)>(0x13B0900);
+	static inline auto FUpdateNpcAvoidanceField = PreyFunction<void(ArkEnvironmentalHazard* const _this)>(0x123BEC0);
+};
+#endif // !MOONCRASH

@@ -85,7 +85,8 @@ public:
 	Serialization::SContextLink *GetInnerContext() const;
 	void notImplemented();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FInPlacePointer = PreyFunction<void(Serialization::IArchive *const _this, void **pointer, uint64_t offset)>(0xA13080);
 	static inline auto FoperatorRBLRBROv19 = PreyFunction<bool(Serialization::IArchive *const _this, bool &value, const char *name, const char *label)>(0xDD23F0);
 	static inline auto FoperatorRBLRBROv18 = PreyFunction<bool(Serialization::IArchive *const _this, char &value, const char *name, const char *label)>(0xDD23F0);
@@ -111,7 +112,33 @@ public:
 	static inline auto FCloseBlock = PreyFunction<void(Serialization::IArchive *const _this)>(0xA13080);
 	static inline auto FValidatorMessage = PreyFunction<void(Serialization::IArchive *const _this, bool error, const void *handle, Serialization::TypeID const &type, const char *message)>(0xA13080);
 	static inline auto FDocumentLastField = PreyFunction<void(Serialization::IArchive *const _this, const char *text)>(0xA13080);
+#else
+	static inline auto FInPlacePointer = PreyFunction<void(Serialization::IArchive* const _this, void* * pointer, uint64_t offset)>(0x1333E90);
+	static inline auto FoperatorRBLRBROv19 = PreyFunction<bool(Serialization::IArchive* const _this, bool& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv18 = PreyFunction<bool(Serialization::IArchive* const _this, char& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv17 = PreyFunction<bool(Serialization::IArchive* const _this, uint8_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv16 = PreyFunction<bool(Serialization::IArchive* const _this, int8_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv15 = PreyFunction<bool(Serialization::IArchive* const _this, int16_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv14 = PreyFunction<bool(Serialization::IArchive* const _this, uint16_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv13 = PreyFunction<bool(Serialization::IArchive* const _this, int& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv12 = PreyFunction<bool(Serialization::IArchive* const _this, unsigned& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv11 = PreyFunction<bool(Serialization::IArchive* const _this, int64_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv10 = PreyFunction<bool(Serialization::IArchive* const _this, uint64_t& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv9 = PreyFunction<bool(Serialization::IArchive* const _this, float& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv8 = PreyFunction<bool(Serialization::IArchive* const _this, double& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv7 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::IString& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv6 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::IWString& value, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv5 = PreyFunction<bool(Serialization::IArchive* const _this, const Serialization::SStruct& ser, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv4 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::IContainer& ser, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv3 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::IPointer& ptr, const char* name, const char* label)>(0xDAFEB0);
+	static inline auto FoperatorRBLRBROv2 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::IKeyValue& keyValue, const char* name, const char* label)>(0xDAFD20);
+	static inline auto FoperatorRBLRBROv1 = PreyFunction<bool(Serialization::IArchive* const _this, const Serialization::SBlackBox& blackBox, const char* name, const char* label)>(0x13B0900);
+	static inline auto FoperatorRBLRBROv0 = PreyFunction<bool(Serialization::IArchive* const _this, Serialization::ICallback& callback, const char* name, const char* label)>(0x13B0900);
+	static inline auto FOpenBlock = PreyFunction<bool(Serialization::IArchive* const _this, const char* name, const char* label)>(0x1A302A0);
+	static inline auto FCloseBlock = PreyFunction<void(Serialization::IArchive* const _this)>(0x1333E90);
+	static inline auto FValidatorMessage = PreyFunction<void(Serialization::IArchive* const _this, bool error, const void* handle, const Serialization::TypeID& type, const char* message)>(0x1333E90);
+	static inline auto FDocumentLastField = PreyFunction<void(Serialization::IArchive* const _this, const char* text)>(0x1333E90);
+#endif
 };
 
 } // namespace Serialization
-

@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -21,4 +22,3 @@ public:
 	virtual void SaveNewGamePlusData(int arg0, Functor1<TSerialize> arg1) = 0;
 	virtual bool LoadNewGamePlusData(int arg0, Functor1<TSerialize> arg1) = 0;
 };
-

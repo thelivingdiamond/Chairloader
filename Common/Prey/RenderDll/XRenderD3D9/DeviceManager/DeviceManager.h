@@ -16,14 +16,24 @@ public:
 	template<const bool bDirectAccess = false>
 	static void UploadContents(D3DBuffer* buffer, uint32 subresource, size_t offset, size_t size, D3D11_MAP mode, const void* pInDataCPU, void* pOutDataGPU = nullptr, UINT numDataBlocks = 1);
 
+#ifndef MOONCRASH
 	static inline auto FMap = PreyFunction<uint8* (ID3D11Buffer* buffer, unsigned subresource, uint64_t offset, uint64_t size, D3D11_MAP mode)>(0x10557F0);
 	static inline auto FUnmap = PreyFunction<void(ID3D11Buffer* buffer, unsigned subresource, uint64_t offset, uint64_t size, D3D11_MAP mode)>(0x1056030);
 	static inline auto FUploadContents = PreyFunction<void(D3DBuffer* buffer, uint32 subresource, size_t offset, size_t size, D3D11_MAP mode, const void* pInDataCPU, void* pOutDataGPU, UINT numDataBlocks)>(0x1053070);
+#else
+	static inline auto FMap = PreyFunction<uint8_t* (ID3D11Buffer* buffer, unsigned subresource, uint64_t offset, uint64_t size, D3D11_MAP mode)>(0x1071E20);
+	static inline auto FUnmap = PreyFunction<void(ID3D11Buffer* buffer, unsigned subresource, uint64_t offset, uint64_t size, D3D11_MAP mode)>(0x1072660);
+	//TODO: FUploadContents in Mooncrash
+#endif
 };
 
 template<bool bDirectAccess>
 inline void CDeviceManager::UploadContents(D3DBuffer* buffer, uint32 subresource, size_t offset, size_t size, D3D11_MAP mode, const void* pInDataCPU, void* pOutDataGPU, UINT numDataBlocks)
 {
 	static_assert(!bDirectAccess, "Only bDirectAccess is supported");
+#ifndef MOONCRASH
 	FUploadContents(buffer, subresource, offset, size, mode, pInDataCPU, pOutDataGPU, numDataBlocks);
+#else
+	//TODO: FUploadContents in Mooncrash
+#endif
 }

@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -19,4 +20,3 @@ struct Config // Id=80152E7 Size=32
 };
 
 } // namespace ArkTurretDamageFsm
-

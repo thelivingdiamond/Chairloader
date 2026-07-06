@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -75,4 +77,87 @@ public:
 	static inline auto FManagesInputPrompts = PreyFunction<bool(CArkPDAPageLevelMap const *const _this)>(0x1B933B0);
 	static inline auto FUpdateInputPrompt = PreyFunction<void(CArkPDAPageLevelMap const *const _this, const bool _bUpdateUI)>(0x1627F10);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/ui/IArkPDAPage.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
+class ArkObjectiveTask;
+enum class ArkPDAPage;
+class CCryName;
+struct ICVar;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// CArkPDAPageLevelMap
+// Header:  Prey/GameDll/ark/ui/ArkPDAPageLevelMap.h
+class CArkPDAPageLevelMap : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageLevelMap>
+{ // Size=136 (0x88)
+public:
+	enum class EArkFogUpdateState
+	{
+		invalid = 0,
+		calculate = 1,
+		send = 2,
+		icons = 3,
+	};
+
+	Vec2 m_panDelta;
+	float m_zoom;
+	float m_zoomDelta;
+	int m_CurrentMapIndex;
+	unsigned m_fogFloorIdx;
+	unsigned m_nLastTileSent;
+	std::vector<unsigned char> m_fogFloors;
+	CArkPDAPageLevelMap::EArkFogUpdateState m_fogState;
+	std::vector<unsigned char> m_fogData;
+	ICVar* m_pFlashMapFog;
+
+	CArkPDAPageLevelMap();
+	virtual ~CArkPDAPageLevelMap();
+	void Reload() { FReload(this); }
+	virtual void Open();
+	virtual void Update(float _frameTime);
+	virtual void Close();
+	virtual bool ProcessInput(const CCryName& _rActionId, const int _activationMode, const float _fValue);
+	void ShowTaskMarker(const ArkObjectiveTask& _task) { FShowTaskMarker(this, _task); }
+	void OnOpenPDA() { FOnOpenPDA(this); }
+	virtual void OnClosePDA();
+	void OnPressFloorUp() { FOnPressFloorUp(this); }
+	void OnPressFloorDown() { FOnPressFloorDown(this); }
+	void OnShowLevel(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnShowLevel(this, _pSender, _event, _args); }
+	void ShowIcons() { FShowIcons(this); }
+	void UpdateFog() { FUpdateFog(this); }
+	virtual void SetupInputPrompts();
+	virtual bool ManagesInputPrompts() const;
+	void UpdateInputPrompt(const bool _bUpdateUI) const { FUpdateInputPrompt(this, _bUpdateUI); }
+
+#if 0
+	static ArkPDAPage GetPDAPage();
+	void ClearIcons();
+	bool IsFogLoaded(const uint8_t _arg0_);
+	void PrioritizeFogUpdateQueue(const uint8_t _arg0_, const uint8_t _arg1_);
+	static float GetUIRotation(const Vec3& _arg0_);
+#endif
+
+	static inline auto FCArkPDAPageLevelMapOv1 = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x17463E0);
+	static inline auto FReload = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1747640);
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1746EF0);
+	static inline auto FUpdate = PreyFunction<void(CArkPDAPageLevelMap* const _this, float _frameTime)>(0x17493E0);
+	static inline auto FClose = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x17468F0);
+	static inline auto FProcessInput = PreyFunction<bool(CArkPDAPageLevelMap* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x17473A0);
+	static inline auto FShowTaskMarker = PreyFunction<void(CArkPDAPageLevelMap* const _this, const ArkObjectiveTask& _task)>(0x1749210);
+	static inline auto FOnOpenPDA = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1746980);
+	static inline auto FOnClosePDA = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1746940);
+	static inline auto FOnPressFloorUp = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1746D70);
+	static inline auto FOnPressFloorDown = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1746D30);
+	static inline auto FOnShowLevel = PreyFunction<void(CArkPDAPageLevelMap* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1746DB0);
+	static inline auto FShowIcons = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1747E20);
+	static inline auto FUpdateFog = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1749500);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageLevelMap* const _this)>(0x1747CA0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageLevelMap* const _this)>(0x1A302A0);
+	static inline auto FUpdateInputPrompt = PreyFunction<void(const CArkPDAPageLevelMap* const _this, const bool _bUpdateUI)>(0x1749A80);
+};
+#endif // !MOONCRASH

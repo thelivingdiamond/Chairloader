@@ -27,10 +27,14 @@ struct ISubtitleHandler
 	virtual void OnMovieStart(ArkBinkPlayerHandle const& _movieHandle);
 	virtual void OnMovieStop(ArkBinkPlayerHandle const& _movieHandle);
 
+#ifndef MOONCRASH
 	static inline auto FSetEnabled = PreyFunction<void(ISubtitleHandler* const _this, bool _bEnabled)>(0xA13080);
 	static inline auto FOnMovieLoad = PreyFunction<void(ISubtitleHandler* const _this, const char* const _movieName, ArkBinkPlayerHandle const& _movieHandle)>(0xA13080);
 	static inline auto FOnMovieStart = PreyFunction<void(ISubtitleHandler* const _this, ArkBinkPlayerHandle const& _movieHandle)>(0xA13080);
 	static inline auto FOnMovieStop = PreyFunction<void(ISubtitleHandler* const _this, ArkBinkPlayerHandle const& _movieHandle)>(0xA13080);
+#else
+	//TODO: MOONCRASH
+#endif
 };
 
 //////////////////////////////////////////////////////////////////////////

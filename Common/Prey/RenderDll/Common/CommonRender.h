@@ -101,10 +101,20 @@ private:
 	CCryNameTSCRC           m_ClassName;
 	CCryNameTSCRC           m_NameCRC;
 
+#ifndef MOONCRASH
 	static inline auto m_sResources = PreyGlobal<std::map<CCryNameTSCRC, SResourceContainer*, std::less<CCryNameTSCRC>>>(0x2B24A38);
+#else
+	static inline auto m_sResources = PreyGlobal<std::map<CCryNameTSCRC, SResourceContainer*, std::less<CCryNameTSCRC>>>(0x2C93C98);
+#endif
 
 public:
+
+#ifndef MOONCRASH
 	static inline auto s_cResLock = PreyGlobal<CryCriticalSection>(0x2B24A48);
+#else
+	static inline auto s_cResLock = PreyGlobal<CryCriticalSection>(0x2C93CA8);
+#endif
+
 
 public:
 	//! Dirty flags will indicate what kind of data was invalidated
@@ -195,7 +205,7 @@ public:
 	// Will notify resource's user that some data of the the resource was invalidated.
 	// dirtyFlags - one or more of the EDirtyFlags enum bits
 	virtual void InvalidateDeviceResource(uint32 dirtyFlags) {};
-
+#ifndef MOONCRASH
 	static inline auto FUnregisterAndDelete = PreyFunction<void(CBaseResource* const _this)>(0xFAE210);
 	static inline auto FGetRefCounter = PreyFunction<int(CBaseResource const* const _this)>(0xEEBB60);
 	static inline auto FAddRef = PreyFunction<int(CBaseResource* const _this)>(0xDA2BE0);
@@ -206,6 +216,18 @@ public:
 	static inline auto FGetResourcesForClass = PreyFunction<SResourceContainer* (CCryNameTSCRC const& className)>(0xFADE40);
 	static inline auto FRegister = PreyFunction<bool(CBaseResource* const _this, CCryNameTSCRC const& className, CCryNameTSCRC const& Name)>(0xFADF90);
 	static inline auto FInvalidateDeviceResource = PreyFunction<void(CBaseResource* const _this, unsigned dirtyFlags)>(0xA13080);
+#else
+	static inline auto FUnregisterAndDelete = PreyFunction<void(CBaseResource* const _this)>(0xFCA4B0);
+	static inline auto FGetRefCounter = PreyFunction<int(const CBaseResource* const _this)>(0x899030);
+	static inline auto FAddRef = PreyFunction<int(CBaseResource* const _this)>(0xDC0880);
+	static inline auto FRelease = PreyFunction<int(CBaseResource* const _this)>(0xE9C780);
+	static inline auto FIsValid = PreyFunction<bool(CBaseResource* const _this)>(0xFCA120);
+	static inline auto FGetResourceOv1 = PreyFunction<CBaseResource* (const CCryNameTSCRC& className, int nID, bool bAddRef)>(0xFCA010);
+	static inline auto FGetResourceOv0 = PreyFunction<CBaseResource* (const CCryNameTSCRC& className, const CCryNameTSCRC& Name, bool bAddRef)>(0xFC9F30);
+	static inline auto FGetResourcesForClass = PreyFunction<SResourceContainer* (const CCryNameTSCRC& className)>(0xFCA0E0);
+	static inline auto FRegister = PreyFunction<bool(CBaseResource* const _this, const CCryNameTSCRC& className, const CCryNameTSCRC& Name)>(0xFCA230);
+	static inline auto FInvalidateDeviceResource = PreyFunction<void(CBaseResource* const _this, unsigned dirtyFlags)>(0x1333E90);
+#endif
 };
 
 //=================================================================

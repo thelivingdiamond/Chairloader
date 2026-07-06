@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -16,4 +18,22 @@ public:
 	static inline auto FOnActiveUserReengaged = PreyFunction<bool(IArkActiveUserManagerListener *const _this)>(0xDD23F0);
 	static inline auto FOnActiveUserPostReengaged = PreyFunction<void(IArkActiveUserManagerListener *const _this)>(0xA13080);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+// IArkActiveUserManagerListener
+// Header:  Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h
+class IArkActiveUserManagerListener
+{ // Size=8 (0x8)
+public:
+	virtual void OnActiveUserIdChanged(unsigned platformUserId) = 0;
+	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect) = 0;
+	virtual bool OnActiveUserReengaged();
+	virtual void OnActiveUserPostReengaged();
+	virtual void OnActiveUserSignedOut() = 0;
+
+	static inline auto FOnActiveUserReengaged = PreyFunction<bool(IArkActiveUserManagerListener* const _this)>(0x13B0900);
+	static inline auto FOnActiveUserPostReengaged = PreyFunction<void(IArkActiveUserManagerListener* const _this)>(0x1333E90);
+};
+#endif // !MOONCRASH

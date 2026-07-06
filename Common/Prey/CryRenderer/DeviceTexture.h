@@ -93,7 +93,11 @@ private:
 class CDeviceTexture : public CDeviceTextureBase
 {
 public:
+#ifndef MOONCRASH
 	static inline auto FCleanup = PreyFunction<int(CDeviceTextureBase* _this)>(0x1054080);
+#else
+	static inline auto FCleanup = PreyFunction<int(CDeviceTexture* const _this)>(0x10706B0);
+#endif
 	using CDeviceTextureBase::CDeviceTextureBase;
 	~CDeviceTexture() { Cleanup(); }
 

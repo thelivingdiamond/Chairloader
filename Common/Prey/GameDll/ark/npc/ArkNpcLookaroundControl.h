@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -95,3 +97,101 @@ struct SMannequinNpcLookAroundParams : public IMannequinUserParams // Id=801AA8E
 };
 
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
+#include <_unknown/TMannequinAutoInit.h>
+
+class ArkNpc;
+class CTagDefinition;
+class IAction;
+struct SAnimationContext;
+struct SControllerDef;
+
+// CArkAnimActionLookAround
+// Header:  Prey/GameDll/ark/npc/ArkNpcLookAroundControl.h
+class CArkAnimActionLookAround : public TAction<SAnimationContext>
+{ // Size=128 (0x80)
+public:
+	using TBase = TAction<SAnimationContext>;
+
+	virtual const char* GetName() const;
+	virtual void DoDelete();
+	virtual void OnInitialise();
+	virtual IAction::EStatus Update(float timePassed);
+
+#if 0
+	CArkAnimActionLookAround();
+	static bool IsSupported(const SAnimationContext& _arg0_);
+	static int FindFragmentId(const SAnimationContext& _arg0_);
+#endif
+
+	static inline auto FGetName = PreyFunction<const char* (const CArkAnimActionLookAround* const _this)>(0x1333590);
+	static inline auto FDoDelete = PreyFunction<void(CArkAnimActionLookAround* const _this)>(0x3E3960);
+	static inline auto FOnInitialise = PreyFunction<void(CArkAnimActionLookAround* const _this)>(0x1333620);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CArkAnimActionLookAround* const _this, float timePassed)>(0x10D19B0);
+};
+
+// CArkNpcLookAroundControl
+// Header:  Prey/GameDll/ark/npc/ArkNpcLookAroundControl.h
+class CArkNpcLookAroundControl
+{ // Size=16 (0x10)
+public:
+	enum class EBehavior
+	{
+		Patrol = 0,
+		Wander = 1,
+		Max = 2,
+	};
+
+	bool m_bSuspended;
+	bool m_bStateChange;
+	bool m_bEnabled[2];
+	float m_idleTime;
+	_smart_ptr<IAction> m_pLookAroundAction;
+
+	CArkNpcLookAroundControl();
+	void Enable(CArkNpcLookAroundControl::EBehavior _behavior, bool _bEnable) { FEnable(this, _behavior, _bEnable); }
+	void Suspend(ArkNpc* _pNpc, bool _bSuspend) { FSuspend(this, _pNpc, _bSuspend); }
+	void Update(ArkNpc* _pNpc, float _dt) { FUpdate(this, _pNpc, _dt); }
+	void ShutDown(ArkNpc* _pNpc) { FShutDown(this, _pNpc); }
+	void SetIdleTime(float _idleTime) { FSetIdleTime(this, _idleTime); }
+	float GetIdleTime() const { return FGetIdleTime(this); }
+
+#if 0
+	bool IsEnabled() const;
+#endif
+
+	static inline auto FCArkNpcLookAroundControlOv2 = PreyFunction<void(CArkNpcLookAroundControl* const _this)>(0x13334D0);
+	static inline auto FEnable = PreyFunction<void(CArkNpcLookAroundControl* const _this, CArkNpcLookAroundControl::EBehavior _behavior, bool _bEnable)>(0x13334F0);
+	static inline auto FSuspend = PreyFunction<void(CArkNpcLookAroundControl* const _this, ArkNpc* _pNpc, bool _bSuspend)>(0x1333740);
+	static inline auto FUpdate = PreyFunction<void(CArkNpcLookAroundControl* const _this, ArkNpc* _pNpc, float _dt)>(0x1333760);
+	static inline auto FShutDown = PreyFunction<void(CArkNpcLookAroundControl* const _this, ArkNpc* _pNpc)>(0x13336F0);
+	static inline auto FSetIdleTime = PreyFunction<void(CArkNpcLookAroundControl* const _this, float _idleTime)>(0x13336D0);
+	static inline auto FGetIdleTime = PreyFunction<float(const CArkNpcLookAroundControl* const _this)>(0x1333560);
+};
+
+// SMannequinNpcLookAroundParams
+// Header:  Prey/GameDll/ark/npc/ArkNpcLookAroundControl.h
+struct SMannequinNpcLookAroundParams : public IMannequinUserParams
+{ // Size=16 (0x10)
+	// SMannequinNpcLookAroundParams::FragmentIDs
+	// Header:  Prey/GameDll/ark/npc/ArkNpcLookAroundControl.h
+	struct FragmentIDs
+	{ // Size=4 (0x4)
+		TMannequinAutoInit<int,-1> LookAround;
+
+	#if 0
+		void Init(const CTagDefinition& _arg0_);
+	#endif
+	};
+
+	SMannequinNpcLookAroundParams::FragmentIDs fragmentIDs;
+
+	virtual void Init(const SControllerDef& controllerDef);
+
+	static inline auto FInit = PreyFunction<void(SMannequinNpcLookAroundParams* const _this, const SControllerDef& controllerDef)>(0x13335A0);
+};
+#endif // !MOONCRASH

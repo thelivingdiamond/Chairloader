@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -66,3 +68,70 @@ public:
 	static inline auto FResetNextCallTimer = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x130D8C0);
 };
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
+#include <Prey/GameDll/ark/dialog/arkflownodedialogtrigger.h>
+
+class ArkConversation;
+class XmlNodeRef;
+
+// ArkLiveTranscribeComponent
+// Header:  Prey/GameDll/ark/player/pda/ArkLiveTranscribeComponent.h
+class ArkLiveTranscribeComponent : public IArkConversationListener
+{ // Size=152 (0x98)
+public:
+	std::vector<uint64_t> m_queuedConversations;
+	std::unordered_map<uint64_t, ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>*> m_hookNodeMap;
+	ArkConversation* m_pCurrentPlayingConversation;
+	uint64_t m_currentConversationId;
+	ArkSimpleTimer m_startNextTimer;
+	ArkSimpleTimer m_ringTimer;
+	ArkAudioTrigger m_startRingTrigger;
+	ArkAudioTrigger m_answerCallTrigger;
+	float m_timeSinceLastCall;
+	bool m_bSilenced;
+	float m_minTimeBetweenConversations;
+	float m_maxTimeBetweenConversations;
+
+	ArkLiveTranscribeComponent();
+	virtual ~ArkLiveTranscribeComponent();
+	void PlayConversation(ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>& _transcribeNode, uint64_t _hookId, bool _bQueue, float _minTimeSinceLastCall) { FPlayConversation(this, _transcribeNode, _hookId, _bQueue, _minTimeSinceLastCall); }
+	void Update(float _frameTime) { FUpdate(this, _frameTime); }
+	void Reset() { FReset(this); }
+	void LoadConfig(const XmlNodeRef& _config) { FLoadConfig(this, _config); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+	void PostSerialize() { FPostSerialize(this); }
+	void SetConversationListener(ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>& _node, uint64_t _hookId) { FSetConversationListener(this, _node, _hookId); }
+	void ClearQueuedConversations() { FClearQueuedConversations(this); }
+	virtual void OnConversationComplete(const bool _bComplete);
+	void SetSilenced(bool _bSilenced) { FSetSilenced(this, _bSilenced); }
+	void PlayIncomingCallSequence(bool _bResetTimer) { FPlayIncomingCallSequence(this, _bResetTimer); }
+	void StopIncomingCallSequence() { FStopIncomingCallSequence(this); }
+	void ResetNextCallTimer() { FResetNextCallTimer(this); }
+
+#if 0
+	bool IsPlaying() const;
+	bool PlayConversationInternal(ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>& _arg0_, uint64_t _arg1_);
+#endif
+
+	static inline auto FArkLiveTranscribeComponentOv1 = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E74B0);
+	static inline auto FPlayConversation = PreyFunction<void(ArkLiveTranscribeComponent* const _this, ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>& _transcribeNode, uint64_t _hookId, bool _bQueue, float _minTimeSinceLastCall)>(0x13E7AE0);
+	static inline auto FUpdate = PreyFunction<void(ArkLiveTranscribeComponent* const _this, float _frameTime)>(0x13E84A0);
+	static inline auto FReset = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E7F10);
+	static inline auto FLoadConfig = PreyFunction<void(ArkLiveTranscribeComponent* const _this, const XmlNodeRef& _config)>(0x13E78B0);
+	static inline auto FSerialize = PreyFunction<void(ArkLiveTranscribeComponent* const _this, TSerialize _ser)>(0x13E8030);
+	static inline auto FPostSerialize = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E7E90);
+	static inline auto FSetConversationListener = PreyFunction<void(ArkLiveTranscribeComponent* const _this, ArkFlowNodeDialogTrigger<ArkTranscribeDialogTrigger>& _node, uint64_t _hookId)>(0x13E82B0);
+	static inline auto FClearQueuedConversations = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E7710);
+	static inline auto FOnConversationComplete = PreyFunction<void(ArkLiveTranscribeComponent* const _this, const bool _bComplete)>(0x13E79F0);
+	static inline auto FSetSilenced = PreyFunction<void(ArkLiveTranscribeComponent* const _this, bool _bSilenced)>(0x13E8300);
+	static inline auto FPlayIncomingCallSequence = PreyFunction<void(ArkLiveTranscribeComponent* const _this, bool _bResetTimer)>(0x13E7C80);
+	static inline auto FStopIncomingCallSequence = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E8340);
+	static inline auto FResetNextCallTimer = PreyFunction<void(ArkLiveTranscribeComponent* const _this)>(0x13E7FD0);
+};
+#endif // !MOONCRASH

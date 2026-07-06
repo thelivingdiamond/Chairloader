@@ -54,9 +54,19 @@ public:
 	uint64_t GetResultIndex() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(unsigned _seed)>(0x1056A20);
 	static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkRegularOutcome const *const _this)>(0x1056930);
 	static inline auto FResetOv1 = PreyFunction<void(ArkRegularOutcome const *const _this)>(0x1056D30);
 	static inline auto FResetOv0 = PreyFunction<void(ArkRegularOutcome const *const _this, float _probability)>(0x1056C80);
+#else
+	static inline auto FInitialize = PreyFunction<void(unsigned _seed)>(0x1073070);
+	static inline auto FoperatorRBLRBR = PreyFunction<bool(const ArkRegularOutcome* const _this)>(0x1072F80);
+	static inline auto FResetOv1 = PreyFunction<void(const ArkRegularOutcome* const _this)>(0x1073380);
+	static inline auto FResetOv0 = PreyFunction<void(const ArkRegularOutcome* const _this, float _probability)>(0x10732D0);
+#endif
+#ifdef MOONCRASH
+	static inline auto s_results = PreyGlobal<std::bitset<320000>>(0x2D16FF0);
+	static inline auto FArkRegularOutcomeOv1 = PreyFunction<void(ArkRegularOutcome* const _this)>(0x1643FB0);
+#endif
 };
-

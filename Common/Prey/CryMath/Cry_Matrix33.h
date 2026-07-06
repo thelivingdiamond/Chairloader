@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -1159,5 +1160,3 @@ ILINE Matrix33_tpl<F1>& dotproduct_matrix(const Vec3_tpl<F1>& v, const Vec3_tpl<
 	m.m22 = v.z * op.z;
 	return m;
 }
-
-

@@ -79,8 +79,13 @@ public:
 		void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 		static inline auto FBitNotSLocalizedStringEntry = PreyFunction<void(CLocalizedStringsManager::SLocalizedStringEntry* const _this)>(0xE52AC0);
 		static inline auto FGetTranslatedText = PreyFunction<wstring * (const CLocalizedStringsManager::SLocalizedStringEntry* const _this, wstring * _return_value_, const CLocalizedStringsManager::SLanguage * pLanguage)>(0xE54C50);
+#else
+		static inline auto FBitNotSLocalizedStringEntry = PreyFunction<void(CLocalizedStringsManager::SLocalizedStringEntry* const _this)>(0xE6F9A0);
+		static inline auto FGetTranslatedText = PreyFunction<wstring*(const CLocalizedStringsManager::SLocalizedStringEntry* const _this, wstring* _return_value_, const CLocalizedStringsManager::SLanguage* pLanguage)>(0xE71B30);
+#endif
 	};
 
 	// CLocalizedStringsManager::SLanguage
@@ -98,7 +103,11 @@ public:
 
 		void GetMemoryUsage(ICrySizer* pSizer) const { FGetMemoryUsage(this, pSizer); }
 
+#ifndef MOONCRASH
 		static inline auto FGetMemoryUsage = PreyFunction<void(const CLocalizedStringsManager::SLanguage* const _this, ICrySizer * pSizer)>(0xE548E0);
+#else
+		static inline auto FGetMemoryUsage = PreyFunction<void(const CLocalizedStringsManager::SLanguage* const _this, ICrySizer* pSizer)>(0xE717C0);
+#endif
 	};
 
 	// CLocalizedStringsManager::SFileInfo
@@ -216,6 +225,7 @@ public:
 	void AddControl(int _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCLocalizedStringsManager = PreyFunction<void(CLocalizedStringsManager* const _this, ISystem * pSystem)>(0xE52700);
 	static inline auto FBitNotCLocalizedStringsManager = PreyFunction<void(CLocalizedStringsManager* const _this)>(0xE528C0);
 	static inline auto FLanguageIDFromName = PreyFunction<ELanguageID(const CLocalizedStringsManager* const _this, const char* _szName)>(0xE556A0);
@@ -266,5 +276,56 @@ public:
 	static inline auto FAppendToUnicodeStringOv0 = PreyFunction<void(CLocalizedStringsManager* const _this, wstring & sDest, const char* szSource)>(0xE52D10);
 	static inline auto FParseFirstLine = PreyFunction<void(CLocalizedStringsManager* const _this, IXmlTableReader * pXmlTableReader, char* nCellIndexToType, std::map<int, string>&SoundMoodIndex, std::map<int, string>&EventParameterIndex)>(0xE57170);
 	static inline auto FInternalSetCurrentLanguage = PreyFunction<void(CLocalizedStringsManager* const _this, CLocalizedStringsManager::SLanguage * pLanguage)>(0xE555B0);
+#else
+	static inline auto FCLocalizedStringsManager = PreyFunction<void(CLocalizedStringsManager* const _this, ISystem* pSystem)>(0xE6F5E0);
+	static inline auto FBitNotCLocalizedStringsManager = PreyFunction<void(CLocalizedStringsManager* const _this)>(0xE6F7A0);
+	static inline auto FLanguageIDFromName = PreyFunction<ELanguageID(const CLocalizedStringsManager* const _this, const char* _szName)>(0xE72590);
+	static inline auto FLanguageNameFromID = PreyFunction<const char* (const CLocalizedStringsManager* const _this, ELanguageID _id)>(0xE72600);
+	static inline auto FIsLanguageSupportedOv1 = PreyFunction<unsigned(const CLocalizedStringsManager* const _this, ELanguageID id)>(0xE72570);
+	static inline auto FIsLanguageSupportedOv0 = PreyFunction<unsigned(const CLocalizedStringsManager* const _this, const char* _szName)>(0xE72540);
+	static inline auto FSetAvailableLanguages = PreyFunction<void(CLocalizedStringsManager* const _this, unsigned _languages)>(0xE751B0);
+	static inline auto FSetLanguage = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sLanguage)>(0xE751C0);
+	static inline auto FGetLanguage = PreyFunction<const char* (const CLocalizedStringsManager* const _this)>(0xE70B60);
+	static inline auto FGetLanguageID = PreyFunction<ELanguageID(const CLocalizedStringsManager* const _this)>(0xE70B80);
+	static inline auto FInitLocalizationData = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sFileName, bool bReload)>(0xE71CE0);
+	static inline auto FRequestLoadLocalizationDataByTag = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sTag)>(0xE74FC0);
+	static inline auto FLoadLocalizationDataByTag = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sTag, bool bReload)>(0xE72630);
+	static inline auto FReleaseLocalizationDataByTag = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sTag)>(0xE743F0);
+	static inline auto FLoadExcelXmlSpreadsheet = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sFileName, bool bReload)>(0xE72610);
+	static inline auto FReloadData = PreyFunction<void(CLocalizedStringsManager* const _this)>(0xE74CA0);
+	static inline auto FFreeData = PreyFunction<void(CLocalizedStringsManager* const _this)>(0xE70710);
+	static inline auto FLocalizeStringOv1 = PreyFunction<bool(CLocalizedStringsManager* const _this, const string& sString, wstring& outLocalizedString, bool bEnglish)>(0xE73930);
+	static inline auto FLocalizeStringOv0 = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sString, wstring& outLocalizedString, bool bEnglish)>(0xE73C60);
+	static inline auto FLocalizeLabel = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sLabel, wstring& outLocalString, bool bEnglish, ITempLocStringStorage* * ppTmpStorage)>(0xE72EB0);
+	static inline auto FGetLocalizedInfoByKeyOv2 = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sKey, SLocalizedInfoGame& outGameInfo)>(0xE70F40);
+	static inline auto FGetLocalizedInfoByKeyOv1 = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sKey, SLocalizedSoundInfoGame* pOutSoundInfo)>(0xE71060);
+	static inline auto FGetLocalizedInfoByKeyOv0 = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* _sKey, SLocalizedInfoEditor& outEditorInfo)>(0xE70DD0);
+	static inline auto FGetLocalizedStringCount = PreyFunction<int(CLocalizedStringsManager* const _this)>(0xE714C0);
+	static inline auto FGetLocalizedInfoByIndexOv1 = PreyFunction<bool(CLocalizedStringsManager* const _this, int nIndex, SLocalizedInfoGame& outGameInfo)>(0xE70D30);
+	static inline auto FGetLocalizedInfoByIndexOv0 = PreyFunction<bool(CLocalizedStringsManager* const _this, int nIndex, SLocalizedInfoEditor& outEditorInfo)>(0xE70C40);
+	static inline auto FGetEnglishString = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sKey, string& sLocalizedString)>(0xE709C0);
+	static inline auto FGetSubtitle = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sKeyOrLabel, wstring& outSubtitle, bool bForceSubtitle)>(0xE71960);
+	static inline auto FFormatStringMessageOv3 = PreyFunction<void(CLocalizedStringsManager* const _this, string& outString, const string& sString, const char* * sParams, int nParams)>(0xE704A0);
+	static inline auto FFormatStringMessageOv2 = PreyFunction<void(CLocalizedStringsManager* const _this, string& outString, const string& sString, const char* param1, const char* param2, const char* param3, const char* param4)>(0xE704C0);
+	static inline auto FFormatStringMessageOv1 = PreyFunction<void(CLocalizedStringsManager* const _this, wstring& outString, const wstring& sString, const wchar_t* * sParams, int nParams)>(0xE70520);
+	static inline auto FFormatStringMessageOv0 = PreyFunction<void(CLocalizedStringsManager* const _this, wstring& outString, const wstring& sString, const wchar_t* param1, const wchar_t* param2, const wchar_t* param3, const wchar_t* param4)>(0xE70540);
+	static inline auto FToUpperCase = PreyFunction<wchar_t(CLocalizedStringsManager* const _this, wchar_t c)>(0xE753D0);
+	static inline auto FToLowerCase = PreyFunction<wchar_t(CLocalizedStringsManager* const _this, wchar_t c)>(0xE75370);
+	static inline auto FLocalizeTime = PreyFunction<void(CLocalizedStringsManager* const _this, int64_t t, bool bMakeLocalTime, bool bShowSeconds, wstring& outTimeString)>(0xE73D40);
+	static inline auto FLocalizeDate = PreyFunction<void(CLocalizedStringsManager* const _this, int64_t t, bool bMakeLocalTime, bool bShort, bool bIncludeWeekday, wstring& outDateString)>(0xE72B40);
+	static inline auto FLocalizeDuration = PreyFunction<void(CLocalizedStringsManager* const _this, int seconds, wstring& outDurationString)>(0xE72D80);
+	static inline auto FLocalizeNumberOv1 = PreyFunction<void(CLocalizedStringsManager* const _this, int number, wstring& outNumberString)>(0xE734C0);
+	static inline auto FLocalizeNumberOv0 = PreyFunction<void(CLocalizedStringsManager* const _this, float number, int decimals, wstring& outNumberString)>(0xE736A0);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent eEvent, uint64_t wparam, uint64_t lparam)>(0xE73F10);
+	static inline auto FGetMemoryUsage = PreyFunction<int(CLocalizedStringsManager* const _this, ICrySizer* pSizer)>(0xE714E0);
+	static inline auto FGetLoadedTags = PreyFunction<void(CLocalizedStringsManager* const _this, std::vector<string>& tagVec)>(0xE70BA0);
+	static inline auto FFreeLocalizationData = PreyFunction<void(CLocalizedStringsManager* const _this)>(0xE707E0);
+	static inline auto FLocalizeLabelAssignOutputOv1 = PreyFunction<void(CLocalizedStringsManager* const _this, const char* pStr, wstring& regularOut, ITempLocStringStorage* * ppTmpOut)>(0xE732D0);
+	static inline auto FLocalizeLabelAssignOutputOv0 = PreyFunction<void(CLocalizedStringsManager* const _this, const wchar_t* pStr, wstring& regularOut, ITempLocStringStorage* * ppTmpOut)>(0xE733F0);
+	static inline auto FDoLoadExcelXmlSpreadsheet = PreyFunction<bool(CLocalizedStringsManager* const _this, const char* sFileName, uint8_t nTagID, bool bReload, bool isDirectory)>(0xE6FC90);
+	static inline auto F_DoLoadExcelXmlSpreadsheet = PreyFunction<bool(CLocalizedStringsManager* const _this, IXmlTableReader* const pXmlTableReader, const char* sFileName, uint8_t nTagID, HuffmanCoder* pEncoder)>(0xE75890);
+	static inline auto FAppendToUnicodeStringOv0 = PreyFunction<void(CLocalizedStringsManager* const _this, wstring& sDest, const char* szSource)>(0xE6FBF0);
+	static inline auto FParseFirstLine = PreyFunction<void(CLocalizedStringsManager* const _this, IXmlTableReader* pXmlTableReader, char* nCellIndexToType, std::map<int, string>& SoundMoodIndex, std::map<int, string>& EventParameterIndex)>(0xE74060);
+	static inline auto FInternalSetCurrentLanguage = PreyFunction<void(CLocalizedStringsManager* const _this, CLocalizedStringsManager::SLanguage* pLanguage)>(0xE724A0);
+#endif
 };
-

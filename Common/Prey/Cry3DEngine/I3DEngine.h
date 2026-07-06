@@ -2681,7 +2681,11 @@ private:
 	void* m_pJobState;
 
 public:
+#ifndef MOONCRASH
 	static inline auto FCreateGeneralPassRenderingInfo = PreyFunction<SRenderingPassInfo(CCamera const& rCamera, unsigned nRenderingFlags, bool bAuxWindow)>(0x1E5E60);
+#else
+	static inline auto FCreateGeneralPassRenderingInfo = PreyFunction<SRenderingPassInfo(const CCamera& rCamera, unsigned nRenderingFlags, bool bAuxWindow)>(0x1FE7A0);
+#endif
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -72,4 +74,90 @@ public:
 	static inline auto FCanConsumePsi = PreyFunction<bool(const CArkPsiComponent* const _this)>(0x157FE00);
 	static inline auto FOnStatChange = PreyFunction<void(CArkPsiComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x1580120);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/player/ArkPsiScanningComponent.h>
+#include <Prey/GameDll/ark/player/IArkStatsListener.h>
+#include <Prey/GameDll/ark/player/psipower/ArkPsiPowerComponent.h>
 
+class CCryName;
+
+// CArkPsiComponent
+// Header:  Prey/GameDll/ark/player/ArkPsiComponent.h
+class CArkPsiComponent : private IArkStatsListener
+{ // Size=1280 (0x500)
+public:
+	ArkPsiPowerComponent m_powerComponent;
+	ArkPsiScanningComponent m_scanningComponent;
+	float m_points;
+	float m_unreducedMaxPoints;
+	float m_maxPoints;
+	float m_errorMessageDuration;
+	float m_elapsedSinceSpent;
+	bool m_bHasPsychoscope;
+
+	CArkPsiComponent();
+	virtual ~CArkPsiComponent();
+	ArkPsiPowerComponent& GetPowerComponent() { return FGetPowerComponentOv1(this); }
+	const ArkPsiPowerComponent& GetPowerComponent() const { return FGetPowerComponentOv0(this); }
+	ArkPsiScanningComponent& GetScanningComponent() { return FGetScanningComponentOv1(this); }
+	void SetPoints(const float _points) { FSetPoints(this, _points); }
+	void IncrementPoints(const float _points) { FIncrementPoints(this, _points); }
+	void ConsumePoints(const float _value) { FConsumePoints(this, _value); }
+	bool ConsumePointsOrHealth(const float _value) { return FConsumePointsOrHealth(this, _value); }
+	bool HasEnoughPointsOrHealth(const int _value) { return FHasEnoughPointsOrHealth(this, _value); }
+	float GetPoints() const { return FGetPoints(this); }
+	float GetMaxPoints() const { return FGetMaxPoints(this); }
+	float GetUnreducedMaxPoints() const { return FGetUnreducedMaxPoints(this); }
+	bool IsPsiMeterVisible() const { return FIsPsiMeterVisible(this); }
+	void InitStats() { FInitStats(this); }
+	void Update(const float _fDeltaTime) { FUpdate(this, _fDeltaTime); }
+	void UpdateHUDMarkerElements() { FUpdateHUDMarkerElements(this); }
+	void Reset() { FReset(this); }
+	void Stop() { FStop(this); }
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+	void PostSerialize() { FPostSerialize(this); }
+	void UpdateMeter(int _previewCost) const { FUpdateMeter(this, _previewCost); }
+	bool CanConsumePsi() const { return FCanConsumePsi(this); }
+	void GrantPsychoscope() { FGrantPsychoscope(this); }
+	void RevokePsychoscope() { FRevokePsychoscope(this); }
+	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+
+#if 0
+	const ArkPsiScanningComponent& GetScanningComponent() const;
+	void DisplayError(const char* _arg0_);
+	bool HasPsychoscope() const;
+	float GetLowPsiRegenCooldown() const;
+	float GetLowPsiRegenThreshold() const;
+	bool ShouldRegenerateLowPsi() const;
+#endif
+
+	static inline auto FCArkPsiComponent = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A6A40);
+	static inline auto FGetPowerComponentOv1 = PreyFunction<ArkPsiPowerComponent& (CArkPsiComponent* const _this)>(0x133BA60);
+	static inline auto FGetPowerComponentOv0 = PreyFunction<const ArkPsiPowerComponent& (const CArkPsiComponent* const _this)>(0x133BA60);
+	static inline auto FGetScanningComponentOv1 = PreyFunction<ArkPsiScanningComponent& (CArkPsiComponent* const _this)>(0x16A6E40);
+	static inline auto FSetPoints = PreyFunction<void(CArkPsiComponent* const _this, const float _points)>(0x16A7500);
+	static inline auto FIncrementPoints = PreyFunction<void(CArkPsiComponent* const _this, const float _points)>(0x16A6F90);
+	static inline auto FConsumePoints = PreyFunction<void(CArkPsiComponent* const _this, const float _value)>(0x16A6CD0);
+	static inline auto FConsumePointsOrHealth = PreyFunction<bool(CArkPsiComponent* const _this, const float _value)>(0x16A6CF0);
+	static inline auto FHasEnoughPointsOrHealth = PreyFunction<bool(CArkPsiComponent* const _this, const int _value)>(0x16A6EB0);
+	static inline auto FGetPoints = PreyFunction<float(const CArkPsiComponent* const _this)>(0x16A6E00);
+	static inline auto FGetMaxPoints = PreyFunction<float(const CArkPsiComponent* const _this)>(0x16A6DC0);
+	static inline auto FGetUnreducedMaxPoints = PreyFunction<float(const CArkPsiComponent* const _this)>(0x16A6E50);
+	static inline auto FIsPsiMeterVisible = PreyFunction<bool(const CArkPsiComponent* const _this)>(0x16A7030);
+	static inline auto FInitStats = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A6FA0);
+	static inline auto FUpdate = PreyFunction<void(CArkPsiComponent* const _this, const float _fDeltaTime)>(0x16A7800);
+	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A7970);
+	static inline auto FReset = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A7340);
+	static inline auto FStop = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A77F0);
+	static inline auto FSerialize = PreyFunction<void(CArkPsiComponent* const _this, TSerialize ser)>(0x16A7440);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A72A0);
+	static inline auto FUpdateMeter = PreyFunction<void(const CArkPsiComponent* const _this, int _previewCost)>(0x16A79A0);
+	static inline auto FCanConsumePsi = PreyFunction<bool(const CArkPsiComponent* const _this)>(0x16A6CA0);
+	static inline auto FGrantPsychoscope = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A6E90);
+	static inline auto FRevokePsychoscope = PreyFunction<void(CArkPsiComponent* const _this)>(0x16A7420);
+	static inline auto FOnStatChange = PreyFunction<void(CArkPsiComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x16A7050);
+};
+#endif // !MOONCRASH

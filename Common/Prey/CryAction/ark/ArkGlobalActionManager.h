@@ -41,10 +41,15 @@ public:
 	void Serialize(TSerialize arg0) const;
 	void PostSerialize() const;
 #endif
-	
+#ifndef MOONCRASH
 	static inline auto FLoadActions = PreyFunction<void(ArkGlobalActionManager *const _this)>(0x2A44B0);
 	static inline auto FReset = PreyFunction<void(ArkGlobalActionManager *const _this)>(0x2A47B0);
 	static inline auto FCreateAction = PreyFunction<_smart_ptr<IFlowGraph>(ArkGlobalActionManager *const _this, string const &_fileName)>(0x2A43C0);
 	static inline auto FGetActions = PreyFunction<std::vector<IArkGlobalAction const *>(ArkGlobalActionManager const *const _this)>(0x2A4400);
+#else
+	static inline auto FLoadActions = PreyFunction<void(ArkGlobalActionManager* const _this)>(0x2BCA60);
+	static inline auto FReset = PreyFunction<void(ArkGlobalActionManager* const _this)>(0x2BCD60);
+	static inline auto FCreateAction = PreyFunction<_smart_ptr<IFlowGraph>*(ArkGlobalActionManager* const _this, _smart_ptr<IFlowGraph>* _return_value_, const string& _fileName)>(0x2BC970);
+	static inline auto FGetActions = PreyFunction<std::vector<const IArkGlobalAction*>*(const ArkGlobalActionManager* const _this, std::vector<const IArkGlobalAction*>* _return_value_)>(0x2BC9B0);
+#endif
 };
-

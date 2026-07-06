@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -17,4 +18,3 @@ struct SGameStartParams // Id=8002006 Size=40
 	unsigned session;
 	uint16_t port;
 };
-

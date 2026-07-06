@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -47,4 +48,3 @@ struct SAudioManagerRequestDataBase : public SAudioRequestDataBase // Id=8002D38
 	void __dflt_ctor_closure();
 #endif
 };
-

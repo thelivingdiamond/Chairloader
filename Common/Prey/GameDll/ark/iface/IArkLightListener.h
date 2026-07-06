@@ -1,3 +1,4 @@
+// Auto-merged: identical in PreyDll (base) and Mooncrash (DLC); no MOONCRASH guard needed.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -10,4 +11,3 @@ struct IArkLightListener // Id=80141DF Size=8
 	virtual void OnStartDisrupt();
 	virtual void OnStopDisrupt();
 };
-

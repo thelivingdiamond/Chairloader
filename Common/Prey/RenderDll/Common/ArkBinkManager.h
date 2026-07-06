@@ -67,7 +67,8 @@ public:
 	void SetPlayerInitialVolumes(ArkBinkPlayer *arg0);
 	ArkBinkPlayer *CreatePlayerInternal(const char *arg0, EArkBinkMovieType arg1, EArkBinkLoadFlags arg2);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FEF_UpdateTextureMovie = PreyFunction<void(ArkBinkManager *const _this, ArkBinkPlayer *_pPlayer)>(0xECD4E0);
 	static inline auto FUseTelemetry = PreyFunction<void(ArkBinkManager const *const _this, void *_pApi, unsigned _binkMask)>(0xA13080);
 	static inline auto FEF_Update = PreyFunction<void(ArkBinkManager *const _this, int *_nFullscreenMovieCount)>(0xECD150);
@@ -91,5 +92,31 @@ public:
 	static inline auto FOnSystemEvent = PreyFunction<void(ArkBinkManager *const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0xECDC60);
 	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle(ArkBinkManager *const _this, const char *_szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xECCBA0);
 	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager *const _this, ArkBinkPlayer *_pPlayer)>(0xECDD50);
-};
+#else
+	static inline auto FArkBinkManager = PreyFunction<void(ArkBinkManager* const _this)>(0xEE8920);
+	static inline auto FEF_UpdateTextureMovie = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9750);
+	static inline auto FUseTelemetry = PreyFunction<void(const ArkBinkManager* const _this, void* _pApi, unsigned _binkMask)>(0x1333E90);
+	static inline auto FEF_Update = PreyFunction<void(ArkBinkManager* const _this, int* _nFullscreenMovieCount)>(0xEE93C0);
+	static inline auto FEF_Render = PreyFunction<void(ArkBinkManager* const _this)>(0xEE9320);
+	static inline auto FMT_LoadMovie = PreyFunction<ArkBinkPlayerHandle*(ArkBinkManager* const _this, ArkBinkPlayerHandle* _return_value_, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEE9B10);
+	static inline auto FMT_ReleaseMovie = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9CD0);
+	static inline auto FMT_StartMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9D70);
+	static inline auto FMT_StopMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9DF0);
+	static inline auto FMT_PauseMovie = PreyFunction<bool(ArkBinkManager* const _this, ArkBinkPlayerHandle _handle, bool _bPaused)>(0xEE9BC0);
+	static inline auto FMT_IsMoviePlaying = PreyFunction<bool(const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9AB0);
+	static inline auto FMT_GetMoviePlaybackInfo = PreyFunction<bool(const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle, ArkBinkPlaybackInfo& _out_info)>(0xEE99D0);
+	static inline auto FMT_IsFullScreenMoviePlaying = PreyFunction<bool(const ArkBinkManager* const _this)>(0xEE9A40);
+	static inline auto FMT_PauseMovies = PreyFunction<void(const ArkBinkManager* const _this, const bool _bPause)>(0xEE9C40);
+	static inline auto FRT_LoadMovie = PreyFunction<ArkBinkPlayer* (ArkBinkManager* const _this, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEEA0B0);
+	static inline auto FRT_RenderInternal = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer, int _frame)>(0xEEA160);
+	static inline auto FGetPlayerOv0 = PreyFunction<const ArkBinkPlayer* (const ArkBinkManager* const _this, ArkBinkPlayerHandle _handle)>(0xEE9900);
+	static inline auto FDoFrameAsync = PreyFunction<void(ArkBinkManager* const _this, BINK* _hBink)>(0xEE9300);
+	static inline auto FGetCurrentRenderer = PreyFunction<ArkBinkRenderer* (ArkBinkManager* const _this)>(0x547450);
+	static inline auto FOnAudioVolumeChange = PreyFunction<void(ICVar* _pCVar, bool _bDialog)>(0xEE9E70);
+	static inline auto FUpdateAudioVolumes = PreyFunction<void(ArkBinkManager* const _this, unsigned _trackID, unsigned _volume)>(0xEEA170);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0xEE9ED0);
+	static inline auto FCreatePlayer = PreyFunction<ArkBinkPlayerHandle*(ArkBinkManager* const _this, ArkBinkPlayerHandle* _return_value_, const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags)>(0xEE8D80);
+	static inline auto FQueuePlayerDelete = PreyFunction<void(ArkBinkManager* const _this, ArkBinkPlayer* _pPlayer)>(0xEE9FC0);
+#endif
 
+};

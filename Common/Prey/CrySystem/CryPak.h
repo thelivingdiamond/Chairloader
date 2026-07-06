@@ -42,7 +42,9 @@ struct CZipPseudoFile // Id=800F551 Size=24
     unsigned m_nFlags;
 
     unsigned GetFileSize() { return FGetFileSize(this); }
+#ifndef MOONCRASH
     char *FGets(char *pBuf, int n) { return FFGets(this,pBuf,n); }
+#endif
 
 #if 0
     void Construct(CCachedFileData *arg0, unsigned arg1);
@@ -62,8 +64,13 @@ struct CZipPseudoFile // Id=800F551 Size=24
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 
+#ifndef MOONCRASH
     static inline auto FGetFileSize = PreyFunction<unsigned(CZipPseudoFile *const _this)>(0xD70F90);
     static inline auto FFGets = PreyFunction<char *(CZipPseudoFile *const _this, char *pBuf, int n)>(0xD6E720);
+#else
+	static inline auto FGetFileSize = PreyFunction<unsigned(CZipPseudoFile* const _this)>(0xD8EDC0);
+
+#endif
 };
 
 class CCryPak;
@@ -324,7 +331,8 @@ public:
 	void OnMissingFile(const char *arg0);
 	void LogFileAccessCallStack(const char *arg0, const char *arg1, const char *arg2);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FMergeDelayed = PreyFunction<void(CCryPak *const _this)>(0xD73770);
 	static inline auto FMergeDelayed_InLock = PreyFunction<void(CCryPak *const _this)>(0xD73810);
 	static inline auto FAdjustFileNameInternal = PreyFunction<const char *(CCryPak *const _this, const char *src, char *dst, unsigned nFlags)>(0xD6C1A0);
@@ -404,11 +412,11 @@ public:
 	static inline auto FFEof = PreyFunction<int(CCryPak *const _this, _iobuf *hFile)>(0xD6DC80);
 	static inline auto FFError = PreyFunction<int(CCryPak *const _this, _iobuf *hFile)>(0xD6DDF0);
 	static inline auto FFGetErrno = PreyFunction<int(CCryPak *const _this)>(0xD6E3A0);
-//	static inline auto FFScanf = PreyFunction<int(CCryPak *const _this, _iobuf *hFile, const char *format, ... )>(0xD6F6A0);
+	//	static inline auto FFScanf = PreyFunction<int(CCryPak *const _this, _iobuf *hFile, const char *format, ... )>(0xD6F6A0);
 	static inline auto FFGets = PreyFunction<char *(CCryPak *const _this, char *str, int n, _iobuf *hFile)>(0xD6E5B0);
 	static inline auto FGetc = PreyFunction<int(CCryPak *const _this, _iobuf *hFile)>(0xD71F50);
 	static inline auto FUngetc = PreyFunction<int(CCryPak *const _this, int c, _iobuf *hFile)>(0xD77AD0);
-//	static inline auto FFPrintf = PreyFunction<int(CCryPak *const _this, _iobuf *hFile, const char *szFormat, ... )>(0xD6F110);
+	//	static inline auto FFPrintf = PreyFunction<int(CCryPak *const _this, _iobuf *hFile, const char *szFormat, ... )>(0xD6F110);
 	static inline auto FFGetSizeOv1 = PreyFunction<uint64_t(CCryPak *const _this, _iobuf *hFile)>(0xD6E3C0);
 	static inline auto FFGetSizeOv0 = PreyFunction<uint64_t(CCryPak *const _this, const char *sFilename, bool bAllowUseFileSystem)>(0xD6E4F0);
 	static inline auto FIsInPak = PreyFunction<bool(CCryPak *const _this, _iobuf *hFile)>(0xD725D0);
@@ -442,4 +450,121 @@ public:
 	static inline auto FGetMediaType = PreyFunction<EStreamSourceMediaType(CCryPak *const _this, ZipDir::Cache *pZip, unsigned nArchiveFlags)>(0xD71130);
 	static inline auto FCreatePerfHUDWidget = PreyFunction<void(CCryPak *const _this)>(0xD6D610);
 	static inline auto FScanDirectory = PreyFunction<void(CCryPak *const _this, const char *_folderPath, const char *_fileFilter, std::vector<string> &_outFiles, bool _recursive, bool _bAllowUseFileSystem)>(0xD75940);
+#else
+	static inline auto FMergeDelayed = PreyFunction<void(CCryPak* const _this)>(0xD912F0);
+	static inline auto FMergeDelayed_InLock = PreyFunction<void(CCryPak* const _this)>(0xD91390);
+	static inline auto FAdjustFileNameInternal = PreyFunction<const char* (CCryPak* const _this, const char* src, char* dst, unsigned nFlags)>(0xD8A240);
+	static inline auto FCheckPathExists = PreyFunction<bool(CCryPak* const _this, const char* _szPath, unsigned _nFlags)>(0xD8A9B0);
+	static inline auto FAdjustFileName = PreyFunction<const char* (CCryPak* const _this, const char* src, char* dst, unsigned nFlags)>(0xD89C60);
+	static inline auto FBeautifyPath = PreyFunction<char* (char* dst)>(0xD8A810);
+	static inline auto FCCryPak = PreyFunction<void(CCryPak* const _this, IMiniLog* pLog, PakVars* pPakVars, const bool bLvlRes, const IGameStartup* pGameStartup)>(0xD88040);
+	static inline auto FBitNotCCryPak = PreyFunction<void(CCryPak* const _this)>(0xD88A80);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xD91480);
+	static inline auto FGetPakInfo = PreyFunction<ICryPak::PakInfo* (CCryPak* const _this)>(0xD8FA80);
+	static inline auto FFreePakInfo = PreyFunction<void(CCryPak* const _this, ICryPak::PakInfo* pPakInfo)>(0xD8E850);
+	static inline auto FSetGameFolderWritable = PreyFunction<void(CCryPak* const _this, bool bWritable)>(0xD94F80);
+	static inline auto FSetLog = PreyFunction<void(CCryPak* const _this, IMiniLog* pLog)>(0xD95270);
+	static inline auto FAddMod = PreyFunction<void(CCryPak* const _this, const char* szMod, bool _bSupportsLocalization)>(0xD89A50);
+	static inline auto FRemoveMod = PreyFunction<void(CCryPak* const _this, const char* szMod)>(0xD931C0);
+	static inline auto FGetMod = PreyFunction<const char* (CCryPak* const _this, int index)>(0xD8F760);
+	static inline auto FParseAliases = PreyFunction<void(CCryPak* const _this, const char* szCommandLine)>(0xD92A10);
+	static inline auto FSetAlias = PreyFunction<void(CCryPak* const _this, const char* szName, const char* szAlias, bool bAdd)>(0xD94860);
+	static inline auto FGetAlias = PreyFunction<const char* (CCryPak* const _this, const char* szName, bool bReturnSame)>(0xD8E8B0);
+	static inline auto FSetGameFolder = PreyFunction<void(CCryPak* const _this, const char* szFolder)>(0xD94B90);
+	static inline auto FGetGameFolder = PreyFunction<const char* (const CCryPak* const _this)>(0xD8EEA0);
+	static inline auto FSetLocalizationFolder = PreyFunction<void(CCryPak* const _this, const char* const sLocalizationFolder)>(0xD94F90);
+	static inline auto FGetLocalizationFolder = PreyFunction<const char* const (const CCryPak* const _this)>(0xD8EF60);
+	static inline auto FGetCachedPakCDROffsetSize = PreyFunction<void(CCryPak* const _this, const char* szName, unsigned& offset, unsigned& size)>(0xD8E940);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CCryPak* const _this, ICrySizer* pSizer)>(0xD8EFA0);
+	static inline auto FLock = PreyFunction<void(CCryPak* const _this)>(0xD90B30);
+	static inline auto FUnlock = PreyFunction<void(CCryPak* const _this)>(0xD95B80);
+	static inline auto FLockReadIO = PreyFunction<void(CCryPak* const _this, bool bValue)>(0xD90BA0);
+	static inline auto FOpenArchive = PreyFunction<ICryArchive* (CCryPak* const _this, const char* szPath, unsigned nFlags, IMemoryBlock* pData)>(0xD914D0);
+	static inline auto FGetFileArchivePath = PreyFunction<const char* (CCryPak* const _this, _iobuf* hFile)>(0xD8EB70);
+	static inline auto FRegisterOv0 = PreyFunction<void(CCryPak* const _this, ICryArchive* pArchive)>(0xD92F40);
+	static inline auto FUnregisterOv0 = PreyFunction<void(CCryPak* const _this, ICryArchive* pArchive)>(0xD95BA0);
+	static inline auto FGetInMemoryPakHeap = PreyFunction<ICustomMemoryHeap* (CCryPak* const _this)>(0xD8EEB0);
+	static inline auto FPoolMalloc = PreyFunction<void* (CCryPak* const _this, uint64_t size)>(0xD92CC0);
+	static inline auto FPoolFree = PreyFunction<void(CCryPak* const _this, void* p)>(0xD92CB0);
+	static inline auto FPoolAllocMemoryBlock = PreyFunction<IMemoryBlock* (CCryPak* const _this, uint64_t nSize, const char* sUsage, uint64_t nAlign)>(0xD92BE0);
+	static inline auto FRegisterFileAccessSink = PreyFunction<void(CCryPak* const _this, ICryPakFileAcesssSink* pSink)>(0xD93000);
+	static inline auto FUnregisterFileAccessSink = PreyFunction<void(CCryPak* const _this, ICryPakFileAcesssSink* pSink)>(0xD95CD0);
+	static inline auto FGetLvlResStatus = PreyFunction<bool(const CCryPak* const _this)>(0xD8EF70);
+	static inline auto FInit = PreyFunction<bool(CCryPak* const _this, const char* szBasePath)>(0xD8FED0);
+	static inline auto FRelease = PreyFunction<void(CCryPak* const _this)>(0x1333E90);
+	static inline auto FOpenPackOv1 = PreyFunction<bool(CCryPak* const _this, const char* szPath, unsigned nFlags, IMemoryBlock* pData, CryFixedStringT<2048>* pFullPath)>(0xD91C60);
+	static inline auto FOpenPackOv0 = PreyFunction<bool(CCryPak* const _this, const char* szBindRootIn, const char* szPath, unsigned nFlags, IMemoryBlock* pData, CryFixedStringT<2048>* pFullPath)>(0xD91BA0);
+	static inline auto FClosePack = PreyFunction<bool(CCryPak* const _this, const char* pName, unsigned nFlags)>(0xD8AB60);
+	static inline auto FOpenPacksOv1 = PreyFunction<bool(CCryPak* const _this, const char* pWildcardIn, unsigned nFlags, std::vector<CryFixedStringT<2048>>* pFullPaths)>(0xD92220);
+	static inline auto FOpenPacksOv0 = PreyFunction<bool(CCryPak* const _this, const char* szBindRoot, const char* pWildcardIn, unsigned nFlags, std::vector<CryFixedStringT<2048>>* pFullPaths)>(0xD92180);
+	static inline auto FSetFlagsOnPak = PreyFunction<void(CCryPak* const _this, const char* pWildcard, unsigned nFlags)>(0xD94A70);
+	static inline auto FOpenPackCommon = PreyFunction<bool(CCryPak* const _this, const char* szBindRoot, const char* szFullPath, unsigned nPakFlags, IMemoryBlock* pData)>(0xD91D90);
+	static inline auto FOpenPacksCommon = PreyFunction<bool(CCryPak* const _this, const char* szDir, const char* pWildcardIn, char* cWork, int nPakFlags, std::vector<CryFixedStringT<2048>>* pFullPaths)>(0xD92400);
+	static inline auto FClosePacks = PreyFunction<bool(CCryPak* const _this, const char* pWildcardIn, unsigned nFlags)>(0xD8AD80);
+	static inline auto FFindPacks = PreyFunction<bool(CCryPak* const _this, const char* pWildcardIn)>(0xD8E490);
+	static inline auto FSetPacksAccessible = PreyFunction<bool(CCryPak* const _this, bool bAccessible, const char* pWildcard, unsigned nFlags)>(0xD95420);
+	static inline auto FSetPackAccessible = PreyFunction<bool(CCryPak* const _this, bool bAccessible, const char* pName, unsigned nFlags)>(0xD95300);
+	static inline auto FSetPacksAccessibleForLevel = PreyFunction<void(CCryPak* const _this, const char* sLevelName)>(0xD956A0);
+	static inline auto FGetModificationTime = PreyFunction<uint64_t(CCryPak* const _this, _iobuf* hFile)>(0xD8F7A0);
+	static inline auto FGetOpenedFileDataInZip = PreyFunction<_smart_ptr<CCachedFileData>*(CCryPak* const _this, _smart_ptr<CCachedFileData>* _return_value_, _iobuf* hFile)>(0xD8F990);
+	static inline auto FWillOpenFromPak = PreyFunction<bool(CCryPak* const _this, const char* szPath)>(0xD95E60);
+	static inline auto FFindPakFileEntryOv1 = PreyFunction<ZipDir::FileEntry* (CCryPak* const _this, const char* szPath, unsigned& nArchiveFlags, _smart_ptr<ZipDir::Cache>* pZip, bool bSkipInMemoryPaks)>(0xD8E660);
+	static inline auto FLoadPakToMemory = PreyFunction<bool(CCryPak* const _this, const char* pName, ICryPak::EInMemoryPakLocation nLoadPakToMemory, IMemoryBlock* pMemoryBlock)>(0xD90800);
+	static inline auto FLoadPaksToMemory = PreyFunction<void(CCryPak* const _this, int nMaxPakSize, bool bLoadToMemory)>(0xD90A50);
+	static inline auto FFOpenOv1 = PreyFunction<_iobuf* (CCryPak* const _this, const char* pName, const char* szMode, unsigned nInputFlags)>(0xD8C760);
+	static inline auto FFOpenOv0 = PreyFunction<_iobuf* (CCryPak* const _this, const char* pName, const char* szMode, char* szFileGamePath, int nLen)>(0xD8CEF0);
+	static inline auto FFOpenRaw = PreyFunction<_iobuf* (CCryPak* const _this, const char* pName, const char* mode)>(0xD8D120);
+	static inline auto FFReadRaw = PreyFunction<uint64_t(CCryPak* const _this, void* pData, uint64_t nSize, uint64_t nCount, _iobuf* hFile)>(0xD8D280);
+	static inline auto FFReadRawAll = PreyFunction<uint64_t(CCryPak* const _this, void* pData, uint64_t nFileSize, _iobuf* hFile)>(0xD8D510);
+	static inline auto FFGetCachedFileData = PreyFunction<void* (CCryPak* const _this, _iobuf* hFile, uint64_t& nFileSize)>(0xD8C050);
+	static inline auto FFWrite = PreyFunction<uint64_t(CCryPak* const _this, const void* data, uint64_t length, uint64_t elems, _iobuf* hFile)>(0xD8DA70);
+	static inline auto FFSeek = PreyFunction<uint64_t(CCryPak* const _this, _iobuf* hFile, long seek, int mode)>(0xD8D7F0);
+	static inline auto FFTell = PreyFunction<long(CCryPak* const _this, _iobuf* hFile)>(0xD8D990);
+	static inline auto FFFlush = PreyFunction<int(CCryPak* const _this, _iobuf* hFile)>(0xD8BF10);
+	static inline auto FFClose = PreyFunction<int(CCryPak* const _this, _iobuf* hFile)>(0xD8BB00);
+	static inline auto FFindFirst = PreyFunction<int64_t(CCryPak* const _this, const char* pDir, _finddata64i32_t* fd, unsigned nPathFlags, bool bAllOwUseFileSystem)>(0xD8DEF0);
+	static inline auto FFindNext = PreyFunction<int(CCryPak* const _this, int64_t handle, _finddata64i32_t* fd)>(0xD8E3D0);
+	static inline auto FFindClose = PreyFunction<int(CCryPak* const _this, int64_t handle)>(0xD8DC90);
+	static inline auto FFEof = PreyFunction<int(CCryPak* const _this, _iobuf* hFile)>(0xD8BCB0);
+	static inline auto FFError = PreyFunction<int(CCryPak* const _this, _iobuf* hFile)>(0xD8BE20);
+	static inline auto FFGetErrno = PreyFunction<int(CCryPak* const _this)>(0xD8C310);
+	static inline auto FFScanf = PreyFunction<int(CCryPak* const _this, _iobuf* hFile, const char* format, ... arglist)>(0xD8D6C0);
+	static inline auto FFGets = PreyFunction<char* (CCryPak* const _this, char* str, int n, _iobuf* hFile)>(0xD8C520);
+	static inline auto FGetc = PreyFunction<int(CCryPak* const _this, _iobuf* hFile)>(0xD8FD20);
+	static inline auto FUngetc = PreyFunction<int(CCryPak* const _this, int c, _iobuf* hFile)>(0xD95830);
+	static inline auto FFPrintf = PreyFunction<int(CCryPak* const _this, _iobuf* hFile, const char* szFormat, ... _arg2_)>(0xD8D130);
+	static inline auto FFGetSizeOv1 = PreyFunction<uint64_t(CCryPak* const _this, _iobuf* hFile)>(0xD8C330);
+	static inline auto FFGetSizeOv0 = PreyFunction<uint64_t(CCryPak* const _this, const char* sFilename, bool bAllowUseFileSystem)>(0xD8C460);
+	static inline auto FIsInPak = PreyFunction<bool(CCryPak* const _this, _iobuf* hFile)>(0xD90320);
+	static inline auto FRemoveFile = PreyFunction<bool(CCryPak* const _this, const char* pName)>(0xD93160);
+	static inline auto FRemoveDir = PreyFunction<bool(CCryPak* const _this, const char* pName, bool bRecurse, unsigned _flags)>(0xD93100);
+	static inline auto FIsAbsPath = PreyFunction<bool(CCryPak* const _this, const char* pPath)>(0xD8FF10);
+	static inline auto FCreateFindData = PreyFunction<CCryPakFindData* (CCryPak* const _this)>(0xD8B5E0);
+	static inline auto FCopyFileOnDisk = PreyFunction<bool(CCryPak* const _this, const char* source, const char* dest, bool bFailIfExist)>(0xD8B580);
+	static inline auto FIsFileExist = PreyFunction<bool(CCryPak* const _this, const char* sFilename, ICryPak::EFileSearchLocation fileLocation, bool bPreAdjustedName)>(0xD901F0);
+	static inline auto FIsFolder = PreyFunction<bool(CCryPak* const _this, const char* sPath)>(0xD902E0);
+	static inline auto FIsFileCompressed = PreyFunction<bool(CCryPak* const _this, const char* filename)>(0xD90150);
+	static inline auto FGetFileSizeOnDisk = PreyFunction<int64_t(CCryPak* const _this, const char* filename)>(0xD8EDE0);
+	static inline auto FMakeDir = PreyFunction<bool(CCryPak* const _this, const char* szPathIn, bool bGamePathMapping)>(0xD90BB0);
+	static inline auto FRawCompress = PreyFunction<int(CCryPak* const _this, const void* pUncompressed, unsigned long* pDestSize, void* pCompressed, unsigned long nSrcSize, int nLevel)>(0xD92CF0);
+	static inline auto FRawUncompress = PreyFunction<int(CCryPak* const _this, void* pUncompressed, unsigned long* pDestSize, const void* pCompressed, unsigned long nSrcSize)>(0xD92D00);
+	static inline auto FRecordFileOpen = PreyFunction<void(CCryPak* const _this, const ICryPak::ERecordFileOpenList eList)>(0x1333E90);
+	static inline auto FGetRecordFileOpenList = PreyFunction<ICryPak::ERecordFileOpenList(CCryPak* const _this)>(0xD8FCD0);
+	static inline auto FRecordFile = PreyFunction<void(CCryPak* const _this, _iobuf* in, const char* szFilename)>(0xD92E60);
+	static inline auto FGetResourceList = PreyFunction<IResourceList* (CCryPak* const _this, const ICryPak::ERecordFileOpenList eList)>(0xD8FCE0);
+	static inline auto FSetResourceList = PreyFunction<void(CCryPak* const _this, const ICryPak::ERecordFileOpenList eList, IResourceList* pResourceList)>(0xD957D0);
+	static inline auto FComputeCRC = PreyFunction<unsigned(CCryPak* const _this, const char* szPath, unsigned nFileOpenFlags)>(0xD8AFE0);
+	static inline auto FComputeMD5 = PreyFunction<bool(CCryPak* const _this, const char* szPath, uint8_t* md5, unsigned nFileOpenFlags)>(0xD8B3E0);
+	static inline auto FComputeCachedPakCDR_CRCOv0 = PreyFunction<int(CCryPak* const _this, const char* filename, bool useCryFile, IMemoryBlock* pData)>(0xD8B150);
+	static inline auto FDisableRuntimeFileAccessOv1 = PreyFunction<void(CCryPak* const _this, bool status)>(0xD8BAA0);
+	static inline auto FDisableRuntimeFileAccessOv0 = PreyFunction<bool(CCryPak* const _this, bool status, unsigned long threadId)>(0xD8BAB0);
+	static inline auto FCheckFileAccessDisabled = PreyFunction<bool(CCryPak* const _this, const char* name, const char* mode)>(0x13B0900);
+	static inline auto FSetRenderThreadId = PreyFunction<void(CCryPak* const _this, unsigned long renderThreadId)>(0xD957C0);
+	static inline auto FGetPakPriority = PreyFunction<int(CCryPak* const _this)>(0xD8FCC0);
+	static inline auto FGetFileOffsetOnMedia = PreyFunction<uint64_t(CCryPak* const _this, const char* sFilename)>(0xD8ED00);
+	static inline auto FGetFileMediaType = PreyFunction<EStreamSourceMediaType(CCryPak* const _this, const char* szName)>(0xD8EC50);
+	static inline auto FGetMediaType = PreyFunction<EStreamSourceMediaType(CCryPak* const _this, ZipDir::Cache* pZip, unsigned nArchiveFlags)>(0xD8EF80);
+	static inline auto FCreatePerfHUDWidget = PreyFunction<void(CCryPak* const _this)>(0xD8B640);
+	static inline auto FScanDirectory = PreyFunction<void(CCryPak* const _this, const char* _folderPath, const char* _fileFilter, std::vector<string>& _outFiles, bool _recursive, bool _bAllowUseFileSystem)>(0xD93490);
+#endif
 };

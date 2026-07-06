@@ -1,3 +1,5 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -21,4 +23,4 @@ public:
 	static inline auto FAddObject = PreyFunction<ArkSpatialManagerKey<ArkSpatialManagerKeyType_CystoidNest>(ArkSpatialManagerEntryImpl_CystoidNest *const _this, ArkCystoidNest &_nest)>(0x12F7370);
 	static inline auto FRemoveObject = PreyFunction<void(ArkSpatialManagerEntryImpl_CystoidNest *const _this, ArkSpatialManagerKey<ArkSpatialManagerKeyType_CystoidNest> &_key)>(0x12F73A0);
 };
-
+#endif // !MOONCRASH

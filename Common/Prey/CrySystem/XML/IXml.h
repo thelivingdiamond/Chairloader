@@ -674,4 +674,3 @@ struct IXmlUtils
 	// </interfuscator:shuffle>
 #endif
 };
-

@@ -1,9 +1,11 @@
+// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/CryAISystem/AgentParams.h>
+#include <Prey/CryAISystem/AIObject.h>
 #include <Prey/CryAISystem/IAIMannequin.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -288,3 +290,4 @@ struct IGoalPipeListener // Id=800111E Size=16
 	static inline auto FBitNotIGoalPipeListener = PreyFunction<void(IGoalPipeListener *const _this)>(0x4827A0);
 };
 #endif
+#endif // !MOONCRASH

@@ -13,4 +13,3 @@ struct ArkComplexRoomInput // Id=801A8E7 Size=12
 	
 	ArkComplexRoomInput();
 };
-

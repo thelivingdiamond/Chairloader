@@ -12,4 +12,3 @@ struct ArkSimpleVisionInput // Id=80195E4 Size=8
 	ArkSimpleVisionInput();
 	ArkSimpleVisionInput(ArkSimpleVisionInput const &_other);
 };
-

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -118,4 +120,132 @@ public:
 	static inline auto FAddTentacleToPlace = PreyFunction<void(ArkApexTentacleSpawner const *const _this, uint64_t _archetypeId, const int _count, std::vector<ArkApexTentacleSpawner::TentaclesToPlace> &_tentaclesToPlace)>(0x126CBB0);
 	static inline auto FSpawnTentaclesToPlace = PreyFunction<bool(ArkApexTentacleSpawner *const _this, std::vector<ArkApexTentacleSpawner::TentaclesToPlace> &_tentaclesToPlace)>(0x126ECE0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/environment/ArkApexTentacleSpawnerBase.h>
 
+class ICrySizer;
+struct IEntity;
+struct IEntityArchetype;
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// ArkApexTentacleSpawner
+// Header:  Prey/GameDll/ark/environment/ArkApexTentacleSpawner.h
+class ArkApexTentacleSpawner : public ArkApexTentacleSpawnerBase
+{ // Size=240 (0xF0)
+public:
+	// ArkApexTentacleSpawner::TentaclesToPlace
+	// Header:  Prey/GameDll/ark/environment/ArkApexTentacleSpawner.h
+	struct TentaclesToPlace
+	{ // Size=16 (0x10)
+		IEntityArchetype* m_pArchetype;
+		int m_count;
+		float m_radius;
+
+	#if 0
+		TentaclesToPlace(IEntityArchetype* _arg0_, float _arg1_, int _arg2_);
+		bool operator==(IEntityArchetype* _arg0_) const;
+		bool operator<(const ArkApexTentacleSpawner::TentaclesToPlace& _arg0_) const;
+	#endif
+	};
+
+	// ArkApexTentacleSpawner::SpawnedTentacle
+	// Header:  Prey/GameDll/ark/environment/ArkApexTentacleSpawner.h
+	struct SpawnedTentacle
+	{ // Size=20 (0x14)
+		unsigned m_tentacleId;
+		unsigned m_linkedTarget;
+		Vec2 m_placementPos;
+		float m_radius;
+
+	#if 0
+		SpawnedTentacle();
+		SpawnedTentacle(const unsigned _arg0_, const Vec2& _arg1_, const float _arg2_);
+		bool operator==(const unsigned _arg0_) const;
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	// ArkApexTentacleSpawner::RespawnData
+	// Header:  Prey/GameDll/ark/environment/ArkApexTentacleSpawner.h
+	struct RespawnData
+	{ // Size=16 (0x10)
+		uint64_t m_archetypeId;
+		ArkTimeRemaining m_timer;
+
+	#if 0
+		RespawnData();
+		RespawnData(const uint64_t _arg0_, const float _arg1_);
+		void Serialize(TSerialize _arg0_);
+	#endif
+	};
+
+	// ArkApexTentacleSpawner::SpawnProbability
+	// Header:  Prey/GameDll/ark/environment/ArkApexTentacleSpawner.h
+	struct SpawnProbability
+	{ // Size=16 (0x10)
+		uint64_t m_archetypeId;
+		float m_probability;
+
+	#if 0
+		SpawnProbability(const uint64_t _arg0_);
+		bool operator==(const uint64_t _arg0_) const;
+	#endif
+	};
+
+	std::vector<ArkApexTentacleSpawner::SpawnedTentacle> m_spawnedTentacles;
+	std::vector<ArkApexTentacleSpawner::RespawnData> m_tentaclesToRespawn;
+	std::vector<unsigned int> m_availableLinkedTargets;
+	bool m_bNeedsInitialSpawn;
+	float m_height;
+	float m_width;
+	float m_minDistBetweenSpawns;
+	float m_respawnDuration;
+	std::vector<ArkApexTentacleSpawner::SpawnProbability> m_spawnProbabilities;
+
+	ArkApexTentacleSpawner();
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void GetMemoryUsage(ICrySizer* _pSizer) const;
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void SetEnabled(bool _bEnabled);
+	virtual void TentacleKilled(const IEntity* const _pTentacle);
+	virtual std::vector<unsigned int> GetTentaclesAndHeads() const;
+	virtual std::vector<unsigned int> GetTentacles() const;
+	virtual void Deactivate_Internal();
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	void SpawnTentacles() { FSpawnTentacles(this); }
+	void SetLinkTargets() { FSetLinkTargets(this); }
+	void AddTentacleToPlace(uint64_t _archetypeId, const int _count, std::vector<ArkApexTentacleSpawner::TentaclesToPlace>& _tentaclesToPlace) const { FAddTentacleToPlace(this, _archetypeId, _count, _tentaclesToPlace); }
+	bool SpawnTentaclesToPlace(std::vector<ArkApexTentacleSpawner::TentaclesToPlace>& _tentaclesToPlace) { return FSpawnTentaclesToPlace(this, _tentaclesToPlace); }
+
+#if 0
+	bool PopulateTentaclesToPlace(std::vector<ArkApexTentacleSpawner::TentaclesToPlace>& _arg0_) const;
+#endif
+
+	static inline auto FArkApexTentacleSpawnerOv2 = PreyFunction<void(ArkApexTentacleSpawner* const _this)>(0x130EE40);
+	static inline auto FPostInit = PreyFunction<void(ArkApexTentacleSpawner* const _this, IGameObject* _pGameObject)>(0x130F870);
+	static inline auto FFullSerialize = PreyFunction<void(ArkApexTentacleSpawner* const _this, TSerialize _ser)>(0x130F0D0);
+	static inline auto FProcessEvent = PreyFunction<void(ArkApexTentacleSpawner* const _this, SEntityEvent& _event)>(0x130F910);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkApexTentacleSpawner* const _this, ICrySizer* _pSizer)>(0x130F190);
+	static inline auto FUpdate = PreyFunction<void(ArkApexTentacleSpawner* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x13111A0);
+	static inline auto FSetEnabled = PreyFunction<void(ArkApexTentacleSpawner* const _this, bool _bEnabled)>(0x130FA50);
+	static inline auto FTentacleKilled = PreyFunction<void(ArkApexTentacleSpawner* const _this, const IEntity* const _pTentacle)>(0x1311090);
+	static inline auto FGetTentaclesAndHeads = PreyFunction<std::vector<unsigned int>*(const ArkApexTentacleSpawner* const _this, std::vector<unsigned int>* _return_value_)>(0x130F2F0);
+	static inline auto FGetTentacles = PreyFunction<std::vector<unsigned int>*(const ArkApexTentacleSpawner* const _this, std::vector<unsigned int>* _return_value_)>(0x130F290);
+	static inline auto FDeactivate_Internal = PreyFunction<void(ArkApexTentacleSpawner* const _this)>(0x1333E90);
+	static inline auto FOnReset = PreyFunction<void(ArkApexTentacleSpawner* const _this, bool _bEnteringGameMode)>(0x130F830);
+	static inline auto FLoadProperties = PreyFunction<void(ArkApexTentacleSpawner* const _this)>(0x130F380);
+	static inline auto FSpawnTentacles = PreyFunction<void(ArkApexTentacleSpawner* const _this)>(0x13101B0);
+	static inline auto FSetLinkTargets = PreyFunction<void(ArkApexTentacleSpawner* const _this)>(0x130FAF0);
+	static inline auto FAddTentacleToPlace = PreyFunction<void(const ArkApexTentacleSpawner* const _this, uint64_t _archetypeId, const int _count, std::vector<ArkApexTentacleSpawner::TentaclesToPlace>& _tentaclesToPlace)>(0x130EF70);
+	static inline auto FSpawnTentaclesToPlace = PreyFunction<bool(ArkApexTentacleSpawner* const _this, std::vector<ArkApexTentacleSpawner::TentaclesToPlace>& _tentaclesToPlace)>(0x1310430);
+};
+#endif // !MOONCRASH

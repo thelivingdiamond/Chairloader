@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -88,4 +90,98 @@ public:
 	static inline auto FCreateDoors = PreyFunction<void(ArkCargoContainer *const _this)>(0x11B73A0);
 	static inline auto FOpenDoor = PreyFunction<void(ArkCargoContainer const *const _this, unsigned _doorId)>(0x11B80E0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CryMovie/IMovieSystem.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/environment/ArkEnvironmentalObject.h>
+#include <_unknown/IMovieListener.h>
 
+struct IAnimSequence;
+struct IEntity;
+struct IGameObject;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// ArkCargoContainer
+// Header:  Prey/GameDll/ark/environment/ArkCargoContainer.h
+class ArkCargoContainer
+	: public ArkEnvironmentalObject
+	, public IMovieListener
+	, public IEntityEventListener
+{ // Size=184 (0xB8)
+public:
+	EArkDockingState m_dockingState;
+	EArkDockingBay m_dockingBay;
+	string m_containerCode;
+	unsigned m_dockingStation;
+	unsigned m_frontDoor;
+	unsigned m_backDoor;
+	bool m_bOpeningFront;
+	bool m_bOpeningBack;
+	string m_confirmDoorOpenMessage;
+	IAnimSequence* m_pCurrentSequence;
+	string m_sequenceToCargoBay1;
+	string m_sequenceToCargoBay2;
+	string m_sequenceFromCargoBay1;
+	string m_sequenceFromCargoBay2;
+
+	ArkCargoContainer();
+	virtual ~ArkCargoContainer();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void OnMovieEvent(IMovieListener::EMovieEvent event, IAnimSequence* pSequence);
+	virtual void OnEntityEvent(IEntity* _pEntity, SEntityEvent& _event);
+	float BeginDocking(EArkDockingBay _dockingBay, unsigned _dockingStation) { return FBeginDocking(this, _dockingBay, _dockingStation); }
+	float BeginUndocking(unsigned _dockingStation) { return FBeginUndocking(this, _dockingStation); }
+	void OpenDoors() { FOpenDoors(this); }
+	bool AreDoorsOpen() const { return FAreDoorsOpen(this); }
+	void UpdateSequences(const char* _toBay1, const char* _toBay2, const char* _fromBay1, const char* _fromBay2) { FUpdateSequences(this, _toBay1, _toBay2, _fromBay1, _fromBay2); }
+	virtual void LoadProperties();
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void HandleScriptEvent(const char* _pEvent, SEntityEvent& _event);
+	bool StartTrackviewSequence(float& _sequenceDuration, EArkDockingBay _dockingBay, bool _bDocking) { return FStartTrackviewSequence(this, _sequenceDuration, _dockingBay, _bDocking); }
+	void CleanupTrackviewSequence() { FCleanupTrackviewSequence(this); }
+	void SetDockingState(EArkDockingState _state) { FSetDockingState(this, _state); }
+	void CreateDoors() { FCreateDoors(this); }
+	void OpenDoor(unsigned _doorId) const { FOpenDoor(this, _doorId); }
+
+#if 0
+	EArkDockingBay GetDockingBay() const;
+	EArkDockingState GetDockingState() const;
+	const string& GetConfirmDoorOpenMessage() const;
+	const string& GetCode() const;
+	IAnimSequence* GetTrackviewSequence(EArkDockingBay _arg0_, bool _arg1_) const;
+	void UpdateDoorLocations();
+	void CloseDoors();
+#endif
+
+	static inline auto FArkCargoContainerOv1 = PreyFunction<void(ArkCargoContainer* const _this)>(0x1237F30);
+	static inline auto FBitNotArkCargoContainer = PreyFunction<void(ArkCargoContainer* const _this)>(0x1237FC0);
+	static inline auto FUpdate = PreyFunction<void(ArkCargoContainer* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1239D20);
+	static inline auto FPostInit = PreyFunction<void(ArkCargoContainer* const _this, IGameObject* _pGameObject)>(0x1239870);
+	static inline auto FFullSerialize = PreyFunction<void(ArkCargoContainer* const _this, TSerialize _ser)>(0x1238BD0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkCargoContainer* const _this)>(0x1239890);
+	static inline auto FProcessEvent = PreyFunction<void(ArkCargoContainer* const _this, SEntityEvent& _event)>(0x12399C0);
+	static inline auto FOnMovieEvent = PreyFunction<void(IMovieListener* const _this, IMovieListener::EMovieEvent event, IAnimSequence* pSequence)>(0x12396A0);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x1239490);
+	static inline auto FBeginDocking = PreyFunction<float(ArkCargoContainer* const _this, EArkDockingBay _dockingBay, unsigned _dockingStation)>(0x12388B0);
+	static inline auto FBeginUndocking = PreyFunction<float(ArkCargoContainer* const _this, unsigned _dockingStation)>(0x1238940);
+	static inline auto FOpenDoors = PreyFunction<void(ArkCargoContainer* const _this)>(0x1239830);
+	static inline auto FAreDoorsOpen = PreyFunction<bool(const ArkCargoContainer* const _this)>(0x1238810);
+	static inline auto FUpdateSequences = PreyFunction<void(ArkCargoContainer* const _this, const char* _toBay1, const char* _toBay2, const char* _fromBay1, const char* _fromBay2)>(0x1239D30);
+	static inline auto FLoadProperties = PreyFunction<void(ArkCargoContainer* const _this)>(0x1238FA0);
+	static inline auto FOnReset = PreyFunction<void(ArkCargoContainer* const _this, bool _bEnteringGameMode)>(0x1239730);
+	static inline auto FHandleScriptEvent = PreyFunction<void(ArkCargoContainer* const _this, const char* _pEvent, SEntityEvent& _event)>(0x1238E10);
+	static inline auto FStartTrackviewSequence = PreyFunction<bool(ArkCargoContainer* const _this, float& _sequenceDuration, EArkDockingBay _dockingBay, bool _bDocking)>(0x1239B90);
+	static inline auto FCleanupTrackviewSequence = PreyFunction<void(ArkCargoContainer* const _this)>(0x12389D0);
+	static inline auto FSetDockingState = PreyFunction<void(ArkCargoContainer* const _this, EArkDockingState _state)>(0x1239B10);
+	static inline auto FCreateDoors = PreyFunction<void(ArkCargoContainer* const _this)>(0x1238A20);
+	static inline auto FOpenDoor = PreyFunction<void(const ArkCargoContainer* const _this, unsigned _doorId)>(0x12397A0);
+};
+#endif // !MOONCRASH

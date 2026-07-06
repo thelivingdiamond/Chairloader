@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -28,4 +30,42 @@ public:
 	
 	static inline auto FoperatorEq = PreyFunction<TArkPostEffectValue &(TArkPostEffectValue *const _this, TArkPostEffectValue const &_rhs)>(0x13D10F0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
 
+enum class EArkPostEffectDataType;
+
+// TArkPostEffectValue
+// Header:  Prey/Ark/iarkposteffectmanager.h
+class TArkPostEffectValue
+{ // Size=24 (0x18)
+public:
+	// TArkPostEffectValue::ExtractType
+	// Header:  Prey/Ark/iarkposteffectmanager.h
+	struct ExtractType : public boost::static_visitor<enum EArkPostEffectDataType>
+	{ // Size=1 (0x1)
+	};
+
+	// TArkPostEffectValue::IsEqual
+	// Header:  Prey/Ark/iarkposteffectmanager.h
+	struct IsEqual : public boost::static_visitor<bool>
+	{ // Size=1 (0x1)
+	};
+
+	boost::variant<boost::detail::variant::over_sequence<boost::mpl::l_item<boost::mpl::long_<6>,bool,boost::mpl::l_item<boost::mpl::long_<5>,int,boost::mpl::l_item<boost::mpl::long_<4>,float,boost::mpl::l_item<boost::mpl::long_<3>,Vec3_tpl<float>,boost::mpl::l_item<boost::mpl::long_<2>,Vec4_tpl<float>,boost::mpl::l_item<boost::mpl::long_<1>,CryStringT<char>,boost::mpl::l_end> > > > > > > > m_variant;
+
+	TArkPostEffectValue(const TArkPostEffectValue& _rhs);
+	TArkPostEffectValue& operator=(const TArkPostEffectValue& _rhs) { return FoperatorEq(this, _rhs); }
+
+#if 0
+	TArkPostEffectValue();
+	bool operator==(const TArkPostEffectValue& _arg0_) const;
+	bool operator!=(const TArkPostEffectValue& _arg0_) const;
+	EArkPostEffectDataType GetType() const;
+#endif
+
+	static inline auto FTArkPostEffectValueOv0 = PreyFunction<void(TArkPostEffectValue* const _this, const TArkPostEffectValue& _rhs)>(0x1527AA0);
+	static inline auto FoperatorEq = PreyFunction<TArkPostEffectValue& (TArkPostEffectValue* const _this, const TArkPostEffectValue& _rhs)>(0x14DCF90);
+};
+#endif // !MOONCRASH

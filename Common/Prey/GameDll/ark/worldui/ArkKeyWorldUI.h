@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -71,4 +73,87 @@ public:
 	static inline auto FUseLockedMaterial = PreyFunction<bool(ArkKeyWorldUI const *const _this)>(0x139C710);
 	static inline auto FOnEnabledChanged = PreyFunction<void(ArkKeyWorldUI *const _this, bool _bForce)>(0x139D470);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
 
+struct ArkInteractionTestResult;
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+struct IEntity;
+struct IGameObject;
+struct IMaterial;
+struct IUIElement;
+struct SEntityEvent;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkKeyWorldUI
+// Header:  Prey/GameDll/ark/worldui/ArkKeyWorldUI.h
+class ArkKeyWorldUI : public ArkInteractiveScreen, public ArkUIMenuBase<ArkKeyWorldUI>
+{ // Size=560 (0x230)
+public:
+	bool m_bLocked;
+	unsigned m_door;
+	string m_interactMessage;
+	string m_powerOffDisplayName;
+	_smart_ptr<IMaterial> m_pLockedMaterial;
+	_smart_ptr<IMaterial> m_pUnlockedMaterial;
+	_smart_ptr<IMaterial> m_pPowerOffMaterial;
+	bool m_bStartsLocked;
+
+	ArkKeyWorldUI();
+	virtual ~ArkKeyWorldUI();
+	virtual bool Init(IGameObject* const _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual bool TestInteraction(const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result) const;
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void SetupStaticMaterial();
+	virtual void OnWorldUIInstanceGranted(IUIElement* _pUIInstance);
+	virtual void OnWorldUIInstanceRevoked(IUIElement* _pUIInstance);
+	void LinkToDoor(unsigned _doorId) { FLinkToDoor(this, _doorId); }
+	virtual bool SetLocked(bool _bLocked, bool _bForce);
+	virtual void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) = 0;
+	void OnSoundEvent(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSoundEvent(this, _pSender, _event, _args); }
+	void HandleBrokenChanged(bool _bBroken) { FHandleBrokenChanged(this, _bBroken); }
+	virtual void OnReset(bool _bEnteringGameMode);
+	virtual void LoadProperties();
+	virtual void LoadInstanceProperties();
+	bool CopyInstancePropertiesFromDoor() { return FCopyInstancePropertiesFromDoor(this); }
+	virtual bool UseLockedMaterial() const;
+	virtual void OnEnabledChanged(bool _bForce);
+	virtual void OnDisruptedChanged(bool _bDisrupted, bool _bWasForced);
+	virtual const char* GetInteractFunctionName() const = 0;
+
+	static inline auto FArkKeyWorldUIOv1 = PreyFunction<void(ArkKeyWorldUI* const _this)>(0x14A7030);
+	static inline auto FBitNotArkKeyWorldUI = PreyFunction<void(ArkKeyWorldUI* const _this)>(0x14A7160);
+	static inline auto FInit = PreyFunction<bool(ArkKeyWorldUI* const _this, IGameObject* const _pGameObject)>(0x14A7790);
+	static inline auto FPostInit = PreyFunction<void(ArkKeyWorldUI* const _this, IGameObject* _pGameObject)>(0x14A81C0);
+	static inline auto FFullSerialize = PreyFunction<void(ArkKeyWorldUI* const _this, TSerialize _ser)>(0x14A7680);
+	static inline auto FProcessEvent = PreyFunction<void(ArkKeyWorldUI* const _this, SEntityEvent& _event)>(0x14A8580);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x14A7ED0);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x14A8730);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x14A8130);
+	static inline auto FSetupStaticMaterial = PreyFunction<void(ArkKeyWorldUI* const _this)>(0x14A86B0);
+	static inline auto FOnWorldUIInstanceGranted = PreyFunction<void(ArkKeyWorldUI* const _this, IUIElement* _pUIInstance)>(0x14A80C0);
+	static inline auto FOnWorldUIInstanceRevoked = PreyFunction<void(ArkKeyWorldUI* const _this, IUIElement* _pUIInstance)>(0x14A0440);
+	static inline auto FLinkToDoor = PreyFunction<void(ArkKeyWorldUI* const _this, unsigned _doorId)>(0x14A77A0);
+	static inline auto FSetLocked = PreyFunction<bool(ArkKeyWorldUI* const _this, bool _bLocked, bool _bForce)>(0x14A85D0);
+	static inline auto FOnSoundEvent = PreyFunction<void(ArkKeyWorldUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14A0180);
+	static inline auto FHandleBrokenChanged = PreyFunction<void(ArkKeyWorldUI* const _this, bool _bBroken)>(0x14A7720);
+	static inline auto FOnReset = PreyFunction<void(ArkKeyWorldUI* const _this, bool _bEnteringGameMode)>(0x14A8080);
+	static inline auto FLoadProperties = PreyFunction<void(ArkKeyWorldUI* const _this)>(0x14A7980);
+	static inline auto FLoadInstanceProperties = PreyFunction<void(ArkKeyWorldUI* const _this)>(0x14A7800);
+	static inline auto FCopyInstancePropertiesFromDoor = PreyFunction<bool(ArkKeyWorldUI* const _this)>(0x14A74D0);
+	static inline auto FUseLockedMaterial = PreyFunction<bool(const ArkKeyWorldUI* const _this)>(0x14A7020);
+	static inline auto FOnEnabledChanged = PreyFunction<void(ArkKeyWorldUI* const _this, bool _bForce)>(0x14A7E60);
+	static inline auto FOnDisruptedChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bDisrupted, bool _bWasForced)>(0x14A7E40);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -189,4 +191,261 @@ public:
 	static inline auto FInit = PreyFunction<bool(ArkDialogVoices *const _this)>(0x1060D50);
 	static inline auto FFindOv1 = PreyFunction<ArkDialogVoice const *(ArkDialogVoices const *const _this, const uint64_t _id)>(0x1060AC0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkDialogVoice
+// Header:  Prey/Ark/ArkDialogVoice.h
+class ArkDialogVoice : public ArkReflectedObject
+{ // Size=80 (0x50)
+public:
+	// ArkDialogVoice::ArkIDProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkDialogVoice::ArkNameProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkDialogVoice::ArkDescriptionProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkDescriptionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDescriptionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkDialogVoice::ArkAbstractProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkAbstractProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAbstractProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkAbstractProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkAbstractProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkDialogVoice::ArkFaceFXProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkFaceFXProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkFaceFXProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkFaceFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7BE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkFaceFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x10827A0);
+	};
+
+	// ArkDialogVoice::ArkAudioProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkAudioProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAudioProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkAudioProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10827B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkAudioProperty* const _this, ArkReflectedObject* const _pObject)>(0x10827C0);
+	};
+
+	// ArkDialogVoice::ArkSexProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkSexProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkSexProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkSexProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkSexProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkDialogVoice::ArkEffectProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkEffectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEffectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A04B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkDialogVoice::ArkVoicesProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkVoicesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkVoicesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoice::ArkVoicesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10827D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoice::ArkVoicesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082880);
+		static inline auto FIsArray = PreyFunction<bool(const ArkDialogVoice::ArkVoicesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkDialogVoice::ArkVoicesProperty* const _this, ArkReflectedObject* _pObject)>(0x10828A0);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkDialogVoice::ArkIDProperty>(0x2D22AE0);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkDialogVoice::ArkNameProperty>(0x2D22B00);
+	string m_Name;
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkDialogVoice::ArkDescriptionProperty>(0x2D22B20);
+	string m_Description;
+	static inline auto s_ArkAbstractProperty = PreyGlobal<ArkDialogVoice::ArkAbstractProperty>(0x2D22B40);
+	bool m_Abstract;
+	static inline auto s_ArkFaceFXProperty = PreyGlobal<ArkDialogVoice::ArkFaceFXProperty>(0x2D22B60);
+	bool m_FaceFX;
+	static inline auto s_ArkAudioProperty = PreyGlobal<ArkDialogVoice::ArkAudioProperty>(0x2D22B80);
+	bool m_Audio;
+	static inline auto s_ArkSexProperty = PreyGlobal<ArkDialogVoice::ArkSexProperty>(0x2D22BA0);
+	string m_Sex;
+	static inline auto s_ArkEffectProperty = PreyGlobal<ArkDialogVoice::ArkEffectProperty>(0x2D22BC0);
+	string m_Effect;
+	static inline auto s_ArkVoicesProperty = PreyGlobal<ArkDialogVoice::ArkVoicesProperty>(0x2D22BE0);
+	std::vector<ArkDialogVoice> m_Voices;
+	const ArkDialogVoice* m_pParent;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkDialogVoice();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetDescription(string _arg0_);
+	const string& GetDescription() const;
+	void SetAbstract(bool _arg0_);
+	const bool& GetAbstract() const;
+	void SetFaceFX(bool _arg0_);
+	const bool& GetFaceFX() const;
+	void SetAudio(bool _arg0_);
+	const bool& GetAudio() const;
+	void SetSex(string _arg0_);
+	const string& GetSex() const;
+	void SetEffect(string _arg0_);
+	const string& GetEffect() const;
+	std::vector<ArkDialogVoice>& GetVoices();
+	const std::vector<ArkDialogVoice>& GetVoices() const;
+	const ArkDialogVoice* GetParent() const;
+	void SetParent(const ArkDialogVoice* const _arg0_);
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1083820);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1083A30);
+};
+
+// ArkDialogVoices
+// Header:  Prey/Ark/ArkDialogVoice.h
+class ArkDialogVoices : public ArkReflectedLibrary
+{ // Size=96 (0x60)
+public:
+	// ArkDialogVoices::ArkVoicesProperty
+	// Header:  Prey/Ark/ArkDialogVoice.h
+	class ArkVoicesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		ArkVoicesProperty();
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+		static inline auto FArkVoicesPropertyOv2 = PreyFunction<void(ArkDialogVoices::ArkVoicesProperty* const _this)>(0x10832B0);
+		static inline auto FSetValue = PreyFunction<void(const ArkDialogVoices::ArkVoicesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1082900);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDialogVoices::ArkVoicesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10829C0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkDialogVoices::ArkVoicesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkDialogVoices::ArkVoicesProperty* const _this, ArkReflectedObject* _pObject)>(0x1082A00);
+	};
+
+	static inline auto s_ArkVoicesProperty = PreyGlobal<ArkDialogVoices::ArkVoicesProperty>(0x2D22C00);
+	std::vector<ArkDialogVoice> m_Voices;
+	std::unordered_map<uint64_t, ArkDialogVoice*> m_voiceMap;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+	const ArkDialogVoice* Find(const uint64_t _id) const { return FFindOv1(this, _id); }
+
+#if 0
+	std::vector<ArkDialogVoice>& GetVoices();
+	const std::vector<ArkDialogVoice>& GetVoices() const;
+	const ArkDialogVoice* Find(const string& _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1083880);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1083AD0);
+	static inline auto FInit = PreyFunction<bool(ArkDialogVoices* const _this)>(0x1083BC0);
+	static inline auto FFindOv1 = PreyFunction<const ArkDialogVoice* (const ArkDialogVoices* const _this, const uint64_t _id)>(0x1083930);
+};
+#endif // !MOONCRASH

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -66,4 +68,47 @@ public:
 	static inline auto FGetBeamCollisionPoint = PreyFunction<const Vec3& (const ArkOperatorLaserHelper* const _this)>(0x10BD5B0);
 	static inline auto FDoMilitaryOperatorLaserDamage = PreyFunction<void(ArkOperatorLaserHelper* const _this, ArkNpc& _npc, const float _frameTime, const EventPhysCollision& _collision)>(0x1280F70);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/npc/ability/arkoperatorlaserhelper.h>
 
+class ArkNpc;
+
+// ArkOperatorLaserHelper
+// Header:  Prey/GameDll/ark/ArkOperatorLaserHelper.h
+class ArkOperatorLaserHelper : public ArkLaserHelper
+{ // Size=632 (0x278)
+public:
+	enum class Stage
+	{
+		Off = 0,
+		Charging = 1,
+		On = 2,
+	};
+
+	float m_chargeTimer;
+	ArkOperatorLaserHelper::Stage m_stage;
+
+	ArkOperatorLaserHelper();
+	~ArkOperatorLaserHelper();
+	void Initialize(ArkNpc& _npc, float _laserDamagePerSecond) { FInitialize(this, _npc, _laserDamagePerSecond); }
+	void StartChargingLaser(ArkNpc& _npc, float _chargeDuration) { FStartChargingLaser(this, _npc, _chargeDuration); }
+	void TurnOffLaser(ArkNpc& _npc) { FTurnOffLaser(this, _npc); }
+	void UpdateLaser(ArkNpc& _npc, float _elapsedTime) { FUpdateLaser(this, _npc, _elapsedTime); }
+	QuatT GetLaserAttachmentTM(const ArkNpc& _npc) const { alignas(QuatT) std::byte _return_buf_[sizeof(QuatT)]; return *FGetLaserAttachmentTM(this, reinterpret_cast<QuatT*>(_return_buf_), _npc); }
+
+#if 0
+	bool IsLaserCharging() const;
+	void TurnOnLaser(ArkNpc& _arg0_);
+#endif
+
+	static inline auto FArkOperatorLaserHelperOv1 = PreyFunction<void(ArkOperatorLaserHelper* const _this)>(0x13235C0);
+	static inline auto FBitNotArkOperatorLaserHelper = PreyFunction<void(ArkOperatorLaserHelper* const _this)>(0x13237A0);
+	static inline auto FInitialize = PreyFunction<void(ArkOperatorLaserHelper* const _this, ArkNpc& _npc, float _laserDamagePerSecond)>(0x1323EB0);
+	static inline auto FStartChargingLaser = PreyFunction<void(ArkOperatorLaserHelper* const _this, ArkNpc& _npc, float _chargeDuration)>(0x1324720);
+	static inline auto FTurnOffLaser = PreyFunction<void(ArkOperatorLaserHelper* const _this, ArkNpc& _npc)>(0x1324780);
+	static inline auto FUpdateLaser = PreyFunction<void(ArkOperatorLaserHelper* const _this, ArkNpc& _npc, float _elapsedTime)>(0x1324DA0);
+	static inline auto FGetLaserAttachmentTM = PreyFunction<QuatT*(const ArkOperatorLaserHelper* const _this, QuatT* _return_value_, const ArkNpc& _npc)>(0x1323BD0);
+};
+#endif // !MOONCRASH

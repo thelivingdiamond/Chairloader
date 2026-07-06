@@ -17,11 +17,19 @@ public:
     virtual void Reset();
     virtual void GetMemoryUsage(ICrySizer *s) const;
 
+#ifndef MOONCRASH
     static inline auto FBitNotCAutoRegFlowNodeBase = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0x2B1BF0);
     static inline auto FAddRef = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FRelease = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FReset = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FGetMemoryUsage = PreyFunction<void(CAutoRegFlowNodeBase const *const _this, ICrySizer *s)>(0x2B0D00);
+#else
+	static inline auto FBitNotCAutoRegFlowNodeBase = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x2C4CD0);
+	static inline auto FAddRef = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FRelease = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FReset = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CAutoRegFlowNodeBase* const _this, ICrySizer* s)>(0x2BF8C0);
+#endif
 };
 
 template<class T>

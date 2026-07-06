@@ -204,7 +204,11 @@ public:
 private:
 	typedef CNameTableR::SNameEntryR SNameEntry;
 	//static CNameTableR* ms_table;
+#ifndef MOONCRASH
 	static inline auto ms_table = PreyGlobal<CNameTableR*>(0x2B24A30);
+#else
+	static inline auto ms_table = PreyGlobal<CNameTableR*>(0x2C93C90);
+#endif
 
 	static CNameTableR* GetNameTable()
 	{

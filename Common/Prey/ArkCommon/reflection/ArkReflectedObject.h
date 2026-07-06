@@ -13,7 +13,11 @@ public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x2A07F0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x2A0B00);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x2B8CA0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x2B8FB0);
+#endif
 };
-

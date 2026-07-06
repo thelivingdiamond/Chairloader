@@ -13,6 +13,9 @@ struct ArkNoiseAttentionParams // Id=8014DE8 Size=256
 	
 	void LoadParams() { FLoadParams(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FLoadParams = PreyFunction<void(ArkNoiseAttentionParams *const _this)>(0x1259690);
+#else
+	static inline auto FLoadParams = PreyFunction<void(ArkNoiseAttentionParams* const _this)>(0x12FD480);
+#endif
 };
-

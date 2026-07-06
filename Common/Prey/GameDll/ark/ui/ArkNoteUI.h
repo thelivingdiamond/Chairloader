@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -73,4 +75,94 @@ public:
 	static inline auto FCleanupClose = PreyFunction<void(ArkNoteUI *const _this)>(0x1606220);
 	static inline auto FGetUIElement = PreyFunction<IUIElement *(ArkNoteUI const *const _this)>(0x16068B0);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#include <Prey/GameDll/ark/ui/ArkButtonPromptCollection.h>
+#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
+class CCryName;
+enum EControlScheme;
+struct IUIElement;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkNoteUI
+// Header:  Prey/GameDll/ark/ui/ArkNoteUI.h
+class ArkNoteUI
+	: public IUIControlSchemeListener
+	, public ArkUIMenuBase<ArkNoteUI>
+	, public IUIModule
+	, public IUIGameEventSystem
+{ // Size=912 (0x390)
+public:
+	enum class EArkNoteUIState
+	{
+		closed = 0,
+		open = 1,
+		closing = 2,
+		unload = 3,
+	};
+
+	ArkNoteUI::EArkNoteUIState m_uiState;
+	int m_inputHandle;
+	int m_timeScaleHandle;
+	Vec2 m_screenRotate;
+	ArkButtonPromptCollection m_inputPrompts;
+
+	ArkNoteUI();
+	virtual ~ArkNoteUI();
+	virtual const char* GetTypeName() const;
+	virtual void InitEventSystem();
+	virtual void UnloadEventSystem();
+	virtual void OnUpdate(float _fDelta);
+	void Open(uint64_t _noteId) { FOpen(this, _noteId); }
+	virtual void Close(bool _bImmediate, bool _bFromReset);
+	bool IsOpen() const { return FIsOpen(this); }
+	bool IsClosed() const { return FIsClosed(this); }
+	virtual void Reset();
+	virtual void ProcessInput(const CCryName& _actionId, const int _activationMode, const float _fValue);
+	virtual void UpdateModule(float _frameDelta);
+	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+	void OnRequestClose(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnRequestClose(this, _pSender, _event, _args); }
+	void OnCloseCompleted(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnCloseCompleted(this, _pSender, _event, _args); }
+	void OnPromptSelect(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPromptSelect(this, _pSender, _event, _args); }
+	void OnPressCancel() { FOnPressCancel(this); }
+	static bool IsNoteUIOpen() { return FIsNoteUIOpen(); }
+	void Enable(bool _bEnable) { FEnable(this, _bEnable); }
+	virtual void CleanupClose();
+	virtual void RequestClose();
+	virtual IUIElement* GetUIElement() const;
+
+#if 0
+	static const char* GetTypeNameS();
+#endif
+
+	static inline auto FArkNoteUIOv1 = PreyFunction<void(ArkNoteUI* const _this)>(0x1726ED0);
+	static inline auto FBitNotArkNoteUI = PreyFunction<void(ArkNoteUI* const _this)>(0x1727030);
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1727820);
+	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1727850);
+	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x17282C0);
+	static inline auto FOnUpdate = PreyFunction<void(IUIGameEventSystem* const _this, float _fDelta)>(0x1727B00);
+	static inline auto FOpen = PreyFunction<void(ArkNoteUI* const _this, uint64_t _noteId)>(0x1727B50);
+	static inline auto FClose = PreyFunction<void(ArkNoteUI* const _this, bool _bImmediate, bool _bFromReset)>(0x17274C0);
+	static inline auto FIsOpen = PreyFunction<bool(const ArkNoteUI* const _this)>(0x1727900);
+	static inline auto FIsClosed = PreyFunction<bool(const ArkNoteUI* const _this)>(0x170F3E0);
+	static inline auto FReset = PreyFunction<void(IUIModule* const _this)>(0x17282A0);
+	static inline auto FProcessInput = PreyFunction<void(ArkNoteUI* const _this, const CCryName& _actionId, const int _activationMode, const float _fValue)>(0x1727FB0);
+	static inline auto FUpdateModule = PreyFunction<void(IUIModule* const _this, float _frameDelta)>(0x17282F0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkNoteUI* const _this, const EControlScheme _controlScheme)>(0x1727920);
+	static inline auto FOnRequestClose = PreyFunction<void(ArkNoteUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x5A35F0);
+	static inline auto FOnCloseCompleted = PreyFunction<void(ArkNoteUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1727910);
+	static inline auto FOnPromptSelect = PreyFunction<void(ArkNoteUI* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1727990);
+	static inline auto FOnPressCancel = PreyFunction<void(ArkNoteUI* const _this)>(0x1728290);
+	static inline auto FIsNoteUIOpen = PreyFunction<bool()>(0x1727880);
+	static inline auto FEnable = PreyFunction<void(ArkNoteUI* const _this, bool _bEnable)>(0x1727660);
+	static inline auto FCleanupClose = PreyFunction<void(ArkNoteUI* const _this)>(0x1727370);
+	static inline auto FRequestClose = PreyFunction<void(ArkNoteUI* const _this)>(0x1728290);
+	static inline auto FGetUIElement = PreyFunction<IUIElement* (const ArkNoteUI* const _this)>(0x1727830);
+};
+#endif // !MOONCRASH

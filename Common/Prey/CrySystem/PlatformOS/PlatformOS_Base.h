@@ -36,10 +36,20 @@ struct CPlatformOS_Base : public IPlatformOS
 #if 0
 	CPlatformOS_Base();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FUsePlatformSavingAPI = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xE78440);
 	static inline auto FGetSystemLanguageID = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this)>(0xEEBB60);
 	static inline auto FGetNumSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0xE76B90);
 	static inline auto FGetSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0x1A4D090);
 	static inline auto FSwapConfirmCancel = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xDD23F0);
+#else
+	static inline auto FPostMainThreadTask = PreyFunction<void(CPlatformOS_Base* const _this, IPlatformOS::IServiceTask* const _task)>(0xE93F20);
+	static inline auto FUsePlatformSavingAPI = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xE94940);
+	static inline auto FGetLanguageIDFromName = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this, const char* languageName)>(0xE930C0);
+	static inline auto FGetSystemLanguageID = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this)>(0x899030);
+	static inline auto FGetNumSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0xE93300);
+	static inline auto FGetSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0x528760);
+	static inline auto FSwapConfirmCancel = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0x13B0900);
+#endif
 };

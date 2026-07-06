@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #include <Prey/RenderDll/XRenderD3D9/DeviceInfo.h>
 
 void DeviceInfo::SnapSettings()

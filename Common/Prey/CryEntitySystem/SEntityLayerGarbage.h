@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -12,4 +13,3 @@ struct SEntityLayerGarbage // Id=800212C Size=24
 	string layerName;
 	int nAge;
 };
-

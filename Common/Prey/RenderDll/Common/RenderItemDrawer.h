@@ -38,8 +38,15 @@ public:
 	void JobifyDrawSubmission(bool bForceImmediateExecution) { FJobifyDrawSubmission(this, bForceImmediateExecution); }
 	void WaitForDrawSubmission() { FWaitForDrawSubmission(this); }
 
+#ifndef MOONCRASH
 	static inline auto FDrawCompiledRenderItems = PreyFunction<void(const CRenderItemDrawer* const _this, const SGraphicsPipelinePassContext & passContext)>(0xEACFF0);
 	static inline auto FInitDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0x120E390);
 	static inline auto FJobifyDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this, bool bForceImmediateExecution)>(0xEAD2C0);
 	static inline auto FWaitForDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0xEAD7D0);
+#else
+	static inline auto FDrawCompiledRenderItems = PreyFunction<void(const CRenderItemDrawer* const _this, const SGraphicsPipelinePassContext& passContext)>(0xEC94D0);
+	static inline auto FInitDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0x129D270);
+	static inline auto FJobifyDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this, bool bForceImmediateExecution)>(0xEC97A0);
+	static inline auto FWaitForDrawSubmission = PreyFunction<void(CRenderItemDrawer* const _this)>(0xEC9CB0);
+#endif
 };

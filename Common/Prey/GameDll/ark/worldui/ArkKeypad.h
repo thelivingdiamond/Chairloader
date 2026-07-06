@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -87,4 +89,108 @@ public:
 	static inline auto FIsProcessing = PreyFunction<bool(ArkKeypad const *const _this)>(0x139B400);
 	static inline auto FSetState = PreyFunction<void(ArkKeypad *const _this, ArkKeypad::EArkKeypadState _state, bool _bForce)>(0x139C400);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/worldui/ArkKeyWorldUI.h>
+#include <_unknown/IArkDoomClockListener.h>
 
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+enum class EArkInteractiveScreenType;
+class ICrySizer;
+struct IEntity;
+struct IUIElement;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkKeypad
+// Header:  Prey/GameDll/ark/worldui/ArkKeypad.h
+class ArkKeypad : public ArkKeyWorldUI, public IArkDoomClockListener
+{ // Size=632 (0x278)
+public:
+	enum class EArkKeypadState
+	{
+		Invalid = 0,
+		Processing = 1,
+		Failure = 2,
+		Locked = 3,
+		Unlocked = 4,
+	};
+
+	ArkKeypad::EArkKeypadState m_state;
+	ArkKeypad::EArkKeypadState m_pendingState;
+	ArkTimeRemaining m_timer;
+	string m_currentCode;
+	bool m_bHacked;
+	float m_validationDelay;
+	float m_failDelay;
+	float m_successDelay;
+	int m_codeLength;
+	int m_baseHackingLevel;
+	int m_hackingLevel;
+	uint64_t m_keycode;
+
+	ArkKeypad();
+	virtual ~ArkKeypad();
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void GetMemoryUsage(ICrySizer* _s) const;
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual void OnStartLookingAt(unsigned _targetId);
+	virtual void OnStopLookingAt(unsigned _targetId);
+	virtual void OnDoomClockEnabled(bool _bEnabled);
+	virtual void OnDoomClockPreIncrement(int _level);
+	virtual void OnDoomClockIncrement(int _level);
+	void OnHackingFinished(bool _bSuccess) { FOnHackingFinished(this, _bSuccess); }
+	bool ButtonPressed(const string& _buttonName) { return FButtonPressed(this, _buttonName); }
+	virtual EArkInteractiveScreenType GetInteractiveScreenType() const;
+	virtual bool OnInteraction(EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity);
+	virtual void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	virtual void OnWorldUIInstanceGranted(IUIElement* _pUIInstance);
+	virtual bool SetLocked(bool _bLocked, bool _bForce);
+	void ReinitializeUI() { FReinitializeUI(this); }
+	virtual void LoadProperties();
+	virtual void LoadInstanceProperties();
+	virtual const char* GetInteractFunctionName() const;
+	virtual bool OnWorldUIBack();
+	virtual bool IsProcessing() const;
+	void SetState(ArkKeypad::EArkKeypadState _state, bool _bForce) { FSetState(this, _state, _bForce); }
+
+#if 0
+	int GetHackingLevel() const;
+	bool Backspace();
+#endif
+
+	static inline auto FArkKeypadOv1 = PreyFunction<void(ArkKeypad* const _this)>(0x14A51D0);
+	static inline auto FUpdate = PreyFunction<void(ArkKeypad* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x14A6FC0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkKeypad* const _this, ICrySizer* _s)>(0x14A5CA0);
+	static inline auto FProcessEvent = PreyFunction<void(ArkKeypad* const _this, SEntityEvent& _event)>(0x14A6810);
+	static inline auto FFullSerialize = PreyFunction<void(ArkKeypad* const _this, TSerialize _ser)>(0x14A5A30);
+	static inline auto FPostSerialize = PreyFunction<void(ArkKeypad* const _this)>(0x14A67B0);
+	static inline auto FOnStartLookingAt = PreyFunction<void(IArkPlayerInteractionListener* const _this, unsigned _targetId)>(0x14A6380);
+	static inline auto FOnStopLookingAt = PreyFunction<void(IArkPlayerInteractionListener* const _this, unsigned _targetId)>(0x14A6650);
+	static inline auto FOnDoomClockEnabled = PreyFunction<void(IArkDoomClockListener* const _this, bool _bEnabled)>(0x1333E90);
+	static inline auto FOnDoomClockPreIncrement = PreyFunction<void(IArkDoomClockListener* const _this, int _level)>(0x1333E90);
+	static inline auto FOnDoomClockIncrement = PreyFunction<void(IArkDoomClockListener* const _this, int _level)>(0x14A6220);
+	static inline auto FOnHackingFinished = PreyFunction<void(ArkKeypad* const _this, bool _bSuccess)>(0x14A6240);
+	static inline auto FButtonPressed = PreyFunction<bool(ArkKeypad* const _this, const string& _buttonName)>(0x14A59E0);
+	static inline auto FGetInteractiveScreenType = PreyFunction<EArkInteractiveScreenType(const ArkKeypad* const _this)>(0x4FD7F0);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x14A62D0);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkKeypad* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14A6160);
+	static inline auto FOnWorldUIInstanceGranted = PreyFunction<void(ArkKeypad* const _this, IUIElement* _pUIInstance)>(0x14A6790);
+	static inline auto FSetLocked = PreyFunction<bool(ArkKeypad* const _this, bool _bLocked, bool _bForce)>(0x14A6CB0);
+	static inline auto FReinitializeUI = PreyFunction<void(ArkKeypad* const _this)>(0x14A6820);
+	static inline auto FLoadProperties = PreyFunction<void(ArkKeypad* const _this)>(0x14A5E30);
+	static inline auto FLoadInstanceProperties = PreyFunction<void(ArkKeypad* const _this)>(0x14A5CD0);
+	static inline auto FGetInteractFunctionName = PreyFunction<const char* (const ArkKeypad* const _this)>(0x14A5C90);
+	static inline auto FOnWorldUIBack = PreyFunction<bool(ArkKeypad* const _this)>(0x14A66A0);
+	static inline auto FIsProcessing = PreyFunction<bool(const ArkKeypad* const _this)>(0x14A5CC0);
+	static inline auto FSetState = PreyFunction<void(ArkKeypad* const _this, ArkKeypad::EArkKeypadState _state, bool _bForce)>(0x14A6D10);
+};
+#endif // !MOONCRASH

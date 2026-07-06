@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header test file for path Prey/GameDll/ark/player/trauma/
 #include "ArkStatusGoodDrunk.h"
 static_assert(sizeof(ArkStatusGoodDrunk) == 304);
@@ -37,4 +39,44 @@ static_assert(sizeof(ArkTraumaRadiation) == 296);
 
 #include "ArkTraumaSuitIntegrity.h"
 static_assert(sizeof(ArkTraumaSuitIntegrity) == 304);
+#else // MOONCRASH
+// Header test file for path Prey/GameDll/ark/player/trauma/
+#include "ArkStatusGoodDrunk.h"
+static_assert(sizeof(ArkStatusGoodDrunk) == 336);
 
+#include "ArkStatusWellFed.h"
+static_assert(sizeof(ArkStatusWellFed) == 328);
+
+#include "ArkTraumaBase.h"
+static_assert(sizeof(ArkTraumaBase) == 328);
+
+#include "ArkTraumaBleeding.h"
+static_assert(sizeof(ArkTraumaBleeding) == 632);
+
+#include "ArkTraumaBurns.h"
+static_assert(sizeof(ArkTraumaBurns) == 544);
+
+#include "ArkTraumaDisruption.h"
+static_assert(sizeof(ArkTraumaDisruption) == 328);
+
+#include "ArkTraumaDrunk.h"
+static_assert(sizeof(ArkTraumaDrunk) == 336);
+
+#include "ArkTraumaFear.h"
+static_assert(sizeof(ArkTraumaFear) == 344);
+
+#include "ArkTraumaGlooed.h"
+static_assert(sizeof(ArkTraumaGlooed) == 464);
+
+#include "ArkTraumaHobbled.h"
+static_assert(sizeof(ArkTraumaHobbled) == 344);
+
+#include "ArkTraumaPsychoshock.h"
+static_assert(sizeof(ArkTraumaPsychoshock) == 328);
+
+#include "ArkTraumaRadiation.h"
+static_assert(sizeof(ArkTraumaRadiation) == 328);
+
+#include "ArkTraumaSuitIntegrity.h"
+static_assert(sizeof(ArkTraumaSuitIntegrity) == 344);
+#endif // !MOONCRASH

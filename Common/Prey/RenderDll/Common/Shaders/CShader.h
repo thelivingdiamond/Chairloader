@@ -229,6 +229,7 @@ public:
 	int m_nFrameForceReload;
 	char m_HWPath[128];
 	CShader* m_pCurShader;
+#ifndef MOONCRASH
 	static inline auto s_pContainer = PreyGlobal<SResourceContainer*>(0x2BA7370);
 	std::vector<string> m_ShaderNames;
 	static inline auto s_cNameHEAD = PreyGlobal<CCryNameTSCRC>(0x2BA7428);
@@ -254,6 +255,33 @@ public:
 	static inline auto s_ShaderOcclTest = PreyGlobal<CShader*>(0x2BA7410);
 	static inline auto s_ShaderClouds = PreyGlobal<CShader*>(0x2BA7418);
 	static inline auto m_shArkPostEffects = PreyGlobal<CShader*>(0x2BA7420);
+#else
+	static inline auto s_pContainer = PreyGlobal<SResourceContainer*>(0x2D165D0);
+	std::vector<string> m_ShaderNames;
+	static inline auto s_cNameHEAD = PreyGlobal<CCryNameTSCRC>(0x2D16688);
+	static inline auto s_DefaultShader = PreyGlobal<CShader*>(0x2D165D8);
+	static inline auto s_shPostEffects = PreyGlobal<CShader*>(0x2D165E0);
+	static inline auto s_shPostMotionBlur = PreyGlobal<CShader*>(0x2D165E8);
+	static inline auto s_shPostSunShafts = PreyGlobal<CShader*>(0x2D165F0);
+	static inline auto s_shDeferredShading = PreyGlobal<CShader*>(0x2D165F8);
+	static inline auto s_ShaderDeferredCaustics = PreyGlobal<CShader*>(0x2D16600);
+	static inline auto s_ShaderFPEmu = PreyGlobal<CShader*>(0x2D16608);
+	static inline auto s_ShaderScaleForm = PreyGlobal<CShader*>(0x2D16610);
+	static inline auto s_ShaderStars = PreyGlobal<CShader*>(0x2D16618);
+	static inline auto s_ShaderShadowBlur = PreyGlobal<CShader*>(0x2D16620);
+	static inline auto s_ShaderShadowMaskGen = PreyGlobal<CShader*>(0x2D16628);
+	static inline auto s_shHDRPostProcess = PreyGlobal<CShader*>(0x2D16630);
+	static inline auto s_shPostEffectsGame = PreyGlobal<CShader*>(0x2D16638);
+	static inline auto s_shPostAA = PreyGlobal<CShader*>(0x2D16640);
+	static inline auto s_ShaderDebug = PreyGlobal<CShader*>(0x2D16648);
+	static inline auto s_ShaderLensOptics = PreyGlobal<CShader*>(0x2D16650);
+	static inline auto s_ShaderSoftOcclusionQuery = PreyGlobal<CShader*>(0x2D16658);
+	static inline auto s_ShaderLightStyles = PreyGlobal<CShader*>(0x2D16660);
+	static inline auto s_ShaderCommon = PreyGlobal<CShader*>(0x2D16668);
+	static inline auto s_ShaderOcclTest = PreyGlobal<CShader*>(0x2D16670);
+	static inline auto s_ShaderClouds = PreyGlobal<CShader*>(0x2D16678);
+	static inline auto m_shArkPostEffects = PreyGlobal<CShader*>(0x2D16680);
+#endif
 	SInputShaderResources const* m_pCurInputResources;
 	SShaderGen* m_pGlobalExt;
 	SShaderLevelPolicies* m_pLevelsPolicies;
@@ -438,6 +466,7 @@ public:
 	static float EvalWaveForm2(SWaveForm* arg0, float arg1);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xA13080);
 	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x103C5E0);
 	static inline auto FmfNewShader = PreyFunction<CShader* (CShaderMan* const _this, const char* szName)>(0x1020900);
@@ -508,6 +537,78 @@ public:
 	static inline auto FLoadShaderStartupCache = PreyFunction<bool(CShaderMan* const _this)>(0x101A4B0);
 	static inline auto FUnloadShaderStartupCache = PreyFunction<void(CShaderMan* const _this)>(0x101AED0);
 	static inline auto FBitNotCShaderMan = PreyFunction<void(CShaderMan* const _this)>(0xFB1AD0);
+#else
+	static inline auto FOnSystemEvent = PreyFunction<void(CShaderMan* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x1333E90);
+	static inline auto FmfReadTexSequenceOv1 = PreyFunction<STexAnim* (CShaderMan* const _this, const char* na, int Flags, bool bFindOnly)>(0x1058B50);
+	static inline auto FmfNewShader = PreyFunction<CShader* (CShaderMan* const _this, const char* szName)>(0x103CB10);
+	static inline auto FmfCompileLevelsList = PreyFunction<void(CShaderMan* const _this, std::vector<string>& List, char* scr)>(0x1053850);
+	static inline auto FmfCompileShaderLevelPolicies = PreyFunction<bool(CShaderMan* const _this, SShaderLevelPolicies* pPL, char* scr)>(0x1054480);
+	static inline auto FmfCompileShaderGen = PreyFunction<bool(CShaderMan* const _this, SShaderGen* shg, char* scr)>(0x1053B20);
+	static inline auto FmfCompileShaderGenProperty = PreyFunction<SShaderGenBit* (CShaderMan* const _this, char* scr)>(0x1053C20);
+	static inline auto FmfSetResourceTexState = PreyFunction<void(CShaderMan* const _this, SEfResTexture* Tex)>(0x10595D0);
+	static inline auto FmfTryToLoadTexture = PreyFunction<CTexture* (CShaderMan* const _this, const char* nameTex, STexSamplerRT* smp, int Flags, bool bFindOnly)>(0x1059700);
+	static inline auto FmfLoadResourceTextureOv2 = PreyFunction<CTexture* (CShaderMan* const _this, const char* nameTex, int Flags, SEfResTexture* Tex)>(0x1058990);
+	static inline auto FmfLoadResourceTextureOv0 = PreyFunction<bool(CShaderMan* const _this, EEfResTextures Id, CShaderResources& RS, unsigned CustomFlags, bool bReplaceMeOnFail)>(0x1058A40);
+	static inline auto FmfCheckTemplateTexName = PreyFunction<CTexture* (CShaderMan* const _this, const char* mapname, ETEX_Type eTT)>(0x10580A0);
+	static inline auto FmfRefreshResources = PreyFunction<void(CShaderMan* const _this, CShaderResources* Res, bool _bDisableStreaming, const IRenderer::SLoadShaderItemArgs* pArgs)>(0x1059180);
+	static inline auto FmfGetShaderGenInfo = PreyFunction<SShaderGenComb* (CShaderMan* const _this, const char* nmFX)>(0x1031200);
+	static inline auto FmfReloadShaderIncludes = PreyFunction<bool(CShaderMan* const _this, const char* szPath, int nFlags)>(0x1056F60);
+	static inline auto FmfReloadAllShaders = PreyFunction<bool(CShaderMan* const _this, int nFlags, unsigned nFlagsHW)>(0x10568C0);
+	static inline auto FmfReloadFile = PreyFunction<bool(CShaderMan* const _this, const char* szPath, const char* szName, int nFlags)>(0x1056C00);
+	static inline auto FParseShaderProfiles = PreyFunction<void(CShaderMan* const _this)>(0x1036870);
+	static inline auto FmfParseParamComp = PreyFunction<bool(CShaderMan* const _this, int comp, SCGParam* pCurParam, const char* szSemantic, char* params, const char* szAnnotations, SShaderFXParams& FXParams, CShader* ef, unsigned nParamFlags, EHWShaderClass eSHClass, bool bExpressionOperand)>(0x1034D90);
+	static inline auto FmfParseCGParam = PreyFunction<bool(CShaderMan* const _this, char* scr, const char* szAnnotations, SShaderFXParams& FXParams, CShader* ef, std::vector<SCGParam>* pParams, int nComps, unsigned nParamFlags, EHWShaderClass eSHClass, bool bExpressionOperand)>(0x1033D70);
+	static inline auto FmfParseFXParameter = PreyFunction<bool(CShaderMan* const _this, SShaderFXParams& FXParams, SFXParam* pr, const char* ParamName, CShader* ef, bool bInstParam, int nParams, std::vector<SCGParam>* pParams, EHWShaderClass eSHClass, bool bExpressionOperand)>(0x1034130);
+	static inline auto FmfParseFXTexture = PreyFunction<bool(CShaderMan* const _this, SShaderFXParams& FXParams, SFXTexture* pr, const char* ParamName, CShader* ef, int nParams, std::vector<SCGTexture>* pParams, EHWShaderClass eSHClass)>(0x1034BE0);
+	static inline auto FmfParseFXSamplerOv1 = PreyFunction<bool(CShaderMan* const _this, SShaderFXParams& FXParams, SFXSampler* pr, const char* ParamName, CShader* ef, int nParams, std::vector<SCGSampler>* pParams, EHWShaderClass eSHClass)>(0x1034AA0);
+	static inline auto FmfCheckObjectDependParams = PreyFunction<void(CShaderMan* const _this, std::vector<SCGParam>& PNoObj, std::vector<SCGParam>& PObj, EHWShaderClass eSH, CShader* pFXShader)>(0xF374F0);
+	static inline auto FmfBeginFrame = PreyFunction<void(CShaderMan* const _this)>(0x1333E90);
+	static inline auto FmfGetShaderListPath = PreyFunction<void(CShaderMan* const _this, CryStackStringT<char,512>& nameOut, int nType)>(0x10313B0);
+	static inline auto FCShaderManOv2 = PreyFunction<void(CShaderMan* const _this)>(0xFCD300);
+	static inline auto FShutDown = PreyFunction<void(CShaderMan* const _this)>(0x1036C20);
+	static inline auto FmfCreateShaderGenInfo = PreyFunction<SShaderGen* (CShaderMan* const _this, const char* szName, bool bRuntime)>(0x10547A0);
+	static inline auto FmfRemapShaderGenInfoBits = PreyFunction<void(CShaderMan* const _this, const char* szName, SShaderGen* pShGen)>(0x10551C0);
+	static inline auto FmfGetRemapedShaderMaskGen = PreyFunction<uint64_t(CShaderMan* const _this, const char* szName, uint64_t nMaskGen, bool bFixup)>(0x1054A70);
+	static inline auto FmfUsesGlobalFlags = PreyFunction<bool(CShaderMan* const _this, const char* szShaderName)>(0x1055720);
+	static inline auto FmfGetShaderBitNamesFromGlobalMaskGen = PreyFunction<const char* (CShaderMan* const _this, uint64_t nMaskGen)>(0x1054D80);
+	static inline auto FmfGetShaderGlobalMaskGenFromString = PreyFunction<uint64_t(CShaderMan* const _this, const char* szShaderGen)>(0x1054FB0);
+	static inline auto FmfInitGlobal = PreyFunction<void(CShaderMan* const _this)>(0x103BA40);
+	static inline auto FmfInitLevelPolicies = PreyFunction<void(CShaderMan* const _this)>(0x103C150);
+	static inline auto FmfInitLookups = PreyFunction<void(CShaderMan* const _this)>(0x103C3A0);
+	static inline auto FmfInitCommonGlobalFlags = PreyFunction<void(CShaderMan* const _this)>(0x103A3B0);
+	static inline auto FmfInitCommonGlobalFlagsLegacyFix = PreyFunction<void(CShaderMan* const _this)>(0x103A970);
+	static inline auto FmfRemapCommonGlobalFlagsWithLegacy = PreyFunction<bool(CShaderMan* const _this)>(0x103D020);
+	static inline auto FmfCreateCommonGlobalFlags = PreyFunction<void(CShaderMan* const _this, const char* szName)>(0x1039250);
+	static inline auto FmfInit = PreyFunction<void(CShaderMan* const _this)>(0x1039B70);
+	static inline auto FmfPostInit = PreyFunction<void(CShaderMan* const _this)>(0x103CD10);
+	static inline auto FmfSortResources = PreyFunction<void(CShaderMan* const _this)>(0x103D280);
+	static inline auto FmfCreateShaderResources = PreyFunction<CShaderResources* (CShaderMan* const _this, const SInputShaderResources* Res, bool bShare)>(0x1058260);
+	static inline auto FmfRefreshResourceConstantsOv1 = PreyFunction<bool(CShaderMan* const _this, CShaderResources* Res)>(0x1059140);
+	static inline auto FmfUpdateTechnik = PreyFunction<bool(CShaderMan* const _this, SShaderItem& SI, CCryNameTSCRC& Name)>(0x1057720);
+	static inline auto FmfShaderItemForName = PreyFunction<SShaderItem*(CShaderMan* const _this, SShaderItem* _return_value_, const char* nameEf, bool bShare, int flags, SInputShaderResources* Res, uint64_t nMaskGen, const IRenderer::SLoadShaderItemArgs* pArgs)>(0x10572B0);
+	static inline auto FmfForName = PreyFunction<CShader* (CShaderMan* const _this, const char* nameSh, int flags, const CShaderResources* Res, uint64_t nMaskGen)>(0x1055D20);
+	static inline auto FmfRefreshSystemShader = PreyFunction<bool(CShaderMan* const _this, const char* szName, CShader* & pSysShader)>(0xF349D0);
+	static inline auto FRT_ParseShader = PreyFunction<void(CShaderMan* const _this, CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes)>(0x1055A80);
+	static inline auto FRT_SetShaderQuality = PreyFunction<void(CShaderMan* const _this, EShaderType eST, EShaderQuality eSQ)>(0x1036AB0);
+	static inline auto FmfGetFXParameter = PreyFunction<SFXParam* (CShaderMan* const _this, std::vector<SFXParam>& Params, const char* param)>(0x10516F0);
+	static inline auto FmfGetFXSampler = PreyFunction<SFXSampler* (CShaderMan* const _this, std::vector<SFXSampler>& Params, const char* param)>(0x10519A0);
+	static inline auto FmfGetFXTexture = PreyFunction<SFXTexture* (CShaderMan* const _this, std::vector<SFXTexture>& Params, const char* param)>(0x1051A90);
+	static inline auto FmfParseFXTechnique_LoadShaderTexture = PreyFunction<CTexture* (CShaderMan* const _this, STexSamplerRT* smp, const char* szName, SShaderPass* pShPass, CShader* ef, int nIndex, uint8_t ColorOp, uint8_t AlphaOp, uint8_t ColorArg, uint8_t AlphaArg)>(0x1051B80);
+	static inline auto FmfPostLoadFX = PreyFunction<void(CShaderMan* const _this, CShader* ef, std::vector<SShaderTechParseParams>& techParams, CCryNameR* techStart)>(0x1051C10);
+	static inline auto FmfModifyGenFlags = PreyFunction<bool(CShaderMan* const _this, CShader* efGen, const CShaderResources* pRes, uint64_t& nMaskGen, uint64_t& nMaskGenH)>(0x1056490);
+	static inline auto FmfReleaseSystemShaders = PreyFunction<void(CShaderMan* const _this)>(0x103CDC0);
+	static inline auto FmfLoadBasicSystemShaders = PreyFunction<void(CShaderMan* const _this)>(0x103C4A0);
+	static inline auto FmfLoadDefaultSystemShaders = PreyFunction<void(CShaderMan* const _this)>(0x103C5F0);
+	static inline auto FmfCloseShadersCache = PreyFunction<void(CShaderMan* const _this, int nID)>(0x1030E80);
+	static inline auto FmfInitShadersCacheMissLog = PreyFunction<void(CShaderMan* const _this)>(0x1031BD0);
+	static inline auto FmfInsertNewCombination = PreyFunction<void(CShaderMan* const _this, SShaderCombIdent& Ident, EHWShaderClass eCL, const char* name, int nID, string* Str, uint8_t bStore)>(0x1031F30);
+	static inline auto FmfReleasePreactivatedShaderData = PreyFunction<bool(CShaderMan* const _this)>(0xF39080);
+	static inline auto FmfPreactivateShaders2 = PreyFunction<bool(CShaderMan* const _this, const char* szPak, const char* szPath, bool bPersistent, const char* szBindRoot)>(0xF38AC0);
+	static inline auto FmfPreactivate2 = PreyFunction<bool(CShaderMan* const _this, CResFileLookupDataMan& LevelLookup, string szPathPerLevel, string szPathGlobal, bool bVS, bool bPersistent)>(0xF37BF0);
+	static inline auto FmfPreloadBinaryShaders = PreyFunction<bool(CShaderMan* const _this)>(0x1032A70);
+	static inline auto FLoadShaderStartupCache = PreyFunction<bool(CShaderMan* const _this)>(0x10366C0);
+	static inline auto FUnloadShaderStartupCache = PreyFunction<void(CShaderMan* const _this)>(0x10370E0);
+#endif
 };
 
 //=====================================================================

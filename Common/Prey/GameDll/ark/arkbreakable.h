@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -66,4 +68,74 @@ public:
 	static inline auto FLoadBroken = PreyFunction<void(CArkBreakable *const _this)>(0x141ED40);
 	static inline auto FRegenerateNavMesh = PreyFunction<void(CArkBreakable *const _this)>(0x141FD20);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/Ark/ArkAudioUtil.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/arkeffectutils.h>
+#include <Prey/GameDll/ark/signalsystem/ArkBreakableSignalReceiver.h>
+#include <_unknown/CArkGameObjectExtension.h>
 
+class ICrySizer;
+struct IGameObject;
+struct IMaterial;
+struct SEntityEvent;
+struct SEntityUpdateContext;
+
+// CArkBreakable
+// Header:  Prey/GameDll/ark/ArkBreakable.h
+class CArkBreakable : public CArkGameObjectExtension<CArkBreakable>
+{ // Size=376 (0x178)
+public:
+	ArkBreakableSignalReceiver m_signalReceiver;
+	ArkAudioTrigger m_onDestroySoundTrigger;
+	ArkFireAndForgetEffect m_destroyEffect;
+	ArkEntityEffect m_damageEffect;
+	ArkSimpleTimer m_damageEffectTimer;
+	_smart_ptr<IMaterial> m_pDefaultMaterial;
+	float m_health;
+	AABB m_defaultAABB;
+	AABB m_brokenAABB;
+	bool m_bRegenerateNavMesh;
+	bool m_bHasRegeneratedNavMesh;
+	bool m_bHideToggled;
+
+	virtual ~CArkBreakable();
+	virtual bool Init(IGameObject* _pGameObject);
+	virtual void PostInit(IGameObject* _pGameObject);
+	virtual void ProcessEvent(SEntityEvent& _event);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void GetMemoryUsage(ICrySizer* _pS) const;
+	virtual void Release();
+	void LoadParameters() { FLoadParameters(this); }
+	void SetHealth(const float _health) { FSetHealth(this, _health); }
+	bool IsGloo() const { return FIsGloo(this); }
+	void LoadDefault() { FLoadDefault(this); }
+	void LoadBroken() { FLoadBroken(this); }
+	void RegenerateNavMesh() { FRegenerateNavMesh(this); }
+
+#if 0
+	CArkBreakable();
+	float GetHealth() const;
+	bool AffectsNavMesh() const;
+#endif
+
+	static inline auto FInit = PreyFunction<bool(CArkBreakable* const _this, IGameObject* _pGameObject)>(0x1534970);
+	static inline auto FPostInit = PreyFunction<void(CArkBreakable* const _this, IGameObject* _pGameObject)>(0x1535A70);
+	static inline auto FProcessEvent = PreyFunction<void(CArkBreakable* const _this, SEntityEvent& _event)>(0x1535A80);
+	static inline auto FUpdate = PreyFunction<void(CArkBreakable* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x15361E0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkBreakable* const _this, TSerialize _ser)>(0x1534610);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkBreakable* const _this, ICrySizer* _pS)>(0x182A3F0);
+	static inline auto FRelease = PreyFunction<void(CArkBreakable* const _this)>(0x1535D80);
+	static inline auto FLoadParameters = PreyFunction<void(CArkBreakable* const _this)>(0x15352B0);
+	static inline auto FSetHealth = PreyFunction<void(CArkBreakable* const _this, const float _health)>(0x1535DD0);
+	static inline auto FIsGloo = PreyFunction<bool(const CArkBreakable* const _this)>(0x15349B0);
+	static inline auto FLoadDefault = PreyFunction<void(CArkBreakable* const _this)>(0x1534FB0);
+	static inline auto FLoadBroken = PreyFunction<void(CArkBreakable* const _this)>(0x1534B80);
+	static inline auto FRegenerateNavMesh = PreyFunction<void(CArkBreakable* const _this)>(0x1535B70);
+};
+#endif // !MOONCRASH

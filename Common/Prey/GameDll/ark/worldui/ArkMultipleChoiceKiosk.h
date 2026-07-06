@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -67,4 +69,74 @@ public:
 	static inline auto FLoadProperties = PreyFunction<void(ArkMultipleChoiceKiosk *const _this)>(0x13A1ED0);
 	static inline auto FOnReset = PreyFunction<void(ArkMultipleChoiceKiosk *const _this, bool _bEnteringGameMode)>(0x13A2100);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/worldui/ArkKioskBase.h>
 
+struct IEntity;
+struct IUIElement;
+struct SEntityUpdateContext;
+struct SUIArguments;
+struct SUIEventDesc;
+
+// ArkMultipleChoiceKiosk
+// Header:  Prey/GameDll/ark/worldui/ArkMultipleChoiceKiosk.h
+class ArkMultipleChoiceKiosk : public ArkKioskBase
+{ // Size=576 (0x240)
+public:
+	enum class EArkMultipleChoiceKioskState
+	{
+		Invalid = 0,
+		StartPage = 1,
+		QuestionPage = 2,
+		RorschachPage = 3,
+		LogoPage = 4,
+	};
+
+	ArkMultipleChoiceKiosk::EArkMultipleChoiceKioskState m_state;
+	ArkSimpleTimer m_timer;
+	string m_buttonPressed;
+	string m_questionText;
+	std::array<string, 4> m_answers;
+
+	ArkMultipleChoiceKiosk();
+	virtual void FullSerialize(TSerialize _ser);
+	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
+	virtual void OnButtonPress(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args);
+	void SetMultipleChoiceAnswer(const char _answerId, const char* _answerText) { FSetMultipleChoiceAnswer(this, _answerId, _answerText); }
+	void SetMultipleChoiceQuestion(const char* _questionText) { FSetMultipleChoiceQuestion(this, _questionText); }
+	void DisplayNewQuestion() { FDisplayNewQuestion(this); }
+	void DisplayRorschachPage() { FDisplayRorschachPage(this); }
+	void DisplayLogoPage() { FDisplayLogoPage(this); }
+	void DisplayStartPage() { FDisplayStartPage(this); }
+	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
+	virtual void RefreshUI(bool _bReinit);
+	virtual void HandleInteraction(IUIElement* _pUIInstance);
+	virtual void LoadProperties();
+	virtual void OnReset(bool _bEnteringGameMode);
+
+#if 0
+	void SetState(ArkMultipleChoiceKiosk::EArkMultipleChoiceKioskState _arg0_, bool _arg1_);
+#endif
+
+	static inline auto FArkMultipleChoiceKioskOv2 = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC100);
+	static inline auto FFullSerialize = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, TSerialize _ser)>(0x14AC370);
+	static inline auto FUpdate = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x14ACD20);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14AC7D0);
+	static inline auto FSetMultipleChoiceAnswer = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, const char _answerId, const char* _answerText)>(0x14ACC60);
+	static inline auto FSetMultipleChoiceQuestion = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, const char* _questionText)>(0x14ACCF0);
+	static inline auto FDisplayNewQuestion = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC2C0);
+	static inline auto FDisplayRorschachPage = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC2F0);
+	static inline auto FDisplayLogoPage = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC280);
+	static inline auto FDisplayStartPage = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC330);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x14B4350);
+	static inline auto FRefreshUI = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, bool _bReinit)>(0x14AC890);
+	static inline auto FHandleInteraction = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, IUIElement* _pUIInstance)>(0x14AC5E0);
+	static inline auto FLoadProperties = PreyFunction<void(ArkMultipleChoiceKiosk* const _this)>(0x14AC610);
+	static inline auto FOnReset = PreyFunction<void(ArkMultipleChoiceKiosk* const _this, bool _bEnteringGameMode)>(0x14AC840);
+};
+#endif // !MOONCRASH

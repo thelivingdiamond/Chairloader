@@ -39,8 +39,16 @@ public:
 	
 	CInputCVars();
 	~CInputCVars();
-	
+
+#ifndef MOONCRASH
 	static inline auto FBitNotCInputCVars = PreyFunction<void(CInputCVars *const _this)>(0x9DAEC0);
+#else
+	static inline auto FBitNotCInputCVars = PreyFunction<void(CInputCVars* const _this)>(0x9F8280);
+#endif
 };
 
+#ifndef MOONCRASH
 inline PreyGlobal<CInputCVars*> g_pInputCVars(0x2767F50);
+#else
+//TODO: MOONCRASH
+#endif

@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -625,4 +627,577 @@ public:
 	static inline auto FFindTutorial = PreyFunction<ArkTutorial const *(ArkTutorialLibrary const *const _this, const uint64_t _id)>(0x134FB80);
 	static inline auto FInit = PreyFunction<bool(ArkTutorialLibrary *const _this)>(0x1086B30);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+#include <Prey/CryString/CryName.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkTutorial
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkTutorial : public ArkReflectedObject
+{ // Size=56 (0x38)
+public:
+	// ArkTutorial::ArkIDProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkTutorial::ArkNameProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkTutorial::ArkCooldownProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkCooldownProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCooldownProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkTutorial::ArkBodyProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkBodyProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkBodyProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkBodyProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B3000);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkBodyProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkTutorial::ArkBodyPCProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkBodyPCProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkBodyPCProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkBodyPCProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkBodyPCProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkTutorial::ArkTypeProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkTypeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _arg0_, const IArkValueBase* _arg1_) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _arg0_) const;
+
+	#if 0
+		ArkTypeProperty();
+	#endif
+	};
+
+	// ArkTutorial::ArkAudioTriggerProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkAudioTriggerProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAudioTriggerProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorial::ArkAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0510);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorial::ArkAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkTutorial::ArkIDProperty>(0x2D29050);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkTutorial::ArkNameProperty>(0x2D29070);
+	string m_Name;
+	static inline auto s_ArkCooldownProperty = PreyGlobal<ArkTutorial::ArkCooldownProperty>(0x2D29090);
+	float m_Cooldown;
+	static inline auto s_ArkBodyProperty = PreyGlobal<ArkTutorial::ArkBodyProperty>(0x2D290B0);
+	string m_Body;
+	static inline auto s_ArkBodyPCProperty = PreyGlobal<ArkTutorial::ArkBodyPCProperty>(0x2D290D0);
+	string m_BodyPC;
+	static inline auto s_ArkTypeProperty = PreyGlobal<ArkTutorial::ArkTypeProperty>(0x0);
+	ArkTutorialType m_Type;
+	static inline auto s_ArkAudioTriggerProperty = PreyGlobal<ArkTutorial::ArkAudioTriggerProperty>(0x2D290F0);
+	string m_AudioTrigger;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkTutorial();
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetCooldown(float _arg0_);
+	const float& GetCooldown() const;
+	void SetBody(string _arg0_);
+	const string& GetBody() const;
+	void SetBodyPC(string _arg0_);
+	const string& GetBodyPC() const;
+	void SetType(ArkTutorialType _arg0_);
+	const ArkTutorialType& GetType() const;
+	void SetAudioTrigger(string _arg0_);
+	const string& GetAudioTrigger() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2120);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B23A0);
+};
+
+// ArkCardTutorial
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkCardTutorial : public ArkTutorial
+{ // Size=88 (0x58)
+public:
+	// ArkCardTutorial::ArkTitleProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkTitleProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTitleProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkTitleProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkTitleProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkCardTutorial::ArkImageProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkImageProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkImageProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkImageProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C8B40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkImageProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// ArkCardTutorial::ArkDialogProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkDialogProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDialogProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkDialogProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1A60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkDialogProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// ArkCardTutorial::ArkDelayProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkDelayProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDelayProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkDelayProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084480);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkDelayProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// ArkCardTutorial::ArkEscapeNoticeProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkEscapeNoticeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkEscapeNoticeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkEscapeNoticeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443DE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkEscapeNoticeProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3190);
+	};
+
+	// ArkCardTutorial::ArkAutoCollectProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkAutoCollectProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkAutoCollectProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkCardTutorial::ArkAutoCollectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107D570);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkCardTutorial::ArkAutoCollectProperty* const _this, ArkReflectedObject* const _pObject)>(0x107D580);
+	};
+
+	static inline auto s_ArkTitleProperty = PreyGlobal<ArkCardTutorial::ArkTitleProperty>(0x2D29110);
+	string m_Title;
+	static inline auto s_ArkImageProperty = PreyGlobal<ArkCardTutorial::ArkImageProperty>(0x2D29130);
+	string m_Image;
+	static inline auto s_ArkDialogProperty = PreyGlobal<ArkCardTutorial::ArkDialogProperty>(0x2D29150);
+	uint64_t m_Dialog;
+	static inline auto s_ArkDelayProperty = PreyGlobal<ArkCardTutorial::ArkDelayProperty>(0x2D29170);
+	float m_Delay;
+	static inline auto s_ArkEscapeNoticeProperty = PreyGlobal<ArkCardTutorial::ArkEscapeNoticeProperty>(0x2D29190);
+	bool m_EscapeNotice;
+	static inline auto s_ArkAutoCollectProperty = PreyGlobal<ArkCardTutorial::ArkAutoCollectProperty>(0x2D291B0);
+	bool m_AutoCollect;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkCardTutorial();
+	void SetTitle(string _arg0_);
+	const string& GetTitle() const;
+	void SetImage(string _arg0_);
+	const string& GetImage() const;
+	void SetDialog(uint64_t _arg0_);
+	const uint64_t& GetDialog() const;
+	void SetDelay(float _arg0_);
+	const float& GetDelay() const;
+	void SetEscapeNotice(bool _arg0_);
+	const bool& GetEscapeNotice() const;
+	void SetAutoCollect(bool _arg0_);
+	const bool& GetAutoCollect() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B1FE0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B21C0);
+};
+
+// ArkContextualTutorial
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkContextualTutorial : public ArkCardTutorial
+{ // Size=120 (0x78)
+public:
+	// ArkContextualTutorial::ArkActionMapProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkActionMapProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkActionMapProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkContextualTutorial::ArkActionMapProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1A70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkContextualTutorial::ArkActionMapProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+	};
+
+	// ArkContextualTutorial::ArkActionIdProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkActionIdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkActionIdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkContextualTutorial::ArkActionIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1AD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkContextualTutorial::ArkActionIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B80);
+	};
+
+	// ArkContextualTutorial::ArkActionIdPCProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkActionIdPCProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkActionIdPCProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkContextualTutorial::ArkActionIdPCProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1B50);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkContextualTutorial::ArkActionIdPCProperty* const _this, ArkReflectedObject* const _pObject)>(0x10B7840);
+	};
+
+	// ArkContextualTutorial::ArkTutorialPromptProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkTutorialPromptProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTutorialPromptProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkContextualTutorial::ArkTutorialPromptProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7850);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkContextualTutorial::ArkTutorialPromptProperty* const _this, ArkReflectedObject* const _pObject)>(0x1403090);
+	};
+
+	static inline auto s_ArkActionMapProperty = PreyGlobal<ArkContextualTutorial::ArkActionMapProperty>(0x2D291D0);
+	string m_ActionMap;
+	static inline auto s_ArkActionIdProperty = PreyGlobal<ArkContextualTutorial::ArkActionIdProperty>(0x2D291F0);
+	CCryName m_ActionId;
+	static inline auto s_ArkActionIdPCProperty = PreyGlobal<ArkContextualTutorial::ArkActionIdPCProperty>(0x2D29210);
+	CCryName m_ActionIdPC;
+	static inline auto s_ArkTutorialPromptProperty = PreyGlobal<ArkContextualTutorial::ArkTutorialPromptProperty>(0x2D29230);
+	bool m_TutorialPrompt;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkContextualTutorial();
+	void SetActionMap(string _arg0_);
+	const string& GetActionMap() const;
+	void SetActionId(CCryName _arg0_);
+	const CCryName& GetActionId() const;
+	void SetActionIdPC(CCryName _arg0_);
+	const CCryName& GetActionIdPC() const;
+	void SetTutorialPrompt(bool _arg0_);
+	const bool& GetTutorialPrompt() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2030);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B2260);
+};
+
+// ArkNagTutorial
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkNagTutorial : public ArkTutorial
+{ // Size=64 (0x40)
+public:
+	// ArkNagTutorial::ArkDurationProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkNagTutorial::ArkDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkNagTutorial::ArkDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	static inline auto s_ArkDurationProperty = PreyGlobal<ArkNagTutorial::ArkDurationProperty>(0x2D29250);
+	float m_Duration;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+
+#if 0
+	ArkNagTutorial();
+	static ArkClass* GetClass();
+	void SetDuration(float _arg0_);
+	const float& GetDuration() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2090);
+};
+
+// ArkReadyRoomTutorial
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkReadyRoomTutorial : public ArkTutorial
+{ // Size=72 (0x48)
+public:
+	// ArkReadyRoomTutorial::ArkTitleProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkTitleProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkTitleProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkReadyRoomTutorial::ArkTitleProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkReadyRoomTutorial::ArkTitleProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkReadyRoomTutorial::ArkPositionProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkPositionProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkPositionProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkReadyRoomTutorial::ArkPositionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkReadyRoomTutorial::ArkPositionProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	static inline auto s_ArkTitleProperty = PreyGlobal<ArkReadyRoomTutorial::ArkTitleProperty>(0x2D29270);
+	string m_Title;
+	static inline auto s_ArkPositionProperty = PreyGlobal<ArkReadyRoomTutorial::ArkPositionProperty>(0x2D29290);
+	int m_Position;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	ArkReadyRoomTutorial();
+	void SetTitle(string _arg0_);
+	const string& GetTitle() const;
+	void SetPosition(int _arg0_);
+	const int& GetPosition() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B20E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B2300);
+};
+
+// ArkTutorialLibrary
+// Header:  Prey/Ark/ArkTutorial.h
+class ArkTutorialLibrary : public ArkReflectedLibrary
+{ // Size=40 (0x28)
+public:
+	// ArkTutorialLibrary::ArkTutorialsProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkTutorialsProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkTutorialsProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorialLibrary::ArkTutorialsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B1BD0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkTutorialLibrary::ArkTutorialsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkTutorialLibrary::ArkTutorialsProperty* const _this, ArkReflectedObject* _pObject)>(0x1444080);
+	};
+
+	// ArkTutorialLibrary::ArkContextualDisplayTimeProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkContextualDisplayTimeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkContextualDisplayTimeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorialLibrary::ArkContextualDisplayTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorialLibrary::ArkContextualDisplayTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1FF0);
+	};
+
+	// ArkTutorialLibrary::ArkNagDisplayTimeProperty
+	// Header:  Prey/Ark/ArkTutorial.h
+	class ArkNagDisplayTimeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNagDisplayTimeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTutorialLibrary::ArkNagDisplayTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C8C90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTutorialLibrary::ArkNagDisplayTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C8CB0);
+	};
+
+	static inline auto s_ArkTutorialsProperty = PreyGlobal<ArkTutorialLibrary::ArkTutorialsProperty>(0x2D292B0);
+	std::vector<std::shared_ptr<ArkTutorial>> m_Tutorials;
+	static inline auto s_ArkContextualDisplayTimeProperty = PreyGlobal<ArkTutorialLibrary::ArkContextualDisplayTimeProperty>(0x2D292D0);
+	float m_ContextualDisplayTime;
+	static inline auto s_ArkNagDisplayTimeProperty = PreyGlobal<ArkTutorialLibrary::ArkNagDisplayTimeProperty>(0x2D292F0);
+	float m_NagDisplayTime;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	const ArkTutorial* FindTutorial(const uint64_t _id) const { return FFindTutorial(this, _id); }
+	virtual bool Init();
+
+#if 0
+	std::vector<std::shared_ptr<ArkTutorial>>& GetTutorials();
+	const std::vector<std::shared_ptr<ArkTutorial>>& GetTutorials() const;
+	void SetContextualDisplayTime(float _arg0_);
+	const float& GetContextualDisplayTime() const;
+	void SetNagDisplayTime(float _arg0_);
+	const float& GetNagDisplayTime() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2160);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B2440);
+	static inline auto FFindTutorial = PreyFunction<const ArkTutorial* (const ArkTutorialLibrary* const _this, const uint64_t _id)>(0x1432450);
+	static inline auto FInit = PreyFunction<bool(ArkTutorialLibrary* const _this)>(0x10B2530);
+};
+#endif // !MOONCRASH

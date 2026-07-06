@@ -124,6 +124,7 @@ struct IActor : public IGameObjectExtension // Id=8001EFE Size=64
 	uint16_t GetChannelId() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FGetLockedStance = PreyFunction<EStance(IActor* const _this)>(0x154FB00);
 	static inline auto FIsStillWaitingOnServerUseResponse = PreyFunction<bool(IActor const* const _this)>(0xDD23F0);
 	static inline auto FSetStillWaitingOnServerUseResponse = PreyFunction<void(IActor* const _this, bool waiting)>(0xA13080);
@@ -146,8 +147,35 @@ struct IActor : public IGameObjectExtension // Id=8001EFE Size=64
 	static inline auto FIgnoreCollisionSignals = PreyFunction<void(IActor* const _this, unsigned _entityId, float _timeOut)>(0xA13080);
 	static inline auto FIsIgnoringCollisionSignals = PreyFunction<bool(IActor const* const _this, unsigned _entityId)>(0xDD23F0);
 	static inline auto FIsZeroG = PreyFunction<bool(IActor const* const _this)>(0xDD23F0);
+#else
+	static inline auto FGetLockedStance = PreyFunction<EStance(IActor* const _this)>(0x1674B80);
+	static inline auto FIsStillWaitingOnServerUseResponse = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetStillWaitingOnServerUseResponse = PreyFunction<void(IActor* const _this, bool waiting)>(0x1333E90);
+	static inline auto FSetFlyMode = PreyFunction<void(IActor* const _this, uint8_t flyMode, const float _fSpeed)>(0x1333E90);
+	static inline auto FGetFlyMode = PreyFunction<uint8_t(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetTrackviewArkLookAt = PreyFunction<void(IActor* const _this, IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _torso, const IActor::TrackviewLookPoseData& _head, const IActor::TrackviewLookPoseData& _eyes)>(0x1333E90);
+	static inline auto FSetTrackviewArkAimAt = PreyFunction<void(IActor* const _this, IEntity* _pTargetEntity, const IActor::TrackviewLookPoseData& _aim)>(0x1333E90);
+	static inline auto FRespawn = PreyFunction<bool(IActor* const _this)>(0x1630730);
+	static inline auto FResetToSpawnLocation = PreyFunction<void(IActor* const _this)>(0x1630710);
+	static inline auto FCanBreakGlass = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FMustBreakGlass = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FSetChannelId = PreyFunction<void(IActor* const _this, uint16_t id)>(0x167BED0);
+	static inline auto FSetCustomHead = PreyFunction<void(IActor* const _this, const char* customHead)>(0x1333E90);
+	static inline auto FMountedGunControllerEnabledOv1 = PreyFunction<void(IActor* const _this, bool val)>(0x1333E90);
+	static inline auto FMountedGunControllerEnabledOv0 = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FGetPhysicalSkipEntities = PreyFunction<int(const IActor* const _this, IPhysicalEntity* * pSkipList, const int maxSkipSize)>(0x1CBB0B0);
+	static inline auto FOnFakeHitToHitReactions = PreyFunction<void(IActor* const _this, const HitInfo& _hitInfo)>(0x1333E90);
+	static inline auto FGetAttackTargetPos = PreyFunction<Vec3*(const IActor* const _this, Vec3* _return_value_)>(0x9F8FF0);
+	static inline auto FIsArkNpcPlayer = PreyFunction<bool(IActor* const _this)>(0x13B0900);
+	static inline auto FIgnoreCollisionSignals = PreyFunction<void(IActor* const _this, unsigned _entityId, float _timeOut)>(0x1333E90);
+	static inline auto FIsIgnoringCollisionSignals = PreyFunction<bool(const IActor* const _this, unsigned _entityId)>(0x13B0900);
+	static inline auto FIsNormalG = PreyFunction<bool(const IActor* const _this)>(0x1A302A0);
+	static inline auto FIsLowG = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+	static inline auto FIsZeroG = PreyFunction<bool(const IActor* const _this)>(0x13B0900);
+#endif
 };
 
+//TODO: this is defined in a different place in mooncrash
 class CActor : public IActor // Id=8013CD8 Size=64
 {
 public:

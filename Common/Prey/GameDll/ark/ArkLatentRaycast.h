@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -49,4 +51,56 @@ public:
 	static inline auto FRaycastSubmitCallback = PreyFunction<bool(ArkLatentRaycast *const _this, const unsigned &rayID, RayCastRequest &_result)>(0x14440A0);
 	static inline auto FRaycastCompleteCallback = PreyFunction<void(ArkLatentRaycast *const _this, const unsigned &rayID, RayCastResult const &_result)>(0x1444070);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <_unknown/Functor1wRet.h>
+#include <_unknown/RayCastRequest.h>
 
+struct RayCastRequest;
+struct RayCastResult;
+
+// ArkLatentRaycast
+// Header:  Prey/GameDll/ark/ArkLatentRaycast.h
+class ArkLatentRaycast
+{ // Size=72 (0x48)
+public:
+	enum RaycastStatus
+	{
+		ePending = 0,
+		eSuccessful = 1,
+		eFailure = 2,
+		eNotStarted = 3,
+	};
+
+	using ResultCallback = Functor1wRet<RayCastResult const &,bool>;
+	using SubmitCallback = Functor1wRet<RayCastRequest &,bool>;
+
+	unsigned m_rayID;
+	ArkLatentRaycast::RaycastStatus m_status;
+	Functor1wRet<RayCastResult const &,bool> m_resultCallback;
+	Functor1wRet<RayCastRequest &,bool> m_submitCallback;
+
+	ArkLatentRaycast();
+	~ArkLatentRaycast();
+	void Start(const RayCastRequest& _request, RayCastRequest::Priority _priority, const Functor1wRet<RayCastResult const &,bool>& _resultCallback, const Functor1wRet<RayCastRequest &,bool>& _submitCallback) { FStart(this, _request, _priority, _resultCallback, _submitCallback); }
+	void Cancel() { FCancel(this); }
+	bool RaycastSubmitCallback(const unsigned& rayID, RayCastRequest& _result) { return FRaycastSubmitCallback(this, rayID, _result); }
+	void RaycastCompleteCallback(const unsigned& rayID, const RayCastResult& _result) { FRaycastCompleteCallback(this, rayID, _result); }
+
+#if 0
+	bool IsNotStarted() const;
+	bool IsPending() const;
+	bool IsSuccessful() const;
+	bool IsFailure() const;
+	void Reset();
+#endif
+
+	static inline auto FArkLatentRaycast = PreyFunction<void(ArkLatentRaycast* const _this)>(0x15595E0);
+	static inline auto FBitNotArkLatentRaycast = PreyFunction<void(ArkLatentRaycast* const _this)>(0x1559600);
+	static inline auto FStart = PreyFunction<void(ArkLatentRaycast* const _this, const RayCastRequest& _request, RayCastRequest::Priority _priority, const Functor1wRet<RayCastResult const &,bool>& _resultCallback, const Functor1wRet<RayCastRequest &,bool>& _submitCallback)>(0x15597F0);
+	static inline auto FCancel = PreyFunction<void(ArkLatentRaycast* const _this)>(0x1559610);
+	static inline auto FRaycastSubmitCallback = PreyFunction<bool(ArkLatentRaycast* const _this, const unsigned& rayID, RayCastRequest& _result)>(0x15597D0);
+	static inline auto FRaycastCompleteCallback = PreyFunction<void(ArkLatentRaycast* const _this, const unsigned& rayID, const RayCastResult& _result)>(0x15597A0);
+};
+#endif // !MOONCRASH

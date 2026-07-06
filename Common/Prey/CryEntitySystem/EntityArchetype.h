@@ -48,6 +48,7 @@ public:
 	static string GetLibraryFromName(string const &arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FCreateArchetype = PreyFunction<IEntityArchetype *(CEntityArchetypeManager *const _this, IEntityClass * pClass, const char *sArchetype, uint64_t _id)>(0x90F5E0);
     static inline auto FFindArchetypeOv1 = PreyFunction<IEntityArchetype *(CEntityArchetypeManager *const _this, const char *sArchetype)>(0x90FB70);
     static inline auto FLoadArchetype = PreyFunction<IEntityArchetype *(CEntityArchetypeManager *const _this, const char *sArchetype)>(0x9100E0);
@@ -63,6 +64,24 @@ public:
     static inline auto FRegisterListener = PreyFunction<void(CEntityArchetypeManager *const _this, IEntityArchetypeListener *_pListener)>(0x910BD0);
     static inline auto FUnregisterListener = PreyFunction<void(CEntityArchetypeManager *const _this, IEntityArchetypeListener *_pListener)>(0x911290);
     static inline auto FGetArchetypeInfoFromMap = PreyFunction<std::vector<std::pair<char const * const,_smart_ptr<CEntityArchetype> >,std::allocator<std::pair<char const * const,_smart_ptr<CEntityArchetype> > > >(CEntityArchetypeManager const *const _this, string const &_libraryName)>(0x90FC80);
+#else
+    static inline auto FCreateArchetype = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, IEntityClass* pClass, const char* sArchetype, uint64_t _id)>(0x92B920);
+	static inline auto FFindArchetypeOv1 = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92BEB0);
+	static inline auto FLoadArchetype = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92C390);
+	static inline auto FGetArchetypeOv1 = PreyFunction<IEntityArchetype* (CEntityArchetypeManager* const _this, uint64_t _id)>(0x92BF70);
+	static inline auto FDeleteArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* sArchetype)>(0x92BE10);
+	static inline auto FReloadAllArchetypes = PreyFunction<void(CEntityArchetypeManager* const _this)>(0x92D440);
+	static inline auto FReloadArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* _sArchetypeName)>(0x92D590);
+	static inline auto FRenameArchetype = PreyFunction<void(CEntityArchetypeManager* const _this, const char* _archetypeName, const char* _newArchetypeName)>(0x92D650);
+	static inline auto FPreloadArchetypes = PreyFunction<bool(CEntityArchetypeManager* const _this, const char* _szLevelPath)>(0x92CEA0);
+	static inline auto FReset = PreyFunction<void(CEntityArchetypeManager* const _this)>(0x92D810);
+	static inline auto FGetArchetypeNames = PreyFunction<std::vector<string>*(const CEntityArchetypeManager* const _this, std::vector<string>* _return_value_, const string& _libraryName)>(0x92C200);
+	static inline auto FGetArchetypes = PreyFunction<std::vector<IEntityArchetype*>*(const CEntityArchetypeManager* const _this, std::vector<IEntityArchetype*>* _return_value_, const string& _libraryName)>(0x92C2B0);
+	static inline auto FLoadLibrary = PreyFunction<bool(CEntityArchetypeManager* const _this, const string& library)>(0x92C6E0);
+	static inline auto FRegisterListener = PreyFunction<void(CEntityArchetypeManager* const _this, IEntityArchetypeListener* _pListener)>(0x92D380);
+	static inline auto FUnregisterListener = PreyFunction<void(CEntityArchetypeManager* const _this, IEntityArchetypeListener* _pListener)>(0x92DA40);
+	static inline auto FGetArchetypeInfoFromMap = PreyFunction<std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>*(const CEntityArchetypeManager* const _this, std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>* _return_value_, const string& _libraryName)>(0x92BFC0);
+#endif
 };
 
 // Header: Exact
@@ -91,6 +110,7 @@ public:
 	void SetId(const uint64_t arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FGetClass = PreyFunction<IEntityClass *(CEntityArchetype * _this)>(0x864AF0);
     static inline auto FGetName = PreyFunction<const char *(CEntityArchetype const *const _this)>(0xD87500);
     static inline auto FGetId = PreyFunction<uint64_t(CEntityArchetype const *const _this)>(0x1140FE0);
@@ -99,4 +119,14 @@ public:
     static inline auto FGetObjectVars = PreyFunction<XmlNodeRef(CEntityArchetype *const _this)>(0x9100B0);
     static inline auto FLoadFromXML = PreyFunction<void(CEntityArchetype *const _this, XmlNodeRef &propertiesNode, XmlNodeRef &objectVarsNode)>(0x910260);
     static inline auto FReload = PreyFunction<void(CEntityArchetype *const _this)>(0x910C20);
+#else
+	static inline auto FGetClass = PreyFunction<IEntityClass* (const CEntityArchetype* const _this)>(0xEDF820);
+	static inline auto FGetName = PreyFunction<const char* (const CEntityArchetype* const _this)>(0x598E60);
+	static inline auto FGetId = PreyFunction<uint64_t(const CEntityArchetype* const _this)>(0xD77240);
+	static inline auto FGetPropertiesOv1 = PreyFunction<IScriptTable* (CEntityArchetype* const _this)>(0x7E3C90);
+	static inline auto FGetPropertiesOv0 = PreyFunction<const IScriptTable* (const CEntityArchetype* const _this)>(0x7E3C90);
+	static inline auto FGetObjectVars = PreyFunction<XmlNodeRef*(CEntityArchetype* const _this, XmlNodeRef* _return_value_)>(0x92C360);
+	static inline auto FLoadFromXML = PreyFunction<void(CEntityArchetype* const _this, XmlNodeRef& propertiesNode, XmlNodeRef& objectVarsNode)>(0x92C510);
+	static inline auto FReload = PreyFunction<void(CEntityArchetype* const _this)>(0x92D3D0);
+#endif
 };

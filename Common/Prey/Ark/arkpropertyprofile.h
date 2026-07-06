@@ -1,3 +1,5 @@
+// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -651,4 +653,816 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x107B710);
 	static inline auto FInit = PreyFunction<bool(ArkPropertyProfileLibrary *const _this)>(0x107B800);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
+#include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
+class ArkClass;
+class IArkValueBase;
+
+// ArkDisruptionProfile
+// Header:  Prey/Ark/arkpropertyprofile.h
+class ArkDisruptionProfile : public ArkReflectedObject
+{ // Size=72 (0x48)
+public:
+	// ArkDisruptionProfile::ArkIDProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkDisruptionProfile::ArkNameProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptThresholdProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptThresholdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptThresholdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptMaxAmountProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptMaxAmountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptMaxAmountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptMaxAmountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptMaxAmountProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptDecayRateProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptDecayRateProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptDecayRateProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptDecayRateProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptDecayRateProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptSparkRateProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptSparkRateProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptSparkRateProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptSparkRateProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptSparkRateProperty* const _this, ArkReflectedObject* const _pObject)>(0x13B26B0);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptSparkVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptSparkVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptSparkVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptSparkVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptSparkVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkDisruptionProfile::ArkDisruptSignalProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptSignalProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptSignalProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkDisruptSignalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkDisruptSignalProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkDisruptionProfile::ArkInterferenceThresholdProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceThresholdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceThresholdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkInterferenceThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1080CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkInterferenceThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkDisruptionProfile::ArkInterferenceMaxAmountProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceMaxAmountProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceMaxAmountProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkInterferenceMaxAmountProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2F90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkInterferenceMaxAmountProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3140);
+	};
+
+	// ArkDisruptionProfile::ArkInterferenceDecayRateProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceDecayRateProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceDecayRateProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkInterferenceDecayRateProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkInterferenceDecayRateProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkDisruptionProfile::ArkInterferenceSignalProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSignalProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSignalProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkDisruptionProfile::ArkInterferenceSignalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107D510);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkDisruptionProfile::ArkInterferenceSignalProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkDisruptionProfile::ArkIDProperty>(0x2D27570);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkDisruptionProfile::ArkNameProperty>(0x2D27590);
+	string m_Name;
+	static inline auto s_ArkDisruptThresholdProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptThresholdProperty>(0x2D275B0);
+	float m_DisruptThreshold;
+	static inline auto s_ArkDisruptMaxAmountProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptMaxAmountProperty>(0x2D275D0);
+	float m_DisruptMaxAmount;
+	static inline auto s_ArkDisruptDecayRateProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptDecayRateProperty>(0x2D275F0);
+	float m_DisruptDecayRate;
+	static inline auto s_ArkDisruptSparkRateProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptSparkRateProperty>(0x2D27610);
+	float m_DisruptSparkRate;
+	static inline auto s_ArkDisruptSparkVariationProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptSparkVariationProperty>(0x2D27630);
+	float m_DisruptSparkVariation;
+	static inline auto s_ArkDisruptSignalProperty = PreyGlobal<ArkDisruptionProfile::ArkDisruptSignalProperty>(0x2D27650);
+	uint64_t m_DisruptSignal;
+	static inline auto s_ArkInterferenceThresholdProperty = PreyGlobal<ArkDisruptionProfile::ArkInterferenceThresholdProperty>(0x2D27670);
+	float m_InterferenceThreshold;
+	static inline auto s_ArkInterferenceMaxAmountProperty = PreyGlobal<ArkDisruptionProfile::ArkInterferenceMaxAmountProperty>(0x2D27690);
+	float m_InterferenceMaxAmount;
+	static inline auto s_ArkInterferenceDecayRateProperty = PreyGlobal<ArkDisruptionProfile::ArkInterferenceDecayRateProperty>(0x2D276B0);
+	float m_InterferenceDecayRate;
+	static inline auto s_ArkInterferenceSignalProperty = PreyGlobal<ArkDisruptionProfile::ArkInterferenceSignalProperty>(0x2D276D0);
+	uint64_t m_InterferenceSignal;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetDisruptThreshold(float _arg0_);
+	const float& GetDisruptThreshold() const;
+	void SetDisruptMaxAmount(float _arg0_);
+	const float& GetDisruptMaxAmount() const;
+	void SetDisruptDecayRate(float _arg0_);
+	const float& GetDisruptDecayRate() const;
+	void SetDisruptSparkRate(float _arg0_);
+	const float& GetDisruptSparkRate() const;
+	void SetDisruptSparkVariation(float _arg0_);
+	const float& GetDisruptSparkVariation() const;
+	void SetDisruptSignal(uint64_t _arg0_);
+	const uint64_t& GetDisruptSignal() const;
+	void SetInterferenceThreshold(float _arg0_);
+	const float& GetInterferenceThreshold() const;
+	void SetInterferenceMaxAmount(float _arg0_);
+	const float& GetInterferenceMaxAmount() const;
+	void SetInterferenceDecayRate(float _arg0_);
+	const float& GetInterferenceDecayRate() const;
+	void SetInterferenceSignal(uint64_t _arg0_);
+	const uint64_t& GetInterferenceSignal() const;
+	void ValidateData();
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A3C20);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A3D70);
+};
+
+// ArkLightDisruptionProfile
+// Header:  Prey/Ark/arkpropertyprofile.h
+class ArkLightDisruptionProfile : public ArkReflectedObject
+{ // Size=104 (0x68)
+public:
+	// ArkLightDisruptionProfile::ArkIDProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkIDProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkIDProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkLightDisruptionProfile::ArkNameProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkNameProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkNameProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkLightDisruptionProfile::ArkDisruptionBurstTransitionTimeProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptionBurstTransitionTimeProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptionBurstTransitionTimeProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkDisruptionBurstTransitionTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkDisruptionBurstTransitionTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	// ArkLightDisruptionProfile::ArkDisruptionBurstMultiplierProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptionBurstMultiplierProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkDisruptionBurstMultiplierProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkDisruptionBurstMultiplierProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkDisruptionBurstMultiplierProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceRampInProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceRampInProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceRampInProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceRampInProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceRampInProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceRampInVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceRampInVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceRampInVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceRampInVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceRampInVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x13B26B0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceRampOutProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceRampOutProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceRampOutProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceRampOutProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceRampOutProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceRampOutVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceRampOutVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceRampOutVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceRampOutVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3110);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceRampOutVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x107C370);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceDarkDurationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceDarkDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceDarkDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceDarkDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD050);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceDarkDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceDarkDurationVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceDarkDurationVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceDarkDurationVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceDarkDurationVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3120);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceDarkDurationVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3130);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSecondaryDarkDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSecondaryDarkDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1080CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSecondaryDarkDurationVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSecondaryDarkDurationVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2F90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3140);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceBrightDurationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceBrightDurationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceBrightDurationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceBrightDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceBrightDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceBrightDurationVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceBrightDurationVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceBrightDurationVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceBrightDurationVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1089EB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceBrightDurationVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3160);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceMaxBrightnessProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceMaxBrightnessProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceMaxBrightnessVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceMaxBrightnessVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084460);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3170);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceMinBrightnessProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceMinBrightnessProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceMinBrightnessProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceMinBrightnessProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceMinBrightnessProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceMinBrightnessVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceMinBrightnessVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceMinBrightnessVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceMinBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3180);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceMinBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084470);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSecondaryMinBrightnessProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSecondaryMinBrightnessProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084480);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessVariationProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSecondaryMinBrightnessVariationProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSecondaryMinBrightnessVariationProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084490);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessVariationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3190);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferencePrimaryDarkWeightProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferencePrimaryDarkWeightProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferencePrimaryDarkWeightProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferencePrimaryDarkWeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A31A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferencePrimaryDarkWeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkWeightProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceSecondaryDarkWeightProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceSecondaryDarkWeightProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkWeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D69A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkWeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A31B0);
+	};
+
+	// ArkLightDisruptionProfile::ArkInterferenceVFXThresholdProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkInterferenceVFXThresholdProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkInterferenceVFXThresholdProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkLightDisruptionProfile::ArkInterferenceVFXThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14034E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkLightDisruptionProfile::ArkInterferenceVFXThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B80);
+	};
+
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkLightDisruptionProfile::ArkIDProperty>(0x2D276F0);
+	uint64_t m_ID;
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkLightDisruptionProfile::ArkNameProperty>(0x2D27710);
+	string m_Name;
+	static inline auto s_ArkDisruptionBurstTransitionTimeProperty = PreyGlobal<ArkLightDisruptionProfile::ArkDisruptionBurstTransitionTimeProperty>(0x2D27730);
+	float m_DisruptionBurstTransitionTime;
+	static inline auto s_ArkDisruptionBurstMultiplierProperty = PreyGlobal<ArkLightDisruptionProfile::ArkDisruptionBurstMultiplierProperty>(0x2D27750);
+	float m_DisruptionBurstMultiplier;
+	static inline auto s_ArkInterferenceRampInProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceRampInProperty>(0x2D27770);
+	float m_InterferenceRampIn;
+	static inline auto s_ArkInterferenceRampInVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceRampInVariationProperty>(0x2D27790);
+	float m_InterferenceRampInVariation;
+	static inline auto s_ArkInterferenceRampOutProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceRampOutProperty>(0x2D277B0);
+	float m_InterferenceRampOut;
+	static inline auto s_ArkInterferenceRampOutVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceRampOutVariationProperty>(0x2D277D0);
+	float m_InterferenceRampOutVariation;
+	static inline auto s_ArkInterferenceDarkDurationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceDarkDurationProperty>(0x2D277F0);
+	float m_InterferenceDarkDuration;
+	static inline auto s_ArkInterferenceDarkDurationVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceDarkDurationVariationProperty>(0x2D27810);
+	float m_InterferenceDarkDurationVariation;
+	static inline auto s_ArkInterferenceSecondaryDarkDurationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationProperty>(0x2D27830);
+	float m_InterferenceSecondaryDarkDuration;
+	static inline auto s_ArkInterferenceSecondaryDarkDurationVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkDurationVariationProperty>(0x2D27850);
+	float m_InterferenceSecondaryDarkDurationVariation;
+	static inline auto s_ArkInterferenceBrightDurationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceBrightDurationProperty>(0x2D27870);
+	float m_InterferenceBrightDuration;
+	static inline auto s_ArkInterferenceBrightDurationVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceBrightDurationVariationProperty>(0x2D27890);
+	float m_InterferenceBrightDurationVariation;
+	static inline auto s_ArkInterferenceMaxBrightnessProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessProperty>(0x2D278B0);
+	float m_InterferenceMaxBrightness;
+	static inline auto s_ArkInterferenceMaxBrightnessVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceMaxBrightnessVariationProperty>(0x2D278D0);
+	float m_InterferenceMaxBrightnessVariation;
+	static inline auto s_ArkInterferenceMinBrightnessProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceMinBrightnessProperty>(0x2D278F0);
+	float m_InterferenceMinBrightness;
+	static inline auto s_ArkInterferenceMinBrightnessVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceMinBrightnessVariationProperty>(0x2D27910);
+	float m_InterferenceMinBrightnessVariation;
+	static inline auto s_ArkInterferenceSecondaryMinBrightnessProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessProperty>(0x2D27930);
+	float m_InterferenceSecondaryMinBrightness;
+	static inline auto s_ArkInterferenceSecondaryMinBrightnessVariationProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceSecondaryMinBrightnessVariationProperty>(0x2D27950);
+	float m_InterferenceSecondaryMinBrightnessVariation;
+	static inline auto s_ArkInterferencePrimaryDarkWeightProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferencePrimaryDarkWeightProperty>(0x2D27970);
+	float m_InterferencePrimaryDarkWeight;
+	static inline auto s_ArkInterferenceSecondaryDarkWeightProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceSecondaryDarkWeightProperty>(0x2D27990);
+	float m_InterferenceSecondaryDarkWeight;
+	static inline auto s_ArkInterferenceVFXThresholdProperty = PreyGlobal<ArkLightDisruptionProfile::ArkInterferenceVFXThresholdProperty>(0x2D279B0);
+	float m_InterferenceVFXThreshold;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	void ValidateData() { FValidateData(this); }
+
+#if 0
+	void SetID(uint64_t _arg0_);
+	const uint64_t& GetID() const;
+	void SetName(string _arg0_);
+	const string& GetName() const;
+	void SetDisruptionBurstTransitionTime(float _arg0_);
+	const float& GetDisruptionBurstTransitionTime() const;
+	void SetDisruptionBurstMultiplier(float _arg0_);
+	const float& GetDisruptionBurstMultiplier() const;
+	void SetInterferenceRampIn(float _arg0_);
+	const float& GetInterferenceRampIn() const;
+	void SetInterferenceRampInVariation(float _arg0_);
+	const float& GetInterferenceRampInVariation() const;
+	void SetInterferenceRampOut(float _arg0_);
+	const float& GetInterferenceRampOut() const;
+	void SetInterferenceRampOutVariation(float _arg0_);
+	const float& GetInterferenceRampOutVariation() const;
+	void SetInterferenceDarkDuration(float _arg0_);
+	const float& GetInterferenceDarkDuration() const;
+	void SetInterferenceDarkDurationVariation(float _arg0_);
+	const float& GetInterferenceDarkDurationVariation() const;
+	void SetInterferenceSecondaryDarkDuration(float _arg0_);
+	const float& GetInterferenceSecondaryDarkDuration() const;
+	void SetInterferenceSecondaryDarkDurationVariation(float _arg0_);
+	const float& GetInterferenceSecondaryDarkDurationVariation() const;
+	void SetInterferenceBrightDuration(float _arg0_);
+	const float& GetInterferenceBrightDuration() const;
+	void SetInterferenceBrightDurationVariation(float _arg0_);
+	const float& GetInterferenceBrightDurationVariation() const;
+	void SetInterferenceMaxBrightness(float _arg0_);
+	const float& GetInterferenceMaxBrightness() const;
+	void SetInterferenceMaxBrightnessVariation(float _arg0_);
+	const float& GetInterferenceMaxBrightnessVariation() const;
+	void SetInterferenceMinBrightness(float _arg0_);
+	const float& GetInterferenceMinBrightness() const;
+	void SetInterferenceMinBrightnessVariation(float _arg0_);
+	const float& GetInterferenceMinBrightnessVariation() const;
+	void SetInterferenceSecondaryMinBrightness(float _arg0_);
+	const float& GetInterferenceSecondaryMinBrightness() const;
+	void SetInterferenceSecondaryMinBrightnessVariation(float _arg0_);
+	const float& GetInterferenceSecondaryMinBrightnessVariation() const;
+	void SetInterferencePrimaryDarkWeight(float _arg0_);
+	const float& GetInterferencePrimaryDarkWeight() const;
+	void SetInterferenceSecondaryDarkWeight(float _arg0_);
+	const float& GetInterferenceSecondaryDarkWeight() const;
+	void SetInterferenceVFXThreshold(float _arg0_);
+	const float& GetInterferenceVFXThreshold() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A3C70);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A3E10);
+	static inline auto FValidateData = PreyFunction<void(ArkLightDisruptionProfile* const _this)>(0x10A41E0);
+};
+
+// ArkPropertyProfileLibrary
+// Header:  Prey/Ark/arkpropertyprofile.h
+class ArkPropertyProfileLibrary : public ArkReflectedLibrary
+{ // Size=56 (0x38)
+public:
+	// ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkDisruptionProfilesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkDisruptionProfilesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2E10);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A2ED0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty* const _this, ArkReflectedObject* _pObject)>(0x10A2F10);
+	};
+
+	// ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty
+	// Header:  Prey/Ark/arkpropertyprofile.h
+	class ArkLightDisruptionProfilesProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+		virtual bool IsArray() const;
+		virtual void Reset(ArkReflectedObject* _pObject) const;
+
+	#if 0
+		ArkLightDisruptionProfilesProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2FA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A3050);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty* const _this, ArkReflectedObject* _pObject)>(0x10A3090);
+	};
+
+	static inline auto s_ArkDisruptionProfilesProperty = PreyGlobal<ArkPropertyProfileLibrary::ArkDisruptionProfilesProperty>(0x2D279D0);
+	std::vector<ArkDisruptionProfile> m_DisruptionProfiles;
+	static inline auto s_ArkLightDisruptionProfilesProperty = PreyGlobal<ArkPropertyProfileLibrary::ArkLightDisruptionProfilesProperty>(0x2D279F0);
+	std::vector<ArkLightDisruptionProfile> m_LightDisruptionProfiles;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+	virtual bool Init();
+
+#if 0
+	std::vector<ArkDisruptionProfile>& GetDisruptionProfiles();
+	const std::vector<ArkDisruptionProfile>& GetDisruptionProfiles() const;
+	std::vector<ArkLightDisruptionProfile>& GetLightDisruptionProfiles();
+	const std::vector<ArkLightDisruptionProfile>& GetLightDisruptionProfiles() const;
+	const ArkDisruptionProfile* FindDisruptionProfile(const uint64_t _arg0_) const;
+	const ArkLightDisruptionProfile* FindLightDisruptionProfile(const uint64_t _arg0_) const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A3CB0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A3EB0);
+	static inline auto FInit = PreyFunction<bool(ArkPropertyProfileLibrary* const _this)>(0x10A3FA0);
+};
+#endif // !MOONCRASH

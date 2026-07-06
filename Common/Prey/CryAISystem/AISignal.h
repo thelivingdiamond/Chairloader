@@ -24,8 +24,12 @@ struct AISIGNAL // Id=8000FB0 Size=80
 #if 0
 	bool Compare(unsigned arg0) const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(AISIGNAL *const _this, TSerialize ser)>(0x6BF660);
+#else
+	static inline auto FSerialize = PreyFunction<void(AISIGNAL* const _this, TSerialize ser)>(0x6DB440);
+#endif
 };
 
 #if 0

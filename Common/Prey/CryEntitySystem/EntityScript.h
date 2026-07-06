@@ -43,7 +43,11 @@ struct SScriptState
 	bool IsStateFunctionImplemented(EScriptStateFunctions _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FBitNotSScriptState = PreyFunction<void(SScriptState* const _this)>(0x92C530);
+#else
+	static inline auto FBitNotSScriptState = PreyFunction<void(SScriptState* const _this)>(0x948A90);
+#endif
 };
 
 // CEntityScript
@@ -69,6 +73,7 @@ public:
 	bool m_bScriptLoaded;
 	bool m_bDefaultOnly;
 
+#ifndef MOONCRASH
 	CEntityScript();
 	virtual ~CEntityScript();
 	virtual bool Init(const char* sTableName, const char* sScriptFilename);
@@ -94,6 +99,31 @@ public:
 	void InitializeStateTable(IScriptTable* pStateTable, SScriptStateFunctions* scriptState) { FInitializeStateTable(this, pStateTable, scriptState); }
 	void InitializeNamedStates(IScriptTable* pTable, int nStateNum) { FInitializeNamedStates(this, pTable, nStateNum); }
 	void ParseInOutEvents(IScriptTable* pEventsTable, std::vector<SEntityScriptEvent>& events, bool bOutput) { FParseInOutEvents(this, pEventsTable, events, bOutput); }
+#else
+	static inline auto FCEntityScriptOv1 = PreyFunction<void(CEntityScript* const _this)>(0x948910);
+	static inline auto FInit = PreyFunction<bool(CEntityScript* const _this, const char* sTableName, const char* sScriptFilename)>(0x94A460);
+	static inline auto FRelease = PreyFunction<void(CEntityScript* const _this)>(0x3E3960);
+	static inline auto FLoadScript = PreyFunction<bool(CEntityScript* const _this, bool bForceReload)>(0x94AC70);
+	static inline auto FGetStateId = PreyFunction<int(const CEntityScript* const _this, const char* sStateName)>(0x94A350);
+	static inline auto FGetStateName = PreyFunction<const char* (const CEntityScript* const _this, int nStateId)>(0x94A400);
+	static inline auto FGetStateOv0 = PreyFunction<SScriptState* (CEntityScript* const _this, int nStateId)>(0x94A2F0);
+	static inline auto FCallStateFunction = PreyFunction<void(CEntityScript* const _this, SScriptState* pState, IScriptTable* pThis, EScriptStateFunctions function)>(0x980C80);
+	static inline auto FCall_OnInit = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, bool isReload)>(0x949760);
+	static inline auto FCall_OnShutDown = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis)>(0x949910);
+	static inline auto FCall_OnReset = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, bool toGame)>(0x9498E0);
+	static inline auto FFindEvent = PreyFunction<const SEntityScriptEvent* (const CEntityScript* const _this, const char* sEvent)>(0x94A230);
+	static inline auto FCallEventOv4 = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, const char* sEvent, float fValue)>(0x949310);
+	static inline auto FCallEventOv3 = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, const char* sEvent, bool bValue)>(0x949530);
+	static inline auto FCallEventOv2 = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, const char* sEvent, const char* sValue)>(0x948EB0);
+	static inline auto FCallEventOv1 = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, const char* sEvent, IScriptTable* pTable)>(0x948C70);
+	static inline auto FCallEventOv0 = PreyFunction<void(CEntityScript* const _this, IScriptTable* pThis, const char* sEvent, const Vec3& vValue)>(0x9490E0);
+	static inline auto FClear = PreyFunction<void(CEntityScript* const _this)>(0x949AB0);
+	static inline auto FEnumStates = PreyFunction<void(CEntityScript* const _this)>(0x949D80);
+	static inline auto FLoadEvents = PreyFunction<void(CEntityScript* const _this)>(0x94A710);
+	static inline auto FInitializeStateTable = PreyFunction<void(CEntityScript* const _this, IScriptTable* pStateTable, SScriptStateFunctions* scriptState)>(0x94A630);
+	static inline auto FInitializeNamedStates = PreyFunction<void(CEntityScript* const _this, IScriptTable* pTable, int nStateNum)>(0x94A4A0);
+	static inline auto FParseInOutEvents = PreyFunction<void(CEntityScript* const _this, IScriptTable* pEventsTable, std::vector<SEntityScriptEvent>& events, bool bOutput)>(0x94AE00);
+#endif
 
 #if 0
 	IScriptSystem* GetScriptSystem() const;
@@ -131,4 +161,3 @@ public:
 	static inline auto FInitializeNamedStates = PreyFunction<void(CEntityScript* const _this, IScriptTable* pTable, int nStateNum)>(0x92E010);
 	static inline auto FParseInOutEvents = PreyFunction<void(CEntityScript* const _this, IScriptTable* pEventsTable, std::vector<SEntityScriptEvent>& events, bool bOutput)>(0x92E980);
 };
-

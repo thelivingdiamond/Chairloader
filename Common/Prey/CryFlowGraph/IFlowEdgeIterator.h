@@ -1,3 +1,4 @@
+// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -20,4 +21,3 @@ struct IFlowEdgeIterator // Id=8001C43 Size=8
 	virtual void Release() = 0;
 	virtual bool Next(IFlowEdgeIterator::Edge &arg0) = 0;
 };
-

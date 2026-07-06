@@ -414,8 +414,13 @@ struct SDirectoryEnumeratorHelper // Id=8002F48 Size=1
     void ScanDirectoryRecursive(string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files) { FScanDirectoryRecursive(this,root,pathIn,fileSpec,files); }
     void ScanDirectoryFiles(string const &root, string const &path, string const &fileSpec, std::vector<string> &files) { FScanDirectoryFiles(this,root,path,fileSpec,files); }
 
+#ifndef MOONCRASH
     static inline auto FScanDirectoryRecursive = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files)>(0x24C340);
     static inline auto FScanDirectoryFiles = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &path, string const &fileSpec, std::vector<string> &files)>(0x24C0E0);
+#else
+    static inline auto FScanDirectoryRecursive = PreyFunction<void(SDirectoryEnumeratorHelper* const _this, const string& root, const string& pathIn, const string& fileSpec, std::vector<string>& files, unsigned _nPakFlags)>(0x2649B0);
+    static inline auto FScanDirectoryFiles = PreyFunction<void(SDirectoryEnumeratorHelper* const _this, const string& root, const string& path, const string& fileSpec, std::vector<string>& files, unsigned _nPakFlags)>(0x264750);
+#endif
 };
 
 #include <Prey/CryString/CryPath.h>
