@@ -1,5 +1,65 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
+#ifndef MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/npc/fsm2/lifecycle/ArkNpcLifecycleFsm.h>
+
+class ArkNpc;
+
+// ArkNpcLifecycle
+// Header:  Prey/GameDll/ark/npc/ArkNpcLifecycle.h
+class ArkNpcLifecycle
+{ // Size=720 (0x2D0)
+public:
+	ArkNpc* m_pNpc;
+	ArkNpcLifecycleFsm m_fsm;
+
+	ArkNpcLifecycle(ArkNpc& _npc);
+	bool InitializeAlert() { return FInitializeAlert(this); }
+	bool InitializeBroken() { return FInitializeBroken(this); }
+	bool InitializeDead() { return FInitializeDead(this); }
+	bool InitializeDormant(const Vec3& _position, const Quat& _rotation) { return FInitializeDormant(this, _position, _rotation); }
+	bool Finalize() { return FFinalize(this); }
+	bool BecomeAlert() { return FBecomeAlert(this); }
+	bool BecomeBroken() { return FBecomeBroken(this); }
+	bool BecomeDead() { return FBecomeDead(this); }
+	bool BecomeUnconscious() { return FBecomeUnconscious(this); }
+	bool IsAlert() const { return FIsAlert(this); }
+	bool IsBroken() const { return FIsBroken(this); }
+	bool IsConscious() const { return FIsConscious(this); }
+	bool IsDormant() const { return FIsDormant(this); }
+	bool IsUnconscious() const { return FIsUnconscious(this); }
+	void Update(float _elapsedTime) { FUpdate(this, _elapsedTime); }
+	void Serialize(TSerialize _serializer) { FSerialize(this, _serializer); }
+	void PostSerialize(ArkNpc& _npc) { FPostSerialize(this, _npc); }
+
+#if 0
+	bool InitializeUnconscious();
+	bool BecomeDormant(const Vec3& _arg0_, const Quat& _arg1_);
+	bool IsDead() const;
+#endif
+
+	static inline auto FArkNpcLifecycle = PreyFunction<void(ArkNpcLifecycle* const _this, ArkNpc& _npc)>(0x12000F0);
+	static inline auto FInitializeAlert = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x12004E0);
+	static inline auto FInitializeBroken = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x1200560);
+	static inline auto FInitializeDead = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x12005E0);
+	static inline auto FInitializeDormant = PreyFunction<bool(ArkNpcLifecycle* const _this, const Vec3& _position, const Quat& _rotation)>(0x1200660);
+	static inline auto FFinalize = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x1200450);
+	static inline auto FBecomeAlert = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x1200120);
+	static inline auto FBecomeBroken = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x12001F0);
+	static inline auto FBecomeDead = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x12002C0);
+	static inline auto FBecomeUnconscious = PreyFunction<bool(ArkNpcLifecycle* const _this)>(0x1200380);
+	static inline auto FIsAlert = PreyFunction<bool(const ArkNpcLifecycle* const _this)>(0x1200710);
+	static inline auto FIsBroken = PreyFunction<bool(const ArkNpcLifecycle* const _this)>(0x1200750);
+	static inline auto FIsConscious = PreyFunction<bool(const ArkNpcLifecycle* const _this)>(0x1200790);
+	static inline auto FIsDormant = PreyFunction<bool(const ArkNpcLifecycle* const _this)>(0x12007D0);
+	static inline auto FIsUnconscious = PreyFunction<bool(const ArkNpcLifecycle* const _this)>(0x1200810);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcLifecycle* const _this, float _elapsedTime)>(0x12009B0);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcLifecycle* const _this, TSerialize _serializer)>(0x1200860);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcLifecycle* const _this, ArkNpc& _npc)>(0x1200850);
+};
+
+#else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -60,4 +120,5 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkNpcLifecycle* const _this, TSerialize _serializer)>(0x128FC70);
 	static inline auto FPostSerialize = PreyFunction<void(ArkNpcLifecycle* const _this, ArkNpc& _npc)>(0x128FC60);
 };
-#endif // MOONCRASH
+
+#endif // !MOONCRASH

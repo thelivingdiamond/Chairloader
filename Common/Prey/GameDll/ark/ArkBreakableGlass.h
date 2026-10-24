@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: Exact
 // Prey/GameDll/ark/ArkBreakableGlass.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkBreakableGlass : public CGameObjectExtensionHelper<ArkBreakableGlass,IGameObjectExtension> // Id=8018FC7 Size=64
 {
 public:
@@ -46,6 +49,7 @@ public:
 	void SetPortalsOcclusion(const float arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FRelease = PreyFunction<void(ArkBreakableGlass *const _this)>(0xA97D40);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkBreakableGlass const *const _this, ICrySizer *_pSizer)>(0xA13080);
 	static inline auto FInit = PreyFunction<bool(ArkBreakableGlass *const _this, IGameObject *_pGameObject)>(0x114C2C0);
@@ -68,54 +72,7 @@ public:
 	static inline auto FGetRMIBase = PreyFunction<const void *(ArkBreakableGlass const *const _this)>(0x158AEF0);
 	static inline auto FPostUpdate = PreyFunction<void(ArkBreakableGlass *const _this, float _frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkBreakableGlass *const _this)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// ArkBreakableGlass
-// Header:  Prey/GameDll/ark/ArkBreakableGlass.h
-class ArkBreakableGlass : public CGameObjectExtensionHelper<ArkBreakableGlass, IGameObjectExtension>
-{ // Size=64 (0x40)
-public:
-	virtual void Release();
-	virtual void GetMemoryUsage(ICrySizer* _pSizer) const;
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void InitClient(int _channelId);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _bAuth);
-	virtual const void* GetRMIBase() const;
-	virtual void PostUpdate(float _frameTime);
-	virtual void PostRemoteSpawn();
-
-#if 0
-	void SetPortalsOcclusion(const float _arg0_) const;
-#endif
-
+#else
 	static inline auto FRelease = PreyFunction<void(ArkBreakableGlass* const _this)>(0x3E3960);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkBreakableGlass* const _this, ICrySizer* _pSizer)>(0x1333E90);
 	static inline auto FInit = PreyFunction<bool(ArkBreakableGlass* const _this, IGameObject* _pGameObject)>(0x11933E0);
@@ -138,5 +95,5 @@ public:
 	static inline auto FGetRMIBase = PreyFunction<const void* (const ArkBreakableGlass* const _this)>(0x1CBB0B0);
 	static inline auto FPostUpdate = PreyFunction<void(ArkBreakableGlass* const _this, float _frameTime)>(0x1333E90);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkBreakableGlass* const _this)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

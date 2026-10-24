@@ -385,7 +385,11 @@ public:
 	CShaderResources* mfCreateShaderResources(SInputShaderResources const* Res, bool bShare) { return FmfCreateShaderResources(this, Res, bShare); }
 	bool mfRefreshResourceConstants(CShaderResources* Res) { return FmfRefreshResourceConstantsOv1(this, Res); }
 	bool mfUpdateTechnik(SShaderItem& SI, CCryNameTSCRC& Name) { return FmfUpdateTechnik(this, SI, Name); }
+#ifndef MOONCRASH
 	SShaderItem mfShaderItemForName(const char* nameEf, bool bShare, int flags, SInputShaderResources* Res = 0, uint64_t nMaskGen = 0, IRenderer::SLoadShaderItemArgs const* pArgs = 0) { return FmfShaderItemForName(this, nameEf, bShare, flags, Res, nMaskGen, pArgs); }
+#else
+	SShaderItem mfShaderItemForName(const char* nameEf, bool bShare, int flags, SInputShaderResources* Res = 0, uint64_t nMaskGen = 0, const IRenderer::SLoadShaderItemArgs* pArgs = 0) { alignas(SShaderItem) std::byte _return_buf_[sizeof(SShaderItem)]; return *FmfShaderItemForName(this, reinterpret_cast<SShaderItem*>(_return_buf_), nameEf, bShare, flags, Res, nMaskGen, pArgs); }
+#endif
 	CShader* mfForName(const char* nameSh, int flags, CShaderResources const* Res = nullptr, uint64_t nMaskGen = 0) { return FmfForName(this, nameSh, flags, Res, nMaskGen); }
 	bool mfRefreshSystemShader(const char* szName, CShader*& pSysShader) { return FmfRefreshSystemShader(this, szName, pSysShader); }
 	void RT_ParseShader(CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes) { FRT_ParseShader(this, pSH, nMaskGen, flags, pRes); }

@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -52,7 +51,6 @@ public:
 // Header file automatically created from a PDB.
 #pragma once
 
-enum class ArkCharacterEffectType;
 struct CMultiEffectAttachment;
 struct IAttachment;
 struct IAttachmentManager;

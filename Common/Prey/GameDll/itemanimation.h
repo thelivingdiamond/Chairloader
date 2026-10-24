@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
-#include <_unknown/STagState.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 struct AnimEventInstance;
 class CItem;
@@ -30,9 +28,15 @@ public:
 	CItemAction(int _arg0_, int _arg1_, const STagState<12>& _arg2_, const int _arg3_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CItemAction* const _this)>(0x175C970);
+	static inline auto FDoDelete = PreyFunction<void(CItemAction* const _this)>(0xA97D40);
+	static inline auto FComparePriority = PreyFunction<EPriorityComparison(const CItemAction* const _this, const IAction& actionCurrent)>(0x1A42CE0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CItemAction* const _this)>(0x1883610);
 	static inline auto FDoDelete = PreyFunction<void(CItemAction* const _this)>(0x3E3960);
 	static inline auto FComparePriority = PreyFunction<EPriorityComparison(const CItemAction* const _this, const IAction& actionCurrent)>(0x4FD7F0);
+#endif
 };
 
 // CItemSelectAction
@@ -55,6 +59,17 @@ public:
 	void SelectWeapon() { FSelectWeapon(this); }
 	void UnhideWeapon(CItem* pItem) { FUnhideWeapon(this, pItem); }
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CItemSelectAction* const _this)>(0x175C980);
+	static inline auto FDoDelete = PreyFunction<void(CItemSelectAction* const _this)>(0xA97D40);
+	static inline auto FCItemSelectAction = PreyFunction<void(CItemSelectAction* const _this, int priority, int fragmentID, const STagState<12>& fragTags, CItem& _item)>(0x175C8A0);
+	static inline auto FEnter = PreyFunction<void(CItemSelectAction* const _this)>(0x175C8F0);
+	static inline auto FExit = PreyFunction<void(CItemSelectAction* const _this)>(0x175C950);
+	static inline auto FOnAnimationEvent = PreyFunction<void(CItemSelectAction* const _this, ICharacterInstance* pCharacter, const AnimEventInstance& event)>(0x175C9B0);
+	static inline auto FItemSelectCancelled = PreyFunction<void(CItemSelectAction* const _this)>(0x175C990);
+	static inline auto FSelectWeapon = PreyFunction<void(CItemSelectAction* const _this)>(0x175C9D0);
+	static inline auto FUnhideWeapon = PreyFunction<void(CItemSelectAction* const _this, CItem* pItem)>(0x175CAE0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CItemSelectAction* const _this)>(0x1883620);
 	static inline auto FDoDelete = PreyFunction<void(CItemSelectAction* const _this)>(0x3E3960);
 	static inline auto FCItemSelectAction = PreyFunction<void(CItemSelectAction* const _this, int priority, int fragmentID, const STagState<12>& fragTags, CItem& _item)>(0x18834F0);
@@ -64,6 +79,7 @@ public:
 	static inline auto FItemSelectCancelled = PreyFunction<void(CItemSelectAction* const _this)>(0x1883630);
 	static inline auto FSelectWeapon = PreyFunction<void(CItemSelectAction* const _this)>(0x1883670);
 	static inline auto FUnhideWeapon = PreyFunction<void(CItemSelectAction* const _this, CItem* pItem)>(0x1883780);
+#endif
 };
 
 // SMannequinItemParams
@@ -188,7 +204,11 @@ struct SMannequinItemParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinItemParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x160A580);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinItemParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x172BCF0);
+#endif
 	};
 
 	// SMannequinItemParams::TagIDs
@@ -251,7 +271,11 @@ struct SMannequinItemParams : public IMannequinUserParams
 
 				void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+				static inline auto FInit = PreyFunction<void(SMannequinItemParams::Fragments::SSelect::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x160C4A0);
+#else
 				static inline auto FInit = PreyFunction<void(SMannequinItemParams::Fragments::SSelect::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x172DC10);
+#endif
 			};
 
 			TMannequinAutoInit<int,-1> fragmentID;
@@ -279,6 +303,10 @@ struct SMannequinItemParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinItemParams* const _this, const SControllerDef& controllerDef)>(0x160C630);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinItemParams* const _this, const SControllerDef& controllerDef)>(0x172DDA0);
+#endif
 };
-#endif // MOONCRASH
+

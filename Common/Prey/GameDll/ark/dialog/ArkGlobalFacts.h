@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -52,6 +50,7 @@ public:
 	bool IsSupportedTokenType(EFlowDataTypes arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<void(ArkGlobalFacts *const _this)>(0x1488970);
 	static inline auto FShutdown = PreyFunction<void(ArkGlobalFacts *const _this)>(0x1488FF0);
 	static inline auto FReset = PreyFunction<void(ArkGlobalFacts *const _this)>(0x1488D30);
@@ -77,69 +76,7 @@ public:
 	static inline auto FUpdateToken = PreyFunction<void(ArkGlobalFacts *const _this, IGameToken *_pGameToken)>(0x1489120);
 	static inline auto FUpdateTraumaFacts = PreyFunction<void(ArkGlobalFacts *const _this, bool _bSuitIntegrity)>(0x14893F0);
 	static inline auto FUpdateNeuromodsUsed = PreyFunction<void(ArkGlobalFacts *const _this)>(0x14890B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryGame/IGameTokens.h>
-#include <Prey/GameDll/ark/dialog/arkresponsetypes.h>
-#include <Prey/GameDll/ark/iface/IArkAbilityListener.h>
-#include <Prey/GameDll/ark/iface/IArkObjectiveStateListener.h>
-#include <Prey/GameDll/ark/player/IArkPlayerHealthListener.h>
-#include <Prey/GameDll/ark/player/IArkPlayerPsiListener.h>
-#include <Prey/GameDll/ark/player/IArkPlayerStatusListener.h>
-
-enum class EArkConversationStatus;
-enum class EArkResponseKey;
-enum EFlowDataTypes;
-enum EGameTokenEvent;
-class ICrySizer;
-struct IGameToken;
-
-// ArkGlobalFacts
-// Header:  Prey/GameDll/ark/dialog/ArkGlobalFacts.h
-class ArkGlobalFacts
-	: public IGameTokenEventListener
-	, public IArkObjectiveStateListener
-	, public IArkPlayerHealthListener
-	, public IArkPlayerStatusListener
-	, public IArkAbilityListener
-	, public IArkPlayerPsiListener
-{ // Size=72 (0x48)
-public:
-	std::vector<ArkResponseFact> m_facts;
-
-	void Init() { FInit(this); }
-	void Shutdown() { FShutdown(this); }
-	void Reset() { FReset(this); }
-	virtual void OnGameTokenEvent(EGameTokenEvent _event, IGameToken* _pGameToken);
-	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
-	void UpdateConversationFact(uint64_t _conversationId, EArkConversationStatus _status) { FUpdateConversationFact(this, _conversationId, _status); }
-	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
-	virtual void OnObjectiveAssigned(uint64_t _objectiveId);
-	virtual void OnObjectiveUnassigned(uint64_t _objectiveId);
-	virtual void OnObjectiveCompleted(uint64_t _objectiveId);
-	virtual void OnObjectiveFailed(uint64_t _objectiveId);
-	virtual void OnTaskActivated(uint64_t _taskId);
-	virtual void OnTaskDeactivated(uint64_t _taskId);
-	virtual void OnTaskCompleted(uint64_t _taskId);
-	virtual void OnTaskFailed(uint64_t _taskId);
-	virtual void OnHealthChanged();
-	virtual void OnPsiChanged();
-	virtual void OnStatusChanged(uint64_t _statusId, bool _bActive);
-	virtual void OnAbilityAdded(const uint64_t _abilityID);
-	void ResetFacts() { FResetFacts(this); }
-	ArkResponseFact& GetFact(uint64_t _id) { return FGetFactOv1(this, _id); }
-	ArkResponseFact& GetFact(EArkResponseKey _key) { return FGetFactOv0(this, _key); }
-	void UpdateToken(IGameToken* _pGameToken) { FUpdateToken(this, _pGameToken); }
-	void UpdateTraumaFacts(bool _bSuitIntegrity) { FUpdateTraumaFacts(this, _bSuitIntegrity); }
-	void UpdateNeuromodsUsed() { FUpdateNeuromodsUsed(this); }
-
-#if 0
-	const std::vector<ArkResponseFact>& GetFacts() const;
-	bool IsSupportedTokenType(const EFlowDataTypes _arg0_) const;
-#endif
-
+#else
 	static inline auto FInit = PreyFunction<void(ArkGlobalFacts* const _this)>(0x15A0A60);
 	static inline auto FShutdown = PreyFunction<void(ArkGlobalFacts* const _this)>(0x15A10E0);
 	static inline auto FReset = PreyFunction<void(ArkGlobalFacts* const _this)>(0x15A0E20);
@@ -165,5 +102,5 @@ public:
 	static inline auto FUpdateToken = PreyFunction<void(ArkGlobalFacts* const _this, IGameToken* _pGameToken)>(0x15A1210);
 	static inline auto FUpdateTraumaFacts = PreyFunction<void(ArkGlobalFacts* const _this, bool _bSuitIntegrity)>(0x15A14E0);
 	static inline auto FUpdateNeuromodsUsed = PreyFunction<void(ArkGlobalFacts* const _this)>(0x15A11A0);
+#endif
 };
-#endif // !MOONCRASH

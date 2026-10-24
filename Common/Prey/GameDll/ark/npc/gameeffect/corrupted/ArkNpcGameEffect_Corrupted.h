@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -41,19 +39,23 @@ public:
 
 #if 0
 	void OnAttached(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Corrupted& _arg1_) const;
-	void OnReattached(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Corrupted& _arg1_) const;
-	void Update(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Corrupted& _arg1_, const float _arg2_) const;
 	void OnDied(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Corrupted& _arg1_) const;
 	void PostSerialize(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Corrupted& _arg1_) const;
 	void SetAbilityContextProfile(ArkNpc& _arg0_, const uint64_t& _arg1_) const;
-	void TryFollowCorruptionOwner(ArkNpc& _arg0_) const;
-	void UpdateCorruptedTetherEffectTargets(ArkNpc& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x1218370);
+	static inline auto FArkNpcGameEffect_Corrupted = PreyFunction<void(ArkNpcGameEffect_Corrupted* const _this)>(0x1218240);
+	static inline auto FOnDetached = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance)>(0x12186C0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance, const ArkSignalSystem::Package& _package)>(0x12189D0);
+	static inline auto FInternalStart = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance)>(0x1218550);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12AAAA0);
 	static inline auto FArkNpcGameEffect_Corrupted = PreyFunction<void(ArkNpcGameEffect_Corrupted* const _this)>(0x12AA970);
 	static inline auto FOnDetached = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance)>(0x12AAFA0);
 	static inline auto FOnReceiveSignal = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance, const ArkSignalSystem::Package& _package)>(0x12AB2D0);
 	static inline auto FInternalStart = PreyFunction<void(const ArkNpcGameEffect_Corrupted* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Corrupted& _gameEffectInstance)>(0x12AAE20);
+#endif
 };
-#endif // MOONCRASH
+

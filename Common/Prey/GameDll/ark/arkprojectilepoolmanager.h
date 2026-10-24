@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -14,6 +12,9 @@ struct SEntitySpawnParams;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkprojectilepoolmanager.h
+#ifdef MOONCRASH
+#include <Prey/CryCore/Containers/VectorMap.h>
+#endif
 class CArkProjectilePoolManager // Id=8015F09 Size=24
 {
 public:
@@ -48,7 +49,11 @@ public:
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	uint64_t GetProjectilePackageId(IEntityArchetype *const _pArchetype) { return FGetProjectilePackageId(this,_pArchetype); }
 	void DestroyAllProjectilesForLevelTransition() { FDestroyAllProjectilesForLevelTransition(this); }
+#ifndef MOONCRASH
 	bool IsAnotherGrenadeDetonating(CArkProjectileGrenade *const _pGrenade) { return FIsAnotherGrenadeDetonating(this,_pGrenade); }
+#else
+	bool IsAnotherGrenadeDetonating(const unsigned _grenadeId) { return FIsAnotherGrenadeDetonatingOv1(this, _grenadeId); }
+#endif
 	bool IsAnotherGooDestroying(CArkProjectileGoo *const _pGoo) { return FIsAnotherGooDestroying(this,_pGoo); }
 	CArkProjectile *GetArkProjectileFromEntityId(const unsigned _entityId, const char *const _pArchetype) { return FGetArkProjectileFromEntityId(this,_entityId,_pArchetype); }
 	void DestroyAllProjectiles() { FDestroyAllProjectiles(this); }
@@ -60,6 +65,11 @@ public:
 	void FreePools();
 #endif
 	
+#ifdef MOONCRASH
+	void SerializeLTL(TSerialize _serializer) { FSerializeLTL(this, _serializer); }
+	bool IsAnotherGrenadeDetonating(CArkProjectileGrenade* const _pGrenade) { return FIsAnotherGrenadeDetonatingOv0(this, _pGrenade); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FBitNotCArkProjectilePoolManager = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124D4E0);
 	static inline auto FShutdown = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124F5A0);
 	static inline auto FOnLevelLoadEnd = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124E6F0);
@@ -84,75 +94,7 @@ public:
 	static inline auto FFreePool = PreyFunction<void(CArkProjectilePoolManager *const _this, IEntityArchetype *const _pArchetype)>(0x124DD80);
 	static inline auto FDoSpawnProjectile = PreyFunction<CArkProjectile *(CArkProjectilePoolManager *const _this, SEntitySpawnParams &_spawnParams)>(0x124DCE0);
 	static inline auto FUseFromPool = PreyFunction<CArkProjectile *(CArkProjectilePoolManager *const _this, SEntitySpawnParams &_spawnParams)>(0x124F9E0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/vectormap.h>
-#include <Prey/CryNetwork/ISerialize.h>
-
-class CArkProjectile;
-class CArkProjectileGoo;
-class CArkProjectileGrenade;
-struct IEntityArchetype;
-struct SEntitySpawnParams;
-
-// CArkProjectilePoolManager
-// Header:  Prey/GameDll/ark/ArkProjectilePoolManager.h
-class CArkProjectilePoolManager
-{ // Size=24 (0x18)
-public:
-	// CArkProjectilePoolManager::SProjectilePoolDesc
-	// Header:  Prey/GameDll/ark/ArkProjectilePoolManager.h
-	struct SProjectilePoolDesc
-	{ // Size=72 (0x48)
-		std::deque<unsigned int,std::allocator<unsigned int> > m_freeProjectiles;
-		std::vector<unsigned int> m_usedProjectiles;
-		int m_maxSize;
-		bool m_bDeleteOnLevelTransition;
-		bool m_bIsGrenade;
-
-	#if 0
-		SProjectilePoolDesc(const int _arg0_, const bool _arg1_, const bool _arg2_);
-	#endif
-	};
-
-	using TProjectilePoolMap = VectorMap<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc,std::less<unsigned __int64>,std::allocator<std::pair<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc> > >;
-
-	VectorMap<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc,std::less<unsigned __int64>,std::allocator<std::pair<unsigned __int64,CArkProjectilePoolManager::SProjectilePoolDesc> > > m_archetypePools;
-
-	CArkProjectilePoolManager();
-	~CArkProjectilePoolManager();
-	void Shutdown() { FShutdown(this); }
-	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-	void SerializeLTL(TSerialize _serializer) { FSerializeLTL(this, _serializer); }
-	void PostSerialize() { FPostSerialize(this); }
-	void Reset() { FReset(this); }
-	void LoadPoolDefinitions() { FLoadPoolDefinitions(this); }
-	void CreatePool(IEntityArchetype* const _pArchetype, const int _maxPoolSize, const bool _bDeleteOnLevelTransition, const bool _bIsGrenade) { FCreatePool(this, _pArchetype, _maxPoolSize, _bDeleteOnLevelTransition, _bIsGrenade); }
-	void SpawnAndReleaseAllPooledProjectiles(IEntityArchetype* const _pArchetype, const int _maxPoolSize) { FSpawnAndReleaseAllPooledProjectiles(this, _pArchetype, _maxPoolSize); }
-	void ReturnAllToPool() { FReturnAllToPool(this); }
-	void ReturnToPool(CArkProjectile* const _pProjectile) { FReturnToPool(this, _pProjectile); }
-	void RemoveFromPool(CArkProjectile* const _pProjectile) { FRemoveFromPool(this, _pProjectile); }
-	bool IsPooled(IEntityArchetype* const _pArchetype) { return FIsPooled(this, _pArchetype); }
-	CArkProjectile* SpawnProjectile(SEntitySpawnParams& _spawnParams, const bool _bIsPooled) { return FSpawnProjectile(this, _spawnParams, _bIsPooled); }
-	void Update(const float _frameTime) { FUpdate(this, _frameTime); }
-	uint64_t GetProjectilePackageId(IEntityArchetype* const _pArchetype) { return FGetProjectilePackageId(this, _pArchetype); }
-	void DestroyAllProjectilesForLevelTransition() { FDestroyAllProjectilesForLevelTransition(this); }
-	bool IsAnotherGrenadeDetonating(const unsigned _grenadeId) { return FIsAnotherGrenadeDetonatingOv1(this, _grenadeId); }
-	bool IsAnotherGrenadeDetonating(CArkProjectileGrenade* const _pGrenade) { return FIsAnotherGrenadeDetonatingOv0(this, _pGrenade); }
-	bool IsAnotherGooDestroying(CArkProjectileGoo* const _pGoo) { return FIsAnotherGooDestroying(this, _pGoo); }
-	CArkProjectile* GetArkProjectileFromEntityId(const unsigned _entityId, const char* const _pArchetype) { return FGetArkProjectileFromEntityId(this, _entityId, _pArchetype); }
-	void DestroyAllProjectiles() { FDestroyAllProjectiles(this); }
-	void FreePool(IEntityArchetype* const _pArchetype) { FFreePool(this, _pArchetype); }
-	CArkProjectile* DoSpawnProjectile(SEntitySpawnParams& _spawnParams) { return FDoSpawnProjectile(this, _spawnParams); }
-	CArkProjectile* UseFromPool(SEntitySpawnParams& _spawnParams) { return FUseFromPool(this, _spawnParams); }
-
-#if 0
-	void FreePools();
-#endif
-
+#else
 	static inline auto FCArkProjectilePoolManagerOv1 = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x1F4DF0);
 	static inline auto FBitNotCArkProjectilePoolManager = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F1760);
 	static inline auto FShutdown = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F3AF0);
@@ -180,5 +122,5 @@ public:
 	static inline auto FFreePool = PreyFunction<void(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype)>(0x12F2000);
 	static inline auto FDoSpawnProjectile = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, SEntitySpawnParams& _spawnParams)>(0x12F1F60);
 	static inline auto FUseFromPool = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, SEntitySpawnParams& _spawnParams)>(0x12F3F30);
+#endif
 };
-#endif // !MOONCRASH

@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#include <Prey/CryExtension/ClassWeaver.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/GameDll/ProceduralWeaponAnimation.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/CryExtension/TypeList.h>
 
 struct CryGUID;
 struct ICryFactory;
@@ -34,7 +32,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralWeaponAnimationContext>>(0x2282858);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralWeaponAnimationContext>>(0x23F1358);
+#endif
 	CProceduralWeaponAnimationContext::SParams m_params;
 	std::shared_ptr<IAnimationOperatorQueue> m_pPoseModifier;
 	IScope* m_pScope;
@@ -60,6 +62,16 @@ public:
 	CProceduralWeaponAnimation& GetWeaponSway();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralWeaponAnimationContext* const _this)>(0x17D4D40);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralWeaponAnimationContext* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralWeaponAnimationContext* const _this, const char* name)>(0x158AEF0);
+	static inline auto FBitNotCProceduralWeaponAnimationContext = PreyFunction<void(CProceduralWeaponAnimationContext* const _this)>(0x17D5A70);
+	static inline auto FUpdate = PreyFunction<void(CProceduralWeaponAnimationContext* const _this, float timePassed)>(0x17D4D50);
+	static inline auto FSetAimDirection = PreyFunction<void(CProceduralWeaponAnimationContext* const _this, Vec3 direction)>(0x17D5C00);
+	static inline auto FInitialize = PreyFunction<void(CProceduralWeaponAnimationContext* const _this, IScope* pScope)>(0x17D5B50);
+	static inline auto FFinalize = PreyFunction<void(CProceduralWeaponAnimationContext* const _this)>(0x17D5B40);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralWeaponAnimationContext* const _this)>(0x18FBAC0);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralWeaponAnimationContext* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralWeaponAnimationContext* const _this, const char* name)>(0x1CBB0B0);
@@ -68,5 +80,6 @@ public:
 	static inline auto FSetAimDirection = PreyFunction<void(CProceduralWeaponAnimationContext* const _this, Vec3 direction)>(0x18FC990);
 	static inline auto FInitialize = PreyFunction<void(CProceduralWeaponAnimationContext* const _this, IScope* pScope)>(0x18FC8E0);
 	static inline auto FFinalize = PreyFunction<void(CProceduralWeaponAnimationContext* const _this)>(0x18FC8D0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -16,6 +14,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkEmotionExtension.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkEmotionExtension : public CGameObjectExtensionHelper<ArkEmotionExtension,IArkEmotionExtension> // Id=8019007 Size=80
 {
 public:
@@ -49,6 +52,7 @@ public:
 	virtual void GetMemoryUsage(ICrySizer *) const;
 	virtual ~ArkEmotionExtension();
 	
+#ifndef MOONCRASH
 	static inline auto FSetEmotion = PreyFunction<void(ArkEmotionExtension *const _this, uint64_t _emotionId, float _blend)>(0x115A200);
 	static inline auto FClearEmotion = PreyFunction<void(ArkEmotionExtension *const _this, float _blend)>(0x1159E90);
 	static inline auto FGetCurrentEmotion = PreyFunction<uint64_t(ArkEmotionExtension const *const _this)>(0x855C80);
@@ -73,56 +77,7 @@ public:
 	static inline auto FSetChannelId = PreyFunction<void(ArkEmotionExtension *const _this, uint16_t id)>(0xA13080);
 	static inline auto FSetAuthority = PreyFunction<void(ArkEmotionExtension *const _this, bool auth)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkEmotionExtension const *const _this, ICrySizer *)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <Prey/CryNetwork/ISerialize.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// ArkEmotionExtension
-// Header:  Prey/GameDll/ark/ArkEmotionExtension.h
-class ArkEmotionExtension : public CGameObjectExtensionHelper<ArkEmotionExtension, IArkEmotionExtension>
-{ // Size=80 (0x50)
-public:
-	uint64_t m_emotionId;
-	int m_nAnimLayer;
-
-	ArkEmotionExtension();
-	virtual void SetEmotion(uint64_t _emotionId, float _blend);
-	virtual void ClearEmotion(float _blend);
-	virtual uint64_t GetCurrentEmotion() const;
-	virtual void Release();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void InitClient(int channelId);
-	virtual void PostInit(IGameObject* pGameObject);
-	virtual void PostInitClient(int channelId);
-	virtual bool ReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
-	virtual void PostReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
-	virtual bool GetEntityPoolSignature(TSerialize signature);
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void PostUpdate(float frameTime);
-	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(const SGameObjectEvent& __unnamed1);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t id);
-	virtual void SetAuthority(bool auth);
-	virtual void GetMemoryUsage(ICrySizer* __unnamed1) const;
-
+#else
 	static inline auto FArkEmotionExtensionOv2 = PreyFunction<void(ArkEmotionExtension* const _this)>(0x11A8DC0);
 	static inline auto FSetEmotion = PreyFunction<void(ArkEmotionExtension* const _this, uint64_t _emotionId, float _blend)>(0x11A9170);
 	static inline auto FClearEmotion = PreyFunction<void(ArkEmotionExtension* const _this, float _blend)>(0x11A8E00);
@@ -148,5 +103,5 @@ public:
 	static inline auto FSetChannelId = PreyFunction<void(ArkEmotionExtension* const _this, uint16_t id)>(0x1333E90);
 	static inline auto FSetAuthority = PreyFunction<void(ArkEmotionExtension* const _this, bool auth)>(0x1333E90);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkEmotionExtension* const _this, ICrySizer* __unnamed1)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

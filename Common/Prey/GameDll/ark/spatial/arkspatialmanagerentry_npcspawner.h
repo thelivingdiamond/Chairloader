@@ -1,8 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/ArkSpatialManagerKey.h>
+class ArkSpatialManagerKeyType_NpcSpawner {};   // key tag (empty)
+#include <Prey/GameDll/ark/spatial/ArkSpatialManagerKey.h>
 
 class CArkNpcSpawner;
 
@@ -13,7 +13,7 @@ class ArkSpatialManagerEntryImpl_NpcSpawner
 public:
 	using KeyType = ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>;
 
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner> AddObject(const CArkNpcSpawner& _spawner) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>)]; return *FAddObject(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>*>(_return_buf_), _spawner); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner> AddObject(const CArkNpcSpawner& _spawner) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>)]; return std::move(*FAddObject(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>*>(_return_buf_), _spawner)); }
 	void RemoveObject(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>& _spawnerKey) { FRemoveObject(this, _spawnerKey); }
 
 	static inline auto FAddObject = PreyFunction<ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>*(ArkSpatialManagerEntryImpl_NpcSpawner* const _this, ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>* _return_value_, const CArkNpcSpawner& _spawner)>(0x13CA0B0);

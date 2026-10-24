@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -15,43 +14,6 @@ class ArkPsiPowerTargetingComponent;
 enum class EArkPsiPowers;
 class IArkValueBase;
 struct IEntity;
-
-// ArkPsiPowerConsumeCorpse
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerConsumeCorpse.h
-class ArkPsiPowerConsumeCorpse : public CArkPsiPower<ConsumeCorpsePowerProperties>
-{ // Size=528 (0x210)
-public:
-	ArkPsiPowerPlayerProximityTargetingComponent m_targetingComponent;
-
-	ArkPsiPowerConsumeCorpse();
-	virtual ~ArkPsiPowerConsumeCorpse();
-	virtual void Cancel();
-	virtual bool StartTargeting();
-	virtual void UpdateTargeting(const float _frameTime);
-	virtual std::vector<IEntity*> GetSelectedTargets() const;
-	virtual std::vector<IEntity*> GetUnselectedTargets() const;
-	virtual EArkPsiPowers GetEnum() const;
-	virtual const ArkPsiPowerTargetingComponent* GetTargetingComponent() const;
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-	void Consume(const unsigned _targetEntityId) const { FConsume(this, _targetEntityId); }
-
-#if 0
-	bool FilterTarget(const IEntity& _arg0_) const;
-#endif
-
-	static inline auto FArkPsiPowerConsumeCorpseOv1 = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this)>(0x13B6BF0);
-	static inline auto FCancel = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this)>(0x140D970);
-	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerConsumeCorpse* const _this)>(0x13B7FC0);
-	static inline auto FUpdateTargeting = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this, const float _frameTime)>(0x13B8340);
-	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerConsumeCorpse* const _this, std::vector<IEntity*>* _return_value_)>(0x13B7CE0);
-	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerConsumeCorpse* const _this, std::vector<IEntity*>* _return_value_)>(0x16B1C80);
-	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const ArkPsiPowerConsumeCorpse* const _this)>(0x13B7CD0);
-	static inline auto FGetTargetingComponent = PreyFunction<const ArkPsiPowerTargetingComponent* (const ArkPsiPowerConsumeCorpse* const _this)>(0x1368F30);
-	static inline auto FStart_Derived = PreyFunction<bool(ArkPsiPowerConsumeCorpse* const _this)>(0x13B7FE0);
-	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this, const int _level)>(0x13B7F60);
-	static inline auto FConsume = PreyFunction<void(const ArkPsiPowerConsumeCorpse* const _this, const unsigned _targetEntityId)>(0x13B7360);
-};
 
 // ArkPsiPowerConsumeCorpseProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerConsumeCorpse.h
@@ -313,4 +275,42 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13B7BE0);
 	static inline auto FInit = PreyFunction<bool(ConsumeCorpsePowerProperties* const _this)>(0x13B7D80);
 };
+
+// ArkPsiPowerConsumeCorpse
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerConsumeCorpse.h
+class ArkPsiPowerConsumeCorpse : public CArkPsiPower<ConsumeCorpsePowerProperties>
+{ // Size=528 (0x210)
+public:
+	ArkPsiPowerPlayerProximityTargetingComponent m_targetingComponent;
+
+	ArkPsiPowerConsumeCorpse();
+	virtual ~ArkPsiPowerConsumeCorpse();
+	virtual void Cancel();
+	virtual bool StartTargeting();
+	virtual void UpdateTargeting(const float _frameTime);
+	virtual std::vector<IEntity*> GetSelectedTargets() const;
+	virtual std::vector<IEntity*> GetUnselectedTargets() const;
+	virtual EArkPsiPowers GetEnum() const;
+	virtual const ArkPsiPowerTargetingComponent* GetTargetingComponent() const;
+	virtual bool Start_Derived();
+	virtual void SetLevel_Derived(const int _level);
+	void Consume(const unsigned _targetEntityId) const { FConsume(this, _targetEntityId); }
+
+#if 0
+	bool FilterTarget(const IEntity& _arg0_) const;
+#endif
+
+	static inline auto FArkPsiPowerConsumeCorpseOv1 = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this)>(0x13B6BF0);
+	static inline auto FCancel = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this)>(0x140D970);
+	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerConsumeCorpse* const _this)>(0x13B7FC0);
+	static inline auto FUpdateTargeting = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this, const float _frameTime)>(0x13B8340);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerConsumeCorpse* const _this, std::vector<IEntity*>* _return_value_)>(0x13B7CE0);
+	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerConsumeCorpse* const _this, std::vector<IEntity*>* _return_value_)>(0x16B1C80);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const ArkPsiPowerConsumeCorpse* const _this)>(0x13B7CD0);
+	static inline auto FGetTargetingComponent = PreyFunction<const ArkPsiPowerTargetingComponent* (const ArkPsiPowerConsumeCorpse* const _this)>(0x1368F30);
+	static inline auto FStart_Derived = PreyFunction<bool(ArkPsiPowerConsumeCorpse* const _this)>(0x13B7FE0);
+	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerConsumeCorpse* const _this, const int _level)>(0x13B7F60);
+	static inline auto FConsume = PreyFunction<void(const ArkPsiPowerConsumeCorpse* const _this, const unsigned _targetEntityId)>(0x13B7360);
+};
+
 #endif // MOONCRASH

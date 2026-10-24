@@ -11,7 +11,11 @@
 
 // Header: Exact
 // CryEngine/cryentitysystem/areaproxy.h
+#ifndef MOONCRASH
 class ArkNpcAttentiveSubject : public ArkAttentiveSubject, public ArkAuralPerceiver, public ArkVisualPerceiver, public ArkRoomPerceiver // Id=801430B Size=56
+#else
+class ArkNpcAttentiveSubject : public ArkAttentiveSubject, public ArkAuralPerceiver, public ArkSeismicPerceiver, public ArkVisualPerceiver, public ArkRoomPerceiver // Size=64
+#endif
 {
 public:
 	ArkNpc *m_pNpc;
@@ -26,6 +30,11 @@ public:
 	void EnableAuralPerceiver() { FEnableAuralPerceiver(this); }
 	void DisableAuralPerceiver() { FDisableAuralPerceiver(this); }
 	bool IsAuralPerceiverEnabled() const { return FIsAuralPerceiverEnabled(this); }
+#ifdef MOONCRASH
+	void EnableSeismicPerceiver() { FEnableSeismicPerceiver(this); }
+	void DisableSeismicPerceiver() { FDisableSeismicPerceiver(this); }
+	bool IsSeismicPerceiverEnabled() const { return FIsSeismicPerceiverEnabled(this); }
+#endif
 	void EnableVisualPerceiver() { FEnableVisualPerceiver(this); }
 	void DisableVisualPerceiver() { FDisableVisualPerceiver(this); }
 	bool IsVisualPerceiverEnabled() const { return FIsVisualPerceiverEnabled(this); }
@@ -44,6 +53,10 @@ public:
 	virtual void DoOnAttentionProxiesUpdated(const unsigned *_pFirstEntityId, const unsigned *_pLastEntityId);
 	virtual Vec3 DoGetHearingPosition() const;
 	virtual void DoUpdateAuralPerception(ArkSimpleAuralPerceptionInfo const *_pFirstSimpleAuralPerceptionInfo, ArkSimpleAuralPerceptionInfo const *_pLastSimpleAuralPerceptionInfo, ArkComplexAuralPerceptionInfo const *_pFirstComplexAuralPerceptionInfo, ArkComplexAuralPerceptionInfo const *_pLastComplexAuralPerceptionInfo);
+#ifdef MOONCRASH
+	virtual TNavigationID<ENavigationIDTag::MeshIDTag> DoGetNavigationMeshId(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navigationAgentTypeId) const;
+	virtual void DoUpdateSeismicPerception(const ArkSimpleSeismicPerceptionInfo* _pFirstSimpleSeismicPerceptionInfo, const ArkSimpleSeismicPerceptionInfo* _pLastSimpleSeismicPerceptionInfo, const ArkComplexSeismicPerceptionInfo* _pFirstComplexSeismicPerceptionInfo, const ArkComplexSeismicPerceptionInfo* _pLastComplexSeismicPerceptionInfo);
+#endif
 	virtual uint64_t *DoGetVisionConeIds(uint64_t *_pFirstVisionConeId, uint64_t *_pLastVisionConeId) const;
 	virtual ArkVisualPerceiverVisionParams DoGetVisionParams() const;
 	virtual IPhysicalEntity **DoGetIgnoredPhysicalEntitiesInLineOfSight(IPhysicalEntity **_ppFirstPhysicalEntity, IPhysicalEntity **_ppLastPhysicalEntity) const;
@@ -123,7 +136,7 @@ public:
 	static inline auto FDoOnAttentionProxiesUpdated = PreyFunction<void(ArkNpcAttentiveSubject* const _this, const unsigned* _pFirstEntityId, const unsigned* _pLastEntityId)>(0x1506710);
 	static inline auto FDoGetHearingPosition = PreyFunction<Vec3*(const ArkAuralPerceiver* const _this, Vec3* _return_value_)>(0x1505570);
 	static inline auto FDoUpdateAuralPerception = PreyFunction<void(ArkAuralPerceiver* const _this, const ArkSimpleAuralPerceptionInfo* _pFirstSimpleAuralPerceptionInfo, const ArkSimpleAuralPerceptionInfo* _pLastSimpleAuralPerceptionInfo, const ArkComplexAuralPerceptionInfo* _pFirstComplexAuralPerceptionInfo, const ArkComplexAuralPerceptionInfo* _pLastComplexAuralPerceptionInfo)>(0x1506780);
-	static inline auto FDoGetNavigationMeshId = PreyFunction<TNavigationID<0>*(const ArkSeismicPerceiver* const _this, TNavigationID<0>* _return_value_, TNavigationID<1> _navigationAgentTypeId)>(0x15055B0);
+	static inline auto FDoGetNavigationMeshId = PreyFunction<TNavigationID<ENavigationIDTag::MeshIDTag>*(const ArkSeismicPerceiver* const _this, TNavigationID<ENavigationIDTag::MeshIDTag>* _return_value_, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navigationAgentTypeId)>(0x15055B0);
 	static inline auto FDoUpdateSeismicPerception = PreyFunction<void(ArkSeismicPerceiver* const _this, const ArkSimpleSeismicPerceptionInfo* _pFirstSimpleSeismicPerceptionInfo, const ArkSimpleSeismicPerceptionInfo* _pLastSimpleSeismicPerceptionInfo, const ArkComplexSeismicPerceptionInfo* _pFirstComplexSeismicPerceptionInfo, const ArkComplexSeismicPerceptionInfo* _pLastComplexSeismicPerceptionInfo)>(0x1506FF0);
 	static inline auto FDoGetVisionConeIds = PreyFunction<uint64_t* (const ArkVisualPerceiver* const _this, uint64_t* _pFirstVisionConeId, uint64_t* _pLastVisionConeId)>(0x1505810);
 	static inline auto FDoGetVisionParams = PreyFunction<ArkVisualPerceiverVisionParams*(const ArkVisualPerceiver* const _this, ArkVisualPerceiverVisionParams* _return_value_)>(0x1505AD0);

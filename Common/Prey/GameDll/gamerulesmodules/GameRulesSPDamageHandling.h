@@ -1,12 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/GameRules.h>
 #include <Prey/GameDll/gamerulesmodules/GameRulesCommonDamageHandling.h>
-#include <_unknown/CInvulnerableFilter.h>
-#include <_unknown/CryFixedArray.h>
-#include <_unknown/IGameRulesDamageHandlingModule.h>
+#include <Prey/GameDll/gamerulesmodules/CInvulnerableFilter.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/GameDll/gamerulesmodules/IGameRulesDamageHandlingModule.h>
 
 class CCryActor;
 struct ExplosionInfo;
@@ -23,7 +21,7 @@ class XmlNodeRef;
 class CMercyTimeFilter
 { // Size=64 (0x40)
 public:
-	enum class #unnamed_enum_MaxDifficultyLevels
+	enum
 	{
 		MaxDifficultyLevels = 5,
 	};
@@ -32,7 +30,7 @@ public:
 	// Header:  Prey/GameDll/gamerulesmodules/GameRulesSPDamageHandling.h
 	struct ClassFilter
 	{ // Size=4 (0x4)
-		enum #unnamed_enum_eType_None
+		enum
 		{
 			eType_None = 0,
 			eType_Self = 1,
@@ -70,7 +68,11 @@ public:
 	void OnLocalPlayerEnteredMercyTime();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(CMercyTimeFilter* const _this, const XmlNodeRef& xml)>(0x1736430);
+#else
 	static inline auto FInit = PreyFunction<void(CMercyTimeFilter* const _this, const XmlNodeRef& xml)>(0x185D290);
+#endif
 };
 
 // CGameRulesSPDamageHandling
@@ -134,6 +136,21 @@ public:
 	bool ShouldApplyMercyTime(CCryActor& _arg0_, const HitInfo& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameRulesSPDamageHandlingOv1 = PreyFunction<void(CGameRulesSPDamageHandling* const _this)>(0x1735A30);
+	static inline auto FInit = PreyFunction<void(CGameRulesSPDamageHandling* const _this, XmlNodeRef xml)>(0x17362E0);
+	static inline auto FUpdate = PreyFunction<void(CGameRulesSPDamageHandling* const _this, float frameTime)>(0x1738650);
+	static inline auto FSvOnHit = PreyFunction<bool(CGameRulesSPDamageHandling* const _this, const HitInfo& hit)>(0x1737C00);
+	static inline auto FSvOnHitScaled = PreyFunction<bool(CGameRulesSPDamageHandling* const _this, const HitInfo& hitInfo)>(0x1737D50);
+	static inline auto FSvOnExplosion = PreyFunction<void(CGameRulesSPDamageHandling* const _this, const ExplosionInfo& explosionInfo, const std::map<IEntity*, float>& affectedEntities)>(0x1737560);
+	static inline auto FSvOnCollision = PreyFunction<void(CGameRulesSPDamageHandling* const _this, const IEntity* pVictimEntity, const CGameRules::SCollisionHitInfo& collisionHitInfo)>(0x1736A70);
+	static inline auto FMakeMovementVisibleToAIForEntityClass = PreyFunction<void(CGameRulesSPDamageHandling* const _this, const IEntityClass* pEntityClass)>(0x17368C0);
+	static inline auto FOnGameEvent = PreyFunction<void(CGameRulesSPDamageHandling* const _this, const IGameRulesDamageHandlingModule::EGameEvents& gameEvent)>(0x1736910);
+	static inline auto FIsDead = PreyFunction<bool(CGameRulesSPDamageHandling* const _this, IActor* actor, IScriptTable* actorScript)>(0x17366D0);
+	static inline auto FProcessDeath = PreyFunction<void(CGameRulesSPDamageHandling* const _this, IActor* victimActor, const SmartScriptTable& victimScript, const HitInfo& hitInfo)>(0x1736940);
+	static inline auto FCalcExplosionDamage = PreyFunction<float(CGameRulesSPDamageHandling* const _this, IEntity* entity, const ExplosionInfo& explosionInfo, float obstruction)>(0x1735C30);
+	static inline auto FDelegateServerHit = PreyFunction<void(CGameRulesSPDamageHandling* const _this, IScriptTable* victimScript, const HitInfo& hit, IActor* pVictimActor, const CGameRulesSPDamageHandling::SReactionInfoOnHit* pReactionInfo)>(0x1735E30);
+#else
 	static inline auto FCGameRulesSPDamageHandlingOv1 = PreyFunction<void(CGameRulesSPDamageHandling* const _this)>(0x185C890);
 	static inline auto FInit = PreyFunction<void(CGameRulesSPDamageHandling* const _this, XmlNodeRef xml)>(0x185D140);
 	static inline auto FUpdate = PreyFunction<void(CGameRulesSPDamageHandling* const _this, float frameTime)>(0x185F5A0);
@@ -147,5 +164,6 @@ public:
 	static inline auto FProcessDeath = PreyFunction<void(CGameRulesSPDamageHandling* const _this, IActor* victimActor, const SmartScriptTable& victimScript, const HitInfo& hitInfo)>(0x185D7A0);
 	static inline auto FCalcExplosionDamage = PreyFunction<float(CGameRulesSPDamageHandling* const _this, IEntity* entity, const ExplosionInfo& explosionInfo, float obstruction)>(0x185CA90);
 	static inline auto FDelegateServerHit = PreyFunction<void(CGameRulesSPDamageHandling* const _this, IScriptTable* victimScript, const HitInfo& hit, IActor* pVictimActor, const CGameRulesSPDamageHandling::SReactionInfoOnHit* pReactionInfo)>(0x185CC90);
+#endif
 };
-#endif // MOONCRASH
+

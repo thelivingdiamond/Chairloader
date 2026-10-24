@@ -1,10 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ProceduralContextAim.h>
+#include <Prey/GameDll/ProceduralContextLook.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
 #include <Prey/GameDll/AnimActionAIDetail.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class CAnimActionAIDetail;
 class CAnimActionAIMovement;
@@ -45,10 +45,17 @@ public:
 	float GetPseudoSpeed() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSetRequestedStance = PreyFunction<void(CAIAnimationState* const _this, const EStance stance)>(0x133F720);
+	static inline auto FGetRequestedStance = PreyFunction<EStance(const CAIAnimationState* const _this)>(0x985E40);
+	static inline auto FSetStance = PreyFunction<void(CAIAnimationState* const _this, const EStance stance)>(0x17A91F0);
+	static inline auto FGetStance = PreyFunction<EStance(const CAIAnimationState* const _this)>(0xD9C610);
+#else
 	static inline auto FSetRequestedStance = PreyFunction<void(CAIAnimationState* const _this, const EStance stance)>(0x7CA210);
 	static inline auto FGetRequestedStance = PreyFunction<EStance(const CAIAnimationState* const _this)>(0x387590);
 	static inline auto FSetStance = PreyFunction<void(CAIAnimationState* const _this, const EStance stance)>(0x18CFE20);
 	static inline auto FGetStance = PreyFunction<EStance(const CAIAnimationState* const _this)>(0x11883D0);
+#endif
 };
 
 // CAIAnimationComponent
@@ -87,6 +94,19 @@ public:
 	bool GetUseLegacyCoverLocator() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCAIAnimationComponentOv1 = PreyFunction<void(CAIAnimationComponent* const _this, IScriptTable* pScriptTable)>(0x17A7040);
+	static inline auto FBitNotCAIAnimationComponent = PreyFunction<void(CAIAnimationComponent* const _this)>(0x17A7270);
+	static inline auto FInitMannequin = PreyFunction<bool(CAIAnimationComponent* const _this, IActionController& actionController, const SAnimActionAIMovementSettings& animActionAIMovementSettings)>(0x17A8360);
+	static inline auto FResetMannequin = PreyFunction<void(CAIAnimationComponent* const _this)>(0x17A9030);
+	static inline auto FRequestAIMovementDetail = PreyFunction<void(CAIAnimationComponent* const _this, CAnimActionAIDetail::EMovementDetail movementDetail)>(0x17A9020);
+	static inline auto FUpdateAimingState = PreyFunction<void(CAIAnimationComponent* const _this, ISkeletonPose* pSkeletonPose, const bool aimEnabled, const Vec3& aimTarget, const unsigned aimIkLayer, const float aimIkFadeoutTime)>(0x17A9750);
+	static inline auto FUpdateLookingState = PreyFunction<bool(CAIAnimationComponent* const _this, const bool lookEnabled, const Vec3& lookTarget)>(0x17A9860);
+	static inline auto FEnableBlink = PreyFunction<void(CAIAnimationComponent* const _this, bool _bEnable)>(0x17A73A0);
+	static inline auto FForceStanceTo = PreyFunction<void(CAIAnimationComponent* const _this, CPlayer& player, const EStance targetStance)>(0x17A7410);
+	static inline auto FForceStanceInAIActorTo = PreyFunction<void(CAIAnimationComponent* const _this, CPlayer& player, const EStance targetStance)>(0x17A73C0);
+	static inline auto FForceReevaluateMovementAnimAction = PreyFunction<void(CAIAnimationComponent* const _this)>(0x17A73B0);
+#else
 	static inline auto FCAIAnimationComponentOv1 = PreyFunction<void(CAIAnimationComponent* const _this, IScriptTable* pScriptTable)>(0x18CDC70);
 	static inline auto FBitNotCAIAnimationComponent = PreyFunction<void(CAIAnimationComponent* const _this)>(0x18CDEA0);
 	static inline auto FInitMannequin = PreyFunction<bool(CAIAnimationComponent* const _this, IActionController& actionController, const SAnimActionAIMovementSettings& animActionAIMovementSettings)>(0x18CEF90);
@@ -98,6 +118,7 @@ public:
 	static inline auto FForceStanceTo = PreyFunction<void(CAIAnimationComponent* const _this, CPlayer& player, const EStance targetStance)>(0x18CE040);
 	static inline auto FForceStanceInAIActorTo = PreyFunction<void(CAIAnimationComponent* const _this, CPlayer& player, const EStance targetStance)>(0x18CDFF0);
 	static inline auto FForceReevaluateMovementAnimAction = PreyFunction<void(CAIAnimationComponent* const _this)>(0x18CDFE0);
+#endif
 };
 
 // SMannequinAIStateParams
@@ -150,7 +171,11 @@ struct SMannequinAIStateParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinAIStateParams::TagIDs* const _this, const CTagDefinition& tagDefs)>(0x17A7880);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinAIStateParams::TagIDs* const _this, const CTagDefinition& tagDefs)>(0x18CE4B0);
+#endif
 	};
 
 	// SMannequinAIStateParams::TagGroupIDs
@@ -178,6 +203,10 @@ struct SMannequinAIStateParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAIStateParams* const _this, const SControllerDef& controllerDef)>(0x17A7780);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAIStateParams* const _this, const SControllerDef& controllerDef)>(0x18CE3B0);
+#endif
 };
-#endif // MOONCRASH
+

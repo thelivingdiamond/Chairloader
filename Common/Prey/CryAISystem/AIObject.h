@@ -41,7 +41,9 @@ struct AgentPerceptionParameters // Id=800103C Size=100
 
     AgentPerceptionParameters::SPerceptionScale perceptionScale;
 
+#ifndef MOONCRASH
     void Serialize(TSerialize ser) { FSerialize(this,ser); }
+#endif
 
 #ifndef MOONCRASH
     static inline auto FSerialize = PreyFunction<void(AgentPerceptionParameters *const _this, TSerialize ser)>(0x7053D0);
@@ -92,7 +94,9 @@ struct AgentParameters // Id=800103B Size=240
 	string m_sWaveName;
 
 	AgentParameters();
+#ifndef MOONCRASH
 	void Serialize(TSerialize ser) { FSerialize(this,ser); }
+#endif
 
 #if 0
 	void Reset();

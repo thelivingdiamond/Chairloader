@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/arkdeferredaction.h>
 #include <Prey/CrySystem/TimeValue.h>
-#include <_unknown/ArkDeferredActionImpl_RayCast.h>
-#include <_unknown/RayCastQueue.h>
+#include <Prey/Ark/ArkDeferredActionImpl.h>
+#include <Prey/CryPhysics/RayCastQueue.h>
 
 struct AABB;
 struct IEntity;
@@ -73,13 +71,31 @@ public:
 		PropData();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FPropDataOv0 = PreyFunction<void(ArkNpcThrowPropManager::PropData* const _this, const ArkNpcThrowPropManager::PropData& _other)>(0x120B000);
+#else
 		static inline auto FPropDataOv0 = PreyFunction<void(ArkNpcThrowPropManager::PropData* const _this, const ArkNpcThrowPropManager::PropData& _other)>(0x129A020);
+#endif
 	};
 
 	using DeferredRayCast = ArkDeferredAction<ArkNpcThrowPropManager::DeferredRayCastImpl>;
 	using PropDataMap = std::map<unsigned int, ArkNpcThrowPropManager::PropData>;
 	using PropDataMapPair = std::pair<unsigned int, ArkNpcThrowPropManager::PropData>;
 
+#ifndef MOONCRASH
+	static inline auto s_kMassMin = PreyGlobal<const float>(0x1E03528);
+	static inline auto s_kMassMax = PreyGlobal<const float>(0x1E0352C);
+	static inline auto s_kDistMin = PreyGlobal<const float>(0x1E03530);
+	static inline auto s_kDistMax = PreyGlobal<const float>(0x1E03534);
+	static inline auto s_kVelMaxSqr = PreyGlobal<const float>(0x1E03538);
+	static inline auto s_kAABBTestTime = PreyGlobal<const float>(0x1E0353C);
+	static inline auto s_kMinLOSTestTime = PreyGlobal<const float>(0x1E03540);
+	static inline auto s_kMaxLOSTestTime = PreyGlobal<const float>(0x1E03544);
+	static inline auto s_kMaxLOSTestDist = PreyGlobal<const float>(0x1E03548);
+	static inline auto s_kPropRetestDist = PreyGlobal<const float>(0x1E0354C);
+	static inline auto s_kPropTestAboveDist = PreyGlobal<const float>(0x1E03550);
+	static inline auto s_kPlayerRetestDist = PreyGlobal<const float>(0x1E03554);
+#else
 	static inline auto s_kMassMin = PreyGlobal<const float>(0x1F47738);
 	static inline auto s_kMassMax = PreyGlobal<const float>(0x1F4773C);
 	static inline auto s_kDistMin = PreyGlobal<const float>(0x1F47740);
@@ -92,6 +108,7 @@ public:
 	static inline auto s_kPropRetestDist = PreyGlobal<const float>(0x1F4775C);
 	static inline auto s_kPropTestAboveDist = PreyGlobal<const float>(0x1F47760);
 	static inline auto s_kPlayerRetestDist = PreyGlobal<const float>(0x1F47764);
+#endif
 	bool m_bHasUseParams;
 	float m_aabbTestTimer;
 	Vec3 m_lastTargetTestPos;
@@ -120,8 +137,6 @@ public:
 	ArkNpcThrowPropManager(const ArkNpcThrowPropManager& _arg0_);
 	bool GetUseQueryParams(ArkNpcThrowPropManager::QueryParams& _arg0_) const;
 	void SetUseQueryParams(const ArkNpcThrowPropManager::QueryParams& _arg0_);
-	void AddPrioritizedProp(unsigned _arg0_);
-	void RemovePrioritizedProp(unsigned _arg0_);
 	ArkNpcThrowPropManager& operator=(const ArkNpcThrowPropManager& _arg0_);
 	const ArkNpcThrowPropManager::PropData& GetPropData(unsigned _arg0_);
 	AABB GetSearchAABB(const Vec3& _arg0_) const;
@@ -130,6 +145,22 @@ public:
 	float GetMass(IEntity* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcThrowPropManagerOv1 = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0x120AF90);
+	static inline auto FInitialize = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0xA13080);
+	static inline auto FReset = PreyFunction<void(ArkNpcThrowPropManager* const _this, bool _bStart)>(0x120C770);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcThrowPropManager* const _this, float _elapsedTime)>(0x120C9A0);
+	static inline auto FStartDetection = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0x120C930);
+	static inline auto FStopDetection = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0x120C940);
+	static inline auto FGetBestThrowableEntityIds = PreyFunction<void(const ArkNpcThrowPropManager* const _this, const Vec3& _sourcePos, const ArkNpcThrowPropManager::QueryParams& _params, std::vector<unsigned int>& _propIds)>(0x120BC70);
+	static inline auto FHasLOS = PreyFunction<bool(const ArkNpcThrowPropManager* const _this, unsigned _propId)>(0x120C370);
+	static inline auto FAddPrioritizedProps = PreyFunction<void(ArkNpcThrowPropManager* const _this, std::vector<unsigned int>& _propIds)>(0x120B090);
+	static inline auto FRemovePrioritizedProps = PreyFunction<void(ArkNpcThrowPropManager* const _this, std::vector<unsigned int>& _propIds)>(0x120C700);
+	static inline auto FIsPrioritized = PreyFunction<bool(const ArkNpcThrowPropManager* const _this, unsigned _propId)>(0x120C3C0);
+	static inline auto FSetThrowFailed = PreyFunction<void(ArkNpcThrowPropManager* const _this, const std::vector<unsigned int>& _propIds)>(0x120C8A0);
+	static inline auto FFindProps = PreyFunction<void(ArkNpcThrowPropManager* const _this, const AABB& _aabb)>(0x120B410);
+	static inline auto FGetScore = PreyFunction<float(const ArkNpcThrowPropManager* const _this, IEntity* pPropEntity, const ArkNpcThrowPropManager::PropData& _data, const Vec3& _sourcePos, const ArkNpcThrowPropManager::QueryParams& _params, bool& _bInCluster)>(0x120BFE0);
+#else
 	static inline auto FArkNpcThrowPropManagerOv1 = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0x1299FB0);
 	static inline auto FInitialize = PreyFunction<void(ArkNpcThrowPropManager* const _this)>(0x1333E90);
 	static inline auto FReset = PreyFunction<void(ArkNpcThrowPropManager* const _this, bool _bStart)>(0x129B790);
@@ -144,5 +175,6 @@ public:
 	static inline auto FSetThrowFailed = PreyFunction<void(ArkNpcThrowPropManager* const _this, const std::vector<unsigned int>& _propIds)>(0x129B8C0);
 	static inline auto FFindProps = PreyFunction<void(ArkNpcThrowPropManager* const _this, const AABB& _aabb)>(0x129A430);
 	static inline auto FGetScore = PreyFunction<float(const ArkNpcThrowPropManager* const _this, IEntity* pPropEntity, const ArkNpcThrowPropManager::PropData& _data, const Vec3& _sourcePos, const ArkNpcThrowPropManager::QueryParams& _params, bool& _bInCluster)>(0x129B000);
+#endif
 };
-#endif // MOONCRASH
+

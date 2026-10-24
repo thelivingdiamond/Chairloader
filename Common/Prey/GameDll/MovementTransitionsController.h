@@ -1,13 +1,11 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/IAnimationGraph.h>
 #include <Prey/CrySystem/TimeValue.h>
-#include <_unknown/Lineseg_tpl.h>
-#include <_unknown/SMovementTransitionsSample.h>
-#include <_unknown/STransitionFuture.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/GameDll/SMovementTransitionsSample.h>
+#include <Prey/GameDll/STransitionFuture.h>
 
 struct AnimEventInstance;
 class CAIAnimationComponent;
@@ -57,6 +55,16 @@ public:
 	static float CalculateStopLeg(IEntity& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CAnimActionMovementTransition* const _this)>(0x1772D10);
+	static inline auto FDoDelete = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0xA97D40);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionMovementTransition* const _this, float timePassed)>(0x1773C40);
+	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CAnimActionMovementTransition* const _this, float timePassed)>(0x1774C50);
+	static inline auto FOnAnimationEvent = PreyFunction<void(CAnimActionMovementTransition* const _this, ICharacterInstance* pCharacter, const AnimEventInstance& event)>(0x1772DF0);
+	static inline auto FExit = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0x1772910);
+	static inline auto FOnFragmentStarted = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0x1772E80);
+	static inline auto FFillMotionParameters = PreyFunction<void(SPredictedCharacterStates* pMotionParameters, IEntity& entity, const STransition* pTransition, const STransitionFuture& future)>(0x17729C0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CAnimActionMovementTransition* const _this)>(0x1899830);
 	static inline auto FDoDelete = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0x3E3960);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionMovementTransition* const _this, float timePassed)>(0x189A750);
@@ -65,6 +73,7 @@ public:
 	static inline auto FExit = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0x1899430);
 	static inline auto FOnFragmentStarted = PreyFunction<void(CAnimActionMovementTransition* const _this)>(0x18999A0);
 	static inline auto FFillMotionParameters = PreyFunction<void(SPredictedCharacterStates* pMotionParameters, IEntity& entity, const STransition* pTransition, const STransitionFuture& future)>(0x18994E0);
+#endif
 };
 
 // CCornerSmoother
@@ -113,9 +122,15 @@ public:
 
 	static constexpr const int MAX_SAMPLES = 100;
 	static constexpr const int MAX_PREDICTIONS_PER_FRAME = 6;
+#ifndef MOONCRASH
+	static inline auto m_lastPredictionFrameID = PreyGlobal<int>(0x2C12C0C);
+	static inline auto m_numPredictionsThisFrame = PreyGlobal<int>(0x2C12C10);
+	static inline auto normalCurveSettings = PreyGlobal<CCornerSmoother::SCurveSettings>(0x2281C78);
+#else
 	static inline auto m_lastPredictionFrameID = PreyGlobal<int>(0x2D8E60C);
 	static inline auto m_numPredictionsThisFrame = PreyGlobal<int>(0x2D8E610);
 	static inline auto normalCurveSettings = PreyGlobal<CCornerSmoother::SCurveSettings>(0x23F0778);
+#endif
 	CPlayer* m_pPlayer;
 	Vec3 m_oldMoveTarget;
 	float m_dirSmoothTime;
@@ -144,12 +159,21 @@ public:
 	static void RememberLastPredictionFrameID(const int _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(CCornerSmoother* const _this)>(0x1773910);
+	static inline auto FUpdate = PreyFunction<void(CCornerSmoother* const _this, const Vec3& playerPos, const Vec2& oldMovementDir, const float oldMovementSpeed, const Vec3& animBodyDirection, const float desiredSpeed, const Vec3& desiredMovement, const float distToPathEnd, const Vec3& moveTarget, const bool hasLockedBodyTarget, const float maxTurnSpeed, const float frameTime, float* const pNewDesiredSpeed, Vec3* const pNewDesiredMovement)>(0x1774050);
+	static inline auto FPredictAndVerifySmoothTurn = PreyFunction<void(CCornerSmoother* const _this, const CCornerSmoother::SPredictionSettings& settings)>(0x1772FA0);
+	static inline auto FPredictSmoothTurn = PreyFunction<void(const CCornerSmoother::SPredictionSettings& settings, CCornerSmoother::SPrediction* const pPrediction)>(0x1773150);
+	static inline auto FSimplifyPrediction = PreyFunction<void(const Vec3& playerPos, const CCornerSmoother::SPrediction& input, CCornerSmoother::SPrediction* const pOutput)>(0x1773A90);
+	static inline auto FCalculateDirSmoothTime = PreyFunction<float(const CCornerSmoother::SCurveSettings& settings, const float desiredSpeed, const float distToMoveTarget2D, const float endOfPathDistance)>(0x1772810);
+#else
 	static inline auto FReset = PreyFunction<void(CCornerSmoother* const _this)>(0x189A420);
 	static inline auto FUpdate = PreyFunction<void(CCornerSmoother* const _this, const Vec3& playerPos, const Vec2& oldMovementDir, const float oldMovementSpeed, const Vec3& animBodyDirection, const float desiredSpeed, const Vec3& desiredMovement, const float distToPathEnd, const Vec3& moveTarget, const bool hasLockedBodyTarget, const float maxTurnSpeed, const float frameTime, float* const pNewDesiredSpeed, Vec3* const pNewDesiredMovement)>(0x189AB60);
 	static inline auto FPredictAndVerifySmoothTurn = PreyFunction<void(CCornerSmoother* const _this, const CCornerSmoother::SPredictionSettings& settings)>(0x1899AC0);
 	static inline auto FPredictSmoothTurn = PreyFunction<void(const CCornerSmoother::SPredictionSettings& settings, CCornerSmoother::SPrediction* const pPrediction)>(0x1899C70);
 	static inline auto FSimplifyPrediction = PreyFunction<void(const Vec3& playerPos, const CCornerSmoother::SPrediction& input, CCornerSmoother::SPrediction* const pOutput)>(0x189A5A0);
 	static inline auto FCalculateDirSmoothTime = PreyFunction<float(const CCornerSmoother::SCurveSettings& settings, const float desiredSpeed, const float distToMoveTarget2D, const float endOfPathDistance)>(0x1899330);
+#endif
 };
 
 // CMovementTransitionsController
@@ -195,6 +219,18 @@ public:
 	IActionController* GetActionController() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCMovementTransitionsControllerOv1 = PreyFunction<void(CMovementTransitionsController* const _this, CPlayer* pPlayer)>(0x1772690);
+	static inline auto FBitNotCMovementTransitionsController = PreyFunction<void(CMovementTransitionsController* const _this)>(0x17727B0);
+	static inline auto FReset = PreyFunction<void(CMovementTransitionsController* const _this)>(0x1773940);
+	static inline auto FUpdate = PreyFunction<void(CMovementTransitionsController* const _this, const Vec3& playerPos, const float newPseudoSpeed, const Vec3& currentBodyDirection, const Vec3& newMoveDirection, const bool bHasLockedBodyTarget, const SExactPositioningTarget* const pExactPositioningTarget, CMovementRequest* const pRequest, SActorFrameMovementParams* const pMoveParams, float* const pJukeTurnRateFraction, Vec3* const pBodyTarget, const char* * const pBodyTargetType)>(0x1774600);
+	static inline auto FUpdatePathFollowerState = PreyFunction<void(CMovementTransitionsController* const _this)>(0x1774B70);
+	static inline auto FHandleEvent = PreyFunction<bool(CMovementTransitionsController* const _this, const SGameObjectEvent& event)>(0x1772D50);
+	static inline auto FRequestTransition = PreyFunction<bool(CMovementTransitionsController* const _this, const char* szFragmentID, const STransition* const pTransition, const STransitionFuture& future)>(0x1773660);
+	static inline auto FCancelTransition = PreyFunction<void(CMovementTransitionsController* const _this)>(0x1772880);
+	static inline auto FGetUpcomingStance = PreyFunction<EStance(const CMovementTransitionsController* const _this)>(0x1772D20);
+	static inline auto FIsChangingDirection = PreyFunction<bool(const CMovementTransitionsController* const _this)>(0x1772DC0);
+#else
 	static inline auto FCMovementTransitionsControllerOv1 = PreyFunction<void(CMovementTransitionsController* const _this, CPlayer* pPlayer)>(0x18991B0);
 	static inline auto FBitNotCMovementTransitionsController = PreyFunction<void(CMovementTransitionsController* const _this)>(0x18992D0);
 	static inline auto FReset = PreyFunction<void(CMovementTransitionsController* const _this)>(0x189A450);
@@ -205,5 +241,6 @@ public:
 	static inline auto FCancelTransition = PreyFunction<void(CMovementTransitionsController* const _this)>(0x18993A0);
 	static inline auto FGetUpcomingStance = PreyFunction<EStance(const CMovementTransitionsController* const _this)>(0x1899840);
 	static inline auto FIsChangingDirection = PreyFunction<bool(const CMovementTransitionsController* const _this)>(0x18998E0);
+#endif
 };
-#endif // MOONCRASH
+

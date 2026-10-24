@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
+#include <Prey/CryAction/IGameObject.h>
 
 enum EEntityAspects;
 class ICrySizer;
@@ -75,6 +73,37 @@ public:
 	void ApplyDamageEffects() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCArkPhantomThermogenesisBlastOv2 = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x1644290);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkPhantomThermogenesisBlast* const _this, ICrySizer* _s)>(0x16444B0);
+	static inline auto FInit = PreyFunction<bool(CArkPhantomThermogenesisBlast* const _this, IGameObject* _pGameObject)>(0x16444D0);
+	static inline auto FPostInit = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, IGameObject* _pGameObject)>(0x137EE60);
+	static inline auto FInitClient = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, int _channelId)>(0xA13080);
+	static inline auto FPostInitClient = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, int _channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkPhantomThermogenesisBlast* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xDD23F0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkPhantomThermogenesisBlast* const _this, TSerialize _signature)>(0xDD23F0);
+	static inline auto FRelease = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, TSerialize _ser)>(0x1644390);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkPhantomThermogenesisBlast* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0xDD23F0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkPhantomThermogenesisBlast* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1644B50);
+	static inline auto FHandleEvent = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, const SGameObjectEvent& _event)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, SEntityEvent& _event)>(0xA13080);
+	static inline auto FSetChannelId = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, uint16_t _id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, bool _auth)>(0xA13080);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkPhantomThermogenesisBlast* const _this)>(0x158AEF0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, float _frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0xA13080);
+	static inline auto FSetParticleEffects = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, IParticleEffect* _pTelegraph, IParticleEffect* _pExplosion)>(0x1644AC0);
+	static inline auto FSetDelayTime = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, float _delayTime)>(0xE903B0);
+	static inline auto FSetExplosionsRadius = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, float _explosionRadius)>(0x1644AA0);
+	static inline auto FSetOwningEntity = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, unsigned _owner)>(0x1644AB0);
+	static inline auto FStartExplosionTelegraph = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x1644B00);
+	static inline auto FLoadScriptVariables = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x1644500);
+#else
 	static inline auto FCArkPhantomThermogenesisBlastOv2 = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x1768080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkPhantomThermogenesisBlast* const _this, ICrySizer* _s)>(0x17682A0);
 	static inline auto FInit = PreyFunction<bool(CArkPhantomThermogenesisBlast* const _this, IGameObject* _pGameObject)>(0x17682C0);
@@ -104,5 +133,6 @@ public:
 	static inline auto FSetOwningEntity = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this, unsigned _owner)>(0x17688B0);
 	static inline auto FStartExplosionTelegraph = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x1768900);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkPhantomThermogenesisBlast* const _this)>(0x17682F0);
+#endif
 };
-#endif // MOONCRASH
+

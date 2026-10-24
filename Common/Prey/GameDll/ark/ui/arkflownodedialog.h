@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryFlowGraph/IFlowBaseNode.h>
@@ -11,7 +9,7 @@ struct SFlowNodeConfig;
 
 // CArkFlowNodeConfirmDialog
 // Header:  Prey/GameDll/ark/ui/arkflownodedialog.h
-class CArkFlowNodeConfirmDialog : public CFlowBaseNode<1>
+class CArkFlowNodeConfirmDialog : public CFlowBaseNode<eNCT_Instanced>
 { // Size=64 (0x40)
 public:
 	enum class EArkInputs
@@ -41,17 +39,26 @@ public:
 	void ProcessOutput(const CArkFlowNodeConfirmDialog::EArkOutputs _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this, SFlowNodeConfig& _rConfig)>(0x15F16B0);
+	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x15F1FC0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeConfirmDialog* const _this, ICrySizer* _pS)>(0x1187D80);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeConfirmDialog* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x15F1650);
+	static inline auto FOnConfirm = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this)>(0x1414860);
+	static inline auto FOnCancel = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this)>(0x11C6510);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this, SFlowNodeConfig& _rConfig)>(0x1712140);
 	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1712A90);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeConfirmDialog* const _this, ICrySizer* _pS)>(0x182A3D0);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeConfirmDialog* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x1711DD0);
 	static inline auto FOnConfirm = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this)>(0x1712A50);
 	static inline auto FOnCancel = PreyFunction<void(CArkFlowNodeConfirmDialog* const _this)>(0x1246AF0);
+#endif
 };
 
 // CArkFlowNodeNotificationDialog
 // Header:  Prey/GameDll/ark/ui/arkflownodedialog.h
-class CArkFlowNodeNotificationDialog : public CFlowBaseNode<1>
+class CArkFlowNodeNotificationDialog : public CFlowBaseNode<eNCT_Instanced>
 { // Size=64 (0x40)
 public:
 	enum class EArkInputs
@@ -78,10 +85,18 @@ public:
 	CArkFlowNodeNotificationDialog(IFlowNode::SActivationInfo* const _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this, SFlowNodeConfig& _rConfig)>(0x15F1B50);
+	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x15F2130);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeNotificationDialog* const _this, ICrySizer* _pS)>(0x1187D80);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeNotificationDialog* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x15F1370);
+	static inline auto FOnClose = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this)>(0x1414860);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this, SFlowNodeConfig& _rConfig)>(0x17125E0);
 	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1712C00);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeNotificationDialog* const _this, ICrySizer* _pS)>(0x182A3D0);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeNotificationDialog* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x17120E0);
 	static inline auto FOnClose = PreyFunction<void(CArkFlowNodeNotificationDialog* const _this)>(0x1712A50);
+#endif
 };
-#endif // MOONCRASH
+

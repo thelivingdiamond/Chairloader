@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -51,6 +49,31 @@ public:
 	CItem* GetItem(IFunctionHandler* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_ItemOv1 = PreyFunction<void(CScriptBind_Item* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x17ED1C0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_Item* const _this, ICrySizer* pSizer)>(0x178C280);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Item* const _this, CItem* pItem)>(0x17ED350);
+	static inline auto FReset = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17EE7E0);
+	static inline auto FCanPickUp = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x17ED4B0);
+	static inline auto FCanUse = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x17ED590);
+	static inline auto FCanUseVehicle = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x75CBB0);
+	static inline auto FIsPickable = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17EDCC0);
+	static inline auto FIsMounted = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17EDBD0);
+	static inline auto FGetUsableText = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17ED8B0);
+	static inline auto FGetOwnerId = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17ED7B0);
+	static inline auto FStartUse = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x17EE8F0);
+	static inline auto FStopUse = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x17EE970);
+	static inline auto FUse = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, ScriptHandle userId)>(0x17EE9F0);
+	static inline auto FIsUsed = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17EDDB0);
+	static inline auto FGetMountedDir = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17ED690);
+	static inline auto FSetMountedAngleLimits = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, float min_pitch, float max_pitch, float yaw_range)>(0x17EE850);
+	static inline auto FOnHit = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, SmartScriptTable hitTable)>(0x17EDEA0);
+	static inline auto FIsDestroyed = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x17EDAE0);
+	static inline auto FHasAccessory = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH, const char* accessoryName)>(0x17ED9B0);
+	static inline auto FAllowDrop = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x75CBB0);
+	static inline auto FDisallowDrop = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x75CBB0);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_Item* const _this)>(0x17EE060);
+#else
 	static inline auto FCScriptBind_ItemOv1 = PreyFunction<void(CScriptBind_Item* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x1914C70);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_Item* const _this, ICrySizer* pSizer)>(0x4A5BF0);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Item* const _this, CItem* pItem)>(0x1914E00);
@@ -74,5 +97,6 @@ public:
 	static inline auto FAllowDrop = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x77DB10);
 	static inline auto FDisallowDrop = PreyFunction<int(CScriptBind_Item* const _this, IFunctionHandler* pH)>(0x77DB10);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_Item* const _this)>(0x1915B10);
+#endif
 };
-#endif // MOONCRASH
+

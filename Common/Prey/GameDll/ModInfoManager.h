@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ModInfo.h>
@@ -36,9 +34,16 @@ public:
 	bool UnloadMod();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCModInfoManagerOv2 = PreyFunction<void(CModInfoManager* const _this)>(0x176B530);
+	static inline auto FRefresh = PreyFunction<void(CModInfoManager* const _this)>(0x176C840);
+	static inline auto FGetActiveMod = PreyFunction<const ModInfo* (const CModInfoManager* const _this)>(0x176BB40);
+	static inline auto FGetDirectoryHash = PreyFunction<unsigned(const char* pPath)>(0x176BC50);
+#else
 	static inline auto FCModInfoManagerOv2 = PreyFunction<void(CModInfoManager* const _this)>(0x18920F0);
 	static inline auto FRefresh = PreyFunction<void(CModInfoManager* const _this)>(0x1893360);
 	static inline auto FGetActiveMod = PreyFunction<const ModInfo* (const CModInfoManager* const _this)>(0x1892660);
 	static inline auto FGetDirectoryHash = PreyFunction<unsigned(const char* pPath)>(0x1892770);
+#endif
 };
-#endif // MOONCRASH
+

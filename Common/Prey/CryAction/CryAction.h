@@ -169,8 +169,10 @@ public:
 	ILog *m_pLog;
 	void *m_systemDll;
 	_smart_ptr<CActionGame> m_pGame;
+#ifndef MOONCRASH
 	char m_editorLevelName[512];
 	char m_editorLevelFolder[512];
+#endif
 	char m_gameGUID[128];
 	CLevelSystem *m_pLevelSystem;
 	CActorSystem *m_pActorSystem;
@@ -375,17 +377,31 @@ public:
 	void ClearBreakHistory() { FClearBreakHistory(this); }
 	void FullSerialize(TSerialize _ser) { FFullSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
+#ifndef MOONCRASH
 	virtual void InitEditor(IGameToEditorInterface *pGameToEditor) {FInitEditor(this, pGameToEditor);};
+#endif
+#ifndef MOONCRASH
 	virtual void SetEditorLevel(const char *levelName, const char *levelFolder) {FSetEditorLevel(this, levelName, levelFolder);};
+#endif
+#ifndef MOONCRASH
 	virtual void GetEditorLevel(char **levelName, char **levelFolder) {FGetEditorLevel(this, levelName, levelFolder);};
+#endif
 	virtual void BeginLanQuery() {FBeginLanQuery(this);};
+#ifndef MOONCRASH
 	virtual void EndCurrentQuery() {FEndCurrentQuery(this);};
+#else
+	void EndCurrentQuery() { FEndCurrentQuery(this); }
+#endif
 	virtual IActor *GetClientActor() const {return FGetClientActor(this);};
 	virtual unsigned GetClientActorId() const {return FGetClientActorId(this);};
 	virtual IEntity *GetClientEntity() const {return FGetClientEntity(this);};
 	virtual unsigned GetClientEntityId() const {return FGetClientEntityId(this);};
 	virtual INetChannel *GetClientChannel() const {return FGetClientChannel(this);};
+#ifndef MOONCRASH
 	virtual CTimeValue GetServerTime() {return FGetServerTime(this);};
+#else
+	CTimeValue GetServerTime() { alignas(CTimeValue) std::byte _return_buf_[sizeof(CTimeValue)]; return *FGetServerTime(this, reinterpret_cast<CTimeValue*>(_return_buf_)); }
+#endif
 	virtual uint16_t GetGameChannelId(INetChannel *pNetChannel) {return FGetGameChannelId(this, pNetChannel);};
 	virtual INetChannel *GetNetChannel(uint16_t channelId) {return FGetNetChannel(this, channelId);};
 	virtual bool IsChannelOnHold(uint16_t channelId) {return FIsChannelOnHold(this, channelId);};
@@ -416,13 +432,21 @@ public:
 	virtual bool IsVoiceRecordingEnabled() {return FIsVoiceRecordingEnabled(this);};
 	virtual bool IsGameSession(unsigned sessionHandle) {return FIsGameSession(this, sessionHandle);};
 	virtual bool ShouldMigrateNub(unsigned sessionHandle) {return FShouldMigrateNub(this, sessionHandle);};
+#ifndef MOONCRASH
 	virtual ISharedParamsManager *GetISharedParamsManager() {return FGetISharedParamsManager(this);};
+#else
+	ISharedParamsManager* GetISharedParamsManager() { return FGetISharedParamsManager(this); }
+#endif
 	virtual float GetLoadSaveDelay() const {return FGetLoadSaveDelay(this);};
 	virtual IGameVolumes *GetIGameVolumesManager() const {return FGetIGameVolumesManager(this);};
 	virtual void PreloadAnimatedCharacter(IScriptTable *pEntityScript) {FPreloadAnimatedCharacter(this, pEntityScript);};
 	virtual void RegisterExtension(std::shared_ptr<ICryUnknown> pExtension) {FRegisterExtension(this, pExtension);};
 	virtual void ReleaseExtensions() {FReleaseExtensions(this);};
+#ifndef MOONCRASH
 	virtual std::shared_ptr<ICryUnknown> QueryExtensionInterfaceById(CryGUID const &interfaceID) const {return FQueryExtensionInterfaceById(this, interfaceID);};
+#else
+	std::shared_ptr<ICryUnknown> QueryExtensionInterfaceById(const CryGUID& interfaceID) const { alignas(std::shared_ptr<ICryUnknown>) std::byte _return_buf_[sizeof(std::shared_ptr<ICryUnknown>)]; return *FQueryExtensionInterfaceById(this, reinterpret_cast<std::shared_ptr<ICryUnknown>*>(_return_buf_), interfaceID); }
+#endif
 	virtual CGameServerNub *GetGameServerNub() {return FGetGameServerNub(this);};
 	CGameClientNub *GetGameClientNub() { return FGetGameClientNub(this); }
 	CGameContext *GetGameContext() { return FGetGameContext(this); }
@@ -458,7 +482,9 @@ public:
 	virtual bool StartProcess(const char *cmd_line) {return FStartProcess(this, cmd_line);};
 	virtual bool SaveServerConfig(const char *path) {return FSaveServerConfig(this, path);};
 	void OnActionEvent(SActionEvent const &ev) { FOnActionEvent(this,ev); }
+#ifndef MOONCRASH
 	virtual void DumpMemInfo(const char *format, ... ) {FDumpMemInfo(this, format);};
+#endif
 	const char *GetStartLevelSaveGameName() { return FGetStartLevelSaveGameName(this); }
 	virtual IAIActorProxy *GetAIActorProxy(unsigned id) const {return FGetAIActorProxy(this, id);};
 	void CreatePhysicsQueues() { FCreatePhysicsQueues(this); }
@@ -920,7 +946,7 @@ public:
 	static inline auto FStartProcess = PreyFunction<bool(CCryAction* const _this, const char* cmd_line)>(0x5E2820);
 	static inline auto FSaveServerConfig = PreyFunction<bool(CCryAction* const _this, const char* path)>(0x5E1A20);
 	static inline auto FOnActionEvent = PreyFunction<void(CCryAction* const _this, const SActionEvent& ev)>(0x5DE820);
-	static inline auto FDumpMemInfo = PreyFunction<void(CCryAction* const _this, const char* format, ... memInfo)>(0x5D8670);
+	// varargs: static inline auto FDumpMemInfo = PreyFunction<void(CCryAction* const _this, const char* format, ...)>(0x5D8670);
 	static inline auto FGetStartLevelSaveGameName = PreyFunction<const char* (CCryAction* const _this)>(0x5D9A50);
 	static inline auto FGetAIActorProxy = PreyFunction<IAIActorProxy* (const CCryAction* const _this, unsigned id)>(0x5D8B20);
 	static inline auto FCreatePhysicsQueues = PreyFunction<void(CCryAction* const _this)>(0x5D80D0);
@@ -978,6 +1004,12 @@ public:
 	static inline auto FStaticSetPbClEnabled = PreyFunction<void(IConsoleCmdArgs* pArgs)>(0x5E28D0);
 #endif
 };
+
+#ifndef MOONCRASH
+static_assert(sizeof(CCryAction) == 2408);
+#else
+static_assert(sizeof(CCryAction) == 1424);
+#endif
 
 // Header: FromCpp
 // CryEngine/cryaction/cryaction.h

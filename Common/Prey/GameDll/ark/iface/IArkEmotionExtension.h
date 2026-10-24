@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,18 +13,3 @@ public:
 	virtual uint64_t GetCurrentEmotion() const = 0;
 	virtual ~IArkEmotionExtension();
 };
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryAction/IGameObject.h>
-
-// IArkEmotionExtension
-// Header:  Prey/GameDll/ark/iface/IArkEmotionExtension.h
-class IArkEmotionExtension : public IGameObjectExtension
-{ // Size=64 (0x40)
-public:
-	virtual void SetEmotion(uint64_t _emotionId, float _blend) = 0;
-	virtual void ClearEmotion(float _blend) = 0;
-	virtual uint64_t GetCurrentEmotion() const = 0;
-};
-#endif // !MOONCRASH

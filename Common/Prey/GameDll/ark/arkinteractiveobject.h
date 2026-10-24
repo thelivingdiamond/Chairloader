@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -44,7 +43,8 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkDisruptable.h>
@@ -56,7 +56,49 @@ public:
 #include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
 #include <Prey/GameDll/ark/perception/ArkGameNoise.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
-#include <_unknown/ArkInteractiveObjectPerceivable.h>
+
+class ArkInteractiveObject;
+class ArkInteractiveMachine;
+// Header file automatically created from a PDB.
+#include <Prey/GameDll/ark/perception/ArkAuralPerceivable.h>
+
+class ArkInteractiveMachine;
+
+// ArkInteractiveMachinePerceivable
+// Header:  _unknown/ArkInteractiveMachinePerceivable.h
+class ArkInteractiveMachinePerceivable : public ArkAuralPerceivable
+{ // Size=16 (0x10)
+public:
+	const ArkInteractiveMachine& m_machine;
+
+	virtual unsigned DoGetEntityId() const;
+	virtual bool DoGetAuralPerceivableIsInVacuum() const;
+	virtual bool DoGetAuralPerceivableIsComplexAttentionObject() const;
+
+#if 0
+	ArkInteractiveMachinePerceivable(const ArkInteractiveMachine& _arg0_);
+#endif
+
+	static inline auto FDoGetEntityId = PreyFunction<unsigned(const ArkInteractiveMachinePerceivable* const _this)>(0x11FFA40);
+	static inline auto FDoGetAuralPerceivableIsInVacuum = PreyFunction<bool(const ArkInteractiveMachinePerceivable* const _this)>(0x13B0900);
+	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(const ArkInteractiveMachinePerceivable* const _this)>(0x13B0900);
+};
+
+
+class ArkInteractiveObjectPerceivable : public ArkAuralPerceivable // Id=8019362 Size=16
+{
+public:
+	ArkInteractiveObject const &m_interactiveObject;
+
+    ArkInteractiveObjectPerceivable();
+	virtual unsigned DoGetEntityId() const;
+	virtual bool DoGetAuralPerceivableIsInVacuum() const;
+	virtual bool DoGetAuralPerceivableIsComplexAttentionObject() const;
+	
+	static inline auto FDoGetEntityId = PreyFunction<unsigned(ArkInteractiveObjectPerceivable const *const _this)>(0x11FFA40);
+	static inline auto FDoGetAuralPerceivableIsInVacuum = PreyFunction<bool(ArkInteractiveObjectPerceivable const *const _this)>(0x13B0900);
+	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(ArkInteractiveObjectPerceivable const *const _this)>(0x13B0900);
+};
 
 struct ArkInteractionTestResult;
 enum class EArkInteractionMode;

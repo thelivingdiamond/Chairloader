@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -49,6 +47,16 @@ public:
 	void DecrementGlitchCounter(ArkNpc& _arg0_, ArkNpcGameEffectInstance_PoltergeistInvisibility& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12AD720);
+	static inline auto FArkNpcGameEffect_PoltergeistInvisibility = PreyFunction<void(ArkNpcGameEffect_PoltergeistInvisibility* const _this)>(0x12AD550);
+	static inline auto FOnAttached = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x12ADA40);
+	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance, float _elapsedTime)>(0x12ADEC0);
+	static inline auto FAbilityAppear = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x12AD650);
+	static inline auto FAbilityDisappear = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x12AD6B0);
+	static inline auto FIsVisible = PreyFunction<bool(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, const ArkNpc& _npc, const ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x12ADA20);
+	static inline auto FSetVisibilityState = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance, EArkPoltergeistVisibilityState _state)>(0x12ADBA0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x1356400);
 	static inline auto FArkNpcGameEffect_PoltergeistInvisibility = PreyFunction<void(ArkNpcGameEffect_PoltergeistInvisibility* const _this)>(0x1356230);
 	static inline auto FOnAttached = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x1356720);
@@ -57,5 +65,6 @@ public:
 	static inline auto FAbilityDisappear = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x1356390);
 	static inline auto FIsVisible = PreyFunction<bool(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, const ArkNpc& _npc, const ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance)>(0x1356700);
 	static inline auto FSetVisibilityState = PreyFunction<void(const ArkNpcGameEffect_PoltergeistInvisibility* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistInvisibility& _gameEffectInstance, EArkPoltergeistVisibilityState _state)>(0x1356880);
+#endif
 };
-#endif // MOONCRASH
+

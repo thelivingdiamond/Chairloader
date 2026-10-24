@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryEntitySystem/IEntityProxy.h>
 #include <Prey/CryPhysics/physinterface.h>
-#include <_unknown/SActorFileModelInfo.h>
-#include <_unknown/SActorGameParams.h>
+#include <Prey/GameDll/SActorFileModelInfo.h>
+#include <Prey/GameDll/SActorGameParams.h>
 
 class ICrySizer;
 class SmartScriptTable;
@@ -24,7 +22,11 @@ struct SLuaCache_ActorGameParams : public _reference_target<int>
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorGameParams* const _this, SmartScriptTable pEntityTable)>(0x1090BB0);
+#else
 	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorGameParams* const _this, SmartScriptTable pEntityTable)>(0x10BF960);
+#endif
 };
 
 // SLuaCache_ActorPhysicsParams
@@ -43,7 +45,11 @@ struct SLuaCache_ActorPhysicsParams : public _reference_target<int>
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorPhysicsParams* const _this, SmartScriptTable pEntityTable, const char* szEntityClassName)>(0x1090C20);
+#else
 	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorPhysicsParams* const _this, SmartScriptTable pEntityTable, const char* szEntityClassName)>(0x10BF9D0);
+#endif
 };
 
 // SLuaCache_ActorProperties
@@ -61,6 +67,10 @@ struct SLuaCache_ActorProperties : public _reference_target<int>
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorProperties* const _this, SmartScriptTable pEntityTable, SmartScriptTable pProperties)>(0x1090CB0);
+#else
 	static inline auto FCacheFromTable = PreyFunction<bool(SLuaCache_ActorProperties* const _this, SmartScriptTable pEntityTable, SmartScriptTable pProperties)>(0x10BFA60);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -27,8 +25,22 @@ public:
 	void Update(const ArkNpcDamageUpdateStateParams& _params, float _elapsedTime) { FUpdate(this, _params, _elapsedTime); }
 	void Serialize(TSerialize _serializer, const ArkNpcDamageSerializeStateParams& _params) { FSerialize(this, _serializer, _params); }
 	void PostSerialize(const ArkNpcDamagePostSerializeStateParams& _params) { FPostSerialize(this, _params); }
-	void EnterInternal(const ArkNpcDamageStateParam& _params) { FEnterInternal(this, _params); }
 
+#if 0
+	void EnterInternal(const ArkNpcDamageStateParam& _arg0_);
+#endif
+
+#ifdef MOONCRASH
+	void EnterInternal(const ArkNpcDamageStateParam& _params) { FEnterInternal(this, _params); }
+#endif
+#ifndef MOONCRASH
+	static inline auto FArkNpcDamageState_Disabled = PreyFunction<void(ArkNpcDamageState_Disabled* const _this)>(0x1212A60);
+	static inline auto FEnter = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x1212A80);
+	static inline auto FExit = PreyFunction<void(const ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageExitStateParams& _params)>(0x1212C50);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageUpdateStateParams& _params, float _elapsedTime)>(0x1212D80);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, TSerialize _serializer, const ArkNpcDamageSerializeStateParams& _params)>(0x1212CE0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamagePostSerializeStateParams& _params)>(0x1212C90);
+#else
 	static inline auto FArkNpcDamageState_Disabled = PreyFunction<void(ArkNpcDamageState_Disabled* const _this)>(0x12A1EB0);
 	static inline auto FEnter = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x12A1ED0);
 	static inline auto FExit = PreyFunction<void(const ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageExitStateParams& _params)>(0x12A2120);
@@ -36,5 +48,6 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, TSerialize _serializer, const ArkNpcDamageSerializeStateParams& _params)>(0x12A21D0);
 	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamagePostSerializeStateParams& _params)>(0x12A21C0);
 	static inline auto FEnterInternal = PreyFunction<void(ArkNpcDamageState_Disabled* const _this, const ArkNpcDamageStateParam& _params)>(0x12A2080);
+#endif
 };
-#endif // MOONCRASH
+

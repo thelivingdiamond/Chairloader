@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
@@ -72,6 +70,35 @@ public:
 	void Reset();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCArkAttractionOv1 = PreyFunction<void(CArkAttraction* const _this)>(0x14E76D0);
+	static inline auto FInit = PreyFunction<bool(CArkAttraction* const _this, IGameObject* _pGameObject)>(0x13CACC0);
+	static inline auto FInitClient = PreyFunction<void(CArkAttraction* const _this, int channelId)>(0xA13080);
+	static inline auto FPostInit = PreyFunction<void(CArkAttraction* const _this, IGameObject* pGameObject)>(0x14E7E80);
+	static inline auto FPostInitClient = PreyFunction<void(CArkAttraction* const _this, int channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkAttraction* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0xDD23F0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkAttraction* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkAttraction* const _this, TSerialize signature)>(0xDD23F0);
+	static inline auto FRelease = PreyFunction<void(CArkAttraction* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CArkAttraction* const _this, TSerialize ser)>(0x14E77B0);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkAttraction* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1B933B0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkAttraction* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkAttraction* const _this, TSerialize ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkAttraction* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CArkAttraction* const _this, SEntityUpdateContext& ctx, int updateSlot)>(0x14E7F70);
+	static inline auto FPostUpdate = PreyFunction<void(CArkAttraction* const _this, float frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkAttraction* const _this)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(CArkAttraction* const _this, const SGameObjectEvent& event)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CArkAttraction* const _this, SEntityEvent& event)>(0x14E7EB0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkAttraction* const _this, uint16_t id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CArkAttraction* const _this, bool auth)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkAttraction* const _this, ICrySizer* s)>(0xA39190);
+	static inline auto FIsUseableAttractor = PreyFunction<bool(const CArkAttraction* const _this)>(0x14E7B20);
+	static inline auto FGetRandomPosOnNavMeshOv0 = PreyFunction<Vec3*(const CArkAttraction* const _this, Vec3* _return_value_, IEntity& _navAgentEntity)>(0x14E7810);
+	static inline auto FAcquire = PreyFunction<void(CArkAttraction* const _this)>(0x14E77A0);
+	static inline auto FRelinquish = PreyFunction<void(CArkAttraction* const _this)>(0x14E7F40);
+	static inline auto FLoadScriptData = PreyFunction<void(CArkAttraction* const _this)>(0x14E7B40);
+#else
 	static inline auto FCArkAttractionOv1 = PreyFunction<void(CArkAttraction* const _this)>(0x1602EB0);
 	static inline auto FInit = PreyFunction<bool(CArkAttraction* const _this, IGameObject* _pGameObject)>(0x37A880);
 	static inline auto FInitClient = PreyFunction<void(CArkAttraction* const _this, int channelId)>(0x1333E90);
@@ -99,5 +126,6 @@ public:
 	static inline auto FAcquire = PreyFunction<void(CArkAttraction* const _this)>(0x1602F80);
 	static inline auto FRelinquish = PreyFunction<void(CArkAttraction* const _this)>(0x1603720);
 	static inline auto FLoadScriptData = PreyFunction<void(CArkAttraction* const _this)>(0x1603320);
+#endif
 };
-#endif // MOONCRASH
+

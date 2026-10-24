@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -36,6 +34,19 @@ public:
 	IPlayerProfile* GetCurrentUserProfile();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_ProtectedBindsOv1 = PreyFunction<void(CScriptBind_ProtectedBinds* const _this, ISystem* pSystem)>(0x17EF0F0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_ProtectedBinds* const _this, ICrySizer* pSizer)>(0xD178B0);
+	static inline auto FGetPersistantStat = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH, const char* name)>(0x75CBB0);
+	static inline auto FSetPersistantStat = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH, const char* name, SmartScriptTable valueTab)>(0x17EF9F0);
+	static inline auto FSavePersistantStatsToBlaze = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH)>(0x17EF9E0);
+	static inline auto FGetProfileAttribute = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH, const char* name)>(0x17EF3E0);
+	static inline auto FSetProfileAttribute = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH, const char* name, SmartScriptTable valueTab)>(0x17EFA30);
+	static inline auto FActivateDemoEventEntitlement = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH)>(0x17EF1E0);
+	static inline auto FEnable = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x17EF2D0);
+	static inline auto FDisable = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x17EF260);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x17EF730);
+#else
 	static inline auto FCScriptBind_ProtectedBindsOv1 = PreyFunction<void(CScriptBind_ProtectedBinds* const _this, ISystem* pSystem)>(0x1916C10);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_ProtectedBinds* const _this, ICrySizer* pSizer)>(0x578280);
 	static inline auto FGetPersistantStat = PreyFunction<int(CScriptBind_ProtectedBinds* const _this, IFunctionHandler* pH, const char* name)>(0x77DB10);
@@ -47,5 +58,6 @@ public:
 	static inline auto FEnable = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x1916DF0);
 	static inline auto FDisable = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x1916D80);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_ProtectedBinds* const _this)>(0x1917250);
+#endif
 };
-#endif // MOONCRASH
+

@@ -35,12 +35,24 @@ public:
     void ReloadArchetype(const char *_sArchetypeName) { FReloadArchetype(this,_sArchetypeName); }
     void RenameArchetype(const char *_archetypeName, const char *_newArchetypeName) { FRenameArchetype(this,_archetypeName,_newArchetypeName); }
     void Reset() { FReset(this); }
+#ifndef MOONCRASH
     std::vector<string> GetArchetypeNames(string const &_libraryName) const { return FGetArchetypeNames(this,_libraryName); }
+#else
+    std::vector<string> GetArchetypeNames(const string& _libraryName) const { alignas(std::vector<string>) std::byte _return_buf_[sizeof(std::vector<string>)]; return *FGetArchetypeNames(this, reinterpret_cast<std::vector<string>*>(_return_buf_), _libraryName); }
+#endif
+#ifndef MOONCRASH
     std::vector<IEntityArchetype *> GetArchetypes(string const &_libraryName) const { return FGetArchetypes(this,_libraryName); }
+#else
+    std::vector<IEntityArchetype*> GetArchetypes(const string& _libraryName) const { alignas(std::vector<IEntityArchetype*>) std::byte _return_buf_[sizeof(std::vector<IEntityArchetype*>)]; return *FGetArchetypes(this, reinterpret_cast<std::vector<IEntityArchetype*>*>(_return_buf_), _libraryName); }
+#endif
     bool LoadLibrary(string const &library) { return FLoadLibrary(this,library); }
     void RegisterListener(IEntityArchetypeListener *_pListener) { FRegisterListener(this,_pListener); }
     void UnregisterListener(IEntityArchetypeListener *_pListener) { FUnregisterListener(this,_pListener); }
+#ifndef MOONCRASH
     std::vector<std::pair<char const * const,_smart_ptr<CEntityArchetype> >,std::allocator<std::pair<char const * const,_smart_ptr<CEntityArchetype> > > > GetArchetypeInfoFromMap(string const &_libraryName) const { return FGetArchetypeInfoFromMap(this,_libraryName); }
+#else
+    std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>> GetArchetypeInfoFromMap(const string& _libraryName) const { alignas(std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>) std::byte _return_buf_[sizeof(std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>)]; return *FGetArchetypeInfoFromMap(this, reinterpret_cast<std::vector<std::pair<const char* const, _smart_ptr<CEntityArchetype>>>*>(_return_buf_), _libraryName); }
+#endif
 
 #if 0
     IEntityArchetype const *FindArchetype(const char *arg0) const;

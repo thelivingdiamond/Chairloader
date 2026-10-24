@@ -1,10 +1,19 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+// Not the base game's EArkTurretAnimStateId.
+enum class EArkTurretAnimState : int
+{
+	undeployed = 0,
+	deployed = 1,
+	searching = 2,
+	broken = 3,
+	invalid = 4,
+};
+#include <Prey/CryAnimation/IAnimationOperatorQueue.h>
 #include <Prey/ArkCommon/ArkUnanimous.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/ArkTurretAngle.h>
+#include <Prey/GameDll/ark/turret/ArkTurretAngle.h>
 
 class ArkTurret;
 class ArkTurretAnimAction;

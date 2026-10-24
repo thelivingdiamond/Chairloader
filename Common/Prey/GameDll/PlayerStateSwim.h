@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -37,7 +35,11 @@ public:
 	float m_headUnderWaterTimer;
 	bool m_onSurface;
 	bool m_enduranceSwimSoundPlaying;
+#ifndef MOONCRASH
+	static inline auto s_swimParams = PreyGlobal<CPlayerStateSwim::CSwimmingParams>(0x2282568);
+#else
 	static inline auto s_swimParams = PreyGlobal<CPlayerStateSwim::CSwimmingParams>(0x23F1070);
+#endif
 
 	CPlayerStateSwim();
 	void OnEnter(CPlayer& player) { FOnEnter(this, player); }
@@ -56,11 +58,20 @@ public:
 	CPlayerStateSwim& operator=(const CPlayerStateSwim& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateSwimOv1 = PreyFunction<void(CPlayerStateSwim* const _this)>(0x17C1B10);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player)>(0x17C1B90);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<bool(CPlayerStateSwim* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x17C1D40);
+	static inline auto FOnUpdate = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player, float frameTime)>(0xA13080);
+	static inline auto FOnExit = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player)>(0x17C1CD0);
+	static inline auto FDetectJump = PreyFunction<bool(const CPlayerStateSwim* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime, float* pVerticalSpeedModifier)>(0x17C1B30);
+#else
 	static inline auto FCPlayerStateSwimOv1 = PreyFunction<void(CPlayerStateSwim* const _this)>(0x18E8DC0);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player)>(0x18E8E40);
 	static inline auto FOnPrePhysicsUpdate = PreyFunction<bool(CPlayerStateSwim* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x18E8FF0);
 	static inline auto FOnUpdate = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player, float frameTime)>(0x1333E90);
 	static inline auto FOnExit = PreyFunction<void(CPlayerStateSwim* const _this, CPlayer& player)>(0x18E8F80);
 	static inline auto FDetectJump = PreyFunction<bool(const CPlayerStateSwim* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime, float* pVerticalSpeedModifier)>(0x18E8DE0);
+#endif
 };
-#endif // MOONCRASH
+

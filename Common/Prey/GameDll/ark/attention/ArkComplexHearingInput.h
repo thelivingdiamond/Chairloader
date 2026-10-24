@@ -7,6 +7,9 @@
 struct ArkComplexHearingInput // Id=801BE49 Size=32
 {
 	unsigned m_noiseMakerEntityId;
+#ifdef MOONCRASH
+	unsigned m_noiseEmitterEntityId;
+#endif
 	uint64_t m_noiseTypeId;
 	float m_magnitude;
 	Vec3 m_noisePosition;

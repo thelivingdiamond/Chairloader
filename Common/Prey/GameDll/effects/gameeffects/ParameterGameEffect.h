@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/effects/gameeffects/GameEffect.h>
-#include <_unknown/CryFixedArray.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
 
 // CParameterGameEffect
 // Header:  Prey/GameDll/effects/gameeffects/ParameterGameEffect.h
@@ -46,11 +44,20 @@ public:
 	void ResetSaturation();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCParameterGameEffectOv2 = PreyFunction<void(CParameterGameEffect* const _this)>(0x16B9C50);
+	static inline auto FSetActive = PreyFunction<void(CParameterGameEffect* const _this, bool isActive)>(0x16B9DA0);
+	static inline auto FUpdate = PreyFunction<void(CParameterGameEffect* const _this, float frameTime)>(0x16B9EA0);
+	static inline auto FGetName = PreyFunction<const char* (const CParameterGameEffect* const _this)>(0x16B9D70);
+	static inline auto FReset = PreyFunction<void(CParameterGameEffect* const _this)>(0x16B9D80);
+	static inline auto FSetSaturationAmount = PreyFunction<void(CParameterGameEffect* const _this, const float fAmount, const CParameterGameEffect::ESaturationEffectUsage usage)>(0x16B9E50);
+#else
 	static inline auto FCParameterGameEffectOv2 = PreyFunction<void(CParameterGameEffect* const _this)>(0x17DCAC0);
 	static inline auto FSetActive = PreyFunction<void(CParameterGameEffect* const _this, bool isActive)>(0x17DCBD0);
 	static inline auto FUpdate = PreyFunction<void(CParameterGameEffect* const _this, float frameTime)>(0x17DCCD0);
 	static inline auto FGetName = PreyFunction<const char* (const CParameterGameEffect* const _this)>(0x17DCBA0);
 	static inline auto FReset = PreyFunction<void(CParameterGameEffect* const _this)>(0x17DCBB0);
 	static inline auto FSetSaturationAmount = PreyFunction<void(CParameterGameEffect* const _this, const float fAmount, const CParameterGameEffect::ESaturationEffectUsage usage)>(0x17DCC80);
+#endif
 };
-#endif // MOONCRASH
+

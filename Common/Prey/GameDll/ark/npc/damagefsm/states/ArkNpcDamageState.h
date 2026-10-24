@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -27,6 +25,10 @@ public:
 	void OnReactionComplete(ArkNpc& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FTryHideAttachment = PreyFunction<void(ArkNpc& _npc, const char* _pAttachmentName, bool _bHidden)>(0x1211B50);
+#else
 	static inline auto FTryHideAttachment = PreyFunction<void(ArkNpc& _npc, const char* _pAttachmentName, bool _bHidden)>(0x12A0F90);
+#endif
 };
-#endif // MOONCRASH
+

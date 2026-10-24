@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#include <Prey/CryExtension/ClassWeaver.h>
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/CryExtension/TypeList.h>
 
 struct CryGUID;
 struct IActor;
@@ -18,7 +16,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextRagdoll>>(0x22827B8);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextRagdoll>>(0x23F12B8);
+#endif
 	unsigned m_targetEntityId;
 	float m_stiffness;
 	float m_blendOutTime;
@@ -55,6 +57,16 @@ public:
 	void Reset();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextRagdoll* const _this)>(0x17D0A30);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextRagdoll* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextRagdoll* const _this, const char* name)>(0x158AEF0);
+	static inline auto FEnableRagdoll = PreyFunction<void(CProceduralContextRagdoll* const _this, const unsigned entityID, const bool bAlive, const float stiffness, const bool bFromProcClip)>(0x17D10D0);
+	static inline auto FDisableRagdoll = PreyFunction<void(CProceduralContextRagdoll* const _this, float blendOutTime)>(0x17D10A0);
+	static inline auto FQueueRagdoll = PreyFunction<void(CProceduralContextRagdoll* const _this, bool bAlive)>(0x17D1370);
+	static inline auto FForceRagdollFinish = PreyFunction<void(CProceduralContextRagdoll* const _this, IActor* piActor, bool bForceDead)>(0x17D1260);
+	static inline auto FUpdate = PreyFunction<void(CProceduralContextRagdoll* const _this, float timePassedSeconds)>(0x17D0A40);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextRagdoll* const _this)>(0x18F77A0);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextRagdoll* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextRagdoll* const _this, const char* name)>(0x1CBB0B0);
@@ -63,5 +75,6 @@ public:
 	static inline auto FQueueRagdoll = PreyFunction<void(CProceduralContextRagdoll* const _this, bool bAlive)>(0x18F80D0);
 	static inline auto FForceRagdollFinish = PreyFunction<void(CProceduralContextRagdoll* const _this, IActor* piActor, bool bForceDead)>(0x18F7FC0);
 	static inline auto FUpdate = PreyFunction<void(CProceduralContextRagdoll* const _this, float timePassedSeconds)>(0x18F77B0);
+#endif
 };
-#endif // MOONCRASH
+

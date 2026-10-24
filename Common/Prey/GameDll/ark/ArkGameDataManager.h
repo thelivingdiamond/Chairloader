@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -19,31 +17,14 @@ public:
 	void Reset(bool _bEnteringGameMode) { FReset(this,_bEnteringGameMode); }
 	void LoadLibraries(bool _bAlwaysLoaded) { FLoadLibraries(this,_bAlwaysLoaded); }
 	
+#ifndef MOONCRASH
 	static inline auto FOnGameModeChanged = PreyFunction<void(ArkGameDataManager *const _this)>(0x1437630);
 	static inline auto FReset = PreyFunction<void(ArkGameDataManager *const _this, bool _bEnteringGameMode)>(0x1437640);
 	static inline auto FLoadLibraries = PreyFunction<void(ArkGameDataManager *const _this, bool _bAlwaysLoaded)>(0x1437290);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-class ArkClass;
-
-// ArkGameDataManager
-// Header:  Prey/GameDll/ark/ArkGameDataManager.h
-class ArkGameDataManager
-{ // Size=64 (0x40)
-public:
-	std::unordered_map<const ArkClass*, std::unique_ptr<ArkReflectedLibrary>> m_libraries;
-
-	ArkGameDataManager();
-	void OnGameModeChanged() { FOnGameModeChanged(this); }
-	void Reset(bool _bEnteringGameMode) { FReset(this, _bEnteringGameMode); }
-	void LoadLibraries(bool _bAlwaysLoaded) { FLoadLibraries(this, _bAlwaysLoaded); }
-
+#else
 	static inline auto FArkGameDataManagerOv2 = PreyFunction<void(ArkGameDataManager* const _this)>(0x154D000);
 	static inline auto FOnGameModeChanged = PreyFunction<void(ArkGameDataManager* const _this)>(0x154D410);
 	static inline auto FReset = PreyFunction<void(ArkGameDataManager* const _this, bool _bEnteringGameMode)>(0x154D420);
 	static inline auto FLoadLibraries = PreyFunction<void(ArkGameDataManager* const _this, bool _bAlwaysLoaded)>(0x154D070);
+#endif
 };
-#endif // !MOONCRASH

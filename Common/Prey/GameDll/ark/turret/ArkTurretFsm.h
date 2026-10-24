@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -81,7 +80,7 @@ public:
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <_unknown/ArkTurretFsmBase_template_.h>
+#include <Prey/GameDll/ark/turret/ArkTurretFsmBase_template_.h>
 
 class ArkTurret;
 enum class EArkAttentionChangeReason;

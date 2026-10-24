@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryFlowGraph/IFlowBaseNode.h>
@@ -11,7 +9,7 @@ struct SFlowNodeConfig;
 
 // CArkFlowNodeClearAllTaskMarkers
 // Header:  Prey/GameDll/ArkFlowNodeClearAllTaskMarkers.h
-class CArkFlowNodeClearAllTaskMarkers : public CFlowBaseNode<1>
+class CArkFlowNodeClearAllTaskMarkers : public CFlowBaseNode<eNCT_Instanced>
 { // Size=16 (0x10)
 public:
 	enum class EInputs
@@ -34,9 +32,16 @@ public:
 	CArkFlowNodeClearAllTaskMarkers(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeClearAllTaskMarkers* const _this, SFlowNodeConfig& _rConfig)>(0x10A5C60);
+	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeClearAllTaskMarkers* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x10A5F80);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeClearAllTaskMarkers* const _this, ICrySizer* _pS)>(0x44D760);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeClearAllTaskMarkers* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x10A5C10);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowNodeClearAllTaskMarkers* const _this, SFlowNodeConfig& _rConfig)>(0x10D50F0);
 	static inline auto FProcessEvent = PreyFunction<void(CArkFlowNodeClearAllTaskMarkers* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x10D5410);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowNodeClearAllTaskMarkers* const _this, ICrySizer* _pS)>(0x455F00);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowNodeClearAllTaskMarkers* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x10D50A0);
+#endif
 };
-#endif // MOONCRASH
+

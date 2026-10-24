@@ -1,8 +1,8 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/npc/ArkNpcSpawnedState.h>
 #include "ArkNpcSpawnedState.h"
 
 class ArkNpcSpawnRequester;
@@ -58,6 +58,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/npc/ArkNpcSpawnedState.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
 class ArkNpcSpawnRequester;

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -90,6 +88,66 @@ public:
 	void GetOptionalHitInfoParams(IFunctionHandler* _arg0_, HitInfo& _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_GameRulesOv1 = PreyFunction<void(CScriptBind_GameRules* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x17E7260);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_GameRules* const _this, ICrySizer* pSizer)>(0x137E8D0);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_GameRules* const _this, CGameRules* pGameRules)>(0x17E7660);
+	static inline auto FIsServer = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8C40);
+	static inline auto FIsClient = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8920);
+	static inline auto FIsMultiplayer = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8B30);
+	static inline auto FCanCheat = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E7750);
+	static inline auto FSpawnPlayer = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int channelId, const char* name, const char* className, Vec3 pos, Vec3 angles)>(0x17EBC70);
+	static inline auto FIsPlayer = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle playerId)>(0x17E8B80);
+	static inline auto FAddSpawnLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId, bool isInitialSpawn, bool doVisTest, const char* pGroupName)>(0x17E7580);
+	static inline auto FRemoveSpawnLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle id, bool isInitialSpawn)>(0x17EAD90);
+	static inline auto FEnableSpawnLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle id, bool isInitialSpawn, const char* pGroupName)>(0x17E7EF0);
+	static inline auto FDisableSpawnLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle id, bool isInitialSpawn)>(0x17E7B20);
+	static inline auto FGetFirstSpawnLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int teamId)>(0x17E8050);
+	static inline auto FAddSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle groupId)>(0x17E7530);
+	static inline auto FAddSpawnLocationToSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle groupId, ScriptHandle location)>(0x17E7600);
+	static inline auto FRemoveSpawnLocationFromSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle groupId, ScriptHandle location)>(0x17EADF0);
+	static inline auto FRemoveSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle groupId)>(0x17EAD40);
+	static inline auto FGetSpawnGroups = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8400);
+	static inline auto FIsSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId)>(0x17E8C90);
+	static inline auto FSetPlayerSpawnGroup = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle playerId, ScriptHandle groupId)>(0x17EBB00);
+	static inline auto FAddSpectatorLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle location)>(0x75CBB0);
+	static inline auto FRemoveSpectatorLocation = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle id)>(0x75CBB0);
+	static inline auto FServerExplosion = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle shooterId, ScriptHandle weaponId, float dmg, Vec3 pos, Vec3 dir, float radius, float angle, float pressure, float holesize)>(0x17EB210);
+	static inline auto FServerHit = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle targetId, ScriptHandle shooterId, ScriptHandle weaponId, float dmg, float radius, int materialId, int partId, int typeId)>(0x17EB970);
+	static inline auto FClientSelfHarm = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, float dmg, int materialId, int partId, int typeId, Vec3 dir)>(0x17E7820);
+	static inline auto FClientSelfHarmByEntity = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle sourceEntity, float dmg, int materialId, int partId, int typeId, Vec3 dir)>(0x17E7930);
+	static inline auto FServerHarmVehicle = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle vehicle, float dmg, int materialId, int typeId, Vec3 dir)>(0x75CBB0);
+	static inline auto FGetTeamName = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int teamId)>(0x17E8850);
+	static inline auto FGetTeamId = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, const char* teamName)>(0x17E8780);
+	static inline auto FSetTeam = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int teamId, ScriptHandle playerId)>(0x17EBB60);
+	static inline auto FClientSetTeam = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int teamId, ScriptHandle playerId)>(0x17E7A30);
+	static inline auto FGetTeam = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle playerId)>(0x17E86B0);
+	static inline auto FForbiddenAreaWarning = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, bool active, int timer, ScriptHandle targetId)>(0x17E7FE0);
+	static inline auto FAnnounce = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle playerId, const char* announcement, int context)>(0x75CBB0);
+	static inline auto FGetServerTime = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8340);
+	static inline auto FEndGame = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E7F60);
+	static inline auto FNextLevel = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E8DE0);
+	static inline auto FGetHitMaterialId = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, const char* materialName)>(0x17E8120);
+	static inline auto FGetHitTypeId = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, const char* type)>(0x17E8280);
+	static inline auto FGetHitType = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int id)>(0x17E81D0);
+	static inline auto FIsHitTypeIdMelee = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, int hitTypeId)>(0x17E8A70);
+	static inline auto FIsDemoMode = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E89C0);
+	static inline auto FDebugCollisionDamage = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E7A90);
+	static inline auto FSendDamageIndicator = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle targetId, ScriptHandle shooterId, ScriptHandle weaponId, Vec3 dir, float damage, int projectileClassId, int hitTypeId)>(0x17EAE50);
+	static inline auto FEnteredGame = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E7FA0);
+	static inline auto FWatch = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, const char* text)>(0x75CBB0);
+	static inline auto FDemiGodDeath = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E7AE0);
+	static inline auto FGetPrimaryTeam = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH)>(0x17E1050);
+	static inline auto FAddForbiddenArea = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId)>(0x17E74E0);
+	static inline auto FRemoveForbiddenArea = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId)>(0x17EACF0);
+	static inline auto FMakeMovementVisibleToAI = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, const char* entityClass)>(0x17E8D50);
+	static inline auto FSendGameRulesObjectiveEntitySignal = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId, int signal)>(0x75CBB0);
+	static inline auto FReRecordEntity = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle entityId)>(0x75CBB0);
+	static inline auto FShouldGiveLocalPlayerHitFeedback2DSound = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, float damage)>(0x17EBBC0);
+	static inline auto FCanUsePowerStruggleNode = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle userId, ScriptHandle entityId)>(0x17E1050);
+	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_GameRules* const _this)>(0x17E8E20);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_GameRules* const _this)>(0x17E97B0);
+#else
 	static inline auto FCScriptBind_GameRulesOv1 = PreyFunction<void(CScriptBind_GameRules* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x190ED50);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_GameRules* const _this, ICrySizer* pSizer)>(0xCF0B20);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_GameRules* const _this, CGameRules* pGameRules)>(0x190F150);
@@ -148,5 +206,6 @@ public:
 	static inline auto FCanUsePowerStruggleNode = PreyFunction<int(CScriptBind_GameRules* const _this, IFunctionHandler* pH, ScriptHandle userId, ScriptHandle entityId)>(0x782880);
 	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_GameRules* const _this)>(0x19108F0);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_GameRules* const _this)>(0x1911280);
+#endif
 };
-#endif // MOONCRASH
+

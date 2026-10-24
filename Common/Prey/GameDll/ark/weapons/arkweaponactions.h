@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -243,7 +242,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 class IAction;
 

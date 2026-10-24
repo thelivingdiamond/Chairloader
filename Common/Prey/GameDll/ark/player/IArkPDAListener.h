@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -12,25 +10,13 @@ public:
 	virtual void OnPDAOpenComplete() { FOnPDAOpenComplete(this); }
 	virtual void OnPDAClose() { FOnPDAClose(this); }
 
+#ifndef MOONCRASH
 	static inline auto FOnPDAOpen = PreyFunction<void(IArkPDAListener* const _this)>(0xA13080);
 	static inline auto FOnPDAOpenComplete = PreyFunction<void(IArkPDAListener* const _this)>(0xA13080);
 	static inline auto FOnPDAClose = PreyFunction<void(IArkPDAListener* const _this)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-// IArkPDAListener
-// Header:  Prey/GameDll/ark/player/IArkPDAListener.h
-class IArkPDAListener
-{ // Size=8 (0x8)
-public:
-	virtual void OnPDAOpen();
-	virtual void OnPDAOpenComplete();
-	virtual void OnPDAClose();
-
+#else
 	static inline auto FOnPDAOpen = PreyFunction<void(IArkPDAListener* const _this)>(0x1333E90);
 	static inline auto FOnPDAOpenComplete = PreyFunction<void(IArkPDAListener* const _this)>(0x1333E90);
 	static inline auto FOnPDAClose = PreyFunction<void(IArkPDAListener* const _this)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

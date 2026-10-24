@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/ArkNpcAliveState.h>
+#include <Prey/GameDll/ark/npc/fsm2/lifecycle/alive/ArkNpcAliveState.h>
 
 class ArkNpc;
 class ArkNpcAliveFsm;
@@ -25,11 +23,20 @@ public:
 	void Update(ArkNpc& _npc, ArkNpcAliveFsm& _fsm, float _elapsedTime) { FUpdate(this, _npc, _fsm, _elapsedTime); }
 	void Serialize(ArkNpc& _npc, TSerialize _serializer) { FSerialize(this, _npc, _serializer); }
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcAliveState_Unconscious = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this)>(0x1210480);
+	static inline auto FEnterOv1 = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateEnterParams_Unconscious& _params)>(0x1216BC0);
+	static inline auto FEnterOv0 = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateSerializeParams& _params)>(0x1216C60);
+	static inline auto FExit = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateExitParams& _params)>(0x1216CC0);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, ArkNpc& _npc, ArkNpcAliveFsm& _fsm, float _elapsedTime)>(0x1216D30);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, ArkNpc& _npc, TSerialize _serializer)>(0x1216CE0);
+#else
 	static inline auto FArkNpcAliveState_Unconscious = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this)>(0x18E26C0);
 	static inline auto FEnterOv1 = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateEnterParams_Unconscious& _params)>(0x12A61F0);
 	static inline auto FEnterOv0 = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateSerializeParams& _params)>(0x12A6290);
 	static inline auto FExit = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, const ArkNpcAliveStateExitParams& _params)>(0x12A62F0);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, ArkNpc& _npc, ArkNpcAliveFsm& _fsm, float _elapsedTime)>(0x12A6360);
 	static inline auto FSerialize = PreyFunction<void(ArkNpcAliveState_Unconscious* const _this, ArkNpc& _npc, TSerialize _serializer)>(0x12A6310);
+#endif
 };
-#endif // MOONCRASH
+

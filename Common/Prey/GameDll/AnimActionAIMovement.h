@@ -1,13 +1,11 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
 #include <Prey/CrySystem/TimeValue.h>
 #include <Prey/GameDll/AnimActionAIDetail.h>
 #include <Prey/GameDll/FragmentVariationHelper.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class ArkNpc;
 class CAnimActionAIStance;
@@ -88,6 +86,23 @@ public:
 	void ResetMovementControlMethod(CPlayer& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIMovement* const _this)>(0x10A31D0);
+	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIMovement* const _this)>(0xA97D40);
+	static inline auto FCAnimActionAIMovement = PreyFunction<void(CAnimActionAIMovement* const _this, const SAnimActionAIMovementSettings& settings)>(0x10A2A90);
+	static inline auto FEnter = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x10A3010);
+	static inline auto FExit = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x10A3110);
+	static inline auto FOnInitialise = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x10A3580);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionAIMovement* const _this, float timePassed)>(0x10A3970);
+	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CAnimActionAIMovement* const _this, float timePassed)>(0x10A3B00);
+	static inline auto FOnSequenceFinished = PreyFunction<void(CAnimActionAIMovement* const _this, int layer, unsigned scopeID)>(0x10A36C0);
+	static inline auto FOnFragmentStarted = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x10A34A0);
+	static inline auto FRequestStance = PreyFunction<void(CAnimActionAIMovement* const _this, CPlayer& player, EStance requestedStance, bool urgent)>(0x10A3710);
+	static inline auto FCancelStanceChange = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x10A2FF0);
+	static inline auto FCalculateState = PreyFunction<CAnimActionAIMovement::EMoveState(CAnimActionAIMovement* const _this)>(0x10A2C60);
+	static inline auto FSetMovementControlMethod = PreyFunction<void(CAnimActionAIMovement* const _this, CPlayer& player)>(0x10A3900);
+	static inline auto FGetPlayer = PreyFunction<CPlayer* (const CAnimActionAIMovement* const _this)>(0x10A31E0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIMovement* const _this)>(0x10D26B0);
 	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIMovement* const _this)>(0x3E3960);
 	static inline auto FCAnimActionAIMovement = PreyFunction<void(CAnimActionAIMovement* const _this, const SAnimActionAIMovementSettings& settings)>(0x10D1F70);
@@ -103,6 +118,7 @@ public:
 	static inline auto FCalculateState = PreyFunction<CAnimActionAIMovement::EMoveState(CAnimActionAIMovement* const _this)>(0x10D2140);
 	static inline auto FSetMovementControlMethod = PreyFunction<void(CAnimActionAIMovement* const _this, CPlayer& player)>(0x10D2DE0);
 	static inline auto FGetPlayer = PreyFunction<CPlayer* (const CAnimActionAIMovement* const _this)>(0x10D26C0);
+#endif
 };
 
 // SMannequinAIMovementParams
@@ -121,7 +137,11 @@ struct SMannequinAIMovementParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinAIMovementParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x10A3240);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinAIMovementParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x10D2720);
+#endif
 	};
 
 	// SMannequinAIMovementParams::TagIDs
@@ -152,6 +172,10 @@ struct SMannequinAIMovementParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAIMovementParams* const _this, const SControllerDef& controllerDef)>(0x10A33D0);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAIMovementParams* const _this, const SControllerDef& controllerDef)>(0x10D28B0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef _ITIMER_H_
@@ -19,7 +18,7 @@ struct ITimer
 	enum ETimer : uint8_t
 	{
 		ETIMER_REAL,
-		ETIMER_GAME = 0, //!< Pausable, serialized, frametime is smoothed/scaled/clamped.
+		ETIMER_GAME,     //!< Pausable, serialized, frametime is smoothed/scaled/clamped.
 		ETIMER_UI,       //!< Non-pausable, non-serialized, frametime unprocessed.
 		ETIMER_PLAYER,   //!< Guess: time used for the player in Combat Focus
 		ETIMER_LAST

@@ -1,7 +1,13 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerTranscribe.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerRobotLightExtension.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerPA.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNull.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNPC.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerPlayer.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
 
@@ -298,6 +304,13 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerTranscribe.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerRobotLightExtension.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerPA.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNull.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNPC.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerPlayer.h>
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
 

@@ -59,7 +59,11 @@ public:
 	static void OnAudioVolumeChange(ICVar *_pCVar, bool _bDialog) { FOnAudioVolumeChange(_pCVar,_bDialog); }
 	void UpdateAudioVolumes(unsigned _trackID, unsigned _volume) { FUpdateAudioVolumes(this,_trackID,_volume); }
 	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
+#ifndef MOONCRASH
 	ArkBinkPlayerHandle CreatePlayer(const char *_szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { return FCreatePlayer(this,_szPath,_instanceId,_type,_flags); }
+#else
+	ArkBinkPlayerHandle CreatePlayer(const char* _szPath, int16_t _instanceId, EArkBinkMovieType _type, EArkBinkLoadFlags _flags) { alignas(ArkBinkPlayerHandle) std::byte _return_buf_[sizeof(ArkBinkPlayerHandle)]; return *FCreatePlayer(this, reinterpret_cast<ArkBinkPlayerHandle*>(_return_buf_), _szPath, _instanceId, _type, _flags); }
+#endif
 	void QueuePlayerDelete(ArkBinkPlayer *_pPlayer) { FQueuePlayerDelete(this,_pPlayer); }
 	
 #if 0

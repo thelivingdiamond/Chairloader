@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -14,9 +12,15 @@ public:
 	uint64_t m_alienGibletCount;
 	uint64_t m_operatorCorpseCount;
 	uint64_t m_turretCorpseCount;
+#ifndef MOONCRASH
+	static inline auto s_maxAlienGiblets = PreyGlobal<uint64_t>(0x2274AC8);
+	static inline auto s_maxOperatorCorpses = PreyGlobal<uint64_t>(0x2274AD0);
+	static inline auto s_maxTurretCorpses = PreyGlobal<uint64_t>(0x2274AD8);
+#else
 	static inline auto s_maxAlienGiblets = PreyGlobal<uint64_t>(0x23E27E0);
 	static inline auto s_maxOperatorCorpses = PreyGlobal<uint64_t>(0x23E27E8);
 	static inline auto s_maxTurretCorpses = PreyGlobal<uint64_t>(0x23E27F0);
+#endif
 	std::vector<CArkAlienGiblet*> m_alienGibletVec;
 	std::vector<unsigned int> m_operatorCorpseVec;
 	std::vector<ArkTurret*> m_turretCorpseVec;
@@ -39,7 +43,6 @@ public:
 	void OnCreateTurretCorpse(ArkTurret* _arg0_);
 	void OnReleaseTurretCorpse(ArkTurret* _arg0_);
 	void Reset();
-	const std::vector<CArkAlienGiblet*>& GetAlienGiblets() const;
 	ArkDynamicCorpseManager& operator=(const ArkDynamicCorpseManager& _arg0_);
 	bool IsCritical(CArkAlienGiblet* _arg0_) const;
 	bool IsVisibleToPlayer(Vec3 _arg0_) const;
@@ -49,6 +52,20 @@ public:
 	void ReduceTurretCorpses();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkDynamicCorpseManagerOv1 = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F04F0);
+	static inline auto FOnCreateAlienGiblet = PreyFunction<void(ArkDynamicCorpseManager* const _this, CArkAlienGiblet* _giblet)>(0x11F0940);
+	static inline auto FOnCreateOperatorCorpse = PreyFunction<void(ArkDynamicCorpseManager* const _this, unsigned _operatorId)>(0x11F0970);
+	static inline auto FOnReleaseAlienGiblet = PreyFunction<void(ArkDynamicCorpseManager* const _this, CArkAlienGiblet* _pGiblet)>(0x11F09D0);
+	static inline auto FOnReleaseOperatorCorpse = PreyFunction<void(ArkDynamicCorpseManager* const _this, unsigned _operatorId)>(0x11F0A20);
+	static inline auto FDoesAlienHaveGiblets = PreyFunction<bool(const ArkDynamicCorpseManager* const _this, unsigned _alienId)>(0x11F06B0);
+	static inline auto FOnLevelToLevelTransition = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F09A0);
+	static inline auto FOnLoadGame = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F09A0);
+	static inline auto FShutdown = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F09A0);
+	static inline auto FUpdate = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F0EC0);
+	static inline auto FIsCriticalOv0 = PreyFunction<bool(const ArkDynamicCorpseManager* const _this, unsigned _entity)>(0x11F06E0);
+	static inline auto FProcessCorpses = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x11F0A70);
+#else
 	static inline auto FArkDynamicCorpseManagerOv1 = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x127E830);
 	static inline auto FOnCreateAlienGiblet = PreyFunction<void(ArkDynamicCorpseManager* const _this, CArkAlienGiblet* _giblet)>(0x127EC80);
 	static inline auto FOnCreateOperatorCorpse = PreyFunction<void(ArkDynamicCorpseManager* const _this, unsigned _operatorId)>(0x127ECB0);
@@ -61,5 +78,6 @@ public:
 	static inline auto FUpdate = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x127F200);
 	static inline auto FIsCriticalOv0 = PreyFunction<bool(const ArkDynamicCorpseManager* const _this, unsigned _entity)>(0x127EA20);
 	static inline auto FProcessCorpses = PreyFunction<void(ArkDynamicCorpseManager* const _this)>(0x127EDB0);
+#endif
 };
-#endif // MOONCRASH
+

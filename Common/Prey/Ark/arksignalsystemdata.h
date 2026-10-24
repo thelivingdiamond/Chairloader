@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -154,33 +153,32 @@ public:
 // Header file automatically created from a PDB.
 // WARNING: Contains templates
 #pragma once
-#include <_unknown/ArkSignalSystem__Data__SortableData.h>
 
 class XmlNodeRef;
 
 namespace ArkSignalSystem
 {
 
-// ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalGroupData>
-// Header:  Prey/Ark/arksignalsystemdata.h
-class SortableData<ArkSignalSystem::Data::SignalGroupData>
-{ // Size=8 (0x8)
-public:
-	uint64_t m_id;
-
-#if 0
-	SortableData<ArkSignalSystem::Data::SignalGroupData>();
-	bool operator<(const ArkSignalSystem::Data::SignalGroupData& _arg0_) const;
-	uint64_t operator unsigned __int64() const;
-	uint64_t GetId() const;
-#endif
-};
-
 // ArkSignalSystem::Data
 // Header:  Prey/Ark/arksignalsystemdata.h
 class Data
 { // Size=120 (0x78)
 public:
+	// SortableData<T>: T = SignalGroupData, PackageData, SignalData, ModifierData, FactorData, DamageSignalData.
+	template<typename T>
+	class SortableData
+	{ // Size=8 (0x8)
+	public:
+		uint64_t m_id;
+
+	#if 0
+		SortableData();
+		bool operator<(const T&) const;
+		operator uint64_t() const;
+		uint64_t GetId() const;
+	#endif
+	};
+
 	// ArkSignalSystem::Data::SignalGroupData
 	// Header:  Prey/Ark/arksignalsystemdata.h
 	class SignalGroupData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalGroupData>
@@ -201,21 +199,6 @@ public:
 
 		static inline auto FHasSignal = PreyFunction<bool(const ArkSignalSystem::Data::SignalGroupData* const _this, const uint64_t _id)>(0x150C620);
 		static inline auto FLoadParamters = PreyFunction<void(ArkSignalSystem::Data::SignalGroupData* const _this, const XmlNodeRef _node)>(0x1702370);
-	};
-
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::SignalGroupData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::SignalGroupData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::SignalGroupData>();
-		bool operator<(const ArkSignalSystem::Data::SignalGroupData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-	#endif
 	};
 
 	// ArkSignalSystem::Data::PackageData
@@ -248,21 +231,6 @@ public:
 	#endif
 	};
 
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::PackageData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::PackageData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::PackageData>();
-		bool operator<(const ArkSignalSystem::Data::PackageData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-	#endif
-	};
-
 	// ArkSignalSystem::Data::SignalData
 	// Header:  Prey/Ark/arksignalsystemdata.h
 	class SignalData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalData>
@@ -273,21 +241,6 @@ public:
 	#if 0
 		SignalData(const XmlNodeRef _arg0_);
 		const string& GetName() const;
-	#endif
-	};
-
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::SignalData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::SignalData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::SignalData>();
-		bool operator<(const ArkSignalSystem::Data::SignalData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
 	#endif
 	};
 
@@ -342,36 +295,6 @@ public:
 	#endif
 	};
 
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::ModifierData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::ModifierData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::ModifierData>();
-		bool operator<(const ArkSignalSystem::Data::ModifierData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-	#endif
-	};
-
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::ModifierData::RuleData::FactorData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::ModifierData::RuleData::FactorData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::ModifierData::RuleData::FactorData>();
-		bool operator<(const ArkSignalSystem::Data::ModifierData::RuleData::FactorData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
-	#endif
-	};
-
 	// ArkSignalSystem::Data::DamageSignalData
 	// Header:  Prey/Ark/arksignalsystemdata.h
 	class DamageSignalData : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::DamageSignalData>
@@ -379,21 +302,6 @@ public:
 	public:
 	#if 0
 		DamageSignalData(const XmlNodeRef _arg0_);
-	#endif
-	};
-
-	// ArkSignalSystem::Data::SortableData<class ArkSignalSystem::Data::DamageSignalData>
-	// Header:  Prey/Ark/arksignalsystemdata.h
-	class SortableData<class ArkSignalSystem::Data::DamageSignalData>
-	{ // Size=8 (0x8)
-	public:
-		uint64_t m_id;
-
-	#if 0
-		void SortableData<ArkSignalSystem::Data::DamageSignalData>();
-		bool operator<(const ArkSignalSystem::Data::DamageSignalData& _arg0_) const;
-		uint64_t operator unsigned __int64() const;
-		uint64_t GetId() const;
 	#endif
 	};
 
@@ -430,7 +338,6 @@ public:
 	static inline auto FFindModifier = PreyFunction<const ArkSignalSystem::Data::ModifierData* (const ArkSignalSystem::Data* const _this, const uint64_t _id)>(0x1701E20);
 	static inline auto FFindPackage = PreyFunction<const ArkSignalSystem::Data::PackageData* (const ArkSignalSystem::Data* const _this, const uint64_t _id)>(0x1701EB0);
 };
-
 
 } // namespace ArkSignalSystem
 #endif // !MOONCRASH

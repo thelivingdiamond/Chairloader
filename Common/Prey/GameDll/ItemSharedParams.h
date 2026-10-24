@@ -1,16 +1,14 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/itemstring.h>
-#include <_unknown/CryFixedArray.h>
-#include <_unknown/IGameSharedParameters.h>
-#include <_unknown/SAccessoryParams.h>
-#include <_unknown/SAimLookParameters.h>
-#include <_unknown/SAnimationPreCache.h>
-#include <_unknown/SAttachmentHelper.h>
-#include <_unknown/SDamageLevel.h>
-#include <_unknown/SGeometryDef.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/GameDll/IGameSharedParameters.h>
+#include <Prey/GameDll/SAccessoryParams.h>
+#include <Prey/GameDll/SAimLookParameters.h>
+#include <Prey/GameDll/SAnimationPreCache.h>
+#include <Prey/GameDll/SAttachmentHelper.h>
+#include <Prey/GameDll/SDamageLevel.h>
+#include <Prey/GameDll/SGeometryDef.h>
 
 class CItem;
 class CItemGeometryCache;
@@ -36,7 +34,11 @@ struct SAimAnimsBlock
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(SAimAnimsBlock* const _this)>(0x17697C0);
+#else
 	static inline auto FReset = PreyFunction<void(SAimAnimsBlock* const _this)>(0x1890360);
+#endif
 };
 
 // SParams
@@ -112,7 +114,11 @@ struct SParams
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(SParams* const _this)>(0x1769840);
+#else
 	static inline auto FReset = PreyFunction<void(SParams* const _this)>(0x18903E0);
+#endif
 };
 
 // CItemSharedParams
@@ -145,6 +151,9 @@ public:
 	virtual const char* GetDataType() const;
 	virtual void ReleaseLevelResources();
 	void CacheResources(CItemResourceCache& itemResourceCache, const IEntityClass* pItemClass) { FCacheResources(this, itemResourceCache, pItemClass); }
+#ifndef MOONCRASH
+	void CacheResourcesForLevelStartMP(CItemResourceCache& itemResourceCache, const IEntityClass* pItemClass) { FCacheResourcesForLevelStartMP(this, itemResourceCache, pItemClass); }
+#endif
 	const SGeometryDef* GetGeometryForSlot(eGeometrySlot geomSlot) const { return FGetGeometryForSlot(this, geomSlot); }
 	void LoadGeometryForItem(CItem* pItem, eGeometrySlot skipSlot) const { FLoadGeometryForItem(this, pItem, skipSlot); }
 
@@ -152,7 +161,6 @@ public:
 	static const SLaserParams& GetDefaultLaserParameters();
 	bool ReadItemParams(const XmlNodeRef& _arg0_);
 	void ReadOverrideItemParams(const XmlNodeRef& _arg0_);
-	void CacheResourcesForLevelStartMP(CItemResourceCache& _arg0_, const IEntityClass* _arg1_);
 	bool ReadParams(const XmlNodeRef& _arg0_);
 	bool ReadGeometry(const XmlNodeRef& _arg0_);
 	bool ReadDamageLevels(const XmlNodeRef& _arg0_);
@@ -166,6 +174,17 @@ public:
 	bool ItemClassUsesDefaultLaser(const IEntityClass* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCItemSharedParamsOv1 = PreyFunction<void(CItemSharedParams* const _this)>(0x1767990);
+	static inline auto FBitNotCItemSharedParams = PreyFunction<void(CItemSharedParams* const _this)>(0x1768010);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CItemSharedParams* const _this, ICrySizer* pSizer)>(0x17692F0);
+	static inline auto FGetDataType = PreyFunction<const char* (const CItemSharedParams* const _this)>(0x1769050);
+	static inline auto FReleaseLevelResources = PreyFunction<void(CItemSharedParams* const _this)>(0xA13080);
+	static inline auto FCacheResources = PreyFunction<void(CItemSharedParams* const _this, CItemResourceCache& itemResourceCache, const IEntityClass* pItemClass)>(0x1768C10);
+	static inline auto FCacheResourcesForLevelStartMP = PreyFunction<void(CItemSharedParams* const _this, CItemResourceCache& itemResourceCache, const IEntityClass* pItemClass)>(0x1768F50);
+	static inline auto FGetGeometryForSlot = PreyFunction<const SGeometryDef* (const CItemSharedParams* const _this, eGeometrySlot geomSlot)>(0x1769060);
+	static inline auto FLoadGeometryForItem = PreyFunction<void(const CItemSharedParams* const _this, CItem* pItem, eGeometrySlot skipSlot)>(0x17694A0);
+#else
 	static inline auto FCItemSharedParamsOv1 = PreyFunction<void(CItemSharedParams* const _this)>(0x188E6C0);
 	static inline auto FBitNotCItemSharedParams = PreyFunction<void(CItemSharedParams* const _this)>(0x188ECB0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CItemSharedParams* const _this, ICrySizer* pSizer)>(0x188FE90);
@@ -174,6 +193,7 @@ public:
 	static inline auto FCacheResources = PreyFunction<void(CItemSharedParams* const _this, CItemResourceCache& itemResourceCache, const IEntityClass* pItemClass)>(0x188F8B0);
 	static inline auto FGetGeometryForSlot = PreyFunction<const SGeometryDef* (const CItemSharedParams* const _this, eGeometrySlot geomSlot)>(0x188FC00);
 	static inline auto FLoadGeometryForItem = PreyFunction<void(const CItemSharedParams* const _this, CItem* pItem, eGeometrySlot skipSlot)>(0x1890040);
+#endif
 };
 
 // SLaserParams
@@ -193,6 +213,10 @@ struct SLaserParams
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSLaserParamsOv2 = PreyFunction<void(SLaserParams* const _this)>(0x1767BF0);
+#else
 	static inline auto FSLaserParamsOv2 = PreyFunction<void(SLaserParams* const _this)>(0x188E920);
+#endif
 };
-#endif // MOONCRASH
+

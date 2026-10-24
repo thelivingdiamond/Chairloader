@@ -1,4 +1,3 @@
-// Auto-merged: identical in PreyDll (base) and Mooncrash (DLC); no MOONCRASH guard needed.
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/player/psipower/ArkPlayerMimicScienceOperatorController.h>

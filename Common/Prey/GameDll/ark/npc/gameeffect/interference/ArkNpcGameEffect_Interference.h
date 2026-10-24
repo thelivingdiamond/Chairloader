@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ArkBlackListItem.h>
@@ -28,9 +26,16 @@ public:
 	void PostSerialize(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Interference& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12ABFB0);
+	static inline auto FArkNpcGameEffect_Interference = PreyFunction<void(ArkNpcGameEffect_Interference* const _this)>(0x12ABCA0);
+	static inline auto FGetSignalPackageId = PreyFunction<uint64_t(const ArkNpcGameEffect_Interference* const _this)>(0x12AAC70);
+	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_Interference* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Interference& _gameEffectInstance, float _elapsedTime)>(0x12AC010);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x1354C80);
 	static inline auto FArkNpcGameEffect_Interference = PreyFunction<void(ArkNpcGameEffect_Interference* const _this)>(0x1354AF0);
 	static inline auto FGetSignalPackageId = PreyFunction<uint64_t(const ArkNpcGameEffect_Interference* const _this)>(0x12DC700);
 	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_Interference* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Interference& _gameEffectInstance, float _elapsedTime)>(0x1354CE0);
+#endif
 };
-#endif // MOONCRASH
+

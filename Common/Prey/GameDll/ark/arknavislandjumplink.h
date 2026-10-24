@@ -1,12 +1,12 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
 //#include <Prey/CryAISystem/INavigationSystem.h>
+#include <Prey/ArkEnums.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-//#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+//#include <Prey/ArkStubs.h>
 
 class ICrySizer;
 struct IGameObject;
@@ -110,10 +110,11 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/ArkEnums.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
-#include <_unknown/TNavigationID.h>
+#include <Prey/ArkStubs.h>
+#include <Prey/ArkStubs.h>
 
 enum EEntityAspects;
 class ICrySizer;
@@ -166,10 +167,10 @@ public:
 	void OnNavMeshChange() { FOnNavMeshChange(this); }
 	void ClearLinks() { FClearLinks(this); }
 	void RebuildLinks() { FRebuildLinks(this); }
-	ENavLinkError CalculateLinkPositions(TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links) const { return FCalculateLinkPositions(this, _navAgentID, _links); }
-	int CheckLinkRow(TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLinkRow(this, _navAgentID, _start, _fwdDir, _fwdDist, _linkDir, _linkDist, _islandId, _links, _error); }
-	int CheckLink(TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLink(this, _navAgentID, _start, _dir, _dist, _islandId, _links, _error); }
-	int ValidateLink(TNavigationID<1> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FValidateLink(this, _navAgentID, _startPos, _dir, _islandStart, _endPos, _links, _error); }
+	ENavLinkError CalculateLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links) const { return FCalculateLinkPositions(this, _navAgentID, _links); }
+	int CheckLinkRow(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLinkRow(this, _navAgentID, _start, _fwdDir, _fwdDist, _linkDir, _linkDist, _islandId, _links, _error); }
+	int CheckLink(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FCheckLink(this, _navAgentID, _start, _dir, _dist, _islandId, _links, _error); }
+	int ValidateLink(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error) const { return FValidateLink(this, _navAgentID, _startPos, _dir, _islandStart, _endPos, _links, _error); }
 
 #if 0
 	Vec3 GetTriggerSize() const;
@@ -201,9 +202,9 @@ public:
 	static inline auto FOnNavMeshChange = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E040);
 	static inline auto FClearLinks = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152DEC0);
 	static inline auto FRebuildLinks = PreyFunction<void(CArkNavIslandJumpLink* const _this)>(0x152E200);
-	static inline auto FCalculateLinkPositions = PreyFunction<ENavLinkError(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links)>(0x152CCA0);
-	static inline auto FCheckLinkRow = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DC50);
-	static inline auto FCheckLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DA50);
-	static inline auto FValidateLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<1> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152EA40);
+	static inline auto FCalculateLinkPositions = PreyFunction<ENavLinkError(const CArkNavIslandJumpLink* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links)>(0x152CCA0);
+	static inline auto FCheckLinkRow = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _start, const Vec3& _fwdDir, float _fwdDist, const Vec3& _linkDir, float _linkDist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DC50);
+	static inline auto FCheckLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _start, const Vec3& _dir, float _dist, unsigned _islandId, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152DA50);
+	static inline auto FValidateLink = PreyFunction<int(const CArkNavIslandJumpLink* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID, const Vec3& _startPos, const Vec3& _dir, unsigned _islandStart, const Vec3& _endPos, std::vector<std::tuple<Vec3_tpl<float>, Vec3_tpl<float>>>& _links, ENavLinkError& _error)>(0x152EA40);
 };
 #endif // !MOONCRASH

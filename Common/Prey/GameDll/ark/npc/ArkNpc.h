@@ -1,8 +1,10 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/npc/desires/ArkNpcMovementDesire.h>
+#include <Prey/GameDll/ark/npc/ArkNpcSpawnedState.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npc.h>
 #include <Prey/CryEntitySystem/AreaProxy.h>
 #include <Prey/GameDll/ark/npc/desires/ArkNpcMovementDesireManager.h>
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -41,7 +43,7 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerliftproperties.h>
 #include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
 #include <Prey/GameDll/ark/ArkAiKnowledge.h>
-#include <Prey/GameDll/ark/perception/ArkAttentiveSubject.h>
+#include <Prey/GameDll/ark/attention/ArkNpcAttentiveSubject.h>
 #include <Prey/GameDll/ark/npc/IArkNpc.h>
 #include <Chairloader/PreyFunction.h>
 #include <Prey/ArkCommon/ArkUnanimous.h>
@@ -282,6 +284,7 @@ public:
 
 	ArkNpc();
     virtual ~ArkNpc() = 0;
+	virtual void OnNewAttentionTarget(unsigned _targetEntityId, bool _bDelayed);
     ArkNpcProperties const &GetProperties() const { return FGetProperties(this); }
 	void AddCollisionObserver(ArkNpcCollisionObserver &_observer) { FAddCollisionObserver(this,_observer); }
 	void RemoveCollisionObserver(ArkNpcCollisionObserver &_observer) { FRemoveCollisionObserver(this,_observer); }
@@ -1335,8 +1338,11 @@ inline auto FSafeGetArkNpc = PreyFunction<ArkNpc *(IEntity const *)>(0x12AF240);
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <CryEngine/crycommon/MovementStyle.h>
+class ArkAiTree;
+#include <Prey/GameDll/ark/npc/ArkNpcSpawnedState.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npc.h>
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/CryAISystem/MovementStyle.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/ArkCommon/ArkUnanimous.h>
@@ -1369,19 +1375,17 @@ inline auto FSafeGetArkNpc = PreyFunction<ArkNpc *(IEntity const *)>(0x12AF240);
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolume.h>
 #include <Prey/GameDll/ark/player/psipower/arkpsiliftvolumemanager.h>
-#include <_unknown/ArkAiKnowledge.h>
-#include <_unknown/ArkDelegate.h>
-#include <_unknown/ArkIntrusiveList.h>
-#include <_unknown/ArkSpatialManagerEntry.h>
-#include <_unknown/IArkDoomClockListener.h>
-#include <_unknown/IArkNpc.h>
+#include <Prey/GameDll/ark/ArkAiKnowledge.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
+#include <Prey/ArkCommon/arkintrusivelist.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
+#include <Prey/GameDll/ark/IArkDoomClockListener.h>
+#include <Prey/GameDll/ark/npc/IArkNpc.h>
 
 class ArkAiTreeInstance;
 class ArkAiTreeInstanceNode;
-enum class ArkCharacterEffectType;
 class ArkGlooEffectAccumulated;
 struct ArkInteractionTestResult;
-enum class ArkMaterialAnimationType;
 class ArkNpcAnimAction;
 class ArkNpcAnimActionObserver;
 class ArkNpcBody;
@@ -2908,4 +2912,6 @@ public:
 	static inline auto FSpawnLootOnDeath = PreyFunction<void(ArkNpc* const _this)>(0x1621400);
 	static inline auto FStartAmbientSound = PreyFunction<void(const ArkNpc* const _this, EArkNpcAmbientSoundId _soundId)>(0x1621930);
 };
+
+inline auto FSafeGetArkNpc = PreyFunction<ArkNpc* (IEntity const*)>(0x1358730);
 #endif // !MOONCRASH

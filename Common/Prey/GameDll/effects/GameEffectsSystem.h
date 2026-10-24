@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryInput/IInput.h>
-#include <_unknown/PodArray.h>
-#include <_unknown/SGameRulesListener.h>
+#include <Prey/Cry3DEngine/CryPodArray.h>
+#include <Prey/GameDll/effects/SGameRulesListener.h>
 
 struct ICVar;
 struct IGameEffect;
@@ -35,13 +33,22 @@ public:
 	#endif
 	};
 
+#ifndef MOONCRASH
+	static inline auto s_singletonInstance = PreyGlobal<CGameEffectsSystem*>(0x2C08208);
+	static inline auto s_postEffectCVarNameOffset = PreyGlobal<int>(0x2C08210);
+#else
 	static inline auto s_singletonInstance = PreyGlobal<CGameEffectsSystem*>(0x2D82338);
 	static inline auto s_postEffectCVarNameOffset = PreyGlobal<int>(0x2D82340);
+#endif
 	IGameEffect* m_effectsToUpdate;
 	IGameEffect* m_effectsNotToUpdate;
 	IGameEffect* m_nextEffectToUpdate;
 	bool m_isInitialised;
+#ifndef MOONCRASH
+	static inline auto s_hasLoadedData = PreyGlobal<bool>(0x2C08214);
+#else
 	static inline auto s_hasLoadedData = PreyGlobal<bool>(0x2D82344);
+#endif
 
 	static void Destroy() { FDestroy(); }
 	void Initialise() { FInitialise(this); }
@@ -75,6 +82,24 @@ public:
 	static void RegisterEnteredGameCallback(void (*_arg0_)());
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FDestroy = PreyFunction<void()>(0x16B76E0);
+	static inline auto FInitialise = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B7A30);
+	static inline auto FLoadData = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B7A50);
+	static inline auto FReleaseData = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B7E50);
+	static inline auto FRegisterEffect = PreyFunction<void(CGameEffectsSystem* const _this, IGameEffect* effect)>(0x16B7CB0);
+	static inline auto FUnRegisterEffect = PreyFunction<void(CGameEffectsSystem* const _this, IGameEffect* effect)>(0x16B80A0);
+	static inline auto FUpdate = PreyFunction<void(CGameEffectsSystem* const _this, float frameTime)>(0x16B81A0);
+	static inline auto FOnInputEvent = PreyFunction<bool(CGameEffectsSystem* const _this, const SInputEvent& inputEvent)>(0xDD23F0);
+	static inline auto FGameRulesInitialise = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B77F0);
+	static inline auto FEnteredGame = PreyFunction<void(SGameRulesListener* const _this)>(0x16B7730);
+	static inline auto FReloadData = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B7F30);
+	static inline auto FCGameEffectsSystemOv1 = PreyFunction<void(CGameEffectsSystem* const _this)>(0x16B7540);
+	static inline auto FAutoReleaseAndDeleteFlaggedEffects = PreyFunction<void(CGameEffectsSystem* const _this, IGameEffect* effectList)>(0x16B7640);
+	static inline auto FRegisterDataLoadCallback = PreyFunction<void(void (*dataLoadCallback)(IItemParamsNode*))>(0x16B7B60);
+	static inline auto FRegisterDataReleaseCallback = PreyFunction<void(void (*dataReleaseCallback)())>(0x16B7BD0);
+	static inline auto FRegisterDataReloadCallback = PreyFunction<void(void (*dataReloadCallback)(IItemParamsNode*))>(0x16B7C40);
+#else
 	static inline auto FDestroy = PreyFunction<void()>(0x17DA590);
 	static inline auto FInitialise = PreyFunction<void(CGameEffectsSystem* const _this)>(0x17DA8E0);
 	static inline auto FLoadData = PreyFunction<void(CGameEffectsSystem* const _this)>(0x17DA900);
@@ -91,6 +116,7 @@ public:
 	static inline auto FRegisterDataLoadCallback = PreyFunction<void(void (*dataLoadCallback)(IItemParamsNode*))>(0x17DAA10);
 	static inline auto FRegisterDataReleaseCallback = PreyFunction<void(void (*dataReleaseCallback)())>(0x17DAA80);
 	static inline auto FRegisterDataReloadCallback = PreyFunction<void(void (*dataReloadCallback)(IItemParamsNode*))>(0x17DAAF0);
+#endif
 };
 
 // SGameEffectSystemStaticData
@@ -102,9 +128,16 @@ struct SGameEffectSystemStaticData
 	static PodArray<void (__cdecl*)(IItemParamsNode *),0>& GetDataReloadCallbackList() { return FGetDataReloadCallbackList(); }
 	static PodArray<void (__cdecl*)(void),0>& GetEnteredGameCallbackList() { return FGetEnteredGameCallbackList(); }
 
+#ifndef MOONCRASH
+	static inline auto FGetDataLoadCallbackList = PreyFunction<PodArray<void (__cdecl*)(IItemParamsNode *),0>& ()>(0x16B7830);
+	static inline auto FGetDataReleaseCallbackList = PreyFunction<PodArray<void (__cdecl*)(void),0>& ()>(0x16B78B0);
+	static inline auto FGetDataReloadCallbackList = PreyFunction<PodArray<void (__cdecl*)(IItemParamsNode *),0>& ()>(0x16B7930);
+	static inline auto FGetEnteredGameCallbackList = PreyFunction<PodArray<void (__cdecl*)(void),0>& ()>(0x16B79B0);
+#else
 	static inline auto FGetDataLoadCallbackList = PreyFunction<PodArray<void (__cdecl*)(IItemParamsNode *),0>& ()>(0x17DA6E0);
 	static inline auto FGetDataReleaseCallbackList = PreyFunction<PodArray<void (__cdecl*)(void),0>& ()>(0x17DA760);
 	static inline auto FGetDataReloadCallbackList = PreyFunction<PodArray<void (__cdecl*)(IItemParamsNode *),0>& ()>(0x17DA7E0);
 	static inline auto FGetEnteredGameCallbackList = PreyFunction<PodArray<void (__cdecl*)(void),0>& ()>(0x17DA860);
+#endif
 };
-#endif // MOONCRASH
+

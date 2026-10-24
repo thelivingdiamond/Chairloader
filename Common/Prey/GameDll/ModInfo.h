@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryString/CryFixedString.h>
 
 // ModInfo
 // Header:  Prey/GameDll/ModInfo.h
@@ -25,6 +23,10 @@ struct ModInfo
 	bool operator<(const ModInfo& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FModInfoOv2 = PreyFunction<void(ModInfo* const _this)>(0x176B820);
+#else
 	static inline auto FModInfoOv2 = PreyFunction<void(ModInfo* const _this)>(0x1892340);
+#endif
 };
-#endif // MOONCRASH
+

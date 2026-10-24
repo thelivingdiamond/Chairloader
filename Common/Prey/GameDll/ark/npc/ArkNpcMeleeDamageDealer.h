@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -34,9 +32,16 @@ public:
 	void FilterHitEntities() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcMeleeDamageDealerOv1 = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this, const ArkNpc& _npc, IAttachment& _attachment, float _radius, uint64_t _signalPackageId, float _signalPackageScale, float _playerImpulse, float _npcImpulse, float _otherImpulse)>(0x1205490);
+	static inline auto FBitNotArkNpcMeleeDamageDealer = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x1205550);
+	static inline auto FRefresh = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x1205AB0);
+	static inline auto FDamageHitEntities = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x1205580);
+#else
 	static inline auto FArkNpcMeleeDamageDealerOv1 = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this, const ArkNpc& _npc, IAttachment& _attachment, float _radius, uint64_t _signalPackageId, float _signalPackageScale, float _playerImpulse, float _npcImpulse, float _otherImpulse)>(0x1294130);
 	static inline auto FBitNotArkNpcMeleeDamageDealer = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x12941F0);
 	static inline auto FRefresh = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x1294770);
 	static inline auto FDamageHitEntities = PreyFunction<void(ArkNpcMeleeDamageDealer* const _this)>(0x1294220);
+#endif
 };
-#endif // MOONCRASH
+

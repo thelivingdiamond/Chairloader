@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryRenderer/VertexFormats.h>
-#include <_unknown/FragEdge.h>
+#include <Prey/FragEdge.h>
 
 // ArkGlassFrag
 // Header:  Prey/Arkbreakableglassutil.h
@@ -28,7 +26,11 @@ public:
 	int Count() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetVolume = PreyFunction<float(const ArkGlassFrag* const _this)>(0xB7230);
+#else
 	static inline auto FGetVolume = PreyFunction<float(const ArkGlassFrag* const _this)>(0xD01C0);
+#endif
 };
 
 // ArkGlassGeo
@@ -63,8 +65,14 @@ public:
 	void GetTangents(SPipTangents& _arg0_, SPipTangents& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkGlassGeoOv2 = PreyFunction<void(ArkGlassGeo* const _this, uint64_t _capacity)>(0xB1DA0);
+	static inline auto FInsert = PreyFunction<ArkGlassFrag*(ArkGlassGeo* const _this, ArkGlassFrag* _return_value_, const ArkGlassFrag& _frag, const ArkGlassGeo& _geo)>(0xB7510);
+	static inline auto FEdgeCount = PreyFunction<uint64_t(const ArkGlassGeo* const _this)>(0xB6D20);
+#else
 	static inline auto FArkGlassGeoOv2 = PreyFunction<void(ArkGlassGeo* const _this, uint64_t _capacity)>(0xCADC0);
 	static inline auto FInsert = PreyFunction<ArkGlassFrag*(ArkGlassGeo* const _this, ArkGlassFrag* _return_value_, const ArkGlassFrag& _frag, const ArkGlassGeo& _geo)>(0xD04A0);
 	static inline auto FEdgeCount = PreyFunction<uint64_t(const ArkGlassGeo* const _this)>(0xCFCE0);
+#endif
 };
-#endif // MOONCRASH
+

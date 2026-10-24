@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -32,8 +30,14 @@ public:
 	void Serialize(ArkNpc& _arg0_, ArkNpcGameEffectInstance_EthericFog& _arg1_, TSerialize _arg2_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12AB6B0);
+	static inline auto FArkNpcGameEffect_EthericFog = PreyFunction<void(ArkNpcGameEffect_EthericFog* const _this)>(0x12AB690);
+	static inline auto FTrySpawnEthericFogEffect = PreyFunction<bool(const ArkNpcGameEffect_EthericFog* const _this, const ArkNpc& _npc, const bool _bIsSmallFragment)>(0x12AB780);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x1354500);
 	static inline auto FArkNpcGameEffect_EthericFog = PreyFunction<void(ArkNpcGameEffect_EthericFog* const _this)>(0x13544E0);
 	static inline auto FTrySpawnEthericFogEffect = PreyFunction<bool(const ArkNpcGameEffect_EthericFog* const _this, const ArkNpc& _npc, const bool _bIsSmallFragment)>(0x13545D0);
+#endif
 };
-#endif // MOONCRASH
+

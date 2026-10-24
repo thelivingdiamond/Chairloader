@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/EntityUtility/EntityEffects.h>
 #include <Prey/GameDll/ark/arkeffectutils.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
+#include <Prey/CryAction/IGameObject.h>
 
 class ArkSafeScriptTable;
 enum EEntityAspects;
@@ -59,6 +57,34 @@ public:
 	void LoadModel();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCArkNpcWeaponOv1 = PreyFunction<void(CArkNpcWeapon* const _this)>(0x120D620);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkNpcWeapon* const _this, ICrySizer* _s)>(0x1788150);
+	static inline auto FInit = PreyFunction<bool(CArkNpcWeapon* const _this, IGameObject* _pGameObject)>(0x13CACC0);
+	static inline auto FPostInit = PreyFunction<void(CArkNpcWeapon* const _this, IGameObject* _pGameObject)>(0x120D860);
+	static inline auto FInitClient = PreyFunction<void(CArkNpcWeapon* const _this, int _channelId)>(0xA13080);
+	static inline auto FPostInitClient = PreyFunction<void(CArkNpcWeapon* const _this, int _channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkNpcWeapon* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xDD23F0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkNpcWeapon* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkNpcWeapon* const _this, TSerialize _signature)>(0xDD23F0);
+	static inline auto FRelease = PreyFunction<void(CArkNpcWeapon* const _this)>(0x120D950);
+	static inline auto FFullSerialize = PreyFunction<void(CArkNpcWeapon* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkNpcWeapon* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0xDD23F0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkNpcWeapon* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkNpcWeapon* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkNpcWeapon* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CArkNpcWeapon* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(CArkNpcWeapon* const _this, const SGameObjectEvent& _event)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CArkNpcWeapon* const _this, SEntityEvent& _event)>(0xA13080);
+	static inline auto FSetChannelId = PreyFunction<void(CArkNpcWeapon* const _this, uint16_t _id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CArkNpcWeapon* const _this, bool _auth)>(0xA13080);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkNpcWeapon* const _this)>(0x158AEF0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkNpcWeapon* const _this, float _frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkNpcWeapon* const _this)>(0xA13080);
+	static inline auto FFromEntityId = PreyFunction<CArkNpcWeapon* (unsigned pistolId)>(0x120D700);
+	static inline auto FLoadEffectAttachment = PreyFunction<void(CArkNpcWeapon* const _this, const string& attachmentName, IParticleEffect* particleEffect)>(0x120D7F0);
+	static inline auto FPlayEffectAttachment = PreyFunction<void(CArkNpcWeapon* const _this)>(0x120D850);
+#else
 	static inline auto FCArkNpcWeaponOv1 = PreyFunction<void(CArkNpcWeapon* const _this)>(0x129C640);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkNpcWeapon* const _this, ICrySizer* _s)>(0x18AECC0);
 	static inline auto FInit = PreyFunction<bool(CArkNpcWeapon* const _this, IGameObject* _pGameObject)>(0x37A880);
@@ -85,5 +111,6 @@ public:
 	static inline auto FFromEntityId = PreyFunction<CArkNpcWeapon* (unsigned pistolId)>(0x129C720);
 	static inline auto FLoadEffectAttachment = PreyFunction<void(CArkNpcWeapon* const _this, const string& attachmentName, IParticleEffect* particleEffect)>(0x129C810);
 	static inline auto FPlayEffectAttachment = PreyFunction<void(CArkNpcWeapon* const _this)>(0x129C870);
+#endif
 };
-#endif // MOONCRASH
+

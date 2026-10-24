@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -42,6 +40,15 @@ public:
 	void RememberPossibleDuplicate(const char* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCSingleAllocTextBlock = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1800ED0);
+	static inline auto FBitNotCSingleAllocTextBlock = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1800EF0);
+	static inline auto FEmptyWithoutFreeing = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1800F60);
+	static inline auto FIncreaseSizeNeededOv1 = PreyFunction<void(CSingleAllocTextBlock* const _this, uint64_t theSize)>(0x1801000);
+	static inline auto FStoreText = PreyFunction<const char* (CSingleAllocTextBlock* const _this, const char* textIn, bool doDuplicateCheck)>(0x1801010);
+	static inline auto FAllocate = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1800F30);
+	static inline auto FFindDuplicate = PreyFunction<const char* (CSingleAllocTextBlock* const _this, const char* textIn)>(0x1800F70);
+#else
 	static inline auto FCSingleAllocTextBlock = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0xD48F00);
 	static inline auto FBitNotCSingleAllocTextBlock = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x19289F0);
 	static inline auto FEmptyWithoutFreeing = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1928A60);
@@ -49,5 +56,6 @@ public:
 	static inline auto FStoreText = PreyFunction<const char* (CSingleAllocTextBlock* const _this, const char* textIn, bool doDuplicateCheck)>(0x1928B10);
 	static inline auto FAllocate = PreyFunction<void(CSingleAllocTextBlock* const _this)>(0x1928A30);
 	static inline auto FFindDuplicate = PreyFunction<const char* (CSingleAllocTextBlock* const _this, const char* textIn)>(0x1928A70);
+#endif
 };
-#endif // MOONCRASH
+

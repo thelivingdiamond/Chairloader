@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef _RENDERAUXGEOMNULL_H_
@@ -44,10 +43,6 @@ public:
 	virtual void                DrawBone(const Vec3& rParent, const Vec3& rBone, ColorB col)                                                                   {}
 
 	virtual void                RenderText(Vec3 pos, SDrawTextInfo& ti, const char* format, va_list args)                                                      {}
-
-	virtual int                 PushMatrix(const Matrix34&  mat)                                                                                                      { return -1; }
-	virtual Matrix34*           GetMatrix()                                                                                                                    { return nullptr; }
-	virtual void                SetMatrixIndex(int matID)                                                                                                    {}
 
 	virtual void                Flush()                                                                                                                        {}
 	virtual void                Commit(uint frames = 0)                                                                                                        {}

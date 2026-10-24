@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/hitdeathreactionsdefs.h>
-#include <_unknown/Functor3.h>
-#include <_unknown/Functor4wRet.h>
+#include <Prey/CryCore/functor.h>
+#include <Prey/CryCore/functor.h>
 
 namespace ArkNpcCustomHitReaction
 {
@@ -46,6 +44,20 @@ public:
 	std::shared_ptr<CHitDeathReactions> GetActorHitDeathReactions(CCryActor& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCCustomReactionFunctionsOv2 = PreyFunction<void(CCustomReactionFunctions* const _this)>(0x16B1370);
+	static inline auto FInitCustomReactionsData = PreyFunction<void(CCustomReactionFunctions* const _this)>(0x16B1B40);
+	static inline auto FCallCustomValidationFunction = PreyFunction<bool(const CCustomReactionFunctions* const _this, bool& bResult, SmartScriptTable hitDeathReactionsTable, CCryActor& actor, const SReactionParams::SValidationParams& validationParams, const HitInfo& hitInfo, ArkNpcCustomHitReaction::Type _customType)>(0x16B1640);
+	static inline auto FCallCustomExecutionFunction = PreyFunction<bool(const CCustomReactionFunctions* const _this, SmartScriptTable hitDeathReactionsTable, const string& function, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B1430);
+	static inline auto FRegisterCustomValidationFunction = PreyFunction<bool(CCustomReactionFunctions* const _this, const string& sName, const Functor4wRet<CCryActor &,SReactionParams::SValidationParams const &,HitInfo const &,enum ArkNpcCustomHitReaction::Type,bool>& validationFunctor)>(0x16B2240);
+	static inline auto FRegisterCustomExecutionFunction = PreyFunction<bool(CCustomReactionFunctions* const _this, const string& sName, const Functor3<CCryActor &,SReactionParams const &,HitInfo const &>& executionFunctor)>(0x16B1CA0);
+	static inline auto FRegisterCustomFunctions = PreyFunction<void(CCustomReactionFunctions* const _this)>(0x16B1D20);
+	static inline auto FFallAndPlay_Reaction = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B1AD0);
+	static inline auto FDeathImpulse_Reaction = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B1A10);
+	static inline auto FDeathImpulse_PowerMelee = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B19A0);
+	static inline auto FMeleeDeath_Reaction = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B1B80);
+	static inline auto FReactionDoNothing = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x16B1C30);
+#else
 	static inline auto FCCustomReactionFunctionsOv2 = PreyFunction<void(CCustomReactionFunctions* const _this)>(0x17D4270);
 	static inline auto FInitCustomReactionsData = PreyFunction<void(CCustomReactionFunctions* const _this)>(0x17D4A40);
 	static inline auto FCallCustomValidationFunction = PreyFunction<bool(const CCustomReactionFunctions* const _this, bool& bResult, SmartScriptTable hitDeathReactionsTable, CCryActor& actor, const SReactionParams::SValidationParams& validationParams, const HitInfo& hitInfo, ArkNpcCustomHitReaction::Type _customType)>(0x17D4540);
@@ -58,5 +70,6 @@ public:
 	static inline auto FDeathImpulse_PowerMelee = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x17D48A0);
 	static inline auto FMeleeDeath_Reaction = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x17D4A80);
 	static inline auto FReactionDoNothing = PreyFunction<void(CCustomReactionFunctions* const _this, CCryActor& actor, const SReactionParams& reactionParams, const HitInfo& hitInfo)>(0x17D4B30);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -386,51 +385,6 @@ class CCryName;
 enum class EArkPsiPowers;
 class IArkValueBase;
 
-// CArkPsiPowerCombatFocus
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCombatFocus.h
-class CArkPsiPowerCombatFocus : public CArkPsiPower<CombatFocusPowerProperties>
-{ // Size=104 (0x68)
-public:
-	ArkSimpleTimer m_timer;
-	ArkAudioTrigger m_triggerActive;
-	ArkAudioTrigger m_triggerInactive;
-	int m_timeScaleHandle;
-	int m_playerTimeScaleHandle;
-	unsigned m_packageHandle;
-	uint64_t m_appliedSignalModifier;
-
-	CArkPsiPowerCombatFocus();
-	virtual ~CArkPsiPowerCombatFocus();
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void Update(const float _fFrameTime);
-	virtual bool StartTargeting();
-	virtual void Serialize(TSerialize _ser);
-	virtual void PostSerialize();
-	virtual EArkPsiPowers GetEnum() const;
-	virtual void ProcessInput(const CCryName& _actionId, int _activationMode, float _value);
-	virtual const ArkInputLegend& GetModalLegend() const;
-	void CleanUp() { FCleanUp(this); }
-	void Activate(bool _bFromSave) { FActivate(this, _bFromSave); }
-	void Deactivate() { FDeactivate(this); }
-	virtual void SetLevel_Derived(const int _level);
-
-	static inline auto FCArkPsiPowerCombatFocusOv1 = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B50F0);
-	static inline auto FStop = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B6340);
-	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B62C0);
-	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const float _fFrameTime)>(0x13B6350);
-	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B6270);
-	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, TSerialize _ser)>(0x13B5FC0);
-	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B5EF0);
-	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerCombatFocus* const _this)>(0x13B5BC0);
-	static inline auto FProcessInput = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const CCryName& _actionId, int _activationMode, float _value)>(0x13B5F20);
-	static inline auto FGetModalLegend = PreyFunction<const ArkInputLegend& (const CArkPsiPowerCombatFocus* const _this)>(0x13B5C00);
-	static inline auto FCleanUp = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B5590);
-	static inline auto FActivate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, bool _bFromSave)>(0x13B53A0);
-	static inline auto FDeactivate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B57D0);
-	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const int _level)>(0x13B61A0);
-};
-
 // ArkPsiPowerCombatFocusProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCombatFocus.h
 class ArkPsiPowerCombatFocusProperties : public ArkReflectedObject
@@ -731,4 +685,50 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13B5910);
 	static inline auto FInit = PreyFunction<bool(CombatFocusPowerProperties* const _this)>(0x13B5D10);
 };
+
+// CArkPsiPowerCombatFocus
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCombatFocus.h
+class CArkPsiPowerCombatFocus : public CArkPsiPower<CombatFocusPowerProperties>
+{ // Size=104 (0x68)
+public:
+	ArkSimpleTimer m_timer;
+	ArkAudioTrigger m_triggerActive;
+	ArkAudioTrigger m_triggerInactive;
+	int m_timeScaleHandle;
+	int m_playerTimeScaleHandle;
+	unsigned m_packageHandle;
+	uint64_t m_appliedSignalModifier;
+
+	CArkPsiPowerCombatFocus();
+	virtual ~CArkPsiPowerCombatFocus();
+	virtual bool Stop();
+	virtual bool Start_Derived();
+	virtual void Update(const float _fFrameTime);
+	virtual bool StartTargeting();
+	virtual void Serialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual EArkPsiPowers GetEnum() const;
+	virtual void ProcessInput(const CCryName& _actionId, int _activationMode, float _value);
+	virtual const ArkInputLegend& GetModalLegend() const;
+	void CleanUp() { FCleanUp(this); }
+	void Activate(bool _bFromSave) { FActivate(this, _bFromSave); }
+	void Deactivate() { FDeactivate(this); }
+	virtual void SetLevel_Derived(const int _level);
+
+	static inline auto FCArkPsiPowerCombatFocusOv1 = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B50F0);
+	static inline auto FStop = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B6340);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B62C0);
+	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const float _fFrameTime)>(0x13B6350);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerCombatFocus* const _this)>(0x13B6270);
+	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, TSerialize _ser)>(0x13B5FC0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B5EF0);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerCombatFocus* const _this)>(0x13B5BC0);
+	static inline auto FProcessInput = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const CCryName& _actionId, int _activationMode, float _value)>(0x13B5F20);
+	static inline auto FGetModalLegend = PreyFunction<const ArkInputLegend& (const CArkPsiPowerCombatFocus* const _this)>(0x13B5C00);
+	static inline auto FCleanUp = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B5590);
+	static inline auto FActivate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, bool _bFromSave)>(0x13B53A0);
+	static inline auto FDeactivate = PreyFunction<void(CArkPsiPowerCombatFocus* const _this)>(0x13B57D0);
+	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerCombatFocus* const _this, const int _level)>(0x13B61A0);
+};
+
 #endif // !MOONCRASH

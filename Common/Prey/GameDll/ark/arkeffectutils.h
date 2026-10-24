@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -473,7 +472,7 @@ public:
 	std::vector<EntityEffects::SEffectInfo> m_attachedEffects;
 	unsigned m_effectGeneratorId;
 
-	ArkEffectsCharacterController();
+	EntityEffects::ArkEffectsCharacterController();
 	void InitWithCharacter(ICharacterInstance* pCharacter) { FInitWithCharacter(this, pCharacter); }
 	void FreeAllEffects() { FFreeAllEffects(this); }
 	unsigned AttachParticleEffect(IParticleEffect* pParticleEffect, const int targetSlot, const char* helperName, const EntityEffects::SEffectAttachParams& attachParams) { return FAttachParticleEffectOv1(this, pParticleEffect, targetSlot, helperName, attachParams); }

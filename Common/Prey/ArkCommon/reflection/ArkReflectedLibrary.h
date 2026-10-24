@@ -12,6 +12,7 @@ class ArkReflectedLibrary : public ArkReflectedObject // Id=8009BA8 Size=8
 public:
 	static ArkReflectedObject *Create() { return FCreate(); }
 	static ArkClass *GetClass() { return FGetClass(); }
+	virtual ~ArkReflectedLibrary();
 	virtual bool Init();
 	virtual bool Shutdown();
 	virtual bool IsAlwaysLoaded() const;

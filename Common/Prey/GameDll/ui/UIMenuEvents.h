@@ -1,11 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/ui/IUIModule.h>
 #include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/IUIGameEventSystem.h>
-#include <_unknown/SUIEventReceiverDispatcher.h>
-#include <_unknown/SUIEventSenderDispatcher.h>
+#include <Prey/ArkStubs.h>
+#include <Prey/ArkStubs.h>
 
 struct IUIEventSystem;
 
@@ -40,10 +39,18 @@ public:
 	void StopIngameMenu();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetTypeName = PreyFunction<const char* (const CUIMenuEvents* const _this)>(0x18006E0);
+	static inline auto FInitEventSystem = PreyFunction<void(CUIMenuEvents* const _this)>(0x18006F0);
+	static inline auto FUnloadEventSystem = PreyFunction<void(CUIMenuEvents* const _this)>(0x1800CC0);
+	static inline auto FReset = PreyFunction<void(IUIModule* const _this)>(0x1800CB0);
+	static inline auto FDisplayIngameMenu = PreyFunction<void(CUIMenuEvents* const _this, bool bDisplay, bool bForce)>(0x18003D0);
+#else
 	static inline auto FGetTypeName = PreyFunction<const char* (const CUIMenuEvents* const _this)>(0x1928290);
 	static inline auto FInitEventSystem = PreyFunction<void(CUIMenuEvents* const _this)>(0x19282A0);
 	static inline auto FUnloadEventSystem = PreyFunction<void(CUIMenuEvents* const _this)>(0x19287E0);
 	static inline auto FReset = PreyFunction<void(IUIModule* const _this)>(0x19287D0);
 	static inline auto FDisplayIngameMenu = PreyFunction<void(CUIMenuEvents* const _this, bool bDisplay, bool bForce)>(0x1927E40);
+#endif
 };
-#endif // MOONCRASH
+

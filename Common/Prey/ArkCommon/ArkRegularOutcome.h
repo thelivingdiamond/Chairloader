@@ -33,7 +33,9 @@ public:
 	static constexpr const unsigned k_chanceIndexMask = 1032192;
 	static constexpr const unsigned k_sampleIndexMask = 15872;
 	static constexpr const unsigned k_resultIndexMask = 511;
+#ifndef MOONCRASH
 	static std::bitset<k_totalResultsCount> s_results;
+#endif
 	unsigned m_data = 0;
 	static constexpr const uint64_t k_maxRunCount = 8;
 	

@@ -1,12 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/IGameRulesSystem.h>
 #include <Prey/CryString/CryName.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalmanager.h>
 #include <Prey/GameDll/ark/signalsystem/arksignalreceiver.h>
-#include <_unknown/SignalReceiverConfig.h>
+#include <Prey/GameDll/ark/npc/SignalReceiverConfig.h>
 
 class ArkNpcPlayer;
 
@@ -40,9 +38,18 @@ public:
 	#endif
 	};
 
-	static inline auto s_SignalDataMapLibrary = PreyGlobal<std::unordered_map<unsigned int, SignalReceiverConfig>>(0x2D7CAA0);
 	ArkNpcPlayer* m_pOwnerArkNpcPlayer;
+#ifdef MOONCRASH
 	unsigned m_configIdCRC;
+#endif
+#ifndef MOONCRASH
+	static inline auto s_SignalDataMapLibrary = PreyGlobal<std::map<string, SignalReceiverConfig>>(0x2C01580);
+#else
+	static inline auto s_SignalDataMapLibrary = PreyGlobal<std::unordered_map<unsigned int, SignalReceiverConfig>>(0x2D7CAA0);
+#endif
+#ifndef MOONCRASH
+	SignalReceiverConfig* m_pCurrentSignalDataMap;
+#endif
 	ArkNpcSignalReceiver::SignalAccumulator m_shotgunSignalAccumulator;
 
 	ArkNpcSignalReceiver(ArkNpcPlayer& _ownerNpc);
@@ -50,35 +57,60 @@ public:
 	virtual void OnReceiveSignal(const ArkSignalSystem::Package& _package);
 	void Initialize(const char* _pConfigFile) { FInitialize(this, _pConfigFile); }
 	void Update() { FUpdate(this); }
-	const SignalReceiverConfig* GetConfig() const { return FGetConfig(this); }
 	static void Precache(const char* _pConfigFile) { FPrecache(_pConfigFile); }
 	static void ClearPrecache() { FClearPrecache(); }
+#ifndef MOONCRASH
+	static SignalReceiverConfig* LoadConfig(string _configFile) { return FLoadConfig(_configFile); }
+#else
 	static unsigned LoadConfig(const string& _configFile) { return FLoadConfig(_configFile); }
+#endif
 	static void LoadConfig_Recursive(const string& _configFile, std::vector<CCryNameCRC>& _loadedFiles, SignalReceiverConfig& _cachedConfig) { FLoadConfig_Recursive(_configFile, _loadedFiles, _cachedConfig); }
 	bool ProcessDamage(const ArkSignalSystem::Package& _package) { return FProcessDamage(this, _package); }
 	void ProcessDialog(const ArkSignalSystem::Package& _package, bool _bKilled) const { FProcessDialog(this, _package, _bKilled); }
-	float GetDispositionFactor(const unsigned _instigatorId, const unsigned _ownerId, const std::vector<ArkSignalSystem::Package::Value>& _values) const { return FGetDispositionFactor(this, _instigatorId, _ownerId, _values); }
 	bool DoDamage(const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package, const unsigned _instigatorId, const bool _bContainedDamagingSignal) const { return FDoDamage(this, _hitInfo, _package, _instigatorId, _bContainedDamagingSignal); }
 	void ProcessMisc(const ArkSignalSystem::Package& _package) { FProcessMisc(this, _package); }
 
 #if 0
 	string GetCurrentDataMapID() const;
+	float GetDispositionFactor(const unsigned _arg0_, const unsigned _arg1_, const std::vector<ArkSignalSystem::Package::Value>& _arg2_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcSignalReceiverOv1 = PreyFunction<void(ArkNpcSignalReceiver* const _this, ArkNpcPlayer& _ownerNpc)>(0x15196E0);
+	static inline auto FBitNotArkNpcSignalReceiver = PreyFunction<void(ArkNpcSignalReceiver* const _this)>(0x1519A80);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x151B0F0);
+	static inline auto FInitialize = PreyFunction<void(ArkNpcSignalReceiver* const _this, const char* _pConfigFile)>(0x151A550);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcSignalReceiver* const _this)>(0x151BB90);
+	static inline auto FPrecache = PreyFunction<void(const char* _pConfigFile)>(0x151B160);
+	static inline auto FClearPrecache = PreyFunction<void()>(0x1519C50);
+	static inline auto FLoadConfig = PreyFunction<SignalReceiverConfig* (string _configFile)>(0x151A5B0);
+	static inline auto FLoadConfig_Recursive = PreyFunction<void(const string& _configFile, std::vector<CCryNameCRC>& _loadedFiles, SignalReceiverConfig& _cachedConfig)>(0x151A820);
+	static inline auto FProcessDamage = PreyFunction<bool(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x151B180);
+	static inline auto FProcessDialog = PreyFunction<void(const ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package, bool _bKilled)>(0x151B680);
+	static inline auto FDoDamage = PreyFunction<bool(const ArkNpcSignalReceiver* const _this, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package, const unsigned _instigatorId, const bool _bContainedDamagingSignal)>(0x1519CF0);
+	static inline auto FProcessMisc = PreyFunction<void(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x151B990);
+#else
 	static inline auto FArkNpcSignalReceiverOv1 = PreyFunction<void(ArkNpcSignalReceiver* const _this, ArkNpcPlayer& _ownerNpc)>(0x1637790);
 	static inline auto FBitNotArkNpcSignalReceiver = PreyFunction<void(ArkNpcSignalReceiver* const _this)>(0x1637B70);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x1639830);
 	static inline auto FInitialize = PreyFunction<void(ArkNpcSignalReceiver* const _this, const char* _pConfigFile)>(0x1638A40);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcSignalReceiver* const _this)>(0x163A460);
-	static inline auto FGetConfig = PreyFunction<const SignalReceiverConfig* (const ArkNpcSignalReceiver* const _this)>(0x1638920);
 	static inline auto FPrecache = PreyFunction<void(const char* _pConfigFile)>(0x1639890);
 	static inline auto FClearPrecache = PreyFunction<void()>(0x1638000);
 	static inline auto FLoadConfig = PreyFunction<unsigned(const string& _configFile)>(0x1638B20);
 	static inline auto FLoadConfig_Recursive = PreyFunction<void(const string& _configFile, std::vector<CCryNameCRC>& _loadedFiles, SignalReceiverConfig& _cachedConfig)>(0x1638F60);
 	static inline auto FProcessDamage = PreyFunction<bool(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x1639950);
 	static inline auto FProcessDialog = PreyFunction<void(const ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package, bool _bKilled)>(0x1639ED0);
-	static inline auto FGetDispositionFactor = PreyFunction<float(const ArkNpcSignalReceiver* const _this, const unsigned _instigatorId, const unsigned _ownerId, const std::vector<ArkSignalSystem::Package::Value>& _values)>(0x16389C0);
 	static inline auto FDoDamage = PreyFunction<bool(const ArkNpcSignalReceiver* const _this, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package, const unsigned _instigatorId, const bool _bContainedDamagingSignal)>(0x1638080);
 	static inline auto FProcessMisc = PreyFunction<void(ArkNpcSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x163A200);
+#endif
+#ifdef MOONCRASH
+	const SignalReceiverConfig* GetConfig() const { return FGetConfig(this); }
+	float GetDispositionFactor(const unsigned _instigatorId, const unsigned _ownerId, const std::vector<ArkSignalSystem::Package::Value>& _values) const { return FGetDispositionFactor(this, _instigatorId, _ownerId, _values); }
+#endif
+#ifdef MOONCRASH
+	static inline auto FGetConfig = PreyFunction<const SignalReceiverConfig* (const ArkNpcSignalReceiver* const _this)>(0x1638920);
+	static inline auto FGetDispositionFactor = PreyFunction<float(const ArkNpcSignalReceiver* const _this, const unsigned _instigatorId, const unsigned _ownerId, const std::vector<ArkSignalSystem::Package::Value>& _values)>(0x16389C0);
+#endif
 };
-#endif // MOONCRASH
+

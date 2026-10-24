@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -24,7 +22,12 @@ public:
 	void PostSerialize(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Disintegration& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x1218C40);
+	static inline auto FArkNpcGameEffect_Disintegration = PreyFunction<void(ArkNpcGameEffect_Disintegration* const _this)>(0x1218C30);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12AB550);
 	static inline auto FArkNpcGameEffect_Disintegration = PreyFunction<void(ArkNpcGameEffect_Disintegration* const _this)>(0x12AB540);
+#endif
 };
-#endif // MOONCRASH
+

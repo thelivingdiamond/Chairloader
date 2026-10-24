@@ -35,6 +35,9 @@ public:
 #ifdef MOONCRASH
 	Vec3 GetAttentionWorldPosition() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetAttentionWorldPosition(this, reinterpret_cast<Vec3*>(_return_buf_)); }
 #endif
+#ifdef MOONCRASH
+	virtual bool DoGetIsGlood() const;
+#endif
 #ifndef MOONCRASH
 	static inline auto FEnable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x13B2860);
 	static inline auto FDisable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x13B2700);
@@ -64,11 +67,14 @@ template <typename T>
 class ArkGenericAttentionObject : public ArkGenericAttentionObjectBase // Id=80152E0 Size=32
 {
 public:
+#ifdef MOONCRASH
+	bool m_bIsGlood; // Mooncrash: before m_pOwner (Size=40)
+#endif
 	T *m_pOwner;
 	
 	virtual unsigned DoGetEntityId() const;
 	virtual IEntity *DoGetEntity() const;
 #ifdef MOONCRASH
-	bool DoGetIsGlood() const;
+	void SetIsGlood(bool _bIsGlood) { m_bIsGlood = _bIsGlood; }
 #endif
 };

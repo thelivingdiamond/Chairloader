@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -27,7 +25,11 @@ struct SItemActionParamCRCs
 
 	void Init() { FInit(this); }
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SItemActionParamCRCs* const _this)>(0x1550E00);
+#else
 	static inline auto FInit = PreyFunction<void(SItemActionParamCRCs* const _this)>(0x1675FB0);
+#endif
 };
 
 // SItemFragmentTagCRCs
@@ -49,6 +51,10 @@ struct SItemFragmentTagCRCs
 
 	void Init() { FInit(this); }
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SItemFragmentTagCRCs* const _this)>(0x1756000);
+#else
 	static inline auto FInit = PreyFunction<void(SItemFragmentTagCRCs* const _this)>(0x187CC50);
+#endif
 };
-#endif // MOONCRASH
+

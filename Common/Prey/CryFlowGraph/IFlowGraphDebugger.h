@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,6 +14,9 @@ struct SFlowAddress;
 class TFlowInputData;
 enum EFlowGraphStepMode {
     none = 0,
+    stepGlobal = 1,
+    stepLocal = 2,
+    stepOut = 3,
 };
 
 // Header: MadeUp

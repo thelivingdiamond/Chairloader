@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef ISTREAMENGINEDEFS_H
@@ -71,6 +70,7 @@ enum EStreamTaskPriority
 	estpIdle        = 5,
 };
 
+#ifndef MOONCRASH
 enum EStreamSourceMediaType
 {
 	eStreamSourceTypeUnknown = 0,
@@ -78,6 +78,14 @@ enum EStreamSourceMediaType
 	eStreamSourceTypeDisc,
 	eStreamSourceTypeMemory,
 };
+#else
+enum EStreamSourceMediaType
+{
+	eStreamSourceTypeUnknown = 0,
+	eStreamSourceTypeHDD = 1,
+	eStreamSourceTypeMemory = 2,
+};
+#endif
 
 #if defined(STREAMENGINE_ENABLE_STATS)
 #include <CryCore/Containers/CryArray.h>

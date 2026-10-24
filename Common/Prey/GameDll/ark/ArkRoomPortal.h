@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-#include <_unknown/IArkRoomPortal.h>
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/GameDll/ark/IArkRoomPortal.h>
 
 enum EEntityAspects;
 class ICrySizer;
@@ -58,6 +56,40 @@ public:
 	virtual void SetExportable(bool _bExportable);
 	virtual const char* GetName() const;
 
+#ifndef MOONCRASH
+	static inline auto FCArkRoomPortalOv1 = PreyFunction<void(CArkRoomPortal* const _this)>(0x1470E40);
+	static inline auto FInit = PreyFunction<bool(CArkRoomPortal* const _this, IGameObject* _pGameObject)>(0x1471000);
+	static inline auto FPostInit = PreyFunction<void(CArkRoomPortal* const _this, IGameObject* __unnamed1)>(0x1471210);
+	static inline auto FInitClient = PreyFunction<void(CArkRoomPortal* const _this, int _channelId)>(0xA13080);
+	static inline auto FPostInitClient = PreyFunction<void(CArkRoomPortal* const _this, int _channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkRoomPortal* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1B933B0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkRoomPortal* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkRoomPortal* const _this, TSerialize _signature)>(0x1B933B0);
+	static inline auto FRelease = PreyFunction<void(CArkRoomPortal* const _this)>(0x14713A0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkRoomPortal* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkRoomPortal* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1B933B0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkRoomPortal* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkRoomPortal* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkRoomPortal* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CArkRoomPortal* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(CArkRoomPortal* const _this, const SGameObjectEvent& _event)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CArkRoomPortal* const _this, SEntityEvent& _event)>(0x14712B0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkRoomPortal* const _this, uint16_t _id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CArkRoomPortal* const _this, bool _bAuth)>(0xA13080);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkRoomPortal* const _this)>(0x158AEF0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkRoomPortal* const _this, float _frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkRoomPortal* const _this)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkRoomPortal* const _this, ICrySizer* _pCrySizer)>(0xA13080);
+	static inline auto FSetOcclusion = PreyFunction<void(IArkRoomPortal* const _this, float _occlusion)>(0x1471660);
+	static inline auto FGetOcclusion = PreyFunction<float(const IArkRoomPortal* const _this)>(0x12D8F20);
+	static inline auto FSetHazardOcclusion = PreyFunction<void(IArkRoomPortal* const _this, float _occlusion)>(0x1471610);
+	static inline auto FGetHazardOcclusion = PreyFunction<float(const IArkRoomPortal* const _this)>(0x12D8D90);
+	static inline auto FGetCorners = PreyFunction<const std::array<Vec3, 4>& (const IArkRoomPortal* const _this)>(0x1296490);
+	static inline auto FSetCorners = PreyFunction<void(IArkRoomPortal* const _this, const std::array<Vec3, 4>& _corners)>(0x1471440);
+	static inline auto FIsValid = PreyFunction<bool(const IArkRoomPortal* const _this)>(0x14711E0);
+	static inline auto FSetExportable = PreyFunction<void(IArkRoomPortal* const _this, bool _bExportable)>(0x14715D0);
+	static inline auto FGetName = PreyFunction<const char* (const IArkRoomPortal* const _this)>(0x14718F0);
+#else
 	static inline auto FCArkRoomPortalOv1 = PreyFunction<void(CArkRoomPortal* const _this)>(0x15885D0);
 	static inline auto FInit = PreyFunction<bool(CArkRoomPortal* const _this, IGameObject* _pGameObject)>(0x15887C0);
 	static inline auto FPostInit = PreyFunction<void(CArkRoomPortal* const _this, IGameObject* __unnamed1)>(0x15889D0);
@@ -90,5 +122,6 @@ public:
 	static inline auto FIsValid = PreyFunction<bool(const IArkRoomPortal* const _this)>(0x15889A0);
 	static inline auto FSetExportable = PreyFunction<void(IArkRoomPortal* const _this, bool _bExportable)>(0x1588D80);
 	static inline auto FGetName = PreyFunction<const char* (const IArkRoomPortal* const _this)>(0x1588790);
+#endif
 };
-#endif // MOONCRASH
+

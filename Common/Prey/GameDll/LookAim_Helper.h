@@ -1,7 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/CryAction/animation/posemodifier/LookAtSimple.h>
 
 class CPlayer;
 struct ICharacterInstance;
@@ -40,9 +39,16 @@ public:
 	bool CanHandFire(int _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCLookAim_HelperOv2 = PreyFunction<void(CLookAim_Helper* const _this)>(0x176A570);
+	static inline auto FUpdateLook = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter, bool bEnabled, float FOV, const Vec3& targetGlobal, const unsigned lookIKLayer)>(0x176AB20);
+	static inline auto FUpdateDynamicAimPoses = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter, const SActorParams& params, const bool aimEnabled, const int aimIKLayer, const Vec3& vAimTarget, const SMovementState& curMovementState)>(0x176A670);
+	static inline auto FInit = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter)>(0x176A590);
+#else
 	static inline auto FCLookAim_HelperOv2 = PreyFunction<void(CLookAim_Helper* const _this)>(0x1891130);
 	static inline auto FUpdateLook = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter, bool bEnabled, float FOV, const Vec3& targetGlobal, const unsigned lookIKLayer)>(0x18916E0);
 	static inline auto FUpdateDynamicAimPoses = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter, const SActorParams& params, const bool aimEnabled, const int aimIKLayer, const Vec3& vAimTarget, const SMovementState& curMovementState)>(0x1891230);
 	static inline auto FInit = PreyFunction<void(CLookAim_Helper* const _this, CPlayer* pPlayer, ICharacterInstance* pCharacter)>(0x1891150);
+#endif
 };
-#endif // MOONCRASH
+

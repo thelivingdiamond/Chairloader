@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/WeaponZoomOffset.h>
@@ -41,9 +39,16 @@ public:
 	void ResetCustomOffset();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCProceduralWeaponAnimationOv2 = PreyFunction<void(CProceduralWeaponAnimation* const _this)>(0x17D14D0);
+	static inline auto FUpdate = PreyFunction<void(CProceduralWeaponAnimation* const _this, float deltaTime)>(0x17D31E0);
+	static inline auto FAddCustomOffset = PreyFunction<void(CProceduralWeaponAnimation* const _this, const QuatT& offset)>(0x17D1720);
+	static inline auto FComputeOffsets = PreyFunction<void(CProceduralWeaponAnimation* const _this, float deltaTime)>(0x17D19A0);
+#else
 	static inline auto FCProceduralWeaponAnimationOv2 = PreyFunction<void(CProceduralWeaponAnimation* const _this)>(0x18F8230);
 	static inline auto FUpdate = PreyFunction<void(CProceduralWeaponAnimation* const _this, float deltaTime)>(0x18F9F40);
 	static inline auto FAddCustomOffset = PreyFunction<void(CProceduralWeaponAnimation* const _this, const QuatT& offset)>(0x18F8480);
 	static inline auto FComputeOffsets = PreyFunction<void(CProceduralWeaponAnimation* const _this, float deltaTime)>(0x18F8700);
+#endif
 };
-#endif // MOONCRASH
+

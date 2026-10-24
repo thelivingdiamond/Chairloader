@@ -1,12 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
-#include <_unknown/ArkIntrusiveList.h>
-#include <_unknown/ArkIntrusiveListImpl__ArkIntrusiveListIterator.h>
-#include <_unknown/ArkSafeIterator.h>
-#include <_unknown/STagState.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/ArkCommon/arkintrusivelist.h>
+#include <Prey/ArkCommon/arkintrusivelist.h>
+#include <Prey/ArkCommon/ArkSafeIterator.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
 
 class ArkNpc;
 class ArkNpcAnimActionObserver;
@@ -57,6 +55,28 @@ public:
 	void ClearFragTagGroup(SAnimationContext& _arg0_, const int _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction* const _this)>(0x11E3920);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimActionOv1 = PreyFunction<void(ArkNpcAnimAction* const _this, ArkNpc& _npc, int _priority, int _fragmentID, const STagState<12>& _fragTags, unsigned _flags, unsigned _scopeMask, unsigned _userToken)>(0x11E2E30);
+	static inline auto FArkNpcAnimActionOv0 = PreyFunction<void(ArkNpcAnimAction* const _this, ArkNpc& _npc, ArkNpcAnimActionObserver& _observer, int _priority, int _fragmentID, const STagState<12>& _fragTags, unsigned _flags, unsigned _scopeMask, unsigned _userToken)>(0x11E2D30);
+	static inline auto FGetNpc = PreyFunction<ArkNpc& (const ArkNpcAnimAction* const _this)>(0x16A1030);
+	static inline auto FAddObserver = PreyFunction<void(ArkNpcAnimAction* const _this, ArkNpcAnimActionObserver& _observer)>(0x11E3350);
+	static inline auto FRemoveObserver = PreyFunction<void(ArkNpcAnimAction* const _this, ArkNpcAnimActionObserver& _observer)>(0x11E4100);
+	static inline auto FEnter = PreyFunction<void(ArkNpcAnimAction* const _this)>(0x11E34E0);
+	static inline auto FOnFragmentStarted = PreyFunction<void(ArkNpcAnimAction* const _this)>(0x11E3E00);
+	static inline auto FFail = PreyFunction<void(ArkNpcAnimAction* const _this, EActionFailure _actionFailure)>(0x11E37A0);
+	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction* const _this)>(0x11E35C0);
+	static inline auto FSetPriority = PreyFunction<void(ArkNpcAnimAction* const _this, int _newPriority)>(0x11E4270);
+	static inline auto FArkCustomActionEventOv0 = PreyFunction<void(ArkNpcAnimAction* const _this, const unsigned _eventLowercaseCrc)>(0xA13080);
+	static inline auto FOnCustomActionEvent = PreyFunction<void(ArkNpcAnimAction* const _this, const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params)>(0x11E3C50);
+	static inline auto FOnActionEvent = PreyFunction<void(ArkNpcAnimAction* const _this, const unsigned _eventCRC)>(0x11E3980);
+	static inline auto FOnProceduralClipBegin = PreyFunction<void(ArkNpcAnimAction* const _this, IProceduralClip& _clip, unsigned _clipCrc)>(0x11E3F80);
+	static inline auto FOnProceduralClipEnd = PreyFunction<void(ArkNpcAnimAction* const _this, IProceduralClip& _clip, unsigned _clipCrc)>(0x11E4040);
+	static inline auto FSetFragTagOv1 = PreyFunction<bool(ArkNpcAnimAction* const _this, const char* const _pTag)>(0x11E4170);
+	static inline auto FClearGlobalTagGroup = PreyFunction<void(const ArkNpcAnimAction* const _this, SAnimationContext& _context, const char* const _pGroup)>(0x11E3490);
+	static inline auto FClearFragTagGroupOv1 = PreyFunction<void(ArkNpcAnimAction* const _this, SAnimationContext& _context, const char* const _pGroup)>(0x11E33C0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction* const _this)>(0x126F580);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimActionOv1 = PreyFunction<void(ArkNpcAnimAction* const _this, ArkNpc& _npc, int _priority, int _fragmentID, const STagState<12>& _fragTags, unsigned _flags, unsigned _scopeMask, unsigned _userToken)>(0x126E9D0);
@@ -77,6 +97,7 @@ public:
 	static inline auto FSetFragTagOv1 = PreyFunction<bool(ArkNpcAnimAction* const _this, const char* const _pTag)>(0x126FDA0);
 	static inline auto FClearGlobalTagGroup = PreyFunction<void(const ArkNpcAnimAction* const _this, SAnimationContext& _context, const char* const _pGroup)>(0x126F0C0);
 	static inline auto FClearFragTagGroupOv1 = PreyFunction<void(ArkNpcAnimAction* const _this, SAnimationContext& _context, const char* const _pGroup)>(0x126EFF0);
+#endif
 };
 
 // ArkNpcAnimAction_ArmsRetracted
@@ -92,13 +113,21 @@ public:
 	virtual void Enter();
 	virtual bool GetBlendInOverride(int _fragId, float& _blend) const;
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_ArmsRetracted* const _this)>(0x11E3930);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimAction_ArmsRetracted = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, unsigned _flags)>(0x11E2EC0);
+	static inline auto FEnter = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this)>(0x11E3580);
+	static inline auto FGetBlendInOverride = PreyFunction<bool(const ArkNpcAnimAction_ArmsRetracted* const _this, int _fragId, float& _blend)>(0x11E38F0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_ArmsRetracted* const _this)>(0x126F590);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimAction_ArmsRetracted = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, unsigned _flags)>(0x126EA60);
 	static inline auto FEnter = PreyFunction<void(ArkNpcAnimAction_ArmsRetracted* const _this)>(0x126F1B0);
 	static inline auto FGetBlendInOverride = PreyFunction<bool(const ArkNpcAnimAction_ArmsRetracted* const _this, int _fragId, float& _blend)>(0x126F550);
+#endif
 };
-
+#ifdef MOONCRASH
 // ArkNpcAnimAction_Burrow
 // Header:  Prey/GameDll/ark/npc/anim/arknpcanimactions.h
 class ArkNpcAnimAction_Burrow : public ArkNpcAnimAction
@@ -126,6 +155,7 @@ public:
 	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction_Burrow* const _this)>(0x126F2A0);
 	static inline auto FOnActionEvent = PreyFunction<void(ArkNpcAnimAction_Burrow* const _this, const unsigned _eventCRC)>(0x126F690);
 };
+#endif
 
 // ArkNpcAnimAction_DeathHitReaction
 // Header:  Prey/GameDll/ark/npc/anim/arknpcanimactions.h
@@ -146,12 +176,21 @@ public:
 	void SetEntityControlledMovement();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_DeathHitReaction* const _this)>(0x11E3940);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimAction_DeathHitReaction = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this, ArkNpc& _npc, int _priority, bool _bIsDeathReaction, int _fragmentID, STagState<12> _fragTags)>(0x11E2FB0);
+	static inline auto FOnActionEvent = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this, const unsigned _eventCRC)>(0x11E3A30);
+	static inline auto FOnFragmentStarted = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0x11E3EA0);
+	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0x11E3660);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_DeathHitReaction* const _this)>(0x126F5A0);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimAction_DeathHitReaction = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this, ArkNpc& _npc, int _priority, bool _bIsDeathReaction, int _fragmentID, STagState<12> _fragTags)>(0x126EBE0);
 	static inline auto FOnActionEvent = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this, const unsigned _eventCRC)>(0x126F6A0);
 	static inline auto FOnFragmentStarted = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0x126FB40);
 	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction_DeathHitReaction* const _this)>(0x126F2B0);
+#endif
 };
 
 // ArkNpcAnimAction_DodgeWrench
@@ -166,10 +205,17 @@ public:
 	ArkNpcAnimAction_DodgeWrench(ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _riposteSignalPackageId);
 	virtual void OnCustomActionEvent(const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params);
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_DodgeWrench* const _this)>(0x11E3950);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimAction_DodgeWrench = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this, ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _riposteSignalPackageId)>(0x11E3050);
+	static inline auto FOnCustomActionEvent = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this, const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params)>(0x11E3D20);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_DodgeWrench* const _this)>(0x126F5B0);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimAction_DodgeWrench = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this, ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _riposteSignalPackageId)>(0x126EC80);
 	static inline auto FOnCustomActionEvent = PreyFunction<void(ArkNpcAnimAction_DodgeWrench* const _this, const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params)>(0x126F9B0);
+#endif
 };
 
 // ArkNpcAnimAction_MeleeAttack
@@ -184,10 +230,17 @@ public:
 	ArkNpcAnimAction_MeleeAttack(ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _damageSignalPackageId);
 	virtual void OnCustomActionEvent(const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params);
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_MeleeAttack* const _this)>(0x11E3960);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimAction_MeleeAttack = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this, ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _damageSignalPackageId)>(0x11E30E0);
+	static inline auto FOnCustomActionEvent = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this, const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params)>(0x11E3D90);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_MeleeAttack* const _this)>(0x126F5C0);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimAction_MeleeAttack = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this, ArkNpc& _rNpc, int _fragmentId, STagState<12> _fragTags, uint64_t _damageSignalPackageId)>(0x126ED10);
 	static inline auto FOnCustomActionEvent = PreyFunction<void(ArkNpcAnimAction_MeleeAttack* const _this, const unsigned _clipCRC, IProceduralClip& _clip, const IProceduralParams& _params)>(0x126FA20);
+#endif
 };
 
 // ArkNpcAnimAction_MimicRebound
@@ -209,6 +262,15 @@ public:
 	float GetHeightDelta();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_MimicRebound* const _this)>(0x11E3970);
+	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this)>(0xA97D40);
+	static inline auto FArkNpcAnimAction_MimicRebound = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this, ArkNpc& _rNpc, int _bounceFragmentId)>(0x11E3170);
+	static inline auto FEnter = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this)>(0x11E3590);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkNpcAnimAction_MimicRebound* const _this, float _timePassed)>(0x11E4280);
+	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this)>(0x11E3710);
+	static inline auto FFail = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this, EActionFailure _actionFailure)>(0x11E3850);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const ArkNpcAnimAction_MimicRebound* const _this)>(0x126F5D0);
 	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this)>(0x3E3960);
 	static inline auto FArkNpcAnimAction_MimicRebound = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this, ArkNpc& _rNpc, int _bounceFragmentId)>(0x126EDA0);
@@ -216,5 +278,6 @@ public:
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkNpcAnimAction_MimicRebound* const _this, float _timePassed)>(0x126FEA0);
 	static inline auto FExit = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this)>(0x126F360);
 	static inline auto FFail = PreyFunction<void(ArkNpcAnimAction_MimicRebound* const _this, EActionFailure _actionFailure)>(0x126F4B0);
+#endif
 };
-#endif // MOONCRASH
+

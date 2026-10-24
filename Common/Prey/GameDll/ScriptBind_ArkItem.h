@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -27,11 +25,21 @@ public:
 	int GetAudioLogCollectionOwnerName(IFunctionHandler* _pH, string _audioLogCollectionId) { return FGetAudioLogCollectionOwnerName(this, _pH, _audioLogCollectionId); }
 	int GetCount(IFunctionHandler* pH) { return FGetCount(this, pH); }
 	int ResetCount(IFunctionHandler* _pH, int _count) { return FResetCount(this, _pH, _count); }
+#ifndef MOONCRASH
+	int RandomizeCount(IFunctionHandler* _pH) { return FRandomizeCount(this, _pH); }
+#endif
 	int SetPhysicalizeAsStatic(IFunctionHandler* _pH, bool _bAsStatic, bool _bPhysicalize) { return FSetPhysicalizeAsStatic(this, _pH, _bAsStatic, _bPhysicalize); }
 	int CanPickUp(IFunctionHandler* _pH) { return FCanPickUp(this, _pH); }
 	int PickUp(IFunctionHandler* _pH, ScriptHandle _pickerId, bool _bEquip) { return FPickUp(this, _pH, _pickerId, _bEquip); }
 	int IsEquippable(IFunctionHandler* _pH) { return FIsEquippable(this, _pH); }
 	int GetOwnerId(IFunctionHandler* _pH) { return FGetOwnerId(this, _pH); }
+
+#if 0
+	int GetValidTypes(IFunctionHandler* _arg0_);
+	CArkItem* GetArkItem(IFunctionHandler* _arg0_);
+#endif
+
+#ifdef MOONCRASH
 	int SetFabricationPlanQuality(IFunctionHandler* _pH, string _fabPlanId) { return FSetFabricationPlanQuality(this, _pH, _fabPlanId); }
 	int GetQualityTier(IFunctionHandler* _pH) { return FGetQualityTier(this, _pH); }
 	int SetQualityTier(IFunctionHandler* _pH, int _qualityTier) { return FSetQualityTier(this, _pH, _qualityTier); }
@@ -39,12 +47,21 @@ public:
 	int SpawnAndConsume(IFunctionHandler* _pH, string _archetype, Vec3 _localOffset, bool _bDeployTurret) { return FSpawnAndConsume(this, _pH, _archetype, _localOffset, _bDeployTurret); }
 	int GrantAndConsume(IFunctionHandler* _pH, string _archetype, int _quantity) { return FGrantAndConsume(this, _pH, _archetype, _quantity); }
 	int InPlayerMuleInventory(IFunctionHandler* _pH) { return FInPlayerMuleInventory(this, _pH); }
-
-#if 0
-	int GetValidTypes(IFunctionHandler* _arg0_);
-	CArkItem* GetArkItem(IFunctionHandler* _arg0_);
 #endif
-
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_ArkItemOv1 = PreyFunction<void(CScriptBind_ArkItem* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x17E10C0);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_ArkItem* const _this)>(0x17E1DA0);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkItem* const _this, CArkItem* pArkItem)>(0x17E1250);
+	static inline auto FGetAudioLogCollectionOwnerName = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, string _audioLogCollectionId)>(0x17E1620);
+	static inline auto FGetCount = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* pH)>(0x17E1990);
+	static inline auto FResetCount = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, int _count)>(0x17E2170);
+	static inline auto FRandomizeCount = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH)>(0x17E1D40);
+	static inline auto FSetPhysicalizeAsStatic = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, bool _bAsStatic, bool _bPhysicalize)>(0x17E21F0);
+	static inline auto FCanPickUp = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH)>(0x17E1400);
+	static inline auto FPickUp = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, ScriptHandle _pickerId, bool _bEquip)>(0x17E1C30);
+	static inline auto FIsEquippable = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH)>(0x17E1B50);
+	static inline auto FGetOwnerId = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH)>(0x17E1A70);
+#else
 	static inline auto FCScriptBind_ArkItemOv1 = PreyFunction<void(CScriptBind_ArkItem* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x1907E20);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_ArkItem* const _this)>(0x1908EB0);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkItem* const _this, CArkItem* pArkItem)>(0x1907FB0);
@@ -63,5 +80,6 @@ public:
 	static inline auto FSpawnAndConsume = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, string _archetype, Vec3 _localOffset, bool _bDeployTurret)>(0x1909820);
 	static inline auto FGrantAndConsume = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH, string _archetype, int _quantity)>(0x1908A50);
 	static inline auto FInPlayerMuleInventory = PreyFunction<int(CScriptBind_ArkItem* const _this, IFunctionHandler* _pH)>(0x1908BA0);
+#endif
 };
-#endif // MOONCRASH
+

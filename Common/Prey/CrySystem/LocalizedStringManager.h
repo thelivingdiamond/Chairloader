@@ -217,7 +217,7 @@ public:
 #if 0
 	int CompressWChar(void* _arg0_, unsigned& _arg1_, const void* _arg2_, unsigned _arg3_, int _arg4_);
 	int UncompressWChar(void* _arg0_, unsigned& _arg1_, const void* _arg2_, unsigned _arg3_);
-	void LocalizedStringsManagerWarning(... _arg0_);
+	void LocalizedStringsManagerWarning(...);
 	void ListAndClearProblemLabels();
 	void AppendToUnicodeString(wstring& _arg0_, const CryFixedStringT<1024>& _arg1_);
 	void AppendToUnicodeString(wstring& _arg0_, const string& _arg1_);

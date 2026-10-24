@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 //
 // The precompiled header file to be used by all ChairLoader mods

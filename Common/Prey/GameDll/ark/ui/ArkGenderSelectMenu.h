@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -22,10 +20,46 @@ struct SInputEvent;
 struct SUIArguments;
 struct SUIEventDesc;
 
+#ifdef MOONCRASH
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#include <Prey/CryFlowGraph/IFlowBaseNode.h>
+#include <Prey/CryFlowGraph/IFlowSystem.h>
+enum EControlScheme;
+#endif
+#if 0 // MOONCRASH copy; disabled in the base body as well
+// ArkFlowNodeGenderSelectMenu
+// Header:  Prey/GameDll/ark/ui/ArkGenderSelectMenu.h
+class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<eNCT_Singleton>
+{ // Size=16 (0x10)
+public:
+	enum class InPort
+	{
+		trigger = 0,
+	};
+
+	enum class OutPort
+	{
+		out = 0,
+	};
+
+	virtual void GetConfiguration(SFlowNodeConfig& _config);
+	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo);
+	virtual void GetMemoryUsage(ICrySizer* _pS) const;
+
+#if 0
+	ArkFlowNodeGenderSelectMenu(const IFlowNode::SActivationInfo* const _arg0_);
+#endif
+
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, SFlowNodeConfig& _config)>(0x1423310);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1423520);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeGenderSelectMenu* const _this, ICrySizer* _pS)>(0x455F00);
+};
+#endif
 #if 0
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkgenderselectmenu.h
-class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<0> // Id=801BA41 Size=16
+class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<eNCT_Singleton> // Id=801BA41 Size=16
 {
 public:
 	enum class InPort
@@ -86,6 +120,7 @@ public:
 	bool IsSelectedGenderFemale() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(ArkGenderSelectMenu const *const _this)>(0x1348960);
 	static inline auto FInitEventSystem = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348970);
 	static inline auto FUnloadEventSystem = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1349360);
@@ -106,102 +141,7 @@ public:
 	static inline auto FOnGenderSelected = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348EC0);
 	static inline auto FStartExitTransition = PreyFunction<void(ArkGenderSelectMenu *const _this, bool _bStartGame)>(0x1349280);
 	static inline auto FClose = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348920);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
-#include <Prey/GameDll/ark/IUIGameEventSystem.h>
-#include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
-#include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
-#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
-#include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <Prey/CryFlowGraph/IFlowBaseNode.h>
-#include <Prey/CryFlowGraph/IFlowSystem.h>
-
-class CCryName;
-enum EControlScheme;
-class ICrySizer;
-struct IFlashPlayer;
-struct IUIElement;
-struct SFlowNodeConfig;
-struct SInputEvent;
-struct SUIArguments;
-struct SUIEventDesc;
-
-// ArkFlowNodeGenderSelectMenu
-// Header:  Prey/GameDll/ark/ui/ArkGenderSelectMenu.h
-class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<0>
-{ // Size=16 (0x10)
-public:
-	enum class InPort
-	{
-		trigger = 0,
-	};
-
-	enum class OutPort
-	{
-		out = 0,
-	};
-
-	virtual void GetConfiguration(SFlowNodeConfig& _config);
-	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo);
-	virtual void GetMemoryUsage(ICrySizer* _pS) const;
-
-#if 0
-	ArkFlowNodeGenderSelectMenu(const IFlowNode::SActivationInfo* const _arg0_);
-#endif
-
-	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, SFlowNodeConfig& _config)>(0x1423310);
-	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1423520);
-	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeGenderSelectMenu* const _this, ICrySizer* _pS)>(0x455F00);
-};
-
-// ArkGenderSelectMenu
-// Header:  Prey/GameDll/ark/ui/ArkGenderSelectMenu.h
-class ArkGenderSelectMenu
-	: public ArkUIMenuBase<ArkGenderSelectMenu>
-	, public std::enable_shared_from_this<ArkGenderSelectMenu>
-	, public IBlockingActionListener
-	, public IUIGameEventSystem
-	, public IUIControlSchemeListener
-	, public IUIModule
-	, public IArkActiveUserManagerListener
-{ // Size=104 (0x68)
-public:
-	IUIElement* m_pUIElement;
-	ArkBinkPlayerHandle m_binkHandle;
-	int m_selectedGender;
-	bool m_bStartGame;
-
-	virtual const char* GetTypeName() const;
-	virtual void InitEventSystem();
-	virtual void UnloadEventSystem();
-	virtual void UpdateModule(float _delta);
-	virtual void OnInit(IUIElement* _pSender, IFlashPlayer* _pFlashPlayer);
-	virtual void OnUnload(IUIElement* _pSender);
-	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
-	virtual bool OnAction(const CCryName& _action, int _activationMode, float _value, const SInputEvent& _inputEvent);
-	virtual void OnActiveUserIdChanged(unsigned __unnamed1);
-	virtual void OnActiveUserDisconnected(bool _bControllerDisconnect);
-	virtual bool OnActiveUserReengaged();
-	virtual void OnActiveUserSignedOut();
-	void Open() { FOpen(this); }
-	void OnGenderSelect(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnGenderSelect(this, _pSender, _event, _args); }
-	void OnLoadTransitionComplete(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnLoadTransitionComplete(this, _pSender, _event, _args); }
-	void OnBackPressed(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnBackPressed(this, _pSender, _event, _args); }
-	void UpdateInputPrompts() const { FUpdateInputPrompts(this); }
-	void OnGenderSelected() { FOnGenderSelected(this); }
-	void StartExitTransition(bool _bStartGame) { FStartExitTransition(this, _bStartGame); }
-	void Close() { FClose(this); }
-
-#if 0
-	ArkGenderSelectMenu();
-	static const char* GetTypeNameS();
-	bool IsSelectedGenderFemale() const;
-#endif
-
+#else
 	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1423CE0);
 	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1423CF0);
 	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x14246E0);
@@ -222,5 +162,5 @@ public:
 	static inline auto FOnGenderSelected = PreyFunction<void(ArkGenderSelectMenu* const _this)>(0x1424240);
 	static inline auto FStartExitTransition = PreyFunction<void(ArkGenderSelectMenu* const _this, bool _bStartGame)>(0x1424600);
 	static inline auto FClose = PreyFunction<void(ArkGenderSelectMenu* const _this)>(0x1423CA0);
+#endif
 };
-#endif // !MOONCRASH

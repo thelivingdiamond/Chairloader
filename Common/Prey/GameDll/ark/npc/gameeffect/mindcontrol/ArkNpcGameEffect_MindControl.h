@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -40,9 +38,16 @@ public:
 	void StartMindControl(ArkNpc& _arg0_, ArkNpcGameEffectInstance_MindControl& _arg1_, float _arg2_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x121B8C0);
+	static inline auto FArkNpcGameEffect_MindControl = PreyFunction<void(ArkNpcGameEffect_MindControl* const _this)>(0x121B870);
+	static inline auto FStopMindControl = PreyFunction<void(const ArkNpcGameEffect_MindControl* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_MindControl& _gameEffectInstance)>(0x121BD40);
+	static inline auto FInternalStart = PreyFunction<void(const ArkNpcGameEffect_MindControl* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_MindControl& _gameEffectInstance)>(0x121BCB0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12B0030);
 	static inline auto FArkNpcGameEffect_MindControl = PreyFunction<void(ArkNpcGameEffect_MindControl* const _this)>(0x12AFFB0);
 	static inline auto FStopMindControl = PreyFunction<void(const ArkNpcGameEffect_MindControl* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_MindControl& _gameEffectInstance)>(0x12B04E0);
 	static inline auto FInternalStart = PreyFunction<void(const ArkNpcGameEffect_MindControl* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_MindControl& _gameEffectInstance)>(0x12B0440);
+#endif
 };
-#endif // MOONCRASH
+

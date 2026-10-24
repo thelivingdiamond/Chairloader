@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryString/CryName.h>
-#include <_unknown/ArkDelegate.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
 
 class ArkNpcPlayer;
 namespace ArkSignalSystem
@@ -43,8 +41,13 @@ struct ArkNpcSignalAccumulator
 	ArkNpcSignalAccumulator(float _arg0_, float _arg1_, float _arg2_, float _arg3_, float _arg4_, const char* const _arg5_, const char* const _arg6_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcSignalAccumulatorOv3 = PreyFunction<void(ArkNpcSignalAccumulator* const _this)>(0x1516080);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcSignalAccumulator* const _this, TSerialize _ser)>(0x15171B0);
+#else
 	static inline auto FArkNpcSignalAccumulatorOv3 = PreyFunction<void(ArkNpcSignalAccumulator* const _this)>(0x16345B0);
 	static inline auto FSerialize = PreyFunction<void(ArkNpcSignalAccumulator* const _this, TSerialize _ser)>(0x16356E0);
+#endif
 };
 
 // ArkNpcSignalAccumulatorManager
@@ -60,9 +63,15 @@ public:
 
 	ArkNpcPlayer& m_owner;
 	std::map<uint64_t, ArkNpcSignalAccumulator> m_signalAccumulators;
+#ifndef MOONCRASH
+	static inline auto s_cachedSignalAccumulators = PreyGlobal<std::unordered_map<string, std::map<uint64_t, ArkNpcSignalAccumulator>>>(0x2C01490);
+	static inline auto s_groupNameToGroupID = PreyGlobal<std::unordered_map<string, uint64_t>>(0x2C014D0);
+	static inline auto s_signalToGroupMap = PreyGlobal<std::unordered_map<uint64_t, std::vector<uint64_t>>>(0x2C01510);
+#else
 	static inline auto s_cachedSignalAccumulators = PreyGlobal<std::unordered_map<string, std::map<uint64_t, ArkNpcSignalAccumulator>>>(0x2D7C9B0);
 	static inline auto s_groupNameToGroupID = PreyGlobal<std::unordered_map<string, uint64_t>>(0x2D7C9F0);
 	static inline auto s_signalToGroupMap = PreyGlobal<std::unordered_map<uint64_t, std::vector<uint64_t>>>(0x2D7CA30);
+#endif
 
 	ArkNpcSignalAccumulatorManager(ArkNpcPlayer& _owner);
 	~ArkNpcSignalAccumulatorManager();
@@ -98,6 +107,27 @@ public:
 	void OnFallingThresholdExceeded(ArkNpcSignalAccumulator& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcSignalAccumulatorManagerOv1 = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, ArkNpcPlayer& _owner)>(0x1516160);
+	static inline auto FBitNotArkNpcSignalAccumulatorManager = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this)>(0x1516280);
+	static inline auto FOnReceivePackage = PreyFunction<bool(ArkNpcSignalAccumulatorManager* const _this, const ArkSignalSystem::Package& _package, const HitInfo& _hitInfo, const float _scale)>(0x1516E90);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, float _frameTime)>(0x1517850);
+	static inline auto FResetAccumulator = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, const uint64_t& _signalGroup)>(0x1517190);
+	static inline auto FRegisterCallbacks = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, const uint64_t& _signalGroupId, ArkDelegate<void __cdecl(ArkSignalSystem::Package const *,HitInfo const *)> _risingCallback, ArkDelegate<void __cdecl(void)> _fallingCallback)>(0x1517100);
+	static inline auto FInitialize = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, const char* _pConfigFile)>(0x1516700);
+	static inline auto FIncreaseAccumulationForSignalGroupOv1 = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, uint64_t _signalGroupId, float _amount)>(0x15166A0);
+	static inline auto FIncreaseAccumulationForSignalGroupOv0 = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, ArkNpcSignalAccumulator& _accumulator, float _amount, const ArkSignalSystem::Package* _pPackage, const HitInfo* _pHitInfo)>(0x15165C0);
+	static inline auto FSetAccumulationForSignalGroup = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, uint64_t _signalGroupId, float _accumulation)>(0x15174A0);
+	static inline auto FGetAccumulatorOv1 = PreyFunction<const ArkNpcSignalAccumulator* (const ArkNpcSignalAccumulatorManager* const _this, uint64_t _signalGroupId)>(0x1516470);
+	static inline auto FGetAccumulatorOv0 = PreyFunction<ArkNpcSignalAccumulator* (ArkNpcSignalAccumulatorManager* const _this, uint64_t _signalGroupId)>(0x1516470);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, TSerialize _ser)>(0x1517480);
+	static inline auto FPrecache = PreyFunction<void(const char* _pConfigFile)>(0x15170E0);
+	static inline auto FClearPrecache = PreyFunction<void()>(0x1516370);
+	static inline auto FGetSignalGroupId = PreyFunction<uint64_t(const string& group_name)>(0x15164C0);
+	static inline auto FLoadConfig = PreyFunction<const std::map<uint64_t, ArkNpcSignalAccumulator>& (string _configFile)>(0x1516800);
+	static inline auto FLoadConfig_Recursive = PreyFunction<void(const string& _configFile, std::vector<CCryNameCRC>& _loadedFiles, std::map<uint64_t, ArkNpcSignalAccumulator>& _cachedAccumulator)>(0x1516A50);
+	static inline auto FSetAccumulator = PreyFunction<void(ArkNpcSignalAccumulator& _accumulator, const uint64_t& _signalGroupId, const float _risingThreshold, const float _fallingThreshold, const float _deaccumulateAmountPerSecond, const float _durationToStartDeaccumulation, const float _maximum, const char* const _pRisingCallback, const char* const _pFallingCallback)>(0x15174F0);
+#else
 	static inline auto FArkNpcSignalAccumulatorManagerOv1 = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this, ArkNpcPlayer& _owner)>(0x1634690);
 	static inline auto FBitNotArkNpcSignalAccumulatorManager = PreyFunction<void(ArkNpcSignalAccumulatorManager* const _this)>(0x16347B0);
 	static inline auto FOnReceivePackage = PreyFunction<bool(ArkNpcSignalAccumulatorManager* const _this, const ArkSignalSystem::Package& _package, const HitInfo& _hitInfo, const float _scale)>(0x16353C0);
@@ -117,5 +147,6 @@ public:
 	static inline auto FLoadConfig = PreyFunction<const std::map<uint64_t, ArkNpcSignalAccumulator>& (string _configFile)>(0x1634D30);
 	static inline auto FLoadConfig_Recursive = PreyFunction<void(const string& _configFile, std::vector<CCryNameCRC>& _loadedFiles, std::map<uint64_t, ArkNpcSignalAccumulator>& _cachedAccumulator)>(0x1634F80);
 	static inline auto FSetAccumulator = PreyFunction<void(ArkNpcSignalAccumulator& _accumulator, const uint64_t& _signalGroupId, const float _risingThreshold, const float _fallingThreshold, const float _deaccumulateAmountPerSecond, const float _durationToStartDeaccumulation, const float _maximum, const char* const _pRisingCallback, const char* const _pFallingCallback)>(0x1635A20);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 // It contains all enums referenced by files in Prey/GameDll
 
@@ -127,6 +126,7 @@ enum class ArkAbilityUpgradeState
 	Purchased = 3,
 };
 
+#ifndef MOONCRASH
 enum class ArkCharacterEffectType : uint8_t
 {
 	corrupted = 0,
@@ -195,7 +195,90 @@ enum class ArkCharacterEffectType : uint8_t
 	raisePhantomFromCorpseCast = 63,
 	count_ = 64,
 };
+#else
+enum class ArkCharacterEffectType : uint8_t
+{
+	corrupted = 0,
+	corruptedActivated = 1,
+	corruptedCharging = 2,
+	corruptedTether = 3,
+	corruptedTetherActivated = 4,
+	corruptedTetherCharging = 5,
+	damaged = 6,
+	destroyed = 7,
+	disabled = 8,
+	electricity = 9,
+	empCast = 10,
+	feared = 11,
+	fearBlast = 12,
+	fire = 13,
+	frozenInGoo = 14,
+	glitch = 15,
+	headExplode = 16,
+	kineticBacklashed = 17,
+	laserEnergize = 18,
+	laserEnergizedExplosion = 19,
+	lifetime = 20,
+	mindControlledStart = 21,
+	mindControlled = 22,
+	mindControlledEnd = 23,
+	onDeath = 24,
+	onHit = 25,
+	operatorPreDestruction = 26,
+	operatorArmIdleEffect = 27,
+	operatorArmEffect = 28,
+	operatorArmAttackEffect = 29,
+	operatorLaserCharge = 30,
+	operatorLaserFlare = 31,
+	operatorLevitators = 32,
+	operatorSuction = 33,
+	phantomAttackGlow = 34,
+	psiBlastCast = 35,
+	psiSuppressed = 36,
+	psychoshockTargeting = 37,
+	psychoshockBlast = 38,
+	psychoshockCast = 39,
+	repelBlast = 40,
+	repelBlastCast = 41,
+	shiftTelegraph = 42,
+	shiftMove = 43,
+	shiftOut = 44,
+	lurkShiftTelegraph = 45,
+	lurkShiftMove = 46,
+	lurkShiftOut = 47,
+	stun = 48,
+	psychoShocked = 49,
+	nightmareEtherFormFollow = 50,
+	nightmareEtherFormFollowWithVelocity = 51,
+	nightmareEtherFormAttack = 52,
+	nightmareEtherFormPsiSuppressed = 53,
+	nightmareLargeFormIn = 54,
+	nightmareLargeFormOut = 55,
+	weaverShieldIn = 56,
+	weaverShieldDissolve = 57,
+	weaverShieldBurst = 58,
+	thermalAura = 59,
+	electricAura = 60,
+	thermogenesisCast = 61,
+	thermalAuraCastWarmup = 62,
+	poltergeistPsychoscopeBlur = 63,
+	poltergeistAppear = 64,
+	poltergeistDisappear = 65,
+	poltergeistDisarm = 66,
+	poltergeistCast = 67,
+	poltergeistGlitch = 68,
+	raisePhantomFromCorpseStart = 69,
+	raisePhantomFromCorpseCast = 70,
+	telepathShieldBreak = 71,
+	telepathShieldDissolve = 72,
+	telepathShieldEffect = 73,
+	frenzyStart = 74,
+	frenzyExplosion = 75,
+	count_ = 76,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class ArkGameSaveVersion : unsigned
 {
 	invalid = 0,
@@ -218,6 +301,29 @@ enum class ArkGameSaveVersion : unsigned
 	newGamePlus = 17,
 	fixNeverDrunk = 18,
 };
+#else
+enum class ArkGameSaveVersion : unsigned
+{
+	invalid = 0,
+	initial = 1,
+	enabledVersioning = 2,
+	cystoidsEnabled = 3,
+	taskLocationUpdate = 4,
+	loadingFutureSave = 5,
+	consoleSub1 = 6,
+	cystoidChanges = 7,
+	ragdollFallDamage = 8,
+	createPhantomRequest = 9,
+	fixPsiScanningState = 10,
+	restorePreorderBonus = 11,
+	createPhantomRequest2 = 12,
+	goodDrunk = 13,
+	timedTrialAdded = 14,
+	levelStatePresenceValidation = 15,
+	survivalMode = 16,
+	storyDifficulty = 17,
+};
+#endif
 
 enum class ArkMaterialAnimationType : uint8_t
 {
@@ -245,15 +351,26 @@ enum class ArkMaterialAnimationType : uint8_t
 namespace ArkNpcCustomHitReaction
 {
 
+#ifndef MOONCRASH
 enum class Type
 {
 	invalid = 0,
 	laserDeath = 1,
 	dramaticDeath = 2,
 };
+#else
+enum class Type
+{
+	invalid = 0,
+	laserDeath = 1,
+	dramaticDeath = 2,
+	solarFrenzyDeath = 3,
+};
+#endif
 
 } // namespace ArkNpcCustomHitReaction
 
+#ifndef MOONCRASH
 enum class ArkNpcSpeakerEvent
 {
 	INVALID = -1,
@@ -321,7 +438,86 @@ enum class ArkNpcSpeakerEvent
 	onDiagnoseFail = 61,
 	numEvents = 62,
 };
+#else
+enum class ArkNpcSpeakerEvent
+{
+	INVALID = -1,
+	onNewTarget = 0,
+	onLostTarget = 1,
+	onTargetDead = 2,
+	onFallDown = 3,
+	onStandUp = 4,
+	onDeath = 5,
+	onTakeDamage = 6,
+	onAttack = 7,
+	onUsePower = 8,
+	onUsed = 9,
+	onOuchSmall = 10,
+	onOuchBig = 11,
+	onWakeUpFromDormant = 12,
+	onPlayerApproach = 13,
+	onPlayerApproachNear = 14,
+	onPlayerApproachFar = 15,
+	onPlayerLoiter = 16,
+	onPlayerUsePower = 17,
+	onNonHostileAIApproach = 18,
+	onConversationTrigger = 19,
+	onGainedAttentionOnTarget = 20,
+	onLostAttentionOnTarget = 21,
+	onHuntStart = 22,
+	onHuntGaveUp = 23,
+	whileSearching = 24,
+	whileWandering = 25,
+	whilePatrolling = 26,
+	onDefeatedPlayer = 27,
+	onBumpedPlayerRanged = 28,
+	onBumpedPlayerTouch = 29,
+	onOperatorCharge = 30,
+	onOperatorExploding = 31,
+	onBroken = 32,
+	onBrokenRepeat = 33,
+	onRepaired = 34,
+	onMovingToDistractor = 35,
+	onStartDistractor = 36,
+	onFinishDistractor = 37,
+	onNpcBumpSignal = 38,
+	onNpcFlee = 39,
+	onNpcGlood = 40,
+	onNpcKOdByTazer = 41,
+	onNpcFireLaserSinged = 42,
+	onNpcImmolatedDeath = 43,
+	onNpcMineAttached = 44,
+	onNpcFearHit = 45,
+	onNpcNullWaveHit = 46,
+	onNpcEmpHit = 47,
+	onNpcFlareHit = 48,
+	onNpcLiftStartHit = 49,
+	onNpcLiftHeld = 50,
+	onNpcFalling = 51,
+	onNpcPlayerMindControlled = 52,
+	onNpcTelepathMindControlled = 53,
+	onNpcRemoteManipulated = 54,
+	onNpcGrabbedByMimic = 55,
+	onNpcErrorOffNavMesh = 56,
+	onNightmareArrived = 57,
+	onCorruptHumanApproachSlow = 58,
+	onCorruptHumanApproachFast = 59,
+	onCorruptRemovedByPlayer = 60,
+	onCorruptedHumanTelegraphCharge = 61,
+	onDiagnoseFail = 62,
+	onPetSummon = 63,
+	onPetUnsummon = 64,
+	onPetInventoryOpen = 65,
+	onPetInventoryClose = 66,
+	onPetInventoryDeposit = 67,
+	onPetInventoryRemove = 68,
+	onAboutToRecycle = 69,
+	onInventoryFull = 70,
+	numEvents = 71,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class ArkPDAPage
 {
 	First = 0,
@@ -343,6 +539,29 @@ enum class ArkPDAPage
 	ScopeMods = 15,
 	Last = 16,
 };
+#else
+enum class ArkPDAPage
+{
+	First = 0,
+	MainMenu = 0,
+	Inventory = 1,
+	Objectives = 2,
+	Progress = 3,
+	Abilities = 4,
+	Status = 5,
+	LevelMap = 6,
+	StationMap = 7,
+	Notes = 8,
+	Metadata = 9,
+	Codes = 10,
+	FabricationPlans = 11,
+	AudioLogs = 12,
+	Emails = 13,
+	Lore = 14,
+	Chipsets = 15,
+	Last = 16,
+};
+#endif
 
 enum class ArkPDASound
 {
@@ -535,6 +754,7 @@ enum class EArkAiTreeStimulusResult
 	consumed = 1,
 };
 
+#ifndef MOONCRASH
 enum class EArkAttentionChangeReason
 {
 	initialized = 0,
@@ -554,6 +774,29 @@ enum class EArkAttentionChangeReason
 	etherDuplicate = 14,
 	touched = 15,
 };
+#else
+enum class EArkAttentionChangeReason
+{
+	initialized = 0,
+	cleared = 1,
+	demoted = 2,
+	drained = 3,
+	simpleGain = 4,
+	clamped = 5,
+	ambient = 6,
+	heardAnomaly = 7,
+	flashlight = 8,
+	heardDanger = 9,
+	seismic = 10,
+	heardCallForHelp = 11,
+	hitByProjectile = 12,
+	remotelyManipulated = 13,
+	observed = 14,
+	etherDuplicate = 15,
+	touched = 16,
+	blindDamaged = 17,
+};
+#endif
 
 enum class EArkAttentionLevel
 {
@@ -580,6 +823,7 @@ enum class EArkCombatRole
 	count_ = 3,
 };
 
+#ifndef MOONCRASH
 enum class EArkConditionTriggerType
 {
 	Force = 0,
@@ -604,7 +848,35 @@ enum class EArkConditionTriggerType
 	PlayerInCombat = 19,
 	DifficultyOption = 20,
 };
+#else
+enum class EArkConditionTriggerType
+{
+	Force = 0,
+	GainedItem = 1,
+	LostItem = 2,
+	AcquiredChipset = 3,
+	HealthAmount = 4,
+	PsiAmount = 5,
+	ObjectiveStatusChange = 6,
+	TaskStatusChange = 7,
+	InteractedWith = 8,
+	LookingAtNear = 9,
+	LookingAtFar = 10,
+	PlayerStatus = 11,
+	AbilityAcquired = 12,
+	TutorialOnCooldown = 13,
+	ConditionExecuted = 14,
+	FlashlightOn = 15,
+	WeaponDurability = 16,
+	GameMetric = 17,
+	TraumaActive = 18,
+	PlayerInCombat = 19,
+	DifficultyOption = 20,
+	DoomClockLevel = 21,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkConversationDominance
 {
 	lowest = 0,
@@ -613,6 +885,17 @@ enum class EArkConversationDominance
 	transcribe = 2,
 	highest = 2,
 };
+#else
+enum class EArkConversationDominance
+{
+	lowest = 0,
+	normal = 0,
+	important = 1,
+	transcribe = 2,
+	telepath = 3,
+	highest = 3,
+};
+#endif
 
 enum class EArkConversationPriority
 {
@@ -920,6 +1203,7 @@ enum class EArkNpcAmbientSoundId
 	_count = 2,
 };
 
+#ifndef MOONCRASH
 enum class EArkNpcBodyStateId
 {
 	any = -1,
@@ -961,6 +1245,52 @@ enum class EArkNpcBodyStateId
 	unanimatedAbility = 35,
 	count_ = 36,
 };
+#else
+// Mooncrash adds burrowing (7) and unburrowing (37); the values are inferred.
+enum class EArkNpcBodyStateId
+{
+	any = -1,
+	null = 0,
+	animated = 1,
+	animatedAbility = 2,
+	animatedDistraction = 3,
+	animatedFall = 4,
+	animatedStunned = 5,
+	breakout = 6,
+	burrowing = 7,
+	cower = 8,
+	dead = 9,
+	dissipate = 10,
+	dodge = 11,
+	fatality = 12,
+	frozen = 13,
+	gravShaft = 14,
+	hitReact = 15,
+	hitReactShift = 16,
+	hypnotized = 17,
+	jump = 18,
+	landing = 19,
+	lifted = 20,
+	lurking = 21,
+	lurkOut = 22,
+	mantle = 23,
+	mimicking = 24,
+	notice = 25,
+	ragdoll = 26,
+	raised = 27,
+	react = 28,
+	ready = 29,
+	rebound = 30,
+	resist = 31,
+	resistScrunch = 32,
+	searchExamine = 33,
+	surprised = 34,
+	trackview = 35,
+	unanimatedAbility = 36,
+	unburrowing = 37,
+	count_ = 38,
+};
+#endif
 
 enum class EArkNpcDamageStateId
 {
@@ -1098,6 +1428,7 @@ enum class EArkNpcMovementDesirePriority
 	debug = 17,
 };
 
+#ifndef MOONCRASH
 enum class EArkNpcNoiseState
 {
 	idle = 0,
@@ -1107,7 +1438,20 @@ enum class EArkNpcNoiseState
 	combat = 4,
 	count_ = 5,
 };
+#else
+enum class EArkNpcNoiseState
+{
+	idle = 0,
+	notice = 1,
+	stare = 2,
+	search = 3,
+	combat = 4,
+	underground = 5,
+	count_ = 6,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkNpcNoiseStateDesirePriority
 {
 	npc = 0,
@@ -1115,6 +1459,16 @@ enum class EArkNpcNoiseStateDesirePriority
 	search = 2,
 	combat = 3,
 };
+#else
+enum class EArkNpcNoiseStateDesirePriority
+{
+	npc = 0,
+	notice = 1,
+	search = 2,
+	combat = 3,
+	underground = 4,
+};
+#endif
 
 enum class EArkNpcSpeedDesireCallbackEvent
 {
@@ -1211,6 +1565,7 @@ enum class EArkPlayerLightPriority
 	Count = 4,
 };
 
+#ifndef MOONCRASH
 enum class EArkPlayerMovementStateId
 {
 	any = -1,
@@ -1234,7 +1589,36 @@ enum class EArkPlayerMovementStateId
 	shift = 17,
 	count_ = 18,
 };
+#else
+enum class EArkPlayerMovementStateId
+{
+	any = -1,
+	null = 0,
+	ground = 1,
+	death = 2,
+	deathByRecyclerGrenade = 3,
+	jump = 4,
+	fall = 5,
+	climb = 6,
+	fly = 7,
+	smoke = 8,
+	zerog = 9,
+	cinematic = 10,
+	slide = 11,
+	mimic = 12,
+	glooed = 13,
+	disarming = 14,
+	gravShaftG = 15,
+	gravShaftToG = 16,
+	gravShaftZeroG = 17,
+	lift = 18,
+	shift = 19,
+	inactive = 20,
+	count_ = 21,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkPlayerStatus
 {
 	Invalid = 0,
@@ -1256,6 +1640,32 @@ enum class EArkPlayerStatus
 	Oxygen = 16,
 	Last = 17,
 };
+#else
+enum class EArkPlayerStatus
+{
+	Invalid = 0,
+	Bleeding = 1,
+	Blind = 2,
+	Burning = 3,
+	Concussion = 4,
+	Crippled = 5,
+	Disruption = 6,
+	Exhausted = 7,
+	Fear = 8,
+	PsychoShock = 9,
+	Radiation = 10,
+	SuitIntegrity = 11,
+	WellFed = 12,
+	Drunk = 13,
+	GoodDrunk = 14,
+	Stun = 15,
+	Oxygen = 16,
+	Glooed = 17,
+	Poisoned = 18,
+	MindControlled = 19,
+	Last = 20,
+};
+#endif
 
 enum class EArkPoltergeistVisibilityState
 {
@@ -1285,6 +1695,7 @@ enum class EArkPsiPowerError
 	NoTargets = 1,
 };
 
+#ifndef MOONCRASH
 enum class EArkPsiPowers
 {
 	firstPower = -1,
@@ -1306,6 +1717,36 @@ enum class EArkPsiPowers
 	empty = 15,
 	last = 16,
 };
+#else
+enum class EArkPsiPowers
+{
+	firstPower = -1,
+	electrostaticBurst = 0,
+	flare = 1,
+	thermalBlast = 2,
+	kineticShield = 3,
+	kineticBlast = 4,
+	lift = 5,
+	remoteManipulation = 6,
+	mimic = 7,
+	smokeForm = 8,
+	fear = 9,
+	mindBlast = 10,
+	hypnosis = 11,
+	cyberkinesis = 12,
+	createPhantom = 13,
+	shift = 14,
+	combatFocus = 15,
+	consumeCorpse = 16,
+	burrow = 17,
+	castMatter = 18,
+	summonPetMimic = 19,
+	summonPetOperator = 20,
+	summonPetTurret = 21,
+	empty = 22,
+	last = 23,
+};
+#endif
 
 enum class EArkRecyclerState
 {
@@ -1327,6 +1768,7 @@ enum class EArkResponseCompareType
 	num_values = 7,
 };
 
+#ifndef MOONCRASH
 enum class EArkResponseKey
 {
 	voice = 0,
@@ -1370,7 +1812,55 @@ enum class EArkResponseKey
 	scansRemaining = 38,
 	last = 39,
 };
+#else
+enum class EArkResponseKey
+{
+	voice = 0,
+	concept = 1,
+	random = 2,
+	talking = 3,
+	itemName = 4,
+	entityClassName = 5,
+	distance = 6,
+	health = 7,
+	group = 8,
+	damage = 9,
+	character = 10,
+	location = 11,
+	playerHealth = 12,
+	corrupted = 13,
+	trauma = 14,
+	traumaCount = 15,
+	attentionLevel = 16,
+	playerIsInCombat = 17,
+	priority = 18,
+	dispositionToPlayer = 19,
+	npcIsControlled = 20,
+	upgrades = 21,
+	durability = 22,
+	ammo = 23,
+	kills = 24,
+	importantConversation = 25,
+	isBroken = 26,
+	isCowering = 27,
+	isFeared = 28,
+	isGlooed = 29,
+	isLurking = 30,
+	playerAbilityTier = 31,
+	playerAlternateForm = 32,
+	playerNeuromods = 33,
+	playerPsi = 34,
+	distraction = 35,
+	targetCharacter = 36,
+	suitIntegrity = 37,
+	scansRemaining = 38,
+	signalPackage = 39,
+	playerCharacter = 40,
+	last = 41,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkSaveFailure
 {
 	None = 0,
@@ -1385,7 +1875,18 @@ enum class EArkSaveFailure
 	Shifting = 9,
 	MimicGrab = 10,
 };
+#else
+enum class EArkSaveFailure
+{
+	None = 0,
+	Cinematic = 1,
+	Dead = 2,
+	Shifting = 3,
+	ButtonMash = 4,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkSaveFileType
 {
 	autosave = 0,
@@ -1394,7 +1895,16 @@ enum class EArkSaveFileType
 	ironman = 3,
 	count_ = 4,
 };
+#else
+enum class EArkSaveFileType
+{
+	campaign = 0,
+	manual = 1,
+	count_ = 2,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkSaveLoadMode
 {
 	disabled = 0,
@@ -1406,7 +1916,20 @@ enum class EArkSaveLoadMode
 	gameOptions = 6,
 	loadTransition = 7,
 };
+#else
+enum class EArkSaveLoadMode
+{
+	disabled = 0,
+	prompt = 1,
+	newGame = 2,
+	load = 3,
+	save = 4,
+	gameOptions = 5,
+	loadTransition = 6,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkSearchFsmStateId
 {
 	any = -1,
@@ -1418,6 +1941,20 @@ enum class EArkSearchFsmStateId
 	hunt = 5,
 	count_ = 6,
 };
+#else
+enum class EArkSearchFsmStateId
+{
+	any = -1,
+	null = 0,
+	debugState = 1,
+	investigate = 2,
+	examineAnim = 3,
+	examineStare = 4,
+	hunt = 5,
+	examineUnburrow = 6,
+	count_ = 7,
+};
+#endif
 
 enum class EArkSilhouetteType
 {
@@ -1445,6 +1982,7 @@ enum class EArkSurfaceHazardState
 	Depleted = 4,
 };
 
+#ifndef MOONCRASH
 enum class EArkTaskMarkerStyle
 {
 	main = 0,
@@ -1452,6 +1990,16 @@ enum class EArkTaskMarkerStyle
 	side = 2,
 	_count = 3,
 };
+#else
+enum class EArkTaskMarkerStyle
+{
+	main = 0,
+	character = 1,
+	roster = 2,
+	side = 3,
+	_count = 4,
+};
+#endif
 
 enum class EArkTechnopathCombatStateId
 {
@@ -1465,6 +2013,7 @@ enum class EArkTechnopathCombatStateId
 	count_ = 6,
 };
 
+#ifndef MOONCRASH
 enum class EArkTelepathCombatStateId
 {
 	any = -1,
@@ -1476,6 +2025,16 @@ enum class EArkTelepathCombatStateId
 	debugState = 5,
 	count_ = 6,
 };
+#else
+enum class EArkTelepathCombatStateId
+{
+	any = -1,
+	null = 0,
+	group = 1,
+	solo = 2,
+	count_ = 3,
+};
+#endif
 
 enum class EArkTurretAnimStateId
 {
@@ -1527,6 +2086,14 @@ enum class EArkWeaverEscapeStateId
 	done = 4,
 	debugState = 5,
 	count_ = 6,
+};
+
+enum class EArkWritebackType
+{
+	set = 0,
+	increment = 1,
+	decrement = 2,
+	last = 3,
 };
 
 enum class EArkZoomPriority
@@ -1584,6 +2151,7 @@ enum EChatMessageType
 	eChatToAll = 2,
 };
 
+#ifndef MOONCRASH
 enum EColliderMode
 {
 	eColliderMode_Undefined = 0,
@@ -1597,6 +2165,22 @@ enum EColliderMode
 	eColliderMode_COUNT = 8,
 	eColliderMode_FF = 255,
 };
+#else
+enum EColliderMode
+{
+	eColliderMode_Undefined = 0,
+	eColliderMode_Disabled = 1,
+	eColliderMode_GroundedOnly = 2,
+	eColliderMode_Pushable = 3,
+	eColliderMode_NonPushable = 4,
+	eColliderMode_PushesPlayersOnly = 5,
+	eColliderMode_Spectator = 6,
+	eColliderMode_NoWorld = 7,
+	eColliderMode_Burrowed = 8,
+	eColliderMode_COUNT = 9,
+	eColliderMode_FF = 255,
+};
+#endif
 
 enum EControlScheme
 {
@@ -2240,6 +2824,7 @@ enum class NpcActionStage
 	complete = 3,
 };
 
+#ifndef MOONCRASH
 enum class ValidTargetResult
 {
 	valid = 0,
@@ -2250,6 +2835,19 @@ enum class ValidTargetResult
 	noAttention = 5,
 	notValidUnknown = 6,
 };
+#else
+enum class ValidTargetResult
+{
+	valid = 0,
+	mimicking = 1,
+	dead = 2,
+	hidden = 3,
+	notHostile = 4,
+	noAttention = 5,
+	underground = 6,
+	notValidUnknown = 7,
+};
+#endif
 
 enum eGeometrySlot
 {
@@ -2267,13 +2865,24 @@ enum eGeometrySlot
 	eIGS_LastLayerSlot = 2,
 };
 
+#ifndef MOONCRASH
 enum class ArkTutorialType
 {
 	Contextual = 0x0,
 	Card = 0x1,
 	Nag = 0x2,
 };
+#else
+enum class ArkTutorialType
+{
+	Contextual = 0x0,
+	Card = 0x1,
+	Nag = 0x2,
+	ReadyRoom = 0x3,
+};
+#endif
 
+#ifndef MOONCRASH
 enum class EArkLogType
 {
 	Unspecified = 0x0,
@@ -2285,16 +2894,25 @@ enum class EArkLogType
 	EntitlementUnlock = 0x6,
 	Airlock = 0x7,
 };
+#else
+enum class EArkLogType
+{
+	Unspecified = 0x0,
+	ItemPickup = 0x1,
+	SneakAttack = 0x2,
+	CriticalAttack = 0x3,
+	MimicHit = 0x4,
+	Chipset = 0x5,
+	EntitlementUnlock = 0x6,
+	Path = 0x7,
+	CryptoCurrency = 0x8,
+};
+#endif
 
-// Same as SInputSymbol::EType
-// Optimizer?
 enum class ArkUtilityType
 {
-	Button = 0x0,
-	Toggle = 0x1,
-	RawAxis = 0x2,
-	Axis = 0x3,
-	Trigger = 0x4,
+	Keypad = 0x0,
+	Button = 0x1,
 };
 
 enum class ENavigationIDTag
@@ -2392,3 +3010,117 @@ enum EAITargetStuntReaction {
     AITSR_SEE_CLOAKED,
     AITSR_LAST
 };
+
+// EArkOffMeshLinkType differs between the two games.
+#ifndef MOONCRASH
+enum class EArkOffMeshLinkType : int
+{
+	Unset = 0,
+	Door = 1,
+	Mantle = 2,
+	GravShaft = 3,
+	Gloo = 4,
+};
+#else
+enum class EArkOffMeshLinkType : int
+{
+	Unset = 0,
+	Door = 1,
+	Mantle = 2,
+	MantleLowG = 3,
+	GravShaft = 4,
+	Gloo = 5,
+};
+#endif
+enum class EArkPatrolType : int
+{
+	eRandom = 0,
+	ePingPong = 1,
+	eLooped = 2,
+	eOneWay = 3,
+	eInvalid = 4,
+};
+
+#ifdef MOONCRASH
+enum class EArkGravity : int
+{
+	Invalid = 0,
+	Normal = 1,
+	Low = 2,
+	Zero = 3,
+};
+enum class ENavLinkError : int
+{
+	None = 0,
+	Invalid = 1,
+	NoStartMesh = 2,
+	NoEndMesh = 3,
+	SameIsland = 4,
+	NoLinksFound = 5,
+	AgainstWall = 6,
+	CollisionBlocked = 7,
+};
+enum class EArkLeaderboardPage : int
+{
+	invalid = 0,
+	scorecard = 1,
+	leaderboard = 2,
+};
+enum class EArkLeaderboardFilterType : int
+{
+	beginning = 0,
+	currentUser = 1,
+	friends = 2,
+};
+enum class EArkTentaclePinholeSpawnerState : int
+{
+	inactive = 0,
+	creation = 1,
+	active = 2,
+	destruction = 3,
+};
+enum class EArkTyphonGateState : int
+{
+	off = 0,
+	suppressed = 1,
+	inactive = 2,
+	active = 3,
+};
+enum class EArkTyphonNestState : int
+{
+	Invalid = 0,
+	Inactive = 1,
+	Primed = 2,
+	Spawning = 3,
+	Active = 4,
+	Depleted = 5,
+};
+enum class ArkDangerAreaType : int
+{
+	hazard = 1,
+	avoidance = 2,
+	fire = 4,
+	electricity = 8,
+	chemical = 16,
+};
+enum class EArkHighlightType : uint8_t
+{
+	None = 0,
+	Milestone = 1,
+	Achievement = 2,
+	Incident = 3,
+	StateChange = 4,
+	Unannounced = 5,
+};
+enum class EArkHighlightSignificance : uint8_t
+{
+	None = 0,
+	ExtremelyBad = 1,
+	VeryBad = 2,
+	Bad = 3,
+	Neutral = 4,
+	Good = 5,
+	VeryGood = 6,
+	ExtremelyGood = 7,
+};
+#endif

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -16,7 +14,11 @@ struct pe_status_living;
 class CPlayerStateUtil
 { // Size=1 (0x1)
 public:
+#ifndef MOONCRASH
+	static void CalculateGroundOrJumpMovement(const CPlayer& player, const SActorFrameMovementParams& movement, const bool bigWeaponRestrict, Vec3& move) { FCalculateGroundOrJumpMovement(player, movement, bigWeaponRestrict, move); }
+#else
 	static void CalculateGroundOrJumpMovement(const CPlayer& player, const SActorFrameMovementParams& movement, const bool bigWeaponRestrict, Vec3& move, bool _bAllowJumpZMove) { FCalculateGroundOrJumpMovement(player, movement, bigWeaponRestrict, move, _bAllowJumpZMove); }
+#endif
 	static bool IsOnGround(CPlayer& player) { return FIsOnGround(player); }
 	static void PhySetFly(CPlayer& player) { FPhySetFly(player); }
 	static void PhySetNoFly(CPlayer& player, const Vec3& gravity) { FPhySetNoFly(player, gravity); }
@@ -42,6 +44,21 @@ public:
 	CPlayerStateUtil& operator=(const CPlayerStateUtil& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCalculateGroundOrJumpMovement = PreyFunction<void(const CPlayer& player, const SActorFrameMovementParams& movement, const bool bigWeaponRestrict, Vec3& move)>(0x17C4060);
+	static inline auto FIsOnGround = PreyFunction<bool(CPlayer& player)>(0x17C46B0);
+	static inline auto FPhySetFly = PreyFunction<void(CPlayer& player)>(0x17C46C0);
+	static inline auto FPhySetNoFly = PreyFunction<void(CPlayer& player, const Vec3& gravity)>(0x17C47B0);
+	static inline auto FShouldJump = PreyFunction<bool(CPlayer& player, const SActorFrameMovementParams& movement)>(0x17C4BE0);
+	static inline auto FRestorePlayerPhysics = PreyFunction<void(CPlayer& player)>(0x17C4B50);
+	static inline auto FUpdatePlayerPhysicsStats = PreyFunction<void(CPlayer& player, SActorPhysics& actorPhysics, float frameTime)>(0x17C4D90);
+	static inline auto FProcessTurning = PreyFunction<void(CPlayer& player, float frameTime)>(0x17C48D0);
+	static inline auto FInitializeMoveRequest = PreyFunction<void(SCharacterMoveRequest& frameRequest)>(0x17C4620);
+	static inline auto FFinalizeMovementRequest = PreyFunction<void(CPlayer& player, const SActorFrameMovementParams& movement, SCharacterMoveRequest& request)>(0x17C4530);
+	static inline auto FShouldSprint = PreyFunction<bool(const CPlayer& player, const SActorFrameMovementParams& movement, IItem* pCurrentPlayerItem)>(0x17C4C40);
+	static inline auto FApplyFallDamage = PreyFunction<void(CPlayer& player, const float startFallingHeight, const float fHeightofEntity)>(0x17C3E60);
+	static inline auto FChangeStance = PreyFunction<void(CPlayer& player, const SStateEvent& event)>(0x17C4520);
+#else
 	static inline auto FCalculateGroundOrJumpMovement = PreyFunction<void(const CPlayer& player, const SActorFrameMovementParams& movement, const bool bigWeaponRestrict, Vec3& move, bool _bAllowJumpZMove)>(0x18EB300);
 	static inline auto FIsOnGround = PreyFunction<bool(CPlayer& player)>(0x18EB9F0);
 	static inline auto FPhySetFly = PreyFunction<void(CPlayer& player)>(0x18EBA00);
@@ -55,5 +72,6 @@ public:
 	static inline auto FShouldSprint = PreyFunction<bool(const CPlayer& player, const SActorFrameMovementParams& movement, IItem* pCurrentPlayerItem)>(0x18EBF80);
 	static inline auto FApplyFallDamage = PreyFunction<void(CPlayer& player, const float startFallingHeight, const float fHeightofEntity)>(0x18EB100);
 	static inline auto FChangeStance = PreyFunction<void(CPlayer& player, const SStateEvent& event)>(0x18EB860);
+#endif
 };
-#endif // MOONCRASH
+

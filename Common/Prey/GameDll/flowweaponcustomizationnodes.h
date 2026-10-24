@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryFlowGraph/IFlowBaseNode.h>
@@ -11,7 +9,7 @@ struct SFlowNodeConfig;
 
 // CFlashUIGetCompatibleAccessoriesNode
 // Header:  Prey/GameDll/flowweaponcustomizationnodes.h
-class CFlashUIGetCompatibleAccessoriesNode : public CFlowBaseNode<1>
+class CFlashUIGetCompatibleAccessoriesNode : public CFlowBaseNode<eNCT_Instanced>
 { // Size=16 (0x10)
 public:
 	enum EInputs
@@ -36,15 +34,22 @@ public:
 	CFlashUIGetCompatibleAccessoriesNode(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIGetCompatibleAccessoriesNode* const _this, SFlowNodeConfig& config)>(0x16C1F40);
+	static inline auto FProcessEvent = PreyFunction<void(CFlashUIGetCompatibleAccessoriesNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x16C22A0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIGetCompatibleAccessoriesNode* const _this, ICrySizer* s)>(0x44D760);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIGetCompatibleAccessoriesNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x16C22F0);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIGetCompatibleAccessoriesNode* const _this, SFlowNodeConfig& config)>(0x17E4760);
 	static inline auto FProcessEvent = PreyFunction<void(CFlashUIGetCompatibleAccessoriesNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x17E4AC0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIGetCompatibleAccessoriesNode* const _this, ICrySizer* s)>(0x455F00);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIGetCompatibleAccessoriesNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x17E4B10);
+#endif
 };
 
 // CFlashUIGetEquippedAccessoriesNode
 // Header:  Prey/GameDll/flowweaponcustomizationnodes.h
-class CFlashUIGetEquippedAccessoriesNode : public CFlowBaseNode<1>
+class CFlashUIGetEquippedAccessoriesNode : public CFlowBaseNode<eNCT_Instanced>
 { // Size=16 (0x10)
 public:
 	enum EInputs
@@ -69,15 +74,22 @@ public:
 	CFlashUIGetEquippedAccessoriesNode(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIGetEquippedAccessoriesNode* const _this, SFlowNodeConfig& config)>(0x16C1810);
+	static inline auto FProcessEvent = PreyFunction<void(CFlashUIGetEquippedAccessoriesNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x16C1B70);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIGetEquippedAccessoriesNode* const _this, ICrySizer* s)>(0x44D760);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIGetEquippedAccessoriesNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x16C1EF0);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIGetEquippedAccessoriesNode* const _this, SFlowNodeConfig& config)>(0x17E4080);
 	static inline auto FProcessEvent = PreyFunction<void(CFlashUIGetEquippedAccessoriesNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x17E43E0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIGetEquippedAccessoriesNode* const _this, ICrySizer* s)>(0x455F00);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIGetEquippedAccessoriesNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x17E4B60);
+#endif
 };
 
 // CFlashUIInventoryNode
 // Header:  Prey/GameDll/flowweaponcustomizationnodes.h
-class CFlashUIInventoryNode : public CFlowBaseNode<1>
+class CFlashUIInventoryNode : public CFlowBaseNode<eNCT_Instanced>
 { // Size=16 (0x10)
 public:
 	enum EInputs
@@ -101,9 +113,16 @@ public:
 	CFlashUIInventoryNode(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIInventoryNode* const _this, SFlowNodeConfig& config)>(0x16C2390);
+	static inline auto FProcessEvent = PreyFunction<void(CFlashUIInventoryNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x16C2640);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIInventoryNode* const _this, ICrySizer* s)>(0x44D760);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIInventoryNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x16C2340);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CFlashUIInventoryNode* const _this, SFlowNodeConfig& config)>(0x17E4C00);
 	static inline auto FProcessEvent = PreyFunction<void(CFlashUIInventoryNode* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x17E4EB0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CFlashUIInventoryNode* const _this, ICrySizer* s)>(0x455F00);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CFlashUIInventoryNode* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x17E4BB0);
+#endif
 };
-#endif // MOONCRASH
+

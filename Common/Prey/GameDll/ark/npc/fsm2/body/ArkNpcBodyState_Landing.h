@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/fsm2/body/ArkNpcBodyState_AnimatedBase.h>
@@ -20,7 +18,12 @@ public:
 	void Exit(const ArkNpcBodyStateForceAnimFinishExitParams& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FEnter = PreyFunction<void(ArkNpcBodyState_Landing* const _this, const ArkNpcBodyStateEnterParams_Landing& _params)>(0x12142D0);
+	static inline auto FExitOv1 = PreyFunction<void(ArkNpcBodyState_Landing* const _this, const ArkNpcBodyStateExitParams& _params)>(0x12142F0);
+#else
 	static inline auto FEnter = PreyFunction<void(ArkNpcBodyState_Landing* const _this, const ArkNpcBodyStateEnterParams_Landing& _params)>(0x12A3870);
 	static inline auto FExitOv1 = PreyFunction<void(ArkNpcBodyState_Landing* const _this, const ArkNpcBodyStateExitParams& _params)>(0x12A3890);
+#endif
 };
-#endif // MOONCRASH
+

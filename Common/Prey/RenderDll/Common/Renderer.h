@@ -3,6 +3,8 @@
 #pragma once
 
 //#include <Prey/CryMemory/CryPool/PoolAlloc.h>
+struct IArkHighlightSystem;   // Mooncrash-only renderer hook
+class ArkHighlightSystem;
 #include <Prey/CryMemory/CryMemoryManager.h>
 #include <Prey/CryRenderer/IRenderer.h>
 #include <Prey/CryThreading/IJobManager.h>
@@ -689,6 +691,9 @@ public:
 	CWater* m_pWaterSimMgr;
 	CTextureManager* m_pTextureManager;
 	ArkBinkManager* m_pBinkManager;
+#ifdef MOONCRASH
+	ArkHighlightSystem* m_pHighlightSystem;
+#endif
 	float m_fPrevTime;
 	uint8_t m_nUseZpass : 2;
 	int m_dwHDRCropWidth;
@@ -864,6 +869,9 @@ public:
 	//virtual void TextToScreen(float x, float y, const char* format, ...);
 	//virtual void TextToScreenColor(int x, int y, float r, float g, float b, float a, const char* format, ...);
 	virtual IArkBinkManager* GetIArkBinkManager();
+#ifdef MOONCRASH
+	virtual IArkHighlightSystem* GetIArkHighlightSystem();
+#endif
 	//void WriteXY(int x, int y, float xscale, float yscale, float r, float g, float b, float a, const char* format, ...) { FWriteXY(this, x, y, xscale, yscale, r, g, b, a, format, buffer); }
 	virtual void Draw2dText(float posX, float posY, const char* pStr, SDrawTextInfo const& ti);
 	virtual void Draw2dTextWithDepth(float posX, float posY, float posZ, const char* pStr, SDrawTextInfo const& ti);
@@ -881,7 +889,11 @@ public:
 	virtual float GetNearestRangeMax() const;
 	virtual int GetWireframeMode();
 	virtual CRenderView* GetRenderViewForThread(int nThreadID, bool bRecursive);
+#ifndef MOONCRASH
 	Matrix44 GetCameraMatrix() { return FGetCameraMatrix(this); }
+#else
+	Matrix44 GetCameraMatrix() { alignas(Matrix44) std::byte _return_buf_[sizeof(Matrix44)]; return *FGetCameraMatrix(this, reinterpret_cast<Matrix44*>(_return_buf_)); }
+#endif
 	Matrix44 const& GetPreviousFrameCameraMatrix() const { return FGetPreviousFrameCameraMatrix(this); }
 	void SetPreviousFrameCameraMatrix(Matrix44 const& m) { FSetPreviousFrameCameraMatrix(this, m); }
 	virtual void GetPolyCount(int& nPolygons, int& nShadowPolys);
@@ -897,6 +909,9 @@ public:
 	virtual void SetMatrices(float* arg0, float* arg1, float* arg2) = 0;
 	virtual int GetStencilBpp();
 	virtual void FlushPendingTextureTasks();
+#ifdef MOONCRASH
+	virtual void ForceTrimTextureStreamer();
+#endif
 	virtual void SetShadowJittering(float shadowJittering);
 	virtual float GetShadowJittering() const;
 	virtual void* FX_AllocateCharInstCB(SSkinningData*, unsigned);
@@ -972,8 +987,8 @@ public:
 	virtual void EF_ResetPostEffects(bool bOnSpecChange);
 	virtual void EF_DisableTemporalEffects();
 	virtual void ForceGC();
-	//virtual _smart_ptr<IRenderMesh> CreateRenderMesh(const char* szType, const char* szSourceName, IRenderMesh::SInitParamerers* pInitParams, ERenderMeshType eBufType);
-	//virtual _smart_ptr<IRenderMesh> CreateRenderMeshInitialized(const void* pVertBuffer, int nVertCount, EVertexFormat eVF, const uint16_t* pIndices, int nIndices, PublicRenderPrimitiveType nPrimetiveType, const char* szType, const char* szSourceName, ERenderMeshType eBufType, int nMatInfoCount, int nClientTextureBindID, bool (*PrepareBufferCallback)(IRenderMesh*, bool), void* CustomData, bool bOnlyVideoBuffer, bool bPrecache, SPipTangents const* pTangents, bool bLockForThreadAcc, Vec3* pNormals);
+	virtual _smart_ptr<IRenderMesh> CreateRenderMesh(const char* szType, const char* szSourceName, IRenderMesh::SInitParamerers* pInitParams, ERenderMeshType eBufType);
+	virtual _smart_ptr<IRenderMesh> CreateRenderMeshInitialized(const void* pVertBuffer, int nVertCount, EVertexFormat eVF, const uint16_t* pIndices, int nIndices, PublicRenderPrimitiveType nPrimetiveType, const char* szType, const char* szSourceName, ERenderMeshType eBufType, int nMatInfoCount, int nClientTextureBindID, bool (*PrepareBufferCallback)(IRenderMesh*, bool), void* CustomData, bool bOnlyVideoBuffer, bool bPrecache, SPipTangents const* pTangents, bool bLockForThreadAcc, Vec3* pNormals);
 	virtual int GetMaxActiveTexturesARB();
 	virtual void GetThreadIDs(unsigned long& mainThreadID, unsigned long& renderThreadID) const;
 	virtual void SF_ConfigMask(IRenderer::ESFMaskOp maskOp, unsigned stencilRef);
@@ -1019,7 +1034,7 @@ public:
 	void UpdateConstParamsPF(SRenderingPassInfo const& passInfo) { FUpdateConstParamsPF(this, passInfo); }
 	void RT_UpdateConstParamsPF(CRenderView* _pRenderView) { FRT_UpdateConstParamsPF(this, _pRenderView); }
 	virtual unsigned GetActiveGPUCount() const;
-	//void Logv(const char* format, ... arg1) { FLogv(this, format, arg1); }
+	//void Logv(const char* format, ...) { FLogv(this, format, arg1); }
 	void RT_UpdateLightVolumes() { FRT_UpdateLightVolumes(this); }
 	void RT_SetSkinningPoolId(unsigned poolId) { FRT_SetSkinningPoolId(this, poolId); }
 	void EF_AddEf_NotVirtual(CRendElementBase* re, SShaderItem& SH, CRenderObject* obj, SRenderingPassInfo const& passInfo, int nList, int nAW) { FEF_AddEf_NotVirtual(this, re, SH, obj, passInfo, nList, nAW); }
@@ -1066,8 +1081,8 @@ public:
 	bool FX_TryToMerge(CRenderObject* arg0, CRenderObject* arg1, CRendElementBase* arg2, bool arg3);
 	SSF_GlobalDrawParams const* SF_GetGlobalDrawParams() const;
 	void ClearSkinningDataPool();
-	void LogStrv(char* arg0, ... arg1);
-	void LogShv(char* arg0, ... arg1);
+	void LogStrv(char* arg0, ...);
+	void LogShv(char* arg0, ...);
 	void Log(char* arg0);
 	void RT_SetLightVolumeShaderFlags();
 	void EF_TransformDLights();
@@ -1142,10 +1157,10 @@ public:
 	static inline auto FSaveTga = PreyFunction<bool(CRenderer const* const _this, uint8_t* sourcedata, int sourceformat, int w, int h, const char* filename, bool flip)>(0xFBAAB0);
 	static inline auto FGetWhiteTextureId = PreyFunction<int(CRenderer const* const _this)>(0xFB9160);
 	static inline auto FPrintToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, float size, const char* buf)>(0xFBA550);
-	//static inline auto FTextToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, const char* format, ... buffer)>(0xFBB300);
-	//static inline auto FTextToScreenColor = PreyFunction<void(CRenderer* const _this, int x, int y, float r, float g, float b, float a, const char* format, ... buffer)>(0xFBB400);
+	//static inline auto FTextToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, const char* format, ...)>(0xFBB300);
+	//static inline auto FTextToScreenColor = PreyFunction<void(CRenderer* const _this, int x, int y, float r, float g, float b, float a, const char* format, ...)>(0xFBB400);
 	static inline auto FGetIArkBinkManager = PreyFunction<IArkBinkManager* (CRenderer* const _this)>(0xFB8D90);
-	//static inline auto FWriteXY = PreyFunction<void(CRenderer* const _this, int x, int y, float xscale, float yscale, float r, float g, float b, float a, const char* format, ... buffer)>(0xFBB720);
+	//static inline auto FWriteXY = PreyFunction<void(CRenderer* const _this, int x, int y, float xscale, float yscale, float r, float g, float b, float a, const char* format, ...)>(0xFBB720);
 	static inline auto FDraw2dText = PreyFunction<void(CRenderer* const _this, float posX, float posY, const char* pStr, SDrawTextInfo const& ti)>(0xFB2DF0);
 	static inline auto FDraw2dTextWithDepth = PreyFunction<void(CRenderer* const _this, float posX, float posY, float posZ, const char* pStr, SDrawTextInfo const& ti)>(0xFB2E20);
 	static inline auto FDrawTextQueuedOv1 = PreyFunction<void(CRenderer* const _this, Vec3 pos, SDrawTextInfo& ti, const char* text)>(0xFB3160);
@@ -1292,7 +1307,7 @@ public:
 	static inline auto FUpdateConstParamsPF = PreyFunction<void(CRenderer* const _this, SRenderingPassInfo const& passInfo)>(0xEEC530);
 	static inline auto FRT_UpdateConstParamsPF = PreyFunction<void(CRenderer* const _this, CRenderView* _pRenderView)>(0xEEBBD0);
 	static inline auto FGetActiveGPUCount = PreyFunction<unsigned(CRenderer const* const _this)>(0xEDEDE0);
-	//static inline auto FLogv = PreyFunction<void(CRenderer* const _this, const char* format, ... arg1)>(0xFBA320);
+	//static inline auto FLogv = PreyFunction<void(CRenderer* const _this, const char* format, ...)>(0xFBA320);
 	static inline auto FRT_UpdateLightVolumes = PreyFunction<void(CRenderer* const _this)>(0xFBA7A0);
 	static inline auto FRT_SetSkinningPoolId = PreyFunction<void(CRenderer* const _this, unsigned poolId)>(0xFBA790);
 	static inline auto FEF_AddEf_NotVirtual = PreyFunction<void(CRenderer* const _this, CRendElementBase* re, SShaderItem& SH, CRenderObject* obj, SRenderingPassInfo const& passInfo, int nList, int nAW)>(0xEAAD40);
@@ -1370,11 +1385,11 @@ public:
 	static inline auto FSaveTga = PreyFunction<bool(const CRenderer* const _this, uint8_t* sourcedata, int sourceformat, int w, int h, const char* filename, bool flip)>(0xFD6E00);
 	static inline auto FGetWhiteTextureId = PreyFunction<int(const CRenderer* const _this)>(0xFD5480);
 	static inline auto FPrintToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, float size, const char* buf)>(0xFD68A0);
-	static inline auto FTextToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, const char* format, ... buffer)>(0xFD7650);
-	static inline auto FTextToScreenColor = PreyFunction<void(CRenderer* const _this, int x, int y, float r, float g, float b, float a, const char* format, ... buffer)>(0xFD7750);
+	// varargs: static inline auto FTextToScreen = PreyFunction<void(CRenderer* const _this, float x, float y, const char* format, ...)>(0xFD7650);
+	// varargs: static inline auto FTextToScreenColor = PreyFunction<void(CRenderer* const _this, int x, int y, float r, float g, float b, float a, const char* format, ...)>(0xFD7750);
 	static inline auto FGetIArkBinkManager = PreyFunction<IArkBinkManager* (CRenderer* const _this)>(0xFD5080);
 	static inline auto FGetIArkHighlightSystem = PreyFunction<IArkHighlightSystem* (CRenderer* const _this)>(0xFD5090);
-	static inline auto FWriteXY = PreyFunction<void(CRenderer* const _this, int x, int y, float xscale, float yscale, float r, float g, float b, float a, const char* format, ... buffer)>(0xFD7A70);
+	// varargs: static inline auto FWriteXY = PreyFunction<void(CRenderer* const _this, int x, int y, float xscale, float yscale, float r, float g, float b, float a, const char* format, ...)>(0xFD7A70);
 	static inline auto FDraw2dText = PreyFunction<void(CRenderer* const _this, float posX, float posY, const char* pStr, const SDrawTextInfo& ti)>(0xFCF0A0);
 	static inline auto FDraw2dTextWithDepth = PreyFunction<void(CRenderer* const _this, float posX, float posY, float posZ, const char* pStr, const SDrawTextInfo& ti)>(0xFCF0D0);
 	static inline auto FDrawTextQueuedOv1 = PreyFunction<void(CRenderer* const _this, Vec3 pos, SDrawTextInfo& ti, const char* text)>(0xFCF410);
@@ -1522,7 +1537,7 @@ public:
 	static inline auto FUpdateConstParamsPF = PreyFunction<void(CRenderer* const _this, const SRenderingPassInfo& passInfo)>(0xF08640);
 	static inline auto FRT_UpdateConstParamsPF = PreyFunction<void(CRenderer* const _this, CRenderView* _pRenderView)>(0xF07CE0);
 	static inline auto FGetActiveGPUCount = PreyFunction<unsigned(const CRenderer* const _this)>(0xEFB0C0);
-	static inline auto FLogv = PreyFunction<void(CRenderer* const _this, const char* format, ... _arg1_)>(0xFD6640);
+	// varargs: static inline auto FLogv = PreyFunction<void(CRenderer* const _this, const char* format, ...)>(0xFD6640);
 	static inline auto FRT_UpdateLightVolumes = PreyFunction<void(CRenderer* const _this)>(0xFD6AF0);
 	static inline auto FRT_SetSkinningPoolId = PreyFunction<void(CRenderer* const _this, unsigned poolId)>(0xFD6AE0);
 	static inline auto FEF_AddEf_NotVirtual = PreyFunction<void(CRenderer* const _this, CRendElementBase* re, SShaderItem& SH, CRenderObject* obj, const SRenderingPassInfo& passInfo, int nList, int nAW)>(0xEC7220);

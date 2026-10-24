@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -171,7 +170,7 @@ public:
 #include <Prey/GameDll/ark/ui/IArkSaveLoadMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <_unknown/IArkStoreUIListener.h>
+#include <Prey/GameDll/ark/ui/IArkStoreUIListener.h>
 
 enum class ArkHighlightsReturnCode;
 class CCryName;

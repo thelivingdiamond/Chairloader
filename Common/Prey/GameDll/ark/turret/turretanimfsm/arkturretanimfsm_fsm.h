@@ -1,10 +1,9 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/ArkTurretAnimFsmBase_template__void_.h>
+#include <Prey/GameDll/ark/turret/turretanimfsm/ArkTurretAnimFsmBase.h>
 
 class ArkTurret;
 class IAction;

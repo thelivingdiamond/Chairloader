@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -32,8 +30,14 @@ public:
 	const CGameMechanismBase* GetConstSelf() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameMechanismBaseOv1 = PreyFunction<void(CGameMechanismBase* const _this, const char* className)>(0x170DF40);
+	static inline auto FBitNotCGameMechanismBase = PreyFunction<void(CGameMechanismBase* const _this)>(0x170DF80);
+	static inline auto FInform = PreyFunction<void(CGameMechanismBase* const _this, EGameMechanismEvent gmEvent, const SGameMechanismEventData* data)>(0xA13080);
+#else
 	static inline auto FCGameMechanismBaseOv1 = PreyFunction<void(CGameMechanismBase* const _this, const char* className)>(0x1834D80);
 	static inline auto FBitNotCGameMechanismBase = PreyFunction<void(CGameMechanismBase* const _this)>(0x1834DC0);
 	static inline auto FInform = PreyFunction<void(CGameMechanismBase* const _this, EGameMechanismEvent gmEvent, const SGameMechanismEventData* data)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,4 +1,5 @@
 #pragma once
+#include <Prey/CrySystem/IStreamEngineDefs.h>
 #include <Prey/CryRenderer/CryDX.h>
 #include <Prey/CryRenderer/IShader.h>
 #include <Prey/CryRenderer/IRenderer.h>

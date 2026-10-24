@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,7 +13,13 @@
 class ArkPostEffectDefaultParam;
 struct IArkPostEffectDefaultParam;
 
-#if 0
+#ifdef MOONCRASH
+#include <Prey/CryParticleSystem/TCurve.h>
+enum class EArkPostEffectDataType;
+enum EPostEffectCurve;
+class XmlNodeRef;
+#endif
+#ifdef MOONCRASH   // main never compiled these (TCurve was missing); the Mooncrash HeaderTest asserts them
 // Header: Override
 // Prey/GameDll/ark/ArkPostEffectManager.h
 struct SPostEffectCurve // Id=8015E0B Size=16
@@ -64,8 +68,8 @@ public:
 	SPostEffectCurve const& GetCurve(EPostEffectCurve arg0) const;
 #endif
 
-	static inline auto FLoad = PreyFunction<void(ArkPostEffectOverrideParam* const _this, XmlNodeRef _node)>(0x13D25F0);
-	static inline auto FPushCurveValueToEngine = PreyFunction<void(ArkPostEffectOverrideParam const* const _this, SPostEffectCurve const& _curve, float _time, ITimer::ETimer _timer)>(0x13D3390);
+	static inline auto FLoad = PreyFunction<void(ArkPostEffectOverrideParam* const _this, XmlNodeRef _node)>(0x14DE4F0);
+	static inline auto FPushCurveValueToEngine = PreyFunction<void(ArkPostEffectOverrideParam const* const _this, SPostEffectCurve const& _curve, float _time, ITimer::ETimer _timer)>(0x14DF2B0);
 };
 #endif
 
@@ -100,8 +104,13 @@ public:
 	void Update() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FLoad = PreyFunction<void(ArkPostEffect* const _this, XmlNodeRef _node)>(0x13D23F0);
 	static inline auto FGetOrCreateOverrideParam = PreyFunction<ArkPostEffectOverrideParam* (ArkPostEffect* const _this, uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam)>(0x13D2050);
+#else
+	static inline auto FLoad = PreyFunction<void(ArkPostEffect* const _this, XmlNodeRef _node)>(0x14DE2E0);
+	static inline auto FGetOrCreateOverrideParam = PreyFunction<ArkPostEffectOverrideParam* (ArkPostEffect* const _this, uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam)>(0x14DDF40);
+#endif
 };
 
 // Header: FromCpp
@@ -115,7 +124,11 @@ public:
 	bool m_bPushActiveEffect;
 	std::unordered_map<unsigned __int64,IArkPostEffectDefaultParam *> m_defaultParams;
 	std::unordered_map<unsigned __int64,IArkPostEffect *> m_effects;
+#ifndef MOONCRASH
 	static int CV_ark_PostEffectsDebug;
+#else
+	static inline auto CV_ark_PostEffectsDebug = PreyGlobal<int>(0x2D5ABB0);
+#endif
 	
 	struct SBlendOutInfo // Id=8015E44 Size=16
 	{
@@ -166,6 +179,10 @@ public:
 	void DebugDrawActiveParameters();
 #endif
 	
+#ifdef MOONCRASH
+	void DisableAllEffects(bool _bAllowBlendOut) { FDisableAllEffects(this, _bAllowBlendOut); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FBitNotArkPostEffectManager = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D0F60);
 	static inline auto FReset = PreyFunction<void(ArkPostEffectManager *const _this, bool _bEnteringGameMode)>(0x13D3860);
 	static inline auto FEnableEffect = PreyFunction<void(ArkPostEffectManager *const _this, uint64_t _effectId)>(0x13D1AF0);
@@ -185,127 +202,7 @@ public:
 	static inline auto FGetOrCreateEffect = PreyFunction<ArkPostEffect *(ArkPostEffectManager *const _this, uint64_t _effectId)>(0x13D1E10);
 	static inline auto FOnEnabledEffectsUpdated = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D2DF0);
 	static inline auto FPushActiveEffectToEngine = PreyFunction<void(ArkPostEffectManager *const _this)>(0x13D2F80);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/iarkposteffectmanager.h>
-#include <Prey/GameDll/ark/iface/IArkPostEffect.h>
-#include <Prey/GameDll/ark/iface/IArkPostEffectManager.h>
-#include <Prey/GameDll/ark/iface/IArkPostEffectOverrideParam.h>
-#include <_unknown/ITimer.h>
-#include <_unknown/TCurve.h>
-
-class ArkPostEffectDefaultParam;
-class ArkPostEffectOverrideParam;
-enum class EArkPostEffectDataType;
-enum EPostEffectCurve;
-struct IArkPostEffectDefaultParam;
-class XmlNodeRef;
-
-// ArkPostEffect
-// Header:  Prey/GameDll/ark/ArkPostEffectManager.h
-class ArkPostEffect : public IArkPostEffect
-{ // Size=96 (0x60)
-public:
-	uint64_t m_id;
-	unsigned m_priority;
-	ITimer::ETimer m_timer;
-	float m_duration;
-	float m_startTime;
-	std::unordered_map<uint64_t, IArkPostEffectOverrideParam*> m_overrideParams;
-	string m_displayName;
-
-	void Load(XmlNodeRef _node) { FLoad(this, _node); }
-	ArkPostEffectOverrideParam* GetOrCreateOverrideParam(uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam) { return FGetOrCreateOverrideParam(this, _overrideId, _pDefaultParam); }
-
-#if 0
-	ArkPostEffect(uint64_t _arg0_);
-	~ArkPostEffect();
-	const string& GetDisplayName() const;
-	const std::unordered_map<uint64_t, IArkPostEffectOverrideParam*>& GetOverrideParams() const;
-	uint64_t GetId() const;
-	unsigned GetPriority() const;
-	ITimer::ETimer GetTimer() const;
-	float GetDuration() const;
-	ArkPostEffectOverrideParam* GetOverrideParamById(uint64_t _arg0_) const;
-	void OnEnabled();
-	bool HasExpired() const;
-	void Update() const;
-#endif
-
-	static inline auto FLoad = PreyFunction<void(ArkPostEffect* const _this, XmlNodeRef _node)>(0x14DE2E0);
-	static inline auto FGetOrCreateOverrideParam = PreyFunction<ArkPostEffectOverrideParam* (ArkPostEffect* const _this, uint64_t _overrideId, ArkPostEffectDefaultParam* _pDefaultParam)>(0x14DDF40);
-};
-
-// ArkPostEffectManager
-// Header:  Prey/GameDll/ark/ArkPostEffectManager.h
-class ArkPostEffectManager : public IArkPostEffectManager
-{ // Size=256 (0x100)
-public:
-	// ArkPostEffectManager::SBlendOutInfo
-	// Header:  Prey/GameDll/ark/ArkPostEffectManager.h
-	struct SBlendOutInfo
-	{ // Size=16 (0x10)
-		const ArkPostEffect* m_pEffect;
-		float m_time;
-
-	#if 0
-		SBlendOutInfo(const ArkPostEffect* _arg0_);
-	#endif
-	};
-
-	std::vector<ArkPostEffect*> m_enabledEffects;
-	std::unordered_set<uint64_t> m_activeParams;
-	uint64_t m_lastPushedEffect;
-	bool m_bPushActiveEffect;
-	std::unordered_map<uint64_t, IArkPostEffectDefaultParam*> m_defaultParams;
-	std::unordered_map<uint64_t, IArkPostEffect*> m_effects;
-	static inline auto CV_ark_PostEffectsDebug = PreyGlobal<int>(0x2D5ABB0);
-	std::vector<ArkPostEffectManager::SBlendOutInfo> m_blendingOutEffects;
-
-	ArkPostEffectManager();
-	~ArkPostEffectManager();
-	void Reset(bool _bEnteringGameMode) { FReset(this, _bEnteringGameMode); }
-	void EnableEffect(uint64_t _effectId) { FEnableEffect(this, _effectId); }
-	void DisableEffect(uint64_t _effectId, bool _bAllowBlendOut) { FDisableEffect(this, _effectId, _bAllowBlendOut); }
-	void DisableAllEffects(bool _bAllowBlendOut) { FDisableAllEffects(this, _bAllowBlendOut); }
-	bool SetOverrideParamValue(uint64_t _overrideId, const TArkPostEffectValue& _value) { return FSetOverrideParamValue(this, _overrideId, _value); }
-	bool ResetOverrideParam(uint64_t _overrideId) { return FResetOverrideParam(this, _overrideId); }
-	void Initialize() { FInitialize(this); }
-	void Update(float _dt) { FUpdate(this, _dt); }
-	void OnLevelLoadStart() { FOnLevelLoadStart(this); }
-	void PreSerialize() { FPreSerialize(this); }
-	ArkPostEffectOverrideParam* GetOverrideParamById(uint64_t _overrideId) const { return FGetOverrideParamById(this, _overrideId); }
-	void DeleteAllDefaultParams() { FDeleteAllDefaultParams(this); }
-	void DeleteAllEffects() { FDeleteAllEffects(this); }
-	void LoadDefaultParams() { FLoadDefaultParams(this); }
-	void LoadEffects() { FLoadEffects(this); }
-	ArkPostEffectDefaultParam* GetOrCreateDefaultParam(uint64_t _paramId) { return FGetOrCreateDefaultParam(this, _paramId); }
-	ArkPostEffect* GetOrCreateEffect(uint64_t _effectId) { return FGetOrCreateEffect(this, _effectId); }
-	void OnEnabledEffectsUpdated() { FOnEnabledEffectsUpdated(this); }
-	void PushActiveEffectToEngine() { FPushActiveEffectToEngine(this); }
-
-#if 0
-	void Reload();
-	IArkPostEffectDefaultParam* GetDefaultParam(uint64_t _arg0_) const;
-	IArkPostEffectOverrideParam* GetOverrideParam(uint64_t _arg0_) const;
-	IArkPostEffect* GetEffect(uint64_t _arg0_) const;
-	const std::unordered_map<uint64_t, IArkPostEffectDefaultParam*>& GetAllDefaultParams() const;
-	const std::unordered_map<uint64_t, IArkPostEffect*>& GetAllEffects() const;
-	bool GetOverrideParamValue(uint64_t _arg0_, TArkPostEffectValue& _arg1_) const;
-	void DrawDebugInformation();
-	bool IsValidDefaultParamId(uint64_t _arg0_) const;
-	ArkPostEffectDefaultParam* GetDefaultParamById(uint64_t _arg0_) const;
-	ArkPostEffect* GetEffectById(uint64_t _arg0_) const;
-	void LoadAllXmlFiles();
-	void CacheAllAssets();
-	void PushDefaultParamsToEngine(ITimer::ETimer _arg0_);
-	bool IsEffectEnabled(const ArkPostEffect* _arg0_) const;
-	void DebugDrawActiveEffects();
-	void DebugDrawActiveParameters();
-#endif
-
+#else
 	static inline auto FArkPostEffectManagerOv1 = PreyFunction<void(ArkPostEffectManager* const _this)>(0x14DCCD0);
 	static inline auto FBitNotArkPostEffectManager = PreyFunction<void(ArkPostEffectManager* const _this)>(0x14DCE00);
 	static inline auto FReset = PreyFunction<void(ArkPostEffectManager* const _this, bool _bEnteringGameMode)>(0x14DF780);
@@ -327,8 +224,9 @@ public:
 	static inline auto FGetOrCreateEffect = PreyFunction<ArkPostEffect* (ArkPostEffectManager* const _this, uint64_t _effectId)>(0x14DDD00);
 	static inline auto FOnEnabledEffectsUpdated = PreyFunction<void(ArkPostEffectManager* const _this)>(0x14DED10);
 	static inline auto FPushActiveEffectToEngine = PreyFunction<void(ArkPostEffectManager* const _this)>(0x14DEEA0);
+#endif
 };
-
+#if 0 // MOONCRASH copy; disabled in the base body as well
 // SPostEffectCurve
 // Header:  Prey/GameDll/ark/ArkPostEffectManager.h
 struct SPostEffectCurve
@@ -340,7 +238,8 @@ struct SPostEffectCurve
 	SPostEffectCurve();
 #endif
 };
-
+#endif
+#if 0 // MOONCRASH copy; disabled in the base body as well
 // SPostEffectCurveParam
 // Header:  Prey/GameDll/ark/ArkPostEffectManager.h
 struct SPostEffectCurveParam
@@ -353,7 +252,8 @@ struct SPostEffectCurveParam
 	SPostEffectCurveParam();
 #endif
 };
-
+#endif
+#if 0 // MOONCRASH copy; disabled in the base body as well
 // ArkPostEffectOverrideParam
 // Header:  Prey/GameDll/ark/ArkPostEffectManager.h
 class ArkPostEffectOverrideParam : public IArkPostEffectOverrideParam
@@ -390,4 +290,4 @@ public:
 	static inline auto FLoad = PreyFunction<void(ArkPostEffectOverrideParam* const _this, XmlNodeRef _node)>(0x14DE4F0);
 	static inline auto FPushCurveValueToEngine = PreyFunction<void(const ArkPostEffectOverrideParam* const _this, const SPostEffectCurve& _curve, float _time, ITimer::ETimer _timer)>(0x14DF2B0);
 };
-#endif // !MOONCRASH
+#endif

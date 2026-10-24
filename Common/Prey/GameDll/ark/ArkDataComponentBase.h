@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -20,29 +18,9 @@ public:
 	void Reset();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FIsValidData = PreyFunction<bool(ArkDataComponentBase const *const _this, const uint64_t _id)>(0x1B933B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-// ArkDataComponentBase
-// Header:  Prey/GameDll/ark/ArkDataComponentBase.h
-class ArkDataComponentBase
-{ // Size=32 (0x20)
-public:
-	std::vector<uint64_t> m_collected;
-
-	virtual bool IsValidData(const uint64_t _id) const;
-
-#if 0
-	ArkDataComponentBase();
-	bool GiveData(const uint64_t _arg0_);
-	bool HasData(const uint64_t _arg0_) const;
-	const std::vector<uint64_t>& GetCollected() const;
-	void Reset();
-#endif
-
+#else
 	static inline auto FIsValidData = PreyFunction<bool(const ArkDataComponentBase* const _this, const uint64_t _id)>(0x1A302A0);
+#endif
 };
-#endif // !MOONCRASH

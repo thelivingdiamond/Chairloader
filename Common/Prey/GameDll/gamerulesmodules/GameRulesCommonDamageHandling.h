@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
 #include <Prey/GameDll/GameRules.h>
-#include <_unknown/IGameRulesDamageHandlingModule.h>
+#include <Prey/GameDll/gamerulesmodules/IGameRulesDamageHandlingModule.h>
 
 class CGameRules;
 struct ExplosionInfo;
@@ -60,6 +58,25 @@ public:
 	bool DebugCollisions() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameRulesCommonDamageHandlingOv1 = PreyFunction<void(CGameRulesCommonDamageHandling* const _this)>(0x172F360);
+	static inline auto FBitNotCGameRulesCommonDamageHandling = PreyFunction<void(CGameRulesCommonDamageHandling* const _this)>(0x172F3C0);
+	static inline auto FInit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, XmlNodeRef xml)>(0x172FAA0);
+	static inline auto FPostInit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this)>(0x17300E0);
+	static inline auto FUpdate = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, float frameTime)>(0xA13080);
+	static inline auto FSvOnHit = PreyFunction<bool(CGameRulesCommonDamageHandling* const _this, const HitInfo& hitInfo)>(0x1B933B0);
+	static inline auto FSvOnHitScaled = PreyFunction<bool(CGameRulesCommonDamageHandling* const _this, const HitInfo& hitInfo)>(0x1B933B0);
+	static inline auto FSvOnExplosion = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const ExplosionInfo& explosionInfo, const std::map<IEntity*, float>& affectedEntities)>(0xA13080);
+	static inline auto FSvOnCollision = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const IEntity* pEntity, const CGameRules::SCollisionHitInfo& colHitInfo)>(0xA13080);
+	static inline auto FClProcessHit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, Vec3 dir, unsigned shooterId, unsigned weaponId, float damage, uint16_t projectileClassId, uint8_t hitTypeId)>(0xA13080);
+	static inline auto FAllowHitIndicatorForType = PreyFunction<bool(CGameRulesCommonDamageHandling* const _this, int hitTypeId)>(0x172F460);
+	static inline auto FMakeMovementVisibleToAIForEntityClass = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const IEntityClass* pEntityClass)>(0xA13080);
+	static inline auto FOnGameEvent = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const IGameRulesDamageHandlingModule::EGameEvents& gameEvent)>(0xA13080);
+	static inline auto FGetCollisionEnergy = PreyFunction<float(const CGameRulesCommonDamageHandling* const _this, const IEntity* pVictim, const CGameRules::SCollisionHitInfo& colHitInfo)>(0x172F7A0);
+	static inline auto FGetCollisionDamageMult = PreyFunction<float(const CGameRulesCommonDamageHandling* const _this, const IEntity* pEntity, const IEntity* pCollider, const CGameRules::SCollisionHitInfo& colHitInfo)>(0x172F640);
+	static inline auto FGetAIPlayerSelfCollisionMultiplier = PreyFunction<float(const CGameRulesCommonDamageHandling* const _this, const CGameRulesCommonDamageHandling::SCollisionEntityInfo& colliderInfo)>(0x172F470);
+	static inline auto FLogHit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const HitInfo& hit, bool extended, bool dead)>(0x172FE70);
+#else
 	static inline auto FCGameRulesCommonDamageHandlingOv1 = PreyFunction<void(CGameRulesCommonDamageHandling* const _this)>(0x18561B0);
 	static inline auto FBitNotCGameRulesCommonDamageHandling = PreyFunction<void(CGameRulesCommonDamageHandling* const _this)>(0x1856210);
 	static inline auto FInit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, XmlNodeRef xml)>(0x1856920);
@@ -77,5 +94,6 @@ public:
 	static inline auto FGetCollisionDamageMult = PreyFunction<float(const CGameRulesCommonDamageHandling* const _this, const IEntity* pEntity, const IEntity* pCollider, const CGameRules::SCollisionHitInfo& colHitInfo)>(0x18564C0);
 	static inline auto FGetAIPlayerSelfCollisionMultiplier = PreyFunction<float(const CGameRulesCommonDamageHandling* const _this, const CGameRulesCommonDamageHandling::SCollisionEntityInfo& colliderInfo)>(0x18562F0);
 	static inline auto FLogHit = PreyFunction<void(CGameRulesCommonDamageHandling* const _this, const HitInfo& hit, bool extended, bool dead)>(0x1856CF0);
+#endif
 };
-#endif // MOONCRASH
+

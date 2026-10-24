@@ -1,14 +1,13 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/GameDll/SHitDeathReactionsConfig.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/IGameRulesSystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
 #include <Prey/GameDll/CryActor.h>
 #include <Prey/GameDll/hitdeathreactionsdefs.h>
-#include <_unknown/STagState.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
 
 struct AnimEventInstance;
 namespace ArkSignalSystem
@@ -56,10 +55,17 @@ public:
 	void InitEndRagdollTime(float _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CAnimActionRagdoll* const _this)>(0x173E950);
+	static inline auto FDoDelete = PreyFunction<void(CAnimActionRagdoll* const _this)>(0xA97D40);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionRagdoll* const _this, float timePassed)>(0x1741BC0);
+	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CAnimActionRagdoll* const _this, float timePassed)>(0x1741F40);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CAnimActionRagdoll* const _this)>(0x1865690);
 	static inline auto FDoDelete = PreyFunction<void(CAnimActionRagdoll* const _this)>(0x3E3960);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionRagdoll* const _this, float timePassed)>(0x1868920);
 	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CAnimActionRagdoll* const _this, float timePassed)>(0x1868CA0);
+#endif
 };
 
 // CHitDeathReactionsPhysics
@@ -67,7 +73,7 @@ public:
 class CHitDeathReactionsPhysics
 { // Size=48 (0x30)
 public:
-	enum class #unnamed_enum_kMaxQueuedPrimitives
+	enum
 	{
 		kMaxQueuedPrimitives = 4,
 	};
@@ -100,9 +106,15 @@ public:
 	int GetSlotFromPrimitiveId(const unsigned& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FBitNotCHitDeathReactionsPhysics = PreyFunction<void(CHitDeathReactionsPhysics* const _this)>(0x173D410);
+	static inline auto FQueue = PreyFunction<void(CHitDeathReactionsPhysics* const _this, int primitiveType, primitives::primitive& primitive, const Vec3& sweepDir, int objTypes, int geomFlags)>(0x1740890);
+	static inline auto FIntersectionTestComplete = PreyFunction<void(CHitDeathReactionsPhysics* const _this, const unsigned& intID, const IntersectionTestResult& result)>(0x173EC40);
+#else
 	static inline auto FBitNotCHitDeathReactionsPhysics = PreyFunction<void(CHitDeathReactionsPhysics* const _this)>(0x1863FF0);
 	static inline auto FQueue = PreyFunction<void(CHitDeathReactionsPhysics* const _this, int primitiveType, primitives::primitive& primitive, const Vec3& sweepDir, int objTypes, int geomFlags)>(0x1867600);
 	static inline auto FIntersectionTestComplete = PreyFunction<void(CHitDeathReactionsPhysics* const _this, const unsigned& intID, const IntersectionTestResult& result)>(0x1865980);
+#endif
 };
 
 // CHitDeathReactions
@@ -154,7 +166,7 @@ public:
 
 	// CHitDeathReactions::SPredFindValidReaction
 	// Header:  Prey/GameDll/HitDeathReactions.h
-	struct SPredFindValidReaction : public std::unary_function<bool,SReactionParams const &>
+	struct SPredFindValidReaction
 	{ // Size=32 (0x20)
 		const CHitDeathReactions& m_owner;
 		const HitInfo& m_hitInfo;
@@ -169,7 +181,11 @@ public:
 		bool EvaluateValidationParams(const SReactionParams::SValidationParams& _arg0_, const SReactionParams& _arg1_) const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FoperatorRBLRBR = PreyFunction<bool(const CHitDeathReactions::SPredFindValidReaction* const _this, const SReactionParams& reactionParams)>(0x173D470);
+#else
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(const CHitDeathReactions::SPredFindValidReaction* const _this, const SReactionParams& reactionParams)>(0x1864050);
+#endif
 	};
 
 	IScriptSystem* m_pScriptSystem;
@@ -288,6 +304,50 @@ public:
 	void GeneratePostDeathTags();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCHitDeathReactionsOv2 = PreyFunction<void(CHitDeathReactions* const _this, CCryActor& actor)>(0x173D210);
+	static inline auto FUpdate = PreyFunction<void(CHitDeathReactions* const _this, float fFrameTime)>(0x1741D40);
+	static inline auto FOnKillOv1 = PreyFunction<bool(CHitDeathReactions* const _this, const CCryActor::KillParams& killParams, const ArkSignalSystem::Package* _pPackage, ArkNpcCustomHitReaction::Type _customType)>(0x17402C0);
+	static inline auto FOnKillOv0 = PreyFunction<bool(CHitDeathReactions* const _this, const HitInfo& hitInfo, const ArkSignalSystem::Package* _pPackage, ArkNpcCustomHitReaction::Type _customType)>(0x1740130);
+	static inline auto FOnAnimationEvent = PreyFunction<bool(CHitDeathReactions* const _this, const AnimEventInstance& event)>(0x173FBA0);
+	static inline auto FHandleEvent = PreyFunction<bool(CHitDeathReactions* const _this, const SGameObjectEvent& event)>(0x173EC00);
+	static inline auto FOnRevive = PreyFunction<void(CHitDeathReactions* const _this)>(0x1740730);
+	static inline auto FOnActorReused = PreyFunction<void(CHitDeathReactions* const _this)>(0x173F9A0);
+	static inline auto FOnActorReturned = PreyFunction<void(CHitDeathReactions* const _this)>(0x173F960);
+	static inline auto FFullSerialize = PreyFunction<void(CHitDeathReactions* const _this, TSerialize ser)>(0x173E790);
+	static inline auto FPostSerialize = PreyFunction<void(CHitDeathReactions* const _this)>(0x1740860);
+	static inline auto FRequestReactionAnims = PreyFunction<void(CHitDeathReactions* const _this, unsigned requestFlags)>(0x1740BB0);
+	static inline auto FReleaseReactionAnims = PreyFunction<void(CHitDeathReactions* const _this, unsigned requestFlags)>(0x1740AF0);
+	static inline auto FReload = PreyFunction<void(CHitDeathReactions* const _this)>(0x1740B40);
+	static inline auto FStartReaction = PreyFunction<bool(CHitDeathReactions* const _this, CHitDeathReactions::EReactionType reactionType, const HitInfo& hitInfo, const SReactionParams& reactionParams)>(0x1741190);
+	static inline auto FStartCollisionReactionOv0 = PreyFunction<void(CHitDeathReactions* const _this, const Vec3& vNormal, const Vec3& vPoint)>(0x1740D50);
+	static inline auto FExecuteHitReactionOv0 = PreyFunction<bool(CHitDeathReactions* const _this, const SmartScriptTable pScriptTable)>(0x173E3A0);
+	static inline auto FExecuteDeathReactionOv1 = PreyFunction<bool(CHitDeathReactions* const _this, const SReactionParams& reactionParams)>(0x173E280);
+	static inline auto FExecuteDeathReactionOv0 = PreyFunction<bool(CHitDeathReactions* const _this, const SmartScriptTable pScriptTable)>(0x173E2B0);
+	static inline auto FEndCurrentReaction = PreyFunction<bool(CHitDeathReactions* const _this)>(0x173DB50);
+	static inline auto FOnRagdollize = PreyFunction<void(CHitDeathReactions* const _this, bool forceFallback)>(0x1740510);
+	static inline auto FStartReactionAnim = PreyFunction<bool(CHitDeathReactions* const _this, const string& sAnimName, bool bLoop, float fBlendTime, int iSlot, int iLayer, unsigned animFlags, float fAdditiveWeight, float fAniSpeed, bool bNoAnimCamera)>(0x17415A0);
+	static inline auto FStartReactionAnimByID = PreyFunction<bool(CHitDeathReactions* const _this, int animID, bool bLoop, float fBlendTime, int iSlot, int iLayer, unsigned animFlags, float fAdditiveWeight, float fAniSpeed, bool bNoAnimCamera)>(0x17417A0);
+	static inline auto FEndReactionAnim = PreyFunction<void(CHitDeathReactions* const _this)>(0x173E250);
+	static inline auto FIsPlayingReactionAnim = PreyFunction<bool(const CHitDeathReactions* const _this)>(0x173EE70);
+	static inline auto FGetHitDeathFragmentID = PreyFunction<int(const IActionController* piActionController)>(0x173E850);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CHitDeathReactions* const _this, ICrySizer* pSizer)>(0x173E8C0);
+	static inline auto FCheckCardinalDirection2D = PreyFunction<bool(ECardinalDirection direction, const Vec2& vDir1, const Vec2& vDir2)>(0x173D970);
+	static inline auto FSetHitReactionAction = PreyFunction<void(CHitDeathReactions* const _this, IAction* _pAction)>(0x1740CF0);
+	static inline auto FClearState = PreyFunction<void(CHitDeathReactions* const _this)>(0x173DA80);
+	static inline auto FCanPlayDeathReaction = PreyFunction<bool(const CHitDeathReactions* const _this)>(0x173D870);
+	static inline auto FEndCurrentReactionInternal = PreyFunction<bool(CHitDeathReactions* const _this, bool bForceRagdollOnHit, bool bFinished, bool bForceFinishMannequinAction)>(0x173DB60);
+	static inline auto FExecuteReactionCommon = PreyFunction<bool(CHitDeathReactions* const _this, const SReactionParams& reactionParams)>(0x173E490);
+	static inline auto FPausePipeUser = PreyFunction<void(CHitDeathReactions* const _this, bool bPause)>(0x1740790);
+	static inline auto FLoadData = PreyFunction<void(CHitDeathReactions* const _this, SmartScriptTable pSelfTable, bool bForceReload)>(0x173F620);
+	static inline auto FOnCustomAnimFinished = PreyFunction<void(CHitDeathReactions* const _this, bool bInterrupted)>(0x173FD30);
+	static inline auto FGetSynchedSeed = PreyFunction<unsigned(const CHitDeathReactions* const _this, bool bKillReaction)>(0x173EB20);
+	static inline auto FGetRandomProbability = PreyFunction<float(const CHitDeathReactions* const _this)>(0x173E960);
+	static inline auto FSendAISignal = PreyFunction<bool(const CHitDeathReactions* const _this, const char* szSignal, IAISignalExtraData* pData, bool bWaitOpOnly)>(0x1740C00);
+	static inline auto FIsValidReactionId = PreyFunction<bool(const CHitDeathReactions* const _this, int reactionId)>(0x173F510);
+	static inline auto FGetReactionParamsById = PreyFunction<const SReactionParams& (const CHitDeathReactions* const _this, int reactionId)>(0x173EA10);
+	static inline auto FStartFacialAnimation = PreyFunction<bool(CHitDeathReactions* const _this, ICharacterInstance* pCharacter, const char* szEffectorName, float fWeight, float fFadeTime)>(0x17410B0);
+#else
 	static inline auto FCHitDeathReactionsOv2 = PreyFunction<void(CHitDeathReactions* const _this, CCryActor& actor)>(0x1863DF0);
 	static inline auto FUpdate = PreyFunction<void(CHitDeathReactions* const _this, float fFrameTime)>(0x1868AA0);
 	static inline auto FOnKillOv1 = PreyFunction<bool(CHitDeathReactions* const _this, const CCryActor::KillParams& killParams, const ArkSignalSystem::Package* _pPackage, ArkNpcCustomHitReaction::Type _customType)>(0x1867030);
@@ -330,5 +390,6 @@ public:
 	static inline auto FIsValidReactionId = PreyFunction<bool(const CHitDeathReactions* const _this, int reactionId)>(0x1866280);
 	static inline auto FGetReactionParamsById = PreyFunction<const SReactionParams& (const CHitDeathReactions* const _this, int reactionId)>(0x1865750);
 	static inline auto FStartFacialAnimation = PreyFunction<bool(CHitDeathReactions* const _this, ICharacterInstance* pCharacter, const char* szEffectorName, float fWeight, float fFadeTime)>(0x1867E10);
+#endif
 };
-#endif // MOONCRASH
+

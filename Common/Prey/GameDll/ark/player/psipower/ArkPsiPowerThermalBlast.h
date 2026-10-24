@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -242,19 +241,6 @@ class ArkClass;
 class IArkValueBase;
 struct IEntity;
 
-// CArkPsiPowerThermalBlast
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerThermalBlast.h
-class CArkPsiPowerThermalBlast : public CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiThermalBlast,ThermalBlastPowerProperties,2>
-{ // Size=696 (0x2B8)
-public:
-	CArkPsiPowerThermalBlast();
-	virtual ~CArkPsiPowerThermalBlast();
-	virtual std::vector<IEntity*> GetSelectedTargets() const;
-
-	static inline auto FCArkPsiPowerThermalBlastOv1 = PreyFunction<void(CArkPsiPowerThermalBlast* const _this)>(0x1584E30);
-	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerThermalBlast* const _this, std::vector<IEntity*>* _return_value_)>(0x1585540);
-};
-
 // ArkPsiPowerThermalBlastProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerThermalBlast.h
 class ArkPsiPowerThermalBlastProperties : public ArkReflectedObject
@@ -455,4 +441,18 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1585410);
 	static inline auto FInit = PreyFunction<bool(ThermalBlastPowerProperties* const _this)>(0x15855E0);
 };
+
+// CArkPsiPowerThermalBlast
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerThermalBlast.h
+class CArkPsiPowerThermalBlast : public CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiThermalBlast,ThermalBlastPowerProperties,2>
+{ // Size=696 (0x2B8)
+public:
+	CArkPsiPowerThermalBlast();
+	virtual ~CArkPsiPowerThermalBlast();
+	virtual std::vector<IEntity*> GetSelectedTargets() const;
+
+	static inline auto FCArkPsiPowerThermalBlastOv1 = PreyFunction<void(CArkPsiPowerThermalBlast* const _this)>(0x1584E30);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerThermalBlast* const _this, std::vector<IEntity*>* _return_value_)>(0x1585540);
+};
+
 #endif // !MOONCRASH

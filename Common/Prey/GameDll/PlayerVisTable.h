@@ -1,10 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/SDeferredLinetestBuffer.h>
-#include <_unknown/SVisTableEntry.h>
-#include <_unknown/SVisTablePriority.h>
+#include <Prey/GameDll/SDeferredLinetestReceiver.h>
+#include <Prey/GameDll/SDeferredLinetestBuffer.h>
+#include <Prey/GameDll/SVisTableEntry.h>
+#include <Prey/GameDll/SVisTablePriority.h>
 
 struct RayCastResult;
 struct SDeferredLinetestReceiver;
@@ -81,36 +80,19 @@ public:
 	void RemoveNthEntity(const int16_t _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerVisTable = PreyFunction<void(CPlayerVisTable* const _this)>(0x17C5390);
+	static inline auto FBitNotCPlayerVisTable = PreyFunction<void(CPlayerVisTable* const _this)>(0x17C5470);
+	static inline auto FUpdate = PreyFunction<void(CPlayerVisTable* const _this, float dt)>(0x17C5E90);
+	static inline auto FReset = PreyFunction<void(CPlayerVisTable* const _this)>(0x17C5DB0);
+	static inline auto FDoVisibilityCheck = PreyFunction<void(CPlayerVisTable* const _this, const Vec3& localPlayerPosn, SVisTableEntry& visInfo, int16_t visIndex)>(0x17C5680);
+	static inline auto FClearRemovedEntities = PreyFunction<void(CPlayerVisTable* const _this)>(0x17C54D0);
+#else
 	static inline auto FCPlayerVisTable = PreyFunction<void(CPlayerVisTable* const _this)>(0x18EC6D0);
 	static inline auto FBitNotCPlayerVisTable = PreyFunction<void(CPlayerVisTable* const _this)>(0x18EC7B0);
 	static inline auto FUpdate = PreyFunction<void(CPlayerVisTable* const _this, float dt)>(0x18ED1D0);
 	static inline auto FReset = PreyFunction<void(CPlayerVisTable* const _this)>(0x18ED0F0);
 	static inline auto FDoVisibilityCheck = PreyFunction<void(CPlayerVisTable* const _this, const Vec3& localPlayerPosn, SVisTableEntry& visInfo, int16_t visIndex)>(0x18EC9C0);
 	static inline auto FClearRemovedEntities = PreyFunction<void(CPlayerVisTable* const _this)>(0x18EC810);
-};
-
-// SDeferredLinetestReceiver
-// Header:  Prey/GameDll/PlayerVisTable.h
-struct SDeferredLinetestReceiver
-{ // Size=8 (0x8)
-	unsigned queuedRayID;
-	int16_t visTableIndex;
-	int8_t visBufferIndex;
-
-	~SDeferredLinetestReceiver();
-	void OnDataReceived(const unsigned& rayID, const RayCastResult& result) { FOnDataReceived(this, rayID, result); }
-	void CancelPendingRay() { FCancelPendingRay(this); }
-
-#if 0
-	SDeferredLinetestReceiver();
-	void SetFree();
-	bool IsFree();
-	void SetInvalid();
-	bool IsValid();
 #endif
-
-	static inline auto FBitNotSDeferredLinetestReceiver = PreyFunction<void(SDeferredLinetestReceiver* const _this)>(0x18EC800);
-	static inline auto FOnDataReceived = PreyFunction<void(SDeferredLinetestReceiver* const _this, const unsigned& rayID, const RayCastResult& result)>(0x18ECEA0);
-	static inline auto FCancelPendingRay = PreyFunction<void(SDeferredLinetestReceiver* const _this)>(0x18BC640);
 };
-#endif // MOONCRASH

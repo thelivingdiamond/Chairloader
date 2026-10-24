@@ -1,7 +1,7 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/Ark/ArkObjectiveUtils_CArkObjectiveDynamicTaskData.h>
 #include <Prey/CryCore/Containers/VectorMap.h>
 #include <Prey/Ark/arkobjectiveutils.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
@@ -425,13 +425,14 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
+#include <Prey/Ark/ArkObjectiveUtils_CArkObjectiveDynamicTaskData.h>
+#include <Prey/CryString/CryString.h>
 #include <Prey/Ark/arkobjectiveutils.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/IArkCharacterStatusListener.h>
-#include <_unknown/VectorMap.h>
+#include <Prey/CryCore/Containers/VectorMap.h>
 
 class ArkFlowNodeObjectiveState;
 class ArkFlowNodeTaskState;

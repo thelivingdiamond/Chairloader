@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -16,6 +14,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkglassbreaker.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkGlassBreaker : public CGameObjectExtensionHelper<CArkGlassBreaker,IGameObjectExtension> // Id=8019350 Size=72
 {
 public:
@@ -52,6 +55,7 @@ public:
 	ArkSafeScriptTable GetPropertiesTable() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetMemoryUsage = PreyFunction<void(CArkGlassBreaker const *const _this, ICrySizer *_s)>(0x345AA0);
 	static inline auto FInit = PreyFunction<bool(CArkGlassBreaker *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FPostInit = PreyFunction<void(CArkGlassBreaker *const _this, IGameObject *_pGameObject)>(0xA13080);
@@ -76,61 +80,7 @@ public:
 	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkGlassBreaker *const _this)>(0xA13080);
 	static inline auto FStartGlassBreaking = PreyFunction<void(CArkGlassBreaker *const _this, unsigned _ownerId, float _radius)>(0x117BD70);
 	static inline auto FPhysicalize = PreyFunction<void(CArkGlassBreaker *const _this, float _radius)>(0x117BB60);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-
-class ArkSafeScriptTable;
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// CArkGlassBreaker
-// Header:  Prey/GameDll/ark/ArkGlassBreaker.h
-class CArkGlassBreaker : public CGameObjectExtensionHelper<CArkGlassBreaker, IGameObjectExtension>
-{ // Size=72 (0x48)
-public:
-	unsigned m_ownerId;
-
-	CArkGlassBreaker();
-	virtual ~CArkGlassBreaker();
-	virtual void GetMemoryUsage(ICrySizer* _s) const;
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void InitClient(int _channelId);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void Release();
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _auth);
-	virtual const void* GetRMIBase() const;
-	virtual void PostUpdate(float _frameTime);
-	virtual void PostRemoteSpawn();
-	void StartGlassBreaking(unsigned _ownerId, float _radius) { FStartGlassBreaking(this, _ownerId, _radius); }
-	void Physicalize(float _radius) { FPhysicalize(this, _radius); }
-
-#if 0
-	ArkSafeScriptTable GetPropertiesTable() const;
-#endif
-
+#else
 	static inline auto FCArkGlassBreakerOv1 = PreyFunction<void(CArkGlassBreaker* const _this)>(0x11F6E20);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkGlassBreaker* const _this, ICrySizer* _s)>(0x35A360);
 	static inline auto FInit = PreyFunction<bool(CArkGlassBreaker* const _this, IGameObject* _pGameObject)>(0x37A880);
@@ -156,5 +106,5 @@ public:
 	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkGlassBreaker* const _this)>(0x1333E90);
 	static inline auto FStartGlassBreaking = PreyFunction<void(CArkGlassBreaker* const _this, unsigned _ownerId, float _radius)>(0x11F70C0);
 	static inline auto FPhysicalize = PreyFunction<void(CArkGlassBreaker* const _this, float _radius)>(0x11F6EB0);
+#endif
 };
-#endif // !MOONCRASH

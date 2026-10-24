@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryString/CryName.h>
 
@@ -12,6 +10,27 @@ namespace Serialization
 {
 class IArchive;
 } // namespace Serialization
+
+// SProceduralClipFacialSequenceParams
+// Header:  Prey/GameDll/ProceduralClipFacialSequence.h
+struct SProceduralClipFacialSequenceParams : public IProceduralParams
+{ // Size=24 (0x18)
+	bool continueAfterExit;
+	bool looping;
+	CCryName fileName;
+
+	virtual void Serialize(Serialization::IArchive& ar);
+
+#if 0
+	SProceduralClipFacialSequenceParams();
+#endif
+
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(SProceduralClipFacialSequenceParams* const _this, Serialization::IArchive& ar)>(0x17CC9F0);
+#else
+	static inline auto FSerialize = PreyFunction<void(SProceduralClipFacialSequenceParams* const _this, Serialization::IArchive& ar)>(0x18F38B0);
+#endif
+};
 
 // CProceduralClipFacialSequence
 // Header:  Prey/GameDll/ProceduralClipFacialSequence.h
@@ -33,26 +52,16 @@ public:
 	CProceduralClipFacialSequence();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FOnEnter = PreyFunction<void(CProceduralClipFacialSequence* const _this, float blendTime, float duration, const SProceduralClipFacialSequenceParams& params)>(0x17CCB80);
+	static inline auto FOnExit = PreyFunction<void(CProceduralClipFacialSequence* const _this, float blendTime)>(0x17CCC80);
+	static inline auto FUpdate = PreyFunction<void(CProceduralClipFacialSequence* const _this, float timePassed)>(0x17CCD00);
+	static inline auto FPlaySequenceIfNotStarted = PreyFunction<void(CProceduralClipFacialSequence* const _this)>(0x17CCF60);
+#else
 	static inline auto FOnEnter = PreyFunction<void(CProceduralClipFacialSequence* const _this, float blendTime, float duration, const SProceduralClipFacialSequenceParams& params)>(0x18F39E0);
 	static inline auto FOnExit = PreyFunction<void(CProceduralClipFacialSequence* const _this, float blendTime)>(0x18F3AE0);
 	static inline auto FUpdate = PreyFunction<void(CProceduralClipFacialSequence* const _this, float timePassed)>(0x18F3B60);
 	static inline auto FPlaySequenceIfNotStarted = PreyFunction<void(CProceduralClipFacialSequence* const _this)>(0x18F3DC0);
-};
-
-// SProceduralClipFacialSequenceParams
-// Header:  Prey/GameDll/ProceduralClipFacialSequence.h
-struct SProceduralClipFacialSequenceParams : public IProceduralParams
-{ // Size=24 (0x18)
-	bool continueAfterExit;
-	bool looping;
-	CCryName fileName;
-
-	virtual void Serialize(Serialization::IArchive& ar);
-
-#if 0
-	SProceduralClipFacialSequenceParams();
 #endif
-
-	static inline auto FSerialize = PreyFunction<void(SProceduralClipFacialSequenceParams* const _this, Serialization::IArchive& ar)>(0x18F38B0);
 };
-#endif // MOONCRASH
+

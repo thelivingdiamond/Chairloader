@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/IGameRulesSpawningModule.h>
+#include <Prey/GameDll/gamerulesmodules/IGameRulesSpawningModule.h>
 
 class CGameRules;
 enum EEntityAspects;
@@ -96,6 +94,54 @@ public:
 	void SelectNewInitialSpawnGroup();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameRulesSpawningBaseOv1 = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0x1734290);
+	static inline auto FSetLastSpawn = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId, unsigned spawnId)>(0x1734FF0);
+	static inline auto FInit = PreyFunction<void(CGameRulesSpawningBase* const _this, XmlNodeRef xml)>(0x1734AA0);
+	static inline auto FPostInit = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FUpdate = PreyFunction<void(CGameRulesSpawningBase* const _this, float frameTime)>(0xA13080);
+	static inline auto FNetSerialize = PreyFunction<bool(CGameRulesSpawningBase* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1734B30);
+	static inline auto FAddSpawnLocation = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned location, bool isInitialSpawn, bool doVisTest, const char* pGroupName)>(0x17344D0);
+	static inline auto FRemoveSpawnLocation = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned id, bool isInitialSpawn)>(0x1734DC0);
+	static inline auto FEnableSpawnLocation = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned location, bool isInitialSpawn, const char* pGroupName)>(0x1734760);
+	static inline auto FDisableSpawnLocation = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned id, bool isInitialSpawn)>(0x1734620);
+	static inline auto FSetInitialSpawnGroup = PreyFunction<void(CGameRulesSpawningBase* const _this, const char* groupName)>(0x1734F40);
+	static inline auto FGetSpawnLocation = PreyFunction<unsigned(CGameRulesSpawningBase* const _this, unsigned playerId)>(0x158AEF0);
+	static inline auto FGetFirstSpawnLocation = PreyFunction<unsigned(const CGameRulesSpawningBase* const _this, int teamId)>(0x1734840);
+	static inline auto FGetSpawnLocationCount = PreyFunction<int(const CGameRulesSpawningBase* const _this)>(0x1734950);
+	static inline auto FGetNthSpawnLocation = PreyFunction<unsigned(const CGameRulesSpawningBase* const _this, int idx)>(0x17348E0);
+	static inline auto FGetSpawnIndexForEntityId = PreyFunction<int(const CGameRulesSpawningBase* const _this, unsigned spawnId)>(0x1734910);
+	static inline auto FAddAvoidPOI = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned entityId, float avoidDistance, bool enabled, bool bStaticPOI)>(0xA13080);
+	static inline auto FRemovePOI = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned entityId)>(0xA13080);
+	static inline auto FEnablePOI = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned entityId)>(0xA13080);
+	static inline auto FDisablePOI = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned entityId)>(0xA13080);
+	static inline auto FPlayerJoined = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId)>(0x1734D00);
+	static inline auto FPlayerLeft = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId)>(0x1734D60);
+	static inline auto FOnPlayerKilled = PreyFunction<void(CGameRulesSpawningBase* const _this, const HitInfo& hitInfo)>(0x1734C20);
+	static inline auto FClRequestRevive = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId)>(0xA13080);
+	static inline auto FSvRequestRevive = PreyFunction<bool(CGameRulesSpawningBase* const _this, unsigned playerId, unsigned preferredSpawnId)>(0xDD23F0);
+	static inline auto FPerformRevive = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId, int teamId, unsigned preferredSpawnId)>(0xA13080);
+	static inline auto FOnSetTeam = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId, int teamId)>(0xA13080);
+	static inline auto FGetPlayerValuesMap = PreyFunction<const std::map<unsigned int, IGameRulesSpawningModule::SPlayerData>* (const CGameRulesSpawningBase* const _this)>(0x12BD8B0);
+	static inline auto FReviveAllPlayers = PreyFunction<void(CGameRulesSpawningBase* const _this, bool isReset, bool bOnlyIfDead)>(0xA13080);
+	static inline auto FGetRemainingLives = PreyFunction<int(CGameRulesSpawningBase* const _this, unsigned playerId)>(0x158AEF0);
+	static inline auto FGetNumLives = PreyFunction<int(CGameRulesSpawningBase* const _this)>(0x158AEF0);
+	static inline auto FGetTimeFromDeathTillAutoReviveForTeam = PreyFunction<float(const CGameRulesSpawningBase* const _this, int teamId)>(0x1734A90);
+	static inline auto FGetPlayerAutoReviveAdditionalTime = PreyFunction<float(const CGameRulesSpawningBase* const _this, IActor* pActor)>(0xB5F050);
+	static inline auto FGetAutoReviveTimeScaleForTeam = PreyFunction<float(const CGameRulesSpawningBase* const _this, int teamId)>(0x18C0850);
+	static inline auto FSetAutoReviveTimeScaleForTeam = PreyFunction<void(CGameRulesSpawningBase* const _this, int teamId, float newScale)>(0xA13080);
+	static inline auto FHostMigrationInsertIntoReviveQueue = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId, float timeTillRevive)>(0xA13080);
+	static inline auto FOnInGameBegin = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FOnInitialEquipmentScreenShown = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FOnNewRoundEquipmentScreenShown = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FGetRemainingInitialAutoSpawnTimer = PreyFunction<float(CGameRulesSpawningBase* const _this)>(0x1734A90);
+	static inline auto FSvIsMidRoundJoiningAllowed = PreyFunction<bool(const CGameRulesSpawningBase* const _this)>(0x1B933B0);
+	static inline auto FCanPlayerSpawnThisRound = PreyFunction<bool(const CGameRulesSpawningBase* const _this, const unsigned playerId)>(0x1B933B0);
+	static inline auto FIsInInitialChannelsList = PreyFunction<bool(const CGameRulesSpawningBase* const _this, unsigned channelId)>(0x1B933B0);
+	static inline auto FHostMigrationStopAddingPlayers = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FHostMigrationResumeAddingPlayers = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0xA13080);
+	static inline auto FGetSpawnLocationsFromGroup = PreyFunction<std::vector<unsigned int>* (std::vector<CGameRulesSpawningBase::SSpawnGroup>& groups, const char* pGroupName)>(0x1734960);
+#else
 	static inline auto FCGameRulesSpawningBaseOv1 = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0x185B100);
 	static inline auto FSetLastSpawn = PreyFunction<void(CGameRulesSpawningBase* const _this, unsigned playerId, unsigned spawnId)>(0x185BE50);
 	static inline auto FInit = PreyFunction<void(CGameRulesSpawningBase* const _this, XmlNodeRef xml)>(0x185B900);
@@ -142,6 +188,7 @@ public:
 	static inline auto FHostMigrationStopAddingPlayers = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0x1333E90);
 	static inline auto FHostMigrationResumeAddingPlayers = PreyFunction<void(CGameRulesSpawningBase* const _this)>(0x1333E90);
 	static inline auto FGetSpawnLocationsFromGroup = PreyFunction<std::vector<unsigned int>* (std::vector<CGameRulesSpawningBase::SSpawnGroup>& groups, const char* pGroupName)>(0x185B7D0);
+#endif
 };
 
 // compare_spawns_name_only
@@ -150,6 +197,10 @@ struct compare_spawns_name_only
 { // Size=1 (0x1)
 	bool operator()(unsigned lhs, unsigned rhs) const { return FoperatorRBLRBR(this, lhs, rhs); }
 
+#ifndef MOONCRASH
+	static inline auto FoperatorRBLRBR = PreyFunction<bool(const compare_spawns_name_only* const _this, unsigned lhs, unsigned rhs)>(0x17343C0);
+#else
 	static inline auto FoperatorRBLRBR = PreyFunction<bool(const compare_spawns_name_only* const _this, unsigned lhs, unsigned rhs)>(0x185B230);
+#endif
 };
-#endif // MOONCRASH
+

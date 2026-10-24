@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -354,12 +353,30 @@ class IGeneralMemoryHeap;
 class IPageMappingHeap;
 class IDefragAllocator;
 class IMemoryAddressRange;
+struct CryModuleMemoryInfo;
+
+#include <Prey/CryCore/Project/CryModuleDefs.h>
+
+enum class ECryModuleMemoryInfoAllocType
+{
+	kCryMMIAT_None = 0,
+	kCryMMIAT_String = 1,
+	kCryMMIAT_Shader = 2,
+	kCryMMIAT_COUNT = 3,
+};
 
 //! Interfaces that allow access to the CryEngine memory manager.
 struct IMemoryManager
 {
 	typedef unsigned char HeapHandle;
 	enum { BAD_HEAP_HANDLE = 0xFF };
+	enum
+	{
+		ActiveHeap_Default = 0,
+		ActiveHeap_Global = 1,
+		ActiveHeap_Level = 2,
+		ActiveHeap_Debug = 3,
+	};
 
 	struct SProcessMemInfo
 	{
@@ -397,6 +414,15 @@ struct IMemoryManager
 	//! Used to add memory block size allocated directly from the crt or OS to the memory manager statistics.
 	virtual void FakeAllocation(long size) = 0;
 
+	virtual void InitialiseLevelHeap() = 0;
+	virtual void InitialiseDebugHeap() = 0;
+	virtual void SwitchToGlobalHeap() = 0;
+	virtual int  LocalSwitchToGlobalHeap() = 0;
+	virtual void SwitchToHeap(int heap) = 0;
+	virtual int  LocalSwitchToHeap(int heap) = 0;
+	virtual bool GetLevelHeapViolationState(bool& usingLevelHeap, uint64& numAllocs, uint64& allocSize) = 0;
+	virtual bool GetDebugHeapViolationState(bool& usingLevelHeap, uint64& numAllocs, uint64& allocSize) = 0;
+
 	//////////////////////////////////////////////////////////////////////////
 	//! Heap Tracing API.
 	virtual HeapHandle TraceDefineHeap(const char* heapName, size_t size, const void* pBase) = 0;
@@ -406,6 +432,13 @@ struct IMemoryManager
 	virtual uint32     TraceHeapGetColor() = 0;
 	virtual void       TraceHeapSetLabel(const char* sLabel) = 0;
 	//////////////////////////////////////////////////////////////////////////
+
+	virtual int64 GetMemoryTrackingOverhead() const = 0;
+	// MSVC orders overloaded virtuals in reverse: the vtable has (), (module), (module, type), (type).
+	virtual int64 GetMemoryTrackingData(ECryModuleMemoryInfoAllocType _type) const = 0;
+	virtual int64 GetMemoryTrackingData(ECryModule _module, ECryModuleMemoryInfoAllocType _type) const = 0;
+	virtual const CryModuleMemoryInfo& GetMemoryTrackingData(ECryModule _module) const = 0;
+	virtual const CryModuleMemoryInfo* const GetMemoryTrackingData() const = 0;
 
 	//! Retrieve access to the MemReplay implementation class.
 	virtual struct IMemReplay* GetIMemReplay() = 0;
@@ -443,14 +476,14 @@ protected:
 //! Structure filled by call to CryModuleGetMemoryInfo().
 struct CryModuleMemoryInfo
 {
-	uint64 requested;
+	int64 requested;
 
-	uint64 allocated;           //!< Total amount of memory allocated.
-	uint64 freed;               //!< Total amount of memory freed.
-	int    num_allocations;     //!< Total number of memory allocations.
-	uint64 CryString_allocated; //!< Allocated in CryString.
-	uint64 STL_allocated;       //!< Allocated in STL.
-	uint64 STL_wasted;          //!< Amount of memory wasted in pools in stl (not useful allocations).
+	int64 allocated;           //!< Total amount of memory allocated.
+	int64 freed;               //!< Total amount of memory freed.
+	int64 num_allocations;     //!< Total number of memory allocations.
+	int64 STL_allocated;       //!< Allocated in STL.
+	int64 STL_wasted;          //!< Amount of memory wasted in pools in stl (not useful allocations).
+	int64 memoryBuckets[(int)ECryModuleMemoryInfoAllocType::kCryMMIAT_COUNT];
 };
 
 struct CryReplayInfo
@@ -689,7 +722,7 @@ size_t CryCrtSize(void* p);
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
 
 template<typename T, typename ... Args>
-inline T* CryAlignedNew(Args&& ... args)
+inline T* CryAlignedNew(Args&& ...)
 {
 	void* pAlignedMemory = CryModuleMemalign(sizeof(T), std::alignment_of<T>::value);
 	return new(pAlignedMemory) T(std::forward<Args>(args) ...);

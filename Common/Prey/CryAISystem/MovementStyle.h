@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -13,6 +11,9 @@ class XmlNodeRef;
 
 // Header: Exact
 // CryEngine/crycommon/MovementStyle.h
+#ifdef MOONCRASH
+#include <Prey/CrySystem/XML/XMLAttrReader.h>
+#endif
 class MovementStyle // Id=8001394 Size=240
 {
 public:
@@ -170,8 +171,29 @@ public:
 	void SetObstacleAvoidanceUrgency(EArkObstacleAvoidanceUrgency arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FReadFromXml = PreyFunction<void(MovementStyle *const _this, XmlNodeRef const &node)>(0x636BD0);
+#else
+	static inline auto FMovementStyleOv2 = PreyFunction<void(MovementStyle* const _this)>(0x60E770);
+	static inline auto FReadFromXml = PreyFunction<void(MovementStyle* const _this, const XmlNodeRef& node)>(0x652730);
+#endif
 };
+#if 0 // MOONCRASH copy; disabled in the base body as well
+// MovementStyleDictionaryCollection
+// Header:  CryEngine/crycommon/MovementStyle.h
+// Include: Prey/CryAISystem/MovementStyle.h
+struct MovementStyleDictionaryCollection
+{ // Size=96 (0x60)
+	CXMLAttrReader<enum MovementStyle::Speed> speeds;
+	CXMLAttrReader<enum MovementStyle::Stance> stances;
+	CXMLAttrReader<enum EBodyOrientationMode> bodyOrientations;
+	CXMLAttrReader<bool> booleans;
+
+	MovementStyleDictionaryCollection();
+
+	static inline auto FMovementStyleDictionaryCollectionOv2 = PreyFunction<void(MovementStyleDictionaryCollection* const _this)>(0x651E70);
+};
+#endif
 
 #if 0
 // Header: Exact
@@ -186,4 +208,3 @@ struct MovementStyleDictionaryCollection // Id=80069DE Size=96
 	MovementStyleDictionaryCollection();
 };
 #endif
-#endif // !MOONCRASH

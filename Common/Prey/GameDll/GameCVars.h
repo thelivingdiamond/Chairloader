@@ -1,16 +1,12 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-struct ICVar;
-struct IConsole;
-
 // SGameReleaseConstantCVars
 // Header:  Prey/GameDll/gameconstantcvars.h
 struct SGameReleaseConstantCVars
 { // Size=1 (0x1)
+#ifndef MOONCRASH
 	static inline auto m_pThis = PreyGlobal<SGameReleaseConstantCVars*>(0x2C09348);
+#else
+	static inline auto m_pThis = PreyGlobal<SGameReleaseConstantCVars*>(0x2D83478);
+#endif
 	
 	SGameReleaseConstantCVars();
 	void Init(IConsole* pConsole) { FInit(this, pConsole); }
@@ -19,9 +15,23 @@ struct SGameReleaseConstantCVars
 	static const SGameReleaseConstantCVars& Get();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSGameReleaseConstantCVars = PreyFunction<void(SGameReleaseConstantCVars* const _this)>(0x16E82E0);
 	static inline auto FInit = PreyFunction<void(SGameReleaseConstantCVars* const _this, IConsole* pConsole)>(0xA13080);
+#else
+	static inline auto FSGameReleaseConstantCVars = PreyFunction<void(SGameReleaseConstantCVars* const _this)>(0x180C4C0);
+	static inline auto FInit = PreyFunction<void(SGameReleaseConstantCVars* const _this, IConsole* pConsole)>(0x1333E90);
+#endif
 };
+
+#ifndef MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/SPowerSprintParams.h>
+
+struct ICVar;
+struct IConsole;
+
 
 // SAICollisions
 // Header:  Prey/GameDll/GameCVars.h
@@ -314,13 +324,6 @@ struct SPostEffect
 	float Global_User_Contrast;
 	float Global_User_Saturation;
 	float Global_User_ColorHue;
-};
-
-// SPowerSprintParams
-// Header:  Prey/GameDll/GameCVars.h
-struct SPowerSprintParams
-{ // Size=4 (0x4)
-	float foward_angle;
 };
 
 // SPredatorParams
@@ -1104,6 +1107,7 @@ inline PreyGlobal<SCVars*> g_pGameCVars(0x2C09000);
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/SPowerSprintParams.h>
 #include <Prey/GameDll/gameconstantcvars.h>
 
 struct ICVar;

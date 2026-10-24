@@ -282,7 +282,8 @@ public:
 	static inline auto FGetMemoryStatistics = PreyFunction<void(const CScriptSystem* const _this, ICrySizer* pSizer)>(0xD2E480);
 	static inline auto FGetScriptHash = PreyFunction<void(CScriptSystem* const _this, const char* sPath, const char* szKey, unsigned& dwHash)>(0x1333E90);
 	static inline auto FPostInit = PreyFunction<void(CScriptSystem* const _this)>(0xD2F5D0);
-	static inline auto FRaiseError = PreyFunction<void(CScriptSystem* const _this, const char* format, ... sBuf)>(0xD2F950);
+	// varargs in the game; declared without the `...`
+	static inline auto FRaiseError = PreyFunction<void(CScriptSystem* const _this, const char* format)>(0xD2F950);
 	static inline auto FLoadScriptedSurfaceTypes = PreyFunction<void(CScriptSystem* const _this, const char* sFolder, bool bReload)>(0xD2ED60);
 	static inline auto FSerializeTimers = PreyFunction<void(CScriptSystem* const _this, ISerialize* pSer)>(0xD30360);
 	static inline auto FResetTimers = PreyFunction<void(CScriptSystem* const _this)>(0xD30350);

@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -17,7 +16,6 @@ class Package;
 } // namespace ArkSignalSystem
 enum class EArkInteractionMode;
 enum class EArkInteractionType;
-enum class EArkTyphonNestState;
 struct IEntity;
 struct IGameObject;
 struct IPhysicalEntity;

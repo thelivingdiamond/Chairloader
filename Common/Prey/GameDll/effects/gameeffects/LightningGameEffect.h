@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/effects/gameeffects/GameEffect.h>
-#include <_unknown/SLightningStats.h>
+#include <Prey/GameDll/effects/gameeffects/SLightningStats.h>
 
 class CLightningRenderNode;
 struct IItemParamsNode;
@@ -39,7 +37,11 @@ struct SLightningParams
 	SLightningParams();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(SLightningParams* const _this, XmlNodeRef node)>(0x16B9250);
+#else
 	static inline auto FReset = PreyFunction<void(SLightningParams* const _this, XmlNodeRef node)>(0x17DC110);
+#endif
 };
 
 // CLightningGameEffect
@@ -66,8 +68,13 @@ public:
 		STarget(unsigned _arg0_, int _arg1_, const char* _arg2_);
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FSTargetOv4 = PreyFunction<void(CLightningGameEffect::STarget* const _this, unsigned targetEntity)>(0x16B8C90);
+		static inline auto FSTargetOv3 = PreyFunction<void(CLightningGameEffect::STarget* const _this, unsigned entityId, const Vec3& offset)>(0x16B8CB0);
+#else
 		static inline auto FSTargetOv4 = PreyFunction<void(CLightningGameEffect::STarget* const _this, unsigned targetEntity)>(0x17DBB50);
 		static inline auto FSTargetOv3 = PreyFunction<void(CLightningGameEffect::STarget* const _this, unsigned entityId, const Vec3& offset)>(0x17DBB70);
+#endif
 	};
 
 	// CLightningGameEffect::SLightningSpark
@@ -113,6 +120,20 @@ public:
 	int FindPreset(const char* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCLightningGameEffectOv1 = PreyFunction<void(CLightningGameEffect* const _this)>(0x16B8BB0);
+	static inline auto FInitialise = PreyFunction<void(CLightningGameEffect* const _this, const SGameEffectParams* gameEffectParams)>(0x16B9020);
+	static inline auto FGetName = PreyFunction<const char* (const CLightningGameEffect* const _this)>(0x16BB340);
+	static inline auto FUpdate = PreyFunction<void(CLightningGameEffect* const _this, float frameTime)>(0x16B9840);
+	static inline auto FClearSparks = PreyFunction<void(CLightningGameEffect* const _this)>(0x16B8D30);
+	static inline auto FLoadStaticData = PreyFunction<void(IItemParamsNode* __unnamed1)>(0x16B9230);
+	static inline auto FReloadStaticData = PreyFunction<void(IItemParamsNode* __unnamed1)>(0x16B9230);
+	static inline auto FReleaseStaticData = PreyFunction<void()>(0x16B91E0);
+	static inline auto FLoadData = PreyFunction<void(CLightningGameEffect* const _this)>(0x16B9040);
+	static inline auto FTriggerSpark = PreyFunction<int(CLightningGameEffect* const _this, const char* presetName, IMaterial* pMaterial, const CLightningGameEffect::STarget& emitter, const CLightningGameEffect::STarget& receiver)>(0x16B9550);
+	static inline auto FGetSparkRemainingTime = PreyFunction<float(const CLightningGameEffect* const _this, const int spark)>(0x16B8FF0);
+	static inline auto FComputeTargetPosition = PreyFunction<Vec3*(CLightningGameEffect* const _this, Vec3* _return_value_, const CLightningGameEffect::STarget& target, const Vec3& m_receiverLocalPosition)>(0x16B8DA0);
+#else
 	static inline auto FCLightningGameEffectOv1 = PreyFunction<void(CLightningGameEffect* const _this)>(0x17DBA70);
 	static inline auto FInitialise = PreyFunction<void(CLightningGameEffect* const _this, const SGameEffectParams* gameEffectParams)>(0x17DBEE0);
 	static inline auto FGetName = PreyFunction<const char* (const CLightningGameEffect* const _this)>(0x17DE200);
@@ -125,5 +146,6 @@ public:
 	static inline auto FTriggerSpark = PreyFunction<int(CLightningGameEffect* const _this, const char* presetName, IMaterial* pMaterial, const CLightningGameEffect::STarget& emitter, const CLightningGameEffect::STarget& receiver)>(0x17DC410);
 	static inline auto FGetSparkRemainingTime = PreyFunction<float(const CLightningGameEffect* const _this, const int spark)>(0x17DBEB0);
 	static inline auto FComputeTargetPosition = PreyFunction<Vec3*(CLightningGameEffect* const _this, Vec3* _return_value_, const CLightningGameEffect::STarget& target, const Vec3& m_receiverLocalPosition)>(0x17DBC60);
+#endif
 };
-#endif // MOONCRASH
+

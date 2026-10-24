@@ -1,11 +1,11 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAISystem/MovementRequest.h>
 #include <Prey/CryAISystem/MovementStyle.h>
 #include <Prey/CryCore/functor.h>
-#include "MovementRequestResult.h"
+struct MovementRequestResult;
+#include <Prey/CryAISystem/MovementRequestID.h>
+#include <Prey/CryAISystem/MovementRequestResult.h>   // after the forward declaration: that header includes this one
 
 // Header: Exact
 // CryEngine/crycommon/MovementRequest.h

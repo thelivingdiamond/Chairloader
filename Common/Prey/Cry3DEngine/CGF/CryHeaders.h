@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 
 #define MAX_STATOBJ_LODS_NUM 6

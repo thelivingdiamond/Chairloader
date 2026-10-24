@@ -192,6 +192,7 @@ struct ICryPak // Id=800062E Size=8
 {
     using FileTime = uint64_t;
 
+#ifndef MOONCRASH
     enum EPathResolutionRules
     {
         FLAGS_DISABLE_LOCALIZATION = 32768,
@@ -214,6 +215,26 @@ struct ICryPak // Id=800062E Size=8
         FLAGS_RESOLVE_TO_CACHE = 536870912,
         FLAGS_PAK_IN_MEMORY_CPU = 1073741824,
     };
+#else
+    enum EPathResolutionRules
+    {
+        FLAGS_DISABLE_MODS = 16384,
+        FLAGS_DISABLE_LOCALIZATION = 32768,
+        FLAGS_PATH_REAL = 65536,
+        FLAGS_COPY_DEST_ALWAYS = 131072,
+        FLAGS_ADD_TRAILING_SLASH = 262144,
+        FLAGS_NO_FULL_PATH = 2097152,
+        FLAGS_REDIRECT_TO_DISC = 4194304,
+        FLAGS_FOR_WRITING = 8388608,
+        FLAGS_NO_LOWCASE = 16777216,
+        FLAGS_PAK_IN_MEMORY = 33554432,
+        FLAGS_FILENAMES_AS_CRC32 = 67108864,
+        FLAGS_CHECK_MOD_PATHS = 134217728,
+        FLAGS_NEVER_IN_PAK = 268435456,
+        FLAGS_RESOLVE_TO_CACHE = 536870912,
+        FLAGS_PAK_IN_MEMORY_CPU = 1073741824,
+    };
+#endif
 
     enum EFOpenFlags
     {
@@ -278,7 +299,9 @@ struct ICryPak // Id=800062E Size=8
 
     //! \return true if given pak path is installed to HDD.
     //! If no file path is given it will return true if whole application is installed to HDD.
+#ifndef MOONCRASH
     virtual bool IsInstalledToHDD(const char *acFilePath = 0) const = 0;
+#endif // !MOONCRASH
 
     //! After this call, the pak file will be searched for files when they aren't on the OS file system.
     //! \param pName Must not be 0.
@@ -308,7 +331,11 @@ struct ICryPak // Id=800062E Size=8
     virtual void SetPacksAccessibleForLevel(const char *arg0) = 0;
     virtual bool LoadPakToMemory(const char *arg0, ICryPak::EInMemoryPakLocation arg1, IMemoryBlock *arg2) = 0;
     virtual void LoadPaksToMemory(int arg0, bool arg1) = 0;
+#ifndef MOONCRASH
     virtual void AddMod(const char *arg0) = 0;
+#else // MOONCRASH
+    virtual void AddMod(const char *szMod, bool _bSupportsLocalization = false) = 0;
+#endif // !MOONCRASH
     virtual void RemoveMod(const char *arg0) = 0;
     virtual const char *GetMod(int arg0) = 0;
     virtual void ParseAliases(const char *arg0) = 0;
@@ -356,7 +383,11 @@ struct ICryPak // Id=800062E Size=8
     virtual int FindNext(int64_t arg0, _finddata64i32_t *arg1) = 0;
     virtual int FindClose(int64_t arg0) = 0;
     virtual uint64_t GetModificationTime(_iobuf *arg0) = 0;
+#ifndef MOONCRASH
     virtual bool IsFileExist(const char *arg0, ICryPak::EFileSearchLocation arg1 = eFileLocation_Any) = 0;
+#else // MOONCRASH
+    virtual bool IsFileExist(const char *sFilename, ICryPak::EFileSearchLocation fileLocation = eFileLocation_Any, bool bPreAdjustedName = false) = 0;
+#endif // !MOONCRASH
     virtual bool IsFolder(const char *arg0) = 0;
     virtual int64_t GetFileSizeOnDisk(const char *arg0) = 0;
     virtual bool IsFileCompressed(const char *arg0) = 0;
@@ -411,8 +442,13 @@ struct ICryPak // Id=800062E Size=8
 
 struct SDirectoryEnumeratorHelper // Id=8002F48 Size=1
 {
+#ifndef MOONCRASH
     void ScanDirectoryRecursive(string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files) { FScanDirectoryRecursive(this,root,pathIn,fileSpec,files); }
     void ScanDirectoryFiles(string const &root, string const &path, string const &fileSpec, std::vector<string> &files) { FScanDirectoryFiles(this,root,path,fileSpec,files); }
+#else
+    void ScanDirectoryRecursive(string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files, unsigned _nPakFlags) { FScanDirectoryRecursive(this,root,pathIn,fileSpec,files,_nPakFlags); }
+    void ScanDirectoryFiles(string const &root, string const &path, string const &fileSpec, std::vector<string> &files, unsigned _nPakFlags) { FScanDirectoryFiles(this,root,path,fileSpec,files,_nPakFlags); }
+#endif
 
 #ifndef MOONCRASH
     static inline auto FScanDirectoryRecursive = PreyFunction<void(SDirectoryEnumeratorHelper *const _this, string const &root, string const &pathIn, string const &fileSpec, std::vector<string> &files)>(0x24C340);

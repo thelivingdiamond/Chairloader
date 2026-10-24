@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/ArkNpcDamageFsmBase_template_.h>
+#include <Prey/GameDll/ark/npc/damagefsm/ArkNpcDamageFsmBase.h>
 
 class ArkNpc;
 enum class EArkNpcDamageStateId;
@@ -31,6 +29,22 @@ public:
 	void PostSerialize(ArkNpc& _npc) { FPostSerialize(this, _npc); }
 	void OnReactionComplete(ArkNpc& _npc) { FOnReactionComplete(this, _npc); }
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcDamageFsmOv2 = PreyFunction<void(ArkNpcDamageFsm* const _this)>(0x1211470);
+	static inline auto FInitiate = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc, float _npcInitialHealth)>(0x12114B0);
+	static inline auto FTerminate = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x1211A00);
+	static inline auto FGetCurrentStateId = PreyFunction<EArkNpcDamageStateId(const ArkNpcDamageFsm* const _this)>(0x12114A0);
+	static inline auto FSetBroken = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x1211990);
+	static inline auto FOnHealthChange = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc, float _npcNewHealth, bool _bTakingDamage)>(0x1211670);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc, float _elapsedTime)>(0x1211AA0);
+	static inline auto FIsDisabled = PreyFunction<bool(const ArkNpcDamageFsm* const _this)>(0x1211660);
+	static inline auto FIsDestroyed = PreyFunction<bool(const ArkNpcDamageFsm* const _this)>(0x1211640);
+	static inline auto FSetShouldInstantlyDie = PreyFunction<void(ArkNpcDamageFsm* const _this)>(0x12119E0);
+	static inline auto FShouldInstantlyDie = PreyFunction<bool(ArkNpcDamageFsm* const _this)>(0x12119F0);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcDamageFsm* const _this, TSerialize _ser, ArkNpc& _npc)>(0x1211860);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x12117C0);
+	static inline auto FOnReactionComplete = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0xA13080);
+#else
 	static inline auto FArkNpcDamageFsmOv2 = PreyFunction<void(ArkNpcDamageFsm* const _this)>(0x12A08B0);
 	static inline auto FInitiate = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc, float _npcInitialHealth)>(0x12A08F0);
 	static inline auto FTerminate = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x12A0E30);
@@ -45,5 +59,6 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkNpcDamageFsm* const _this, TSerialize _ser, ArkNpc& _npc)>(0x12A0C90);
 	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x12A0BF0);
 	static inline auto FOnReactionComplete = PreyFunction<void(ArkNpcDamageFsm* const _this, ArkNpc& _npc)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

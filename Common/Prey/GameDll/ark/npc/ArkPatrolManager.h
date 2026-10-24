@@ -1,13 +1,48 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/ArkPatrol.h>
-#include <_unknown/ArkPatrolPoint.h>
-#include <_unknown/IArkPatrolManager.h>
+#include <Prey/GameDll/ark/npc/ArkPatrol.h>
+#include <Prey/GameDll/ark/npc/ArkPatrolPoint.h>
+#include <Prey/GameDll/ark/npc/IArkPatrolManager.h>
 
 struct ArkPatrolState;
+
+// ArkPatrolState
+// Header:  Prey/GameDll/ark/npc/ArkPatrolManager.h
+struct ArkPatrolState
+{ // Size=16 (0x10)
+	int m_patrolIndex;
+	int m_pointIndex;
+	int m_movementStyleSpeed;
+	bool m_bMovingForward;
+	bool m_bOffNavMesh;
+	bool m_bNeedsNextPointResetToClosest;
+
+	void Reset() { FReset(this); }
+	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
+
+#if 0
+	ArkPatrolState();
+	bool IsValid() const;
+	unsigned GetPatrolIndex() const;
+	int GetPointIndex() const;
+	void SetMovementStyleSpeed(const int _arg0_);
+	int GetMovementStyleSpeed() const;
+	void SetAllowOffNavMesh(const bool _arg0_);
+	bool GetAllowOffNavMesh() const;
+	void SetPointNeedsResetToClosest();
+	bool PointNeedsResetToClosest() const;
+#endif
+
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(ArkPatrolState* const _this)>(0x151FFD0);
+	static inline auto FSerialize = PreyFunction<void(ArkPatrolState* const _this, TSerialize _ser)>(0x151FFF0);
+#else
+	static inline auto FReset = PreyFunction<void(ArkPatrolState* const _this)>(0x163F9B0);
+	static inline auto FSerialize = PreyFunction<void(ArkPatrolState* const _this, TSerialize _ser)>(0x163F9D0);
+#endif
+};
+
 
 // ArkPatrolManager
 // Header:  Prey/GameDll/ark/npc/ArkPatrolManager.h
@@ -59,6 +94,32 @@ public:
 	const ArkPatrolPoint* GetPatrolPoint(int _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkPatrolManagerOv1 = PreyFunction<void(ArkPatrolManager* const _this)>(0x151E1E0);
+	static inline auto FBitNotArkPatrolManager = PreyFunction<void(ArkPatrolManager* const _this)>(0x151E2C0);
+	static inline auto FGetPatrolIndexOv1 = PreyFunction<unsigned(const ArkPatrolManager* const _this, const char* const _pName)>(0x151F090);
+	static inline auto FGetPatrolIndexOv0 = PreyFunction<unsigned(const ArkPatrolManager* const _this, const uint64_t& _id)>(0x151EFA0);
+	static inline auto FGetPatrolName = PreyFunction<const string& (const ArkPatrolManager* const _this, unsigned _patrolIndex)>(0x151F230);
+	static inline auto FGetPatrolId = PreyFunction<uint64_t(const ArkPatrolManager* const _this, unsigned _patrolIndex)>(0x151EF40);
+	static inline auto FCreateInitialPatrolStateFromClosestPatrolTo = PreyFunction<ArkPatrolState*(ArkPatrolManager* const _this, ArkPatrolState* _return_value_, const Vec3& _point)>(0x151E770);
+	static inline auto FCreateInitialPatrolStateFromClosestForwardPointOnPatrolTo = PreyFunction<ArkPatrolState*(ArkPatrolManager* const _this, ArkPatrolState* _return_value_, unsigned _patrolIndex, const Vec3& _point)>(0x151E370);
+	static inline auto FCreateInitialPatrolStateFromPatrolAndPoint = PreyFunction<ArkPatrolState*(ArkPatrolManager* const _this, ArkPatrolState* _return_value_, unsigned _patrolIndex, int _pointIndex)>(0x151E8A0);
+	static inline auto FUpdatePatrolState = PreyFunction<bool(const ArkPatrolManager* const _this, ArkPatrolState& _patrolState)>(0x1520140);
+	static inline auto FReachedDestination = PreyFunction<bool(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState, const Vec3& _pos, float _epsilon)>(0x151FEE0);
+	static inline auto FGetCurrentPointDestination = PreyFunction<Vec3*(const ArkPatrolManager* const _this, Vec3* _return_value_, const ArkPatrolState& _patrolState, unsigned _forEntityId)>(0x151EB60);
+	static inline auto FGetCurrentPointGuardTime = PreyFunction<float(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState)>(0x151ED00);
+	static inline auto FGetCurrentPointIdleChance = PreyFunction<float(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState)>(0x151ED60);
+	static inline auto FGetCurrentPointLocalIndex = PreyFunction<int(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState)>(0x151EDC0);
+	static inline auto FGetZeroGDesiredPitchRoll = PreyFunction<bool(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState, float& _pitch, float& _roll)>(0x151F370);
+	static inline auto FRelinquishPatrol = PreyFunction<void(const ArkPatrolManager* const _this, ArkPatrolState& _patrolState)>(0x151FFB0);
+	static inline auto FSetPatrolEnabled = PreyFunction<void(ArkPatrolManager* const _this, unsigned _patrolIndex, bool _bEnabled)>(0x15200F0);
+	static inline auto FUpdate = PreyFunction<void(ArkPatrolManager* const _this, float _framTime)>(0xA13080);
+	static inline auto FLoadFromFile = PreyFunction<void(ArkPatrolManager* const _this, const char* _pLevelName)>(0x151F450);
+	static inline auto FGetNameMap = PreyFunction<const std::unordered_map<string, unsigned int>& (const ArkPatrolManager* const _this)>(0x10BDA20);
+	static inline auto FGetIdMap = PreyFunction<const std::unordered_map<uint64_t, unsigned int>& (const ArkPatrolManager* const _this)>(0x10BD7D0);
+	static inline auto FGetNextPointIndex = PreyFunction<int(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState)>(0x151EE60);
+	static inline auto FGetClosestPointIndexOnPatrolTo = PreyFunction<int(const ArkPatrolManager* const _this, const ArkPatrol& _patrol, const Vec3& _toPoint)>(0x151E930);
+#else
 	static inline auto FArkPatrolManagerOv1 = PreyFunction<void(ArkPatrolManager* const _this)>(0x163DBC0);
 	static inline auto FBitNotArkPatrolManager = PreyFunction<void(ArkPatrolManager* const _this)>(0x163DCA0);
 	static inline auto FGetPatrolIndexOv1 = PreyFunction<unsigned(const ArkPatrolManager* const _this, const char* const _pName)>(0x163EA70);
@@ -83,36 +144,5 @@ public:
 	static inline auto FGetIdMap = PreyFunction<const std::unordered_map<uint64_t, unsigned int>& (const ArkPatrolManager* const _this)>(0x10ECF80);
 	static inline auto FGetNextPointIndex = PreyFunction<int(const ArkPatrolManager* const _this, const ArkPatrolState& _patrolState)>(0x163E840);
 	static inline auto FGetClosestPointIndexOnPatrolTo = PreyFunction<int(const ArkPatrolManager* const _this, const ArkPatrol& _patrol, const Vec3& _toPoint)>(0x163E310);
-};
-
-// ArkPatrolState
-// Header:  Prey/GameDll/ark/npc/ArkPatrolManager.h
-struct ArkPatrolState
-{ // Size=16 (0x10)
-	int m_patrolIndex;
-	int m_pointIndex;
-	int m_movementStyleSpeed;
-	bool m_bMovingForward;
-	bool m_bOffNavMesh;
-	bool m_bNeedsNextPointResetToClosest;
-
-	void Reset() { FReset(this); }
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-
-#if 0
-	ArkPatrolState();
-	bool IsValid() const;
-	unsigned GetPatrolIndex() const;
-	int GetPointIndex() const;
-	void SetMovementStyleSpeed(const int _arg0_);
-	int GetMovementStyleSpeed() const;
-	void SetAllowOffNavMesh(const bool _arg0_);
-	bool GetAllowOffNavMesh() const;
-	void SetPointNeedsResetToClosest();
-	bool PointNeedsResetToClosest() const;
 #endif
-
-	static inline auto FReset = PreyFunction<void(ArkPatrolState* const _this)>(0x163F9B0);
-	static inline auto FSerialize = PreyFunction<void(ArkPatrolState* const _this, TSerialize _ser)>(0x163F9D0);
 };
-#endif // MOONCRASH

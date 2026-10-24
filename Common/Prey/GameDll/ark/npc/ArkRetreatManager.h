@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -86,6 +84,22 @@ public:
 	ArkRetreatManager& operator=(const ArkRetreatManager& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkRetreatManagerOv1 = PreyFunction<void(ArkRetreatManager* const _this)>(0x122C7A0);
+	static inline auto FAddRetreatPoint = PreyFunction<void(ArkRetreatManager* const _this, const CArkRetreatPoint& _retreatPoint)>(0x120E160);
+	static inline auto FRemoveRetreatPoint = PreyFunction<void(ArkRetreatManager* const _this, const CArkRetreatPoint& _retreatPoint)>(0x120E420);
+	static inline auto FSafeAddDistraction = PreyFunction<void(ArkRetreatManager* const _this, const IEntity& _distractionEntity)>(0x120E780);
+	static inline auto FSafeRemoveDistraction = PreyFunction<void(ArkRetreatManager* const _this, const IEntity& _distractionEntity)>(0x120E810);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkRetreatManager* const _this)>(0x120E2C0);
+	static inline auto FOnLevelUnload = PreyFunction<void(ArkRetreatManager* const _this)>(0x120E2C0);
+	static inline auto FRemoveAllDistractions = PreyFunction<void(ArkRetreatManager* const _this)>(0x120E390);
+	static inline auto FReserveRetreatPointInRanges = PreyFunction<unsigned(ArkRetreatManager* const _this, ArkNpc& _retreatingNpc, float _minimumDistanceFromRetreatingNpc, const AABB& _outerSearchBounds, const AABB& _exclusionSearchBounds)>(0x120E660);
+	static inline auto FReleaseRetreatPoint = PreyFunction<void(ArkRetreatManager* const _this, unsigned _retreatPointEntityId)>(0x120E330);
+	static inline auto FReserveDistractionInRange = PreyFunction<std::tuple<unsigned int,Vec3_tpl<float> >*(ArkRetreatManager* const _this, std::tuple<unsigned int,Vec3_tpl<float> >* _return_value_, ArkNpc& _retreatingNpc, const AABB& _searchBounds, const ArkSearchBounds& _navPointSearchBounds)>(0x120E430);
+	static inline auto FReleaseDistraction = PreyFunction<void(ArkRetreatManager* const _this, unsigned _distractionEntityId)>(0x120E2D0);
+	static inline auto FRemoveEntity = PreyFunction<void(std::vector<ArkRetreatManager::RetreatEntityInfo>& _entityInfos, const IEntity& _entity)>(0x120E3A0);
+	static inline auto FGetUnreservedEntitiesInRange = PreyFunction<std::vector<ArkRetreatManager::RetreatEntityInfo*>& (std::vector<ArkRetreatManager::RetreatEntityInfo>& _entityInfos, const AABB& _searchBounds)>(0x120E170);
+#else
 	static inline auto FArkRetreatManagerOv1 = PreyFunction<void(ArkRetreatManager* const _this)>(0x129D010);
 	static inline auto FAddRetreatPoint = PreyFunction<void(ArkRetreatManager* const _this, const CArkRetreatPoint& _retreatPoint)>(0x129D040);
 	static inline auto FRemoveRetreatPoint = PreyFunction<void(ArkRetreatManager* const _this, const CArkRetreatPoint& _retreatPoint)>(0x129D300);
@@ -100,5 +114,6 @@ public:
 	static inline auto FReleaseDistraction = PreyFunction<void(ArkRetreatManager* const _this, unsigned _distractionEntityId)>(0x129D1B0);
 	static inline auto FRemoveEntity = PreyFunction<void(std::vector<ArkRetreatManager::RetreatEntityInfo>& _entityInfos, const IEntity& _entity)>(0x129D280);
 	static inline auto FGetUnreservedEntitiesInRange = PreyFunction<std::vector<ArkRetreatManager::RetreatEntityInfo*>& (std::vector<ArkRetreatManager::RetreatEntityInfo>& _entityInfos, const AABB& _searchBounds)>(0x129D050);
+#endif
 };
-#endif // MOONCRASH
+

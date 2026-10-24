@@ -34,15 +34,17 @@ class CPlatformOS_PC
 	, public IPlatformOS::IPlatformListener
 	, public ISystemEventListener
 	, public IGameFrameworkListener
-{ // Size=200 (0xC8)
+{ // Size=200 (0xC8), Mooncrash: Size=256 (0x100)
 public:
 	CPlatformOS_Base::CStableFPSWatcher m_fpsWatcher;
 	CListenerSet<IPlatformOS::IPlatformListener *> m_listeners;
 	std::vector<char> m_encryptionMagic;
 	std::vector<unsigned char> m_encryptionKey;
 	float m_delayLevelStartIcon;
+#ifndef MOONCRASH
 	int m_cachePakStatus;
 	unsigned m_cachePakUserId;
+#endif // !MOONCRASH
 	bool m_bSignedIn;
 	bool m_bSaving;
 	bool m_bAllowMessageBox;
@@ -57,6 +59,9 @@ public:
 	CPlatformOS_PC(const uint8_t createParams);
 	virtual unsigned InitLanguageInfo(unsigned _languagesWithData);
 	virtual void Tick(float realFrameTime);
+#ifdef MOONCRASH
+	virtual void PostServiceTask(IPlatformOS::IServiceTask* _task);
+#endif // MOONCRASH
 	virtual const char* GetPlatformName() const;
 	virtual unsigned UserGetMaximumSignedInUsers() const;
 	virtual bool UserIsSignedIn(unsigned userIndex) const;
@@ -84,6 +89,9 @@ public:
 	virtual std::shared_ptr<IPlatformOS::ISaveReader> SaveGetReader(const char* fileName, unsigned _userId);
 	virtual std::shared_ptr<IPlatformOS::ISaveWriter> SaveGetWriter(const char* fileName, unsigned _userId);
 	virtual bool SaveCopyFiles(const char* _szSource, const char* _szDestination, const char* _szPattern, unsigned user);
+#ifdef MOONCRASH
+	virtual std::vector<string> GetSaveFileNamesFromContainer(const char* _containerName, const char* _pattern);
+#endif // MOONCRASH
 	virtual bool KeyboardStart(unsigned inUserIndex, unsigned flags, const wchar_t* title, const wchar_t* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback);
 	virtual bool KeyboardIsRunning();
 	virtual bool KeyboardCancel();
@@ -93,20 +101,29 @@ public:
 	virtual void RemoveListener(IPlatformOS::IPlatformListener* pListener);
 	virtual void NotifyListeners(IPlatformOS::SPlatformEvent& event);
 	virtual const char* GetSKUId();
+#ifndef MOONCRASH
 	virtual unsigned GetBaseServiceLabelForCurrentSku() const;
 	virtual unsigned GetLeadServiceLabelForCurrentSku() const;
+#endif // !MOONCRASH
 	virtual IPlatformOS::EMsgBoxResult DebugMessageBox(const char* body, const char* title, unsigned flags) const;
+#ifndef MOONCRASH
 	virtual bool PostLocalizationBootChecks();
+#endif // !MOONCRASH
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
+#ifndef MOONCRASH
 	virtual bool DebugSave(IPlatformOS::SDebugDump& dump);
 	virtual bool ConsoleLoadGame(IConsoleCmdArgs* pArgs);
+#endif // !MOONCRASH
 	virtual const char* const GetHostName();
 	virtual void InitEncryptionKey(const char* pMagic, uint64_t magicLength, const uint8_t* pKey, uint64_t keyLength);
 	virtual void GetEncryptionKey(const std::vector<char>* * pMagic, const std::vector<unsigned char>* * pKey);
+#ifndef MOONCRASH
 	virtual bool IsStoreCompleted();
 	virtual bool IsTrial() const;
 	virtual void ShowStoreProduct(const char* _productId, unsigned __unnamed1);
+#endif // !MOONCRASH
 	virtual EArkFirstPartyEnvironmentQueryResponse QueryFirstPartyEnvironment(EArkFirstPartyEnvironment& _env);
+#ifndef MOONCRASH
 	virtual EUserPIIStatus GetUserPII(unsigned inUser, SUserPII* pOutPII);
 	virtual IPlatformOS::ECDP_Start StartUsingCachePaks(unsigned userId, bool* outWritesOccurred);
 	virtual IPlatformOS::ECDP_End EndUsingCachePaks(unsigned userId);
@@ -118,6 +135,7 @@ public:
 	virtual IPlatformOS::EZipExtractFail ExtractZips(const char* path);
 	virtual void SetOpticalDriveIdle(bool bIdle);
 	virtual void AllowOpticalDriveUsage(bool bAllow);
+#endif // !MOONCRASH
 	virtual bool GetLocalIPAddress(char* ipAddress, unsigned& ip, int length) const;
 	virtual CStreamingInstallBase* GetStreamingInstall();
 	virtual ELanguageID GetLanguageIDFromName(const char* languageName) const;

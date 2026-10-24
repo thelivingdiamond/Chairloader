@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkSceneWindow.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkSceneWindow : public CGameObjectExtensionHelper<ArkSceneWindow,IGameObjectExtension> // Id=8019544 Size=64
 {
 public:
@@ -42,6 +45,7 @@ public:
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
 	virtual ~ArkSceneWindow();
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FPostInit = PreyFunction<void(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0xA13080);
 	static inline auto FInitClient = PreyFunction<void(ArkSceneWindow *const _this, int _channelId)>(0xA13080);
@@ -63,50 +67,7 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkSceneWindow *const _this, float frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSceneWindow *const _this)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkSceneWindow const *const _this, ICrySizer *_pS)>(0x1187D80);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <Prey/CryNetwork/ISerialize.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// ArkSceneWindow
-// Header:  Prey/GameDll/ark/ArkSceneWindow.h
-class ArkSceneWindow : public CGameObjectExtensionHelper<ArkSceneWindow, IGameObjectExtension>
-{ // Size=64 (0x40)
-public:
-	ArkSceneWindow();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void InitClient(int _channelId);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void Release();
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _bAuth);
-	virtual void PostUpdate(float frameTime);
-	virtual void PostRemoteSpawn();
-	virtual void GetMemoryUsage(ICrySizer* _pS) const;
-
+#else
 	static inline auto FArkSceneWindowOv2 = PreyFunction<void(ArkSceneWindow* const _this)>(0x122BA10);
 	static inline auto FInit = PreyFunction<bool(ArkSceneWindow* const _this, IGameObject* _pGameObject)>(0x37A880);
 	static inline auto FPostInit = PreyFunction<void(ArkSceneWindow* const _this, IGameObject* _pGameObject)>(0x1333E90);
@@ -129,5 +90,5 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkSceneWindow* const _this, float frameTime)>(0x1333E90);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSceneWindow* const _this)>(0x1333E90);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkSceneWindow* const _this, ICrySizer* _pS)>(0x182A3D0);
+#endif
 };
-#endif // !MOONCRASH

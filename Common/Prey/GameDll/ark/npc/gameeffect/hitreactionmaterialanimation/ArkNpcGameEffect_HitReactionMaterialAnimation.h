@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -22,7 +20,12 @@ public:
 	void Update(ArkNpc& _arg0_, ArkNpcGameEffectInstance_HitReactionMaterialAnimation& _arg1_, const float _arg2_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x121B7C0);
+	static inline auto FArkNpcGameEffect_HitReactionMaterialAnimation = PreyFunction<void(ArkNpcGameEffect_HitReactionMaterialAnimation* const _this)>(0x121B780);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12AEB90);
 	static inline auto FArkNpcGameEffect_HitReactionMaterialAnimation = PreyFunction<void(ArkNpcGameEffect_HitReactionMaterialAnimation* const _this)>(0x12AEB80);
+#endif
 };
-#endif // MOONCRASH
+

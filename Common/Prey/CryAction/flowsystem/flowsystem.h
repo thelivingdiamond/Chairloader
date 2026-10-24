@@ -354,9 +354,10 @@ public:
 		Contains(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
 
-		//TODO: MOONCRASH
 #ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Contains const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE260);
+#else
+		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Contains const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x1112E20);
 #endif
 	};
 
@@ -365,9 +366,10 @@ public:
 	public:
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
 
-		//TODO: MOONCRASH
 #ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Empty const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE270);
+#else
+		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::Empty const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x1112E30);
 #endif
 	};
 
@@ -379,9 +381,10 @@ public:
 		EmptyOrDoesNotSortBefore(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
 
-		//TODO: MOONCRASH
 #ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::EmptyOrDoesNotSortBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE280);
+#else
+		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::EmptyOrDoesNotSortBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x1112E40);
 #endif
 	};
 
@@ -393,9 +396,10 @@ public:
 		SortsBefore(ArkAiTreeNode const &_node);
 		bool operator()(ArkAiTreeInstanceNodeQueueElement const &_elem) const { return FoperatorRBLRBR(this,_elem); }
 
-		//TODO: MOONCRASH
 #ifndef MOONCRASH
 		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::SortsBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x10DE2B0);
+#else
+		static inline auto FoperatorRBLRBR = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement::SortsBefore const *const _this, ArkAiTreeInstanceNodeQueueElement const &_elem)>(0x1112E70);
 #endif
 	};
 
@@ -414,11 +418,15 @@ public:
 	int *operator int ArkSafeBool<class ArkAiTreeInstanceNodeQueueElement>::*() const;
 #endif
 
-	//TODO: MOONCRASH
 #ifndef MOONCRASH
 	static inline auto FGetNode = PreyFunction<ArkAiTreeNode const &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x12E5E70);
 	static inline auto FGetInstanceNode = PreyFunction<ArkAiTreeInstanceNode &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x12AAC70);
 	static inline auto FWantsUpdate = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x10DE2E0);
 	static inline auto FSetWantsUpdate = PreyFunction<void(ArkAiTreeInstanceNodeQueueElement *const _this, bool _bWantsUpdate)>(0x419BF0);
+#else
+	static inline auto FGetNode = PreyFunction<ArkAiTreeNode const &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x1112EA0);
+	static inline auto FGetInstanceNode = PreyFunction<ArkAiTreeInstanceNode &(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x12DC700);
+	static inline auto FWantsUpdate = PreyFunction<bool(ArkAiTreeInstanceNodeQueueElement const *const _this)>(0x720C90);
+	static inline auto FSetWantsUpdate = PreyFunction<void(ArkAiTreeInstanceNodeQueueElement *const _this, bool _bWantsUpdate)>(0xEAF650);
 #endif
 };

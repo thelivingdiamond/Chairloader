@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -170,6 +169,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/ui/IUIModule.h>
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryInput/IInput.h>
 #include <Prey/CrySystem/ISystem.h>
@@ -180,7 +180,7 @@ public:
 #include <Prey/GameDll/ark/ui/IArkTutorialMenuListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <_unknown/IArkStoreUIListener.h>
+#include <Prey/GameDll/ark/ui/IArkStoreUIListener.h>
 
 class CCryName;
 enum class EArkSaveLoadMode;
@@ -258,9 +258,10 @@ public:
 	void OpenSaveLoadMenu(bool _bSave) { FOpenSaveLoadMenu(this, _bSave); }
 	void UpdateInputPrompts() const { FUpdateInputPrompts(this); }
 
+	static inline const char* GetTypeNameS() { return "ArkPauseMenu"; }   // inlined in the game (no address); UIManager::GetUIEventSystem<T> needs it
+
 #if 0
 	ArkPauseMenu();
-	static const char* GetTypeNameS();
 	void SetShowContinuePrompt(bool _arg0_);
 	void GotoTutorials();
 	bool IsOpen();

@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -51,6 +49,7 @@ public:
 	void ActivateTrauma(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerFatigueComponentOv1 = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12343E0);
 	static inline auto FInit = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x1234900);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const XmlNodeRef& _root)>(0x12349C0);
@@ -63,59 +62,7 @@ public:
 	static inline auto FPreviewFatigue = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _fatigueAmount)>(0x1234B90);
 	static inline auto FOnPreviewAnimationFinished = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x1234B00);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x1234B40);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkSimpleCharge.h>
-#include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/player/IArkStatsListener.h>
-
-class CCryName;
-class XmlNodeRef;
-
-// ArkPlayerFatigueComponent
-// Header:  Prey/GameDll/ark/player/ArkPlayerFatigueComponent.h
-class ArkPlayerFatigueComponent : private IArkStatsListener
-{ // Size=56 (0x38)
-public:
-	bool m_bExhausted;
-	bool m_bPlayingAudio;
-	bool m_bShowingUI;
-	int m_bInfiniteStamina;
-	ArkChargeAmount m_fatigue;
-	float m_staminaPercentStartAudio;
-	float m_staminaPercentStopAudio;
-	float m_showUIPercent;
-	ArkSimpleTimer m_drainDelay;
-	ArkAudioRtpc m_rtpcFatigue;
-	ArkAudioTrigger m_triggerStart;
-	ArkAudioTrigger m_triggerStop;
-
-	ArkPlayerFatigueComponent();
-	virtual ~ArkPlayerFatigueComponent();
-	void Init() { FInit(this); }
-	void LoadConfig(const XmlNodeRef& _root) { FLoadConfig(this, _root); }
-	void Update(float _frameTime) { FUpdate(this, _frameTime); }
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-	void Reset() { FReset(this); }
-	bool TestExhaustion() const { return FTestExhaustion(this); }
-	bool TestStamina() const { return FTestStamina(this); }
-	void AdjustFatigue(float _fatigueAmount) { FAdjustFatigue(this, _fatigueAmount); }
-	void PreviewFatigue(float _fatigueAmount) { FPreviewFatigue(this, _fatigueAmount); }
-	void OnPreviewAnimationFinished() { FOnPreviewAnimationFinished(this); }
-	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
-
-#if 0
-	bool IsExhausted() const;
-	bool IsShowingUI() const;
-	float GetFatigue() const;
-	void SetExhausted(bool _arg0_);
-	void ActivateTrauma(bool _arg0_);
-#endif
-
+#else
 	static inline auto FArkPlayerFatigueComponentOv1 = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D52D0);
 	static inline auto FInit = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D57F0);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const XmlNodeRef& _root)>(0x12D58B0);
@@ -128,5 +75,5 @@ public:
 	static inline auto FPreviewFatigue = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _fatigueAmount)>(0x12D5A80);
 	static inline auto FOnPreviewAnimationFinished = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D59F0);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x12D5A30);
+#endif
 };
-#endif // !MOONCRASH

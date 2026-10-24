@@ -5,6 +5,8 @@
 #include <Prey/CryString/CryName.h>
 #include <Chairloader/PreyFunction.h>
 #include <Prey/Ark/ArkBuildInfo.h>
+#include <Prey/CrySystem/FrameProfileSystem.h>
+#include <Prey/Ark/ArkAudioUtil.h>
 
 namespace minigui
 {
@@ -35,9 +37,7 @@ class CThreadTaskManager;
 class CResourceManager;
 struct IFlashPlayer;
 
-class CFrameProfileSystem { void* pad; };
 class CThreadProfiler {};
-class CProfilingSystem { void* pad; };
 class CMemoryFragmentationProfiler { unsigned pad; };
 
 class CTimer : public ITimer
@@ -52,7 +52,7 @@ public:
 		float averageFrameTime;
 		float channelScales[3];
 		float arrFrameTimes[100];
-		unsigned int scaleRtpc_m_controlId;
+		ArkAudioRtpc scaleRtpc;
 		bool bPaused;
 		bool bRealTime;
 		bool bPausable;
@@ -140,6 +140,9 @@ public:
 		float m_Color[4];
 		bool m_HardFailure;
 	};
+
+	// New CSystem virtual (last primary vtable slot); declaration only, call FInit.
+	virtual bool Init(const SSystemInitParams& startupParams);
 
 #ifndef MOONCRASH
 	static inline auto FSetDevMode = PreyFunction<void(CSystem* _this, bool bEnable)>(0xDC7720);
@@ -279,13 +282,13 @@ public:
 	static inline auto FGetIProcess = PreyFunction<IProcess* (CSystem* const _this)>(0xDE29C0);
 	static inline auto FIsTestMode = PreyFunction<bool(const CSystem* const _this)>(0xDE3290);
 	static inline auto FDisplayErrorMessage = PreyFunction<void(CSystem* const _this, const char* acMessage, float fTime, const float* pfColor, bool bHardError)>(0xDFBEE0);
-	static inline auto FFatalError = PreyFunction<void(CSystem* const _this, const char* format, ... ArgList)>(0xDFFB60);
-	static inline auto FReportBug = PreyFunction<void(CSystem* const _this, const char* format, ... szBuffer)>(0xE00CD0);
+	// varargs: static inline auto FFatalError = PreyFunction<void(CSystem* const _this, const char* format, ...)>(0xDFFB60);
+	// varargs: static inline auto FReportBug = PreyFunction<void(CSystem* const _this, const char* format, ...)>(0xE00CD0);
 	static inline auto FOpenArkBugReporter = PreyFunction<void(CSystem* const _this, const char* _bugString)>(0x1333E90);
 	static inline auto FSetLastSaveFile = PreyFunction<void(CSystem* const _this, const char* _saveGameFileName)>(0xDE4890);
 	static inline auto FGetLastSaveFile = PreyFunction<const char* (CSystem* const _this)>(0xDE2B40);
 	static inline auto FWarningV = PreyFunction<void(CSystem* const _this, EValidatorModule module, EValidatorSeverity severity, int flags, const char* file, const char* format, char* args)>(0xDE7050);
-	static inline auto FWarning = PreyFunction<void(CSystem* const _this, EValidatorModule module, EValidatorSeverity severity, int flags, const char* file, const char* format, ... _arg5_)>(0xDE7020);
+	// varargs: static inline auto FWarning = PreyFunction<void(CSystem* const _this, EValidatorModule module, EValidatorSeverity severity, int flags, const char* file, const char* format, ...)>(0xDE7020);
 	static inline auto FShowMessage = PreyFunction<int(CSystem* const _this, const char* text, const char* caption, unsigned uType)>(0xDE4A40);
 	static inline auto FCheckLogVerbosity = PreyFunction<bool(CSystem* const _this, int verbosity)>(0xDE1630);
 	static inline auto FDebugStats = PreyFunction<void(CSystem* const _this, bool checkpoint, bool leaks)>(0xDFEC90);
@@ -318,12 +321,15 @@ public:
 	static inline auto FGetLevelEncrypter = PreyFunction<ILevelEncrypter* (CSystem* const _this)>(0x1CBB0B0);
 	static inline auto FGetEvaluationManager = PreyFunction<IEvaluationManager* (CSystem* const _this)>(0x1CBB0B0);
 	static inline auto FGetDeveloperName = PreyFunction<char* (CSystem* const _this, char* devName)>(0x1CBB0B0);
+//TODO: this is still broken
+	#if 0
 	static inline auto FCollectMemStats = PreyFunction<void(CSystem* const _this, ICrySizer* pSizer, CSystem::MemStatsPurposeEnum nPurpose, std::vector<SmallModuleInfo>* pStats)>(0xDFDE50);
 	static inline auto FGetExeSizes = PreyFunction<void(CSystem* const _this, ICrySizer* pSizer, CSystem::MemStatsPurposeEnum nPurpose)>(0xE000B0);
 	static inline auto FTickMemStats = PreyFunction<void(CSystem* const _this, CSystem::MemStatsPurposeEnum nPurpose, IResourceCollector* pResourceCollector)>(0xE00EA0);
-	static inline auto FInitializeEngineModule = PreyFunction<bool(CSystem* const _this, const SModuleInitInfo& _initInfo, const SSystemInitParams& initParams, bool bQuitIfNotFound)>(0xDF52E0);
+#endif
+	static inline auto FInitializeEngineModule = PreyFunction<bool(CSystem* _this, const SModuleInitInfo* _initInfo, const SSystemInitParams* initParams, bool bQuitIfNotFound)>(0xDF52E0);   // pointer params (same ABI as references); Chairloader.cpp hooks it
 	static inline auto FUnloadEngineModule = PreyFunction<bool(CSystem* const _this, const SModuleInitInfo& _initInfo)>(0xDFB110);
-	static inline auto FShutDown = PreyFunction<void(CSystem* const _this)>(0xDE4A70);
+	static inline auto FShutdown = PreyFunction<void(CSystem* const _this)>(0xDE4A70);   // game name: ShutDown
 	static inline auto FInitRenderer = PreyFunction<bool(CSystem* const _this, void* hinst, void* hwnd, const SSystemInitParams& initParams)>(0xDF4C50);
 	static inline auto FInitPhysics = PreyFunction<bool(CSystem* const _this, const SSystemInitParams& initParams)>(0xDF2F90);
 	static inline auto FInitPhysicsRenderer = PreyFunction<bool(CSystem* const _this, const SSystemInitParams& initParams)>(0xDF48E0);
@@ -545,7 +551,9 @@ public:
 	ESystemConfigSpec m_nServerConfigSpec;
 	ESystemConfigSpec m_nMaxConfigSpec;
 	std::unique_ptr<CServerThrottle> m_pServerThrottle;
+#ifndef MOONCRASH
 	CProfilingSystem m_ProfilingSystem;
+#endif
 	sUpdateTimes m_UpdateTimes[128];
 	unsigned int m_UpdateTimesIdx;
 	bool m_bPaused;
@@ -578,4 +586,8 @@ public:
 	string m_LastSaveFile;
 };
 
-static_assert(sizeof(CSystem) == 0x2E38);
+#ifndef MOONCRASH
+static_assert(sizeof(CSystem) == 0x2E38); // 11832
+#else
+static_assert(sizeof(CSystem) == 0x2E30); // 11824
+#endif

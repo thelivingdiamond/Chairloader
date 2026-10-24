@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/ICryMannequinUserParams.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class CTagDefinition;
 struct SControllerDef;
@@ -49,7 +47,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x17AA400);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::FragmentIDs* const _this, const CTagDefinition& tagDefs)>(0x18D1030);
+#endif
 	};
 
 	// SMannequinPlayerParams::TagIDs
@@ -81,7 +83,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::TagIDs* const _this, const CTagDefinition& tagDefs)>(0x17AB690);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::TagIDs* const _this, const CTagDefinition& tagDefs)>(0x18D22C0);
+#endif
 	};
 
 	// SMannequinPlayerParams::TagGroupIDs
@@ -124,7 +130,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::ScopeIDs* const _this, const CTagDefinition& tagDefs)>(0x17AAF90);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::ScopeIDs* const _this, const CTagDefinition& tagDefs)>(0x18D1BC0);
+#endif
 	};
 
 	// SMannequinPlayerParams::ContextIDs
@@ -141,7 +151,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 		void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::ContextIDs* const _this, const CTagDefinition& tagDefs)>(0x17AA1E0);
+#else
 		static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::ContextIDs* const _this, const CTagDefinition& tagDefs)>(0x18D0E10);
+#endif
 	};
 
 	// SMannequinPlayerParams::Fragments
@@ -173,7 +187,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 			Smelee();
 		#endif
 
+#ifndef MOONCRASH
+			static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::Smelee* const _this, const SControllerDef& controllerDef)>(0x17AB280);
+#else
 			static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::Smelee* const _this, const SControllerDef& controllerDef)>(0x18D1EB0);
+#endif
 		};
 
 		// SMannequinPlayerParams::Fragments::Smelee_multipart
@@ -203,7 +221,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 			Smelee_multipart();
 		#endif
 
+#ifndef MOONCRASH
+			static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::Smelee_multipart* const _this, const SControllerDef& controllerDef)>(0x17AB440);
+#else
 			static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::Smelee_multipart* const _this, const SControllerDef& controllerDef)>(0x18D2070);
+#endif
 		};
 
 		// SMannequinPlayerParams::Fragments::SLedge_Grab
@@ -228,7 +250,11 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 				void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+				static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::SLedge_Grab::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x17AAC60);
+#else
 				static inline auto FInit = PreyFunction<void(SMannequinPlayerParams::Fragments::SLedge_Grab::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x18D1890);
+#endif
 			};
 
 			TMannequinAutoInit<int,-1> fragmentID;
@@ -259,6 +285,10 @@ struct SMannequinPlayerParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinPlayerParams* const _this, const SControllerDef& controllerDef)>(0x17A9AD0);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinPlayerParams* const _this, const SControllerDef& controllerDef)>(0x18D0700);
+#endif
 };
-#endif // MOONCRASH
+

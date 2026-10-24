@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryFlowGraph/IFlowBaseNode.h>
@@ -11,7 +9,7 @@ struct SFlowNodeConfig;
 
 // CArkFlowSetWorldTimeDilation
 // Header:  Prey/GameDll/ark/ArkFlowSetWorldTimeDilation.h
-class CArkFlowSetWorldTimeDilation : public CFlowBaseNode<1>
+class CArkFlowSetWorldTimeDilation : public CFlowBaseNode<eNCT_Instanced>
 { // Size=24 (0x18)
 public:
 	enum class EInputs
@@ -36,9 +34,16 @@ public:
 	CArkFlowSetWorldTimeDilation(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowSetWorldTimeDilation* const _this, SFlowNodeConfig& config)>(0x1436A50);
+	static inline auto FProcessEvent = PreyFunction<void(CArkFlowSetWorldTimeDilation* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x1436D20);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowSetWorldTimeDilation* const _this, ICrySizer* s)>(0x479120);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowSetWorldTimeDilation* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x1436A00);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowSetWorldTimeDilation* const _this, SFlowNodeConfig& config)>(0x154C710);
 	static inline auto FProcessEvent = PreyFunction<void(CArkFlowSetWorldTimeDilation* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* pActInfo)>(0x154C9E0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowSetWorldTimeDilation* const _this, ICrySizer* s)>(0x4BC120);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowSetWorldTimeDilation* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x154C6C0);
+#endif
 };
-#endif // MOONCRASH
+

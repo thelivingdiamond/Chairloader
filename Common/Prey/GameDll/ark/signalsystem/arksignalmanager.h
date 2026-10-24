@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -55,9 +54,9 @@ public:
 	std::vector<ArkSignalSystem::Package::Value> m_values;
 	uint64_t m_id;
 	unsigned m_sourceId;
-	ArkSignalSystem::CArkSignalContext m_context;
+	::ArkSignalSystem::CArkSignalContext m_context;
 	
-	Package(ArkSignalSystem::Data::PackageData const &_packageData, float _scale, ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId);
+	Package(ArkSignalSystem::Data::PackageData const &_packageData, float _scale, ::ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId);
 	void ApplyRules(std::vector<ArkSignalSystem::Data::ModifierData::RuleData> const &_rules) { FApplyRules(this,_rules); }
 	HitInfo const *GetHitInfo() const { return FGetHitInfo(this); }
 	std::vector<ArkSignalSystem::Package::Value> const &GetValues() const { return FGetValues(this); }
@@ -68,7 +67,7 @@ public:
 	void SendToFlowGraphPackageReceiver(unsigned arg0, ArkFlowSignalPackageReceiver &arg1) const;
 	void Serialize(TSerialize arg0);
 	SExplosionContainer *GetExplosionContainer() const;
-	ArkSignalSystem::CArkSignalContext const &GetContext() const;
+	::ArkSignalSystem::CArkSignalContext const &GetContext() const;
 	unsigned GetSourceId() const;
 #endif
 	
@@ -222,7 +221,7 @@ public:
 	void RegisterForAllSignalsForEntity(const unsigned _entityId) { FRegisterForAllSignalsForEntity(this,_entityId); }
 	void UnregisterForAllSignalsForEntity(const unsigned _entityId) { FUnregisterForAllSignalsForEntity(this,_entityId); }
 	std::vector<unsigned __int64> GetRegisteredSignals(const unsigned _entityId, bool &_bAllSignals) const { return FGetRegisteredSignals(this,_entityId,_bAllSignals); }
-	void SendPackage(unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend) { FSendPackage(this,_targetEntityId,_senderEntityId,_instigatorEntityId,_packageId,_context,_scale,_numRepeats,_repeatTime,_bDelayFirstSend); }
+	void SendPackage(unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, ::ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend) { FSendPackage(this,_targetEntityId,_senderEntityId,_instigatorEntityId,_packageId,_context,_scale,_numRepeats,_repeatTime,_bDelayFirstSend); }
 	virtual bool OnBeforeSpawn(SEntitySpawnParams &params){return false;};
 	virtual void OnSpawn(IEntity *pEntity, SEntitySpawnParams &params){};
 	virtual bool OnRemove(IEntity *_pEntity){return false;};
@@ -277,7 +276,7 @@ public:
 	static inline auto FRegisterForAllSignalsForEntity = PreyFunction<void(ArkSignalSystem::Manager *const _this, const unsigned _entityId)>(0x15DABA0);
 	static inline auto FUnregisterForAllSignalsForEntity = PreyFunction<void(ArkSignalSystem::Manager *const _this, const unsigned _entityId)>(0x15DCD40);
 	static inline auto FGetRegisteredSignals = PreyFunction<std::vector<unsigned __int64>(ArkSignalSystem::Manager const *const _this, const unsigned _entityId, bool &_bAllSignals)>(0x15D9F30);
-	static inline auto FSendPackage = PreyFunction<void(ArkSignalSystem::Manager *const _this, unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend)>(0x15DB380);
+	static inline auto FSendPackage = PreyFunction<void(ArkSignalSystem::Manager *const _this, unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, ::ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend)>(0x15DB380);
 	static inline auto FOnBeforeSpawn = PreyFunction<bool(ArkSignalSystem::Manager *const _this, SEntitySpawnParams &params)>(0x1B933B0);
 	static inline auto FOnSpawn = PreyFunction<void(ArkSignalSystem::Manager *const _this, IEntity *pEntity, SEntitySpawnParams &params)>(0xA13080);
 	static inline auto FOnRemove = PreyFunction<bool(ArkSignalSystem::Manager *const _this, IEntity *_pEntity)>(0x15DA630);
@@ -319,8 +318,8 @@ public:
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/signalsystem/ArkSignalContext.h>
-#include <_unknown/ArkDelegate.h>
-#include <_unknown/RayCastQueue.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
+#include <Prey/CryPhysics/RayCastQueue.h>
 
 class ArkFlowSignalPackageReceiver;
 class ArkFlowSignalReceiver;
@@ -379,9 +378,9 @@ public:
 	std::vector<ArkSignalSystem::Package::Value> m_values;
 	uint64_t m_id;
 	unsigned m_sourceId;
-	ArkSignalSystem::CArkSignalContext m_context;
+	::ArkSignalSystem::CArkSignalContext m_context;
 
-	Package(const ArkSignalSystem::Data::PackageData& _packageData, float _scale, const ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId);
+	Package(const ArkSignalSystem::Data::PackageData& _packageData, float _scale, const ::ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId);
 	void ApplyRules(const std::vector<ArkSignalSystem::Data::ModifierData::RuleData>& _rules) { FApplyRules(this, _rules); }
 	const HitInfo* GetHitInfo() const { return FGetHitInfo(this); }
 	const std::vector<ArkSignalSystem::Package::Value>& GetValues() const { return FGetValues(this); }
@@ -395,12 +394,12 @@ public:
 	void SendToFlowGraphPackageReceiver(unsigned _arg0_, ArkFlowSignalPackageReceiver& _arg1_) const;
 	void Serialize(TSerialize _arg0_);
 	SExplosionContainer* GetExplosionContainer() const;
-	const ArkSignalSystem::CArkSignalContext& GetContext() const;
+	const ::ArkSignalSystem::CArkSignalContext& GetContext() const;
 	void ClearResisted();
 	unsigned GetSourceId() const;
 #endif
 
-	static inline auto FPackageOv3 = PreyFunction<void(ArkSignalSystem::Package* const _this, const ArkSignalSystem::Data::PackageData& _packageData, float _scale, const ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId)>(0x1700370);
+	static inline auto FPackageOv3 = PreyFunction<void(ArkSignalSystem::Package* const _this, const ArkSignalSystem::Data::PackageData& _packageData, float _scale, const ::ArkSignalSystem::CArkSignalContext _context, unsigned _sourceId)>(0x1700370);
 	static inline auto FApplyRules = PreyFunction<void(ArkSignalSystem::Package* const _this, const std::vector<ArkSignalSystem::Data::ModifierData::RuleData>& _rules)>(0x17014B0);
 	static inline auto FGetHitInfo = PreyFunction<const HitInfo* (const ArkSignalSystem::Package* const _this)>(0x1701F40);
 	static inline auto FGetValues = PreyFunction<const std::vector<ArkSignalSystem::Package::Value>& (const ArkSignalSystem::Package* const _this)>(0x3DAC90);
@@ -557,7 +556,7 @@ public:
 	unsigned m_uniqueHitIdGenerator;
 
 	Manager();
-	virtual ~Manager();
+	virtual ~Manager() {}
 	void Scan() { FScan(this); }
 	void Reset() { FReset(this); }
 	void RegisterEntityReceiver(const unsigned _entityId, ArkSignalSystem::Receiver& _receiver) { FRegisterEntityReceiver(this, _entityId, _receiver); }
@@ -567,12 +566,12 @@ public:
 	void RegisterForAllSignalsForEntity(const unsigned _entityId) { FRegisterForAllSignalsForEntity(this, _entityId); }
 	void UnregisterForAllSignalsForEntity(const unsigned _entityId) { FUnregisterForAllSignalsForEntity(this, _entityId); }
 	std::vector<uint64_t> GetRegisteredSignals(const unsigned _entityId, bool& _bAllSignals) const { alignas(std::vector<uint64_t>) std::byte _return_buf_[sizeof(std::vector<uint64_t>)]; return *FGetRegisteredSignals(this, reinterpret_cast<std::vector<uint64_t>*>(_return_buf_), _entityId, _bAllSignals); }
-	void SendPackage(unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, const ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend) { FSendPackage(this, _targetEntityId, _senderEntityId, _instigatorEntityId, _packageId, _context, _scale, _numRepeats, _repeatTime, _bDelayFirstSend); }
-	virtual bool OnBeforeSpawn(SEntitySpawnParams& params);
-	virtual void OnSpawn(IEntity* pEntity, SEntitySpawnParams& params);
-	virtual bool OnRemove(IEntity* _pEntity);
-	virtual void OnReused(IEntity* pEntity, SEntitySpawnParams& params);
-	virtual void OnEvent(IEntity* pEntity, SEntityEvent& event);
+	void SendPackage(unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, const ::ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend) { FSendPackage(this, _targetEntityId, _senderEntityId, _instigatorEntityId, _packageId, _context, _scale, _numRepeats, _repeatTime, _bDelayFirstSend); }
+	virtual bool OnBeforeSpawn(SEntitySpawnParams& params) { return FOnBeforeSpawn(this, params); }
+	virtual void OnSpawn(IEntity* pEntity, SEntitySpawnParams& params) { FOnSpawn(this, pEntity, params); }
+	virtual bool OnRemove(IEntity* _pEntity) { return FOnRemove(this, _pEntity); }
+	virtual void OnReused(IEntity* pEntity, SEntitySpawnParams& params) { FOnReused(this, pEntity, params); }
+	virtual void OnEvent(IEntity* pEntity, SEntityEvent& event) { FOnEvent(this, pEntity, event); }
 	unsigned SendPackageInArea(const Vec3& _pos, float _radius, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, int _hitType, float _scale, ArkDelegate<void __cdecl(unsigned int)> _callback) { return FSendPackageInArea(this, _pos, _radius, _senderEntityId, _instigatorEntityId, _packageId, _hitType, _scale, _callback); }
 	void OnLevelLoad() { FOnLevelLoad(this); }
 	const ArkSignalSystem::Data::PackageData* GetPackageData(uint64_t _id) const { return FGetPackageData(this, _id); }
@@ -625,7 +624,7 @@ public:
 	static inline auto FRegisterForAllSignalsForEntity = PreyFunction<void(ArkSignalSystem::Manager* const _this, const unsigned _entityId)>(0x1702C90);
 	static inline auto FUnregisterForAllSignalsForEntity = PreyFunction<void(ArkSignalSystem::Manager* const _this, const unsigned _entityId)>(0x1704C40);
 	static inline auto FGetRegisteredSignals = PreyFunction<std::vector<uint64_t>*(const ArkSignalSystem::Manager* const _this, std::vector<uint64_t>* _return_value_, const unsigned _entityId, bool& _bAllSignals)>(0x1701FE0);
-	static inline auto FSendPackage = PreyFunction<void(ArkSignalSystem::Manager* const _this, unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, const ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend)>(0x1703620);
+	static inline auto FSendPackage = PreyFunction<void(ArkSignalSystem::Manager* const _this, unsigned _targetEntityId, unsigned _senderEntityId, unsigned _instigatorEntityId, uint64_t _packageId, const ::ArkSignalSystem::CArkSignalContext _context, float _scale, int _numRepeats, float _repeatTime, bool _bDelayFirstSend)>(0x1703620);
 	static inline auto FOnBeforeSpawn = PreyFunction<bool(ArkSignalSystem::Manager* const _this, SEntitySpawnParams& params)>(0x1A302A0);
 	static inline auto FOnSpawn = PreyFunction<void(ArkSignalSystem::Manager* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0x1333E90);
 	static inline auto FOnRemove = PreyFunction<bool(ArkSignalSystem::Manager* const _this, IEntity* _pEntity)>(0x1702720);

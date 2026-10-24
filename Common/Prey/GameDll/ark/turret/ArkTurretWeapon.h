@@ -1,4 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -88,4 +87,8 @@ public:
 	static inline auto FGetBulletDirToHit = PreyFunction<Vec3(ArkTurretWeapon const *const _this, const unsigned _targetEntityID)>(0x15EBAA0);
 	static inline auto FGetBulletDirToMissPlayer = PreyFunction<Vec3(ArkTurretWeapon const *const _this)>(0x15EBC20);
 };
+#else // MOONCRASH
+// Mooncrash moved this class; see the kept DLC header.
+#pragma once
+#include <Prey/GameDll/ark/turret/turretweapon/ArkTurretWeapon.h>
 #endif // !MOONCRASH

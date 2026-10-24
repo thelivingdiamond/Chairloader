@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/XML/IXml.h>
@@ -42,11 +40,20 @@ public:
 	void ApplyCVarPatch();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FDataDownloaded = PreyFunction<void(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource> inResource)>(0x16B2C30);
+	static inline auto FDataFailedToDownload = PreyFunction<void(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource> inResource)>(0x16B2E80);
+	static inline auto FCDataPatchDownloaderOv1 = PreyFunction<void(CDataPatchDownloader* const _this)>(0x16B2A20);
+	static inline auto FGetDownloadableResource = PreyFunction<_smart_ptr<CDownloadableResource>*(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource>* _return_value_)>(0x16B2EF0);
+	static inline auto FSetPatchingEnabled = PreyFunction<void(CDataPatchDownloader* const _this, bool inEnable)>(0x16B2FD0);
+	static inline auto FCancelDownload = PreyFunction<void(CDataPatchDownloader* const _this)>(0x16B2BD0);
+#else
 	static inline auto FDataDownloaded = PreyFunction<void(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource> inResource)>(0x17D5B30);
 	static inline auto FDataFailedToDownload = PreyFunction<void(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource> inResource)>(0x17D5D80);
 	static inline auto FCDataPatchDownloaderOv1 = PreyFunction<void(CDataPatchDownloader* const _this)>(0x17D5920);
 	static inline auto FGetDownloadableResource = PreyFunction<_smart_ptr<CDownloadableResource>*(CDataPatchDownloader* const _this, _smart_ptr<CDownloadableResource>* _return_value_)>(0x17D5DF0);
 	static inline auto FSetPatchingEnabled = PreyFunction<void(CDataPatchDownloader* const _this, bool inEnable)>(0x17D5ED0);
 	static inline auto FCancelDownload = PreyFunction<void(CDataPatchDownloader* const _this)>(0x17D5AD0);
+#endif
 };
-#endif // MOONCRASH
+

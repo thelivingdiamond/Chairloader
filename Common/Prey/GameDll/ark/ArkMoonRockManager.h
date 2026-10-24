@@ -1,12 +1,11 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/arkdeferredaction.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <_unknown/ArkDeferredActionImpl_RayCast.h>
-#include <_unknown/RayCastQueue.h>
+#include <Prey/Ark/ArkDeferredActionImpl.h>
+#include <Prey/CryPhysics/RayCastQueue.h>
 
 struct IEntity;
 struct RayCastRequest;

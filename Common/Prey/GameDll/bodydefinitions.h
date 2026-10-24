@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -84,6 +82,19 @@ public:
 	void CleanUpOriginalMaterials();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FBitNotCBodyDestrutibilityInstance = PreyFunction<void(CBodyDestrutibilityInstance* const _this)>(0x168C1C0);
+	static inline auto FReserveSlots = PreyFunction<void(CBodyDestrutibilityInstance* const _this, const int totalAttachmentsCount, const int destructibleAttachmentsCount, const int destructibleBonesCount, const int destructionEventsCount)>(0x168C560);
+	static inline auto FReset = PreyFunction<void(CBodyDestrutibilityInstance* const _this)>(0x168C650);
+	static inline auto FDeleteMikeAttachmentEntity = PreyFunction<void(CBodyDestrutibilityInstance* const _this)>(0x168C2B0);
+	static inline auto FInitWithProfileId = PreyFunction<void(CBodyDestrutibilityInstance* const _this, const unsigned profileId)>(0x168C2E0);
+	static inline auto FCanTriggerEvent = PreyFunction<bool(const CBodyDestrutibilityInstance* const _this, int idx)>(0x168FCC0);
+	static inline auto FSetDestructibleLastEventForHitReactions = PreyFunction<void(CBodyDestrutibilityInstance* const _this, const char* eventName)>(0x1695120);
+	static inline auto FInitializeMikeDeath = PreyFunction<void(CBodyDestrutibilityInstance* const _this, const unsigned entityId, float alphaTestFadeOutTime, float alphaTestFadeOutDelay, float alphaTestMax)>(0x168C3A0);
+	static inline auto FReplaceMaterial = PreyFunction<void(CBodyDestrutibilityInstance* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, IMaterial& replacementMaterial)>(0x168C3E0);
+	static inline auto FResetMaterials = PreyFunction<void(CBodyDestrutibilityInstance* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance)>(0x168C770);
+	static inline auto FUpdate = PreyFunction<void(CBodyDestrutibilityInstance* const _this, float frameTime)>(0x168C830);
+#else
 	static inline auto FBitNotCBodyDestrutibilityInstance = PreyFunction<void(CBodyDestrutibilityInstance* const _this)>(0x17AF7E0);
 	static inline auto FReserveSlots = PreyFunction<void(CBodyDestrutibilityInstance* const _this, const int totalAttachmentsCount, const int destructibleAttachmentsCount, const int destructibleBonesCount, const int destructionEventsCount)>(0x17AFB80);
 	static inline auto FReset = PreyFunction<void(CBodyDestrutibilityInstance* const _this)>(0x17AFC70);
@@ -95,5 +106,6 @@ public:
 	static inline auto FReplaceMaterial = PreyFunction<void(CBodyDestrutibilityInstance* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, IMaterial& replacementMaterial)>(0x17AFA00);
 	static inline auto FResetMaterials = PreyFunction<void(CBodyDestrutibilityInstance* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance)>(0x17AFD90);
 	static inline auto FUpdate = PreyFunction<void(CBodyDestrutibilityInstance* const _this, float frameTime)>(0x17AFE50);
+#endif
 };
-#endif // MOONCRASH
+

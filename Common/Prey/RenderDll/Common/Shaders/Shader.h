@@ -625,6 +625,8 @@ enum EHWSRMaskBit
 
 #ifndef MOONCRASH
 inline auto g_HWSR_MaskBit = PreyGlobal<uint64[HWSR_MAX]>(0x2BA71F0);
+#else
+inline auto g_HWSR_MaskBit = PreyGlobal<uint64[HWSR_MAX]>(0x2D16450);
 #endif
 
 // HWShader global flags (m_Flags)

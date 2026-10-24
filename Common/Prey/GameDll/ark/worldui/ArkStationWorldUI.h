@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -205,7 +204,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryString/CryString.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkInteractionInfo.h>
@@ -215,7 +214,7 @@ public:
 #include <Prey/GameDll/ark/iface/IArkUtilityListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
 #include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
-#include <_unknown/IArkDoomClockListener.h>
+#include <Prey/GameDll/ark/IArkDoomClockListener.h>
 #include <Prey/CryFlowGraph/IFlowSystem.h>
 
 struct ArkInteractionTestResult;

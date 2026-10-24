@@ -1,9 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryAction/IItem.h>
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/EntityUtility/EntityEffects.h>
@@ -11,10 +10,10 @@
 #include <Prey/GameDll/itemanimation.h>
 #include <Prey/GameDll/itemdefinitions.h>
 #include <Prey/GameDll/itemstring.h>
-#include <_unknown/CryFixedArray.h>
-#include <_unknown/SAccessoryParams.h>
-#include <_unknown/SAttachmentHelper.h>
-#include <_unknown/SItemAnimationEvents.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/GameDll/SAccessoryParams.h>
+#include <Prey/GameDll/SAttachmentHelper.h>
+#include <Prey/GameDll/SItemAnimationEvents.h>
 
 class CCryActor;
 class CCryName;
@@ -198,7 +197,11 @@ public:
 		SStats();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FSerialize = PreyFunction<void(CItem::SStats* const _this, TSerialize& ser)>(0x17589D0);
+#else
 		static inline auto FSerialize = PreyFunction<void(CItem::SStats* const _this, TSerialize& ser)>(0x187F620);
+#endif
 	};
 
 	// CItem::SEditorStats
@@ -513,51 +516,87 @@ public:
 	using TempAGInputName = CryFixedStringT<32>;
 	using TAccessoryArray = CryFixedArray<CItem::SAccessoryInfo,4>;
 
-	static constexpr const ERMIAttachmentType Attach_SvRequestAttachAccessory = 2;
+	static constexpr const ERMIAttachmentType Attach_SvRequestAttachAccessory = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestAttachAccessory = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestAttachAccessory = 1;
+	static constexpr const ENetReliabilityType Reliability_SvRequestAttachAccessory = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_SvRequestAttachAccessory = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestAttachAccessory = PreyGlobal<CItem::MethodInfo_SvRequestAttachAccessory>(0x2C12B48);
+#else
 	static inline auto m_infoSvRequestAttachAccessory = PreyGlobal<CItem::MethodInfo_SvRequestAttachAccessory>(0x2D8E548);
-	static constexpr const ERMIAttachmentType Attach_ClAttachAccessory = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClAttachAccessory = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClAttachAccessory = 0;
-	static constexpr const ENetReliabilityType Reliability_ClAttachAccessory = 1;
+	static constexpr const ENetReliabilityType Reliability_ClAttachAccessory = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClAttachAccessory = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClAttachAccessory = PreyGlobal<CItem::MethodInfo_ClAttachAccessory>(0x2C12B50);
+#else
 	static inline auto m_infoClAttachAccessory = PreyGlobal<CItem::MethodInfo_ClAttachAccessory>(0x2D8E550);
-	static constexpr const ERMIAttachmentType Attach_ClAttachInitialAccessory = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClAttachInitialAccessory = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClAttachInitialAccessory = 0;
-	static constexpr const ENetReliabilityType Reliability_ClAttachInitialAccessory = 1;
+	static constexpr const ENetReliabilityType Reliability_ClAttachInitialAccessory = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClAttachInitialAccessory = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClAttachInitialAccessory = PreyGlobal<CItem::MethodInfo_ClAttachInitialAccessory>(0x2C12B58);
+#else
 	static inline auto m_infoClAttachInitialAccessory = PreyGlobal<CItem::MethodInfo_ClAttachInitialAccessory>(0x2D8E558);
-	static constexpr const ERMIAttachmentType Attach_SvRequestDetachAccessory = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestDetachAccessory = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestDetachAccessory = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestDetachAccessory = 1;
+	static constexpr const ENetReliabilityType Reliability_SvRequestDetachAccessory = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_SvRequestDetachAccessory = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestDetachAccessory = PreyGlobal<CItem::MethodInfo_SvRequestDetachAccessory>(0x2C12B60);
+#else
 	static inline auto m_infoSvRequestDetachAccessory = PreyGlobal<CItem::MethodInfo_SvRequestDetachAccessory>(0x2D8E560);
-	static constexpr const ERMIAttachmentType Attach_ClDetachAccessory = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClDetachAccessory = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClDetachAccessory = 0;
-	static constexpr const ENetReliabilityType Reliability_ClDetachAccessory = 1;
+	static constexpr const ENetReliabilityType Reliability_ClDetachAccessory = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClDetachAccessory = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClDetachAccessory = PreyGlobal<CItem::MethodInfo_ClDetachAccessory>(0x2C12B68);
+#else
 	static inline auto m_infoClDetachAccessory = PreyGlobal<CItem::MethodInfo_ClDetachAccessory>(0x2D8E568);
-	static constexpr const ERMIAttachmentType Attach_SvRequestEnterModify = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestEnterModify = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestEnterModify = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestEnterModify = 1;
+	static constexpr const ENetReliabilityType Reliability_SvRequestEnterModify = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_SvRequestEnterModify = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestEnterModify = PreyGlobal<CItem::MethodInfo_SvRequestEnterModify>(0x2C12B70);
+#else
 	static inline auto m_infoSvRequestEnterModify = PreyGlobal<CItem::MethodInfo_SvRequestEnterModify>(0x2D8E570);
-	static constexpr const ERMIAttachmentType Attach_SvRequestLeaveModify = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestLeaveModify = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestLeaveModify = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestLeaveModify = 1;
+	static constexpr const ENetReliabilityType Reliability_SvRequestLeaveModify = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_SvRequestLeaveModify = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestLeaveModify = PreyGlobal<CItem::MethodInfo_SvRequestLeaveModify>(0x2C12B78);
+#else
 	static inline auto m_infoSvRequestLeaveModify = PreyGlobal<CItem::MethodInfo_SvRequestLeaveModify>(0x2D8E578);
-	static constexpr const ERMIAttachmentType Attach_ClEnterModify = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClEnterModify = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClEnterModify = 0;
-	static constexpr const ENetReliabilityType Reliability_ClEnterModify = 1;
+	static constexpr const ENetReliabilityType Reliability_ClEnterModify = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClEnterModify = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClEnterModify = PreyGlobal<CItem::MethodInfo_ClEnterModify>(0x2C12B80);
+#else
 	static inline auto m_infoClEnterModify = PreyGlobal<CItem::MethodInfo_ClEnterModify>(0x2D8E580);
-	static constexpr const ERMIAttachmentType Attach_ClLeaveModify = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClLeaveModify = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClLeaveModify = 0;
-	static constexpr const ENetReliabilityType Reliability_ClLeaveModify = 1;
+	static constexpr const ENetReliabilityType Reliability_ClLeaveModify = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClLeaveModify = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClLeaveModify = PreyGlobal<CItem::MethodInfo_ClLeaveModify>(0x2C12B88);
+#else
 	static inline auto m_infoClLeaveModify = PreyGlobal<CItem::MethodInfo_ClLeaveModify>(0x2D8E588);
+#endif
 	_smart_ptr<CItemSharedParams> m_sharedparams;
 	unsigned m_itemFlags;
 	unsigned m_dropRayId;
@@ -581,12 +620,21 @@ public:
 	IActionController* m_pItemActionController;
 	IActionController* m_pCurrentActionController;
 	const SMannequinItemParams* m_pCurrentManItemParams;
+#ifndef MOONCRASH
+	static inline auto sNullManItemParams = PreyGlobal<SMannequinItemParams>(0x2C12920);
+	static inline auto s_animationEventsTable = PreyGlobal<SItemAnimationEvents>(0x2C12B30);
+	static inline auto m_pEntitySystem = PreyGlobal<IEntitySystem*>(0x2C12820);
+	static inline auto m_pItemSystem = PreyGlobal<IItemSystem*>(0x2C12828);
+	static inline auto m_pGameFramework = PreyGlobal<IGameFramework*>(0x2C12830);
+	static inline auto m_pGameplayRecorder = PreyGlobal<IGameplayRecorder*>(0x2C12838);
+#else
 	static inline auto sNullManItemParams = PreyGlobal<SMannequinItemParams>(0x2D8E320);
 	static inline auto s_animationEventsTable = PreyGlobal<SItemAnimationEvents>(0x2D8E530);
 	static inline auto m_pEntitySystem = PreyGlobal<IEntitySystem*>(0x2D8E228);
 	static inline auto m_pItemSystem = PreyGlobal<IItemSystem*>(0x2D8E230);
 	static inline auto m_pGameFramework = PreyGlobal<IGameFramework*>(0x2D8E238);
 	static inline auto m_pGameplayRecorder = PreyGlobal<IGameplayRecorder*>(0x2D8E240);
+#endif
 	_smart_ptr<CItemSelectAction> m_pSelectAction;
 	CItem::ePhysicalization m_deferPhysicalization;
 	SharedString::CSharedString m_geometry[9];
@@ -596,6 +644,20 @@ public:
 	int m_delayedUnhideCntr;
 	uint16_t m_attachedAccessoryHistory;
 	int m_subContext;
+#ifndef MOONCRASH
+	static inline auto sBinocularsClass = PreyGlobal<IEntityClass*>(0x2C12840);
+	static inline auto sDebugGunClass = PreyGlobal<IEntityClass*>(0x2C12848);
+	static inline auto sRefWeaponClass = PreyGlobal<IEntityClass*>(0x2C12850);
+	static inline auto sLTagGrenade = PreyGlobal<IEntityClass*>(0x2C12858);
+	static inline auto sFragHandGrenadesClass = PreyGlobal<IEntityClass*>(0x2C12860);
+	static inline auto sNoWeaponClass = PreyGlobal<IEntityClass*>(0x2C12868);
+	static inline auto sWeaponMeleeClass = PreyGlobal<IEntityClass*>(0x2C12870);
+	static inline auto sBowClass = PreyGlobal<IEntityClass*>(0x2C12878);
+	static inline auto sSilencerPistolClass = PreyGlobal<IEntityClass*>(0x2C12880);
+	static inline auto sSilencerClass = PreyGlobal<IEntityClass*>(0x2C12888);
+	static inline auto sFragmentTagCRCs = PreyGlobal<SItemFragmentTagCRCs>(0x2C12890);
+	static inline auto sActionParamCRCs = PreyGlobal<SItemActionParamCRCs>(0x2C128C0);
+#else
 	static inline auto sBinocularsClass = PreyGlobal<IEntityClass*>(0x2D8E248);
 	static inline auto sDebugGunClass = PreyGlobal<IEntityClass*>(0x2D8E250);
 	static inline auto sRefWeaponClass = PreyGlobal<IEntityClass*>(0x2D8E258);
@@ -608,6 +670,7 @@ public:
 	static inline auto sSilencerClass = PreyGlobal<IEntityClass*>(0x2D8E290);
 	static inline auto sFragmentTagCRCs = PreyGlobal<SItemFragmentTagCRCs>(0x2D8E298);
 	static inline auto sActionParamCRCs = PreyGlobal<SItemActionParamCRCs>(0x2D8E2D0);
+#endif
 
 	CItem();
 	virtual ~CItem();
@@ -946,6 +1009,250 @@ public:
 	void AttachDefaultAttachment(IEntityClass* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCItemOv1 = PreyFunction<void(CItem* const _this)>(0x1752010);
+	static inline auto FBitNotCItem = PreyFunction<void(CItem* const _this)>(0x1752470);
+	static inline auto FGetType = PreyFunction<const char* (const CItem* const _this)>(0x17556A0);
+	static inline auto FInit = PreyFunction<bool(CItem* const _this, IGameObject* pGameObject)>(0x1755D40);
+	static inline auto FInitClient = PreyFunction<void(CItem* const _this, int channelId)>(0x175E490);
+	static inline auto FPostInitClient = PreyFunction<void(CItem* const _this, int channelId)>(0xA13080);
+	static inline auto FPostInit = PreyFunction<void(CItem* const _this, IGameObject* pGameObject)>(0x1756E80);
+	static inline auto FReloadExtension = PreyFunction<bool(CItem* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1757990);
+	static inline auto FPostReloadExtension = PreyFunction<void(CItem* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CItem* const _this, TSerialize signature)>(0x1B933B0);
+	static inline auto FRelease = PreyFunction<void(CItem* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CItem* const _this, TSerialize ser)>(0x17549A0);
+	static inline auto FNetSerialize = PreyFunction<bool(CItem* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int pflags)>(0x1756C10);
+	static inline auto FGetNetSerializeAspects = PreyFunction<unsigned(CItem* const _this)>(0x10E7940);
+	static inline auto FPostSerialize = PreyFunction<void(CItem* const _this)>(0x1756F10);
+	static inline auto FSerializeLTL = PreyFunction<void(CItem* const _this, TSerialize ser)>(0x1758C90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CItem* const _this, TSerialize ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CItem* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CItem* const _this, SEntityUpdateContext& ctx, int slot)>(0x1759950);
+	static inline auto FPostUpdate = PreyFunction<void(CItem* const _this, float frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(CItem* const _this, const SGameObjectEvent& evt)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CItem* const _this, SEntityEvent& event)>(0x17576B0);
+	static inline auto FSetChannelId = PreyFunction<void(CItem* const _this, uint16_t id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CItem* const _this, bool auth)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CItem* const _this, ICrySizer* s)>(0x17553B0);
+	static inline auto FOnAction = PreyFunction<void(CItem* const _this, unsigned actorId, const CCryName& actionId, int activationMode, float value)>(0xA13080);
+	static inline auto FUpdateFPView = PreyFunction<void(CItem* const _this, float frameTime)>(0x176A1A0);
+	static inline auto FFilterView = PreyFunction<bool(CItem* const _this, SViewParams& viewParams)>(0xDD23F0);
+	static inline auto FPostFilterView = PreyFunction<void(CItem* const _this, SViewParams& viewParams)>(0xA13080);
+	static inline auto FGetFPOffset = PreyFunction<void(const CItem* const _this, QuatT& offset)>(0x1755320);
+	static inline auto FShouldBindOnInit = PreyFunction<bool(const CItem* const _this)>(0x1B933B0);
+	static inline auto FCheckAmmoRestrictions = PreyFunction<bool(CItem* const _this, IInventory* pInventory)>(0x1753490);
+	static inline auto FGetIWeaponOv1 = PreyFunction<IWeapon* (CItem* const _this)>(0x158AEF0);
+	static inline auto FGetIWeaponOv0 = PreyFunction<const IWeapon* (const CItem* const _this)>(0x158AEF0);
+	static inline auto FIsAccessory = PreyFunction<bool(CItem* const _this)>(0xDD23F0);
+	static inline auto FSetOwnerId = PreyFunction<void(CItem* const _this, unsigned ownerId)>(0xA13080);
+	static inline auto FGetOwnerId = PreyFunction<unsigned(const CItem* const _this)>(0x88E330);
+	static inline auto FReset = PreyFunction<void(CItem* const _this)>(0x1757A40);
+	static inline auto FResetOwner = PreyFunction<void(CItem* const _this)>(0x1757D40);
+	static inline auto FResetParams = PreyFunction<bool(CItem* const _this)>(0x1757DE0);
+	static inline auto FPreResetParams = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FRemoveEntity = PreyFunction<void(CItem* const _this, bool force)>(0x1762450);
+	static inline auto FSetParentId = PreyFunction<void(CItem* const _this, unsigned parentId)>(0x17594B0);
+	static inline auto FGetParentId = PreyFunction<unsigned(const CItem* const _this)>(0x1755660);
+	static inline auto FSetHand = PreyFunction<void(CItem* const _this, int hand)>(0x1759390);
+	static inline auto FSwitchToHand = PreyFunction<void(CItem* const _this, int hand)>(0x17597A0);
+	static inline auto FUse = PreyFunction<void(CItem* const _this, unsigned userId)>(0x175A620);
+	static inline auto FSelect = PreyFunction<void(CItem* const _this, bool select)>(0x1757EA0);
+	static inline auto FDrop = PreyFunction<void(CItem* const _this, float impulseScale, bool selectNext, bool byDeath)>(0x1754190);
+	static inline auto FPickUp = PreyFunction<bool(CItem* const _this, unsigned pickerId, bool sound, bool select, bool keepHistory, const char* setup, bool _bDropIfFull)>(0x1B933B0);
+	static inline auto FPhysicalize = PreyFunction<void(CItem* const _this, bool enable, bool rigid)>(0x1756D30);
+	static inline auto FUnholstering = PreyFunction<void(CItem* const _this, bool playSelect, float biasSelectTime)>(0x1759920);
+	static inline auto FFindPhysicalisationType = PreyFunction<CItem::ePhysicalization(CItem* const _this, bool enable, bool rigid)>(0x1754980);
+	static inline auto FDeferPhysicalize = PreyFunction<void(CItem* const _this, bool enable, bool rigid)>(0x17538E0);
+	static inline auto FPickalize = PreyFunction<void(CItem* const _this, bool enable, bool dropped)>(0x1756DA0);
+	static inline auto FImpulse = PreyFunction<void(CItem* const _this, const Vec3& position, const Vec3& direction, float impulse)>(0x1755C00);
+	static inline auto FCanPickUp = PreyFunction<bool(const CItem* const _this, unsigned userId)>(0x17533B0);
+	static inline auto FCanDrop = PreyFunction<bool(const CItem* const _this)>(0x17533A0);
+	static inline auto FCanUse = PreyFunction<bool(const CItem* const _this, unsigned userId)>(0x1B933B0);
+	static inline auto FIsMountable = PreyFunction<bool(const CItem* const _this)>(0x17566D0);
+	static inline auto FIsMounted = PreyFunction<bool(const CItem* const _this)>(0x17566E0);
+	static inline auto FIsRippedOff = PreyFunction<bool(const CItem* const _this)>(0xDD23F0);
+	static inline auto FCanRipOff = PreyFunction<bool(const CItem* const _this)>(0xDD23F0);
+	static inline auto FIsHeavyWeapon = PreyFunction<bool(const CItem* const _this)>(0xDD23F0);
+	static inline auto FIsUsed = PreyFunction<bool(const CItem* const _this)>(0x1756760);
+	static inline auto FIsPickable = PreyFunction<bool(const CItem* const _this)>(0x17566F0);
+	static inline auto FShouldAttachWhenSelected = PreyFunction<bool(CItem* const _this)>(0x1B933B0);
+	static inline auto FInitRespawn = PreyFunction<bool(CItem* const _this)>(0x1756660);
+	static inline auto FTriggerRespawn = PreyFunction<void(CItem* const _this)>(0x1759810);
+	static inline auto FCloakEnable = PreyFunction<void(CItem* const _this, bool enable, bool fade, float cloakBlendSpeedScale, bool bFadeByDistance, uint8_t colorChannel, bool bIgnoreCloakRefractionColor, unsigned syncedFromId)>(0xA13080);
+	static inline auto FCloakSync = PreyFunction<void(CItem* const _this, bool fade)>(0x1753870);
+	static inline auto FGetMountedAngleLimits = PreyFunction<Vec3*(const CItem* const _this, Vec3* _return_value_)>(0x1755420);
+	static inline auto FGetMountedDir = PreyFunction<Vec3*(const CItem* const _this, Vec3* _return_value_)>(0x1755460);
+	static inline auto FSetMountedAngleLimits = PreyFunction<void(CItem* const _this, float min_pitch, float max_pitch, float yaw_range)>(0x1759480);
+	static inline auto FCanSelect = PreyFunction<bool(const CItem* const _this)>(0x1753480);
+	static inline auto FCanDeselect = PreyFunction<bool(const CItem* const _this)>(0x1753380);
+	static inline auto FIsSelecting = PreyFunction<bool(const CItem* const _this)>(0x1756740);
+	static inline auto FIsSelected = PreyFunction<bool(const CItem* const _this)>(0x1756730);
+	static inline auto FOnParentSelect = PreyFunction<void(CItem* const _this, bool select)>(0xA13080);
+	static inline auto FOnParentReloaded = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FSetAccessoryReloadTags = PreyFunction<void(CItem* const _this, CTagState& fragTags)>(0xA13080);
+	static inline auto FMountAt = PreyFunction<void(CItem* const _this, const Vec3& pos)>(0x1756770);
+	static inline auto FMountAtEntity = PreyFunction<void(CItem* const _this, unsigned entityId, const Vec3& pos, const Ang3& angles)>(0x17568A0);
+	static inline auto FStartUse = PreyFunction<void(CItem* const _this, unsigned userId)>(0x1759510);
+	static inline auto FStopUse = PreyFunction<void(CItem* const _this, unsigned userId)>(0x1759660);
+	static inline auto FApplyViewLimit = PreyFunction<void(CItem* const _this, unsigned userId, bool apply)>(0xA13080);
+	static inline auto FEnableSound = PreyFunction<void(CItem* const _this, bool enable)>(0x17548C0);
+	static inline auto FIsSoundEnabled = PreyFunction<bool(const CItem* const _this)>(0x1756750);
+	static inline auto FIsModifying = PreyFunction<bool(const CItem* const _this)>(0x17566C0);
+	static inline auto FPickUpAmmo = PreyFunction<void(CItem* const _this, unsigned pickerId)>(0xA13080);
+	static inline auto FHasSomeAmmoToPickUp = PreyFunction<bool(const CItem* const _this, unsigned pickerId)>(0xDD23F0);
+	static inline auto FSetAspectProfile = PreyFunction<bool(IGameObjectProfileManager* const _this, EEntityAspects aspect, uint8_t profile)>(0x1758FC0);
+	static inline auto FGetDefaultProfile = PreyFunction<uint8_t(IGameObjectProfileManager* const _this, EEntityAspects aspect)>(0x17552E0);
+	static inline auto FStartDeselection = PreyFunction<unsigned(CItem* const _this, bool fastDeselect)>(0x158AEF0);
+	static inline auto FCancelDeselection = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FIsDeselecting = PreyFunction<bool(const CItem* const _this)>(0xDD23F0);
+	static inline auto FOnStartUsing = PreyFunction<void(CItem* const _this)>(0x175FC50);
+	static inline auto FOnStopUsing = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FOnSelect = PreyFunction<void(CItem* const _this, bool select)>(0xA13080);
+	static inline auto FOnSelected = PreyFunction<void(CItem* const _this, bool selected)>(0x175FBA0);
+	static inline auto FOnReloaded = PreyFunction<void(CItem* const _this)>(0x175F8E0);
+	static inline auto FOnEnterFirstPerson = PreyFunction<void(CItem* const _this)>(0x175F550);
+	static inline auto FOnEnterThirdPerson = PreyFunction<void(CItem* const _this)>(0x175F5D0);
+	static inline auto FOnReset = PreyFunction<void(CItem* const _this)>(0x175F9C0);
+	static inline auto FOnPickedUp = PreyFunction<void(CItem* const _this, unsigned actorId, bool destroyed)>(0xA13080);
+	static inline auto FOnDropped = PreyFunction<void(CItem* const _this, unsigned actorId, bool ownerWasAI)>(0x175F520);
+	static inline auto FOnBeginCutScene = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FOnEndCutScene = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FOnOwnerActivated = PreyFunction<void(CItem* const _this)>(0x175F8C0);
+	static inline auto FOnOwnerDeactivated = PreyFunction<void(CItem* const _this)>(0x175F8D0);
+	static inline auto FOnOwnerStanceChanged = PreyFunction<void(CItem* const _this, const EStance stance)>(0xA13080);
+	static inline auto FGetStats = PreyFunction<const CItem::SStats& (const CItem* const _this)>(0x1F4D90);
+	static inline auto FGetParams = PreyFunction<const SParams& (const CItem* const _this)>(0x1755650);
+	static inline auto FGetMountedParams = PreyFunction<const SMountParams* (const CItem* const _this)>(0x1755490);
+	static inline auto FGetProperties = PreyFunction<const CItem::SEntityProperties& (const CItem* const _this)>(0x1755670);
+	static inline auto FReadItemParams = PreyFunction<bool(CItem* const _this, const IItemParamsNode* root)>(0x1B933B0);
+	static inline auto FInitItemFromParams = PreyFunction<void(CItem* const _this)>(0x1760530);
+	static inline auto FInitGeometry = PreyFunction<void(CItem* const _this)>(0x1760520);
+	static inline auto FInitAccessories = PreyFunction<void(CItem* const _this)>(0x1760460);
+	static inline auto FInitDamageLevels = PreyFunction<void(CItem* const _this)>(0x17604C0);
+	static inline auto FReadProperties = PreyFunction<void(CItem* const _this, IScriptTable* pProperties)>(0x1760560);
+	static inline auto FRemoveAccessoryOv1 = PreyFunction<void(CItem* const _this, const SharedString::CSharedString& name)>(0xA13080);
+	static inline auto FRemoveAccessoryOv0 = PreyFunction<void(CItem* const _this, IEntityClass* pClass)>(0x175C290);
+	static inline auto FRemoveAllAccessories = PreyFunction<void(CItem* const _this)>(0x175C3B0);
+	static inline auto FDetachAllAccessories = PreyFunction<void(CItem* const _this)>(0x175B650);
+	static inline auto FAttachAccessoryOv1 = PreyFunction<void(CItem* const _this, const SharedString::CSharedString& name, bool attach, bool noanim, bool force, bool firstTimeAttached, bool initialLoadoutSetup)>(0x175AC10);
+	static inline auto FAttachAccessoryOv0 = PreyFunction<void(CItem* const _this, IEntityClass* pAccessoryClass, bool attach, bool noanim, bool force, bool firstTimeAttached, bool initialLoadoutSetup)>(0x175ACF0);
+	static inline auto FGetAccessoryOv1 = PreyFunction<CItem* (CItem* const _this, const SharedString::CSharedString& name)>(0x175B940);
+	static inline auto FIsFirstTimeAccessoryAttached = PreyFunction<bool(const CItem* const _this, IEntityClass* pClass)>(0x175BB80);
+	static inline auto FAccessoryDetachAction = PreyFunction<void(CItem* const _this, CItem* pAccessory, const SAccessoryParams* params)>(0x175A810);
+	static inline auto FShowAttachmentHelper = PreyFunction<void(CItem* const _this, int slot, const char* name, bool show)>(0x175C5D0);
+	static inline auto FGetAccessoryParams = PreyFunction<const SAccessoryParams* (const CItem* const _this, const IEntityClass* pClass)>(0x175B9E0);
+	static inline auto FInitialSetup = PreyFunction<void(CItem* const _this)>(0x175BAD0);
+	static inline auto FPatchInitialSetup = PreyFunction<void(CItem* const _this)>(0x175BBF0);
+	static inline auto FReAttachAccessories = PreyFunction<void(CItem* const _this)>(0x175C020);
+	static inline auto FAccessoriesChanged = PreyFunction<void(CItem* const _this, bool initialLoadoutSetup)>(0x175A730);
+	static inline auto FFixAccessories = PreyFunction<void(CItem* const _this, const SAccessoryParams* newParams, bool attach)>(0xA13080);
+	static inline auto FResetAccessoriesScreen = PreyFunction<void(CItem* const _this, IActor* pOwner)>(0x175C590);
+	static inline auto FRemoveOwnerAttachedAccessories = PreyFunction<void(CItem* const _this)>(0x175C480);
+	static inline auto FSwitchAccessory = PreyFunction<void(CItem* const _this, const SharedString::CSharedString& accessory)>(0x175C7F0);
+	static inline auto FDoSwitchAccessory = PreyFunction<void(CItem* const _this, const SharedString::CSharedString& inAccessory, bool initialLoadoutSetup)>(0x175B790);
+	static inline auto FDetachAccessory = PreyFunction<void(CItem* const _this, const SharedString::CSharedString& accessory)>(0x175B5A0);
+	static inline auto FGetWorldTM = PreyFunction<const Matrix34*(const CItem* const _this, const Matrix34* _return_value_)>(0x17556B0);
+	static inline auto FAddAccessoryAmmoToInventory = PreyFunction<void(CItem* const _this, IEntityClass* pAmmoType, int count, IInventory* pOwnerInventory)>(0x1752B80);
+	static inline auto FGivesAmmo = PreyFunction<bool(CItem* const _this)>(0x1755980);
+	static inline auto FProcessAccessoryAmmo = PreyFunction<void(CItem* const _this, IInventory* pOwnerInventory, IWeapon* pParentWeapon)>(0x1757530);
+	static inline auto FGetSecondaryFiremodeAccessory = PreyFunction<const SAccessoryParams* (const CItem* const _this)>(0x158AEF0);
+	static inline auto FGetDefaultOverrideAccessory = PreyFunction<const SAccessoryParams* (const CItem* const _this)>(0x158AEF0);
+	static inline auto FAddAccessory = PreyFunction<CItem* (CItem* const _this, IEntityClass* pClass)>(0x175A9C0);
+	static inline auto FHasAccessoryOv1 = PreyFunction<bool(CItem* const _this, const SharedString::CSharedString& name)>(0x175BA50);
+	static inline auto FAttachEffect = PreyFunction<unsigned(CItem* const _this, int slot, bool attachToAccessory, const char* effectName, const char* helper, const Vec3& offset, const Vec3& dir, float scale, bool prime)>(0x175E980);
+	static inline auto FDetachEffect = PreyFunction<void(CItem* const _this, unsigned id)>(0x175F450);
+	static inline auto FAttachToHand = PreyFunction<bool(CItem* const _this, bool attach, bool checkAttachment)>(0x1752F60);
+	static inline auto FAttachToBack = PreyFunction<bool(CItem* const _this, bool attach)>(0x1752BA0);
+	static inline auto FChooseAttachmentPoint = PreyFunction<CItem::eItemAttachment(const CItem* const _this, bool attach, IAttachment* * attachmentPt)>(0x1753590);
+	static inline auto FEnableUpdate = PreyFunction<void(CItem* const _this, bool enable, int slot)>(0x17548D0);
+	static inline auto FRequireUpdate = PreyFunction<void(CItem* const _this, int slot)>(0x17579E0);
+	static inline auto FHide = PreyFunction<void(CItem* const _this, bool hide, bool remoteUpdate)>(0x1755A10);
+	static inline auto FHideItem = PreyFunction<void(CItem* const _this, bool hide)>(0x1755AC0);
+	static inline auto FSetBusy = PreyFunction<void(CItem* const _this, bool busy)>(0x17592D0);
+	static inline auto FIsBusy = PreyFunction<bool(const CItem* const _this)>(0x17566B0);
+	static inline auto FGetOwner = PreyFunction<IEntity* (const CItem* const _this)>(0x17554A0);
+	static inline auto FGetOwnerActor = PreyFunction<CCryActor* (const CItem* const _this)>(0x17554C0);
+	static inline auto FGetOwnerInventory = PreyFunction<IInventory* (unsigned _id)>(0x17555A0);
+	static inline auto FGetDisplayName = PreyFunction<const char* (const CItem* const _this)>(0x1755310);
+	static inline auto FGetIcon = PreyFunction<const char* (const CItem* const _this)>(0x1755370);
+	static inline auto FGetInventoryDimensions = PreyFunction<void(const CItem* const _this, int& width, int& height)>(0x1755390);
+	static inline auto FGetDescription = PreyFunction<const char* (const CItem* const _this)>(0x17552F0);
+	static inline auto FForcePendingActions = PreyFunction<void(CItem* const _this, uint8_t blockedActions)>(0xA13080);
+	static inline auto FHasFastSelect = PreyFunction<bool(const CItem* const _this, unsigned nextItemId)>(0x17559B0);
+	static inline auto FShouldPlaySelectAction = PreyFunction<bool(const CItem* const _this)>(0x17594E0);
+	static inline auto FRegisterFPWeaponForRenderingAlways = PreyFunction<void(CItem* const _this, bool registerRenderAlways)>(0x1757950);
+	static inline auto FIsOwnerFP = PreyFunction<bool(CItem* const _this)>(0x1769EB0);
+	static inline auto FUpdateMounted = PreyFunction<void(CItem* const _this, float frameTime)>(0x176A320);
+	static inline auto FCheckViewChange = PreyFunction<void(CItem* const _this)>(0x1769C20);
+	static inline auto FSetViewMode = PreyFunction<void(CItem* const _this, int mode)>(0x1769F00);
+	static inline auto FAttachToShadowHand = PreyFunction<void(CItem* const _this, bool attach)>(0xA13080);
+	static inline auto FCopyRenderFlags = PreyFunction<void(CItem* const _this, IEntity* pOwner)>(0x1769D20);
+	static inline auto FUpdateIKMounted = PreyFunction<void(CItem* const _this, IActor* pActor, const Vec3& vGunXAxis)>(0x176A1C0);
+	static inline auto FResetCharacterAttachment = PreyFunction<void(CItem* const _this, int slot, const char* name, bool owner, unsigned attachedEntID)>(0x1762480);
+	static inline auto FSetCharacterAttachmentOv0 = PreyFunction<void(CItem* const _this, int slot, const char* name, IEntity* pEntity, int objSlot, bool owner)>(0x1762580);
+	static inline auto FSetCharacterAttachmentLocalTM = PreyFunction<void(CItem* const _this, int slot, const char* name, const Matrix34& tm)>(0x17627F0);
+	static inline auto FOnHit = PreyFunction<void(CItem* const _this, float damage, int hitType)>(0x175F640);
+	static inline auto FOnDestroyed = PreyFunction<void(CItem* const _this)>(0x175F470);
+	static inline auto FOnRepaired = PreyFunction<void(CItem* const _this)>(0x175F940);
+	static inline auto FDestroyedGeometry = PreyFunction<void(CItem* const _this, bool use)>(0x1760A70);
+	static inline auto FUpdateDamageLevel = PreyFunction<void(CItem* const _this)>(0x175FC90);
+	static inline auto FSetGeometry = PreyFunction<bool(CItem* const _this, int slot, const SharedString::CSharedString& name, const SharedString::CSharedString& material, bool useParentMaterial, const Vec3& poffset, const Ang3& aoffset, float scale, bool forceReload)>(0x1762AD0);
+	static inline auto FPlayAction = PreyFunction<_smart_ptr<IAction>*(CItem* const _this, _smart_ptr<IAction>* _return_value_, int action, int layer, bool loop, unsigned flags, float speedOverride, float animWeigth, float ffeedbackWeight)>(0x1761F90);
+	static inline auto FPlayFragment = PreyFunction<bool(CItem* const _this, IAction* pAction, float speedOverride, float timeOverride, float animWeight, float ffeedbackWeight, bool concentratedFire)>(0x17622B0);
+	static inline auto FSetFragmentTags = PreyFunction<void(CItem* const _this, CTagState& fragTags)>(0xA13080);
+	static inline auto FGetCurrentAnimationTime = PreyFunction<unsigned(CItem* const _this, int slot)>(0x1760C00);
+	static inline auto FDrawSlot = PreyFunction<void(CItem* const _this, int slot, bool bDraw, bool bNear)>(0x1760B80);
+	static inline auto FGetSlotHelperPos = PreyFunction<Vec3*(const CItem* const _this, Vec3* _return_value_, int slot, const char* helper, bool worldSpace, bool relative)>(0x1760DD0);
+	static inline auto FGetSlotHelperRotation = PreyFunction<const Matrix33& (CItem* const _this, int slot, const char* helper, bool worldSpace, bool relative)>(0x17611E0);
+	static inline auto FQuiet = PreyFunction<void(CItem* const _this)>(0xA13080);
+	static inline auto FOnAttach = PreyFunction<void(CItem* const _this, bool attach)>(0xA13080);
+	static inline auto FGetRenderProxy = PreyFunction<IEntityRenderProxy* (CItem* const _this, bool create)>(0x1760CF0);
+	static inline auto FGetPhysicalProxy = PreyFunction<IEntityPhysicalProxy* (CItem* const _this, bool create)>(0x1760C10);
+	static inline auto FDecode_SvRequestAttachAccessory = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D2C0);
+	static inline auto FHandle_SvRequestAttachAccessory = PreyFunction<bool(CItem* const _this, const CItem::AccessoryParams& params, INetChannel* pNetChannel)>(0x175DEF0);
+	static inline auto FDecode_ClAttachAccessory = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175CC20);
+	static inline auto FHandle_ClAttachAccessory = PreyFunction<bool(CItem* const _this, const CItem::AccessoryParams& params, INetChannel* pNetChannel)>(0x175D810);
+	static inline auto FDecode_ClAttachInitialAccessory = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175CD80);
+	static inline auto FHandle_ClAttachInitialAccessory = PreyFunction<bool(CItem* const _this, const CItem::AccessoryParams& params, INetChannel* pNetChannel)>(0x175DA00);
+	static inline auto FDecode_SvRequestDetachAccessory = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D420);
+	static inline auto FHandle_SvRequestDetachAccessory = PreyFunction<bool(CItem* const _this, const CItem::AccessoryParams& params, INetChannel* pNetChannel)>(0x175E110);
+	static inline auto FDecode_ClDetachAccessory = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175CEE0);
+	static inline auto FHandle_ClDetachAccessory = PreyFunction<bool(CItem* const _this, const CItem::AccessoryParams& params, INetChannel* pNetChannel)>(0x175DBF0);
+	static inline auto FDecode_SvRequestEnterModify = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D580);
+	static inline auto FHandle_SvRequestEnterModify = PreyFunction<bool(CItem* const _this, const CItem::EmptyParams& params, INetChannel* pNetChannel)>(0x175E370);
+	static inline auto FDecode_SvRequestLeaveModify = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D6C0);
+	static inline auto FHandle_SvRequestLeaveModify = PreyFunction<bool(CItem* const _this, const CItem::EmptyParams& params, INetChannel* pNetChannel)>(0x175E400);
+	static inline auto FDecode_ClEnterModify = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D040);
+	static inline auto FHandle_ClEnterModify = PreyFunction<bool(CItem* const _this, const CItem::EmptyParams& params, INetChannel* pNetChannel)>(0x175DDF0);
+	static inline auto FDecode_ClLeaveModify = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x175D180);
+	static inline auto FHandle_ClLeaveModify = PreyFunction<bool(CItem* const _this, const CItem::EmptyParams& params, INetChannel* pNetChannel)>(0x175DE70);
+	static inline auto FDoSelectWeaponGrab = PreyFunction<void(CItem* const _this)>(0x1754150);
+	static inline auto FIsRippingOrRippedOff = PreyFunction<bool(const CItem* const _this)>(0xDD23F0);
+	static inline auto FForceRippingOff = PreyFunction<void(CItem* const _this, bool ripOff)>(0xA13080);
+	static inline auto FUpdateCurrentActionController = PreyFunction<void(CItem* const _this)>(0x1759E00);
+	static inline auto FSetCurrentActionController = PreyFunction<void(CItem* const _this, IActionController* pActionController)>(0x17592E0);
+	static inline auto FSetSubContextID = PreyFunction<void(CItem* const _this, int subContext)>(0x17594C0);
+	static inline auto FGetSubContextID = PreyFunction<int(CItem* const _this)>(0x1755690);
+	static inline auto FGetAttachedAccessoriesString = PreyFunction<const string*(CItem* const _this, const string* _return_value_, const char* separator)>(0x17551C0);
+	static inline auto FInitActionController = PreyFunction<bool(CItem* const _this, IEntity* pEntity)>(0x17563F0);
+	static inline auto FShouldDoPostSerializeReset = PreyFunction<bool(const CItem* const _this)>(0x17594D0);
+	static inline auto FUpdateActionControllerSelection = PreyFunction<void(CItem* const _this, bool bSelected)>(0x1759D30);
+	static inline auto FDropAfterRaycast = PreyFunction<void(CItem* const _this, const unsigned& rayID, const RayCastResult& result)>(0x1754730);
+	static inline auto FDetachItem = PreyFunction<void(CItem* const _this, IEntity* pThisItemEntity, CCryActor* pOwnerActor, float impulseScale, Vec3 localDropDirection)>(0x1753910);
+	static inline auto FGetSelectSpeed = PreyFunction<float(CItem* const _this, CCryActor* pOwnerActor)>(0x18C0850);
+	static inline auto FRegisterAsUser = PreyFunction<void(CItem* const _this)>(0x1757870);
+	static inline auto FUnRegisterAsUser = PreyFunction<void(CItem* const _this)>(0x1759870);
+	static inline auto FAudioCacheItem = PreyFunction<void(const bool enable, const IEntityClass* pClass, const char* prefix, const char* postfix)>(0xA13080);
+	static inline auto FGetOwnerAttachmentManager = PreyFunction<IAttachmentManager* (const CItem* const _this)>(0x1755550);
+	static inline auto FUpdateTags = PreyFunction<void(const CItem* const _this, const IActionController* pActionController, CTagState& tagState, bool selected)>(0x175A370);
+	static inline auto FUpdateAccessoryTags = PreyFunction<void(const CItem* const _this, const SMannequinItemParams* pParams, CTagState& tagState, bool selected)>(0x1759AE0);
+	static inline auto FUpdateMountedTags = PreyFunction<void(const CItem* const _this, const SMannequinItemParams* pParams, CTagState& tagState, bool selected)>(0x1759EA0);
+	static inline auto FUpdateScopeContexts = PreyFunction<void(CItem* const _this, IActionController* pController, int nCharacterSlot)>(0x1759F90);
+	static inline auto FClearScopeContexts = PreyFunction<void(CItem* const _this, IActionController* pController)>(0x17537C0);
+	static inline auto FOnUnlowerItem = PreyFunction<void(CItem* const _this)>(0xA13080);
+#else
 	static inline auto FCItemOv1 = PreyFunction<void(CItem* const _this)>(0x1878BF0);
 	static inline auto FBitNotCItem = PreyFunction<void(CItem* const _this)>(0x1879050);
 	static inline auto FGetType = PreyFunction<const char* (const CItem* const _this)>(0x187C2F0);
@@ -1188,6 +1495,7 @@ public:
 	static inline auto FUpdateScopeContexts = PreyFunction<void(CItem* const _this, IActionController* pController, int nCharacterSlot)>(0x1880BE0);
 	static inline auto FClearScopeContexts = PreyFunction<void(CItem* const _this, IActionController* pController)>(0x187A410);
 	static inline auto FOnUnlowerItem = PreyFunction<void(CItem* const _this)>(0x1333E90);
+#endif
 };
 
 // SItemStrings
@@ -1205,7 +1513,12 @@ struct SItemStrings
 	SItemStrings();
 	~SItemStrings();
 
+#ifndef MOONCRASH
+	static inline auto FSItemStringsOv1 = PreyFunction<void(SItemStrings* const _this)>(0x1752250);
+	static inline auto FBitNotSItemStrings = PreyFunction<void(SItemStrings* const _this)>(0x1752940);
+#else
 	static inline auto FSItemStringsOv1 = PreyFunction<void(SItemStrings* const _this)>(0x1878E30);
 	static inline auto FBitNotSItemStrings = PreyFunction<void(SItemStrings* const _this)>(0x1879520);
+#endif
 };
-#endif // MOONCRASH
+

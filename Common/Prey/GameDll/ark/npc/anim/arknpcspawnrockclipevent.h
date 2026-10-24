@@ -1,16 +1,32 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/IProceduralParams.h>
-#include <_unknown/TProceduralClip.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 struct SArkNpcSpawnRockClipEventParams;
 namespace Serialization
 {
 class IArchive;
 } // namespace Serialization
+
+// SArkNpcSpawnRockClipEventParams
+// Header:  Prey/GameDll/ark/npc/anim/arknpcspawnrockclipevent.h
+struct SArkNpcSpawnRockClipEventParams : public IProceduralParams
+{ // Size=16 (0x10)
+	string m_attachmentName;
+
+	virtual void Serialize(Serialization::IArchive& ar);
+	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
+
+#if 0
+	SArkNpcSpawnRockClipEventParams();
+#endif
+
+	static inline auto FSerialize = PreyFunction<void(SArkNpcSpawnRockClipEventParams* const _this, Serialization::IArchive& ar)>(0x127A1D0);
+	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcSpawnRockClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
+};
 
 // CArkNpcSpawnRockProceduralClipEvent
 // Header:  Prey/GameDll/ark/npc/anim/arknpcspawnrockclipevent.h
@@ -33,20 +49,4 @@ public:
 	static inline auto FUpdate = PreyFunction<void(CArkNpcSpawnRockProceduralClipEvent* const _this, float timePassed)>(0x1333E90);
 };
 
-// SArkNpcSpawnRockClipEventParams
-// Header:  Prey/GameDll/ark/npc/anim/arknpcspawnrockclipevent.h
-struct SArkNpcSpawnRockClipEventParams : public IProceduralParams
-{ // Size=16 (0x10)
-	string m_attachmentName;
-
-	virtual void Serialize(Serialization::IArchive& ar);
-	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
-
-#if 0
-	SArkNpcSpawnRockClipEventParams();
-#endif
-
-	static inline auto FSerialize = PreyFunction<void(SArkNpcSpawnRockClipEventParams* const _this, Serialization::IArchive& ar)>(0x127A1D0);
-	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcSpawnRockClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
-};
 #endif // MOONCRASH

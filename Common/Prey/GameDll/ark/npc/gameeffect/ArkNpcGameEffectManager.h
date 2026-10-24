@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/ArkCommon/arklibrary.h>
@@ -59,16 +57,21 @@ public:
 	void DetachAllGameEffectsFromNpc(const ArkNpc& _npc) { FDetachAllGameEffectsFromNpc(this, _npc); }
 	std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*> FindGameEffectPair(const ArkNpc& _npc, uint64_t _gameEffectId) const { alignas(std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*>) std::byte _return_buf_[sizeof(std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*>)]; return *FFindGameEffectPair(this, reinterpret_cast<std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*>*>(_return_buf_), _npc, _gameEffectId); }
 	void OnNpcReceivedPackage(const ArkNpc& _npc, const ArkSignalSystem::Package& _package) const { FOnNpcReceivedPackage(this, _npc, _package); }
+#ifndef MOONCRASH
+	float ModifyDamage(const ArkNpc& _npc, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package) const { return FModifyDamage(this, _npc, _hitInfo, _package); }
+#else
 	float ModifyDamage(const ArkNpc& _npc, HitInfo& _hitInfo, const ArkSignalSystem::Package& _package) const { return FModifyDamage(this, _npc, _hitInfo, _package); }
+#endif
 	void OnTakeDamage(const ArkNpc& _npc, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package) const { FOnTakeDamage(this, _npc, _hitInfo, _package); }
-	void OnDealtDamage(const ArkNpc& _npc, unsigned _damagedEntityId) const { FOnDealtDamage(this, _npc, _damagedEntityId); }
 	void OnDied(const ArkNpc& _npc) const { FOnDied(this, _npc); }
 	void OnDeleted(const ArkNpc* _pNpc) { FOnDeleted(this, _pNpc); }
 	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
-	void OnLevelUnload() { FOnLevelUnload(this); }
 	void Update(float _elapsedTime) { FUpdate(this, _elapsedTime); }
 	void Serialize(TSerialize _serializer) { FSerialize(this, _serializer); }
 	void PostSerialize() { FPostSerialize(this); }
+#ifndef MOONCRASH
+	void LoadGameEffects() { FLoadGameEffects(this); }
+#endif
 	void CleanupAttachedGameEffects() { FCleanupAttachedGameEffects(this); }
 
 #if 0
@@ -82,11 +85,41 @@ public:
 	bool IsInterferenceEnabled();
 	void EnableInterference(const bool _arg0_);
 	ArkNpcGameEffectManager& operator=(const ArkNpcGameEffectManager& _arg0_);
-	void LoadGameEffects();
 	std::_Vector_iterator<std::_Vector_val<std::_Simple_types<ArkNpcGameEffectManager::AttachedGameEffect> > > GetAttachedGameEffectIter(std::vector<ArkNpcGameEffectManager::AttachedGameEffect>& _arg0_, const ArkNpcGameEffect& _arg1_);
 	std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<ArkNpcGameEffectManager::AttachedGameEffect> > > GetAttachedGameEffectIter(const std::vector<ArkNpcGameEffectManager::AttachedGameEffect>& _arg0_, const ArkNpcGameEffect& _arg1_) const;
 #endif
 
+#ifdef MOONCRASH
+	void OnDealtDamage(const ArkNpc& _npc, unsigned _damagedEntityId) const { FOnDealtDamage(this, _npc, _damagedEntityId); }
+	void OnLevelUnload() { FOnLevelUnload(this); }
+#endif
+#ifndef MOONCRASH
+	static inline auto FArkNpcGameEffectManagerOv1 = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x129B690);
+	static inline auto FBitNotArkNpcGameEffectManager = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x129B8E0);
+	static inline auto FInitialize = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x12A0EB0);
+	static inline auto FReset = PreyFunction<void(ArkNpcGameEffectManager* const _this, bool _bEnteringGameMode)>(0x12A2D20);
+	static inline auto FHasGameEffect = PreyFunction<bool(const ArkNpcGameEffectManager* const _this, uint64_t _gameEffectId)>(0x12A0D70);
+	static inline auto FAttachGameEffectToNpcOv1 = PreyFunction<void(ArkNpcGameEffectManager* const _this, ArkNpc& _npc, uint64_t _gameEffectId)>(0x129D6E0);
+	static inline auto FAttachGameEffectToNpcOv0 = PreyFunction<void(ArkNpcGameEffectManager* const _this, uint64_t _gameEffectId, ArkNpc& _npc, const ArkNpcGameEffect& _gameEffect)>(0x129D4B0);
+	static inline auto FDetachGameEffectFromNpcOv2 = PreyFunction<void(ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, uint64_t _gameEffectId)>(0x129DF20);
+	static inline auto FDetachGameEffectFromNpcOv1 = PreyFunction<void(ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, const ArkNpcGameEffect& _gameEffect)>(0x129DDE0);
+	static inline auto FSafeAttachGameEffectToNpc = PreyFunction<bool(ArkNpcGameEffectManager* const _this, ArkNpc& _npc, uint64_t _gameEffectId)>(0x12A2D60);
+	static inline auto FSafeDetachGameEffectFromNpcOv1 = PreyFunction<bool(ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, uint64_t _gameEffectId)>(0x12A2DE0);
+	static inline auto FNpcHasGameEffectOv1 = PreyFunction<bool(const ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, uint64_t _gameEffectId)>(0x12A1010);
+	static inline auto FDetachAllGameEffectsFromNpc = PreyFunction<void(ArkNpcGameEffectManager* const _this, const ArkNpc& _npc)>(0x129DC40);
+	static inline auto FFindGameEffectPair = PreyFunction<std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*>*(const ArkNpcGameEffectManager* const _this, std::pair<const ArkNpcGameEffect*, ArkNpcGameEffectInstance*>* _return_value_, const ArkNpc& _npc, uint64_t _gameEffectId)>(0x129E170);
+	static inline auto FOnNpcReceivedPackage = PreyFunction<void(const ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, const ArkSignalSystem::Package& _package)>(0x12A1200);
+	static inline auto FModifyDamage = PreyFunction<float(const ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package)>(0x12A0FB0);
+	static inline auto FOnTakeDamage = PreyFunction<void(const ArkNpcGameEffectManager* const _this, const ArkNpc& _npc, const HitInfo& _hitInfo, const ArkSignalSystem::Package& _package)>(0x12A1220);
+	static inline auto FOnDied = PreyFunction<void(const ArkNpcGameEffectManager* const _this, const ArkNpc& _npc)>(0x12A11D0);
+	static inline auto FOnDeleted = PreyFunction<void(ArkNpcGameEffectManager* const _this, const ArkNpc* _pNpc)>(0x12A1180);
+	static inline auto FOnLevelLoadEnd = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x12A11F0);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcGameEffectManager* const _this, float _elapsedTime)>(0x12A3670);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcGameEffectManager* const _this, TSerialize _serializer)>(0x12A2F70);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x12A1250);
+	static inline auto FLoadGameEffects = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x12A0ED0);
+	static inline auto FCleanupAttachedGameEffects = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x129D740);
+#else
 	static inline auto FArkNpcGameEffectManagerOv1 = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x1342000);
 	static inline auto FBitNotArkNpcGameEffectManager = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x13421D0);
 	static inline auto FInitialize = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x1348F50);
@@ -113,5 +146,6 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkNpcGameEffectManager* const _this, TSerialize _serializer)>(0x134BD20);
 	static inline auto FPostSerialize = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x1349330);
 	static inline auto FCleanupAttachedGameEffects = PreyFunction<void(ArkNpcGameEffectManager* const _this)>(0x13443A0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/TProceduralClip.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 namespace Serialization
 {
@@ -23,7 +21,11 @@ struct ArkProceduralClipParams_MeleeAttack : public IProceduralParams
 	ArkProceduralClipParams_MeleeAttack();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(ArkProceduralClipParams_MeleeAttack* const _this, Serialization::IArchive& _archive)>(0x11EE590);
+#else
 	static inline auto FSerialize = PreyFunction<void(ArkProceduralClipParams_MeleeAttack* const _this, Serialization::IArchive& _archive)>(0x127A9B0);
+#endif
 };
 
 // ArkProceduralClip_MeleeAttack
@@ -36,9 +38,16 @@ public:
 	virtual void OnExit(float _blendTime);
 	virtual void Update(float _timePassed);
 
+#ifndef MOONCRASH
+	static inline auto FGetCrc = PreyFunction<unsigned()>(0x11EE520);
+	static inline auto FOnEnter = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _blendTime, float _duration, const ArkProceduralClipParams_MeleeAttack& _params)>(0x11EE1A0);
+	static inline auto FOnExit = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _blendTime)>(0x11EE210);
+	static inline auto FUpdate = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _timePassed)>(0xA13080);
+#else
 	static inline auto FGetCrc = PreyFunction<unsigned()>(0x127A940);
 	static inline auto FOnEnter = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _blendTime, float _duration, const ArkProceduralClipParams_MeleeAttack& _params)>(0x127A620);
 	static inline auto FOnExit = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _blendTime)>(0x127A690);
 	static inline auto FUpdate = PreyFunction<void(ArkProceduralClip_MeleeAttack* const _this, float _timePassed)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

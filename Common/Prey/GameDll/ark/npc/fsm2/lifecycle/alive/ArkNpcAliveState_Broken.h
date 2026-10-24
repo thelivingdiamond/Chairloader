@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
-#include <_unknown/ArkNpcAliveState.h>
+#include <Prey/GameDll/ark/npc/fsm2/lifecycle/alive/ArkNpcAliveState.h>
 
 class ArkNpc;
 class ArkNpcAliveFsm;
@@ -31,6 +29,16 @@ public:
 	void PostSerialize() { FPostSerialize(this); }
 	virtual void OnBrokenChanged(bool _bBroken, bool _bWasForced);
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcAliveState_BrokenOv2 = PreyFunction<void(ArkNpcAliveState_Broken* const _this)>(0x12164B0);
+	static inline auto FEnterOv1 = PreyFunction<void(ArkNpcAliveState_Broken* const _this, const ArkNpcAliveStateEnterParams_Broken& _params)>(0x12164F0);
+	static inline auto FEnterOv0 = PreyFunction<void(ArkNpcAliveState_Broken* const _this, const ArkNpcAliveStateSerializeParams& _params)>(0x1216570);
+	static inline auto FExit = PreyFunction<void(ArkNpcAliveState_Broken* const _this, const ArkNpcAliveStateExitParams& _params)>(0x1216610);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcAliveState_Broken* const _this, ArkNpc& _npc, const ArkNpcAliveFsm& _fsm, float _elapsedTime)>(0x1216750);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcAliveState_Broken* const _this, ArkNpc& _npc, TSerialize _serializer)>(0x1216700);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcAliveState_Broken* const _this)>(0x12166F0);
+	static inline auto FOnBrokenChanged = PreyFunction<void(ArkNpcAliveState_Broken* const _this, bool _bBroken, bool _bWasForced)>(0x1216680);
+#else
 	static inline auto FArkNpcAliveState_BrokenOv2 = PreyFunction<void(ArkNpcAliveState_Broken* const _this)>(0x12A5AB0);
 	static inline auto FEnterOv1 = PreyFunction<void(ArkNpcAliveState_Broken* const _this, const ArkNpcAliveStateEnterParams_Broken& _params)>(0x12A5AF0);
 	static inline auto FEnterOv0 = PreyFunction<void(ArkNpcAliveState_Broken* const _this, const ArkNpcAliveStateSerializeParams& _params)>(0x12A5B70);
@@ -39,5 +47,6 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkNpcAliveState_Broken* const _this, ArkNpc& _npc, TSerialize _serializer)>(0x12A5D00);
 	static inline auto FPostSerialize = PreyFunction<void(ArkNpcAliveState_Broken* const _this)>(0x12A5CF0);
 	static inline auto FOnBrokenChanged = PreyFunction<void(ArkNpcAliveState_Broken* const _this, bool _bBroken, bool _bWasForced)>(0x12A5C80);
+#endif
 };
-#endif // MOONCRASH
+

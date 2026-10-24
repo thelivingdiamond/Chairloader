@@ -1,14 +1,12 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/iactionmapmanager.h>
+#include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryCore/Platform/IPlatformOS.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/GameDll/ark/IUIGameEventSystem.h>
-#include <_unknown/SUIEventReceiverDispatcher.h>
-#include <_unknown/SUIEventSenderDispatcher.h>
+#include <Prey/ArkStubs.h>
+#include <Prey/ArkStubs.h>
 
 class CCryName;
 enum ESystemEvent;
@@ -36,10 +34,18 @@ public:
 	SUIEventSenderDispatcher<enum CUIInput::EUIEvent> m_eventSender;
 	IUIEventSystem* m_pUIEvents;
 	IUIEventSystem* m_pUIFunctions;
+#ifndef MOONCRASH
+	static inline auto s_actionHandler = PreyGlobal<TActionHandler<CUIInput>>(0x2C17F90);
+#else
 	static inline auto s_actionHandler = PreyGlobal<TActionHandler<CUIInput>>(0x2D93990);
+#endif
 	std::map<enum::CUIInput::EUIEvent, unsigned int> m_eventMap;
 	bool m_bHasFocus;
+#ifndef MOONCRASH
+	static inline auto g_pauseOnLoseFocus = PreyGlobal<int>(0x22840F0);
+#else
 	static inline auto g_pauseOnLoseFocus = PreyGlobal<int>(0x23F2BF0);
+#endif
 
 	virtual ~CUIInput();
 	static void Shutdown() { FShutdown(); }
@@ -76,6 +82,33 @@ public:
 	bool HasFocus() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FShutdown = PreyFunction<void()>(0x17FD630);
+	static inline auto FGetTypeName = PreyFunction<const char* (const CUIInput* const _this)>(0x17FBC50);
+	static inline auto FInitEventSystem = PreyFunction<void(CUIInput* const _this)>(0x17FBC60);
+	static inline auto FUnloadEventSystem = PreyFunction<void(CUIInput* const _this)>(0x17FD680);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0x17FD4C0);
+	static inline auto FOnAction = PreyFunction<bool(IBlockingActionListener* const _this, const CCryName& action, int activationMode, float value, const SInputEvent& inputEvent)>(0x17FCE90);
+	static inline auto FKeyboardCancelled = PreyFunction<void(IVirtualKeyboardEvents* const _this)>(0x17FCC70);
+	static inline auto FKeyboardFinished = PreyFunction<void(IVirtualKeyboardEvents* const _this, const wchar_t* pInString)>(0x17FCD70);
+	static inline auto FOpenPauseMenu = PreyFunction<void(CUIInput* const _this, bool _open)>(0x17FD5B0);
+	static inline auto FOnDisplayVirtualKeyboard = PreyFunction<void(CUIInput* const _this, const wchar_t* title, const wchar_t* initialStr, int maxchars)>(0x17FD480);
+	static inline auto FOnActionTogglePause = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD3A0);
+	static inline auto FOnActionStartPause = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD310);
+	static inline auto FOnActionUp = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD410);
+	static inline auto FOnActionDown = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD010);
+	static inline auto FOnActionLeft = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD120);
+	static inline auto FOnActionRight = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD2A0);
+	static inline auto FOnActionClick = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FCF30);
+	static inline auto FOnActionBack = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FCEC0);
+	static inline auto FOnActionConfirm = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FCFA0);
+	static inline auto FOnActionReset = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD230);
+	static inline auto FOnActionToggleDebug = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD380);
+	static inline auto FOnActionEditorPause = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD080);
+	static inline auto FOnActionEditorResume = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD0D0);
+	static inline auto FOnActionReportBug = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD1E0);
+	static inline auto FOnActionOpenLog = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x17FD190);
+#else
 	static inline auto FShutdown = PreyFunction<void()>(0x1925140);
 	static inline auto FGetTypeName = PreyFunction<const char* (const CUIInput* const _this)>(0x1923770);
 	static inline auto FInitEventSystem = PreyFunction<void(CUIInput* const _this)>(0x1923780);
@@ -101,5 +134,6 @@ public:
 	static inline auto FOnActionEditorResume = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x1924BF0);
 	static inline auto FOnActionReportBug = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x1A302A0);
 	static inline auto FOnActionOpenLog = PreyFunction<bool(CUIInput* const _this, unsigned entityId, const CCryName& actionId, int activationMode, float value)>(0x1924CB0);
+#endif
 };
-#endif // MOONCRASH
+

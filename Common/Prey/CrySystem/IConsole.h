@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef _ICONSOLE_H_
@@ -358,7 +357,7 @@ struct IConsole
 	virtual bool IsOpened() = 0;
 
 	//! Auto completion.
-	virtual int GetNumVars(bool bIncludeCommands = false) = 0;
+	virtual int GetNumVars() = 0;
 
 	//! \param szPrefix - 0 or prefix e.g. "sys_spec_".
 	//! \return Used size.
@@ -459,6 +458,7 @@ struct IRemoteConsole
 	virtual void Start() = 0;
 	virtual void Stop() = 0;
 	virtual bool IsStarted() const = 0;
+	virtual void OpenArkBugReporter(const char* _args) = 0;
 
 	virtual void AddLogMessage(const char* log) = 0;
 	virtual void AddLogWarning(const char* log) = 0;

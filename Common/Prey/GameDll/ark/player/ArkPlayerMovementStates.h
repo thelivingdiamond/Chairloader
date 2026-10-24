@@ -1,7 +1,7 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
@@ -636,7 +636,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>

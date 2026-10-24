@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -31,6 +29,15 @@ public:
 	CMovementTransitionsSystem& operator=(const CMovementTransitionsSystem& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCMovementTransitionsSystemOv1 = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x1DC590);
+	static inline auto FBitNotCMovementTransitionsSystem = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x1774EC0);
+	static inline auto FGetMovementTransitionsOv1 = PreyFunction<CMovementTransitions* const (CMovementTransitionsSystem* const _this, IEntity* pEntity)>(0x1775080);
+	static inline auto FGetMovementTransitionsOv0 = PreyFunction<CMovementTransitions* const (CMovementTransitionsSystem* const _this, IEntityClass* pEntityClass, SmartScriptTable pEntityScript)>(0x1775100);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CMovementTransitionsSystem* const _this, ICrySizer* s)>(0x1774FF0);
+	static inline auto FReload = PreyFunction<void(const CMovementTransitionsSystem* const _this)>(0x1775400);
+	static inline auto FFlush = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x1774F50);
+#else
 	static inline auto FCMovementTransitionsSystemOv1 = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x1F4DF0);
 	static inline auto FBitNotCMovementTransitionsSystem = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x189B9D0);
 	static inline auto FGetMovementTransitionsOv1 = PreyFunction<CMovementTransitions* const (CMovementTransitionsSystem* const _this, IEntity* pEntity)>(0x189BB90);
@@ -38,5 +45,6 @@ public:
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CMovementTransitionsSystem* const _this, ICrySizer* s)>(0x189BB00);
 	static inline auto FReload = PreyFunction<void(const CMovementTransitionsSystem* const _this)>(0x189BF10);
 	static inline auto FFlush = PreyFunction<void(CMovementTransitionsSystem* const _this)>(0x189BA60);
+#endif
 };
-#endif // MOONCRASH
+

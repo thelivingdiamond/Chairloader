@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/CryGame__tBrushParams.h>
-#include <_unknown/CryGame__tEntityParams.h>
-#include <_unknown/CryGame__tPrefabParams.h>
+#include <Prey/GameDll/CryGame_tBrushParams.h>
+#include <Prey/GameDll/CryGame_tEntityParams.h>
+#include <Prey/GameDll/CryGame_tPrefabParams.h>
 
 namespace CryGame
 {
@@ -42,11 +40,19 @@ public:
 	bool ExtractEntityLoadParams(XmlNodeRef& _arg0_, SEntitySpawnParams& _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FLoad = PreyFunction<void(CryGame::CPrefab* const _this, XmlNodeRef& itemNode)>(0x17C9920);
+	static inline auto FExtractTransform = PreyFunction<void(CryGame::CPrefab* const _this, XmlNodeRef& objNode, Matrix34& mat)>(0x17C90D0);
+	static inline auto FExtractBrushLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x17C8A00);
+	static inline auto FExtractDecalLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x17C8C20);
+	static inline auto FExtractDesignerLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x17C8DC0);
+#else
 	static inline auto FLoad = PreyFunction<void(CryGame::CPrefab* const _this, XmlNodeRef& itemNode)>(0x18F0C60);
 	static inline auto FExtractTransform = PreyFunction<void(CryGame::CPrefab* const _this, XmlNodeRef& objNode, Matrix34& mat)>(0x18F0410);
 	static inline auto FExtractBrushLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x18EFD40);
 	static inline auto FExtractDecalLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x18EFF60);
 	static inline auto FExtractDesignerLoadParams = PreyFunction<bool(CryGame::CPrefab* const _this, XmlNodeRef& objNode, CryGame::tBrushParams& loadParams)>(0x18F0100);
+#endif
 };
 
 // CryGame::CPrefabManager
@@ -79,6 +85,20 @@ public:
 	CryGame::CPrefab* GetRandomPrefab(CryGame::CPrefabLib* _arg0_, const std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,CryGame::CPrefab *> > > >& _arg1_, unsigned _arg2_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPrefabManagerOv1 = PreyFunction<void(CryGame::CPrefabManager* const _this)>(0x17C7C20);
+	static inline auto FBitNotCPrefabManager = PreyFunction<void(CryGame::CPrefabManager* const _this)>(0x17C8220);
+	static inline auto FLoadPrefabLibrary = PreyFunction<bool(CryGame::CPrefabManager* const _this, const string& sFilename)>(0x17CA2A0);
+	static inline auto FSpawnPrefab = PreyFunction<void(CryGame::CPrefabManager* const _this, const string& sLibraryFilename, const string& sFullName, unsigned id, unsigned nSeed, unsigned nMaxSpawn)>(0x17CA890);
+	static inline auto FMovePrefab = PreyFunction<void(CryGame::CPrefabManager* const _this, unsigned id)>(0x17CA840);
+	static inline auto FDeletePrefab = PreyFunction<void(CryGame::CPrefabManager* const _this, unsigned id)>(0x17C8920);
+	static inline auto FHidePrefab = PreyFunction<void(CryGame::CPrefabManager* const _this, unsigned id, bool bHide)>(0x17C98D0);
+	static inline auto FClear = PreyFunction<void(CryGame::CPrefabManager* const _this, bool bDeleteLibs)>(0x17C85F0);
+	static inline auto FCallOnSpawn = PreyFunction<void(CryGame::CPrefabManager* const _this, IEntity* pEntity, int nSeed)>(0x17C8460);
+	static inline auto FFindPrefab = PreyFunction<CryGame::CPrefab* (CryGame::CPrefabManager* const _this, CryGame::CPrefabLib* pLib, const string& sFullName, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,CryGame::CPrefab *> > > >& i, bool bLoadIfNotFound)>(0x17C9380);
+	static inline auto FStripLibraryName = PreyFunction<void(CryGame::CPrefabManager* const _this, const string& sLibraryName, const string& sFullName, string& sResult, bool bApplyGroup)>(0x17CAB00);
+	static inline auto FFindPrefabInGroup = PreyFunction<CryGame::CPrefab* (CryGame::CPrefabManager* const _this, CryGame::CPrefabLib* pLib, const string& sLibraryName, const string& sFullName, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,CryGame::CPrefab *> > > >& i)>(0x17C9710);
+#else
 	static inline auto FCPrefabManagerOv1 = PreyFunction<void(CryGame::CPrefabManager* const _this)>(0x18EEF60);
 	static inline auto FBitNotCPrefabManager = PreyFunction<void(CryGame::CPrefabManager* const _this)>(0x18EF560);
 	static inline auto FLoadPrefabLibrary = PreyFunction<bool(CryGame::CPrefabManager* const _this, const string& sFilename)>(0x18F15E0);
@@ -91,8 +111,9 @@ public:
 	static inline auto FFindPrefab = PreyFunction<CryGame::CPrefab* (CryGame::CPrefabManager* const _this, CryGame::CPrefabLib* pLib, const string& sFullName, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,CryGame::CPrefab *> > > >& i, bool bLoadIfNotFound)>(0x18F06C0);
 	static inline auto FStripLibraryName = PreyFunction<void(CryGame::CPrefabManager* const _this, const string& sLibraryName, const string& sFullName, string& sResult, bool bApplyGroup)>(0x18F1E40);
 	static inline auto FFindPrefabInGroup = PreyFunction<CryGame::CPrefab* (CryGame::CPrefabManager* const _this, CryGame::CPrefabLib* pLib, const string& sLibraryName, const string& sFullName, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<CryStringT<char> const ,CryGame::CPrefab *> > > >& i)>(0x18F0A50);
+#endif
 };
 
 
 } // namespace CryGame
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -18,10 +16,18 @@ public:
 	void OnDetached(ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance) const { FOnDetached(this, _npc, _gameEffectInstance); }
 	void PostSerialize(ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance) const { FPostSerialize(this, _npc, _gameEffectInstance); }
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12AE310);
+	static inline auto FOnDied = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x121CF40);
+	static inline auto FOnAttached = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x12AE320);
+	static inline auto FOnDetached = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x12AE390);
+	static inline auto FPostSerialize = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x12AE3B0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x1356FF0);
 	static inline auto FOnDied = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x1357770);
 	static inline auto FOnAttached = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x1357000);
 	static inline auto FOnDetached = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x1357070);
 	static inline auto FPostSerialize = PreyFunction<void(const ArkNpcGameEffect_PsiSuppression* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PsiSuppression& _gameEffectInstance)>(0x1357090);
+#endif
 };
-#endif // MOONCRASH
+

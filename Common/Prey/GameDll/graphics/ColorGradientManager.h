@@ -1,7 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/CryRenderer/SColorChartLayer.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryRenderer/IColorGradingController.h>
 
@@ -66,14 +65,23 @@ public:
 	IColorGradingController& GetColorGradingController();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCColorGradientManagerOv2 = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0x1800ED0);
+	static inline auto FTriggerFadingColorGradient = PreyFunction<void(Graphics::CColorGradientManager* const _this, const string& filePath, const float fadeInTimeInSeconds)>(0x173CC20);
+	static inline auto FUpdateForThisFrame = PreyFunction<void(Graphics::CColorGradientManager* const _this, const float frameTimeInSeconds)>(0x173CD20);
+	static inline auto FReset = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0x173C780);
+	static inline auto FSerialize = PreyFunction<void(Graphics::CColorGradientManager* const _this, TSerialize serializer)>(0x173C820);
+	static inline auto FRemoveZeroWeightedLayers = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0x173C620);
+#else
 	static inline auto FCColorGradientManagerOv2 = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0xD48F00);
 	static inline auto FTriggerFadingColorGradient = PreyFunction<void(Graphics::CColorGradientManager* const _this, const string& filePath, const float fadeInTimeInSeconds)>(0x1863800);
 	static inline auto FUpdateForThisFrame = PreyFunction<void(Graphics::CColorGradientManager* const _this, const float frameTimeInSeconds)>(0x1863900);
 	static inline auto FReset = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0x1863360);
 	static inline auto FSerialize = PreyFunction<void(Graphics::CColorGradientManager* const _this, TSerialize serializer)>(0x1863400);
 	static inline auto FRemoveZeroWeightedLayers = PreyFunction<void(Graphics::CColorGradientManager* const _this)>(0x1863200);
+#endif
 };
 
 
 } // namespace Graphics
-#endif // MOONCRASH
+

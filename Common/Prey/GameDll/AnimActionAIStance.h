@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class CPlayer;
 class CTagDefinition;
@@ -45,6 +43,19 @@ public:
 	EStance GetPlayerAnimationStance() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIStance* const _this)>(0x10A43D0);
+	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIStance* const _this)>(0xA97D40);
+	static inline auto FCAnimActionAIStance = PreyFunction<void(CAnimActionAIStance* const _this, int priority, CPlayer* pPlayer, const EStance targetStance)>(0x10A3E30);
+	static inline auto FEnter = PreyFunction<void(CAnimActionAIStance* const _this)>(0x10A3F30);
+	static inline auto FExit = PreyFunction<void(CAnimActionAIStance* const _this)>(0x10A3FA0);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionAIStance* const _this, float elapsedSeconds)>(0x10A4A70);
+	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CAnimActionAIStance* const _this, float timePassed)>(0x10A4B10);
+	static inline auto FOnInitialise = PreyFunction<void(CAnimActionAIStance* const _this)>(0x10A49E0);
+	static inline auto FFindStanceActionScopeMask = PreyFunction<unsigned(const CAnimActionAIStance* const _this, const SAnimationContext& context)>(0x10A4250);
+	static inline auto FFragmentExistsInDatabase = PreyFunction<bool(const CAnimActionAIStance* const _this, const SAnimationContext& context, const IAnimationDatabase& database)>(0x10A4310);
+	static inline auto FFindFragmentInfo = PreyFunction<bool(const CAnimActionAIStance* const _this, const SAnimationContext& context, int& fragmentIdOut, SFragTagState& fragTagStateOut)>(0x10A4050);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIStance* const _this)>(0x10D38B0);
 	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIStance* const _this)>(0x3E3960);
 	static inline auto FCAnimActionAIStance = PreyFunction<void(CAnimActionAIStance* const _this, int priority, CPlayer* pPlayer, const EStance targetStance)>(0x10D3310);
@@ -56,6 +67,7 @@ public:
 	static inline auto FFindStanceActionScopeMask = PreyFunction<unsigned(const CAnimActionAIStance* const _this, const SAnimationContext& context)>(0x10D3730);
 	static inline auto FFragmentExistsInDatabase = PreyFunction<bool(const CAnimActionAIStance* const _this, const SAnimationContext& context, const IAnimationDatabase& database)>(0x10D37F0);
 	static inline auto FFindFragmentInfo = PreyFunction<bool(const CAnimActionAIStance* const _this, const SAnimationContext& context, int& fragmentIdOut, SFragTagState& fragTagStateOut)>(0x10D3530);
+#endif
 };
 
 // SMannequinAiStanceUserParams
@@ -103,7 +115,11 @@ struct SMannequinAiStanceUserParams : public IMannequinUserParams
 
 				void Init(const CTagDefinition& tagDefs) { FInit(this, tagDefs); }
 
+#ifndef MOONCRASH
+				static inline auto FInit = PreyFunction<void(SMannequinAiStanceUserParams::Fragments::SCODE_AI_ChangeStance::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x10A43E0);
+#else
 				static inline auto FInit = PreyFunction<void(SMannequinAiStanceUserParams::Fragments::SCODE_AI_ChangeStance::FragmentTagIDs* const _this, const CTagDefinition& tagDefs)>(0x10D38C0);
+#endif
 			};
 
 			TMannequinAutoInit<int,-1> fragmentID;
@@ -128,6 +144,10 @@ struct SMannequinAiStanceUserParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAiStanceUserParams* const _this, const SControllerDef& controllerDef)>(0x10A4830);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAiStanceUserParams* const _this, const SControllerDef& controllerDef)>(0x10D3D10);
+#endif
 };
-#endif // MOONCRASH
+

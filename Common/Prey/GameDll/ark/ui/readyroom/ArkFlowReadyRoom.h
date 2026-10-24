@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -11,7 +10,7 @@ struct SFlowNodeConfig;
 
 // ArkFlowEnablePlayerSimulationReset
 // Header:  Prey/GameDll/ark/ui/readyroom/ArkFlowReadyRoom.h
-class ArkFlowEnablePlayerSimulationReset : public CFlowBaseNode<0>
+class ArkFlowEnablePlayerSimulationReset : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class EInputs
@@ -40,7 +39,7 @@ public:
 
 // ArkFlowForceSatellite
 // Header:  Prey/GameDll/ark/ui/readyroom/ArkFlowReadyRoom.h
-class ArkFlowForceSatellite : public CFlowBaseNode<0>
+class ArkFlowForceSatellite : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class EInputs
@@ -68,7 +67,7 @@ public:
 
 // ArkFlowReadyRoom
 // Header:  Prey/GameDll/ark/ui/readyroom/ArkFlowReadyRoom.h
-class ArkFlowReadyRoom : public CFlowBaseNode<0>
+class ArkFlowReadyRoom : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class EInputs
@@ -102,7 +101,7 @@ public:
 
 // ArkFlowReadyRoomListener
 // Header:  Prey/GameDll/ark/ui/readyroom/ArkFlowReadyRoom.h
-class ArkFlowReadyRoomListener : public CFlowBaseNode<1>
+class ArkFlowReadyRoomListener : public CFlowBaseNode<eNCT_Instanced>
 { // Size=64 (0x40)
 public:
 	enum class EArkOutputs
@@ -137,7 +136,7 @@ public:
 
 // ArkFlowReadyRoomRequest
 // Header:  Prey/GameDll/ark/ui/readyroom/ArkFlowReadyRoom.h
-class ArkFlowReadyRoomRequest : public CFlowBaseNode<1>
+class ArkFlowReadyRoomRequest : public CFlowBaseNode<eNCT_Instanced>
 { // Size=64 (0x40)
 public:
 	enum class EArkOutputs

@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
-#include <_unknown/ITransformationPinning.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/CryExtension/ClassWeaver.h>
+#include <Prey/GameDll/ITransformationPinning.h>
+#include <Prey/CryExtension/TypeList.h>
 
 struct CryGUID;
 struct ICharacterInstance;
@@ -33,7 +31,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IAnimationPoseModifier,TL::Typelist<ITransformationPinning,TL::NullType> > >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IAnimationPoseModifier,TL::Typelist<ITransformationPinning,TL::NullType> > >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CTransformationPinning>>(0x2282888);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CTransformationPinning>>(0x23F1388);
+#endif
 	float m_factor;
 	unsigned m_jointID;
 	char* m_jointTypes;
@@ -61,6 +63,18 @@ public:
 	void Init(const SAnimationPoseModifierParams& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CTransformationPinning* const _this)>(0x17F80C0);
+	static inline auto FQueryInterface = PreyFunction<void* (const CTransformationPinning* const _this, const CryGUID& iid)>(0x17F80D0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CTransformationPinning* const _this, const char* name)>(0x158AEF0);
+	static inline auto FSetBlendWeight = PreyFunction<void(CTransformationPinning* const _this, float factor)>(0x12E3170);
+	static inline auto FSetJoint = PreyFunction<void(CTransformationPinning* const _this, unsigned jntID)>(0x17F8150);
+	static inline auto FSetSource = PreyFunction<void(CTransformationPinning* const _this, ICharacterInstance* source)>(0x17F8160);
+	static inline auto FPrepare = PreyFunction<bool(CTransformationPinning* const _this, const SAnimationPoseModifierParams& params)>(0x1B933B0);
+	static inline auto FExecute = PreyFunction<bool(CTransformationPinning* const _this, const SAnimationPoseModifierParams& params)>(0x17F8170);
+	static inline auto FSynchronize = PreyFunction<void(CTransformationPinning* const _this)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CTransformationPinning* const _this, ICrySizer* pSizer)>(0x332820);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CTransformationPinning* const _this)>(0x191FC00);
 	static inline auto FQueryInterface = PreyFunction<void* (const CTransformationPinning* const _this, const CryGUID& iid)>(0x191FC10);
 	static inline auto FQueryComposite = PreyFunction<void* (const CTransformationPinning* const _this, const char* name)>(0x1CBB0B0);
@@ -71,5 +85,6 @@ public:
 	static inline auto FExecute = PreyFunction<bool(CTransformationPinning* const _this, const SAnimationPoseModifierParams& params)>(0x191FCB0);
 	static inline auto FSynchronize = PreyFunction<void(CTransformationPinning* const _this)>(0x1333E90);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CTransformationPinning* const _this, ICrySizer* pSizer)>(0x4BAFC0);
+#endif
 };
-#endif // MOONCRASH
+

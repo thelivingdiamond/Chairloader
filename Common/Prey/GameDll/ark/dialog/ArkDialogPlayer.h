@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -45,7 +43,11 @@ public:
 	bool AreAllTriggersFree() const { return FAreAllTriggersFree(this); }
 	void SetDuckAudio(bool _bEnable) { FSetDuckAudio(this,_bEnable); }
 	virtual EArkDialogPlayerType GetType() const;
+#ifndef MOONCRASH
 	boost::optional<float> GetNormalizedPlaytime(uint64_t _dialogId) const { return FGetNormalizedPlaytime(this,_dialogId); }
+#else
+	boost::optional<float> GetNormalizedPlaytime(uint64_t _dialogId) const { alignas(boost::optional<float>) std::byte _return_buf_[sizeof(boost::optional<float>)]; return *FGetNormalizedPlaytime(this, reinterpret_cast<boost::optional<float>*>(_return_buf_), _dialogId); }
+#endif
 	virtual std::vector<SSubtitleAudioData> GetSubtitleAudioData() const;
 	ArkDialogPlayer::ELoadResult Load(SDialogParams const &_params) { return FLoad(this,_params); }
 	virtual void OnDialogComplete(ArkDialogAudioTrigger const *_pTrigger, const bool _bAudioFinished);
@@ -73,6 +75,7 @@ public:
 	bool IsAudioLogConversation() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDialogPlayer = PreyFunction<void(ArkDialogPlayer *const _this)>(0x1484E80);
 	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayer *const _this, SDialogParams const &_params)>(0x1485600);
 	static inline auto FStop = PreyFunction<void(ArkDialogPlayer *const _this, bool _bInvalidate)>(0x1485A40);
@@ -95,81 +98,7 @@ public:
 	static inline auto FOnTriggerLoaded = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger, bool _bSuccess)>(0x14855C0);
 	static inline auto FOnTriggerCutoff = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x14855B0);
 	static inline auto FOnTriggerFinished = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x14855B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/ArkDialogAudioTrigger.h>
-#include <Prey/GameDll/ark/dialog/IArkDialogAudioTriggerOwner.h>
-#include <Prey/GameDll/ark/dialog/SSubtitleAudioData.h>
-
-class ArkSpeakerBase;
-enum class EArkConversationDominance;
-enum class EArkDialogPlayerType;
-class IArkDialogPlayerExtension;
-struct IEntity;
-struct SDialogParams;
-
-// ArkDialogPlayer
-// Header:  Prey/GameDll/ark/dialog/ArkDialogPlayer.h
-class ArkDialogPlayer : public IArkDialogAudioTriggerOwner
-{ // Size=256 (0x100)
-public:
-	enum class ELoadResult
-	{
-		failed = 0,
-		loading = 1,
-		loaded = 2,
-	};
-
-	std::array<ArkDialogAudioTrigger, 2> m_triggers;
-	std::array<int, 2> m_nPAPlaybackChannels;
-	ArkSpeakerBase* m_pSpeaker;
-	IArkDialogPlayerExtension* m_pExtension;
-	unsigned m_nAudioProxy;
-	unsigned m_nVoiceEffect;
-	bool m_bMute;
-	bool m_bPaused;
-
-	ArkDialogPlayer(ArkSpeakerBase* _pSpeaker);
-	virtual ~ArkDialogPlayer();
-	bool Play(const SDialogParams& _params) { return FPlay(this, _params); }
-	void Stop(bool _bInvalidate) { FStop(this, _bInvalidate); }
-	void Update(const float _frameTime) { FUpdate(this, _frameTime); }
-	void SetVoiceEffect(unsigned _environmentId) { FSetVoiceEffect(this, _environmentId); }
-	void OnGamePause(bool _bPause) { FOnGamePause(this, _bPause); }
-	bool IsPlaying() const { return FIsPlaying(this); }
-	bool AreAllTriggersFree() const { return FAreAllTriggersFree(this); }
-	void SetDuckAudio(bool _bEnable) { FSetDuckAudio(this, _bEnable); }
-	virtual EArkDialogPlayerType GetType() const;
-	boost::optional<float> GetNormalizedPlaytime(uint64_t _dialogId) const { alignas(boost::optional<float>) std::byte _return_buf_[sizeof(boost::optional<float>)]; return *FGetNormalizedPlaytime(this, reinterpret_cast<boost::optional<float>*>(_return_buf_), _dialogId); }
-	virtual std::vector<SSubtitleAudioData> GetSubtitleAudioData() const;
-	ArkDialogPlayer::ELoadResult Load(const SDialogParams& _params) { return FLoad(this, _params); }
-	virtual void OnDialogComplete(const ArkDialogAudioTrigger* _pTrigger, const bool _bAudioFinished);
-	virtual bool PlayTriggerInternal(ArkDialogAudioTrigger& _trigger);
-	IEntity* GetEntity() const { return FGetEntity(this); }
-	void UpdateAudioLevels(IEntity& _entity) { FUpdateAudioLevels(this, _entity); }
-	void AddSubtitle(const ArkDialogAudioTrigger& _trigger) const { FAddSubtitle(this, _trigger); }
-	void RemoveSubtitle(const ArkDialogAudioTrigger& _trigger) const { FRemoveSubtitle(this, _trigger); }
-	virtual void OnTriggerLoaded(const ArkDialogAudioTrigger* _pTrigger, bool _bSuccess);
-	virtual void OnTriggerCutoff(const ArkDialogAudioTrigger* _pTrigger);
-	virtual void OnTriggerFinished(const ArkDialogAudioTrigger* _pTrigger);
-
-#if 0
-	EArkConversationDominance GetDefaultDominance() const;
-	void SetExtension(IArkDialogPlayerExtension* const _arg0_);
-	void PostSerialize();
-	void OnConversationComplete(bool _arg0_);
-	void OnDialogAnimationEvent();
-	void SetEntity(IEntity* const _arg0_);
-	void SetMute(bool _arg0_);
-	bool IsMute() const;
-	ArkDialogAudioTrigger* GetAvailableTrigger();
-	static bool IsValidPlaybackChannel(int _arg0_);
-	unsigned GetTriggerIndex(const ArkDialogAudioTrigger& _arg0_) const;
-	bool IsAudioLogConversation() const;
-#endif
-
+#else
 	static inline auto FArkDialogPlayerOv1 = PreyFunction<void(ArkDialogPlayer* const _this, ArkSpeakerBase* _pSpeaker)>(0x159C620);
 	static inline auto FBitNotArkDialogPlayer = PreyFunction<void(ArkDialogPlayer* const _this)>(0x159C6F0);
 	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayer* const _this, const SDialogParams& _params)>(0x159CE70);
@@ -193,5 +122,5 @@ public:
 	static inline auto FOnTriggerLoaded = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger, bool _bSuccess)>(0x159CE30);
 	static inline auto FOnTriggerCutoff = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x159CE20);
 	static inline auto FOnTriggerFinished = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x159CE20);
+#endif
 };
-#endif // !MOONCRASH

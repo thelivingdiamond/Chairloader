@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -26,13 +24,16 @@ public:
 	void PostSerialize() { FPostSerialize(this); }
 	virtual EArkDialogPlayerType GetType() const;
 	EArkConversationDominance GetDefaultDominance() const { return FGetDefaultDominance(this); }
+#ifndef MOONCRASH
 	void SetDuckAudio(bool _bEnable) { FSetDuckAudio(this,_bEnable); }
+#endif
 	virtual bool PlayTriggerInternal(ArkDialogAudioTrigger &_trigger);
 	
 #if 0
 	bool IsConversationPlaying() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetEntity = PreyFunction<void(ArkDialogPlayerTranscribe *const _this, IEntity *const _pEntity)>(0x13F8A50);
 	static inline auto FUpdate = PreyFunction<void(ArkDialogPlayerTranscribe *const _this, float _deltaTime)>(0x13F8BF0);
 	static inline auto FOnConversationComplete = PreyFunction<void(ArkDialogPlayerTranscribe *const _this, bool _bHasResponse)>(0x13F8590);
@@ -41,41 +42,7 @@ public:
 	static inline auto FGetDefaultDominance = PreyFunction<EArkConversationDominance(ArkDialogPlayerTranscribe const *const _this)>(0x1A42CE0);
 	static inline auto FSetDuckAudio = PreyFunction<void(ArkDialogPlayerTranscribe *const _this, bool _bEnable)>(0xA13080);
 	static inline auto FPlayTriggerInternal = PreyFunction<bool(ArkDialogPlayerTranscribe *const _this, ArkDialogAudioTrigger &_trigger)>(0x13F86E0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayer.h>
-
-class ArkDialogAudioTrigger;
-class ArkSpeakerBase;
-enum class EArkConversationDominance;
-enum class EArkDialogPlayerType;
-struct IEntity;
-
-// ArkDialogPlayerTranscribe
-// Header:  Prey/GameDll/ark/dialog/ArkDialogPlayerTranscribe.h
-class ArkDialogPlayerTranscribe : public ArkDialogPlayer
-{ // Size=272 (0x110)
-public:
-	ArkAudioTrigger m_inSoundTrigger;
-	ArkAudioTrigger m_outSoundTrigger;
-	bool m_bConversationPlaying;
-
-	ArkDialogPlayerTranscribe(ArkSpeakerBase* const _pSpeaker);
-	void SetEntity(IEntity* const _pEntity) { FSetEntity(this, _pEntity); }
-	void Update(float _deltaTime) { FUpdate(this, _deltaTime); }
-	void OnConversationComplete(bool _bHasResponse) { FOnConversationComplete(this, _bHasResponse); }
-	void PostSerialize() { FPostSerialize(this); }
-	virtual EArkDialogPlayerType GetType() const;
-	EArkConversationDominance GetDefaultDominance() const { return FGetDefaultDominance(this); }
-	virtual bool PlayTriggerInternal(ArkDialogAudioTrigger& _trigger);
-
-#if 0
-	bool IsConversationPlaying() const;
-#endif
-
+#else
 	static inline auto FArkDialogPlayerTranscribeOv2 = PreyFunction<void(ArkDialogPlayerTranscribe* const _this, ArkSpeakerBase* const _pSpeaker)>(0x150A4F0);
 	static inline auto FSetEntity = PreyFunction<void(ArkDialogPlayerTranscribe* const _this, IEntity* const _pEntity)>(0x150AA60);
 	static inline auto FUpdate = PreyFunction<void(ArkDialogPlayerTranscribe* const _this, float _deltaTime)>(0x150AC00);
@@ -84,5 +51,5 @@ public:
 	static inline auto FGetType = PreyFunction<EArkDialogPlayerType(const ArkDialogPlayerTranscribe* const _this)>(0x1A2FA50);
 	static inline auto FGetDefaultDominance = PreyFunction<EArkConversationDominance(const ArkDialogPlayerTranscribe* const _this)>(0x4FD7F0);
 	static inline auto FPlayTriggerInternal = PreyFunction<bool(ArkDialogPlayerTranscribe* const _this, ArkDialogAudioTrigger& _trigger)>(0x150A6F0);
+#endif
 };
-#endif // !MOONCRASH

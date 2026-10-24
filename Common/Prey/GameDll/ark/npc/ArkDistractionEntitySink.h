@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
@@ -89,6 +87,28 @@ public:
 	void RemoveDistraction(const IEntity& _arg0_, const uint64_t& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkDistractionEntitySinkOv1 = PreyFunction<void(ArkDistractionEntitySink* const _this)>(0x14E9000);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkDistractionEntitySink* const _this)>(0x14EA740);
+	static inline auto FReset = PreyFunction<void(ArkDistractionEntitySink* const _this, bool _bEnteringGameMode)>(0x14EA880);
+	static inline auto FOnBeforeSpawn = PreyFunction<bool(ArkDistractionEntitySink* const _this, SEntitySpawnParams& params)>(0x1B933B0);
+	static inline auto FOnSpawn = PreyFunction<void(ArkDistractionEntitySink* const _this, IEntity* _pEntity, SEntitySpawnParams& _params)>(0x14EA780);
+	static inline auto FOnRemove = PreyFunction<bool(ArkDistractionEntitySink* const _this, IEntity* _pEntity)>(0x14EA750);
+	static inline auto FOnReused = PreyFunction<void(ArkDistractionEntitySink* const _this, IEntity* _pEntity, SEntitySpawnParams& params)>(0xA13080);
+	static inline auto FOnEvent = PreyFunction<void(ArkDistractionEntitySink* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x14EA6A0);
+	static inline auto FOnEntityDied = PreyFunction<void(ArkDistractionEntitySink* const _this, IEntity* _pEntity)>(0x14EA520);
+	static inline auto FOnEntityStartMimicking = PreyFunction<void(ArkDistractionEntitySink* const _this, const IEntity* _pEntity, const IEntity* _pEntityBeingMimicked)>(0x14EA530);
+	static inline auto FOnEntityStopMimicking = PreyFunction<void(ArkDistractionEntitySink* const _this, const IEntity* _pEntity)>(0x14EA640);
+	static inline auto FLoadAutoDistractionXml = PreyFunction<void(ArkDistractionEntitySink* const _this)>(0x14E9C80);
+	static inline auto FLoadEntityClassesXmlNode = PreyFunction<void(ArkDistractionEntitySink* const _this, const XmlNodeRef& _entityClassXmlNode)>(0x14E9EB0);
+	static inline auto FLoadArchetypesXmlNode = PreyFunction<void(ArkDistractionEntitySink* const _this, const XmlNodeRef& _archetypeClassXmlNode)>(0x14E9950);
+	static inline auto FLoadMetaTagXmlNode = PreyFunction<void(ArkDistractionEntitySink* const _this, const XmlNodeRef& _metaTagXmlNode)>(0x14EA230);
+	static inline auto FRegisterEntityForDistractions = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x14EA790);
+	static inline auto FAddEntityClassDistractions = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const IEntityClass& _entityClass, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x14E9430);
+	static inline auto FAddArchetypeDistractions = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const IEntityArchetype& _entityArchetype, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x14E92C0);
+	static inline auto FAddMetaTagDistraction = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const IEntity& _addUsingThisEntityTags, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x14E9680);
+	static inline auto FAddOrRemoveDistraction = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const uint64_t& _distractionId, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState, ArkDistractionEntitySink::EDistractionLifetime _distractionLifetime)>(0x14E98A0);
+#else
 	static inline auto FArkDistractionEntitySinkOv1 = PreyFunction<void(ArkDistractionEntitySink* const _this)>(0x16047E0);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkDistractionEntitySink* const _this)>(0x1605F30);
 	static inline auto FReset = PreyFunction<void(ArkDistractionEntitySink* const _this, bool _bEnteringGameMode)>(0x1606070);
@@ -109,5 +129,6 @@ public:
 	static inline auto FAddArchetypeDistractions = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const IEntityArchetype& _entityArchetype, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x1604AA0);
 	static inline auto FAddMetaTagDistraction = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const IEntity& _addUsingThisEntityTags, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState)>(0x1604E60);
 	static inline auto FAddOrRemoveDistraction = PreyFunction<void(const ArkDistractionEntitySink* const _this, const IEntity& _entity, const uint64_t& _distractionId, ArkDistractionEntitySink::EDistractionLifetime _entityLifetimeState, ArkDistractionEntitySink::EDistractionLifetime _distractionLifetime)>(0x1605080);
+#endif
 };
-#endif // MOONCRASH
+

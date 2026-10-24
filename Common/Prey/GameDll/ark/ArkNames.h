@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 
 // TODO 2023-07-24: Better ArkName handling
@@ -11,6 +9,10 @@
 //! Initializes an ArkName.
 #define INIT_ARK_NAME(name) ARKNAME_##name = CCryName(#name)
 
+#ifndef MOONCRASH
 DECLARE_ARK_NAME_GLOBAL(0x2BC98A0, WeaponCriticalHitChance);
 DECLARE_ARK_NAME_GLOBAL(0x2BC9420, HealthDrainForPsi);
-#endif // !MOONCRASH
+#else   // MOONCRASH
+DECLARE_ARK_NAME_GLOBAL(0x2D3EF88, WeaponCriticalHitChance);
+DECLARE_ARK_NAME_GLOBAL(0x2D3EAB0, HealthDrainForPsi);
+#endif

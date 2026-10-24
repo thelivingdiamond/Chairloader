@@ -221,9 +221,14 @@ public:
 	//! Find node with specified tag.
 	//virtual XmlNodeRef findChild(const char* tag) const = 0;
 
+#ifndef MOONCRASH
 	virtual void _xPathFindNodes(std::function<void(XmlNodeRef)>, const char *tag) = 0;
+#endif // !MOONCRASH
 	virtual XmlNodeRef ensureChild(const char *) = 0;
 	virtual XmlNodeRef getRoot() = 0;
+#ifdef MOONCRASH
+	virtual void _xPathFindNodes(std::function<void(XmlNodeRef)>, const char *tag) = 0;
+#endif // MOONCRASH
 	virtual void xPathIDFromAttribute(const char *, CryStackStringT<char, 512> *) = 0;
 	virtual bool MatchesXPath(const char *) = 0;
 	virtual int findChildIndex(const XmlNodeRef *) = 0;
@@ -304,7 +309,7 @@ public:
 	virtual void deleteChildAt(int nIndex) = 0;
 
 	//! Return XML of this node and sub nodes into tmpBuffer without XML checks (much faster).
-	//virtual XmlString getXMLUnsafe(int level, char* tmpBuffer, uint32 sizeOfTmpBuffer) const { return getXML(level); }
+	virtual XmlString getXMLUnsafe(int level, char* tmpBuffer, uint32 sizeOfTmpBuffer) const { return getXML(level); } // last slot
 
 	//! Save in small memory chunks.
 	//virtual bool saveToFile(const char* fileName, size_t chunkSizeBytes, FILE* file = NULL) = 0;
@@ -617,7 +622,11 @@ struct IXmlUtils
 	virtual ~IXmlUtils(){}
 
 	//! Load xml file, returns 0 if load failed.
-	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bEnablePatching = true) = 0;
+#ifndef MOONCRASH
+	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bEnablePatching = true, bool bAllowUseFilesystem = false) = 0;
+#else // MOONCRASH
+	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bEnablePatching = true, unsigned _nFileFlags = 0) = 0;
+#endif // !MOONCRASH
 
 	//! Load xml from memory buffer, returns 0 if load failed.
 	virtual XmlNodeRef LoadXmlFromBuffer(const char* buffer, size_t size, bool bReuseStrings = false) = 0;
@@ -670,7 +679,8 @@ struct IXmlUtils
 	//! Set to NULL to clear an existing transform and disable further patching.
 	virtual void SetXMLPatcher(XmlNodeRef* pPatcher) = 0;
 
-	virtual void GetMemoryUsage(ICrySizer *) = 0;
+	// GetMemoryUsage is not in Prey's vtable.
+	//virtual void GetMemoryUsage(ICrySizer *) = 0;
 	// </interfuscator:shuffle>
 #endif
 };

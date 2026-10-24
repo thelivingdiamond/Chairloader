@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/CArkGameObjectExtension.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
 
 struct IGameObject;
 
@@ -14,7 +12,12 @@ public:
 	virtual bool Init(IGameObject* _pGameObject);
 	virtual void Release();
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<bool(CArkRetreatPoint* const _this, IGameObject* _pGameObject)>(0x120E900);
+	static inline auto FRelease = PreyFunction<void(CArkRetreatPoint* const _this)>(0x120E940);
+#else
 	static inline auto FInit = PreyFunction<bool(CArkRetreatPoint* const _this, IGameObject* _pGameObject)>(0x129D880);
 	static inline auto FRelease = PreyFunction<void(CArkRetreatPoint* const _this)>(0x129D8C0);
+#endif
 };
-#endif // MOONCRASH
+

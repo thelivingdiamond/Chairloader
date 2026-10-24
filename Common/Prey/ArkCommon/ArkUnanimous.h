@@ -51,7 +51,7 @@ public:
 
 #pragma once
 #if 0
-#include <_unknown/ArkNpcBodyStateEnterParams.h>
+#include <Prey/GameDll/ark/npc/fsm2/body/ArkNpcBodyStateEnterParams.h>
 
 class ArkNpc;
 class ArkNpcBodyStateObserver_Busy;

@@ -1,10 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/dialog/IArkSpeaker.h>
 #include <Prey/GameDll/ark/dialog/arkresponsetypes.h>
+#include <Prey/GameDll/ark/dialog/SArkRuleQuery.h>
 
 class ArkCharacter;
 class ArkConversation;
@@ -51,8 +50,7 @@ public:
 	virtual void Stop(bool _bLoading, bool _bConversationComplete);
 	void OnDialogComplete(uint64_t _dialogId, bool _bAudioFinished) { FOnDialogComplete(this, _dialogId, _bAudioFinished); }
 	ArkConversation* TriggerRule(const uint64_t _ruleId, const bool _bIgnoreVoiceRequirement, const char* const _concept, ArkResponseQuery* const _pQuery, const int _paChannel, const bool _bIsLiveAudio, const int _priority) { return FTriggerRule(this, _ruleId, _bIgnoreVoiceRequirement, _concept, _pQuery, _paChannel, _bIsLiveAudio, _priority); }
-	bool PlayResponse(const ArkResponseRule& _rule, ArkConversation* const _pConversation, const float _currentTime, const bool _bUseRuleVoice, const int _paChannel) { return FPlayResponse(this, _rule, _pConversation, _currentTime, _bUseRuleVoice, _paChannel); }
-	const ArkResponse* FindResponseFromRule(const ArkResponseRule& _rule, const float _currentTime) { return FFindResponseFromRule(this, _rule, _currentTime); }
+	bool PlayResponse(ArkResponseRule& _rule, ArkConversation* const _pConversation, const float _currentTime, const bool _bUseRuleVoice, const int _paChannel) { return FPlayResponse(this, _rule, _pConversation, _currentTime, _bUseRuleVoice, _paChannel); }
 	void AddListener(ArkSpeakerBase* _pListener) { FAddListener(this, _pListener); }
 	void RemoveListener(ArkSpeakerBase* _pListener) { FRemoveListener(this, _pListener); }
 	void SetCharacter(const ArkCharacter* const _pCharacter, uint64_t _voiceOverride) { FSetCharacter(this, _pCharacter, _voiceOverride); }
@@ -92,6 +90,41 @@ public:
 	void UpdateMemory();
 #endif
 
+#ifdef MOONCRASH
+	const ArkResponse* FindResponseFromRule(const ArkResponseRule& _rule, const float _currentTime) { return FFindResponseFromRule(this, _rule, _currentTime); }
+#endif
+#ifndef MOONCRASH
+	static inline auto FArkSpeakerBaseOv1 = PreyFunction<void(ArkSpeakerBase* const _this)>(0x1499280);
+	static inline auto FBitNotArkSpeakerBase = PreyFunction<void(ArkSpeakerBase* const _this)>(0x14993A0);
+	static inline auto FUpdate = PreyFunction<void(ArkSpeakerBase* const _this, float _frameTime)>(0x149B870);
+	static inline auto FSpeakOv2 = PreyFunction<bool(ArkSpeakerBase* const _this, const char* _concept, ArkResponseQuery& _query, ArkConversation* const _pConversation)>(0x149B540);
+	static inline auto FSpeakOv0 = PreyFunction<bool(ArkSpeakerBase* const _this, const char* _conceptStr, uint64_t _conceptId, ArkResponseQuery& _query, ArkConversation* _pConversation)>(0x149B5A0);
+	static inline auto FCanSpeak = PreyFunction<bool(const ArkSpeakerBase* const _this, const char* _concept, ArkResponseQuery& _query)>(0x1499E40);
+	static inline auto FStop = PreyFunction<void(ArkSpeakerBase* const _this, bool _bLoading, bool _bConversationComplete)>(0x149B6A0);
+	static inline auto FOnDialogComplete = PreyFunction<void(ArkSpeakerBase* const _this, uint64_t _dialogId, bool _bAudioFinished)>(0x149A0A0);
+	static inline auto FTriggerRule = PreyFunction<ArkConversation* (ArkSpeakerBase* const _this, const uint64_t _ruleId, const bool _bIgnoreVoiceRequirement, const char* const _concept, ArkResponseQuery* const _pQuery, const int _paChannel, const bool _bIsLiveAudio, const int _priority)>(0x149B6D0);
+	static inline auto FPlayResponse = PreyFunction<bool(ArkSpeakerBase* const _this, ArkResponseRule& _rule, ArkConversation* const _pConversation, const float _currentTime, const bool _bUseRuleVoice, const int _paChannel)>(0x149A2D0);
+	static inline auto FAddListener = PreyFunction<void(ArkSpeakerBase* const _this, ArkSpeakerBase* _pListener)>(0x1499810);
+	static inline auto FRemoveListener = PreyFunction<void(ArkSpeakerBase* const _this, ArkSpeakerBase* _pListener)>(0x1484970);
+	static inline auto FSetCharacter = PreyFunction<void(ArkSpeakerBase* const _this, const ArkCharacter* const _pCharacter, uint64_t _voiceOverride)>(0x149B480);
+	static inline auto FGetName = PreyFunction<const char* (const ArkSpeakerBase* const _this)>(0x1499F40);
+	static inline auto FBuildRuleQuery = PreyFunction<SArkRuleQuery*(const ArkSpeakerBase* const _this, SArkRuleQuery* _return_value_, const char* _concept, const uint64_t _conceptId, ArkResponseQuery& _query, const ArkConversation* _pConversation)>(0x1499A70);
+	static inline auto FApplyEmotion = PreyFunction<void(ArkSpeakerBase* const _this, uint64_t _dialogId)>(0x1499860);
+	static inline auto FApplyResponseTargetTracking = PreyFunction<void(ArkSpeakerBase* const _this)>(0x1499940);
+	static inline auto FReset = PreyFunction<void(ArkSpeakerBase* const _this)>(0x149AB10);
+	static inline auto FOnConversationJoined = PreyFunction<void(ArkSpeakerBase* const _this, ArkConversation* _pConversation)>(0x1499FD0);
+	static inline auto FOnConversationComplete = PreyFunction<void(ArkSpeakerBase* const _this, const bool _bComplete)>(0x1499F80);
+	static inline auto FPlayDialog = PreyFunction<bool(ArkSpeakerBase* const _this, SDialogParams& _params)>(0xDD23F0);
+	static inline auto FSetEntity = PreyFunction<void(ArkSpeakerBase* const _this, IEntity* const _pEntity)>(0x11AA120);
+	static inline auto FGetConversationOv1 = PreyFunction<const IArkConversation* (const ArkSpeakerBase* const _this)>(0x11A67A0);
+	static inline auto FIsSpeaking = PreyFunction<bool(const ArkSpeakerBase* const _this)>(0xDD23F0);
+	static inline auto FSerialize = PreyFunction<void(ArkSpeakerBase* const _this, TSerialize _ser)>(0x149ABD0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkSpeakerBase* const _this)>(0x149AA40);
+	static inline auto FGetAudioLevel = PreyFunction<float(const ArkSpeakerBase* const _this)>(0x1499F10);
+	static inline auto FSetDuckAudio = PreyFunction<void(ArkSpeakerBase* const _this, const bool _bEnable)>(0x149B4B0);
+	static inline auto FSetVoice = PreyFunction<void(ArkSpeakerBase* const _this, const uint64_t _voiceId)>(0x149B4C0);
+	static inline auto FResolveAbstractVoice = PreyFunction<uint64_t(const uint64_t _voiceId)>(0x149ABB0);
+#else
 	static inline auto FArkSpeakerBaseOv1 = PreyFunction<void(ArkSpeakerBase* const _this)>(0x15B0D50);
 	static inline auto FBitNotArkSpeakerBase = PreyFunction<void(ArkSpeakerBase* const _this)>(0x15B0E70);
 	static inline auto FUpdate = PreyFunction<void(ArkSpeakerBase* const _this, float _frameTime)>(0x15B3410);
@@ -123,5 +156,6 @@ public:
 	static inline auto FSetDuckAudio = PreyFunction<void(ArkSpeakerBase* const _this, const bool _bEnable)>(0x15B3020);
 	static inline auto FSetVoice = PreyFunction<void(ArkSpeakerBase* const _this, const uint64_t _voiceId)>(0x15B3030);
 	static inline auto FResolveAbstractVoice = PreyFunction<uint64_t(const uint64_t _voiceId)>(0x15B2720);
+#endif
 };
-#endif // MOONCRASH
+

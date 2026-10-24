@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #ifndef IRenderNodeSTATE_H
@@ -644,7 +643,6 @@ struct IRoadRenderNode : public IRenderNode
 	virtual void SetVertices(const Vec3* pVerts, int nVertsNum, float fTexCoordBegin, float fTexCoordEnd, float fTexCoordBeginGlobal, float fTexCoordEndGlobal) = 0;
 	virtual void SetSortPriority(uint8 sortPrio) = 0;
 	virtual void SetIgnoreTerrainHoles(bool bVal) = 0;
-	virtual void SetPhysicalize(bool bVal) = 0;
 	virtual void GetClipPlanes(Plane* pPlanes, int nPlanesNum, int nVertId = 0) = 0;
 	virtual void GetTexCoordInfo(float* pTexCoordInfo) = 0;
 	// </interfuscator:shuffle>
@@ -831,7 +829,6 @@ struct IWaterVolumeRenderNode : public IRenderNode
 	virtual void             SetCausticHeight(float causticHeight) = 0;
 	virtual void             SetAuxPhysParams(pe_params_area*) = 0;
 
-	virtual void             CreateOcean(uint64 volumeID, /* TBD */ bool keepSerializationParams = false) = 0;
 	virtual void             CreateArea(uint64 volumeID, const Vec3* pVertices, unsigned int numVertices, const Vec2& surfUVScale, const Plane& fogPlane, bool keepSerializationParams = false, int nSID = -1) = 0;
 	virtual void             CreateRiver(uint64 volumeID, const Vec3* pVertices, unsigned int numVertices, float uTexCoordBegin, float uTexCoordEnd, const Vec2& surfUVScale, const Plane& fogPlane, bool keepSerializationParams = false, int nSID = -1) = 0;
 
@@ -1066,7 +1063,7 @@ struct IGeomCacheRenderNode : public IRenderNode
 	virtual void SetDrawing(bool bDrawing) = 0;
 
 	//! Debug draw geometry.
-	virtual void DebugDraw(const struct SGeometryDebugDrawInfo& info, uint nodeIndex = 0) const = 0;
+	virtual void DebugDraw(const struct SGeometryDebugDrawInfo& info, float fExtrudeScale = 0.01f, uint nodeIndex = 0) const = 0;
 
 	//! Ray intersection against cache.
 	virtual bool RayIntersection(struct SRayHitInfo& hitInfo, IMaterial* pCustomMtl = NULL, uint* pHitNodeIndex = NULL) const = 0;
@@ -1083,6 +1080,8 @@ struct IGeomCacheRenderNode : public IRenderNode
 	virtual bool IsNodeDataValid(const uint nodeIndex) const = 0;
 
 	virtual void InitPhysicalEntity(IPhysicalEntity* pPhysicalEntity, const pe_articgeomparams& params) = 0;
+
+	virtual void SetSortOffset(float _sortOffset) = 0;
 };
 
 #endif // IRenderNodeSTATE_H

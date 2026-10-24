@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CryInput/IInput.h>
@@ -42,7 +41,9 @@ public:
 	virtual void UnPauseMouse() = 0;
 	virtual void GetHardwareMousePosition(float *, float *) = 0;
 	virtual void SetHardwareMousePosition(float, float) = 0;
-	virtual void GetHardwareMouseClientPosition(float &, float &) = 0;
+	virtual void GetHardwareMouseClientPosition(float* pfX, float* pfY) = 0;
+	//! Convenience overload (not a virtual: Prey's interface takes pointers).
+	void GetHardwareMouseClientPosition(float& fX, float& fY) { GetHardwareMouseClientPosition(&fX, &fY); }
 	virtual void SetHardwareMouseClientPosition(float, float) = 0;
 	virtual void Reset(bool) = 0;
 	virtual void ConfineCursor(bool, bool) = 0;

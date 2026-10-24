@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once
@@ -187,6 +186,7 @@ struct SEntityUpdateContext
 		bProfileToLog(false), numVisibleEntities(0), numUpdatedEntities(0), fMaxViewDist(1e+8), fFrameTime(0) {};
 };
 
+#ifndef MOONCRASH
 enum EEntityXFormFlags
 {
 	ENTITY_XFORM_POS                      = BIT(1),
@@ -206,6 +206,27 @@ enum EEntityXFormFlags
 	ENTITY_XFORM_ALLOW_STATIONARY_TEST    = BIT(22),
 	ENTITY_XFORM_USER                     = 0x1000000,
 };
+#else
+enum EEntityXFormFlags
+{
+	ENTITY_XFORM_POS = 0x2,
+	ENTITY_XFORM_ROT = 0x4,
+	ENTITY_XFORM_SCL = 0x8,
+	ENTITY_XFORM_NO_PROPOGATE = 0x10,
+	ENTITY_XFORM_FROM_PARENT = 0x20,
+	ENTITY_XFORM_PHYSICS_STEP = 0x2000,
+	ENTITY_XFORM_EDITOR = 0x4000,   // unused in Mooncrash; Preditor/Chairloader set it on editor transforms
+	ENTITY_XFORM_TRACKVIEW = 0x8000,
+	ENTITY_XFORM_TIMEDEMO = 0x10000,
+	ENTITY_XFORM_NOT_REREGISTER = 0x20000,
+	ENTITY_XFORM_NO_EVENT = 0x40000,
+	ENTITY_XFORM_NO_SEND_TO_ENTITY_SYSTEM = 0x80000,
+	ENTITY_XFORM_BOUNDS_CHECK = 0x100000,
+	ENTITY_XFORM_NO_BOUNDS_CHECK = 0x200000,
+	ENTITY_XFORM_ALLOW_STATIONARY_TEST = 0x400000,
+	ENTITY_XFORM_USER = 0x1000000,
+};
+#endif
 
 //! EEntityEvent defines all events that can be sent to an entity.
 enum EEntityEvent
@@ -392,7 +413,7 @@ enum EEntityEvent
 	//! Called to activate some output in a flow node connected to the entity
 	//! nParam[0] = Output port index
 	//! nParam[1] = TFlowInputData* to send to output
-	ENTITY_EVENT_ACTIVATE_FLOW_NODE_OUTPUT,
+	ENTITY_EVENT_ACTIVE_FLOW_NODE_OUTPUT,
 
 	//! Called in the editor when some property of the current selected entity changes.
 	ENTITY_EVENT_EDITOR_PROPERTY_CHANGED,
@@ -431,8 +452,7 @@ struct SEntityEvent
 	  const int n2,
 	  const int n3,
 	  const float f0,
-	  const float f1,
-	  const float f2)
+	  const float f1)
 	{
 		nParam[0] = n0;
 		nParam[1] = n1;
@@ -440,26 +460,25 @@ struct SEntityEvent
 		nParam[3] = n3;
 		fParam[0] = f0;
 		fParam[1] = f1;
-		fParam[2] = f2;
 	}
 
 	SEntityEvent()
 		: event(ENTITY_EVENT_LAST)
 	{
 		nParam[0] = nParam[1] = nParam[2] = nParam[3] = 0;
-		fParam[0] = fParam[1] = fParam[2] = 0.0f;
+		fParam[0] = fParam[1] = 0.0f;
 	}
 
 	explicit SEntityEvent(EEntityEvent const _event)
 		: event(_event)
 	{
 		nParam[0] = nParam[1] = nParam[2] = nParam[3] = 0;
-		fParam[0] = fParam[1] = fParam[2] = 0.0f;
+		fParam[0] = fParam[1] = 0.0f;
 	}
 
 	EEntityEvent event;     //!< Any event from EEntityEvent enum.
 	INT_PTR      nParam[4]; //!< Event parameters.
-	float        fParam[3];
+	float        fParam[2];
 };
 
 //! Updates policy defines in which cases to call entity update function every frame.
@@ -783,7 +802,7 @@ struct IEntity
 	//! Check if the entity is active now.
 	virtual bool IsActive() const = 0;
 
-	virtual bool IsFromPool() = 0;
+	virtual bool IsFromPool() const = 0;
 
 	//! Activates entity, if entity is active it will be updated every frame.
 	virtual void PrePhysicsActivate(bool bActive) = 0;
@@ -890,7 +909,7 @@ struct IEntity
 	virtual void             UpdateSlotPhysics(int slot) = 0;
 
 	virtual void             SetPhysicsState(XmlNodeRef& physicsState) = 0;
-	virtual bool			 HasPhysicsState() = 0;
+	virtual bool			 HasPhysicsState() const = 0;
 
 	// Custom entity material.
 
@@ -1027,6 +1046,7 @@ struct IEntity
 	virtual int SetParticleEmitter(int nSlot, IParticleEmitter* pEmitter, bool bSerialize = false) = 0;
 
 	virtual int SetBreakableGlass(int, IArkGlass *) = 0;
+	virtual IArkGlass* GetBreakableGlass(int _nSlot) = 0;
 
 	//! Loads a light source to the specified slot, or to next available slot.
 	//! \return Slot id where the light source was loaded, or -1 if loading failed.
@@ -1047,7 +1067,7 @@ struct IEntity
 
 	//! Gets pointer to the first entity link.
 	virtual IEntityLink* GetEntityLinks() = 0;
-	virtual IEntityLink* AddEntityLink(const char* sLinkName, EntityId entityId, EntityGUID entityGuid = 0) = 0;
+	virtual IEntityLink* AddEntityLink(const char* sLinkName, EntityId entityId) = 0;
 	virtual void         RemoveEntityLink(IEntityLink* pLink) = 0;
 	virtual void         RemoveAllEntityLinks() = 0;
 	//////////////////////////////////////////////////////////////////////////
@@ -1074,8 +1094,11 @@ struct IEntity
 	virtual void ResetKeepAliveCounter() = 0;
 	virtual bool IsKeptAlive() const = 0;
 
-	virtual const char *GetDisplayName() = 0;
+	virtual const char *GetDisplayName() const = 0;
 	virtual void SetDisplayName(const char *) = 0;
+#ifdef MOONCRASH
+	virtual bool IsStatic() const = 0;
+#endif
 
 	//! LiveCreate entity manipulation.
 	//! Process the LiveCreate message with a variable change.

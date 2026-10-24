@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-#include <_unknown/Functor3.h>
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/CryCore/functor.h>
 
 enum EEntityAspects;
 class ICrySizer;
@@ -83,6 +81,36 @@ public:
 	void Reset(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCLightningArcOv2 = PreyFunction<void(CLightningArc* const _this)>(0x16BD5E0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CLightningArc* const _this, ICrySizer* pSizer)>(0xA13080);
+	static inline auto FInit = PreyFunction<bool(CLightningArc* const _this, IGameObject* pGameObject)>(0x16BD740);
+	static inline auto FPostInit = PreyFunction<void(CLightningArc* const _this, IGameObject* pGameObject)>(0x16BD790);
+	static inline auto FInitClient = PreyFunction<void(CLightningArc* const _this, int channelId)>(0xA13080);
+	static inline auto FPostInitClient = PreyFunction<void(CLightningArc* const _this, int channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CLightningArc* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1B933B0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CLightningArc* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CLightningArc* const _this, TSerialize signature)>(0x1B933B0);
+	static inline auto FRelease = PreyFunction<void(CLightningArc* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CLightningArc* const _this, TSerialize ser)>(0xA13080);
+	static inline auto FNetSerialize = PreyFunction<bool(CLightningArc* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int pflags)>(0x1B933B0);
+	static inline auto FPostSerialize = PreyFunction<void(CLightningArc* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CLightningArc* const _this, TSerialize ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CLightningArc* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CLightningArc* const _this, SEntityUpdateContext& ctx, int updateSlot)>(0x16BE470);
+	static inline auto FHandleEvent = PreyFunction<void(CLightningArc* const _this, const SGameObjectEvent& event)>(0xA13080);
+	static inline auto FProcessEvent = PreyFunction<void(CLightningArc* const _this, SEntityEvent& event)>(0x16BD7E0);
+	static inline auto FSetChannelId = PreyFunction<void(CLightningArc* const _this, uint16_t id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CLightningArc* const _this, bool auth)>(0xA13080);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CLightningArc* const _this)>(0x158AEF0);
+	static inline auto FPostUpdate = PreyFunction<void(CLightningArc* const _this, float frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CLightningArc* const _this)>(0xA13080);
+	static inline auto FTriggerSpark = PreyFunction<bool(CLightningArc* const _this)>(0x16BDBA0);
+	static inline auto FReadLuaParameters = PreyFunction<void(CLightningArc* const _this)>(0x16BD870);
+	static inline auto FSetFixedDestPosition = PreyFunction<void(CLightningArc* const _this, const Vec3& fixedDestPosition)>(0x16BDB70);
+	static inline auto FSetSourceAttachment = PreyFunction<void(CLightningArc* const _this, unsigned _attachmentCrc, int _characterSlot)>(0x16BDB90);
+	static inline auto FEnable_Internal = PreyFunction<void(CLightningArc* const _this, bool _bEnable, bool _bInGame)>(0x16BD6E0);
+#else
 	static inline auto FCLightningArcOv2 = PreyFunction<void(CLightningArc* const _this)>(0x17E0000);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CLightningArc* const _this, ICrySizer* pSizer)>(0x1333E90);
 	static inline auto FInit = PreyFunction<bool(CLightningArc* const _this, IGameObject* pGameObject)>(0x17E0160);
@@ -111,5 +139,6 @@ public:
 	static inline auto FSetFixedDestPosition = PreyFunction<void(CLightningArc* const _this, const Vec3& fixedDestPosition)>(0x17E0590);
 	static inline auto FSetSourceAttachment = PreyFunction<void(CLightningArc* const _this, unsigned _attachmentCrc, int _characterSlot)>(0x17E05B0);
 	static inline auto FEnable_Internal = PreyFunction<void(CLightningArc* const _this, bool _bEnable, bool _bInGame)>(0x17E0100);
+#endif
 };
-#endif // MOONCRASH
+

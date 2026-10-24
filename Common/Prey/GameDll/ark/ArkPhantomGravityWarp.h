@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
@@ -85,6 +83,33 @@ public:
 	IParticleEffect* LoadEffect(const char* const _arg0_, const SmartScriptTable& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCArkPhantomGravityWarpOv1 = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0x13C9670);
+	static inline auto FInit = PreyFunction<bool(CArkPhantomGravityWarp* const _this, IGameObject* _pGameObject)>(0x13C97C0);
+	static inline auto FUpdate = PreyFunction<void(CArkPhantomGravityWarp* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x13CA2A0);
+	static inline auto FProcessEvent = PreyFunction<void(CArkPhantomGravityWarp* const _this, SEntityEvent& _event)>(0xA13080);
+	static inline auto FInitClient = PreyFunction<void(CArkPhantomGravityWarp* const _this, int _channelId)>(0xA13080);
+	static inline auto FPostInit = PreyFunction<void(CArkPhantomGravityWarp* const _this, IGameObject* _pGameObject)>(0x13CA130);
+	static inline auto FPostInitClient = PreyFunction<void(CArkPhantomGravityWarp* const _this, int _channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkPhantomGravityWarp* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xDD23F0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkPhantomGravityWarp* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkPhantomGravityWarp* const _this, TSerialize _signature)>(0xDD23F0);
+	static inline auto FRelease = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CArkPhantomGravityWarp* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkPhantomGravityWarp* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1B933B0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkPhantomGravityWarp* const _this, TSerialize _ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkPhantomGravityWarp* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkPhantomGravityWarp* const _this, float _frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0xA13080);
+	static inline auto FHandleEvent = PreyFunction<void(CArkPhantomGravityWarp* const _this, const SGameObjectEvent& _event)>(0xA13080);
+	static inline auto FSetChannelId = PreyFunction<void(CArkPhantomGravityWarp* const _this, uint16_t _id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CArkPhantomGravityWarp* const _this, bool _bAuth)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkPhantomGravityWarp* const _this, ICrySizer* _pS)>(0x48C8D0);
+	static inline auto FUpdateManualGravityPulling = PreyFunction<void(CArkPhantomGravityWarp* const _this, SEntityUpdateContext& _ctx)>(0x13CA550);
+	static inline auto FInitGravityArea = PreyFunction<void(CArkPhantomGravityWarp* const _this, const Vec3& _position, const float _radius, const float _gravityZ, const bool _bUniform, const float _time)>(0x13C97F0);
+	static inline auto FLoadScriptVariables = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0x13C9AE0);
+#else
 	static inline auto FCArkPhantomGravityWarpOv1 = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0x14D5850);
 	static inline auto FInit = PreyFunction<bool(CArkPhantomGravityWarp* const _this, IGameObject* _pGameObject)>(0x14D59A0);
 	static inline auto FUpdate = PreyFunction<void(CArkPhantomGravityWarp* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x14D6480);
@@ -110,5 +135,6 @@ public:
 	static inline auto FUpdateManualGravityPulling = PreyFunction<void(CArkPhantomGravityWarp* const _this, SEntityUpdateContext& _ctx)>(0x14D6730);
 	static inline auto FInitGravityArea = PreyFunction<void(CArkPhantomGravityWarp* const _this, const Vec3& _position, const float _radius, const float _gravityZ, const bool _bUniform, const float _time)>(0x14D59D0);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkPhantomGravityWarp* const _this)>(0x14D5CC0);
+#endif
 };
-#endif // MOONCRASH
+

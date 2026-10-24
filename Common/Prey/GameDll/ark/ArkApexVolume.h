@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: Exact
 // Prey/GameDll/ark/ArkApexVolume.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkApexVolume : public CGameObjectExtensionHelper<ArkApexVolume,IGameObjectExtension> // Id=8018FBC Size=64
 {
 public:
@@ -43,6 +46,7 @@ public:
 	void CreateArea() const { FCreateArea(this); }
 	virtual ~ArkApexVolume();
 	
+#ifndef MOONCRASH
 	static inline auto FRelease = PreyFunction<void(ArkApexVolume *const _this)>(0xA97D40);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkApexVolume const *const _this, ICrySizer *_pSizer)>(0xA13080);
 	static inline auto FInit = PreyFunction<bool(ArkApexVolume *const _this, IGameObject *_pGameObject)>(0x1704E80);
@@ -66,51 +70,7 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkApexVolume *const _this, float _frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkApexVolume *const _this)>(0xA13080);
 	static inline auto FCreateArea = PreyFunction<void(ArkApexVolume const *const _this)>(0x114B1B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// ArkApexVolume
-// Header:  Prey/GameDll/ark/ArkApexVolume.h
-class ArkApexVolume : public CGameObjectExtensionHelper<ArkApexVolume, IGameObjectExtension>
-{ // Size=64 (0x40)
-public:
-	virtual void Release();
-	virtual void GetMemoryUsage(ICrySizer* _pSizer) const;
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void InitClient(int _channelId);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _auth);
-	virtual const void* GetRMIBase() const;
-	virtual void PostUpdate(float _frameTime);
-	virtual void PostRemoteSpawn();
-	void CreateArea() const { FCreateArea(this); }
-
+#else
 	static inline auto FRelease = PreyFunction<void(ArkApexVolume* const _this)>(0x3E3960);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkApexVolume* const _this, ICrySizer* _pSizer)>(0x1333E90);
 	static inline auto FInit = PreyFunction<bool(ArkApexVolume* const _this, IGameObject* _pGameObject)>(0x182A480);
@@ -134,5 +94,5 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkApexVolume* const _this, float _frameTime)>(0x1333E90);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkApexVolume* const _this)>(0x1333E90);
 	static inline auto FCreateArea = PreyFunction<void(const ArkApexVolume* const _this)>(0x1191F60);
+#endif
 };
-#endif // !MOONCRASH

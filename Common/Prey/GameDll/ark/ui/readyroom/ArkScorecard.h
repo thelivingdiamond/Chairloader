@@ -1,9 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <_unknown/IArkReadyRoomMetaUI.h>
+#include <Prey/GameDll/ark/ui/readyroom/IArkReadyRoomMetaUI.h>
 
 class ArkReadyRoomManager;
 class CCryName;

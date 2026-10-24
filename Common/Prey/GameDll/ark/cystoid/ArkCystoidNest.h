@@ -123,7 +123,6 @@ public:
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/environment/ArkTyphonNest.h>
 
-enum class EArkTyphonNestState;
 
 // ArkCystoidNest
 // Header:  Prey/GameDll/ark/cystoid/ArkCystoidNest.h

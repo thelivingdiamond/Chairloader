@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -92,7 +90,11 @@ public:
 		void GetMemoryUsage(ICrySizer* _arg0_) const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FBitNotSDestructionEvent = PreyFunction<void(CBodyDestructibilityProfile::SDestructionEvent* const _this)>(0x168F7E0);
+#else
 		static inline auto FBitNotSDestructionEvent = PreyFunction<void(CBodyDestructibilityProfile::SDestructionEvent* const _this)>(0x17B2EB0);
+#endif
 	};
 
 	// CBodyDestructibilityProfile::SHealthRatioEvent
@@ -169,8 +171,13 @@ public:
 		int GetBoneIndex(const char* _arg0_) const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FGetAttachmentIndex = PreyFunction<int(const CBodyDestructibilityProfile::SParsingHelper* const _this, const char* attachmentName)>(0x168FD90);
+		static inline auto FGetEventIndex = PreyFunction<int(const CBodyDestructibilityProfile::SParsingHelper* const _this, const char* eventName)>(0x168FE20);
+#else
 		static inline auto FGetAttachmentIndex = PreyFunction<int(const CBodyDestructibilityProfile::SParsingHelper* const _this, const char* attachmentName)>(0x17B3460);
 		static inline auto FGetEventIndex = PreyFunction<int(const CBodyDestructibilityProfile::SParsingHelper* const _this, const char* eventName)>(0x17B34F0);
+#endif
 	};
 
 	// CBodyDestructibilityProfile::SBodyPartQueryResult
@@ -199,7 +206,11 @@ public:
 	using ICharacterInstancePtr = _smart_ptr<ICharacterInstance>;
 	using TCachedCharacterInstances = std::map<unsigned int, _smart_ptr<ICharacterInstance>>;
 
+#ifndef MOONCRASH
+	static inline auto PHYSICS_ATTACHMENT_BASE_ID = PreyGlobal<const int>(0x1E617A0);
+#else
 	static inline auto PHYSICS_ATTACHMENT_BASE_ID = PreyGlobal<const int>(0x1FB3A60);
+#endif
 	std::map<unsigned int, _smart_ptr<IMaterial>> m_replacementMaterials;
 	std::map<unsigned int, _smart_ptr<ICharacterInstance>> m_cachedCharacterInstaces;
 	std::vector<CBodyDestructibilityProfile::SDestructibleBodyPart> m_attachments;
@@ -260,6 +271,33 @@ public:
 	IMaterial* GetMaterial(const char* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReload = PreyFunction<void(CBodyDestructibilityProfile* const _this, SBodyDestructibilityDef& bodyDestructionDef)>(0x1694B70);
+	static inline auto FLoadXmlInfo = PreyFunction<void(CBodyDestructibilityProfile* const _this, SBodyDestructibilityDef& bodyDestructionDef)>(0x1691970);
+	static inline auto FPrepareInstance = PreyFunction<void(CBodyDestructibilityProfile* const _this, CBodyDestrutibilityInstance& instance, float instanceBaseHealth, const SBodyCharacterInfo& bodyInfo)>(0x1691B80);
+	static inline auto FResetInstance = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, CBodyDestrutibilityInstance& instance)>(0x1694F50);
+	static inline auto FCacheLevelResources = PreyFunction<void(CBodyDestructibilityProfile* const _this)>(0x168F8D0);
+	static inline auto FFlushLevelResourceCache = PreyFunction<void(CBodyDestructibilityProfile* const _this)>(0x168FD60);
+	static inline auto FProcessDestructiblesHit = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo, const float previousHealth, const float newHealth)>(0x1693380);
+	static inline auto FProcessDestructiblesOnExplosion = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo, const float previousHealth, const float newHealth)>(0x1693920);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CBodyDestructibilityProfile* const _this, ICrySizer* pSizer)>(0x168FEB0);
+	static inline auto FCacheMaterial = PreyFunction<void(CBodyDestructibilityProfile* const _this, const char* materialName)>(0x168FB50);
+	static inline auto FPreparePartsAndEventsBeforeLoad = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& rootNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1691D30);
+	static inline auto FLoadDestructibleParts = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& destructiblesNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1690080);
+	static inline auto FLoadPart = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& partNode, CBodyDestructibilityProfile::SDestructibleBodyPart& partData, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x16916B0);
+	static inline auto FLoadEvents = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& eventsNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1690C20);
+	static inline auto FLoadEvent = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& eventNode, CBodyDestructibilityProfile::SDestructionEvent& eventData, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x16902D0);
+	static inline auto FLoadHealthRatioEvents = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& hitRatiosNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1691010);
+	static inline auto FLoadExplosionDeaths = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& explosionDeathsNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1690DA0);
+	static inline auto FLoadMikeDeath = PreyFunction<void(CBodyDestructibilityProfile* const _this, const XmlNodeRef& mikeDeathNode, CBodyDestructibilityProfile::SParsingHelper& parsingHelper)>(0x1691470);
+	static inline auto FProcessDestructionEvent = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo, const int destructionEventId, IAttachmentManager* pAttachmentManager, const char* targetEffectBone, const Vec3& noAttachEffectPos)>(0x1693E70);
+	static inline auto FProcessDeathByExplosion = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo)>(0x1692C30);
+	static inline auto FProcessDeathByHit = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo)>(0x1692F30);
+	static inline auto FProcessMikeDeath = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo)>(0x1694740);
+	static inline auto FProcessHealthRatioEvents = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, IAttachmentManager* pAttachmentManager, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo, const float newHealth)>(0x16944C0);
+	static inline auto FReplaceMaterial = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, CBodyDestrutibilityInstance& instance, const char* material)>(0x1694E70);
+	static inline auto FCheckAgainstScriptCondition = PreyFunction<bool(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, int destructionEventId)>(0x168FCF0);
+#else
 	static inline auto FReload = PreyFunction<void(CBodyDestructibilityProfile* const _this, SBodyDestructibilityDef& bodyDestructionDef)>(0x17B8240);
 	static inline auto FLoadXmlInfo = PreyFunction<void(CBodyDestructibilityProfile* const _this, SBodyDestructibilityDef& bodyDestructionDef)>(0x17B5040);
 	static inline auto FPrepareInstance = PreyFunction<void(CBodyDestructibilityProfile* const _this, CBodyDestrutibilityInstance& instance, float instanceBaseHealth, const SBodyCharacterInfo& bodyInfo)>(0x17B5250);
@@ -285,5 +323,6 @@ public:
 	static inline auto FProcessHealthRatioEvents = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, IAttachmentManager* pAttachmentManager, CBodyDestrutibilityInstance& instance, const HitInfo& hitInfo, const float newHealth)>(0x17B7B90);
 	static inline auto FReplaceMaterial = PreyFunction<void(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, ICharacterInstance& characterInstance, CBodyDestrutibilityInstance& instance, const char* material)>(0x17B8540);
 	static inline auto FCheckAgainstScriptCondition = PreyFunction<bool(CBodyDestructibilityProfile* const _this, IEntity& characterEntity, int destructionEventId)>(0x17B33C0);
+#endif
 };
-#endif // MOONCRASH
+

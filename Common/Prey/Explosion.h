@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 #include "Prey/CryCore/StdAfx.h"
 #include "Prey/CryAction/IGameRulesSystem.h"

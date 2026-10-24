@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/CryActor.h>
@@ -50,6 +48,15 @@ public:
 	uint64_t GetMemoryRequiredForNActors(int _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FUpdate = PreyFunction<void(CActorManager* const _this, float dt)>(0x1091280);
+	static inline auto FReset = PreyFunction<void(CActorManager* const _this, bool bReallocate)>(0x1091220);
+	static inline auto FActorRemoved = PreyFunction<void(CActorManager* const _this, IActor* pActor)>(0x1090E40);
+	static inline auto FActorRevived = PreyFunction<void(CActorManager* const _this, IActor* pActor)>(0x1090F50);
+	static inline auto FGetActorManager = PreyFunction<CActorManager* ()>(0x10910D0);
+	static inline auto FCacheDataFromActor = PreyFunction<void(CActorManager* const _this, const IActor* pActor, IEntity* pEntity, const IAIObject* pAIObject, int kActorIndexMultiplier, int iActorIndex)>(0x1091030);
+	static inline auto FReallocateMemoryForNActors = PreyFunction<void(CActorManager* const _this, int iNumActorsRequired)>(0x1091150);
+#else
 	static inline auto FUpdate = PreyFunction<void(CActorManager* const _this, float dt)>(0x10C0030);
 	static inline auto FReset = PreyFunction<void(CActorManager* const _this, bool bReallocate)>(0x10BFFD0);
 	static inline auto FActorRemoved = PreyFunction<void(CActorManager* const _this, IActor* pActor)>(0x10BFBF0);
@@ -57,5 +64,6 @@ public:
 	static inline auto FGetActorManager = PreyFunction<CActorManager* ()>(0x10BFE80);
 	static inline auto FCacheDataFromActor = PreyFunction<void(CActorManager* const _this, const IActor* pActor, IEntity* pEntity, const IAIObject* pAIObject, int kActorIndexMultiplier, int iActorIndex)>(0x10BFDE0);
 	static inline auto FReallocateMemoryForNActors = PreyFunction<void(CActorManager* const _this, int iNumActorsRequired)>(0x10BFF00);
+#endif
 };
-#endif // MOONCRASH
+

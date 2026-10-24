@@ -1,8 +1,8 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+class ArkConditionResult;
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 
@@ -1364,6 +1364,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+class ArkConditionResult;
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>

@@ -2,11 +2,11 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/cryaisystem/navigation/mnm/CompactSpanGrid.h>
+#include <Prey/CryAISystem/navigation/mnm/CompactSpanGrid.h>
 #include <CryEngine/cryaisystem/navigation/mnm/profiler.h>
-#include <CryEngine/cryaisystem/navigation/mnm/voxelizer.h>
+#include <Prey/CryAISystem/navigation/mnm/voxelizer.h>
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinTagDefs.h>
 #include <Prey/CryCore/FixedPoint.h>
@@ -17,7 +17,7 @@
 #include <Prey/CryNetwork/Protocol/ExponentialKeyExchange.h>
 #include <Prey/CrySystem/ILog.h>
 #include <Prey/CrySystem/IMiniLog.h>
-#include <Prey/CrySystem/Log.h>
+#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/GameDll/ai/hazardmodule/hazardraycast.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/npc/anim/arknpcanimactions.h>
@@ -26,10 +26,9 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerhypnosis.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 #include <Prey/GameDll/ark/weapons/arklaser.h>
-#include <_unknown/AkEnvelopeParams.h>
+#include <Prey/ArkCommon/reflect/AkEnvelopeParams.h>
 #include <_unknown/ArkAiTreeStimulusTemplate_ArkAiTreeGuardBeginStimulus_.h>
-#include <_unknown/ArkNpcBlackboardEntryTemplate_GetUpdate_ArkNpcBlackboardKey_LostVisibilityTime,ArkNpcBlackboardEntryKey_LostVisibilityTime,ArkNpcBlackboardEntry_LostVisibilityTime,float,float_.h>
-#include <_unknown/ArkNpcBlackboardEntryTemplate_GetUpdate_ArkNpcBlackboardKey_VisibilityTime,ArkNpcBlackboardEntryKey_VisibilityTime,ArkNpcBlackboardEntry_VisibilityTime,float,float_.h>
+#include <Prey/GameDll/ark/npc/blackboard/ArkNpcBlackboardEntryTemplates.h>
 #include <_unknown/ArkPsiPowerFactionTraits_10_.h>
 #include <_unknown/ArkPsiPowerFactionTraits_11_.h>
 #include <_unknown/CFXNodeDescription__CControlParamBase.h>
@@ -166,7 +165,7 @@ public:
 		MNM::BoundingVolume const *boundary;
 		MNM::BoundingVolume const *exclusions;
 		unsigned hashValue;
-		TNavigationID<0> meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> meshId;
 		uint64_t tileName;
 		bool bBackground;
 	};
@@ -600,17 +599,17 @@ public:
 	virtual bool SetFileName(const char *filename);
 	virtual const char *GetFileName();
 	virtual const char *GetBackupFileName();
-	virtual void LogComment(const char *szFormat, ... arg1);
-	virtual void Log(const char *szFormat, ... arg1);
-	virtual void LogAlways(const char *szFormat, ... arg1);
-	virtual void LogWarning(const char *szFormat, ... ArgList);
-	virtual void LogError(const char *szFormat, ... ArgList);
-	virtual void LogPlus(const char *szFormat, ... szTemp);
-	virtual void LogToFile(const char *szFormat, ... szTemp);
-	virtual void LogToFilePlus(const char *szFormat, ... szTemp);
-	virtual void LogToConsole(const char *szFormat, ... szBuffer);
-	virtual void LogToConsolePlus(const char *szFormat, ... szTemp);
-	virtual void UpdateLoadingScreen(const char *szFormat, ... arg1);
+	virtual void LogComment(const char *szFormat, ...);
+	virtual void Log(const char *szFormat, ...);
+	virtual void LogAlways(const char *szFormat, ...);
+	virtual void LogWarning(const char *szFormat, ...);
+	virtual void LogError(const char *szFormat, ...);
+	virtual void LogPlus(const char *szFormat, ...);
+	virtual void LogToFile(const char *szFormat, ...);
+	virtual void LogToFilePlus(const char *szFormat, ...);
+	virtual void LogToConsole(const char *szFormat, ...);
+	virtual void LogToConsolePlus(const char *szFormat, ...);
+	virtual void UpdateLoadingScreen(const char *szFormat, ...);
 	virtual void SetVerbosity(int verbosity);
 	virtual int GetVerbosityLevel();
 	virtual void RegisterConsoleVariables();
@@ -630,7 +629,7 @@ public:
 	
 #if 0
 	_iobuf *OpenLogFile(const char *arg0, const char *arg1);
-	void FormatMessageA(const char *arg0, ... arg1);
+	void FormatMessageA(const char *arg0, ...);
 	const char *CheckAgainstVerbosity(const char *arg0, bool &arg1, bool &arg2, const uint8_t arg3);
 #endif
 	
@@ -638,17 +637,17 @@ public:
 	static inline auto FSetFileName = PreyFunction<bool(CLog *const _this, const char *filename)>(0xDB2220);
 	static inline auto FGetFileName = PreyFunction<const char *(CLog *const _this)>(0x12BDAA0);
 	static inline auto FGetBackupFileName = PreyFunction<const char *(CLog *const _this)>(0x10BD3B0);
-	static inline auto FLogComment = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAEDE0);
-	static inline auto FLog = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAED80);
-	static inline auto FLogAlways = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAEDB0);
-	static inline auto FLogWarning = PreyFunction<void(CLog *const _this, const char *szFormat, ... ArgList)>(0xDB1E30);
-	static inline auto FLogError = PreyFunction<void(CLog *const _this, const char *szFormat, ... ArgList)>(0xDAEE10);
-	static inline auto FLogPlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDAEED0);
-	static inline auto FLogToFile = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB11C0);
-	static inline auto FLogToFilePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB12B0);
-	static inline auto FLogToConsole = PreyFunction<void(CLog *const _this, const char *szFormat, ... szBuffer)>(0xDB0FE0);
-	static inline auto FLogToConsolePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB10D0);
-	static inline auto FUpdateLoadingScreen = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDB26D0);
+	// varargs: static inline auto FLogComment = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEDE0);
+	// varargs: static inline auto FLog = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAED80);
+	// varargs: static inline auto FLogAlways = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEDB0);
+	// varargs: static inline auto FLogWarning = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB1E30);
+	// varargs: static inline auto FLogError = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEE10);
+	// varargs: static inline auto FLogPlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEED0);
+	// varargs: static inline auto FLogToFile = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB11C0);
+	// varargs: static inline auto FLogToFilePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB12B0);
+	// varargs: static inline auto FLogToConsole = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB0FE0);
+	// varargs: static inline auto FLogToConsolePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB10D0);
+	// varargs: static inline auto FUpdateLoadingScreen = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB26D0);
 	static inline auto FSetVerbosity = PreyFunction<void(CLog *const _this, int verbosity)>(0xDB2360);
 	static inline auto FGetVerbosityLevel = PreyFunction<int(CLog *const _this)>(0xDAED60);
 	static inline auto FRegisterConsoleVariables = PreyFunction<void(CLog *const _this)>(0xDB1EF0);
@@ -702,35 +701,7 @@ public:
 	static inline auto FGetFalseCount = PreyFunction<uint64_t(ArkUnanimous const *const _this)>(0x12AAC70);
 };
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcBlackboardEntry_LostVisibilityTime : public ArkNpcBlackboardEntryTemplate_GetUpdate<ArkNpcBlackboardKey_LostVisibilityTime,ArkNpcBlackboardEntryKey_LostVisibilityTime,ArkNpcBlackboardEntry_LostVisibilityTime,float,float> // Id=80159E3 Size=4
-{
-public:
-	float m_time;
-	
-	ArkNpcBlackboardEntry_LostVisibilityTime();
-	float Get() const { return FGet(this); }
-	void Update(ArkNpcBlackboardEntryKey_LostVisibilityTime const &_entryKey, float _elapsedTime) { FUpdate(this,_entryKey,_elapsedTime); }
-	
-	static inline auto FGet = PreyFunction<float(ArkNpcBlackboardEntry_LostVisibilityTime const *const _this)>(0x10BDAB0);
-	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_LostVisibilityTime *const _this, ArkNpcBlackboardEntryKey_LostVisibilityTime const &_entryKey, float _elapsedTime)>(0x12104A0);
-};
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcBlackboardEntry_VisibilityTime : public ArkNpcBlackboardEntryTemplate_GetUpdate<ArkNpcBlackboardKey_VisibilityTime,ArkNpcBlackboardEntryKey_VisibilityTime,ArkNpcBlackboardEntry_VisibilityTime,float,float> // Id=80159EF Size=4
-{
-public:
-	float m_time;
-	
-	ArkNpcBlackboardEntry_VisibilityTime();
-	float Get() const { return FGet(this); }
-	void Update(ArkNpcBlackboardEntryKey_VisibilityTime const &_entryKey, float _elapsedTime) { FUpdate(this,_entryKey,_elapsedTime); }
-	
-	static inline auto FGet = PreyFunction<float(ArkNpcBlackboardEntry_VisibilityTime const *const _this)>(0x10BDAB0);
-	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime *const _this, ArkNpcBlackboardEntryKey_VisibilityTime const &_entryKey, float _elapsedTime)>(0x1210530);
-};
 
 namespace HazardSystem
 {
@@ -884,41 +855,6 @@ public:
 	static inline auto FDoMilitaryOperatorLaserDamage = PreyFunction<void(ArkOperatorLaserHelper *const _this, ArkNpc &_npc, const float _frameTime, EventPhysCollision const &_collision)>(0x1280F70);
 };
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcAnimActionRagdollAndStandUp : public ArkNpcAnimAction // Id=8019975 Size=200
-{
-public:
-	_smart_ptr<ArkNpcAnimActionStandUp> m_pDelayedStandUpAction;
-	float m_stoppingTime;
-	bool m_bStopping;
-	
-	virtual const char *GetName() const;
-	virtual void DoDelete();
-	ArkNpcAnimActionRagdollAndStandUp(ArkNpc &_npc, int priority, const int &fragID, STagState<12> const &sleepTagState, _smart_ptr<ArkNpcAnimActionStandUp> const &_pStandupAnimAction, bool bIndefinite);
-	virtual void Enter();
-	virtual IAction::EStatus Update(float _timePassed);
-	virtual void Exit();
-	virtual void Fail(EActionFailure _actionFailure);
-	void Stop() { FStop(this); }
-	_smart_ptr<ArkNpcAnimActionStandUp> const &GetStandUpAnimAction() const { return FGetStandUpAnimAction(this); }
-	void StartStandup() { FStartStandup(this); }
-	
-#if 0
-	void ForceFinish();
-	bool IsStopping() const;
-#endif
-	
-	static inline auto FGetName = PreyFunction<const char *(ArkNpcAnimActionRagdollAndStandUp const *const _this)>(0x11E27B0);
-	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0xA97D40);
-	static inline auto FEnter = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E1FD0);
-	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkNpcAnimActionRagdollAndStandUp *const _this, float _timePassed)>(0x11E2A20);
-	static inline auto FExit = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E23B0);
-	static inline auto FFail = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this, EActionFailure _actionFailure)>(0x11E24F0);
-	static inline auto FStop = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E2A00);
-	static inline auto FGetStandUpAnimAction = PreyFunction<_smart_ptr<ArkNpcAnimActionStandUp> const &(ArkNpcAnimActionRagdollAndStandUp const *const _this)>(0x10BD800);
-	static inline auto FStartStandup = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E28C0);
-};
 
 // Header: Exact
 // Prey/ArkCommon/reflect/arkreflectionaccessors.h
@@ -1009,12 +945,15 @@ public:
 // Header file automatically created from a PDB.
 // WARNING: Contains templates
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkFactionManager.h>
+#endif
+#include <Prey/CryExtension/ClassWeaver.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/iface/IArkFactionManager.h>
-#include <_unknown/ProceduralContextHelpers__CRequestList.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/GameDll/ProceduralContextHelpers.h>
+#include <Prey/CryExtension/TypeList.h>
 #include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/include/impl/container/fixedvector.h>
 #include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/src/container/producerconsumerqueue.h>
 #include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/src/job/Composite.h>
@@ -1027,152 +966,6 @@ class IArkFactionListener;
 struct IConsoleCmdArgs;
 struct ICryFactory;
 struct IEntity;
-
-// ArkFactionManager
-// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkFactionManager : public IArkFactionManager
-{ // Size=472 (0x1D8)
-public:
-	using FactionToEntityPair = std::pair<unsigned int, unsigned int>;
-	using EntityToFactionPair = std::pair<unsigned int, unsigned int>;
-	using EntityToEntityPair = std::pair<unsigned int, unsigned int>;
-
-	unsigned m_numberOfFactions;
-	std::unordered_map<unsigned int, unsigned int> m_entityFactionMap;
-	std::vector<std::vector<unsigned int>> m_factionFollowers;
-	std::vector<enum::EArkDisposition> m_factionDispositions;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_factionToEntityDisposition;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_entityToFactionDisposition;
-	std::unordered_map<std::pair<unsigned int,unsigned int>,enum EArkDisposition,ArkPairHash<std::hash>,std::equal_to<std::pair<unsigned int,unsigned int> >,std::allocator<std::pair<std::pair<unsigned int,unsigned int> const ,enum EArkDisposition> > > m_entityToEntityDisposition;
-	std::set<IArkFactionListener*> m_factionListeners;
-	std::unordered_map<string, unsigned int> m_nameToIndexMap;
-	std::unordered_map<uint64_t, unsigned int> m_idToIndexMap;
-	bool m_bDisableListeners;
-
-	ArkFactionManager();
-	~ArkFactionManager();
-	virtual unsigned GetFactionIndex(const char* const _pFactionName) const;
-	virtual unsigned GetFactionIndex(const uint64_t& _factionGuid) const;
-	virtual const string& GetFactionName(unsigned _factionIndex) const;
-	virtual const string& GetFactionName(uint64_t _factionId) const;
-	virtual uint64_t GetFactionId(const char* const _pFactionName) const;
-	virtual uint64_t GetFactionId(unsigned _factionIndex) const;
-	bool IsValidFaction(unsigned _factionIndex) const { return FIsValidFaction(this, _factionIndex); }
-	void SetEntityFaction(unsigned _entityId, unsigned _factionIndex) { FSetEntityFaction(this, _entityId, _factionIndex); }
-	virtual unsigned GetEntityFaction(unsigned _entityId) const;
-	uint64_t GetEntityFactionId(unsigned _entityId) const { return FGetEntityFactionId(this, _entityId); }
-	void OnEntityRelease(unsigned _entityId) { FOnEntityRelease(this, _entityId); }
-	void RegisterFactionListener(IArkFactionListener* _pFactionListener) { FRegisterFactionListener(this, _pFactionListener); }
-	void UnregisterFactionListener(IArkFactionListener* _pFactionListener) { FUnregisterFactionListener(this, _pFactionListener); }
-	bool HasFactionListener(IArkFactionListener* _pFactionListener) { return FHasFactionListener(this, _pFactionListener); }
-	void SetEntityDispositionToFaction(unsigned _fromEntityId, unsigned _toFactionIndex, EArkDisposition _disposition, bool _bReciprocate) { FSetEntityDispositionToFaction(this, _fromEntityId, _toFactionIndex, _disposition, _bReciprocate); }
-	virtual void SetEntityDispositionToEntity(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	void SetEntityDispositionToFactionEntities(unsigned _fromEntityId, unsigned _toFactionIndex, EArkDisposition _disposition, bool _bReciprocate) { FSetEntityDispositionToFactionEntities(this, _fromEntityId, _toFactionIndex, _disposition, _bReciprocate); }
-	virtual void SetFactionDispositionToFaction(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	virtual void SetFactionDispositionToEntity(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	EArkDisposition GetAssignedFactionDispositionToFaction(unsigned _fromFactionIndex, unsigned _toFactionIndex) const { return FGetAssignedFactionDispositionToFaction(this, _fromFactionIndex, _toFactionIndex); }
-	EArkDisposition GetAssignedFactionDispositionToEntity(unsigned _fromFactionIndex, unsigned _toEntityId) const { return FGetAssignedFactionDispositionToEntity(this, _fromFactionIndex, _toEntityId); }
-	EArkDisposition GetAssignedEntityDispositionToEntity(unsigned _fromEntityId, unsigned _toEntityId) const { return FGetAssignedEntityDispositionToEntity(this, _fromEntityId, _toEntityId); }
-	EArkDisposition GetAssignedEntityDispositionToFaction(unsigned _fromEntityId, unsigned _toFactionIndex) const { return FGetAssignedEntityDispositionToFaction(this, _fromEntityId, _toFactionIndex); }
-	EArkDisposition GetEffectiveFactionDispositionToFaction(unsigned _fromFactionIndex, unsigned _toFactionIndex) const { return FGetEffectiveFactionDispositionToFaction(this, _fromFactionIndex, _toFactionIndex); }
-	virtual EArkDisposition GetEffectiveFactionDispositionToEntity(unsigned _fromFactionIndex, unsigned _toEntityId) const;
-	virtual EArkDisposition GetEffectiveEntityDispositionToEntity(unsigned _fromEntityId, unsigned _toEntityId) const;
-	EArkDisposition GetEffectiveEntityDispositionToFaction(unsigned _fromEntityId, unsigned _toFactionIndex) const { return FGetEffectiveEntityDispositionToFaction(this, _fromEntityId, _toFactionIndex); }
-	void RemoveEntityDispositionToFaction(unsigned _fromEntityId, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly) { FRemoveEntityDispositionToFaction(this, _fromEntityId, _toFactionIndex, _bReciprocate, _bHostileOnly); }
-	void RemoveEntityDispositionToEntity(unsigned _fromEntityId, unsigned _toEntityId, bool _bReciprocate, bool _bHostileOnly) { FRemoveEntityDispositionToEntity(this, _fromEntityId, _toEntityId, _bReciprocate, _bHostileOnly); }
-	void RemoveEntityDispositionToFactionEntities(unsigned _fromEntityId, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly) { FRemoveEntityDispositionToFactionEntities(this, _fromEntityId, _toFactionIndex, _bReciprocate, _bHostileOnly); }
-	void RemoveFactionDispositionToEntity(unsigned _factionIndex, unsigned _entityId, bool _bReciprocate, bool _bHostileOnly) { FRemoveFactionDispositionToEntity(this, _factionIndex, _entityId, _bReciprocate, _bHostileOnly); }
-	void RemoveFactionDispositionToFactionEntities(unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly) { FRemoveFactionDispositionToFactionEntities(this, _fromFactionIndex, _toFactionIndex, _bReciprocate, _bHostileOnly); }
-	void RemoveFactionEntitiesDispositionToFactionEntities(unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly) { FRemoveFactionEntitiesDispositionToFactionEntities(this, _fromFactionIndex, _toFactionIndex, _bReciprocate, _bHostileOnly); }
-	void RemoveFactionEntitiesDispositionToEntity(unsigned _fromFactionIndex, unsigned _toEntityId, bool _bReciprocate, bool _bHostileOnly) { FRemoveFactionEntitiesDispositionToEntity(this, _fromFactionIndex, _toEntityId, _bReciprocate, _bHostileOnly); }
-	void RemoveFactionEntitiesDispositionToFaction(unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly) { FRemoveFactionEntitiesDispositionToFaction(this, _fromFactionIndex, _toFactionIndex, _bReciprocate, _bHostileOnly); }
-	void EndFactionHostilityWithFaction(unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bMakeFriendly) { FEndFactionHostilityWithFaction(this, _fromFactionIndex, _toFactionIndex, _bMakeFriendly); }
-	void EndFactionHostilityWithEntity(unsigned _fromFactionIndex, unsigned _toEntityId, bool _bMakeFriendly) { FEndFactionHostilityWithEntity(this, _fromFactionIndex, _toEntityId, _bMakeFriendly); }
-	void EndEntityHostilityWithFaction(unsigned _fromEntityId, unsigned _toFactionIndex, bool _bMakeFriendly) { FEndEntityHostilityWithFaction(this, _fromEntityId, _toFactionIndex, _bMakeFriendly); }
-	void EndEntityHostilityWithEntity(unsigned _fromEntityId, unsigned _toEntityId, bool _bMakeFriendly) { FEndEntityHostilityWithEntity(this, _fromEntityId, _toEntityId, _bMakeFriendly); }
-	virtual const std::unordered_map<uint64_t, unsigned int>& GetGuidMap() const;
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-	virtual void ReloadFactions();
-	void OnLevelLoadStart() { FOnLevelLoadStart(this); }
-	void OnLevelUnload() { FOnLevelUnload(this); }
-	void Reset(bool _bEnteringGameMode) { FReset(this, _bEnteringGameMode); }
-	void ClearAll() { FClearAll(this); }
-	void LoadFile() { FLoadFile(this); }
-	void RemoveFollowerFromFaction(unsigned _faction, unsigned _entityId) { FRemoveFollowerFromFaction(this, _faction, _entityId); }
-	void ClearAssignedDispositionsForEntity(unsigned _entityId) { FClearAssignedDispositionsForEntity(this, _entityId); }
-	static void StopFighting(unsigned _fromEntityId, unsigned _toEntityId) { FStopFighting(_fromEntityId, _toEntityId); }
-
-#if 0
-	ArkFactionManager(const ArkFactionManager& _arg0_);
-	unsigned GetNumFactions() const;
-	void SetFactionDispositionToFactionEntities(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	void SetFactionEntitiesDispositionToFactionEntities(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	void SetFactionEntitiesDispositionToFaction(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	void SetFactionEntitiesDispositionToEntity(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, bool _arg3_);
-	void DumpAllFactions(const char* const _arg0_) const;
-	ArkFactionManager& operator=(const ArkFactionManager& _arg0_);
-	void AddFollowerToFaction(unsigned _arg0_, unsigned _arg1_);
-	unsigned GetFactionOffset(const unsigned _arg0_) const;
-	void NotifyAssignedFactionToFactionDispositionChange(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, EArkDisposition _arg3_);
-	void NotifyAssignedFactionToEntityDispositionChange(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, EArkDisposition _arg3_);
-	void NotifyAssignedEntityToFactionDispositionChange(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, EArkDisposition _arg3_);
-	void NotifyAssignedEntityToEntityDispositionChange(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, EArkDisposition _arg3_);
-	void NotifyEffectiveEntityToEntityDispositionChange(unsigned _arg0_, unsigned _arg1_, EArkDisposition _arg2_, EArkDisposition _arg3_);
-	void LiveFix_PlayerFactions();
-	static void OnConsoleDumpFaction(IConsoleCmdArgs* _arg0_);
-	static void OnConsoleSetPlayerFaction(IConsoleCmdArgs* _arg0_);
-#endif
-
-	static inline auto FArkFactionManagerOv1 = PreyFunction<void(ArkFactionManager* const _this)>(0x1545770);
-	static inline auto FBitNotArkFactionManager = PreyFunction<void(ArkFactionManager* const _this)>(0x15458E0);
-	static inline auto FGetFactionIndexOv1 = PreyFunction<unsigned(const ArkFactionManager* const _this, const char* const _pFactionName)>(0x1547200);
-	static inline auto FGetFactionIndexOv0 = PreyFunction<unsigned(const ArkFactionManager* const _this, const uint64_t& _factionGuid)>(0x1547120);
-	static inline auto FGetFactionNameOv1 = PreyFunction<const string& (const ArkFactionManager* const _this, unsigned _factionIndex)>(0x15473C0);
-	static inline auto FGetFactionNameOv0 = PreyFunction<const string& (const ArkFactionManager* const _this, uint64_t _factionId)>(0x1547500);
-	static inline auto FGetFactionIdOv1 = PreyFunction<uint64_t(const ArkFactionManager* const _this, const char* const _pFactionName)>(0x15470F0);
-	static inline auto FGetFactionIdOv0 = PreyFunction<uint64_t(const ArkFactionManager* const _this, unsigned _factionIndex)>(0x1547090);
-	static inline auto FIsValidFaction = PreyFunction<bool(const ArkFactionManager* const _this, unsigned _factionIndex)>(0x1547580);
-	static inline auto FSetEntityFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _entityId, unsigned _factionIndex)>(0x1549160);
-	static inline auto FGetEntityFaction = PreyFunction<unsigned(const ArkFactionManager* const _this, unsigned _entityId)>(0x1546FA0);
-	static inline auto FGetEntityFactionId = PreyFunction<uint64_t(const ArkFactionManager* const _this, unsigned _entityId)>(0x1547060);
-	static inline auto FOnEntityRelease = PreyFunction<void(ArkFactionManager* const _this, unsigned _entityId)>(0x1547A10);
-	static inline auto FRegisterFactionListener = PreyFunction<void(ArkFactionManager* const _this, IArkFactionListener* _pFactionListener)>(0x1547A70);
-	static inline auto FUnregisterFactionListener = PreyFunction<void(ArkFactionManager* const _this, IArkFactionListener* _pFactionListener)>(0x1549D90);
-	static inline auto FHasFactionListener = PreyFunction<bool(ArkFactionManager* const _this, IArkFactionListener* _pFactionListener)>(0x1547530);
-	static inline auto FSetEntityDispositionToFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex, EArkDisposition _disposition, bool _bReciprocate)>(0x1548E00);
-	static inline auto FSetEntityDispositionToFactionEntities = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex, EArkDisposition _disposition, bool _bReciprocate)>(0x1549090);
-	static inline auto FGetAssignedFactionDispositionToFaction = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex)>(0x1546F50);
-	static inline auto FGetAssignedFactionDispositionToEntity = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toEntityId)>(0x1546CF0);
-	static inline auto FGetAssignedEntityDispositionToEntity = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toEntityId)>(0x1546C40);
-	static inline auto FGetAssignedEntityDispositionToFaction = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex)>(0x1546C80);
-	static inline auto FGetEffectiveFactionDispositionToFaction = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex)>(0x1546F50);
-	static inline auto FGetEffectiveFactionDispositionToEntity = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toEntityId)>(0x1546E80);
-	static inline auto FGetEffectiveEntityDispositionToEntity = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toEntityId)>(0x1546D60);
-	static inline auto FGetEffectiveEntityDispositionToFaction = PreyFunction<EArkDisposition(const ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex)>(0x1546DF0);
-	static inline auto FRemoveEntityDispositionToFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly)>(0x1547B60);
-	static inline auto FRemoveEntityDispositionToEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toEntityId, bool _bReciprocate, bool _bHostileOnly)>(0x1547AC0);
-	static inline auto FRemoveEntityDispositionToFactionEntities = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly)>(0x1547C40);
-	static inline auto FRemoveFactionDispositionToEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _factionIndex, unsigned _entityId, bool _bReciprocate, bool _bHostileOnly)>(0x1547D10);
-	static inline auto FRemoveFactionDispositionToFactionEntities = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly)>(0x1547DB0);
-	static inline auto FRemoveFactionEntitiesDispositionToFactionEntities = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly)>(0x1548010);
-	static inline auto FRemoveFactionEntitiesDispositionToEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toEntityId, bool _bReciprocate, bool _bHostileOnly)>(0x1547E90);
-	static inline auto FRemoveFactionEntitiesDispositionToFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bReciprocate, bool _bHostileOnly)>(0x1547F60);
-	static inline auto FEndFactionHostilityWithFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toFactionIndex, bool _bMakeFriendly)>(0x15469B0);
-	static inline auto FEndFactionHostilityWithEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromFactionIndex, unsigned _toEntityId, bool _bMakeFriendly)>(0x1546830);
-	static inline auto FEndEntityHostilityWithFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toFactionIndex, bool _bMakeFriendly)>(0x15466B0);
-	static inline auto FEndEntityHostilityWithEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _fromEntityId, unsigned _toEntityId, bool _bMakeFriendly)>(0x1546670);
-	static inline auto FGetGuidMap = PreyFunction<const std::unordered_map<uint64_t, unsigned int>& (const ArkFactionManager* const _this)>(0x10ED340);
-	static inline auto FSerialize = PreyFunction<void(ArkFactionManager* const _this, TSerialize _ser)>(0x1548280);
-	static inline auto FReloadFactions = PreyFunction<void(ArkFactionManager* const _this)>(0x1547AA0);
-	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkFactionManager* const _this)>(0x1547A50);
-	static inline auto FOnLevelUnload = PreyFunction<void(ArkFactionManager* const _this)>(0x1547A60);
-	static inline auto FReset = PreyFunction<void(ArkFactionManager* const _this, bool _bEnteringGameMode)>(0x1547A50);
-	static inline auto FClearAll = PreyFunction<void(ArkFactionManager* const _this)>(0x1546090);
-	static inline auto FLoadFile = PreyFunction<void(ArkFactionManager* const _this)>(0x15475B0);
-	static inline auto FRemoveFollowerFromFaction = PreyFunction<void(ArkFactionManager* const _this, unsigned _faction, unsigned _entityId)>(0x1548190);
-	static inline auto FClearAssignedDispositionsForEntity = PreyFunction<void(ArkFactionManager* const _this, unsigned _entityId)>(0x1546260);
-	static inline auto FStopFighting = PreyFunction<void(unsigned _fromEntityId, unsigned _toEntityId)>(0x1549CD0);
-};
 
 // CExponentialKeyExchange
 // Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h

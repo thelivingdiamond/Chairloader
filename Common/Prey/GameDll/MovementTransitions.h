@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/Lineseg_tpl.h>
-#include <_unknown/STransitionFuture.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/GameDll/STransitionFuture.h>
 
 class CMovementRequest;
 class CMovementTransitions;
@@ -60,9 +58,15 @@ struct STransition
 	bool ReadAngleParam(const char* _arg0_, bool _arg1_, float _arg2_, float _arg3_, const IItemParamsNode* const _arg4_, float* const _arg5_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FUpdate = PreyFunction<EMovementTransitionState(const STransition* const _this, const CMovementTransitions& transitions, const STransitionSelectionParams& transParams, const STransitionMatch& match, const Vec3& playerPos, const Vec3& oldMoveDirection, const Vec3& newMoveDirection, float* const pJukeTurnRateFraction, Vec3* const pBodyTarget, const char* * const pBodyTargetType, CPlayer* const pPlayer, CMovementTransitionsController* const pController)>(0x17721D0);
+	static inline auto FReadParams = PreyFunction<bool(STransition* const _this, ETransitionType _transitionType, const IItemParamsNode* const pParams)>(0x17713E0);
+	static inline auto FReadStanceParam = PreyFunction<bool(const STransition* const _this, const char* name, bool required, const IItemParamsNode* const pParams, EStance* const pStance)>(0x1771A20);
+#else
 	static inline auto FUpdate = PreyFunction<EMovementTransitionState(const STransition* const _this, const CMovementTransitions& transitions, const STransitionSelectionParams& transParams, const STransitionMatch& match, const Vec3& playerPos, const Vec3& oldMoveDirection, const Vec3& newMoveDirection, float* const pJukeTurnRateFraction, Vec3* const pBodyTarget, const char* * const pBodyTargetType, CPlayer* const pPlayer, CMovementTransitionsController* const pController)>(0x1898CF0);
 	static inline auto FReadParams = PreyFunction<bool(STransition* const _this, ETransitionType _transitionType, const IItemParamsNode* const pParams)>(0x1897F00);
 	static inline auto FReadStanceParam = PreyFunction<bool(const STransition* const _this, const char* name, bool required, const IItemParamsNode* const pParams, EStance* const pStance)>(0x1898540);
+#endif
 };
 
 // CMovementTransitions
@@ -96,6 +100,15 @@ public:
 	void Reset();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCMovementTransitionsOv1 = PreyFunction<void(CMovementTransitions* const _this, const string& _fileName)>(0x176F2A0);
+	static inline auto FBitNotCMovementTransitions = PreyFunction<void(CMovementTransitions* const _this)>(0x1770D00);
+	static inline auto FLoad = PreyFunction<void(CMovementTransitions* const _this)>(0x1771140);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CMovementTransitions* const _this, ICrySizer* s)>(0x332820);
+	static inline auto FUpdate = PreyFunction<EMovementTransitionState(const CMovementTransitions* const _this, const uint8_t allowedTransitionFlags, const Lineseg_tpl<float>& safeLine, const CTimeValue runningDuration, const bool bHasLockedBodyTarget, const Vec3& playerPos, const SMovementTransitionsSample& oldSample, const SMovementTransitionsSample& newSample, const float entitySpeed2D, const float entitySpeed2DAvg, const SExactPositioningTarget* const pExactPositioningTarget, CMovementTransitionsController* const pController, CPlayer* const pPlayer, CMovementRequest* const pRequest, SActorFrameMovementParams* const pMoveParams, float* const pJukeTurnRateFraction, Vec3* const pBodyTarget, const char* * const pBodyTargetType, float minimumSpeedForWalkStop, float minimumSpeedForRunStop, float minimumSpeedForWalkJuke, float minimumSpeedForRunJuke)>(0x1771E80);
+	static inline auto FFindBestMatch = PreyFunction<void(const CMovementTransitions* const _this, const STransitionSelectionParams& transParams, const STransition* * ppBestTransition, int* pBestIndex, STransitionMatch* pBestMatch)>(0x1770D40);
+	static inline auto FReadTransitionsParams = PreyFunction<bool(CMovementTransitions* const _this, const IItemParamsNode* pParams)>(0x1771BF0);
+#else
 	static inline auto FCMovementTransitionsOv1 = PreyFunction<void(CMovementTransitions* const _this, const string& _fileName)>(0x1895DC0);
 	static inline auto FBitNotCMovementTransitions = PreyFunction<void(CMovementTransitions* const _this)>(0x1897820);
 	static inline auto FLoad = PreyFunction<void(CMovementTransitions* const _this)>(0x1897C60);
@@ -103,6 +116,7 @@ public:
 	static inline auto FUpdate = PreyFunction<EMovementTransitionState(const CMovementTransitions* const _this, const uint8_t allowedTransitionFlags, const Lineseg_tpl<float>& safeLine, const CTimeValue runningDuration, const bool bHasLockedBodyTarget, const Vec3& playerPos, const SMovementTransitionsSample& oldSample, const SMovementTransitionsSample& newSample, const float entitySpeed2D, const float entitySpeed2DAvg, const SExactPositioningTarget* const pExactPositioningTarget, CMovementTransitionsController* const pController, CPlayer* const pPlayer, CMovementRequest* const pRequest, SActorFrameMovementParams* const pMoveParams, float* const pJukeTurnRateFraction, Vec3* const pBodyTarget, const char* * const pBodyTargetType, float minimumSpeedForWalkStop, float minimumSpeedForRunStop, float minimumSpeedForWalkJuke, float minimumSpeedForRunJuke)>(0x18989A0);
 	static inline auto FFindBestMatch = PreyFunction<void(const CMovementTransitions* const _this, const STransitionSelectionParams& transParams, const STransition* * ppBestTransition, int* pBestIndex, STransitionMatch* pBestMatch)>(0x1897860);
 	static inline auto FReadTransitionsParams = PreyFunction<bool(CMovementTransitions* const _this, const IItemParamsNode* pParams)>(0x1898710);
+#endif
 };
 
 // STransitionSelectionParams
@@ -124,6 +138,10 @@ struct STransitionSelectionParams
 
 	STransitionSelectionParams(const CMovementTransitions& transitions, const CPlayer& player, const CMovementRequest& request, const Vec3& playerPos, const SMovementTransitionsSample& oldSample, const SMovementTransitionsSample& newSample, const bool bHasLockedBodyTarget, const Vec3& targetBodyDirection, const Lineseg_tpl<float>& safeLine, const CTimeValue runningDuration, const uint8_t _allowedTransitionFlags, const float entitySpeed2D, const float entitySpeed2DAvg, const SExactPositioningTarget* const pExactPositioningTarget, const EStance stance, SActorFrameMovementParams* const pMoveParams, float minimumSpeedForWalkStop, float minimumSpeedForRunStop, float minimumSpeedForWalkJuke, float minimumSpeedForRunJuke, bool _bIsChangingDirection);
 
+#ifndef MOONCRASH
+	static inline auto FSTransitionSelectionParamsOv2 = PreyFunction<void(STransitionSelectionParams* const _this, const CMovementTransitions& transitions, const CPlayer& player, const CMovementRequest& request, const Vec3& playerPos, const SMovementTransitionsSample& oldSample, const SMovementTransitionsSample& newSample, const bool bHasLockedBodyTarget, const Vec3& targetBodyDirection, const Lineseg_tpl<float>& safeLine, const CTimeValue runningDuration, const uint8_t _allowedTransitionFlags, const float entitySpeed2D, const float entitySpeed2DAvg, const SExactPositioningTarget* const pExactPositioningTarget, const EStance stance, SActorFrameMovementParams* const pMoveParams, float minimumSpeedForWalkStop, float minimumSpeedForRunStop, float minimumSpeedForWalkJuke, float minimumSpeedForRunJuke, bool _bIsChangingDirection)>(0x176F390);
+#else
 	static inline auto FSTransitionSelectionParamsOv2 = PreyFunction<void(STransitionSelectionParams* const _this, const CMovementTransitions& transitions, const CPlayer& player, const CMovementRequest& request, const Vec3& playerPos, const SMovementTransitionsSample& oldSample, const SMovementTransitionsSample& newSample, const bool bHasLockedBodyTarget, const Vec3& targetBodyDirection, const Lineseg_tpl<float>& safeLine, const CTimeValue runningDuration, const uint8_t _allowedTransitionFlags, const float entitySpeed2D, const float entitySpeed2DAvg, const SExactPositioningTarget* const pExactPositioningTarget, const EStance stance, SActorFrameMovementParams* const pMoveParams, float minimumSpeedForWalkStop, float minimumSpeedForRunStop, float minimumSpeedForWalkJuke, float minimumSpeedForRunJuke, bool _bIsChangingDirection)>(0x1895EB0);
+#endif
 };
-#endif // MOONCRASH
+

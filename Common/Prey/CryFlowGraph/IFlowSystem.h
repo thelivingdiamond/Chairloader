@@ -344,7 +344,6 @@ struct IFlowNode
         eFE_SetEntityId,            //!< This event is send to set the entity of the FlowNode. Might also be sent in conjunction (pre) other events (like eFE_Initialize).
         eFE_Suspend,
         eFE_Resume,
-        eFE_EditorInputPortDataSet,
         eFE_ConnectInputPort,
         eFE_DisconnectInputPort,
         eFE_ConnectOutputPort,

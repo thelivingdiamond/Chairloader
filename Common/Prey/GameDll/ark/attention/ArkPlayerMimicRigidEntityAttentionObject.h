@@ -47,6 +47,9 @@ public:
 	void SetRoomEntityId(unsigned arg0);
 #endif
 	
+#ifdef MOONCRASH
+	virtual bool DoGetIsGlood() const;
+#endif
 #ifndef MOONCRASH
 	static inline auto FEnableAttentionObject = PreyFunction<void(ArkPlayerMimicRigidEntityAttentionObject *const _this)>(0x11B26A0);
 	static inline auto FDisableAttentionObject = PreyFunction<void(ArkPlayerMimicRigidEntityAttentionObject *const _this)>(0x11B2170);

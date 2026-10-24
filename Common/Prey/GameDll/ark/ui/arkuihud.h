@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -279,7 +278,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryString/CryString.h>
 #include <Prey/CryAction/IActionMapManager.h>
 #include <Prey/CryGame/IGameFramework.h>
 #include <Prey/CryString/CryName.h>
@@ -292,9 +291,9 @@ public:
 #include <Prey/GameDll/ark/ui/IHUDEventListener.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
 #include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <_unknown/IArkDoomClockListener.h>
-#include <_unknown/SUIEventSenderDispatcher.h>
-#include <_unknown/TRect_tpl.h>
+#include <Prey/GameDll/ark/IArkDoomClockListener.h>
+#include <Prey/ArkStubs.h>
+#include <Prey/CryMath/Cry_Geo.h>
 
 struct AABB;
 class ArkInputLegend;

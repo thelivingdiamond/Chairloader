@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -15,34 +14,6 @@ class ArkNpc;
 enum class EArkPsiPowers;
 class IArkValueBase;
 class SummonPetMimicPowerProperties;
-
-// ArkPsiPowerSummonPetMimic
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetMimic.h
-class ArkPsiPowerSummonPetMimic : public ArkPsiPowerSummonPet<ArkPsiPowerSummonPetMimic,SummonPetMimicPowerProperties>
-{ // Size=712 (0x2C8)
-public:
-	using BaseType = ArkPsiPowerSummonPet<ArkPsiPowerSummonPetMimic,SummonPetMimicPowerProperties>;
-	using Properties = SummonPetMimicPowerProperties;
-
-	ArkSimpleTimer m_searchTimer;
-	ArkSimpleTimer m_mimicPlayerTimer;
-
-	ArkPsiPowerSummonPetMimic();
-	virtual void SetLevel_Derived(const int _level);
-	void ResetSearchCooldown() { FResetSearchCooldown(this); }
-	void KillCurrentPet_Derived() { FKillCurrentPet_Derived(this); }
-	void Update_Derived(const float _frameTime, ArkNpc& _npc) { FUpdate_Derived(this, _frameTime, _npc); }
-
-#if 0
-	static EArkPsiPowers GetEnum_Derived();
-#endif
-
-	static inline auto FArkPsiPowerSummonPetMimicOv2 = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BE660);
-	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this, const int _level)>(0x13BF1B0);
-	static inline auto FResetSearchCooldown = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BF160);
-	static inline auto FKillCurrentPet_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BF150);
-	static inline auto FUpdate_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this, const float _frameTime, ArkNpc& _npc)>(0x13BF240);
-};
 
 // ArkPsiPowerSummonPetMimicProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetMimic.h
@@ -384,4 +355,33 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13BEE60);
 	static inline auto FInit = PreyFunction<bool(SummonPetMimicPowerProperties* const _this)>(0x13BEF70);
 };
+
+// ArkPsiPowerSummonPetMimic
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetMimic.h
+class ArkPsiPowerSummonPetMimic : public ArkPsiPowerSummonPet<ArkPsiPowerSummonPetMimic,SummonPetMimicPowerProperties>
+{ // Size=712 (0x2C8)
+public:
+	using BaseType = ArkPsiPowerSummonPet<ArkPsiPowerSummonPetMimic,SummonPetMimicPowerProperties>;
+	using Properties = SummonPetMimicPowerProperties;
+
+	ArkSimpleTimer m_searchTimer;
+	ArkSimpleTimer m_mimicPlayerTimer;
+
+	ArkPsiPowerSummonPetMimic();
+	virtual void SetLevel_Derived(const int _level);
+	void ResetSearchCooldown() { FResetSearchCooldown(this); }
+	void KillCurrentPet_Derived() { FKillCurrentPet_Derived(this); }
+	void Update_Derived(const float _frameTime, ArkNpc& _npc) { FUpdate_Derived(this, _frameTime, _npc); }
+
+#if 0
+	static EArkPsiPowers GetEnum_Derived();
+#endif
+
+	static inline auto FArkPsiPowerSummonPetMimicOv2 = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BE660);
+	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this, const int _level)>(0x13BF1B0);
+	static inline auto FResetSearchCooldown = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BF160);
+	static inline auto FKillCurrentPet_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this)>(0x13BF150);
+	static inline auto FUpdate_Derived = PreyFunction<void(ArkPsiPowerSummonPetMimic* const _this, const float _frameTime, ArkNpc& _npc)>(0x13BF240);
+};
+
 #endif // MOONCRASH

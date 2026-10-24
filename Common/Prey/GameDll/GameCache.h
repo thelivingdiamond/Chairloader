@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
-#include <CryEngine/crycommon/ientitypoolmanager.h>
-#include <_unknown/CryHashStringId.h>
+#include <Prey/CryString/CryFixedString.h>
+#include <Prey/CryEntitySystem/ientitypoolmanager.h>
+#include <Prey/GameDll/CryHashStringId.h>
 
 struct IActorSystem;
 struct ICharacterInstance;
@@ -72,8 +70,13 @@ public:
 	bool IsAlreadyRegistered(const unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FAddUserToGroup = PreyFunction<bool(CGameCharacterDBAs* const _this, const unsigned userId, const std::vector<string>& dbaGroups)>(0x16E5000);
+	static inline auto FLoadXmlData = PreyFunction<void(CGameCharacterDBAs* const _this)>(0x16E6A10);
+#else
 	static inline auto FAddUserToGroup = PreyFunction<bool(CGameCharacterDBAs* const _this, const unsigned userId, const std::vector<string>& dbaGroups)>(0x1809010);
 	static inline auto FLoadXmlData = PreyFunction<void(CGameCharacterDBAs* const _this)>(0x180AE40);
+#endif
 };
 
 // CGameCache
@@ -161,8 +164,9 @@ public:
 	void CacheActorInstance(unsigned entityId, SmartScriptTable pEntityScript, SmartScriptTable pPropertiesOverride, int modelVariation) { FCacheActorInstance(this, entityId, pEntityScript, pPropertiesOverride, modelVariation); }
 	void RefreshActorInstance(unsigned entityId, SmartScriptTable pEntityScript, SmartScriptTable pPropertiesOverride) { FRefreshActorInstance(this, entityId, pEntityScript, pPropertiesOverride); }
 	void CacheEntityArchetype(const char* archetypeName) { FCacheEntityArchetype(this, archetypeName); }
-	void CacheArkItem(const char* _szArkItemArchetype) { FCacheArkItem(this, _szArkItemArchetype); }
-	void CacheArkLootTable(uint64_t _lootTableId) { FCacheArkLootTable(this, _lootTableId); }
+#ifndef MOONCRASH
+	void CacheBodyDamageProfile(const char* bodyDamageFileName, const char* bodyDamagePartsFileName) { FCacheBodyDamageProfile(this, bodyDamageFileName, bodyDamagePartsFileName); }
+#endif
 	_smart_ptr<SLuaCache_ActorPhysicsParams> GetActorPhysicsParams(IEntityClass* pClass) const { alignas(_smart_ptr<SLuaCache_ActorPhysicsParams>) std::byte _return_buf_[sizeof(_smart_ptr<SLuaCache_ActorPhysicsParams>)]; return *FGetActorPhysicsParams(this, reinterpret_cast<_smart_ptr<SLuaCache_ActorPhysicsParams>*>(_return_buf_), pClass); }
 	_smart_ptr<SLuaCache_ActorGameParams> GetActorGameParams(IEntityClass* pClass) const { alignas(_smart_ptr<SLuaCache_ActorGameParams>) std::byte _return_buf_[sizeof(_smart_ptr<SLuaCache_ActorGameParams>)]; return *FGetActorGameParams(this, reinterpret_cast<_smart_ptr<SLuaCache_ActorGameParams>*>(_return_buf_), pClass); }
 	_smart_ptr<SLuaCache_ActorProperties> GetActorProperties(unsigned entityId) const { alignas(_smart_ptr<SLuaCache_ActorProperties>) std::byte _return_buf_[sizeof(_smart_ptr<SLuaCache_ActorProperties>)]; return *FGetActorProperties(this, reinterpret_cast<_smart_ptr<SLuaCache_ActorProperties>*>(_return_buf_), entityId); }
@@ -192,6 +196,38 @@ public:
 	bool IsCharacterFileModelCached(const char* _arg0_, unsigned& _arg1_) const;
 #endif
 
+#ifdef MOONCRASH
+	void CacheArkItem(const char* _szArkItemArchetype) { FCacheArkItem(this, _szArkItemArchetype); }
+	void CacheArkLootTable(uint64_t _lootTableId) { FCacheArkLootTable(this, _lootTableId); }
+#endif
+#ifndef MOONCRASH
+	static inline auto FCGameCacheOv1 = PreyFunction<void(CGameCache* const _this)>(0x16E4800);
+	static inline auto FInit = PreyFunction<void(CGameCache* const _this)>(0x16E6980);
+	static inline auto FPrecacheLevel = PreyFunction<void(CGameCache* const _this)>(0x16E7010);
+	static inline auto FReset = PreyFunction<void(CGameCache* const _this)>(0x16E76B0);
+	static inline auto FResetEntityInstanceProperties = PreyFunction<void(CGameCache* const _this)>(0x16E7870);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CGameCache* const _this, ICrySizer* s)>(0x16E66A0);
+	static inline auto FIsLuaCacheEnabled = PreyFunction<bool()>(0x16E69F0);
+	static inline auto FOnPoolBookmarkCreated = PreyFunction<void(CGameCache* const _this, unsigned entityId, const SEntitySpawnParams& params, XmlNodeRef entityNode)>(0x16E6E90);
+	static inline auto FCacheActorClass = PreyFunction<void(CGameCache* const _this, IEntityClass* pClass, SmartScriptTable pEntityScript)>(0x16E5220);
+	static inline auto FCacheActorInstance = PreyFunction<void(CGameCache* const _this, unsigned entityId, SmartScriptTable pEntityScript, SmartScriptTable pPropertiesOverride, int modelVariation)>(0x16E52C0);
+	static inline auto FRefreshActorInstance = PreyFunction<void(CGameCache* const _this, unsigned entityId, SmartScriptTable pEntityScript, SmartScriptTable pPropertiesOverride)>(0x16E7330);
+	static inline auto FCacheEntityArchetype = PreyFunction<void(CGameCache* const _this, const char* archetypeName)>(0x16E5730);
+	static inline auto FCacheBodyDamageProfile = PreyFunction<void(CGameCache* const _this, const char* bodyDamageFileName, const char* bodyDamagePartsFileName)>(0x16E5660);
+	static inline auto FGetActorPhysicsParams = PreyFunction<_smart_ptr<SLuaCache_ActorPhysicsParams>*(const CGameCache* const _this, _smart_ptr<SLuaCache_ActorPhysicsParams>* _return_value_, IEntityClass* pClass)>(0x16E6520);
+	static inline auto FGetActorGameParams = PreyFunction<_smart_ptr<SLuaCache_ActorGameParams>*(const CGameCache* const _this, _smart_ptr<SLuaCache_ActorGameParams>* _return_value_, IEntityClass* pClass)>(0x16E6460);
+	static inline auto FGetActorProperties = PreyFunction<_smart_ptr<SLuaCache_ActorProperties>*(const CGameCache* const _this, _smart_ptr<SLuaCache_ActorProperties>* _return_value_, unsigned entityId)>(0x16E65E0);
+	static inline auto FCacheTexture = PreyFunction<void(CGameCache* const _this, const char* textureFileName, const int textureFlags)>(0x16E5E10);
+	static inline auto FCacheGeometry = PreyFunction<void(CGameCache* const _this, const char* geometryFileName)>(0x16E5A20);
+	static inline auto FCacheMaterial = PreyFunction<void(CGameCache* const _this, const char* materialFileName)>(0x16E5CD0);
+	static inline auto FPrepareDBAsFor = PreyFunction<bool(CGameCache* const _this, const unsigned userId, const std::vector<string>& dbaGroups)>(0x16E7320);
+	static inline auto FRemoveDBAUser = PreyFunction<void(CGameCache* const _this, const unsigned userId)>(0x16E7540);
+	static inline auto FGetProperties = PreyFunction<SmartScriptTable(SmartScriptTable pEntityScript, SmartScriptTable pPropertiesOverride)>(0x16E6860);
+	static inline auto FCreateActorClassLuaCache = PreyFunction<void(CGameCache* const _this, IEntityClass* pClass, SmartScriptTable pEntityScript)>(0x16E5F50);
+	static inline auto FUpdateActorInstanceCacheOv1 = PreyFunction<void(CGameCache* const _this, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<unsigned int const ,CGameCache::SActorInstanceLuaCache> > > > actorInstanceLuaCacheIt, SmartScriptTable pEntityScript, SmartScriptTable pProperties, int modelVariation)>(0x16E78B0);
+	static inline auto FUpdateActorInstanceCacheOv0 = PreyFunction<bool(CGameCache* const _this, CGameCache::SActorInstanceLuaCache& actorInstanceLuaCache, SmartScriptTable pEntityScript, SmartScriptTable pProperties, int modelVariation)>(0x16E7960);
+	static inline auto FCacheAdditionalParams = PreyFunction<void(CGameCache* const _this, SmartScriptTable pProperties)>(0x16E5550);
+#else
 	static inline auto FCGameCacheOv1 = PreyFunction<void(CGameCache* const _this)>(0x1808760);
 	static inline auto FInit = PreyFunction<void(CGameCache* const _this)>(0x180ADB0);
 	static inline auto FPrecacheLevel = PreyFunction<void(CGameCache* const _this)>(0x180B440);
@@ -219,5 +255,6 @@ public:
 	static inline auto FUpdateActorInstanceCacheOv1 = PreyFunction<void(CGameCache* const _this, std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<unsigned int const ,CGameCache::SActorInstanceLuaCache> > > > actorInstanceLuaCacheIt, SmartScriptTable pEntityScript, SmartScriptTable pProperties, int modelVariation)>(0x180BBD0);
 	static inline auto FUpdateActorInstanceCacheOv0 = PreyFunction<bool(CGameCache* const _this, CGameCache::SActorInstanceLuaCache& actorInstanceLuaCache, SmartScriptTable pEntityScript, SmartScriptTable pProperties, int modelVariation)>(0x180BC80);
 	static inline auto FCacheAdditionalParams = PreyFunction<void(CGameCache* const _this, SmartScriptTable pProperties)>(0x1809560);
+#endif
 };
-#endif // MOONCRASH
+

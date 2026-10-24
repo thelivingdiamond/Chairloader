@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/IScriptSystem.h>
@@ -10,6 +8,9 @@ union ScriptHandle;
 
 // CScriptBind_ArkPlayer
 // Header:  Prey/GameDll/ark/player/ScriptBind_ArkPlayer.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#endif
 class CScriptBind_ArkPlayer : public CScriptableBase
 { // Size=96 (0x60)
 public:
@@ -41,7 +42,11 @@ public:
 	int ApplyStatModifierPackage(IFunctionHandler* _pH, const char* _packageId) { return FApplyStatModifierPackage(this, _pH, _packageId); }
 	int RemoveStatModifierPackage(IFunctionHandler* _pH, unsigned _packageId) { return FRemoveStatModifierPackage(this, _pH, _packageId); }
 	int QueryStat(IFunctionHandler* _pH, const char* _statName) { return FQueryStat(this, _pH, _statName); }
+#ifndef MOONCRASH
 	int GiveFabricationPlan(IFunctionHandler* _pH, const char* _pId, int _count, bool _bUnlimited) { return FGiveFabricationPlan(this, _pH, _pId, _count, _bUnlimited); }
+#else
+	int GiveFabricationPlan(IFunctionHandler* _pH, const char* _pId) { return FGiveFabricationPlan(this, _pH, _pId); }
+#endif
 	int RefillOxygen(IFunctionHandler* _pH) { return FRefillOxygen(this, _pH); }
 	int GiveOxygen(IFunctionHandler* _pH, float _oxygen) { return FGiveOxygen(this, _pH, _oxygen); }
 	int ExitWorldUIExamination(IFunctionHandler* _pH, bool _bForced) { return FExitWorldUIExamination(this, _pH, _bForced); }
@@ -52,6 +57,11 @@ public:
 	int IsExternalInventoryOpen(IFunctionHandler* _pH) { return FIsExternalInventoryOpen(this, _pH); }
 	int Spawn(IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles) { return FSpawn(this, _pH, _pos, _angles); }
 
+#ifdef MOONCRASH
+	int UnlockPropulsionSuit(IFunctionHandler* const _pH, float _propulsionForce, float _propulsionDuration) { return FUnlockPropulsionSuit(this, _pH, _propulsionForce, _propulsionDuration); }
+	int GiveChipset(IFunctionHandler* _pH, const char* _pArchetype) { return FGiveChipset(this, _pH, _pArchetype); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FCScriptBind_ArkPlayerOv2 = PreyFunction<void(CScriptBind_ArkPlayer* const _this)>(0x15B9520);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkPlayer* const _this, const IEntity& _entity)>(0x15BA6A0);
 	static inline auto FIsMaxHealth = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x15BB840);
@@ -90,62 +100,7 @@ public:
 	static inline auto FPlayFragment = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _fragmentName)>(0x15BBC00);
 	static inline auto FIsExternalInventoryOpen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x15BB7B0);
 	static inline auto FSpawn = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles)>(0x15BC010);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryScriptSystem/ScriptHelpers.h>
-
-struct IEntity;
-struct IFunctionHandler;
-union ScriptHandle;
-
-// CScriptBind_ArkPlayer
-// Header:  Prey/GameDll/ark/player/ScriptBind_ArkPlayer.h
-class CScriptBind_ArkPlayer : public CScriptableBase
-{ // Size=96 (0x60)
-public:
-	CScriptBind_ArkPlayer();
-	void AttachTo(const IEntity& _entity) { FAttachTo(this, _entity); }
-	int IsMaxHealth(IFunctionHandler* _pH) { return FIsMaxHealth(this, _pH); }
-	int IsMaxPsi(IFunctionHandler* _pH) { return FIsMaxPsi(this, _pH); }
-	int IsMaxOxygen(IFunctionHandler* _pH) { return FIsMaxOxygen(this, _pH); }
-	int GetPsiPoints(IFunctionHandler* _pH) { return FGetPsiPoints(this, _pH); }
-	int IsMimickingObject(IFunctionHandler* _pH) { return FIsMimickingObject(this, _pH); }
-	int SetPsiPoints(IFunctionHandler* _pH, float _value) { return FSetPsiPoints(this, _pH, _value); }
-	int UnlockPsiScanning(IFunctionHandler* _pH, bool _bValue) { return FUnlockPsiScanning(this, _pH, _bValue); }
-	int UnlockPropulsionSuit(IFunctionHandler* const _pH, float _propulsionForce, float _propulsionDuration) { return FUnlockPropulsionSuit(this, _pH, _propulsionForce, _propulsionDuration); }
-	int ValidateKeyCode(IFunctionHandler* const _pH, const char* _keycodeID, const char* _input) { return FValidateKeyCode(this, _pH, _keycodeID, _input); }
-	int HasAbility(IFunctionHandler* const _pH, const char* _abilityID) { return FHasAbility(this, _pH, _abilityID); }
-	int GiveNote(IFunctionHandler* const _pH, const char* _noteID) { return FGiveNote(this, _pH, _noteID); }
-	int GiveAudioLog(IFunctionHandler* const _pH, const char* _audioLogID, bool _bAutoplay) { return FGiveAudioLog(this, _pH, _audioLogID, _bAutoplay); }
-	int GetLocationName(IFunctionHandler* const _pH, const char* _locationID) { return FGetLocationName(this, _pH, _locationID); }
-	int SetViewAngles(IFunctionHandler* _pH, Ang3 _angles) { return FSetViewAngles(this, _pH, _angles); }
-	int HasKeyCard(IFunctionHandler* _pH, const char* _keycardID) { return FHasKeyCard(this, _pH, _keycardID); }
-	int GiveKeyCard(IFunctionHandler* _pH, const char* _keycardID) { return FGiveKeyCard(this, _pH, _keycardID); }
-	int HasPassword(IFunctionHandler* _pH, const char* _characterID) { return FHasPassword(this, _pH, _characterID); }
-	int GetPasswordLength(IFunctionHandler* _pH, const char* _characterID) { return FGetPasswordLength(this, _pH, _characterID); }
-	int GiveDownload(IFunctionHandler* _pH, const char* _downloadID) { return FGiveDownload(this, _pH, _downloadID); }
-	int GiveEmail(IFunctionHandler* _pH, const char* _emailID) { return FGiveEmail(this, _pH, _emailID); }
-	int EquipWeapon(IFunctionHandler* _pH, ScriptHandle _weaponID) { return FEquipWeapon(this, _pH, _weaponID); }
-	int UnequipWeapon(IFunctionHandler* _pH) { return FUnequipWeapon(this, _pH); }
-	int AddStatModifier(IFunctionHandler* _pH, const char* _statName, float _modifier) { return FAddStatModifier(this, _pH, _statName, _modifier); }
-	int RemoveStatModifier(IFunctionHandler* _pH, unsigned _modId) { return FRemoveStatModifier(this, _pH, _modId); }
-	int ApplyStatModifierPackage(IFunctionHandler* _pH, const char* _packageId) { return FApplyStatModifierPackage(this, _pH, _packageId); }
-	int RemoveStatModifierPackage(IFunctionHandler* _pH, unsigned _packageId) { return FRemoveStatModifierPackage(this, _pH, _packageId); }
-	int QueryStat(IFunctionHandler* _pH, const char* _statName) { return FQueryStat(this, _pH, _statName); }
-	int GiveFabricationPlan(IFunctionHandler* _pH, const char* _pId) { return FGiveFabricationPlan(this, _pH, _pId); }
-	int GiveChipset(IFunctionHandler* _pH, const char* _pArchetype) { return FGiveChipset(this, _pH, _pArchetype); }
-	int RefillOxygen(IFunctionHandler* _pH) { return FRefillOxygen(this, _pH); }
-	int GiveOxygen(IFunctionHandler* _pH, float _oxygen) { return FGiveOxygen(this, _pH, _oxygen); }
-	int ExitWorldUIExamination(IFunctionHandler* _pH, bool _bForced) { return FExitWorldUIExamination(this, _pH, _bForced); }
-	int IsTraumaActive(IFunctionHandler* _pH, const char* _traumaId) { return FIsTraumaActive(this, _pH, _traumaId); }
-	int IsAnyTraumaActive(IFunctionHandler* _pH) { return FIsAnyTraumaActive(this, _pH); }
-	int CanHealTrauma(IFunctionHandler* _pH, const char* _traumaId) { return FCanHealTrauma(this, _pH, _traumaId); }
-	int PlayFragment(IFunctionHandler* _pH, const char* _fragmentName) { return FPlayFragment(this, _pH, _fragmentName); }
-	int IsExternalInventoryOpen(IFunctionHandler* _pH) { return FIsExternalInventoryOpen(this, _pH); }
-	int Spawn(IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles) { return FSpawn(this, _pH, _pos, _angles); }
-
+#else
 	static inline auto FCScriptBind_ArkPlayerOv2 = PreyFunction<void(CScriptBind_ArkPlayer* const _this)>(0x16DEC00);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkPlayer* const _this, const IEntity& _entity)>(0x16DFDE0);
 	static inline auto FIsMaxHealth = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E11D0);
@@ -186,5 +141,5 @@ public:
 	static inline auto FPlayFragment = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _fragmentName)>(0x16E15A0);
 	static inline auto FIsExternalInventoryOpen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1140);
 	static inline auto FSpawn = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles)>(0x16E19B0);
+#endif
 };
-#endif // !MOONCRASH

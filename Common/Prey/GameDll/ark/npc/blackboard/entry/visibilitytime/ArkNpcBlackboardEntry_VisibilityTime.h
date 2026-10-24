@@ -1,9 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/ArkNpcBlackboardEntryTemplate_GetUpdate.h>
+#include <Prey/GameDll/ark/npc/blackboard/ArkNpcBlackboardEntryTemplates.h>
 
+class ArkNpcBlackboardKey_VisibilityTime;
 class ArkNpcBlackboardEntryKey_VisibilityTime;
 
 // ArkNpcBlackboardEntry_VisibilityTime
@@ -17,8 +16,14 @@ public:
 	float Get() const { return FGet(this); }
 	void Update(const ArkNpcBlackboardEntryKey_VisibilityTime& _entryKey, float _elapsedTime) { FUpdate(this, _entryKey, _elapsedTime); }
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcBlackboardEntry_VisibilityTimeOv2 = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime* const _this)>(0x1524620);
+	static inline auto FGet = PreyFunction<float(const ArkNpcBlackboardEntry_VisibilityTime* const _this)>(0x10BDAB0);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime* const _this, const ArkNpcBlackboardEntryKey_VisibilityTime& _entryKey, float _elapsedTime)>(0x1210530);
+#else
 	static inline auto FArkNpcBlackboardEntry_VisibilityTimeOv2 = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime* const _this)>(0x1643FB0);
 	static inline auto FGet = PreyFunction<float(const ArkNpcBlackboardEntry_VisibilityTime* const _this)>(0x12FC750);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime* const _this, const ArkNpcBlackboardEntryKey_VisibilityTime& _entryKey, float _elapsedTime)>(0x129F700);
+#endif
 };
-#endif // MOONCRASH
+

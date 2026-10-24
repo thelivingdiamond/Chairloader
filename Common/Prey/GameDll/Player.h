@@ -1,8 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryEntitySystem/IEntityProxy.h>
+#include <Prey/CryAction/SCharacterMoveRequest.h>
+#include <Prey/GameDll/HitDeathReactions.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryAction/IAnimatedCharacter.h>
 #include <Prey/CryAction/IGameRulesSystem.h>
 #include <Prey/CryAction/IPlayerProfiles.h>
@@ -14,14 +15,14 @@
 #include <Prey/GameDll/PlayerStateSwim_WaterTestProxy.h>
 #include <Prey/GameDll/dualcharacterproxy.h>
 #include <Prey/GameDll/state.h>
-#include <_unknown/CCoherentValue.h>
-#include <_unknown/CStateMachineRegistration.h>
-#include <_unknown/ISerializableInfo.h>
-#include <_unknown/SActorStats.h>
-#include <_unknown/SAimAccelerationParams.h>
-#include <_unknown/SAnimActionAIMovementSettings.h>
-#include <_unknown/SFrameMovementModifiers.h>
-#include <_unknown/SSpectatorInfo.h>
+#include <Prey/CryGame/CoherentValue.h>
+#include <Prey/GameDll/state.h>
+#include <Prey/CryNetwork/INetwork.h>
+#include <Prey/GameDll/SActorStats.h>
+#include <Prey/GameDll/SAimAccelerationParams.h>
+#include <Prey/GameDll/SAnimActionAIMovementSettings.h>
+#include <Prey/GameDll/SFrameMovementModifiers.h>
+#include <Prey/GameDll/SSpectatorInfo.h>
 
 struct AnimEventInstance;
 class CAIAnimationComponent;
@@ -37,6 +38,7 @@ struct IAttachment;
 struct ICharacterInstance;
 class ICrySizer;
 struct IEntity;
+struct IEntityAudioProxy;
 struct IEntityClass;
 struct IGameObject;
 struct IInteractor;
@@ -87,8 +89,13 @@ struct SDeferredFootstepImpulse
 	void CancelPendingRay();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FBitNotSDeferredFootstepImpulse = PreyFunction<void(SDeferredFootstepImpulse* const _this)>(0x1795D00);
+	static inline auto FOnRayCastDataReceived = PreyFunction<void(SDeferredFootstepImpulse* const _this, const unsigned& rayID, const RayCastResult& result)>(0x179E020);
+#else
 	static inline auto FBitNotSDeferredFootstepImpulse = PreyFunction<void(SDeferredFootstepImpulse* const _this)>(0x18BC640);
 	static inline auto FOnRayCastDataReceived = PreyFunction<void(SDeferredFootstepImpulse* const _this, const unsigned& rayID, const RayCastResult& result)>(0x18C49A0);
+#endif
 };
 
 // SNetPlayerProgression
@@ -121,7 +128,11 @@ struct SNetPlayerProgression
 	void SetSerializedValues(int _arg0_, int _arg1_, int _arg2_, int _arg3_, int _arg4_, int _arg5_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(SNetPlayerProgression* const _this, TSerialize ser, EEntityAspects aspect)>(0x17A1EE0);
+#else
 	static inline auto FSerialize = PreyFunction<void(SNetPlayerProgression* const _this, TSerialize ser, EEntityAspects aspect)>(0x18C8860);
+#endif
 };
 
 // SPlayerRotationParams
@@ -152,8 +163,13 @@ struct SPlayerRotationParams
 	const SAimAccelerationParams& GetVerticalAimParams(SPlayerRotationParams::EAimType _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReadAimParams = PreyFunction<void(SPlayerRotationParams* const _this, const IItemParamsNode* pRootNode, const char* aimTypeName, SPlayerRotationParams::EAimType aimType)>(0x17A0860);
+	static inline auto FReadAccelerationParams = PreyFunction<void(SPlayerRotationParams* const _this, const IItemParamsNode* pNode, SAimAccelerationParams* output)>(0x17A0730);
+#else
 	static inline auto FReadAimParams = PreyFunction<void(SPlayerRotationParams* const _this, const IItemParamsNode* pRootNode, const char* aimTypeName, SPlayerRotationParams::EAimType aimType)>(0x18C71E0);
 	static inline auto FReadAccelerationParams = PreyFunction<void(SPlayerRotationParams* const _this, const IItemParamsNode* pNode, SAimAccelerationParams* output)>(0x18C70B0);
+#endif
 };
 
 // SPlayerStats
@@ -213,8 +229,13 @@ struct SPlayerStats : public SActorStats
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSPlayerStatsOv2 = PreyFunction<void(SPlayerStats* const _this)>(0x1795420);
+	static inline auto FSerialize = PreyFunction<void(SPlayerStats* const _this, TSerialize ser, EEntityAspects aspects)>(0x17A2170);
+#else
 	static inline auto FSPlayerStatsOv2 = PreyFunction<void(SPlayerStats* const _this)>(0x18BBD60);
 	static inline auto FSerialize = PreyFunction<void(SPlayerStats* const _this, TSerialize ser, EEntityAspects aspects)>(0x18C8AF0);
+#endif
 };
 
 // SXPEvents
@@ -242,7 +263,11 @@ struct SXPEvents
 	SXPEvents();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSerializeWith = PreyFunction<void(SXPEvents* const _this, TSerialize ser)>(0x17A2840);
+#else
 	static inline auto FSerializeWith = PreyFunction<void(SXPEvents* const _this, TSerialize ser)>(0x18C91C0);
+#endif
 };
 
 // CPlayer
@@ -326,13 +351,13 @@ public:
 		EEffect_WaterDroplets = 2,
 	};
 
-	enum #unnamed_enum_eAF_NONE
+	enum
 	{
 		eAF_NONE = 0,
 		eAF_JUMP_QUICK = 1,
 	};
 
-	enum #unnamed_enum_eLF_NONE
+	enum
 	{
 		eLF_NONE = 0,
 		eLF_FROM_ON_GROUND = 1,
@@ -665,7 +690,11 @@ public:
 		SStagingParams();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FSerialize = PreyFunction<void(CPlayer::SStagingParams* const _this, TSerialize ser)>(0x17A2390);
+#else
 		static inline auto FSerialize = PreyFunction<void(CPlayer::SStagingParams* const _this, TSerialize ser)>(0x18C8D10);
+#endif
 	};
 
 	// CPlayer::SSound
@@ -698,7 +727,11 @@ public:
 	using TPlayerUpdateListeners = std::list<IPlayerUpdateListener *,std::allocator<IPlayerUpdateListener *> >;
 	using ELedgeFlags = uint8_t;
 
+#ifndef MOONCRASH
+	static inline auto s_pStateMachineRegistrationMovement = PreyGlobal<CStateMachineRegistration<CPlayer>*>(0x2C17638);
+#else
 	static inline auto s_pStateMachineRegistrationMovement = PreyGlobal<CStateMachineRegistration<CPlayer>*>(0x2D93038);
+#endif
 	CStateMachine<CPlayer> m_stateMachineMovement;
 	static constexpr const unsigned ASPECT_HEALTH = 32;
 	static constexpr const unsigned ASPECT_PLAYERSTATS_SERVER = 512;
@@ -719,56 +752,96 @@ public:
 	static constexpr const unsigned ASPECT_LADDER_SERVER = 134217728;
 	static constexpr const int MAX_NETWORKED_LEDGE_COUNT = 1024;
 	static constexpr const int JUMP_COUNTER_MAX = 8;
-	static constexpr const ERMIAttachmentType Attach_SvOnXPChanged = 2;
+	static constexpr const ERMIAttachmentType Attach_SvOnXPChanged = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvOnXPChanged = 1;
-	static constexpr const ENetReliabilityType Reliability_SvOnXPChanged = 0;
+	static constexpr const ENetReliabilityType Reliability_SvOnXPChanged = static_cast<ENetReliabilityType>(0);
 	static constexpr const bool LowDelay_SvOnXPChanged = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvOnXPChanged = PreyGlobal<CPlayer::MethodInfo_SvOnXPChanged>(0x2C17648);
+#else
 	static inline auto m_infoSvOnXPChanged = PreyGlobal<CPlayer::MethodInfo_SvOnXPChanged>(0x2D93048);
-	static constexpr const ERMIAttachmentType Attach_ClDelayedDetonation = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClDelayedDetonation = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClDelayedDetonation = 0;
-	static constexpr const ENetReliabilityType Reliability_ClDelayedDetonation = 1;
+	static constexpr const ENetReliabilityType Reliability_ClDelayedDetonation = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClDelayedDetonation = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClDelayedDetonation = PreyGlobal<CPlayer::MethodInfo_ClDelayedDetonation>(0x2C17650);
+#else
 	static inline auto m_infoClDelayedDetonation = PreyGlobal<CPlayer::MethodInfo_ClDelayedDetonation>(0x2D93050);
-	static constexpr const ERMIAttachmentType Attach_SvRequestMicrowaveBeam = 4;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestMicrowaveBeam = static_cast<ERMIAttachmentType>(4);
 	static constexpr const bool ServerCall_SvRequestMicrowaveBeam = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestMicrowaveBeam = 1;
+	static constexpr const ENetReliabilityType Reliability_SvRequestMicrowaveBeam = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_SvRequestMicrowaveBeam = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestMicrowaveBeam = PreyGlobal<CPlayer::MethodInfo_SvRequestMicrowaveBeam>(0x2C17660);
+#else
 	static inline auto m_infoSvRequestMicrowaveBeam = PreyGlobal<CPlayer::MethodInfo_SvRequestMicrowaveBeam>(0x2D93060);
-	static constexpr const ERMIAttachmentType Attach_ClDeployMicrowaveBeam = 4;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClDeployMicrowaveBeam = static_cast<ERMIAttachmentType>(4);
 	static constexpr const bool ServerCall_ClDeployMicrowaveBeam = 0;
-	static constexpr const ENetReliabilityType Reliability_ClDeployMicrowaveBeam = 1;
+	static constexpr const ENetReliabilityType Reliability_ClDeployMicrowaveBeam = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClDeployMicrowaveBeam = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClDeployMicrowaveBeam = PreyGlobal<CPlayer::MethodInfo_ClDeployMicrowaveBeam>(0x2C17668);
+#else
 	static inline auto m_infoClDeployMicrowaveBeam = PreyGlobal<CPlayer::MethodInfo_ClDeployMicrowaveBeam>(0x2D93068);
-	static constexpr const ERMIAttachmentType Attach_ClAbortStealthKill = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClAbortStealthKill = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClAbortStealthKill = 0;
-	static constexpr const ENetReliabilityType Reliability_ClAbortStealthKill = 0;
+	static constexpr const ENetReliabilityType Reliability_ClAbortStealthKill = static_cast<ENetReliabilityType>(0);
 	static constexpr const bool LowDelay_ClAbortStealthKill = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClAbortStealthKill = PreyGlobal<CPlayer::MethodInfo_ClAbortStealthKill>(0x2C17658);
+#else
 	static inline auto m_infoClAbortStealthKill = PreyGlobal<CPlayer::MethodInfo_ClAbortStealthKill>(0x2D93058);
-	static constexpr const ERMIAttachmentType Attach_ClApplyMeleeImpulse = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClApplyMeleeImpulse = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClApplyMeleeImpulse = 0;
-	static constexpr const ENetReliabilityType Reliability_ClApplyMeleeImpulse = 1;
+	static constexpr const ENetReliabilityType Reliability_ClApplyMeleeImpulse = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClApplyMeleeImpulse = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClApplyMeleeImpulse = PreyGlobal<CPlayer::MethodInfo_ClApplyMeleeImpulse>(0x2C17688);
+#else
 	static inline auto m_infoClApplyMeleeImpulse = PreyGlobal<CPlayer::MethodInfo_ClApplyMeleeImpulse>(0x2D93088);
-	static constexpr const ERMIAttachmentType Attach_ClIncrementIntStat = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClIncrementIntStat = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClIncrementIntStat = 0;
-	static constexpr const ENetReliabilityType Reliability_ClIncrementIntStat = 1;
+	static constexpr const ENetReliabilityType Reliability_ClIncrementIntStat = static_cast<ENetReliabilityType>(1);
 	static constexpr const bool LowDelay_ClIncrementIntStat = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClIncrementIntStat = PreyGlobal<CPlayer::MethodInfo_ClIncrementIntStat>(0x2C17690);
+#else
 	static inline auto m_infoClIncrementIntStat = PreyGlobal<CPlayer::MethodInfo_ClIncrementIntStat>(0x2D93090);
-	static constexpr const ERMIAttachmentType Attach_SvRequestUseLadder = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestUseLadder = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestUseLadder = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestUseLadder = 0;
+	static constexpr const ENetReliabilityType Reliability_SvRequestUseLadder = static_cast<ENetReliabilityType>(0);
 	static constexpr const bool LowDelay_SvRequestUseLadder = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestUseLadder = PreyGlobal<CPlayer::MethodInfo_SvRequestUseLadder>(0x2C17670);
+#else
 	static inline auto m_infoSvRequestUseLadder = PreyGlobal<CPlayer::MethodInfo_SvRequestUseLadder>(0x2D93070);
-	static constexpr const ERMIAttachmentType Attach_SvRequestLeaveFromLadder = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_SvRequestLeaveFromLadder = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_SvRequestLeaveFromLadder = 1;
-	static constexpr const ENetReliabilityType Reliability_SvRequestLeaveFromLadder = 0;
+	static constexpr const ENetReliabilityType Reliability_SvRequestLeaveFromLadder = static_cast<ENetReliabilityType>(0);
 	static constexpr const bool LowDelay_SvRequestLeaveFromLadder = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoSvRequestLeaveFromLadder = PreyGlobal<CPlayer::MethodInfo_SvRequestLeaveFromLadder>(0x2C17678);
+#else
 	static inline auto m_infoSvRequestLeaveFromLadder = PreyGlobal<CPlayer::MethodInfo_SvRequestLeaveFromLadder>(0x2D93078);
-	static constexpr const ERMIAttachmentType Attach_ClLeaveFromLadder = 2;
+#endif
+	static constexpr const ERMIAttachmentType Attach_ClLeaveFromLadder = static_cast<ERMIAttachmentType>(2);
 	static constexpr const bool ServerCall_ClLeaveFromLadder = 0;
-	static constexpr const ENetReliabilityType Reliability_ClLeaveFromLadder = 0;
+	static constexpr const ENetReliabilityType Reliability_ClLeaveFromLadder = static_cast<ENetReliabilityType>(0);
 	static constexpr const bool LowDelay_ClLeaveFromLadder = 0;
+#ifndef MOONCRASH
+	static inline auto m_infoClLeaveFromLadder = PreyGlobal<CPlayer::MethodInfo_ClLeaveFromLadder>(0x2C17680);
+#else
 	static inline auto m_infoClLeaveFromLadder = PreyGlobal<CPlayer::MethodInfo_ClLeaveFromLadder>(0x2D93080);
+#endif
 	std::list<IPlayerEventListener *,std::allocator<IPlayerEventListener *> > m_playerEventListeners;
 	std::list<IPlayerUpdateListener *,std::allocator<IPlayerUpdateListener *> > m_playerUpdateListeners;
 	float m_timeOfLastHealthSync;
@@ -844,7 +917,11 @@ public:
 	float m_reactionTimer;
 	float m_reactionFactor;
 	int m_reactionOverlayAnimIDs[7];
+#ifndef MOONCRASH
+	static inline auto m_reactionAnims = PreyGlobal<CPlayer::SReactionAnim [7]>(0x2282490);
+#else
 	static inline auto m_reactionAnims = PreyGlobal<CPlayer::SReactionAnim [7]>(0x23F0F90);
+#endif
 	uint8_t m_meleeHitCounter;
 	int m_xpBonusMultiplier;
 	float m_timeFirstSpawned;
@@ -1081,7 +1158,6 @@ public:
 	std::shared_ptr<CHitDeathReactions> GetHitDeathReactions() { alignas(std::shared_ptr<CHitDeathReactions>) std::byte _return_buf_[sizeof(std::shared_ptr<CHitDeathReactions>)]; return *FGetHitDeathReactionsOv1(this, reinterpret_cast<std::shared_ptr<CHitDeathReactions>*>(_return_buf_)); }
 	void SpawnCorpse() { FSpawnCorpse(this); }
 	void SetRagdollPhysicsParams(IPhysicalEntity* pPhysEnt, SRagdollizeParams* _pRagdollParams) { FSetRagdollPhysicsParams(this, pPhysEnt, _pRagdollParams); }
-	void SetTagByCRC(unsigned tagCRC, bool enable) { FSetTagByCRC(this, tagCRC, enable); }
 	virtual void BecomeRemotePlayer();
 	virtual bool ShouldMuteWeaponSoundStimulus() const;
 	void SetScriptMovementSpeedModifier(const float fFactor) { FSetScriptMovementSpeedModifier(this, fFactor); }
@@ -1276,6 +1352,7 @@ public:
 	bool IsInFreeFallDeath() const;
 	void CreateInputClass(bool _arg0_);
 	void SetLastTimeInLedge(float _arg0_);
+	void SetTagByCRC(unsigned _arg0_, bool _arg1_);
 	void DeselectWeapon();
 	CAIAnimationComponent* GetAIAnimationComponent();
 	const CAIAnimationComponent* GetAIAnimationComponent() const;
@@ -1323,6 +1400,236 @@ public:
 	float GetTimeFirstSpawned() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FRegisterState = PreyFunction<void(CStateHierarchy<CPlayer>* (*createPtr)(CStateMachineRegistration<CPlayer>&), void (*deletePtr)(CStateHierarchy<CPlayer>* &), unsigned stateID)>(0x17A0EF0);
+	static inline auto FStateMachineHandleEventMovement = PreyFunction<void(CPlayer* const _this, const SStateEvent& event)>(0x17A5060);
+	static inline auto FStateMachineResetMovement = PreyFunction<void(CPlayer* const _this)>(0x17A5080);
+	static inline auto FCPlayer = PreyFunction<void(CPlayer* const _this)>(0x1794790);
+	static inline auto FBitNotCPlayer = PreyFunction<void(CPlayer* const _this)>(0x17958C0);
+	static inline auto FIsHeadUnderWater = PreyFunction<bool(const CPlayer* const _this)>(0x179C460);
+	static inline auto FIsSwimming = PreyFunction<bool(const CPlayer* const _this)>(0x179C620);
+	static inline auto FIsZeroG = PreyFunction<bool(const CPlayer* const _this)>(0x179C650);
+	static inline auto FIsClimbing = PreyFunction<bool(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FIsHovering = PreyFunction<bool(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FProcessGlideJump = PreyFunction<void(const CPlayer* const _this)>(0xA13080);
+	static inline auto FGetViewOffsetOverride = PreyFunction<boost::optional<Vec3_tpl<float> >*(const CPlayer* const _this, boost::optional<Vec3_tpl<float> >* _return_value_, float _frameTime)>(0x150DBF0);
+	static inline auto FIsSprinting = PreyFunction<bool(const CPlayer* const _this)>(0x179C5E0);
+	static inline auto FCanFire = PreyFunction<bool(const CPlayer* const _this)>(0x1796E20);
+	static inline auto FInit = PreyFunction<bool(CPlayer* const _this, IGameObject* pGameObject)>(0x179BF50);
+	static inline auto FPostInit = PreyFunction<void(CPlayer* const _this, IGameObject* pGameObject)>(0x179E610);
+	static inline auto FReloadClientXmlData = PreyFunction<void(CPlayer* const _this)>(0x17A0FA0);
+	static inline auto FReloadExtension = PreyFunction<bool(CPlayer* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x17A0FB0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CPlayer* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x179EC80);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CPlayer* const _this, TSerialize signature)>(0x179AC20);
+	static inline auto FProcessEvent = PreyFunction<void(CPlayer* const _this, SEntityEvent& event)>(0x17A00A0);
+	static inline auto FSetAuthority = PreyFunction<void(CPlayer* const _this, bool auth)>(0x17A2F70);
+	static inline auto FSerializeXML = PreyFunction<void(CPlayer* const _this, XmlNodeRef& node, bool bLoading)>(0xA13080);
+	static inline auto FUpdate = PreyFunction<void(CPlayer* const _this, SEntityUpdateContext& ctx, int updateSlot)>(0x17A5D00);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CPlayer* const _this, TSerialize ser)>(0x17A2690);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CPlayer* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x179B160);
+	static inline auto FUpdateAnimationState = PreyFunction<void(CPlayer* const _this, const SActorFrameMovementParams& frameMovementParams)>(0x17A5FF0);
+	static inline auto FPrePhysicsUpdate = PreyFunction<void(CPlayer* const _this)>(0x179F900);
+	static inline auto FUpdateView = PreyFunction<void(IGameObjectView* const _this, SViewParams& viewParams)>(0x17A6770);
+	static inline auto FPostUpdateView = PreyFunction<void(IGameObjectView* const _this, SViewParams& viewParams)>(0x179F250);
+	static inline auto FOnFootStepImpulseAnimEvent = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const AnimEventInstance& event)>(0x179DA80);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CPlayer* const _this, ICrySizer* pSizer)>(0x179B080);
+	static inline auto FOnFootStepAnimEvent = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const char* boneName)>(0x179D9C0);
+	static inline auto FOnFoleyAnimEvent = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const char* CustomParameter, const char* boneName)>(0x179D910);
+	static inline auto FExecuteFootStep = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const float frameTime, const int nFootJointID)>(0x1799010);
+	static inline auto FExecuteFoleySignal = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const float frameTime, const char* sFoleyActionName, const int nBoneJointID)>(0x1798770);
+	static inline auto FExecuteFootStepsAIStimulus = PreyFunction<void(CPlayer* const _this, const float relativeSpeed, const float noiseSupression)>(0x1799BE0);
+	static inline auto FExecuteGroundEffectAnimEvent = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const float frameTime, const char* szEffectName, const int nJointID)>(0x1799C70);
+	static inline auto FOnKillAnimEvent = PreyFunction<void(CPlayer* const _this, const AnimEventInstance& event)>(0x179DE40);
+	static inline auto FUpdateClient = PreyFunction<void(CPlayer* const _this, const float frameTime)>(0xA13080);
+	static inline auto FCanBreakGlass = PreyFunction<bool(const CPlayer* const _this)>(0x1796C10);
+	static inline auto FMustBreakGlass = PreyFunction<bool(const CPlayer* const _this)>(0x179C7E0);
+	static inline auto FPhysicalize = PreyFunction<void(CPlayer* const _this, EStance stance)>(0x179E230);
+	static inline auto FSetActorModel = PreyFunction<bool(CPlayer* const _this, const char* modelName)>(0x17A2900);
+	static inline auto FSetChannelId = PreyFunction<void(CPlayer* const _this, uint16_t id)>(0xF4BED0);
+	static inline auto FLinkToEntity = PreyFunction<IEntity* (CPlayer* const _this, unsigned entityId, bool bKeepTransformOnDetach)>(0x179C770);
+	static inline auto FLinkToMountedWeapon = PreyFunction<void(CPlayer* const _this, unsigned weaponId)>(0x179C7D0);
+	static inline auto FStartInteractiveAction = PreyFunction<void(CPlayer* const _this, unsigned entityId, int interactionIndex)>(0x17A4A40);
+	static inline auto FStartInteractiveActionByName = PreyFunction<void(CPlayer* const _this, const char* interaction, bool bUpdateVisibility, float actionSpeed)>(0x17A4B10);
+	static inline auto FIsInteractiveActionDone = PreyFunction<bool(const CPlayer* const _this)>(0x179C480);
+	static inline auto FAnimationControlled = PreyFunction<void(CPlayer* const _this, bool activate, bool bUpdateVisibility)>(0x1796270);
+	static inline auto FRefillAmmo = PreyFunction<void(CPlayer* const _this)>(0x17A0D60);
+	static inline auto FGetPhysicalSkipEntities = PreyFunction<int(const CPlayer* const _this, IPhysicalEntity* * pSkipList, const int maxSkipSize)>(0x179B0D0);
+	static inline auto FSupressViewBlending = PreyFunction<void(CPlayer* const _this)>(0x1513DB0);
+	static inline auto FIsMovingIgnoreHoverBob = PreyFunction<bool(const CPlayer* const _this)>(0x179C4B0);
+	static inline auto FGetForcedLookDir = PreyFunction<bool(const CPlayer* const _this, Vec3& vDir)>(0x179AE90);
+	static inline auto FSetForcedLookDir = PreyFunction<void(CPlayer* const _this, const Vec3& vDir)>(0x17A2FB0);
+	static inline auto FClearForcedLookDir = PreyFunction<void(CPlayer* const _this)>(0x1797140);
+	static inline auto FSetForcedLookObjectId = PreyFunction<void(CPlayer* const _this, unsigned entityId)>(0x17A2FD0);
+	static inline auto FClearForcedLookObjectId = PreyFunction<void(CPlayer* const _this)>(0x1797150);
+	static inline auto FCanMove = PreyFunction<bool(const CPlayer* const _this)>(0x1796E60);
+	static inline auto FGetActorClassName = PreyFunction<const char* (const CPlayer* const _this)>(0x179AA50);
+	static inline auto FGetActorClass = PreyFunction<int(const CPlayer* const _this)>(0x1B1DEA0);
+	static inline auto FGetGrabbedEntityId = PreyFunction<unsigned(const CPlayer* const _this)>(0x150D1D0);
+	static inline auto FUpdateMountedGunController = PreyFunction<void(CPlayer* const _this, bool forceIKUpdate)>(0xA13080);
+	static inline auto FIsJumping = PreyFunction<bool(const CPlayer* const _this)>(0x179C4A0);
+	static inline auto FEnableStumbling = PreyFunction<void(CPlayer* const _this, PlayerActor::Stumble::StumbleParameters* stumbleParameters)>(0xA13080);
+	static inline auto FDisableStumbling = PreyFunction<void(CPlayer* const _this)>(0xA13080);
+	static inline auto FSetAnimatedCharacterParams = PreyFunction<void(CPlayer* const _this, const SAnimatedCharacterParams& params)>(0x17A2BA0);
+	static inline auto FOnFakeHitToHitReactions = PreyFunction<void(CPlayer* const _this, const HitInfo& _hitInfo)>(0x179D870);
+	static inline auto FCreateMovementController = PreyFunction<IActorMovementController* (CPlayer* const _this)>(0x17975B0);
+	static inline auto FSetIK = PreyFunction<void(CPlayer* const _this, const SActorFrameMovementParams& frameMovementParams)>(0x17A3130);
+	static inline auto FUpdatePlayerPlugins = PreyFunction<void(CPlayer* const _this, const float dt)>(0xA13080);
+	static inline auto FUpdateFPIKTorso = PreyFunction<void(CPlayer* const _this, float fFrameTime, IItem* pCurrentItem, const Vec3& cameraPosition)>(0xA13080);
+	static inline auto FOnChangeTeam = PreyFunction<void(CPlayer* const _this)>(0xA13080);
+	static inline auto FUpdatePlayerCinematicStatus = PreyFunction<void(CPlayer* const _this, uint8_t oldFlags, uint8_t newFlags)>(0x17A62B0);
+	static inline auto FCheckSendXPChanges = PreyFunction<void(CPlayer* const _this)>(0x1796EC0);
+	static inline auto FPostRagdollPhysicalized = PreyFunction<void(CPlayer* const _this, SRagdollizeParams* _pRagdollParams)>(0x179EB90);
+	static inline auto FOnBeginCutScene = PreyFunction<void(CPlayer* const _this)>(0x179D560);
+	static inline auto FOnEndCutScene = PreyFunction<void(CPlayer* const _this)>(0x179D650);
+	static inline auto FGetFPCameraPosition = PreyFunction<const Vec3*(const CPlayer* const _this, const Vec3* _return_value_, bool worldSpace)>(0x179AC70);
+	static inline auto FDecode_SvOnXPChanged = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797F30);
+	static inline auto FHandle_SvOnXPChanged = PreyFunction<bool(CPlayer* const _this, const SXPEvents& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_ClDelayedDetonation = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797930);
+	static inline auto FHandle_ClDelayedDetonation = PreyFunction<bool(CPlayer* const _this, const CPlayer::EntityParams& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_SvRequestMicrowaveBeam = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1798310);
+	static inline auto FHandle_SvRequestMicrowaveBeam = PreyFunction<bool(CPlayer* const _this, const SMicrowaveBeamParams& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_ClDeployMicrowaveBeam = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797A90);
+	static inline auto FHandle_ClDeployMicrowaveBeam = PreyFunction<bool(CPlayer* const _this, const SMicrowaveBeamParams& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_ClAbortStealthKill = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x17975F0);
+	static inline auto FHandle_ClAbortStealthKill = PreyFunction<bool(CPlayer* const _this, const CPlayer::TwoEntityParams& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_ClApplyMeleeImpulse = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797770);
+	static inline auto FHandle_ClApplyMeleeImpulse = PreyFunction<bool(CPlayer* const _this, const CPlayer::SPlayerMeleeImpulseParams& params, INetChannel* pNetChannel)>(0x179BB90);
+	static inline auto FApplyMeleeImpulse = PreyFunction<void(CPlayer* const _this, const Vec3& impulseDirection, float impulseStrength)>(0x1796780);
+	static inline auto FDecode_ClIncrementIntStat = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797C60);
+	static inline auto FHandle_ClIncrementIntStat = PreyFunction<bool(CPlayer* const _this, const CPlayer::SIntStatParams& params, INetChannel* pNetChannel)>(0x1B933B0);
+	static inline auto FDecode_SvRequestUseLadder = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x17984E0);
+	static inline auto FHandle_SvRequestUseLadder = PreyFunction<bool(CPlayer* const _this, const CPlayer::SRequestUseLadderParams& params, INetChannel* pNetChannel)>(0x179BC30);
+	static inline auto FDecode_SvRequestLeaveFromLadder = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x17981A0);
+	static inline auto FHandle_SvRequestLeaveFromLadder = PreyFunction<bool(CPlayer* const _this, const CPlayer::SRequestLeaveLadderParams& params, INetChannel* pNetChannel)>(0x179BBB0);
+	static inline auto FDecode_ClLeaveFromLadder = PreyFunction<INetAtSyncItem* (TSerialize ser, unsigned* pID, INetChannel* pChannel)>(0x1797DC0);
+	static inline auto FHandle_ClLeaveFromLadder = PreyFunction<bool(CPlayer* const _this, const CPlayer::SRequestLeaveLadderParams& params, INetChannel* pNetChannel)>(0x179BBB0);
+	static inline auto FSetStats = PreyFunction<void(CPlayer* const _this, SmartScriptTable& rTable)>(0x17A40E0);
+	static inline auto FUpdateStats = PreyFunction<void(CPlayer* const _this, float frameTime)>(0x17A6610);
+	static inline auto FSetParamsFromLua = PreyFunction<void(CPlayer* const _this, SmartScriptTable& rTable)>(0x17A38F0);
+	static inline auto FCalculatePseudoSpeed = PreyFunction<float(const CPlayer* const _this, bool wantSprint, float speedOverride)>(0x1796970);
+	static inline auto FGetStanceMaxSpeed = PreyFunction<float(const CPlayer* const _this, EStance stance)>(0x179B250);
+	static inline auto FToggleThirdPerson = PreyFunction<void(CPlayer* const _this)>(0x17A5A50);
+	static inline auto FIsGod = PreyFunction<int(CPlayer* const _this)>(0x179C3A0);
+	static inline auto FRevive = PreyFunction<void(CPlayer* const _this, CCryActor::EReasonForRevive reasonForRevive)>(0x17A1320);
+	static inline auto FKill = PreyFunction<void(CPlayer* const _this)>(0x179C660);
+	static inline auto FReset = PreyFunction<void(CPlayer* const _this, bool toGame)>(0x17A10E0);
+	static inline auto FRequestFacialExpression = PreyFunction<void(CPlayer* const _this, const char* pExpressionName, float* sequenceLength)>(0x17A10C0);
+	static inline auto FGetStanceViewOffset = PreyFunction<Vec3*(const CPlayer* const _this, Vec3* _return_value_, EStance _stance, const float* pLeanAmt, bool withY, const bool useWhileLeanedOffsets)>(0x179B290);
+	static inline auto FSetStance = PreyFunction<void(CPlayer* const _this, EStance desiredStance)>(0x17A4080);
+	static inline auto FIsThirdPerson = PreyFunction<bool(const CPlayer* const _this)>(0x179C630);
+	static inline auto FOnStanceChanged = PreyFunction<void(CPlayer* const _this, EStance newStance, EStance oldStance)>(0x179E160);
+	static inline auto FOnTeleported = PreyFunction<void(CPlayer* const _this)>(0x179E1D0);
+	static inline auto FResetAnimationState = PreyFunction<void(CPlayer* const _this)>(0x17A11D0);
+	static inline auto FGetSprintStaminaLevel = PreyFunction<float(const CPlayer* const _this)>(0x18C0850);
+	static inline auto FSaveToProfile = PreyFunction<void(IPlayerProfileListener* const _this, IPlayerProfile* pProfile, bool online, unsigned reason)>(0xA13080);
+	static inline auto FLoadFromProfile = PreyFunction<void(IPlayerProfileListener* const _this, IPlayerProfile* pProfile, bool online, unsigned reason)>(0xA13080);
+	static inline auto FOnReturnedToPool = PreyFunction<void(CPlayer* const _this)>(0x179E140);
+	static inline auto FOnAIProxyEnabled = PreyFunction<void(CPlayer* const _this, bool enabled)>(0x179D510);
+	static inline auto FGetFlyMode = PreyFunction<uint8_t(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FSetSpectatorState = PreyFunction<void(CPlayer* const _this, uint8_t state)>(0x17A3F50);
+	static inline auto FGetSpectatorState = PreyFunction<CCryActor::EActorSpectatorState(const CPlayer* const _this)>(0x150DB40);
+	static inline auto FSetSpectatorModeAndOtherEntId = PreyFunction<void(CPlayer* const _this, const uint8_t _mode, const unsigned _othEntId, bool isSpawning)>(0xA13080);
+	static inline auto FGetSpectatorMode = PreyFunction<uint8_t(const CPlayer* const _this)>(0x150DB30);
+	static inline auto FSetSpectatorTarget = PreyFunction<void(CPlayer* const _this, unsigned targetId)>(0x17A3FD0);
+	static inline auto FGetSpectatorTarget = PreyFunction<unsigned(const CPlayer* const _this)>(0x150DB20);
+	static inline auto FGetSpectatorOrbitYawSpeed = PreyFunction<float(const CPlayer* const _this)>(0x179B240);
+	static inline auto FSetSpectatorOrbitYawSpeed = PreyFunction<void(CPlayer* const _this, float yawSpeed, bool singleFrame)>(0x17A3F40);
+	static inline auto FCanSpectatorOrbitYaw = PreyFunction<bool(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FGetSpectatorOrbitPitchSpeed = PreyFunction<float(const CPlayer* const _this)>(0x179B230);
+	static inline auto FSetSpectatorOrbitPitchSpeed = PreyFunction<void(CPlayer* const _this, float pitchSpeed, bool singleFrame)>(0x17A3F30);
+	static inline auto FCanSpectatorOrbitPitch = PreyFunction<bool(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FSetSpectatorFixedLocation = PreyFunction<void(CPlayer* const _this, unsigned locId)>(0x17A3EA0);
+	static inline auto FGetSpectatorFixedLocation = PreyFunction<unsigned(const CPlayer* const _this)>(0x150DB20);
+	static inline auto FSetCloakLayer = PreyFunction<void(CPlayer* const _this, bool set, CCryActor::eFadeRules config)>(0xF4BED0);
+	static inline auto FSelectNextItem = PreyFunction<void(CPlayer* const _this, int direction, bool keepHistory, int category)>(0x17A1D40);
+	static inline auto FHolsterItem = PreyFunction<void(CPlayer* const _this, bool holster, bool playSelect, float selectSpeedBias, bool hideLeftHandObject)>(0x179BF20);
+	static inline auto FSelectLastItem = PreyFunction<void(CPlayer* const _this, bool keepHistory, bool forceNext)>(0x17A1D30);
+	static inline auto FSelectItemByName = PreyFunction<void(CPlayer* const _this, const char* name, bool keepHistory, bool forceFastSelect)>(0x17A1D20);
+	static inline auto FSelectItem = PreyFunction<void(CPlayer* const _this, unsigned itemId, bool keepHistory, bool forceSelect)>(0x17A1C60);
+	static inline auto FScheduleItemSwitch = PreyFunction<bool(CPlayer* const _this, unsigned itemId, bool keepHistory, int category, bool forceFastSelect)>(0x17A1C20);
+	static inline auto FNotifyCurrentItemChanged = PreyFunction<void(CPlayer* const _this, IItem* newItem)>(0x179D4B0);
+	static inline auto FRagDollize = PreyFunction<void(CPlayer* const _this, bool fallAndPlay)>(0x17A0510);
+	static inline auto FHandleEvent = PreyFunction<void(CPlayer* const _this, const SGameObjectEvent& event)>(0x179B590);
+	static inline auto FPostUpdate = PreyFunction<void(CPlayer* const _this, float frameTime)>(0x179EF30);
+	static inline auto FAnimationEvent = PreyFunction<void(CPlayer* const _this, ICharacterInstance* pCharacter, const AnimEventInstance& event)>(0x1796320);
+	static inline auto FSetViewRotation = PreyFunction<void(CPlayer* const _this, const Quat& rotation)>(0x17A4140);
+	static inline auto FGetViewRotation = PreyFunction<Quat*(const CPlayer* const _this, Quat* _return_value_)>(0x179B560);
+	static inline auto FEnableTimeDemo = PreyFunction<void(CPlayer* const _this, bool bTimeDemo)>(0x1798760);
+	static inline auto FAddViewAngleOffsetForFrame = PreyFunction<void(CPlayer* const _this, const Ang3& offset)>(0x1796210);
+	static inline auto FSetAspectProfile = PreyFunction<bool(IGameObjectProfileManager* const _this, EEntityAspects aspect, uint8_t profile)>(0x17A2C20);
+	static inline auto FFullSerialize = PreyFunction<void(CPlayer* const _this, TSerialize ser)>(0x179A630);
+	static inline auto FNetSerialize = PreyFunction<bool(CPlayer* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x179C9F0);
+	static inline auto FPostSerialize = PreyFunction<void(CPlayer* const _this)>(0x179EDB0);
+	static inline auto FSetPlayerHealth = PreyFunction<void(CPlayer* const _this, const float _health, const float _prevHealth)>(0x17A39B0);
+	static inline auto FGetHealth = PreyFunction<float(const CPlayer* const _this)>(0x179B030);
+	static inline auto FGetMaxHealth = PreyFunction<float(const CPlayer* const _this)>(0x179B070);
+	static inline auto FSetHealth = PreyFunction<void(CPlayer* const _this, float health)>(0x17A2FF0);
+	static inline auto FGetActorStatsOv1 = PreyFunction<SPlayerStats* (CPlayer* const _this)>(0x150CF00);
+	static inline auto FGetActorStatsOv0 = PreyFunction<const SPlayerStats* (const CPlayer* const _this)>(0x150CF00);
+	static inline auto FPostPhysicalize = PreyFunction<void(CPlayer* const _this)>(0x179E740);
+	static inline auto FCameraShake = PreyFunction<void(CPlayer* const _this, float angle, float shift, float duration, float frequency, Vec3 pos, int ID, const char* source)>(0x1796A10);
+	static inline auto FCreateCodeEvent = PreyFunction<bool(CPlayer* const _this, SmartScriptTable& rTable)>(0x17975A0);
+	static inline auto FGetViewMatrix = PreyFunction<Matrix34*(const CPlayer* const _this, Matrix34* _return_value_)>(0x150DB80);
+	static inline auto FAddAngularImpulse = PreyFunction<void(CPlayer* const _this, const Ang3& angular, float deceleration, float duration)>(0x1796200);
+	static inline auto FSetAngles = PreyFunction<void(CPlayer* const _this, const Ang3& angles)>(0x17A29D0);
+	static inline auto FGetAngles = PreyFunction<Ang3*(CPlayer* const _this, Ang3* _return_value_)>(0x179AA60);
+	static inline auto FPlayAction = PreyFunction<void(CPlayer* const _this, const char* action, const char* extension, bool looping)>(0x179E5A0);
+	static inline auto FAllowLandingBob = PreyFunction<bool(CPlayer* const _this)>(0x1B933B0);
+	static inline auto FIsPlayingSmartObjectAction = PreyFunction<bool(const CPlayer* const _this)>(0x17A8FE0);
+	static inline auto FCanFall = PreyFunction<bool(const CPlayer* const _this)>(0x1796C90);
+	static inline auto FKnockDown = PreyFunction<void(CPlayer* const _this, float backwardsImpulse)>(0x179C740);
+	static inline auto FSetLookAtTargetId = PreyFunction<void(CPlayer* const _this, unsigned targetId, float interpolationTime)>(0xA13080);
+	static inline auto FSetForceLookAtTargetId = PreyFunction<void(CPlayer* const _this, unsigned targetId, float interpolationTime)>(0xA13080);
+	static inline auto FDamageInfo = PreyFunction<void(CPlayer* const _this, unsigned shooterID, unsigned weaponID, IEntityClass* pProjectileClass, float damage, int damageType, const Vec3 hitDirection)>(0x17975E0);
+	static inline auto FResetAnimations = PreyFunction<void(CPlayer* const _this)>(0x17A1200);
+	static inline auto FSwitchDemoModeSpectator = PreyFunction<void(CPlayer* const _this, bool activate)>(0x17A5720);
+	static inline auto FStopLoopingSounds = PreyFunction<void(CPlayer* const _this)>(0xA13080);
+	static inline auto FRegisterPlayerEventListener = PreyFunction<void(CPlayer* const _this, IPlayerEventListener* pPlayerEventListener)>(0x17A0E50);
+	static inline auto FUnregisterPlayerEventListener = PreyFunction<void(CPlayer* const _this, IPlayerEventListener* pPlayerEventListener)>(0x17A5CB0);
+	static inline auto FIsOnGround = PreyFunction<bool(const CPlayer* const _this)>(0x179C5B0);
+	static inline auto FIsSliding = PreyFunction<bool(const CPlayer* const _this)>(0x179C5D0);
+	static inline auto FIsInAir = PreyFunction<bool(const CPlayer* const _this)>(0x179C470);
+	static inline auto FIsOnLedge = PreyFunction<bool(const CPlayer* const _this)>(0x179C5C0);
+	static inline auto FHasHeavyWeaponEquipped = PreyFunction<bool(const CPlayer* const _this)>(0x179BDD0);
+	static inline auto FUseItem = PreyFunction<bool(CPlayer* const _this, unsigned itemId)>(0x17A69B0);
+	static inline auto FPickUpItem = PreyFunction<bool(CPlayer* const _this, unsigned itemId, bool sound, bool select)>(0x179E440);
+	static inline auto FDropItem = PreyFunction<bool(CPlayer* const _this, unsigned itemId, float impulseScale, bool selectNext, bool byDeath)>(0x17986C0);
+	static inline auto FNetKill = PreyFunction<void(CPlayer* const _this, const CCryActor::KillParams& killParams)>(0x179C830);
+	static inline auto FResetFPView = PreyFunction<void(CPlayer* const _this)>(0x17A12C0);
+	static inline auto FGetCloakBlendSpeedScale = PreyFunction<const float(CPlayer* const _this)>(0x179AC10);
+	static inline auto FOnPickedUpPickableAmmo = PreyFunction<void(CPlayer* const _this, IEntityClass* pAmmoType, int count)>(0x179DFA0);
+	static inline auto FHasShadowCharacter = PreyFunction<bool(const CPlayer* const _this)>(0x179BEF0);
+	static inline auto FGetShadowCharacter = PreyFunction<ICharacterInstance* (const CPlayer* const _this)>(0x179B130);
+	static inline auto FChangeCurrentFollowCameraSettings = PreyFunction<void(CPlayer* const _this, bool increment)>(0xA13080);
+	static inline auto FUpdateFlashbangEffect = PreyFunction<void(CPlayer* const _this, float frameTime)>(0x17A6070);
+	static inline auto FExitPickAndThrow = PreyFunction<void(CPlayer* const _this, bool forceInstantDrop)>(0x179A5C0);
+	static inline auto FGetHitDeathReactionsOv1 = PreyFunction<std::shared_ptr<CHitDeathReactions>*(CPlayer* const _this, std::shared_ptr<CHitDeathReactions>* _return_value_)>(0x150D260);
+	static inline auto FSpawnCorpse = PreyFunction<void(CPlayer* const _this)>(0x17A4540);
+	static inline auto FSetRagdollPhysicsParams = PreyFunction<void(CPlayer* const _this, IPhysicalEntity* pPhysEnt, SRagdollizeParams* _pRagdollParams)>(0x17A3AE0);
+	static inline auto FBecomeRemotePlayer = PreyFunction<void(CPlayer* const _this)>(0x1796960);
+	static inline auto FShouldMuteWeaponSoundStimulus = PreyFunction<bool(const CPlayer* const _this)>(0xDD23F0);
+	static inline auto FSetScriptMovementSpeedModifier = PreyFunction<void(CPlayer* const _this, const float fFactor)>(0x17A3E90);
+	static inline auto FNetSerialize_Spectator = PreyFunction<void(CPlayer* const _this, TSerialize ser, bool bReading)>(0x179D290);
+	static inline auto FCreatePlayerInputClass = PreyFunction<void(CPlayer* const _this)>(0xA13080);
+	static inline auto FCommitKnockDown = PreyFunction<void(CPlayer* const _this)>(0x1797160);
+	static inline auto FPrepareLuaCache = PreyFunction<void(CPlayer* const _this)>(0x179FE70);
+	static inline auto FUpdateThirdPersonState = PreyFunction<void(CPlayer* const _this)>(0x17A6680);
+	static inline auto FHasJumped = PreyFunction<void(CPlayer* const _this, const Vec3& jumpVel)>(0x179BDE0);
+	static inline auto FGetJumpCounter = PreyFunction<uint8_t(const CPlayer* const _this)>(0x179B050);
+	static inline auto FSetJumpCounter = PreyFunction<void(CPlayer* const _this, uint8_t counter)>(0x17A3600);
+	static inline auto FGetLedgeCounter = PreyFunction<uint8_t(const CPlayer* const _this)>(0x179B060);
+	static inline auto FSetLedgeCounter = PreyFunction<void(CPlayer* const _this, uint8_t counter)>(0xA13080);
+	static inline auto FInitGameParams = PreyFunction<void(CPlayer* const _this, const SActorGameParams& gameParams, const bool reloadCharacterSounds)>(0x179C390);
+	static inline auto FMountedGunControllerEnabledOv1 = PreyFunction<bool(const CPlayer* const _this)>(0x150FC40);
+	static inline auto FMountedGunControllerEnabledOv0 = PreyFunction<void(CPlayer* const _this, bool val)>(0x150FC30);
+	static inline auto FUpdateAIAnimationState = PreyFunction<void(CPlayer* const _this, const SActorFrameMovementParams& frameMovementParams, ICharacterInstance* pICharInst, IActionController* pActionController, IMannequin& mannequinSys)>(0x17A93B0);
+	static inline auto FSetMultiplayerModelName = PreyFunction<void(CPlayer* const _this)>(0x17A36F0);
+	static inline auto FReadDataFromXML = PreyFunction<void(CPlayer* const _this, bool isClientReloading)>(0x17A0910);
+	static inline auto FSetModelIndex = PreyFunction<void(CPlayer* const _this, uint8_t modelIndex)>(0x1512490);
+	static inline auto FUpdateReactionOverlay = PreyFunction<void(CPlayer* const _this, float frameTime)>(0x17A6460);
+	static inline auto FSetReactionOverlay = PreyFunction<void(CPlayer* const _this, CPlayer::EReactionOverlay overlay)>(0x17A3D10);
+	static inline auto FSetTurnAnimationParams = PreyFunction<void(CPlayer* const _this, const float turnThresholdAngle, const float turnThresholdTime)>(0x17A4110);
+#else
 	static inline auto FRegisterState = PreyFunction<void(CStateHierarchy<CPlayer>* (*createPtr)(CStateMachineRegistration<CPlayer>&), void (*deletePtr)(CStateHierarchy<CPlayer>* &), unsigned stateID)>(0x18C7870);
 	static inline auto FStateMachineHandleEventMovement = PreyFunction<void(CPlayer* const _this, const SStateEvent& event)>(0x18CBB30);
 	static inline auto FStateMachineResetMovement = PreyFunction<void(CPlayer* const _this)>(0x18CBB50);
@@ -1528,7 +1835,6 @@ public:
 	static inline auto FGetHitDeathReactionsOv1 = PreyFunction<std::shared_ptr<CHitDeathReactions>*(CPlayer* const _this, std::shared_ptr<CHitDeathReactions>* _return_value_)>(0x162B1A0);
 	static inline auto FSpawnCorpse = PreyFunction<void(CPlayer* const _this)>(0x18CB010);
 	static inline auto FSetRagdollPhysicsParams = PreyFunction<void(CPlayer* const _this, IPhysicalEntity* pPhysEnt, SRagdollizeParams* _pRagdollParams)>(0x18CA470);
-	static inline auto FSetTagByCRC = PreyFunction<void(CPlayer* const _this, unsigned tagCRC, bool enable)>(0x18CAAA0);
 	static inline auto FBecomeRemotePlayer = PreyFunction<void(CPlayer* const _this)>(0x18BD2D0);
 	static inline auto FShouldMuteWeaponSoundStimulus = PreyFunction<bool(const CPlayer* const _this)>(0x13B0900);
 	static inline auto FSetScriptMovementSpeedModifier = PreyFunction<void(CPlayer* const _this, const float fFactor)>(0x18CA820);
@@ -1552,6 +1858,13 @@ public:
 	static inline auto FUpdateReactionOverlay = PreyFunction<void(CPlayer* const _this, float frameTime)>(0x18CD090);
 	static inline auto FSetReactionOverlay = PreyFunction<void(CPlayer* const _this, CPlayer::EReactionOverlay overlay)>(0x18CA6A0);
 	static inline auto FSetTurnAnimationParams = PreyFunction<void(CPlayer* const _this, const float turnThresholdAngle, const float turnThresholdTime)>(0x18CABE0);
+#endif
+#ifdef MOONCRASH
+	void SetTagByCRC(unsigned tagCRC, bool enable) { FSetTagByCRC(this, tagCRC, enable); }
+#endif
+#ifdef MOONCRASH
+	static inline auto FSetTagByCRC = PreyFunction<void(CPlayer* const _this, unsigned tagCRC, bool enable)>(0x18CAAA0);
+#endif
 };
 
 namespace CPlayerGetSpawnInfo
@@ -1568,9 +1881,13 @@ struct SInfo : public ISerializableInfo
 
 	virtual void SerializeWith(TSerialize ser);
 
+#ifndef MOONCRASH
+	static inline auto FSerializeWith = PreyFunction<void(ISerializable* const _this, TSerialize ser)>(0x17A27B0);
+#else
 	static inline auto FSerializeWith = PreyFunction<void(ISerializable* const _this, TSerialize ser)>(0x18C9130);
+#endif
 };
 
 
 } // namespace CPlayerGetSpawnInfo
-#endif // MOONCRASH
+

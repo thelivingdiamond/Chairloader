@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -35,6 +33,17 @@ public:
 	void EnterInternal(const ArkNpcDamageStateParam& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcDamageState_DestroyedOv2 = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this)>(0x1211C70);
+	static inline auto FEnter = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x1211C80);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamageUpdateStateParams& _params, float _elapsedTime)>(0x12127C0);
+	static inline auto FExit = PreyFunction<void(const ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamageExitStateParams& _params)>(0x1211FA0);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, TSerialize _serializer, const ArkNpcDamageSerializeStateParams& _params)>(0x1212240);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamagePostSerializeStateParams& _params)>(0x12121C0);
+	static inline auto FIsCompletelyDestroyed = PreyFunction<bool(const ArkNpcDamageState_Destroyed* const _this)>(0x12121B0);
+	static inline auto FSwapToDestroyed = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, ArkNpc& _npc, bool _bDamage)>(0x1212350);
+	static inline auto FGetBodyWorldTm = PreyFunction<Matrix34*(const ArkNpcDamageState_Destroyed* const _this, Matrix34* _return_value_, ArkNpc& _npc)>(0x1212010);
+#else
 	static inline auto FArkNpcDamageState_DestroyedOv2 = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this)>(0x12A10B0);
 	static inline auto FEnter = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x12A10C0);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, const ArkNpcDamageUpdateStateParams& _params, float _elapsedTime)>(0x12A1C10);
@@ -44,5 +53,6 @@ public:
 	static inline auto FIsCompletelyDestroyed = PreyFunction<bool(const ArkNpcDamageState_Destroyed* const _this)>(0x12A15F0);
 	static inline auto FSwapToDestroyed = PreyFunction<void(ArkNpcDamageState_Destroyed* const _this, ArkNpc& _npc, bool _bDamage)>(0x12A1790);
 	static inline auto FGetBodyWorldTm = PreyFunction<Matrix34*(const ArkNpcDamageState_Destroyed* const _this, Matrix34* _return_value_, ArkNpc& _npc)>(0x12A1450);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,11 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/IArkDoomClockManager.h>
+#include <Prey/GameDll/ark/IArkDoomClockManager.h>
 
 class ArkClass;
 class IArkValueBase;

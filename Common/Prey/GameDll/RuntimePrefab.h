@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -46,6 +44,19 @@ public:
 	void SpawnBrushes_2(IEntity* _arg0_, CryGame::CPrefab& _arg1_, const Matrix34& _arg2_, AABB& _arg3_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCRuntimePrefabOv1 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, unsigned id)>(0x17D6480);
+	static inline auto FBitNotCRuntimePrefab = PreyFunction<void(CryGame::CRuntimePrefab* const _this)>(0x17D64E0);
+	static inline auto FSpawnOv1 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, CryGame::CPrefab& pRef)>(0x17D72F0);
+	static inline auto FSpawnOv0 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, IEntity* pEntity, CryGame::CPrefab& pRef, const Matrix34& matOff, AABB& box)>(0x17D75B0);
+	static inline auto FMoveOv1 = PreyFunction<void(CryGame::CRuntimePrefab* const _this)>(0x17D6E00);
+	static inline auto FMoveOv0 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, const Matrix34& matOff)>(0x17D6750);
+	static inline auto FHide = PreyFunction<void(CryGame::CRuntimePrefab* const _this, bool bHide)>(0x17D6650);
+	static inline auto FSpawnEntities = PreyFunction<void(CryGame::CRuntimePrefab* const _this, CryGame::CPrefab& pRef, const Matrix34& matSource, AABB& box)>(0x17D84E0);
+	static inline auto FSpawnBrushes = PreyFunction<void(CryGame::CRuntimePrefab* const _this, CryGame::CPrefab& pRef, const Matrix34& matSource, AABB& box)>(0x17D79B0);
+	static inline auto FClear = PreyFunction<void(CryGame::CRuntimePrefab* const _this)>(0x17D6510);
+	static inline auto FHideComponents = PreyFunction<void(CryGame::CRuntimePrefab* const _this, bool bHide)>(0x17D66C0);
+#else
 	static inline auto FCRuntimePrefabOv1 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, unsigned id)>(0x18FD210);
 	static inline auto FBitNotCRuntimePrefab = PreyFunction<void(CryGame::CRuntimePrefab* const _this)>(0x18FD270);
 	static inline auto FSpawnOv1 = PreyFunction<void(CryGame::CRuntimePrefab* const _this, CryGame::CPrefab& pRef)>(0x18FE080);
@@ -57,8 +68,9 @@ public:
 	static inline auto FSpawnBrushes = PreyFunction<void(CryGame::CRuntimePrefab* const _this, CryGame::CPrefab& pRef, const Matrix34& matSource, AABB& box)>(0x18FE740);
 	static inline auto FClear = PreyFunction<void(CryGame::CRuntimePrefab* const _this)>(0x18FD2A0);
 	static inline auto FHideComponents = PreyFunction<void(CryGame::CRuntimePrefab* const _this, bool bHide)>(0x18FD450);
+#endif
 };
 
 
 } // namespace CryGame
-#endif // MOONCRASH
+

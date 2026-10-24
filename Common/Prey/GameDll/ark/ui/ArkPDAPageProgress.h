@@ -1,9 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ui/IArkPDAPage.h>
-#include <_unknown/ArkUIMenuBase.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
 
 enum class ArkPDAPage;
 

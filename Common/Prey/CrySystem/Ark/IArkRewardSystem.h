@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -35,14 +34,18 @@ struct IArkRewardSystem
 // Header file automatically created from a PDB.
 #pragma once
 
-struct IArkRewardSystemCallbackHandler;
+struct IArkRewardSystemCallbackHandler
+{ // Size=8 (0x8)
+	virtual void OnChangedTrackable(unsigned _arg0_, unsigned _arg1_, unsigned _arg2_, unsigned _arg3_) = 0;
+	virtual void OnRewardUnlocked(unsigned _arg0_, unsigned _arg1_) = 0;
+};
 
 // IArkRewardSystem
 // Header:  CryEngine/CrySystem/Ark/IArkRewardSystem.h
 // Include: Prey/CrySystem/Ark/IArkRewardSystem.h
 struct IArkRewardSystem
 { // Size=8 (0x8)
-	virtual ~IArkRewardSystem();
+	virtual ~IArkRewardSystem() {}
 	virtual bool Init() = 0;
 	virtual void SetActiveUserId(unsigned _userId) = 0;
 	virtual bool LoadRewardData(const string& _strRewardFile) = 0;

@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -19,6 +17,10 @@ class SmartScriptTable;
 
 // Header: Exact
 // Prey/GameDll/ark/arkethericfogentity.h
+#ifdef MOONCRASH
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkEthericFogEntity : public CGameObjectExtensionHelper<CArkEthericFogEntity,IGameObjectExtension> // Id=801905F Size=384
 {
 public:
@@ -29,6 +31,9 @@ public:
 	float m_debugDisplayRefreshTimer;
 	float m_radius;
 	float m_height;
+#ifdef MOONCRASH
+	float m_dangerIndicatorRadius;
+#endif
 	float m_ethericFogLifetime;
 	float m_damageTickRate;
 	float m_damageTimer;
@@ -70,6 +75,7 @@ public:
 	IParticleEffect *LoadEffect(const char *const arg0, SmartScriptTable const &arg1) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkEthericFogEntity *const _this, IGameObject *_pGameObject)>(0x142C380);
 	static inline auto FUpdate = PreyFunction<void(CArkEthericFogEntity *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x142CF10);
 	static inline auto FProcessEvent = PreyFunction<void(CArkEthericFogEntity *const _this, SEntityEvent &_event)>(0xA13080);
@@ -95,80 +101,7 @@ public:
 	static inline auto FSetLargeAttributes = PreyFunction<void(CArkEthericFogEntity *const _this, bool _bFromLoad)>(0x142C7B0);
 	static inline auto FStartFogEffects = PreyFunction<void(CArkEthericFogEntity *const _this, bool _bFromLoad)>(0x142CEB0);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEthericFogEntity *const _this)>(0x142C3B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/arkeffectutils.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct IParticleEffect;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-class SmartScriptTable;
-
-// CArkEthericFogEntity
-// Header:  Prey/GameDll/ark/ArkEthericFogEntity.h
-class CArkEthericFogEntity : public CGameObjectExtensionHelper<CArkEthericFogEntity, IGameObjectExtension>
-{ // Size=384 (0x180)
-public:
-	ArkEntityEffect m_spawnEffect;
-	ArkEntityEffect m_loopEffect;
-	ArkAudioTrigger m_spawnTrigger;
-	ArkAudioTrigger m_loopTrigger;
-	float m_debugDisplayRefreshTimer;
-	float m_radius;
-	float m_height;
-	float m_dangerIndicatorRadius;
-	float m_ethericFogLifetime;
-	float m_damageTickRate;
-	float m_damageTimer;
-	bool m_bIsSmallFogFragment;
-	uint64_t m_fogHitPackageId;
-
-	CArkEthericFogEntity();
-	virtual ~CArkEthericFogEntity();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void InitClient(int _channelId);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void Release();
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void PostUpdate(float _frameTime);
-	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _bAuth);
-	virtual void GetMemoryUsage(ICrySizer* _pS) const;
-	void SetSmallAttributes(bool _bFromLoad) { FSetSmallAttributes(this, _bFromLoad); }
-	void SetLargeAttributes(bool _bFromLoad) { FSetLargeAttributes(this, _bFromLoad); }
-	void StartFogEffects(bool _bFromLoad) { FStartFogEffects(this, _bFromLoad); }
-	void LoadScriptVariables() { FLoadScriptVariables(this); }
-
-#if 0
-	float GetRadius() const;
-	void AttachParticleEmitter(IParticleEffect& _arg0_) const;
-	void ApplyDamageEffects();
-	IParticleEffect* LoadEffect(const char* const _arg0_, const SmartScriptTable& _arg1_) const;
-#endif
-
+#else
 	static inline auto FCArkEthericFogEntityOv1 = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1541A20);
 	static inline auto FInit = PreyFunction<bool(CArkEthericFogEntity* const _this, IGameObject* _pGameObject)>(0x1541C80);
 	static inline auto FUpdate = PreyFunction<void(CArkEthericFogEntity* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x15429C0);
@@ -195,5 +128,5 @@ public:
 	static inline auto FSetLargeAttributes = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bFromLoad)>(0x15420B0);
 	static inline auto FStartFogEffects = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bFromLoad)>(0x1542930);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1541CB0);
+#endif
 };
-#endif // !MOONCRASH

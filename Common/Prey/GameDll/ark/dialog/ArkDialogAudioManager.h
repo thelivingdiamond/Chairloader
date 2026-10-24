@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -42,9 +40,15 @@ public:
 	ArkDialogLoader::EArkLoadState GetState() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FRemoveRef = PreyFunction<void(ArkDialogLoader *const _this, IArkDialogLoadListener &_listener)>(0x13F7220);
 	static inline auto FOnLoad = PreyFunction<void(ArkDialogLoader *const _this, const bool _bSuccess)>(0x13F7080);
 	static inline auto FUnload = PreyFunction<void(ArkDialogLoader *const _this)>(0x13F7300);
+#else
+	static inline auto FRemoveRef = PreyFunction<void(ArkDialogLoader* const _this, IArkDialogLoadListener& _listener)>(0x1509240);
+	static inline auto FOnLoad = PreyFunction<void(ArkDialogLoader* const _this, const bool _bSuccess)>(0x15090A0);
+	static inline auto FUnload = PreyFunction<void(ArkDialogLoader* const _this)>(0x1509320);
+#endif
 };
 
 // Header: Exact
@@ -57,8 +61,12 @@ public:
 	std::vector<ArkDialogAudioTrigger const *> m_triggers;
 	std::array<ArkDialogLoader,16> m_loaders;
 	uint64_t m_playbackHandleGen;
-	static int s_drawDialogAudioDebug;
-	
+#ifndef MOONCRASH
+	static inline auto s_drawDialogAudioDebug = PreyGlobal<int>(0x2BE1248);
+#else
+	static inline auto s_drawDialogAudioDebug = PreyGlobal<int>(0x2D5B388);
+#endif
+
 	ArkDialogAudioManager();
 	virtual ~ArkDialogAudioManager();
 	virtual IArkDialogAudioManager::ELoadResult Load(unsigned _controlId, IArkDialogLoadListener &_listener);
@@ -72,6 +80,7 @@ public:
 	virtual bool IsRegistered(ArkDialogAudioTrigger const *_pTrigger) const;
 	static void OnAudioEvent(SAudioRequestInfo const *const pAudioRequestInfo) { FOnAudioEvent(pAudioRequestInfo); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDialogAudioManager = PreyFunction<void(ArkDialogAudioManager *const _this)>(0x13F6AE0);
 	static inline auto FLoad = PreyFunction<IArkDialogAudioManager::ELoadResult(ArkDialogAudioManager *const _this, unsigned _controlId, IArkDialogLoadListener &_listener)>(0x13F6CE0);
 	static inline auto FUnload = PreyFunction<void(ArkDialogAudioManager *const _this, unsigned _controlId, IArkDialogLoadListener &_listener)>(0x13F72C0);
@@ -83,80 +92,7 @@ public:
 	static inline auto FUnregisterTrigger = PreyFunction<void(ArkDialogAudioManager *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x13F73A0);
 	static inline auto FIsRegistered = PreyFunction<bool(ArkDialogAudioManager const *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x13F6C80);
 	static inline auto FOnAudioEvent = PreyFunction<void(SAudioRequestInfo const *const pAudioRequestInfo)>(0x13F6E50);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/dialog/IArkDialogAudioManager.h>
-
-class ArkDialogAudioTrigger;
-class IArkDialogLoadListener;
-struct SAudioRequestInfo;
-
-// ArkDialogLoader
-// Header:  Prey/GameDll/ark/dialog/ArkDialogAudioManager.h
-class ArkDialogLoader
-{ // Size=56 (0x38)
-public:
-	enum class EArkLoadState
-	{
-		CryModuleCRTFree = 0,
-		loading = 1,
-		loadNotice = 2,
-		loaded = 3,
-	};
-
-	std::vector<IArkDialogLoadListener*> m_listeners;
-	std::vector<IArkDialogLoadListener*> m_pendingRemovals;
-	unsigned m_controlId;
-	ArkDialogLoader::EArkLoadState m_state;
-
-	void RemoveRef(IArkDialogLoadListener& _listener) { FRemoveRef(this, _listener); }
-	void OnLoad(const bool _bSuccess) { FOnLoad(this, _bSuccess); }
-	void Unload() { FUnload(this); }
-
-#if 0
-	ArkDialogLoader();
-	~ArkDialogLoader();
-	void Load(unsigned _arg0_);
-	void AddRef(IArkDialogLoadListener& _arg0_);
-	bool IsLoaded() const;
-	bool IsFree() const;
-	unsigned GetControlId() const;
-	unsigned GetRefCount() const;
-	ArkDialogLoader::EArkLoadState GetState() const;
-#endif
-
-	static inline auto FRemoveRef = PreyFunction<void(ArkDialogLoader* const _this, IArkDialogLoadListener& _listener)>(0x1509240);
-	static inline auto FOnLoad = PreyFunction<void(ArkDialogLoader* const _this, const bool _bSuccess)>(0x15090A0);
-	static inline auto FUnload = PreyFunction<void(ArkDialogLoader* const _this)>(0x1509320);
-};
-
-// ArkDialogAudioManager
-// Header:  Prey/GameDll/ark/dialog/ArkDialogAudioManager.h
-class ArkDialogAudioManager : public IArkDialogAudioManager
-{ // Size=936 (0x3A8)
-public:
-	using TDialogLoaders = std::array<ArkDialogLoader, 16>;
-
-	std::vector<const ArkDialogAudioTrigger*> m_triggers;
-	std::array<ArkDialogLoader, 16> m_loaders;
-	uint64_t m_playbackHandleGen;
-	static inline auto s_drawDialogAudioDebug = PreyGlobal<int>(0x2D5B388);
-
-	ArkDialogAudioManager();
-	virtual ~ArkDialogAudioManager();
-	virtual IArkDialogAudioManager::ELoadResult Load(unsigned _controlId, IArkDialogLoadListener& _listener);
-	virtual void Unload(unsigned _controlId, IArkDialogLoadListener& _listener);
-	virtual void OnLoad(unsigned _controlId, ArkDialogLoader* _pLoader, bool _bSuccess);
-	virtual bool IsLoaded(unsigned _controlId);
-	void Update() { FUpdate(this); }
-	virtual uint64_t GeneratePlaybackHandle();
-	virtual void RegisterTrigger(const ArkDialogAudioTrigger* _pTrigger);
-	virtual void UnregisterTrigger(const ArkDialogAudioTrigger* _pTrigger);
-	virtual bool IsRegistered(const ArkDialogAudioTrigger* _pTrigger) const;
-	static void OnAudioEvent(const SAudioRequestInfo* const pAudioRequestInfo) { FOnAudioEvent(pAudioRequestInfo); }
-
+#else
 	static inline auto FArkDialogAudioManagerOv1 = PreyFunction<void(ArkDialogAudioManager* const _this)>(0x1508A10);
 	static inline auto FBitNotArkDialogAudioManager = PreyFunction<void(ArkDialogAudioManager* const _this)>(0x1508B00);
 	static inline auto FLoad = PreyFunction<IArkDialogAudioManager::ELoadResult(ArkDialogAudioManager* const _this, unsigned _controlId, IArkDialogLoadListener& _listener)>(0x1508D00);
@@ -169,5 +105,5 @@ public:
 	static inline auto FUnregisterTrigger = PreyFunction<void(ArkDialogAudioManager* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x15093C0);
 	static inline auto FIsRegistered = PreyFunction<bool(const ArkDialogAudioManager* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x1508CA0);
 	static inline auto FOnAudioEvent = PreyFunction<void(const SAudioRequestInfo* const pAudioRequestInfo)>(0x1508E70);
+#endif
 };
-#endif // !MOONCRASH

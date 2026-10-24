@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -45,7 +43,11 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	void Initialize(IEntity &_entity) { FInitialize(this,_entity); }
 	void OnStartGame() { FOnStartGame(this); }
 	void Deinitialize() { FDeinitialize(this); }
+#ifndef MOONCRASH
 	void RemoveLight() { FRemoveLight(this); }
+#else
+	void RemoveLight(bool _bRemoveNow) { FRemoveLight(this, _bRemoveNow); }
+#endif
 	void Reset() { FReset(this); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Activate(bool _bActivate) { FActivate(this,_bActivate); }
@@ -80,6 +82,7 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	ColorF const &GetLightColor(bool arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(ArkRobotLight *const _this, IEntity &_entity)>(0x10BE320);
 	static inline auto FOnStartGame = PreyFunction<void(ArkRobotLight *const _this)>(0x13462B0);
 	static inline auto FDeinitialize = PreyFunction<void(ArkRobotLight *const _this)>(0x1345FA0);
@@ -104,88 +107,7 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	static inline auto FGetLightAttachment = PreyFunction<IAttachment *(ArkRobotLight const *const _this)>(0x1346140);
 	static inline auto FGetArkLight = PreyFunction<CArkLight *(ArkRobotLight const *const _this)>(0x1346000);
 	static inline auto FGetDesiredLightArchetype = PreyFunction<IEntityArchetype *(ArkRobotLight const *const _this)>(0x13460D0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryMath/Cry_Color.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/dialog/ArkDialogPlayerRobotLightExtension.h>
-
-class CArkLight;
-struct IAttachment;
-struct IEntity;
-struct IEntityArchetype;
-
-// ArkRobotLight
-// Header:  Prey/GameDll/ark/ArkRobotLight.h
-struct ArkRobotLight
-{ // Size=96 (0x60)
-	enum class LightMode
-	{
-		friendly = 0,
-		hostile = 1,
-		hacked = 2,
-	};
-
-	IEntity* m_pEntity;
-	unsigned m_arkLightEntityId;
-	ArkRobotLight::LightMode m_lightMode;
-	ArkDialogPlayerRobotLightExtension m_dialogExtension;
-	ArkSimpleTimer m_lightFlickerDurationTimer;
-	ArkSimpleTimer m_lightFlickerToggleTimer;
-	float m_flickerToggleMaxTime;
-	float m_onBrightness;
-	bool m_bActive;
-	bool m_bGlowHidden;
-	bool m_bEntityHidden;
-	bool m_bIsOn;
-	bool m_bScriptEnabled;
-	bool m_bIsFlickering;
-	bool m_bFlickeringForceOff;
-	bool m_bRemoved;
-
-	ArkRobotLight();
-	void Initialize(IEntity& _entity) { FInitialize(this, _entity); }
-	void OnStartGame() { FOnStartGame(this); }
-	void Deinitialize() { FDeinitialize(this); }
-	void RemoveLight(bool _bRemoveNow) { FRemoveLight(this, _bRemoveNow); }
-	void Reset() { FReset(this); }
-	void Update(float _frameTime) { FUpdate(this, _frameTime); }
-	void Activate(bool _bActivate) { FActivate(this, _bActivate); }
-	void HideGlow(bool _bHideGlow) { FHideGlow(this, _bHideGlow); }
-	void HideEntity(bool _bHideEntity) { FHideEntity(this, _bHideEntity); }
-	void ScriptEnable(bool _bEnable) { FScriptEnable(this, _bEnable); }
-	void StartFlicker(float _flickerDuration) { FStartFlicker(this, _flickerDuration); }
-	void StopFlicker() { FStopFlicker(this); }
-	void SetHacked() { FSetHacked(this); }
-	void UpdateOnBrightness(const float _brightness) { FUpdateOnBrightness(this, _brightness); }
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-	void PostSerialize() { FPostSerialize(this); }
-	void TryChangeLightArchetype() { FTryChangeLightArchetype(this); }
-	void TurnOn() { FTurnOn(this); }
-	void TurnOff() { FTurnOff(this); }
-	void TryChangeLightState() { FTryChangeLightState(this); }
-	bool SpawnLight() { return FSpawnLight(this); }
-	IAttachment* GetLightAttachment() const { return FGetLightAttachment(this); }
-	CArkLight* GetArkLight() const { return FGetArkLight(this); }
-	IEntityArchetype* GetDesiredLightArchetype() const { return FGetDesiredLightArchetype(this); }
-
-#if 0
-	~ArkRobotLight();
-	bool IsFlickering() const;
-	bool IsActive() const;
-	bool IsGlowHidden() const;
-	bool IsEntityHidden() const;
-	ArkDialogPlayerRobotLightExtension& GetDialogExtension();
-	void SetBrightness(float _arg0_);
-	bool ShouldTurnOn() const;
-	bool ShouldTurnOff() const;
-	void ForceRefresh();
-	const ColorF& GetLightColor(bool _arg0_) const;
-#endif
-
+#else
 	static inline auto FArkRobotLightOv1 = PreyFunction<void(ArkRobotLight* const _this)>(0x14221A0);
 	static inline auto FInitialize = PreyFunction<void(ArkRobotLight* const _this, IEntity& _entity)>(0x14AD1A0);
 	static inline auto FOnStartGame = PreyFunction<void(ArkRobotLight* const _this)>(0x1422640);
@@ -211,5 +133,5 @@ struct ArkRobotLight
 	static inline auto FGetLightAttachment = PreyFunction<IAttachment* (const ArkRobotLight* const _this)>(0x14224D0);
 	static inline auto FGetArkLight = PreyFunction<CArkLight* (const ArkRobotLight* const _this)>(0x1422390);
 	static inline auto FGetDesiredLightArchetype = PreyFunction<IEntityArchetype* (const ArkRobotLight* const _this)>(0x1422460);
+#endif
 };
-#endif // !MOONCRASH

@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -11,6 +9,10 @@ struct IEntity;
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/desires/ArkNpcLookDesireManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
+class ArkNpcLookDesire;
+#endif
 class ArkNpcLookDesireManager : public ArkNpcDesireManagerBase<ArkNpcLookDesireManager,ArkNpcLookDesire> // Id=801409F Size=152
 {
 public:
@@ -51,6 +53,7 @@ public:
 	float GetSpeedMultiplierTorso() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FRefresh = PreyFunction<void(ArkNpcLookDesireManager *const _this)>(0x14567B0);
 	static inline auto FShutDown = PreyFunction<void(ArkNpcLookDesireManager *const _this)>(0x1213150);
 	static inline auto FSetSpeedScale = PreyFunction<void(ArkNpcLookDesireManager *const _this, float _scale)>(0x1457270);
@@ -66,59 +69,7 @@ public:
 	static inline auto FClearLookTargetRequest = PreyFunction<void(ArkNpcLookDesireManager *const _this)>(0x1456110);
 	static inline auto FUpdateSpeed = PreyFunction<void(ArkNpcLookDesireManager *const _this)>(0x1457290);
 	static inline auto FSetPolarOffsetCoordinates = PreyFunction<void(ArkNpcLookDesireManager *const _this, float _x, float _y)>(0x1456900);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/npc/desires/ArkNpcLookDesire.h>
-#include <_unknown/ArkNpcDesireManagerBase.h>
-
-class ArkNpc;
-class ArkNpcLookDesire;
-struct IEntity;
-
-// ArkNpcLookDesireManager
-// Header:  Prey/GameDll/ark/npc/desires/ArkNpcLookDesireManager.h
-class ArkNpcLookDesireManager : public ArkNpcDesireManagerBase<ArkNpcLookDesireManager,ArkNpcLookDesire>
-{ // Size=152 (0x98)
-public:
-	EArkNpcSpeedType m_speed;
-	ArkNpcLookDesire::LookPoseParam m_defaultBlendInTime;
-	ArkNpcLookDesire::LookPoseParam m_defaultSmoothTime;
-	ArkNpcLookDesire::LookPoseParam m_defaultBlendOutTime;
-	ArkNpcLookDesire::LookPoseParam m_defaultMaxYaw;
-	ArkNpcLookDesire::LookPoseParam m_defaultMaxPitch;
-	float m_speedMultiplierFastHead;
-	float m_speedMultiplierFastestHead;
-	float m_speedMultiplierFastTorso;
-	float m_speedMultiplierFastestTorso;
-	float m_speedScale;
-
-	ArkNpcLookDesireManager(ArkNpc& _arkNpc);
-	void Refresh() { FRefresh(this); }
-	void ShutDown() { FShutDown(this); }
-	void SetSpeedScale(float _scale) { FSetSpeedScale(this, _scale); }
-	static void GetPoseBlenderParams(IEntity* _pEntity, ArkNpcLookDesire::LookPoseParam& _blendInTime, ArkNpcLookDesire::LookPoseParam& _smoothTime, ArkNpcLookDesire::LookPoseParam& _blendOutTime, ArkNpcLookDesire::LookPoseParam& _maxYaw, ArkNpcLookDesire::LookPoseParam& _maxPitch) { FGetPoseBlenderParams(_pEntity, _blendInTime, _smoothTime, _blendOutTime, _maxYaw, _maxPitch); }
-	static void SetPoseBlenderParams(IEntity* _pEntity, const ArkNpcLookDesire::LookPoseParam& _blendInTime, const ArkNpcLookDesire::LookPoseParam& _smoothTime, const ArkNpcLookDesire::LookPoseParam& _blendOutTime, const ArkNpcLookDesire::LookPoseParam& _maxYaw, const ArkNpcLookDesire::LookPoseParam& _maxPitch) { FSetPoseBlenderParamsOv1(_pEntity, _blendInTime, _smoothTime, _blendOutTime, _maxYaw, _maxPitch); }
-	void SetPoseBlenderParams() { FSetPoseBlenderParamsOv0(this); }
-	void OnActiveDesireAdded(const ArkNpcLookDesire* _pPrevActiveDesire) { FOnActiveDesireAdded(this, _pPrevActiveDesire); }
-	void OnActiveDesireRemoved(const ArkNpcLookDesire& _prevActiveDesire) { FOnActiveDesireRemoved(this, _prevActiveDesire); }
-	void OnActiveParamsChanged() { FOnActiveParamsChanged(this); }
-	bool GetActiveLookPosition(Vec3& _lookTargetPos) { return FGetActiveLookPosition(this, _lookTargetPos); }
-	bool ResolveLookTargetRequest() { return FResolveLookTargetRequest(this); }
-	void MakeLookTargetRequest() { FMakeLookTargetRequest(this); }
-	void ClearLookTargetRequest() { FClearLookTargetRequest(this); }
-	void UpdateSpeed() { FUpdateSpeed(this); }
-	void SetPolarOffsetCoordinates(float _x, float _y) { FSetPolarOffsetCoordinates(this, _x, _y); }
-
-#if 0
-	void OnActiveResumeAngleChanged();
-	void ResetPoseBlenderParams();
-	void DebugDraw();
-	float GetSpeedMultiplierHead() const;
-	float GetSpeedMultiplierTorso() const;
-#endif
-
+#else
 	static inline auto FArkNpcLookDesireManager = PreyFunction<void(ArkNpcLookDesireManager* const _this, ArkNpc& _arkNpc)>(0x156BF00);
 	static inline auto FRefresh = PreyFunction<void(ArkNpcLookDesireManager* const _this)>(0x156C690);
 	static inline auto FShutDown = PreyFunction<void(ArkNpcLookDesireManager* const _this)>(0x12A2630);
@@ -135,5 +86,5 @@ public:
 	static inline auto FClearLookTargetRequest = PreyFunction<void(ArkNpcLookDesireManager* const _this)>(0x156BFF0);
 	static inline auto FUpdateSpeed = PreyFunction<void(ArkNpcLookDesireManager* const _this)>(0x156D170);
 	static inline auto FSetPolarOffsetCoordinates = PreyFunction<void(ArkNpcLookDesireManager* const _this, float _x, float _y)>(0x156C7E0);
+#endif
 };
-#endif // !MOONCRASH

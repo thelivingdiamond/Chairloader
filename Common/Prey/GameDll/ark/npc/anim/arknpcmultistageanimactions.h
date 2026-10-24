@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/GameDll/ark/npc/anim/arknpcanimactions.h>
-#include <_unknown/STagState.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
 
 class ArkNpc;
 class ArkNpcAnimActionObserver;
@@ -39,6 +37,23 @@ public:
 	NpcActionStage GetCurrentStage() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageAction* const _this)>(0x11ECC50);
+	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageAction* const _this)>(0xA97D40);
+	static inline auto FCNpcMultiStageActionOv1 = PreyFunction<void(CNpcMultiStageAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, const STagState<12>& _fragTags, unsigned _flags)>(0x11EC7D0);
+	static inline auto FInstall = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x11ECC80);
+	static inline auto FEnter = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x11ECAC0);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageAction* const _this, float _timePassed)>(0x11ECE90);
+	static inline auto FExit = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x11ECB20);
+	static inline auto FOnActionFinished = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x11ECCB0);
+	static inline auto FComparePriority = PreyFunction<EPriorityComparison(const CNpcMultiStageAction* const _this, const IAction& _actionCurrent)>(0x1A42CE0);
+	static inline auto FArkCustomActionEvent = PreyFunction<void(CNpcMultiStageAction* const _this, const unsigned _eventLowercaseCrc)>(0x11ECA30);
+	static inline auto FOnStart = PreyFunction<void(CNpcMultiStageAction* const _this)>(0xA13080);
+	static inline auto FOnMiddle = PreyFunction<void(CNpcMultiStageAction* const _this)>(0xA13080);
+	static inline auto FOnEnd = PreyFunction<void(CNpcMultiStageAction* const _this)>(0xA13080);
+	static inline auto FOnFinish = PreyFunction<void(CNpcMultiStageAction* const _this)>(0xA13080);
+	static inline auto FTransitionToNextState = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x11ECD20);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageAction* const _this)>(0x1278CA0);
 	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x3E3960);
 	static inline auto FCNpcMultiStageActionOv1 = PreyFunction<void(CNpcMultiStageAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, const STagState<12>& _fragTags, unsigned _flags)>(0x1278860);
@@ -54,6 +69,7 @@ public:
 	static inline auto FOnEnd = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x1333E90);
 	static inline auto FOnFinish = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x1333E90);
 	static inline auto FTransitionToNextState = PreyFunction<void(CNpcMultiStageAction* const _this)>(0x1278D60);
+#endif
 };
 
 // CNpcMultiStageDurationAction
@@ -71,13 +87,19 @@ public:
 
 #if 0
 	void ResetDuration();
-	float GetRemainingDuration() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageDurationAction* const _this)>(0x11ECC70);
+	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageDurationAction* const _this)>(0xA97D40);
+	static inline auto FCNpcMultiStageDurationAction = PreyFunction<void(CNpcMultiStageDurationAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, float _duration, const STagState<12>& _fragTags, unsigned _flags)>(0x11EC820);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageDurationAction* const _this, float _timePassed)>(0x11ECEA0);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageDurationAction* const _this)>(0x125C4B0);
 	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageDurationAction* const _this)>(0x3E3960);
 	static inline auto FCNpcMultiStageDurationAction = PreyFunction<void(CNpcMultiStageDurationAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, float _duration, const STagState<12>& _fragTags, unsigned _flags)>(0x12788B0);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageDurationAction* const _this, float _timePassed)>(0x1278EE0);
+#endif
 };
 
 // CNpcMultiStageHitDeathReactionAction
@@ -94,12 +116,21 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageHitDeathReactionAction* const _this)>(0x11ECC60);
+	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0xA97D40);
+	static inline auto FCNpcMultiStageHitDeathReactionAction = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, float _duration, bool _bIsDeathReaction, const STagState<12>& _fragTags)>(0x11EC890);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageHitDeathReactionAction* const _this, float _timePassed)>(0x11ECF00);
+	static inline auto FEnter = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0x11ECAE0);
+	static inline auto FExit = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0x11ECB80);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageHitDeathReactionAction* const _this)>(0x1278CB0);
 	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0x3E3960);
 	static inline auto FCNpcMultiStageHitDeathReactionAction = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this, ArkNpc& _rNpc, int _priority, int _fragmentId, float _duration, bool _bIsDeathReaction, const STagState<12>& _fragTags)>(0x1278920);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageHitDeathReactionAction* const _this, float _timePassed)>(0x1278F40);
 	static inline auto FEnter = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0x1278B30);
 	static inline auto FExit = PreyFunction<void(CNpcMultiStageHitDeathReactionAction* const _this)>(0x1278BD0);
+#endif
 };
 
 // CNpcMultiStageHypnotizedAction
@@ -114,9 +145,16 @@ public:
 	CNpcMultiStageHypnotizedAction(ArkNpc& _rNpc, int _fragmentId, unsigned _flareEntityId);
 	virtual IAction::EStatus Update(float _timePassed);
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageHypnotizedAction* const _this)>(0x11ECC70);
+	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageHypnotizedAction* const _this)>(0xA97D40);
+	static inline auto FCNpcMultiStageHypnotizedAction = PreyFunction<void(CNpcMultiStageHypnotizedAction* const _this, ArkNpc& _rNpc, int _fragmentId, unsigned _flareEntityId)>(0x11EC900);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageHypnotizedAction* const _this, float _timePassed)>(0x11ED060);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CNpcMultiStageHypnotizedAction* const _this)>(0x125C4B0);
 	static inline auto FDoDelete = PreyFunction<void(CNpcMultiStageHypnotizedAction* const _this)>(0x3E3960);
 	static inline auto FCNpcMultiStageHypnotizedAction = PreyFunction<void(CNpcMultiStageHypnotizedAction* const _this, ArkNpc& _rNpc, int _fragmentId, unsigned _flareEntityId)>(0x1278990);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CNpcMultiStageHypnotizedAction* const _this, float _timePassed)>(0x12790A0);
+#endif
 };
-#endif // MOONCRASH
+

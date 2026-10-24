@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -15,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkareacontainer.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkAreaContainer : public CGameObjectExtensionHelper<CArkAreaContainer,IGameObjectExtension> // Id=8014FAA Size=88
 {
 public:
@@ -56,6 +59,7 @@ public:
 	void ClearAreaShapes();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkAreaContainer *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FInitClient = PreyFunction<void(CArkAreaContainer *const _this, int channelId)>(0xA13080);
 	static inline auto FPostInit = PreyFunction<void(CArkAreaContainer *const _this, IGameObject *pGameObject)>(0xA13080);
@@ -81,65 +85,7 @@ public:
 	static inline auto FContainsArea = PreyFunction<bool(CArkAreaContainer const *const _this, unsigned _areaEntityId)>(0x13CAB90);
 	static inline auto FIsPointInAnyArea = PreyFunction<bool(CArkAreaContainer const *const _this, Vec3 const &_point)>(0x13CAD50);
 	static inline auto FInitializeAreaShapes = PreyFunction<void(CArkAreaContainer *const _this)>(0x13CACE0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/cryaction/igameobject.h>
-#include <Prey/CryNetwork/ISerialize.h>
-
-enum EEntityAspects;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// CArkAreaContainer
-// Header:  Prey/GameDll/ark/ArkAreaContainer.h
-class CArkAreaContainer : public CGameObjectExtensionHelper<CArkAreaContainer, IGameObjectExtension>
-{ // Size=88 (0x58)
-public:
-	using AreaProxyEntities = std::vector<unsigned int>;
-
-	std::vector<unsigned int> m_areaShapes;
-
-	CArkAreaContainer();
-	virtual ~CArkAreaContainer();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void InitClient(int channelId);
-	virtual void PostInit(IGameObject* pGameObject);
-	virtual void PostInitClient(int channelId);
-	virtual bool ReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
-	virtual void PostReloadExtension(IGameObject* pGameObject, const SEntitySpawnParams& params);
-	virtual bool GetEntityPoolSignature(TSerialize signature);
-	virtual void Release();
-	virtual void FullSerialize(TSerialize ser);
-	virtual bool NetSerialize(TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& ctx, int updateSlot);
-	virtual void PostUpdate(float frameTime);
-	virtual void PostRemoteSpawn();
-	virtual void HandleEvent(const SGameObjectEvent& event);
-	virtual void ProcessEvent(SEntityEvent& event);
-	virtual void SetChannelId(uint16_t id);
-	virtual void SetAuthority(bool auth);
-	virtual void GetMemoryUsage(ICrySizer* s) const;
-	const std::vector<unsigned int>& GetAreas() { return FGetAreas(this); }
-	bool ContainsArea(unsigned _areaEntityId) const { return FContainsArea(this, _areaEntityId); }
-	bool IsPointInAnyArea(const Vec3& _point) const { return FIsPointInAnyArea(this, _point); }
-	void InitializeAreaShapes() { FInitializeAreaShapes(this); }
-
-#if 0
-	int GetAreaCount() const;
-	void InitializeContainer();
-	void ClearAreaShapes();
-#endif
-
+#else
 	static inline auto FCArkAreaContainerOv1 = PreyFunction<void(CArkAreaContainer* const _this)>(0x14D6B30);
 	static inline auto FInit = PreyFunction<bool(CArkAreaContainer* const _this, IGameObject* _pGameObject)>(0x37A880);
 	static inline auto FInitClient = PreyFunction<void(CArkAreaContainer* const _this, int channelId)>(0x1333E90);
@@ -166,5 +112,5 @@ public:
 	static inline auto FContainsArea = PreyFunction<bool(const CArkAreaContainer* const _this, unsigned _areaEntityId)>(0x14D6BE0);
 	static inline auto FIsPointInAnyArea = PreyFunction<bool(const CArkAreaContainer* const _this, const Vec3& _point)>(0x14D6D80);
 	static inline auto FInitializeAreaShapes = PreyFunction<void(CArkAreaContainer* const _this)>(0x14D6D10);
+#endif
 };
-#endif // !MOONCRASH

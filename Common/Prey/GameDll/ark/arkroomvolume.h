@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -20,6 +18,12 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkroomvolume.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+enum EEntityEvent;
+struct ISerializableInfo;
+#endif
 class CArkRoomVolume : public CGameObjectExtensionHelper<CArkRoomVolume,IGameObjectExtension>, public IArkRoomVolume, public IAreaManagerEventListener // Id=801C077 Size=128
 {
 public:
@@ -60,6 +64,7 @@ public:
 	virtual void OnAreaManagerEvent(EEntityEvent _event, unsigned _triggerEntityID, IArea *_pArea);
 	void SetupAmbientSound() { FSetupAmbientSound(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkRoomVolume *const _this, IGameObject *_pGameObject)>(0x1471910);
 	static inline auto FPostInit = PreyFunction<void(CArkRoomVolume *const _this, IGameObject *_pGameObject)>(0xA13080);
 	static inline auto FInitClient = PreyFunction<void(CArkRoomVolume *const _this, int _channelId)>(0xA13080);
@@ -88,73 +93,7 @@ public:
 	static inline auto FGetName = PreyFunction<const char *(CArkRoomVolume const *const _this)>(0x14718F0);
 	static inline auto FOnAreaManagerEvent = PreyFunction<void(CArkRoomVolume *const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea *_pArea)>(0x1471A80);
 	static inline auto FSetupAmbientSound = PreyFunction<void(CArkRoomVolume *const _this)>(0x1471EC0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryEntitySystem/IEntitySystem.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkAudioEnvironment.h>
-#include <Prey/GameDll/ark/iface/IArkRoomVolume.h>
-#include <_unknown/CGameObjectExtensionHelper.h>
-
-enum EEntityAspects;
-enum EEntityEvent;
-struct IArea;
-class ICrySizer;
-struct IGameObject;
-struct ISerializableInfo;
-struct SEntityEvent;
-struct SEntitySpawnParams;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// CArkRoomVolume
-// Header:  Prey/GameDll/ark/ArkRoomVolume.h
-class CArkRoomVolume
-	: public CGameObjectExtensionHelper<CArkRoomVolume, IGameObjectExtension>
-	, public IArkRoomVolume
-	, public IAreaManagerEventListener
-{ // Size=128 (0x80)
-public:
-	ArkAudioTrigger m_ambientTrigger;
-	ArkAudioRtpc m_ambientRtpc;
-	ArkAudioEnvironment m_environment;
-	std::vector<Vec3> m_points;
-	float m_height;
-
-	CArkRoomVolume();
-	virtual ~CArkRoomVolume();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void InitClient(int _channelId);
-	virtual void PostInitClient(int _channelId);
-	virtual bool ReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual void PostReloadExtension(IGameObject* _pGameObject, const SEntitySpawnParams& _params);
-	virtual bool GetEntityPoolSignature(TSerialize _signature);
-	virtual void Release();
-	virtual void FullSerialize(TSerialize _ser);
-	virtual bool NetSerialize(TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags);
-	virtual void PostSerialize();
-	virtual void SerializeSpawnInfo(TSerialize _ser);
-	virtual _smart_ptr<ISerializableInfo> GetSpawnInfo();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void SetChannelId(uint16_t _id);
-	virtual void SetAuthority(bool _bAuth);
-	virtual const void* GetRMIBase() const;
-	virtual void PostUpdate(float _frameTime);
-	virtual void PostRemoteSpawn();
-	virtual void GetMemoryUsage(ICrySizer* _pCrySizer) const;
-	virtual bool IsPointInside(const Vec3& _point) const;
-	virtual void SetPoints(const std::vector<Vec3>& _points, float _height, bool _resetPoints);
-	virtual void SetExportable(bool _bExported);
-	virtual const char* GetName() const;
-	virtual void OnAreaManagerEvent(EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea);
-	void SetupAmbientSound() { FSetupAmbientSound(this); }
-
+#else
 	static inline auto FCArkRoomVolumeOv1 = PreyFunction<void(CArkRoomVolume* const _this)>(0x1588EE0);
 	static inline auto FInit = PreyFunction<bool(CArkRoomVolume* const _this, IGameObject* _pGameObject)>(0x15890A0);
 	static inline auto FPostInit = PreyFunction<void(CArkRoomVolume* const _this, IGameObject* _pGameObject)>(0x1333E90);
@@ -184,5 +123,5 @@ public:
 	static inline auto FGetName = PreyFunction<const char* (const IArkRoomVolume* const _this)>(0x1588790);
 	static inline auto FOnAreaManagerEvent = PreyFunction<void(IAreaManagerEventListener* const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea)>(0x1589210);
 	static inline auto FSetupAmbientSound = PreyFunction<void(CArkRoomVolume* const _this)>(0x1589640);
+#endif
 };
-#endif // !MOONCRASH

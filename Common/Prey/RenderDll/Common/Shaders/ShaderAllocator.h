@@ -11,9 +11,10 @@
 typedef cry_crt_node_allocator ShaderBucketAllocator;
 
 extern ShaderBucketAllocator g_shaderBucketAllocator;
-//TODO: handle this in mooncrash
 #ifndef MOONCRASH
 inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2BA5FE8);
+#else
+inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2D15248);
 #endif
 
 template<class T>

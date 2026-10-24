@@ -1,7 +1,7 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/ArkScriptTable.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/ISystem.h>
 #include <Prey/CryAction/IActorSystem.h>
@@ -543,8 +543,10 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/GameDll/ark/ArkScriptTable.h>
+#include <Prey/CryAction/IActorSystem.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/TimeValue.h>
@@ -569,11 +571,10 @@ public:
 #include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
 #include <Prey/GameDll/ark/player/StanceInfo.h>
 #include <Prey/GameDll/ark/player/pda/ArkChipsetComponent.h>
-#include <_unknown/Functor2.h>
+#include <Prey/CryCore/functor.h>
 
 struct ArkDamageInfo;
 class ArkInventory;
-enum class ArkMaterialAnimationType;
 class ArkPlayerMovementController;
 class ArkPsiPowerComponent;
 class ArkSafeScriptTable;

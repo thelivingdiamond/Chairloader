@@ -27,6 +27,9 @@ public:
 	ArkTurretAttentiveSubject::VisionConeSemiangles m_defaultVisionConeSemiangles;
 	ArkTurretAttentiveSubject::VisionConeSemiangles m_zeroGVisionConeSemiangles;
 	bool m_bVisionConeSemianglesCached;
+#ifdef MOONCRASH
+	bool m_bIgnoresGloodTargets;
+#endif
 	
 	ArkTurretAttentiveSubject(ArkTurret &_turret);
 	void EnableAttentiveSubject() { FEnableAttentiveSubject(this); }

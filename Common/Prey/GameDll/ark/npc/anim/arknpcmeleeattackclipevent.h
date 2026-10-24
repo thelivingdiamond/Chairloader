@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/IProceduralParams.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 struct IAttachment;
 struct IEntity;
@@ -13,6 +11,35 @@ namespace Serialization
 {
 class IArchive;
 } // namespace Serialization
+
+// SArkNpcMeleeAttackClipEventParams
+// Header:  Prey/GameDll/ark/npc/anim/arknpcmeleeattackclipevent.h
+struct SArkNpcMeleeAttackClipEventParams : public IProceduralParams
+{ // Size=40 (0x28)
+	string m_attachmentName;
+	float m_hitCheckRadius;
+	float m_onPlayerHitImpulse;
+	float m_onNpcHitImpulse;
+	float m_onOtherHitImpulse;
+	float m_damageCooldown;
+	bool m_bHalfDamage;
+	bool m_bSingleHitPerEntity;
+
+	virtual void Serialize(Serialization::IArchive& ar);
+	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
+
+#if 0
+	SArkNpcMeleeAttackClipEventParams();
+#endif
+
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(SArkNpcMeleeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x11EB9B0);
+	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcMeleeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0xA13080);
+#else
+	static inline auto FSerialize = PreyFunction<void(SArkNpcMeleeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x1277960);
+	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcMeleeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
+#endif
+};
 
 // CArkNpcMeleeAttackProceduralClipEvent
 // Header:  Prey/GameDll/ark/npc/anim/arknpcmeleeattackclipevent.h
@@ -38,35 +65,20 @@ public:
 	static unsigned GetStopCRC();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetStartCRC = PreyFunction<unsigned()>(0x11EB540);
+	static inline auto FOnEnter = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float blendTime, float duration, const SArkNpcMeleeAttackClipEventParams& params)>(0x11EB690);
+	static inline auto FOnExit = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float blendTime)>(0x11EB8E0);
+	static inline auto FUpdate = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float _frameTime)>(0x11EBAC0);
+	static inline auto FDamageHitEntities = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this)>(0x11EAEF0);
+	static inline auto FDealDamage = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, IEntity* _pHitEntity)>(0x11EB110);
+#else
 	static inline auto FGetStartCRC = PreyFunction<unsigned()>(0x12774F0);
 	static inline auto FOnEnter = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float blendTime, float duration, const SArkNpcMeleeAttackClipEventParams& params)>(0x1277640);
 	static inline auto FOnExit = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float blendTime)>(0x1277890);
 	static inline auto FUpdate = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, float _frameTime)>(0x1277A70);
 	static inline auto FDamageHitEntities = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this)>(0x1276E80);
 	static inline auto FDealDamage = PreyFunction<void(CArkNpcMeleeAttackProceduralClipEvent* const _this, IEntity* _pHitEntity)>(0x12770B0);
-};
-
-// SArkNpcMeleeAttackClipEventParams
-// Header:  Prey/GameDll/ark/npc/anim/arknpcmeleeattackclipevent.h
-struct SArkNpcMeleeAttackClipEventParams : public IProceduralParams
-{ // Size=40 (0x28)
-	string m_attachmentName;
-	float m_hitCheckRadius;
-	float m_onPlayerHitImpulse;
-	float m_onNpcHitImpulse;
-	float m_onOtherHitImpulse;
-	float m_damageCooldown;
-	bool m_bHalfDamage;
-	bool m_bSingleHitPerEntity;
-
-	virtual void Serialize(Serialization::IArchive& ar);
-	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
-
-#if 0
-	SArkNpcMeleeAttackClipEventParams();
 #endif
-
-	static inline auto FSerialize = PreyFunction<void(SArkNpcMeleeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x1277960);
-	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcMeleeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
 };
-#endif // MOONCRASH
+

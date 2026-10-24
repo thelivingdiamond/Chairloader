@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -131,6 +130,8 @@ enum ESpecType
 	eSpecType_All     = eSpecType_PC | eSpecType_XBoxOne | eSpecType_PS4
 };
 
+template<class T, size_t overAllocBytes> class PodArray;
+
 //! Area Manager Interface.
 struct IArea
 {
@@ -226,8 +227,7 @@ struct IAreaManager
 	virtual size_t             GetAreaAmount() const = 0;
 	virtual IArea const* const GetArea(size_t const nAreaIndex) const = 0;
 	virtual IArea const* const GetAreaByEntityId(const unsigned int areaId) const = 0;
-	//virtual size_t             GetOverlappingAreas(const AABB& bb, PodArray<IArea*>& list) const = 0;
-	virtual void GetOverlappingAreas_TODO() = 0;
+	virtual size_t             GetOverlappingAreas(const AABB& bb, PodArray<IArea*, 0>& list) const = 0;
 
 	virtual bool QueryAreas(const unsigned int, const Vec3 *, SAreaManagerResult *, int, int *) = 0;
 
@@ -463,7 +463,7 @@ struct IEntitySystem
 	//! \return Entity if one with such an ID exists, and NULL if no entity could be matched with the id
 	virtual IEntity* GetEntity(EntityId id) const = 0;
 
-	virtual IEntity *ArkSafeGetEntity(unsigned int) = 0;
+	virtual IEntity *ArkSafeGetEntity(unsigned int) const = 0;
 
 	//! Converts an original entity id to that of a cloned version of it.
 	//! This should be called on any serialized entity ids after loading is complete, to make sure they account for runtime cloning.
@@ -517,7 +517,11 @@ struct IEntitySystem
 	//! \param radius
 	//! \param pList
 	//! \param physFlags Is one or more of PhysicalEntityFlag.
+#ifndef MOONCRASH
 	virtual int GetPhysicalEntitiesInBox(const Vec3& origin, float radius, IPhysicalEntity**& pList, int physFlags = (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4)) const = 0;
+#else
+	virtual int GetPhysicalEntitiesInBox(const Vec3& origin, float radius, IPhysicalEntity**& pList, int physFlags = (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4), const char* _debugString = nullptr) const = 0;
+#endif
 
 	//! Retrieves host entity from the physical entity.
 	virtual IEntity* GetEntityFromPhysics(IPhysicalEntity* pPhysEntity) const = 0;
@@ -586,7 +590,10 @@ struct IEntitySystem
 	//! Registers Entity Event's listeners.
 	virtual void AddEntityEventListener(EntityId nEntity, EEntityEvent event, IEntityEventListener* pListener) = 0;
 	virtual void RemoveEntityEventListener(EntityId nEntity, EEntityEvent event, IEntityEventListener* pListener) = 0;
-	virtual bool HasEntityEventListener(const IEntityEventListener *) = 0;
+	virtual bool HasEntityEventListener(const IEntityEventListener& _listener) const = 0;
+#ifdef MOONCRASH
+	virtual bool IsEntityStatic(EntityId _id) const = 0;
+#endif
 
 	// Entity GUIDs
 
@@ -608,26 +615,26 @@ struct IEntitySystem
 	//! \return The breakable manager interface.
 	virtual IBreakableManager* GetBreakableManager() const = 0;
 
-	virtual IEntityPoolManager *GetIEntityPoolManager() = 0;
+	virtual IEntityPoolManager *GetIEntityPoolManager() const = 0;
 
 	//////////////////////////////////////////////////////////////////////////
 	//! Entity archetypes.
 	virtual IEntityArchetype* LoadEntityArchetype(XmlNodeRef oArchetype) = 0;
 	virtual IEntityArchetype* LoadEntityArchetype(const char* sArchetype) = 0;
 	//virtual void              UnloadEntityArchetype(const char* sArchetype) = 0;
-	virtual IEntityArchetype *FindEntityArchetype(const char *) = 0;
-	virtual IEntityArchetype* CreateEntityArchetype(IEntityClass* pClass, const char* sArchetype) = 0;
+	virtual IEntityArchetype *FindEntityArchetype(const char *) const = 0;
+	virtual IEntityArchetype* CreateEntityArchetype(IEntityClass* pClass, const char* sArchetype, uint64_t _id) = 0;
 	//virtual void              RefreshEntityArchetypesInRegistry() = 0;
 	virtual IEntityArchetype *GetEntityArchetype(unsigned __int64) = 0;
 	virtual const IEntityArchetype *GetEntityArchetype(unsigned __int64) const = 0;
-	virtual unsigned __int64 GetArchetypeId(const char *) = 0;
+	virtual unsigned __int64 GetArchetypeId(const char *) const = 0;
 	virtual void DeleteEntityArchetype(const char *) = 0;
 	virtual void ReloadAllEntityArchetypes() = 0;
 	virtual void ReloadEntityArchetype(const char *) = 0;
-	virtual void RenameArchetype(const char *, const char *) = 0;
+	virtual void RenameArchetype(const char *, const char *) const = 0;
 	virtual std::vector<string> GetArchetypeNames(string const& arg0) const = 0;
-	virtual std::vector<IEntityArchetype*> GetArchetypes(std::vector<IEntityArchetype*>* result, string const& arg0) const = 0;
-	virtual bool LoadArchetypeLibrary(const CryStringT<char> *) = 0;
+	virtual std::vector<IEntityArchetype*> GetArchetypes(string const& _libraryName) const = 0;
+	virtual bool LoadArchetypeLibrary(string const& _libraryName) = 0;
 	virtual void RegisterEntityArchetypeListener(IEntityArchetypeListener *) = 0;
 	virtual void UnregisterEntityArchetypeListener(IEntityArchetypeListener *) = 0;
 	//////////////////////////////////////////////////////////////////////////
@@ -650,7 +657,7 @@ struct IEntitySystem
 	//! Do not spawn any entities unless forced to.
 	virtual void LockSpawning(bool lock) = 0;
 
-	virtual bool IsSpawningLocked() = 0;
+	virtual bool IsSpawningLocked() const = 0;
 
 	//! Handles entity-related loading of a level
 	virtual bool OnLoadLevel(const char* szLevelPath) = 0;
@@ -660,7 +667,7 @@ struct IEntitySystem
 	//! Add entity layer.
 	virtual CEntityLayer * AddLayer(const char* szName, const char* szParent, uint16 id, bool bHasPhysics, int specs, bool bDefaultLoaded, int _loadTokenId, int _loadTokenValue) = 0;
 
-	virtual std::vector<bool> *GetLayersState(std::vector<bool> *result) = 0;
+	virtual std::vector<bool> GetLayersState() const = 0;
 
 	//! Load layer infos.
 	virtual void LoadLayers(const char* dataFile) = 0;
@@ -674,6 +681,8 @@ struct IEntitySystem
 	//! Remove entity from all layers.
 	virtual void RemoveEntityFromLayers(EntityId id) = 0;
 
+	virtual const char* GetLayerNameForEntity(EntityId id) = 0;
+
 	//! Clear list of entity layers.
 	virtual void ClearLayers() = 0;
 
@@ -681,7 +690,7 @@ struct IEntitySystem
 	virtual void EnableDefaultLayers(bool isSerialized = true) = 0;
 
 	//! Enable entity layer.
-	virtual void EnableLayer(const char* layer, bool isEnable, bool isSerialized = true) = 0;
+	virtual void EnableLayer(const char* layer, bool _bIsVisible, bool isEnable, bool isSerialized) = 0;
 
 	//! Find a layer with a given name.
 	//virtual IEntityLayer* FindLayer(const char* szLayer) const = 0;
@@ -738,11 +747,11 @@ struct IEntitySystem
 	virtual IBSPTree3D* CreateBSPTree3D(const IBSPTree3D::FaceList& faceList) = 0;
 	virtual void        ReleaseBSPTree3D(IBSPTree3D*& pTree) = 0;
 
-	virtual void MarkEntityAsUsingPlayerTime(const IEntity *) = 0;
-	virtual void UnmarkEntityAsUsingPlayerTime(const IEntity *) = 0;
-	virtual bool ShouldEntityUsePlayerTime(const IEntity *) = 0;
-	virtual void SetSafeBounds(const AABB *) = 0;
-	virtual bool IsInSafeBounds(const Vec3_tpl<float> *) = 0;
+	virtual void MarkEntityAsUsingPlayerTime(const IEntity &) = 0;
+	virtual void UnmarkEntityAsUsingPlayerTime(const IEntity &) = 0;
+	virtual bool ShouldEntityUsePlayerTime(const IEntity &) const = 0;
+	virtual void SetSafeBounds(const AABB &) = 0;
+	virtual bool IsInSafeBounds(const Vec3_tpl<float> &) const = 0;
 
 	// </interfuscator:shuffle>
 };

@@ -1,15 +1,15 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedarray.h>
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryLobby/STCPServiceData.h>
+#include <Prey/CrySystem/ZLib/SMD5Context.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryAction/ILevelSystem.h>
 #include <Prey/CrySystem/ZLib/IZLibCompressor.h>
 #include <Prey/CryThreading/CryThread_win32.h>
-#include <_unknown/CryFixedStringT.h>
-#include <_unknown/ITelemetryCollector.h>
-#include <_unknown/ITelemetryProducer.h>
+#include <Prey/CryString/CryFixedString.h>
+#include <Prey/GameDll/ITelemetryCollector.h>
+#include <Prey/GameDll/ITelemetryProducer.h>
 
 class CDownloadableResource;
 class CStreamedTelemetryProxy;
@@ -75,11 +75,19 @@ public:
 		~SLargeFileSubmitData();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FClear = PreyFunction<void(CTelemetryCollector::SLargeFileSubmitData* const _this)>(0x17F3AF0);
+#else
 		static inline auto FClear = PreyFunction<void(CTelemetryCollector::SLargeFileSubmitData* const _this)>(0x191B630);
+#endif
 	};
 
 	static constexpr const int k_maxHttpHeaderSize = 1024;
+#ifndef MOONCRASH
+	static inline auto s_telemetryCollector = PreyGlobal<CTelemetryCollector*>(0x2C17F20);
+#else
 	static inline auto s_telemetryCollector = PreyGlobal<CTelemetryCollector*>(0x2D93920);
+#endif
 	ICVar* m_telemetryTransactionRecordings;
 	ICVar* m_telemetryEnabled;
 	ICVar* m_telemetryServerLogging;
@@ -122,7 +130,7 @@ public:
 	virtual ~CTelemetryCollector();
 	virtual bool ShouldSubmitTelemetry();
 	virtual void Update();
-	void Log(int level, const char* format, ... _arg2_) { FLog(this, level, format, _arg2_); }
+	// varargs: void Log(int level, const char* format, ...) { FLog(this, level, format, _arg2_); }
 	virtual bool SubmitFromMemory(const char* inRemoteFilePath, const char* inDataToStore, const int inDataLength, unsigned inFlags);
 	virtual bool SubmitFile(const char* inLocalFilePath, const char* inRemoteFilePath, const char* inHeaderData, const int inHeaderLength);
 	virtual bool SubmitLargeFile(const char* inLocalFilePath, const char* inRemoteFilePath, int inLocalFileOffset, const char* inHintFileData, const int inHintFileDataLength, unsigned inFlags);
@@ -172,6 +180,51 @@ public:
 	void OutputTelemetryServerHintFile();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetHostName = PreyFunction<CryFixedStringT<257>*(CTelemetryCollector* const _this, CryFixedStringT<257>* _return_value_)>(0x17F3C90);
+	static inline auto FUpdateClientName = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F6CD0);
+	static inline auto FSubmitGameLog = PreyFunction<void(IConsoleCmdArgs* inArgs)>(0x17F5F30);
+	static inline auto FOutputSessionId = PreyFunction<void(IConsoleCmdArgs* inArgs)>(0x17F45D0);
+	static inline auto FInitService = PreyFunction<bool(CTelemetryCollector* const _this)>(0x17F3FB0);
+	static inline auto FUploadData = PreyFunction<bool(CTelemetryCollector* const _this, _smart_ptr<STCPServiceData> pData, const char* inReferenceFileName)>(0x17F7590);
+	static inline auto FMakePostHeader = PreyFunction<int(CTelemetryCollector* const _this, const char* inRemoteFileName, int inDataLength, char* outBuffer, int inMaxBufferSize, unsigned inFlags)>(0x17F40B0);
+	static inline auto FUpdateLargeFileChunkPostHeader = PreyFunction<void(CTelemetryCollector* const _this, CTelemetryCollector::SLargeFileSubmitData* pInLargeFile, bool inFirstChunk, int inPayloadSize)>(0x17F6EC0);
+	static inline auto FUploadLastGameLogToPreviousSession = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F7720);
+	static inline auto FSubmitFileTelemetryCallback = PreyFunction<bool(ECryTCPServiceResult res, void* arg, _smart_ptr<STCPServiceData> pInUploadData, const char* pData, uint64_t dataLen, bool endOfStream)>(0x17F59A0);
+	static inline auto FTrySubmitTelemetryProducer = PreyFunction<bool(CTelemetryCollector* const _this, ITelemetryProducer* pInProducer, const char* inPostHeader, int inLen, void (*inCallback)(void*, bool, const char*, int), void* inCallbackData, unsigned inFlags)>(0x17F6980);
+	static inline auto FThreadSafeClear = PreyFunction<void(CTelemetryCollector* const _this, CTelemetryCollector::SLargeFileSubmitData* pInData)>(0x17F6910);
+	static inline auto FCTelemetryCollector = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F2E00);
+	static inline auto FBitNotCTelemetryCollector = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F3410);
+	static inline auto FShouldSubmitTelemetry = PreyFunction<bool(CTelemetryCollector* const _this)>(0x17F5460);
+	static inline auto FUpdate = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F6BB0);
+	// varargs: static inline auto FLog = PreyFunction<void(CTelemetryCollector* const _this, int level, const char* format, ...)>(0x17F4060);
+	static inline auto FSubmitFromMemory = PreyFunction<bool(CTelemetryCollector* const _this, const char* inRemoteFilePath, const char* inDataToStore, const int inDataLength, unsigned inFlags)>(0x17F5DA0);
+	static inline auto FSubmitFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inLocalFilePath, const char* inRemoteFilePath, const char* inHeaderData, const int inHeaderLength)>(0x17F56B0);
+	static inline auto FSubmitLargeFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inLocalFilePath, const char* inRemoteFilePath, int inLocalFileOffset, const char* inHintFileData, const int inHintFileDataLength, unsigned inFlags)>(0x17F6290);
+	static inline auto FSubmitTelemetryProducer = PreyFunction<bool(CTelemetryCollector* const _this, ITelemetryProducer* pInProducer, const char* pInRemoteFilePath, void (*inCallback)(void*, bool, const char*, int), void* inCallbackData, unsigned inFlags)>(0x17F66B0);
+	static inline auto FSubmitChunkOfALargeFile = PreyFunction<void(CTelemetryCollector* const _this, CTelemetryCollector::SLargeFileSubmitData* pInLargeSubmitData)>(0x17F54E0);
+	static inline auto FUpdateLargeFileSubmitData = PreyFunction<void(CTelemetryCollector* const _this)>(0x17F73D0);
+	static inline auto FCreateEventStream = PreyFunction<void(CTelemetryCollector* const _this)>(0xA13080);
+	static inline auto FCloseEventStream = PreyFunction<void(CTelemetryCollector* const _this)>(0xA13080);
+	static inline auto FCreateStatoscopeStream = PreyFunction<void(CTelemetryCollector* const _this)>(0xA13080);
+	static inline auto FCloseStatoscopeStream = PreyFunction<void(CTelemetryCollector* const _this)>(0xA13080);
+	static inline auto FLogEvent = PreyFunction<void(CTelemetryCollector* const _this, const char* eventName, float value)>(0xA13080);
+	static inline auto FAppendStringToFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inLocalFilePath, const char* inDataToAppend)>(0x17F3A70);
+	static inline auto FAppendToFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inRemoteFilePath, const char* inDataToAppend, const int inDataLength)>(0x17F3A90);
+	static inline auto FSetNewSessionId = PreyFunction<void(CTelemetryCollector* const _this, bool includeMatchDetails)>(0x17F4DF0);
+	static inline auto FOutputMemoryUsage = PreyFunction<void(CTelemetryCollector* const _this, const char* message, const char* newLevelName)>(0xA13080);
+	static inline auto FGetSessionId = PreyFunction<string*(CTelemetryCollector* const _this, string* _return_value_)>(0x17F3F80);
+	static inline auto FSetSessionId = PreyFunction<void(CTelemetryCollector* const _this, string inNewId)>(0x17F5360);
+	static inline auto FAreTransfersInProgress = PreyFunction<bool(CTelemetryCollector* const _this)>(0x17F3AB0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CTelemetryCollector* const _this, ICrySizer* pSizer)>(0x17F3F10);
+	static inline auto FOnLevelNotFound = PreyFunction<void(ILevelSystemListener* const _this, const char* levelName)>(0xA13080);
+	static inline auto FOnLoadingLevelEntitiesStart = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel)>(0xA13080);
+	static inline auto FOnLoadingStart = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel)>(0xA13080);
+	static inline auto FOnLoadingComplete = PreyFunction<void(ILevelSystemListener* const _this, ILevel* pLevel)>(0xA13080);
+	static inline auto FOnLoadingError = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel, const char* error)>(0xA13080);
+	static inline auto FOnLoadingProgress = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel, int progressAmount)>(0xA13080);
+	static inline auto FOnUnloadComplete = PreyFunction<void(ILevelSystemListener* const _this, ILevel* pLevel)>(0xA13080);
+#else
 	static inline auto FGetHostName = PreyFunction<CryFixedStringT<257>*(CTelemetryCollector* const _this, CryFixedStringT<257>* _return_value_)>(0x191B7D0);
 	static inline auto FUpdateClientName = PreyFunction<void(CTelemetryCollector* const _this)>(0x191E810);
 	static inline auto FSubmitGameLog = PreyFunction<void(IConsoleCmdArgs* inArgs)>(0x191DA70);
@@ -188,7 +241,7 @@ public:
 	static inline auto FBitNotCTelemetryCollector = PreyFunction<void(CTelemetryCollector* const _this)>(0x191AF20);
 	static inline auto FShouldSubmitTelemetry = PreyFunction<bool(CTelemetryCollector* const _this)>(0x191CFA0);
 	static inline auto FUpdate = PreyFunction<void(CTelemetryCollector* const _this)>(0x191E6F0);
-	static inline auto FLog = PreyFunction<void(CTelemetryCollector* const _this, int level, const char* format, ... _arg2_)>(0x191BBA0);
+	// varargs: static inline auto FLog = PreyFunction<void(CTelemetryCollector* const _this, int level, const char* format, ...)>(0x191BBA0);
 	static inline auto FSubmitFromMemory = PreyFunction<bool(CTelemetryCollector* const _this, const char* inRemoteFilePath, const char* inDataToStore, const int inDataLength, unsigned inFlags)>(0x191D8E0);
 	static inline auto FSubmitFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inLocalFilePath, const char* inRemoteFilePath, const char* inHeaderData, const int inHeaderLength)>(0x191D1F0);
 	static inline auto FSubmitLargeFile = PreyFunction<bool(CTelemetryCollector* const _this, const char* inLocalFilePath, const char* inRemoteFilePath, int inLocalFileOffset, const char* inHintFileData, const int inHintFileDataLength, unsigned inFlags)>(0x191DDD0);
@@ -215,6 +268,7 @@ public:
 	static inline auto FOnLoadingError = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel, const char* error)>(0x1333E90);
 	static inline auto FOnLoadingProgress = PreyFunction<void(ILevelSystemListener* const _this, ILevelInfo* pLevel, int progressAmount)>(0x1333E90);
 	static inline auto FOnUnloadComplete = PreyFunction<void(ILevelSystemListener* const _this, ILevel* pLevel)>(0x1333E90);
+#endif
 };
 
 // CTelemetryCompressor
@@ -235,7 +289,11 @@ public:
 	CTelemetryCompressor(ITelemetryProducer* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryCompressor* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x17F4620);
+#else
 	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryCompressor* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x191C160);
+#endif
 };
 
 // CTelemetryFileReader
@@ -252,7 +310,11 @@ public:
 	CTelemetryFileReader(const char* _arg0_, int _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryFileReader* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x17F4840);
+#else
 	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryFileReader* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x191C380);
+#endif
 };
 
 // CTelemetryHTTPPostChunkSplitter
@@ -279,7 +341,11 @@ public:
 	CTelemetryHTTPPostChunkSplitter(ITelemetryProducer* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryHTTPPostChunkSplitter* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x17F4A60);
+#else
 	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryHTTPPostChunkSplitter* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x191C5A0);
+#endif
 };
 
 // CTelemetryMD5
@@ -306,6 +372,10 @@ public:
 	CTelemetryMD5(const char* _arg0_, ITelemetryProducer* _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryMD5* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x17F4D00);
+#else
 	static inline auto FProduceTelemetry = PreyFunction<ITelemetryProducer::EResult(CTelemetryMD5* const _this, char* pOutBuffer, int inMinRequired, int inBufferSize, int* pOutWritten)>(0x191C840);
+#endif
 };
-#endif // MOONCRASH
+

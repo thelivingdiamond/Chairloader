@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ui/IUIPseudoRTTI.h>
@@ -16,7 +14,15 @@ struct IUIGameEventSystem : public IUIPseudoRTTI
 	virtual void UpdateView(const SViewParams& viewParams);
 	virtual void OnUpdate(float fDelta);
 
+#ifndef MOONCRASH
+	static inline auto FUpdateView = PreyFunction<void(IUIGameEventSystem* const _this, const SViewParams& viewParams)>(0xA13080);
+	static inline auto FOnUpdate = PreyFunction<void(IUIGameEventSystem* const _this, float fDelta)>(0xA13080);
+#else
 	static inline auto FUpdateView = PreyFunction<void(IUIGameEventSystem* const _this, const SViewParams& viewParams)>(0x1333E90);
 	static inline auto FOnUpdate = PreyFunction<void(IUIGameEventSystem* const _this, float fDelta)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+
+// From CryEngine GameSDK IUIGameEventSystem.h.
+typedef std::shared_ptr<IUIGameEventSystem> TUIEventSystemPtr;
+

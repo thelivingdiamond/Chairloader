@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -20,7 +19,7 @@ enum EGameTokenFlags
 {
 	EGAME_TOKEN_MODIFIED      = 0x01,    //!< Token is modified from its default value.
 	EGAME_TOKEN_GRAPHVARIABLE = 0x02,    //!< Token is constrained to the flowgraph it appears in.
-	EGAME_TOKEN_LOCALONLY     = 0x04,    //!< This token will not be synchronized to clients.
+	EGAME_TOKEN_LOCAL         = 0x04,    //!< This token will not be synchronized to clients.
 };
 
 #ifndef _RELEASE
@@ -132,16 +131,13 @@ struct IGameTokenSystem
 	virtual IGameToken* LoadSerializedToken(int arg0, const char* arg1, EFlowDataTypes arg2, unsigned arg3) = 0;
 
 	//! Deletes existing game token.
-	virtual void DeleteToken(IGameToken* pToken) = 0;
+	virtual void DeleteToken(int _id) = 0;
 
 	//! Find a game token by name.
 	virtual IGameToken*   FindToken(const char* sTokenName) = 0;
 	virtual IGameToken* FindToken(int arg0) = 0;
 
 	virtual IGameTokenIt* GetGameTokenIterator() = 0;
-
-	//! Rename existing game token.
-	virtual void RenameToken(IGameToken* pToken, const char* sNewTokenName) = 0;
 
 	virtual void RegisterListener(IGameToken* arg0, IGameTokenEventListener* arg1) = 0;
 	virtual void UnregisterListener(IGameToken* arg0, IGameTokenEventListener* arg1) = 0;
@@ -160,8 +156,8 @@ struct IGameTokenSystem
 	virtual void SerializeReadLevelToLevel() = 0;
 
 	//! Reset system (deletes all libraries).
-	virtual void Reset() = 0;
-	virtual void Unload() = 0;
+	virtual void Reset(bool _bLevelOnly) = 0;
+	virtual void Unload(bool _bLevelOnly) = 0;
 	virtual void DumpAllTokensToFile(const char* arg0) = 0;
 	virtual void Serialize(TSerialize ser) = 0;
 	virtual void GetMemoryStatistics(ICrySizer* arg0) = 0;

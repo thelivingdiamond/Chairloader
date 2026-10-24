@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -14,22 +13,6 @@ enum class EArkPsiPowers;
 class IArkValueBase;
 struct IEntity;
 class SummonPetTurretPowerProperties;
-
-// ArkPsiPowerSummonPetTurret
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetTurret.h
-class ArkPsiPowerSummonPetTurret : public ArkPsiPowerSummonPet<ArkPsiPowerSummonPetTurret,SummonPetTurretPowerProperties>
-{ // Size=696 (0x2B8)
-public:
-	using Properties = SummonPetTurretPowerProperties;
-
-	virtual void InitializePet_Derived(IEntity* _pPetEntity);
-
-#if 0
-	static EArkPsiPowers GetEnum_Derived();
-#endif
-
-	static inline auto FInitializePet_Derived = PreyFunction<void(ArkPsiPowerSummonPetTurret* const _this, IEntity* _pPetEntity)>(0x13C1570);
-};
 
 // ArkPsiPowerSummonPetTurretProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetTurret.h
@@ -371,4 +354,21 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13C12A0);
 	static inline auto FInit = PreyFunction<bool(SummonPetTurretPowerProperties* const _this)>(0x13C1390);
 };
+
+// ArkPsiPowerSummonPetTurret
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerSummonPetTurret.h
+class ArkPsiPowerSummonPetTurret : public ArkPsiPowerSummonPet<ArkPsiPowerSummonPetTurret,SummonPetTurretPowerProperties>
+{ // Size=696 (0x2B8)
+public:
+	using Properties = SummonPetTurretPowerProperties;
+
+	virtual void InitializePet_Derived(IEntity* _pPetEntity);
+
+#if 0
+	static EArkPsiPowers GetEnum_Derived();
+#endif
+
+	static inline auto FInitializePet_Derived = PreyFunction<void(ArkPsiPowerSummonPetTurret* const _this, IEntity* _pPetEntity)>(0x13C1570);
+};
+
 #endif // MOONCRASH

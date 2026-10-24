@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/TProceduralClip.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 class CAIAnimationComponent;
 class CPlayer;
@@ -22,8 +20,14 @@ public:
 	void DoExplicitStanceChange(CPlayer& _arg0_, CAIAnimationComponent& _arg1_, EStance _arg2_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FOnEnter = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float blendTime, float duration, const SNoProceduralParams& params)>(0x17CC180);
+	static inline auto FUpdate = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float timePassed)>(0xA13080);
+	static inline auto FOnExit = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float blendTime)>(0xA13080);
+#else
 	static inline auto FOnEnter = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float blendTime, float duration, const SNoProceduralParams& params)>(0x18F3040);
 	static inline auto FUpdate = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float timePassed)>(0x1333E90);
 	static inline auto FOnExit = PreyFunction<void(CProceduralClipCompromiseCover* const _this, float blendTime)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

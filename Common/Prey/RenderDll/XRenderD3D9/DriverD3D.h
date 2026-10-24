@@ -2,6 +2,8 @@
 
 # pragma once 
 
+#include <Prey/CryRenderer/IScaleform.h>
+#include <Prey/RenderDll/Common/LockFreeAddVector.h>
 #include <Prey/CryCore/Containers/intrusive_list.hpp>
 #include <Prey/CryMath/Cry_XOptimise.h>
 //#include <Prey/CrySystem/IWindowMessageHandler.h>
@@ -69,6 +71,7 @@ struct SGraphicsPipelinePassContext;
 #include "../Common/OcclQuery.h"
 #include "../Common/Textures/Texture.h"
 #include "../Common/RenderAuxGeomNull.h"
+#include <Prey/CryRenderer/IArkRenderPersistentAuxGeom.h>
 #include "DeviceInfo.h"
 #include "arkd3dvideoinfo.h"
 #include "ShadowTextureGroupManager.h"
@@ -298,16 +301,12 @@ class CAsyncShaderTask;
 #endif
 
 class CD3D9Renderer;
+class ArkHighlightSystem;
 class CColorGradingControllerD3D;
 class CRenderPipelineProfiler;
 class CStandardGraphicsPipeline;
 class CTiledShading;
 struct SSF_ResourcesD3D;
-
-class CArkRenderPersistentAuxGeom_Null
-{
-	void* pad;
-};
 
 class CFrameTimestamps
 {
@@ -550,6 +549,9 @@ public:
 
 	CD3D9Renderer::LoadtimeThreadType m_loadtimeThreadType;
 	CFrameTimestamps m_frameTimestamps;
+#ifdef MOONCRASH
+	ArkHighlightSystem* m_pIArkHighlightsSystem;
+#endif
 
 	CD3D9Renderer();
 	virtual ~CD3D9Renderer();
@@ -687,7 +689,11 @@ public:
 	virtual void SetCamera(CCamera const& cam);
 	virtual void SetViewport(int x, int y, int width, int height, int id = 0);
 	virtual void GetViewport(int* x, int* y, int* width, int* height);
+#ifndef MOONCRASH
 	SViewport GetViewport() const { return FGetViewportOv0(this); }
+#else
+	SViewport GetViewport() const { alignas(SViewport) std::byte _return_buf_[sizeof(SViewport)]; return *FGetViewportOv0(this, reinterpret_cast<SViewport*>(_return_buf_)); }
+#endif
 	virtual void SetScissor(int x, int y, int width, int height);
 	virtual void SetRenderTile(float nTilesPosX, float nTilesPosY, float nTilesGridSizeX, float nTilesGridSizeY);
 	virtual void Graph(uint8_t* g, int x, int y, int wdt, int hgt, int nC, int type, char* text, ColorF& color, float fScale);

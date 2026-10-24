@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -146,6 +145,28 @@ public:
 	{ // Size=8 (0x8)
 	};
 
+	// ArkItemSystem::CArkItemCreator<T>
+	// Header:  Prey/GameDll/ark/ArkItemSystem.h
+	// Instantiations (all Size=8): ArkCraftingIngredient, ArkNeuromod, ArkWeaponDoubleWrench,
+	// ArkWeaponSword, ArkWeaponWrench, CArkItem, CArkWeapon, CArkWeaponDiscRifle, CArkWeaponGooGun,
+	// CArkWeaponGrenade, CArkWeaponInstalaser, CArkWeaponRapidFire, CArkWeaponRecyclizer,
+	// CArkWeaponShotgun, CArkWeaponStunGun.
+	template <typename T>
+	struct CArkItemCreator : public IArkItemCreator
+	{ // Size=8 (0x8)
+		CArkItemCreator() = default;
+
+		virtual std::shared_ptr<IGameObjectExtension> Create()
+		{
+			return ComponentCreate_DeleteWithRelease<T>();
+		}
+
+		virtual void GetGameObjectExtensionRMIData(void** _ppRMI, uint64_t* _nCount)
+		{
+			T::GetGameObjectExtensionRMIData(_ppRMI, _nCount);
+		}
+	};
+
 	static inline auto k_defaultArkItemScript = PreyGlobal<const char*>(0x23E6750);
 	static inline auto k_arkItemConfigFile = PreyGlobal<const char*>(0x23E6758);
 	static inline auto k_pickupsLibrary = PreyGlobal<const char*>(0x23E6760);
@@ -227,170 +248,5 @@ public:
 	static inline auto FGiveItemCmd = PreyFunction<void(IConsoleCmdArgs* _pArgs)>(0x1557A40);
 	static inline auto FGiveEquipmentPackCmd = PreyFunction<void(IConsoleCmdArgs* _pArgs)>(0x15579E0);
 	static inline auto FReloadXmlCmd = PreyFunction<void(IConsoleCmdArgs* _pArgs)>(0x15581C0);
-};
-
-// ArkItemSystem::CArkItemCreator<ArkCraftingIngredient>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<ArkCraftingIngredient> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<ArkCraftingIngredient>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826490);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<ArkCraftingIngredient>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<ArkNeuromod>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<ArkNeuromod> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<ArkNeuromod>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x18264F0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<ArkNeuromod>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<ArkWeaponDoubleWrench>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<ArkWeaponDoubleWrench> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<ArkWeaponDoubleWrench>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826550);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<ArkWeaponDoubleWrench>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<ArkWeaponSword>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<ArkWeaponSword> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<ArkWeaponSword>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x18266B0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<ArkWeaponSword>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<ArkWeaponWrench>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<ArkWeaponWrench> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<ArkWeaponWrench>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826730);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<ArkWeaponWrench>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkItem>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkItem> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkItem>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x18268F0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkItem>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeapon>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeapon> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeapon>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826950);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeapon>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponDiscRifle>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponDiscRifle> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponDiscRifle>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x18269D0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponDiscRifle>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponGooGun>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponGooGun> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponGooGun>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826A50);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponGooGun>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponGrenade>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponGrenade> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponGrenade>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826AD0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponGrenade>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponInstalaser>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponInstalaser> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponInstalaser>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826B50);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponInstalaser>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponRapidFire>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponRapidFire> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponRapidFire>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826BD0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponRapidFire>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponRecyclizer>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponRecyclizer> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponRecyclizer>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826C50);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponRecyclizer>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponShotgun>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponShotgun> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponShotgun>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826CD0);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponShotgun>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
-};
-
-// ArkItemSystem::CArkItemCreator<CArkWeaponStunGun>
-// Header:  Prey/GameDll/ark/ArkItemSystem.h
-struct CArkItemCreator<CArkWeaponStunGun> : public ArkItemSystem::IArkItemCreator
-{ // Size=8 (0x8)
-	virtual std::shared_ptr<IGameObjectExtension> Create();
-	virtual void GetGameObjectExtensionRMIData(void* * _ppRMI, uint64_t* _nCount);
-
-	static inline auto FCreate = PreyFunction<std::shared_ptr<IGameObjectExtension>*(ArkItemSystem::CArkItemCreator<CArkWeaponStunGun>* const _this, std::shared_ptr<IGameObjectExtension>* _return_value_)>(0x1826D50);
-	static inline auto FGetGameObjectExtensionRMIData = PreyFunction<void(ArkItemSystem::CArkItemCreator<CArkWeaponStunGun>* const _this, void* * _ppRMI, uint64_t* _nCount)>(0x1829C50);
 };
 #endif // !MOONCRASH

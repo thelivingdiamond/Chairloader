@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class CTagDefinition;
 struct SAnimationContext;
@@ -17,8 +15,13 @@ class CArkAnimActionAIBlink : public TAction<SAnimationContext>
 public:
 	using TBase = TAction<SAnimationContext>;
 
+#ifndef MOONCRASH
+	static inline auto s_kRandIntervalMin = PreyGlobal<const float>(0x1DFDFB4);
+	static inline auto s_kRandIntervalMax = PreyGlobal<const float>(0x1DFDFB8);
+#else
 	static inline auto s_kRandIntervalMin = PreyGlobal<const float>(0x1F41684);
 	static inline auto s_kRandIntervalMax = PreyGlobal<const float>(0x1F41688);
+#endif
 	float m_timer;
 	bool m_bBlinking;
 	bool m_bEnabled;
@@ -39,6 +42,18 @@ public:
 	void Enable(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CArkAnimActionAIBlink* const _this)>(0x11E14A0);
+	static inline auto FDoDelete = PreyFunction<void(CArkAnimActionAIBlink* const _this)>(0xA97D40);
+	static inline auto FCArkAnimActionAIBlink = PreyFunction<void(CArkAnimActionAIBlink* const _this)>(0x11E1090);
+	static inline auto FOnInitialise = PreyFunction<void(CArkAnimActionAIBlink* const _this)>(0x11E1680);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CArkAnimActionAIBlink* const _this, float _timePassed)>(0x11E16D0);
+	static inline auto FUpdatePending = PreyFunction<IAction::EStatus(CArkAnimActionAIBlink* const _this, float _timePassed)>(0x11E18A0);
+	static inline auto FOnSequenceFinished = PreyFunction<void(CArkAnimActionAIBlink* const _this, int layer, unsigned scopeId)>(0x11E1680);
+	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& _context)>(0x11E15C0);
+	static inline auto FFindFragmentId = PreyFunction<int(const SAnimationContext& context)>(0x11E1240);
+	static inline auto FUpdateBlink = PreyFunction<void(CArkAnimActionAIBlink* const _this, float _timePassed)>(0x11E1700);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CArkAnimActionAIBlink* const _this)>(0x126D170);
 	static inline auto FDoDelete = PreyFunction<void(CArkAnimActionAIBlink* const _this)>(0x3E3960);
 	static inline auto FCArkAnimActionAIBlink = PreyFunction<void(CArkAnimActionAIBlink* const _this)>(0x126CDB0);
@@ -49,6 +64,7 @@ public:
 	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& _context)>(0x126D290);
 	static inline auto FFindFragmentId = PreyFunction<int(const SAnimationContext& context)>(0x126CF10);
 	static inline auto FUpdateBlink = PreyFunction<void(CArkAnimActionAIBlink* const _this, float _timePassed)>(0x126D3D0);
+#endif
 };
 
 // CArkAnimActionAIEyeSaccade
@@ -65,12 +81,21 @@ public:
 	virtual void OnInitialise();
 	static int FindFragmentId(const SAnimationContext& context) { return FFindFragmentId(context); }
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CArkAnimActionAIEyeSaccade* const _this)>(0x11E14B0);
+	static inline auto FDoDelete = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0xA97D40);
+	static inline auto FCArkAnimActionAIEyeSaccade = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0x11E1150);
+	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& _context)>(0x11E15E0);
+	static inline auto FOnInitialise = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0x11E1600);
+	static inline auto FFindFragmentId = PreyFunction<int(const SAnimationContext& context)>(0x11E1370);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CArkAnimActionAIEyeSaccade* const _this)>(0x126D180);
 	static inline auto FDoDelete = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0x3E3960);
 	static inline auto FCArkAnimActionAIEyeSaccade = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0x126CE70);
 	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& _context)>(0x126D2B0);
 	static inline auto FOnInitialise = PreyFunction<void(CArkAnimActionAIEyeSaccade* const _this)>(0x126D2D0);
 	static inline auto FFindFragmentId = PreyFunction<int(const SAnimationContext& context)>(0x126D040);
+#endif
 };
 
 // SMannequinAiBlinkUserParams
@@ -92,7 +117,11 @@ struct SMannequinAiBlinkUserParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAiBlinkUserParams* const _this, const SControllerDef& controllerDef)>(0x11E14C0);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAiBlinkUserParams* const _this, const SControllerDef& controllerDef)>(0x126D190);
+#endif
 };
 
 // SMannequinAiEyeSaccadeUserParams
@@ -114,6 +143,10 @@ struct SMannequinAiEyeSaccadeUserParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAiEyeSaccadeUserParams* const _this, const SControllerDef& controllerDef)>(0x11E1540);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAiEyeSaccadeUserParams* const _this, const SControllerDef& controllerDef)>(0x126D210);
+#endif
 };
-#endif // MOONCRASH
+

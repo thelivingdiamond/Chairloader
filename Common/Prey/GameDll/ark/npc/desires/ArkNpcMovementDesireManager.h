@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 #pragma once
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryAISystem/MovementRequest.h>
@@ -12,6 +10,14 @@ class ArkNpc;
 
 // Header: Exact
 // CryEngine/crymovie/animsplinetrack.h
+#ifdef MOONCRASH
+#include <Prey/CryAISystem/MovementRequestID.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
+#include <Prey/CryAISystem/MovementRequestResult.h>
+class ArkNpcMovementDesire;
+struct MovementRequest;
+struct MovementRequestResult;
+#endif
 class ArkNpcMovementDesireManager : public ArkNpcDesireManagerBase<ArkNpcMovementDesireManager,ArkNpcMovementDesire> // Id=8014112 Size=232
 {
 public:
@@ -24,7 +30,11 @@ public:
     ArkNpcMovementDesireManager(ArkNpc &_arkNpc);
     void Refresh() { FRefresh(this); }
     bool HasMovementRequest() const { return FHasMovementRequest(this); }
+#ifndef MOONCRASH
     MovementRequestID GetMovementRequestId() const { return FGetMovementRequestId(this); }
+#else
+	MovementRequestID GetMovementRequestId() const { alignas(MovementRequestID) std::byte _return_buf_[sizeof(MovementRequestID)]; return *FGetMovementRequestId(this, reinterpret_cast<MovementRequestID*>(_return_buf_)); }
+#endif
     bool IsMovementInterruptible() const { return FIsMovementInterruptible(this); }
     bool IsShifting() const { return FIsShifting(this); }
     bool IsJumping() const { return FIsJumping(this); }
@@ -53,6 +63,7 @@ public:
 	void DebugDraw();
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<void(ArkNpcMovementDesireManager *const _this)>(0x1527850);
     static inline auto FHasMovementRequest = PreyFunction<bool(ArkNpcMovementDesireManager const *const _this)>(0x1527370);
     static inline auto FGetMovementRequestId = PreyFunction<MovementRequestID(ArkNpcMovementDesireManager const *const _this)>(0x9EF7F0);
@@ -77,63 +88,7 @@ public:
     static inline auto FNavMeshReturnCallback = PreyFunction<void(ArkNpcMovementDesireManager *const _this, MovementRequestResult const &_result)>(0x1527510);
     static inline auto FFailDesire = PreyFunction<void(ArkNpcMovementDesireManager *const _this, ArkNpcMovementDesire &_activeDesire, MovementRequestResult::FailureReason _failureReason)>(0x15272D0);
     static inline auto FFulfillDesire = PreyFunction<void(ArkNpcMovementDesireManager *const _this, ArkNpcMovementDesire &_activeDesire)>(0x1527320);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryAISystem/MovementRequestID.h>
-#include <Prey/GameDll/ark/npc/desires/ArkNpcFacingDesire.h>
-#include <_unknown/ArkNpcDesireManagerBase.h>
-#include <_unknown/MovementRequestResult.h>
-
-class ArkNpc;
-class ArkNpcMovementDesire;
-struct MovementRequest;
-struct MovementRequestResult;
-
-// ArkNpcMovementDesireManager
-// Header:  Prey/GameDll/ark/npc/desires/ArkNpcMovementDesireManager.h
-class ArkNpcMovementDesireManager : public ArkNpcDesireManagerBase<ArkNpcMovementDesireManager,ArkNpcMovementDesire>
-{ // Size=232 (0xE8)
-public:
-	MovementRequestID m_movementRequestId;
-	MovementRequestID m_stopRequestId;
-	ArkNpcFacingDesire m_facingDesire;
-	bool m_bNeedsStop;
-	bool m_bNeedsNavMeshReturn;
-
-	ArkNpcMovementDesireManager(ArkNpc& _arkNpc);
-	void Refresh() { FRefresh(this); }
-	bool HasMovementRequest() const { return FHasMovementRequest(this); }
-	MovementRequestID GetMovementRequestId() const { alignas(MovementRequestID) std::byte _return_buf_[sizeof(MovementRequestID)]; return *FGetMovementRequestId(this, reinterpret_cast<MovementRequestID*>(_return_buf_)); }
-	bool IsMovementInterruptible() const { return FIsMovementInterruptible(this); }
-	bool IsShifting() const { return FIsShifting(this); }
-	bool IsJumping() const { return FIsJumping(this); }
-	void ShutDown() { FShutDown(this); }
-	void Replan() { FReplan(this); }
-	void CancelMovement() { FCancelMovement(this); }
-	void OnActiveDesireAdded(const ArkNpcMovementDesire* _pPrevActiveDesire) { FOnActiveDesireAdded(this, _pPrevActiveDesire); }
-	void OnActiveDesireRemoved(const ArkNpcMovementDesire& _prevActiveDesire) { FOnActiveDesireRemoved(this, _prevActiveDesire); }
-	void OnActiveParamsChanged() { FOnActiveParamsChanged(this); }
-	void OnActiveResumeDistanceChanged() { FOnActiveResumeDistanceChanged(this); }
-	bool TryToResumeMovement() { return FTryToResumeMovement(this); }
-	bool TryToRequestMovement() { return FTryToRequestMovement(this); }
-	bool TryToReturnToNavMesh() { return FTryToReturnToNavMesh(this); }
-	void RequestExactPosition(const ArkNpcMovementDesire& _desire, MovementRequest& _request) { FRequestExactPosition(this, _desire, _request); }
-	void SetStance(MovementRequest& _request) { FSetStance(this, _request); }
-	void StopMovement() { FStopMovement(this); }
-	void MovementRequestCallback(const MovementRequestResult& _result) { FMovementRequestCallback(this, _result); }
-	void StopRequestCallback(const MovementRequestResult& _result) { FStopRequestCallback(this, _result); }
-	void NavMeshReturnCallback(const MovementRequestResult& _result) { FNavMeshReturnCallback(this, _result); }
-	void FailDesire(ArkNpcMovementDesire& _activeDesire, MovementRequestResult::FailureReason _failureReason) { FFailDesire(this, _activeDesire, _failureReason); }
-	void FulfillDesire(ArkNpcMovementDesire& _activeDesire) { FFulfillDesire(this, _activeDesire); }
-
-#if 0
-	void ActivateDesire(const ArkNpcMovementDesire& _arg0_) const;
-	void DeactivateDesire(const ArkNpcMovementDesire& _arg0_) const;
-	void DebugDraw();
-#endif
-
+#else
 	static inline auto FArkNpcMovementDesireManager = PreyFunction<void(ArkNpcMovementDesireManager* const _this, ArkNpc& _arkNpc)>(0x1647150);
 	static inline auto FRefresh = PreyFunction<void(ArkNpcMovementDesireManager* const _this)>(0x16477B0);
 	static inline auto FHasMovementRequest = PreyFunction<bool(const ArkNpcMovementDesireManager* const _this)>(0x16472D0);
@@ -159,5 +114,5 @@ public:
 	static inline auto FNavMeshReturnCallback = PreyFunction<void(ArkNpcMovementDesireManager* const _this, const MovementRequestResult& _result)>(0x1647470);
 	static inline auto FFailDesire = PreyFunction<void(ArkNpcMovementDesireManager* const _this, ArkNpcMovementDesire& _activeDesire, MovementRequestResult::FailureReason _failureReason)>(0x1647230);
 	static inline auto FFulfillDesire = PreyFunction<void(ArkNpcMovementDesireManager* const _this, ArkNpcMovementDesire& _activeDesire)>(0x1647280);
+#endif
 };
-#endif // !MOONCRASH

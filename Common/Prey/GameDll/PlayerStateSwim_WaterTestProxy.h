@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -36,7 +34,11 @@ public:
 	bool m_headComingOutOfWater;
 	bool m_shouldSwim;
 	unsigned m_bottomLevelRayID;
+#ifndef MOONCRASH
+	static inline auto s_rayLength = PreyGlobal<float>(0x2282584);
+#else
 	static inline auto s_rayLength = PreyGlobal<float>(0x23F108C);
+#endif
 
 	CPlayerStateSwim_WaterTestProxy();
 	~CPlayerStateSwim_WaterTestProxy();
@@ -77,6 +79,22 @@ public:
 	bool IsWaitingForBottomLevelResults() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateSwim_WaterTestProxyOv1 = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x17C25F0);
+	static inline auto FBitNotCPlayerStateSwim_WaterTestProxy = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x17C2640);
+	static inline auto FReset = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, bool bCancelRays)>(0x17C2E70);
+	static inline auto FOnEnterWater = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player)>(0x17C2840);
+	static inline auto FOnExitWater = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player)>(0x17C2C30);
+	static inline auto FPreUpdateNotSwimming = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const float frameTime)>(0x17C2CC0);
+	static inline auto FPreUpdateSwimming = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const float frameTime)>(0x17C2CE0);
+	static inline auto FUpdate = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const float frameTime)>(0x17C2EE0);
+	static inline auto FForceUpdateBottomLevel = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player)>(0x17C27E0);
+	static inline auto FUpdateOutOfWater = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const float frameTime)>(0x17C3800);
+	static inline auto FUpdateInWater = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const float frameTime)>(0x17C3050);
+	static inline auto FOnRayCastBottomLevelDataReceived = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const unsigned& rayID, const RayCastResult& result)>(0x17C2C90);
+	static inline auto FRayTestBottomLevel = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const Vec3& referencePosition, float maxRelevantDepth)>(0x17C2CF0);
+	static inline auto FCancelPendingRays = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x17C2650);
+#else
 	static inline auto FCPlayerStateSwim_WaterTestProxyOv1 = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x18E98A0);
 	static inline auto FBitNotCPlayerStateSwim_WaterTestProxy = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x18E98F0);
 	static inline auto FReset = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, bool bCancelRays)>(0x18EA120);
@@ -91,5 +109,6 @@ public:
 	static inline auto FOnRayCastBottomLevelDataReceived = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const unsigned& rayID, const RayCastResult& result)>(0x18E9F40);
 	static inline auto FRayTestBottomLevel = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this, const CPlayer& player, const Vec3& referencePosition, float maxRelevantDepth)>(0x18E9FA0);
 	static inline auto FCancelPendingRays = PreyFunction<void(CPlayerStateSwim_WaterTestProxy* const _this)>(0x18E9900);
+#endif
 };
-#endif // MOONCRASH
+

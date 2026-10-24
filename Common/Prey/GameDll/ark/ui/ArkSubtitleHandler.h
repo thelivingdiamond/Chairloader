@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -12,6 +10,13 @@ struct IUIElement;
 
 // Header: Exact
 // Prey/GameDll/ark/ui/ArkSubtitleHandler.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryString.h>
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+enum ESystemEvent;
+class XmlNodeRef;
+#endif
 class ArkSubtitleHandler : public ISubtitleHandler, public IUIGameEventSystem, public IUIModule, public ISystemEventListener // Id=8019567 Size=200
 {
 public:
@@ -62,6 +67,7 @@ public:
 	static const char *GetTypeNameS();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(ArkSubtitleHandler const *const _this)>(0x1631C60);
 	static inline auto FInitEventSystem = PreyFunction<void(ArkSubtitleHandler *const _this)>(0x1631CF0);
 	static inline auto FUnloadEventSystem = PreyFunction<void(ArkSubtitleHandler *const _this)>(0x16323C0);
@@ -79,81 +85,7 @@ public:
 	static inline auto FOnMovieStart = PreyFunction<void(ArkSubtitleHandler *const _this, ArkBinkPlayerHandle const &_movieHandle)>(0x1632080);
 	static inline auto FOnMovieStop = PreyFunction<void(ArkSubtitleHandler *const _this, ArkBinkPlayerHandle const &_movieHandle)>(0x16320D0);
 	static inline auto FLoadBinkSubtitles = PreyFunction<void(ArkSubtitleHandler *const _this)>(0x1631E20);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/crystring.h>
-#include <Prey/CryAction/ISubtitleManager.h>
-#include <Prey/CrySystem/ISystem.h>
-#include <Prey/CrySystem/Scaleform/IFlashUI.h>
-#include <Prey/GameDll/ark/IUIGameEventSystem.h>
-#include <Prey/GameDll/ark/ui/ArkBinkPlayerHandle.h>
-
-enum ESystemEvent;
-struct IUIElement;
-class XmlNodeRef;
-
-// ArkSubtitleHandler
-// Header:  Prey/GameDll/ark/ui/ArkSubtitleHandler.h
-class ArkSubtitleHandler
-	: public ISubtitleHandler
-	, public IUIGameEventSystem
-	, public IUIModule
-	, public ISystemEventListener
-{ // Size=200 (0xC8)
-public:
-	// ArkSubtitleHandler::ArkBinkSubtitleEntry
-	// Header:  Prey/GameDll/ark/ui/ArkSubtitleHandler.h
-	struct ArkBinkSubtitleEntry
-	{ // Size=24 (0x18)
-		uint64_t m_dialogId;
-		uint64_t m_voiceId;
-		unsigned m_frameStart;
-		unsigned m_frameEnd;
-
-	#if 0
-		ArkBinkSubtitleEntry();
-		ArkBinkSubtitleEntry(XmlNodeRef _arg0_);
-		bool IsValid() const;
-	#endif
-	};
-
-	using TArkBinkSubtitleList = std::vector<ArkSubtitleHandler::ArkBinkSubtitleEntry>;
-
-	std::unordered_map<string, std::vector<ArkSubtitleHandler::ArkBinkSubtitleEntry>> m_binkSubtitles;
-	std::unordered_map<ArkBinkPlayerHandle, string> m_movieHandles;
-	ArkBinkPlayerHandle m_activeMovieHandle;
-	int m_subtitleIndex;
-	int m_lastSubtitleFrame;
-	string m_LastSubtitle;
-	IUIElement* m_pUIElement;
-	bool m_bEnabled;
-	bool m_bBinkSubtitleShown;
-
-	virtual const char* GetTypeName() const;
-	virtual void InitEventSystem();
-	virtual void UnloadEventSystem();
-	virtual void OnSystemEvent(ESystemEvent _event, uint64_t _wparam, uint64_t _lparam);
-	virtual void Init();
-	virtual void UpdateModule(float _fDelta);
-	virtual void Shutdown();
-	virtual void ShowSubtitle(const char* _subtitleLabel, bool _bShow, const char* const _name);
-	void ShowSubtitle(const wstring& _localizedSubtitle, const bool _bMetaGameMenu) const { FShowSubtitleOv0(this, _localizedSubtitle, _bMetaGameMenu); }
-	virtual void SetEnabled(bool _bEnabled);
-	void HideSubtitle(bool _bMetaGameMenu) const { FHideSubtitle(this, _bMetaGameMenu); }
-	void SetPDAVisible(bool _bVisible) { FSetPDAVisible(this, _bVisible); }
-	IUIElement* GetUIElement() const { return FGetUIElement(this); }
-	virtual void OnMovieLoad(const char* const _movieName, const ArkBinkPlayerHandle& _movieHandle);
-	virtual void OnMovieStart(const ArkBinkPlayerHandle& _movieHandle);
-	virtual void OnMovieStop(const ArkBinkPlayerHandle& _movieHandle);
-	void LoadBinkSubtitles() { FLoadBinkSubtitles(this); }
-
-#if 0
-	ArkSubtitleHandler();
-	static const char* GetTypeNameS();
-#endif
-
+#else
 	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1754330);
 	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x17543C0);
 	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1754A90);
@@ -171,5 +103,5 @@ public:
 	static inline auto FOnMovieStart = PreyFunction<void(ArkSubtitleHandler* const _this, const ArkBinkPlayerHandle& _movieHandle)>(0x1754750);
 	static inline auto FOnMovieStop = PreyFunction<void(ArkSubtitleHandler* const _this, const ArkBinkPlayerHandle& _movieHandle)>(0x17547A0);
 	static inline auto FLoadBinkSubtitles = PreyFunction<void(ArkSubtitleHandler* const _this)>(0x17544F0);
+#endif
 };
-#endif // !MOONCRASH

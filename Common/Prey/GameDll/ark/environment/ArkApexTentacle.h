@@ -1,8 +1,8 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryAnimation/IAnimationOperatorQueue.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -15,6 +15,8 @@
 #include <Prey/GameDll/ark/player/IArkPlayerCarryListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerCombatListener.h>
 #include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_apextentacle.h>
+#include <Prey/Ark/arksignalsystemdata.h>
 
 namespace ArkSignalSystem
 {
@@ -244,6 +246,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/CryAnimation/IAnimationOperatorQueue.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/Ark/arksignalsystemdata.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>

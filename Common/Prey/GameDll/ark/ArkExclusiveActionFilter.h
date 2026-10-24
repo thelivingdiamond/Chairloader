@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -12,6 +10,10 @@ struct SActionMapEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkExclusiveActionFilter.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryName.h>
+enum EControlScheme;
+#endif
 class ArkExclusiveActionFilter : public IUIControlSchemeListener, public IActionMapEventListener // Id=80147D1 Size=88
 {
 public:
@@ -21,7 +23,9 @@ public:
 	std::vector<CCryName> m_filteredActionIds;
 	std::vector<CCryName> m_allowedActionIds;
 	
+#ifndef MOONCRASH
 	ArkExclusiveActionFilter() { FArkExclusiveActionFilter(this); }
+#endif
 	virtual ~ArkExclusiveActionFilter() { FBitNotArkExclusiveActionFilter(this); }
 	void CreateActionFilter(const char *_pName) { FCreateActionFilter(this,_pName); }
 	void Enable(bool _bEnable) { FEnable(this,_bEnable); }
@@ -39,6 +43,7 @@ public:
 	IActionFilter *GetActionFilter()
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkExclusiveActionFilter = PreyFunction<void(ArkExclusiveActionFilter *const _this)>(0x115ED10);
 	static inline auto FBitNotArkExclusiveActionFilter = PreyFunction<void(ArkExclusiveActionFilter *const _this)>(0x115ED60);
 	static inline auto FCreateActionFilter = PreyFunction<void(ArkExclusiveActionFilter *const _this, const char *_pName)>(0x115F440);
@@ -50,47 +55,7 @@ public:
 	static inline auto FBuildFilterList = PreyFunction<void(ArkExclusiveActionFilter *const _this, IActionFilter *_pFilter)>(0x115EFD0);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkExclusiveActionFilter *const _this, EControlScheme _controlScheme)>(0x115F6B0);
 	static inline auto FOnActionMapEvent = PreyFunction<void(ArkExclusiveActionFilter *const _this, SActionMapEvent const &_event)>(0x115F640);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryAction/IActionMapManager.h>
-#include <Prey/CryString/CryName.h>
-#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
-
-enum EControlScheme;
-struct IActionFilter;
-struct SActionMapEvent;
-
-// ArkExclusiveActionFilter
-// Header:  Prey/GameDll/ark/ArkExclusiveActionFilter.h
-class ArkExclusiveActionFilter : public IUIControlSchemeListener, public IActionMapEventListener
-{ // Size=88 (0x58)
-public:
-	bool m_bIgnoreActionMapState;
-	string m_filterName;
-	string m_actionMap;
-	std::vector<CCryName> m_filteredActionIds;
-	std::vector<CCryName> m_allowedActionIds;
-
-	ArkExclusiveActionFilter();
-	virtual ~ArkExclusiveActionFilter();
-	void CreateActionFilter(const char* _pName) { FCreateActionFilter(this, _pName); }
-	void Enable(bool _bEnable) { FEnable(this, _bEnable); }
-	bool Enabled() const { return FEnabled(this); }
-	void SetActionMap(const string& _actionMap) { FSetActionMap(this, _actionMap); }
-	void Filter(const CCryName& _action) { FFilter(this, _action); }
-	void Allow(const CCryName& _action) { FAllow(this, _action); }
-	void BuildFilterList(IActionFilter* _pFilter) { FBuildFilterList(this, _pFilter); }
-	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
-	virtual void OnActionMapEvent(const SActionMapEvent& _event);
-
-#if 0
-	const string& GetActionMap() const;
-	void SetIgnoreActionMapState(bool _arg0_);
-	IActionFilter* GetActionFilter() const;
-#endif
-
+#else
 	static inline auto FArkExclusiveActionFilterOv1 = PreyFunction<void(ArkExclusiveActionFilter* const _this)>(0x11AC440);
 	static inline auto FBitNotArkExclusiveActionFilter = PreyFunction<void(ArkExclusiveActionFilter* const _this)>(0x11AC490);
 	static inline auto FCreateActionFilter = PreyFunction<void(ArkExclusiveActionFilter* const _this, const char* _pName)>(0x11ACB70);
@@ -102,5 +67,5 @@ public:
 	static inline auto FBuildFilterList = PreyFunction<void(ArkExclusiveActionFilter* const _this, IActionFilter* _pFilter)>(0x11AC700);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkExclusiveActionFilter* const _this, const EControlScheme _controlScheme)>(0x11ACDE0);
 	static inline auto FOnActionMapEvent = PreyFunction<void(IActionMapEventListener* const _this, const SActionMapEvent& _event)>(0x11ACD70);
+#endif
 };
-#endif // !MOONCRASH

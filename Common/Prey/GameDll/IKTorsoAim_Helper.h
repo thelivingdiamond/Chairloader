@@ -1,7 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ITransformationPinning.h>
+#include <Prey/CryAction/animation/posemodifier/IKTorsoAim.h>
 
 struct ICharacterInstance;
 
@@ -51,8 +51,14 @@ public:
 	void Init(CIKTorsoAim_Helper::SIKTorsoParams& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCIKTorsoAim_HelperOv2 = PreyFunction<void(CIKTorsoAim_Helper* const _this)>(0x1751E60);
+	static inline auto FEnable = PreyFunction<void(CIKTorsoAim_Helper* const _this, bool snap)>(0x1751ED0);
+	static inline auto FDisable = PreyFunction<void(CIKTorsoAim_Helper* const _this, bool snap)>(0x1751EC0);
+#else
 	static inline auto FCIKTorsoAim_HelperOv2 = PreyFunction<void(CIKTorsoAim_Helper* const _this)>(0x1878A40);
 	static inline auto FEnable = PreyFunction<void(CIKTorsoAim_Helper* const _this, bool snap)>(0x1878AB0);
 	static inline auto FDisable = PreyFunction<void(CIKTorsoAim_Helper* const _this, bool snap)>(0x1878AA0);
+#endif
 };
-#endif // MOONCRASH
+

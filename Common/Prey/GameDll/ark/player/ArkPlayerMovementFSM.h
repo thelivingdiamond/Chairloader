@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 // WARNING: Contains templates
@@ -230,7 +229,7 @@ public:
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/ArkPlayerMovementStates.h>
 #include <Prey/GameDll/ark/player/arkplayergroundstate.h>
-#include <_unknown/ArkPlayerMovementStates__Inactive.h>
+#include <Prey/GameDll/ark/player/ArkPlayerMovementStates_Inactive.h>
 
 namespace ArkPlayerMovementStates
 {
@@ -239,11 +238,16 @@ class Base;
 enum class EStance;
 class XmlNodeRef;
 
+template<typename T = void>
+class ArkPlayerMovementFsmBase_template_;
+
 // ArkPlayerMovementFsmBase_template_<void>
 // Header:  Prey/GameDll/ark/player/ArkPlayerMovementFSM.h
+template<>
 class ArkPlayerMovementFsmBase_template_<void>
 { // Size=1552 (0x610)
 public:
+#if 0 // nested instantiation dump (Size=1 helper); the primary lives in the FSM template
 	// ArkPlayerMovementFsmBase_template_<void>::StateSelector<1>
 	// Header:  Prey/GameDll/ark/player/ArkPlayerMovementFSM.h
 	struct StateSelector<1>
@@ -255,6 +259,7 @@ public:
 		static const ArkPlayerMovementStates::Ground& Get(const ArkPlayerMovementFsmBase_template_<void>& _arg0_);
 	#endif
 	};
+#endif
 
 	using EStateId = EArkPlayerMovementStateId;
 	using BaseStateType = ArkPlayerMovementStates::Base;

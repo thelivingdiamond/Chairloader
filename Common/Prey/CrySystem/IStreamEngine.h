@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // Some excerpts explaining basic ideas behind streaming design here:
@@ -205,11 +204,13 @@ public:
 	//! Pause/resumes any IO active from the streaming engine.
 	virtual void PauseIO(bool bPause) = 0;
 
+#ifndef MOONCRASH
 	//! Is the streaming data available on harddisc for fast streaming
 	virtual bool IsStreamDataOnHDD() const = 0;
 
 	//! Inform streaming engine that the streaming data is available on HDD
 	virtual void SetStreamDataOnHDD(bool bFlag) = 0;
+#endif // !MOONCRASH
 
 	//! Per frame update ofthe streaming engine, synchronous events are dispatched from this function.
 	virtual void Update() = 0;

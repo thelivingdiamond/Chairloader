@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 #include "Prey/ArkEnums.h"
 #include "Prey/CryEntitySystem/IEntity.h"
@@ -24,6 +23,7 @@ class IGamePhysicsSettings;
 class IArkGlooIslandNavLinkManager;
 class IArkResponseManager;
 class IArkNpc;
+class IArkDoomClockManager;
 struct SActionEvent;
 struct SRenderingPassInfo;
 struct IAntiCheatManager;
@@ -114,7 +114,9 @@ public:
 	};
 	virtual ~IGame() = 0;
 	virtual bool Init(IGameFramework*) = 0;
+#ifndef MOONCRASH
 	virtual void InitEditor(IGameToEditorInterface*) = 0;
+#endif
 	virtual void GetMemoryStatistics(ICrySizer*) = 0;
 	virtual bool CompleteInit() = 0;
 	virtual void Shutdown() = 0;
@@ -155,6 +157,9 @@ public:
 	virtual void RegisterGameFlowNodes() = 0;
 	virtual IGamePhysicsSettings* GetIGamePhysicsSettings() = 0;
 	virtual void* GetGameInterface() = 0;
+#ifdef MOONCRASH
+	virtual IArkDoomClockManager& GetIArkDoomClockManager() const = 0;
+#endif
 	virtual IArkDoor* GetIArkDoorSafe(unsigned int) = 0;
 	virtual IArkEncounterManager* GetIArkEncounterManager() = 0;
 	virtual IArkFactionManager* GetIArkFactionManager() = 0;
@@ -169,6 +174,10 @@ public:
 	virtual IArkGlooIslandNavLinkManager* GetIArkGlooIslandNavLinkManager() = 0;
 	virtual IArkNpc* SafeGetIArkNpc(unsigned int) = 0;
 	virtual void AddArkGameNoise(const unsigned int, const Vec3_tpl<float>*, const unsigned __int64, const unsigned __int64) = 0;
+#ifdef MOONCRASH
+	virtual void TryAddArkSeismicEffectAtLocation(unsigned _emitterEntityId, const Vec3& _position, float _magnitude) const = 0;
+	virtual void AddArkSeismicEvent(unsigned _emitterEntityId, const Vec3& _position, float _magnitude) const = 0;
+#endif
 	virtual void ResetGameState() = 0;
 	virtual void OnLevelToLevelTransition() = 0;
 	virtual void OnLevelTransitionFinished() = 0;
@@ -185,6 +194,9 @@ public:
 	virtual void OnSaveDeletedBySystem() = 0;
 	virtual void RequestDisconnect(EArkLoadDisconnectReason) = 0;
 	virtual EArkLoadDisconnectReason GetDisconnectReason() = 0;
+#ifdef MOONCRASH
+	virtual void CheckSaveStatusOnReturnToMainMenu() const = 0;
+#endif
 	virtual void RequestPause(const bool) = 0;
 	virtual void DebugDraw() = 0;
 	virtual unsigned int GetExclusiveControllerDeviceIndex() = 0;

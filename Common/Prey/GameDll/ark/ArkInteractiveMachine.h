@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -88,7 +87,7 @@ public:
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
 #include <Prey/GameDll/ark/perception/ArkGameNoise.h>
 #include <Prey/GameDll/ark/worldui/ArkInteractiveScreen.h>
-#include <_unknown/ArkInteractiveMachinePerceivable.h>
+#include <Prey/GameDll/ark/arkinteractiveobject.h>
 
 struct IEntity;
 struct IGameObject;

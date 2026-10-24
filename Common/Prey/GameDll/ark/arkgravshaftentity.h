@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -10,7 +9,7 @@
 #include <Prey/CryNetwork/ISerialize.h>
 //#include <Prey/CryParticleSystem/IParticles.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-//#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+//#include <Prey/ArkStubs.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/iface/IArkGravShaft.h>
 #include <Prey/GameDll/ark/iface/IArkLightListener.h>
@@ -254,19 +253,19 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryParticleSystem/IParticles.h>
 #include <Prey/GameDll/ark/ArkRepairable.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/ai/ArkOffMeshLinkHelper.h>
+#include <Prey/ArkStubs.h>
 #include <Prey/GameDll/ark/iface/IArkGravShaft.h>
 #include <Prey/GameDll/ark/iface/IArkLightListener.h>
 #include <Prey/GameDll/ark/iface/IArkRepairableListener.h>
 #include <Prey/GameDll/ark/player/IArkPlayerHealthListener.h>
-#include <_unknown/TNavigationID.h>
+#include <Prey/ArkStubs.h>
 
 enum EEntityAspects;
 class ICrySizer;
@@ -391,8 +390,8 @@ public:
 	virtual IArkGravShaft::EntityState GetEntityState(unsigned _id) const;
 	virtual bool WaitToEnter(unsigned _id) const;
 	virtual void SetWaiting(unsigned _id, bool _bWaiting);
-	virtual bool GetLinkPositionEnter(TNavigationID<1> _navAgentTypeId, Vec3& _enterPos) const;
-	virtual bool GetLinkPositionExit(TNavigationID<1> _navAgentTypeId, Vec3& _exitPos) const;
+	virtual bool GetLinkPositionEnter(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3& _enterPos) const;
+	virtual bool GetLinkPositionExit(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3& _exitPos) const;
 	virtual Vec3 GetEnterDirection() const;
 	virtual Vec3 GetExitDirection() const;
 	virtual float GetTravelDirection() const;
@@ -418,14 +417,14 @@ public:
 	void InitializePlayerMovementState() const { FInitializePlayerMovementState(this); }
 	void ClearLinks() { FClearLinks(this); }
 	void RebuildLinks() { FRebuildLinks(this); }
-	std::tuple<Vec3_tpl<float>,Vec3_tpl<float> > CalculateLinkPositions(TNavigationID<1> _navAgentID) const { alignas(std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >) std::byte _return_buf_[sizeof(std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >)]; return *FCalculateLinkPositions(this, reinterpret_cast<std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >*>(_return_buf_), _navAgentID); }
+	std::tuple<Vec3_tpl<float>,Vec3_tpl<float> > CalculateLinkPositions(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID) const { alignas(std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >) std::byte _return_buf_[sizeof(std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >)]; return *FCalculateLinkPositions(this, reinterpret_cast<std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >*>(_return_buf_), _navAgentID); }
 	void OnNavMeshChange() { FOnNavMeshChange(this); }
 	void EnablePlayerNightmareAvoidanceField(bool _bEnable) { FEnablePlayerNightmareAvoidanceField(this, _bEnable); }
 	void ExecuteLuaEvent(const char* _pEventName, const IEntity* const _pContainedEntity) const { FExecuteLuaEvent(this, _pEventName, _pContainedEntity); }
 	virtual void OnBrokenChanged(bool _bBroken, bool _bWasForced);
 	Vec3 GetHeightTestPos(IEntity* pEntity, const Vec3& _position) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetHeightTestPos(this, reinterpret_cast<Vec3*>(_return_buf_), pEntity, _position); }
 	void SetDisrupted(const bool _bDisrupted) { FSetDisrupted(this, _bDisrupted); }
-	void UpdateFloorPos(TNavigationID<1> _navAgentId, Vec3& _pos) const { FUpdateFloorPos(this, _navAgentId, _pos); }
+	void UpdateFloorPos(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, Vec3& _pos) const { FUpdateFloorPos(this, _navAgentId, _pos); }
 	bool StartUsing(CArkGravShaftEntity::ArkContainedEntity& _containedEntity) { return FStartUsing(this, _containedEntity); }
 	void StopUsing(CArkGravShaftEntity::ArkContainedEntity& _containedEntity) { FStopUsing(this, _containedEntity); }
 	void EnableLinkedLights(const bool _bEnable) const { FEnableLinkedLights(this, _bEnable); }
@@ -481,8 +480,8 @@ public:
 	static inline auto FGetEntityState = PreyFunction<IArkGravShaft::EntityState(const IArkGravShaft* const _this, unsigned _id)>(0x154F970);
 	static inline auto FWaitToEnter = PreyFunction<bool(const IArkGravShaft* const _this, unsigned _id)>(0x15555B0);
 	static inline auto FSetWaiting = PreyFunction<void(IArkGravShaft* const _this, unsigned _id, bool _bWaiting)>(0x1554420);
-	static inline auto FGetLinkPositionEnter = PreyFunction<bool(const IArkGravShaft* const _this, TNavigationID<1> _navAgentTypeId, Vec3& _enterPos)>(0x154FC60);
-	static inline auto FGetLinkPositionExit = PreyFunction<bool(const IArkGravShaft* const _this, TNavigationID<1> _navAgentTypeId, Vec3& _exitPos)>(0x154FDB0);
+	static inline auto FGetLinkPositionEnter = PreyFunction<bool(const IArkGravShaft* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3& _enterPos)>(0x154FC60);
+	static inline auto FGetLinkPositionExit = PreyFunction<bool(const IArkGravShaft* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentTypeId, Vec3& _exitPos)>(0x154FDB0);
 	static inline auto FGetEnterDirection = PreyFunction<Vec3*(const IArkGravShaft* const _this, Vec3* _return_value_)>(0x154F950);
 	static inline auto FGetExitDirection = PreyFunction<Vec3*(const IArkGravShaft* const _this, Vec3* _return_value_)>(0x154FB90);
 	static inline auto FGetTravelDirection = PreyFunction<float(const IArkGravShaft* const _this)>(0x154FF30);
@@ -508,14 +507,14 @@ public:
 	static inline auto FInitializePlayerMovementState = PreyFunction<void(const CArkGravShaftEntity* const _this)>(0x1551FC0);
 	static inline auto FClearLinks = PreyFunction<void(CArkGravShaftEntity* const _this)>(0x154F170);
 	static inline auto FRebuildLinks = PreyFunction<void(CArkGravShaftEntity* const _this)>(0x15537C0);
-	static inline auto FCalculateLinkPositions = PreyFunction<std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >*(const CArkGravShaftEntity* const _this, std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >* _return_value_, TNavigationID<1> _navAgentID)>(0x154E9C0);
+	static inline auto FCalculateLinkPositions = PreyFunction<std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >*(const CArkGravShaftEntity* const _this, std::tuple<Vec3_tpl<float>,Vec3_tpl<float> >* _return_value_, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentID)>(0x154E9C0);
 	static inline auto FOnNavMeshChange = PreyFunction<void(CArkGravShaftEntity* const _this)>(0x1552270);
 	static inline auto FEnablePlayerNightmareAvoidanceField = PreyFunction<void(CArkGravShaftEntity* const _this, bool _bEnable)>(0x154F500);
 	static inline auto FExecuteLuaEvent = PreyFunction<void(const CArkGravShaftEntity* const _this, const char* _pEventName, const IEntity* const _pContainedEntity)>(0x154F630);
 	static inline auto FOnBrokenChanged = PreyFunction<void(IArkRepairableListener* const _this, bool _bBroken, bool _bWasForced)>(0x1552240);
 	static inline auto FGetHeightTestPos = PreyFunction<Vec3*(const CArkGravShaftEntity* const _this, Vec3* _return_value_, IEntity* pEntity, const Vec3& _position)>(0x154FBB0);
 	static inline auto FSetDisrupted = PreyFunction<void(CArkGravShaftEntity* const _this, const bool _bDisrupted)>(0x15542B0);
-	static inline auto FUpdateFloorPos = PreyFunction<void(const CArkGravShaftEntity* const _this, TNavigationID<1> _navAgentId, Vec3& _pos)>(0x1555340);
+	static inline auto FUpdateFloorPos = PreyFunction<void(const CArkGravShaftEntity* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, Vec3& _pos)>(0x1555340);
 	static inline auto FStartUsing = PreyFunction<bool(CArkGravShaftEntity* const _this, CArkGravShaftEntity::ArkContainedEntity& _containedEntity)>(0x15547D0);
 	static inline auto FStopUsing = PreyFunction<void(CArkGravShaftEntity* const _this, CArkGravShaftEntity::ArkContainedEntity& _containedEntity)>(0x15548C0);
 	static inline auto FEnableLinkedLights = PreyFunction<void(const CArkGravShaftEntity* const _this, const bool _bEnable)>(0x154F3E0);

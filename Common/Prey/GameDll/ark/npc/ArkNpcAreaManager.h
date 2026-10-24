@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/CryMath/Cry_Geo.h>
-#include <_unknown/TNavigationID.h>
+#include <Prey/ArkStubs.h>
 
 class ArkNpc;
 class CArkAreaContainer;
@@ -58,25 +56,46 @@ public:
 	unsigned GetFirstAreaIn(const ArkNpc& _npc) const { return FGetFirstAreaIn(this, _npc); }
 	unsigned GetAreasInRadius(const Vec3& _pos, float _radius, unsigned* _pOutAreas, unsigned _maxAreasCount) const { return FGetAreasInRadius(this, _pos, _radius, _pOutAreas, _maxAreasCount); }
 	float GetArea2DArea(unsigned _areaEntityId) const { return FGetArea2DArea(this, _areaEntityId); }
-	unsigned GetAreaNavPoints(unsigned _areaEntityId, TNavigationID<1> _navAgentId, bool _excludeBoundaryPoints, const Vec3* & _pOutPoints) const { return FGetAreaNavPoints(this, _areaEntityId, _navAgentId, _excludeBoundaryPoints, _pOutPoints); }
+	unsigned GetAreaNavPoints(unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, bool _excludeBoundaryPoints, const Vec3* & _pOutPoints) const { return FGetAreaNavPoints(this, _areaEntityId, _navAgentId, _excludeBoundaryPoints, _pOutPoints); }
 	void OnNpcDone(ArkNpc& _npc) { FOnNpcDone(this, _npc); }
 	int GetNumCystoidsInArea(unsigned _areaEntityId) const { return FGetNumCystoidsInArea(this, _areaEntityId); }
 	void PrecacheAllRoomVolumes() { FPrecacheAllRoomVolumes(this); }
 	void PrecacheArea(IEntity& _areaEntity, IEntityAreaProxy& _area) { FPrecacheArea(this, _areaEntity, _area); }
 	virtual void OnAreaManagerEvent(EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea);
 	const ArkNpcAreaManager::AreaInfo* GetAreaInfo(const unsigned _areaEntityId) const { return FGetAreaInfo(this, _areaEntityId); }
-	void CalculateAreaNavPoints(unsigned _areaEntityId, TNavigationID<1> _navAgentId, ArkNpcAreaManager::AreaInfo& _areaInfo) { FCalculateAreaNavPoints(this, _areaEntityId, _navAgentId, _areaInfo); }
-	int GetNavigationAgentTypeIdIndex(TNavigationID<1> _navAgentId) const { return FGetNavigationAgentTypeIdIndex(this, _navAgentId); }
+	void CalculateAreaNavPoints(unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, ArkNpcAreaManager::AreaInfo& _areaInfo) { FCalculateAreaNavPoints(this, _areaEntityId, _navAgentId, _areaInfo); }
+	int GetNavigationAgentTypeIdIndex(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId) const { return FGetNavigationAgentTypeIdIndex(this, _navAgentId); }
 
 #if 0
 	ArkNpcAreaManager(const ArkNpcAreaManager& _arg0_);
 	unsigned GetAreasInAABB(const AABB& _arg0_, unsigned* _arg1_, unsigned _arg2_) const;
 	const AABB* GetAreaAABB(unsigned _arg0_) const;
 	const std::vector<unsigned int>* GetNpcsInArea(unsigned _arg0_) const;
-	unsigned GetAllNavPoints(TNavigationID<1> _arg0_, const Vec3* & _arg1_) const;
+	unsigned GetAllNavPoints(TNavigationID<ENavigationIDTag::AgentTypeIDTag> _arg0_, const Vec3* & _arg1_) const;
 	ArkNpcAreaManager& operator=(const ArkNpcAreaManager& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcAreaManagerOv1 = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x144BCC0);
+	static inline auto FReset = PreyFunction<void(ArkNpcAreaManager* const _this, bool _bEnteringGameMode)>(0x144DF40);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcAreaManager* const _this, float _dt)>(0xA13080);
+	static inline auto FOnLevelLoadEnd = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x144D960);
+	static inline auto FOnLevelUnload = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x144D9A0);
+	static inline auto FCacheAreasInContainer = PreyFunction<void(ArkNpcAreaManager* const _this, CArkAreaContainer& _areaContainer)>(0x144BFF0);
+	static inline auto FIsInArea = PreyFunction<bool(const ArkNpcAreaManager* const _this, const ArkNpc& _npc, unsigned _areaEntityId)>(0x144D550);
+	static inline auto FGetFirstAreaIn = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, const ArkNpc& _npc)>(0x144D390);
+	static inline auto FGetAreasInRadius = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, const Vec3& _pos, float _radius, unsigned* _pOutAreas, unsigned _maxAreasCount)>(0x144D280);
+	static inline auto FGetArea2DArea = PreyFunction<float(const ArkNpcAreaManager* const _this, unsigned _areaEntityId)>(0x144D040);
+	static inline auto FGetAreaNavPoints = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, bool _excludeBoundaryPoints, const Vec3* & _pOutPoints)>(0x144D130);
+	static inline auto FOnNpcDone = PreyFunction<void(ArkNpcAreaManager* const _this, ArkNpc& _npc)>(0x144D9D0);
+	static inline auto FGetNumCystoidsInArea = PreyFunction<int(const ArkNpcAreaManager* const _this, unsigned _areaEntityId)>(0x144D530);
+	static inline auto FPrecacheAllRoomVolumes = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x144DAA0);
+	static inline auto FPrecacheArea = PreyFunction<void(ArkNpcAreaManager* const _this, IEntity& _areaEntity, IEntityAreaProxy& _area)>(0x144DD00);
+	static inline auto FOnAreaManagerEvent = PreyFunction<void(ArkNpcAreaManager* const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea)>(0x144D640);
+	static inline auto FGetAreaInfo = PreyFunction<const ArkNpcAreaManager::AreaInfo* (const ArkNpcAreaManager* const _this, const unsigned _areaEntityId)>(0x144D070);
+	static inline auto FCalculateAreaNavPoints = PreyFunction<void(ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, ArkNpcAreaManager::AreaInfo& _areaInfo)>(0x144CAD0);
+	static inline auto FGetNavigationAgentTypeIdIndex = PreyFunction<int(const ArkNpcAreaManager* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId)>(0x144D4B0);
+#else
 	static inline auto FArkNpcAreaManagerOv1 = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x15614F0);
 	static inline auto FReset = PreyFunction<void(ArkNpcAreaManager* const _this, bool _bEnteringGameMode)>(0x1563770);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcAreaManager* const _this, float _dt)>(0x1333E90);
@@ -87,14 +106,15 @@ public:
 	static inline auto FGetFirstAreaIn = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, const ArkNpc& _npc)>(0x1562BC0);
 	static inline auto FGetAreasInRadius = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, const Vec3& _pos, float _radius, unsigned* _pOutAreas, unsigned _maxAreasCount)>(0x1562AB0);
 	static inline auto FGetArea2DArea = PreyFunction<float(const ArkNpcAreaManager* const _this, unsigned _areaEntityId)>(0x1562870);
-	static inline auto FGetAreaNavPoints = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<1> _navAgentId, bool _excludeBoundaryPoints, const Vec3* & _pOutPoints)>(0x1562960);
+	static inline auto FGetAreaNavPoints = PreyFunction<unsigned(const ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, bool _excludeBoundaryPoints, const Vec3* & _pOutPoints)>(0x1562960);
 	static inline auto FOnNpcDone = PreyFunction<void(ArkNpcAreaManager* const _this, ArkNpc& _npc)>(0x1563200);
 	static inline auto FGetNumCystoidsInArea = PreyFunction<int(const ArkNpcAreaManager* const _this, unsigned _areaEntityId)>(0x1562D60);
 	static inline auto FPrecacheAllRoomVolumes = PreyFunction<void(ArkNpcAreaManager* const _this)>(0x15632D0);
 	static inline auto FPrecacheArea = PreyFunction<void(ArkNpcAreaManager* const _this, IEntity& _areaEntity, IEntityAreaProxy& _area)>(0x1563530);
 	static inline auto FOnAreaManagerEvent = PreyFunction<void(ArkNpcAreaManager* const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea)>(0x1562E70);
 	static inline auto FGetAreaInfo = PreyFunction<const ArkNpcAreaManager::AreaInfo* (const ArkNpcAreaManager* const _this, const unsigned _areaEntityId)>(0x15628A0);
-	static inline auto FCalculateAreaNavPoints = PreyFunction<void(ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<1> _navAgentId, ArkNpcAreaManager::AreaInfo& _areaInfo)>(0x1562300);
-	static inline auto FGetNavigationAgentTypeIdIndex = PreyFunction<int(const ArkNpcAreaManager* const _this, TNavigationID<1> _navAgentId)>(0x1562CE0);
+	static inline auto FCalculateAreaNavPoints = PreyFunction<void(ArkNpcAreaManager* const _this, unsigned _areaEntityId, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId, ArkNpcAreaManager::AreaInfo& _areaInfo)>(0x1562300);
+	static inline auto FGetNavigationAgentTypeIdIndex = PreyFunction<int(const ArkNpcAreaManager* const _this, TNavigationID<ENavigationIDTag::AgentTypeIDTag> _navAgentId)>(0x1562CE0);
+#endif
 };
-#endif // MOONCRASH
+

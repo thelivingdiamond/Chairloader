@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -35,6 +33,7 @@ public:
 	void SetLoaded(const uint64_t _id, const bool _bLoaded) { FSetLoaded(this,_id,_bLoaded); }
 	ArkLocationManager::LocationInfo const *GetAlternateNameInfo(const uint64_t _id) const { return FGetAlternateNameInfo(this,_id); }
 	
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkLocationManager *const _this)>(0x11983D0);
 	static inline auto FSerialize = PreyFunction<void(ArkLocationManager *const _this, TSerialize ser)>(0x11983E0);
 	static inline auto FGetLocationLabel = PreyFunction<const char *(ArkLocationManager const *const _this, uint64_t _id)>(0x11981C0);
@@ -46,44 +45,7 @@ public:
 	static inline auto FHasLoaded = PreyFunction<bool(ArkLocationManager const *const _this, const uint64_t _id)>(0x1198230);
 	static inline auto FSetLoaded = PreyFunction<void(ArkLocationManager *const _this, const uint64_t _id, const bool _bLoaded)>(0x1198750);
 	static inline auto FGetAlternateNameInfo = PreyFunction<ArkLocationManager::LocationInfo const *(ArkLocationManager const *const _this, const uint64_t _id)>(0x1197ED0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/CryNetwork/ISerialize.h>
-
-// ArkLocationManager
-// Header:  Prey/GameDll/ark/ArkLocationManager.h
-class ArkLocationManager
-{ // Size=88 (0x58)
-public:
-	// ArkLocationManager::LocationInfo
-	// Header:  Prey/GameDll/ark/ArkLocationManager.h
-	struct LocationInfo
-	{ // Size=16 (0x10)
-		string label;
-		string screenshotPath;
-
-	#if 0
-		void Serialize(TSerialize _arg0_);
-	#endif
-	};
-
-	std::unordered_map<uint64_t, ArkLocationManager::LocationInfo> m_alternateNames;
-	std::vector<uint64_t> m_loaded;
-
-	void Reset() { FReset(this); }
-	void Serialize(TSerialize ser) { FSerialize(this, ser); }
-	const char* GetLocationLabel(uint64_t _id) const { return FGetLocationLabel(this, _id); }
-	const char* GetCurrentLocationLabel() const { return FGetCurrentLocationLabel(this); }
-	const char* GetCurrentLocationScreenshotPath() const { return FGetCurrentLocationScreenshotPath(this); }
-	uint64_t GetCurrentLocation() const { return FGetCurrentLocation(this); }
-	void SetAlternateName(const uint64_t _id, const char* _altName, const char* _screenshotPath) { FSetAlternateName(this, _id, _altName, _screenshotPath); }
-	void RemoveAlternateName(const uint64_t _id) { FRemoveAlternateName(this, _id); }
-	bool HasLoaded(const uint64_t _id) const { return FHasLoaded(this, _id); }
-	void SetLoaded(const uint64_t _id, const bool _bLoaded) { FSetLoaded(this, _id, _bLoaded); }
-	const ArkLocationManager::LocationInfo* GetAlternateNameInfo(const uint64_t _id) const { return FGetAlternateNameInfo(this, _id); }
-
+#else
 	static inline auto FReset = PreyFunction<void(ArkLocationManager* const _this)>(0x1214590);
 	static inline auto FSerialize = PreyFunction<void(ArkLocationManager* const _this, TSerialize ser)>(0x12145A0);
 	static inline auto FGetLocationLabel = PreyFunction<const char* (const ArkLocationManager* const _this, uint64_t _id)>(0x1214380);
@@ -95,5 +57,5 @@ public:
 	static inline auto FHasLoaded = PreyFunction<bool(const ArkLocationManager* const _this, const uint64_t _id)>(0x12143F0);
 	static inline auto FSetLoaded = PreyFunction<void(ArkLocationManager* const _this, const uint64_t _id, const bool _bLoaded)>(0x1214910);
 	static inline auto FGetAlternateNameInfo = PreyFunction<const ArkLocationManager::LocationInfo* (const ArkLocationManager* const _this, const uint64_t _id)>(0x1214000);
+#endif
 };
-#endif // !MOONCRASH

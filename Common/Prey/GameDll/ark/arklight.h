@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -18,6 +16,11 @@ struct ArkInteractionInfo;
 class ArkLightDisruptionProfile;
 struct ArkLightManagerLightData;
 class ArkSafeScriptTable;
+#ifdef MOONCRASH
+#include <Prey/CryRenderer/IShader.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+#endif
 namespace ArkSignalSystem
 {
 class Package;
@@ -47,9 +50,15 @@ public:
 	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this, _bRegister); }
 	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this, _id); }
 
+#ifndef MOONCRASH
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, ArkSignalSystem::Package const& _package)>(0x1445C40);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x1446A20);
 	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x1447A90);
+#else
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x155B370);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x155C150);
+	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x155D1C0);
+#endif
 };
 
 // Header: FromCpp
@@ -223,7 +232,9 @@ public:
 	void SetEmpTargetInfluence(const float _value) { FSetEmpTargetInfluence(this,_value); }
 	void SetHealth_Internal(const float _value) { FSetHealth_Internal(this,_value); }
 	void SetLightStyle(const int _lightIndex, const uint8_t _style) { FSetLightStyle(this,_lightIndex,_style); }
+#ifndef MOONCRASH
 	void SetInterferenceState(EArkLightInterferenceState _interferenceState) { FSetInterferenceState(this,_interferenceState); }
+#endif
 	void SetMoved(CArkLight::EMovementResponse _response, bool _bFromLink) { FSetMoved(this,_response,_bFromLink); }
 	void PopulateInteractionForCarry(ArkInteractionInfo &_interactionInfo) const { FPopulateInteractionForCarry(this,_interactionInfo); }
 	
@@ -248,6 +259,7 @@ public:
 	void SetNeedsDisableShadows(const bool arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkLight *const _this, IGameObject *_pGameObject)>(0x1444F20);
 	static inline auto FPostInit = PreyFunction<void(CArkLight *const _this, IGameObject *_pGameObject)>(0x14461B0);
 	static inline auto FRelease = PreyFunction<void(CArkLight *const _this)>(0xA97D40);
@@ -307,264 +319,7 @@ public:
 	static inline auto FSetInterferenceState = PreyFunction<void(CArkLight *const _this, EArkLightInterferenceState _interferenceState)>(0x1447040);
 	static inline auto FSetMoved = PreyFunction<void(CArkLight *const _this, CArkLight::EMovementResponse _response, bool _bFromLink)>(0x1447380);
 	static inline auto FPopulateInteractionForCarry = PreyFunction<void(CArkLight const *const _this, ArkInteractionInfo &_interactionInfo)>(0x1446080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <CryEngine/crycommon/ishader.h>
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/GameDll/ark/ArkDisruptable.h>
-#include <Prey/GameDll/ark/ArkEmissiveComponent.h>
-#include <Prey/GameDll/ark/ArkInteractionInfo.h>
-#include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/arkeffectutils.h>
-#include <Prey/GameDll/ark/iface/IArkDisruptableListener.h>
-#include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
-#include <Prey/GameDll/ark/signalsystem/arksignalreceiver.h>
-#include <_unknown/CArkGameObjectExtension.h>
-
-class ArkLightDisruptionProfile;
-struct ArkLightManagerLightData;
-class ArkSafeScriptTable;
-namespace ArkSignalSystem
-{
-class Package;
-} // namespace ArkSignalSystem
-class CArkLight;
-struct IArkLightListener;
-class ICrySizer;
-struct IEntity;
-struct IEntityRenderProxy;
-struct IGameObject;
-struct IMaterial;
-struct SEntityEvent;
-struct SEntityUpdateContext;
-struct SGameObjectEvent;
-
-// ArkLightSignalReceiver
-// Header:  Prey/GameDll/ark/ArkLight.h
-class ArkLightSignalReceiver : public ArkSignalSystem::Receiver
-{ // Size=32 (0x20)
-public:
-	CArkLight* m_pLight;
-	uint64_t m_signalGroupId;
-
-	virtual ~ArkLightSignalReceiver();
-	virtual void OnReceiveSignal(const ArkSignalSystem::Package& _package);
-	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this, _bRegister); }
-	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this, _id); }
-
-#if 0
-	ArkLightSignalReceiver(CArkLight* _arg0_);
-#endif
-
-	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x155B370);
-	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x155C150);
-	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x155D1C0);
-};
-
-// CArkLight
-// Header:  Prey/GameDll/ark/ArkLight.h
-class CArkLight
-	: public CArkGameObjectExtension<CArkLight>
-	, public IArkDisruptableListener
-	, public IArkPlayerInteractionListener
-{ // Size=3136 (0xC40)
-public:
-	enum class EConstants
-	{
-		k_MaxLights = 2,
-	};
-
-	enum class EMovementResponse : uint8_t
-	{
-		disableLights = 0,
-		disableShadows = 1,
-		nothing = 2,
-	};
-
-	enum class EUpdateSlots
-	{
-		k_DisruptionUpdateSlot = 0,
-		k_LightAnimUpdateSlot = 1,
-		k_LightVisualUpdateSlot = 2,
-	};
-
-	enum class ESlots
-	{
-		k_ModelSlot = 0,
-		k_Light1Slot = 1,
-		k_Light2Slot = 2,
-		k_EmpLightSlot = 3,
-		k_DisruptionVfxSlot = 4,
-		k_InterferenceVfxSlot = 5,
-		k_BreakVfxSlot = 6,
-		k_EnabledVfxSlot = 7,
-	};
-
-	// CArkLight::LightData
-	// Header:  Prey/GameDll/ark/ArkLight.h
-	struct LightData
-	{ // Size=712 (0x2C8)
-		bool m_bEnabled;
-		bool m_bIgnoreGeomCaster;
-		bool m_bProjectEmissive;
-		bool m_bShadowCaster;
-		uint8_t m_nLightStyleProperty;
-		uint8_t m_nLightStyle;
-		uint8_t m_nLightStylePhase;
-		uint8_t m_nLightStyleAnimSpeed;
-		float m_fDiffuseMultiplier;
-		Vec3 m_cDiffuseColor;
-		Vec3 m_cAnimColor;
-		const char* m_szProjectorTexture;
-		Matrix34 m_localTM;
-		CDLight m_engineLight;
-	};
-
-	// CArkLight::EmpLightData
-	// Header:  Prey/GameDll/ark/ArkLight.h
-	struct EmpLightData
-	{ // Size=640 (0x280)
-		bool m_bEnabled;
-		float m_fMaxRadius;
-		Vec3 m_offset;
-		CDLight m_engineLight;
-	};
-
-	ArkLightSignalReceiver m_signalReceiver;
-	float m_fBrightness;
-	float m_fTimeBrightness;
-	float m_fVisualEmpInfluence;
-	float m_fVisualEmpBrightness;
-	ArkEmissiveComponent m_emissiveComponent;
-	bool m_bWasMoved;
-	bool m_bLightsDisabledFromMovement;
-	bool m_bNeedUpdateVisuals;
-	bool m_bNeedDisableShadows;
-	bool m_bRecursing;
-	ArkDisruptable m_disruptable;
-	float m_empBrightness;
-	float m_empTargetBrightness;
-	float m_empInfluence;
-	float m_empTargetInfluence;
-	float m_empRandomBurstTimer;
-	bool m_bLinkedToWorldUI;
-	std::vector<IArkLightListener*> m_listeners;
-	float m_health;
-	float m_maxHealth;
-	CArkLight::LightData m_lights[2];
-	CArkLight::EmpLightData m_empLight;
-	bool m_bHasModel;
-	bool m_bHasLights;
-	bool m_bHasLightAnimation;
-	bool m_bHasTimeControls;
-	bool m_bForceDisableAffectsThisAreaOnly;
-	bool m_bIsCarryable;
-	Vec3 m_vOrigPosition;
-	CArkLight::EMovementResponse m_movementResponse;
-	const ArkLightDisruptionProfile* m_pLightDisruptionProfile;
-	float m_empBrightnessChangeSpeed;
-	float m_empInfluenceChangeSpeed;
-	EArkLightInterferenceState m_interferenceState;
-	ArkRandomizedAutoResetTimer m_interferenceRampIn;
-	ArkRandomizedAutoResetTimer m_interferenceBright;
-	ArkRandomizedAutoResetTimer m_interferenceRampOut;
-	ArkRandomizedAutoResetTimer m_interferenceDarkness;
-	ArkAudioTrigger m_empDisruptionStartTrigger;
-	ArkAudioTrigger m_empDisruptionStopTrigger;
-	Vec3 m_empEffectPositionOffset;
-	Vec3 m_empEffectRotationOffset;
-	ArkAudioTrigger m_breakableDestroySound;
-	ArkEntityEffect m_disruptionEffect;
-	ArkFireAndForgetEffect m_intereferenceEffect;
-	ArkEntityEffect m_breakEffect;
-	ArkEntityEffect m_enabledEffect;
-	ArkFireAndForgetEffect m_movementResponseEffect;
-
-	CArkLight();
-	virtual ~CArkLight();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void Release();
-	virtual void PostSerialize();
-	virtual void Update(SEntityUpdateContext& _ctx, int _updateSlot);
-	virtual void HandleEvent(const SGameObjectEvent& _event);
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void GetMemoryUsage(ICrySizer* _pS) const;
-	void SetPowered(bool _bPowered) { FSetPowered(this, _bPowered); }
-	void RegisterListener(IArkLightListener& _listener) { FRegisterListener(this, _listener); }
-	void UnregisterListener(IArkLightListener& _listener) { FUnregisterListener(this, _listener); }
-	void SetDiffuseColor(const Vec3& _color, int _lightIndex, bool _bForce) { FSetDiffuseColorOv1(this, _color, _lightIndex, _bForce); }
-	void SetDiffuseColor(const int _lightIndex, const Vec3 _color) { FSetDiffuseColorOv0(this, _lightIndex, _color); }
-	void SetBrightness(float _fBrightness, bool _bForce) { FSetBrightness(this, _fBrightness, _bForce); }
-	void SetTimeBrightness(float _fTimeBrightness, bool _bForce) { FSetTimeBrightness(this, _fTimeBrightness, _bForce); }
-	void SetVisualEmpInfluence(float _fEmpInfluence, bool _bForce) { FSetVisualEmpInfluence(this, _fEmpInfluence, _bForce); }
-	void SetVisualEmpBrightness(float _fEmpBrightness, bool _bForce) { FSetVisualEmpBrightness(this, _fEmpBrightness, _bForce); }
-	void ForceDisableAffectsThisAreaOnly() { FForceDisableAffectsThisAreaOnly(this); }
-	void ApplySerializedData(const ArkLightManagerLightData& _data) { FApplySerializedData(this, _data); }
-	void ProcessScriptEvent(const char* _szEventName) { FProcessScriptEvent(this, _szEventName); }
-	void ParseLightStyleData(const int _index, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FParseLightStyleData(this, _index, _props, _instProps); }
-	void ParseLightShapeParams(CArkLight::LightData& _lightData, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FParseLightShapeParams(this, _lightData, _props, _instProps); }
-	void ParseLightParams(CArkLight::LightData& _lightData, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FParseLightParams(this, _lightData, _props, _instProps); }
-	void LoadCachedProperties_Audio(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Audio(this, _props, _instProps); }
-	void LoadCachedProperties_Particles(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Particles(this, _props, _instProps); }
-	void LoadCachedProperties_Disruption(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Disruption(this, _props, _instProps); }
-	void LoadCachedProperties_Lights(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Lights(this, _props, _instProps); }
-	void LoadCachedProperties_Breakable(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Breakable(this, _props, _instProps); }
-	void LoadCachedProperties_Time(const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps) { FLoadCachedProperties_Time(this, _props, _instProps); }
-	void LoadCachedProperties() { FLoadCachedProperties(this); }
-	void Shutdown() { FShutdown(this); }
-	void Startup() { FStartup(this); }
-	void CacheLightSlots() { FCacheLightSlots(this); }
-	void SetupLightSlots() { FSetupLightSlots(this); }
-	void SetupModel(const bool _bPhysicalize) { FSetupModel(this, _bPhysicalize); }
-	void OnMaterialChanged(IMaterial* _pNewMaterial) { FOnMaterialChanged(this, _pNewMaterial); }
-	void QueueUpdateVisuals() { FQueueUpdateVisuals(this); }
-	void OnDisruptStart() { FOnDisruptStart(this); }
-	void InterferenceMaxBrightnessEffects() { FInterferenceMaxBrightnessEffects(this); }
-	void UpdateDisruption(float _dt) { FUpdateDisruption(this, _dt); }
-	void UpdateVisuals() { FUpdateVisuals(this); }
-	virtual void OnDisruptedChanged(bool _bDisrupted, bool _bWasForced);
-	virtual void OnInterferenceChanged(bool _bInterfered);
-	virtual QuatT GetSparkLoc() const;
-	virtual bool AffectedByDisruption() const;
-	virtual void OnDisruptAccumulationValueChanged(const float _value) const;
-	virtual void OnInterferenceAccumulationValueChanged(const float _value) const;
-	virtual void OnSparkTimerChanged(const float _value) const;
-	virtual bool PopulateInteractionInfo(const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray) const;
-	virtual bool PopulateRemoteManipulationInteraction(const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo) const;
-	void SetEmpBrightness(const float _value) { FSetEmpBrightness(this, _value); }
-	void SetEmpTargetBrightness(const float _value) { FSetEmpTargetBrightness(this, _value); }
-	void SetEmpInfluence(const float _value) { FSetEmpInfluence(this, _value); }
-	void SetEmpTargetInfluence(const float _value) { FSetEmpTargetInfluence(this, _value); }
-	void SetHealth_Internal(const float _value) { FSetHealth_Internal(this, _value); }
-	void SetLightStyle(const int _lightIndex, const uint8_t _style) { FSetLightStyle(this, _lightIndex, _style); }
-	void SetMoved(CArkLight::EMovementResponse _response, bool _bFromLink) { FSetMoved(this, _response, _bFromLink); }
-	void PopulateInteractionForCarry(ArkInteractionInfo& _interactionInfo) const { FPopulateInteractionForCarry(this, _interactionInfo); }
-
-#if 0
-	void SetLinkedToWorldUI(bool _arg0_);
-	void ForceDisableLinkedLights();
-	void SetHealth(float _arg0_);
-	float GetHealth() const;
-	bool IsBroken() const;
-	ArkDisruptable& GetArkDisruptable();
-	void SetupPhysics(const char* _arg0_);
-	void SetupLights();
-	float GetActualBrightness() const;
-	void OnDisruptStop();
-	void StartDisruptionEffects(bool _arg0_);
-	void Burst(float _arg0_);
-	void UpdateLightAnimation();
-	bool IsDisruptedOrRecovering() const;
-	IEntityRenderProxy* GetRenderProxy() const;
-	void SetWasMoved(const bool _arg0_);
-	void SetLightsDisabledFromMovement(const bool _arg0_);
-	void SetNeedsDisableShadows(const bool _arg0_);
-	void SetInterferenceState(EArkLightInterferenceState _arg0_);
-#endif
-
+#else
 	static inline auto FCArkLightOv1 = PreyFunction<void(CArkLight* const _this)>(0x1559A90);
 	static inline auto FInit = PreyFunction<bool(CArkLight* const _this, IGameObject* _pGameObject)>(0x155A650);
 	static inline auto FPostInit = PreyFunction<void(CArkLight* const _this, IGameObject* _pGameObject)>(0x155B8E0);
@@ -624,5 +379,5 @@ public:
 	static inline auto FSetLightStyle = PreyFunction<void(CArkLight* const _this, const int _lightIndex, const uint8_t _style)>(0x155CA50);
 	static inline auto FSetMoved = PreyFunction<void(CArkLight* const _this, CArkLight::EMovementResponse _response, bool _bFromLink)>(0x155CAB0);
 	static inline auto FPopulateInteractionForCarry = PreyFunction<void(const CArkLight* const _this, ArkInteractionInfo& _interactionInfo)>(0x155B7B0);
+#endif
 };
-#endif // !MOONCRASH

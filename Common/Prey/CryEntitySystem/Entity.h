@@ -262,6 +262,9 @@ public:
     void CheckMaterialFlags() { FCheckMaterialFlags(this); }
     virtual const char *GetDisplayName() const;
     virtual void SetDisplayName(const char *_pName);
+#ifdef MOONCRASH
+    virtual bool IsStatic() const;
+#endif
     uint8_t GetSceneMask() const { return FGetSceneMask(this); }
     void AllocBindings() { FAllocBindings(this); }
     void DeallocBindings() { FDeallocBindings(this); }
@@ -594,3 +597,5 @@ public:
 	static inline auto FAnimationEvent = PreyFunction<void(CEntity* const _this, ICharacterInstance* pCharacter, const AnimEventInstance& event)>(0x91F080);
 #endif
 };
+
+static_assert(sizeof(CEntity) == 272);

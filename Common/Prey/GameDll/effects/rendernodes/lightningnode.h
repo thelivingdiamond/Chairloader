@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryEntitySystem/IEntityRenderState.h>
@@ -44,7 +42,11 @@ public:
 		void AddStats(SLightningStats* _arg0_) const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FPushVertex = PreyFunction<void(CLightningRenderNode::CTriStrip* const _this, SVF_P3F_C4B_T2F v)>(0x16BB350);
+#else
 		static inline auto FPushVertex = PreyFunction<void(CLightningRenderNode::CTriStrip* const _this, SVF_P3F_C4B_T2F v)>(0x17DE210);
+#endif
 	};
 
 	// CLightningRenderNode::SPointData
@@ -88,9 +90,15 @@ public:
 		void DecrementParentIdx();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FCreate = PreyFunction<void(CLightningRenderNode::CSegment* const _this, const SLightningParams& desc, CLightningRenderNode::SPointData* m_pointData, int _parentSegmentIdx, int _parentPointIdx, Vec3 _origin, Vec3 _destany, float _duration, float _intensity)>(0x16BA5C0);
+		static inline auto FDraw = PreyFunction<void(CLightningRenderNode::CSegment* const _this, const SLightningParams& desc, const CLightningRenderNode::SPointData& pointData, CLightningRenderNode::CTriStrip* strip, Vec3 cameraPosition, float deviationMult)>(0x16BAAD0);
+		static inline auto FGetPoint = PreyFunction<Vec3*(const CLightningRenderNode::CSegment* const _this, Vec3* _return_value_, const SLightningParams& desc, const CLightningRenderNode::SPointData& pointData, int point, float deviationMult)>(0x170D200);
+#else
 		static inline auto FCreate = PreyFunction<void(CLightningRenderNode::CSegment* const _this, const SLightningParams& desc, CLightningRenderNode::SPointData* m_pointData, int _parentSegmentIdx, int _parentPointIdx, Vec3 _origin, Vec3 _destany, float _duration, float _intensity)>(0x17DD480);
 		static inline auto FDraw = PreyFunction<void(CLightningRenderNode::CSegment* const _this, const SLightningParams& desc, const CLightningRenderNode::SPointData& pointData, CLightningRenderNode::CTriStrip* strip, Vec3 cameraPosition, float deviationMult)>(0x17DD990);
 		static inline auto FGetPoint = PreyFunction<Vec3*(const CLightningRenderNode::CSegment* const _this, Vec3* _return_value_, const SLightningParams& desc, const CLightningRenderNode::SPointData& pointData, int point, float deviationMult)>(0x1834050);
+#endif
 	};
 
 	using SLightningVertex = SVF_P3F_C4B_T2F;
@@ -142,6 +150,35 @@ public:
 	void PopSegment();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCLightningRenderNodeOv1 = PreyFunction<void(CLightningRenderNode* const _this)>(0x16BA290);
+	static inline auto FGetRenderNodeType = PreyFunction<EERType(CLightningRenderNode* const _this)>(0x1A11B60);
+	static inline auto FGetEntityClassName = PreyFunction<const char* (const CLightningRenderNode* const _this)>(0x16BB340);
+	static inline auto FGetName = PreyFunction<const char* (const CLightningRenderNode* const _this)>(0x16BB340);
+	static inline auto FGetPos = PreyFunction<Vec3*(const CLightningRenderNode* const _this, Vec3* _return_value_, bool bWorldOnly)>(0x610560);
+	static inline auto FRender = PreyFunction<void(CLightningRenderNode* const _this, const SRendParams& rParam, const SRenderingPassInfo& passInfo)>(0x16BB560);
+	static inline auto FGetPhysics = PreyFunction<IPhysicalEntity* (const CLightningRenderNode* const _this)>(0x158AEF0);
+	static inline auto FSetPhysics = PreyFunction<void(CLightningRenderNode* const _this, IPhysicalEntity* __unnamed1)>(0xA13080);
+	static inline auto FSetMaterial = PreyFunction<void(CLightningRenderNode* const _this, IMaterial* pMat)>(0x16BB900);
+	static inline auto FGetMaterial = PreyFunction<IMaterial* (const CLightningRenderNode* const _this, Vec3* pHitPos)>(0x9046A0);
+	static inline auto FGetMaterialOverride = PreyFunction<IMaterial* (CLightningRenderNode* const _this)>(0x9046A0);
+	static inline auto FGetMaxViewDist = PreyFunction<float(CLightningRenderNode* const _this)>(0x170D1F0);
+	static inline auto FGetMaxCastShadowViewDist = PreyFunction<float(CLightningRenderNode* const _this)>(0xB5F050);
+	static inline auto FPrecache = PreyFunction<void(CLightningRenderNode* const _this)>(0xA13080);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CLightningRenderNode* const _this, ICrySizer* pSizer)>(0xA13080);
+	static inline auto FGetBBox = PreyFunction<const AABB*(const CLightningRenderNode* const _this, const AABB* _return_value_)>(0x170CF10);
+	static inline auto FFillBBox = PreyFunction<void(CLightningRenderNode* const _this, AABB& aabb)>(0x170CEE0);
+	static inline auto FSetBBox = PreyFunction<void(CLightningRenderNode* const _this, const AABB& WSBBox)>(0x16BB8B0);
+	static inline auto FIsAllocatedOutsideOf3DEngineDLL = PreyFunction<bool(CLightningRenderNode* const _this)>(0x1B933B0);
+	static inline auto FReset = PreyFunction<void(CLightningRenderNode* const _this)>(0x16BB860);
+	static inline auto FTriggerSpark = PreyFunction<float(CLightningRenderNode* const _this)>(0x16BB970);
+	static inline auto FSetLightningParams = PreyFunction<void(CLightningRenderNode* const _this, const SLightningParams* pDescriptor)>(0x16BB8F0);
+	static inline auto FSetEmiterPosition = PreyFunction<void(CLightningRenderNode* const _this, Vec3 emiterPosition)>(0x16BB8D0);
+	static inline auto FSetReceiverPosition = PreyFunction<void(CLightningRenderNode* const _this, Vec3 receiverPosition)>(0x16BB950);
+	static inline auto FAddStats = PreyFunction<void(const CLightningRenderNode* const _this, SLightningStats* pStats)>(0x16BA420);
+	static inline auto FUpdate = PreyFunction<void(CLightningRenderNode* const _this)>(0x16BBA40);
+	static inline auto FCreateSegment = PreyFunction<void(CLightningRenderNode* const _this, Vec3 originPosition, int parentIdx, int parentPointIdx, float duration, int level)>(0x16BA840);
+#else
 	static inline auto FCLightningRenderNodeOv1 = PreyFunction<void(CLightningRenderNode* const _this)>(0x17DD0C0);
 	static inline auto FGetRenderNodeType = PreyFunction<EERType(CLightningRenderNode* const _this)>(0x1B399B0);
 	static inline auto FGetEntityClassName = PreyFunction<const char* (const CLightningRenderNode* const _this)>(0x17DE200);
@@ -169,5 +206,6 @@ public:
 	static inline auto FAddStats = PreyFunction<void(const CLightningRenderNode* const _this, SLightningStats* pStats)>(0x17DD2E0);
 	static inline auto FUpdate = PreyFunction<void(CLightningRenderNode* const _this)>(0x17DE900);
 	static inline auto FCreateSegment = PreyFunction<void(CLightningRenderNode* const _this, Vec3 originPosition, int parentIdx, int parentPointIdx, float duration, int level)>(0x17DD700);
+#endif
 };
-#endif // MOONCRASH
+

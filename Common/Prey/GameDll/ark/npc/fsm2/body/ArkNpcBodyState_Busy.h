@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/ArkNpcBodyState.h>
+#include <Prey/GameDll/ark/npc/fsm2/body/ArkNpcBodyState.h>
 
 struct ArkNpcBodyStateEnterParams_Busy;
 struct ArkNpcBodyStateExitParams;
@@ -19,8 +17,14 @@ public:
 	void Enter(const ArkNpcBodyStateEnterParams_Busy& _params) { FEnter(this, _params); }
 	void Exit(const ArkNpcBodyStateExitParams& _params) { FExit(this, _params); }
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcBodyState_Busy = PreyFunction<void(ArkNpcBodyState_Busy* const _this)>(0x1056590);
+	static inline auto FEnter = PreyFunction<void(ArkNpcBodyState_Busy* const _this, const ArkNpcBodyStateEnterParams_Busy& _params)>(0x12139E0);
+	static inline auto FExit = PreyFunction<void(ArkNpcBodyState_Busy* const _this, const ArkNpcBodyStateExitParams& _params)>(0x12139F0);
+#else
 	static inline auto FArkNpcBodyState_Busy = PreyFunction<void(ArkNpcBodyState_Busy* const _this)>(0x12A2F50);
 	static inline auto FEnter = PreyFunction<void(ArkNpcBodyState_Busy* const _this, const ArkNpcBodyStateEnterParams_Busy& _params)>(0x12A2F60);
 	static inline auto FExit = PreyFunction<void(ArkNpcBodyState_Busy* const _this, const ArkNpcBodyStateExitParams& _params)>(0x12A2F70);
+#endif
 };
-#endif // MOONCRASH
+

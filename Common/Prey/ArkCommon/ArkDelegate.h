@@ -32,7 +32,7 @@ struct SFlowNodeConfig;
 
 // Header: Exact
 // Prey/ArkCommon/arkdelegate.h
-class ArkFlowNodeObjectiveState : public CFlowBaseNode<1> // Id=801680C Size=64
+class ArkFlowNodeObjectiveState : public CFlowBaseNode<eNCT_Instanced> // Id=801680C Size=64
 {
 public:
 	enum class EInputs
@@ -78,7 +78,7 @@ public:
 
 // Header: Exact
 // Prey/ArkCommon/arkdelegate.h
-class ArkFlowNodeTaskState : public CFlowBaseNode<1> // Id=801680D Size=64
+class ArkFlowNodeTaskState : public CFlowBaseNode<eNCT_Instanced> // Id=801680D Size=64
 {
 public:
 	enum class EInputs
@@ -130,7 +130,7 @@ public:
 
 // Header: Exact
 // Prey/ArkCommon/arkdelegate.h
-class CArkFlowNodeWorkstationResult : public CFlowBaseNode<1> // Id=801BCC1 Size=64
+class CArkFlowNodeWorkstationResult : public CFlowBaseNode<eNCT_Instanced> // Id=801BCC1 Size=64
 {
 public:
 	enum class EArkInputs
@@ -169,7 +169,7 @@ public:
 
 // Header: Exact
 // Prey/ArkCommon/arkdelegate.h
-class CArkFlowNodeConfirmDialog : public CFlowBaseNode<1> // Id=801CBA9 Size=64
+class CArkFlowNodeConfirmDialog : public CFlowBaseNode<eNCT_Instanced> // Id=801CBA9 Size=64
 {
 public:
 	enum class EArkInputs

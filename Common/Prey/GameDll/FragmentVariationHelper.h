@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/ICryMannequinTagDefs.h>
-#include <_unknown/STagState.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
 
 class IAnimationDatabase;
 
@@ -35,6 +33,18 @@ public:
 	STagState<12> GetTagState() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCFragmentVariationHelper = PreyFunction<void(CFragmentVariationHelper* const _this)>(0x16C29D0);
+	static inline auto FBitNotCFragmentVariationHelper = PreyFunction<void(CFragmentVariationHelper* const _this)>(0xA13080);
+	static inline auto FSetFragmentId = PreyFunction<void(CFragmentVariationHelper* const _this, const int fragmentId)>(0x16C2C60);
+	static inline auto FSetTagState = PreyFunction<void(CFragmentVariationHelper* const _this, const SFragTagState& tagState)>(0x18031D0);
+	static inline auto FUpdate = PreyFunction<bool(CFragmentVariationHelper* const _this, const IAnimationDatabase* pDatabase, const bool forceReevaluate)>(0x16C2C70);
+	static inline auto FOnFragmentEnd = PreyFunction<void(CFragmentVariationHelper* const _this)>(0x16C2A90);
+	static inline auto FGetFragmentId = PreyFunction<int(const CFragmentVariationHelper* const _this)>(0x12114A0);
+	static inline auto FGetFragmentTagState = PreyFunction<STagState<12>*(const CFragmentVariationHelper* const _this, STagState<12>* _return_value_)>(0x16C2A70);
+	static inline auto FGetOptionIndex = PreyFunction<unsigned(const CFragmentVariationHelper* const _this)>(0xB46570);
+	static inline auto FReevaluate = PreyFunction<bool(CFragmentVariationHelper* const _this, const IAnimationDatabase* pDatabase, const bool forceReevaluate)>(0x16C2AA0);
+#else
 	static inline auto FCFragmentVariationHelper = PreyFunction<void(CFragmentVariationHelper* const _this)>(0x17E5240);
 	static inline auto FBitNotCFragmentVariationHelper = PreyFunction<void(CFragmentVariationHelper* const _this)>(0x1333E90);
 	static inline auto FSetFragmentId = PreyFunction<void(CFragmentVariationHelper* const _this, const int fragmentId)>(0x17E54D0);
@@ -45,5 +55,6 @@ public:
 	static inline auto FGetFragmentTagState = PreyFunction<STagState<12>*(const CFragmentVariationHelper* const _this, STagState<12>* _return_value_)>(0x17E52E0);
 	static inline auto FGetOptionIndex = PreyFunction<unsigned(const CFragmentVariationHelper* const _this)>(0xB63D00);
 	static inline auto FReevaluate = PreyFunction<bool(CFragmentVariationHelper* const _this, const IAnimationDatabase* pDatabase, const bool forceReevaluate)>(0x17E5310);
+#endif
 };
-#endif // MOONCRASH
+

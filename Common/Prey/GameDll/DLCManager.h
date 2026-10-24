@@ -1,12 +1,11 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
-#include <CryEngine/crysystem/platformos/PlatformOS_PC.h>
+#include <Prey/GameDll/IGameWarningsListener.h>
+#include <Prey/CryString/CryFixedString.h>
+#include <Prey/CrySystem/PlatformOS/PlatformOS_PC.h>
 #include <Prey/CryGame/IGameFramework.h>
-#include <_unknown/CryFixedArray.h>
-#include <_unknown/DLCContents.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/GameDll/DLCContents.h>
 
 class CMenuData;
 class XmlNodeRef;
@@ -88,6 +87,19 @@ public:
 	int SetEntitlement(int _arg0_, bool _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCDLCManagerOv1 = PreyFunction<void(CDLCManager* const _this)>(0x16B3030);
+	static inline auto FAddPlaylists = PreyFunction<void(CDLCManager* const _this)>(0xA13080);
+	static inline auto FOnDLCMounted = PreyFunction<void(CDLCManager* const _this, const XmlNodeRef& rootNode, const char* sDLCRootFolder)>(0x16B3540);
+	static inline auto FOnDLCMountFailed = PreyFunction<void(CDLCManager* const _this, IPlatformOS::EDLCMountFail reason)>(0x16B34A0);
+	static inline auto FOnDLCMountFinished = PreyFunction<void(CDLCManager* const _this, int nPacksFound)>(0x16B34C0);
+	static inline auto FOnPlatformEvent = PreyFunction<void(IPlatformOS::IPlatformListener* const _this, const IPlatformOS::SPlatformEvent& event)>(0x16B3D30);
+	static inline auto FOnWarningReturn = PreyFunction<bool(IGameWarningsListener* const _this, unsigned id, const char* returnValue)>(0x1B933B0);
+	static inline auto FOnWarningRemoved = PreyFunction<void(IGameWarningsListener* const _this, unsigned id)>(0xA13080);
+	static inline auto FUpdate = PreyFunction<void(CDLCManager* const _this)>(0xA13080);
+	static inline auto FVerifyCRCs = PreyFunction<bool(CDLCManager* const _this, const XmlNodeRef& crcNode, const char* sDLCRootFolder)>(0x16B4130);
+	static inline auto FPopulateDLCContents = PreyFunction<void(CDLCManager* const _this, const XmlNodeRef& rootNode, int dlcId, const char* name)>(0x16B3EC0);
+#else
 	static inline auto FCDLCManagerOv1 = PreyFunction<void(CDLCManager* const _this)>(0x17D5F30);
 	static inline auto FAddPlaylists = PreyFunction<void(CDLCManager* const _this)>(0x1333E90);
 	static inline auto FOnDLCMounted = PreyFunction<void(CDLCManager* const _this, const XmlNodeRef& rootNode, const char* sDLCRootFolder)>(0x17D6440);
@@ -99,5 +111,6 @@ public:
 	static inline auto FUpdate = PreyFunction<void(CDLCManager* const _this)>(0x1333E90);
 	static inline auto FVerifyCRCs = PreyFunction<bool(CDLCManager* const _this, const XmlNodeRef& crcNode, const char* sDLCRootFolder)>(0x17D7030);
 	static inline auto FPopulateDLCContents = PreyFunction<void(CDLCManager* const _this, const XmlNodeRef& rootNode, int dlcId, const char* name)>(0x17D6DC0);
+#endif
 };
-#endif // MOONCRASH
+

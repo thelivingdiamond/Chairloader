@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -16,48 +15,6 @@ class ArkClass;
 enum class EArkPsiPowers;
 class IArkValueBase;
 struct IEntity;
-
-// ArkPsiPowerCastMatter
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCastMatter.h
-class ArkPsiPowerCastMatter : public CArkPsiPower<CastMatterPowerProperties>
-{ // Size=568 (0x238)
-public:
-	ArkPsiPowerGroundTargetingComponent m_targetingComponent;
-	Vec3 m_targetAreaCenter;
-	ArkSimpleTimer m_projectileSpawnTimer;
-	int m_numSpawnedProjectiles;
-
-	ArkPsiPowerCastMatter();
-	virtual ~ArkPsiPowerCastMatter();
-	virtual void Cancel();
-	virtual bool StartTargeting();
-	virtual void Update(const float _frameTime);
-	virtual void UpdateTargeting(const float _frameTime);
-	virtual void Serialize(TSerialize _ser);
-	virtual std::vector<IEntity*> GetSelectedTargets() const;
-	virtual std::vector<IEntity*> GetUnselectedTargets() const;
-	virtual EArkPsiPowers GetEnum() const;
-	virtual bool Start_Derived();
-	virtual void SetLevel_Derived(const int _level);
-	void SpawnProjectile() { FSpawnProjectile(this); }
-
-#if 0
-	void DrawDebug() const;
-#endif
-
-	static inline auto FArkPsiPowerCastMatterOv1 = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x13B2EC0);
-	static inline auto FCancel = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x140D970);
-	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerCastMatter* const _this)>(0x13B44C0);
-	static inline auto FUpdate = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const float _frameTime)>(0x13B4640);
-	static inline auto FUpdateTargeting = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const float _frameTime)>(0x13B4760);
-	static inline auto FSerialize = PreyFunction<void(ArkPsiPowerCastMatter* const _this, TSerialize _ser)>(0x13B3BC0);
-	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerCastMatter* const _this, std::vector<IEntity*>* _return_value_)>(0x13B3950);
-	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerCastMatter* const _this, std::vector<IEntity*>* _return_value_)>(0x16B1C80);
-	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const ArkPsiPowerCastMatter* const _this)>(0x13B3830);
-	static inline auto FStart_Derived = PreyFunction<bool(ArkPsiPowerCastMatter* const _this)>(0x13B45A0);
-	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const int _level)>(0x13B7F60);
-	static inline auto FSpawnProjectile = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x13B3D70);
-};
 
 // ArkPsiPowerCastMatterProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCastMatter.h
@@ -359,4 +316,47 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13B3580);
 	static inline auto FInit = PreyFunction<bool(CastMatterPowerProperties* const _this)>(0x13B39E0);
 };
+
+// ArkPsiPowerCastMatter
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerCastMatter.h
+class ArkPsiPowerCastMatter : public CArkPsiPower<CastMatterPowerProperties>
+{ // Size=568 (0x238)
+public:
+	ArkPsiPowerGroundTargetingComponent m_targetingComponent;
+	Vec3 m_targetAreaCenter;
+	ArkSimpleTimer m_projectileSpawnTimer;
+	int m_numSpawnedProjectiles;
+
+	ArkPsiPowerCastMatter();
+	virtual ~ArkPsiPowerCastMatter();
+	virtual void Cancel();
+	virtual bool StartTargeting();
+	virtual void Update(const float _frameTime);
+	virtual void UpdateTargeting(const float _frameTime);
+	virtual void Serialize(TSerialize _ser);
+	virtual std::vector<IEntity*> GetSelectedTargets() const;
+	virtual std::vector<IEntity*> GetUnselectedTargets() const;
+	virtual EArkPsiPowers GetEnum() const;
+	virtual bool Start_Derived();
+	virtual void SetLevel_Derived(const int _level);
+	void SpawnProjectile() { FSpawnProjectile(this); }
+
+#if 0
+	void DrawDebug() const;
+#endif
+
+	static inline auto FArkPsiPowerCastMatterOv1 = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x13B2EC0);
+	static inline auto FCancel = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x140D970);
+	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerCastMatter* const _this)>(0x13B44C0);
+	static inline auto FUpdate = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const float _frameTime)>(0x13B4640);
+	static inline auto FUpdateTargeting = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const float _frameTime)>(0x13B4760);
+	static inline auto FSerialize = PreyFunction<void(ArkPsiPowerCastMatter* const _this, TSerialize _ser)>(0x13B3BC0);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerCastMatter* const _this, std::vector<IEntity*>* _return_value_)>(0x13B3950);
+	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerCastMatter* const _this, std::vector<IEntity*>* _return_value_)>(0x16B1C80);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const ArkPsiPowerCastMatter* const _this)>(0x13B3830);
+	static inline auto FStart_Derived = PreyFunction<bool(ArkPsiPowerCastMatter* const _this)>(0x13B45A0);
+	static inline auto FSetLevel_Derived = PreyFunction<void(ArkPsiPowerCastMatter* const _this, const int _level)>(0x13B7F60);
+	static inline auto FSpawnProjectile = PreyFunction<void(ArkPsiPowerCastMatter* const _this)>(0x13B3D70);
+};
+
 #endif // MOONCRASH

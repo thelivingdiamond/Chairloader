@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
 
@@ -84,6 +82,44 @@ public:
 	void RegisterGlobals();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScriptControlledPhysicsOv1 = PreyFunction<void(CScriptControlledPhysics* const _this)>(0x17F0950);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptControlledPhysics* const _this, ICrySizer* pSizer)>(0x17F1020);
+	static inline auto FInit = PreyFunction<bool(CScriptControlledPhysics* const _this, IGameObject* pGameObject)>(0x17F1100);
+	static inline auto FInitClient = PreyFunction<void(CScriptControlledPhysics* const _this, int channelId)>(0xA13080);
+	static inline auto FPostInit = PreyFunction<void(CScriptControlledPhysics* const _this, IGameObject* pGameObject)>(0x17F1DE0);
+	static inline auto FPostInitClient = PreyFunction<void(CScriptControlledPhysics* const _this, int channelId)>(0xA13080);
+	static inline auto FReloadExtension = PreyFunction<bool(CScriptControlledPhysics* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x17F2420);
+	static inline auto FPostReloadExtension = PreyFunction<void(CScriptControlledPhysics* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0xA13080);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CScriptControlledPhysics* const _this, TSerialize signature)>(0x1B933B0);
+	static inline auto FRelease = PreyFunction<void(CScriptControlledPhysics* const _this)>(0xA97D40);
+	static inline auto FFullSerialize = PreyFunction<void(CScriptControlledPhysics* const _this, TSerialize ser)>(0x17F0DD0);
+	static inline auto FNetSerialize = PreyFunction<bool(CScriptControlledPhysics* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1B933B0);
+	static inline auto FPostSerialize = PreyFunction<void(CScriptControlledPhysics* const _this)>(0xA13080);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CScriptControlledPhysics* const _this, TSerialize ser)>(0xA13080);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CScriptControlledPhysics* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x13883F0);
+	static inline auto FUpdate = PreyFunction<void(CScriptControlledPhysics* const _this, SEntityUpdateContext& ctx, int slot)>(0x17F2DD0);
+	static inline auto FHandleEvent = PreyFunction<void(CScriptControlledPhysics* const _this, const SGameObjectEvent& event)>(0x17F1070);
+	static inline auto FProcessEvent = PreyFunction<void(CScriptControlledPhysics* const _this, SEntityEvent& __unnamed1)>(0xA13080);
+	static inline auto FSetChannelId = PreyFunction<void(CScriptControlledPhysics* const _this, uint16_t id)>(0xA13080);
+	static inline auto FSetAuthority = PreyFunction<void(CScriptControlledPhysics* const _this, bool auth)>(0xA13080);
+	static inline auto FPostUpdate = PreyFunction<void(CScriptControlledPhysics* const _this, float frameTime)>(0xA13080);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CScriptControlledPhysics* const _this)>(0xA13080);
+	static inline auto FReset = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F24C0);
+	static inline auto FGetSpeed = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F1050);
+	static inline auto FGetAcceleration = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F0FC0);
+	static inline auto FGetAngularSpeed = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F1000);
+	static inline auto FGetAngularAcceleration = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F0FE0);
+	static inline auto FStop = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH, float stopTime)>(0x17F2B80);
+	static inline auto FMove = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH, Vec3 velocity, float acceleration)>(0x17F12C0);
+	static inline auto FMoveTo = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH, Vec3 point, float initialSpeed, float speed, float acceleration, float stopTime, bool bExactPosition)>(0x17F14D0);
+	static inline auto FRotateTo = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH, Vec3 dir, float roll, float initialSpeed, float speed, float acceleration, float stopTime)>(0x17F2540);
+	static inline auto FRotateToAngles = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH, Vec3 angles, float initialSpeed, float speed, float acceleration, float stopTime)>(0x17F27F0);
+	static inline auto FHasArrived = PreyFunction<int(CScriptControlledPhysics* const _this, IFunctionHandler* pH)>(0x17F1080);
+	static inline auto FOnPostStep = PreyFunction<void(CScriptControlledPhysics* const _this, EventPhysPostStep* pPostStep)>(0x17F15A0);
+	static inline auto FSetCrushing = PreyFunction<bool(CScriptControlledPhysics* const _this, const bool _bCrushing)>(0x17F2A00);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptControlledPhysics* const _this)>(0x17F1EC0);
+#else
 	static inline auto FCScriptControlledPhysicsOv1 = PreyFunction<void(CScriptControlledPhysics* const _this)>(0x1918470);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptControlledPhysics* const _this, ICrySizer* pSizer)>(0x1918B40);
 	static inline auto FInit = PreyFunction<bool(CScriptControlledPhysics* const _this, IGameObject* pGameObject)>(0x1918C20);
@@ -120,5 +156,6 @@ public:
 	static inline auto FOnPostStep = PreyFunction<void(CScriptControlledPhysics* const _this, EventPhysPostStep* pPostStep)>(0x19190C0);
 	static inline auto FSetCrushing = PreyFunction<bool(CScriptControlledPhysics* const _this, const bool _bCrushing)>(0x191A520);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptControlledPhysics* const _this)>(0x19199E0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -13,21 +12,6 @@
 class ArkClass;
 class IArkValueBase;
 struct IEntity;
-
-// CArkPsiPowerFlare
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerFlare.h
-class CArkPsiPowerFlare : public CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiFlareBlast,FlarePowerProperties,1>
-{ // Size=696 (0x2B8)
-public:
-	using BaseType = CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiFlareBlast,FlarePowerProperties,1>;
-
-	CArkPsiPowerFlare();
-	virtual ~CArkPsiPowerFlare();
-	virtual std::vector<IEntity*> GetSelectedTargets() const;
-
-	static inline auto FCArkPsiPowerFlareOv1 = PreyFunction<void(CArkPsiPowerFlare* const _this)>(0x13BA030);
-	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerFlare* const _this, std::vector<IEntity*>* _return_value_)>(0x13BAD20);
-};
 
 // ArkPsiPowerFlareProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerFlare.h
@@ -229,4 +213,20 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13BA9C0);
 	static inline auto FInit = PreyFunction<bool(FlarePowerProperties* const _this)>(0x13BADC0);
 };
+
+// CArkPsiPowerFlare
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerFlare.h
+class CArkPsiPowerFlare : public CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiFlareBlast,FlarePowerProperties,1>
+{ // Size=696 (0x2B8)
+public:
+	using BaseType = CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiFlareBlast,FlarePowerProperties,1>;
+
+	CArkPsiPowerFlare();
+	virtual ~CArkPsiPowerFlare();
+	virtual std::vector<IEntity*> GetSelectedTargets() const;
+
+	static inline auto FCArkPsiPowerFlareOv1 = PreyFunction<void(CArkPsiPowerFlare* const _this)>(0x13BA030);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerFlare* const _this, std::vector<IEntity*>* _return_value_)>(0x13BAD20);
+};
+
 #endif // MOONCRASH

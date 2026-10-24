@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -12,8 +10,13 @@ struct IConsole;
 class CGodMode
 { // Size=60 (0x3C)
 public:
+#ifndef MOONCRASH
+	static inline auto m_godModeCVarName = PreyGlobal<const char*>(0x22819F8);
+	static inline auto m_demiGodRevivesAtCheckpointCVarName = PreyGlobal<const char*>(0x2281A00);
+#else
 	static inline auto m_godModeCVarName = PreyGlobal<const char*>(0x23F04F8);
 	static inline auto m_demiGodRevivesAtCheckpointCVarName = PreyGlobal<const char*>(0x23F0500);
+#endif
 	int m_godMode;
 	int m_demiGodRevivesAtCheckpoint;
 	bool m_hasHitCheckpoint;
@@ -39,6 +42,15 @@ public:
 	CGodMode& operator=(const CGodMode& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetInstance = PreyFunction<CGodMode& ()>(0x173C050);
+	static inline auto FRegisterConsoleVars = PreyFunction<void(CGodMode* const _this, IConsole* pConsole)>(0x173C060);
+	static inline auto FUnregisterConsoleVars = PreyFunction<void(const CGodMode* const _this, IConsole* pConsole)>(0x173C150);
+	static inline auto FGetCurrentState = PreyFunction<EGodModeState(const CGodMode* const _this)>(0x12114A0);
+	static inline auto FDemiGodDeath = PreyFunction<void(CGodMode* const _this)>(0x173BFC0);
+	static inline auto FClearCheckpointData = PreyFunction<void(CGodMode* const _this)>(0x173BF90);
+	static inline auto FSetNewCheckpoint = PreyFunction<void(CGodMode* const _this, const Matrix34& rWorldMat)>(0x173C100);
+#else
 	static inline auto FGetInstance = PreyFunction<CGodMode& ()>(0x1862C30);
 	static inline auto FRegisterConsoleVars = PreyFunction<void(CGodMode* const _this, IConsole* pConsole)>(0x1862C40);
 	static inline auto FUnregisterConsoleVars = PreyFunction<void(const CGodMode* const _this, IConsole* pConsole)>(0x1862D30);
@@ -46,5 +58,6 @@ public:
 	static inline auto FDemiGodDeath = PreyFunction<void(CGodMode* const _this)>(0x1862BA0);
 	static inline auto FClearCheckpointData = PreyFunction<void(CGodMode* const _this)>(0x1862B70);
 	static inline auto FSetNewCheckpoint = PreyFunction<void(CGodMode* const _this, const Matrix34& rWorldMat)>(0x1862CE0);
+#endif
 };
-#endif // MOONCRASH
+

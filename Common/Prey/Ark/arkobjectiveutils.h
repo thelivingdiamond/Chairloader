@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -114,15 +113,19 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/crystring.h>
+#include <Prey/CryString/CryString.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/player/ArkObjectiveComponent.h>
-#include <_unknown/ArkObjectiveUtils__CArkObjectiveClueData.h>
+#include <Prey/Ark/ArkObjectiveUtils_CArkObjectiveClueData.h>
 
 class XmlNodeRef;
 
 namespace ArkObjectiveUtils
 {
+class CArkObjectiveDescriptionData;
+class CArkObjectiveTaskData;
+class CArkObjectiveClueData;
+class CArkObjectiveLib;
+class CArkObjectiveData;
 
 // ArkObjectiveUtils::CArkObjectiveTaskData
 // Header:  Prey/Ark/arkobjectiveutils.h
@@ -247,4 +250,6 @@ public:
 
 
 } // namespace ArkObjectiveUtils
+// (the component header needs the classes above)
+#include <Prey/GameDll/ark/player/ArkObjectiveComponent.h>
 #endif // !MOONCRASH

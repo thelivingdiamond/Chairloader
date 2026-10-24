@@ -39,7 +39,10 @@
 
 #define INST_PARAM_SIZE   sizeof(Vec4)
 
-#if CRY_PLATFORM_SSE2
+// Prey's renderer was built with SSE2; Chairloader's CRY_PLATFORM_SSE2 is 0 only to keep
+// CRY_PLATFORM_SSE2 is 0 only to keep the math library scalar.
+#if 1
+#include <xmmintrin.h>
 typedef __m128 VECTOR_TYPE;
 	#define VECTOR_CONST(x, y, z, w) { x, y, z, w }  //{ w, z, y, x }
 	#define VECTOR_ZERO()            _mm_setzero_ps()
@@ -346,16 +349,19 @@ struct SShaderAsyncInfo
 	}
 
 	~SShaderAsyncInfo();
-	//TODO: MOONCRASH
 #ifndef MOONCRASH
 	static inline auto s_nPendingAsyncShaders = PreyGlobal<volatile int>(0x2B168A4);
 	static inline auto s_nPendingAsyncShadersFXC = PreyGlobal<int>(0x2B168A8);
+#else
+	static inline auto s_nPendingAsyncShaders = PreyGlobal<volatile int>(0x2C85B0C);
+	static inline auto s_nPendingAsyncShadersFXC = PreyGlobal<int>(0x2C85B10);
 #endif
 	static SShaderAsyncInfo& PendingList();
 	static SShaderAsyncInfo& PendingListT();
-	//TODO: MOONCRASH
 #ifndef MOONCRASH
 	static inline auto s_RequestEv = PreyGlobal<CryEvent>(0x2B168D8);
+#else
+	static inline auto s_RequestEv = PreyGlobal<CryEvent>(0x2C85B48);
 #endif
 };
 

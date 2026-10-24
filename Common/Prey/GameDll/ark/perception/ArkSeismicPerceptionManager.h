@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/perception/ArkComplexSeismicPerceptionInfo.h>
 #include <Prey/GameDll/ark/perception/ArkSeismicBounds.h>
 #include <Prey/GameDll/ark/perception/ArkSimpleSeismicPerceptionInfo.h>
-#include <_unknown/TNavigationID.h>
 
 class ArkSeismicPerceivable;
 class ArkSeismicPerceiver;
@@ -45,12 +43,12 @@ public:
 	// Header:  Prey/GameDll/ark/perception/ArkSeismicPerceptionManager.h
 	struct SimpleTremor
 	{ // Size=20 (0x14)
-		TNavigationID<0> m_meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> m_meshId;
 		unsigned m_instigatorEntityId;
 		Vec3 m_position;
 
 	#if 0
-		SimpleTremor(TNavigationID<0> _arg0_, unsigned _arg1_, const Vec3& _arg2_);
+		SimpleTremor(TNavigationID<ENavigationIDTag::MeshIDTag> _arg0_, unsigned _arg1_, const Vec3& _arg2_);
 	#endif
 	};
 
@@ -58,14 +56,14 @@ public:
 	// Header:  Prey/GameDll/ark/perception/ArkSeismicPerceptionManager.h
 	struct ComplexTremor
 	{ // Size=28 (0x1C)
-		TNavigationID<0> m_meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> m_meshId;
 		unsigned m_instigatorEntityId;
 		unsigned m_eventSourceEntityId;
 		Vec3 m_position;
 		float m_magnitude;
 
 	#if 0
-		ComplexTremor(TNavigationID<0> _arg0_, unsigned _arg1_, unsigned _arg2_, const Vec3& _arg3_, float _arg4_);
+		ComplexTremor(TNavigationID<ENavigationIDTag::MeshIDTag> _arg0_, unsigned _arg1_, unsigned _arg2_, const Vec3& _arg3_, float _arg4_);
 	#endif
 	};
 
@@ -73,11 +71,11 @@ public:
 	// Header:  Prey/GameDll/ark/perception/ArkSeismicPerceptionManager.h
 	struct MeshPerceiver
 	{ // Size=16 (0x10)
-		TNavigationID<0> m_meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> m_meshId;
 		uint64_t m_perceiverIndex;
 
 	#if 0
-		MeshPerceiver(TNavigationID<0> _arg0_, uint64_t _arg1_);
+		MeshPerceiver(TNavigationID<ENavigationIDTag::MeshIDTag> _arg0_, uint64_t _arg1_);
 	#endif
 	};
 
@@ -85,12 +83,12 @@ public:
 	// Header:  Prey/GameDll/ark/perception/ArkSeismicPerceptionManager.h
 	struct MeshNotificationIndexes
 	{ // Size=24 (0x18)
-		TNavigationID<0> m_meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> m_meshId;
 		uint64_t m_firstNotificationIndex;
 		uint64_t m_lastNotificationIndex;
 
 	#if 0
-		MeshNotificationIndexes(TNavigationID<0> _arg0_, uint64_t _arg1_, uint64_t _arg2_);
+		MeshNotificationIndexes(TNavigationID<ENavigationIDTag::MeshIDTag> _arg0_, uint64_t _arg1_, uint64_t _arg2_);
 	#endif
 	};
 
@@ -100,7 +98,7 @@ public:
 	using EntityIdToIndexMap = std::unordered_map<unsigned int, uint64_t>;
 	using IndexVector = std::vector<uint64_t>;
 	using MeshNotificationIndexesVector = std::vector<ArkSeismicPerceptionManager::MeshNotificationIndexes>;
-	using NavigationMeshIdVector = std::vector<TNavigationID<0>>;
+	using NavigationMeshIdVector = std::vector<TNavigationID<ENavigationIDTag::MeshIDTag>>;
 	using PerceivableVector = std::vector<const ArkSeismicPerceivable*>;
 	using MeshPerceiverVector = std::vector<ArkSeismicPerceptionManager::MeshPerceiver>;
 	using PerceiverVector = std::vector<ArkSeismicPerceiver*>;
@@ -109,7 +107,7 @@ public:
 	using SimpleSeismicPerceptionInfoVector = std::vector<ArkSimpleSeismicPerceptionInfo>;
 	using SimpleTremorVector = std::vector<ArkSeismicPerceptionManager::SimpleTremor>;
 
-	TNavigationID<1> m_navigationAgentTypeId;
+	TNavigationID<ENavigationIDTag::AgentTypeIDTag> m_navigationAgentTypeId;
 	std::unordered_map<unsigned int, uint64_t> m_perceiverIndexMap;
 	std::unordered_map<unsigned int, uint64_t> m_simplePerceivableIndexMap;
 	std::unordered_map<unsigned int, uint64_t> m_complexPerceivableIndexMap;
@@ -125,7 +123,7 @@ public:
 	std::vector<ArkSeismicPerceptionManager::ComplexSeismicEvent> m_complexSeismicEvents;
 	std::vector<ArkSeismicPerceptionManager::SimpleTremor> m_simpleTremors;
 	std::vector<ArkSeismicPerceptionManager::ComplexTremor> m_complexTremors;
-	std::vector<TNavigationID<0>> m_perceivedMeshIds;
+	std::vector<TNavigationID<ENavigationIDTag::MeshIDTag>> m_perceivedMeshIds;
 	std::vector<ArkSeismicPerceptionManager::MeshPerceiver> m_meshPerceivers;
 	std::vector<ArkSeismicPerceptionManager::MeshNotificationIndexes> m_simpleMeshNotificationIndexes;
 	std::vector<ArkSeismicPerceptionManager::MeshNotificationIndexes> m_complexMeshNotificationIndexes;

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -42,8 +40,14 @@ public:
 	void OnTakeDamage(ArkNpc& _arg0_, ArkNpcGameEffectInstance_PoltergeistForceAura& _arg1_, const HitInfo& _arg2_, const ArkSignalSystem::Package& _arg3_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12AC790);
+	static inline auto FArkNpcGameEffect_PoltergeistForceAura = PreyFunction<void(ArkNpcGameEffect_PoltergeistForceAura* const _this)>(0x12AC6B0);
+	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_PoltergeistForceAura* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistForceAura& _gameEffectInstance, float _elapsedTime)>(0x12AC8F0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x1355450);
 	static inline auto FArkNpcGameEffect_PoltergeistForceAura = PreyFunction<void(ArkNpcGameEffect_PoltergeistForceAura* const _this)>(0x1355370);
 	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_PoltergeistForceAura* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_PoltergeistForceAura& _gameEffectInstance, float _elapsedTime)>(0x13555B0);
+#endif
 };
-#endif // MOONCRASH
+

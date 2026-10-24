@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -30,47 +28,18 @@ public:
 	unsigned FindBestAvailable() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkHitDamageUI = PreyFunction<void(ArkHitDamageUI *const _this)>(0x1349CF0);
 	static inline auto FInit = PreyFunction<void(ArkHitDamageUI const *const _this)>(0x1349EA0);
 	static inline auto FAdd = PreyFunction<void(ArkHitDamageUI *const _this, HitInfo const &_hitInfo)>(0x1349D30);
 	static inline auto FUpdate = PreyFunction<void(ArkHitDamageUI *const _this, float _frameTime)>(0x1349ED0);
 	static inline auto FUpdateHUDMarkers = PreyFunction<void(ArkHitDamageUI *const _this)>(0x134A4E0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/ui/ArkHitDamageInfo.h>
-
-struct HitInfo;
-struct ICVar;
-
-// ArkHitDamageUI
-// Header:  Prey/GameDll/ark/ui/ArkHitDamageUI.h
-class ArkHitDamageUI
-{ // Size=416 (0x1A0)
-public:
-	static constexpr const unsigned s_numIndicators = 8;
-	std::array<ArkHitDamageInfo, 8> m_hits;
-	std::vector<unsigned int> m_updateHits;
-	ICVar* m_pEnableCvar;
-
-	ArkHitDamageUI();
-	~ArkHitDamageUI();
-	void Init() const { FInit(this); }
-	void Add(const HitInfo& _hitInfo) { FAdd(this, _hitInfo); }
-	void Update(float _frameTime) { FUpdate(this, _frameTime); }
-	void UpdateHUDMarkers() { FUpdateHUDMarkers(this); }
-
-#if 0
-	bool IsEnabled() const;
-	unsigned FindBestAvailable() const;
-#endif
-
+#else
 	static inline auto FArkHitDamageUIOv1 = PreyFunction<void(ArkHitDamageUI* const _this)>(0x1424FB0);
 	static inline auto FBitNotArkHitDamageUI = PreyFunction<void(ArkHitDamageUI* const _this)>(0x1425060);
 	static inline auto FInit = PreyFunction<void(const ArkHitDamageUI* const _this)>(0x1425200);
 	static inline auto FAdd = PreyFunction<void(ArkHitDamageUI* const _this, const HitInfo& _hitInfo)>(0x14250A0);
 	static inline auto FUpdate = PreyFunction<void(ArkHitDamageUI* const _this, float _frameTime)>(0x1425230);
 	static inline auto FUpdateHUDMarkers = PreyFunction<void(ArkHitDamageUI* const _this)>(0x1425830);
+#endif
 };
-#endif // !MOONCRASH

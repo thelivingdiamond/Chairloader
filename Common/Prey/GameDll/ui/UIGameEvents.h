@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/IUIGameEventSystem.h>
-#include <_unknown/SUIEventReceiverDispatcher.h>
+#include <Prey/ArkStubs.h>
 
 struct IGameFramework;
 struct ILevelSystem;
@@ -36,6 +34,19 @@ public:
 	static const char* GetTypeNameS();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetTypeName = PreyFunction<const char* (const CUIGameEvents* const _this)>(0x17FA5C0);
+	static inline auto FInitEventSystem = PreyFunction<void(CUIGameEvents* const _this)>(0x17FA5D0);
+	static inline auto FUnloadEventSystem = PreyFunction<void(CUIGameEvents* const _this)>(0xA13080);
+	static inline auto FOnLoadLevel = PreyFunction<void(CUIGameEvents* const _this, const char* mapname, bool isServer, const char* gamerules)>(0x17FAE90);
+	static inline auto FOnReloadLevel = PreyFunction<void(CUIGameEvents* const _this)>(0x17FAFB0);
+	static inline auto FOnSaveGame = PreyFunction<void(CUIGameEvents* const _this, bool shouldResume)>(0x17FB080);
+	static inline auto FOnLoadGame = PreyFunction<void(CUIGameEvents* const _this, bool shouldResume)>(0x17FAE00);
+	static inline auto FOnPauseGame = PreyFunction<void(CUIGameEvents* const _this)>(0x17FAF80);
+	static inline auto FOnResumeGame = PreyFunction<void(CUIGameEvents* const _this)>(0x17FB060);
+	static inline auto FOnExitGame = PreyFunction<void(CUIGameEvents* const _this)>(0x17FADE0);
+	static inline auto FOnStartGame = PreyFunction<void(CUIGameEvents* const _this)>(0x17FB130);
+#else
 	static inline auto FGetTypeName = PreyFunction<const char* (const CUIGameEvents* const _this)>(0x1922100);
 	static inline auto FInitEventSystem = PreyFunction<void(CUIGameEvents* const _this)>(0x1922110);
 	static inline auto FUnloadEventSystem = PreyFunction<void(CUIGameEvents* const _this)>(0x1333E90);
@@ -47,5 +58,6 @@ public:
 	static inline auto FOnResumeGame = PreyFunction<void(CUIGameEvents* const _this)>(0x1922B80);
 	static inline auto FOnExitGame = PreyFunction<void(CUIGameEvents* const _this)>(0x1440700);
 	static inline auto FOnStartGame = PreyFunction<void(CUIGameEvents* const _this)>(0x1922C50);
+#endif
 };
-#endif // MOONCRASH
+

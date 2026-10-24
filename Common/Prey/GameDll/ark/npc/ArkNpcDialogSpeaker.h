@@ -1,13 +1,12 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/dialog/ArkDialogPlayerNPC.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/dialog/ArkResponseQuery.h>
 #include <Prey/GameDll/ark/dialog/arkspeaker.h>
 #include <Prey/GameDll/ark/iface/IArkFactionListener.h>
-#include <_unknown/ArkAttentionLevelsChangedListener.h>
+#include <Prey/GameDll/ark/npc/ArkAttentionLevelsChangedListener.h>
 
 struct ArkAttentionLevelChange;
 class ArkConversation;
@@ -42,7 +41,11 @@ public:
 	bool m_bRegistered;
 	ArkNpcSpeakerEvent m_eCurrentEvent;
 	ArkResponseQuery m_currentResponseQuery;
+#ifndef MOONCRASH
+	static inline auto s_eventData = PreyGlobal<std::pair<const char*, int> [62]>(0x2C008D0);
+#else
 	static inline auto s_eventData = PreyGlobal<std::pair<const char*, int> [71]>(0x2D7BD50);
+#endif
 
 	ArkNpcDialogSpeaker(ArkNpcPlayer& _npc);
 	~ArkNpcDialogSpeaker();
@@ -80,6 +83,32 @@ public:
 	Vec3 GetPlayerStopRaycastPos();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcDialogSpeakerOv1 = PreyFunction<void(ArkNpcDialogSpeaker* const _this, ArkNpcPlayer& _npc)>(0x1507270);
+	static inline auto FBitNotArkNpcDialogSpeaker = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x15073B0);
+	static inline auto FPostInit = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508C90);
+	static inline auto FRelease = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508CE0);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcDialogSpeaker* const _this, const float _frameTime)>(0x15095B0);
+	static inline auto FReset = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508D20);
+	static inline auto FLoadScriptVariables = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508430);
+	static inline auto FLoadOverridesFromTable = PreyFunction<void(ArkNpcDialogSpeaker* const _this, const ArkSafeScriptTable& _dialogOverrideTable)>(0x15082C0);
+	static inline auto FBuildResponseQuery = PreyFunction<ArkResponseQuery*(const ArkNpcDialogSpeaker* const _this, ArkResponseQuery* _return_value_)>(0x1507400);
+	static inline auto FEvent = PreyFunction<void(ArkNpcDialogSpeaker* const _this, ArkNpcSpeakerEvent _event, const void* _pData)>(0x1507850);
+	static inline auto FTrigger = PreyFunction<ArkConversation* (ArkNpcDialogSpeaker* const _this, const uint64_t _ruleId, const int _paChannel, int _priority)>(0x1509530);
+	static inline auto FOnDialogAnimationEvent = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508C40);
+	static inline auto FHasUseDialog = PreyFunction<bool(const ArkNpcDialogSpeaker* const _this)>(0x15081C0);
+	static inline auto FIsHostileToPlayer = PreyFunction<bool(const ArkNpcDialogSpeaker* const _this)>(0x1508280);
+	static inline auto FOnDeath = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508BC0);
+	static inline auto FStopAll = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1509510);
+	static inline auto FSetPlayerExtension = PreyFunction<void(ArkNpcDialogSpeaker* const _this, IArkDialogPlayerExtension* _pExtension)>(0x1508DF0);
+	static inline auto FIsActive = PreyFunction<bool(const ArkNpcDialogSpeaker* const _this)>(0x1508260);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcDialogSpeaker* const _this, TSerialize _ser)>(0x1508DA0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1508CD0);
+	static inline auto FDoOnAttentionLevelsChanged = PreyFunction<void(ArkNpcDialogSpeaker* const _this, const ArkAttentionLevelChange* _pFirstChange, const ArkAttentionLevelChange* _pLastChange)>(0x1507780);
+	static inline auto FUpdateListeners = PreyFunction<void(ArkNpcDialogSpeaker* const _this, bool _bRegister)>(0x1509950);
+	static inline auto FUpdatePlayerVisibility = PreyFunction<void(ArkNpcDialogSpeaker* const _this, IEntity& _entity)>(0x1509AD0);
+	static inline auto FSetupEventData = PreyFunction<void()>(0x1508E00);
+#else
 	static inline auto FArkNpcDialogSpeakerOv1 = PreyFunction<void(ArkNpcDialogSpeaker* const _this, ArkNpcPlayer& _npc)>(0x16246E0);
 	static inline auto FBitNotArkNpcDialogSpeaker = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1624820);
 	static inline auto FPostInit = PreyFunction<void(ArkNpcDialogSpeaker* const _this)>(0x1626100);
@@ -104,5 +133,6 @@ public:
 	static inline auto FUpdateListeners = PreyFunction<void(ArkNpcDialogSpeaker* const _this, bool _bRegister)>(0x1626EA0);
 	static inline auto FUpdatePlayerVisibility = PreyFunction<void(ArkNpcDialogSpeaker* const _this, IEntity& _entity)>(0x1627020);
 	static inline auto FSetupEventData = PreyFunction<void()>(0x1626270);
+#endif
 };
-#endif // MOONCRASH
+

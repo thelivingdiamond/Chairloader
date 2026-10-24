@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -227,6 +226,86 @@ public:
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
+
+class ArkClass;
+class ArkReflectedObject;
+struct IArkValueBase;
+
+// ArkTransition
+// Header:  Prey/Ark/ArkLocation.h
+class ArkTransition : public ArkReflectedObject
+{ // Size=24 (0x18)
+public:
+	// ArkTransition::ArkConnectionAProperty
+	// Header:  Prey/Ark/ArkLocation.h
+	class ArkConnectionAProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkConnectionAProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTransition::ArkConnectionAProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTransition::ArkConnectionAProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+	};
+
+	// ArkTransition::ArkConnectionBProperty
+	// Header:  Prey/Ark/ArkLocation.h
+	class ArkConnectionBProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkConnectionBProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTransition::ArkConnectionBProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTransition::ArkConnectionBProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+	};
+
+	// ArkTransition::ArkCostProperty
+	// Header:  Prey/Ark/ArkLocation.h
+	class ArkCostProperty : public ArkProperty
+	{ // Size=32 (0x20)
+	public:
+		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
+		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
+
+	#if 0
+		ArkCostProperty();
+	#endif
+
+		static inline auto FSetValue = PreyFunction<void(const ArkTransition::ArkCostProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkTransition::ArkCostProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+	};
+
+	static inline auto s_ArkConnectionAProperty = PreyGlobal<ArkTransition::ArkConnectionAProperty>(0x2D25A50);
+	uint64_t m_ConnectionA;
+	static inline auto s_ArkConnectionBProperty = PreyGlobal<ArkTransition::ArkConnectionBProperty>(0x2D25A70);
+	uint64_t m_ConnectionB;
+	static inline auto s_ArkCostProperty = PreyGlobal<ArkTransition::ArkCostProperty>(0x2D25A90);
+	float m_Cost;
+
+	static ArkReflectedObject* Create() { return FCreate(); }
+	static ArkClass* GetClass() { return FGetClass(); }
+
+#if 0
+	void SetConnectionA(uint64_t _arg0_);
+	const uint64_t& GetConnectionA() const;
+	void SetConnectionB(uint64_t _arg0_);
+	const uint64_t& GetConnectionB() const;
+	void SetCost(float _arg0_);
+	const float& GetCost() const;
+#endif
+
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1092A00);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1092C60);
+};
 
 class ArkClass;
 class IArkValueBase;

@@ -1,10 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/CryNetwork/ISerialize.h>
-#include <_unknown/IArkSaveLoadListener.h>
+#include <Prey/GameDll/ark/IArkSaveLoadListener.h>
 
 enum EEntityAspects;
 class ICrySizer;

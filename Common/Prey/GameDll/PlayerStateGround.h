@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -23,9 +21,16 @@ public:
 	bool CheckForVaultTrigger(CPlayer& _arg0_, float _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateGround = PreyFunction<void(CPlayerStateGround* const _this)>(0x1210480);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player)>(0x17BB630);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime, const bool isHeavyWeapon, const bool isPlayer)>(0x17BB670);
+	static inline auto FOnExit = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player)>(0xA13080);
+#else
 	static inline auto FCPlayerStateGround = PreyFunction<void(CPlayerStateGround* const _this)>(0x18E26C0);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player)>(0x18E26D0);
 	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime, const bool isHeavyWeapon, const bool isPlayer)>(0x18E2710);
 	static inline auto FOnExit = PreyFunction<void(CPlayerStateGround* const _this, CPlayer& player)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

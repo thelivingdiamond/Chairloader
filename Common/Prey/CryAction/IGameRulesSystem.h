@@ -11,8 +11,27 @@ struct IParticleEffect;
 
 // Header: Exact
 // CryEngine/cryaction/igamerulessystem.h
-struct HitInfo // Id=8001F5A Size=112
+struct HitInfo // Id=8001F5A Size=112 (Mooncrash: 108)
 {
+#ifdef MOONCRASH
+	enum class HitInfoFlag
+	{
+		remote = 1,
+		aimed = 2,
+		knocksDown = 4,
+		knocksDownLeg = 8,
+		hitViaProxy = 16,
+		explosion = 32,
+		forceLocalKill = 64,
+		critical = 128,
+		resistant = 256,
+		shielded = 512,
+		armored = 1024,
+		hideHitDamageUI = 2048,
+		onHitFeedback = 4096,
+	};
+#endif
+
 	unsigned shooterId;
 	unsigned targetId;
 	unsigned weaponId;
@@ -33,6 +52,7 @@ struct HitInfo // Id=8001F5A Size=112
 	Vec3 normal;
 	uint16_t projectileClassId;
 	uint16_t weaponClassId;
+#ifndef MOONCRASH
 	bool remote;
 	bool aimed;
 	bool knocksDown;
@@ -41,9 +61,17 @@ struct HitInfo // Id=8001F5A Size=112
 	bool explosion;
 	bool forceLocalKill;
 	bool critical;
+#else
+	unsigned m_hitInfoFlags;
+#endif
 	int penetrationCount;
 	
 	void SerializeWith(TSerialize ser) { FSerializeWith(this,ser); }
+#ifdef MOONCRASH
+	// inlined in the game
+	bool GetHitInfoFlag(HitInfoFlag _flag) const { return (m_hitInfoFlags & static_cast<unsigned>(_flag)) != 0; }
+	void SetHitInfoFlag(HitInfoFlag _flag, bool _bSet) { if (_bSet) m_hitInfoFlags |= static_cast<unsigned>(_flag); else m_hitInfoFlags &= ~static_cast<unsigned>(_flag); }
+#endif
 	
 #if 0
 	void GetMemoryUsage(ICrySizer *arg0) const;

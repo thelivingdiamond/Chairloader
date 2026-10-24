@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -37,6 +35,21 @@ public:
 	const std::vector<unsigned int>* GetAttractorsInContainer(const CArkAreaContainer& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkAttractionManagerOv1 = PreyFunction<void(ArkAttractionManager* const _this)>(0x14E68E0);
+	static inline auto FBitNotArkAttractionManager = PreyFunction<void(ArkAttractionManager* const _this)>(0x14E6960);
+	static inline auto FRegisterAttractor = PreyFunction<void(ArkAttractionManager* const _this, const CArkAttraction& _attractor)>(0x14E70E0);
+	static inline auto FUnRegisterAttractor = PreyFunction<void(ArkAttractionManager* const _this, const CArkAttraction& _attractor)>(0x14E7500);
+	static inline auto FRegisterRoomContainer = PreyFunction<void(ArkAttractionManager* const _this, const CArkAreaContainer& _roomContainer)>(0x14E7160);
+	static inline auto FAcquireAttractorOv2 = PreyFunction<CArkAttraction* (ArkAttractionManager* const _this, const CArkAreaContainer& _areaContainer, const Vec3& _requesterPos)>(0x14E6C30);
+	static inline auto FAcquireAttractorOv1 = PreyFunction<CArkAttraction* (ArkAttractionManager* const _this, const Vec3& _requesterPos, float _radius)>(0x14E6990);
+	static inline auto FAcquireAttractorOv0 = PreyFunction<CArkAttraction* (ArkAttractionManager* const _this, unsigned _attractorId)>(0x14E6FB0);
+	static inline auto FRelinquishAttractor = PreyFunction<void(ArkAttractionManager* const _this, CArkAttraction& _attractor)>(0x14E7470);
+	static inline auto FReset = PreyFunction<void(ArkAttractionManager* const _this, bool _bEnteringGameMode)>(0x14E7480);
+	static inline auto FUpdate = PreyFunction<void(ArkAttractionManager* const _this, float _dt)>(0xA13080);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkAttractionManager* const _this)>(0xA13080);
+	static inline auto FOnLevelUnload = PreyFunction<void(ArkAttractionManager* const _this)>(0x14E7480);
+#else
 	static inline auto FArkAttractionManagerOv1 = PreyFunction<void(ArkAttractionManager* const _this)>(0x16020C0);
 	static inline auto FBitNotArkAttractionManager = PreyFunction<void(ArkAttractionManager* const _this)>(0x1602140);
 	static inline auto FRegisterAttractor = PreyFunction<void(ArkAttractionManager* const _this, const CArkAttraction& _attractor)>(0x16028C0);
@@ -50,5 +63,6 @@ public:
 	static inline auto FUpdate = PreyFunction<void(ArkAttractionManager* const _this, float _dt)>(0x1333E90);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkAttractionManager* const _this)>(0x1333E90);
 	static inline auto FOnLevelUnload = PreyFunction<void(ArkAttractionManager* const _this)>(0x1602C60);
+#endif
 };
-#endif // MOONCRASH
+

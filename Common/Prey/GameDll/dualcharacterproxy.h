@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/IAnimationGraph.h>
@@ -26,7 +24,11 @@ public:
 
 	using NameHashMap = std::map<unsigned int, unsigned int>;
 
+#ifndef MOONCRASH
+	static inline auto s_animCrCHashMap = PreyGlobal<std::map<unsigned int, unsigned int>>(0x2C081E8);
+#else
 	static inline auto s_animCrCHashMap = PreyGlobal<std::map<unsigned int, unsigned int>>(0x2D82328);
+#endif
 	int m_characterMain;
 	int m_characterShadow;
 	bool m_firstPersonMode;
@@ -42,10 +44,17 @@ public:
 	static int Get3PAnimID(IAnimationSet* _arg0_, int _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FLoad1P3PPairFile = PreyFunction<void()>(0x16B6C10);
+	static inline auto FReleaseBuffers = PreyFunction<void()>(0x16B6E10);
+	static inline auto FStartAnimation = PreyFunction<bool(CAnimationProxyDualCharacterBase* const _this, IEntity* entity, const char* szAnimName, const CryCharAnimationParams& Params, float speedMultiplier)>(0x16B6FD0);
+	static inline auto FGetPlayParams = PreyFunction<void(CAnimationProxyDualCharacterBase* const _this, int animID, float speedMul, IAnimationSet* animSet, CAnimationProxyDualCharacterBase::SPlayParams& params)>(0x16B6B20);
+#else
 	static inline auto FLoad1P3PPairFile = PreyFunction<void()>(0x17D9AD0);
 	static inline auto FReleaseBuffers = PreyFunction<void()>(0x17D9CC0);
 	static inline auto FStartAnimation = PreyFunction<bool(CAnimationProxyDualCharacterBase* const _this, IEntity* entity, const char* szAnimName, const CryCharAnimationParams& Params, float speedMultiplier)>(0x17D9E80);
 	static inline auto FGetPlayParams = PreyFunction<void(CAnimationProxyDualCharacterBase* const _this, int animID, float speedMul, IAnimationSet* animSet, CAnimationProxyDualCharacterBase::SPlayParams& params)>(0x17D99E0);
+#endif
 };
 
 // CAnimationProxyDualCharacter
@@ -71,6 +80,15 @@ public:
 	bool CanMixUpperBody() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCAnimationProxyDualCharacterOv2 = PreyFunction<void(CAnimationProxyDualCharacter* const _this)>(0x16B6940);
+	static inline auto FStartAnimationById = PreyFunction<bool(CAnimationProxyDualCharacter* const _this, IEntity* entity, int animId, const CryCharAnimationParams& Params, float speedMultiplier)>(0x16B7050);
+	static inline auto FStopAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacter* const _this, IEntity* entity, int nLayer, float BlendOutTime)>(0x16B73E0);
+	static inline auto FRemoveAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacter* const _this, IEntity* entity, int nLayer, unsigned token)>(0x16B6E90);
+	static inline auto FGetAnimationOv1 = PreyFunction<const CAnimation* (CAnimationProxyDualCharacter* const _this, IEntity* entity, int layer)>(0x16B6A80);
+	static inline auto FGetAnimationOv0 = PreyFunction<CAnimation* (CAnimationProxyDualCharacter* const _this, IEntity* entity, int layer, unsigned token)>(0x16B69D0);
+	static inline auto FOnReload = PreyFunction<void(CAnimationProxyDualCharacter* const _this)>(0x16B6DD0);
+#else
 	static inline auto FCAnimationProxyDualCharacterOv2 = PreyFunction<void(CAnimationProxyDualCharacter* const _this)>(0x17D9800);
 	static inline auto FStartAnimationById = PreyFunction<bool(CAnimationProxyDualCharacter* const _this, IEntity* entity, int animId, const CryCharAnimationParams& Params, float speedMultiplier)>(0x17D9F00);
 	static inline auto FStopAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacter* const _this, IEntity* entity, int nLayer, float BlendOutTime)>(0x17DA290);
@@ -78,6 +96,7 @@ public:
 	static inline auto FGetAnimationOv1 = PreyFunction<const CAnimation* (CAnimationProxyDualCharacter* const _this, IEntity* entity, int layer)>(0x17D9940);
 	static inline auto FGetAnimationOv0 = PreyFunction<CAnimation* (CAnimationProxyDualCharacter* const _this, IEntity* entity, int layer, unsigned token)>(0x17D9890);
 	static inline auto FOnReload = PreyFunction<void(CAnimationProxyDualCharacter* const _this)>(0x17D9C80);
+#endif
 };
 
 // CAnimationProxyDualCharacterUpper
@@ -97,10 +116,18 @@ public:
 	void SetFirstPerson(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCAnimationProxyDualCharacterUpperOv2 = PreyFunction<void(CAnimationProxyDualCharacterUpper* const _this)>(0x16B6970);
+	static inline auto FStartAnimationById = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int animId, const CryCharAnimationParams& Params, float speedMultiplier)>(0x16B7230);
+	static inline auto FStopAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int nLayer, float BlendOutTime)>(0x16B7490);
+	static inline auto FRemoveAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int nLayer, unsigned token)>(0x16B6E90);
+	static inline auto FOnReload = PreyFunction<void(CAnimationProxyDualCharacterUpper* const _this)>(0x16B6DF0);
+#else
 	static inline auto FCAnimationProxyDualCharacterUpperOv2 = PreyFunction<void(CAnimationProxyDualCharacterUpper* const _this)>(0x17D9830);
 	static inline auto FStartAnimationById = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int animId, const CryCharAnimationParams& Params, float speedMultiplier)>(0x17DA0E0);
 	static inline auto FStopAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int nLayer, float BlendOutTime)>(0x17DA340);
 	static inline auto FRemoveAnimationInLayer = PreyFunction<bool(CAnimationProxyDualCharacterUpper* const _this, IEntity* entity, int nLayer, unsigned token)>(0x17D9D40);
 	static inline auto FOnReload = PreyFunction<void(CAnimationProxyDualCharacterUpper* const _this)>(0x17D9CA0);
+#endif
 };
-#endif // MOONCRASH
+

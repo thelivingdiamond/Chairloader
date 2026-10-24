@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/state.h>
-#include <_unknown/CStateMachineRegistration.h>
+#include <Prey/GameDll/state.h>
 
 class CPlayer;
 struct SStateEvent;
@@ -34,6 +32,16 @@ public:
 	static void UnRegister();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateAnimationControlled = PreyFunction<void(CPlayerStateAnimationControlled* const _this, CStateMachineRegistration<CPlayer>& stateMachineReg)>(0x17B9D10);
+	static inline auto FCreate = PreyFunction<CStateHierarchy<CPlayer>* (CStateMachineRegistration<CPlayer>& stateMachineReg)>(0x17BA370);
+	static inline auto FDelete = PreyFunction<void(CStateHierarchy<CPlayer>* & pState)>(0x17BF980);
+	static inline auto FEntryChoice = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x17BA450);
+	static inline auto FInteractiveAction = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x17BA510);
+	static inline auto FStealthKill = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x17BA7F0);
+	static inline auto FCutScene = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x17BA3A0);
+	static inline auto FRoot = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x17BDD70);
+#else
 	static inline auto FCPlayerStateAnimationControlled = PreyFunction<void(CPlayerStateAnimationControlled* const _this, CStateMachineRegistration<CPlayer>& stateMachineReg)>(0x18E0D90);
 	static inline auto FCreate = PreyFunction<CStateHierarchy<CPlayer>* (CStateMachineRegistration<CPlayer>& stateMachineReg)>(0x18E13F0);
 	static inline auto FDelete = PreyFunction<void(CStateHierarchy<CPlayer>* & pState)>(0x18E6C30);
@@ -42,5 +50,6 @@ public:
 	static inline auto FStealthKill = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x18E18B0);
 	static inline auto FCutScene = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x18E1420);
 	static inline auto FRoot = PreyFunction<const SStateIndex<CPlayer>*(CPlayerStateAnimationControlled* const _this, const SStateIndex<CPlayer>* _return_value_, CPlayer& player, const SStateEvent& event)>(0x18E1870);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (base-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -46,7 +44,7 @@ struct IVirtualKeyboardEvents
 	// <interfuscator:shuffle>
 	virtual ~IVirtualKeyboardEvents(){}
 	virtual void KeyboardCancelled() = 0;
-	virtual void KeyboardFinished(const char* pInString) = 0;
+	virtual void KeyboardFinished(const wchar_t* pInString) = 0;
 	// </interfuscator:shuffle>
 };
 
@@ -153,6 +151,7 @@ public:
 	virtual void CheckForChunkCompletionPostResume();
 	virtual void SetPaused(bool _bPaused);
 
+#ifndef MOONCRASH
 	static inline auto FQueryChunkProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const unsigned chunkID, SStreamingInstallProgress * pProgress)>(0xD7F810);
 	static inline auto FQueryLevelProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const char* sLevelName, SStreamingInstallProgress * pProgress)>(0xD7F810);
 	static inline auto FSwitchPriorityTo = PreyFunction<void(CStreamingInstallBase* const _this, const char* sLevelName)>(0xA13080);
@@ -161,11 +160,33 @@ public:
 	static inline auto FGetPakSortIndex = PreyFunction<unsigned(const CStreamingInstallBase* const _this, const char* sPakFileName)>(0x158AEF0);
 	static inline auto FCheckForChunkCompletionPostResume = PreyFunction<void(CStreamingInstallBase* const _this)>(0xA13080);
 	static inline auto FSetPaused = PreyFunction<void(CStreamingInstallBase* const _this, bool _bPaused)>(0xA13080);
+#else
+	static inline auto FQueryChunkProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const unsigned chunkID, SStreamingInstallProgress * pProgress)>(0xD9D4D0);
+	static inline auto FQueryLevelProgress = PreyFunction<void(const CStreamingInstallBase* const _this, const char* sLevelName, SStreamingInstallProgress * pProgress)>(0xD9D4D0);
+	static inline auto FSwitchPriorityTo = PreyFunction<void(CStreamingInstallBase* const _this, const char* sLevelName)>(0x1333E90);
+	static inline auto FIsFileAvailable = PreyFunction<bool(const CStreamingInstallBase* const _this, const char* sFileName)>(0x1A302A0);
+	static inline auto FIsPakRequiredForLevel = PreyFunction<bool(const CStreamingInstallBase* const _this, const char* sPakFileName, const char* sLevelName)>(0x1A302A0);
+	static inline auto FGetPakSortIndex = PreyFunction<unsigned(const CStreamingInstallBase* const _this, const char* sPakFileName)>(0x1CBB0B0);
+	static inline auto FCheckForChunkCompletionPostResume = PreyFunction<void(CStreamingInstallBase* const _this)>(0x1333E90);
+	static inline auto FSetPaused = PreyFunction<void(CStreamingInstallBase* const _this, bool _bPaused)>(0x1333E90);
+#endif
 };
 
 //! Interface platform OS (Operating System) functionality.
 struct IPlatformOS
 {
+#ifdef MOONCRASH
+	// IPlatformOS::IServiceTask
+	struct IServiceTask
+	{
+		virtual ~IServiceTask() {}
+		virtual void OnEnqueued() = 0;
+		virtual void Run() = 0;
+		virtual void Finish() = 0;
+		virtual bool IsPending() const = 0;
+		virtual bool IsOwnedByScheduler() const = 0;
+	};
+#endif
 	virtual const char* GetPlatformName() const = 0;
 
 	enum ECreateFlags
@@ -591,6 +612,11 @@ struct IPlatformOS
 	//! Tick with each frame to determine if there are any system messages requiring handling.
 	virtual void Tick(float realFrameTime) = 0;
 
+#ifdef MOONCRASH
+	virtual void PostServiceTask(IPlatformOS::IServiceTask* _task) = 0;
+	virtual void PostMainThreadTask(IPlatformOS::IServiceTask* _task) = 0;
+#endif // MOONCRASH
+
 	//! Local user profile functions to check/initiate user sign in:.
 
 	//! Returns the maximum number of signed in users. EG: On Xbox is 4.
@@ -606,7 +632,7 @@ struct IPlatformOS
 	//! \param numUsersRequested Number of users requested or 0 to sign in the default user.
 	//! \param controllerIndex Controller used to request sign in.
 	//! \return true on success.
-	virtual bool UserDoSignIn(unsigned int numUsersRequested = 1, unsigned int controllerIndex = 0) = 0;
+	virtual bool UserDoSignIn(unsigned int userId) = 0; // Prey: one argument
 
 	//! Sign out a user.
 	//! This is required for 360 when returning to the splash screen where you can press Start to initiate sign in with any controller.
@@ -614,13 +640,13 @@ struct IPlatformOS
 	virtual void UserSignOut(unsigned int user) = 0;
 
 	//! Returns the player index of a signed in user or Unknown_User if the user is not signed in.
-	virtual unsigned int UserGetPlayerIndex(const char* userName) const = 0;
+	virtual unsigned int UserGetPlayerId(const char* const userName) const = 0; // CE: UserGetPlayerIndex
 
 	//! Get the offline name of a user. Returns true on success.
 	virtual bool UserGetName(unsigned int userIndex, IPlatformOS::TUserName& outName) const = 0;
 
 	//! Get the User::Id (Platform, unique id for user in this console) of a user. -1 if user is not valid.
-	virtual int UserGetId(unsigned int userIndex) const = 0;
+	virtual unsigned int UserGetId(const SUserXUID& xuid) const = 0;
 
 	//! Get the XUID name of a user. Returns true on success.
 	virtual bool UserGetXUID(unsigned int userIndex, SUserXUID&) const = 0;
@@ -629,7 +655,7 @@ struct IPlatformOS
 	virtual bool UserGetOnlineName(unsigned int userIndex, IPlatformOS::TUserName& outName) const = 0;
 
 	virtual unsigned int GetUserPairedToDevice(unsigned __int64) = 0;
-	virtual int GetDevicesPairedToUser(unsigned int, std::vector<unsigned __int64> &) = 0;
+	virtual int GetDevicesPairedToUser(unsigned int userId, std::vector<unsigned __int64>& outDeviceIds) const = 0;
 
 	//! Get the user to select a storage device location for save data.
 	//! Returns true if storage is now available for the user.
@@ -656,6 +682,9 @@ struct IPlatformOS
 	virtual IPlatformOS::ISaveWriterPtr SaveGetWriter(const char* fileName, unsigned int user = IPlatformOS::Unknown_User) = 0;
 
 	virtual bool SaveCopyFiles(const char*, const char*, const char*, unsigned int) = 0;
+#ifdef MOONCRASH
+	virtual std::vector<string> GetSaveFileNamesFromContainer(const char* _containerName, const char* _pattern) = 0;
+#endif // MOONCRASH
 
 	//! Get a IFindFile interface for searching for files.
 	virtual IPlatformOS::IFileFinderPtr GetFileFinder(const char *, unsigned int user) = 0;
@@ -668,14 +697,16 @@ struct IPlatformOS
 	//! \param keyData    License key used to load the data.
 	virtual void MountDLCContent(IDLCListener* pCallback, unsigned int user, const uint8 keyData[16]) = 0;
 
+#ifndef MOONCRASH
 	// Cache Data Paks API.
-	virtual IPlatformOS::ECDP_Start  StartUsingCachePaks(const int user, bool* outWritesOccurred) = 0;
-	virtual IPlatformOS::ECDP_End    EndUsingCachePaks(const int user) = 0;
+	virtual IPlatformOS::ECDP_Start  StartUsingCachePaks(unsigned userId, bool* outWritesOccurred) = 0; // Prey: unsigned
+	virtual IPlatformOS::ECDP_End    EndUsingCachePaks(unsigned userId) = 0;
 	virtual IPlatformOS::ECDP_Open   DoesCachePakExist(const char* const filename, const size_t size, unsigned char md5[16]) = 0;
 	virtual IPlatformOS::ECDP_Open   OpenCachePak(const char* const filename, const char* const bindRoot, const size_t size, unsigned char md5[16]) = 0;
 	virtual IPlatformOS::ECDP_Close  CloseCachePak(const char* const filename) = 0;
 	virtual IPlatformOS::ECDP_Delete DeleteCachePak(const char* const filename) = 0;
 	virtual IPlatformOS::ECDP_Write  WriteCachePak(const char* const filename, const void* const pData, const size_t numBytes) = 0;
+#endif // !MOONCRASH
 
 #if CRY_PLATFORM_DURANGO
 	//! Save or load data using connected storage.
@@ -730,7 +761,9 @@ struct IPlatformOS
 	//! Useful for unpacking DLC content after download.
 	//! \param path	The path to search for zips in.
 	//! \note Only supported on PC.
+#ifndef MOONCRASH
 	virtual IPlatformOS::EZipExtractFail ExtractZips(const char* path) = 0;
+#endif // !MOONCRASH
 
 	//! If the platform supports restarting the current title.
 	virtual bool CanRestartTitle() const = 0;
@@ -746,6 +779,7 @@ struct IPlatformOS
 
 	//! Returns the user's PII (Personally Identifiable Information).
 	//! On first request it will start the act of retrieval, after which the caller can poll or wait for eET_PIIRetrieved.
+#ifndef MOONCRASH
 	virtual EUserPIIStatus GetUserPII(unsigned int inUser, SUserPII* pOutPII) = 0;
 
 	//! Inform the platform os that the optical drive is currently idle, and extra data can be read from it if needed.
@@ -753,6 +787,7 @@ struct IPlatformOS
 
 	//! Inform the platform OS that optical drive can/can't be used for extra reads.
 	virtual void AllowOpticalDriveUsage(bool bAllow) = 0;
+#endif // !MOONCRASH
 
 	//////////////////////////////////////////////////////////////////////////
 	// Keyboard.
@@ -760,7 +795,7 @@ struct IPlatformOS
 	//! Starts the virtual keyboard. Flags are from KbdFlag_* enum. title string is not copied. you must pass a set of callbacks via IVirtualKeyboardEvents.
 	//! Title & initialInput params must remain valid for the duration of the system keyboard, therefore they must NOT have been originally declared on the stack.
 	//! \return false if the keyboard failed to start.
-	virtual bool KeyboardStart(unsigned int inUserIndex, unsigned int flags, const char* title, const char* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback) = 0;
+	virtual bool KeyboardStart(unsigned int inUserIndex, unsigned int flags, const wchar_t* title, const wchar_t* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback) = 0;
 
 	//! \return true if the virtual keyboard is currently displayed.
 	virtual bool KeyboardIsRunning() = 0;
@@ -772,7 +807,7 @@ struct IPlatformOS
 	//////////////////////////////////////////////////////////////////////////
 	// String Verification.
 
-	virtual bool StringVerifyStart(const char* inString, IStringVerifyEvents* pInCallback) = 0;
+	virtual bool StringVerifyStart(const wchar_t* inString, IStringVerifyEvents* pInCallback) = 0;
 	virtual bool IsVerifyingString() = 0;
 
 	//////////////////////////////////////////////////////////////////////////
@@ -791,16 +826,18 @@ struct IPlatformOS
 	//! Get the SKU identifier from the platform.
 	virtual const char* GetSKUId() = 0;
 
-	virtual unsigned int GetBaseServiceLabelForCurrentSku() = 0;
-	virtual unsigned int GetLeadServiceLabelForCurrentSku() = 0;
-	virtual ELanguageID GetLanguageIDFromName(const char*) = 0;
-	virtual ELanguageID GetSystemLanguageID() = 0;
-	virtual unsigned int GetNumSystemSupportedLanguages() = 0;
+#ifndef MOONCRASH
+	virtual unsigned int GetBaseServiceLabelForCurrentSku() const = 0;
+	virtual unsigned int GetLeadServiceLabelForCurrentSku() const = 0;
+#endif // !MOONCRASH
+	virtual ELanguageID GetLanguageIDFromName(const char*) const = 0;
+	virtual ELanguageID GetSystemLanguageID() const = 0;
+	virtual unsigned int GetNumSystemSupportedLanguages() const = 0;
 
 	//! Compose a bitfield that enumerates the languages available on this system OS.
 	//! This is used to determine the overlap between languages supplied in a SKU and languages available on a system.
 	//! Some platforms like the PS3 have TRCs relating to whether or not you should show a language select screen based on this information.
-	virtual ILocalizationManager::TLocalizationBitfield GetSystemSupportedLanguages() = 0;
+	virtual ILocalizationManager::TLocalizationBitfield GetSystemSupportedLanguages() const = 0;
 	
 	//! Displays an OS dialog box for debugging messages.
 	//! A modal (blocking) dialog box with OK and Cancel options.
@@ -812,12 +849,14 @@ struct IPlatformOS
 	//! Begin platform specific boot checks to meet TRCs/TCRs.
 	//! Call after localization has been initialized and chosen to meet TCG's guidance.
 	//! This should tend to throw fatal errors using platform specific APIs in order to meet TRCs robustly.
+#ifndef MOONCRASH
 	virtual bool PostLocalizationBootChecks() = 0;
 
 	//! Save raw save/load game to/from local hard drive. Implement this for each system.
 	virtual bool ConsoleLoadGame(IConsoleCmdArgs* pArgs) = 0;
 
 	virtual bool DebugSave(SDebugDump& dump) = 0;
+#endif // !MOONCRASH
 
 	//! Retrieve the local IP address as both as dotted ip format string and as an unsigned int.
 	//! \param length Available space in ipAddress buffer (should be >=16!)
@@ -826,7 +865,7 @@ struct IPlatformOS
 	//! Get the host name of the current machine.
 	virtual const char* const GetHostName() = 0;
 
-	virtual bool SwapConfirmCancel() = 0;
+	virtual bool SwapConfirmCancel() const = 0;
 
 	//! Initialize the encryption key from game.
 	virtual void InitEncryptionKey(const char* pMagic, size_t magicLength, const uint8* pKey, size_t keyLength) = 0;
@@ -836,14 +875,18 @@ struct IPlatformOS
 	//! \param pKey     Encryption key to use.
 	virtual void   GetEncryptionKey(const std::vector<char>** pMagic = NULL, const std::vector<uint8>** pKey = NULL) = 0;
 
+#ifndef MOONCRASH
 	virtual bool IsStoreCompleted() = 0;
-	virtual bool IsTrial() = 0;
+	virtual bool IsTrial() const = 0;
 	virtual void ShowStoreProduct(const char*, unsigned int) = 0;
-	virtual EArkFirstPartyEnvironmentQueryResponse QueryFirstPartyEnvironment(EArkFirstPartyEnvironment*) = 0;
+#endif // !MOONCRASH
+	virtual EArkFirstPartyEnvironmentQueryResponse QueryFirstPartyEnvironment(EArkFirstPartyEnvironment& _env) = 0;
 
+#ifndef MOONCRASH
 	virtual bool   IsInstalling() const        { return false; }
 	virtual bool   IsHDDAvailable() const      { return true; }
 	virtual uint64 GetHDDCacheCopySize() const { return 0; }
+#endif // !MOONCRASH
 
 	virtual bool   CanSafelyQuit() const       { return true; }
 
@@ -854,7 +897,9 @@ struct IPlatformOS
 	// </interfuscator:shuffle>
 
 	//! Called from CSystem::RenderEnd(); used to draw platform debug stuff.
+#ifndef MOONCRASH
 	virtual void RenderEnd() {}
+#endif // !MOONCRASH
 
 	//! Application Clip Capture.
 	//! Interface for capturing in-game clips.
@@ -1067,4 +1112,3 @@ protected:
 };
 
 #endif
-#endif // !MOONCRASH

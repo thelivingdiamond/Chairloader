@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -17,6 +15,13 @@ struct SUIEventDesc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/ArkFocusModeUIComponent.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ui/ArkFocusModeMenuPower.h>
+#include <Prey/GameDll/ark/ui/ArkFocusModeMenuWeapon.h>
+class CCryName;
+enum class EArkPsiPowers;
+enum EControlScheme;
+#endif
 class ArkFocusModeUIComponent : public ArkUIMenuBase<ArkFocusModeUIComponent>, public IUIControlSchemeListener // Id=8017261 Size=168
 {
 public:
@@ -87,6 +92,7 @@ public:
 	int GetMenuItemCount() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkFocusModeUIComponent = PreyFunction<void(ArkFocusModeUIComponent *const _this)>(0x1353C10);
 	static inline auto FShow = PreyFunction<void(ArkFocusModeUIComponent *const _this)>(0x13564B0);
 	static inline auto FHide = PreyFunction<void(ArkFocusModeUIComponent *const _this)>(0x1354710);
@@ -105,97 +111,7 @@ public:
 	static inline auto FOnSelectMenuItem = PreyFunction<void(ArkFocusModeUIComponent *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x13559A0);
 	static inline auto FConsumeItem = PreyFunction<ArkFocusModeUIComponent::EArkConsumeResult(const uint64_t _archetypeId)>(0x13543C0);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkFocusModeUIComponent *const _this, EControlScheme _controlScheme)>(0x1355980);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/ui/ArkInputLegendHandler.h>
-#include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
-#include <Prey/GameDll/ark/ui/arkuimenubase.h>
-#include <_unknown/ArkFocusModeMenuPower.h>
-#include <_unknown/ArkFocusModeMenuWeapon.h>
-
-class ArkFocusModeComponentProperties;
-class CCryName;
-enum class EArkPsiPowers;
-enum EControlScheme;
-struct IUIElement;
-struct SUIArguments;
-struct SUIEventDesc;
-
-// ArkFocusModeUIComponent
-// Header:  Prey/GameDll/ark/ui/ArkFocusModeUIComponent.h
-class ArkFocusModeUIComponent : public ArkUIMenuBase<ArkFocusModeUIComponent>, public IUIControlSchemeListener
-{ // Size=168 (0xA8)
-public:
-	enum class ArkMenuAction
-	{
-		SelectItem = 0,
-		SelectPower = 1,
-		UsePsiHypo = 2,
-		UseMedKit = 3,
-		UseFood = 4,
-		UseSuitKit = 5,
-	};
-
-	enum class ArkActiveControllerStick
-	{
-		None = 0,
-		Left = 1,
-		Right = 2,
-	};
-
-	enum class EArkConsumeResult
-	{
-		empty = 0,
-		fail = 1,
-		success = 2,
-	};
-
-	std::vector<ArkFocusModeMenuPower> m_menuPowers;
-	std::vector<ArkFocusModeMenuWeapon> m_menuWeapons;
-	ArkInputLegendHandler m_powerInputLegendHandler;
-	ArkInputLegendHandler m_weaponInputLegendHandler;
-	unsigned m_emptyLegendHandle;
-	Vec2 m_menuInputVec;
-	Vec2 m_prevMenuInputVec;
-	float m_currentMenuAngle;
-	float m_desiredMenuAngle;
-	float m_menuAngularSpeed;
-	const ArkFocusModeComponentProperties& m_properties;
-	ArkFocusModeUIComponent::ArkActiveControllerStick m_activeControllerStick;
-	int m_selectedItemIndex;
-	bool m_bVisible;
-	std::vector<uint64_t> m_foodArchetypes;
-
-	ArkFocusModeUIComponent();
-	virtual ~ArkFocusModeUIComponent();
-	void Show() { FShow(this); }
-	void Hide() { FHide(this); }
-	void Close() { FClose(this); }
-	void Update() { FUpdate(this); }
-	unsigned GetSelectedWeapon() const { return FGetSelectedWeapon(this); }
-	EArkPsiPowers GetSelectedPower() const { return FGetSelectedPower(this); }
-	void SelectMenuItem(const float _angleRad) { FSelectMenuItemOv1(this, _angleRad); }
-	void ProcessInput(const CCryName _actionId, const int _activationMode, const float _value) { FProcessInput(this, _actionId, _activationMode, _value); }
-	static bool ConsumePsiHypo() { return FConsumePsiHypo(); }
-	bool InitializeMenu() { return FInitializeMenu(this); }
-	void UpdateResourcePrompts() const { FUpdateResourcePrompts(this); }
-	void ShowActionSucceeded(const ArkFocusModeUIComponent::ArkMenuAction& _action) const { FShowActionSucceeded(this, _action); }
-	void ShowItemDetails(const ArkFocusModeMenuPower& _menuItem) { FShowItemDetailsOv1(this, _menuItem); }
-	void ShowItemDetails(const ArkFocusModeMenuWeapon& _menuItem) { FShowItemDetailsOv0(this, _menuItem); }
-	void OnSelectMenuItem(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSelectMenuItem(this, _pSender, _event, _args); }
-	static ArkFocusModeUIComponent::EArkConsumeResult ConsumeItem(const uint64_t _archetypeId) { return FConsumeItem(_archetypeId); }
-	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
-
-#if 0
-	bool IsVisible() const;
-	void SelectMenuItem(const int _arg0_);
-	void RefreshMenu();
-	void PopulateFoods();
-	int GetMenuItemCount() const;
-#endif
-
+#else
 	static inline auto FArkFocusModeUIComponentOv1 = PreyFunction<void(ArkFocusModeUIComponent* const _this)>(0x1436690);
 	static inline auto FBitNotArkFocusModeUIComponent = PreyFunction<void(ArkFocusModeUIComponent* const _this)>(0x1436930);
 	static inline auto FShow = PreyFunction<void(ArkFocusModeUIComponent* const _this)>(0x1439290);
@@ -215,5 +131,5 @@ public:
 	static inline auto FOnSelectMenuItem = PreyFunction<void(ArkFocusModeUIComponent* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1438720);
 	static inline auto FConsumeItem = PreyFunction<ArkFocusModeUIComponent::EArkConsumeResult(const uint64_t _archetypeId)>(0x14370E0);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1438700);
+#endif
 };
-#endif // !MOONCRASH

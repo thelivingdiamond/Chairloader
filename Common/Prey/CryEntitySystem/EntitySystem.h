@@ -161,7 +161,11 @@ public:
     virtual void SendEventToAll(SEntityEvent &event);
     virtual int QueryProximity(SEntityProximityQuery &query);
     virtual void ResizeProximityGrid(int nWidth, int nHeight);
+#ifndef MOONCRASH
     virtual int GetPhysicalEntitiesInBox(Vec3 const &origin, float radius, IPhysicalEntity **&pList, int physFlags) const;
+#else
+    virtual int GetPhysicalEntitiesInBox(Vec3 const &origin, float radius, IPhysicalEntity **&pList, int physFlags, const char *_debugString) const;
+#endif
     virtual IEntity *GetEntityFromPhysics(IPhysicalEntity *pPhysEntity) const;
     virtual void AddSink(IEntitySystemSink *pSink, unsigned subscriptions, uint64_t onEventSubscriptions);
     virtual void RemoveSink(IEntitySystemSink *pSink);
@@ -175,6 +179,9 @@ public:
     virtual void AddEntityEventListener(unsigned nEntity, EEntityEvent event, IEntityEventListener *pListener);
     virtual void RemoveEntityEventListener(unsigned nEntity, EEntityEvent event, IEntityEventListener *pListener);
     virtual bool HasEntityEventListener(IEntityEventListener const &_listener) const;
+#ifdef MOONCRASH
+    virtual bool IsEntityStatic(unsigned _id) const;
+#endif
     virtual unsigned FindEntityByGuid(const uint64_t &guid) const;
     virtual unsigned FindEntityByEditorGuid(const char *pGuid) const;
     virtual IEntityArchetype *LoadEntityArchetype(XmlNodeRef oArchetype);
@@ -584,6 +591,8 @@ public:
 	static inline auto FUpdateTempActiveEntities = PreyFunction<void(CEntitySystem* const _this)>(0x944710);
 #endif
 };
+
+static_assert(sizeof(CEntitySystem) == 263808);
 
 // Header: Exact
 // CryEngine/cryentitysystem/entitysystem.h

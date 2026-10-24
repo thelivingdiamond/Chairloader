@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/CornerSmoothing__IExecutingPlan.h>
-#include <_unknown/CornerSmoothing__SOutput.h>
-#include <_unknown/CornerSmoothing__SShootOutData.h>
+#include <Prey/GameDll/CornerSmoothing_IExecutingPlan.h>
+#include <Prey/GameDll/CornerSmoothing_SOutput.h>
+#include <Prey/GameDll/CornerSmoothing_SShootOutData.h>
 
 namespace CornerSmoothing
 {
@@ -34,9 +32,15 @@ public:
 	void Reset();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCCornerSmoother2 = PreyFunction<void(CornerSmoothing::CCornerSmoother2* const _this)>(0x1DC590);
+	static inline auto FBitNotCCornerSmoother2 = PreyFunction<void(CornerSmoothing::CCornerSmoother2* const _this)>(0x1698B70);
+	static inline auto FUpdate = PreyFunction<bool(CornerSmoothing::CCornerSmoother2* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x169A660);
+#else
 	static inline auto FCCornerSmoother2 = PreyFunction<void(CornerSmoothing::CCornerSmoother2* const _this)>(0x1F4DF0);
 	static inline auto FBitNotCCornerSmoother2 = PreyFunction<void(CornerSmoothing::CCornerSmoother2* const _this)>(0x17BBE60);
 	static inline auto FUpdate = PreyFunction<bool(CornerSmoothing::CCornerSmoother2* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x17BD950);
+#endif
 };
 
 // CornerSmoothing::CStopPlan
@@ -51,8 +55,13 @@ public:
 	CStopPlan();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FIsValidFor = PreyFunction<bool(const CornerSmoothing::CStopPlan* const _this, const CornerSmoothing::SState& state)>(0x1B933B0);
+	static inline auto FExecute = PreyFunction<CornerSmoothing::EPlanExecutionResult(CornerSmoothing::CStopPlan* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x1698F20);
+#else
 	static inline auto FIsValidFor = PreyFunction<bool(const CornerSmoothing::CStopPlan* const _this, const CornerSmoothing::SState& state)>(0x1A302A0);
 	static inline auto FExecute = PreyFunction<CornerSmoothing::EPlanExecutionResult(CornerSmoothing::CStopPlan* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x17BC210);
+#endif
 };
 
 // CornerSmoothing::CTakeCornerPlan
@@ -71,11 +80,17 @@ public:
 	virtual bool IsValidFor(const CornerSmoothing::SState& state) const;
 	virtual CornerSmoothing::EPlanExecutionResult Execute(const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output);
 
+#ifndef MOONCRASH
+	static inline auto FCTakeCornerPlanOv2 = PreyFunction<void(CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state, const CornerSmoothing::SShootOutData& data)>(0x1698970);
+	static inline auto FIsValidFor = PreyFunction<bool(const CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state)>(0x1699430);
+	static inline auto FExecute = PreyFunction<CornerSmoothing::EPlanExecutionResult(CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x1698F40);
+#else
 	static inline auto FCTakeCornerPlanOv2 = PreyFunction<void(CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state, const CornerSmoothing::SShootOutData& data)>(0x17BBC60);
 	static inline auto FIsValidFor = PreyFunction<bool(const CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state)>(0x17BC720);
 	static inline auto FExecute = PreyFunction<CornerSmoothing::EPlanExecutionResult(CornerSmoothing::CTakeCornerPlan* const _this, const CornerSmoothing::SState& state, CornerSmoothing::SOutput& output)>(0x17BC230);
+#endif
 };
 
 
 } // namespace CornerSmoothing
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
@@ -22,8 +20,14 @@ public:
 	void UpdateSharedAttention(ArkNpc& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x1218E20);
+	static inline auto FArkNpcGameEffect_DoppelgangerLink = PreyFunction<void(ArkNpcGameEffect_DoppelgangerLink* const _this)>(0x1218DE0);
+	static inline auto FMatchAttention = PreyFunction<void(const ArkNpcGameEffect_DoppelgangerLink* const _this, ArkNpc& _npcSeeingTarget, ArkNpc& _npcToShare, unsigned _targetEntityId)>(0x1218F50);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12AB700);
 	static inline auto FArkNpcGameEffect_DoppelgangerLink = PreyFunction<void(ArkNpcGameEffect_DoppelgangerLink* const _this)>(0x12AB6F0);
 	static inline auto FMatchAttention = PreyFunction<void(const ArkNpcGameEffect_DoppelgangerLink* const _this, ArkNpc& _npcSeeingTarget, ArkNpc& _npcToShare, unsigned _targetEntityId)>(0x12AB820);
+#endif
 };
-#endif // MOONCRASH
+

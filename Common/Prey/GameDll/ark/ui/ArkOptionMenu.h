@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -201,7 +200,7 @@ public:
 #include <Prey/GameDll/ark/ui/ArkButtonPromptCollection.h>
 #include <Prey/GameDll/ark/ui/ArkOptionLayout.h>
 #include <Prey/GameDll/ark/ui/ArkOptionMenuBase.h>
-#include <_unknown/ArkOptionSubAction.h>
+#include <Prey/GameDll/ark/ui/ArkOptionLayout.h>
 
 class ArkOptionAttribute;
 class ArkOptionDropDownBase;

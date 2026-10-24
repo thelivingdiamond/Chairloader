@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -33,9 +31,15 @@ public:
 	void AllocateMinJobs();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FBitNotCBlendGroup = PreyFunction<void(CBlendGroup* const _this)>(0x1686270);
+	static inline auto FUpdate = PreyFunction<void(CBlendGroup* const _this, float frameTime)>(0x1686360);
+	static inline auto FHasJobs = PreyFunction<bool(CBlendGroup* const _this)>(0x1686310);
+#else
 	static inline auto FBitNotCBlendGroup = PreyFunction<void(CBlendGroup* const _this)>(0x17A9BF0);
 	static inline auto FUpdate = PreyFunction<void(CBlendGroup* const _this, float frameTime)>(0x17A9CE0);
 	static inline auto FHasJobs = PreyFunction<bool(CBlendGroup* const _this)>(0x17A9C90);
+#endif
 };
 
 // CBlendJobNode
@@ -59,6 +63,10 @@ public:
 	void GetMemoryUsage(ICrySizer* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FReset = PreyFunction<void(CBlendJobNode* const _this)>(0x1686320);
+#else
 	static inline auto FReset = PreyFunction<void(CBlendJobNode* const _this)>(0x17A9CA0);
+#endif
 };
-#endif // MOONCRASH
+

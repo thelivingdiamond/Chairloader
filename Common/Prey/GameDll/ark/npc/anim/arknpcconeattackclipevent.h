@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/IProceduralParams.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 
 struct IAttachment;
 struct IEntity;
@@ -13,6 +11,37 @@ namespace Serialization
 {
 class IArchive;
 } // namespace Serialization
+
+// SArkNpcConeAttackClipEventParams
+// Header:  Prey/GameDll/ark/npc/anim/arknpcconeattackclipevent.h
+struct SArkNpcConeAttackClipEventParams : public IProceduralParams
+{ // Size=48 (0x30)
+	string m_attachmentName;
+	float m_coneAngle;
+	float m_coneLength;
+	float m_coneOffset;
+	float m_onPlayerHitImpulse;
+	float m_onNpcHitImpulse;
+	float m_onOtherHitImpulse;
+	float m_damageCooldown;
+	bool m_bHalfDamage;
+	bool m_bSingleHitPerEntity;
+
+	virtual void Serialize(Serialization::IArchive& ar);
+	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
+
+#if 0
+	SArkNpcConeAttackClipEventParams();
+#endif
+
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(SArkNpcConeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x11E7170);
+	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcConeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0xA13080);
+#else
+	static inline auto FSerialize = PreyFunction<void(SArkNpcConeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x1272E60);
+	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcConeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
+#endif
+};
 
 // CArkNpcConeAttackProceduralClipEvent
 // Header:  Prey/GameDll/ark/npc/anim/arknpcconeattackclipevent.h
@@ -39,37 +68,20 @@ public:
 	static unsigned GetStopCRC();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetStartCRC = PreyFunction<unsigned()>(0x11E6CE0);
+	static inline auto FOnEnter = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float blendTime, float duration, const SArkNpcConeAttackClipEventParams& params)>(0x11E6E40);
+	static inline auto FOnExit = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float blendTime)>(0x11E70A0);
+	static inline auto FUpdate = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float _frameTime)>(0x11E72C0);
+	static inline auto FDamageHitEntities = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this)>(0x11E63B0);
+	static inline auto FDealDamage = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, IEntity* _pHitEntity)>(0x11E6880);
+#else
 	static inline auto FGetStartCRC = PreyFunction<unsigned()>(0x12729D0);
 	static inline auto FOnEnter = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float blendTime, float duration, const SArkNpcConeAttackClipEventParams& params)>(0x1272B30);
 	static inline auto FOnExit = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float blendTime)>(0x1272D90);
 	static inline auto FUpdate = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, float _frameTime)>(0x1272FB0);
 	static inline auto FDamageHitEntities = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this)>(0x1272080);
 	static inline auto FDealDamage = PreyFunction<void(CArkNpcConeAttackProceduralClipEvent* const _this, IEntity* _pHitEntity)>(0x1272560);
-};
-
-// SArkNpcConeAttackClipEventParams
-// Header:  Prey/GameDll/ark/npc/anim/arknpcconeattackclipevent.h
-struct SArkNpcConeAttackClipEventParams : public IProceduralParams
-{ // Size=48 (0x30)
-	string m_attachmentName;
-	float m_coneAngle;
-	float m_coneLength;
-	float m_coneOffset;
-	float m_onPlayerHitImpulse;
-	float m_onNpcHitImpulse;
-	float m_onOtherHitImpulse;
-	float m_damageCooldown;
-	bool m_bHalfDamage;
-	bool m_bSingleHitPerEntity;
-
-	virtual void Serialize(Serialization::IArchive& ar);
-	virtual void GetExtraDebugInfo(IProceduralParams::StringWrapperImpl<char>& extraInfoOut) const;
-
-#if 0
-	SArkNpcConeAttackClipEventParams();
 #endif
-
-	static inline auto FSerialize = PreyFunction<void(SArkNpcConeAttackClipEventParams* const _this, Serialization::IArchive& ar)>(0x1272E60);
-	static inline auto FGetExtraDebugInfo = PreyFunction<void(const SArkNpcConeAttackClipEventParams* const _this, IProceduralParams::StringWrapperImpl<char>& extraInfoOut)>(0x1333E90);
 };
-#endif // MOONCRASH
+

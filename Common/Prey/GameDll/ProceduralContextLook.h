@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#include <Prey/CryExtension/ClassWeaver.h>
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/CryExtension/TypeList.h>
 
 struct CryGUID;
 class IActionController;
@@ -20,7 +18,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLook>>(0x2282718);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLook>>(0x23F1218);
+#endif
 	CProceduralContextLook* m_pParentContext;
 	IAnimationPoseBlenderDir* m_pPoseBlenderLook;
 	bool m_gameRequestsLooking;
@@ -53,6 +55,21 @@ public:
 	void InitialiseGameLookTarget();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLook* const _this)>(0x17CF610);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLook* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLook* const _this, const char* name)>(0x158AEF0);
+	static inline auto FInitialise = PreyFunction<void(CProceduralContextLook* const _this, IEntity& entity, IActionController& actionController)>(0x17CF620);
+	static inline auto FUpdate = PreyFunction<void(CProceduralContextLook* const _this, float timePassedSeconds)>(0x17CF6F0);
+	static inline auto FUpdateGameLookingRequest = PreyFunction<void(CProceduralContextLook* const _this, const bool lookRequest)>(0x17D0330);
+	static inline auto FUpdateProcClipLookingRequest = PreyFunction<void(CProceduralContextLook* const _this, const bool lookRequest)>(0x17D0340);
+	static inline auto FUpdateGameLookTarget = PreyFunction<void(CProceduralContextLook* const _this, const Vec3& lookTarget)>(0x17D0320);
+	static inline auto FSetBlendInTime = PreyFunction<void(CProceduralContextLook* const _this, const float blendInTime)>(0x17D02E0);
+	static inline auto FSetBlendOutTime = PreyFunction<void(CProceduralContextLook* const _this, const float blendOutTime)>(0x17D0300);
+	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLook* const _this)>(0x17CF760);
+	static inline auto FInitialisePoseBlenderLookParams = PreyFunction<void(CProceduralContextLook* const _this)>(0x17CFC40);
+	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLook* const _this)>(0x17CF7B0);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLook* const _this)>(0x18F5EE0);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLook* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLook* const _this, const char* name)>(0x1CBB0B0);
@@ -66,6 +83,7 @@ public:
 	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLook* const _this)>(0x18F6030);
 	static inline auto FInitialisePoseBlenderLookParams = PreyFunction<void(CProceduralContextLook* const _this)>(0x18F6990);
 	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLook* const _this)>(0x18F3E40);
+#endif
 };
 
 // CProceduralContextLookEyes
@@ -76,7 +94,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLookEyes>>(0x2282768);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLookEyes>>(0x23F1268);
+#endif
 
 	virtual ICryFactory* GetFactory() const;
 	virtual void* QueryInterface(const CryGUID& iid) const;
@@ -93,11 +115,19 @@ public:
 	static const char* GetContextName();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLookEyes* const _this)>(0x17CF3E0);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLookEyes* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLookEyes* const _this, const char* name)>(0x158AEF0);
+	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLookEyes* const _this)>(0x17CF3F0);
+	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLookEyes* const _this)>(0x17CF440);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLookEyes* const _this)>(0x18F6470);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLookEyes* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLookEyes* const _this, const char* name)>(0x1CBB0B0);
 	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLookEyes* const _this)>(0x18F6480);
 	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLookEyes* const _this)>(0x18F64D0);
+#endif
 };
 
 // CProceduralContextLookHead
@@ -108,7 +138,11 @@ public:
 	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLookHead>>(0x2282740);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextLookHead>>(0x23F1240);
+#endif
 
 	virtual ICryFactory* GetFactory() const;
 	virtual void* QueryInterface(const CryGUID& iid) const;
@@ -125,10 +159,18 @@ public:
 	static const char* GetContextName();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLookHead* const _this)>(0x17CF1B0);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLookHead* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLookHead* const _this, const char* name)>(0x158AEF0);
+	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLookHead* const _this)>(0x17CF1C0);
+	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLookHead* const _this)>(0x17CF210);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextLookHead* const _this)>(0x18F6240);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextLookHead* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextLookHead* const _this, const char* name)>(0x1CBB0B0);
 	static inline auto FInitialisePoseBlenderLook = PreyFunction<void(CProceduralContextLookHead* const _this)>(0x18F6250);
 	static inline auto FGetParamSectionName = PreyFunction<const char* (CProceduralContextLookHead* const _this)>(0x18F62A0);
+#endif
 };
-#endif // MOONCRASH
+

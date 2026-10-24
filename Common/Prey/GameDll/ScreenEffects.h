@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -69,6 +67,17 @@ public:
 	bool HasJobs(int _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScreenEffectsOv1 = PreyFunction<void(CScreenEffects* const _this)>(0x17D9290);
+	static inline auto FBitNotCScreenEffects = PreyFunction<void(CScreenEffects* const _this)>(0x17D9300);
+	static inline auto FReset = PreyFunction<void(CScreenEffects* const _this)>(0x17D9620);
+	static inline auto FUpdate = PreyFunction<void(CScreenEffects* const _this, float frameTime)>(0x17D97B0);
+	static inline auto FPostUpdate = PreyFunction<void(CScreenEffects* const _this, float frameTime)>(0x17D9570);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CScreenEffects* const _this, ICrySizer* s)>(0x17D94F0);
+	static inline auto FClearAllBlendGroups = PreyFunction<void(CScreenEffects* const _this, bool resetScreen)>(0x17D9420);
+	static inline auto FResetScreen = PreyFunction<void(CScreenEffects* const _this)>(0x17D9690);
+	static inline auto FResetGameEffectPools = PreyFunction<void(CScreenEffects* const _this)>(0x17D99E0);
+#else
 	static inline auto FCScreenEffectsOv1 = PreyFunction<void(CScreenEffects* const _this)>(0x1900020);
 	static inline auto FBitNotCScreenEffects = PreyFunction<void(CScreenEffects* const _this)>(0x1900090);
 	static inline auto FReset = PreyFunction<void(CScreenEffects* const _this)>(0x19003B0);
@@ -78,5 +87,6 @@ public:
 	static inline auto FClearAllBlendGroups = PreyFunction<void(CScreenEffects* const _this, bool resetScreen)>(0x19001B0);
 	static inline auto FResetScreen = PreyFunction<void(CScreenEffects* const _this)>(0x1900420);
 	static inline auto FResetGameEffectPools = PreyFunction<void(CScreenEffects* const _this)>(0x19007C0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -56,6 +54,15 @@ public:
 	static std::vector<ArkLurkManager::LurkPointInfo*>& GetUnreservedEntities(std::vector<ArkLurkManager::LurkPointInfo>& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkLurkManagerOv1 = PreyFunction<void(ArkLurkManager* const _this)>(0x1DC590);
+	static inline auto FAddLurkPoint = PreyFunction<void(ArkLurkManager* const _this, const CArkLurkPoint& _lurkPoint)>(0x11F11C0);
+	static inline auto FRemoveLurkPoint = PreyFunction<void(ArkLurkManager* const _this, const CArkLurkPoint& _lurkPoint)>(0x11F1240);
+	static inline auto FRefresh = PreyFunction<void(ArkLurkManager* const _this)>(0xA13080);
+	static inline auto FReserveSpecificLurkPoint = PreyFunction<bool(ArkLurkManager* const _this, unsigned _lurkPointEntityId)>(0x11F1730);
+	static inline auto FReserveLurkPoint = PreyFunction<unsigned(ArkLurkManager* const _this, ArkNpc& _lurkingNpc, const float _minSearchDistance, const AABB& _searchBounds, const AABB& _exclusionBounds)>(0x11F12C0);
+	static inline auto FReleaseLurkPoint = PreyFunction<void(ArkLurkManager* const _this, unsigned _lurkPointEntityId)>(0x11F11D0);
+#else
 	static inline auto FArkLurkManagerOv1 = PreyFunction<void(ArkLurkManager* const _this)>(0x1F4DF0);
 	static inline auto FAddLurkPoint = PreyFunction<void(ArkLurkManager* const _this, const CArkLurkPoint& _lurkPoint)>(0x1280A90);
 	static inline auto FRemoveLurkPoint = PreyFunction<void(ArkLurkManager* const _this, const CArkLurkPoint& _lurkPoint)>(0x1280B10);
@@ -63,5 +70,6 @@ public:
 	static inline auto FReserveSpecificLurkPoint = PreyFunction<bool(ArkLurkManager* const _this, unsigned _lurkPointEntityId)>(0x1281000);
 	static inline auto FReserveLurkPoint = PreyFunction<unsigned(ArkLurkManager* const _this, ArkNpc& _lurkingNpc, const float _minSearchDistance, const AABB& _searchBounds, const AABB& _exclusionBounds)>(0x1280B90);
 	static inline auto FReleaseLurkPoint = PreyFunction<void(ArkLurkManager* const _this, unsigned _lurkPointEntityId)>(0x1280AA0);
+#endif
 };
-#endif // MOONCRASH
+

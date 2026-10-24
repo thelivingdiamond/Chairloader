@@ -15,7 +15,11 @@ public:
 	HWND__ *m_hwnd;
 	IDirectInput8A *m_pDI;
 	int64_t (*m_prevWndProc)(HWND__ *, unsigned, uint64_t, int64_t);
+#ifndef MOONCRASH
 	static inline auto This = PreyGlobal<CDXInput *>(0x2766750);
+#else
+	static inline auto This = PreyGlobal<CDXInput *>(0x28D59E0);
+#endif
 	
 	CDXInput(ISystem *pSystem, HWND__ *hwnd);
 	virtual ~CDXInput();

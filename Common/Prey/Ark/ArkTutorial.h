@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -630,6 +629,9 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#ifdef MOONCRASH
+#include <Prey/Ark/arkpropertyprofile.h>
+#endif
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedLibrary.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
@@ -1024,42 +1026,6 @@ public:
 
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2030);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10B2260);
-};
-
-// ArkNagTutorial
-// Header:  Prey/Ark/ArkTutorial.h
-class ArkNagTutorial : public ArkTutorial
-{ // Size=64 (0x40)
-public:
-	// ArkNagTutorial::ArkDurationProperty
-	// Header:  Prey/Ark/ArkTutorial.h
-	class ArkDurationProperty : public ArkProperty
-	{ // Size=32 (0x20)
-	public:
-		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
-		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
-
-	#if 0
-		ArkDurationProperty();
-	#endif
-
-		static inline auto FSetValue = PreyFunction<void(const ArkNagTutorial::ArkDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A3150);
-		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkNagTutorial::ArkDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
-	};
-
-	static inline auto s_ArkDurationProperty = PreyGlobal<ArkNagTutorial::ArkDurationProperty>(0x2D29250);
-	float m_Duration;
-
-	static ArkReflectedObject* Create() { return FCreate(); }
-
-#if 0
-	ArkNagTutorial();
-	static ArkClass* GetClass();
-	void SetDuration(float _arg0_);
-	const float& GetDuration() const;
-#endif
-
-	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10B2090);
 };
 
 // ArkReadyRoomTutorial

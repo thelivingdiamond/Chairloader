@@ -1,45 +1,19 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+class CArkFlowNodeOnSaveLoaded;
+struct SLoadEnvironment;
 #include <Prey/CryCore/StdAfx.h>
 #include <Prey/CryGame/IGame.h>
 #include <Prey/CryCore/functor.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/XML/IXml.h>
 #include <Prey/CryAction/ark/IArkSaveLoadSystem.h>
+#include <Prey/CryAction/PlayerProfiles/PlayerProfileManager.h>
 
 class CFlowStartNode;
 class CGameSerialize;
 class CPlaySequence_Node;
-class CPlayerProfileManager{
-public:
-    struct SSaveGameMetaData// Size=0x38 (Id=1850422)
-    {
-        class CryStringT<char> levelName;// Offset=0x0 Size=0x8
-        class CryStringT<char> gameRules;// Offset=0x8 Size=0x8
-        int fileVersion;// Offset=0x10 Size=0x4
-        class CryStringT<char> buildVersion;// Offset=0x18 Size=0x8
-        int saveTime;// Offset=0x20 Size=0x8
-        int loadTime;// Offset=0x28 Size=0x8
-        class XmlNodeRef xmlMetaDataNode;// Offset=0x30 Size=0x8
-    };
-    struct SThumbnail// Size=0x18 (Id=1850323)
-    {
-        struct DynArray<unsigned char,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > data;// Offset=0x0 Size=0x8
-        int width;// Offset=0x8 Size=0x4
-        int height;// Offset=0xc Size=0x4
-        int depth;// Offset=0x10 Size=0x4
-    };
-    struct SSaveGameInfo// Size=0x40 (Id=1850424)
-    {
-        class CryStringT<char> name;// Offset=0x0 Size=0x8
-        class CryStringT<char> humanName;// Offset=0x8 Size=0x8
-        class CryStringT<char> description;// Offset=0x10 Size=0x8
-        class std::shared_ptr<CPlayerProfileManager::SSaveGameMetaData> pMetadata;// Offset=0x18 Size=0x10
-        struct CPlayerProfileManager::SThumbnail thumbnail;// Offset=0x28 Size=0x18
-    };
-    char NOTFINISHED[0xc210];
-};
 class IArkSaveLoadListener;
 class ICrySizer;
 struct IEntity;
@@ -51,6 +25,9 @@ struct SBasicEntityData;
 class ArkSaveLoadSystem : public IArkSaveLoadSystem // Id=8005021 Size=320
 {
 public:
+#ifdef MOONCRASH
+	std::vector<CArkFlowNodeOnSaveLoaded *> m_onSaveLoadedNodes;
+#endif
 	std::vector<CFlowStartNode *> m_startNodes;
 	std::vector<CPlaySequence_Node *> m_trackViewNodes;
 	std::vector<IArkSaveLoadListener *> m_listeners;
@@ -69,9 +46,14 @@ public:
 	};
 
 	std::vector<ArkSaveLoadSystem::LevelOriginInfo> m_levelOrigins;
+#ifdef MOONCRASH
+	std::vector<string> m_visitedLevels;
+#endif
 	XmlNodeRef m_captureVolumeStates;
 	int m_campaignSlot;
+#ifndef MOONCRASH
 	int m_newGameSlot;
+#endif
 	bool m_bNeedToRestoreLevelState;
 	bool m_bRestoringLevelState;
 	
@@ -89,10 +71,21 @@ public:
 	virtual void RegisterListener(IArkSaveLoadListener *_pListener) { FRegisterListener(this,_pListener); }
 	virtual void UnregisterListener(IArkSaveLoadListener *_pListener) { FUnregisterListener(this,_pListener); }
 	void SetMetadata(string const &_saveName, CPlayerProfileManager::SSaveGameMetaData &_data) { FSetMetadata(this,_saveName,_data); }
+#ifndef MOONCRASH
 	virtual void SaveNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction) { FSaveNewGamePlusData(this,_campaignSlot,_gameFunction); }
+#endif
+#ifndef MOONCRASH
 	virtual bool LoadNewGamePlusData(int _campaignSlot, Functor1<TSerialize> _gameFunction) { return FLoadNewGamePlusData(this,_campaignSlot,_gameFunction); }
+#endif
+#ifdef MOONCRASH
+	virtual void OnSaveGameLoaded() { FOnSaveGameLoaded(this); }   // Mooncrash slot; replaces the NewGamePlus pair
+#endif
 	void SetLevelOrigin(SBasicEntityData &_bed, IEntity const &_entity) const { FSetLevelOrigin(this,_bed,_entity); }
+#ifndef MOONCRASH
 	boost::optional<CPlayerProfileManager::SSaveGameMetaData> GetMetadata(string const &_saveName) const { return FGetMetadata(this,_saveName); }
+#else
+	boost::optional<CPlayerProfileManager::SSaveGameMetaData> GetMetadata(string const &_saveName) const { alignas(boost::optional<CPlayerProfileManager::SSaveGameMetaData>) std::byte _return_buf_[sizeof(boost::optional<CPlayerProfileManager::SSaveGameMetaData>)]; return *FGetMetadata(this, reinterpret_cast<boost::optional<CPlayerProfileManager::SSaveGameMetaData>*>(_return_buf_), _saveName); }
+#endif
 	virtual void ClearMetadataCache() { FClearMetadataCache(this); }
 	
 #if 0
@@ -149,6 +142,14 @@ public:
 #endif
 };
 
+#ifndef MOONCRASH
+static_assert(sizeof(ArkSaveLoadSystem) == 320);
+#else
+static_assert(sizeof(ArkSaveLoadSystem) == 360);
+#endif
+static_assert(sizeof(CPlayerProfileManager::SSaveGameMetaData) == 56);
+static_assert(sizeof(CPlayerProfileManager::SSaveGameInfo) == 64);
+
 class CXmlSerializeHelper;
 
 // Header: FromCpp
@@ -166,15 +167,17 @@ public:
 	virtual bool Init(const char *_pName);
 	virtual void AddMetadata(const char *_pTag, const char *_pValue);
 	virtual void AddMetadata(const char *_pTag, int _value);
-	virtual XmlNodeRef GetMetadata() const;
-	virtual TSerialize AddSection(const char *_pSection);
+	// Signatures follow ISaveGame (IGame.h) exactly so they override instead of adding slots.
+	virtual XmlNodeRef *GetMetadata(XmlNodeRef *_result);
+	virtual CSerializeWrapper<ISerialize> *AddSection(CSerializeWrapper<ISerialize> *_result, const char *_pSection);
 	virtual uint8_t *SetThumbnail(const uint8_t *_pImageData, int _width, int _height, int _depth);
 	virtual bool SetThumbnailFromBMP(const char *_pFilename);
+	virtual void StartAsyncWrite(JobManager::SJobState *_pJobState);
 	virtual bool Complete(bool _bSuccessfulSoFar);
-	virtual const char *GetFileName() const;
+	virtual const char *GetFileName();
 	virtual void SetSaveGameReason(ESaveGameReason _reason);
-	virtual ESaveGameReason GetSaveGameReason() const;
-	virtual void GetMemoryUsage(ICrySizer *_pSizer) const;
+	virtual ESaveGameReason GetSaveGameReason();
+	virtual void GetMemoryUsage(ICrySizer *_pSizer);
 	virtual ~Save();
 
 #ifndef MOONCRASH
@@ -206,6 +209,8 @@ public:
 #endif
 };
 
+static_assert(sizeof(Save) == 48);
+
 // Header: FromCpp
 // CryEngine/cryaction/ark/arksaveloadsystem.h
 class Load : public ILoadGame // Id=8005990 Size=40
@@ -218,15 +223,16 @@ public:
 	std::vector<_smart_ptr<CXmlSerializeHelper>> m_sections;
 	
 	virtual bool Init(const char *const _pName);
-	virtual unsigned GetPlatformUserId() const;
+	// Signatures follow ILoadGame (IGame.h) exactly so they override instead of adding slots.
+	virtual unsigned GetPlatformUserId();
 	virtual IGeneralMemoryHeap *GetHeap();
 	virtual const char *GetMetadata(const char *_pTag);
-	virtual bool GetMetadata(const char *_pTag, int &_value);
+	virtual bool GetMetadata(const char *_pTag, int *_value);
 	virtual bool HaveMetadata(const char *_pTag);
-	virtual std::unique_ptr<TSerialize> GetSection(const char *_pSection);
+	virtual std::unique_ptr<CSerializeWrapper<ISerialize>> *GetSection(std::unique_ptr<CSerializeWrapper<ISerialize>> *_result, const char *_pSection);
 	virtual bool HaveSection(const char *_pSection);
 	virtual void Complete();
-	virtual const char *GetFileName() const;
+	virtual const char *GetFileName();
 	virtual ~Load();
 
 #ifndef MOONCRASH
@@ -253,3 +259,5 @@ public:
 	static inline auto FGetFileName = PreyFunction<const char* (const Load* const _this)>(0x1CBB0B0);
 #endif
 };
+
+static_assert(sizeof(Load) == 40);

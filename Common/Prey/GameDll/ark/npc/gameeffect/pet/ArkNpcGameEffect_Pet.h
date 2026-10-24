@@ -1,4 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -6,7 +5,7 @@
 #include <Prey/GameDll/ark/ArkInteractionInfo.h>
 #include <Prey/GameDll/ark/npc/gameeffect/arknpcgameeffecttemplate.h>
 #include <Prey/GameDll/ark/player/IArkPlayerInteractionListener.h>
-#include <_unknown/ArkNpcGameEffectInstance.h>
+#include <Prey/GameDll/ark/npc/gameeffect/ArkNpcGameEffectInstance.h>
 
 struct ArkInteractionTestResult;
 class ArkNpc;

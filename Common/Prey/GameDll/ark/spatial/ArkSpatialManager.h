@@ -1,8 +1,11 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_typhonnest.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npcspawner.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedNpcSpawner.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedTyphonNest.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/GameDll/ark/spatial/ArkSpatialManagerKey.h>
 #include <Prey/GameDll/ark/spatial/arkspatiallysorted.h>
@@ -127,11 +130,22 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_typhonnest.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_turret.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npcspawner.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_npc.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_cystoidnest.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_apextentacle.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedNpcSpawner.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedTyphonNest.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_interferableandenergizable.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_interferable.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_energizable.h>
 #include <Prey/CryEntitySystem/IEntitySystem.h>
 #include <Prey/GameDll/ark/spatial/arkspatiallysorted.h>
-#include <_unknown/ArkSpatialManagerEntry.h>
-#include <_unknown/ArkSpatialManagerKey.h>
-#include <_unknown/ArkSpatiallySorted.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatialManagerKey.h>
+#include <Prey/GameDll/ark/spatial/arkspatiallysorted.h>
 
 class ArkApexTentacle;
 class ArkNpc;
@@ -186,15 +200,15 @@ public:
 	void OnLevelLoadEnd() { FOnLevelLoadEnd(this); }
 	void Reset(bool _bEnteringGameMode) { FReset(this, _bEnteringGameMode); }
 	void Refresh() { FRefresh(this); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle> AddApexTentacle(ArkApexTentacle& _tentacle) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>)]; return *FAddApexTentacle(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>*>(_return_buf_), _tentacle); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle> AddApexTentacle(ArkApexTentacle& _tentacle) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>)]; return std::move(*FAddApexTentacle(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>*>(_return_buf_), _tentacle)); }
 	void RemoveApexTentacle(ArkSpatialManagerKey<ArkSpatialManagerKeyType_ApexTentacle>& _tentacleKey) { FRemoveApexTentacle(this, _tentacleKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest> AddTyphonNest(ArkTyphonNest& _nest) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>)]; return *FAddTyphonNest(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>*>(_return_buf_), _nest); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest> AddTyphonNest(ArkTyphonNest& _nest) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>)]; return std::move(*FAddTyphonNest(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>*>(_return_buf_), _nest)); }
 	void RemoveTyphonNest(ArkSpatialManagerKey<ArkSpatialManagerKeyType_TyphonNest>& _nestKey) { FRemoveTyphonNest(this, _nestKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc> AddNpc(const ArkNpc& _npc) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>)]; return *FAddNpc(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>*>(_return_buf_), _npc); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc> AddNpc(const ArkNpc& _npc) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>)]; return std::move(*FAddNpc(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>*>(_return_buf_), _npc)); }
 	void RemoveNpc(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Npc>& _npcKey) { FRemoveNpc(this, _npcKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner> AddNpcSpawner(const CArkNpcSpawner& _npcSpawner) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>)]; return *FAddNpcSpawner(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>*>(_return_buf_), _npcSpawner); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner> AddNpcSpawner(const CArkNpcSpawner& _npcSpawner) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>)]; return std::move(*FAddNpcSpawner(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>*>(_return_buf_), _npcSpawner)); }
 	void RemoveNpcSpawner(ArkSpatialManagerKey<ArkSpatialManagerKeyType_NpcSpawner>& _npcSpawnerKey) { FRemoveNpcSpawner(this, _npcSpawnerKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret> AddTurret(const ArkTurret& _turret) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>)]; return *FAddTurret(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>*>(_return_buf_), _turret); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret> AddTurret(const ArkTurret& _turret) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>)]; return std::move(*FAddTurret(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>*>(_return_buf_), _turret)); }
 	void RemoveTurret(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Turret>& _turretKey) { FRemoveTurret(this, _turretKey); }
 	void AddEntityForDistanceChecks(const IEntity& _entity) { FAddEntityForDistanceChecks(this, _entity); }
 	virtual bool OnBeforeSpawn(SEntitySpawnParams& _params);
@@ -204,11 +218,11 @@ public:
 	virtual void OnEvent(IEntity* _pEntity, SEntityEvent& _event);
 	void SetupReceivers() { FSetupReceivers(this); }
 	void AddEntity(const ArkSignalSystem::Manager& _signalManager, const IEntity& _entity) { FAddEntity(this, _signalManager, _entity); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable> AddEnergizable(const IEntity& _energizableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>)]; return *FAddEnergizable(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>*>(_return_buf_), _energizableEntity); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable> AddEnergizable(const IEntity& _energizableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>)]; return std::move(*FAddEnergizable(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>*>(_return_buf_), _energizableEntity)); }
 	void RemoveEnergizable(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Energizable>& _energizableKey) { FRemoveEnergizable(this, _energizableKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable> AddInterferable(const IEntity& _interferableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>)]; return *FAddInterferable(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>*>(_return_buf_), _interferableEntity); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable> AddInterferable(const IEntity& _interferableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>)]; return std::move(*FAddInterferable(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>*>(_return_buf_), _interferableEntity)); }
 	void RemoveInterferable(ArkSpatialManagerKey<ArkSpatialManagerKeyType_Interferable>& _interferableKey) { FRemoveInterferable(this, _interferableKey); }
-	ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable> AddInterferableAndEnergizable(const IEntity& _interferableAndEnergizableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>)]; return *FAddInterferableAndEnergizableOv0(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>*>(_return_buf_), _interferableAndEnergizableEntity); }
+	ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable> AddInterferableAndEnergizable(const IEntity& _interferableAndEnergizableEntity) { alignas(ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>) std::byte _return_buf_[sizeof(ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>)]; return std::move(*FAddInterferableAndEnergizableOv0(this, reinterpret_cast<ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>*>(_return_buf_), _interferableAndEnergizableEntity)); }
 	void RemoveInterferableAndEnergizable(ArkSpatialManagerKey<ArkSpatialManagerKeyType_InterferableAndEnergizable>& _interferableAndEnergizableKey) { FRemoveInterferableAndEnergizable(this, _interferableAndEnergizableKey); }
 
 #if 0

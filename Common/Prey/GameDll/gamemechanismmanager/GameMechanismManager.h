@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -12,7 +10,11 @@ struct SGameMechanismEventData;
 class CGameMechanismManager
 { // Size=8 (0x8)
 public:
+#ifndef MOONCRASH
+	static inline auto s_instance = PreyGlobal<CGameMechanismManager*>(0x2C120A8);
+#else
 	static inline auto s_instance = PreyGlobal<CGameMechanismManager*>(0x2D8DA80);
+#endif
 	CGameMechanismBase* m_firstMechanism;
 
 	CGameMechanismManager();
@@ -26,11 +28,20 @@ public:
 	static CGameMechanismManager* GetInstance();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameMechanismManager = PreyFunction<void(CGameMechanismManager* const _this)>(0x170DFF0);
+	static inline auto FBitNotCGameMechanismManager = PreyFunction<void(CGameMechanismManager* const _this)>(0x170E010);
+	static inline auto FUpdate = PreyFunction<void(CGameMechanismManager* const _this, float dt)>(0x170E130);
+	static inline auto FInform = PreyFunction<void(CGameMechanismManager* const _this, EGameMechanismEvent gmEvent, const SGameMechanismEventData* data)>(0x170E050);
+	static inline auto FRegisterMechanism = PreyFunction<void(CGameMechanismManager* const _this, CGameMechanismBase* mechanism)>(0x170E0C0);
+	static inline auto FUnregisterMechanism = PreyFunction<void(CGameMechanismManager* const _this, CGameMechanismBase* removeThis)>(0x170E0E0);
+#else
 	static inline auto FCGameMechanismManager = PreyFunction<void(CGameMechanismManager* const _this)>(0x1834E30);
 	static inline auto FBitNotCGameMechanismManager = PreyFunction<void(CGameMechanismManager* const _this)>(0x1834E50);
 	static inline auto FUpdate = PreyFunction<void(CGameMechanismManager* const _this, float dt)>(0x1834F70);
 	static inline auto FInform = PreyFunction<void(CGameMechanismManager* const _this, EGameMechanismEvent gmEvent, const SGameMechanismEventData* data)>(0x1834E90);
 	static inline auto FRegisterMechanism = PreyFunction<void(CGameMechanismManager* const _this, CGameMechanismBase* mechanism)>(0x1834F00);
 	static inline auto FUnregisterMechanism = PreyFunction<void(CGameMechanismManager* const _this, CGameMechanismBase* removeThis)>(0x1834F20);
+#endif
 };
-#endif // MOONCRASH
+

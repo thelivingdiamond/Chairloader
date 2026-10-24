@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -13,7 +11,7 @@ class XmlNodeRef;
 
 // ArkFlowNodeNpcCorruptOperator
 // Header:  Prey/GameDll/ark/ArkFlowNodeNpcCorruptOperator.h
-class ArkFlowNodeNpcCorruptOperator : public CFlowBaseNode<1>
+class ArkFlowNodeNpcCorruptOperator : public CFlowBaseNode<eNCT_Instanced>
 { // Size=16 (0x10)
 public:
 	enum class EInputPortIndex
@@ -40,6 +38,15 @@ public:
 	ArkFlowNodeNpcCorruptOperator(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, SFlowNodeConfig& config)>(0x1169410);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* _pActInfo)>(0x1169700);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcCorruptOperator* const _this, ICrySizer* s)>(0x44D760);
+	static inline auto FSerializeXML = PreyFunction<bool(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::SActivationInfo* __unnamed1, const XmlNodeRef& __unnamed2, bool __unnamed3)>(0x1B933B0);
+	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::SActivationInfo* __unnamed1, TSerialize ser)>(0xA13080);
+	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::SActivationInfo* __unnamed1)>(0xA13080);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(ArkFlowNodeNpcCorruptOperator* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x1169810);
+#else
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, SFlowNodeConfig& config)>(0x11B6D00);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* _pActInfo)>(0x11B6FF0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcCorruptOperator* const _this, ICrySizer* s)>(0x455F00);
@@ -47,5 +54,6 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::SActivationInfo* __unnamed1, TSerialize ser)>(0x1333E90);
 	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcCorruptOperator* const _this, IFlowNode::SActivationInfo* __unnamed1)>(0x1333E90);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(ArkFlowNodeNpcCorruptOperator* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* pActInfo)>(0x11B7100);
+#endif
 };
-#endif // MOONCRASH
+

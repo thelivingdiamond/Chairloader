@@ -78,7 +78,7 @@ public:
 	void SetFilter(int arg0);
 	int GetFilter() const;
 	bool Filter(int arg0) const;
-	void Error(const void *arg0, Serialization::TypeID const &arg1, const char *arg2, ... arg3);
+	void Error(const void *arg0, Serialization::TypeID const &arg1, const char *arg2, ...);
 	void Doc(const char *arg0);
 	void *FindContextByType(Serialization::TypeID const &arg0) const;
 	Serialization::SContextLink *SetInnerContext(Serialization::SContextLink *arg0);

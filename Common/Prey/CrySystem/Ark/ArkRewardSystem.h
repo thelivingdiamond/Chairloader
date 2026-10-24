@@ -32,6 +32,7 @@ public:
 		bool bCriteriaMet;
 	};
 
+#ifndef MOONCRASH // base only: Mooncrash has a CPlatformOS_ServiceTaskBase RewardUnlockJob instead (Size=136)
 	struct IArkRewardsJobInfo
 	{ // Size=8 (0x8)
 		enum class ArkRewardsJobInfoType : unsigned
@@ -90,9 +91,12 @@ public:
 		static inline auto FRun = PreyFunction<void(CArkRewardSystem::ArkRewardsThread* const _this)>(0xD5CDB0);
 		static inline auto FCancel = PreyFunction<void(CArkRewardSystem::ArkRewardsThread* const _this)>(0xD5C580);
 	};
+#endif // !MOONCRASH
 
 	static constexpr const uint64_t kNoAssociatedMetric = 0;
+#ifndef MOONCRASH
 	CArkRewardSystem::ArkRewardsThread* m_pRewardsThread = nullptr;
+#endif
 	IArkRewardSystemCallbackHandler* m_pHandler = nullptr;
 	std::vector<CArkRewardSystem::ArkRewardTrackable> m_trackables;
 	std::unordered_map<uint64_t, CArkRewardSystem::ArkRewardTrackable*> m_trackablesByMetric;
@@ -152,4 +156,4 @@ public:
 	static inline auto FInternalTrackableUpdated = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackableId, unsigned _oldVal, unsigned _newVal)>(0x1333E90);
 	static inline auto FInternalRewardUnlocked = PreyFunction<void(CArkRewardSystem* const _this, unsigned _rewardId)>(0x1333E90);
 #endif
-};
+};

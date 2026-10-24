@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -33,6 +31,7 @@ public:
 	virtual void RegisterForSignals(bool _bRegister);
 	void LoadModel() { FLoadModel(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(ArkEnvironmentalObject *const _this, IGameObject *_pGameObject)>(0x13BD170);
 	static inline auto FPostInit = PreyFunction<void(ArkEnvironmentalObject *const _this, IGameObject *_pGameObject)>(0x13BD2C0);
 	static inline auto FRelease = PreyFunction<void(ArkEnvironmentalObject *const _this)>(0xA97D40);
@@ -43,40 +42,7 @@ public:
 	static inline auto FHandleScriptEvent = PreyFunction<void(ArkEnvironmentalObject *const _this, const char *_pEvent, SEntityEvent &_event)>(0xA13080);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkEnvironmentalObject *const _this, bool _bRegister)>(0xA13080);
 	static inline auto FLoadModel = PreyFunction<void(ArkEnvironmentalObject *const _this)>(0x13BD1B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/environment/ArkEnvironmentalObjectSignalReceiver.h>
-#include <_unknown/CArkGameObjectExtension.h>
-
-namespace ArkSignalSystem
-{
-class Package;
-} // namespace ArkSignalSystem
-struct IGameObject;
-struct SEntityEvent;
-
-// ArkEnvironmentalObject
-// Header:  Prey/GameDll/ark/environment/ArkEnvironmentalObject.h
-class ArkEnvironmentalObject : public CArkGameObjectExtension<ArkEnvironmentalObject>
-{ // Size=88 (0x58)
-public:
-	ArkEnvironmentalObjectSignalReceiver m_signalReceiver;
-
-	ArkEnvironmentalObject();
-	virtual ~ArkEnvironmentalObject();
-	virtual bool Init(IGameObject* _pGameObject);
-	virtual void PostInit(IGameObject* _pGameObject);
-	virtual void Release();
-	virtual void ProcessEvent(SEntityEvent& _event);
-	virtual void OnReceiveSignal(const ArkSignalSystem::Package& _package);
-	virtual void OnReset(bool _bEnteringGameMode);
-	virtual void LoadProperties();
-	virtual void HandleScriptEvent(const char* _pEvent, SEntityEvent& _event);
-	virtual void RegisterForSignals(bool _bRegister);
-	void LoadModel() { FLoadModel(this); }
-
+#else
 	static inline auto FArkEnvironmentalObjectOv1 = PreyFunction<void(ArkEnvironmentalObject* const _this)>(0x14C93B0);
 	static inline auto FInit = PreyFunction<bool(ArkEnvironmentalObject* const _this, IGameObject* _pGameObject)>(0x14C9400);
 	static inline auto FPostInit = PreyFunction<void(ArkEnvironmentalObject* const _this, IGameObject* _pGameObject)>(0x14C9550);
@@ -88,5 +54,5 @@ public:
 	static inline auto FHandleScriptEvent = PreyFunction<void(ArkEnvironmentalObject* const _this, const char* _pEvent, SEntityEvent& _event)>(0x1333E90);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkEnvironmentalObject* const _this, bool _bRegister)>(0x1333E90);
 	static inline auto FLoadModel = PreyFunction<void(ArkEnvironmentalObject* const _this)>(0x14C9440);
+#endif
 };
-#endif // !MOONCRASH

@@ -26,6 +26,9 @@ public:
 	virtual IPhysicalEntity **DoGetIgnoredPhysicalEntitiesInLineOfSight(IPhysicalEntity **_ppFirstPhysicalEntity, IPhysicalEntity **_ppLastPhysicalEntity) const;
 	virtual float DoGetVisibilityScalar() const;
 	
+#ifdef MOONCRASH
+	virtual bool DoGetIsGlood() const;
+#endif
 #ifndef MOONCRASH
 	static inline auto FBitNotArkEtherDuplicateAttentionObject = PreyFunction<void(ArkEtherDuplicateAttentionObject *const _this)>(0x13EF1E0);
 	static inline auto FEnable = PreyFunction<void(ArkEtherDuplicateAttentionObject *const _this)>(0x13EF3B0);

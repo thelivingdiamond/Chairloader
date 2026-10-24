@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/state.h>
@@ -23,6 +21,10 @@ struct SStateEventJump : public SStateEvent
 	float GetVerticalSpeedModifier() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSStateEventJumpOv2 = PreyFunction<void(SStateEventJump* const _this, const SPlayerPrePhysicsData& data, const float verticalSpeedModifier)>(0x17BF650);
+#else
 	static inline auto FSStateEventJumpOv2 = PreyFunction<void(SStateEventJump* const _this, const SPlayerPrePhysicsData& data, const float verticalSpeedModifier)>(0x18E6900);
+#endif
 };
-#endif // MOONCRASH
+

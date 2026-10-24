@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/CryFixedArray.h>
-#include <_unknown/IGameRulesRoundsListener.h>
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#include <Prey/GameDll/IGameRulesRoundsListener.h>
 
 struct IPhysicalEntity;
 
@@ -52,9 +50,16 @@ public:
 	void OnRemovedCorpse(const unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FRegisterCorpse = PreyFunction<void(CCorpseManager* const _this, unsigned corpseId, Vec3 corpsePos)>(0x169A850);
+	static inline auto FRemoveACorpse = PreyFunction<void(CCorpseManager* const _this)>(0x169A970);
+	static inline auto FUpdate = PreyFunction<void(CCorpseManager* const _this, float frameTime)>(0x169AD40);
+	static inline auto FUpdateCorpses = PreyFunction<void(CCorpseManager* const _this, float frameTime)>(0x169AE90);
+#else
 	static inline auto FRegisterCorpse = PreyFunction<void(CCorpseManager* const _this, unsigned corpseId, Vec3 corpsePos)>(0x17BDB40);
 	static inline auto FRemoveACorpse = PreyFunction<void(CCorpseManager* const _this)>(0x17BDC60);
 	static inline auto FUpdate = PreyFunction<void(CCorpseManager* const _this, float frameTime)>(0x17BE030);
 	static inline auto FUpdateCorpses = PreyFunction<void(CCorpseManager* const _this, float frameTime)>(0x17BE180);
+#endif
 };
-#endif // MOONCRASH
+

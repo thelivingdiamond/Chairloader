@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -105,6 +103,82 @@ public:
 	bool RefillOrGiveGrenades(CCryActor& _arg0_, IInventory& _arg1_, IEntityClass* _arg2_, int _arg3_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_ActorOv1 = PreyFunction<void(CScriptBind_Actor* const _this, ISystem* pSystem)>(0x17DAA40);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Actor* const _this, IActor* pActor)>(0x17DC9A0);
+	static inline auto FDumpActorInfo = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DDA50);
+	static inline auto FRevive = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E00A0);
+	static inline auto FKill = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF6D0);
+	static inline auto FShutDown = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E0E60);
+	static inline auto FSetParams = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E0980);
+	static inline auto FGetHeadDir = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEA30);
+	static inline auto FGetAimDir = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DDC00);
+	static inline auto FPostPhysicalize = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DFF00);
+	static inline auto FGetChannel = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DE050);
+	static inline auto FIsPlayer = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF5D0);
+	static inline auto FIsLocalClient = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF4D0);
+	static inline auto FGetLinkedVehicleId = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x75CBB0);
+	static inline auto FLinkToEntity = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF750);
+	static inline auto FSetAngles = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, Ang3 vAngles)>(0x17E04C0);
+	static inline auto FPlayerSetViewAngles = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, Ang3 vAngles)>(0x17DFD20);
+	static inline auto FGetAngles = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DDD20);
+	static inline auto FSetMovementTarget = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, Vec3 pos, Vec3 target, Vec3 up, float speed)>(0x17E08D0);
+	static inline auto FCameraShake = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, float amount, float duration, float frequency, Vec3 pos)>(0x17DCB00);
+	static inline auto FSetViewShake = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, Ang3 shakeAngle, Vec3 shakeShift, float duration, float frequency, float randomness)>(0x17E0D20);
+	static inline auto FSetExtensionParams = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* extension, SmartScriptTable params)>(0x17E0550);
+	static inline auto FClRefillAmmoResult = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, bool ammoRefilled)>(0x17DCD80);
+	static inline auto FSvGiveAmmoClips = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int numClips)>(0x17E1050);
+	static inline auto FIsImmuneToForbiddenArea = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF3D0);
+	static inline auto FSetHealth = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, float health)>(0x17E0760);
+	static inline auto FSetMaxHealth = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, float health)>(0x17E0850);
+	static inline auto FGetHealth = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEB60);
+	static inline auto FGetMaxHealth = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEC70);
+	static inline auto FDamageInfo = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle shooter, ScriptHandle target, ScriptHandle weapon, ScriptHandle projectile, float damage, int damageType, Vec3 hitDirection)>(0x17DD280);
+	static inline auto FGetLowHealthThreshold = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEC50);
+	static inline auto FSetPhysicalizationProfile = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* profile)>(0x17E0A50);
+	static inline auto FGetPhysicalizationProfile = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DED60);
+	static inline auto FQueueAnimationState = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* animationState)>(0x17DFF80);
+	static inline auto FCreateCodeEvent = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, SmartScriptTable params)>(0x17DD060);
+	static inline auto FPauseAnimationGraph = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF980);
+	static inline auto FResumeAnimationGraph = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E0010);
+	static inline auto FHurryAnimationGraph = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF250);
+	static inline auto FSetTurnAnimationParams = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const float turnThresholdAngle, const float turnThresholdTime)>(0x17E0CA0);
+	static inline auto FSetSpectatorMode = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int mode, ScriptHandle targetId)>(0x17E0B80);
+	static inline auto FGetSpectatorMode = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEEA0);
+	static inline auto FGetSpectatorState = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DEFA0);
+	static inline auto FGetSpectatorTarget = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF0B0);
+	static inline auto FFall = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, Vec3 hitPos)>(0x17DDB50);
+	static inline auto FStandUp = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E0FD0);
+	static inline auto FGetExtraHitLocationInfo = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int slot, int partId)>(0x17DE150);
+	static inline auto FSetForcedLookDir = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, CScriptVector dir)>(0x17E0620);
+	static inline auto FClearForcedLookDir = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DCF60);
+	static inline auto FSetForcedLookObjectId = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle objectId)>(0x17E06D0);
+	static inline auto FClearForcedLookObjectId = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DCFE0);
+	static inline auto FCanSpectacularKillOn = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle targetId)>(0x7611F0);
+	static inline auto FStartSpectacularKill = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle targetId)>(0x7611F0);
+	static inline auto FCheckBodyDamagePartFlags = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int partID, int materialID, unsigned bodyPartFlagsMask)>(0x17DCC80);
+	static inline auto FGetBodyDamageProfileID = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* bodyDamageFileName, const char* bodyDamagePartsFileName)>(0x17DDE20);
+	static inline auto FOverrideBodyDamageProfileID = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const int bodyDamageProfileID)>(0x17DF8F0);
+	static inline auto FIsGod = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x7611F0);
+	static inline auto FHolsterItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, bool holster)>(0x17DF1C0);
+	static inline auto FDropItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle itemId)>(0x17DD870);
+	static inline auto FPickUpItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle itemId)>(0x17DFA10);
+	static inline auto FIsCurrentItemHeavy = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DF2D0);
+	static inline auto FPickUpPickableAmmo = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* ammoName, int count)>(0x17DFB90);
+	static inline auto FSelectItemByName = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* name)>(0x17E01E0);
+	static inline auto FSelectItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, ScriptHandle itemId, bool forceSelect)>(0x17E0130);
+	static inline auto FSelectLastItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17E0300);
+	static inline auto FSelectNextItem = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int direction, bool keepHistory, const char* category)>(0x17E0390);
+	static inline auto FSimpleFindItemIdInCategory = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* category)>(0x17E0EE0);
+	static inline auto FDisableHitReaction = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DD370);
+	static inline auto FEnableHitReaction = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DDAD0);
+	static inline auto FCreateIKLimb = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, int slot, const char* limbName, const char* rootBone, const char* midBone, const char* endBone, int flags)>(0x17DD110);
+	static inline auto FPlayAction = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, const char* action)>(0x17DFC90);
+	static inline auto FRefreshPickAndThrowObjectPhysics = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x75CBB0);
+	static inline auto FModifySpeed = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, float fFactor)>(0x17DF860);
+	static inline auto FAcquireOrReleaseLipSyncExtension = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x17DC920);
+	static inline auto FGetCActor = PreyFunction<CCryActor* (CScriptBind_Actor* const _this, IFunctionHandler* _pH)>(0x17DDF50);
+#else
 	static inline auto FCScriptBind_ActorOv1 = PreyFunction<void(CScriptBind_Actor* const _this, ISystem* pSystem)>(0x1901820);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Actor* const _this, IActor* pActor)>(0x1903780);
 	static inline auto FDumpActorInfo = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x1904660);
@@ -179,5 +253,6 @@ public:
 	static inline auto FModifySpeed = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH, float fFactor)>(0x1906470);
 	static inline auto FAcquireOrReleaseLipSyncExtension = PreyFunction<int(CScriptBind_Actor* const _this, IFunctionHandler* pH)>(0x1903700);
 	static inline auto FGetCActor = PreyFunction<CCryActor* (CScriptBind_Actor* const _this, IFunctionHandler* _pH)>(0x1904B60);
+#endif
 };
-#endif // MOONCRASH
+

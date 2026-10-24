@@ -50,5 +50,5 @@ public:
 #ifndef MOONCRASH
 inline PreyGlobal<CInputCVars*> g_pInputCVars(0x2767F50);
 #else
-//TODO: MOONCRASH
+inline PreyGlobal<CInputCVars*> g_pInputCVars(0x28D71E0);
 #endif

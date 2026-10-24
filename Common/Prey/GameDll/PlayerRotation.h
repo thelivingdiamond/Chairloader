@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -34,8 +32,13 @@ public:
 		const Vec3& GetLeanLimit(const Vec3& _arg0_, const Vec3& _arg1_, int _arg2_, int _arg3_, IPhysicalEntity* * _arg4_, int _arg5_);
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FOnRayCastDataReceived = PreyFunction<void(CPlayerRotation::SLeanAndPeekInfo* const _this, const unsigned& rayID, const RayCastResult& result)>(0x17B51D0);
+		static inline auto FCancelPendingRay = PreyFunction<void(CPlayerRotation::SLeanAndPeekInfo* const _this)>(0x1795D00);
+#else
 		static inline auto FOnRayCastDataReceived = PreyFunction<void(CPlayerRotation::SLeanAndPeekInfo* const _this, const unsigned& rayID, const RayCastResult& result)>(0x18DBE20);
 		static inline auto FCancelPendingRay = PreyFunction<void(CPlayerRotation::SLeanAndPeekInfo* const _this)>(0x18BC640);
+#endif
 	};
 
 	float m_hoverRollBlend;
@@ -124,6 +127,24 @@ public:
 	IItem* GetCurrentItem(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerRotationOv2 = PreyFunction<void(CPlayerRotation* const _this, const CPlayer& player)>(0x17B3FA0);
+	static inline auto FProcess = PreyFunction<void(CPlayerRotation* const _this, IItem* pCurrentItem, const SActorFrameMovementParams& movement, const SAimAccelerationParams& verticalAcceleration, float frameTime)>(0x17B5200);
+	static inline auto FFullSerialize = PreyFunction<void(CPlayerRotation* const _this, TSerialize ser)>(0x17B4860);
+	static inline auto FSetViewRotation = PreyFunction<void(CPlayerRotation* const _this, const Quat& rotation)>(0x17B7A10);
+	static inline auto FSetViewRotationOnRevive = PreyFunction<void(CPlayerRotation* const _this, const Quat& rotation)>(0x17B7D50);
+	static inline auto FAddAngularImpulse = PreyFunction<void(CPlayerRotation* const _this, const Ang3& angular, float deceleration, float duration)>(0x17B40E0);
+	static inline auto FResetLinkedRotation = PreyFunction<void(CPlayerRotation* const _this, const Quat& rotation)>(0x17B7900);
+	static inline auto FProcessNormalRoll = PreyFunction<void(CPlayerRotation* const _this, float frameTime)>(0x17B7680);
+	static inline auto FProcessNormal = PreyFunction<void(CPlayerRotation* const _this, float frameTime, const SAimAccelerationParams& verticalAcceleration)>(0x17B6940);
+	static inline auto FProcessNormalHover = PreyFunction<void(CPlayerRotation* const _this, float frameTime, const SAimAccelerationParams& verticalAcceleration)>(0x17B6C40);
+	static inline auto FHoverPivot = PreyFunction<void(CPlayerRotation* const _this, const Ang3& _deltaAngles)>(0x17B4960);
+	static inline auto FProcessLeanAndPeek = PreyFunction<void(CPlayerRotation* const _this, const SActorFrameMovementParams& movement)>(0x17B5B70);
+	static inline auto FProcessLinkedState = PreyFunction<void(CPlayerRotation* const _this, SLinkStats& linkStats, const Quat& lastBaseQuat, const Quat& lastViewQuat)>(0x17B61B0);
+	static inline auto FProcessFinalViewEffects = PreyFunction<void(CPlayerRotation* const _this, float minAngle, float maxAngle)>(0x17B5790);
+	static inline auto FClampAngles = PreyFunction<void(CPlayerRotation* const _this, float minAngle, float maxAngle)>(0x17B4130);
+	static inline auto FNormalizeQuats = PreyFunction<void(CPlayerRotation* const _this)>(0x17B5000);
+#else
 	static inline auto FCPlayerRotationOv2 = PreyFunction<void(CPlayerRotation* const _this, const CPlayer& player)>(0x18DABF0);
 	static inline auto FProcess = PreyFunction<void(CPlayerRotation* const _this, IItem* pCurrentItem, const SActorFrameMovementParams& movement, const SAimAccelerationParams& verticalAcceleration, float frameTime)>(0x18DBE50);
 	static inline auto FFullSerialize = PreyFunction<void(CPlayerRotation* const _this, TSerialize ser)>(0x18DB4B0);
@@ -140,5 +161,6 @@ public:
 	static inline auto FProcessFinalViewEffects = PreyFunction<void(CPlayerRotation* const _this, float minAngle, float maxAngle)>(0x18DC3E0);
 	static inline auto FClampAngles = PreyFunction<void(CPlayerRotation* const _this, float minAngle, float maxAngle)>(0x18DAD80);
 	static inline auto FNormalizeQuats = PreyFunction<void(CPlayerRotation* const _this)>(0x18DBC50);
+#endif
 };
-#endif // MOONCRASH
+

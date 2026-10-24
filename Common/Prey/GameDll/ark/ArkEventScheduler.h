@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -77,7 +76,7 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkeventscheduler.h
-class ArkFlowNodeTimeEventBase : public CFlowBaseNode<1> // Id=801BD16 Size=64
+class ArkFlowNodeTimeEventBase : public CFlowBaseNode<eNCT_Instanced> // Id=801BD16 Size=64
 {
 public:
 	enum class InPort
@@ -152,7 +151,7 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkeventscheduler.h
-class ArkFlowNodeGetGameTime : public CFlowBaseNode<0> // Id=801BD1A Size=16
+class ArkFlowNodeGetGameTime : public CFlowBaseNode<eNCT_Singleton> // Id=801BD1A Size=16
 {
 public:
 	enum class OutPort
@@ -176,7 +175,7 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkeventscheduler.h
-class ArkFlowNodeSetGameTime : public CFlowBaseNode<0> // Id=801BD1C Size=16
+class ArkFlowNodeSetGameTime : public CFlowBaseNode<eNCT_Singleton> // Id=801BD1C Size=16
 {
 public:
 	enum class InPort
@@ -281,7 +280,7 @@ public:
 
 // ArkFlowNodeTimeEventBase
 // Header:  Prey/GameDll/ark/ArkEventScheduler.h
-class ArkFlowNodeTimeEventBase : public CFlowBaseNode<1>
+class ArkFlowNodeTimeEventBase : public CFlowBaseNode<eNCT_Instanced>
 { // Size=64 (0x40)
 public:
 	enum class InPort
@@ -357,7 +356,7 @@ public:
 
 // ArkFlowNodeGetGameTime
 // Header:  Prey/GameDll/ark/ArkEventScheduler.h
-class ArkFlowNodeGetGameTime : public CFlowBaseNode<0>
+class ArkFlowNodeGetGameTime : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class OutPort
@@ -384,7 +383,7 @@ public:
 
 // ArkFlowNodeSetGameTime
 // Header:  Prey/GameDll/ark/ArkEventScheduler.h
-class ArkFlowNodeSetGameTime : public CFlowBaseNode<0>
+class ArkFlowNodeSetGameTime : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class InPort

@@ -1,11 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryextension/impl/classweaver.h>
+#include <Prey/CryExtension/ClassWeaver.h>
 #include <Prey/CryAction/ICryMannequin.h>
-#include <_unknown/ProceduralContextHelpers__CRequestList.h>
-#include <_unknown/TL__Typelist.h>
+#include <Prey/GameDll/ProceduralContextHelpers.h>
+#include <Prey/CryExtension/TypeList.h>
 
 struct CryGUID;
 struct IAnimatedCharacter;
@@ -28,7 +26,11 @@ public:
 	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
 	using TColliderModeRequestList = ProceduralContextHelpers::CRequestList<CProceduralContextColliderMode::SColliderModeRequest>;
 
+#ifndef MOONCRASH
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextColliderMode>>(0x22826F0);
+#else
 	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextColliderMode>>(0x23F11F0);
+#endif
 	ProceduralContextHelpers::CRequestList<CProceduralContextColliderMode::SColliderModeRequest> m_requestList;
 
 	virtual ICryFactory* GetFactory() const;
@@ -48,11 +50,20 @@ public:
 	IAnimatedCharacter* GetAnimatedCharacter() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextColliderMode* const _this)>(0x17CEBA0);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextColliderMode* const _this, const CryGUID& iid)>(0x3A9BC0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextColliderMode* const _this, const char* name)>(0x158AEF0);
+	static inline auto FUpdate = PreyFunction<void(CProceduralContextColliderMode* const _this, float timePassedSeconds)>(0x17CEBB0);
+	static inline auto FRequestColliderMode = PreyFunction<unsigned(CProceduralContextColliderMode* const _this, const EColliderMode colliderMode)>(0x17CF170);
+	static inline auto FCancelRequest = PreyFunction<void(CProceduralContextColliderMode* const _this, const unsigned cancelRequestId)>(0x17CF120);
+#else
 	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextColliderMode* const _this)>(0x18F5900);
 	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextColliderMode* const _this, const CryGUID& iid)>(0x18F70B0);
 	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextColliderMode* const _this, const char* name)>(0x1CBB0B0);
 	static inline auto FUpdate = PreyFunction<void(CProceduralContextColliderMode* const _this, float timePassedSeconds)>(0x18F5910);
 	static inline auto FRequestColliderMode = PreyFunction<unsigned(CProceduralContextColliderMode* const _this, const EColliderMode colliderMode)>(0x18F5EA0);
 	static inline auto FCancelRequest = PreyFunction<void(CProceduralContextColliderMode* const _this, const unsigned cancelRequestId)>(0x18F5E50);
+#endif
 };
-#endif // MOONCRASH
+

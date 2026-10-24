@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/SAITurnParams.h>
-#include <_unknown/SViewLimitParams.h>
+#include <Prey/GameDll/SAITurnParams.h>
+#include <Prey/GameDll/SViewLimitParams.h>
 
 struct AABB;
 
@@ -81,7 +79,11 @@ struct SActorParams
 
 	SActorParams();
 
+#ifndef MOONCRASH
+	static inline auto FSActorParamsOv2 = PreyFunction<void(SActorParams* const _this)>(0x169C700);
+#else
 	static inline auto FSActorParamsOv2 = PreyFunction<void(SActorParams* const _this)>(0x17BF550);
+#endif
 };
 
 // SStanceInfo
@@ -126,6 +128,10 @@ struct SStanceInfo
 	SStanceInfo();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetViewOffsetWithLean = PreyFunction<Vec3*(const SStanceInfo* const _this, Vec3* _return_value_, float lean, float peekOver, bool useWhileLeanedOffsets)>(0x179B390);
+#else
 	static inline auto FGetViewOffsetWithLean = PreyFunction<Vec3*(const SStanceInfo* const _this, Vec3* _return_value_, float lean, float peekOver, bool useWhileLeanedOffsets)>(0x18C1D20);
+#endif
 };
-#endif // MOONCRASH
+

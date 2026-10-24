@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -12,6 +10,13 @@ struct SStateEventLedge;
 
 // CPlayerStateLedge
 // Header:  Prey/GameDll/PlayerStateLedge.h
+enum ELedgeType   // from CryEngine GameSDK PlayerStateLedge.h
+{
+	eLT_Any,
+	eLT_Wide,
+	eLT_Thin,
+};
+
 class CPlayerStateLedge
 { // Size=104 (0x68)
 public:
@@ -78,7 +83,11 @@ public:
 		void SetParamsFromXml(const IItemParamsNode* _arg0_);
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FSLedgeGrabbingParamsOv2 = PreyFunction<void(CPlayerStateLedge::SLedgeGrabbingParams* const _this)>(0x17BD720);
+#else
 		static inline auto FSLedgeGrabbingParamsOv2 = PreyFunction<void(CPlayerStateLedge::SLedgeGrabbingParams* const _this)>(0x18E4A10);
+#endif
 	};
 
 	float m_ledgeSpeedMultiplier;
@@ -92,7 +101,11 @@ public:
 	bool m_enterFromSprint;
 	uint8_t m_postSerializeLedgeTransition;
 	CPlayerStateLedge::SLedgeBlending m_ledgeBlending;
+#ifndef MOONCRASH
+	static inline auto s_ledgeGrabbingParams = PreyGlobal<CPlayerStateLedge::SLedgeGrabbingParams>(0x2C179E0);
+#else
 	static inline auto s_ledgeGrabbingParams = PreyGlobal<CPlayerStateLedge::SLedgeGrabbingParams>(0x2D933E0);
+#endif
 
 	CPlayerStateLedge();
 	~CPlayerStateLedge();
@@ -116,6 +129,16 @@ public:
 	static CPlayerStateLedge::SLedgeGrabbingParams& GetLedgeGrabbingParams();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateLedgeOv1 = PreyFunction<void(CPlayerStateLedge* const _this)>(0x17BD6D0);
+	static inline auto FBitNotCPlayerStateLedge = PreyFunction<void(CPlayerStateLedge* const _this)>(0xA13080);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player, const SStateEventLedge& ledgeEvent)>(0xA13080);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0xA13080);
+	static inline auto FOnAnimFinished = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player)>(0xA13080);
+	static inline auto FOnExit = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player)>(0xA13080);
+	static inline auto FSerialize = PreyFunction<void(CPlayerStateLedge* const _this, TSerialize serializer)>(0xA13080);
+	static inline auto FPostSerialize = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player)>(0xA13080);
+#else
 	static inline auto FCPlayerStateLedgeOv1 = PreyFunction<void(CPlayerStateLedge* const _this)>(0x18E49C0);
 	static inline auto FBitNotCPlayerStateLedge = PreyFunction<void(CPlayerStateLedge* const _this)>(0x1333E90);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player, const SStateEventLedge& ledgeEvent)>(0x1333E90);
@@ -124,5 +147,6 @@ public:
 	static inline auto FOnExit = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player)>(0x1333E90);
 	static inline auto FSerialize = PreyFunction<void(CPlayerStateLedge* const _this, TSerialize serializer)>(0x1333E90);
 	static inline auto FPostSerialize = PreyFunction<void(CPlayerStateLedge* const _this, CPlayer& player)>(0x1333E90);
+#endif
 };
-#endif // MOONCRASH
+

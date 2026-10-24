@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -13,6 +11,9 @@ struct SUIEventDesc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapagestationmap.h
+#ifdef MOONCRASH
+enum class ArkPDAPage;
+#endif
 class CArkPDAPageStationMap : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageStationMap> // Id=801BA76 Size=64
 {
 public:
@@ -39,6 +40,10 @@ public:
 	static ArkPDAPage GetPDAPage();
 #endif
 	
+#ifdef MOONCRASH
+	void OnPressMapObjective() { FOnPressMapObjective(this); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FOpen = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x134DBE0);
 	static inline auto FUpdate = PreyFunction<void(CArkPDAPageStationMap *const _this, float _frameTime)>(0x134E840);
 	static inline auto FClose = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x1628FA0);
@@ -50,48 +55,7 @@ public:
 	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x134E740);
 	static inline auto FUpdateInputPrompt = PreyFunction<void(CArkPDAPageStationMap const *const _this)>(0x134E8B0);
 	static inline auto FManagesInputPrompts = PreyFunction<bool(CArkPDAPageStationMap const *const _this)>(0x1B933B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/GameDll/ark/ui/IArkPDAPage.h>
-#include <Prey/GameDll/ark/ui/arkuimenubase.h>
-
-enum class ArkPDAPage;
-class CCryName;
-struct IUIElement;
-struct SUIArguments;
-struct SUIEventDesc;
-
-// CArkPDAPageStationMap
-// Header:  Prey/GameDll/ark/ui/ArkPDAPageStationMap.h
-class CArkPDAPageStationMap : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageStationMap>
-{ // Size=64 (0x40)
-public:
-	uint64_t m_locationId;
-	uint64_t m_objectiveId;
-	float m_zoomAmount;
-	float m_zoomDelta;
-
-	CArkPDAPageStationMap();
-	virtual ~CArkPDAPageStationMap();
-	virtual void Open();
-	virtual void Update(float _frameTime);
-	virtual void Close();
-	virtual void OnClosePDA();
-	virtual bool ProcessInput(const CCryName& _rActionId, const int _activationMode, const float _fValue);
-	void SetCurrentLocation(uint64_t _locationId) const { FSetCurrentLocation(this, _locationId); }
-	void SetZoom(const float _zoomAmount) { FSetZoom(this, _zoomAmount); }
-	void OnPressMapObjective() { FOnPressMapObjective(this); }
-	void OnSelectLevel(IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSelectLevel(this, _pSender, _event, _args); }
-	virtual void SetupInputPrompts();
-	void UpdateInputPrompt() const { FUpdateInputPrompt(this); }
-	virtual bool ManagesInputPrompts() const;
-
-#if 0
-	static ArkPDAPage GetPDAPage();
-#endif
-
+#else
 	static inline auto FCArkPDAPageStationMapOv1 = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142B9F0);
 	static inline auto FOpen = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142C610);
 	static inline auto FUpdate = PreyFunction<void(CArkPDAPageStationMap* const _this, float _frameTime)>(0x142D250);
@@ -105,5 +69,5 @@ public:
 	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142D0D0);
 	static inline auto FUpdateInputPrompt = PreyFunction<void(const CArkPDAPageStationMap* const _this)>(0x142D2C0);
 	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageStationMap* const _this)>(0x1A302A0);
+#endif
 };
-#endif // !MOONCRASH

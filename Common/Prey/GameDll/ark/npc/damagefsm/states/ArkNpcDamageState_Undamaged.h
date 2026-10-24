@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/npc/damagefsm/states/ArkNpcDamageState.h>
@@ -22,8 +20,14 @@ public:
 	void EnterInternal(const ArkNpcDamageStateParam& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FEnter = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x1212E00);
+	static inline auto FExit = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamageExitStateParams& _params)>(0x1212E60);
+	static inline auto FPostSerialize = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamagePostSerializeStateParams& _params)>(0x1212E00);
+#else
 	static inline auto FEnter = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamageEnterStateParams& _params)>(0x12A2320);
 	static inline auto FExit = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamageExitStateParams& _params)>(0x12A22F0);
 	static inline auto FPostSerialize = PreyFunction<void(const ArkNpcDamageState_Undamaged* const _this, const ArkNpcDamagePostSerializeStateParams& _params)>(0x12A2320);
+#endif
 };
-#endif // MOONCRASH
+

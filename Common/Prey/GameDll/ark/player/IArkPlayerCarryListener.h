@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -13,24 +11,11 @@ public:
 	virtual void OnStartCarry(IEntity* const _pEntity);
 	virtual void OnStopCarry(IEntity* const _pEntity, bool _bThrown);
 
+#ifndef MOONCRASH
 	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0xA13080);
 	static inline auto FOnStopCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity, bool _bThrown)>(0xA13080);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-struct IEntity;
-
-// IArkPlayerCarryListener
-// Header:  Prey/GameDll/ark/player/IArkPlayerCarryListener.h
-class IArkPlayerCarryListener
-{ // Size=8 (0x8)
-public:
-	virtual void OnStartCarry(IEntity* const _pEntity);
-	virtual void OnStopCarry(IEntity* const _pEntity, bool _bThrown);
-
+#else
 	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0x1333E90);
 	static inline auto FOnStopCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity, bool _bThrown)>(0x1333E90);
+#endif
 };
-#endif // !MOONCRASH

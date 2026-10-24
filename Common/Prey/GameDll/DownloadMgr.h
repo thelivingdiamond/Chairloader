@@ -1,11 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryLobby/STCPServiceData.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryCore/smartptr.h>
 #include <Prey/GameDll/gamemechanismmanager/GameMechanismBase.h>
-#include <_unknown/IPatchPakManagerListener.h>
+#include <Prey/GameDll/IPatchPakManagerListener.h>
 
 class CDownloadableResource;
 enum ECryTCPServiceResult;
@@ -40,6 +39,15 @@ public:
 	void WaitForDownloadsToFinish(const char* * _arg0_, int _arg1_, float _arg2_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FDispatchCallbacks = PreyFunction<void(CDownloadMgr* const _this)>(0x16B4E60);
+	static inline auto FUpdate = PreyFunction<void(CDownloadMgr* const _this, float inDt)>(0x16B66C0);
+	static inline auto FCDownloadMgrOv1 = PreyFunction<void(CDownloadMgr* const _this)>(0x16B46B0);
+	static inline auto FReset = PreyFunction<void(CDownloadMgr* const _this)>(0x16B6270);
+	static inline auto FInit = PreyFunction<void(CDownloadMgr* const _this, const char* pTCPServicesDescriptionFile, const char* pInResourceDescriptionsFile)>(0x16B54B0);
+	static inline auto FUpdatedPermissionsNowAvailable = PreyFunction<void(IPatchPakManagerListener* const _this)>(0xA13080);
+	static inline auto FFindResourceByName = PreyFunction<_smart_ptr<CDownloadableResource>*(CDownloadMgr* const _this, _smart_ptr<CDownloadableResource>* _return_value_, const char* inResourceName)>(0x16B4FB0);
+#else
 	static inline auto FDispatchCallbacks = PreyFunction<void(CDownloadMgr* const _this)>(0x17D7D30);
 	static inline auto FUpdate = PreyFunction<void(CDownloadMgr* const _this, float inDt)>(0x17D9580);
 	static inline auto FCDownloadMgrOv1 = PreyFunction<void(CDownloadMgr* const _this)>(0x17D7580);
@@ -47,6 +55,7 @@ public:
 	static inline auto FInit = PreyFunction<void(CDownloadMgr* const _this, const char* pTCPServicesDescriptionFile, const char* pInResourceDescriptionsFile)>(0x17D8380);
 	static inline auto FUpdatedPermissionsNowAvailable = PreyFunction<void(IPatchPakManagerListener* const _this)>(0x1333E90);
 	static inline auto FFindResourceByName = PreyFunction<_smart_ptr<CDownloadableResource>*(CDownloadMgr* const _this, _smart_ptr<CDownloadableResource>* _return_value_, const char* inResourceName)>(0x17D7E80);
+#endif
 };
 
 // CDownloadableResource
@@ -54,7 +63,7 @@ public:
 class CDownloadableResource : public CMultiThreadRefCount
 { // Size=632 (0x278)
 public:
-	enum class #unnamed_enum_k_invalidState
+	enum
 	{
 		k_invalidState = 0,
 		DownloadableResourceStates_neg1 = -1,
@@ -156,6 +165,23 @@ public:
 	void DispatchCallbacks();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FLoadConfig = PreyFunction<void(CDownloadableResource* const _this, XmlNodeRef inNode)>(0x16B58F0);
+	static inline auto FUpdateRemoveListeners = PreyFunction<void(CDownloadableResource* const _this)>(0x16B66D0);
+	static inline auto FBroadcastFail = PreyFunction<void(CDownloadableResource* const _this)>(0x16B4DB0);
+	static inline auto FReceiveHTTPHeader = PreyFunction<bool(CDownloadableResource* const _this, bool inReceivedEndOfStream)>(0x16B5F20);
+	static inline auto FReceiveDataCallback = PreyFunction<bool(ECryTCPServiceResult res, void* pArg, _smart_ptr<STCPServiceData> pUpload, const char* pData, uint64_t dataLen, bool endOfStream)>(0x16B5C90);
+	static inline auto FInitHTTPParser = PreyFunction<void(CDownloadableResource* const _this)>(0x16B58D0);
+	static inline auto FReleaseHTTPParser = PreyFunction<void(CDownloadableResource* const _this)>(0x16B61E0);
+	static inline auto FCDownloadableResourceOv1 = PreyFunction<void(CDownloadableResource* const _this)>(0x16B48F0);
+	static inline auto FBitNotCDownloadableResource = PreyFunction<void(CDownloadableResource* const _this)>(0x16B4A60);
+	static inline auto FStartDownloading = PreyFunction<void(CDownloadableResource* const _this)>(0x16B6350);
+	static inline auto FGetRawData = PreyFunction<unsigned(CDownloadableResource* const _this, char* * pOutData, int* pOutLen)>(0x16B5450);
+	static inline auto FGetDecryptedData = PreyFunction<unsigned(CDownloadableResource* const _this, char* pBuffer, int* pOutLen, const char* pDecryptionKey, int decryptionKeyLength, const char* pSigningSalt, int signingSaltLength)>(0x16B5210);
+	static inline auto FAddDataListener = PreyFunction<void(CDownloadableResource* const _this, IDataListener* pInListener)>(0x16B4D30);
+	static inline auto FRemoveDataListener = PreyFunction<void(CDownloadableResource* const _this, IDataListener* pInListener)>(0x16B6250);
+	static inline auto FCancelDownload = PreyFunction<void(CDownloadableResource* const _this)>(0x16B4E20);
+#else
 	static inline auto FLoadConfig = PreyFunction<void(CDownloadableResource* const _this, XmlNodeRef inNode)>(0x17D87B0);
 	static inline auto FUpdateRemoveListeners = PreyFunction<void(CDownloadableResource* const _this)>(0x17D9590);
 	static inline auto FBroadcastFail = PreyFunction<void(CDownloadableResource* const _this)>(0x17D7C80);
@@ -171,6 +197,7 @@ public:
 	static inline auto FAddDataListener = PreyFunction<void(CDownloadableResource* const _this, IDataListener* pInListener)>(0x17D7C00);
 	static inline auto FRemoveDataListener = PreyFunction<void(CDownloadableResource* const _this, IDataListener* pInListener)>(0x17D9110);
 	static inline auto FCancelDownload = PreyFunction<void(CDownloadableResource* const _this)>(0x17D7CF0);
+#endif
 };
 
 // IDataListener
@@ -181,6 +208,10 @@ struct IDataListener
 	virtual void DataFailedToDownload(_smart_ptr<CDownloadableResource> inResource) = 0;
 	virtual ~IDataListener();
 
+#ifndef MOONCRASH
+	static inline auto FBitNotIDataListener = PreyFunction<void(IDataListener* const _this)>(0x16B4C10);
+#else
 	static inline auto FBitNotIDataListener = PreyFunction<void(IDataListener* const _this)>(0x17D7AE0);
+#endif
 };
-#endif // MOONCRASH
+

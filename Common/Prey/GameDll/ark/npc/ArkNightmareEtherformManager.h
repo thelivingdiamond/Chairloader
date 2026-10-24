@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -57,6 +55,17 @@ public:
 	ArkNightmareEtherformManager& operator=(const ArkNightmareEtherformManager& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNightmareEtherformManagerOv1 = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x11F1AF0);
+	static inline auto FBitNotArkNightmareEtherformManager = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x11F1B40);
+	static inline auto FInitialize = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x11F1EF0);
+	static inline auto FReset = PreyFunction<void(ArkNightmareEtherformManager* const _this, bool _bEnteringGameMode)>(0x11F1EF0);
+	static inline auto FUpdate = PreyFunction<void(ArkNightmareEtherformManager* const _this, float _frameTime)>(0x11F1F40);
+	static inline auto FFullSerialize = PreyFunction<void(ArkNightmareEtherformManager* const _this, TSerialize _serializer)>(0x11F1B80);
+	static inline auto FOnLevelTransitionFinished = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x11F1EE0);
+	static inline auto FDamagePlayerInEtherForm = PreyFunction<void(ArkNightmareEtherformManager* const _this, const unsigned _nightmareId)>(0x11F1B50);
+	static inline auto FLoadXml = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x11F1CD0);
+#else
 	static inline auto FArkNightmareEtherformManagerOv1 = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x1281360);
 	static inline auto FBitNotArkNightmareEtherformManager = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x12813B0);
 	static inline auto FInitialize = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x1281540);
@@ -66,5 +75,6 @@ public:
 	static inline auto FOnLevelTransitionFinished = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x12817B0);
 	static inline auto FDamagePlayerInEtherForm = PreyFunction<void(ArkNightmareEtherformManager* const _this, const unsigned _nightmareId)>(0x12813C0);
 	static inline auto FLoadXml = PreyFunction<void(ArkNightmareEtherformManager* const _this)>(0x1281590);
+#endif
 };
-#endif // MOONCRASH
+

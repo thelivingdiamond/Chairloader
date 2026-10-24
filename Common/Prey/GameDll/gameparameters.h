@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/SAimLookParameters.h>
+#include <Prey/GameDll/SAimLookParameters.h>
 
 class CItemResourceCache;
 class CItemSharedParams;
@@ -41,11 +39,20 @@ public:
 	const SAimLookParameters& StoreSAimLookParameters(const SAimLookParameters& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameSharedParametersStorageOv1 = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x170E990);
+	static inline auto FBitNotCGameSharedParametersStorage = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x170EBD0);
+	static inline auto FGetItemSharedParameters = PreyFunction<CItemSharedParams* (CGameSharedParametersStorage* const _this, const char* className, bool create)>(0x170ED80);
+	static inline auto FReleaseLevelResourcesOv1 = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x170EF40);
+	static inline auto FReleaseLevelResourcesOv0 = PreyFunction<void(CGameSharedParametersStorage* const _this, std::map<string, _smart_ptr<IGameSharedParameters>>& paramsMap)>(0x170EEC0);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CGameSharedParametersStorage* const _this, ICrySizer* s)>(0x170ED90);
+#else
 	static inline auto FCGameSharedParametersStorageOv1 = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x18357D0);
 	static inline auto FBitNotCGameSharedParametersStorage = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x1835980);
 	static inline auto FGetItemSharedParameters = PreyFunction<CItemSharedParams* (CGameSharedParametersStorage* const _this, const char* className, bool create)>(0x1835B30);
 	static inline auto FReleaseLevelResourcesOv1 = PreyFunction<void(CGameSharedParametersStorage* const _this)>(0x1835CF0);
 	static inline auto FReleaseLevelResourcesOv0 = PreyFunction<void(CGameSharedParametersStorage* const _this, std::map<string, _smart_ptr<IGameSharedParameters>>& paramsMap)>(0x1835C70);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CGameSharedParametersStorage* const _this, ICrySizer* s)>(0x1835B40);
+#endif
 };
-#endif // MOONCRASH
+

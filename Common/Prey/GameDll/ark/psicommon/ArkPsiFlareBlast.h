@@ -1,8 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <Prey/Ark/ArkPsiBlastProperties.h>
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
 #include <Prey/ArkCommon/reflection/ArkProperty.h>
 #include <Prey/ArkCommon/reflection/ArkReflectedObject.h>
 #include <Prey/GameDll/ark/player/psipower/ArkPsiFlareLight.h>
@@ -206,7 +205,7 @@ public:
 	CArkPsiFlareBlast();
 	CArkPsiFlareBlast(CArkPsiFlareBlast&& _blast);
 	CArkPsiFlareBlast(const Vec3& _pos, const CArkPsiBlastProperties<ArkPsiFlareBlastProperties>* _pProperties);
-	CArkPsiFlareBlast& operator=(CArkPsiFlareBlast&& _blast) { return FoperatorEq(this, _blast); }
+	CArkPsiFlareBlast& operator=(CArkPsiFlareBlast&& _blast) { return FoperatorEq(this, std::move(_blast)); }
 	void UpdateDelay(const std::vector<IEntity*>& _entities) { FUpdateDelay(this, _entities); }
 	void UpdateEffect(const std::vector<IEntity*>& _entities) { FUpdateEffect(this, _entities); }
 	void UpdateFrame(const float _frameTime) { FUpdateFrame(this, _frameTime); }

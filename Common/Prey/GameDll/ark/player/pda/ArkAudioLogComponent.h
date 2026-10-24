@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -73,6 +71,10 @@ public:
 	void SendAudioLogPlaybackCompleteEvent(const bool _arg0_);
 #endif
 
+#ifdef MOONCRASH
+	void Remove(const uint64_t _collectionId) { FRemove(this, _collectionId); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FArkAudioLogComponentOv1 = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x15B1D70);
 	static inline auto FLoadConfig = PreyFunction<void(ArkAudioLogComponent* const _this, XmlNodeRef _config)>(0x15B22D0);
 	static inline auto FUpdate = PreyFunction<void(ArkAudioLogComponent* const _this, float _frameTime)>(0x15B2F90);
@@ -92,82 +94,7 @@ public:
 	static inline auto FPlayAudioLog_InternalOv0 = PreyFunction<bool(ArkAudioLogComponent* const _this, const ArkAudioLog& _audioLog)>(0x15B2500);
 	static inline auto FPlayLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this, uint64_t _audioLogId, bool _bResetTimer, bool _bAutoPlayed)>(0x15B2770);
 	static inline auto FStopLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x15B2D80);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-#include <Prey/Ark/ArkAudioUtil.h>
-#include <Prey/CryNetwork/ISerialize.h>
-#include <Prey/GameDll/ark/ArkSimpleTimer.h>
-#include <Prey/GameDll/ark/dialog/IArkConversationListener.h>
-
-class ArkAudioLog;
-class ArkConversation;
-class XmlNodeRef;
-
-// ArkAudioLogComponent
-// Header:  Prey/GameDll/ark/player/pda/ArkAudioLogComponent.h
-class ArkAudioLogComponent : public IArkConversationListener
-{ // Size=128 (0x80)
-public:
-	// ArkAudioLogComponent::UnheardAudioLog
-	// Header:  Prey/GameDll/ark/player/pda/ArkAudioLogComponent.h
-	class UnheardAudioLog
-	{ // Size=16 (0x10)
-	public:
-		uint64_t m_audioLogId;
-		bool m_bAutoPlay;
-
-	#if 0
-		UnheardAudioLog();
-		UnheardAudioLog(const uint64_t _arg0_, const bool _arg1_);
-		void Serialize(TSerialize _arg0_);
-		bool operator==(const uint64_t _arg0_) const;
-	#endif
-	};
-
-	std::vector<uint64_t> m_Collected;
-	std::vector<uint64_t> m_PlayedAudioLogs;
-	std::vector<ArkAudioLogComponent::UnheardAudioLog> m_UnheardAudioLogs;
-	ArkSimpleTimer m_loadingTimer;
-	ArkConversation* m_pCurrentlyPlayingAudioLog;
-	uint64_t m_currentlyPlayingConversationId;
-	uint64_t m_currentlyPlayingAudioLogId;
-	bool m_currentlyPlayingAudioLogAutoPlay;
-	ArkAudioTrigger m_loadingTrigger;
-	ArkAudioTrigger m_loadedTrigger;
-
-	ArkAudioLogComponent();
-	virtual ~ArkAudioLogComponent();
-	void LoadConfig(XmlNodeRef _config) { FLoadConfig(this, _config); }
-	void Update(float _frameTime) { FUpdate(this, _frameTime); }
-	void Collect(const uint64_t _collectionId, bool _bAutoplay) { FCollect(this, _collectionId, _bAutoplay); }
-	void Remove(const uint64_t _collectionId) { FRemove(this, _collectionId); }
-	bool HasPlayedAudioLog(const uint64_t _id) const { return FHasPlayedAudioLog(this, _id); }
-	uint64_t GetCurrentlyPlayingAudioLog() const { return FGetCurrentlyPlayingAudioLog(this); }
-	void StopPlayingOrLoading() { FStopPlayingOrLoading(this); }
-	void Reset() { FReset(this); }
-	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
-	void PostSerialize() { FPostSerialize(this); }
-	void PlayAudioLog(const uint64_t _audioLogId) { FPlayAudioLog(this, _audioLogId); }
-	void PlayLastAudioLog() { FPlayLastAudioLog(this); }
-	virtual void OnConversationComplete(const bool _bComplete);
-	void PumpUnheardAudioLogQueue() { FPumpUnheardAudioLogQueue(this); }
-	void ClearQueuedAutoPlayAudioLogs() { FClearQueuedAutoPlayAudioLogs(this); }
-	void OnGameEnded() { FOnGameEnded(this); }
-	bool PlayAudioLog_Internal(const ArkAudioLog& _audioLog) { return FPlayAudioLog_InternalOv0(this, _audioLog); }
-	void PlayLoadingAudioLogSequence(uint64_t _audioLogId, bool _bResetTimer, bool _bAutoPlayed) { FPlayLoadingAudioLogSequence(this, _audioLogId, _bResetTimer, _bAutoPlayed); }
-	void StopLoadingAudioLogSequence() { FStopLoadingAudioLogSequence(this); }
-
-#if 0
-	void CollectAll();
-	bool HasAudioLog(const uint64_t _arg0_) const;
-	const std::vector<uint64_t>& GetCollected() const;
-	bool IsLoading();
-	bool PlayAudioLog_Internal(const uint64_t _arg0_);
-	void SendAudioLogPlaybackCompleteEvent(const bool _arg0_);
-#endif
-
+#else
 	static inline auto FArkAudioLogComponentOv1 = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6260);
 	static inline auto FLoadConfig = PreyFunction<void(ArkAudioLogComponent* const _this, XmlNodeRef _config)>(0x16D6780);
 	static inline auto FUpdate = PreyFunction<void(ArkAudioLogComponent* const _this, float _frameTime)>(0x16D75D0);
@@ -188,5 +115,5 @@ public:
 	static inline auto FPlayAudioLog_InternalOv0 = PreyFunction<bool(ArkAudioLogComponent* const _this, const ArkAudioLog& _audioLog)>(0x16D69E0);
 	static inline auto FPlayLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this, uint64_t _audioLogId, bool _bResetTimer, bool _bAutoPlayed)>(0x16D6C60);
 	static inline auto FStopLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D73C0);
+#endif
 };
-#endif // !MOONCRASH

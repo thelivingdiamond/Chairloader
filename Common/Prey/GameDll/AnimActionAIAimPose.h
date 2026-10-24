@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinUserParams.h>
-#include <_unknown/TMannequinAutoInit.h>
+#include <Prey/CryAction/ICryMannequinUserParams.h>
 
 class CTagDefinition;
 struct SAnimationContext;
@@ -32,6 +30,15 @@ public:
 	static int FindFragmentId(const SAnimationContext& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIAimPose* const _this)>(0x10A0AC0);
+	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0xA97D40);
+	static inline auto FCAnimActionAIAimPose = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x10A0A10);
+	static inline auto FOnInitialise = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x10A0C60);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionAIAimPose* const _this, float timePassed)>(0x10A0D10);
+	static inline auto FInstall = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x10A0B50);
+	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& context)>(0x10A0C10);
+#else
 	static inline auto FGetName = PreyFunction<const char* (const CAnimActionAIAimPose* const _this)>(0x10CFF20);
 	static inline auto FDoDelete = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x3E3960);
 	static inline auto FCAnimActionAIAimPose = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x10CFE70);
@@ -39,6 +46,7 @@ public:
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(CAnimActionAIAimPose* const _this, float timePassed)>(0x10D0170);
 	static inline auto FInstall = PreyFunction<void(CAnimActionAIAimPose* const _this)>(0x10CFFB0);
 	static inline auto FIsSupported = PreyFunction<bool(const SAnimationContext& context)>(0x10D0070);
+#endif
 };
 
 // SMannequinAiAimPoseUserParams
@@ -60,6 +68,10 @@ struct SMannequinAiAimPoseUserParams : public IMannequinUserParams
 
 	virtual void Init(const SControllerDef& controllerDef);
 
+#ifndef MOONCRASH
+	static inline auto FInit = PreyFunction<void(SMannequinAiAimPoseUserParams* const _this, const SControllerDef& controllerDef)>(0x10A0AD0);
+#else
 	static inline auto FInit = PreyFunction<void(SMannequinAiAimPoseUserParams* const _this, const SControllerDef& controllerDef)>(0x10CFF30);
+#endif
 };
-#endif // MOONCRASH
+

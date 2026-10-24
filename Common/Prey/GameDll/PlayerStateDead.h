@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -40,6 +38,15 @@ public:
 	void UpdateAICorpseStatus(CPlayer& _arg0_, const CPlayerStateDead::UpdateCtx& _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateDead = PreyFunction<void(CPlayerStateDead* const _this)>(0x17BA8B0);
+	static inline auto FBitNotCPlayerStateDead = PreyFunction<void(CPlayerStateDead* const _this)>(0xA13080);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player)>(0x17BA8C0);
+	static inline auto FOnLeave = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player)>(0x17BA9F0);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x17BAA10);
+	static inline auto FOnUpdate = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player, const CPlayerStateDead::UpdateCtx& updateCtx)>(0x17BAA70);
+	static inline auto FSerialize = PreyFunction<void(CPlayerStateDead* const _this, TSerialize& serializer)>(0x17BAC40);
+#else
 	static inline auto FCPlayerStateDead = PreyFunction<void(CPlayerStateDead* const _this)>(0x18E1970);
 	static inline auto FBitNotCPlayerStateDead = PreyFunction<void(CPlayerStateDead* const _this)>(0x1333E90);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player)>(0x18E1980);
@@ -47,5 +54,6 @@ public:
 	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x18E1AD0);
 	static inline auto FOnUpdate = PreyFunction<void(CPlayerStateDead* const _this, CPlayer& player, const CPlayerStateDead::UpdateCtx& updateCtx)>(0x18E1B30);
 	static inline auto FSerialize = PreyFunction<void(CPlayerStateDead* const _this, TSerialize& serializer)>(0x18E1D00);
+#endif
 };
-#endif // MOONCRASH
+

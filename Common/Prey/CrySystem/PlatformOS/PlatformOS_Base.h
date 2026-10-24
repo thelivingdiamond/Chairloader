@@ -5,7 +5,7 @@
 // CPlatformOS_Base
 // Header:  CryEngine/crysystem/platformos/PlatformOS_Base.h
 struct CPlatformOS_Base : public IPlatformOS
-{ // Size=16 (0x10)
+{ // Size=16 (0x10), Mooncrash: Size=80 (0x50)
 	// CPlatformOS_Base::CStableFPSWatcher
 	// Header:  CryEngine/crysystem/platformos/PlatformOS_Base.h
 	class CStableFPSWatcher
@@ -25,7 +25,14 @@ struct CPlatformOS_Base : public IPlatformOS
 	
 	ELanguageID m_languageId;
 	unsigned m_supportedLanguages;
+#ifdef MOONCRASH
+	// CryMT::CLocklessPointerQueue<IPlatformOS::IServiceTask,std::allocator<IPlatformOS::IServiceTask> > (Size=64); the template is not in the tree.
+	alignas(8) unsigned char m_mainThreadTasks[64];
+#endif // MOONCRASH
 	
+#ifdef MOONCRASH
+	virtual void PostMainThreadTask(IPlatformOS::IServiceTask* const _task);
+#endif // MOONCRASH
 	virtual bool UsePlatformSavingAPI() const;
 	virtual ELanguageID GetLanguageIDFromName(const char* _arg0_) const;
 	virtual ELanguageID GetSystemLanguageID() const;

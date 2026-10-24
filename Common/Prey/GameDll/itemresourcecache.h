@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/itemstring.h>
@@ -65,6 +63,16 @@ public:
 	bool IsDbaManagementEnabled() const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCItemAnimationDBAManagerOv2 = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x17641B0);
+	static inline auto FReset = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x1765840);
+	static inline auto FAddDBAUser = PreyFunction<void(CItemAnimationDBAManager* const _this, const SharedString::CSharedString& animationGroup, const CItemSharedParams* pItemParams, const unsigned itemUserId)>(0x17643A0);
+	static inline auto FRemoveDBAUser = PreyFunction<void(CItemAnimationDBAManager* const _this, const SharedString::CSharedString& animationGroup, const unsigned itemUserId)>(0x1765680);
+	static inline auto FUpdate = PreyFunction<void(CItemAnimationDBAManager* const _this, const float currentTime)>(0x1765AB0);
+	static inline auto FDebug = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x1764E70);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemAnimationDBAManager* const _this, ICrySizer* s)>(0x1765530);
+	static inline auto FFreeSlotInPreloadListIfNeeded = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x17653F0);
+#else
 	static inline auto FCItemAnimationDBAManagerOv2 = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x188AF30);
 	static inline auto FReset = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x188C650);
 	static inline auto FAddDBAUser = PreyFunction<void(CItemAnimationDBAManager* const _this, const SharedString::CSharedString& animationGroup, const CItemSharedParams* pItemParams, const unsigned itemUserId)>(0x188B1B0);
@@ -73,6 +81,7 @@ public:
 	static inline auto FDebug = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x188BC80);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemAnimationDBAManager* const _this, ICrySizer* s)>(0x188C340);
 	static inline auto FFreeSlotInPreloadListIfNeeded = PreyFunction<void(CItemAnimationDBAManager* const _this)>(0x188C200);
+#endif
 };
 
 // CItemGeometryCache
@@ -100,8 +109,13 @@ public:
 	bool IsStaticObjectCached(const unsigned _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCacheGeometry = PreyFunction<void(CItemGeometryCache* const _this, const char* objectFileName, bool useCgfStreaming, unsigned nLoadingFlags)>(0x1764740);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemGeometryCache* const _this, ICrySizer* s)>(0x17655D0);
+#else
 	static inline auto FCacheGeometry = PreyFunction<void(CItemGeometryCache* const _this, const char* objectFileName, bool useCgfStreaming, unsigned nLoadingFlags)>(0x188B550);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemGeometryCache* const _this, ICrySizer* s)>(0x188C3E0);
+#endif
 };
 
 // CItemMaterialAndTextureCache
@@ -130,10 +144,17 @@ public:
 	bool IsMaterialCached(const char* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FFlushCaches = PreyFunction<void(CItemMaterialAndTextureCache* const _this)>(0x17653D0);
+	static inline auto FCacheTexture = PreyFunction<void(CItemMaterialAndTextureCache* const _this, const char* textureFileName, bool noStreaming)>(0x1764D30);
+	static inline auto FCacheMaterial = PreyFunction<void(CItemMaterialAndTextureCache* const _this, const char* materialFileName)>(0x1764BE0);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemMaterialAndTextureCache* const _this, ICrySizer* s)>(0x17655D0);
+#else
 	static inline auto FFlushCaches = PreyFunction<void(CItemMaterialAndTextureCache* const _this)>(0x188C1E0);
 	static inline auto FCacheTexture = PreyFunction<void(CItemMaterialAndTextureCache* const _this, const char* textureFileName, bool noStreaming)>(0x188BB40);
 	static inline auto FCacheMaterial = PreyFunction<void(CItemMaterialAndTextureCache* const _this, const char* materialFileName)>(0x188B9F0);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemMaterialAndTextureCache* const _this, ICrySizer* s)>(0x188C3E0);
+#endif
 };
 
 // CItemParticleEffectCache
@@ -156,7 +177,11 @@ public:
 	bool IsParticleCached(const char* _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemParticleEffectCache* const _this, ICrySizer* s)>(0x1765650);
+#else
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemParticleEffectCache* const _this, ICrySizer* s)>(0x188C460);
+#endif
 };
 
 // CItemPrefetchCHRManager
@@ -188,9 +213,16 @@ public:
 	CItemPrefetchCHRManager& operator=(const CItemPrefetchCHRManager& _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCItemPrefetchCHRManagerOv1 = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x1764260);
+	static inline auto FBitNotCItemPrefetchCHRManager = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x17642B0);
+	static inline auto FReset = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x1765A20);
+	static inline auto FUpdate = PreyFunction<void(CItemPrefetchCHRManager* const _this, float fCurrTime)>(0x1765C60);
+#else
 	static inline auto FCItemPrefetchCHRManagerOv1 = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x188AFE0);
 	static inline auto FBitNotCItemPrefetchCHRManager = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x188B0C0);
 	static inline auto FReset = PreyFunction<void(CItemPrefetchCHRManager* const _this)>(0x188C830);
 	static inline auto FUpdate = PreyFunction<void(CItemPrefetchCHRManager* const _this, float fCurrTime)>(0x188CA70);
+#endif
 };
-#endif // MOONCRASH
+

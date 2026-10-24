@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -37,7 +35,6 @@ public:
 	ArkNpcGameEffect_ControlTurrets();
 	void Serialize(ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, TSerialize _ser) const { FSerialize(this, _npc, _gameEffectInstance, _ser); }
 	int GetNumControlledTurrets(ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { return FGetNumControlledTurrets(this, _gameEffectInstance); }
-	std::vector<unsigned int> GetControlledTurretIds(ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { alignas(std::vector<unsigned int>) std::byte _return_buf_[sizeof(std::vector<unsigned int>)]; return *FGetControlledTurretIds(this, reinterpret_cast<std::vector<unsigned int>*>(_return_buf_), _gameEffectInstance); }
 	void GenerateTurretControllers(const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { FGenerateTurretControllers(this, _npc, _gameEffectInstance); }
 	void GrabSurroundingTurrets(const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { FGrabSurroundingTurrets(this, _npc, _gameEffectInstance); }
 	bool CanStartControllingTurret(const IEntity& _entity, const ArkNpc& _npc, const ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { return FCanStartControllingTurret(this, _entity, _npc, _gameEffectInstance); }
@@ -73,6 +70,26 @@ public:
 	uint64_t GetExpectedTurretFaction(const ArkNpc& _arg0_) const;
 #endif
 
+#ifdef MOONCRASH
+	std::vector<unsigned int> GetControlledTurretIds(ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance) const { alignas(std::vector<unsigned int>) std::byte _return_buf_[sizeof(std::vector<unsigned int>)]; return *FGetControlledTurretIds(this, reinterpret_cast<std::vector<unsigned int>*>(_return_buf_), _gameEffectInstance); }
+#endif
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x12A6A80);
+	static inline auto FArkNpcGameEffect_ControlTurrets = PreyFunction<void(ArkNpcGameEffect_ControlTurrets* const _this)>(0x12A5CE0);
+	static inline auto FSerialize = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, TSerialize _ser)>(0x12A84B0);
+	static inline auto FGetNumControlledTurrets = PreyFunction<int(const ArkNpcGameEffect_ControlTurrets* const _this, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A7240);
+	static inline auto FGenerateTurretControllers = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A6ED0);
+	static inline auto FGrabSurroundingTurrets = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A73C0);
+	static inline auto FCanStartControllingTurret = PreyFunction<bool(const ArkNpcGameEffect_ControlTurrets* const _this, const IEntity& _entity, const ArkNpc& _npc, const ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A6600);
+	static inline auto FControlTurretAtNearestControlPoint = PreyFunction<bool(const ArkNpcGameEffect_ControlTurrets* const _this, const unsigned _turretId, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A68A0);
+	static inline auto FUpdateControlledTurrets = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x12A8E40);
+	static inline auto FUpdateFormationPositions = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x12A90F0);
+	static inline auto FUpdateNormalControlPositions = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x12A92B0);
+	static inline auto FUpdateAttackControlPositions = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x12A87E0);
+	static inline auto FMoveControlPositionsToDesiredLocations = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x12A7780);
+	static inline auto FAssignTurretControllerPositions = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A6000);
+	static inline auto FOnFormationChange = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x12A83D0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x134F880);
 	static inline auto FArkNpcGameEffect_ControlTurrets = PreyFunction<void(ArkNpcGameEffect_ControlTurrets* const _this)>(0x134EAE0);
 	static inline auto FSerialize = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, TSerialize _ser)>(0x13513B0);
@@ -89,5 +106,6 @@ public:
 	static inline auto FMoveControlPositionsToDesiredLocations = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance, float _elapsedTime)>(0x1350680);
 	static inline auto FAssignTurretControllerPositions = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x134EE00);
 	static inline auto FOnFormationChange = PreyFunction<void(const ArkNpcGameEffect_ControlTurrets* const _this, const ArkNpc& _npc, ArkNpcGameEffectInstance_ControlTurrets& _gameEffectInstance)>(0x13512D0);
+#endif
 };
-#endif // MOONCRASH
+

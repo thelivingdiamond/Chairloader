@@ -355,6 +355,14 @@ public:
 	virtual void FlushToFence_PreCallHook(UINT64 fenceValue) {}
 	virtual void WaitForFence_PreCallHook(UINT64 fenceValue) {}
 
+	#if !defined(DEVICE_SUPPORTS_PERFORMANCE_DEVICE)
+	// Prey has these four outside the performance-device block (slots 185-188).
+	virtual void PIXBeginEvent_PreCallHook(LPCWSTR Name) {}
+	virtual void PIXEndEvent_PreCallHook()               {}
+	virtual void PIXSetMarker_PreCallHook(LPCWSTR Name)  {}
+	virtual void PIXGetStatus_PreCallHook()              {}
+	#endif
+
 	#if defined(DEVICE_SUPPORTS_PERFORMANCE_DEVICE)
 	/*************************************/
 	/*** ID3DPerformanceDevice methods ***/
@@ -745,10 +753,28 @@ public:
 	virtual void MappedWriteToSubresource_PostCallHook(HRESULT hr, ID3D11Resource* pResource, UINT Subresource, SIZE_T Offset, SIZE_T Size, D3D11_MAP MapType, const void* pData, UINT numDataBlocks) {}
 	virtual void MappedReadFromSubresource_PostCallHook(HRESULT hr, ID3D11Resource* pResource, UINT Subresource, SIZE_T Offset, SIZE_T Size, D3D11_MAP MapType, void* pData, UINT numDataBlocks) {}
 
+	// Prey has these timestamp post hooks here (slots 369-376), with no pre-call counterparts.
+	virtual void GetTimestampFrequency_PostCallHook(UINT64 frequency)                    {}
+	virtual void ResetTimestamps_PostCallHook()                                          {}
+	virtual void ReserveTimestamp_PostCallHook(int index)                                {}
+	virtual void InsertTimestamp_PostCallHook(int index, int flags)                      {}
+	virtual void ResolveTimestamps_PostCallHook()                                        {}
+	virtual void QueryTimestamp_PostCallHook(int index, UINT64* pTimestamp)              {}
+	virtual void QueryTimestamps_PostCallHook(int first, int count, UINT64* pTimestamps) {}
+	virtual void QueryTimestampBuffer_PostCallHook(ID3D11Buffer** ppBuffer)              {}
+
 	virtual void InsertFence_PostCallHook()                                               {}
 	virtual void TestForFence_PostCallHook(UINT64 fenceValue)                             {}
 	virtual void FlushToFence_PostCallHook(UINT64 fenceValue)                             {}
 	virtual void WaitForFence_PostCallHook(UINT64 fenceValue)                             {}
+
+	#if !defined(DEVICE_SUPPORTS_PERFORMANCE_DEVICE)
+	// Slots 381-384, see the pre-call ones above.
+	virtual void PIXBeginEvent_PostCallHook(INT nResult, LPCWSTR Name) {}
+	virtual void PIXEndEvent_PostCallHook(INT nResult)                 {}
+	virtual void PIXSetMarker_PostCallHook(LPCWSTR Name)               {}
+	virtual void PIXGetStatus_PostCallHook(BOOL nResult)               {}
+	#endif
 
 	#if defined(DEVICE_SUPPORTS_PERFORMANCE_DEVICE)
 	/*************************************/
@@ -859,6 +885,8 @@ public:
 		#endif // DURANGO_MONOD3D_DRIVER
 	#endif   // DEVICE_SUPPORTS_PERFORMANCE_DEVICE
 };
+
+static_assert(sizeof(ICryDeviceWrapperHook) == 24);
 
 ///////////////////////////////////////////////////////////////////////////////
 // include concrete device/context implementations

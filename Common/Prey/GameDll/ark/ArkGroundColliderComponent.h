@@ -1,5 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -21,30 +19,9 @@ public:
 	unsigned GetGroundEntity() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkGroundColliderComponent *const _this)>(0x13C26B0);
-};
-#else // MOONCRASH
-// Header file automatically created from a PDB.
-#pragma once
-
-struct IEntity;
-
-// ArkGroundColliderComponent
-// Header:  Prey/GameDll/ark/ArkGroundColliderComponent.h
-class ArkGroundColliderComponent
-{ // Size=16 (0x10)
-public:
-	const IEntity* m_pOwner;
-	unsigned m_groundEntity;
-
-	void Update() { FUpdate(this); }
-
-#if 0
-	ArkGroundColliderComponent();
-	void Init(const IEntity& _arg0_);
-	unsigned GetGroundEntity() const;
-#endif
-
+#else
 	static inline auto FUpdate = PreyFunction<void(ArkGroundColliderComponent* const _this)>(0x14CE750);
+#endif
 };
-#endif // !MOONCRASH

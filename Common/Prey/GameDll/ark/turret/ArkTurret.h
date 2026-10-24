@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -425,7 +424,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/cryaction/igameobject.h>
+#include <Prey/CryAction/IGameObject.h>
 #include <Prey/ArkCommon/ArkUnanimous.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/GameDll/ark/ArkCharacterEffectsManager.h>
@@ -445,8 +444,8 @@ public:
 #include <Prey/GameDll/ark/turret/ArkTurretSignalReceiver.h>
 #include <Prey/GameDll/ark/turret/turretdamagefsm/arkturretdamagefsm_fsm.h>
 #include <Prey/GameDll/ark/weapons/IArkGlooEffectObserver.h>
-#include <_unknown/ArkGenericAttentionObject.h>
-#include <_unknown/ArkSpatialManagerEntry.h>
+#include <Prey/GameDll/ark/attention/arkgenericattentionobject.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry.h>
 
 struct ArkInteractionTestResult;
 class ArkSafeScriptTable;

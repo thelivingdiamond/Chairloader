@@ -124,8 +124,8 @@ public:
 	static inline auto FAttach = PreyFunction<void(CScriptTable* const _this)>(0xD31BD0);
 	static inline auto FDeleteThis = PreyFunction<void(CScriptTable* const _this)>(0xD322D0);
 	static inline auto FPushRefOv1 = PreyFunction<void(CScriptTable* const _this)>(0xD32F50);
-	static inline auto Foperator new = PreyFunction<void* (uint64_t nSize)>(0xD31920);
-	static inline auto Foperator delete = PreyFunction<void(void* ptr)>(0xD31970);
+	// static inline auto Foperator new = PreyFunction<void* (uint64_t nSize)>(0xD31920);
+	// static inline auto Foperator delete = PreyFunction<void(void* ptr)>(0xD31970);
 	static inline auto FStdCFunction = PreyFunction<int(lua_State* L)>(0xD33540);
 	static inline auto FStdCUserDataFunction = PreyFunction<int(lua_State* L)>(0xD335A0);
 	static inline auto FCloneTable_r = PreyFunction<void(int srcTable, int trgTable)>(0xD31FC0);

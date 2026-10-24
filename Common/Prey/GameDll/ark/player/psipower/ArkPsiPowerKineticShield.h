@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
@@ -633,70 +632,6 @@ enum class EArkPsiPowers;
 class IArkValueBase;
 struct IEntity;
 
-// CArkPsiPowerKineticShield
-// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
-class CArkPsiPowerKineticShield : public CArkPsiPower<KineticShieldPowerProperties>
-{ // Size=704 (0x2C0)
-public:
-	ArkLooseEffect m_enabledParticleEmitter;
-	ArkLooseEffect m_disableParticleEmitter;
-	ArkLooseEffect m_warningParticleEmitter;
-	ArkLooseEffect m_absorbDamageParticleEmitter;
-	ArkLooseEffect m_reflectDamageParticleEmitter;
-	int m_numCharges;
-	float m_elapsedSec;
-	float m_durationSec;
-	float m_warningDurationSec;
-	uint64_t m_currentSignalPackageId;
-	ArkAudioTrigger m_hitAudioTrigger;
-	ArkAudioTrigger m_absorbDamageAudioTrigger;
-	ArkAudioTrigger m_reflectDamageAudioTrigger;
-	ArkAudioTrigger m_enableAudioTrigger;
-	ArkAudioTrigger m_disableAudioTrigger;
-	ArkAudioTrigger m_firstWarningAudioTrigger;
-	ArkAudioTrigger m_secondWarningAudioTrigger;
-	std::vector<uint64_t> m_instigatorMetatags;
-
-	CArkPsiPowerKineticShield();
-	virtual ~CArkPsiPowerKineticShield();
-	virtual bool Stop();
-	virtual bool Start_Derived();
-	virtual void Update(const float _fFrameTime);
-	virtual bool StartTargeting();
-	virtual void Serialize(TSerialize _ser);
-	virtual void PostSerialize();
-	virtual EArkPsiPowers GetEnum() const;
-	void ClearCurrentSignalPackage() { FClearCurrentSignalPackage(this); }
-	bool FilterMimicGrabAttack(const IEntity& _instigator) { return FFilterMimicGrabAttack(this, _instigator); }
-	bool FilterDamage(const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context) { return FFilterDamage(this, _signalPackageId, _context); }
-	void CleanUp() { FCleanUp(this); }
-	void OnDisable() { FOnDisable(this); }
-	virtual void SetLevel_Derived(const int _level);
-	void OnFilterDamage(const IEntity& _instigator, const Vec3& _direction) { FOnFilterDamage(this, _instigator, _direction); }
-
-#if 0
-	bool IsEnabled() const;
-	void OnEnable();
-	bool IsWarning() const;
-#endif
-
-	static inline auto FCArkPsiPowerKineticShieldOv1 = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B89B0);
-	static inline auto FStop = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA530);
-	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA2F0);
-	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const float _fFrameTime)>(0x16BA540);
-	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x14022B0);
-	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this, TSerialize _ser)>(0x16B9DC0);
-	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9CA0);
-	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerKineticShield* const _this)>(0x1C657B0);
-	static inline auto FClearCurrentSignalPackage = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8F90);
-	static inline auto FFilterMimicGrabAttack = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator)>(0x16B91C0);
-	static inline auto FFilterDamage = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context)>(0x16B90F0);
-	static inline auto FCleanUp = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8E10);
-	static inline auto FOnDisable = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9870);
-	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const int _level)>(0x16B9F60);
-	static inline auto FOnFilterDamage = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator, const Vec3& _direction)>(0x16B9970);
-};
-
 // ArkPsiPowerKineticShieldProperties
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
 class ArkPsiPowerKineticShieldProperties : public ArkReflectedObject
@@ -1221,4 +1156,69 @@ public:
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16B93E0);
 	static inline auto FInit = PreyFunction<bool(KineticShieldPowerProperties* const _this)>(0x16B9690);
 };
+
+// CArkPsiPowerKineticShield
+// Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerKineticShield.h
+class CArkPsiPowerKineticShield : public CArkPsiPower<KineticShieldPowerProperties>
+{ // Size=704 (0x2C0)
+public:
+	ArkLooseEffect m_enabledParticleEmitter;
+	ArkLooseEffect m_disableParticleEmitter;
+	ArkLooseEffect m_warningParticleEmitter;
+	ArkLooseEffect m_absorbDamageParticleEmitter;
+	ArkLooseEffect m_reflectDamageParticleEmitter;
+	int m_numCharges;
+	float m_elapsedSec;
+	float m_durationSec;
+	float m_warningDurationSec;
+	uint64_t m_currentSignalPackageId;
+	ArkAudioTrigger m_hitAudioTrigger;
+	ArkAudioTrigger m_absorbDamageAudioTrigger;
+	ArkAudioTrigger m_reflectDamageAudioTrigger;
+	ArkAudioTrigger m_enableAudioTrigger;
+	ArkAudioTrigger m_disableAudioTrigger;
+	ArkAudioTrigger m_firstWarningAudioTrigger;
+	ArkAudioTrigger m_secondWarningAudioTrigger;
+	std::vector<uint64_t> m_instigatorMetatags;
+
+	CArkPsiPowerKineticShield();
+	virtual ~CArkPsiPowerKineticShield();
+	virtual bool Stop();
+	virtual bool Start_Derived();
+	virtual void Update(const float _fFrameTime);
+	virtual bool StartTargeting();
+	virtual void Serialize(TSerialize _ser);
+	virtual void PostSerialize();
+	virtual EArkPsiPowers GetEnum() const;
+	void ClearCurrentSignalPackage() { FClearCurrentSignalPackage(this); }
+	bool FilterMimicGrabAttack(const IEntity& _instigator) { return FFilterMimicGrabAttack(this, _instigator); }
+	bool FilterDamage(const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context) { return FFilterDamage(this, _signalPackageId, _context); }
+	void CleanUp() { FCleanUp(this); }
+	void OnDisable() { FOnDisable(this); }
+	virtual void SetLevel_Derived(const int _level);
+	void OnFilterDamage(const IEntity& _instigator, const Vec3& _direction) { FOnFilterDamage(this, _instigator, _direction); }
+
+#if 0
+	bool IsEnabled() const;
+	void OnEnable();
+	bool IsWarning() const;
+#endif
+
+	static inline auto FCArkPsiPowerKineticShieldOv1 = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B89B0);
+	static inline auto FStop = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA530);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x16BA2F0);
+	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const float _fFrameTime)>(0x16BA540);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerKineticShield* const _this)>(0x14022B0);
+	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this, TSerialize _ser)>(0x16B9DC0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9CA0);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerKineticShield* const _this)>(0x1C657B0);
+	static inline auto FClearCurrentSignalPackage = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8F90);
+	static inline auto FFilterMimicGrabAttack = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator)>(0x16B91C0);
+	static inline auto FFilterDamage = PreyFunction<bool(CArkPsiPowerKineticShield* const _this, const uint64_t _signalPackageId, const ArkSignalSystem::CArkSignalContext& _context)>(0x16B90F0);
+	static inline auto FCleanUp = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B8E10);
+	static inline auto FOnDisable = PreyFunction<void(CArkPsiPowerKineticShield* const _this)>(0x16B9870);
+	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const int _level)>(0x16B9F60);
+	static inline auto FOnFilterDamage = PreyFunction<void(CArkPsiPowerKineticShield* const _this, const IEntity& _instigator, const Vec3& _direction)>(0x16B9970);
+};
+
 #endif // !MOONCRASH

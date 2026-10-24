@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
@@ -33,6 +31,20 @@ public:
 	CPlayer* GetAssociatedActor(IFunctionHandler* pH) const { return FGetAssociatedActor(this, pH); }
 	std::shared_ptr<CHitDeathReactions> GetHitDeathReactions(IFunctionHandler* pH) const { alignas(std::shared_ptr<CHitDeathReactions>) std::byte _return_buf_[sizeof(std::shared_ptr<CHitDeathReactions>)]; return *FGetHitDeathReactions(this, reinterpret_cast<std::shared_ptr<CHitDeathReactions>*>(_return_buf_), pH); }
 
+#ifndef MOONCRASH
+	static inline auto FCScriptBind_HitDeathReactionsOv1 = PreyFunction<void(CScriptBind_HitDeathReactions* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x17EBDD0);
+	static inline auto FOnHit = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable scriptHitInfo)>(0x17ECA70);
+	static inline auto FExecuteHitReaction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable reactionParams)>(0x17EC5B0);
+	static inline auto FExecuteDeathReaction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable reactionParams)>(0x17EC4F0);
+	static inline auto FEndCurrentReaction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH)>(0x17EC360);
+	static inline auto FIsValidReaction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable validationParams, SmartScriptTable scriptHitInfo)>(0x17EC8D0);
+	static inline auto FStartReactionAnim = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH)>(0x17ECC30);
+	static inline auto FEndReactionAnim = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH)>(0x17EC450);
+	static inline auto FStartInteractiveAction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, const char* szActionName)>(0x17ECBE0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_HitDeathReactions* const _this, ICrySizer* pSizer)>(0x109E2C0);
+	static inline auto FGetAssociatedActor = PreyFunction<CPlayer* (const CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH)>(0x17EC670);
+	static inline auto FGetHitDeathReactions = PreyFunction<std::shared_ptr<CHitDeathReactions>*(const CScriptBind_HitDeathReactions* const _this, std::shared_ptr<CHitDeathReactions>* _return_value_, IFunctionHandler* pH)>(0x17EC7B0);
+#else
 	static inline auto FCScriptBind_HitDeathReactionsOv1 = PreyFunction<void(CScriptBind_HitDeathReactions* const _this, ISystem* pSystem, IGameFramework* pGameFramework)>(0x19138A0);
 	static inline auto FOnHit = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable scriptHitInfo)>(0x1914530);
 	static inline auto FExecuteHitReaction = PreyFunction<int(CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH, SmartScriptTable reactionParams)>(0x1914080);
@@ -45,5 +57,6 @@ public:
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_HitDeathReactions* const _this, ICrySizer* pSizer)>(0x159E480);
 	static inline auto FGetAssociatedActor = PreyFunction<CPlayer* (const CScriptBind_HitDeathReactions* const _this, IFunctionHandler* pH)>(0x1914140);
 	static inline auto FGetHitDeathReactions = PreyFunction<std::shared_ptr<CHitDeathReactions>*(const CScriptBind_HitDeathReactions* const _this, std::shared_ptr<CHitDeathReactions>* _return_value_, IFunctionHandler* pH)>(0x1914280);
+#endif
 };
-#endif // MOONCRASH
+

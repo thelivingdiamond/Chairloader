@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/CryUnitTest__Test.h>
+#include <Prey/GameDll/CryUnitTest_Test.h>
 
 class CGameTypeInfo;
 
@@ -18,7 +16,11 @@ public:
 	static const CGameTypeInfo* GetStaticType();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetRunTimeType = PreyFunction<const CGameTypeInfo* (const CBase* const _this)>(0x173BF70);
+#else
 	static inline auto FGetRunTimeType = PreyFunction<const CGameTypeInfo* (const CBase* const _this)>(0x1862B50);
+#endif
 };
 
 // CType2
@@ -32,7 +34,11 @@ public:
 	static const CGameTypeInfo* GetStaticType();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetRunTimeType = PreyFunction<const CGameTypeInfo* (const CType2* const _this)>(0x173BF80);
+#else
 	static inline auto FGetRunTimeType = PreyFunction<const CGameTypeInfo* (const CType2* const _this)>(0x1862B60);
+#endif
 };
 
 namespace CryGameTypeInfoTest
@@ -45,7 +51,11 @@ class BadDownCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::BadDownCast* const _this)>(0x173BB60);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::BadDownCast* const _this)>(0x18623F0);
+#endif
 };
 
 // CryGameTypeInfoTest::BaseTypeNotCastableToSubType_BugFix
@@ -55,7 +65,11 @@ class BaseTypeNotCastableToSubType_BugFix : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::BaseTypeNotCastableToSubType_BugFix* const _this)>(0x173B770);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::BaseTypeNotCastableToSubType_BugFix* const _this)>(0x18627D0);
+#endif
 };
 
 // CryGameTypeInfoTest::ConstBadDownCast
@@ -65,7 +79,11 @@ class ConstBadDownCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstBadDownCast* const _this)>(0x173BD50);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstBadDownCast* const _this)>(0x18625E0);
+#endif
 };
 
 // CryGameTypeInfoTest::ConstGoodDownCast
@@ -75,7 +93,11 @@ class ConstGoodDownCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstGoodDownCast* const _this)>(0x173BCB0);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstGoodDownCast* const _this)>(0x1862540);
+#endif
 };
 
 // CryGameTypeInfoTest::ConstUpCast
@@ -85,7 +107,11 @@ class ConstUpCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstUpCast* const _this)>(0x173BE00);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::ConstUpCast* const _this)>(0x1862690);
+#endif
 };
 
 // CryGameTypeInfoTest::FalseDownCastIsOf
@@ -95,7 +121,11 @@ class FalseDownCastIsOf : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::FalseDownCastIsOf* const _this)>(0x173B8C0);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::FalseDownCastIsOf* const _this)>(0x1862920);
+#endif
 };
 
 // CryGameTypeInfoTest::GetName
@@ -105,7 +135,11 @@ class GetName : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::GetName* const _this)>(0x173BA10);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::GetName* const _this)>(0x1862A70);
+#endif
 };
 
 // CryGameTypeInfoTest::GoodDownCast
@@ -115,7 +149,11 @@ class GoodDownCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::GoodDownCast* const _this)>(0x173BAC0);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::GoodDownCast* const _this)>(0x1862350);
+#endif
 };
 
 // CryGameTypeInfoTest::SameCast
@@ -125,7 +163,11 @@ class SameCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::SameCast* const _this)>(0x173BEA0);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::SameCast* const _this)>(0x1862730);
+#endif
 };
 
 // CryGameTypeInfoTest::TrueDownCastIsOf
@@ -135,7 +177,11 @@ class TrueDownCastIsOf : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::TrueDownCastIsOf* const _this)>(0x173B820);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::TrueDownCastIsOf* const _this)>(0x1862880);
+#endif
 };
 
 // CryGameTypeInfoTest::TrueUpCastIsOf
@@ -145,7 +191,11 @@ class TrueUpCastIsOf : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::TrueUpCastIsOf* const _this)>(0x173B970);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::TrueUpCastIsOf* const _this)>(0x18629D0);
+#endif
 };
 
 // CryGameTypeInfoTest::UpCast
@@ -155,9 +205,13 @@ class UpCast : public CryUnitTest::Test
 public:
 	virtual void Run();
 
+#ifndef MOONCRASH
+	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::UpCast* const _this)>(0x173BC10);
+#else
 	static inline auto FRun = PreyFunction<void(CryGameTypeInfoTest::UpCast* const _this)>(0x18624A0);
+#endif
 };
 
 
 } // namespace CryGameTypeInfoTest
-#endif // MOONCRASH
+

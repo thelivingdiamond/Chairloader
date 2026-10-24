@@ -1,9 +1,7 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <_unknown/IGameEffect.h>
-#include <_unknown/PodArray.h>
+#include <Prey/GameDll/effects/gameeffects/IGameEffect.h>
+#include <Prey/Cry3DEngine/CryPodArray.h>
 
 class ICrySizer;
 struct IEntity;
@@ -49,6 +47,23 @@ public:
 	static bool IsEntity3rdPerson(unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameEffectOv1 = PreyFunction<void(CGameEffect* const _this)>(0x16B8250);
+	static inline auto FBitNotCGameEffect = PreyFunction<void(CGameEffect* const _this)>(0x16B8270);
+	static inline auto FInitialise = PreyFunction<void(CGameEffect* const _this, const SGameEffectParams* gameEffectParams)>(0x16B8310);
+	static inline auto FRelease = PreyFunction<void(CGameEffect* const _this)>(0x16B8430);
+	static inline auto FUpdate = PreyFunction<void(CGameEffect* const _this, float frameTime)>(0xA13080);
+	static inline auto FSetActive = PreyFunction<void(CGameEffect* const _this, bool isActive)>(0x16B84D0);
+	static inline auto FSetFlag = PreyFunction<void(CGameEffect* const _this, unsigned flag, bool state)>(0x16B8520);
+	static inline auto FIsFlagSet = PreyFunction<bool(const CGameEffect* const _this, unsigned flag)>(0x16B8420);
+	static inline auto FGetFlags = PreyFunction<unsigned(const CGameEffect* const _this)>(0x24E090);
+	static inline auto FSetFlags = PreyFunction<void(CGameEffect* const _this, unsigned flags)>(0x16B8540);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CGameEffect* const _this, ICrySizer* pSizer)>(0x449090);
+	static inline auto FNext = PreyFunction<IGameEffect* (const CGameEffect* const _this)>(0x5BFB50);
+	static inline auto FPrev = PreyFunction<IGameEffect* (const CGameEffect* const _this)>(0x12AAC70);
+	static inline auto FSetNext = PreyFunction<void(CGameEffect* const _this, IGameEffect* newNext)>(0x9FBCE0);
+	static inline auto FSetPrev = PreyFunction<void(CGameEffect* const _this, IGameEffect* newPrev)>(0x414F30);
+#else
 	static inline auto FCGameEffectOv1 = PreyFunction<void(CGameEffect* const _this)>(0x17DB100);
 	static inline auto FBitNotCGameEffect = PreyFunction<void(CGameEffect* const _this)>(0x17DB120);
 	static inline auto FInitialise = PreyFunction<void(CGameEffect* const _this, const SGameEffectParams* gameEffectParams)>(0x17DB1C0);
@@ -64,5 +79,6 @@ public:
 	static inline auto FPrev = PreyFunction<IGameEffect* (const CGameEffect* const _this)>(0x12DC700);
 	static inline auto FSetNext = PreyFunction<void(CGameEffect* const _this, IGameEffect* newNext)>(0x561EA0);
 	static inline auto FSetPrev = PreyFunction<void(CGameEffect* const _this, IGameEffect* newPrev)>(0x17DB400);
+#endif
 };
-#endif // MOONCRASH
+

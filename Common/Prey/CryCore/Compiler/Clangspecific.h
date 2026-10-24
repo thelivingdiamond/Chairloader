@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2016-2021 Crytek GmbH / Crytek Group. All rights reserved.
 
 #pragma once

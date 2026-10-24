@@ -1,10 +1,9 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
 #include <Prey/ArkCommon/ArkInterval.h>
-#include <_unknown/ArkTurretAngle.h>
+#include <Prey/GameDll/ark/turret/ArkTurretAngle.h>
 
 struct IEntityArchetype;
 

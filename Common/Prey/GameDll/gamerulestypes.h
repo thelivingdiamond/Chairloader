@@ -1,8 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
 // SDrawResolutionData
@@ -37,6 +35,10 @@ struct SDrawResolutionData
 	void Clear();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSerializeWith = PreyFunction<void(SDrawResolutionData* const _this, TSerialize ser)>(0x172D160);
+#else
 	static inline auto FSerializeWith = PreyFunction<void(SDrawResolutionData* const _this, TSerialize ser)>(0x18544A0);
+#endif
 };
-#endif // MOONCRASH
+

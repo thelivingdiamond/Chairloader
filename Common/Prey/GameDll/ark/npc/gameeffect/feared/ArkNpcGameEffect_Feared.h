@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -48,6 +46,20 @@ public:
 	void UpdateInstigators(ArkNpc& _arg0_, ArkNpcGameEffectInstance_Feared& _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FClassName = PreyFunction<const char* ()>(0x1219E70);
+	static inline auto FArkNpcGameEffect_Feared = PreyFunction<void(ArkNpcGameEffect_Feared* const _this)>(0x1219D60);
+	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, const float _elapsedTime)>(0x121A4D0);
+	static inline auto FPushActivation = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, unsigned _instigator, bool _bManualPop, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, bool _bFromAccumulator, bool _bPlayFearVFX)>(0x121A1F0);
+	static inline auto FPopActivation = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, bool _bFromAccumulator)>(0x121A190);
+	static inline auto FClearActivation = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance)>(0x1219E80);
+	static inline auto FSetFearFromHostileDamage = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, bool _bFleeFromHostileDamage)>(0x121A4C0);
+	static inline auto FIsActive = PreyFunction<bool(const ArkNpcGameEffect_Feared* const _this, ArkNpcGameEffectInstance_Feared& _gameEffectInstance)>(0x121A060);
+	static inline auto FSerialize = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, TSerialize _serializer)>(0x121A280);
+	static inline auto FOnFactionSwitchDamage = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, unsigned _attackerId)>(0x121A070);
+	static inline auto FOnMindControlled = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, unsigned _mindControlInstigator)>(0x121A110);
+	static inline auto FAddInstigator = PreyFunction<bool(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, unsigned _instigator, ArkNpcGameEffectInstance_Feared& _gameEffectInstance)>(0x1219DD0);
+#else
 	static inline auto FClassName = PreyFunction<const char* ()>(0x12ACE30);
 	static inline auto FArkNpcGameEffect_Feared = PreyFunction<void(ArkNpcGameEffect_Feared* const _this)>(0x12ACCE0);
 	static inline auto FUpdate = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, const float _elapsedTime)>(0x12AD450);
@@ -60,5 +72,6 @@ public:
 	static inline auto FOnFactionSwitchDamage = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, unsigned _attackerId)>(0x12ACFF0);
 	static inline auto FOnMindControlled = PreyFunction<void(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, ArkNpcGameEffectInstance_Feared& _gameEffectInstance, unsigned _mindControlInstigator)>(0x12AD090);
 	static inline auto FAddInstigator = PreyFunction<bool(const ArkNpcGameEffect_Feared* const _this, ArkNpc& _npc, unsigned _instigator, ArkNpcGameEffectInstance_Feared& _gameEffectInstance)>(0x12ACD50);
+#endif
 };
-#endif // MOONCRASH
+

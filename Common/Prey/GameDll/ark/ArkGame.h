@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -327,6 +326,7 @@ public:
 #else // MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/ark/ArkSaveMetaData.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
 #include <Prey/CrySystem/ISystem.h>
@@ -334,9 +334,7 @@ public:
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/iface/IArkActiveUserManagerListener.h>
 #include <Prey/GameDll/ark/iface/ISaveGameEnumerator.h>
-#include <_unknown/ArkHighlight.h>
-#include <_unknown/ArkHighlightGroup.h>
-#include <_unknown/ArkHighlightLocalizedPair.h>
+#include <Prey/GameDll/ark/ArkHighlight.h>
 
 class ArkApexVolumeManager;
 class ArkCameraShakeManager;
@@ -661,5 +659,7 @@ public:
 	static inline auto FOnActiveUserIdChanged = PreyFunction<void(ArkGame* const _this, unsigned __unnamed1)>(0x1333E90);
 	static inline auto FOnActiveUserDisconnected = PreyFunction<void(ArkGame* const _this, bool _bControllerDisconnect)>(0x1333E90);
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkGame* const _this)>(0x11E84C0);
+
+	static inline auto GetArkGame = PreyFunction<ArkGame* ()>(0x11E6C20);
 };
 #endif // !MOONCRASH

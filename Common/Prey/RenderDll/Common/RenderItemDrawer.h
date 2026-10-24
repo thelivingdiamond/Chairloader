@@ -28,7 +28,11 @@ public:
 		void PrepareJobs(unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
 		static inline auto FWaitForJobs = PreyFunction<void(CRenderItemDrawer::SRenderListCollection* const _this)>(0xEAD7F0);
+#else
+		static inline auto FWaitForJobs = PreyFunction<void(CRenderItemDrawer::SRenderListCollection* const _this)>(0xEC9CD0);
+#endif
 	};
 
 	CRenderItemDrawer::SRenderListCollection m_CoalescedContexts;

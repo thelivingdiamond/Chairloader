@@ -1,10 +1,8 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryScriptSystem/ScriptHelpers.h>
-#include <_unknown/STagState.h>
-#include <_unknown/VectorSet.h>
+#include <Prey/CryAction/ICryMannequinTagDefs.h>
+#include <Prey/CryCore/Containers/VectorSet.h>
 
 class IActionController;
 class IAnimationDatabase;
@@ -56,6 +54,15 @@ struct SReactionParams
 		void OnAnimLoaded() const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FSReactionAnimOv1 = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x1742320);
+		static inline auto FBitNotSReactionAnim = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x1742550);
+		static inline auto FGetNextReactionAnimIndex = PreyFunction<int(const SReactionParams::SReactionAnim* const _this)>(0x17429B0);
+		static inline auto FRequestNextAnim = PreyFunction<void(const SReactionParams::SReactionAnim* const _this, const IAnimationSet* pAnimSet)>(0x17432A0);
+		static inline auto FReleaseRequestedAnims = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x1743050);
+		static inline auto FUpdateRequestedAnimStatus = PreyFunction<void(const SReactionParams::SReactionAnim* const _this)>(0x1743970);
+		static inline auto FOnTimer = PreyFunction<void(const SReactionParams::SReactionAnim* const _this, void* pUserData, unsigned handler)>(0x1742BF0);
+#else
 		static inline auto FSReactionAnimOv1 = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x18690A0);
 		static inline auto FBitNotSReactionAnim = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x18692D0);
 		static inline auto FGetNextReactionAnimIndex = PreyFunction<int(const SReactionParams::SReactionAnim* const _this)>(0x1869730);
@@ -63,6 +70,7 @@ struct SReactionParams
 		static inline auto FReleaseRequestedAnims = PreyFunction<void(SReactionParams::SReactionAnim* const _this)>(0x1869DD0);
 		static inline auto FUpdateRequestedAnimStatus = PreyFunction<void(const SReactionParams::SReactionAnim* const _this)>(0x186A6F0);
 		static inline auto FOnTimer = PreyFunction<void(const SReactionParams::SReactionAnim* const _this, void* pUserData, unsigned handler)>(0x1869970);
+#endif
 	};
 
 	// SReactionParams::SAnimGraphReaction
@@ -135,6 +143,15 @@ struct SReactionParams
 		void OnAnimLoaded() const;
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FInitialize = PreyFunction<void(SReactionParams::SMannequinData* const _this, const IActionController* piActionController)>(0x17429D0);
+		static inline auto FAddDB = PreyFunction<void(const SReactionParams::SMannequinData* const _this, const IActionController* piActionController, const IAnimationDatabase* piAnimationDB)>(0x17425E0);
+		static inline auto FRequestNextAnim = PreyFunction<void(const SReactionParams::SMannequinData* const _this, const IActionController* piActionController)>(0x17430D0);
+		static inline auto FReleaseRequestedAnims = PreyFunction<void(SReactionParams::SMannequinData* const _this)>(0x1742F80);
+		static inline auto FReset = PreyFunction<void(SReactionParams::SMannequinData* const _this)>(0x17434D0);
+		static inline auto FUpdateRequestedAnimStatus = PreyFunction<void(const SReactionParams::SMannequinData* const _this)>(0x1743860);
+		static inline auto FOnTimer = PreyFunction<void(const SReactionParams::SMannequinData* const _this, void* pUserData, unsigned handler)>(0x1742B40);
+#else
 		static inline auto FInitialize = PreyFunction<void(SReactionParams::SMannequinData* const _this, const IActionController* piActionController)>(0x1869750);
 		static inline auto FAddDB = PreyFunction<void(const SReactionParams::SMannequinData* const _this, const IActionController* piActionController, const IAnimationDatabase* piAnimationDB)>(0x1869360);
 		static inline auto FRequestNextAnim = PreyFunction<void(const SReactionParams::SMannequinData* const _this, const IActionController* piActionController)>(0x1869E50);
@@ -142,6 +159,7 @@ struct SReactionParams
 		static inline auto FReset = PreyFunction<void(SReactionParams::SMannequinData* const _this)>(0x186A250);
 		static inline auto FUpdateRequestedAnimStatus = PreyFunction<void(const SReactionParams::SMannequinData* const _this)>(0x186A5E0);
 		static inline auto FOnTimer = PreyFunction<void(const SReactionParams::SMannequinData* const _this, void* pUserData, unsigned handler)>(0x18698C0);
+#endif
 	};
 
 	// SReactionParams::SValidationParams
@@ -184,9 +202,15 @@ struct SReactionParams
 		void Reset() { FReset(this); }
 		void GetMemoryUsage(ICrySizer* s) const { FGetMemoryUsage(this, s); }
 
+#ifndef MOONCRASH
+		static inline auto FSValidationParamsOv2 = PreyFunction<void(SReactionParams::SValidationParams* const _this)>(0x1742430);
+		static inline auto FReset = PreyFunction<void(SReactionParams::SValidationParams* const _this)>(0x1743720);
+		static inline auto FGetMemoryUsage = PreyFunction<void(const SReactionParams::SValidationParams* const _this, ICrySizer* s)>(0x1742800);
+#else
 		static inline auto FSValidationParamsOv2 = PreyFunction<void(SReactionParams::SValidationParams* const _this)>(0x18691B0);
 		static inline auto FReset = PreyFunction<void(SReactionParams::SValidationParams* const _this)>(0x186A4A0);
 		static inline auto FGetMemoryUsage = PreyFunction<void(const SReactionParams::SValidationParams* const _this, ICrySizer* s)>(0x1869580);
+#endif
 	};
 
 	using AnimCRCContainer = std::vector<unsigned int>;
@@ -224,8 +248,14 @@ struct SReactionParams
 	void Reset() { FReset(this); }
 	void GetMemoryUsage(ICrySizer* s) const { FGetMemoryUsage(this, s); }
 
+#ifndef MOONCRASH
+	static inline auto FSReactionParamsOv2 = PreyFunction<void(SReactionParams* const _this)>(0x1742360);
+	static inline auto FReset = PreyFunction<void(SReactionParams* const _this)>(0x1743570);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const SReactionParams* const _this, ICrySizer* s)>(0x1742600);
+#else
 	static inline auto FSReactionParamsOv2 = PreyFunction<void(SReactionParams* const _this)>(0x18690E0);
 	static inline auto FReset = PreyFunction<void(SReactionParams* const _this)>(0x186A2F0);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const SReactionParams* const _this, ICrySizer* s)>(0x1869380);
+#endif
 };
-#endif // MOONCRASH
+

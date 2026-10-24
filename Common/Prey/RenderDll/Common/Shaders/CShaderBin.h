@@ -202,7 +202,11 @@ struct SShaderBin
 		g_shaderBucketAllocator.deallocate(p);
 	}
 
+#ifndef MOONCRASH
 	static inline auto FComputeCRC = PreyFunction<unsigned(SShaderBin* const _this)>(0x1028E30);
+#else
+	static inline auto FComputeCRC = PreyFunction<unsigned(SShaderBin* const _this)>(0x1045180);
+#endif
 
 private:
 	SShaderBin(const SShaderBin&);

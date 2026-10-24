@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CrySystem/XML/IXml.h>
@@ -31,7 +29,7 @@ public:
 
 	// CBodyDamageProfile::JointId
 	// Header:  Prey/GameDll/bodydamage.h
-	struct JointId : public std::unary_function<bool,CBodyDamageProfile::JointId const &>
+	struct JointId
 	{ // Size=4 (0x4)
 		unsigned m_id;
 
@@ -48,7 +46,7 @@ public:
 
 	// CBodyDamageProfile::MatMappingId
 	// Header:  Prey/GameDll/bodydamage.h
-	struct MatMappingId : public std::unary_function<bool,CBodyDamageProfile::MatMappingId const &>
+	struct MatMappingId
 	{ // Size=16 (0x10)
 		string m_jointName;
 		CBodyDamageProfile::JointId m_jointId;
@@ -130,6 +128,15 @@ public:
 		void UpdateMapping(const char* _arg0_, const int _arg1_);
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FUpdateMappingOv1 = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const char* jointName, const int physicsJointId, const std::map<int, int>& effectiveMaterials)>(0x168B4D0);
+		static inline auto FUpdateMappingOv0 = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const char* jointName, const int physicsJointId, ISurfaceType& sourceMaterial, ISurfaceType& targetMaterial)>(0x168B1D0);
+		static inline auto FFinalizeMapping = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this)>(0x1688920);
+		static inline auto FLoadEffectiveMaterials = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const XmlNodeRef& parentNode, const char* boneName, int boneId)>(0x168A110);
+		static inline auto FLoadEffectiveMaterial = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const XmlNodeRef& effectiveMaterial, const char* boneName, int boneId)>(0x1689EB0);
+		static inline auto FLogEffectiveMaterialApplied = PreyFunction<void(const CBodyDamageProfile::CEffectiveMaterials* const _this, int sourceMaterialId, const char* sourceMaterial, const char* targetMaterial, int jointId, int materialIndex)>(0x168AE40);
+		static inline auto FUpdatePhysicsPartById = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const CBodyDamageProfile::MatMappingId& matMappingId, const pe_params_part& part, CBodyDamageProfile::SMaterialMappingEntry& mappingEntry, const std::vector<int>& appliedMaterialIds)>(0x168B5F0);
+#else
 		static inline auto FUpdateMappingOv1 = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const char* jointName, const int physicsJointId, const std::map<int, int>& effectiveMaterials)>(0x17AEBB0);
 		static inline auto FUpdateMappingOv0 = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const char* jointName, const int physicsJointId, ISurfaceType& sourceMaterial, ISurfaceType& targetMaterial)>(0x17AE8B0);
 		static inline auto FFinalizeMapping = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this)>(0x17AC000);
@@ -137,6 +144,7 @@ public:
 		static inline auto FLoadEffectiveMaterial = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const XmlNodeRef& effectiveMaterial, const char* boneName, int boneId)>(0x17AD590);
 		static inline auto FLogEffectiveMaterialApplied = PreyFunction<void(const CBodyDamageProfile::CEffectiveMaterials* const _this, int sourceMaterialId, const char* sourceMaterial, const char* targetMaterial, int jointId, int materialIndex)>(0x17AE520);
 		static inline auto FUpdatePhysicsPartById = PreyFunction<void(CBodyDamageProfile::CEffectiveMaterials* const _this, const CBodyDamageProfile::MatMappingId& matMappingId, const pe_params_part& part, CBodyDamageProfile::SMaterialMappingEntry& mappingEntry, const std::vector<int>& appliedMaterialIds)>(0x17AECD0);
+#endif
 	};
 
 	// CBodyDamageProfile::CPart
@@ -165,13 +173,18 @@ public:
 		static int GetNextId();
 	#endif
 
+#ifndef MOONCRASH
+		static inline auto FLoadElements = PreyFunction<void(CBodyDamageProfile::CPart* const _this, const XmlNodeRef& partNode, IDefaultSkeleton& skeletonPose, IAttachmentManager& attachmentManager, CBodyDamageProfile::CEffectiveMaterials& effectiveMaterials, const CBodyDamageProfile& ownerDamageProfile)>(0x168A250);
+		static inline auto FAddBone = PreyFunction<void(CBodyDamageProfile::CPart* const _this, const XmlNodeRef& boneNode, const char* boneName, IDefaultSkeleton& rIDefaultSkeleton, CBodyDamageProfile::CEffectiveMaterials& effectiveMaterials)>(0x1688640);
+#else
 		static inline auto FLoadElements = PreyFunction<void(CBodyDamageProfile::CPart* const _this, const XmlNodeRef& partNode, IDefaultSkeleton& skeletonPose, IAttachmentManager& attachmentManager, CBodyDamageProfile::CEffectiveMaterials& effectiveMaterials, const CBodyDamageProfile& ownerDamageProfile)>(0x17AD930);
 		static inline auto FAddBone = PreyFunction<void(CBodyDamageProfile::CPart* const _this, const XmlNodeRef& boneNode, const char* boneName, IDefaultSkeleton& rIDefaultSkeleton, CBodyDamageProfile::CEffectiveMaterials& effectiveMaterials)>(0x17ABD20);
+#endif
 	};
 
 	// CBodyDamageProfile::CPartByNameFunctor
 	// Header:  Prey/GameDll/bodydamage.h
-	class CPartByNameFunctor : private std::unary_function<bool,CBodyDamageProfile::CPart const &>
+	class CPartByNameFunctor
 	{ // Size=8 (0x8)
 	public:
 		const char* m_name;
@@ -276,6 +289,23 @@ public:
 	float GetDefaultDamageMultiplier(const HitInfo& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCBodyDamageProfileOv2 = PreyFunction<void(CBodyDamageProfile* const _this, unsigned id)>(0x16883A0);
+	static inline auto FLoadXmlInfo = PreyFunction<void(CBodyDamageProfile* const _this, const SBodyDamageDef& bodyDamageDef, bool bReload)>(0x168AC90);
+	static inline auto FInit = PreyFunction<bool(CBodyDamageProfile* const _this, const SBodyCharacterInfo& characterInfo, bool loadEffectiveMaterials, bool bReload)>(0x16897F0);
+	static inline auto FReload = PreyFunction<bool(CBodyDamageProfile* const _this, const SBodyCharacterInfo& characterInfo, const SBodyDamageDef& bodyDamageDef, unsigned id)>(0x168B100);
+	static inline auto FPhysicalizeEntity = PreyFunction<bool(const CBodyDamageProfile* const _this, IPhysicalEntity* pPhysicalEntity, IDefaultSkeleton* pIDefaultSkeleton)>(0x168AEF0);
+	static inline auto FGetDamageMultiplier = PreyFunction<float(const CBodyDamageProfile* const _this, IEntity& characterEntity, const HitInfo& hitInfo)>(0x16891D0);
+	static inline auto FGetExplosionDamageMultiplier = PreyFunction<float(const CBodyDamageProfile* const _this, IEntity& characterEntity, const HitInfo& hitInfo)>(0x16894A0);
+	static inline auto FGetPartFlags = PreyFunction<unsigned(const CBodyDamageProfile* const _this, IEntity& characterEntity, const HitInfo& hitInfo)>(0x16897C0);
+	static inline auto FInsertMappingEntry = PreyFunction<CBodyDamageProfile::SMaterialMappingEntry& (CBodyDamageProfile* const _this, const CBodyDamageProfile::MatMappingId& matMappingId, const pe_params_part& part)>(0x1689D40);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CBodyDamageProfile* const _this, ICrySizer* pSizer)>(0x1689700);
+	static inline auto FGetHitImpulseFilter = PreyFunction<void(const CBodyDamageProfile* const _this, IEntity& characterEntity, const HitInfo& hitInfo, SBodyDamageImpulseFilter& impulseFilter)>(0x16895C0);
+	static inline auto FLoadParts = PreyFunction<void(CBodyDamageProfile* const _this, const XmlNodeRef& rootNode, IDefaultSkeleton& skeletonPose, IAttachmentManager& attachmentManager, CBodyDamageProfile::CEffectiveMaterials& effectiveMaterials)>(0x168A920);
+	static inline auto FLoadMultiplier = PreyFunction<void(CBodyDamageProfile* const _this, const XmlNodeRef& multiplierNode)>(0x168A600);
+	static inline auto FLoadImpulse = PreyFunction<void(CBodyDamageProfile* const _this, const XmlNodeRef& filterNode, IDefaultSkeleton& skeletonPose, const int partID)>(0x168A4B0);
+	static inline auto FFindPart = PreyFunction<const CBodyDamageProfile::CPart* (const CBodyDamageProfile* const _this, IEntity& characterEntity, const int partId, int material)>(0x1688F10);
+#else
 	static inline auto FCBodyDamageProfileOv2 = PreyFunction<void(CBodyDamageProfile* const _this, unsigned id)>(0x17ABA80);
 	static inline auto FLoadXmlInfo = PreyFunction<void(CBodyDamageProfile* const _this, const SBodyDamageDef& bodyDamageDef, bool bReload)>(0x17AE370);
 	static inline auto FInit = PreyFunction<bool(CBodyDamageProfile* const _this, const SBodyCharacterInfo& characterInfo, bool loadEffectiveMaterials, bool bReload)>(0x17ACED0);
@@ -291,5 +321,6 @@ public:
 	static inline auto FLoadMultiplier = PreyFunction<void(CBodyDamageProfile* const _this, const XmlNodeRef& multiplierNode)>(0x17ADCE0);
 	static inline auto FLoadImpulse = PreyFunction<void(CBodyDamageProfile* const _this, const XmlNodeRef& filterNode, IDefaultSkeleton& skeletonPose, const int partID)>(0x17ADB90);
 	static inline auto FFindPart = PreyFunction<const CBodyDamageProfile::CPart* (const CBodyDamageProfile* const _this, IEntity& characterEntity, const int partId, int material)>(0x17AC5F0);
+#endif
 };
-#endif // MOONCRASH
+

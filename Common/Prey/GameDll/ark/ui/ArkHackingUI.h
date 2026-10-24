@@ -1,4 +1,3 @@
-// Auto-merged (both): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
@@ -276,10 +275,10 @@ public:
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/player/ArkExaminationMode.h>
 #include <Prey/GameDll/ark/ui/IUIControlSchemeListener.h>
-#include <_unknown/ArkUIMenuBase.h>
-#include <_unknown/Functor1.h>
-#include <_unknown/IArkHealthListener.h>
-#include <_unknown/Lineseg_tpl.h>
+#include <Prey/GameDll/ark/ui/arkuimenubase.h>
+#include <Prey/CryCore/functor.h>
+#include <Prey/GameDll/ark/ui/IArkHealthListener.h>
+#include <Prey/CryMath/Cry_Geo.h>
 
 enum EControlScheme;
 enum ESystemEvent;

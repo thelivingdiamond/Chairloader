@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/Ark/ArkAudioUtil.h>
@@ -79,7 +77,9 @@ public:
 	EArkAttentionLevel m_bustPlayerBySeeingMimicMinAttentionLevel;
 	EArkAttentionLevel m_unbustPlayerMinAttentionLevel;
 	bool m_bDisguisedPlayerBusted;
+#ifdef MOONCRASH
 	bool m_bImmediateRagdoll;
+#endif
 
 	ArkNpcManager();
 	void Update(float _elapsedTime) { FUpdate(this, _elapsedTime); }
@@ -113,8 +113,6 @@ public:
 
 #if 0
 	void ResetCombatReactionTimer();
-	bool IsImmediateRagdollEnabled() const;
-	void SetImmediateRagdollEnabled(bool _arg0_);
 	void UpdateMimicBustedAttention();
 	void VerifyTracingPhantoms();
 	void IncrementAllowedTracingPhantomIndex();
@@ -132,6 +130,36 @@ public:
 	void ResetValidateCombatantsTimer();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FArkNpcManagerOv2 = PreyFunction<void(ArkNpcManager* const _this)>(0x1201900);
+	static inline auto FUpdate = PreyFunction<void(ArkNpcManager* const _this, float _elapsedTime)>(0x12042B0);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkNpcManager* const _this)>(0x1203670);
+	static inline auto FOnLevelLoadEnd = PreyFunction<void(ArkNpcManager* const _this)>(0x1203650);
+	static inline auto FOnLevelUnload = PreyFunction<void(ArkNpcManager* const _this)>(0x1203810);
+	static inline auto FSerialize = PreyFunction<void(ArkNpcManager* const _this, TSerialize _ser)>(0x1203EA0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkNpcManager* const _this)>(0x1203C80);
+	static inline auto FCanPerformNoticeAnim = PreyFunction<bool(const ArkNpcManager* const _this)>(0x1201B80);
+	static inline auto FResetNoticeAnimTimer = PreyFunction<void(ArkNpcManager* const _this)>(0x1203E90);
+	static inline auto FCanPerformCombatReaction = PreyFunction<bool(const ArkNpcManager* const _this)>(0x1201B70);
+	static inline auto FIsPlayerMimicBusted = PreyFunction<bool(const ArkNpcManager* const _this)>(0x1201F00);
+	static inline auto FOnPlayerStartMimic = PreyFunction<void(ArkNpcManager* const _this)>(0x1203910);
+	static inline auto FOnPlayerStopMimic = PreyFunction<void(ArkNpcManager* const _this)>(0x1203B80);
+	static inline auto FTryPerformCombatStartAudio = PreyFunction<bool(ArkNpcManager* const _this)>(0x1203F20);
+	static inline auto FReset = PreyFunction<void(ArkNpcManager* const _this, bool _bGameStart)>(0x1203D60);
+	static inline auto FOnAttentionToPlayerChanged = PreyFunction<void(ArkNpcManager* const _this, unsigned _npcChangingAttentionLevel, EArkAttentionLevel _previousLevelOnPlayer, EArkAttentionLevel _newLevelOnPlayer)>(0x12032E0);
+	static inline auto FBustMimickingPlayer = PreyFunction<void(ArkNpcManager* const _this)>(0x1201B60);
+	static inline auto FOnNpcStartedInactiveMusicBehavior = PreyFunction<void(ArkNpcManager* const _this, unsigned _npcStartingMimicry, EArkAttentionLevel _currentAttentionLevelOnPlayer)>(0x1203830);
+	static inline auto FOnNpcStoppedInactiveMusicBehavior = PreyFunction<void(ArkNpcManager* const _this, unsigned _npcStoppingMimicry, EArkAttentionLevel _currentAttentionLevelOnPlayer)>(0x12038A0);
+	static inline auto FIsNpcMusicInactive = PreyFunction<bool(const ArkNpcManager* const _this, const ArkNpc& _npcToCheck)>(0x1201ED0);
+	static inline auto FGetAllowedTracingPhantomId = PreyFunction<unsigned(const ArkNpcManager* const _this)>(0x1201E90);
+	static inline auto FAddPhantomNeedingTraces = PreyFunction<void(ArkNpcManager* const _this, unsigned _phantomId)>(0x1201B10);
+	static inline auto FRemovePhantomNeedingTraces = PreyFunction<void(ArkNpcManager* const _this, unsigned _phantomId)>(0x1203CD0);
+	static inline auto FValidateCurrentCombatants = PreyFunction<void(ArkNpcManager* const _this)>(0x12046E0);
+	static inline auto FTryPlayAttentionAudio = PreyFunction<void(ArkNpcManager* const _this, float _elapsedTime)>(0x1203FD0);
+	static inline auto FCancelAllMusic = PreyFunction<void(ArkNpcManager* const _this, bool _bUnBustPlayer)>(0x1201B90);
+	static inline auto FEraseIdFromAllTracking = PreyFunction<void(ArkNpcManager* const _this, unsigned _idToErase)>(0x1201C50);
+	static inline auto FLoadConfig = PreyFunction<void(ArkNpcManager* const _this)>(0x1201F10);
+#else
 	static inline auto FArkNpcManagerOv2 = PreyFunction<void(ArkNpcManager* const _this)>(0x1290970);
 	static inline auto FUpdate = PreyFunction<void(ArkNpcManager* const _this, float _elapsedTime)>(0x1293310);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkNpcManager* const _this)>(0x12926D0);
@@ -160,5 +188,6 @@ public:
 	static inline auto FCancelAllMusic = PreyFunction<void(ArkNpcManager* const _this, bool _bUnBustPlayer)>(0x1290C00);
 	static inline auto FEraseIdFromAllTracking = PreyFunction<void(ArkNpcManager* const _this, unsigned _idToErase)>(0x1290CC0);
 	static inline auto FLoadConfig = PreyFunction<void(ArkNpcManager* const _this)>(0x1290F80);
+#endif
 };
-#endif // MOONCRASH
+

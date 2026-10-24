@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
 
 // -------------------------------------------------------------------------
@@ -606,6 +605,9 @@ struct IEntityRenderProxy : public IEntityProxy
 	virtual void SetEntitySceneWindow(bool) = 0;
 	virtual void SetShouldGlint(bool) = 0;
 	virtual void UpdateLightBounds() = 0;
+#ifdef MOONCRASH
+	virtual bool IsHidden() const = 0;
+#endif
 
 	// </interfuscator:shuffle>
 };
@@ -654,7 +656,7 @@ struct IEntityAreaProxy : public IEntityProxy
 	//! \param pSoundObstructionSegments Array of corresponding booleans that indicate sound obstruction.
 	//! \param numLocalPoints            Number of vertices in vPoints array.
 	//! \param height                    Height of the shape.
-	virtual void SetPoints(Vec3 const* const pPoints, bool const* const pSoundObstructionSegments, size_t const numLocalPoints, float const height) = 0;
+	virtual void SetPoints(Vec3 const* const pPoints, bool const* const pSoundObstructionSegments, int const numLocalPoints, float const height) = 0;
 
 	//! Sets area to be a Box, min and max must be in local entity space.
 	//! Host entity orientation will define the actual world position and orientation of area box.
@@ -687,7 +689,7 @@ struct IEntityAreaProxy : public IEntityProxy
 	//virtual void SetHeight(float const value) = 0;
 
 	//! Retrieve shape area height, if height is 0 area is 2D.
-	virtual float GetHeight() const = 0;
+	virtual float GetHeight() = 0;
 
 	//! Retrieve min and max in local space of area box.
 	virtual void GetBox(Vec3& min, Vec3& max) = 0;
@@ -718,7 +720,7 @@ struct IEntityAreaProxy : public IEntityProxy
 	virtual int GetPriority() const = 0;
 
 	//! Sets sound obstruction depending on area type
-	virtual void SetSoundObstructionOnAreaFace(size_t const index, bool const bObstructs) = 0;
+	virtual void SetSoundObstructionOnAreaFace(unsigned int const index, bool const bObstructs) = 0;
 
 	//! Add target entity to the area.
 	//! When someone enters/leaves an area, it will send ENTERAREA, LEAVEAREA, AREAFADE, events to these target entities.
@@ -750,16 +752,16 @@ struct IEntityAreaProxy : public IEntityProxy
 
 	//! Compute and return squared distance to a point which is outside
 	//! OnHull3d is the closest point on the hull of the area
-	virtual float CalcPointNearDistSq(EntityId const nEntityID, Vec3 const& Point3d, Vec3& OnHull3d) = 0;
+	virtual float CalcPointNearDistSq(EntityId const nEntityID, Vec3 const& Point3d, Vec3& OnHull3d, bool bCacheResults = true) = 0;
 
 	//! Computes and returns squared distance from a point to the hull of the area
 	//! OnHull3d is the closest point on the hull of the area
 	//! This function is not sensitive of if the point is inside or outside the area
-	virtual float ClosestPointOnHullDistSq(EntityId const nEntityID, Vec3 const& Point3d, Vec3& OnHull3d) = 0;
+	virtual float ClosestPointOnHullDistSq(EntityId const nEntityID, Vec3 const& Point3d, Vec3& OnHull3d, bool bCacheResults = true) = 0;
 
 	//! Checks if a given point is inside the area.
 	//! \note Ignoring the height speeds up the check.
-	virtual bool CalcPointWithin(EntityId const nEntityID, Vec3 const& Point3d, bool const bIgnoreHeight = false) const = 0;
+	virtual bool CalcPointWithin(EntityId const nEntityID, Vec3 const& Point3d, bool const bIgnoreHeight = false, bool bCacheResults = true) const = 0;
 
 	//! get number of entities in area
 	virtual size_t GetNumberOfEntitiesInArea() const = 0;

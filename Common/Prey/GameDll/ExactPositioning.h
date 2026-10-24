@@ -1,7 +1,6 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/GameDll/SActorTargetParams.h>
 #include <Prey/CryAction/IMovementController.h>
 #include <Prey/GameDll/ExactPositioningTrigger.h>
 
@@ -58,15 +57,26 @@ public:
 	unsigned m_triggerQueryEnd;
 	CExactPositioningTrigger m_exactPositioningTrigger;
 	_smart_ptr<IAction> m_pAnimAction;
+#ifndef MOONCRASH
+	static inline auto s_stateEventHandlers = PreyGlobal<CExactPositioning::ETriggerState (*[0])(CExactPositioning::SStateMachineEvent&)>(0x22807F0);
+	static inline auto s_enterEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x2280830);
+	static inline auto s_exitEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x2280834);
+	static inline auto s_updateEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x2C08E90);
+#else
 	static inline auto s_stateEventHandlers = PreyGlobal<CExactPositioning::ETriggerState (*[0])(CExactPositioning::SStateMachineEvent&)>(0x23EF240);
 	static inline auto s_enterEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x23EF280);
 	static inline auto s_exitEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x23EF284);
 	static inline auto s_updateEvent = PreyGlobal<CExactPositioning::SStateMachineEvent>(0x2D82FB8);
+#endif
 	bool m_changingState;
 	bool m_initializingState;
 	CExactPositioning::ETriggerState m_state;
 	CExactPositioning::ETriggerState (*m_stateEventHandler)(CExactPositioning::SStateMachineEvent&);
+#ifndef MOONCRASH
+	static inline auto s_lastQueryID = PreyGlobal<unsigned>(0x2C08E94);
+#else
 	static inline auto s_lastQueryID = PreyGlobal<unsigned>(0x2D82FBC);
+#endif
 
 	CExactPositioning(IAnimatedCharacter* pAnimatedCharacter);
 	~CExactPositioning();
@@ -100,6 +110,28 @@ public:
 	static unsigned GenerateQueryID();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCExactPositioning = PreyFunction<void(CExactPositioning* const _this, IAnimatedCharacter* pAnimatedCharacter)>(0x16C0290);
+	static inline auto FBitNotCExactPositioning = PreyFunction<void(CExactPositioning* const _this)>(0x16C0370);
+	static inline auto FSetActorTarget = PreyFunction<bool(CExactPositioning* const _this, const SActorTargetParams& actorTargetParams)>(0x16C0A20);
+	static inline auto FClearActorTarget = PreyFunction<void(CExactPositioning* const _this)>(0x16C04C0);
+	static inline auto FSetExactPositioningListener = PreyFunction<void(CExactPositioning* const _this, IExactPositioningListener* pExactPositioningListener)>(0x414F30);
+	static inline auto FGetExactPositioningTarget = PreyFunction<const SExactPositioningTarget* (const CExactPositioning* const _this)>(0xD87500);
+	static inline auto FUpdate = PreyFunction<void(CExactPositioning* const _this)>(0x16C0BD0);
+	static inline auto FStateMachine_ChangeStateTo = PreyFunction<void(CExactPositioning* const _this, CExactPositioning::ETriggerState newState)>(0x16C0B30);
+	static inline auto FStateDisabled_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16BFCB0);
+	static inline auto FStateConsidering_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16BFD80);
+	static inline auto FStateWaiting_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16BFE50);
+	static inline auto FStatePreparing_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16BFEF0);
+	static inline auto FStateFinalPreparationPositionOnly_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16BFFD0);
+	static inline auto FStateFinalPreparation_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16C0020);
+	static inline auto FStateRunning_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16C01A0);
+	static inline auto FStateCompleting_HandleEvent = PreyFunction<CExactPositioning::ETriggerState(CExactPositioning* const _this, CExactPositioning::SStateMachineEvent& event)>(0x16C0240);
+	static inline auto FCommitPendingRequest = PreyFunction<void(CExactPositioning* const _this)>(0x16C0580);
+	static inline auto FClearAnimAction = PreyFunction<void(CExactPositioning* const _this)>(0x16C0530);
+	static inline auto FUpdateAnimationTrigger = PreyFunction<void(CExactPositioning* const _this)>(0x16C0C30);
+	static inline auto FUpdateTargetPointToFinishPoint = PreyFunction<void(CExactPositioning* const _this)>(0x16C0CB0);
+#else
 	static inline auto FCExactPositioning = PreyFunction<void(CExactPositioning* const _this, IAnimatedCharacter* pAnimatedCharacter)>(0x17E2B00);
 	static inline auto FBitNotCExactPositioning = PreyFunction<void(CExactPositioning* const _this)>(0x17E2BE0);
 	static inline auto FSetActorTarget = PreyFunction<bool(CExactPositioning* const _this, const SActorTargetParams& actorTargetParams)>(0x17E3290);
@@ -120,5 +152,6 @@ public:
 	static inline auto FClearAnimAction = PreyFunction<void(CExactPositioning* const _this)>(0x17E2DA0);
 	static inline auto FUpdateAnimationTrigger = PreyFunction<void(CExactPositioning* const _this)>(0x17E34A0);
 	static inline auto FUpdateTargetPointToFinishPoint = PreyFunction<void(CExactPositioning* const _this)>(0x17E3520);
+#endif
 };
-#endif // MOONCRASH
+

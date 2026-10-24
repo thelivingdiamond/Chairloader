@@ -41,7 +41,8 @@ struct SMFXResourceList // Id=8001FAF Size=56
 	static inline auto FDestroy = PreyFunction<void(SMFXResourceList *const _this)>(0x50EEC0);
 	static inline auto FBitNotSMFXResourceList = PreyFunction<void(SMFXResourceList *const _this)>(0x50E7D0);
 #else
-	//TODO: MOONCRASH
+	static inline auto FDestroy = PreyFunction<void(SMFXResourceList *const _this)>(0x528300);
+	static inline auto FBitNotSMFXResourceList = PreyFunction<void(SMFXResourceList *const _this)>(0x527C50);
 #endif
 };
 

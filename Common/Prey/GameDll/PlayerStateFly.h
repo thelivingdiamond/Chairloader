@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ui/IHUDEventListener.h>
@@ -26,10 +24,17 @@ public:
 	void ProcessFlyMode(CPlayer& _arg0_, const SActorFrameMovementParams& _arg1_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateFlyOv2 = PreyFunction<void(CPlayerStateFly* const _this)>(0x17BAF50);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateFly* const _this, CPlayer& player)>(0x17BAFB0);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<bool(CPlayerStateFly* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x17BB390);
+	static inline auto FOnExit = PreyFunction<void(CPlayerStateFly* const _this, CPlayer& player)>(0x17BB2D0);
+#else
 	static inline auto FCPlayerStateFlyOv2 = PreyFunction<void(CPlayerStateFly* const _this)>(0x18E2010);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateFly* const _this, CPlayer& player)>(0x18E2040);
 	static inline auto FOnPrePhysicsUpdate = PreyFunction<bool(CPlayerStateFly* const _this, CPlayer& player, const SActorFrameMovementParams& movement, float frameTime)>(0x18E2420);
 	static inline auto FOnExit = PreyFunction<void(CPlayerStateFly* const _this, CPlayer& player)>(0x18E2360);
+#endif
 };
 
 // CPlayerStateSpectate
@@ -53,10 +58,18 @@ public:
 	void DrawSpectatorFade();
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCPlayerStateSpectateOv2 = PreyFunction<void(CPlayerStateSpectate* const _this)>(0x17BAF60);
+	static inline auto FOnHUDEvent = PreyFunction<void(CPlayerStateSpectate* const _this, const SHUDEvent& event)>(0xA13080);
+	static inline auto FOnEnter = PreyFunction<void(CPlayerStateSpectate* const _this, CPlayer& player)>(0x17BB120);
+	static inline auto FUpdateFade = PreyFunction<void(CPlayerStateSpectate* const _this, float frameTime)>(0x17BB5D0);
+	static inline auto FOnExit = PreyFunction<void(CPlayerStateSpectate* const _this, CPlayer& player)>(0x17BB320);
+#else
 	static inline auto FCPlayerStateSpectateOv2 = PreyFunction<void(CPlayerStateSpectate* const _this)>(0x18E2020);
 	static inline auto FOnHUDEvent = PreyFunction<void(CPlayerStateSpectate* const _this, const SHUDEvent& event)>(0x1333E90);
 	static inline auto FOnEnter = PreyFunction<void(CPlayerStateSpectate* const _this, CPlayer& player)>(0x18E21B0);
 	static inline auto FUpdateFade = PreyFunction<void(CPlayerStateSpectate* const _this, float frameTime)>(0x18E2660);
 	static inline auto FOnExit = PreyFunction<void(CPlayerStateSpectate* const _this, CPlayer& player)>(0x18E23B0);
+#endif
 };
-#endif // MOONCRASH
+

@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -9,9 +7,12 @@
 class ICrySizer;
 struct SFlowNodeConfig;
 
+// ArkFlowNodeNpcSetWanderContainer
+// Header:  Prey/GameDll/ark/npc/ArkFlowNodeNpcSetWanderContainer.h
+#ifdef MOONCRASH
 // ArkFlowNodeNpcEncounterSetWanderContainer
 // Header:  Prey/GameDll/ark/npc/ArkFlowNodeNpcSetWanderContainer.h
-class ArkFlowNodeNpcEncounterSetWanderContainer : public CFlowBaseNode<0>
+class ArkFlowNodeNpcEncounterSetWanderContainer : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class InPorts
@@ -43,18 +44,21 @@ public:
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcEncounterSetWanderContainer* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1332D20);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcEncounterSetWanderContainer* const _this, ICrySizer* _pSizer)>(0x455F00);
 };
-
-// ArkFlowNodeNpcSetWanderContainer
-// Header:  Prey/GameDll/ark/npc/ArkFlowNodeNpcSetWanderContainer.h
-class ArkFlowNodeNpcSetWanderContainer : public CFlowBaseNode<0>
+#endif
+class ArkFlowNodeNpcSetWanderContainer : public CFlowBaseNode<eNCT_Singleton>
 { // Size=16 (0x10)
 public:
 	enum class InPorts
 	{
 		wanderContainerEntityId = 0,
+#ifdef MOONCRASH
 		speed = 1,
 		useSpeed = 2,
 		set = 3,
+#endif
+#ifndef MOONCRASH
+		set = 1,
+#endif
 	};
 
 	enum class OutPorts
@@ -71,9 +75,16 @@ public:
 	ArkFlowNodeNpcSetWanderContainer(IFlowNode::SActivationInfo* _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, IFlowNode::SActivationInfo* _pActInfo, TSerialize _ser)>(0xA13080);
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, SFlowNodeConfig& _config)>(0x128EF00);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x128F1F0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcSetWanderContainer* const _this, ICrySizer* _pSizer)>(0x44D760);
+#else
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, IFlowNode::SActivationInfo* _pActInfo, TSerialize _ser)>(0x1333E90);
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, SFlowNodeConfig& _config)>(0x1331FC0);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcSetWanderContainer* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1332470);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcSetWanderContainer* const _this, ICrySizer* _pSizer)>(0x455F00);
+#endif
 };
-#endif // MOONCRASH
+

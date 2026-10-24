@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryAction/IGamePhysicsSettings.h>
@@ -11,7 +9,7 @@ struct IPhysicalEntity;
 class CGamePhysicsSettings : public IGamePhysicsSettings
 { // Size=288 (0x120)
 public:
-	enum class #unnamed_enum_MAX_COLLISION_CLASSES
+	enum
 	{
 		MAX_COLLISION_CLASSES = 23,
 	};
@@ -36,9 +34,16 @@ public:
 	unsigned GetIgnoreTypes(unsigned _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FGetCollisionClassName = PreyFunction<const char* (CGamePhysicsSettings* const _this, unsigned bitIndex)>(0x170F840);
+	static inline auto FInit = PreyFunction<void(CGamePhysicsSettings* const _this)>(0x170F860);
+	static inline auto FExportToLua = PreyFunction<void(CGamePhysicsSettings* const _this)>(0x170F430);
+	static inline auto FAddCollisionClassFlags = PreyFunction<void(CGamePhysicsSettings* const _this, IPhysicalEntity& physEnt, unsigned gcc_classTypes, const unsigned additionalIgnoreClassTypesOR, const unsigned additionalIgnoreClassTypesAND)>(0x170F3B0);
+#else
 	static inline auto FGetCollisionClassName = PreyFunction<const char* (CGamePhysicsSettings* const _this, unsigned bitIndex)>(0x18365F0);
 	static inline auto FInit = PreyFunction<void(CGamePhysicsSettings* const _this)>(0x1836610);
 	static inline auto FExportToLua = PreyFunction<void(CGamePhysicsSettings* const _this)>(0x18361E0);
 	static inline auto FAddCollisionClassFlags = PreyFunction<void(CGamePhysicsSettings* const _this, IPhysicalEntity& physEnt, unsigned gcc_classTypes, const unsigned additionalIgnoreClassTypesOR, const unsigned additionalIgnoreClassTypesAND)>(0x1836160);
+#endif
 };
-#endif // MOONCRASH
+

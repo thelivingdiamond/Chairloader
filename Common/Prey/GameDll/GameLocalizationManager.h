@@ -1,5 +1,3 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
-#ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 
@@ -31,10 +29,18 @@ public:
 	void LoadTag(CGameLocalizationManager::ELocalizationTag _arg0_);
 #endif
 
+#ifndef MOONCRASH
+	static inline auto FCGameLocalizationManagerOv1 = PreyFunction<void(CGameLocalizationManager* const _this)>(0x170D5D0);
+	static inline auto FSetGameType = PreyFunction<void(CGameLocalizationManager* const _this)>(0x170DE50);
+	static inline auto FLegacyLoadLocalizationData = PreyFunction<void(CGameLocalizationManager* const _this)>(0x170D7D0);
+	static inline auto FLoadTagInternal = PreyFunction<void(CGameLocalizationManager* const _this, CGameLocalizationManager::ELocalizationTag tag, const char* pTag)>(0x170DC30);
+	static inline auto FUnloadTag = PreyFunction<void(CGameLocalizationManager* const _this, CGameLocalizationManager::ELocalizationTag tag)>(0x170DE90);
+#else
 	static inline auto FCGameLocalizationManagerOv1 = PreyFunction<void(CGameLocalizationManager* const _this)>(0x1834420);
 	static inline auto FSetGameType = PreyFunction<void(CGameLocalizationManager* const _this)>(0x1834C90);
 	static inline auto FLegacyLoadLocalizationData = PreyFunction<void(CGameLocalizationManager* const _this)>(0x1834610);
 	static inline auto FLoadTagInternal = PreyFunction<void(CGameLocalizationManager* const _this, CGameLocalizationManager::ELocalizationTag tag, const char* pTag)>(0x1834A70);
 	static inline auto FUnloadTag = PreyFunction<void(CGameLocalizationManager* const _this, CGameLocalizationManager::ELocalizationTag tag)>(0x1834CD0);
+#endif
 };
-#endif // MOONCRASH
+

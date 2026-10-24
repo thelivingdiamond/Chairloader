@@ -21,8 +21,13 @@ public:
     void Serialize(XmlNodeRef const &arg0, bool arg1);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FGetFlowGraph = PreyFunction<_smart_ptr<IFlowGraph>(ArkGlobalAction const *const _this)>(0x2A3BE0);
     static inline auto FGetFileName = PreyFunction<string(ArkGlobalAction const *const _this)>(0xE93430);
+#else
+    static inline auto FGetFlowGraph = PreyFunction<_smart_ptr<IFlowGraph>(ArkGlobalAction const *const _this)>(0x2BC190);
+    static inline auto FGetFileName = PreyFunction<string(ArkGlobalAction const *const _this)>(0x2BC160);
+#endif
 };
 
 // Header: FromCpp

@@ -1,4 +1,5 @@
-// Header test file for path CryEngine/cryinput/baseinput.h
+// Header test file for path Prey/CryInput/
+
 #include "BaseInput.h"
 static_assert(sizeof(CBaseInput) == 264);
 
@@ -27,6 +28,3 @@ static_assert(sizeof(CMouse) == 184);
 #include "xinputdevice.h"
 static_assert(sizeof(CXInputDevice) == 168);
 static_assert(sizeof(CInputConnectionThreadTask) == 80);
-//static_assert(sizeof(CServiceNetworkConnection) == 304);
-//static_assert(sizeof(CServiceNetworkConnection::Header) == 5);
-//static_assert(sizeof(CServiceNetworkConnection::InitHeader) == 24);

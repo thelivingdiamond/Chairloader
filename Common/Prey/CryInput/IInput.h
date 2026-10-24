@@ -1,6 +1,8 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 #pragma once
 #include <vector>
+
+template<class T> struct Color_tpl;
+typedef Color_tpl<float> ColorF;
 
 enum EInputDeviceType
 {
@@ -297,7 +299,7 @@ public:
 	virtual ~IInputEventListener() {};
 	virtual bool OnInputEvent(const SInputEvent &) = 0;
 	virtual bool OnInputEventUI(const SInputEvent &) = 0;
-	virtual int GetPriority() = 0;
+	virtual int GetPriority() const { return 0; } // Prey: const, not pure
 };
 
 class ITouchEventListener;
@@ -329,14 +331,13 @@ struct SFFTriggerOutputData
     };
 
     float  leftGain, rightGain;
-    float  leftStrength, rightStrength;
     uint16 leftEnv, rightEnv;
     uint32 flags;
 
     SFFTriggerOutputData()  { Init(Initial::ZeroIt); }
     SFFTriggerOutputData(Initial::Value v)  { Init(v); }
-    SFFTriggerOutputData(bool leftTouchToActivate, bool rightTouchToActivate, float lTrigger, float rTrigger, float lStrength, float rStrength, uint16 lTriggerEnv, uint16 rTriggerEnv) :
-            leftGain(lTrigger), rightGain(rTrigger), leftStrength(lStrength), rightStrength(rStrength), leftEnv(lTriggerEnv), rightEnv(rTriggerEnv)
+    SFFTriggerOutputData(bool leftTouchToActivate, bool rightTouchToActivate, float lTrigger, float rTrigger, uint16 lTriggerEnv, uint16 rTriggerEnv) :
+            leftGain(lTrigger), rightGain(rTrigger), leftEnv(lTriggerEnv), rightEnv(rTriggerEnv)
     {
         SetFlag(Flags::LeftTouchToActivate, leftTouchToActivate);
         SetFlag(Flags::RightTouchToActivate, rightTouchToActivate);
@@ -348,14 +349,12 @@ struct SFFTriggerOutputData
         {
             flags = 0;
             leftGain = rightGain = 0.0f;
-            leftStrength = rightStrength = 0.0f;
             leftEnv = rightEnv = 0;
         }
         else if (v == Initial::Default)
         {
             flags = 0;
             leftGain = rightGain = 1.0f;
-            leftStrength = rightStrength = 0.0f;
             leftEnv = rightEnv = 4;
         }
     }
@@ -435,6 +434,10 @@ public:
 	virtual unsigned GetSteamActionOrigin(const char* const _szActionName) const { return 0; }
 	virtual const char* GetGlyphFromActionOrigin(unsigned _actionOrigin) const { return nullptr; }
 	virtual void ActivateSteamActionSet(const char* const _szActionSetName) {}
+#ifdef MOONCRASH
+	virtual void SetColor(const ColorF& _color) {}
+	virtual void ResetColor() {}
+#endif
 };
 
 // IInput

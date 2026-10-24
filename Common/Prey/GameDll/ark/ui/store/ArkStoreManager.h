@@ -1,11 +1,10 @@
-// Auto-merged (DLC-only): base=PreyDll under #ifndef MOONCRASH; DLC=Mooncrash.
 #ifdef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/GameDll/ark/ui/store/ArkFakeCatalogLoader.h>
 #include <Prey/GameDll/ark/ui/store/ArkStoreCatalog.h>
-#include <_unknown/ArkCommerceItem.h>
-#include <_unknown/SItemEntry.h>
+#include <Prey/GameDll/ark/ui/store/ArkCommerceItem.h>
+#include <Prey/GameDll/ark/ui/store/SItemEntry.h>
 
 class ArkStoreUI;
 class XmlNodeRef;

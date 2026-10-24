@@ -1,4 +1,3 @@
-// Auto-merged (base-only, address-free): shared in both builds; no MOONCRASH guard.
 // Copyright 2001-2019 Crytek GmbH / Crytek Group. All rights reserved.
 
 //! \cond INTERNAL
@@ -7,6 +6,11 @@
 
 //#include <CryMemory/CrySizer.h>
 //#include <CrySerialization/Enum.h>
+
+#ifndef SERIALIZATION_ENUM_DECLARE
+// CrySerialization/Enum.h is not ported: declare only the scoped enum.
+#define SERIALIZATION_ENUM_DECLARE(Enum, sizespec, ...) enum class Enum sizespec { __VA_ARGS__ };
+#endif
 
 // For serialization
 class XmlNodeRef;
@@ -68,7 +72,7 @@ struct ISplineBackup
 	virtual ~ISplineBackup() {}
 	virtual void                     AddRef() = 0;
 	virtual void                     Release() = 0;
-	virtual struct ISplineEvaluator* GetSpline() = 0;
+	// Prey: no GetSpline() slot.
 	// </interfuscator:shuffle>
 };
 
@@ -274,19 +278,28 @@ struct IMultiSplineEvaluator
 };
 
 //! General interpolation and editing interface.
-struct ISplineInterpolator : ISplineEvaluator
+//! Prey: the older standalone interface (no ISplineEvaluator base).
+struct ISplineInterpolator
 {
+	typedef float                   ElemType;
+	typedef ElemType                ValueType[4];
+	typedef spline::Float4SplineKey KeyType;
+
+	static void ZeroValue(ValueType& value) { value[0] = 0; value[1] = 0; value[2] = 0; value[3] = 0; }
+
 	// <interfuscator:shuffle>
+	virtual ~ISplineInterpolator() {}
+
+	virtual int   GetNumDimensions() = 0;
 
 	//! Insert a new key, returns index of the key.
-	virtual int   InsertKey(const KeyType& key) = 0;
 	virtual int   InsertKey(float time, ValueType value) = 0;
 	virtual void  RemoveKey(int key) = 0;
-	virtual void  Clear() = 0;
 
 	virtual void  FindKeysInRange(float startTime, float endTime, int& firstFoundKey, int& numFoundKeys) = 0;
 	virtual void  RemoveKeysInRange(float startTime, float endTime) = 0;
 
+	virtual int   GetKeyCount() = 0;
 	virtual void  SetKeyTime(int key, float time) = 0;
 	virtual float GetKeyTime(int key) = 0;
 	virtual void  SetKeyValue(int key, ValueType value) = 0;
@@ -304,6 +317,12 @@ struct ISplineInterpolator : ISplineEvaluator
 	//! Retrieve key flags.
 	//! \see ESplineKeyFlags.
 	virtual int GetKeyFlags(int key) = 0;
+
+	virtual void           Interpolate(float time, ValueType& value) = 0;
+	virtual void           SerializeSpline(XmlNodeRef& node, bool bLoading) = 0;
+
+	virtual ISplineBackup* Backup() = 0;
+	virtual void           Restore(ISplineBackup* pBackup) = 0;
 	// </interfuscator:shuffle>
 
 	//////////////////////////////////////////////////////////////////////////

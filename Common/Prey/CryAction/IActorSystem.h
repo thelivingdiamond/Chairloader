@@ -118,6 +118,10 @@ struct IActor : public IGameObjectExtension // Id=8001EFE Size=64
 	virtual bool IsArkNpcPlayer();
 	virtual void IgnoreCollisionSignals(unsigned _entityId, float _timeOut);
 	virtual bool IsIgnoringCollisionSignals(unsigned _entityId) const;
+#ifdef MOONCRASH
+	virtual bool IsNormalG() const;
+	virtual bool IsLowG() const;
+#endif
 	virtual bool IsZeroG() const;
 
 #if 0
@@ -183,5 +187,9 @@ public:
 	virtual CCryActor* ToCryActor();
 	virtual ~CActor();
 
+#ifndef MOONCRASH
 	static inline auto FToCryActor = PreyFunction<CCryActor* (CActor* const _this)>(0x158AEF0);
+#else
+	static inline auto FToCryActor = PreyFunction<CCryActor* (CActor* const _this)>(0x1CBB0B0);
+#endif
 };

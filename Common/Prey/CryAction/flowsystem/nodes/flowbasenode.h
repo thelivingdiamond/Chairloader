@@ -8,8 +8,13 @@ class CAutoRegFlowNodeBase : public IFlowNodeFactory // Id=8005975 Size=24
 public:
     const char *m_sClassName;
     CAutoRegFlowNodeBase *m_pNext;
+#ifndef MOONCRASH
     static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase *>(0x24808D0);
     static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase *>(0x24808D8);
+#else
+    static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase *>(0x25EFEF0);
+    static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase *>(0x25EFEF8);
+#endif
 
     virtual ~CAutoRegFlowNodeBase();
     virtual void AddRef();
