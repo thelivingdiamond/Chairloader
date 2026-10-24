@@ -120,10 +120,12 @@ ChairSteamAPI::ChairSteamAPI(void* hModuleVoid, bool isGog)
         gCL->pSteamAPI = this;
     }
 
+#ifndef MOONCRASH // Mooncrash keeps the game's DLC system (see ReplaceArkSystems), so its entitlement grant stays
     // CArkEntitlementSystem::Init
     // Remove EntitlementGranted call for Whiplash.
     // Since Steam API is available, it will be granted by the DLC system.
     mem::Nop((uint8_t*)(gCL->cl->GetPreyDllBase() + 0xD5B5BF), 0xD5B5C4 - 0xD5B5BF);
+#endif
 }
 
 ChairSteamAPI::~ChairSteamAPI()
@@ -145,11 +147,21 @@ ChairSteamAPI::~ChairSteamAPI()
 void ChairSteamAPI::ReplaceArkSystems()
 {
     // Existing systems are owned by CSystem. It will destroy them in ShutDown.
+
+    // Both games' CArkRewardSystem is a stub (UnlockReward only logs), so Mooncrash needs the Steam
+    // implementation too; its ArkRewards.xml carries Prey's (480490) achievement SteamIDs.
     delete gEnv->pArkRewardSystem;
-    delete gEnv->pArkDlcSystem;
     gEnv->pArkRewardSystem = new ArkSteamRewardSystem();
+
+#ifndef MOONCRASH
+    // Prey's CArkSteamDlcSystem::Refresh only unlocks dlcId 2, so query Steam instead.
+    delete gEnv->pArkDlcSystem;
     gEnv->pArkDlcSystem = new ArkSteamDlcSystem();
     gEnv->pArkDlcSystem->InitEnv(gEnv);
+#else
+    // Mooncrash keeps its own CArkSteamDlcSystem: its Refresh unlocks every ArkDlcMapping.xml entry,
+    // so a Steam ownership check would only lock content the game itself enables.
+#endif
 }
 
 void ChairSteamAPI::Update()

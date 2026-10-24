@@ -11,7 +11,11 @@
 #include "ArkPlayerCheats.h"
 #include "LocalizationPatch.h"
 
+#ifndef MOONCRASH
 auto g_CleanupVibrationAtExit = PreyFunction<void()>(0x9D85C0);
+#else
+auto g_CleanupVibrationAtExit = PreyFunction<void()>(0x9F5990);
+#endif
 FunctionHook<void()> g_CleanupVibrationAtExit_Hook;
 
 auto g_CSystem_InitSoundSystem_Hook = CSystem::FInitSoundSystem.MakeHook();

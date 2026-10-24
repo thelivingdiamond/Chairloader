@@ -43,8 +43,16 @@ void CD3D9Renderer_FX_ZTargetReadBack_Hook(CD3D9Renderer* const _this)
 // CSceneGBufferStage
 //------------------------------------------------------------
 class CSceneGBufferStage;
+#ifndef MOONCRASH
 auto g_CSceneGBufferStage_Execute = PreyFunction<void(CSceneGBufferStage* _this)>(0xF71A80);
+#else
+auto g_CSceneGBufferStage_Execute = PreyFunction<void(CSceneGBufferStage* _this)>(0xF8DD00);
+#endif
+#ifndef MOONCRASH
 auto g_CSceneGBufferStage_ExecuteLinearizeDepth = PreyFunction<void(CSceneGBufferStage* _this, CRenderView* pRenderView)>(0xF72150);
+#else
+auto g_CSceneGBufferStage_ExecuteLinearizeDepth = PreyFunction<void(CSceneGBufferStage* _this, CRenderView* pRenderView)>(0xF8E3D0);
+#endif
 auto g_CSceneGBufferStage_Execute_Hook = g_CSceneGBufferStage_Execute.MakeHook();
 auto g_CSceneGBufferStage_ExecuteLinearizeDepth_Hook = g_CSceneGBufferStage_ExecuteLinearizeDepth.MakeHook();
 
@@ -64,7 +72,11 @@ void CSceneGBufferStage_ExecuteLinearizeDepth_Hook(CSceneGBufferStage* _this, CR
 // CDepthDownsamplePass
 //------------------------------------------------------------
 class CDepthDownsamplePass;
+#ifndef MOONCRASH
 auto g_CDepthDownsamplePass_Execute = PreyFunction<void(CDepthDownsamplePass* _this, CTexture* pSrcRT, CTexture* pDestRT, bool bLinearizeSrcDepth, bool bFromSingleChannel)>(0xF65250);
+#else
+auto g_CDepthDownsamplePass_Execute = PreyFunction<void(CDepthDownsamplePass* _this, CTexture* pSrcRT, CTexture* pDestRT, bool bLinearizeSrcDepth, bool bFromSingleChannel)>(0xF815C0);
+#endif
 auto g_CDepthDownsamplePass_Execute_Hook = g_CDepthDownsamplePass_Execute.MakeHook();
 
 void CDepthDownsamplePass_Execute_Hook(CDepthDownsamplePass* _this, CTexture* pSrcRT, CTexture* pDestRT, bool bLinearizeSrcDepth, bool bFromSingleChannel)
@@ -76,7 +88,11 @@ void CDepthDownsamplePass_Execute_Hook(CDepthDownsamplePass* _this, CTexture* pS
 //------------------------------------------------------------
 // CRenderItemDrawer::SRenderListCollection
 //------------------------------------------------------------
+#ifndef MOONCRASH
 auto g_CRenderItemDrawer_SRenderListCollection_WaitForJobs = PreyFunction<void(void* _this)>(0xEAD7F0);
+#else
+auto g_CRenderItemDrawer_SRenderListCollection_WaitForJobs = PreyFunction<void(void* _this)>(0xEC9CD0);
+#endif
 auto g_CRenderItemDrawer_SRenderListCollection_WaitForJobs_Hook = g_CRenderItemDrawer_SRenderListCollection_WaitForJobs.MakeHook();
 
 void CRenderItemDrawer_SRenderListCollection_WaitForJobs_Hook(void* _this)
@@ -89,7 +105,11 @@ void CRenderItemDrawer_SRenderListCollection_WaitForJobs_Hook(void* _this)
 // CClipVolumesStage
 //------------------------------------------------------------
 class CClipVolumesStage;
+#ifndef MOONCRASH
 auto g_CClipVolumesStage_Execute = PreyFunction<void(CClipVolumesStage* _this)>(0xF5D060);
+#else
+auto g_CClipVolumesStage_Execute = PreyFunction<void(CClipVolumesStage* _this)>(0xF79310);
+#endif
 auto g_CClipVolumesStage_Execute_Hook = g_CClipVolumesStage_Execute.MakeHook();
 
 void CClipVolumesStage_Execute_Hook(CClipVolumesStage* _this)
@@ -102,7 +122,11 @@ void CClipVolumesStage_Execute_Hook(CClipVolumesStage* _this)
 // CDeferredShading
 //------------------------------------------------------------
 class CDeferredShading;
+#ifndef MOONCRASH
 auto g_CDeferredShading_Render = PreyFunction<void(CDeferredShading* const _this, CRenderView* pRenderView)>(0xEDFED0);
+#else
+auto g_CDeferredShading_Render = PreyFunction<void(CDeferredShading* const _this, CRenderView* pRenderView)>(0xEFC1B0);
+#endif
 auto g_CDeferredShading_Render_Hook = g_CDeferredShading_Render.MakeHook();
 
 void CDeferredShading_Render_Hook(CDeferredShading* const _this, CRenderView* pRenderView)
@@ -115,11 +139,31 @@ void CDeferredShading_Render_Hook(CDeferredShading* const _this, CRenderView* pR
 // CSceneForwardStage
 //------------------------------------------------------------
 class CSceneForwardStage;
+#ifndef MOONCRASH
 auto g_CSceneForwardStage_Execute_Opaque = PreyFunction<void(CSceneForwardStage* const _this)>(0xF70C90);
+#else
+auto g_CSceneForwardStage_Execute_Opaque = PreyFunction<void(CSceneForwardStage* const _this)>(0xF8CF10);
+#endif
+#ifndef MOONCRASH
 auto g_CSceneForwardStage_Execute_TransparentBelowWater = PreyFunction<void(CSceneForwardStage* const _this)>(0xF70E40);
+#else
+auto g_CSceneForwardStage_Execute_TransparentBelowWater = PreyFunction<void(CSceneForwardStage* const _this)>(0xF8D0C0);
+#endif
+#ifndef MOONCRASH
 auto g_CSceneForwardStage_Execute_TransparentAboveWater = PreyFunction<void(CSceneForwardStage* const _this)>(0xF70DC0);
+#else
+auto g_CSceneForwardStage_Execute_TransparentAboveWater = PreyFunction<void(CSceneForwardStage* const _this)>(0xF8D040);
+#endif
+#ifndef MOONCRASH
 auto g_CSceneForwardStage_Execute_TransparentNear = PreyFunction<void(CSceneForwardStage* const _this)>(0xF70ED0);
+#else
+auto g_CSceneForwardStage_Execute_TransparentNear = PreyFunction<void(CSceneForwardStage* const _this)>(0xF8D150);
+#endif
+#ifndef MOONCRASH
 auto g_CSceneForwardStage_Execute_Distortion = PreyFunction<void(CSceneForwardStage* const _this, CRenderView* _pRenderView)>(0xF70AD0);
+#else
+auto g_CSceneForwardStage_Execute_Distortion = PreyFunction<void(CSceneForwardStage* const _this, CRenderView* _pRenderView)>(0xF8CD50);
+#endif
 
 auto g_CSceneForwardStage_Execute_Opaque_Hook = g_CSceneForwardStage_Execute_Opaque.MakeHook();
 auto g_CSceneForwardStage_Execute_TransparentBelowWater_Hook = g_CSceneForwardStage_Execute_TransparentBelowWater.MakeHook();
@@ -161,7 +205,11 @@ void CSceneForwardStage_Execute_Distortion_Hook(CSceneForwardStage* const _this,
 // CStandardGraphicsPipeline
 //------------------------------------------------------------
 class CStandardGraphicsPipeline;
+#ifndef MOONCRASH
 auto g_CStandardGraphicsPipeline_ExecuteHDRPostProcessing = PreyFunction<void(CStandardGraphicsPipeline* const _this)>(0xF83FB0);
+#else
+auto g_CStandardGraphicsPipeline_ExecuteHDRPostProcessing = PreyFunction<void(CStandardGraphicsPipeline* const _this)>(0xFA0250);
+#endif
 auto g_CStandardGraphicsPipeline_ExecuteHDRPostProcessing_Hook = g_CStandardGraphicsPipeline_ExecuteHDRPostProcessing.MakeHook();
 
 void CStandardGraphicsPipeline_ExecuteHDRPostProcessing_Hook(CStandardGraphicsPipeline* _this)
@@ -174,7 +222,11 @@ void CStandardGraphicsPipeline_ExecuteHDRPostProcessing_Hook(CStandardGraphicsPi
 // CMotionBlurStage
 //------------------------------------------------------------
 class CMotionBlurStage;
+#ifndef MOONCRASH
 auto g_CMotionBlurStage_Execute = PreyFunction<void(CMotionBlurStage* const _this)>(0xF6B1D0);
+#else
+auto g_CMotionBlurStage_Execute = PreyFunction<void(CMotionBlurStage* const _this)>(0xF874E0);
+#endif
 auto g_CMotionBlurStage_Execute_Hook = g_CMotionBlurStage_Execute.MakeHook();
 
 void CMotionBlurStage_Execute_Hook(CMotionBlurStage* _this)
@@ -187,7 +239,11 @@ void CMotionBlurStage_Execute_Hook(CMotionBlurStage* _this)
 // CDepthOfFieldStage
 //------------------------------------------------------------
 class CDepthOfFieldStage;
+#ifndef MOONCRASH
 auto g_CDepthOfFieldStage_Execute = PreyFunction<void(CDepthOfFieldStage* const _this)>(0xF66D30);
+#else
+auto g_CDepthOfFieldStage_Execute = PreyFunction<void(CDepthOfFieldStage* const _this)>(0xF83040);
+#endif
 auto g_CDepthOfFieldStage_Execute_Hook = g_CDepthOfFieldStage_Execute.MakeHook();
 
 void CDepthOfFieldStage_Execute_Hook(CDepthOfFieldStage* _this)
@@ -200,7 +256,11 @@ void CDepthOfFieldStage_Execute_Hook(CDepthOfFieldStage* _this)
 // CStableDownsamplePass
 //------------------------------------------------------------
 class CStableDownsamplePass;
+#ifndef MOONCRASH
 auto g_CStableDownsamplePass_Execute = PreyFunction<void(CStableDownsamplePass* const _this, CTexture* pSrcRT, CTexture* pDestRT, bool bKillFireflies, bool bNaNGuard)>(0xF65E50);
+#else
+auto g_CStableDownsamplePass_Execute = PreyFunction<void(CStableDownsamplePass* const _this, CTexture* pSrcRT, CTexture* pDestRT, bool bKillFireflies, bool bNaNGuard)>(0xF821C0);
+#endif
 auto g_CStableDownsamplePass_Execute_Hook = g_CStableDownsamplePass_Execute.MakeHook();
 
 void CStableDownsamplePass_Execute_Hook(CStableDownsamplePass* const _this, CTexture* pSrcRT, CTexture* pDestRT, bool bKillFireflies, bool bNaNGuard)
@@ -213,7 +273,11 @@ void CStableDownsamplePass_Execute_Hook(CStableDownsamplePass* const _this, CTex
 // CStretchRectPass
 //------------------------------------------------------------
 class CStretchRectPass;
+#ifndef MOONCRASH
 auto g_CStretchRectPass_Execute = PreyFunction<void(CStretchRectPass* const _this, CTexture* pSrcRT, CTexture* pDestRT)>(0xF661A0);
+#else
+auto g_CStretchRectPass_Execute = PreyFunction<void(CStretchRectPass* const _this, CTexture* pSrcRT, CTexture* pDestRT)>(0xF82510);
+#endif
 auto g_CStretchRectPass_Execute_Hook = g_CStretchRectPass_Execute.MakeHook();
 
 void CStretchRectPass_Execute_Hook(CStretchRectPass* const _this, CTexture* pSrcRT, CTexture* pDestRT)
@@ -226,7 +290,11 @@ void CStretchRectPass_Execute_Hook(CStretchRectPass* const _this, CTexture* pSrc
 // CAutoExposureStage
 //------------------------------------------------------------
 class CAutoExposureStage;
+#ifndef MOONCRASH
 auto g_CAutoExposureStage_Execute = PreyFunction<void(CAutoExposureStage* const _this)>(0xF5A680);
+#else
+auto g_CAutoExposureStage_Execute = PreyFunction<void(CAutoExposureStage* const _this)>(0xF76940);
+#endif
 auto g_CAutoExposureStage_Execute_Hook = g_CAutoExposureStage_Execute.MakeHook();
 
 void CAutoExposureStage_Execute_Hook(CAutoExposureStage* const _this)
@@ -239,7 +307,11 @@ void CAutoExposureStage_Execute_Hook(CAutoExposureStage* const _this)
 // CFullscreenPass
 //------------------------------------------------------------
 class CFullscreenPass;
+#ifndef MOONCRASH
 auto g_CFullscreenPass_Execute = PreyFunction<bool(CFullscreenPass* const _this)>(0xF5FF90);
+#else
+auto g_CFullscreenPass_Execute = PreyFunction<bool(CFullscreenPass* const _this)>(0xF7C240);
+#endif
 auto g_CFullscreenPass_Execute_Hook = g_CFullscreenPass_Execute.MakeHook();
 
 bool CFullscreenPass_Execute_Hook(CFullscreenPass* const _this)
@@ -252,7 +324,11 @@ bool CFullscreenPass_Execute_Hook(CFullscreenPass* const _this)
 // CBloomStage
 //------------------------------------------------------------
 class CBloomStage;
+#ifndef MOONCRASH
 auto g_CBloomStage_Execute = PreyFunction<void(CBloomStage* const _this)>(0xF5B710);
+#else
+auto g_CBloomStage_Execute = PreyFunction<void(CBloomStage* const _this)>(0xF779F0);
+#endif
 auto g_CBloomStage_Execute_Hook = g_CBloomStage_Execute.MakeHook();
 
 void CBloomStage_Execute_Hook(CBloomStage* const _this)
@@ -265,7 +341,11 @@ void CBloomStage_Execute_Hook(CBloomStage* const _this)
 // CRELensOptics
 //------------------------------------------------------------
 class CRELensOptics;
+#ifndef MOONCRASH
 auto g_CRELensOptics_mfDraw = PreyFunction<bool(CRELensOptics* const _this, CShader* pShader, SShaderPass* pass)>(0xED4DC0);
+#else
+auto g_CRELensOptics_mfDraw = PreyFunction<bool(CRELensOptics* const _this, CShader* pShader, SShaderPass* pass)>(0xEF1110);
+#endif
 auto g_CRELensOptics_mfDraw_Hook = g_CRELensOptics_mfDraw.MakeHook();
 
 bool CRELensOptics_mfDraw_Hook(CRELensOptics* const _this, CShader* pShader, SShaderPass* pass)
@@ -278,7 +358,11 @@ bool CRELensOptics_mfDraw_Hook(CRELensOptics* const _this, CShader* pShader, SSh
 // CSunShaftsStage
 //------------------------------------------------------------
 class CSunShaftsStage;
+#ifndef MOONCRASH
 auto g_CSunShaftsStage_Execute = PreyFunction<void(CSunShaftsStage* const _this)>(0xF8B0C0);
+#else
+auto g_CSunShaftsStage_Execute = PreyFunction<void(CSunShaftsStage* const _this)>(0xFA7360);
+#endif
 auto g_CSunShaftsStage_Execute_Hook = g_CSunShaftsStage_Execute.MakeHook();
 
 void CSunShaftsStage_Execute_Hook(CSunShaftsStage* const _this)
@@ -291,7 +375,11 @@ void CSunShaftsStage_Execute_Hook(CSunShaftsStage* const _this)
 // CToneMappingStage
 //------------------------------------------------------------
 class CToneMappingStage;
+#ifndef MOONCRASH
 auto g_CToneMappingStage_Execute = PreyFunction<void(CToneMappingStage* const _this)>(0xF90FF0);
+#else
+auto g_CToneMappingStage_Execute = PreyFunction<void(CToneMappingStage* const _this)>(0xFAD290);
+#endif
 auto g_CToneMappingStage_Execute_Hook = g_CToneMappingStage_Execute.MakeHook();
 
 void CToneMappingStage_Execute_Hook(CToneMappingStage* const _this)
@@ -304,10 +392,26 @@ void CToneMappingStage_Execute_Hook(CToneMappingStage* const _this)
 // CPostAAStage
 //------------------------------------------------------------
 class CPostAAStage;
+#ifndef MOONCRASH
 auto g_CPostAAStage_Execute = PreyFunction<void(CPostAAStage* const _this)>(0xF70730);
+#else
+auto g_CPostAAStage_Execute = PreyFunction<void(CPostAAStage* const _this)>(0xF8C9B0);
+#endif
+#ifndef MOONCRASH
 auto g_CPostAAStage_ApplySMAA = PreyFunction<void(CPostAAStage* const _this, CTexture*& pCurrRT, CTexture* pBlendWeightsRT, CTexture* pDestRT)>(0xF6D4A0);
+#else
+auto g_CPostAAStage_ApplySMAA = PreyFunction<void(CPostAAStage* const _this, CTexture*& pCurrRT, CTexture* pBlendWeightsRT, CTexture* pDestRT)>(0xF897B0);
+#endif
+#ifndef MOONCRASH
 auto g_CPostAAStage_ApplyTemporalAA = PreyFunction<void(CPostAAStage* const _this, CTexture*& pCurrRT, CTexture*& pMgpuRT, unsigned aaMode)>(0xF6DF80);
+#else
+auto g_CPostAAStage_ApplyTemporalAA = PreyFunction<void(CPostAAStage* const _this, CTexture*& pCurrRT, CTexture*& pMgpuRT, unsigned aaMode)>(0xF8A290);
+#endif
+#ifndef MOONCRASH
 auto g_CPostAAStage_DoFinalComposition = PreyFunction<void(CPostAAStage* const _this, CTexture* pCurrRT, unsigned aaMode, CTexture* _pOpticsComposite)>(0xF6FB50);
+#else
+auto g_CPostAAStage_DoFinalComposition = PreyFunction<void(CPostAAStage* const _this, CTexture* pCurrRT, unsigned aaMode, CTexture* _pOpticsComposite)>(0xF8BE60);
+#endif
 
 auto g_CPostAAStage_Execute_Hook = g_CPostAAStage_Execute.MakeHook();
 auto g_CPostAAStage_ApplySMAA_Hook = g_CPostAAStage_ApplySMAA.MakeHook();

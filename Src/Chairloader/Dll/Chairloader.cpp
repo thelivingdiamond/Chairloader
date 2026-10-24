@@ -468,8 +468,13 @@ void Chairloader::InitHooks()
 	{
 		uint8_t bytes[] = { 0x00, 0x08 };
 		uint8_t* base = (uint8_t*)GetModuleBase();
+#ifndef MOONCRASH
 		mem::Patch(base + 0xF240CD, bytes + 0, 1);
 		mem::Patch(base + 0xF240E0, bytes + 1, 1);
+#else
+		mem::Patch(base + 0xF403ED, bytes + 0, 1);
+		mem::Patch(base + 0xF40400, bytes + 1, 1);
+#endif
 	}
 }
 

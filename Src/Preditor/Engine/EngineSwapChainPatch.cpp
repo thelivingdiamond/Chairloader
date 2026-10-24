@@ -9,8 +9,16 @@ namespace
 {
 
 Engine::EngineSwapChainPatch g_SwapChainPatch;
+#ifndef MOONCRASH
 auto DeviceInfo_CreateDevice = PreyFunction<bool(DeviceInfo* const _this, bool windowed, int width, int height, int backbufferWidth, int backbufferHeight, EDisplayOutputMode _outputMode, int zbpp, HRESULT(*pCreateDeviceCallback)(ID3D11Device*), HWND__* (*pCreateWindowCallback)())>(0xF23FE0);
+#else
+auto DeviceInfo_CreateDevice = PreyFunction<bool(DeviceInfo* const _this, bool windowed, int width, int height, int backbufferWidth, int backbufferHeight, EDisplayOutputMode _outputMode, int zbpp, HRESULT(*pCreateDeviceCallback)(ID3D11Device*), HWND__* (*pCreateWindowCallback)())>(0xF40300);
+#endif
+#ifndef MOONCRASH
 auto DeviceInfo_CreateViews = PreyFunction<bool(DeviceInfo* const _this)>(0xF24650);
+#else
+auto DeviceInfo_CreateViews = PreyFunction<bool(DeviceInfo* const _this)>(0xF40970);
+#endif
 auto g_DeviceInfo_CreateDevice_Hook = DeviceInfo_CreateDevice.MakeHook();
 auto g_DeviceInfo_CreateViews_Hook = DeviceInfo_CreateViews.MakeHook();
 bool g_bInCreateDevice = false;

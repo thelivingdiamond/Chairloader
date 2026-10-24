@@ -7,7 +7,11 @@
 // #include <Prey/GameDll/ark/turret/ArkTurret.h>
 #include <Prey/GameDll/ark/ArkFactionManager.h>
 
+#ifndef MOONCRASH
 inline auto FGetArkTurretFromEntity = PreyFunction<ArkTurret * (IEntity const*)>(0x12A71A0);
+#else
+inline auto FGetArkTurretFromEntity = PreyFunction<ArkTurret * (IEntity const*)>(0x1707BC0);
+#endif
 
 IEntity* EntityUtils::SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 archetypeId, unsigned spawnCount, uint64_t faction) {
 	IEntity* latestEntity = nullptr;
@@ -15,7 +19,13 @@ IEntity* EntityUtils::SpawnNpc(const char* name, Vec3& pos, Quat& rot, uint64 ar
 	static boost::variant<ArkNpcSpawnedState_Alert, ArkNpcSpawnedState_Broken, ArkNpcSpawnedState_Dead, ArkNpcSpawnedState_Dormant> state = alert;
 	for (int i = 1; i <= spawnCount; i++) {
         if(gEnv->pEntitySystem->GetEntityArchetype(archetypeId)) {
+#ifndef MOONCRASH
             latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0, state);
+#else
+            // 0x7777 is the random value seed the game passes for NPCs created outside a spawner
+            // (ArkFlowNodeNpcCreatePhantomInstant, ArkPsiCorpsePhantom, the player mimic entities).
+            latestEntity = ArkNpcSpawnManager::CreateNpc(*gEnv->pEntitySystem->GetEntityArchetype(archetypeId), pos, rot, 0x7777, state, 0);
+#endif
             if(faction != 0){
                 static_cast<ArkFactionManager *>(gEnv->pGame->GetIArkFactionManager())->SetEntityFaction(
                         latestEntity->GetId(),

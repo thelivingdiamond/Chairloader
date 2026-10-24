@@ -63,21 +63,33 @@ function(cl_set_output_dir targetName outPath)
 	)
 endfunction()
 
+# Build for Mooncrash. Outputs go to Whiplash/ and Data-Mooncrash/ so base builds are not overwritten.
+option(PREY_MOONCRASH "Build for Mooncrash (Whiplash) instead of base Prey" OFF)
+
 # Sets target's output directory to the game binaries dir.
 # @param targetName Name of the target.
 function(cl_output_to_game_dir targetName)
 	if(PREY_DLL_DIR)
-		cl_set_output_dir(${targetName} "${PREY_DLL_DIR}")
+		if(PREY_MOONCRASH)
+			cl_set_output_dir(${targetName} "${PREY_PATH}/Whiplash/Binaries/Danielle/x64/Release")
+		else()
+			cl_set_output_dir(${targetName} "${PREY_DLL_DIR}")
+		endif()
 	endif()
 endfunction()
 
 # Sets target's output directory to the Data dir.
 # @param targetName Name of the target.
 function(cl_output_to_data targetName)
-	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
+	if(PREY_MOONCRASH)
+		set(dataDir "${CMAKE_SOURCE_DIR}/Data-Mooncrash")
+	else()
+		set(dataDir "${CMAKE_SOURCE_DIR}/Data")
+	endif()
+	cl_set_output_dir(${targetName} "${dataDir}")
 
 	set_target_properties(${targetName} PROPERTIES
-		VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
+		VS_DEBUGGER_WORKING_DIRECTORY "${dataDir}"
 	)
 endfunction()
 

@@ -102,6 +102,11 @@ set(SOURCE_FILES
 add_library(Common STATIC
 	${SOURCE_FILES} Prey/CryAction/flowsystem/nodes/flowbasenode.h)
 
+# PREY_MOONCRASH (top-level CMakeLists.txt) selects the Mooncrash headers everywhere.
+if(PREY_MOONCRASH)
+	target_compile_definitions(Common PUBLIC MOONCRASH)
+endif()
+
 target_include_directories(Common PUBLIC
 	.
 	pugixml
