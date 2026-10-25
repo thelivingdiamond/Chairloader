@@ -84,15 +84,10 @@ endfunction()
 # Sets target's output directory to the Data dir.
 # @param targetName Name of the target.
 function(cl_output_to_data targetName)
-	if(PREY_MOONCRASH)
-		set(dataDir "${CMAKE_SOURCE_DIR}/Data-Mooncrash")
-	else()
-		set(dataDir "${CMAKE_SOURCE_DIR}/Data")
-	endif()
-	cl_set_output_dir(${targetName} "${dataDir}")
+	cl_set_output_dir(${targetName} "${CMAKE_SOURCE_DIR}/Data")
 
 	set_target_properties(${targetName} PROPERTIES
-		VS_DEBUGGER_WORKING_DIRECTORY "${dataDir}"
+		VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Data"
 	)
 endfunction()
 
