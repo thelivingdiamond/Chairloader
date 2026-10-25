@@ -10,5 +10,7 @@ struct ArkComplexVisualPerceptionInfo // Id=8014314 Size=8
 	float m_magnitude;
 	
 	ArkComplexVisualPerceptionInfo(unsigned _perceivableEntityId, float _magnitude);
+#ifdef MOONCRASH
+	static inline auto FArkComplexVisualPerceptionInfo = PreyFunction<void(ArkComplexVisualPerceptionInfo* const _this, unsigned _perceivableEntityId, float _magnitude)>(0x1648700);
+#endif
 };
-

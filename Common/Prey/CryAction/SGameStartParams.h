@@ -17,4 +17,3 @@ struct SGameStartParams // Id=8002006 Size=40
 	unsigned session;
 	uint16_t port;
 };
-

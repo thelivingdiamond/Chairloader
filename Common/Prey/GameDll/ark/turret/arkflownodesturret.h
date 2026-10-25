@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -11,7 +12,7 @@ class XmlNodeRef;
 
 // Header: FromCpp
 // Prey/GameDll/ark/turret/arkflownodesturret.h
-class ArkFlowNode_ArkTurret_EnableFlowgraphControl : public CFlowBaseNode<0> // Id=801CB3B Size=16
+class ArkFlowNode_ArkTurret_EnableFlowgraphControl : public CFlowBaseNode<eNCT_Singleton> // Id=801CB3B Size=16
 {
 public:
 	enum class EInputPortIndex
@@ -43,7 +44,7 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/turret/arkflownodesturret.h
-class ArkFlowNode_ArkTurret_ManualTarget : public CFlowBaseNode<0> // Id=801CB3D Size=16
+class ArkFlowNode_ArkTurret_ManualTarget : public CFlowBaseNode<eNCT_Singleton> // Id=801CB3D Size=16
 {
 public:
 	enum class EInputPortIndex
@@ -78,7 +79,7 @@ public:
 
 // Header: FromCpp
 // Prey/GameDll/ark/turret/arkflownodesturret.h
-class ArkFlowNode_ArkTurret_WeaponProperties : public CFlowBaseNode<0> // Id=801CB3F Size=16
+class ArkFlowNode_ArkTurret_WeaponProperties : public CFlowBaseNode<eNCT_Singleton> // Id=801CB3F Size=16
 {
 public:
 	enum class EInputPortIndex
@@ -110,4 +111,4 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNode_ArkTurret_WeaponProperties *const _this, IFlowNode::SActivationInfo *, TSerialize ser)>(0xA13080);
 	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNode_ArkTurret_WeaponProperties *const _this, IFlowNode::SActivationInfo *)>(0xA13080);
 };
-
+#endif // !MOONCRASH

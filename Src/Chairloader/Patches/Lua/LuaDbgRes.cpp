@@ -5,8 +5,11 @@
 namespace
 {
 
+#ifndef MOONCRASH
 PreyGlobal<void*> gDLLHandle(0x29773B0); // gDLLHandle in CryScriptSystem.dll
-
+#else
+PreyGlobal<void*> gDLLHandle(0x2AE6640); // gDLLHandle in CryScriptSystem.dll
+#endif
 } // namespace
 
 void LuaDbgRes::InitSystem()

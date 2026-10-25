@@ -9,6 +9,9 @@ struct IProceduralParams;
 
 // ArkNpcAnimActionObserver
 // Header:  Prey/GameDll/ark/npc/ArkNpcAnimActionObserver.h
+#ifdef MOONCRASH
+#include <Prey/ArkCommon/arkintrusivelist.h>
+#endif
 class ArkNpcAnimActionObserver : public ArkIntrusiveListElement<ArkNpcAnimActionObserver>
 { // Size=32 (0x20)
 public:
@@ -26,6 +29,7 @@ public:
 	~ArkNpcAnimActionObserver();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FOnNpcAnimActionEnter = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0xA13080);
 	static inline auto FOnNpcAnimActionEvent = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, unsigned _eventCrc)>(0xA13080);
 	static inline auto FOnNpcAnimFragmentStarted = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0xA13080);
@@ -34,5 +38,14 @@ public:
 	static inline auto FOnNpcAnimActionProceduralClipEnd = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, IProceduralClip& _clip, unsigned _clipCrc)>(0xA13080);
 	static inline auto FOnNpcAnimActionExit = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0xA13080);
 	static inline auto FOnNpcAnimActionFail = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, EActionFailure _actionFailure)>(0xA13080);
+#else
+	static inline auto FOnNpcAnimActionEnter = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0x1333E90);
+	static inline auto FOnNpcAnimActionEvent = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, unsigned _eventCrc)>(0x1333E90);
+	static inline auto FOnNpcAnimFragmentStarted = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0x1333E90);
+	static inline auto FOnNpcCustomActionEvent = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, IProceduralClip& _clip, unsigned _clipCrc, const IProceduralParams& _params)>(0x1333E90);
+	static inline auto FOnNpcAnimActionProceduralClipBegin = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, IProceduralClip& _clip, unsigned _clipCrc)>(0x1333E90);
+	static inline auto FOnNpcAnimActionProceduralClipEnd = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, IProceduralClip& _clip, unsigned _clipCrc)>(0x1333E90);
+	static inline auto FOnNpcAnimActionExit = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction)>(0x1333E90);
+	static inline auto FOnNpcAnimActionFail = PreyFunction<void(ArkNpcAnimActionObserver* const _this, ArkNpcAnimAction& _animAction, EActionFailure _actionFailure)>(0x1333E90);
+#endif
 };
-

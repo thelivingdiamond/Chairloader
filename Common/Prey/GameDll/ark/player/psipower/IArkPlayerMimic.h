@@ -28,4 +28,3 @@ public:
 	virtual void Serialize(TSerialize _ser) = 0;
 	virtual void PostSerialize() = 0;
 };
-

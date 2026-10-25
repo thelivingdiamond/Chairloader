@@ -38,9 +38,15 @@ public:
 	bool InstanceOf(ArkClass const *const arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetClasses = PreyFunction<std::unordered_map<string,ArkClass const *,std::hash<string>,std::equal_to<string>,std::allocator<std::pair<CryStringT<char> const,ArkClass const *>>> &()>(0x2A0C80);
 	static inline auto FGetClassByName = PreyFunction<ArkClass const *(const char *_className)>(0x2A0B90);
 	static inline auto FAddProperty = PreyFunction<void(ArkClass *const _this, ArkProperty *_pProperty)>(0x2A0590);
+#else
+	static inline auto FGetClasses = PreyFunction<std::unordered_map<string, const ArkClass*>& ()>(0x2B9130);
+	static inline auto FGetClassByName = PreyFunction<const ArkClass* (const char* _className)>(0x2B9040);
+	static inline auto FAddProperty = PreyFunction<void(ArkClass* const _this, ArkProperty* _pProperty)>(0x2B8A70);
+#endif
 };
 
 // Header: Exact
@@ -56,4 +62,3 @@ public:
 	T Get() const;
 #endif
 };
-

@@ -14,7 +14,12 @@ class ArkNpcNoiseStateDesire;
 class ArkNpcNoiseStateDesireManager : public ArkNpcDesireManagerBase<ArkNpcNoiseStateDesireManager,ArkNpcNoiseStateDesire> // Id=801414A Size=80
 {
 public:
+#ifdef MOONCRASH
+	ArkAudioTrigger m_audioTriggers[6];
+#endif
+#ifndef MOONCRASH
 	ArkAudioTrigger m_audioTriggers[5];
+#endif
 	boost::optional<enum EArkNpcNoiseState> m_currentNoiseState;
 	
 	ArkNpcNoiseStateDesireManager(ArkNpc &_npc);
@@ -25,11 +30,20 @@ public:
 	void Refresh() { FRefresh(this); }
 	void ShutDown() { FShutDown(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FOnActiveDesireAdded = PreyFunction<void(ArkNpcNoiseStateDesireManager const *const _this, ArkNpcNoiseStateDesire const *_pPrevActiveDesire)>(0xA13080);
 	static inline auto FOnActiveDesireRemoved = PreyFunction<void(ArkNpcNoiseStateDesireManager const *const _this, ArkNpcNoiseStateDesire const &_prevActiveDesire)>(0xA13080);
 	static inline auto FOnActiveParamsChanged = PreyFunction<void(ArkNpcNoiseStateDesireManager const *const _this)>(0xA13080);
 	static inline auto FInitialize = PreyFunction<void(ArkNpcNoiseStateDesireManager *const _this, ArkNpc const &_npc)>(0x1212EF0);
 	static inline auto FRefresh = PreyFunction<void(ArkNpcNoiseStateDesireManager *const _this)>(0x1212F40);
 	static inline auto FShutDown = PreyFunction<void(ArkNpcNoiseStateDesireManager *const _this)>(0x1213150);
+#else
+	static inline auto FArkNpcNoiseStateDesireManager = PreyFunction<void(ArkNpcNoiseStateDesireManager* const _this, ArkNpc& _npc)>(0x12A23B0);
+	static inline auto FOnActiveDesireAdded = PreyFunction<void(const ArkNpcNoiseStateDesireManager* const _this, const ArkNpcNoiseStateDesire* _pPrevActiveDesire)>(0x1333E90);
+	static inline auto FOnActiveDesireRemoved = PreyFunction<void(const ArkNpcNoiseStateDesireManager* const _this, const ArkNpcNoiseStateDesire& _prevActiveDesire)>(0x1333E90);
+	static inline auto FOnActiveParamsChanged = PreyFunction<void(const ArkNpcNoiseStateDesireManager* const _this)>(0x1333E90);
+	static inline auto FInitialize = PreyFunction<void(ArkNpcNoiseStateDesireManager* const _this, const ArkNpc& _npc)>(0x12A23E0);
+	static inline auto FRefresh = PreyFunction<void(ArkNpcNoiseStateDesireManager* const _this)>(0x12A2420);
+	static inline auto FShutDown = PreyFunction<void(ArkNpcNoiseStateDesireManager* const _this)>(0x12A2630);
+#endif
 };
-

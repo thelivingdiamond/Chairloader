@@ -16,4 +16,3 @@ struct SEntityAttachment // Id=800C7F3 Size=64
 	int flags;
 	string target;
 };
-

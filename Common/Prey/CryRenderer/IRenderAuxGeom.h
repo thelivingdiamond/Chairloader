@@ -208,20 +208,7 @@ struct IRenderAuxGeom
 	virtual void Commit(uint frames = 0) = 0;
 	// </interfuscator:shuffle>
 
-	// New in CRYENGINE 5
-	
-	//! Push a world matrix for the next primitives
-	//! \param mat  Contains the matrix that will be used for trasforms of further primitives
-	//! \return     Index of previous used matrix index in the matrix buffer, as set internally or by SetMatrixIndex!
-	virtual int PushMatrix(const Matrix34& mat) = 0;
-
-	//! Get the world matrix for the next primitives
-	//! \return active matrix in the matrix buffer.
-	virtual Matrix34* GetMatrix() = 0;
-
-	//! Set world matrix for the next primitives based on ID. This function allows us to do push/pop semantics
-	//! \param matID matrix ID. Should be a matrix id returned by PushMatrix
-	virtual void SetMatrixIndex(int matID) = 0;
+	// Prey has no CRYENGINE 5 PushMatrix/GetMatrix/SetMatrixIndex; Commit is the last slot.
 
 	// Chairloader extensions
 

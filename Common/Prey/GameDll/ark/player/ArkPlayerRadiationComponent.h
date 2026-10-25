@@ -64,6 +64,7 @@ public:
 	ArkPlayerRadiationComponent::EArkRadiationLevel GetRadiationLevel(float _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerRadiationComponentOv2 = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x12FAEC0);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerRadiationComponent* const _this, const XmlNodeRef& _node)>(0x12FB0C0);
 	static inline auto FReset = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x12FB590);
@@ -75,5 +76,17 @@ public:
 	static inline auto FForceRadiationLevel = PreyFunction<void(ArkPlayerRadiationComponent* const _this, float _magnitude)>(0x12FAF20);
 	static inline auto FUpdateCurrentLevel = PreyFunction<float(ArkPlayerRadiationComponent* const _this)>(0x12FBC30);
 	static inline auto FOpenUI = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x12FB200);
+#else
+	static inline auto FArkPlayerRadiationComponentOv2 = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x13D5B50);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerRadiationComponent* const _this, const XmlNodeRef& _node)>(0x13D5D50);
+	static inline auto FReset = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x13D6230);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerRadiationComponent* const _this, const float _frameTime)>(0x13D63C0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerRadiationComponent* const _this, TSerialize _ser)>(0x13D6360);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x13D5FA0);
+	static inline auto FReceiveRadiation = PreyFunction<void(ArkPlayerRadiationComponent* const _this, float _amount)>(0x13D6170);
+	static inline auto FGetRadiationPercent = PreyFunction<float(const ArkPlayerRadiationComponent* const _this)>(0x13D5D20);
+	static inline auto FForceRadiationLevel = PreyFunction<void(ArkPlayerRadiationComponent* const _this, float _magnitude)>(0x13D5BB0);
+	static inline auto FUpdateCurrentLevel = PreyFunction<float(ArkPlayerRadiationComponent* const _this)>(0x13D68D0);
+	static inline auto FOpenUI = PreyFunction<void(ArkPlayerRadiationComponent* const _this)>(0x13D5E90);
+#endif
 };
-

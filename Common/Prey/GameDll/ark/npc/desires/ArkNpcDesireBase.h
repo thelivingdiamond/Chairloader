@@ -39,4 +39,3 @@ public:
 	void OnSetParams(bool arg0);
 #endif
 };
-

@@ -8,6 +8,10 @@ class ArkClass;
 
 // Header: Exact
 // Prey/Ark/arkmetatagdata.h
+#ifdef MOONCRASH
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+class IArkValueBase;
+#endif
 class ArkMetaTag : public ArkReflectedObject // Id=8016B00 Size=16
 {
 public:
@@ -17,11 +21,20 @@ public:
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkMetaTag::ArknameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkMetaTag::ArknameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkMetaTag::ArknameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkMetaTag::ArknameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkMetaTag::ArknameProperty s_ArknameProperty;
+#else
+	static inline auto s_ArknameProperty = PreyGlobal<ArkMetaTag::ArknameProperty>(0x2D26970);
+#endif
 	string m_name;
 	
 	class ArkidProperty : public ArkProperty // Id=8016B02 Size=32
@@ -30,11 +43,20 @@ public:
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkMetaTag::ArkidProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x107F050);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkMetaTag::ArkidProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkMetaTag::ArkidProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkMetaTag::ArkidProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkMetaTag::ArkidProperty s_ArkidProperty;
+#else
+	static inline auto s_ArkidProperty = PreyGlobal<ArkMetaTag::ArkidProperty>(0x2D26990);
+#endif
 	uint64_t m_id;
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
@@ -47,8 +69,13 @@ public:
 	const uint64_t &Getid() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x1078480);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x1078510);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x109E190);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x109E220);
+#endif
 };
 
 // Header: Exact
@@ -65,13 +92,25 @@ public:
 		virtual bool IsArray() const;
 		virtual void Reset(ArkReflectedObject *_pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkMetaTags::ArkMetaTagsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1077E60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkMetaTags::ArkMetaTagsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1077ED0);
 		static inline auto FIsArray = PreyFunction<bool(ArkMetaTags::ArkMetaTagsProperty const *const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(ArkMetaTags::ArkMetaTagsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1077F10);
+#else
+		static inline auto FArkMetaTagsPropertyOv2 = PreyFunction<void(ArkMetaTags::ArkMetaTagsProperty* const _this)>(0x109DF60);
+		static inline auto FSetValue = PreyFunction<void(const ArkMetaTags::ArkMetaTagsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x109DB70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkMetaTags::ArkMetaTagsProperty* const _this, ArkReflectedObject* const _pObject)>(0x109DBE0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkMetaTags::ArkMetaTagsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkMetaTags::ArkMetaTagsProperty* const _this, ArkReflectedObject* _pObject)>(0x109DC20);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkMetaTags::ArkMetaTagsProperty s_ArkMetaTagsProperty;
+#else
+	static inline auto s_ArkMetaTagsProperty = PreyGlobal<ArkMetaTags::ArkMetaTagsProperty>(0x2D269B0);
+#endif
 	std::vector<ArkMetaTag> m_MetaTags;
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
@@ -89,10 +128,17 @@ public:
 	ArkMetaTag const &GetTag(int arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x10784B0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x10785B0);
 	static inline auto FInit = PreyFunction<bool(ArkMetaTags *const _this)>(0x10786F0);
 	static inline auto FGetTagId = PreyFunction<uint64_t(ArkMetaTags const *const _this, const char *const _pTagName)>(0x10786A0);
 	static inline auto FIsAlwaysLoaded = PreyFunction<bool(ArkMetaTags const *const _this)>(0x1B933B0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x109E1C0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x109E2C0);
+	static inline auto FInit = PreyFunction<bool(ArkMetaTags* const _this)>(0x109E400);
+	static inline auto FGetTagId = PreyFunction<uint64_t(const ArkMetaTags* const _this, const char* const _pTagName)>(0x109E3B0);
+	static inline auto FIsAlwaysLoaded = PreyFunction<bool(const ArkMetaTags* const _this)>(0x1A302A0);
+#endif
 };
-

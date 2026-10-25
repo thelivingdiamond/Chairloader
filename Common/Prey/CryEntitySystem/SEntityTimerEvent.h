@@ -11,4 +11,3 @@ struct SEntityTimerEvent // Id=800C6D4 Size=12
 	int nTimerId;
 	int nMilliSeconds;
 };
-

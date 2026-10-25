@@ -9,8 +9,11 @@ static RenderDll::ChairRender g_ChairRender;
 
 namespace RenderDll
 {
-
+#ifndef MOONCRASH
 auto g_ComputePresentInterval = PreyFunction<uint32(bool vsync, uint32 refreshNumerator, uint32 refreshDenominator)>(0xF4C000);
+#else
+auto g_ComputePresentInterval = PreyFunction<uint32(bool vsync, uint32 refreshNumerator, uint32 refreshDenominator)>(0xF68240);
+#endif
 
 // Callbacks
 auto g_CD3D9Renderer_InitRenderer_Hook = CD3D9Renderer::FInitRenderer.MakeHook();

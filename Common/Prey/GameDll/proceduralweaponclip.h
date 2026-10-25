@@ -1,17 +1,14 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/cryaction/icrymannequin.h>
-#include <CryEngine/cryentitysystem/entityclass.h>
-#include <CryEngine/crymovie/animsequence.h>
 #include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryEntitySystem/entityclass.h>
+#include <Prey/CryMovie/animsequence.h>
 #include <Prey/GameDll/weaponlookoffset.h>
 #include <Prey/GameDll/weaponrecoiloffset.h>
 #include <Prey/GameDll/ark/weapons/SStaticBumpParams.h>
 #include <Prey/GameDll/ark/weapons/SStaticWeaponPoseParams.h>
 #include <Prey/GameDll/ark/weapons/SStaticWiggleParams.h>
-#include <_unknown/TProceduralContextualClip_CProceduralWeaponAnimationContext,SWeaponProceduralClipParams_SStaticBumpParams_ _.h>
-#include <_unknown/TProceduralContextualClip_CProceduralWeaponAnimationContext,SWeaponProceduralClipParams_SStaticWiggleParams_ _.h>
 
 namespace Serialization
 {
@@ -42,9 +39,15 @@ public:
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
 	
+#ifndef MOONCRASH
 	static inline auto FOnEnter = PreyFunction<void(CWeaponPoseOffset *const _this, float blendTime, float duration, SWeaponProceduralClipParams<SStaticWeaponPoseParams> const &staticParams)>(0x17D3B10);
 	static inline auto FOnExit = PreyFunction<void(CWeaponPoseOffset *const _this, float blendTime)>(0x17D3CD0);
 	static inline auto FUpdate = PreyFunction<void(CWeaponPoseOffset *const _this, float timePassed)>(0x17D3D10);
+#else
+	static inline auto FOnEnter = PreyFunction<void(CWeaponPoseOffset* const _this, float blendTime, float duration, const SWeaponProceduralClipParams<SStaticWeaponPoseParams>& staticParams)>(0x18FA210);
+	static inline auto FOnExit = PreyFunction<void(CWeaponPoseOffset* const _this, float blendTime)>(0x18FA3D0);
+	static inline auto FUpdate = PreyFunction<void(CWeaponPoseOffset* const _this, float timePassed)>(0x18FA410);
+#endif
 };
 
 // Header: FromCpp
@@ -58,9 +61,15 @@ public:
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
 	
+#ifndef MOONCRASH
 	static inline auto FOnEnter = PreyFunction<void(CWeaponSwayOffset *const _this, float blendTime, float duration, SWeaponProceduralClipParams<SStaticWeaponSwayParams> const &staticParams)>(0x17D3FA0);
 	static inline auto FOnExit = PreyFunction<void(CWeaponSwayOffset *const _this, float blendTime)>(0x17D4160);
 	static inline auto FUpdate = PreyFunction<void(CWeaponSwayOffset *const _this, float timePassed)>(0x17D41C0);
+#else
+	static inline auto FOnEnter = PreyFunction<void(CWeaponSwayOffset* const _this, float blendTime, float duration, const SWeaponProceduralClipParams<SStaticWeaponSwayParams>& staticParams)>(0x18FA6A0);
+	static inline auto FOnExit = PreyFunction<void(CWeaponSwayOffset* const _this, float blendTime)>(0x18FA860);
+	static inline auto FUpdate = PreyFunction<void(CWeaponSwayOffset* const _this, float timePassed)>(0x18FA8C0);
+#endif
 };
 
 // Header: FromCpp
@@ -72,9 +81,15 @@ public:
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
 	
+#ifndef MOONCRASH
 	static inline auto FOnEnter = PreyFunction<void(CWeaponRecoilOffset *const _this, float blendTime, float duration, SWeaponProceduralClipParams<SStaticWeaponRecoilParams> const &staticParams)>(0x17D3410);
 	static inline auto FOnExit = PreyFunction<void(CWeaponRecoilOffset *const _this, float blendTime)>(0x17D3460);
 	static inline auto FUpdate = PreyFunction<void(CWeaponRecoilOffset *const _this, float timePassed)>(0x17D3470);
+#else
+	static inline auto FOnEnter = PreyFunction<void(CWeaponRecoilOffset* const _this, float blendTime, float duration, const SWeaponProceduralClipParams<SStaticWeaponRecoilParams>& staticParams)>(0x18FAAC0);
+	static inline auto FOnExit = PreyFunction<void(CWeaponRecoilOffset* const _this, float blendTime)>(0x18FAB10);
+	static inline auto FUpdate = PreyFunction<void(CWeaponRecoilOffset* const _this, float timePassed)>(0x18FAB20);
+#endif
 };
 
 // Header: FromCpp
@@ -86,9 +101,15 @@ public:
 	virtual void OnExit(float blendTime);
 	virtual void Update(float timePassed);
 	
+#ifndef MOONCRASH
 	static inline auto FOnEnter = PreyFunction<void(CWeaponBumpOffset *const _this, float blendTime, float duration, SWeaponProceduralClipParams<SStaticBumpParams> const &staticParams)>(0x17D36E0);
 	static inline auto FOnExit = PreyFunction<void(CWeaponBumpOffset *const _this, float blendTime)>(0x17D3840);
 	static inline auto FUpdate = PreyFunction<void(CWeaponBumpOffset *const _this, float timePassed)>(0xA13080);
+#else
+	static inline auto FOnEnter = PreyFunction<void(CWeaponBumpOffset* const _this, float blendTime, float duration, const SWeaponProceduralClipParams<SStaticBumpParams>& staticParams)>(0x18FAD20);
+	static inline auto FOnExit = PreyFunction<void(CWeaponBumpOffset* const _this, float blendTime)>(0x18FAE80);
+	static inline auto FUpdate = PreyFunction<void(CWeaponBumpOffset* const _this, float timePassed)>(0x1333E90);
+#endif
 };
 
 // Header: FromCpp
@@ -108,8 +129,13 @@ public:
 	float BlendIntensity() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FOnEnter = PreyFunction<void(CWeaponWiggleOffset *const _this, float blendTime, float duration, SWeaponProceduralClipParams<SStaticWiggleParams> const &staticParams)>(0x17D3940);
 	static inline auto FOnExit = PreyFunction<void(CWeaponWiggleOffset *const _this, float blendTime)>(0x17D3980);
 	static inline auto FUpdate = PreyFunction<void(CWeaponWiggleOffset *const _this, float timePassed)>(0x17D39C0);
+#else
+	static inline auto FOnEnter = PreyFunction<void(CWeaponWiggleOffset* const _this, float blendTime, float duration, const SWeaponProceduralClipParams<SStaticWiggleParams>& staticParams)>(0x18FAFB0);
+	static inline auto FOnExit = PreyFunction<void(CWeaponWiggleOffset* const _this, float blendTime)>(0x18FAFF0);
+	static inline auto FUpdate = PreyFunction<void(CWeaponWiggleOffset* const _this, float timePassed)>(0x18FB030);
+#endif
 };
-

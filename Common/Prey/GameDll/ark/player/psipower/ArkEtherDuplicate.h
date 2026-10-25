@@ -41,6 +41,7 @@ public:
 	unsigned GetEntityId() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkEtherDuplicateOv1 = PreyFunction<void(ArkEtherDuplicate* const _this, const unsigned _entityId)>(0x1469CE0);
 	static inline auto FArkEtherDuplicateOv0 = PreyFunction<void(ArkEtherDuplicate* const _this, const char* _pArchetypeName, const Vec3& _position, const Quat& _rotation, const Quat& _viewRotation, const ArkEtherDuplicate::ArkShiftDirection _shiftDirection)>(0x1469DB0);
 	static inline auto FBitNotArkEtherDuplicate = PreyFunction<void(ArkEtherDuplicate* const _this)>(0x146A0D0);
@@ -50,5 +51,15 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkEtherDuplicate* const _this, TSerialize _ser)>(0x146A9F0);
 	static inline auto FSpawnAnimatedCharacter = PreyFunction<void(ArkEtherDuplicate* const _this, IEntity& _entity)>(0x146AA90);
 	static inline auto FEnableAttentionObject = PreyFunction<void(ArkEtherDuplicate* const _this, const bool _bEnable)>(0x146A390);
+#else
+	static inline auto FArkEtherDuplicateOv1 = PreyFunction<void(ArkEtherDuplicate* const _this, const unsigned _entityId)>(0x15815D0);
+	static inline auto FArkEtherDuplicateOv0 = PreyFunction<void(ArkEtherDuplicate* const _this, const char* _pArchetypeName, const Vec3& _position, const Quat& _rotation, const Quat& _viewRotation, const ArkEtherDuplicate::ArkShiftDirection _shiftDirection)>(0x15816A0);
+	static inline auto FBitNotArkEtherDuplicate = PreyFunction<void(ArkEtherDuplicate* const _this)>(0x15819C0);
+	static inline auto FGetHeadPosition = PreyFunction<Vec3*(const ArkEtherDuplicate* const _this, Vec3* _return_value_)>(0x1582010);
+	static inline auto FGetChestPosition = PreyFunction<Vec3*(const ArkEtherDuplicate* const _this, Vec3* _return_value_)>(0x1581D70);
+	static inline auto FGetEyePositionRotation = PreyFunction<QuatT*(const ArkEtherDuplicate* const _this, QuatT* _return_value_)>(0x1581DE0);
+	static inline auto FSerialize = PreyFunction<void(ArkEtherDuplicate* const _this, TSerialize _ser)>(0x15822E0);
+	static inline auto FSpawnAnimatedCharacter = PreyFunction<void(ArkEtherDuplicate* const _this, IEntity& _entity)>(0x1582380);
+	static inline auto FEnableAttentionObject = PreyFunction<void(ArkEtherDuplicate* const _this, const bool _bEnable)>(0x1581C80);
+#endif
 };
-

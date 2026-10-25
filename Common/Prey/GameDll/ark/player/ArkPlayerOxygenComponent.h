@@ -73,6 +73,7 @@ public:
 	float GetStat(const CCryName& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerOxygenComponentOv1 = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1572AC0);
 	static inline auto FReset = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1573090);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerOxygenComponent* const _this, const float _frameTime)>(0x15734E0);
@@ -91,5 +92,24 @@ public:
 	static inline auto FTutorialCallbackTriggered = PreyFunction<void(const ArkPlayerOxygenComponent* const _this)>(0x1573490);
 	static inline auto FUpdateDepletionAudio = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1573850);
 	static inline auto FUpdateAlarmAudio = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1573730);
+#else
+	static inline auto FArkPlayerOxygenComponentOv1 = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x16999E0);
+	static inline auto FReset = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1699FD0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerOxygenComponent* const _this, const float _frameTime)>(0x169A440);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerOxygenComponent* const _this, const XmlNodeRef& _node)>(0x1699BD0);
+	static inline auto FGetMaxOxygen = PreyFunction<float(const ArkPlayerOxygenComponent* const _this)>(0x1699B40);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerOxygenComponent* const _this, TSerialize _ser)>(0x169A080);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1699EE0);
+	static inline auto FRefillOxygenOv1 = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x1699F50);
+	static inline auto FRefillOxygenOv0 = PreyFunction<void(IConsoleCmdArgs* _pCmdArgs)>(0x1699F20);
+	static inline auto FGiveOxygen = PreyFunction<void(ArkPlayerOxygenComponent* const _this, float _oxygen)>(0x1699B60);
+	static inline auto FUpdateUIVisible = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x169ABD0);
+	static inline auto FSetConsumingOxygen = PreyFunction<void(ArkPlayerOxygenComponent* const _this, const bool _bConsuming, const bool _bReset)>(0x169A330);
+	static inline auto FSetOxygen = PreyFunction<void(ArkPlayerOxygenComponent* const _this, float _oxygen)>(0x169A390);
+	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerOxygenComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x1699E40);
+	static inline auto FUpdateHUD = PreyFunction<void(ArkPlayerOxygenComponent* const _this, float _frameTime)>(0x169A890);
+	static inline auto FTutorialCallbackTriggered = PreyFunction<void(const ArkPlayerOxygenComponent* const _this)>(0x169A3F0);
+	static inline auto FUpdateDepletionAudio = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x169A7A0);
+	static inline auto FUpdateAlarmAudio = PreyFunction<void(ArkPlayerOxygenComponent* const _this)>(0x169A6A0);
+#endif
 };
-

@@ -8,6 +8,9 @@ class XmlNodeRef;
 
 // ArkPlayerAwarenessComponent
 // Header:  Prey/GameDll/ark/player/ArkPlayerAwarenessComponent.h
+#ifdef MOONCRASH
+#include <Prey/CryCore/Containers/VectorMap.h>
+#endif
 class ArkPlayerAwarenessComponent
 { // Size=64 (0x40)
 public:
@@ -51,6 +54,7 @@ public:
 	EArkAttentionLevel GetAwarenessLevel(const unsigned _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerAwarenessComponentOv2 = PreyFunction<void(ArkPlayerAwarenessComponent* const _this)>(0x122C7A0);
 	static inline auto FReset = PreyFunction<void(ArkPlayerAwarenessComponent* const _this)>(0x122CDD0);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, const XmlNodeRef& _node)>(0x122CC00);
@@ -59,5 +63,14 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, TSerialize _ser)>(0x122CE50);
 	static inline auto FCanSneakAttackTarget = PreyFunction<bool(const ArkPlayerAwarenessComponent* const _this, const unsigned _target)>(0x122CB50);
 	static inline auto FPerformedSneakAttackOnTarget = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, const unsigned _target)>(0x122CD90);
+#else
+	static inline auto FArkPlayerAwarenessComponentOv2 = PreyFunction<void(ArkPlayerAwarenessComponent* const _this)>(0x129D010);
+	static inline auto FReset = PreyFunction<void(ArkPlayerAwarenessComponent* const _this)>(0x12CDBA0);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, const XmlNodeRef& _node)>(0x12CD9D0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, const float _dt)>(0x12CDD80);
+	static inline auto FPreSerialize = PreyFunction<void(ArkPlayerAwarenessComponent* const _this)>(0x12CDBA0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, TSerialize _ser)>(0x12CDC20);
+	static inline auto FCanSneakAttackTarget = PreyFunction<bool(const ArkPlayerAwarenessComponent* const _this, const unsigned _target)>(0x12CD920);
+	static inline auto FPerformedSneakAttackOnTarget = PreyFunction<void(ArkPlayerAwarenessComponent* const _this, const unsigned _target)>(0x12CDB60);
+#endif
 };
-

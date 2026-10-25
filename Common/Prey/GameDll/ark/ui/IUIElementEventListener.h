@@ -20,6 +20,7 @@ struct IUIElementEventListener // Id=80022C0 Size=8
 	virtual void OnInstanceDestroyed(IUIElement *pSender, IUIElement *pDeletedInstance);
 	virtual ~IUIElementEventListener();
 	
+#ifndef MOONCRASH
 	static inline auto FOnUIEvent = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, SUIEventDesc const &event, SUIArguments const &args)>(0xA13080);
 	static inline auto FOnUIEventEx = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, const char *fscommand, SUIArguments const &args, void *pUserData)>(0xA13080);
 	static inline auto FOnInit = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, IFlashPlayer *pFlashPlayer)>(0xA13080);
@@ -27,5 +28,13 @@ struct IUIElementEventListener // Id=80022C0 Size=8
 	static inline auto FOnSetVisible = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, bool bVisible)>(0xA13080);
 	static inline auto FOnInstanceCreated = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, IUIElement *pNewInstance)>(0xA13080);
 	static inline auto FOnInstanceDestroyed = PreyFunction<void(IUIElementEventListener *const _this, IUIElement *pSender, IUIElement *pDeletedInstance)>(0xA13080);
+#else
+	static inline auto FOnUIEvent = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, const SUIEventDesc& event, const SUIArguments& args)>(0x1333E90);
+	static inline auto FOnUIEventEx = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, const char* fscommand, const SUIArguments& args, void* pUserData)>(0x1333E90);
+	static inline auto FOnInit = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IFlashPlayer* pFlashPlayer)>(0x1333E90);
+	static inline auto FOnUnload = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender)>(0x1333E90);
+	static inline auto FOnSetVisible = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, bool bVisible)>(0x1333E90);
+	static inline auto FOnInstanceCreated = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IUIElement* pNewInstance)>(0x1333E90);
+	static inline auto FOnInstanceDestroyed = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* pSender, IUIElement* pDeletedInstance)>(0x1333E90);
+#endif
 };
-

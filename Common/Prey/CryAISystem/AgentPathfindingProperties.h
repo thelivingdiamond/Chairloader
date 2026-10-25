@@ -42,4 +42,3 @@ struct AgentPathfindingProperties // Id=8000FD6 Size=80
 	void SetToDefaults();
 #endif
 };
-

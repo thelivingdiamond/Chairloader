@@ -157,9 +157,15 @@ public:
 		void Clear();
 #endif
 
+#ifndef MOONCRASH
 		static inline auto FAddNearestCaster = PreyFunction<void(CRenderView::SShadows* const _this, CRenderObject * pObj)>(0xEB6A30);
 		static inline auto FCreateFrustumGroups = PreyFunction<void(CRenderView::SShadows* const _this)>(0xEB8460);
 		static inline auto FPrepareNearestShadows = PreyFunction<void(CRenderView::SShadows* const _this)>(0xEBB340);
+#else
+		static inline auto FAddNearestCaster = PreyFunction<void(CRenderView::SShadows* const _this, CRenderObject* pObj)>(0xED2F20);
+		static inline auto FCreateFrustumGroups = PreyFunction<void(CRenderView::SShadows* const _this)>(0xED4950);
+		static inline auto FPrepareNearestShadows = PreyFunction<void(CRenderView::SShadows* const _this)>(0xED7820);
+#endif
 	};
 
 	using ItemsRange = TRange<int>;
@@ -306,6 +312,7 @@ public:
 	const CRenderItemDrawer& GetDrawer() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FSetFrameId = PreyFunction<void(CRenderView* const _this, uint64_t frameId)>(0xEBBDB0);
 	static inline auto FGetFrameId = PreyFunction<uint64_t(const CRenderView* const _this)>(0xD87510);
 	static inline auto FSetSkipRenderingFlags = PreyFunction<void(CRenderView* const _this, unsigned nFlags)>(0x7060A0);
@@ -362,4 +369,62 @@ public:
 	static inline auto FPrepareForwardDecals = PreyFunction<void(CRenderView* const _this)>(0xEBAF30);
 	static inline auto FPrepareClusteredDecals = PreyFunction<void(CRenderView* const _this)>(0xEBA6B0);
 	static inline auto FDrawCompiledRenderItems = PreyFunction<void(const CRenderView* const _this, const SGraphicsPipelinePassContext & passContext)>(0xEB85D0);
+#else
+	static inline auto FSetFrameId = PreyFunction<void(CRenderView* const _this, uint64_t frameId)>(0x924A60);
+	static inline auto FGetFrameId = PreyFunction<uint64_t(const CRenderView* const _this)>(0x7E3C90);
+	static inline auto FSetSkipRenderingFlags = PreyFunction<void(CRenderView* const _this, unsigned nFlags)>(0x379640);
+	static inline auto FGetSkipRenderingFlags = PreyFunction<unsigned(const CRenderView* const _this)>(0xD8FD10);
+	static inline auto FSetShaderRenderingFlags = PreyFunction<void(CRenderView* const _this, unsigned nFlags)>(0xED82A0);
+	static inline auto FGetShaderRenderingFlags = PreyFunction<unsigned(const CRenderView* const _this)>(0xA0CFE0);
+	static inline auto FSetCamera = PreyFunction<void(CRenderView* const _this, const CCamera& cam)>(0xED7E40);
+	static inline auto FSetPreviousFrameCamera = PreyFunction<void(CRenderView* const _this, const CCamera& _camera)>(0xED8290);
+	static inline auto FSwitchUsageMode = PreyFunction<void(CRenderView* const _this, IRenderView::EUsageMode mode)>(0xED82B0);
+	static inline auto FGetWriteMutex = PreyFunction<JobManager::SJobState* (CRenderView* const _this)>(0xED6310);
+	static inline auto FAddPermanentObject = PreyFunction<void(CRenderView* const _this, CRenderObject* pObject, float _fDistance, const SRenderingPassInfo& passInfo)>(0xED3110);
+	static inline auto FCRenderView = PreyFunction<void(CRenderView* const _this, const char* name, IRenderView::EViewType type, CRenderView* pParentView, ShadowMapFrustum* pShadowFrustumOwner)>(0xECF2D0);
+	static inline auto FBitNotCRenderView = PreyFunction<void(CRenderView* const _this)>(0xED1430);
+	static inline auto FGetRenderItems = PreyFunction<lockfree_add_vector<SRendItem>& (CRenderView* const _this, int nRenderList)>(0xED55F0);
+	static inline auto FGetBatchFlags = PreyFunction<unsigned(const CRenderView* const _this, int nRenderList)>(0xED54E0);
+	static inline auto FAddRenderItem = PreyFunction<void(CRenderView* const _this, CRendElementBase* pElem, CRenderObject* pObj, const SShaderItem& shaderItem, unsigned nList, unsigned nBatchFlags, float _fDistance, SRendItemSorter sorter, bool bShadowPass, bool bForceOpaqueForward)>(0xED3390);
+	static inline auto FAddPermanentObjectInline = PreyFunction<void(CRenderView* const _this, CPermanentRenderObject* pObject, float _fDistance, SRendItemSorter sorter, int shadowFrustumSide)>(0xED3130);
+	static inline auto FFindRenderListSplit = PreyFunction<int(CRenderView* const _this, ERenderListID list, unsigned objFlag)>(0xED5430);
+	static inline auto FPrepareForWriting = PreyFunction<void(CRenderView* const _this)>(0x1333E90);
+	static inline auto FAddShadowFrustumToRender = PreyFunction<void(CRenderView* const _this, const SShadowFrustumToRender& frustum)>(0xED3BB0);
+	static inline auto FGetShadowFrustumsForLight = PreyFunction<std::vector<SShadowFrustumToRender*>& (CRenderView* const _this, int lightId)>(0xED5680);
+	static inline auto FGetShadowFrustumsByType = PreyFunction<std::vector<SShadowFrustumToRender*>& (CRenderView* const _this, CRenderView::eShadowFrustumRenderType type)>(0xED5660);
+	static inline auto FPostWriteShadowViews = PreyFunction<void(CRenderView* const _this)>(0x1333E90);
+	static inline auto FPrepareShadowViews = PreyFunction<void(CRenderView* const _this)>(0xED7DD0);
+	static inline auto FAddDynamicLight = PreyFunction<void(CRenderView* const _this, SRenderLight& light)>(0xED2A00);
+	static inline auto FGetDynamicLightsCount = PreyFunction<int(const CRenderView* const _this)>(0xED5520);
+	static inline auto FGetDynamicLight = PreyFunction<SRenderLight& (CRenderView* const _this, int nLightId)>(0xED5500);
+	static inline auto FAddLight = PreyFunction<void(CRenderView* const _this, eDeferredLightType lightType, SRenderLight& light)>(0xED2D00);
+	static inline auto FGetLightsCount = PreyFunction<int(const CRenderView* const _this, eDeferredLightType lightType)>(0xED55B0);
+	static inline auto FGetLight = PreyFunction<SRenderLight& (CRenderView* const _this, eDeferredLightType lightType, int nLightId)>(0xED5570);
+	static inline auto FGetLightsArray = PreyFunction<std::vector<SRenderLight>& (CRenderView* const _this, eDeferredLightType lightType)>(0xED5590);
+	static inline auto FAddLightAtIndex = PreyFunction<SRenderLight* (CRenderView* const _this, eDeferredLightType lightType, const SRenderLight& light, int index)>(0xED2DA0);
+	static inline auto FAddClipVolume = PreyFunction<uint8_t(CRenderView* const _this, const IClipVolume* pClipVolume)>(0xED2560);
+	static inline auto FSetClipVolumeBlendInfo = PreyFunction<void(CRenderView* const _this, const IClipVolume* pClipVolume, int blendInfoCount, IClipVolume* * blendVolumes, Plane_tpl<float>* blendPlanes)>(0xED8190);
+	static inline auto FAddFogVolume = PreyFunction<void(CRenderView* const _this, const CREFogVolume* pFogVolume)>(0xED2A90);
+	static inline auto FGetFogVolumes = PreyFunction<const std::vector<SFogVolumeInfo>& (const CRenderView* const _this, IFogVolumeRenderNode::eFogVolumeType volumeType)>(0xED5550);
+	static inline auto FHaveAnyFogVolumes = PreyFunction<bool(const CRenderView* const _this)>(0xED6320);
+	static inline auto FAddClientPoly = PreyFunction<CREClientPoly* (CRenderView* const _this)>(0xED2480);
+	static inline auto FAddDeferredDecal = PreyFunction<bool(CRenderView* const _this, const SDeferredDecal& _source)>(0xED2640);
+	static inline auto FArkAddClusteredDecal = PreyFunction<void(CRenderView* const _this, SDeferredDecal& _source)>(0xED3E80);
+	static inline auto FEnableLookingGlass = PreyFunction<void(CRenderView* const _this, bool _bEnable)>(0xED4AD0);
+	static inline auto FGetDistortBounds = PreyFunction<SArkScreenBounds*(const CRenderView* const _this, SArkScreenBounds* _return_value_)>(0xED54F0);
+	static inline auto FClear = PreyFunction<void(CRenderView* const _this)>(0xED4000);
+	static inline auto FJob_PostWrite = PreyFunction<void(CRenderView* const _this)>(0xED6380);
+	static inline auto FJob_SortRenderItemsInList = PreyFunction<void(CRenderView* const _this, ERenderListID list)>(0xED65A0);
+	static inline auto FCollectLookingGlassInformation = PreyFunction<void(CRenderView* const _this)>(0xED44A0);
+	static inline auto FExpandPermanentRenderObjects = PreyFunction<void(CRenderView* const _this)>(0xED4AE0);
+	static inline auto FCompileModifiedRenderObjects = PreyFunction<void(CRenderView* const _this)>(0xED46A0);
+	static inline auto FUpdateModifiedShaderItems = PreyFunction<void(CRenderView* const _this)>(0xED8890);
+	static inline auto FAddRenderItemsFromClientPolys = PreyFunction<void(CRenderView* const _this)>(0xED3940);
+	static inline auto FCheckAndScheduleForUpdate = PreyFunction<bool(CRenderView* const _this, const SShaderItem& shaderItem)>(0xED3F60);
+	static inline auto FTraceFogVolumes = PreyFunction<ColorF*(CRenderView* const _this, ColorF* _return_value_, const Vec3& _worldPos)>(0xED85B0);
+	static inline auto FPrepareDeferredDecals = PreyFunction<void(CRenderView* const _this)>(0xED6EB0);
+	static inline auto FPrepareForwardDecals = PreyFunction<void(CRenderView* const _this)>(0xED7410);
+	static inline auto FPrepareClusteredDecals = PreyFunction<void(CRenderView* const _this)>(0xED6B90);
+	static inline auto FDrawCompiledRenderItems = PreyFunction<void(const CRenderView* const _this, const SGraphicsPipelinePassContext& passContext)>(0xED4AC0);
+#endif
 };

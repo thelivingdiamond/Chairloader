@@ -19,4 +19,3 @@ struct TurretAngle // Id=80152A9 Size=8
 };
 
 } // namespace ArkTurretUtils
-

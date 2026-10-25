@@ -43,6 +43,7 @@ class CShaderResources;
 	#define USE_LOCKS_FOR_FLUSH_SYNC
 #endif
 
+#ifndef MOONCRASH
 enum ERenderCommand
 {
 	eRC_Unknown = 0x0,
@@ -92,7 +93,7 @@ enum ERenderCommand
 	eRC_FlashRender = 0x2C,
 	eRC_FlashRenderLockless = 0x2D,
 	eRC_BinkRender = 0x2E,
-	eRC_AuxFlush_DONOTUSE = 0x2F,
+	eRC_AuxFlush = 0x2F,
 	eRC_RenderScene = 0x30,
 	eRC_SetCamera = 0x31,
 	eRC_PushProfileMarker = 0x32,
@@ -133,6 +134,99 @@ enum ERenderCommand
 	eRC_SetRendererCVar = 0x55,
 	eRC_ReleaseGraphicsPipeline = 0x56,
 };
+#else
+enum ERenderCommand
+{
+	eRC_Unknown = 0x0,
+	eRC_Init = 0x1,
+	eRC_ShutDown = 0x2,
+	eRC_CreateDevice = 0x3,
+	eRC_ResetDevice = 0x4,
+	eRC_SuspendDevice = 0x5,
+	eRC_ResumeDevice = 0x6,
+	eRC_BeginFrame = 0x7,
+	eRC_EndFrame = 0x8,
+	eRC_ClearBuffersImmediately = 0x9,
+	eRC_FlushTextMessages = 0xA,
+	eRC_FlushTextureStreaming = 0xB,
+	eRC_ForceTrimTextureStreaming = 0xC,
+	eRC_ReleaseSystemTextures = 0xD,
+	eRC_PreloadTextures = 0xE,
+	eRC_SwitchToNativeResolutionBackbuffer = 0xF,
+	eRC_DrawLines = 0x10,
+	eRC_DrawStringW = 0x11,
+	eRC_UpdateTexture = 0x12,
+	eRC_UpdateMesh2 = 0x13,
+	eRC_ReleaseShaderResource = 0x14,
+	eRC_ReleaseBaseResource = 0x15,
+	eRC_ReleaseSurfaceResource = 0x16,
+	eRC_ReleaseIB = 0x17,
+	eRC_ReleaseVB = 0x18,
+	eRC_ReleaseCB = 0x19,
+	eRC_ReleaseRS = 0x1A,
+	eRC_CreateResource = 0x1B,
+	eRC_ReleaseResource = 0x1C,
+	eRC_ReleaseRenderResources = 0x1D,
+	eRC_PrecacheDefaultShaders = 0x1E,
+	eRC_UnbindTMUs = 0x1F,
+	eRC_UnbindResources = 0x20,
+	eRC_CreateRenderResources = 0x21,
+	eRC_CreateSystemTargets = 0x22,
+	eRC_CreateDeviceTexture = 0x23,
+	eRC_CopyDataToTexture = 0x24,
+	eRC_ClearTarget = 0x25,
+	eRC_CreateREPostProcess = 0x26,
+	eRC_ParseShader = 0x27,
+	eRC_SetShaderQuality = 0x28,
+	eRC_UpdateShaderItem = 0x29,
+	eRC_RefreshShaderResourceConstants = 0x2A,
+	eRC_DisableStreamingForTexture = 0x2B,
+	eRC_ReleaseDeviceTexture = 0x2C,
+	eRC_FlashRender = 0x2D,
+	eRC_FlashRenderLockless = 0x2E,
+	eRC_BinkRender = 0x2F,
+	eRC_AuxFlush = 0x30,
+	eRC_RenderScene = 0x31,
+	eRC_SetCamera = 0x32,
+	eRC_PushProfileMarker = 0x33,
+	eRC_PopProfileMarker = 0x34,
+	eRC_PostLevelLoading = 0x35,
+	eRC_SetState = 0x36,
+	eRC_PushWireframeMode = 0x37,
+	eRC_PopWireframeMode = 0x38,
+	eRC_SetCull = 0x39,
+	eRC_SetScissor = 0x3A,
+	eRC_DrawDynVB = 0x3B,
+	eRC_Draw2dImage = 0x3C,
+	eRC_Draw2dImageStretchMode = 0x3D,
+	eRC_Push2dImage = 0x3E,
+	eRC_Draw2dImageList = 0x3F,
+	eRC_DrawImageWithUV = 0x40,
+	eRC_DynTexUpdate = 0x41,
+	eRC_SetViewport = 0x42,
+	eRC_UpdateMaterialConstants = 0x43,
+	eRC_OC_ReadResult_Try = 0x44,
+	eRC_CGCSetLayers = 0x45,
+	eRC_EntityDelete = 0x46,
+	eRC_ForceMeshGC = 0x47,
+	eRC_DevBufferSync = 0x48,
+	eRC_PrecacheTexture = 0x49,
+	eRC_StartVideoThread = 0x4A,
+	eRC_StopVideoThread = 0x4B,
+	eRC_RenderDebug = 0x4C,
+	eRC_RelinkTexture = 0x4D,
+	eRC_UnlinkTexture = 0x4E,
+	eRC_ReleasePostEffects = 0x4F,
+	eRC_ResetPostEffects = 0x50,
+	eRC_ResetPostEffectsOnSpecChange = 0x51,
+	eRC_DisableTemporalEffects = 0x52,
+	eRC_ResetToDefault = 0x53,
+	eRC_PushSkinningPoolId = 0x54,
+	eRC_ReleaseRemappedBoneIndices = 0x55,
+	eRC_SetRendererCVar = 0x56,
+	eRC_ReleaseGraphicsPipeline = 0x57,
+};
+#endif
 
 //====================================================================
 
@@ -360,6 +454,7 @@ struct CRY_ALIGN(128) SRenderThread
 	void RC_PushSkinningPoolId(unsigned poolId) { FRC_PushSkinningPoolId(this, poolId); }
 	void RC_ReleaseRemappedBoneIndices(IRenderMesh* pRenderMesh, unsigned guid) { FRC_ReleaseRemappedBoneIndices(this, pRenderMesh, guid); }
 
+#ifndef MOONCRASH
 	static inline auto FBitNotSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFBCE60);
 	static inline auto FGetLocalThreadCommandBufferId = PreyFunction<int()>(0xFBD0B0);
 	static inline auto FStartRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFC2DB0);
@@ -452,6 +547,102 @@ struct CRY_ALIGN(128) SRenderThread
 	static inline auto FRC_RenderDebug = PreyFunction<void(SRenderThread* const _this, bool bRenderStats)>(0xFC1BE0);
 	static inline auto FRC_PushSkinningPoolId = PreyFunction<void(SRenderThread* const _this, unsigned poolId)>(0xFC12B0);
 	static inline auto FRC_ReleaseRemappedBoneIndices = PreyFunction<void(SRenderThread* const _this, IRenderMesh* pRenderMesh, unsigned guid)>(0xFC1840);
+#else
+	static inline auto FSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFD9040);
+	static inline auto FBitNotSRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFD9280);
+	static inline auto FGetLocalThreadCommandBufferId = PreyFunction<int()>(0xFD94D0);
+	static inline auto FStartRenderThread = PreyFunction<void(SRenderThread* const _this)>(0xFDF250);
+	static inline auto FSwitchMode = PreyFunction<void(SRenderThread* const _this, bool bEnableVideo)>(0xFDF2D0);
+	static inline auto FQuitRenderLoadingThread = PreyFunction<void(SRenderThread* const _this)>(0xFDBA30);
+	static inline auto FSyncMainWithRender = PreyFunction<void(SRenderThread* const _this)>(0xFDF440);
+	static inline auto FFlushAndWait = PreyFunction<void(SRenderThread* const _this)>(0xFD93C0);
+	static inline auto FProcessCommands = PreyFunction<void(SRenderThread* const _this)>(0xFD9880);
+	static inline auto FProcess = PreyFunction<void(SRenderThread* const _this)>(0xFD94F0);
+	static inline auto FGetThreadList = PreyFunction<int(const SRenderThread* const _this)>(0xFD5440);
+	static inline auto FRC_Init = PreyFunction<void(SRenderThread* const _this)>(0xFDCF40);
+	static inline auto FRC_ShutDown = PreyFunction<void(SRenderThread* const _this, unsigned nFlags)>(0xFDE830);
+	static inline auto FRC_CreateDevice = PreyFunction<bool(SRenderThread* const _this)>(0xFDBF30);
+	static inline auto FRC_ResetDevice = PreyFunction<void(SRenderThread* const _this)>(0xFDE260);
+	static inline auto FRC_SuspendDevice = PreyFunction<void(SRenderThread* const _this)>(0x1333E90);
+	static inline auto FRC_ResumeDevice = PreyFunction<void(SRenderThread* const _this)>(0x1333E90);
+	static inline auto FRC_PreloadTextures = PreyFunction<void(SRenderThread* const _this)>(0xFDD430);
+	static inline auto FRC_CreateDeviceTexture = PreyFunction<bool(SRenderThread* const _this, CTexture* pTex, uint8_t* * pData)>(0xFDBF50);
+	static inline auto FRC_ClearTarget = PreyFunction<void(SRenderThread* const _this, void* pkVoid, const ColorF& kColor)>(0xFDBD40);
+	static inline auto FRC_CreateResource = PreyFunction<void(SRenderThread* const _this, SResourceAsync* pRes)>(0xFDBFC0);
+	static inline auto FRC_ReleaseRenderResources = PreyFunction<void(SRenderThread* const _this, unsigned nFlags)>(0xFDDD70);
+	static inline auto FRC_PrecacheDefaultShaders = PreyFunction<void(SRenderThread* const _this)>(0xFDD270);
+	static inline auto FRC_UnbindResources = PreyFunction<void(SRenderThread* const _this)>(0xFDEA50);
+	static inline auto FRC_UnbindTMUs = PreyFunction<void(SRenderThread* const _this)>(0xFDEAB0);
+	static inline auto FRC_CreateRenderResources = PreyFunction<void(SRenderThread* const _this)>(0xFDBF60);
+	static inline auto FRC_CreateSystemTargets = PreyFunction<void(SRenderThread* const _this)>(0xFDC040);
+	static inline auto FRC_ReleaseShaderResource = PreyFunction<void(SRenderThread* const _this, CShaderResources* pRes)>(0xFDDE70);
+	static inline auto FRC_ReleaseBaseResource = PreyFunction<void(SRenderThread* const _this, CBaseResource* pRes)>(0xFDD900);
+	static inline auto FRC_ReleaseSurfaceResource = PreyFunction<void(SRenderThread* const _this, SDepthTexture* pRes)>(0xFDDF30);
+	static inline auto FRC_ReleaseResource = PreyFunction<void(SRenderThread* const _this, SResourceAsync* pRes)>(0xFDDDF0);
+	static inline auto FRC_RelinkTexture = PreyFunction<void(SRenderThread* const _this, CTexture* pTex)>(0xFDE000);
+	static inline auto FRC_UnlinkTexture = PreyFunction<void(SRenderThread* const _this, CTexture* pTex)>(0xFDEB10);
+	static inline auto FRC_CheckUpdate2 = PreyFunction<bool(SRenderThread* const _this, CRenderMesh* pMesh, CRenderMesh* pVContainer, unsigned nStreamMask)>(0xFDBC70);
+	static inline auto FRC_ReleaseCB = PreyFunction<void(SRenderThread* const _this, void* pCB)>(0xFDD9C0);
+	static inline auto FRC_ReleaseRS = PreyFunction<void(SRenderThread* const _this, std::shared_ptr<CDeviceResourceSet>& pRS)>(0xFDDC20);
+	static inline auto FRC_DrawDynVB = PreyFunction<void(SRenderThread* const _this, SVF_P3F_C4B_T2F* pBuf, uint16_t* pInds, int nVerts, int nInds, const PublicRenderPrimitiveType nPrimType)>(0xFDC500);
+	static inline auto FRC_Draw2dImage = PreyFunction<void(SRenderThread* const _this, float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z)>(0xFDC210);
+	static inline auto FRC_Draw2dImageStretchMode = PreyFunction<void(SRenderThread* const _this, bool bStretch)>(0xFDC480);
+	static inline auto FRC_Push2dImage = PreyFunction<void(SRenderThread* const _this, float xpos, float ypos, float w, float h, CTexture* pTexture, float s0, float t0, float s1, float t1, float angle, float r, float g, float b, float a, float z)>(0xFDD4C0);
+	static inline auto FRC_Draw2dImageList = PreyFunction<void(SRenderThread* const _this)>(0xFDC420);
+	static inline auto FRC_DrawImageWithUV = PreyFunction<void(SRenderThread* const _this, float xpos, float ypos, float z, float w, float h, int textureid, float* s, float* t, float r, float g, float b, float a, bool filtered)>(0xFDC620);
+	static inline auto FRC_UpdateTextureRegion = PreyFunction<void(SRenderThread* const _this, CTexture* pTex, uint8_t* data, int nX, int nY, int nZ, int USize, int VSize, int ZSize, ETEX_Format eTFSrc)>(0xFDED50);
+	static inline auto FRC_SetState = PreyFunction<void(SRenderThread* const _this, int State, int AlphaRef)>(0xFDE6F0);
+	static inline auto FRC_PushWireframeMode = PreyFunction<void(SRenderThread* const _this, int nMode)>(0xFDD7C0);
+	static inline auto FRC_PopWireframeMode = PreyFunction<void(SRenderThread* const _this)>(0xFDD1B0);
+	static inline auto FRC_SetCull = PreyFunction<void(SRenderThread* const _this, int nMode)>(0xFDE430);
+	static inline auto FRC_SetScissor = PreyFunction<void(SRenderThread* const _this, bool bEnable, int sX, int sY, int sWdt, int sHgt)>(0xFDE5A0);
+	static inline auto FRC_PushProfileMarker = PreyFunction<void(SRenderThread* const _this, char* label)>(0xFDD6C0);
+	static inline auto FRC_PopProfileMarker = PreyFunction<void(SRenderThread* const _this, char* label)>(0xFDD120);
+	static inline auto FRC_DrawLines = PreyFunction<void(SRenderThread* const _this, Vec3* v, int nump, ColorF& col, int flags, float fGround)>(0xFDC800);
+	static inline auto FRC_DrawStringW = PreyFunction<void(SRenderThread* const _this, IFFont_RenderProxy* pFont, float x, float y, float z, const wchar_t* pStr, const bool asciiMultiLine, const STextDrawContext& ctx)>(0xFDC900);
+	static inline auto FRC_DisableStreamingForTexture = PreyFunction<void(SRenderThread* const _this, CTexture* _pTex)>(0xFDC110);
+	static inline auto FRC_ReleaseDeviceTexture = PreyFunction<void(SRenderThread* const _this, CTexture* pTexture)>(0xFDDA80);
+	static inline auto FRC_PrecacheResource = PreyFunction<void(SRenderThread* const _this, ITexture* pTP, float fMipFactor, float fTimeToReady, int Flags, int nUpdateId, int nCounter)>(0xFDD2D0);
+	static inline auto FRC_ClearTargetsImmediately = PreyFunction<void(SRenderThread* const _this, int8_t nType, unsigned nFlags, const ColorF& vColor, float depth)>(0xFDBE10);
+	static inline auto FRC_FlushTextMessages = PreyFunction<void(SRenderThread* const _this)>(0xFDCD40);
+	static inline auto FRC_FlushTextureStreaming = PreyFunction<void(SRenderThread* const _this, bool bAbort)>(0xFDCDA0);
+	static inline auto FRC_ForceTrimTextureStreaming = PreyFunction<void(SRenderThread* const _this)>(0xFDCED0);
+	static inline auto FRC_ReleaseSystemTextures = PreyFunction<void(SRenderThread* const _this)>(0xFDDFA0);
+	static inline auto FRC_FlashRender = PreyFunction<void(SRenderThread* const _this, IFlashPlayer_RenderProxy* pPlayer)>(0xFDCC20);
+	static inline auto FRC_FlashRenderPlaybackLockless = PreyFunction<void(SRenderThread* const _this, IFlashPlayer_RenderProxy* pPlayer, int cbIdx, bool finalPlayback)>(0xFDCCA0);
+	static inline auto FRC_BinkRender = PreyFunction<void(SRenderThread* const _this, ArkBinkPlayer* _pPlayer, int _frame)>(0xFDBB20);
+	static inline auto FRC_ParseShader = PreyFunction<void(SRenderThread* const _this, CShader* pSH, uint64_t nMaskGen, unsigned flags, CShaderResources* pRes)>(0xFDD050);
+	static inline auto FRC_SetShaderQuality = PreyFunction<void(SRenderThread* const _this, EShaderType eST, EShaderQuality eSQ)>(0xFDE660);
+	static inline auto FRC_UpdateShaderItem = PreyFunction<void(SRenderThread* const _this, SShaderItem* pShaderItem, IMaterial* pMaterial)>(0xFDEC90);
+	static inline auto FRC_RefreshShaderResourceConstants = PreyFunction<void(SRenderThread* const _this, SShaderItem* pShaderItem, IMaterial* pMaterial)>(0xFDD840);
+	static inline auto FRC_SetCamera = PreyFunction<void(SRenderThread* const _this)>(0xFDE390);
+	static inline auto FRC_RenderScene = PreyFunction<void(SRenderThread* const _this, CRenderView* pRenderView, int nFlags, void (*pRenderFunc)())>(0xFDE100);
+	static inline auto FRC_BeginFrame = PreyFunction<void(SRenderThread* const _this)>(0xFDBAC0);
+	static inline auto FRC_EndFrame = PreyFunction<void(SRenderThread* const _this, bool bWait)>(0xFDCB00);
+	static inline auto FRC_TryFlush = PreyFunction<void(SRenderThread* const _this)>(0xFDE9F0);
+	static inline auto FRC_DynTexUpdate = PreyFunction<bool(SRenderThread* const _this, SDynTexture* pTex, int nNewWidth, int nNewHeight)>(0xFDCA70);
+	static inline auto FRC_SwitchToNativeResolutionBackbuffer = PreyFunction<void(SRenderThread* const _this)>(0xFDE930);
+	static inline auto FRC_StartVideoThread = PreyFunction<void(SRenderThread* const _this)>(0xFDE8D0);
+	static inline auto FRC_StopVideoThread = PreyFunction<void(SRenderThread* const _this)>(0xFDE900);
+	static inline auto FRC_PrecacheTick = PreyFunction<void(SRenderThread* const _this)>(0xFDD3C0);
+	static inline auto FRC_PostLoadLevel = PreyFunction<void(SRenderThread* const _this)>(0xFDD210);
+	static inline auto FRC_EntityDelete = PreyFunction<void(SRenderThread* const _this, IRenderNode* pRenderNode)>(0xFDCBB0);
+	static inline auto FRC_UpdateMaterialConstants = PreyFunction<void(SRenderThread* const _this, CShaderResources* pSR, IShader* pSH)>(0xFDEB90);
+	static inline auto FRC_OC_ReadResult_Try = PreyFunction<bool(SRenderThread* const _this, unsigned nDefaultNumSamples, CREOcclusionQuery* pRE)>(0xFDCFD0);
+	static inline auto FRC_SetViewport = PreyFunction<void(SRenderThread* const _this, int x, int y, int width, int height, int id)>(0xFDE780);
+	static inline auto FRC_ForceMeshGC = PreyFunction<void(SRenderThread* const _this, bool instant, bool wait)>(0xFDCE30);
+	static inline auto FRC_DevBufferSync = PreyFunction<void(SRenderThread* const _this)>(0xFDC090);
+	static inline auto FRC_ReleasePostEffects = PreyFunction<void(SRenderThread* const _this)>(0xFDDBB0);
+	static inline auto FRC_ReleaseGraphicsPipeline = PreyFunction<void(SRenderThread* const _this)>(0xFDDB50);
+	static inline auto FRC_ResetPostEffects = PreyFunction<void(SRenderThread* const _this, bool bOnSpecChange)>(0xFDE280);
+	static inline auto FRC_DisableTemporalEffects = PreyFunction<void(SRenderThread* const _this)>(0xFDC1B0);
+	static inline auto FRC_ResetToDefault = PreyFunction<void(SRenderThread* const _this)>(0xFDE330);
+	static inline auto FRC_CGCSetLayers = PreyFunction<void(SRenderThread* const _this, IColorGradingControllerInt* pController, const SColorChartLayer* pLayers, unsigned numLayers)>(0xFDBBB0);
+	static inline auto FRC_SetRendererCVar = PreyFunction<void(SRenderThread* const _this, ICVar* pCVar, const char* pArgText, const bool bSilentMode)>(0xFDE4B0);
+	static inline auto FRC_RenderDebug = PreyFunction<void(SRenderThread* const _this, bool bRenderStats)>(0xFDE080);
+	static inline auto FRC_PushSkinningPoolId = PreyFunction<void(SRenderThread* const _this, unsigned poolId)>(0xFDD750);
+	static inline auto FRC_ReleaseRemappedBoneIndices = PreyFunction<void(SRenderThread* const _this, IRenderMesh* pRenderMesh, unsigned guid)>(0xFDDCE0);
+#endif
 };
 
 static_assert(sizeof(SRenderThread) == 256);

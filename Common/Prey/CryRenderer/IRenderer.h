@@ -4,6 +4,7 @@
 #include <Prey/CryMath/Cry_Math.h>
 #include <Prey/CryRenderer/ITexture.h>
 #include <Prey/CryRenderer/IShader.h>
+#include <Prey/CryRenderer/IRenderMesh.h>
 
 #include "Prey/CryMath/Cry_Camera.h"
 #include "Prey/CrySystem/IConsole.h"
@@ -158,13 +159,21 @@ enum ERenderObjectFlags : uint64
 
 	FOB_TERRAIN_LAYER               = BIT64(32),
 
+	ARK_FOB_NO_MAT_OVERRIDE         = BIT64(55),
+	ARK_FOB_MIMIC_MORPH             = BIT64(56),
+	ARK_FOB_SHIFT                   = BIT64(59),
+	ARK_FOB_HIGHLIGHT               = BIT64(60),
+	ARK_FOB_GLINT                   = BIT64(61),
+	ARK_FOB_CUSTOM_VT_TIME          = BIT64(62),
+	FOB_ARK_MASK                    = (ARK_FOB_SHIFT | ARK_FOB_HIGHLIGHT | ARK_FOB_GLINT | ARK_FOB_CUSTOM_VT_TIME),
+
 	FOB_TRANS_MASK                  = (FOB_TRANS_ROTATE | FOB_TRANS_SCALE | FOB_TRANS_TRANSLATE),
 	FOB_DECAL_MASK                  = (FOB_DECAL | FOB_DECAL_TEXGEN_2D),
 	FOB_PARTICLE_MASK               = (FOB_SOFT_PARTICLE | FOB_NO_FOG | FOB_INSHADOW | FOB_NEAREST | FOB_MOTION_BLUR | FOB_LIGHTVOLUME | FOB_ALLOW_TESSELLATION | FOB_IN_DOORS | FOB_AFTER_WATER),
 
 	// WARNING: FOB_MASK_AFFECTS_MERGING must start from 0x10000/bit 16 (important for instancing).
-	FOB_MASK_AFFECTS_MERGING_GEOM = (FOB_ZPREPASS | FOB_SKINNED | FOB_BENDED | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION | FOB_NEAREST),
-	FOB_MASK_AFFECTS_MERGING      = (FOB_ZPREPASS | FOB_MOTION_BLUR | FOB_HAS_PREVMATRIX | FOB_SKINNED | FOB_BENDED | FOB_INSHADOW | FOB_AFTER_WATER | FOB_DISSOLVE | FOB_DISSOLVE_OUT | FOB_NEAREST | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION),
+	FOB_MASK_AFFECTS_MERGING_GEOM = (FOB_ZPREPASS | FOB_SKINNED | FOB_BENDED | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION | FOB_NEAREST | FOB_ARK_MASK),
+	FOB_MASK_AFFECTS_MERGING      = (FOB_ZPREPASS | FOB_MOTION_BLUR | FOB_HAS_PREVMATRIX | FOB_SKINNED | FOB_BENDED | FOB_INSHADOW | FOB_AFTER_WATER | FOB_DISSOLVE | FOB_DISSOLVE_OUT | FOB_NEAREST | FOB_DYNAMIC_OBJECT | FOB_ALLOW_TESSELLATION | FOB_ARK_MASK),
 };
 
 
@@ -250,13 +259,7 @@ enum EScreenAspectRatio
 	eAspect_16_10 = 0x3,
 };
 
-enum PublicRenderPrimitiveType
-{
-	prtTriangleList = 0x0,
-	prtTriangleStrip = 0x1,
-	prtLineList = 0x2,
-	prtLineStrip = 0x3,
-};
+// PublicRenderPrimitiveType is defined in <Prey/CryRenderer/IRenderMesh.h>
 
 enum EScreenShotMode : __int32
 {
@@ -373,14 +376,14 @@ enum eDeferredLightType : __int32
 	eDLT_NumShadowCastingLights = eDLT_DeferredLight + 1,
 
 	//! These lights cannot cast shadows.
-	eDLT_DeferredCubemap,
+	eDLT_DeferredCubemap = eDLT_NumShadowCastingLights,
 	eDLT_DeferredAmbientLight,
 	eDLT_DynamicLight, // Not deferred light
 	eDLT_NumLightTypes,
 };
 
 struct SCustomRenderInitArgs;
-class IArkVideoInfo;
+struct IArkVideoInfo;
 struct SVF_P3F_C4B_T2F;
 class CRenderView;
 class ITextureStreamListener;
@@ -422,6 +425,7 @@ enum EVertexCostTypes;
 class ILoadtimeCallback;
 struct ShadowFrustumMGPUCache;
 class IArkBinkManager;
+struct IArkHighlightSystem;
 struct SSkinningData;
 struct IRenderAuxGeom;
 struct IImageFile;
@@ -830,10 +834,8 @@ public:
 	virtual int GetPolyCount() = 0;
 	virtual void GetPolyCount(int& arg0, int& arg1) = 0;
 	virtual void SetClearColor(Vec3 const& arg0) = 0;
-	//virtual _smart_ptr<IRenderMesh> CreateRenderMesh(const char* arg0, const char* arg1, IRenderMesh::SInitParamerers* arg2, ERenderMeshType arg3) = 0;
-	//virtual _smart_ptr<IRenderMesh> CreateRenderMeshInitialized(const void* arg0, int arg1, EVertexFormat arg2, const uint16_t* arg3, int arg4, PublicRenderPrimitiveType arg5, const char* arg6, const char* arg7, ERenderMeshType arg8, int arg9, int arg10, bool (*arg11)(IRenderMesh*, bool), void* arg12, bool arg13, bool arg14, SPipTangents const* arg15, bool arg16, Vec3* arg17) = 0;
-	virtual void* CreateRenderMesh_Unfinished();
-	virtual void* CreateRenderMeshInitialized_Unfinished();
+	virtual _smart_ptr<IRenderMesh> CreateRenderMesh(const char* arg0, const char* arg1, IRenderMesh::SInitParamerers* arg2 = NULL, ERenderMeshType arg3 = eRMT_Static) = 0;
+	virtual _smart_ptr<IRenderMesh> CreateRenderMeshInitialized(const void* arg0, int arg1, EVertexFormat arg2, const uint16_t* arg3, int arg4, PublicRenderPrimitiveType arg5, const char* arg6, const char* arg7, ERenderMeshType arg8 = eRMT_Static, int arg9 = 1, int arg10 = 0, bool (*arg11)(IRenderMesh*, bool) = NULL, void* arg12 = NULL, bool arg13 = false, bool arg14 = true, SPipTangents const* arg15 = NULL, bool arg16 = false, Vec3* arg17 = NULL) = 0;
 	virtual int GetFrameID(bool bIncludeRecursiveCalls = true) = 0;
 	virtual void MakeMatrix(Vec3 const& arg0, Vec3 const& arg1, Vec3 const& arg2, Matrix34* arg3) = 0;
 	virtual void Draw2dText(float arg0, float arg1, const char* arg2, SDrawTextInfo const& arg3) = 0;
@@ -930,6 +932,9 @@ public:
 	virtual void SyncComputeVerticesJobs() = 0;
 	virtual void ActivateLayer(const char* arg0, bool arg1) = 0;
 	virtual void FlushPendingTextureTasks() = 0;
+#ifdef MOONCRASH
+	virtual void ForceTrimTextureStreamer() = 0;
+#endif
 	virtual void SetShadowJittering(float arg0) = 0;
 	virtual float GetShadowJittering() const = 0;
 	virtual bool LoadShaderStartupCache() = 0;
@@ -941,6 +946,9 @@ public:
 	virtual void EF_QueryImpl(ERenderQueryTypes arg0, void* arg1, unsigned arg2, void* arg3, unsigned arg4) = 0;
 	virtual void PeekWindowMessage(unsigned message, uint64_t wParam, uint64_t lParam);
 	virtual IArkBinkManager* GetIArkBinkManager() = 0;
+#ifdef MOONCRASH
+	virtual IArkHighlightSystem* GetIArkHighlightSystem() = 0;
+#endif
 
 	//! Returns various Renderer Settings, see ERenderQueryTypes.
 	//! \param Query e.g. EFQ_GetShaderCombinations.

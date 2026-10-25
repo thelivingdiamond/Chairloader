@@ -6,6 +6,9 @@ struct IUIEventSystem;
 
 // CArkPsiPowerMimicUI
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerMimicUI.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#endif
 class CArkPsiPowerMimicUI : public IUIGameEventSystem
 { // Size=32 (0x20)
 public:
@@ -33,11 +36,19 @@ public:
 	unsigned GetStopMimickingEventId() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char* (const CArkPsiPowerMimicUI* const _this)>(0x159E890);
 	static inline auto FInitEventSystem = PreyFunction<void(CArkPsiPowerMimicUI* const _this)>(0x159E8A0);
 	static inline auto FUnloadEventSystem = PreyFunction<void(CArkPsiPowerMimicUI* const _this)>(0xA13080);
 	static inline auto FSendStartMorphInEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId)>(0x159ED10);
 	static inline auto FSendStartMimickingEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId, const unsigned& _spawnedEntityId)>(0x159EB00);
 	static inline auto FSendStopMimickingEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId, const unsigned& _spawnedEntityId)>(0x159EF00);
+#else
+	static inline auto FGetTypeName = PreyFunction<const char* (const CArkPsiPowerMimicUI* const _this)>(0x16C23C0);
+	static inline auto FInitEventSystem = PreyFunction<void(CArkPsiPowerMimicUI* const _this)>(0x16C23D0);
+	static inline auto FUnloadEventSystem = PreyFunction<void(CArkPsiPowerMimicUI* const _this)>(0x1333E90);
+	static inline auto FSendStartMorphInEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId)>(0x16C2840);
+	static inline auto FSendStartMimickingEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId, const unsigned& _spawnedEntityId)>(0x16C2630);
+	static inline auto FSendStopMimickingEvent = PreyFunction<void(const CArkPsiPowerMimicUI* const _this, const unsigned& _targetedEntityId, const unsigned& _spawnedEntityId)>(0x16C2A30);
+#endif
 };
-

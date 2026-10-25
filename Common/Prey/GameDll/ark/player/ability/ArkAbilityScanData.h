@@ -20,4 +20,3 @@ public:
 	void SetAbilityData(ArkAbilityData* _arg0_);
 #endif
 };
-

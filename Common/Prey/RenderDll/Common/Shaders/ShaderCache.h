@@ -221,16 +221,25 @@ class CResStreamDirCallback : public IStreamCallback
 	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
 	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
 
+#ifndef MOONCRASH
 	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC4C80);
 	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xA13080);
+#else
+	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE1130);
+	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamDirCallback* const _this, IReadStream* pStream, unsigned nError)>(0x1333E90);
+#endif
 };
 class CResStreamCallback : public IStreamCallback
 {
 	virtual void StreamOnComplete(IReadStream* pStream, unsigned nError);
 	virtual void StreamAsyncOnComplete(IReadStream* pStream, unsigned nError);
-
+#ifndef MOONCRASH
 	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC4B70);
 	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFC49F0);
+#else
+	static inline auto FStreamOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE1020);
+	static inline auto FStreamAsyncOnComplete = PreyFunction<void(CResStreamCallback* const _this, IReadStream* pStream, unsigned nError)>(0xFE0EA0);
+#endif
 };
 
 struct SResStreamEntry
@@ -391,7 +400,11 @@ struct SEmptyCombination
 	uint32                                nMDV;
 	class CHWShader*                      pShader;
 
+#ifndef MOONCRASH
 	static inline auto s_Combinations = PreyGlobal<std::vector<SEmptyCombination>>(0x2B168E0);
+#else
+	static inline auto s_Combinations = PreyGlobal<std::vector<SEmptyCombination>>(0x2C85B50);
+#endif
 };
 
 //==========================================================================================================================

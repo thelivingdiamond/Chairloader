@@ -11,6 +11,9 @@ public:
 	virtual void OnEmailRead(const uint64_t arg0);
 	virtual void OnDownloadHiddenChanged(const uint64_t _id);
 	
+#ifndef MOONCRASH
 	static inline auto FOnDownloadHiddenChanged = PreyFunction<void(IArkEmailListener *const _this, const uint64_t _id)>(0xA13080);
+#else
+	static inline auto FOnDownloadHiddenChanged = PreyFunction<void(IArkEmailListener* const _this, const uint64_t _id)>(0x1333E90);
+#endif
 };
-

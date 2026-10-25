@@ -63,4 +63,16 @@ public:
 	unsigned int m_cachedParentId;
 
 	CGameObject();
+
+	// New virtuals in the IEntityProxy vtable (slots 15-22); declarations only.
+	virtual NetworkAspectType GetNetSerializeAspects();
+	virtual void UpdateView(SViewParams& viewParams);
+	virtual void PostUpdateView(SViewParams& viewParams);
+	virtual void HandleEvent(const SGameObjectEvent& evt);
+	virtual bool CanUpdateView() const;
+	virtual void SetAuthority(bool auth);
+	virtual void InitClient(int channelId);
+	virtual void PostInitClient(int channelId);
 };
+
+static_assert(sizeof(CGameObject) == 264);

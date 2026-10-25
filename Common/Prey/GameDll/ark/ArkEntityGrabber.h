@@ -30,9 +30,15 @@ public:
 	bool IsConstrained() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FStart = PreyFunction<void(ArkEntityGrabber *const _this, IEntity &_entity, const bool _bConstrained, const bool _bSimple, const bool _bRemote)>(0x115AAA0);
 	static inline auto FUpdate = PreyFunction<bool(ArkEntityGrabber *const _this, IEntity &_entity, Vec3 _target, const float _frameTime, Quat _desiredRotation, const bool _bSimple)>(0x115AF50);
 	static inline auto FStop = PreyFunction<void(IEntity &_entity)>(0x115AD80);
 	static inline auto FConstrainCarriedObject = PreyFunction<void(ArkEntityGrabber *const _this, const bool _bSimple, IEntity &_entity)>(0x115AA00);
+#else
+	static inline auto FStart = PreyFunction<void(ArkEntityGrabber* const _this, IEntity& _entity, const bool _bConstrained, const bool _bSimple, const bool _bRemote)>(0x11A9A10);
+	static inline auto FUpdate = PreyFunction<bool(ArkEntityGrabber* const _this, IEntity& _entity, const Vec3 _target, const float _frameTime, const Quat _desiredRotation, const bool _bSimple)>(0x11A9ED0);
+	static inline auto FStop = PreyFunction<void(IEntity& _entity)>(0x11A9D00);
+	static inline auto FConstrainCarriedObject = PreyFunction<void(ArkEntityGrabber* const _this, const bool _bSimple, IEntity& _entity)>(0x11A9970);
+#endif
 };
-

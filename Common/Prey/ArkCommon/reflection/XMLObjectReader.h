@@ -24,8 +24,13 @@ public:
 	static void ReadProperty(XmlNodeRef arg0, ArkProperty const *const arg1, ArkReflectedObject *const arg2, bool arg3);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FReadObject = PreyFunction<bool(XMLObjectReader const *const _this, ArkReflectedObject *const _pObject)>(0x158BB00);
 	static inline auto FReadObjectInternal = PreyFunction<void(XmlNodeRef _node, ArkClass const *const _pClassDef, ArkReflectedObject *const _pObject, bool _bResetArrays)>(0x2A0EF0);
 	static inline auto FReadPropertyElement = PreyFunction<void(XmlNodeRef _node, ArkProperty const *const _pProperty, const char *_name, ArkReflectedObject *const _pObject)>(0x2A1360);
+#else
+	static inline auto FReadObject = PreyFunction<bool(const XMLObjectReader* const _this, ArkReflectedObject* const _pObject)>(0x16B2860);
+	static inline auto FReadObjectInternal = PreyFunction<void(XmlNodeRef _node, const ArkClass* const _pClassDef, ArkReflectedObject* const _pObject, bool _bResetArrays)>(0x2B93B0);
+	static inline auto FReadPropertyElement = PreyFunction<void(XmlNodeRef _node, const ArkProperty* const _pProperty, const char* _name, ArkReflectedObject* const _pObject)>(0x2B9820);
+#endif
 };
-

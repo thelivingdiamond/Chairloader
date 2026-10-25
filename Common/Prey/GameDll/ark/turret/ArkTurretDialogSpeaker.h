@@ -25,7 +25,9 @@ public:
 	void PostInit() { FPostInit(this); }
 	void Release() { FRelease(this); }
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
+#ifndef MOONCRASH
 	void Reset() { FReset(this); }
+#endif
 	void LoadScriptVariables() { FLoadScriptVariables(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	void PostSerialize() { FPostSerialize(this); }
@@ -39,7 +41,9 @@ public:
 	void OnLostTarget(IEntity const &_target) { FOnLostTarget(this,_target); }
 	void OnTargetFactionChangeFriendly(IEntity const &_target) { FOnTargetFactionChangeFriendly(this,_target); }
 	void OnTargetDead(IEntity const &_target) { FOnTargetDead(this,_target); }
+#ifndef MOONCRASH
 	void OnDeploy() { FOnDeploy(this); }
+#endif
 	void OnCarried() { FOnCarried(this); }
 	void OnTechnoControlled() { FOnTechnoControlled(this); }
 	void OnSearching() { FOnSearching(this); }
@@ -49,7 +53,9 @@ public:
 	void OnSuccessfulHack() { FOnSuccessfulHack(this); }
 	void OnFailedHack() { FOnFailedHack(this); }
 	void OnFallen() { FOnFallen(this); }
+#ifndef MOONCRASH
 	void OnFallenSpazComplete() { FOnFallenSpazComplete(this); }
+#endif
 	void OnBroken() { FOnBroken(this); }
 	void OnBrokenRepeat() { FOnBrokenRepeat(this); }
 	void OnRepaired() { FOnRepaired(this); }
@@ -65,6 +71,7 @@ public:
 	void Speak(const char *const arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkTurretDialogSpeaker = PreyFunction<void(ArkTurretDialogSpeaker *const _this)>(0x1342710);
 	static inline auto FPostInit = PreyFunction<void(ArkTurretDialogSpeaker *const _this)>(0x1343B60);
 	static inline auto FRelease = PreyFunction<void(ArkTurretDialogSpeaker *const _this)>(0xA13080);
@@ -100,5 +107,39 @@ public:
 	static inline auto FOnPlayerLoiter = PreyFunction<void(ArkTurretDialogSpeaker *const _this)>(0x1343440);
 	static inline auto FSpeakOv0 = PreyFunction<void(ArkTurretDialogSpeaker *const _this, ArkResponseQuery &_query, const char *const _pConcept)>(0x1343BC0);
 	static inline auto FGetDistanceTo = PreyFunction<float(ArkTurretDialogSpeaker const *const _this, IEntity const &_entity)>(0x1342780);
+#else
+	static inline auto FArkTurretDialogSpeakerOv1 = PreyFunction<void(ArkTurretDialogSpeaker* const _this, ArkTurret& _turret)>(0x141EA70);
+	static inline auto FBitNotArkTurretDialogSpeaker = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EBA0);
+	static inline auto FPostInit = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141FEF0);
+	static inline auto FRelease = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x1333E90);
+	static inline auto FUpdate = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const float _frameTime)>(0x1420180);
+	static inline auto FLoadScriptVariables = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EC90);
+	static inline auto FSerialize = PreyFunction<void(ArkTurretDialogSpeaker* const _this, TSerialize _ser)>(0x141FF10);
+	static inline auto FPostSerialize = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x1338530);
+	static inline auto FSetPlayerExtension = PreyFunction<void(ArkTurretDialogSpeaker* const _this, IArkDialogPlayerExtension* const _pExtension)>(0x141FF60);
+	static inline auto FStop = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x1420170);
+	static inline auto FOnTakeDamage = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity* _pInstigator, float _damage)>(0x141F970);
+	static inline auto FOnNewFriendlyTarget = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity& _target)>(0x141F160);
+	static inline auto FOnNewFriendlyTargetPlayer = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F300);
+	static inline auto FOnNewTarget = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity& _target)>(0x141F4D0);
+	static inline auto FOnNewTargetPlayer = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F670);
+	static inline auto FOnLostTarget = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity& _target)>(0x141EFC0);
+	static inline auto FOnTargetFactionChangeFriendly = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity& _target)>(0x141FD10);
+	static inline auto FOnTargetDead = PreyFunction<void(ArkTurretDialogSpeaker* const _this, const IEntity& _target)>(0x141FB70);
+	static inline auto FOnCarried = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EEC0);
+	static inline auto FOnTechnoControlled = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141FEB0);
+	static inline auto FOnSearching = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F8B0);
+	static inline auto FOnSearchingContinued = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F8F0);
+	static inline auto FOnFortified = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EF80);
+	static inline auto FOnBumpedPlayerTouch = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EE80);
+	static inline auto FOnSuccessfulHack = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F930);
+	static inline auto FOnFailedHack = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EF00);
+	static inline auto FOnFallen = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EF40);
+	static inline auto FOnBroken = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EE00);
+	static inline auto FOnBrokenRepeat = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141EE40);
+	static inline auto FOnRepaired = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F870);
+	static inline auto FOnPlayerLoiter = PreyFunction<void(ArkTurretDialogSpeaker* const _this)>(0x141F830);
+	static inline auto FSpeakOv0 = PreyFunction<void(ArkTurretDialogSpeaker* const _this, ArkResponseQuery& _query, const char* const _pConcept)>(0x141FF70);
+	static inline auto FGetDistanceTo = PreyFunction<float(const ArkTurretDialogSpeaker* const _this, const IEntity& _entity)>(0x141EC00);
+#endif
 };
-

@@ -27,11 +27,18 @@ public:
 	void Update(ArkTurret &_turret, float _frameTime) { FUpdate(this,_turret,_frameTime); }
 	void OnBrokenChanged(ArkTurret &_turret, bool _bBroken) { FOnBrokenChanged(this,_turret,_bBroken); }
 	
+#ifndef MOONCRASH
 	static inline auto FEnter = PreyFunction<void(ArkTurretDamageFsm::States::Disabled *const _this, ArkTurretDamageFsm::StateParams const &_params)>(0x135B090);
 	static inline auto FExit = PreyFunction<void(ArkTurretDamageFsm::States::Disabled *const _this, ArkTurretDamageFsm::StateParams const &_params)>(0x135B2C0);
 	static inline auto FUpdate = PreyFunction<void(ArkTurretDamageFsm::States::Disabled *const _this, ArkTurret &_turret, float _frameTime)>(0x135B390);
 	static inline auto FOnBrokenChanged = PreyFunction<void(ArkTurretDamageFsm::States::Disabled *const _this, ArkTurret &_turret, bool _bBroken)>(0x135B360);
+#else
+	static inline auto FDisabled = PreyFunction<void(ArkTurretDamageFsm::States::Disabled* const _this)>(0x170BFA0);
+	static inline auto FEnter = PreyFunction<void(ArkTurretDamageFsm::States::Disabled* const _this, const ArkTurretDamageFsm::StateParams& _params)>(0x143E330);
+	static inline auto FExit = PreyFunction<void(ArkTurretDamageFsm::States::Disabled* const _this, const ArkTurretDamageFsm::StateParams& _params)>(0x143E5F0);
+	static inline auto FUpdate = PreyFunction<void(ArkTurretDamageFsm::States::Disabled* const _this, ArkTurret& _turret, float _frameTime)>(0x143E730);
+	static inline auto FOnBrokenChanged = PreyFunction<void(ArkTurretDamageFsm::States::Disabled* const _this, ArkTurret& _turret, bool _bBroken)>(0x143E700);
+#endif
 };
 
 } // namespace ArkTurretDamageFsm::States
-

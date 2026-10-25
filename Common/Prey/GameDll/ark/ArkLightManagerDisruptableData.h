@@ -17,4 +17,3 @@ struct ArkLightManagerDisruptableData // Id=80141E1 Size=16
 	void Serialize(TSerialize arg0);
 #endif
 };
-

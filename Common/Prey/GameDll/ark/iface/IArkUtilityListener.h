@@ -12,4 +12,3 @@ public:
 	virtual void OnUtilityButtonStateChanged(const uint64_t arg0);
 	virtual void OnUtilityButtonHiddenChanged(const uint64_t arg0);
 };
-

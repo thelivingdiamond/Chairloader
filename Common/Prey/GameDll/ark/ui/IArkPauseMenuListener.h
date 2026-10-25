@@ -10,7 +10,11 @@ public:
 	virtual void OnOptionMenuClosed();
 	virtual void OnPauseMenuOpened();
 	
+#ifndef MOONCRASH
 	static inline auto FOnOptionMenuClosed = PreyFunction<void(IArkPauseMenuListener *const _this)>(0xA13080);
 	static inline auto FOnPauseMenuOpened = PreyFunction<void(IArkPauseMenuListener *const _this)>(0xA13080);
+#else
+	static inline auto FOnOptionMenuClosed = PreyFunction<void(IArkPauseMenuListener* const _this)>(0x1333E90);
+	static inline auto FOnPauseMenuOpened = PreyFunction<void(IArkPauseMenuListener* const _this)>(0x1333E90);
+#endif
 };
-

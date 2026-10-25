@@ -11,4 +11,3 @@ struct ArkSimpleHearingInput // Id=801A8E8 Size=16
 	
 	ArkSimpleHearingInput();
 };
-

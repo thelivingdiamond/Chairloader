@@ -23,4 +23,3 @@ public:
 	void RemoveTextureGroupEntry(IRenderNode const *arg0);
 #endif
 };
-

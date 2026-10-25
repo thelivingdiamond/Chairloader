@@ -19,6 +19,9 @@ public:
 	unsigned GetGroundEntity() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkGroundColliderComponent *const _this)>(0x13C26B0);
+#else
+	static inline auto FUpdate = PreyFunction<void(ArkGroundColliderComponent* const _this)>(0x14CE750);
+#endif
 };
-

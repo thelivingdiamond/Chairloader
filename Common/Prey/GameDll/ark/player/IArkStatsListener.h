@@ -11,6 +11,9 @@ public:
 	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue) = 0;
 	virtual void OnStatSerialize(const unsigned _ownerId, const CCryName& _stat64i32, const float _value) {}
 
+#ifndef MOONCRASH
 	static inline auto FOnStatSerialize = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _value)>(0xA13080);
+#else
+	static inline auto FOnStatSerialize = PreyFunction<void(IArkStatsListener* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _value)>(0x1333E90);
+#endif
 };
-

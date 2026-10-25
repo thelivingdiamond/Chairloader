@@ -88,6 +88,7 @@ public:
 	void ClearPickedUpEntity();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerCarryOv1 = PreyFunction<void(ArkPlayerCarry* const _this)>(0x122D6B0);
 	static inline auto FBitNotArkPlayerCarry = PreyFunction<void(ArkPlayerCarry* const _this)>(0x122D930);
 	static inline auto FUpdate = PreyFunction<bool(ArkPlayerCarry* const _this, float _frameTime)>(0x1231C80);
@@ -115,5 +116,33 @@ public:
 	static inline auto FOnRemove = PreyFunction<bool(ArkPlayerCarry* const _this, IEntity* pEntity)>(0x1B933B0);
 	static inline auto FOnReused = PreyFunction<void(ArkPlayerCarry* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0xA13080);
 	static inline auto FOnEvent = PreyFunction<void(ArkPlayerCarry* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x122F6A0);
+#else
+	static inline auto FArkPlayerCarryOv1 = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12CE400);
+	static inline auto FBitNotArkPlayerCarry = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12CE690);
+	static inline auto FUpdate = PreyFunction<bool(ArkPlayerCarry* const _this, float _frameTime)>(0x12D2F10);
+	static inline auto FPreSerialize = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12D0C50);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerCarry* const _this, TSerialize _ser)>(0x12D0E80);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12D0B50);
+	static inline auto FIsDraggingCorpse = PreyFunction<bool(const ArkPlayerCarry* const _this)>(0x12CFF60);
+	static inline auto FDropCarriedEntity = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12CEBC0);
+	static inline auto FThrowCarriedEntity = PreyFunction<bool(ArkPlayerCarry* const _this)>(0x12D2DE0);
+	static inline auto FUpdateCarryConstraintForZeroG = PreyFunction<void(const ArkPlayerCarry* const _this, bool _bZerog)>(0x12D3C40);
+	static inline auto FReset = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12D0D10);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerCarry* const _this, const XmlNodeRef& _node)>(0x12D0190);
+	static inline auto FOnStanceChanged = PreyFunction<void(const ArkPlayerCarry* const _this)>(0x12D0A50);
+	static inline auto FStartCarrying = PreyFunction<bool(ArkPlayerCarry* const _this, IEntity* _pEntity, const bool _bRemote, const bool _bFromSerialize)>(0x12D0F20);
+	static inline auto FGetLerpTargetLocation = PreyFunction<QuatT*(const ArkPlayerCarry* const _this, QuatT* _return_value_, const IEntity* _pLerpingEntity, const Quat& _originalRotation)>(0x12CF0B0);
+	static inline auto FGetCarryDirection = PreyFunction<Quat(const IEntity* _pEntity)>(0x12CEC40);
+	static inline auto FGetLeverageHoldDuration = PreyFunction<float(const ArkPlayerCarry* const _this, const uint64_t _leverageRequirement)>(0x12CFE20);
+	static inline auto FRestoreCollision = PreyFunction<bool(ArkPlayerCarry* const _this, const bool _bFromSerialize)>(0x12D0D40);
+	static inline auto FStopCarrying = PreyFunction<void(ArkPlayerCarry* const _this, const float _impulse, const bool _bApplyAngularImpulse, const bool _bThrown, const bool _bFromSerialize)>(0x12D1AD0);
+	static inline auto FGetDragCorpseConstraintPos = PreyFunction<Vec3*(const ArkPlayerCarry* const _this, Vec3* _return_value_)>(0x12CEFE0);
+	static inline auto FRemoveEmitter = PreyFunction<void(ArkPlayerCarry* const _this)>(0x12D0CB0);
+	static inline auto FOnBroken = PreyFunction<void(IArkBreakableListener* const _this, const IEntity& _entity)>(0x12D0870);
+	static inline auto FOnBeforeSpawn = PreyFunction<bool(ArkPlayerCarry* const _this, SEntitySpawnParams& params)>(0x1A302A0);
+	static inline auto FOnSpawn = PreyFunction<void(ArkPlayerCarry* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0x1333E90);
+	static inline auto FOnRemove = PreyFunction<bool(ArkPlayerCarry* const _this, IEntity* pEntity)>(0x1A302A0);
+	static inline auto FOnReused = PreyFunction<void(ArkPlayerCarry* const _this, IEntity* pEntity, SEntitySpawnParams& params)>(0x1333E90);
+	static inline auto FOnEvent = PreyFunction<void(ArkPlayerCarry* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x12D0970);
+#endif
 };
-

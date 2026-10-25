@@ -25,4 +25,3 @@ struct IFlowSystemTyped // Id=8000F54 Size=8
 };
 
 } // namespace NFlowSystemUtils
-

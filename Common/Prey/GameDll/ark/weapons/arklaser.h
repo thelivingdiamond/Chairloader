@@ -6,6 +6,9 @@ struct IEntity;
 
 // Header: FromCpp
 // Prey/GameDll/ark/weapons/arklaser.h
+#ifdef MOONCRASH
+class ICrySizer;
+#endif
 class CArkLaserBeam : public _i_reference_target<int> // Id=80197FC Size=48
 {
 public:
@@ -51,6 +54,7 @@ public:
 	IEntity *GetLaserEntity();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotCArkLaserBeam = PreyFunction<void(CArkLaserBeam *const _this)>(0x16436F0);
 	static inline auto FInitialize = PreyFunction<void(CArkLaserBeam *const _this, const bool _bInitialAmmo, const unsigned _ownerEntityId, const float _range, CArkLaserBeam::ArkLaserParams const *_pParams, const bool bIsPlayerWeapon)>(0x1643860);
 	static inline auto FUpdateLaser = PreyFunction<void(CArkLaserBeam *const _this, Vec3 const &_position, Vec3 const &_direction, Vec3 const &_upVector)>(0x1643BF0);
@@ -59,5 +63,15 @@ public:
 	static inline auto FTurnOffLaser = PreyFunction<void(CArkLaserBeam *const _this)>(0x1643B60);
 	static inline auto FSetLaserEntitySlots = PreyFunction<void(CArkLaserBeam *const _this, const bool _freeSlots, const bool _bInitialAmmo, const bool bIsPlayerWeapon)>(0x1643A10);
 	static inline auto FUpdateLaserMaterial = PreyFunction<void(CArkLaserBeam *const _this)>(0x1644190);
+#else
+	static inline auto FCArkLaserBeamOv1 = PreyFunction<void(CArkLaserBeam* const _this)>(0x17674B0);
+	static inline auto FBitNotCArkLaserBeam = PreyFunction<void(CArkLaserBeam* const _this)>(0x17674E0);
+	static inline auto FInitialize = PreyFunction<void(CArkLaserBeam* const _this, const bool _bInitialAmmo, const unsigned _ownerEntityId, const float _range, const CArkLaserBeam::ArkLaserParams* _pParams, const bool bIsPlayerWeapon)>(0x1767650);
+	static inline auto FUpdateLaser = PreyFunction<void(CArkLaserBeam* const _this, const Vec3& _position, const Vec3& _direction, const Vec3& _upVector)>(0x17679E0);
+	static inline auto FSetLastLength = PreyFunction<void(CArkLaserBeam* const _this, const float _lastLength)>(0x1767930);
+	static inline auto FTurnOnLaser = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767990);
+	static inline auto FTurnOffLaser = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767950);
+	static inline auto FSetLaserEntitySlots = PreyFunction<void(CArkLaserBeam* const _this, const bool _freeSlots, const bool _bInitialAmmo, const bool bIsPlayerWeapon)>(0x1767800);
+	static inline auto FUpdateLaserMaterial = PreyFunction<void(CArkLaserBeam* const _this)>(0x1767F80);
+#endif
 };
-

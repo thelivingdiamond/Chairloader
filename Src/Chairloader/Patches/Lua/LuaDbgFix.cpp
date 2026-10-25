@@ -10,10 +10,15 @@ constexpr size_t OFFSET_m_isDir = 64;
 
 namespace
 {
-
+#ifndef MOONCRASH
 static inline auto CFileTree_AddItemToTree = PreyFunction<HTREEITEM(CFileTree* const _this, char* lpszItem, int64_t ud, HTREEITEM hParent, unsigned iImage)>(0xD4C240);
 static inline auto CFileTree_EnumerateScripts = PreyFunction<int(CFileTree* const _this, HTREEITEM hRoot, char* pszEnumPath)>(0xD4D2A0);
 static inline auto CFileTree_RemoveItemFromTree = PreyFunction<void(CFileTree* const _this, HTREEITEM itm)>(0xD542C0);
+#else
+static inline auto CFileTree_AddItemToTree = PreyFunction<HTREEITEM(CFileTree* const _this, char* lpszItem, int64_t ud, HTREEITEM hParent, unsigned iImage)>(0xD69D10);
+static inline auto CFileTree_EnumerateScripts = PreyFunction<int(CFileTree* const _this, HTREEITEM hRoot, char* pszEnumPath)>(0xD6AD70);
+static inline auto CFileTree_RemoveItemFromTree = PreyFunction<void(CFileTree* const _this, HTREEITEM itm)>(0xD71D90);
+#endif
 auto g_CFileTree_EnumerateScripts_Hook = CFileTree_EnumerateScripts.MakeHook();
 
 int CFileTree_EnumerateScripts_Hook(CFileTree* _this, HTREEITEM hRoot, char* pszEnumPath)

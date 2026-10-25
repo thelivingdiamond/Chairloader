@@ -5,7 +5,11 @@
 #include <mem.h>
 #include "ConsoleEventPatch.h"
 
+#ifndef MOONCRASH
 static auto g_CArkFlowConsoleEvent_vftable = PreyGlobal<uintptr_t[11]>(0x1E38B28);
+#else
+static auto g_CArkFlowConsoleEvent_vftable = PreyGlobal<uintptr_t[11]>(0x1F8A3B8);
+#endif
 
 void CArkFlowGraphManager_RegisterConsoleEvent(CArkFlowGraphManager* _this, unsigned _graphID, uint16_t _nodeID)
 {

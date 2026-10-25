@@ -13,6 +13,9 @@ class SmartScriptTable;
 
 // Header: FromCpp
 // Prey/GameDll/ark/scriptbind_arknpc.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#endif
 class CScriptBind_ArkNpc : public CScriptableBase // Id=8016462 Size=112
 {
 public:
@@ -62,6 +65,7 @@ public:
 	static ArkNpcPlayer *GetArkNpcPlayerArg(IFunctionHandler *arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkNpc *const _this, ArkNpc *const _pArkNpc)>(0x15C4A60);
 	static inline auto FIsAlive = PreyFunction<int(CScriptBind_ArkNpc *const _this, IFunctionHandler *_pH)>(0x15C5B50);
 	static inline auto FIsDead = PreyFunction<int(CScriptBind_ArkNpc *const _this, IFunctionHandler *_pH)>(0x15C5E50);
@@ -96,5 +100,41 @@ public:
 	static inline auto FGoToSleep = PreyFunction<int(CScriptBind_ArkNpc *const _this, IFunctionHandler *_pH)>(0x15C5650);
 	static inline auto FGetHitInfoFromScript = PreyFunction<bool(SmartScriptTable const &_scriptTable, HitInfo &_info)>(0x15C4FA0);
 	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_ArkNpc const *const _this)>(0x15C6B50);
+#else
+	static inline auto FCScriptBind_ArkNpcOv1 = PreyFunction<void(CScriptBind_ArkNpc* const _this, ISystem* pSystem)>(0x16EA740);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkNpc* const _this, ArkNpc* const _pArkNpc)>(0x16EB620);
+	static inline auto FIsAlive = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC720);
+	static inline auto FIsDead = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECA20);
+	static inline auto FIsCorrupted = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC960);
+	static inline auto FIsHacked = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECD00);
+	static inline auto FIsBroken = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC8A0);
+	static inline auto FIsDestroyed = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECAE0);
+	static inline auto FIsStunned = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECE60);
+	static inline auto FIsAsleep = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC7E0);
+	static inline auto FIsGlooed = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECC40);
+	static inline auto FIsRaisedCorpse = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECDC0);
+	static inline auto FOnHit = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED290);
+	static inline auto FKill = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECF20);
+	static inline auto FCorrupt = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB850);
+	static inline auto FHack = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC2E0);
+	static inline auto FHasArkMetaTag = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC390);
+	static inline auto FLightOnFire = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED130);
+	static inline auto FOnLured = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED480);
+	static inline auto FHasUseDialog = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC660);
+	static inline auto FOnGlooSignal = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED1E0);
+	static inline auto FOnRecycle = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ED5D0);
+	static inline auto FIsEtherform = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16ECBA0);
+	static inline auto FRestrictToEtherForm = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDD70);
+	static inline auto FClearRestrictToEtherForm = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB780);
+	static inline auto FAttachGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB4A0);
+	static inline auto FHasGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC4E0);
+	static inline auto FDetachGameEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EB900);
+	static inline auto FStartCharacterEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDE40);
+	static inline auto FStopCharacterEffect = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EDF70);
+	static inline auto FGetAttentionLevelOnPlayer = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EBA80);
+	static inline auto FWakeFromDormant = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EE0A0);
+	static inline auto FGoToSleep = PreyFunction<int(CScriptBind_ArkNpc* const _this, IFunctionHandler* _pH)>(0x16EC220);
+	static inline auto FGetHitInfoFromScript = PreyFunction<bool(const SmartScriptTable& _scriptTable, HitInfo& _info)>(0x16EBB60);
+	static inline auto FRegisterGlobals = PreyFunction<void(const CScriptBind_ArkNpc* const _this)>(0x16ED720);
+#endif
 };
-

@@ -24,9 +24,15 @@ public:
 	void PostSerialize(const IEntity& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLiftEntityZeroGOv1 = PreyFunction<void(ArkPlayerLiftEntityZeroG* const _this)>(0x130F030);
 	static inline auto FExitLiftVolume = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity)>(0x130F090);
 	static inline auto FUpdate = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime)>(0x130F1A0);
+#else
+	static inline auto FArkPlayerLiftEntityZeroGOv1 = PreyFunction<void(ArkPlayerLiftEntityZeroG* const _this)>(0x13E9720);
+	static inline auto FExitLiftVolume = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity)>(0x13E9780);
+	static inline auto FUpdate = PreyFunction<void(const ArkPlayerLiftEntityZeroG* const _this, const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime)>(0x13E9890);
+#endif
 };
 
 // ArkPlayerLiftEntityZeroGSpawner
@@ -39,7 +45,11 @@ public:
 	ArkPlayerLiftEntityZeroGSpawner();
 	ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG> Spawn(const unsigned _entityId) const { alignas(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>) std::byte _return_buf_[sizeof(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>)]; return *FSpawn(this, reinterpret_cast<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>*>(_return_buf_), _entityId); }
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLiftEntityZeroGSpawner = PreyFunction<void(ArkPlayerLiftEntityZeroGSpawner* const _this)>(0x130F050);
 	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>*(const ArkPlayerLiftEntityZeroGSpawner* const _this, ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>* _return_value_, const unsigned _entityId)>(0x130F0E0);
+#else
+	static inline auto FArkPlayerLiftEntityZeroGSpawner = PreyFunction<void(ArkPlayerLiftEntityZeroGSpawner* const _this)>(0x13E9740);
+	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>*(const ArkPlayerLiftEntityZeroGSpawner* const _this, ArkPsiLiftVolumeEntity<ArkPlayerLiftEntityZeroG>* _return_value_, const unsigned _entityId)>(0x13E97D0);
+#endif
 };
-

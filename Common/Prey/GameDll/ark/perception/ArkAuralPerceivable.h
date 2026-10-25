@@ -17,7 +17,11 @@ public:
 	unsigned GetEntityId() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetAuralPerceivableIsInVacuum = PreyFunction<bool(ArkAuralPerceivable const *const _this)>(0x172F070);
 	static inline auto FGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(ArkAuralPerceivable const *const _this)>(0x15AAEA0);
+#else
+	static inline auto FGetAuralPerceivableIsInVacuum = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x1855F90);
+	static inline auto FGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x6CBC30);
+#endif
 };
-

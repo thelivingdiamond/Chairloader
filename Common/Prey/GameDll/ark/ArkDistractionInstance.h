@@ -9,6 +9,12 @@ struct IEntity;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkDistractionInstance.h
+#ifdef MOONCRASH
+#include <Prey/CryEntitySystem/IEntitySystem.h>
+#include <Prey/CrySystem/TimeValue.h>
+#include <Prey/ArkStubs.h>
+enum class DistractionFailedReason;
+#endif
 class ArkDistractionInstance // Id=801518F Size=40
 {
 public:
@@ -24,9 +30,9 @@ public:
 		CTimeValue m_lastCheckTime;
 	};
 
-	using ObstacleCheckCache = std::map<TNavigationID<1>,ArkDistractionInstance::ObstacleCheckState,std::less<TNavigationID<1> >,std::allocator<std::pair<TNavigationID<1> const ,ArkDistractionInstance::ObstacleCheckState> > >;
+	using ObstacleCheckCache = std::map<TNavigationID<ENavigationIDTag::AgentTypeIDTag>,ArkDistractionInstance::ObstacleCheckState,std::less<TNavigationID<ENavigationIDTag::AgentTypeIDTag> >,std::allocator<std::pair<TNavigationID<ENavigationIDTag::AgentTypeIDTag> const ,ArkDistractionInstance::ObstacleCheckState> > >;
 	
-	std::map<TNavigationID<1>,ArkDistractionInstance::ObstacleCheckState,std::less<TNavigationID<1> >,std::allocator<std::pair<TNavigationID<1> const ,ArkDistractionInstance::ObstacleCheckState> > > m_navAgentObstacleChecks;
+	std::map<TNavigationID<ENavigationIDTag::AgentTypeIDTag>,ArkDistractionInstance::ObstacleCheckState,std::less<TNavigationID<ENavigationIDTag::AgentTypeIDTag> >,std::allocator<std::pair<TNavigationID<ENavigationIDTag::AgentTypeIDTag> const ,ArkDistractionInstance::ObstacleCheckState> > > m_navAgentObstacleChecks;
 	
 	ArkDistractionInstance();
 	~ArkDistractionInstance();
@@ -44,10 +50,17 @@ public:
 	void OnNpcAcquire(unsigned _npcEntityId) { FOnNpcAcquire(this,_npcEntityId); }
 	void OnNpcIgnored(unsigned _npcEntityId) { FOnNpcIgnored(this,_npcEntityId); }
 	void OnNpcDistractionComplete(unsigned _npcEntityId, bool _bSuccessful) { FOnNpcDistractionComplete(this,_npcEntityId,_bSuccessful); }
+#ifndef MOONCRASH
 	Vec3 GetWorldPos() const { return FGetWorldPos(this); }
 	Vec3 GetWorldStandPos(ArkNpc const &_npc) const { return FGetWorldStandPos(this,_npc); }
 	Vec3 GetWorldLookAtPos() const { return FGetWorldLookAtPos(this); }
 	Vec3 GetForwardDirection() const { return FGetForwardDirection(this); }
+#else
+	Vec3 GetWorldPos() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetWorldPos(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	Vec3 GetWorldStandPos(const ArkNpc& _npc) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetWorldStandPos(this, reinterpret_cast<Vec3*>(_return_buf_), _npc); }
+	Vec3 GetWorldLookAtPos() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetWorldLookAtPos(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	Vec3 GetForwardDirection() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetForwardDirection(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+#endif
 	bool GetValidNavStandPosition(ArkNpc const &_npc, Vec3 &_pos) const { return FGetValidNavStandPosition(this,_npc,_pos); }
 	bool IsValidStandPosition(Vec3 const &_pos) const { return FIsValidStandPosition(this,_pos); }
 	bool IsActive() const { return FIsActive(this); }
@@ -75,6 +88,7 @@ public:
 	void SetFailedReason(DistractionFailedReason arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDistractionInstance = PreyFunction<void(ArkDistractionInstance *const _this)>(0x1154E40);
 	static inline auto FInitialize = PreyFunction<void(ArkDistractionInstance *const _this, unsigned _entityId, int _distractionDataIndex)>(0x1155F30);
 	static inline auto FDestroy = PreyFunction<void(ArkDistractionInstance *const _this)>(0x1154F00);
@@ -103,5 +117,35 @@ public:
 	static inline auto FTryStartAreaCooldown = PreyFunction<void(ArkDistractionInstance *const _this)>(0x1157290);
 	static inline auto FTryDistract = PreyFunction<void(ArkDistractionInstance *const _this, uint64_t _distractionInstanceIndex, bool &_outSearched)>(0x1156EE0);
 	static inline auto FIsClearOfObstacles = PreyFunction<bool(ArkDistractionInstance *const _this, ArkNpc const &_npc, Vec3 const &_standPos)>(0x1156010);
+#else
+	static inline auto FArkDistractionInstanceOv1 = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A0EC0);
+	static inline auto FBitNotArkDistractionInstance = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A0F10);
+	static inline auto FInitialize = PreyFunction<void(ArkDistractionInstance* const _this, unsigned _entityId, int _distractionDataIndex)>(0x11A2000);
+	static inline auto FDestroy = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A0FD0);
+	static inline auto FEnable = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A10C0);
+	static inline auto FDisable = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A1030);
+	static inline auto FReset = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A2DB0);
+	static inline auto FSerialize = PreyFunction<void(ArkDistractionInstance* const _this, TSerialize _ser)>(0x11A2E50);
+	static inline auto FUpdate = PreyFunction<void(ArkDistractionInstance* const _this, uint64_t _distractionInstanceIndex, float _gameTime, bool& _outSearched)>(0x11A3410);
+	static inline auto FGetEntity = PreyFunction<IEntity& (const ArkDistractionInstance* const _this)>(0x1112EA0);
+	static inline auto FGetDistractionData = PreyFunction<const Distraction& (const ArkDistractionInstance* const _this)>(0x11A11E0);
+	static inline auto FGetDistractionDataId = PreyFunction<uint64_t(const ArkDistractionInstance* const _this)>(0x11A1300);
+	static inline auto FDistractNpc = PreyFunction<void(ArkDistractionInstance* const _this, ArkNpc& _npc, uint64_t _distractionInstanceIndex)>(0x11A1060);
+	static inline auto FOnNpcAcquire = PreyFunction<void(ArkDistractionInstance* const _this, unsigned _npcEntityId)>(0x11A2C00);
+	static inline auto FOnNpcIgnored = PreyFunction<void(ArkDistractionInstance* const _this, unsigned _npcEntityId)>(0x11A2D40);
+	static inline auto FOnNpcDistractionComplete = PreyFunction<void(ArkDistractionInstance* const _this, unsigned _npcEntityId, bool _bSuccessful)>(0x11A2C10);
+	static inline auto FGetWorldPos = PreyFunction<Vec3*(const ArkDistractionInstance* const _this, Vec3* _return_value_)>(0x11A18E0);
+	static inline auto FGetWorldStandPos = PreyFunction<Vec3*(const ArkDistractionInstance* const _this, Vec3* _return_value_, const ArkNpc& _npc)>(0x11A1B50);
+	static inline auto FGetWorldLookAtPos = PreyFunction<Vec3*(const ArkDistractionInstance* const _this, Vec3* _return_value_)>(0x11A1670);
+	static inline auto FGetForwardDirection = PreyFunction<Vec3*(const ArkDistractionInstance* const _this, Vec3* _return_value_)>(0x11A1360);
+	static inline auto FGetValidNavStandPosition = PreyFunction<bool(const ArkDistractionInstance* const _this, const ArkNpc& _npc, Vec3& _pos)>(0x11A1500);
+	static inline auto FIsValidStandPosition = PreyFunction<bool(const ArkDistractionInstance* const _this, const Vec3& _pos)>(0x11A29C0);
+	static inline auto FIsActive = PreyFunction<bool(const ArkDistractionInstance* const _this)>(0x11A20D0);
+	static inline auto FIsValidDistractionForNpc = PreyFunction<bool(ArkDistractionInstance* const _this, const ArkNpc& _npc, bool _bIgnoreDistanceCheck, bool _bIgnoreDirectionCheck, bool _bIgnoreAreasCheck, int& _numAreasFound, std::array<SAreaManagerResult, 16>& _foundAreas)>(0x11A2500);
+	static inline auto FShouldUseLookAt = PreyFunction<bool(const ArkDistractionInstance* const _this)>(0x11A2FA0);
+	static inline auto FCanDistractRetreatingEntity = PreyFunction<bool(const ArkDistractionInstance* const _this, const IEntity& _entity)>(0x11A0F30);
+	static inline auto FTryStartAreaCooldown = PreyFunction<void(ArkDistractionInstance* const _this)>(0x11A3370);
+	static inline auto FTryDistract = PreyFunction<void(ArkDistractionInstance* const _this, uint64_t _distractionInstanceIndex, bool& _outSearched)>(0x11A2FC0);
+	static inline auto FIsClearOfObstacles = PreyFunction<bool(ArkDistractionInstance* const _this, const ArkNpc& _npc, const Vec3& _standPos)>(0x11A20E0);
+#endif
 };
-

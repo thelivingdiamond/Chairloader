@@ -16,10 +16,17 @@ public:
 	void SetAlternateName(const uint64_t _id, const char *_altName) { FSetAlternateName(this,_id,_altName); }
 	const char *GetAlternateName(const uint64_t _id) const { return FGetAlternateName(this,_id); }
 	
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkCharacterManager *const _this, bool _bEnteringGameMode)>(0x11521E0);
 	static inline auto FSerialize = PreyFunction<void(ArkCharacterManager *const _this, TSerialize ser)>(0x11521F0);
 	static inline auto FGetCharacterName = PreyFunction<const char *(ArkCharacterManager const *const _this, uint64_t _id)>(0x1152070);
 	static inline auto FSetAlternateName = PreyFunction<void(ArkCharacterManager *const _this, const uint64_t _id, const char *_altName)>(0x1152210);
 	static inline auto FGetAlternateName = PreyFunction<const char *(ArkCharacterManager const *const _this, const uint64_t _id)>(0x1152030);
+#else
+	static inline auto FReset = PreyFunction<void(ArkCharacterManager* const _this, bool _bEnteringGameMode)>(0x119A750);
+	static inline auto FSerialize = PreyFunction<void(ArkCharacterManager* const _this, TSerialize ser)>(0x119A760);
+	static inline auto FGetCharacterName = PreyFunction<const char* (const ArkCharacterManager* const _this, uint64_t _id)>(0x119A5E0);
+	static inline auto FSetAlternateName = PreyFunction<void(ArkCharacterManager* const _this, const uint64_t _id, const char* _altName)>(0x119A780);
+	static inline auto FGetAlternateName = PreyFunction<const char* (const ArkCharacterManager* const _this, const uint64_t _id)>(0x119A5A0);
+#endif
 };
-

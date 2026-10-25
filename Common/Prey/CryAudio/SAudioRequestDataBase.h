@@ -16,4 +16,3 @@ struct SAudioRequestDataBase // Id=80021AB Size=16
 	void __dflt_ctor_closure();
 #endif
 };
-

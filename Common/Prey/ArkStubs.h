@@ -1,5 +1,11 @@
 #pragma once
 #include <Prey/GameDll/ark/ui/IUIEventListener.h>
+// Mannequin types are defined in <Prey/CryAction/ICryMannequin.h>. Only forward-declared here: this PCH
+// header can be reached from ISystem.h before gEnv is declared.
+class IAction;
+template<class CONTEXT> class TAction;
+class CFragmentCache;
+struct SMannequinItemParams;
 
 namespace detail
 {
@@ -12,6 +18,8 @@ struct StubSmartPtrIface
 
 }
 
+#include <Prey/CryRenderer/IRenderMesh.h> // replaces the former IRenderMesh stub (StubSmartPtrIface)
+
 struct SAnimationContext;
 
 template <typename T>
@@ -20,22 +28,6 @@ class ArkFlowNodeDialogTrigger;
 struct IMaterial : detail::StubSmartPtrIface {};
 struct ISaveGameThumbnail : detail::StubSmartPtrIface {};
 struct SCrySessionID : detail::StubSmartPtrIface {};
-struct IRenderMesh : detail::StubSmartPtrIface {};
-
-class IAction : public detail::StubSmartPtrIface
-{
-public:
-	enum class EStatus
-	{
-		None = 0,
-		Pending = 1,
-		Installed = 2,
-		Exiting = 3,
-		Finished = 4,
-	};
-
-	void* pad[15];
-};
 
 using ArkMaterialAnimationChannel = EMaterialParamFloat;
 
@@ -51,30 +43,6 @@ struct ArkMaterialAnimationKeyframe // Id=8014239 Size=36
 };
 
 struct MaterialParameterRamp {
-	void* pad[9];
-};
-
-template<class CONTEXT>
-class TAction : public IAction
-{
-};
-
-// Header: Exact
-// CryEngine/cryaction/icrymannequin.h
-class CFragmentCache // Id=8004878 Size=72
-{
-public:
-	struct SCacheAnims // Id=8004879 Size=4
-	{
-		unsigned m_crc;
-	};
-
-	struct FPredNotLoaded // Id=800487A Size=1
-	{
-	};
-
-	using TAnimsCached = std::vector<CFragmentCache::SCacheAnims>;
-
 	void* pad[9];
 };
 
@@ -115,14 +83,6 @@ struct SUIEventSenderDispatcher // Id=801BBBE Size=24
 #endif
 };
 
-struct SMannequinItemParams
-{
-	struct FragmentIDs;
-	struct TagIDs;
-	struct TagGroupIDs;
-	struct ContextIDs;
-	struct Fragments;
-};
 
 class ArkOffMeshLinkHelper
 {
@@ -135,7 +95,3 @@ struct TNavigationID
 	uint32 id;
 };
 
-class ArkNpcMovementDesire
-{
-	void* pad[30];
-};

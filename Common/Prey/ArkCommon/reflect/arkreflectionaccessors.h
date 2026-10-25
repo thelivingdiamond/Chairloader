@@ -1,11 +1,12 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <CryEngine/cryaisystem/navigation/mnm/CompactSpanGrid.h>
+#include <Prey/CryAISystem/navigation/mnm/CompactSpanGrid.h>
 #include <CryEngine/cryaisystem/navigation/mnm/profiler.h>
-#include <CryEngine/cryaisystem/navigation/mnm/voxelizer.h>
+#include <Prey/CryAISystem/navigation/mnm/voxelizer.h>
 #include <Prey/Ark/ArkAudioUtil.h>
-#include <CryEngine/crycommon/cryfixedstring.h>
+#include <Prey/CryString/CryFixedString.h>
 #include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryAction/ICryMannequinTagDefs.h>
 #include <Prey/CryCore/FixedPoint.h>
@@ -16,7 +17,7 @@
 #include <Prey/CryNetwork/Protocol/ExponentialKeyExchange.h>
 #include <Prey/CrySystem/ILog.h>
 #include <Prey/CrySystem/IMiniLog.h>
-#include <Prey/CrySystem/Log.h>
+#include <Prey/ArkCommon/reflect/arkreflectionaccessors.h>
 #include <Prey/GameDll/ai/hazardmodule/hazardraycast.h>
 #include <Prey/GameDll/ark/ArkSimpleTimer.h>
 #include <Prey/GameDll/ark/npc/anim/arknpcanimactions.h>
@@ -25,10 +26,9 @@
 #include <Prey/GameDll/ark/player/psipower/arkpsipowerhypnosis.h>
 #include <Prey/GameDll/ark/player/psipower/carkpsipower.h>
 #include <Prey/GameDll/ark/weapons/arklaser.h>
-#include <_unknown/AkEnvelopeParams.h>
+#include <Prey/ArkCommon/reflect/AkEnvelopeParams.h>
 #include <_unknown/ArkAiTreeStimulusTemplate_ArkAiTreeGuardBeginStimulus_.h>
-#include <_unknown/ArkNpcBlackboardEntryTemplate_GetUpdate_ArkNpcBlackboardKey_LostVisibilityTime,ArkNpcBlackboardEntryKey_LostVisibilityTime,ArkNpcBlackboardEntry_LostVisibilityTime,float,float_.h>
-#include <_unknown/ArkNpcBlackboardEntryTemplate_GetUpdate_ArkNpcBlackboardKey_VisibilityTime,ArkNpcBlackboardEntryKey_VisibilityTime,ArkNpcBlackboardEntry_VisibilityTime,float,float_.h>
+#include <Prey/GameDll/ark/npc/blackboard/ArkNpcBlackboardEntryTemplates.h>
 #include <_unknown/ArkPsiPowerFactionTraits_10_.h>
 #include <_unknown/ArkPsiPowerFactionTraits_11_.h>
 #include <_unknown/CFXNodeDescription__CControlParamBase.h>
@@ -165,7 +165,7 @@ public:
 		MNM::BoundingVolume const *boundary;
 		MNM::BoundingVolume const *exclusions;
 		unsigned hashValue;
-		TNavigationID<0> meshId;
+		TNavigationID<ENavigationIDTag::MeshIDTag> meshId;
 		uint64_t tileName;
 		bool bBackground;
 	};
@@ -599,17 +599,17 @@ public:
 	virtual bool SetFileName(const char *filename);
 	virtual const char *GetFileName();
 	virtual const char *GetBackupFileName();
-	virtual void LogComment(const char *szFormat, ... arg1);
-	virtual void Log(const char *szFormat, ... arg1);
-	virtual void LogAlways(const char *szFormat, ... arg1);
-	virtual void LogWarning(const char *szFormat, ... ArgList);
-	virtual void LogError(const char *szFormat, ... ArgList);
-	virtual void LogPlus(const char *szFormat, ... szTemp);
-	virtual void LogToFile(const char *szFormat, ... szTemp);
-	virtual void LogToFilePlus(const char *szFormat, ... szTemp);
-	virtual void LogToConsole(const char *szFormat, ... szBuffer);
-	virtual void LogToConsolePlus(const char *szFormat, ... szTemp);
-	virtual void UpdateLoadingScreen(const char *szFormat, ... arg1);
+	virtual void LogComment(const char *szFormat, ...);
+	virtual void Log(const char *szFormat, ...);
+	virtual void LogAlways(const char *szFormat, ...);
+	virtual void LogWarning(const char *szFormat, ...);
+	virtual void LogError(const char *szFormat, ...);
+	virtual void LogPlus(const char *szFormat, ...);
+	virtual void LogToFile(const char *szFormat, ...);
+	virtual void LogToFilePlus(const char *szFormat, ...);
+	virtual void LogToConsole(const char *szFormat, ...);
+	virtual void LogToConsolePlus(const char *szFormat, ...);
+	virtual void UpdateLoadingScreen(const char *szFormat, ...);
 	virtual void SetVerbosity(int verbosity);
 	virtual int GetVerbosityLevel();
 	virtual void RegisterConsoleVariables();
@@ -629,7 +629,7 @@ public:
 	
 #if 0
 	_iobuf *OpenLogFile(const char *arg0, const char *arg1);
-	void FormatMessageA(const char *arg0, ... arg1);
+	void FormatMessageA(const char *arg0, ...);
 	const char *CheckAgainstVerbosity(const char *arg0, bool &arg1, bool &arg2, const uint8_t arg3);
 #endif
 	
@@ -637,17 +637,17 @@ public:
 	static inline auto FSetFileName = PreyFunction<bool(CLog *const _this, const char *filename)>(0xDB2220);
 	static inline auto FGetFileName = PreyFunction<const char *(CLog *const _this)>(0x12BDAA0);
 	static inline auto FGetBackupFileName = PreyFunction<const char *(CLog *const _this)>(0x10BD3B0);
-	static inline auto FLogComment = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAEDE0);
-	static inline auto FLog = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAED80);
-	static inline auto FLogAlways = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDAEDB0);
-	static inline auto FLogWarning = PreyFunction<void(CLog *const _this, const char *szFormat, ... ArgList)>(0xDB1E30);
-	static inline auto FLogError = PreyFunction<void(CLog *const _this, const char *szFormat, ... ArgList)>(0xDAEE10);
-	static inline auto FLogPlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDAEED0);
-	static inline auto FLogToFile = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB11C0);
-	static inline auto FLogToFilePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB12B0);
-	static inline auto FLogToConsole = PreyFunction<void(CLog *const _this, const char *szFormat, ... szBuffer)>(0xDB0FE0);
-	static inline auto FLogToConsolePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ... szTemp)>(0xDB10D0);
-	static inline auto FUpdateLoadingScreen = PreyFunction<void(CLog *const _this, const char *szFormat, ... arg1)>(0xDB26D0);
+	// varargs: static inline auto FLogComment = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEDE0);
+	// varargs: static inline auto FLog = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAED80);
+	// varargs: static inline auto FLogAlways = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEDB0);
+	// varargs: static inline auto FLogWarning = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB1E30);
+	// varargs: static inline auto FLogError = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEE10);
+	// varargs: static inline auto FLogPlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDAEED0);
+	// varargs: static inline auto FLogToFile = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB11C0);
+	// varargs: static inline auto FLogToFilePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB12B0);
+	// varargs: static inline auto FLogToConsole = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB0FE0);
+	// varargs: static inline auto FLogToConsolePlus = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB10D0);
+	// varargs: static inline auto FUpdateLoadingScreen = PreyFunction<void(CLog *const _this, const char *szFormat, ...)>(0xDB26D0);
 	static inline auto FSetVerbosity = PreyFunction<void(CLog *const _this, int verbosity)>(0xDB2360);
 	static inline auto FGetVerbosityLevel = PreyFunction<int(CLog *const _this)>(0xDAED60);
 	static inline auto FRegisterConsoleVariables = PreyFunction<void(CLog *const _this)>(0xDB1EF0);
@@ -701,35 +701,7 @@ public:
 	static inline auto FGetFalseCount = PreyFunction<uint64_t(ArkUnanimous const *const _this)>(0x12AAC70);
 };
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcBlackboardEntry_LostVisibilityTime : public ArkNpcBlackboardEntryTemplate_GetUpdate<ArkNpcBlackboardKey_LostVisibilityTime,ArkNpcBlackboardEntryKey_LostVisibilityTime,ArkNpcBlackboardEntry_LostVisibilityTime,float,float> // Id=80159E3 Size=4
-{
-public:
-	float m_time;
-	
-	ArkNpcBlackboardEntry_LostVisibilityTime();
-	float Get() const { return FGet(this); }
-	void Update(ArkNpcBlackboardEntryKey_LostVisibilityTime const &_entryKey, float _elapsedTime) { FUpdate(this,_entryKey,_elapsedTime); }
-	
-	static inline auto FGet = PreyFunction<float(ArkNpcBlackboardEntry_LostVisibilityTime const *const _this)>(0x10BDAB0);
-	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_LostVisibilityTime *const _this, ArkNpcBlackboardEntryKey_LostVisibilityTime const &_entryKey, float _elapsedTime)>(0x12104A0);
-};
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcBlackboardEntry_VisibilityTime : public ArkNpcBlackboardEntryTemplate_GetUpdate<ArkNpcBlackboardKey_VisibilityTime,ArkNpcBlackboardEntryKey_VisibilityTime,ArkNpcBlackboardEntry_VisibilityTime,float,float> // Id=80159EF Size=4
-{
-public:
-	float m_time;
-	
-	ArkNpcBlackboardEntry_VisibilityTime();
-	float Get() const { return FGet(this); }
-	void Update(ArkNpcBlackboardEntryKey_VisibilityTime const &_entryKey, float _elapsedTime) { FUpdate(this,_entryKey,_elapsedTime); }
-	
-	static inline auto FGet = PreyFunction<float(ArkNpcBlackboardEntry_VisibilityTime const *const _this)>(0x10BDAB0);
-	static inline auto FUpdate = PreyFunction<void(ArkNpcBlackboardEntry_VisibilityTime *const _this, ArkNpcBlackboardEntryKey_VisibilityTime const &_entryKey, float _elapsedTime)>(0x1210530);
-};
 
 namespace HazardSystem
 {
@@ -883,41 +855,6 @@ public:
 	static inline auto FDoMilitaryOperatorLaserDamage = PreyFunction<void(ArkOperatorLaserHelper *const _this, ArkNpc &_npc, const float _frameTime, EventPhysCollision const &_collision)>(0x1280F70);
 };
 
-// Header: Exact
-// Prey/ArkCommon/reflect/arkreflectionaccessors.h
-class ArkNpcAnimActionRagdollAndStandUp : public ArkNpcAnimAction // Id=8019975 Size=200
-{
-public:
-	_smart_ptr<ArkNpcAnimActionStandUp> m_pDelayedStandUpAction;
-	float m_stoppingTime;
-	bool m_bStopping;
-	
-	virtual const char *GetName() const;
-	virtual void DoDelete();
-	ArkNpcAnimActionRagdollAndStandUp(ArkNpc &_npc, int priority, const int &fragID, STagState<12> const &sleepTagState, _smart_ptr<ArkNpcAnimActionStandUp> const &_pStandupAnimAction, bool bIndefinite);
-	virtual void Enter();
-	virtual IAction::EStatus Update(float _timePassed);
-	virtual void Exit();
-	virtual void Fail(EActionFailure _actionFailure);
-	void Stop() { FStop(this); }
-	_smart_ptr<ArkNpcAnimActionStandUp> const &GetStandUpAnimAction() const { return FGetStandUpAnimAction(this); }
-	void StartStandup() { FStartStandup(this); }
-	
-#if 0
-	void ForceFinish();
-	bool IsStopping() const;
-#endif
-	
-	static inline auto FGetName = PreyFunction<const char *(ArkNpcAnimActionRagdollAndStandUp const *const _this)>(0x11E27B0);
-	static inline auto FDoDelete = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0xA97D40);
-	static inline auto FEnter = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E1FD0);
-	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkNpcAnimActionRagdollAndStandUp *const _this, float _timePassed)>(0x11E2A20);
-	static inline auto FExit = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E23B0);
-	static inline auto FFail = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this, EActionFailure _actionFailure)>(0x11E24F0);
-	static inline auto FStop = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E2A00);
-	static inline auto FGetStandUpAnimAction = PreyFunction<_smart_ptr<ArkNpcAnimActionStandUp> const &(ArkNpcAnimActionRagdollAndStandUp const *const _this)>(0x10BD800);
-	static inline auto FStartStandup = PreyFunction<void(ArkNpcAnimActionRagdollAndStandUp *const _this)>(0x11E28C0);
-};
 
 // Header: Exact
 // Prey/ArkCommon/reflect/arkreflectionaccessors.h
@@ -1004,4 +941,170 @@ public:
 	static inline auto FInitializeOutput = PreyFunction<void(CAkEnvelopeCtx *const _this)>(0x1A3CB90);
 	static inline auto FGetParamsPtr = PreyFunction<AkModulatorParams *(CAkEnvelopeCtx *const _this)>(0x10BD540);
 };
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+// WARNING: Contains templates
+#pragma once
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkFactionManager.h>
+#endif
+#include <Prey/CryExtension/ClassWeaver.h>
+#include <Prey/CryAction/ICryMannequin.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/GameDll/ark/iface/IArkFactionManager.h>
+#include <Prey/GameDll/ProceduralContextHelpers.h>
+#include <Prey/CryExtension/TypeList.h>
+#include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/include/impl/container/fixedvector.h>
+#include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/src/container/producerconsumerqueue.h>
+#include <f:/arkane/nathan.degrand_prey/danielle/preydlcbnet/code/sdks/bdk/bnet-sdk-cpp/src/job/Composite.h>
 
+struct CryGUID;
+enum class EArkDisposition;
+class IActionController;
+struct IAnimationPoseBlenderDir;
+class IArkFactionListener;
+struct IConsoleCmdArgs;
+struct ICryFactory;
+struct IEntity;
+
+// CExponentialKeyExchange
+// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
+// Include: Prey/CryNetwork/Protocol/ExponentialKeyExchange.h
+class CExponentialKeyExchange
+{ // Size=192 (0xC0)
+public:
+	// CExponentialKeyExchange::KEY_TYPE
+	// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
+	struct KEY_TYPE
+	{ // Size=32 (0x20)
+		uint8_t key[32];
+
+	#if 0
+		KEY_TYPE();
+	#endif
+	};
+
+	static constexpr const uint64_t KEY_SIZE = 32;
+	static constexpr const uint64_t KEY_SIZE_IN_BITS = 256;
+	CExponentialKeyExchange::KEY_TYPE m_x;
+	CExponentialKeyExchange::KEY_TYPE m_g;
+	CExponentialKeyExchange::KEY_TYPE m_p;
+	CExponentialKeyExchange::KEY_TYPE m_A;
+	CExponentialKeyExchange::KEY_TYPE m_B;
+	CExponentialKeyExchange::KEY_TYPE m_k;
+
+	CExponentialKeyExchange();
+	~CExponentialKeyExchange();
+	void Generate(CExponentialKeyExchange::KEY_TYPE& gg, CExponentialKeyExchange::KEY_TYPE& pp, CExponentialKeyExchange::KEY_TYPE& AA) { FGenerateOv1(this, gg, pp, AA); }
+	void Generate(CExponentialKeyExchange::KEY_TYPE& BB, const CExponentialKeyExchange::KEY_TYPE& gg, const CExponentialKeyExchange::KEY_TYPE& pp, const CExponentialKeyExchange::KEY_TYPE& AA) { FGenerateOv0(this, BB, gg, pp, AA); }
+	void Calculate(const CExponentialKeyExchange::KEY_TYPE& BB) { FCalculate(this, BB); }
+	const CExponentialKeyExchange::KEY_TYPE& GetKey() const { return FGetKey(this); }
+	static int RandFunc(uint8_t* bytes, uint64_t nbytes, const uint8_t* seed, uint64_t slen) { return FRandFunc(bytes, nbytes, seed, slen); }
+
+#if 0
+	static void Test(IConsoleCmdArgs* _arg0_);
+#endif
+
+	static inline auto FCExponentialKeyExchange = PreyFunction<void(CExponentialKeyExchange* const _this)>(0xB22C30);
+	static inline auto FBitNotCExponentialKeyExchange = PreyFunction<void(CExponentialKeyExchange* const _this)>(0x1333E90);
+	static inline auto FGenerateOv1 = PreyFunction<void(CExponentialKeyExchange* const _this, CExponentialKeyExchange::KEY_TYPE& gg, CExponentialKeyExchange::KEY_TYPE& pp, CExponentialKeyExchange::KEY_TYPE& AA)>(0xB22DC0);
+	static inline auto FGenerateOv0 = PreyFunction<void(CExponentialKeyExchange* const _this, CExponentialKeyExchange::KEY_TYPE& BB, const CExponentialKeyExchange::KEY_TYPE& gg, const CExponentialKeyExchange::KEY_TYPE& pp, const CExponentialKeyExchange::KEY_TYPE& AA)>(0xB231D0);
+	static inline auto FCalculate = PreyFunction<void(CExponentialKeyExchange* const _this, const CExponentialKeyExchange::KEY_TYPE& BB)>(0xB22C50);
+	static inline auto FGetKey = PreyFunction<const CExponentialKeyExchange::KEY_TYPE& (const CExponentialKeyExchange* const _this)>(0x10ED440);
+	static inline auto FRandFunc = PreyFunction<int(uint8_t* bytes, uint64_t nbytes, const uint8_t* seed, uint64_t slen)>(0xB234E0);
+};
+
+// CProceduralContextAim
+// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
+class CProceduralContextAim : public IProceduralContext
+{ // Size=96 (0x60)
+public:
+	// CProceduralContextAim::SPolarCoordinatesSmoothingParametersRequest
+	// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
+	struct SPolarCoordinatesSmoothingParametersRequest
+	{ // Size=16 (0x10)
+		unsigned id;
+		Vec2 maxSmoothRateRadiansPerSecond;
+		float smoothTimeSeconds;
+	};
+
+	using _UserDefinedPartialInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
+	using FullInterfaceList = TL::Typelist<ICryUnknown,TL::Typelist<IProceduralContext,TL::NullType> >;
+	using TPolarCoordinatesSmoothingParametersRequestList = ProceduralContextHelpers::CRequestList<CProceduralContextAim::SPolarCoordinatesSmoothingParametersRequest>;
+
+	static inline auto s_factory = PreyGlobal<CFactory<CProceduralContextAim>>(0x23F11C8);
+	IAnimationPoseBlenderDir* m_pPoseBlenderAim;
+	bool m_gameRequestsAiming;
+	bool m_procClipRequestsAiming;
+	Vec3 m_gameAimTarget;
+	Vec2 m_defaultPolarCoordinatesMaxSmoothRateRadiansPerSecond;
+	float m_defaultPolarCoordinatesSmoothTimeSeconds;
+	ProceduralContextHelpers::CRequestList<CProceduralContextAim::SPolarCoordinatesSmoothingParametersRequest> m_polarCoordinatesSmoothingParametersRequestList;
+
+	virtual ICryFactory* GetFactory() const;
+	virtual void* QueryInterface(const CryGUID& iid) const;
+	virtual void* QueryComposite(const char* name) const;
+	virtual ~CProceduralContextAim();
+	virtual void Initialise(IEntity& entity, IActionController& actionController);
+	virtual void Update(float timePassedSeconds);
+	void UpdateGameAimingRequest(const bool aimRequest) { FUpdateGameAimingRequest(this, aimRequest); }
+	void UpdateProcClipAimingRequest(const bool aimRequest) { FUpdateProcClipAimingRequest(this, aimRequest); }
+	void UpdateGameAimTarget(const Vec3& aimTarget) { FUpdateGameAimTarget(this, aimTarget); }
+	void SetBlendInTime(const float blendInTime) { FSetBlendInTime(this, blendInTime); }
+	void SetBlendOutTime(const float blendOutTime) { FSetBlendOutTime(this, blendOutTime); }
+	unsigned RequestPolarCoordinatesSmoothingParameters(const Vec2& maxSmoothRateRadiansPerSecond, const float smoothTimeSeconds) { return FRequestPolarCoordinatesSmoothingParameters(this, maxSmoothRateRadiansPerSecond, smoothTimeSeconds); }
+	void CancelPolarCoordinatesSmoothingParameters(const unsigned requestId) { FCancelPolarCoordinatesSmoothingParameters(this, requestId); }
+	void InitialisePoseBlenderAim() { FInitialisePoseBlenderAim(this); }
+
+#if 0
+	static const char* GetCName();
+	static const CryGUID& GetCID();
+	static std::shared_ptr<CProceduralContextAim> CreateClassInstance();
+	CProceduralContextAim();
+	static const char* GetContextName();
+	void InitialiseGameAimTarget();
+	void UpdatePolarCoordinatesSmoothingParameters();
+#endif
+
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CProceduralContextAim* const _this)>(0x18F4A70);
+	static inline auto FQueryInterface = PreyFunction<void* (const CProceduralContextAim* const _this, const CryGUID& iid)>(0x18F70B0);
+	static inline auto FQueryComposite = PreyFunction<void* (const CProceduralContextAim* const _this, const char* name)>(0x1CBB0B0);
+	static inline auto FInitialise = PreyFunction<void(CProceduralContextAim* const _this, IEntity& entity, IActionController& actionController)>(0x18F4A80);
+	static inline auto FUpdate = PreyFunction<void(CProceduralContextAim* const _this, float timePassedSeconds)>(0x18F4B40);
+	static inline auto FUpdateGameAimingRequest = PreyFunction<void(CProceduralContextAim* const _this, const bool aimRequest)>(0x374600);
+	static inline auto FUpdateProcClipAimingRequest = PreyFunction<void(CProceduralContextAim* const _this, const bool aimRequest)>(0x18F58C0);
+	static inline auto FUpdateGameAimTarget = PreyFunction<void(CProceduralContextAim* const _this, const Vec3& aimTarget)>(0x10ED6A0);
+	static inline auto FSetBlendInTime = PreyFunction<void(CProceduralContextAim* const _this, const float blendInTime)>(0x18F5880);
+	static inline auto FSetBlendOutTime = PreyFunction<void(CProceduralContextAim* const _this, const float blendOutTime)>(0x18F58A0);
+	static inline auto FRequestPolarCoordinatesSmoothingParameters = PreyFunction<unsigned(CProceduralContextAim* const _this, const Vec2& maxSmoothRateRadiansPerSecond, const float smoothTimeSeconds)>(0x18F5830);
+	static inline auto FCancelPolarCoordinatesSmoothingParameters = PreyFunction<void(CProceduralContextAim* const _this, const unsigned requestId)>(0x18F5130);
+	static inline auto FInitialisePoseBlenderAim = PreyFunction<void(CProceduralContextAim* const _this)>(0x18F5190);
+};
+
+namespace bnet
+{
+
+// bnet::Composite<bnet::ta::ThreadSafe>
+// Header:  Prey/ArkCommon/reflect/arkreflectionaccessors.h
+class Composite<bnet::ta::ThreadSafe> : public bnet::_detail::implComposite<bnet::ta::ThreadSafe>
+{ // Size=376 (0x178)
+public:
+	using Base = bnet::_detail::implComposite<bnet::ta::ThreadSafe>;
+
+	bnet::ProducerConsumerQueue<bnet::UniquePtr<bnet::Job>,bnet::ta::ThreadSafe> m_unconsumed;
+
+	virtual bnet::IProducerConsumerQueue<bnet::UniquePtr<bnet::Job> >& GetUnconsumed();
+	virtual const bnet::IProducerConsumerQueue<bnet::UniquePtr<bnet::Job> >& GetUnconsumed() const;
+
+#if 0
+	Composite<bnet::ta::ThreadSafe>();
+	Composite<bnet::ta::ThreadSafe>(bnet::_impl::FixedVector<bnet::UniquePtr<bnet::Job>,10,1,bnet::_impl::StdAllocator<bnet::UniquePtr<bnet::Job> > >&& _arg0_);
+#endif
+
+	static inline auto FGetUnconsumedOv1 = PreyFunction<bnet::IProducerConsumerQueue<bnet::UniquePtr<bnet::Job> >& (bnet::Composite<bnet::ta::ThreadSafe>* const _this)>(0x10ECE50);
+	static inline auto FGetUnconsumedOv0 = PreyFunction<const bnet::IProducerConsumerQueue<bnet::UniquePtr<bnet::Job> >& (const bnet::Composite<bnet::ta::ThreadSafe>* const _this)>(0x10ECE50);
+};
+
+
+} // namespace bnet
+#endif // !MOONCRASH

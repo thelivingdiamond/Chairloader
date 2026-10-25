@@ -7,6 +7,9 @@ class CArkLight;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkLightTimeManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkLightTimeSettings.h>
+#endif
 class ArkLightTimeManager // Id=8015494 Size=72
 {
 public:
@@ -23,10 +26,18 @@ public:
 	void RegisterArkLight(CArkLight *_pArkLight, ArkLightTimeSettings const &_timeSettings) { FRegisterArkLight(this,_pArkLight,_timeSettings); }
 	void UnRegisterArkLight(CArkLight *_pArkLight) { FUnRegisterArkLight(this,_pArkLight); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkLightTimeManager = PreyFunction<void(ArkLightTimeManager *const _this)>(0x118F270);
 	static inline auto FOnTimeOfDayChange = PreyFunction<void(ArkLightTimeManager *const _this)>(0x118F330);
 	static inline auto FOnLevelUnload = PreyFunction<void(ArkLightTimeManager *const _this)>(0x118F2D0);
 	static inline auto FRegisterArkLight = PreyFunction<void(ArkLightTimeManager *const _this, CArkLight *_pArkLight, ArkLightTimeSettings const &_timeSettings)>(0x118F430);
 	static inline auto FUnRegisterArkLight = PreyFunction<void(ArkLightTimeManager *const _this, CArkLight *_pArkLight)>(0x118F550);
+#else
+	static inline auto FArkLightTimeManagerOv1 = PreyFunction<void(ArkLightTimeManager* const _this)>(0x120A410);
+	static inline auto FBitNotArkLightTimeManager = PreyFunction<void(ArkLightTimeManager* const _this)>(0x120A490);
+	static inline auto FOnTimeOfDayChange = PreyFunction<void(ArkLightTimeManager* const _this)>(0x120A550);
+	static inline auto FOnLevelUnload = PreyFunction<void(ArkLightTimeManager* const _this)>(0x120A4F0);
+	static inline auto FRegisterArkLight = PreyFunction<void(ArkLightTimeManager* const _this, CArkLight* _pArkLight, const ArkLightTimeSettings& _timeSettings)>(0x120A650);
+	static inline auto FUnRegisterArkLight = PreyFunction<void(ArkLightTimeManager* const _this, CArkLight* _pArkLight)>(0x120A770);
+#endif
 };
-

@@ -11,4 +11,3 @@ template <unsigned int I> struct SAudioManagerRequestData : public SAudioManager
 	virtual ~SAudioManagerRequestData<524288>();
 #endif
 };
-

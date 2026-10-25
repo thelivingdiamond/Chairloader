@@ -1070,5 +1070,3 @@ typedef Matrix34_tpl<real> Matrix34r;  //!< Variable float precision. depending 
  */
 struct __attribute__((deprecated)) Matrix34_f32_dont_use : public Matrix34_tpl<f32> {};
 #endif
-
-

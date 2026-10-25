@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -26,4 +27,4 @@ public:
 	static inline auto FGetChipsetComponent = PreyFunction<ArkEquipmentModComponent &(CArkPDAPageScopeChipsets const *const _this)>(0x134B1E0);
 	static inline auto FGetChipsetType = PreyFunction<int(CArkPDAPageScopeChipsets const *const _this)>(0x134B200);
 };
-
+#endif // !MOONCRASH

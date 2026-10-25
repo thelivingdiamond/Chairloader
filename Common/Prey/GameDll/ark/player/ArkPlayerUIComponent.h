@@ -75,6 +75,9 @@ public:
 	int m_maxNumDamageIndicators;
 	unsigned m_currentEnemyTarget;
 	ArkSimpleTimer m_enemyHealthTimeout;
+#ifdef MOONCRASH
+	float m_healthPerPip;
+#endif
 	bool m_bEnemyHealthEnabled;
 
 	ArkPlayerUIComponent();
@@ -105,6 +108,7 @@ public:
 	int GetBestDamageIndicator(const unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerUIComponentOv1 = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x1579A50);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerUIComponent* const _this, const XmlNodeRef& _node)>(0x157A230);
 	static inline auto FReset = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x157A540);
@@ -123,5 +127,24 @@ public:
 	static inline auto FUpdateEnemyHealth = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* pHud, const float _frameTime)>(0x157A8E0);
 	static inline auto FRemoveDamageIndicator = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x157A440);
 	static inline auto FOnAwarenessAnimComplete = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x157A310);
+#else
+	static inline auto FArkPlayerUIComponentOv1 = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x16A0730);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerUIComponent* const _this, const XmlNodeRef& _node)>(0x16A0F10);
+	static inline auto FReset = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x16A1320);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerUIComponent* const _this, const float _dt)>(0x16A1460);
+	static inline auto FDrawDamageIndicatorOv0 = PreyFunction<void(ArkPlayerUIComponent* const _this, const Vec3& _dir, bool _bIsDamage, const unsigned _sourceEntity)>(0x16A0AA0);
+	static inline auto FSetEnemyHealthEnabled = PreyFunction<void(ArkPlayerUIComponent* const _this, bool _bEnabled)>(0x16A1400);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerUIComponent* const _this, TSerialize _ser)>(0x16A1330);
+	static inline auto FPreSerialize = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x16A11B0);
+	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(ArkPlayerUIComponent* const _this)>(0x16A19A0);
+	static inline auto FUpdateAwarenessLevel = PreyFunction<void(ArkPlayerUIComponent* const _this, unsigned _entity, EArkAttentionLevel _awarenessLevel)>(0x16A1660);
+	static inline auto FRemoveAwarenessIndicator = PreyFunction<void(ArkPlayerUIComponent* const _this, unsigned _entity, bool _bIsAware)>(0x16A11E0);
+	static inline auto FUpdateMarkedTarget = PreyFunction<void(ArkPlayerUIComponent* const _this, unsigned _entity, bool _bHostile, bool _bIsNew)>(0x16A2D10);
+	static inline auto FRemoveMarkedTarget = PreyFunction<void(ArkPlayerUIComponent* const _this, unsigned _entity)>(0x16A12F0);
+	static inline auto FSetMarkedTargetConfigValues = PreyFunction<void(ArkPlayerUIComponent* const _this, float _fullAlphaDistance, float _zeroAlphaDistance, float _maxAngleForLabel)>(0x16A1450);
+	static inline auto FSetAwarenessConfigValues = PreyFunction<void(ArkPlayerUIComponent* const _this, float _fullAlphaDistance, float _zeroAlphaDistance, float _fullScaleDistance, float _minScaleDistance, float _minScale)>(0x16A13D0);
+	static inline auto FUpdateEnemyHealth = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* pHud, const float _frameTime)>(0x16A16C0);
+	static inline auto FRemoveDamageIndicator = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x16A1220);
+	static inline auto FOnAwarenessAnimComplete = PreyFunction<void(ArkPlayerUIComponent* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x16A1010);
+#endif
 };
-

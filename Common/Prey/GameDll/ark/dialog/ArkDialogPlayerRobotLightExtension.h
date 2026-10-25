@@ -23,9 +23,16 @@ public:
 	virtual void OnDialogEnd(uint64_t _dialogId);
 	void SetMinMaxBrightness(float _min, float _max) { FSetMinMaxBrightness(this,_min,_max); }
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkDialogPlayerRobotLightExtension *const _this, float _frameTime)>(0x11B3820);
 	static inline auto FOnDialogStart = PreyFunction<void(ArkDialogPlayerRobotLightExtension *const _this, uint64_t _dialogId)>(0x11B3800);
 	static inline auto FOnDialogEnd = PreyFunction<void(ArkDialogPlayerRobotLightExtension *const _this, uint64_t _dialogId)>(0x11B37F0);
 	static inline auto FSetMinMaxBrightness = PreyFunction<void(ArkDialogPlayerRobotLightExtension *const _this, float _min, float _max)>(0x11B3810);
+#else
+	static inline auto FArkDialogPlayerRobotLightExtensionOv2 = PreyFunction<void(ArkDialogPlayerRobotLightExtension* const _this, ArkRobotLight& _light)>(0x1231000);
+	static inline auto FUpdate = PreyFunction<void(ArkDialogPlayerRobotLightExtension* const _this, float _frameTime)>(0x12310A0);
+	static inline auto FOnDialogStart = PreyFunction<void(ArkDialogPlayerRobotLightExtension* const _this, uint64_t _dialogId)>(0x1231080);
+	static inline auto FOnDialogEnd = PreyFunction<void(ArkDialogPlayerRobotLightExtension* const _this, uint64_t _dialogId)>(0x1231070);
+	static inline auto FSetMinMaxBrightness = PreyFunction<void(ArkDialogPlayerRobotLightExtension* const _this, float _min, float _max)>(0x1231090);
+#endif
 };
-

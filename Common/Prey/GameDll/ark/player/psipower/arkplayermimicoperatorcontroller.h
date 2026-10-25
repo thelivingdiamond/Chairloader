@@ -9,6 +9,10 @@ struct IEntity;
 
 // Header: FromCpp
 // Prey/GameDll/ark/player/psipower/arkplayermimicoperatorcontroller.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+class ArkPsiMimicOperatorProperties;
+#endif
 template <typename T>
 class ArkPlayerMimicOperatorController // Id=801B687 Size=64
 {
@@ -38,4 +42,3 @@ public:
 	void ResetModalLegend_Derived(ArkInputLegend &arg0) const;
 #endif
 };
-

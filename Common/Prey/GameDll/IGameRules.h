@@ -13,6 +13,13 @@ class XmlNodeRef;
 struct EventPhysCollision;
 
 // Prey/GameDll/IGameRules.h
+#ifdef MOONCRASH
+enum EChatMessageType;
+enum EDisconnectionCause;
+enum EGameResourceType;
+enum ETextMessageType;
+struct IGameObject;
+#endif
 struct IGameRules : public IGameObjectExtension // Id=8001FA0 Size=64
 {
 	struct SGameCollision // Id=8001FA1 Size=40
@@ -61,4 +68,3 @@ struct IGameRules : public IGameObjectExtension // Id=8001FA0 Size=64
 	virtual void StoreMigratingPlayer(IActor *arg0) = 0;
 	virtual const char *GetTeamName(int arg0) const = 0;
 };
-

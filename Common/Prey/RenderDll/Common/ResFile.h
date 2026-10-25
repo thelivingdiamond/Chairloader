@@ -151,9 +151,15 @@ public:
 	const SResFileLookupData* m_pLookupData;
 	class CResFileLookupDataMan* m_pLookupDataMan;
 
+#ifndef MOONCRASH
 	static inline auto m_Root = PreyGlobal<CResFile>(0x226FCA0);
 	static inline auto m_RootStream = PreyGlobal<CResFile>(0x226FD70);
 	static inline auto m_nSizeComprDir = PreyGlobal<uint32>(0x2B31100);
+#else
+	static inline auto m_Root = PreyGlobal<CResFile>(0x23DCCA0);
+	static inline auto m_RootStream = PreyGlobal<CResFile>(0x23DCD70);
+	static inline auto m_nSizeComprDir = PreyGlobal<uint32>(0x2CA0360);
+#endif
 	CResFile* m_Next;
 	CResFile* m_Prev;
 	CResFile* m_NextStream;
@@ -222,7 +228,7 @@ public:
 	// void Unlink() { FUnlink(this); }
 	SResFileLookupData* GetLookupData(bool bCreate, unsigned CRC, float fVersion) const { return FGetLookupData(this, bCreate, CRC, fVersion); }
 	const char* mfGetError() { return FmfGetError(this); }
-	// void mfSetError(const char* er, ... buffer) { FmfSetError(this, er, buffer); }
+	// void mfSetError(const char* er, ...) { FmfSetError(this, er, buffer); }
 	void mfDeactivate(bool bReleaseDir) { FmfDeactivate(this, bReleaseDir); }
 	void mfTickStreaming() { FmfTickStreaming(this); }
 	int mfOpen(int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo = nullptr) { return FmfOpen(this, type, pMan, pStreamInfo); }
@@ -280,12 +286,13 @@ public:
 	bool chair_mfIsDirStreaming() { return m_bDirStreaming; }
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFC53A0);
 	static inline auto FUnlink = PreyFunction<void(CResFile* const _this)>(0xFC4F20);
 	static inline auto FBitNotCResFile = PreyFunction<void(CResFile* const _this)>(0xFC4650);
 	static inline auto FGetLookupData = PreyFunction<SResFileLookupData* (CResFile const* const _this, bool bCreate, unsigned CRC, float fVersion)>(0xFC4800);
 	static inline auto FmfGetError = PreyFunction<const char* (CResFile* const _this)>(0xFC7000);
-	//static inline auto FmfSetError = PreyFunction<void(CResFile* const _this, const char* er, ... buffer)>(0xFC7CB0);
+	//static inline auto FmfSetError = PreyFunction<void(CResFile* const _this, const char* er, ...)>(0xFC7CB0);
 	static inline auto FmfDeactivate = PreyFunction<void(CResFile* const _this, bool bReleaseDir)>(0xFC5760);
 	static inline auto FmfTickStreaming = PreyFunction<void(CResFile* const _this)>(0xFC7E00);
 	static inline auto FmfOpen = PreyFunction<int(CResFile* const _this, int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo)>(0xFC7490);
@@ -311,6 +318,40 @@ public:
 
 	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x226FC90);
 	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2B31104);
+#else
+	static inline auto FmfActivate = PreyFunction<bool(CResFile* const _this, bool bFirstTime)>(0xFE17D0);
+	static inline auto FUnlink = PreyFunction<void(CResFile* const _this)>(0xFE13D0);
+	static inline auto FCResFileOv1 = PreyFunction<void(CResFile* const _this, const char* name)>(0xFE0800);
+	static inline auto FBitNotCResFile = PreyFunction<void(CResFile* const _this)>(0xFE0B00);
+	static inline auto FGetLookupData = PreyFunction<SResFileLookupData* (const CResFile* const _this, bool bCreate, unsigned CRC, float fVersion)>(0xFE0CB0);
+	static inline auto FmfGetError = PreyFunction<const char* (CResFile* const _this)>(0xFE3430);
+	// varargs: static inline auto FmfSetError = PreyFunction<void(CResFile* const _this, const char* er, ...)>(0xFE40E0);
+	static inline auto FmfDeactivate = PreyFunction<void(CResFile* const _this, bool bReleaseDir)>(0xFE1B90);
+	static inline auto FmfTickStreaming = PreyFunction<void(CResFile* const _this)>(0xFE4230);
+	static inline auto FmfOpen = PreyFunction<int(CResFile* const _this, int type, CResFileLookupDataMan* pMan, SResStreamInfo* pStreamInfo)>(0xFE38C0);
+	static inline auto FmfClose = PreyFunction<bool(CResFile* const _this)>(0xFE1990);
+	static inline auto FmfFlush = PreyFunction<int(CResFile* const _this, bool bOptimise)>(0xFE27E0);
+	static inline auto FmfFlushDir = PreyFunction<int(CResFile* const _this, long nOffset, bool bOptimise)>(0xFE2EC0);
+	static inline auto FmfPrepareDir = PreyFunction<bool(CResFile* const _this)>(0xFE3DC0);
+	static inline auto FmfLoadDir = PreyFunction<int(CResFile* const _this, SResStreamInfo* pStreamInfo)>(0xFE34F0);
+	static inline auto FmfReleaseDir = PreyFunction<void(CResFile* const _this)>(0xFE3F80);
+	static inline auto FmfFileReadCompressed = PreyFunction<uint8_t* (CResFile* const _this, SDirEntry* de, unsigned& nSizeDecomp, unsigned& nSizeComp)>(0xFE24C0);
+	static inline auto FmfFileReadOv2 = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFE1EF0);
+	static inline auto FmfFileGetBufOv1 = PreyFunction<void* (CResFile* const _this, SDirEntry* de)>(0xFE1ED0);
+	static inline auto FmfFileAdd = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFE1C50);
+	static inline auto FmfFileExistOv0 = PreyFunction<bool(CResFile* const _this, const char* name)>(0xFE1E70);
+	static inline auto FmfFileClose = PreyFunction<int(CResFile* const _this, SDirEntry* de)>(0xFE1E50);
+	static inline auto FmfCloseEntry = PreyFunction<bool(CResFile* const _this, SDirEntry* de, bool bEraseOpenEntry)>(0xFE1A40);
+	static inline auto FmfOpenEntry = PreyFunction<SDirEntryOpen* (CResFile* const _this, SDirEntry* de)>(0xFE3C60);
+	static inline auto FmfGetOpenEntry = PreyFunction<SDirEntryOpen* (CResFile* const _this, SDirEntry* de)>(0xFE3450);
+	static inline auto FmfGetEntry = PreyFunction<SDirEntry* (CResFile* const _this, CCryNameTSCRC name, bool* pAsync)>(0xFE3260);
+	static inline auto FmfGetDirectory = PreyFunction<std::vector<SDirEntry>* (CResFile* const _this)>(0x1369170);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CResFile* const _this, ICrySizer* pSizer)>(0xFE0DB0);
+	static inline auto FTick = PreyFunction<void()>(0xFE1280);
+
+	static inline auto m_nMaxOpenResFiles = PreyGlobal<unsigned>(0x23DCC90);
+	static inline auto m_nNumOpenResources = PreyGlobal<int>(0x2CA0364);
+#endif
 };
 
 // Get the sub-string starting at the last . in the string, or NULL if the string contains no dot

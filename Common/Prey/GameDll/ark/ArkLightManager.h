@@ -8,6 +8,10 @@
 
 // Header: FromCpp
 // Prey/GameDll/ark/arklightmanager.h
+#ifdef MOONCRASH
+#include <Prey/CryCore/Containers/VectorMap.h>
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#endif
 struct ArkLightManagerLightData // Id=80141F0 Size=84
 {
 	struct SubLightData // Id=80141F1 Size=16
@@ -37,7 +41,12 @@ struct ArkLightManagerLightData // Id=80141F0 Size=84
 	ArkLightManagerLightData();
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(ArkLightManagerLightData *const _this, TSerialize _ser)>(0x1189E60);
+#else
+	static inline auto FArkLightManagerLightDataOv2 = PreyFunction<void(ArkLightManagerLightData* const _this)>(0x1204DB0);
+	static inline auto FSerialize = PreyFunction<void(ArkLightManagerLightData* const _this, TSerialize _ser)>(0x1205080);
+#endif
 };
 
 // Header: FromCpp
@@ -79,9 +88,16 @@ public:
 	void SetDisruptableInterfered(const unsigned arg0, const bool arg1);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<void(ArkLightManager *const _this)>(0x1189BE0);
 	static inline auto FUpdate = PreyFunction<void(ArkLightManager *const _this, float _frameTime)>(0x118A060);
 	static inline auto FTestInterferenceBurst = PreyFunction<bool(ArkLightManager *const _this, Vec3 _pos)>(0x1189F90);
 	static inline auto FPostSerialize = PreyFunction<void(ArkLightManager *const _this)>(0x1189D50);
+#else
+	static inline auto FArkLightManagerOv2 = PreyFunction<void(ArkLightManager* const _this)>(0x1257E30);
+	static inline auto FInit = PreyFunction<void(ArkLightManager* const _this)>(0x1204E00);
+	static inline auto FUpdate = PreyFunction<void(ArkLightManager* const _this, float _frameTime)>(0x1205280);
+	static inline auto FTestInterferenceBurst = PreyFunction<bool(ArkLightManager* const _this, Vec3 _pos)>(0x12051B0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkLightManager* const _this)>(0x1204F70);
+#endif
 };
-

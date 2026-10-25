@@ -79,6 +79,7 @@ public:
 	void SetHoverPos(CPlayer& _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCArkPlayerStateHoverOv2 = PreyFunction<void(CArkPlayerStateHover* const _this)>(0x15764A0);
 	static inline auto FOnInit = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x1576D90);
 	static inline auto FOnEnter = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x1576B50);
@@ -92,5 +93,19 @@ public:
 	static inline auto FSetHoverPhysics = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, bool _bOn)>(0x1577BE0);
 	static inline auto FUpdateMotorSounds = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, const Vec3& _newVel)>(0x15787D0);
 	static inline auto FGetFloorPos = PreyFunction<bool(CArkPlayerStateHover* const _this, ArkNpc* _pNpc, Vec3& _outPos, const Vec3& _testPos)>(0x15768C0);
+#else
+	static inline auto FCArkPlayerStateHoverOv2 = PreyFunction<void(CArkPlayerStateHover* const _this)>(0x169D410);
+	static inline auto FOnInit = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x169DD00);
+	static inline auto FOnEnter = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x169DAC0);
+	static inline auto FOnPrePhysicsUpdate = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, const SActorFrameMovementParams& _movement, float _frameTime)>(0x169E4E0);
+	static inline auto FOnExit = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x169DCB0);
+	static inline auto FSpawn = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player)>(0x169ECB0);
+	static inline auto FUpdateHoverHeight = PreyFunction<void(CArkPlayerStateHover* const _this, IEntity* _pPlayerEntity, const Vec3& _desiredVel)>(0x169F2D0);
+	static inline auto FAddHoverVelocityZ = PreyFunction<void(CArkPlayerStateHover* const _this, const Vec3& _curPos, Vec3& _curVel)>(0x169D4C0);
+	static inline auto FUpdateCorrupted = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, Vec3& _curVel)>(0x169EF30);
+	static inline auto FGetTargetStance = PreyFunction<EStance(CArkPlayerStateHover* const _this, IEntity* _pTargetEntity)>(0x169D930);
+	static inline auto FSetHoverPhysics = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, bool _bOn)>(0x169EB50);
+	static inline auto FUpdateMotorSounds = PreyFunction<void(CArkPlayerStateHover* const _this, CPlayer& _player, const Vec3& _newVel)>(0x169F740);
+	static inline auto FGetFloorPos = PreyFunction<bool(CArkPlayerStateHover* const _this, ArkNpc* _pNpc, Vec3& _outPos, const Vec3& _testPos)>(0x169D830);
+#endif
 };
-

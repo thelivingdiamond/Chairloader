@@ -8,6 +8,10 @@ class ArkNpcSpeedDesire;
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/desires/ArkNpcSpeedDesireManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireManagerBase.h>
+enum class EArkNpcSpeedType;
+#endif
 class ArkNpcSpeedDesireManager : public ArkNpcDesireManagerBase<ArkNpcSpeedDesireManager,ArkNpcSpeedDesire> // Id=8014136 Size=64
 {
 public:
@@ -29,6 +33,7 @@ public:
 	void DebugDraw();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FRefresh = PreyFunction<void(ArkNpcSpeedDesireManager *const _this)>(0xA13080);
 	static inline auto FShutDown = PreyFunction<void(ArkNpcSpeedDesireManager *const _this)>(0x1213150);
 	static inline auto FGetSpeed = PreyFunction<EArkNpcSpeedType(ArkNpcSpeedDesireManager const *const _this)>(0x1213090);
@@ -36,5 +41,14 @@ public:
 	static inline auto FOnActiveDesireRemoved = PreyFunction<void(ArkNpcSpeedDesireManager *const _this, ArkNpcSpeedDesire const &_prevActiveDesire)>(0x12130F0);
 	static inline auto FOnActiveParamsChanged = PreyFunction<void(ArkNpcSpeedDesireManager *const _this)>(0x1213140);
 	static inline auto FUpdateSpeed = PreyFunction<void(ArkNpcSpeedDesireManager *const _this)>(0x12131B0);
+#else
+	static inline auto FArkNpcSpeedDesireManager = PreyFunction<void(ArkNpcSpeedDesireManager* const _this, ArkNpc& _arkNpc)>(0x12A2530);
+	static inline auto FRefresh = PreyFunction<void(ArkNpcSpeedDesireManager* const _this)>(0x1333E90);
+	static inline auto FShutDown = PreyFunction<void(ArkNpcSpeedDesireManager* const _this)>(0x12A2630);
+	static inline auto FGetSpeed = PreyFunction<EArkNpcSpeedType(const ArkNpcSpeedDesireManager* const _this)>(0x12A2570);
+	static inline auto FOnActiveDesireAdded = PreyFunction<void(ArkNpcSpeedDesireManager* const _this, const ArkNpcSpeedDesire* _pPrevActiveDesire)>(0x12A2590);
+	static inline auto FOnActiveDesireRemoved = PreyFunction<void(ArkNpcSpeedDesireManager* const _this, const ArkNpcSpeedDesire& _prevActiveDesire)>(0x12A25D0);
+	static inline auto FOnActiveParamsChanged = PreyFunction<void(ArkNpcSpeedDesireManager* const _this)>(0x12A2620);
+	static inline auto FUpdateSpeed = PreyFunction<void(ArkNpcSpeedDesireManager* const _this)>(0x12A2690);
+#endif
 };
-

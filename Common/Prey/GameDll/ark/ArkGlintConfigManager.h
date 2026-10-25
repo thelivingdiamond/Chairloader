@@ -18,9 +18,16 @@ public:
 	void Initialize() { FInitialize(this); }
 	void LoadFromDisk() { FLoadFromDisk(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkGlintConfigManager = PreyFunction<void(ArkGlintConfigManager *const _this)>(0x117C240);
 	static inline auto FConfigFromId = PreyFunction<ArkGlintConfig const *(ArkGlintConfigManager const *const _this, uint64_t _id)>(0x117C270);
 	static inline auto FInitialize = PreyFunction<void(ArkGlintConfigManager *const _this)>(0x117C370);
 	static inline auto FLoadFromDisk = PreyFunction<void(ArkGlintConfigManager *const _this)>(0x117C380);
+#else
+	static inline auto FArkGlintConfigManagerOv1 = PreyFunction<void(ArkGlintConfigManager* const _this)>(0x11F74A0);
+	static inline auto FBitNotArkGlintConfigManager = PreyFunction<void(ArkGlintConfigManager* const _this)>(0x11F7590);
+	static inline auto FConfigFromId = PreyFunction<const ArkGlintConfig* (const ArkGlintConfigManager* const _this, uint64_t _id)>(0x11F75C0);
+	static inline auto FInitialize = PreyFunction<void(ArkGlintConfigManager* const _this)>(0x11F76C0);
+	static inline auto FLoadFromDisk = PreyFunction<void(ArkGlintConfigManager* const _this)>(0x11F76D0);
+#endif
 };
-

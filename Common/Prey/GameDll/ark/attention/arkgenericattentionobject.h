@@ -32,6 +32,13 @@ public:
 	IEntity* GetEntity() const;
 #endif
 
+#ifdef MOONCRASH
+	Vec3 GetAttentionWorldPosition() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetAttentionWorldPosition(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+#endif
+#ifdef MOONCRASH
+	virtual bool DoGetIsGlood() const;
+#endif
+#ifndef MOONCRASH
 	static inline auto FEnable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x13B2860);
 	static inline auto FDisable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x13B2700);
 	static inline auto FIsEnabled = PreyFunction<bool(ArkGenericAttentionObjectBase const* const _this)>(0x13B28D0);
@@ -40,6 +47,18 @@ public:
 	static inline auto FDoGetIgnoredPhysicalEntitiesInLineOfSight = PreyFunction<IPhysicalEntity** (ArkGenericAttentionObjectBase const* const _this, IPhysicalEntity** _ppFirstPhysicalEntity, IPhysicalEntity** _ppLastPhysicalEntity)>(0x13B2760);
 	static inline auto FDoGetAuralPerceivableIsInVacuum = PreyFunction<bool(ArkGenericAttentionObjectBase const* const _this)>(0xDD23F0);
 	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(ArkGenericAttentionObjectBase const* const _this)>(0xDD23F0);
+#else
+	static inline auto FEnable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x14BEAE0);
+	static inline auto FDisable = PreyFunction<void(ArkGenericAttentionObjectBase* const _this)>(0x14BE960);
+	static inline auto FIsEnabled = PreyFunction<bool(const ArkGenericAttentionObjectBase* const _this)>(0x14BEBE0);
+	static inline auto FDoGetSimpleAttentionObjectWorldPos = PreyFunction<Vec3*(const ArkGenericAttentionObjectBase* const _this, Vec3* _return_value_)>(0x14BEA00);
+	static inline auto FDoGetIsGlood = PreyFunction<bool(const ArkGenericAttentionObjectBase* const _this)>(0x13B0900);
+	static inline auto FDoGetSimpleVisualPerceivableWorldPoints = PreyFunction<Vec3* (const ArkSimpleVisualPerceivable* const _this, Vec3* _pFirstWorldPoint, Vec3* _pLastWorldPoint)>(0x14BEA20);
+	static inline auto FDoGetIgnoredPhysicalEntitiesInLineOfSight = PreyFunction<IPhysicalEntity* * (const ArkSimpleVisualPerceivable* const _this, IPhysicalEntity* * _ppFirstPhysicalEntity, IPhysicalEntity* * _ppLastPhysicalEntity)>(0x14BE9C0);
+	static inline auto FDoGetAuralPerceivableIsInVacuum = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x13B0900);
+	static inline auto FDoGetAuralPerceivableIsComplexAttentionObject = PreyFunction<bool(const ArkAuralPerceivable* const _this)>(0x13B0900);
+	static inline auto FGetAttentionWorldPosition = PreyFunction<Vec3*(const ArkGenericAttentionObjectBase* const _this, Vec3* _return_value_)>(0x14BEB50);
+#endif
 };
 
 // Header: Exact
@@ -48,9 +67,14 @@ template <typename T>
 class ArkGenericAttentionObject : public ArkGenericAttentionObjectBase // Id=80152E0 Size=32
 {
 public:
+#ifdef MOONCRASH
+	bool m_bIsGlood; // Mooncrash: before m_pOwner (Size=40)
+#endif
 	T *m_pOwner;
 	
 	virtual unsigned DoGetEntityId() const;
 	virtual IEntity *DoGetEntity() const;
+#ifdef MOONCRASH
+	void SetIsGlood(bool _bIsGlood) { m_bIsGlood = _bIsGlood; }
+#endif
 };
-

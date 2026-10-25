@@ -33,10 +33,17 @@ public:
 	const Quat& GetTargetRotation() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicMilitaryOperatorRotationController = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, const ArkPlayerMimicMilitaryOperatorController& _controller)>(0x13112E0);
 	static inline auto FBitNotArkPlayerMimicMilitaryOperatorRotationController = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this)>(0x1311360);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, IEntity& _mimicEntity)>(0x1311390);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13116A0);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, TSerialize _ser)>(0x1311620);
+#else
+	static inline auto FArkPlayerMimicMilitaryOperatorRotationController = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, const ArkPlayerMimicMilitaryOperatorController& _controller)>(0x13EB9F0);
+	static inline auto FBitNotArkPlayerMimicMilitaryOperatorRotationController = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this)>(0x13EBA70);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, IEntity& _mimicEntity)>(0x13EBAA0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13EBDB0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorRotationController* const _this, TSerialize _ser)>(0x13EBD30);
+#endif
 };
-

@@ -11,7 +11,10 @@ class XmlNodeRef;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkflownodenpctrackview_setdynamicentity.h
-class ArkFlowNodeNpcTrackView_SetDynamicNode : public CFlowBaseNode<0> // Id=801BFF9 Size=16
+#ifdef MOONCRASH
+#include <Prey/CryFlowGraph/IFlowBaseNode.h>
+#endif
+class ArkFlowNodeNpcTrackView_SetDynamicNode : public CFlowBaseNode<eNCT_Singleton> // Id=801BFF9 Size=16
 {
 public:
 	enum class EInputPortIndex
@@ -42,11 +45,19 @@ public:
 	void ProcessClear(IFlowNode::SActivationInfo *arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode *const _this, SFlowNodeConfig &config)>(0x1435DF0);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode *const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo *_pActInfo)>(0x1436280);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode const *const _this, ICrySizer *s)>(0x44D760);
 	static inline auto FSerializeXML = PreyFunction<bool(ArkFlowNodeNpcTrackView_SetDynamicNode *const _this, IFlowNode::SActivationInfo *, XmlNodeRef const &, bool )>(0x1B933B0);
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode *const _this, IFlowNode::SActivationInfo *, TSerialize ser)>(0xA13080);
 	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode *const _this, IFlowNode::SActivationInfo *)>(0xA13080);
+#else
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, SFlowNodeConfig& config)>(0x154BAB0);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x154BF40);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, ICrySizer* s)>(0x455F00);
+	static inline auto FSerializeXML = PreyFunction<bool(ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, IFlowNode::SActivationInfo* __unnamed1, const XmlNodeRef& __unnamed2, bool __unnamed3)>(0x1A302A0);
+	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, IFlowNode::SActivationInfo* __unnamed1, TSerialize ser)>(0x1333E90);
+	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcTrackView_SetDynamicNode* const _this, IFlowNode::SActivationInfo* __unnamed1)>(0x1333E90);
+#endif
 };
-

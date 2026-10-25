@@ -50,10 +50,17 @@ public:
 		bool operator==(const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _arg0_);
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSerialize = PreyFunction<void(ArkQuickSelectComponent::QuickSelectId* const _this, TSerialize _ser)>(0x130A480);
 		static inline auto FSerializeForLevelTransition = PreyFunction<void(ArkQuickSelectComponent::QuickSelectId* const _this, TSerialize _ser)>(0x130ACC0);
 		static inline auto FGetIdString = PreyFunction<string*(const ArkQuickSelectComponent::QuickSelectId* const _this, string* _return_value_)>(0x13088F0);
 		static inline auto FCanSelect = PreyFunction<bool(const ArkQuickSelectComponent::QuickSelectId* const _this)>(0x1308300);
+#else
+		static inline auto FSerialize = PreyFunction<void(ArkQuickSelectComponent::QuickSelectId* const _this, TSerialize _ser)>(0x13E5A10);
+		static inline auto FSerializeForLevelTransition = PreyFunction<void(ArkQuickSelectComponent::QuickSelectId* const _this, TSerialize _ser)>(0x13E5DD0);
+		static inline auto FGetIdString = PreyFunction<string*(const ArkQuickSelectComponent::QuickSelectId* const _this, string* _return_value_)>(0x13E3BB0);
+		static inline auto FCanSelect = PreyFunction<bool(const ArkQuickSelectComponent::QuickSelectId* const _this)>(0x13E35C0);
+#endif
 	};
 
 	std::array<ArkQuickSelectComponent::QuickSelectId,4> m_controllerQuickSelects;
@@ -72,9 +79,21 @@ public:
 	virtual ~ArkQuickSelectComponent();
 	void Release() { FRelease(this); }
 	virtual bool OnControlSchemeChanged(const EControlScheme _controlScheme);
+#ifndef MOONCRASH
 	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId);
+#else
+	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId, bool _bPrimaryInventory);
+#endif
+#ifndef MOONCRASH
 	virtual void OnItemRemoved(unsigned _entityId);
+#else
+	virtual void OnItemRemoved(unsigned _entityId, bool _bPrimaryInventory);
+#endif
+#ifndef MOONCRASH
 	virtual void OnItemCountChanged(unsigned _itemId);
+#else
+	virtual void OnItemCountChanged(unsigned _itemId, bool _bPrimaryInventory);
+#endif
 	virtual void OnPowerAcquired(EArkPsiPowers _power);
 	virtual void OnActionMapEvent(const SActionMapEvent& _event);
 	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
@@ -91,7 +110,11 @@ public:
 	void UpdateAllSelectionsUI(IUIElement* _pUIElement) const { FUpdateAllSelectionsUI(this, _pUIElement); }
 	string GetQuickSelectUIIndex(const CArkItem& _item) const { alignas(string) std::byte _return_buf_[sizeof(string)]; return *FGetQuickSelectUIIndexOv1(this, reinterpret_cast<string*>(_return_buf_), _item); }
 	string GetQuickSelectUIIndex(const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _id) const { alignas(string) std::byte _return_buf_[sizeof(string)]; return *FGetQuickSelectUIIndexOv0(this, reinterpret_cast<string*>(_return_buf_), _id); }
+#ifndef MOONCRASH
 	void AddToQuickSelect(const CArkItem& _item) { FAddToQuickSelect(this, _item); }
+#else
+	void AddToQuickSelect(const CArkItem& _item, bool _bShowUI) { FAddToQuickSelect(this, _item, _bShowUI); }
+#endif
 	void RefreshFilterFeedback() { FRefreshFilterFeedback(this); }
 	static int GetQuickSelectIndexFromActionId(const CCryName& _actionId) { return FGetQuickSelectIndexFromActionId(_actionId); }
 	void OpenControllerQuickSelect(bool _bTimed) { FOpenControllerQuickSelect(this, _bTimed); }
@@ -112,6 +135,10 @@ public:
 	static bool IsKeyboard();
 #endif
 
+#ifdef MOONCRASH
+	void RemoveFromQuickSelect(const CArkItem& _item) { FRemoveFromQuickSelect(this, _item); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FArkQuickSelectComponentOv1 = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13074E0);
 	static inline auto FRelease = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x130A300);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkQuickSelectComponent* const _this, const EControlScheme _controlScheme)>(0x1309190);
@@ -145,5 +172,40 @@ public:
 	static inline auto FActivateSelection = PreyFunction<void(ArkQuickSelectComponent* const _this, const ArkQuickSelectComponent::QuickSelectId& _selection)>(0x1307B30);
 	static inline auto FUpdateSelectionUI = PreyFunction<void(const ArkQuickSelectComponent* const _this, IUIElement* _pUIElement, const ArkQuickSelectComponent::QuickSelectId& _selection, int _index)>(0x130B7A0);
 	static inline auto FTryUpdateAmmoCount = PreyFunction<void(ArkQuickSelectComponent* const _this, const CArkItem& _item)>(0x130B020);
+#else
+	static inline auto FArkQuickSelectComponentOv1 = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13E2520);
+	static inline auto FRelease = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13E55E0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(ArkQuickSelectComponent* const _this, const EControlScheme _controlScheme)>(0x13E4450);
+	static inline auto FOnItemAdded = PreyFunction<void(IArkInventoryListener* const _this, unsigned _entityId, unsigned _originalId, bool _bPrimaryInventory)>(0x13E4460);
+	static inline auto FOnItemRemoved = PreyFunction<void(IArkInventoryListener* const _this, unsigned _entityId, bool _bPrimaryInventory)>(0x13E45D0);
+	static inline auto FOnItemCountChanged = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x13E4490);
+	static inline auto FOnPowerAcquired = PreyFunction<void(IArkPsiPowerListener* const _this, EArkPsiPowers _power)>(0x13E4640);
+	static inline auto FOnActionMapEvent = PreyFunction<void(IActionMapEventListener* const _this, const SActionMapEvent& _event)>(0x13E4440);
+	static inline auto FSerialize = PreyFunction<void(ArkQuickSelectComponent* const _this, TSerialize _ser)>(0x13E59A0);
+	static inline auto FSerializeForLevelTransition = PreyFunction<void(ArkQuickSelectComponent* const _this, TSerialize _ser)>(0x13E5D10);
+	static inline auto FUpdate = PreyFunction<void(ArkQuickSelectComponent* const _this, float _frameTime)>(0x13E6270);
+	static inline auto FReset = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13E58C0);
+	static inline auto FProcessInput = PreyFunction<void(ArkQuickSelectComponent* const _this, const CCryName& _actionId, const int _activationMode, const float _fValue)>(0x13E5000);
+	static inline auto FOpenQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, bool _bTimed)>(0x13E4FD0);
+	static inline auto FCloseQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13E3960);
+	static inline auto FCanQuickSelect = PreyFunction<bool(const ArkQuickSelectComponent* const _this, const CArkItem& _item)>(0x13E3580);
+	static inline auto FAssignQuickSelectOv1 = PreyFunction<bool(ArkQuickSelectComponent* const _this, const CArkItem& _item, const CCryName& _actionId)>(0x13E31A0);
+	static inline auto FAssignQuickSelectOv0 = PreyFunction<bool(ArkQuickSelectComponent* const _this, ArkQuickSelectComponent::QuickSelectType _type, const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _id, const CCryName& _actionId)>(0x13E3340);
+	static inline auto FClearQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, const CArkItem& _item, IUIElement* _pUIElement)>(0x13E3620);
+	static inline auto FUpdateAllSelectionsUI = PreyFunction<void(const ArkQuickSelectComponent* const _this, IUIElement* _pUIElement)>(0x13E67D0);
+	static inline auto FGetQuickSelectUIIndexOv1 = PreyFunction<string*(const ArkQuickSelectComponent* const _this, string* _return_value_, const CArkItem& _item)>(0x13E4300);
+	static inline auto FGetQuickSelectUIIndexOv0 = PreyFunction<string*(const ArkQuickSelectComponent* const _this, string* _return_value_, const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _id)>(0x13E4190);
+	static inline auto FAddToQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, const CArkItem& _item, bool _bShowUI)>(0x13E2D90);
+	static inline auto FRemoveFromQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, const CArkItem& _item)>(0x13E5630);
+	static inline auto FRefreshFilterFeedback = PreyFunction<void(ArkQuickSelectComponent* const _this)>(0x13E53C0);
+	static inline auto FGetQuickSelectIndexFromActionId = PreyFunction<int(const CCryName& _actionId)>(0x13E4080);
+	static inline auto FOpenControllerQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, bool _bTimed)>(0x13E4820);
+	static inline auto FOpenKeyboardQuickSelect = PreyFunction<void(ArkQuickSelectComponent* const _this, bool _bTimed)>(0x13E4910);
+	static inline auto FGetControllerIndex = PreyFunction<int(const ArkQuickSelectComponent* const _this, const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _id)>(0x13E39E0);
+	static inline auto FGetKeyboardIndex = PreyFunction<int(const ArkQuickSelectComponent* const _this, const boost::variant<unsigned int,enum EArkPsiPowers,unsigned __int64>& _id)>(0x13E3CD0);
+	static inline auto FGetKeyboardUIIndex = PreyFunction<string*(const ArkQuickSelectComponent* const _this, string* _return_value_, const int _index)>(0x13E3EA0);
+	static inline auto FActivateSelection = PreyFunction<void(ArkQuickSelectComponent* const _this, const ArkQuickSelectComponent::QuickSelectId& _selection)>(0x13E2CA0);
+	static inline auto FUpdateSelectionUI = PreyFunction<void(const ArkQuickSelectComponent* const _this, IUIElement* _pUIElement, const ArkQuickSelectComponent::QuickSelectId& _selection, int _index)>(0x13E68B0);
+	static inline auto FTryUpdateAmmoCount = PreyFunction<void(ArkQuickSelectComponent* const _this, const CArkItem& _item)>(0x13E6130);
+#endif
 };
-

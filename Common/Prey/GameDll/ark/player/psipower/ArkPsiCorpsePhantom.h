@@ -20,7 +20,11 @@ public:
 	unsigned m_phantomEntityId;
 	uint64_t m_phantomArchetypeId;
 	bool m_bSpawnedOnFloor;
+#ifndef MOONCRASH
 	static inline auto s_corpsePhantoms = PreyGlobal<std::vector<const ArkPsiCorpsePhantom*>>(0x2BDBA80);
+#else
+	static inline auto s_corpsePhantoms = PreyGlobal<std::vector<const ArkPsiCorpsePhantom*>>(0x2D554C0);
+#endif
 
 	ArkPsiCorpsePhantom();
 	ArkPsiCorpsePhantom(const unsigned _ownerEntityId);
@@ -46,6 +50,7 @@ public:
 	const char* GetLevelName() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPsiCorpsePhantomOv3 = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x132F8A0);
 	static inline auto FArkPsiCorpsePhantomOv2 = PreyFunction<void(ArkPsiCorpsePhantom* const _this, const unsigned _ownerEntityId)>(0x132F7F0);
 	static inline auto FArkPsiCorpsePhantomOv1 = PreyFunction<void(ArkPsiCorpsePhantom* const _this, ArkPsiCorpsePhantom&& _other)>(0x132F750);
@@ -60,5 +65,23 @@ public:
 	static inline auto FOnStartCarry = PreyFunction<void(ArkPsiCorpsePhantom* const _this, IEntity* const _pEntity)>(0x132FA90);
 	static inline auto FResetCorpse = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x132FB00);
 	static inline auto FSpawnCorpseParticleEffect = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x13300F0);
+#else
+	static inline auto FArkPsiCorpsePhantomOv3 = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x140AC10);
+	static inline auto FArkPsiCorpsePhantomOv2 = PreyFunction<void(ArkPsiCorpsePhantom* const _this, const unsigned _ownerEntityId)>(0x140AB60);
+	static inline auto FArkPsiCorpsePhantomOv1 = PreyFunction<void(ArkPsiCorpsePhantom* const _this, ArkPsiCorpsePhantom&& _other)>(0x140AAC0);
+	static inline auto FBitNotArkPsiCorpsePhantom = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x140ACB0);
+	static inline auto FoperatorEqOv1 = PreyFunction<ArkPsiCorpsePhantom& (ArkPsiCorpsePhantom* const _this, ArkPsiCorpsePhantom&& _other)>(0x140AD40);
+	static inline auto FoperatorEqEq = PreyFunction<bool(const ArkPsiCorpsePhantom* const _this, const ArkPsiCorpsePhantom& _other)>(0x140AD60);
+	static inline auto FSpawn = PreyFunction<void(ArkPsiCorpsePhantom* const _this, IEntity& _corpseEntity, const IEntityArchetype& _archetype)>(0x140B100);
+	static inline auto FUpdate = PreyFunction<bool(ArkPsiCorpsePhantom* const _this, const float _frameTime)>(0x140B960);
+	static inline auto FSerialize = PreyFunction<void(ArkPsiCorpsePhantom* const _this, TSerialize _serializer)>(0x140B010);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x140AE30);
+	static inline auto FGetCorpsePhantomFromCorpse = PreyFunction<const ArkPsiCorpsePhantom* (const unsigned _entityId)>(0x140ADD0);
+	static inline auto FOnStartCarry = PreyFunction<void(ArkPsiCorpsePhantom* const _this, IEntity* const _pEntity)>(0x140AE00);
+	static inline auto FResetCorpse = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x140AE70);
+	static inline auto FSpawnCorpseParticleEffect = PreyFunction<void(ArkPsiCorpsePhantom* const _this)>(0x140B460);
+#endif
+#ifdef MOONCRASH
+	ArkPsiCorpsePhantom& operator=(ArkPsiCorpsePhantom&& _other) { return FoperatorEqOv1(this, std::move(_other)); }
+#endif
 };
-

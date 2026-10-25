@@ -21,8 +21,13 @@ public:
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	void SetDamageSignalGroup(const uint64_t _signalGroupId) { FSetDamageSignalGroup(this,_signalGroupId); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkGooSignalReceiver = PreyFunction<void(ArkGooSignalReceiver *const _this)>(0x1643030);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkGooSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x16430B0);
 	static inline auto FSetDamageSignalGroup = PreyFunction<void(ArkGooSignalReceiver *const _this, const uint64_t _signalGroupId)>(0x1643200);
+#else
+	static inline auto FBitNotArkGooSignalReceiver = PreyFunction<void(ArkGooSignalReceiver* const _this)>(0x1766DD0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkGooSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x1766E50);
+	static inline auto FSetDamageSignalGroup = PreyFunction<void(ArkGooSignalReceiver* const _this, const uint64_t _signalGroupId)>(0x1766FD0);
+#endif
 };
-

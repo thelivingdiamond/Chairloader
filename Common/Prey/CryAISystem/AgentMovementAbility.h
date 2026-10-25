@@ -59,4 +59,3 @@ struct AgentMovementAbility // Id=8000FD3 Size=1284
 	AgentMovementSpeeds movementSpeeds;
 	AgentPathfindingProperties pathfindingProperties;
 };
-

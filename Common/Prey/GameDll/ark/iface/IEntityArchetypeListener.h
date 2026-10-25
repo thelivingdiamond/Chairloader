@@ -11,4 +11,3 @@ class IEntityArchetypeListener // Id=8002125 Size=8
 public:
 	virtual void OnArchetypeCreated(IEntityArchetype *arg0) = 0;
 };
-

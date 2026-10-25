@@ -38,4 +38,3 @@ struct ArkNpcSpawnedState_Dormant : public ArkNpcSpawnedState_Alive // Id=80142E
 struct ArkNpcSpawnedState_Dead // Id=80142EA Size=1
 {
 };
-

@@ -1,10 +1,41 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/SStateEventData.h>
 #include <Prey/CryCore/CryFlags.h>
 
 class CPlayer;
-struct SStateEventData;
+struct SStateEvent;
+
+#ifdef MOONCRASH
+#include <Prey/CryCore/Containers/CryFixedArray.h>
+#endif
+template <typename T> class CStateHierarchy;
+template <typename T> class CStateMachine;
+template <typename T, typename THier> class CStateHelper;
+
+// From CryEngine GameSDK State.h (instantiated as CStateMachineRegistration<CPlayer>, Size=24).
+template <typename T>
+class CStateMachineRegistration
+{
+public:
+	struct SStateFactory // Size=16
+	{
+		CStateHierarchy<T>* (*m_createPtr)(CStateMachineRegistration<T>&);
+		void (*m_deletePtr)(CStateHierarchy<T>*&);
+	};
+
+	using TStateFactory = std::vector<SStateFactory>;
+
+	TStateFactory m_factories;
+
+#if 0
+	void RegisterState(CStateHierarchy<T>* (*createPtr)(CStateMachineRegistration<T>&), void (*deletePtr)(CStateHierarchy<T>*&), const unsigned stateID);
+	void UnRegisterState(const unsigned stateID);
+	CStateHierarchy<T>* CreateState(const unsigned stateID);
+	void DeleteState(CStateHierarchy<T>*& pState);
+#endif
+};
 
 // Header: Exact
 // Prey/GameDll/state.h
@@ -51,6 +82,8 @@ public:
 	TStateIndexContainer m_stateIndexContainer;
 	SStateEvent m_pendingTransitionStateEvent;
 	
+	virtual ~CStateHierarchy();
+	
 #if 0
 	int GetStateID() const;
 	void RequestTransitionState(T &host, TStateIndex stateTransition, SStateEvent event);
@@ -69,7 +102,12 @@ struct SStateEvent // Id=8013F88 Size=104
 	using TStateEventData = CryFixedArray<SStateEventData,5>;
 	
 	int m_eventType;
+#ifdef MOONCRASH
+	CryFixedArray<SStateEventData,5> m_data;
+#endif
+#ifndef MOONCRASH
 	TStateEventData m_data;
+#endif
 	
 	SStateEvent(SStateEvent const &rhs);
 	
@@ -80,6 +118,9 @@ struct SStateEvent // Id=8013F88 Size=104
 	const unsigned GetDataSize() const;
 	void ClearData();
 	static SStateEvent CreateStateEvent(int arg0, SStateEventData const &arg1);
+#endif
+#ifdef MOONCRASH
+	static inline auto FSStateEventOv0 = PreyFunction<void(SStateEvent* const _this, const SStateEvent& rhs)>(0x18BBE90);
 #endif
 };
 
@@ -130,4 +171,3 @@ public:
 	void StateMachineClearFlag(int arg0);
 #endif
 };
-

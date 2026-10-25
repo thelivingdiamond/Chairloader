@@ -16,8 +16,13 @@ public:
 	virtual void GetMovementState(SMovementState& _state);
 	virtual bool GetStanceState(const SStanceStateQuery& _query, SStanceState& _state);
 
+#ifndef MOONCRASH
 	static inline auto FRequestMovement = PreyFunction<bool(ArkPlayerMovementController* const _this, CMovementRequest& _request)>(0xDD23F0);
 	static inline auto FGetMovementState = PreyFunction<void(ArkPlayerMovementController* const _this, SMovementState& _state)>(0x156E050);
 	static inline auto FGetStanceState = PreyFunction<bool(ArkPlayerMovementController* const _this, const SStanceStateQuery& _query, SStanceState& _state)>(0xDD23F0);
+#else
+	static inline auto FRequestMovement = PreyFunction<bool(ArkPlayerMovementController* const _this, CMovementRequest& _request)>(0x13B0900);
+	static inline auto FGetMovementState = PreyFunction<void(ArkPlayerMovementController* const _this, SMovementState& _state)>(0x1694430);
+	static inline auto FGetStanceState = PreyFunction<bool(ArkPlayerMovementController* const _this, const SStanceStateQuery& _query, SStanceState& _state)>(0x13B0900);
+#endif
 };
-

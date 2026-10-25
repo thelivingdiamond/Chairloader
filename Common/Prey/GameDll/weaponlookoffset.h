@@ -5,6 +5,12 @@
 
 // Header: FromCpp
 // Prey/GameDll/weaponlookoffset.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SStaticWeaponSwayParams // Id=8016D06 Size=108
 {
 	float easeFactorInc;
@@ -26,7 +32,11 @@ struct SStaticWeaponSwayParams // Id=8016D06 Size=108
 	
 	void Serialize(Serialization::IArchive &ar) { FSerialize(this,ar); }
 	
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(SStaticWeaponSwayParams *const _this, Serialization::IArchive &ar)>(0x1801E40);
+#else
+	static inline auto FSerialize = PreyFunction<void(SStaticWeaponSwayParams* const _this, Serialization::IArchive& ar)>(0x1929940);
+#endif
 };
 
 // Header: FromCpp
@@ -44,14 +54,24 @@ public:
 	CLookOffset();
 	void SetStaticParams(SStaticWeaponSwayParams const &params) { FSetStaticParams(this,params); }
 	void SetGameParams(SGameWeaponSwayParams const &params) { FSetGameParams(this,params); }
+#ifndef MOONCRASH
 	QuatT Compute(float frameTime) { return FCompute(this,frameTime); }
+#else
+	QuatT Compute(float frameTime) { alignas(QuatT) std::byte _return_buf_[sizeof(QuatT)]; return *FCompute(this, reinterpret_cast<QuatT*>(_return_buf_), frameTime); }
+#endif
 	
 #if 0
 	SStaticWeaponSwayParams GetCurrentStaticParams() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetStaticParams = PreyFunction<void(CLookOffset *const _this, SStaticWeaponSwayParams const &params)>(0x18020F0);
 	static inline auto FSetGameParams = PreyFunction<void(CLookOffset *const _this, SGameWeaponSwayParams const &params)>(0x18020C0);
 	static inline auto FCompute = PreyFunction<QuatT(CLookOffset *const _this, float frameTime)>(0x1801770);
+#else
+	static inline auto FCLookOffsetOv2 = PreyFunction<void(CLookOffset* const _this)>(0x19291F0);
+	static inline auto FSetStaticParams = PreyFunction<void(CLookOffset* const _this, const SStaticWeaponSwayParams& params)>(0x1929BF0);
+	static inline auto FSetGameParams = PreyFunction<void(CLookOffset* const _this, const SGameWeaponSwayParams& params)>(0x1929BC0);
+	static inline auto FCompute = PreyFunction<QuatT*(CLookOffset* const _this, QuatT* _return_value_, float frameTime)>(0x1929270);
+#endif
 };
-

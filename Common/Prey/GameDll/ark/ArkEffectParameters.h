@@ -7,6 +7,9 @@ struct IEntity;
 
 // Header: Exact
 // Prey/GameDll/ark/ArkEffectParameters.h
+#ifdef MOONCRASH
+struct IParticleEmitter;
+#endif
 struct ArkEffectParameters // Id=801935C Size=40
 {
 	float m_effectScale;
@@ -18,6 +21,9 @@ struct ArkEffectParameters // Id=801935C Size=40
 	
 	~ArkEffectParameters();
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkEffectParameters = PreyFunction<void(ArkEffectParameters *const _this)>(0x13B7430);
+#else
+	static inline auto FBitNotArkEffectParameters = PreyFunction<void(ArkEffectParameters* const _this)>(0x14C3810);
+#endif
 };
-

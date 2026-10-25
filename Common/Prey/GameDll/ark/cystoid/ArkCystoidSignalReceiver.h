@@ -20,7 +20,12 @@ public:
 	virtual ~ArkCystoidSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkCystoidSignalReceiver = PreyFunction<void(ArkCystoidSignalReceiver *const _this)>(0x14E6790);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkCystoidSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x14E67E0);
+#else
+	static inline auto FArkCystoidSignalReceiverOv1 = PreyFunction<void(ArkCystoidSignalReceiver* const _this, ArkCystoid& _cystoid)>(0x1601F30);
+	static inline auto FBitNotArkCystoidSignalReceiver = PreyFunction<void(ArkCystoidSignalReceiver* const _this)>(0x1601F70);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkCystoidSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x1601FC0);
+#endif
 };
-

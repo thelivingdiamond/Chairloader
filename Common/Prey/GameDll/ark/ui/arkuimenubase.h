@@ -11,6 +11,9 @@ struct SUIEventDesc;
 
 // Header: Override
 // Prey/GameDll/ark/ui/ArkUIMenuBase.h
+#ifdef MOONCRASH
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#endif
 template <typename T>
 class ArkUIMenuBase : public IUIElementEventListener // Id=8016710 Size=24
 {
@@ -29,4 +32,3 @@ public:
 	virtual ~ArkUIMenuBase();
 #endif
 };
-

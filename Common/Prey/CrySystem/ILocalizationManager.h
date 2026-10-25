@@ -6,6 +6,7 @@
 //#include <platform.h> // Needed for LARGE_INTEGER (for consoles).
 
 class XmlNodeRef;
+struct ITempLocStringStorage;
 
 // Localized strings manager interface.
 
@@ -114,14 +115,15 @@ struct ILocalizationManager
 {
 	typedef uint32 TLocalizationBitfield;
 
+	// Signatures follow Prey, not CRYENGINE 5; a mismatch adds slots in CLocalizedStringsManager.
 	// <interfuscator:shuffle>
 	virtual ~ILocalizationManager(){}
-	virtual ELanguageID LanguageIDFromName(const char*) = 0;
-	virtual const char* LanguageNameFromID(ELanguageID) = 0;
-	virtual TLocalizationBitfield IsLanguageSupported(const ELanguageID id) = 0;
+	virtual ELanguageID LanguageIDFromName(const char* _szName) const = 0;
+	virtual const char* LanguageNameFromID(ELanguageID _id) const = 0;
+	virtual TLocalizationBitfield IsLanguageSupported(ELanguageID id) const = 0;
 	virtual bool        SetLanguage(const char* sLanguage) = 0;
-	virtual const char* GetLanguage() = 0;
-	virtual ELanguageID GetLanguageID() = 0;
+	virtual const char* GetLanguage() const = 0;
+	virtual ELanguageID GetLanguageID() const = 0;
 
 	//! Load the descriptor file with tag information.
 	virtual bool InitLocalizationData(const char* sFileName, bool bReload = false) = 0;
@@ -156,7 +158,7 @@ struct ILocalizationManager
 	//! \param[out]outLocalizedString Localized version of the label.
 	//! \param[in] bEnglish           If true, returns the always present English version of the label.
 	//! \return true if localization was successful, false otherwise.
-	virtual bool LocalizeLabel(const char* sLabel, wstring& outLocalizedString, bool bEnglish = false) = 0;
+	virtual bool LocalizeLabel(const char* sLabel, wstring& outLocalizedString, bool bEnglish = false, ITempLocStringStorage** ppTmpStorage = nullptr) = 0;
 
 	//! Get localization info structure corresponding to a key (key=label without the '@' sign).
 	//! \param[in] sKey         Key to be looked up. Key = Label without '@' sign.
@@ -175,7 +177,7 @@ struct ILocalizationManager
 	//! \return true if successful, false otherwise (key not found, or not enough memory provided to write additional info).
 	virtual bool GetLocalizedInfoByKey(const char* sKey, SLocalizedSoundInfoGame* pOutSoundInfo) = 0;
 
-	virtual bool GetLocalizedInfoByKey(const char*, SLocalizedInfoEditor*) = 0;
+	virtual bool GetLocalizedInfoByKey(const char* _sKey, SLocalizedInfoEditor& outEditorInfo) = 0;
 
 	//! Return number of localization entries.
 	virtual int GetLocalizedStringCount() = 0;
@@ -196,31 +198,31 @@ struct ILocalizationManager
 	//! \param[in] sKey Key to be looked up. Key = Label without '@' sign.
 	//! \param[out] sLocalizedString Corresponding english language string.
 	//! \return true if successful, false otherwise (key not found).
-	virtual bool GetEnglishString(const char* sKey, wstring& sLocalizedString) = 0;
+	virtual bool GetEnglishString(const char* sKey, string& sLocalizedString) = 0;
 
 	//! Get Subtitle for Key or Label.
 	//! \param[in] sKeyOrLabel    Key or Label to be used for subtitle lookup. Key = Label without '@' sign.
 	//! \param[out] outSubtitle   Subtitle (untouched if Key/Label not found).
 	//! \param[in] bForceSubtitle If true, get subtitle (sLocalized or sEnglish) even if not specified in Data file.
 	//! \return true if subtitle found (and outSubtitle filled in), false otherwise.
-	virtual bool GetSubtitle(const char* sKeyOrLabel, string& outSubtitle, bool bForceSubtitle = false) = 0;
+	virtual bool GetSubtitle(const char* sKeyOrLabel, wstring& outSubtitle, bool bForceSubtitle = false) = 0;
 
 	//! These methods format outString depending on sString with ordered arguments.
 	//! FormatStringMessage(outString, "This is %2 and this is %1", "second", "first");
 	//! \param[out] outString This is first and this is second.
 	virtual void FormatStringMessage(string& outString, const string& sString, const char** sParams, int nParams) = 0;
 	virtual void FormatStringMessage(string& outString, const string& sString, const char* param1, const char* param2 = 0, const char* param3 = 0, const char* param4 = 0) = 0;
-	virtual void FormatStringMessage(string& outString, wstring& sString, const wchar_t** sParams, int nParams) = 0;
-	virtual void FormatStringMessage(string& outString, wstring& sString, const wchar_t* param1, const wchar_t* param2 = 0, const wchar_t* param3 = 0, const wchar_t* param4 = 0) = 0;
+	virtual void FormatStringMessage(wstring& outString, const wstring& sString, const wchar_t** sParams, int nParams) = 0;
+	virtual void FormatStringMessage(wstring& outString, const wstring& sString, const wchar_t* param1, const wchar_t* param2 = 0, const wchar_t* param3 = 0, const wchar_t* param4 = 0) = 0;
 
-	virtual wchar_t ToUpperCase(wchar_t) = 0;
-	virtual wchar_t ToLowerCase(wchar_t) = 0;
+	virtual wchar_t ToUpperCase(wchar_t c) = 0;
+	virtual wchar_t ToLowerCase(wchar_t c) = 0;
 
-	virtual void LocalizeTime(time_t t, bool bMakeLocalTime, bool bShowSeconds, string& outTimeString) = 0;
-	virtual void LocalizeDate(time_t t, bool bMakeLocalTime, bool bShort, bool bIncludeWeekday, string& outDateString) = 0;
-	virtual void LocalizeDuration(int seconds, string& outDurationString) = 0;
-	virtual void LocalizeNumber(int number, string& outNumberString) = 0;
-	virtual void LocalizeNumber(float number, int decimals, string& outNumberString) = 0;
+	virtual void LocalizeTime(int64 t, bool bMakeLocalTime, bool bShowSeconds, wstring& outTimeString) = 0;
+	virtual void LocalizeDate(int64 t, bool bMakeLocalTime, bool bShort, bool bIncludeWeekday, wstring& outDateString) = 0;
+	virtual void LocalizeDuration(int seconds, wstring& outDurationString) = 0;
+	virtual void LocalizeNumber(int number, wstring& outNumberString) = 0;
+	virtual void LocalizeNumber(float number, int decimals, wstring& outNumberString) = 0;
 	// </interfuscator:shuffle>
 
 	static ILINE TLocalizationBitfield LocalizationBitfieldFromPILID(ELanguageID pilid)

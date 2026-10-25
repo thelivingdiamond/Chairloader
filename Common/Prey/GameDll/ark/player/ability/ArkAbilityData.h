@@ -43,11 +43,19 @@ public:
 	const std::vector<ArkResearchTopicData*>& GetResearchTopics() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FHasAcquiredPrereqs = PreyFunction<bool(const ArkAbilityData* const _this)>(0x145B7F0);
 	static inline auto FAddPrereq = PreyFunction<void(ArkAbilityData* const _this, ArkAbilityData* _pAbility)>(0x145B680);
 	static inline auto FAddResearchTopic = PreyFunction<void(ArkAbilityData* const _this, ArkResearchTopicData* _pResearchTopic)>(0x145B700);
 	static inline auto FGetResearchFraction = PreyFunction<float(const ArkAbilityData* const _this)>(0x145B750);
 	static inline auto FSerialize = PreyFunction<void(ArkAbilityData* const _this, TSerialize _ser)>(0x145B840);
+#else
+	static inline auto FHasAcquiredPrereqs = PreyFunction<bool(const ArkAbilityData* const _this)>(0x15717C0);
+	static inline auto FAddPrereq = PreyFunction<void(ArkAbilityData* const _this, ArkAbilityData* _pAbility)>(0x1571650);
+	static inline auto FAddResearchTopic = PreyFunction<void(ArkAbilityData* const _this, ArkResearchTopicData* _pResearchTopic)>(0x15716D0);
+	static inline auto FGetResearchFraction = PreyFunction<float(const ArkAbilityData* const _this)>(0x1571720);
+	static inline auto FSerialize = PreyFunction<void(ArkAbilityData* const _this, TSerialize _ser)>(0x1571810);
+#endif
 };
 
 // ArkResearchTopicData
@@ -76,8 +84,13 @@ public:
 	const std::vector<ArkAbilityScanData>& GetAbilityScanData() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FIncrementScanCount = PreyFunction<void(ArkResearchTopicData* const _this, const int _scanCount)>(0x145B820);
 	static inline auto FAddAbilityScanData = PreyFunction<void(ArkResearchTopicData* const _this, ArkAbilityData* _pAbilityData, const int _requiredScanCount)>(0x145B650);
 	static inline auto FSerialize = PreyFunction<void(ArkResearchTopicData* const _this, TSerialize _ser)>(0x145BA00);
+#else
+	static inline auto FIncrementScanCount = PreyFunction<void(ArkResearchTopicData* const _this, const int _scanCount)>(0x15717F0);
+	static inline auto FAddAbilityScanData = PreyFunction<void(ArkResearchTopicData* const _this, ArkAbilityData* _pAbilityData, const int _requiredScanCount)>(0x1571620);
+	static inline auto FSerialize = PreyFunction<void(ArkResearchTopicData* const _this, TSerialize _ser)>(0x15719D0);
+#endif
 };
-

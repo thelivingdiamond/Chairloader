@@ -53,8 +53,16 @@ public:
 	void EntitlementRevoked(uint64_t _entitlement) { FEntitlementRevoked(this, _entitlement); }
 	void AddOverflowItemsToContainer() { FAddOverflowItemsToContainer(this); }
 	void RefreshEntitlements() { FRefreshEntitlements(this); }
+#ifndef MOONCRASH
 	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId);
+#else
+	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory);
+#endif
+#ifndef MOONCRASH
 	virtual void OnItemRemoved(unsigned _itemId);
+#else
+	virtual void OnItemRemoved(unsigned _itemId, bool _bPrimaryInventory);
+#endif
 	virtual void OnStopLookingAt(unsigned _targetId);
 	void UnregisterOnBonusContainer() { FUnregisterOnBonusContainer(this); }
 
@@ -63,6 +71,7 @@ public:
 	void RegisterOnBonusContainer();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerEntitlementComponentOv1 = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12332C0);
 	static inline auto FInit = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x1233AA0);
 	static inline auto FReset = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12340D0);
@@ -79,5 +88,22 @@ public:
 	static inline auto FOnItemRemoved = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId)>(0x1233AF0);
 	static inline auto FOnStopLookingAt = PreyFunction<void(IArkPlayerInteractionListener* const _this, unsigned _targetId)>(0x1233B30);
 	static inline auto FUnregisterOnBonusContainer = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12341F0);
+#else
+	static inline auto FArkPlayerEntitlementComponentOv1 = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4510);
+	static inline auto FInit = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4C00);
+	static inline auto FReset = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4FC0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerEntitlementComponent* const _this, TSerialize _ser)>(0x12D5020);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4D90);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D5140);
+	static inline auto FPopulateBonusContainer = PreyFunction<void(ArkPlayerEntitlementComponent* const _this, IEntity* _pBonusContainer)>(0x12D4CB0);
+	static inline auto FOnEntitlementChanged = PreyFunction<void(ArkPlayerEntitlementComponent* const _this, uint64_t _entitlement, bool _bGranted)>(0x12D4C20);
+	static inline auto FEntitlementGranted = PreyFunction<void(ArkPlayerEntitlementComponent* const _this, uint64_t _entitlement)>(0x12D4910);
+	static inline auto FEntitlementRevoked = PreyFunction<void(ArkPlayerEntitlementComponent* const _this, uint64_t _entitlement)>(0x12D4A50);
+	static inline auto FAddOverflowItemsToContainer = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4840);
+	static inline auto FRefreshEntitlements = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D4F20);
+	static inline auto FOnItemAdded = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory)>(0x12D4C50);
+	static inline auto FOnItemRemoved = PreyFunction<void(IArkInventoryListener* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x12D4C60);
+	static inline auto FOnStopLookingAt = PreyFunction<void(IArkPlayerInteractionListener* const _this, unsigned _targetId)>(0x12D4C90);
+	static inline auto FUnregisterOnBonusContainer = PreyFunction<void(ArkPlayerEntitlementComponent* const _this)>(0x12D50E0);
+#endif
 };
-

@@ -8,6 +8,9 @@ class IAction;
 
 // Header: Exact
 // Prey/GameDll/ark/weapons/arkfatalityaction.h
+#ifdef MOONCRASH
+enum class EPriorityComparison;
+#endif
 template <typename T>
 class ArkFatalityAction : public CArkNpcAnimCoopAction // Id=801BC24 Size=208
 {
@@ -18,4 +21,3 @@ public:
 	virtual EPriorityComparison ComparePriority(IAction const &_actionCurrent) const;
 #endif
 };
-

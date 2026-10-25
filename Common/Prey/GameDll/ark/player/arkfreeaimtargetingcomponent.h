@@ -23,8 +23,13 @@ public:
 		ArkAimAngleDegProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4DC0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A56F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty
@@ -39,13 +44,26 @@ public:
 		ArkMaxTargetDistanceProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E10);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328410);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13BD3C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035E0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkAimAngleDegProperty = PreyGlobal<ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty>(0x2C022D0);
+#else
+	static inline auto s_ArkAimAngleDegProperty = PreyGlobal<ArkFreeAimTargetingComponentProperties::ArkAimAngleDegProperty>(0x2D7CC10);
+#endif
 	float m_AimAngleDeg;
+#ifndef MOONCRASH
 	static inline auto s_ArkMaxTargetDistanceProperty = PreyGlobal<ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty>(0x2C022F0);
+#else
+	static inline auto s_ArkMaxTargetDistanceProperty = PreyGlobal<ArkFreeAimTargetingComponentProperties::ArkMaxTargetDistanceProperty>(0x2D7CC30);
+#endif
 	float m_MaxTargetDistance;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -58,7 +76,11 @@ public:
 	const float& GetMaxTargetDistance() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12F6430);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x153CB80);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x165E150);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x165E180);
+#endif
 };
-

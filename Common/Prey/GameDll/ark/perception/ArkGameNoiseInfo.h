@@ -11,5 +11,7 @@ struct ArkGameNoiseInfo // Id=8014310 Size=24
 	Vec3 m_referencePos;
 	
 	ArkGameNoiseInfo(uint64_t _type);
+#ifdef MOONCRASH
+	static inline auto FArkGameNoiseInfoOv2 = PreyFunction<void(ArkGameNoiseInfo* const _this, uint64_t _type)>(0x13587E0);
+#endif
 };
-

@@ -9,6 +9,9 @@ public:
 	virtual void OnEtherDuplicateCreated(const unsigned _arg0_);
 	virtual void OnEtherDuplicateDestroyed(const unsigned _etherDuplicate);
 
+#ifndef MOONCRASH
 	static inline auto FOnEtherDuplicateDestroyed = PreyFunction<void(IArkEtherDuplicateListener* const _this, const unsigned _etherDuplicate)>(0xA13080);
+#else
+	static inline auto FOnEtherDuplicateDestroyed = PreyFunction<void(IArkEtherDuplicateListener* const _this, const unsigned _etherDuplicate)>(0x1333E90);
+#endif
 };
-

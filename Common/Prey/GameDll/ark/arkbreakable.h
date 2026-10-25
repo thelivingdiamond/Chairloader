@@ -16,6 +16,10 @@ struct SEntityUpdateContext;
 
 // Header: Exact
 // Prey/GameDll/ark/arkbreakable.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+struct IMaterial;
+#endif
 class CArkBreakable : public CArkGameObjectExtension<CArkBreakable> // Id=8019358 Size=376
 {
 public:
@@ -52,6 +56,7 @@ public:
 	bool AffectsNavMesh() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkBreakable *const _this, IGameObject *_pGameObject)>(0x141EB30);
 	static inline auto FPostInit = PreyFunction<void(CArkBreakable *const _this, IGameObject *_pGameObject)>(0x141FC20);
 	static inline auto FProcessEvent = PreyFunction<void(CArkBreakable *const _this, SEntityEvent &_event)>(0x141FC30);
@@ -65,5 +70,19 @@ public:
 	static inline auto FLoadDefault = PreyFunction<void(CArkBreakable *const _this)>(0x141F170);
 	static inline auto FLoadBroken = PreyFunction<void(CArkBreakable *const _this)>(0x141ED40);
 	static inline auto FRegenerateNavMesh = PreyFunction<void(CArkBreakable *const _this)>(0x141FD20);
+#else
+	static inline auto FInit = PreyFunction<bool(CArkBreakable* const _this, IGameObject* _pGameObject)>(0x1534970);
+	static inline auto FPostInit = PreyFunction<void(CArkBreakable* const _this, IGameObject* _pGameObject)>(0x1535A70);
+	static inline auto FProcessEvent = PreyFunction<void(CArkBreakable* const _this, SEntityEvent& _event)>(0x1535A80);
+	static inline auto FUpdate = PreyFunction<void(CArkBreakable* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x15361E0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkBreakable* const _this, TSerialize _ser)>(0x1534610);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkBreakable* const _this, ICrySizer* _pS)>(0x182A3F0);
+	static inline auto FRelease = PreyFunction<void(CArkBreakable* const _this)>(0x1535D80);
+	static inline auto FLoadParameters = PreyFunction<void(CArkBreakable* const _this)>(0x15352B0);
+	static inline auto FSetHealth = PreyFunction<void(CArkBreakable* const _this, const float _health)>(0x1535DD0);
+	static inline auto FIsGloo = PreyFunction<bool(const CArkBreakable* const _this)>(0x15349B0);
+	static inline auto FLoadDefault = PreyFunction<void(CArkBreakable* const _this)>(0x1534FB0);
+	static inline auto FLoadBroken = PreyFunction<void(CArkBreakable* const _this)>(0x1534B80);
+	static inline auto FRegenerateNavMesh = PreyFunction<void(CArkBreakable* const _this)>(0x1535B70);
+#endif
 };
-

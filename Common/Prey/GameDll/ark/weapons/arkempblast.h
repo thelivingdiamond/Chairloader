@@ -15,6 +15,12 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/weapons/arkempblast.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct IParticleEmitter;
+struct ISerializableInfo;
+#endif
 class CArkEMPBlast : public CGameObjectExtensionHelper<CArkEMPBlast,IGameObjectExtension> // Id=801BBFB Size=152
 {
 public:
@@ -74,6 +80,7 @@ public:
 	void StartParticleEmitterUniformScale(_smart_ptr<IParticleEmitter> &arg0, IParticleEffect &arg1, float arg2);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetMemoryUsage = PreyFunction<void(CArkEMPBlast const *const _this, ICrySizer *_s)>(0x137E8D0);
 	static inline auto FInit = PreyFunction<bool(CArkEMPBlast *const _this, IGameObject *_pGameObject)>(0x137E8F0);
 	static inline auto FPostInit = PreyFunction<void(CArkEMPBlast *const _this, IGameObject *_pGameObject)>(0x137EE60);
@@ -98,5 +105,31 @@ public:
 	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkEMPBlast *const _this)>(0xA13080);
 	static inline auto FStartExplosion = PreyFunction<void(CArkEMPBlast *const _this)>(0x137EEF0);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEMPBlast *const _this)>(0x137E920);
+#else
+	static inline auto FCArkEMPBlastOv2 = PreyFunction<void(CArkEMPBlast* const _this)>(0x147B780);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkEMPBlast* const _this, ICrySizer* _s)>(0xCF0B20);
+	static inline auto FInit = PreyFunction<bool(CArkEMPBlast* const _this, IGameObject* _pGameObject)>(0x147B8B0);
+	static inline auto FPostInit = PreyFunction<void(CArkEMPBlast* const _this, IGameObject* _pGameObject)>(0x147BE20);
+	static inline auto FInitClient = PreyFunction<void(CArkEMPBlast* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkEMPBlast* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkEMPBlast* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkEMPBlast* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkEMPBlast* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkEMPBlast* const _this)>(0x147BE40);
+	static inline auto FFullSerialize = PreyFunction<void(CArkEMPBlast* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkEMPBlast* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0x13B0900);
+	static inline auto FPostSerialize = PreyFunction<void(CArkEMPBlast* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkEMPBlast* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkEMPBlast* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkEMPBlast* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x147C070);
+	static inline auto FHandleEvent = PreyFunction<void(CArkEMPBlast* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkEMPBlast* const _this, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FSetChannelId = PreyFunction<void(CArkEMPBlast* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkEMPBlast* const _this, bool _auth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkEMPBlast* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkEMPBlast* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkEMPBlast* const _this)>(0x1333E90);
+	static inline auto FStartExplosion = PreyFunction<void(CArkEMPBlast* const _this)>(0x147BEB0);
+	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEMPBlast* const _this)>(0x147B8E0);
+#endif
 };
-

@@ -2,4 +2,6 @@
 
 #pragma once
 #include <Prey/GameDll/ark/ui/ArkOptionLayout.h>
-
+#ifdef MOONCRASH
+class ArkOptionMenu;
+#endif

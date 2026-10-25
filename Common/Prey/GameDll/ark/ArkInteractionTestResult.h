@@ -4,6 +4,9 @@
 
 // Header: Override
 // Prey/GameDll/ark/ArkInteractionTestResult.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryString.h>
+#endif
 struct ArkInteractionTestResult // Id=8014067 Size=40
 {
 	bool m_bPassedTest;
@@ -13,4 +16,3 @@ struct ArkInteractionTestResult // Id=8014067 Size=40
 	string m_requirementText;
 	wstring m_localizedRequirementText;
 };
-

@@ -28,4 +28,3 @@ public:
 	EArkNpcDesireTargetRefreshResult Refresh();
 #endif
 };
-

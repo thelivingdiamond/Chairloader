@@ -19,8 +19,11 @@ public:
 	void OnBrokenChanged(ArkTurret &arg0, bool arg1);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FTryHideAttachment = PreyFunction<void(ArkTurret &_turret, const char *_pAttachmentName, bool _bHidden)>(0x135AFB0);
+#else
+	static inline auto FTryHideAttachment = PreyFunction<void(ArkTurret& _turret, const char* _pAttachmentName, bool _bHidden)>(0x143E250);
+#endif
 };
 
 } // namespace ArkTurretDamageFsm::States
-

@@ -768,4 +768,3 @@ template<typename F> ILINE int32 idxmin3(const Vec3_tpl<F>& vec)
 	imin |= isneg(vec.z - vec[imin]) << 1;
 	return imin & (2 | (imin >> 1 ^ 1));
 }
-

@@ -5,6 +5,9 @@
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapagemainmenu.h
+#ifdef MOONCRASH
+enum class ArkPDAPage;
+#endif
 class CArkPDAPageMainMenu : public IArkPDAPage // Id=801CBD3 Size=16
 {
 public:
@@ -17,8 +20,13 @@ public:
 	static ArkPDAPage GetPDAPage();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FOpen = PreyFunction<void(CArkPDAPageMainMenu *const _this)>(0x16285D0);
 	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageMainMenu *const _this)>(0x1628720);
 	static inline auto FManagesInputPrompts = PreyFunction<bool(CArkPDAPageMainMenu const *const _this)>(0x1B933B0);
+#else
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageMainMenu* const _this)>(0x174A190);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageMainMenu* const _this)>(0x174A2E0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageMainMenu* const _this)>(0x1A302A0);
+#endif
 };
-

@@ -587,17 +587,53 @@ CRY_ALIGN(64) uint32 BoxSides[0x40 * 8] = {
 namespace {
 constexpr int kCryMMIAT_None = 0x0;
 
+#ifndef MOONCRASH
 PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryModuleMalloc(0xA8C70);
+#else
+PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryModuleMalloc(0xC1D00);
+#endif
+#ifndef MOONCRASH
 PreyFunction<void* (void* ptr, size_t size, int _module, int _type)> g_pfnCryModuleRealloc(0xA8D40);
+#else
+PreyFunction<void* (void* ptr, size_t size, int _module, int _type)> g_pfnCryModuleRealloc(0xC1DD0);
+#endif
+#ifndef MOONCRASH
 PreyFunction<void* (void* ptr)> g_pfnCryModuleFree(0xA8C60);
+#else
+PreyFunction<void* (void* ptr)> g_pfnCryModuleFree(0xC1CF0);
+#endif
+#ifndef MOONCRASH
 PreyFunction<void* (size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleMemalign(0xA8CC0);
+#else
+PreyFunction<void* (size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleMemalign(0xC1D50);
+#endif
+#ifndef MOONCRASH
 PreyFunction<void* (void* ptr, size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleReallocAlign(0xA8DB0);
+#else
+PreyFunction<void* (void* ptr, size_t size, size_t alignment, int _module, int _type)> g_pfnCryModuleReallocAlign(0xC1E40);
+#endif
+#ifndef MOONCRASH
 PreyFunction<void* (void* ptr)> g_pfnCryModuleMemalignFree(0xA8D20);
+#else
+PreyFunction<void* (void* ptr)> g_pfnCryModuleMemalignFree(0xC1DB0);
+#endif
 
 
+#ifndef MOONCRASH
 PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryCrtMalloc(0x99420);
+#else
+PreyFunction<void* (size_t size, int _module, int _type)> g_pfnCryCrtMalloc(0xB2180);
+#endif
+#ifndef MOONCRASH
 PreyFunction<size_t (void* p)> g_pfnCryCrtFree(0x99410);
+#else
+PreyFunction<size_t (void* p)> g_pfnCryCrtFree(0xB2170);
+#endif
+#ifndef MOONCRASH
 PreyFunction<size_t(void* p)> g_pfnCryCrtSize(0x99460);
+#else
+PreyFunction<size_t(void* p)> g_pfnCryCrtSize(0xB21C0);
+#endif
 
 }
 

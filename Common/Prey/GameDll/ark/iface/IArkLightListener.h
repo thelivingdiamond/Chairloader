@@ -10,4 +10,3 @@ struct IArkLightListener // Id=80141DF Size=8
 	virtual void OnStartDisrupt();
 	virtual void OnStopDisrupt();
 };
-

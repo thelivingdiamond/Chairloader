@@ -26,4 +26,3 @@ public:
 	virtual void UnregisterTrigger(ArkDialogAudioTrigger const *arg0) = 0;
 	virtual bool IsRegistered(ArkDialogAudioTrigger const *arg0) const = 0;
 };
-

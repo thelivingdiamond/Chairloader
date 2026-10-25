@@ -255,12 +255,8 @@ public:
 	const char *GetName() { return m_name; }
 
 private:
+	// Prey has no CE 3.5 StartFunction() support (m_ThreadFunction); the Start() overloads are not virtual.
 	Runnable *m_Runnable;
-	struct
-	{
-		ThreadFunction m_ThreadFunction;
-		void *m_ThreadParameter;
-	} m_ThreadFunction;
 	volatile bool m_bIsStarted;
 	volatile bool m_bIsRunning;
 	string m_name;
@@ -343,15 +339,6 @@ public:
 
 	virtual void Run()
 	{
-		// This Run() implementation supports the void StartFunction() method.
-		// However, code using this class (or derived classes) should eventually
-		// be refactored to use one of the other Start() methods.  This code will
-		// be removed some day and the default implementation of Run() will be
-		// empty.
-		if (m_ThreadFunction.m_ThreadFunction != NULL)
-		{
-			m_ThreadFunction.m_ThreadFunction(m_ThreadFunction.m_ThreadParameter);
-		}
 	}
 
 	// Cancel the running thread.
@@ -363,34 +350,21 @@ public:
 	// If the thread was started by specifying a Runnable (template argument),
 	// then the Cancel() call is passed on to the specified runnable.
 	//
-	// If the thread was started using the StartFunction() method, then the
-	// caller must find other means to inform the thread about the cancellation
-	// request.
 	virtual void Cancel()
 	{
 		if (IsStarted() && m_Runnable != NULL)
 			m_Runnable->Cancel();
 	}
 
-	virtual void Start(Runnable &runnable, unsigned cpuMask = 0, const char* = NULL, int32 =0)
+	void Start(Runnable &runnable, unsigned cpuMask = 0, const char* = NULL, int32 =0)
 	{
 		m_Runnable = &runnable;
 		StartThread(RunRunnable, this);
 	}
 
-	virtual void Start(unsigned cpuMask = 0, const char* = NULL, int32 =0, int32 =0)
+	void Start(unsigned cpuMask = 0, const char* = NULL, int32 =0, int32 =0)
 	{
 		StartThread(RunThis, this);
-	}
-
-	void StartFunction(
-		ThreadFunction threadFunction,
-		void *threadParameter = NULL
-		)
-	{
-		m_ThreadFunction.m_ThreadFunction = threadFunction;
-		m_ThreadFunction.m_ThreadParameter = threadParameter;
-		Start();
 	}
 
 	static CrySimpleThread<Runnable> *Self()
@@ -413,4 +387,3 @@ public:
 };
 
 #endif
-

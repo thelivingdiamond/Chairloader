@@ -26,7 +26,11 @@ public:
 		bool operator==(ArkIndicatorIconManager::IndicatorIcon const &arg0) const;
 #endif
 		
+#ifndef MOONCRASH
 		static inline auto FUpdateIdentifier = PreyFunction<void(ArkIndicatorIconManager::IndicatorIcon *const _this, const char *_type)>(0x12F8FE0);
+#else
+		static inline auto FUpdateIdentifier = PreyFunction<void(ArkIndicatorIconManager::IndicatorIcon* const _this, const char* _type)>(0x13D35C0);
+#endif
 	};
 
 	std::vector<ArkIndicatorIconManager::IndicatorIcon> m_impendingDangers;
@@ -50,6 +54,7 @@ public:
 	bool HasImpendingDangerInRange() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(ArkIndicatorIconManager *const _this)>(0x12F8F30);
 	static inline auto FSerialize = PreyFunction<void(ArkIndicatorIconManager *const _this, TSerialize _ser)>(0x12F8DF0);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkIndicatorIconManager *const _this)>(0x12F8C20);
@@ -60,5 +65,17 @@ public:
 	static inline auto FAddRepairIcon = PreyFunction<void(ArkIndicatorIconManager *const _this, unsigned _entityId, float _radius)>(0x12F8B70);
 	static inline auto FRemoveRepairIcon = PreyFunction<void(ArkIndicatorIconManager *const _this, unsigned _entityId)>(0x12F8D60);
 	static inline auto FRemoveIndicatorIcon = PreyFunction<void(ArkIndicatorIconManager *const _this, std::vector<ArkIndicatorIconManager::IndicatorIcon> &_icons, unsigned _entityId, const char *_removeFn)>(0x12F8C50);
+#else
+	static inline auto FArkIndicatorIconManagerOv2 = PreyFunction<void(ArkIndicatorIconManager* const _this)>(0x13D2830);
+	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(ArkIndicatorIconManager* const _this)>(0x13D3510);
+	static inline auto FSerialize = PreyFunction<void(ArkIndicatorIconManager* const _this, TSerialize _ser)>(0x13D33D0);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkIndicatorIconManager* const _this)>(0x13D3200);
+	static inline auto FReset = PreyFunction<void(ArkIndicatorIconManager* const _this)>(0x13D3360);
+	static inline auto FLoadConfig = PreyFunction<void(ArkIndicatorIconManager* const _this, const XmlNodeRef& _root)>(0x13D31E0);
+	static inline auto FAddImpendingDanger = PreyFunction<void(ArkIndicatorIconManager* const _this, unsigned _entityId, float _radius, bool _bClearOnSerialize)>(0x13D30B0);
+	static inline auto FRemoveImpendingDanger = PreyFunction<void(ArkIndicatorIconManager* const _this, unsigned _entityId)>(0x13D3210);
+	static inline auto FAddRepairIcon = PreyFunction<void(ArkIndicatorIconManager* const _this, unsigned _entityId, float _radius)>(0x13D3150);
+	static inline auto FRemoveRepairIcon = PreyFunction<void(ArkIndicatorIconManager* const _this, unsigned _entityId)>(0x13D3340);
+	static inline auto FRemoveIndicatorIcon = PreyFunction<void(ArkIndicatorIconManager* const _this, std::vector<ArkIndicatorIconManager::IndicatorIcon>& _icons, unsigned _entityId, const char* _removeFn)>(0x13D3230);
+#endif
 };
-

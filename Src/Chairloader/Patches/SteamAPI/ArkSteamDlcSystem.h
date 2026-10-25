@@ -1,4 +1,5 @@
 #pragma once
+#ifndef MOONCRASH // Prey only: Mooncrash keeps the game's CArkSteamDlcSystem (see ChairSteamAPI::ReplaceArkSystems)
 #include <Prey/CrySystem/Ark/ArkDlcSystem.h>
 
 //! IArkDlcSystem implementation using Steam API.
@@ -8,3 +9,4 @@ public:
     virtual void InitEnv(SSystemGlobalEnvironment* _gEnv) override;
     virtual void Refresh() override;
 };
+#endif

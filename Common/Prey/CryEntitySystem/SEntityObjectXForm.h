@@ -8,4 +8,3 @@ struct SEntityObjectXForm // Id=800C733 Size=48
 {
 	Matrix34 localTM;
 };
-

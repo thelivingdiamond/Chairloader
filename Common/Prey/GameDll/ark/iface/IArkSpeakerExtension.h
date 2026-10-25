@@ -13,4 +13,3 @@ public:
 	virtual IArkSpeaker *GetSpeaker() = 0;
 	virtual ~IArkSpeakerExtension();
 };
-

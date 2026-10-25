@@ -1,4 +1,5 @@
-// Header test file for path Prey/ArkCommon/reflection/ArkProperty.h
+// Header test file for path Prey/ArkCommon/reflection/
+
 #include "ArkProperty.h"
 static_assert(sizeof(ArkProperty) == 32);
 

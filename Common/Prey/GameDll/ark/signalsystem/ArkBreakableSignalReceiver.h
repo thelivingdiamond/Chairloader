@@ -23,10 +23,17 @@ public:
 	void InitializeSignalGroupId(CArkBreakable &_breakable, const uint64_t _id) { FInitializeSignalGroupId(this,_breakable,_id); }
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkBreakableSignalReceiver = PreyFunction<void(ArkBreakableSignalReceiver *const _this)>(0x15CEA80);
 	static inline auto FInit = PreyFunction<void(ArkBreakableSignalReceiver *const _this, const unsigned &_entityId)>(0xA13080);
 	static inline auto FReset = PreyFunction<void(ArkBreakableSignalReceiver *const _this)>(0x15CED10);
 	static inline auto FInitializeSignalGroupId = PreyFunction<void(ArkBreakableSignalReceiver *const _this, CArkBreakable &_breakable, const uint64_t _id)>(0x15CEB30);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkBreakableSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x15CEBF0);
+#else
+	static inline auto FBitNotArkBreakableSignalReceiver = PreyFunction<void(ArkBreakableSignalReceiver* const _this)>(0x16F59D0);
+	static inline auto FInit = PreyFunction<void(ArkBreakableSignalReceiver* const _this, const unsigned& _entityId)>(0x1333E90);
+	static inline auto FReset = PreyFunction<void(ArkBreakableSignalReceiver* const _this)>(0x16F5C60);
+	static inline auto FInitializeSignalGroupId = PreyFunction<void(ArkBreakableSignalReceiver* const _this, CArkBreakable& _breakable, const uint64_t _id)>(0x16F5A80);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkBreakableSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x16F5B40);
+#endif
 };
-

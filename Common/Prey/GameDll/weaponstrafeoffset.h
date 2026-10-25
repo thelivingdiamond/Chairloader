@@ -22,10 +22,20 @@ public:
 	CStrafeOffset();
 	void SetStaticParams(SStaticWeaponSwayParams const &params) { FSetStaticParams(this,params); }
 	void SetGameParams(SGameWeaponSwayParams const &params) { FSetGameParams(this,params); }
+#ifndef MOONCRASH
 	QuatT Compute(float frameTime) { return FCompute(this,frameTime); }
+#else
+	QuatT Compute(float frameTime) { alignas(QuatT) std::byte _return_buf_[sizeof(QuatT)]; return *FCompute(this, reinterpret_cast<QuatT*>(_return_buf_), frameTime); }
+#endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetStaticParams = PreyFunction<void(CStrafeOffset *const _this, SStaticWeaponSwayParams const &params)>(0x18040A0);
 	static inline auto FSetGameParams = PreyFunction<void(CStrafeOffset *const _this, SGameWeaponSwayParams const &params)>(0x1804080);
 	static inline auto FCompute = PreyFunction<QuatT(CStrafeOffset *const _this, float frameTime)>(0x18039C0);
+#else
+	static inline auto FCStrafeOffsetOv2 = PreyFunction<void(CStrafeOffset* const _this)>(0x192B500);
+	static inline auto FSetStaticParams = PreyFunction<void(CStrafeOffset* const _this, const SStaticWeaponSwayParams& params)>(0x192BC70);
+	static inline auto FSetGameParams = PreyFunction<void(CStrafeOffset* const _this, const SGameWeaponSwayParams& params)>(0x192BC50);
+	static inline auto FCompute = PreyFunction<QuatT*(CStrafeOffset* const _this, QuatT* _return_value_, float frameTime)>(0x192B590);
+#endif
 };
-

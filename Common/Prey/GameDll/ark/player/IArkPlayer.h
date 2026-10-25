@@ -21,4 +21,3 @@ public:
 	virtual void EnableIdleBreak(const bool _bEnable) = 0;
 	virtual void InhibitRotation(const bool _bInhibit) = 0;
 };
-

@@ -8,4 +8,3 @@ struct ArkInterval // Id=801346D Size=8
 	T minimum;
 	T maximum;
 };
-

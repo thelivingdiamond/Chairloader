@@ -188,4 +188,3 @@ template<typename F> ILINE F sqr(const Vec2_tpl<F>& op)
 {
 	return op | op;
 }
-

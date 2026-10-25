@@ -54,4 +54,3 @@ struct AgentMovementSpeeds // Id=8000FD4 Size=1040
 	AgentMovementSpeeds::SSpeedRange &GetRange(int arg0, int arg1);
 #endif
 };
-

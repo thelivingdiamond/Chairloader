@@ -4,6 +4,9 @@
 
 // Header: Override
 // Prey/GameDll/ark/iface/IArkFactionManager.h
+#ifdef MOONCRASH
+enum class EArkDisposition;
+#endif
 class IArkFactionManager // Id=800208A Size=8
 {
 public:
@@ -22,4 +25,3 @@ public:
 	virtual void ReloadFactions() = 0;
 	virtual std::unordered_map<unsigned __int64,unsigned int> const &GetGuidMap() const = 0;
 };
-

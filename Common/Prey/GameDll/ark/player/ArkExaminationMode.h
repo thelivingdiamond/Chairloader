@@ -99,6 +99,7 @@ public:
 	float GetOptimalWorldUIOffset(const Vec3& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkExaminationModeOv1 = PreyFunction<void(ArkExaminationMode* const _this)>(0x157C0B0);
 	static inline auto FBitNotArkExaminationMode = PreyFunction<void(ArkExaminationMode* const _this)>(0x157C180);
 	static inline auto FUpdateReticlePos = PreyFunction<void(ArkExaminationMode* const _this, const float _frameTime)>(0x157EBA0);
@@ -119,5 +120,26 @@ public:
 	static inline auto FGetLocationToPlacePlayer = PreyFunction<boost::optional<QuatT_tpl<float> >*(const ArkExaminationMode* const _this, boost::optional<QuatT_tpl<float> >* _return_value_, const IEntity* _pWorldUIEntity)>(0x157C8D0);
 	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x157E0D0);
 	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0x157E110);
+#else
+	static inline auto FArkExaminationModeOv1 = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A2F10);
+	static inline auto FBitNotArkExaminationMode = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A2FE0);
+	static inline auto FUpdateReticlePos = PreyFunction<void(ArkExaminationMode* const _this, const float _frameTime)>(0x16A5A30);
+	static inline auto FCanExamineWorldUI = PreyFunction<bool(const ArkExaminationMode* const _this)>(0x16A3660);
+	static inline auto FIsExaminingTelescope = PreyFunction<bool(const ArkExaminationMode* const _this)>(0x16A4BA0);
+	static inline auto FSetExamining = PreyFunction<void(ArkExaminationMode* const _this, const bool _bValue, const IEntity* const _pWorldUIEntity, ArkExaminationMode::ExamineMode _mode)>(0x16A5040);
+	static inline auto FExitExaminationInstant = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A4FF0);
+	static inline auto FRecenterRotationAndReticle = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A4FA0);
+	static inline auto FLoadConfig = PreyFunction<void(ArkExaminationMode* const _this, const XmlNodeRef& _node)>(0x16A4BB0);
+	static inline auto FUpdateView = PreyFunction<bool(ArkExaminationMode* const _this, SViewParams& _params)>(0x16A5B10);
+	static inline auto FReset = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A4FF0);
+	static inline auto FTookDamage = PreyFunction<void(ArkExaminationMode* const _this)>(0x16A59D0);
+	static inline auto FOnEntityEvent = PreyFunction<void(ArkExaminationMode* const _this, IEntity* pEntity, SEntityEvent& event)>(0x16A4FF0);
+	static inline auto FSetExamining_Internal = PreyFunction<void(ArkExaminationMode* const _this, const ArkExaminationMode::EArkExaminationState _value, const IEntity* const _pTargetEntity, ArkExaminationMode::ExamineMode _mode)>(0x16A5070);
+	static inline auto FInqOptimalView = PreyFunction<bool(const ArkExaminationMode* const _this, Vec3& _optimalPos, Quat& _optimalRotation, const IEntity* _pTargetEntity)>(0x16A43D0);
+	static inline auto FGetRemoteManipulationPostProcessId = PreyFunction<uint64_t(const ArkExaminationMode* const _this)>(0x16A4310);
+	static inline auto FGetUsableWorldUIEntity = PreyFunction<const IEntity* (const ArkExaminationMode* const _this)>(0x16A4350);
+	static inline auto FGetLocationToPlacePlayer = PreyFunction<boost::optional<QuatT_tpl<float> >*(const ArkExaminationMode* const _this, boost::optional<QuatT_tpl<float> >* _return_value_, const IEntity* _pWorldUIEntity)>(0x16A36E0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x16A4F10);
+	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0x16A4F50);
+#endif
 };
-

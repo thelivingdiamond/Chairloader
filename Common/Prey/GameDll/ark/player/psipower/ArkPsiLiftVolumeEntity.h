@@ -19,4 +19,3 @@ public:
 	unsigned GetEntityId() const;
 #endif
 };
-

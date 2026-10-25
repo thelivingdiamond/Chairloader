@@ -48,6 +48,7 @@ public:
 	bool IsNearFOVLocked() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerZoomManagerOv2 = PreyFunction<void(ArkPlayerZoomManager* const _this)>(0x1464040);
 	static inline auto FReset = PreyFunction<void(ArkPlayerZoomManager* const _this)>(0x1464270);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerZoomManager* const _this, float _frameTime)>(0x1464450);
@@ -59,5 +60,17 @@ public:
 	static inline auto FGetDesiredHFOVOv0 = PreyFunction<float(const ArkPlayerZoomManager* const _this, const int _handle)>(0x1464120);
 	static inline auto FGetHFOVDependentMultiplier = PreyFunction<float(const ArkPlayerZoomManager* const _this, float _currentMultiplier, float _zoomedMultiplier)>(0x1464150);
 	static inline auto FSetNearFOVUnlocked = PreyFunction<void(ArkPlayerZoomManager* const _this, bool _bUnlocked)>(0x14643D0);
+#else
+	static inline auto FArkPlayerZoomManagerOv2 = PreyFunction<void(ArkPlayerZoomManager* const _this)>(0x157BA50);
+	static inline auto FReset = PreyFunction<void(ArkPlayerZoomManager* const _this)>(0x157BC80);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerZoomManager* const _this, float _frameTime)>(0x157BE60);
+	static inline auto FSetDesiredHFOV = PreyFunction<int(ArkPlayerZoomManager* const _this, float _hfov, float _interpTime, bool _bUseUITime, EArkZoomPriority _priority)>(0x157BD40);
+	static inline auto FUpdateDesiredHFOV = PreyFunction<void(ArkPlayerZoomManager* const _this, int _handle, float _hfov, float _interpTime, bool _bUseUITime)>(0x157BFF0);
+	static inline auto FClearDesiredHFOV = PreyFunction<void(ArkPlayerZoomManager* const _this, int _handle, float _interpTime, bool _bUseUITime)>(0x157BA70);
+	static inline auto FGetCurrentHFOV = PreyFunction<float(const ArkPlayerZoomManager* const _this)>(0x157BB20);
+	static inline auto FGetAdjustedCurrentHFOV = PreyFunction<float(const ArkPlayerZoomManager* const _this)>(0x157BAE0);
+	static inline auto FGetDesiredHFOVOv0 = PreyFunction<float(const ArkPlayerZoomManager* const _this, const int _handle)>(0x157BB30);
+	static inline auto FGetHFOVDependentMultiplier = PreyFunction<float(const ArkPlayerZoomManager* const _this, float _currentMultiplier, float _zoomedMultiplier)>(0x157BB60);
+	static inline auto FSetNearFOVUnlocked = PreyFunction<void(ArkPlayerZoomManager* const _this, bool _bUnlocked)>(0x157BDE0);
+#endif
 };
-

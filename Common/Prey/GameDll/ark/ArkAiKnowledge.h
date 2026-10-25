@@ -15,4 +15,3 @@ public:
 	ArkNpc &GetNpc() const;
 #endif
 };
-

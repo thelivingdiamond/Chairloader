@@ -9,6 +9,21 @@
 //  History:
 //
 ////////////////////////////////////////////////////////////////////////////
+#ifdef MOONCRASH
+#include <Prey/CryInput/IInput.h>
+#include <Prey/CryCore/Containers/CryListenerSet.h>
+#include <Prey/ArkStubs.h>
+enum EInputDeviceType;
+enum ESystemEvent;
+class ICrySizer;
+struct ILoadGame;
+struct ISaveGame;
+struct IUIControlSchemeListener;
+struct IUIGameEventSystem;
+struct SActionEvent;
+struct SInputEvent;
+struct SViewParams;
+#endif
 #ifndef __UIManager_H__
 #define __UIManager_H__
 
@@ -92,6 +107,7 @@ public:
 	void ShutdownSound();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<void(CUIManager* const _this)>(0x17FEBC0);
 	static inline auto FShutdown = PreyFunction<void(CUIManager* const _this)>(0x17FF7A0);
 	static inline auto FPostSerialize = PreyFunction<void(CUIManager* const _this)>(0xA13080);
@@ -115,6 +131,32 @@ public:
 	static inline auto FOnActionEvent = PreyFunction<void(CUIManager* const _this, SActionEvent const& event)>(0xA13080);
 	static inline auto FOnPreRender = PreyFunction<void(CUIManager* const _this)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CUIManager const* const _this, ICrySizer* pSizer)>(0x17FEA30);
+#else
+	static inline auto FCUIManagerOv1 = PreyFunction<void(CUIManager* const _this)>(0x1926260);
+	static inline auto FInit = PreyFunction<void(CUIManager* const _this)>(0x1926750);
+	static inline auto FShutdown = PreyFunction<void(CUIManager* const _this)>(0x1927330);
+	static inline auto FPostSerialize = PreyFunction<void(CUIManager* const _this)>(0x1333E90);
+	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x1926DE0);
+	static inline auto FGetPriority = PreyFunction<int(const IInputEventListener* const _this)>(0x1948930);
+	static inline auto FGetUIEventSystem = PreyFunction<IUIGameEventSystem* (const CUIManager* const _this, const char* type)>(0x1926610);
+	static inline auto FProcessViewParams = PreyFunction<void(CUIManager* const _this, const SViewParams& viewParams)>(0x1926F60);
+	static inline auto FActivateState = PreyFunction<void(CUIManager* const _this, const char* state)>(0x1333E90);
+	static inline auto FActivateDefaultState = PreyFunction<void(CUIManager* const _this)>(0x1333E90);
+	static inline auto FIsInMenu = PreyFunction<bool(CUIManager* const _this)>(0x13B0900);
+	static inline auto FInitGameType = PreyFunction<void(CUIManager* const _this, bool multiplayer, bool fromInit)>(0x1333E90);
+	static inline auto FRegisterControlSchemeListener = PreyFunction<bool(CUIManager* const _this, IUIControlSchemeListener* pListener)>(0x19270D0);
+	static inline auto FUnregisterControlSchemeListener = PreyFunction<bool(CUIManager* const _this, IUIControlSchemeListener* pListener)>(0x1927470);
+	static inline auto FSetCurControlScheme = PreyFunction<void(CUIManager* const _this, const EControlScheme controlScheme)>(0x1927120);
+	static inline auto FRefreshControlScheme = PreyFunction<void(CUIManager* const _this)>(0x1927000);
+	static inline auto FOnSystemEvent = PreyFunction<void(CUIManager* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0x1333E90);
+	static inline auto FOnPostUpdate = PreyFunction<void(IGameFrameworkListener* const _this, float fDeltaTime)>(0x1926EC0);
+	static inline auto FOnSaveGame = PreyFunction<void(IGameFrameworkListener* const _this, ISaveGame* pSaveGame)>(0x1333E90);
+	static inline auto FOnLoadGame = PreyFunction<void(IGameFrameworkListener* const _this, ILoadGame* pLoadGame)>(0x1333E90);
+	static inline auto FOnLevelEnd = PreyFunction<void(IGameFrameworkListener* const _this, const char* nextLevel)>(0x1333E90);
+	static inline auto FOnActionEvent = PreyFunction<void(IGameFrameworkListener* const _this, const SActionEvent& event)>(0x1333E90);
+	static inline auto FOnPreRender = PreyFunction<void(IGameFrameworkListener* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CUIManager* const _this, ICrySizer* pSizer)>(0x19265C0);
+#endif
 };
 
 static_assert(sizeof(CUIManager) == 152);
@@ -143,4 +185,3 @@ namespace UIEvents
 
 
 #endif
-

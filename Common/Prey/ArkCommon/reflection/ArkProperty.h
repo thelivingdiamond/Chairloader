@@ -40,8 +40,13 @@ public:
 	const char *GetTypeStr() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FIsArray = PreyFunction<bool(ArkProperty const *const _this)>(0xDD23F0);
 	static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkProperty const *const _this, ArkReflectedObject *const _pObject)>(0x158AEF0);
 	static inline auto FReset = PreyFunction<void(ArkProperty const *const _this, ArkReflectedObject *_pObject)>(0xA13080);
+#else
+	static inline auto FIsArray = PreyFunction<bool(const ArkProperty* const _this)>(0x13B0900);
+	static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkProperty* const _this, ArkReflectedObject* const _pObject)>(0x1CBB0B0);
+	static inline auto FReset = PreyFunction<void(const ArkProperty* const _this, ArkReflectedObject* _pObject)>(0x1333E90);
+#endif
 };
-

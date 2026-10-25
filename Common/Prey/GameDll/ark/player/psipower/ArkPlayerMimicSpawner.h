@@ -17,10 +17,17 @@ public:
 	static std::unique_ptr<IArkPlayerMimic> Spawn(const char* _pClassName, const unsigned _entityId) { return FSpawnOv0(_pClassName, _entityId); }
 	static void Serialize(TSerialize _ser, std::unique_ptr<IArkPlayerMimic>& _pMimic) { FSerialize(_ser, _pMimic); }
 
+#ifndef MOONCRASH
 	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x1320280);
 	static inline auto FGetSurrogateArchetype = PreyFunction<const char* (const IEntity& _entity)>(0x1320830);
 	static inline auto FSpawnOv1 = PreyFunction<std::unique_ptr<IArkPlayerMimic>(const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x1321A70);
 	static inline auto FSpawnOv0 = PreyFunction<std::unique_ptr<IArkPlayerMimic>(const char* _pClassName, const unsigned _entityId)>(0x1321700);
 	static inline auto FSerialize = PreyFunction<void(TSerialize _ser, std::unique_ptr<IArkPlayerMimic>& _pMimic)>(0x13211C0);
+#else
+	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x13FA870);
+	static inline auto FGetSurrogateArchetype = PreyFunction<const char* (const IEntity& _entity)>(0x13FAE20);
+	static inline auto FSpawnOv1 = PreyFunction<std::unique_ptr<IArkPlayerMimic>(const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x13FC060);
+	static inline auto FSpawnOv0 = PreyFunction<std::unique_ptr<IArkPlayerMimic>(const char* _pClassName, const unsigned _entityId)>(0x13FBCF0);
+	static inline auto FSerialize = PreyFunction<void(TSerialize _ser, std::unique_ptr<IArkPlayerMimic>& _pMimic)>(0x13FB7B0);
+#endif
 };
-

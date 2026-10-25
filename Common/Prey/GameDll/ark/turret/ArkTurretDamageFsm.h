@@ -19,4 +19,3 @@ struct Config // Id=80152E7 Size=32
 };
 
 } // namespace ArkTurretDamageFsm
-

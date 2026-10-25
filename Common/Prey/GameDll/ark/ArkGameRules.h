@@ -32,6 +32,10 @@ public:
 	uint64_t GetPsiLiftNpcHeadBumpDamagePackageId() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FOnCollision = PreyFunction<void(ArkGameRules *const _this, IGameRules::SGameCollision const &_event)>(0x11748F0);
+#else
+	static inline auto FArkGameRulesOv2 = PreyFunction<void(ArkGameRules* const _this)>(0x183A260);
+	static inline auto FOnCollision = PreyFunction<void(ArkGameRules* const _this, const IGameRules::SGameCollision& _event)>(0x11EEA30);
+#endif
 };
-

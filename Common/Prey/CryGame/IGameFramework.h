@@ -243,9 +243,11 @@ struct IGameFramework // Id=8001CF0 Size=8
     virtual void ReloadArkGameNoises() = 0;
     virtual void EmitArkGameNoise(unsigned arg0, Vec3 const &arg1, ArkGameNoise::Params const &arg2) const = 0;
     virtual ArkGameNoiseLoudness const *FindArkGameNoiseLoudness(uint64_t arg0) const = 0;
+#ifndef MOONCRASH
     virtual void InitEditor(IGameToEditorInterface *arg0) = 0;
     virtual void SetEditorLevel(const char *arg0, const char *arg1) = 0;
     virtual void GetEditorLevel(char **arg0, char **arg1) = 0;
+#endif
     virtual void BeginLanQuery() = 0;
     virtual void EndCurrentQuery() = 0;
     virtual IActor *GetClientActor() const = 0;

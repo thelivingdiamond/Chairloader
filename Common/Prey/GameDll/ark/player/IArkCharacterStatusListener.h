@@ -9,4 +9,3 @@ public:
 	virtual void OnCharacterStatusChanged(const uint64_t _characterId) = 0;
 	virtual void OnCharacterDiscovered(const uint64_t _characterId, bool _bDiscovered) = 0;
 };
-

@@ -20,6 +20,9 @@ public:
 	virtual ~ArkDisruptableSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
+#ifndef MOONCRASH
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkDisruptableSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x11546D0);
+#else
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkDisruptableSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x11A07A0);
+#endif
 };
-

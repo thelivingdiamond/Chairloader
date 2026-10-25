@@ -12,6 +12,11 @@ class ArkSafeScriptTable;
 
 // Header: Exact
 // Prey/GameDll/ark/arkscripttable.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+class ArkScriptTable;
+class SmartScriptTable;
+#endif
 template <typename T>
 class ArkScriptTableBase // Id=8013471 Size=8
 {
@@ -107,6 +112,12 @@ public:
 	ArkSafeScriptTable(IScriptTable *_pScriptTable);
 	ArkSafeScriptTable(IEntity const &_entity);
 	ArkSafeScriptTable(IEntity const *_pEntity);
+#ifdef MOONCRASH
+	static inline auto FArkSafeScriptTableOv8 = PreyFunction<void(ArkSafeScriptTable* const _this, const SmartScriptTable& _pScriptTable)>(0x1597960);
+	static inline auto FArkSafeScriptTableOv6 = PreyFunction<void(ArkSafeScriptTable* const _this, IScriptTable* _pScriptTable)>(0x1597890);
+	static inline auto FArkSafeScriptTableOv5 = PreyFunction<void(ArkSafeScriptTable* const _this, const IEntity& _entity)>(0x1597820);
+	static inline auto FArkSafeScriptTableOv4 = PreyFunction<void(ArkSafeScriptTable* const _this, const IEntity* _pEntity)>(0x15978E0);
+#endif
 };
 
 // Header: FromCpp
@@ -116,7 +127,13 @@ class ArkScriptTable : public ArkScriptTableBase<ArkScriptTable> // Id=8013470 S
 public:
 	ArkScriptTable(SmartScriptTable const &_pScriptTable) { m_pScriptTable = _pScriptTable; }
 	ArkScriptTable(IScriptTable *_pScriptTable);
+#ifndef MOONCRASH
 	ArkScriptTable(IEntity const *_pEntity);
+#endif
+#ifdef MOONCRASH
+	static inline auto FArkScriptTableOv8 = PreyFunction<void(ArkScriptTable* const _this, const SmartScriptTable& _pScriptTable)>(0x1597960);
+	static inline auto FArkScriptTableOv6 = PreyFunction<void(ArkScriptTable* const _this, IScriptTable* _pScriptTable)>(0x1597890);
+#endif
 };
 
 template <typename T>

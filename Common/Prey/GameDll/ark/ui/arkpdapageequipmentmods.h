@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -63,4 +64,4 @@ public:
 	static inline auto FSelectChipset = PreyFunction<void(CArkPDAPageEquipmentMods *const _this, int _index)>(0x1372590);
 	static inline auto FUpdateSlots = PreyFunction<void(CArkPDAPageEquipmentMods const *const _this)>(0x1372CF0);
 };
-
+#endif // !MOONCRASH

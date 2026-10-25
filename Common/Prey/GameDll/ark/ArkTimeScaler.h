@@ -27,8 +27,14 @@ public:
 	void Serialize(TSerialize arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkTimeScaler = PreyFunction<void(ArkTimeScaler *const _this)>(0x11B2030);
 	static inline auto FUpdate = PreyFunction<void(ArkTimeScaler *const _this, const float _frameTime)>(0x11B20C0);
 	static inline auto FSetTargetTimeScale = PreyFunction<void(ArkTimeScaler *const _this, const float _targetTimeScale, const float _durationSec)>(0x11B2050);
+#else
+	static inline auto FArkTimeScaler = PreyFunction<void(ArkTimeScaler* const _this, const ArkTimeScaleManager::EArkTimerFlag _timer)>(0x122F570);
+	static inline auto FBitNotArkTimeScaler = PreyFunction<void(ArkTimeScaler* const _this)>(0x122F5E0);
+	static inline auto FUpdate = PreyFunction<void(ArkTimeScaler* const _this, const float _frameTime)>(0x122F670);
+	static inline auto FSetTargetTimeScale = PreyFunction<void(ArkTimeScaler* const _this, const float _targetTimeScale, const float _durationSec)>(0x122F600);
+#endif
 };
-

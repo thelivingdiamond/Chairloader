@@ -38,6 +38,7 @@ struct SMeshLodInfo;
 
 struct pe_geomparams;
 struct IArkGlass;
+namespace primitives { struct box; }
 
 //#include <Cry3DEngine/CGF/CryHeaders.h>
 #include <Prey/CryMath/Cry_Math.h>
@@ -240,6 +241,7 @@ struct IStatObj : IMeshObj, IStreamable
 		Vec3                 helperSize;          //!< Size of the helper (if helper).
 		struct IRenderMesh*  pWeights;            //!< render mesh with a single deformation weights stream.
 		struct IFoliage*     pFoliage;            //!< for bendable foliage.
+		IArkGlass*           pGlass;
 		unsigned int         bIdentityMatrix : 1; //!< True if sub object matrix is identity.
 		unsigned int         bHidden         : 1; //!< True if sub object is hidden.
 		unsigned int         bShadowProxy    : 1; //!< Child StatObj has 'shadowproxy' in name.
@@ -348,8 +350,7 @@ struct IStatObj : IMeshObj, IStreamable
 	//! Copies foliage data to another statobj
 	//! \param pObjDst Target stat obj.
 	//! \param bMove true if the data needs to be removed from the original statobj.
-	//virtual void CopyFoliageData(IStatObj* pObjDst, bool bMove = false, IFoliage* pSrcFoliage = 0, int* pVtxMap = 0, primitives::box* pMovedBoxes = 0, int nMovedBoxes = -1) = 0;
-	virtual void CopyFoliageData_TODO();
+	virtual void CopyFoliageData(IStatObj* pObjDst, bool bMove = false, IFoliage* pSrcFoliage = 0, int* pVtxMap = 0, primitives::box* pMovedBoxes = 0, int nMovedBoxes = -1) = 0;
 
 	//! Set the physics representation.
 	//! Sets and replaces the physical representation of the object.

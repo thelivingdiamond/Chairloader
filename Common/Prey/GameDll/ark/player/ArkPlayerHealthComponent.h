@@ -11,6 +11,9 @@ class XmlNodeRef;
 
 // ArkPlayerHealthFeedback
 // Header:  Prey/GameDll/ark/player/ArkPlayerHealthComponent.h
+#ifdef MOONCRASH
+struct ArkDamageInfo;
+#endif
 class ArkPlayerHealthFeedback
 { // Size=72 (0x48)
 public:
@@ -37,8 +40,13 @@ public:
 	void SetTookDamage();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerHealthFeedback* const _this, const XmlNodeRef& _node)>(0x155EA00);
 	static inline auto FUpdateFeedback = PreyFunction<void(ArkPlayerHealthFeedback* const _this, float _currentHealth, float _frameTime)>(0x155F7E0);
+#else
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerHealthFeedback* const _this, const XmlNodeRef& _node)>(0x16847D0);
+	static inline auto FUpdateFeedback = PreyFunction<void(ArkPlayerHealthFeedback* const _this, float _currentHealth, float _frameTime)>(0x16856A0);
+#endif
 };
 
 // ArkPlayerHealthComponent
@@ -57,6 +65,9 @@ public:
 	ArkSimpleTimer m_lastChanceTimeout;
 	ArkSimpleTimer m_timeRemainingBeforeDeathMenu;
 	ArkPlayerHealthFeedback m_feedback;
+#ifdef MOONCRASH
+	bool m_bSkipNextDeathDelay;
+#endif
 	bool m_bDeathMenuOpened;
 	bool m_bRegening;
 	Vec3 m_bWeaponPosition;
@@ -71,20 +82,34 @@ public:
 	float GetHealth() const { return FGetHealth(this); }
 	float GetMaxHealth() const { return FGetMaxHealth(this); }
 	float GetUnreducedMaxHealth() const { return FGetUnreducedMaxHealth(this); }
+#ifndef MOONCRASH
 	void SetHealth(const float _health, const bool _bDamagedByRecyclerGrenade) { FSetHealth(this, _health, _bDamagedByRecyclerGrenade); }
+#else
+	void SetHealth(const float _health, const ArkDamageInfo* _pDamageInfo) { FSetHealth(this, _health, _pDamageInfo); }
+#endif
 	void IncreaseHealth(const float _increase) { FIncreaseHealth(this, _increase); }
+#ifndef MOONCRASH
 	void ForceKill() { FForceKill(this); }
+#else
+	void ForceKill(const ArkDamageInfo& _damageInfo) { FForceKill(this, _damageInfo); }
+#endif
 	void SetKiller(const unsigned _killer) { FSetKiller(this, _killer); }
 	unsigned GetKiller() const { return FGetKiller(this); }
 	void SetWeaponPosition(const Vec3& _bRecyclerGrenadeDeathPosition) { FSetWeaponPosition(this, _bRecyclerGrenadeDeathPosition); }
+#ifndef MOONCRASH
 	Vec3 GetWeaponPosition() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetWeaponPosition(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+#endif
 	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
 	void PostSerialize() { FPostSerialize(this); }
 	void LoadConfig(const XmlNodeRef& _node) { FLoadConfig(this, _node); }
 	void UpdateHUD(bool _bAnimate, float _previewValue) const { FUpdateHUD(this, _bAnimate, _previewValue); }
 	static int FormatForDisplay(const float _fAmount) { return FFormatForDisplay(_fAmount); }
 	virtual void OnStatChange(const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue);
+#ifndef MOONCRASH
 	void DoDeath(bool _bByRecyclerGrenade) { FDoDeath(this, _bByRecyclerGrenade); }
+#else
+	void DoDeath(const ArkDamageInfo& _damageInfo) { FDoDeath(this, _damageInfo); }
+#endif
 
 #if 0
 	float GetMaxRegen() const;
@@ -100,6 +125,7 @@ public:
 	bool ShouldRegenerateLowHealth() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerHealthComponentOv1 = PreyFunction<void(ArkPlayerHealthComponent* const _this)>(0x155E290);
 	static inline auto FReset = PreyFunction<void(ArkPlayerHealthComponent* const _this)>(0x155EE60);
 	static inline auto FGetGodMode = PreyFunction<int(const ArkPlayerHealthComponent* const _this)>(0x155E620);
@@ -122,5 +148,27 @@ public:
 	static inline auto FFormatForDisplay = PreyFunction<int(const float _fAmount)>(0x155E600);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerHealthComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x155EC70);
 	static inline auto FDoDeath = PreyFunction<void(ArkPlayerHealthComponent* const _this, bool _bByRecyclerGrenade)>(0x155E420);
+#else
+	static inline auto FArkPlayerHealthComponentOv1 = PreyFunction<void(ArkPlayerHealthComponent* const _this)>(0x1683E60);
+	static inline auto FReset = PreyFunction<void(ArkPlayerHealthComponent* const _this)>(0x1684C90);
+	static inline auto FGetGodMode = PreyFunction<int(const ArkPlayerHealthComponent* const _this)>(0x16843B0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerHealthComponent* const _this, const float _frameTime)>(0x1685310);
+	static inline auto FIsDead = PreyFunction<bool(const ArkPlayerHealthComponent* const _this)>(0x16845C0);
+	static inline auto FGetHealth = PreyFunction<float(const ArkPlayerHealthComponent* const _this)>(0x16843F0);
+	static inline auto FGetMaxHealth = PreyFunction<float(const ArkPlayerHealthComponent* const _this)>(0x1684420);
+	static inline auto FGetUnreducedMaxHealth = PreyFunction<float(const ArkPlayerHealthComponent* const _this)>(0x1684510);
+	static inline auto FSetHealth = PreyFunction<void(ArkPlayerHealthComponent* const _this, const float _health, const ArkDamageInfo* _pDamageInfo)>(0x1684E30);
+	static inline auto FIncreaseHealth = PreyFunction<void(ArkPlayerHealthComponent* const _this, const float _increase)>(0x1684560);
+	static inline auto FForceKill = PreyFunction<void(ArkPlayerHealthComponent* const _this, const ArkDamageInfo& _damageInfo)>(0x1684230);
+	static inline auto FSetKiller = PreyFunction<void(ArkPlayerHealthComponent* const _this, const unsigned _killer)>(0x9FEA20);
+	static inline auto FGetKiller = PreyFunction<unsigned(const ArkPlayerHealthComponent* const _this)>(0x1684410);
+	static inline auto FSetWeaponPosition = PreyFunction<void(ArkPlayerHealthComponent* const _this, const Vec3& _bRecyclerGrenadeDeathPosition)>(0x721DD0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerHealthComponent* const _this, TSerialize _ser)>(0x1684D30);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerHealthComponent* const _this)>(0x1684BB0);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerHealthComponent* const _this, const XmlNodeRef& _node)>(0x16845E0);
+	static inline auto FUpdateHUD = PreyFunction<void(const ArkPlayerHealthComponent* const _this, bool _bAnimate, float _previewValue)>(0x1685B00);
+	static inline auto FFormatForDisplay = PreyFunction<int(const float _fAmount)>(0x1684390);
+	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerHealthComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x1684A60);
+	static inline auto FDoDeath = PreyFunction<void(ArkPlayerHealthComponent* const _this, const ArkDamageInfo& _damageInfo)>(0x1684020);
+#endif
 };
-

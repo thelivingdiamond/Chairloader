@@ -8,6 +8,9 @@ struct ISystem;
 
 // Header: FromCpp
 // Prey/GameDll/ark/scriptbind_arkfaction.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#endif
 class CScriptBind_ArkFaction : public CScriptableBase // Id=801663C Size=96
 {
 public:
@@ -62,6 +65,7 @@ public:
 	void RegisterGlobals() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetEntityFaction = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CBB40);
 	static inline auto FSetEntityFaction = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CD230);
 	static inline auto FGetEffectiveEntityDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CB5E0);
@@ -106,5 +110,51 @@ public:
 	static inline auto FIsEntityFriendlyToEntity = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CBDF0);
 	static inline auto FIsEntityNeutralToEntity = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CC270);
 	static inline auto FIsEntityHostileToEntity = PreyFunction<int(CScriptBind_ArkFaction *const _this, IFunctionHandler *pH)>(0x15CC030);
+#else
+	static inline auto FCScriptBind_ArkFactionOv2 = PreyFunction<void(CScriptBind_ArkFaction* const _this, ISystem* pSystem)>(0x16EF580);
+	static inline auto FGetEntityFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2920);
+	static inline auto FSetEntityFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4020);
+	static inline auto FGetEffectiveEntityDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F23C0);
+	static inline auto FGetEffectiveEntityDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F24E0);
+	static inline auto FGetEffectiveFactionDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2600);
+	static inline auto FGetEffectiveFactionDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2730);
+	static inline auto FGetAssignedFactionDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F22A0);
+	static inline auto FGetAssignedEntityDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1F40);
+	static inline auto FGetAssignedEntityDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2060);
+	static inline auto FGetAssignedFactionDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2180);
+	static inline auto FSetFactionDispositionTowardFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4140);
+	static inline auto FSetFactionDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4380);
+	static inline auto FSetFactionDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F45C0);
+	static inline auto FSetFactionEntitiesDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4A40);
+	static inline auto FSetFactionEntitiesDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4800);
+	static inline auto FSetFactionEntitiesDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F4C80);
+	static inline auto FSetEntityDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3960);
+	static inline auto FSetEntityDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3BA0);
+	static inline auto FSetEntityDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3DE0);
+	static inline auto FClearFactionDispositionTowardFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F0F00);
+	static inline auto FClearFactionDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F10A0);
+	static inline auto FClearFactionDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1240);
+	static inline auto FClearFactionEntitiesDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1580);
+	static inline auto FClearFactionEntitiesDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F13E0);
+	static inline auto FClearFactionEntitiesDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1720);
+	static inline auto FClearEntityDispositionTowardsEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F0A20);
+	static inline auto FClearEntityDispositionTowardsFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F0BC0);
+	static inline auto FClearEntityDispositionTowardsFactionEntities = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F0D60);
+	static inline auto FEndFactionHostilityWithEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1C00);
+	static inline auto FEndFactionHostilityWithFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1DA0);
+	static inline auto FEndEntityHostilityWithEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F18C0);
+	static inline auto FEndEntityHostilityWithFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F1A60);
+	static inline auto FIsFactionFriendlyToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F33C0);
+	static inline auto FIsFactionNeutralToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3840);
+	static inline auto FIsFactionHostileToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3600);
+	static inline auto FIsFactionFriendlyToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F32A0);
+	static inline auto FIsFactionNeutralToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3720);
+	static inline auto FIsFactionHostileToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F34E0);
+	static inline auto FIsEntityFriendlyToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2D00);
+	static inline auto FIsEntityNeutralToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3180);
+	static inline auto FIsEntityHostileToFaction = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2F40);
+	static inline auto FIsEntityFriendlyToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2BE0);
+	static inline auto FIsEntityNeutralToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F3060);
+	static inline auto FIsEntityHostileToEntity = PreyFunction<int(CScriptBind_ArkFaction* const _this, IFunctionHandler* pH)>(0x16F2E20);
+#endif
 };
-

@@ -7,6 +7,9 @@ class ArkFabricationPlan;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkFabricationPlanIngredients.h
+#ifdef MOONCRASH
+enum class EArkCraftingIngredientType;
+#endif
 class ArkFabricationPlanIngredients // Id=8016E4F Size=20
 {
 public:
@@ -30,6 +33,7 @@ public:
 	unsigned GetTotalAmount() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FClear = PreyFunction<void(ArkFabricationPlanIngredients *const _this)>(0x115F930);
 	static inline auto FEmpty = PreyFunction<bool(ArkFabricationPlanIngredients const *const _this)>(0x115F940);
 	static inline auto FoperatorEqEq = PreyFunction<bool(ArkFabricationPlanIngredients const *const _this, ArkFabricationPlanIngredients const &_rhs)>(0x115F820);
@@ -39,5 +43,17 @@ public:
 	static inline auto FGetAmount = PreyFunction<unsigned(ArkFabricationPlanIngredients const *const _this, EArkCraftingIngredientType _type)>(0x115F950);
 	static inline auto FAdjustAmount = PreyFunction<void(ArkFabricationPlanIngredients *const _this, EArkCraftingIngredientType _type, int _amount)>(0x115F8E0);
 	static inline auto FSerialize = PreyFunction<void(ArkFabricationPlanIngredients *const _this, TSerialize _ser)>(0x115F960);
+#else
+	static inline auto FArkFabricationPlanIngredientsOv2 = PreyFunction<void(ArkFabricationPlanIngredients* const _this)>(0x11ACF50);
+	static inline auto FArkFabricationPlanIngredientsOv1 = PreyFunction<void(ArkFabricationPlanIngredients* const _this, const ArkFabricationPlan& _plan)>(0x11ACED0);
+	static inline auto FClear = PreyFunction<void(ArkFabricationPlanIngredients* const _this)>(0x1C4EE70);
+	static inline auto FEmpty = PreyFunction<bool(const ArkFabricationPlanIngredients* const _this)>(0x11AD070);
+	static inline auto FoperatorEqEq = PreyFunction<bool(const ArkFabricationPlanIngredients* const _this, const ArkFabricationPlanIngredients& _rhs)>(0x11ACF60);
+	static inline auto FoperatorPlusEq = PreyFunction<ArkFabricationPlanIngredients& (ArkFabricationPlanIngredients* const _this, const ArkFabricationPlanIngredients& _rhs)>(0x11ACFA0);
+	static inline auto FoperatorMinusEq = PreyFunction<ArkFabricationPlanIngredients& (ArkFabricationPlanIngredients* const _this, const ArkFabricationPlanIngredients& _rhs)>(0x11ACFE0);
+	static inline auto FCanAfford = PreyFunction<bool(const ArkFabricationPlanIngredients* const _this, const ArkFabricationPlanIngredients& _required)>(0x11AD030);
+	static inline auto FGetAmount = PreyFunction<unsigned(const ArkFabricationPlanIngredients* const _this, EArkCraftingIngredientType _type)>(0x11AD080);
+	static inline auto FAdjustAmount = PreyFunction<void(ArkFabricationPlanIngredients* const _this, EArkCraftingIngredientType _type, int _amount)>(0x11AD020);
+	static inline auto FSerialize = PreyFunction<void(ArkFabricationPlanIngredients* const _this, TSerialize _ser)>(0x11AD090);
+#endif
 };
-

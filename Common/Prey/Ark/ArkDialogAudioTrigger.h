@@ -70,6 +70,7 @@ public:
 	uint64_t GetPlaybackHandle();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDialogAudioTrigger = PreyFunction<void(ArkDialogAudioTrigger *const _this)>(0x105EF60);
 	static inline auto FInit = PreyFunction<void(ArkDialogAudioTrigger *const _this, IArkDialogAudioTriggerOwner *_pOwner)>(0x105F290);
 	static inline auto FLoad = PreyFunction<ArkDialogAudioTrigger::EState(ArkDialogAudioTrigger *const _this, SDialogParams const &_params)>(0x105F3F0);
@@ -81,5 +82,18 @@ public:
 	static inline auto FOnLoad = PreyFunction<void(ArkDialogAudioTrigger *const _this, unsigned _controlId, bool _bSuccess)>(0x105F5D0);
 	static inline auto FOnFinish = PreyFunction<void(ArkDialogAudioTrigger *const _this)>(0x105F5A0);
 	static inline auto FOnDuration = PreyFunction<void(ArkDialogAudioTrigger *const _this, float _fDuration)>(0x105F590);
+#else
+	static inline auto FArkDialogAudioTriggerOv1 = PreyFunction<void(ArkDialogAudioTrigger* const _this)>(0x1081D00);
+	static inline auto FBitNotArkDialogAudioTrigger = PreyFunction<void(ArkDialogAudioTrigger* const _this)>(0x1081D60);
+	static inline auto FInit = PreyFunction<void(ArkDialogAudioTrigger* const _this, IArkDialogAudioTriggerOwner* _pOwner)>(0x1082090);
+	static inline auto FLoad = PreyFunction<ArkDialogAudioTrigger::EState(ArkDialogAudioTrigger* const _this, const SDialogParams& _params)>(0x10821F0);
+	static inline auto FExecute = PreyFunction<bool(ArkDialogAudioTrigger* const _this, IEntity* _pEntity, unsigned _nAudioProxy)>(0x1081EA0);
+	static inline auto FStop = PreyFunction<void(ArkDialogAudioTrigger* const _this, IEntity* _pEntity, unsigned _nAudioProxy)>(0x1082590);
+	static inline auto FPause = PreyFunction<void(const ArkDialogAudioTrigger* const _this, IEntity* _pEntity, unsigned _nAudioProxy, bool _bPause)>(0x1082420);
+	static inline auto FUpdate = PreyFunction<void(ArkDialogAudioTrigger* const _this, const float _fFrameTime)>(0x1082740);
+	static inline auto FInvalidate = PreyFunction<void(ArkDialogAudioTrigger* const _this)>(0x10820E0);
+	static inline auto FOnLoad = PreyFunction<void(ArkDialogAudioTrigger* const _this, unsigned _controlId, bool _bSuccess)>(0x10823D0);
+	static inline auto FOnFinish = PreyFunction<void(ArkDialogAudioTrigger* const _this)>(0x10823A0);
+	static inline auto FOnDuration = PreyFunction<void(ArkDialogAudioTrigger* const _this, float _fDuration)>(0x1082390);
+#endif
 };
-

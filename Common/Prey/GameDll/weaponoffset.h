@@ -4,6 +4,12 @@
 
 // Header: Exact
 // Prey/GameDll/weaponoffset.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SWeaponOffset // Id=8016D05 Size=24
 {
 	Vec3 m_position;
@@ -12,7 +18,12 @@ struct SWeaponOffset // Id=8016D05 Size=24
 	SWeaponOffset(QuatT transformation);
 	void Serialize(Serialization::IArchive &ar) { FSerialize(this,ar); }
 	
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(SWeaponOffset *const _this, Serialization::IArchive &ar)>(0x1802D50);
+#else
+	static inline auto FSWeaponOffsetOv3 = PreyFunction<void(SWeaponOffset* const _this, QuatT transformation)>(0x18F82F0);
+	static inline auto FSerialize = PreyFunction<void(SWeaponOffset* const _this, Serialization::IArchive& ar)>(0x192A850);
+#endif
 };
 
 // Header: FromCpp
@@ -25,14 +36,22 @@ public:
 	float m_transitiontime;
 	float m_time;
 	
+#ifndef MOONCRASH
 	SWeaponOffset ComputeCurrentOffset() { return FComputeCurrentOffset(this); }
+#else
+	SWeaponOffset ComputeCurrentOffset() { alignas(SWeaponOffset) std::byte _return_buf_[sizeof(SWeaponOffset)]; return *FComputeCurrentOffset(this, reinterpret_cast<SWeaponOffset*>(_return_buf_)); }
+#endif
 	
 #if 0
 	void SetState(SWeaponOffset const &arg0, float arg1);
 	SWeaponOffset Blend(float arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FComputeCurrentOffset = PreyFunction<SWeaponOffset(CWeaponOffsetState *const _this)>(0x18025B0);
+#else
+	static inline auto FComputeCurrentOffset = PreyFunction<SWeaponOffset*(CWeaponOffsetState* const _this, SWeaponOffset* _return_value_)>(0x192A0B0);
+#endif
 };
 
 // Header: FromCpp
@@ -56,7 +75,11 @@ public:
 	int m_nextId;
 	
 	CWeaponOffsetStack();
+#ifndef MOONCRASH
 	SWeaponOffset Blend(float deltaTime) { return FBlend(this,deltaTime); }
+#else
+	SWeaponOffset Blend(float deltaTime) { alignas(SWeaponOffset) std::byte _return_buf_[sizeof(SWeaponOffset)]; return *FBlend(this, reinterpret_cast<SWeaponOffset*>(_return_buf_), deltaTime); }
+#endif
 	int PushOffset(SWeaponOffset const &offset, unsigned layer, float blendTime) { return FPushOffset(this,offset,layer,blendTime); }
 	void PopOffset(int offsetId, float blendTime) { FPopOffset(this,offsetId,blendTime); }
 	~CWeaponOffsetStack();
@@ -65,9 +88,15 @@ public:
 	void SetOffset(SWeaponOffset const &arg0, float arg1);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBlend = PreyFunction<SWeaponOffset(CWeaponOffsetStack *const _this, float deltaTime)>(0x1802570);
 	static inline auto FPushOffset = PreyFunction<int(CWeaponOffsetStack *const _this, SWeaponOffset const &offset, unsigned layer, float blendTime)>(0x1802C70);
 	static inline auto FPopOffset = PreyFunction<void(CWeaponOffsetStack *const _this, int offsetId, float blendTime)>(0x1802B50);
 	static inline auto FBitNotCWeaponOffsetStack = PreyFunction<void(CWeaponOffsetStack *const _this)>(0xEC4CD0);
+#else
+	static inline auto FCWeaponOffsetStackOv2 = PreyFunction<void(CWeaponOffsetStack* const _this)>(0x192A010);
+	static inline auto FBlend = PreyFunction<SWeaponOffset*(CWeaponOffsetStack* const _this, SWeaponOffset* _return_value_, float deltaTime)>(0x192A070);
+	static inline auto FPushOffset = PreyFunction<int(CWeaponOffsetStack* const _this, const SWeaponOffset& offset, unsigned layer, float blendTime)>(0x192A770);
+	static inline auto FPopOffset = PreyFunction<void(CWeaponOffsetStack* const _this, int offsetId, float blendTime)>(0x192A650);
+#endif
 };
-

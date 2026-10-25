@@ -11,6 +11,9 @@ struct IParticleEmitter;
 
 // Header: Override
 // Prey/GameDll/ark/ArkAirJetManager.h
+#ifdef MOONCRASH
+struct IParticleEffect;
+#endif
 struct ArkAirJet // Id=801442C Size=16
 {
 	IAttachment* m_pAttachment;
@@ -42,9 +45,15 @@ public:
 	void InitializeEmitters(IEntity &arg0, _smart_ptr<IParticleEffect> const &arg1, ArkInterval<float> const &arg2, const float arg3);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitializeEmittersFromScript = PreyFunction<void(ArkAirJetManager *const _this, ArkNpc const &_npc)>(0x1148CE0);
 	static inline auto FUpdate = PreyFunction<void(ArkAirJetManager *const _this, IEntity &_entity, float _elapsedTime)>(0x1148E60);
 	static inline auto FClear = PreyFunction<void(ArkAirJetManager *const _this)>(0x1148C00);
 	static inline auto FDeactivateAll = PreyFunction<void(ArkAirJetManager *const _this)>(0x1148C80);
+#else
+	static inline auto FInitializeEmittersFromScript = PreyFunction<void(ArkAirJetManager* const _this, const ArkNpc& _npc)>(0x118FA60);
+	static inline auto FUpdate = PreyFunction<void(ArkAirJetManager* const _this, IEntity& _entity, float _elapsedTime)>(0x118FBE0);
+	static inline auto FClear = PreyFunction<void(ArkAirJetManager* const _this)>(0x118F980);
+	static inline auto FDeactivateAll = PreyFunction<void(ArkAirJetManager* const _this)>(0x118FA00);
+#endif
 };
-

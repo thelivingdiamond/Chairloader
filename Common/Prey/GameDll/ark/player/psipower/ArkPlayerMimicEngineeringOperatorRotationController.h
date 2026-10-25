@@ -28,8 +28,13 @@ public:
 	const Quat& GetTargetRotation() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicEngineeringOperatorRotationControllerOv2 = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, const ArkPlayerMimicEngineeringOperatorController& _controller)>(0x1315890);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x1315910);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, TSerialize _ser)>(0x13158C0);
+#else
+	static inline auto FArkPlayerMimicEngineeringOperatorRotationControllerOv2 = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, const ArkPlayerMimicEngineeringOperatorController& _controller)>(0x13F0000);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13F0080);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicEngineeringOperatorRotationController* const _this, TSerialize _ser)>(0x13F0030);
+#endif
 };
-

@@ -54,6 +54,7 @@ public:
 	void PreSerialize() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDisruptable = PreyFunction<void(ArkDisruptable *const _this)>(0x1153550);
 	static inline auto FSpark = PreyFunction<void(ArkDisruptable *const _this)>(0x11543C0);
 	static inline auto FResetAccumulators = PreyFunction<void(ArkDisruptable *const _this)>(0x1154120);
@@ -65,5 +66,18 @@ public:
 	static inline auto FLoadProperties = PreyFunction<void(ArkDisruptable *const _this)>(0x11537C0);
 	static inline auto FApplySerializedData = PreyFunction<void(ArkDisruptable *const _this, ArkLightManagerDisruptableData const &_data)>(0x11535D0);
 	static inline auto FSetDisrupted = PreyFunction<void(ArkDisruptable *const _this, bool _bDisrupted, bool _bForce)>(0x1154300);
+#else
+	static inline auto FArkDisruptableOv1 = PreyFunction<void(ArkDisruptable* const _this, IArkDisruptableListener& _listener, IGameObjectExtension& _extension)>(0x119BA80);
+	static inline auto FBitNotArkDisruptable = PreyFunction<void(ArkDisruptable* const _this)>(0x119BAF0);
+	static inline auto FSpark = PreyFunction<void(ArkDisruptable* const _this)>(0x119C880);
+	static inline auto FResetAccumulators = PreyFunction<void(ArkDisruptable* const _this)>(0x119C5E0);
+	static inline auto FUpdate = PreyFunction<void(ArkDisruptable* const _this, float _frameTime)>(0x119C930);
+	static inline auto FSerialize = PreyFunction<void(ArkDisruptable* const _this, TSerialize _ser)>(0x119C6A0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkDisruptable* const _this)>(0x119C450);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkDisruptable* const _this, const ArkSignalSystem::Package& _package)>(0x119C190);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkDisruptable* const _this, const bool _bRegister)>(0x119C4C0);
+	static inline auto FLoadProperties = PreyFunction<void(ArkDisruptable* const _this)>(0x119BC60);
+	static inline auto FApplySerializedData = PreyFunction<void(ArkDisruptable* const _this, const ArkLightManagerDisruptableData& _data)>(0x119BB70);
+	static inline auto FSetDisrupted = PreyFunction<void(ArkDisruptable* const _this, bool _bDisrupted, bool _bForce)>(0x119C7C0);
+#endif
 };
-

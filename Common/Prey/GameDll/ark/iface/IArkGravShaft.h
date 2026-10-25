@@ -5,6 +5,9 @@
 
 // Header: Override
 // Prey/GameDll/ark/iface/IArkGravShaft.h
+#ifdef MOONCRASH
+#include <Prey/ArkStubs.h>
+#endif
 class IArkGravShaft // Id=80020BC Size=8
 {
 public:
@@ -26,4 +29,3 @@ public:
 	virtual bool GetLinkPositionEnter(TNavigationID<ENavigationIDTag::AgentTypeIDTag> arg0, Vec3 &arg1) const = 0;
 	virtual bool GetLinkPositionExit(TNavigationID<ENavigationIDTag::AgentTypeIDTag> arg0, Vec3 &arg1) const = 0;
 };
-

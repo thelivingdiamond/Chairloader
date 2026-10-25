@@ -17,8 +17,14 @@ public:
 	void Reset(bool _bEnteringGameMode) { FReset(this,_bEnteringGameMode); }
 	void LoadLibraries(bool _bAlwaysLoaded) { FLoadLibraries(this,_bAlwaysLoaded); }
 	
+#ifndef MOONCRASH
 	static inline auto FOnGameModeChanged = PreyFunction<void(ArkGameDataManager *const _this)>(0x1437630);
 	static inline auto FReset = PreyFunction<void(ArkGameDataManager *const _this, bool _bEnteringGameMode)>(0x1437640);
 	static inline auto FLoadLibraries = PreyFunction<void(ArkGameDataManager *const _this, bool _bAlwaysLoaded)>(0x1437290);
+#else
+	static inline auto FArkGameDataManagerOv2 = PreyFunction<void(ArkGameDataManager* const _this)>(0x154D000);
+	static inline auto FOnGameModeChanged = PreyFunction<void(ArkGameDataManager* const _this)>(0x154D410);
+	static inline auto FReset = PreyFunction<void(ArkGameDataManager* const _this, bool _bEnteringGameMode)>(0x154D420);
+	static inline auto FLoadLibraries = PreyFunction<void(ArkGameDataManager* const _this, bool _bAlwaysLoaded)>(0x154D070);
+#endif
 };
-

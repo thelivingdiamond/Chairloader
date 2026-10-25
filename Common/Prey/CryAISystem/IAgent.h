@@ -1,9 +1,12 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryAISystem/AISIGNAL.h>
+#include <Prey/CryAISystem/AgentMovementAbility.h>
 #include <Prey/CryCore/StdAfx.h>
 #include <Chairloader/PreyFunction.h>
-#include <Prey/CryAISystem/AgentParams.h>
+#include <Prey/CryAISystem/AIObject.h>
 #include <Prey/CryAISystem/IAIMannequin.h>
 #include <Prey/CryMath/Cry_Geo.h>
 #include <Prey/CryNetwork/ISerialize.h>
@@ -288,3 +291,308 @@ struct IGoalPipeListener // Id=800111E Size=16
 	static inline auto FBitNotIGoalPipeListener = PreyFunction<void(IGoalPipeListener *const _this)>(0x4827A0);
 };
 #endif
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/CryAISystem/AISIGNAL.h>
+#include <Prey/CryAISystem/AgentMovementAbility.h>
+#include <Prey/CryCore/Containers/CryArray.h>
+#include <Prey/CryAISystem/AIObject.h>
+#include <Prey/CryAISystem/IAgent.h>
+#include <Prey/CryMath/Cry_Geo.h>
+#include <Prey/CryNetwork/ISerialize.h>
+#include <Prey/CryAISystem/IAIMannequin.h>
+#include <Prey/CryCore/Containers/CryArray.h>
+
+struct SAIPredictedCharacterState // Id=8000FAA Size=28
+{
+    Vec3 position;
+    Vec3 velocity;
+    float predictionTime;
+
+#if 0
+    void Set(Vec3 const &arg0, Vec3 const &arg1, float arg2);
+	void Serialize(TSerialize arg0);
+#endif
+};
+
+struct SAIPredictedCharacterStates // Id=8000FA9 Size=900
+{
+    enum
+    {
+        maxStates = 32,
+    };
+
+    SAIPredictedCharacterState states[32];
+    int nStates;
+
+#if 0
+    void Serialize(TSerialize arg0);
+#endif
+};
+
+struct SFireCommandProjectileInfo // Id=8000FA8 Size=8
+{
+    unsigned trackingId;
+    float fSpeedScale;
+
+#if 0
+    void Reset();
+#endif
+};
+
+enum EGoalPipeEvent;
+struct IAIObject;
+class ICrySizer;
+struct IPipeUser;
+
+// AIObjectParams
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct AIObjectParams
+{ // Size=1552 (0x610)
+	AgentParameters m_sParamStruct;
+	AgentMovementAbility m_moveAbility;
+	uint16_t type;
+	IAIObject* association;
+	const char* name;
+	unsigned entityID;
+	float m_fCloseThresholdAutoDisable;
+
+	AIObjectParams(uint16_t _type, IAIObject* _association, unsigned _entityID, float _fCloseThresholdAutoDisable);
+
+#if 0
+	AIObjectParams();
+	AIObjectParams(uint16_t _arg0_, const AgentParameters& _arg1_, const AgentMovementAbility& _arg2_);
+#endif
+
+	static inline auto FAIObjectParamsOv2 = PreyFunction<void(AIObjectParams* const _this, uint16_t _type, IAIObject* _association, unsigned _entityID, float _fCloseThresholdAutoDisable)>(0x2C42E0);
+};
+
+// AIWeaponDescriptor
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct AIWeaponDescriptor
+{ // Size=120 (0x78)
+	string firecmdHandler;
+	float fSpeed;
+	float fDamageRadius;
+	float fChargeTime;
+	float fRangeMax;
+	float fRangeMin;
+	bool bSignalOnShoot;
+	int burstBulletCountMin;
+	int burstBulletCountMax;
+	float burstPauseTimeMin;
+	float burstPauseTimeMax;
+	float singleFireTriggerTime;
+	float spreadRadius;
+	float coverFireTime;
+	float drawTime;
+	float sweepWidth;
+	float sweepFrequency;
+	float pressureMultiplier;
+	float lobCriticalDistance;
+	float preferredHeight;
+	float closeDistance;
+	float preferredHeightForCloseDistance;
+	float maxAcceptableDistanceFromTarget;
+	float minimumDistanceFromFriends;
+	Vec3 projectileGravity;
+	string smartObjectClass;
+
+	AIWeaponDescriptor(const string& fcHandler, float chargeTime, float speed, float damageRadius);
+
+#if 0
+	void GetMemoryUsage(ICrySizer* _arg0_) const;
+#endif
+
+	static inline auto FAIWeaponDescriptorOv2 = PreyFunction<void(AIWeaponDescriptor* const _this, const string& fcHandler, float chargeTime, float speed, float damageRadius)>(0x417A00);
+};
+
+// IGoalPipeListener
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct IGoalPipeListener
+{ // Size=16 (0x10)
+	using VectorRegisteredPipes = DynArray<std::pair<IPipeUser *,int>,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > >;
+
+	DynArray<std::pair<IPipeUser *,int>,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > _vector_registered_pipes;
+
+	virtual void OnGoalPipeEvent(IPipeUser* pPipeUser, EGoalPipeEvent event, int goalPipeId, bool& unregisterListenerAfterEvent) = 0;
+	virtual ~IGoalPipeListener();
+
+	static inline auto FBitNotIGoalPipeListener = PreyFunction<void(IGoalPipeListener* const _this)>(0x49B9B0);
+};
+
+// SAIBodyInfo
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct SAIBodyInfo
+{ // Size=188 (0xBC)
+	Vec3 vEyePos;
+	Vec3 vEyeDir;
+	Vec3 vEyeDirAnim;
+	Vec3 vEntityDir;
+	Vec3 vAnimBodyDir;
+	Vec3 vMoveDir;
+	Vec3 vUpDir;
+	Vec3 vFireDir;
+	Vec3 vFirePos;
+	float maxSpeed;
+	float normalSpeed;
+	float minSpeed;
+	EStance stance;
+	AABB stanceSize;
+	AABB colliderSize;
+	bool isAiming;
+	bool isFiring;
+	bool isMoving;
+	float lean;
+	float peekOver;
+	float slopeAngle;
+
+	const Vec3& GetEyeDir() const { return FGetEyeDir(this); }
+	const Vec3& GetBodyDir() const { return FGetBodyDir(this); }
+	SAIBodyInfo();
+
+	static inline auto FGetEyeDir = PreyFunction<const Vec3& (const SAIBodyInfo* const _this)>(0x71CBB0);
+	static inline auto FGetBodyDir = PreyFunction<const Vec3& (const SAIBodyInfo* const _this)>(0x71CB40);
+	static inline auto FSAIBodyInfoOv2 = PreyFunction<void(SAIBodyInfo* const _this)>(0x5FE4A0);
+};
+
+// SAIActorTargetRequest
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct SAIActorTargetRequest
+{ // Size=120 (0x78)
+	int id;
+	Vec3 approachLocation;
+	Vec3 approachDirection;
+	Vec3 animLocation;
+	Vec3 animDirection;
+	float speed;
+	float directionTolerance;
+	float startArcAngle;
+	float startWidth;
+	float loopDuration;
+	float directionStartDistance;
+	float forceInterpolationTime;
+	bool signalAnimation;
+	bool projectEndPoint;
+	bool lowerPrecision;
+	bool useAssetAlignment;
+	string animation;
+	EStance stance;
+	unsigned* pQueryStart;
+	unsigned* pQueryEnd;
+
+	void Reset() { FReset(this); }
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+
+#if 0
+	SAIActorTargetRequest();
+#endif
+
+	static inline auto FReset = PreyFunction<void(SAIActorTargetRequest* const _this)>(0x6025D0);
+	static inline auto FSerialize = PreyFunction<void(SAIActorTargetRequest* const _this, TSerialize ser)>(0x721660);
+};
+
+// SOBJECTSTATE
+// Header:  CryEngine/crycommon/iagent.h
+// Include: Prey/CryAISystem/IAgent.h
+struct SOBJECTSTATE
+{ // Size=1424 (0x590)
+	enum EFireControllerIndex
+	{
+		eFireControllerIndex_None = 0,
+		eFireControllerIndex_First = 1,
+		eFireControllerIndex_Second = 2,
+		eFireControllerIndex_Third = 3,
+		eFireControllerIndex_Fourth = 4,
+		eFireControllerIndex_All = 17185,
+	};
+
+	bool jump;
+	bool aimObstructed;
+	bool aimTargetIsValid;
+	bool forceWeaponAlertness;
+	EAIFireState fire;
+	EAIFireState fireSecondary;
+	EAIFireState fireMelee;
+	ERequestedGrenadeType requestedGrenadeType;
+	int weaponAccessories;
+	int bodystate;
+	float lean;
+	float peekOver;
+	Vec3 vShootTargetPos;
+	Vec3 vAimTargetPos;
+	Vec3 vLookTargetPos;
+	Vec3 vLobLaunchPosition;
+	Vec3 vLobLaunchVelocity;
+	Vec3 vJumpVelocity;
+	SFireCommandProjectileInfo projectileInfo;
+	ELookStyle eLookStyle;
+	bool bAllowLowerBodyToTurn;
+	Vec3 vMoveDir;
+	Vec3 vForcedNavigation;
+	Vec3 vBodyTargetDir;
+	Vec3 vDesiredBodyDirectionAtTarget;
+	Vec3 vBodyPathForceDir;
+	Vec3 vBodyAlignDir;
+	float fForcedNavigationSpeed;
+	unsigned movementContext;
+	SAIPredictedCharacterStates predictedCharacterStates;
+	Vec3 vMoveTarget;
+	Vec3 vInflectionPoint;
+	float fMovementUrgency;
+	float fDesiredSpeed;
+	float fTargetSpeed;
+	bool allowStrafing;
+	bool allowEntityClampingByAnimation;
+	float fDistanceToPathEnd;
+	Vec3 vDirOffPath;
+	EActorTargetPhase curActorTargetPhase;
+	Vec3 curActorTargetFinishPos;
+	SAIActorTargetRequest actorTargetReq;
+	bool bCloseContact;
+	bool bReevaluate;
+	bool bTargetEnabled;
+	bool bTargetIsGroupTarget;
+	bool continuousMotion;
+	EAITargetType eTargetType;
+	EAITargetContextType eTargetContextType;
+	EAITargetThreat eTargetThreat;
+	unsigned eTargetID;
+	EAITargetType ePeakTargetType;
+	EAITargetThreat ePeakTargetThreat;
+	unsigned ePeakTargetID;
+	EAITargetType ePreviousPeakTargetType;
+	EAITargetThreat ePreviousPeakTargetThreat;
+	unsigned ePreviousPeakTargetID;
+	Vec3 vTargetPos;
+	float fDistanceFromTarget;
+	EAITargetStuntReaction eTargetStuntReaction;
+	int nTargetType;
+	DynArray<AISIGNAL,int,NArray::SmallDynStorage<NAlloc::AllocCompatible<NAlloc::ModuleAlloc> > > vSignals;
+	int secondaryIndex;
+	CAIMannequinCommandList<32> mannequinRequest;
+	EBodyOrientationMode bodyOrientationMode;
+
+	void Reset(bool clearMoveDir) { FReset(this, clearMoveDir); }
+	void FullReset(bool clearMoveDir) { FFullReset(this, clearMoveDir); }
+	void ClearSignals() { FClearSignals(this); }
+	void Serialize(TSerialize ser) { FSerialize(this, ser); }
+
+#if 0
+	SOBJECTSTATE();
+	bool operator==(SOBJECTSTATE& _arg0_);
+#endif
+
+	static inline auto FReset = PreyFunction<void(SOBJECTSTATE* const _this, bool clearMoveDir)>(0x602660);
+	static inline auto FFullReset = PreyFunction<void(SOBJECTSTATE* const _this, bool clearMoveDir)>(0x5FF9F0);
+	static inline auto FClearSignals = PreyFunction<void(SOBJECTSTATE* const _this)>(0x5FF0C0);
+	static inline auto FSerialize = PreyFunction<void(SOBJECTSTATE* const _this, TSerialize ser)>(0x721890);
+};
+
+#endif // !MOONCRASH

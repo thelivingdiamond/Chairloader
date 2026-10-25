@@ -9,6 +9,10 @@ class ArkNpc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkDistractionManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkDistractionInstance.h>
+#include <Prey/ArkCommon/ArkDelegate.h>
+#endif
 class ArkDistractionManager // Id=801518D Size=200
 {
 public:
@@ -61,6 +65,7 @@ public:
 	void LoadConfig();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDistractionManager = PreyFunction<void(ArkDistractionManager *const _this)>(0x125B000);
 	static inline auto FRegisterForDistraction = PreyFunction<void(ArkDistractionManager *const _this, unsigned _entityId, const uint64_t &_distractionId)>(0x125B9C0);
 	static inline auto FUnregisterForDistraction = PreyFunction<void(ArkDistractionManager *const _this, unsigned _entityId, const uint64_t &_distractionId)>(0x125C6F0);
@@ -81,5 +86,27 @@ public:
 	static inline auto FDestroyInstance = PreyFunction<void(ArkDistractionManager *const _this, uint64_t _instanceIndex)>(0x125B160);
 	static inline auto FRemoveInvalidDistractions = PreyFunction<void(ArkDistractionManager *const _this)>(0x125BA90);
 	static inline auto FRemoveInvalidDistractionsFromEntity = PreyFunction<void(ArkDistractionManager *const _this, const unsigned _entityId)>(0x125BDC0);
+#else
+	static inline auto FArkDistractionManagerOv1 = PreyFunction<void(ArkDistractionManager* const _this)>(0x12FEA90);
+	static inline auto FBitNotArkDistractionManager = PreyFunction<void(ArkDistractionManager* const _this)>(0x12FEDA0);
+	static inline auto FRegisterForDistraction = PreyFunction<void(ArkDistractionManager* const _this, unsigned _entityId, const uint64_t& _distractionId)>(0x12FF760);
+	static inline auto FUnregisterForDistraction = PreyFunction<void(ArkDistractionManager* const _this, unsigned _entityId, const uint64_t& _distractionId)>(0x13004D0);
+	static inline auto FUnregisterForAllDistractions = PreyFunction<void(ArkDistractionManager* const _this, unsigned _entityId)>(0x13003A0);
+	static inline auto FHasDistraction = PreyFunction<bool(const ArkDistractionManager* const _this, unsigned _entityId, const uint64_t& _distractionId)>(0x12FF290);
+	static inline auto FHasAnyDistraction = PreyFunction<bool(const ArkDistractionManager* const _this, unsigned _entityId)>(0x12FF1C0);
+	static inline auto FEnableAllDistractions = PreyFunction<void(ArkDistractionManager* const _this, unsigned _entityId)>(0x12FF020);
+	static inline auto FDisableAllDistractions = PreyFunction<void(ArkDistractionManager* const _this, unsigned _entityId)>(0x12FEF90);
+	static inline auto FGetDistractionInstanceOv1 = PreyFunction<ArkDistractionInstance& (ArkDistractionManager* const _this, uint64_t _distractionInstanceIndex)>(0x12FF130);
+	static inline auto FGetDistractionInstanceIndexByDistractionId = PreyFunction<uint64_t(ArkDistractionManager* const _this, unsigned _entityId, const uint64_t& _distractionId)>(0x12FF140);
+	static inline auto FIsValidDistractionInstance = PreyFunction<bool(const ArkDistractionManager* const _this, uint64_t _instanceIndex)>(0x12FF450);
+	static inline auto FTryDistractNpc = PreyFunction<bool(ArkDistractionManager* const _this, ArkNpc& _npc, uint64_t _distractionInstanceIndex, ArkDelegate<void __cdecl(unsigned int,bool)> _callback)>(0x1300120);
+	static inline auto FUpdate = PreyFunction<void(ArkDistractionManager* const _this, float _elapsedTime)>(0x1300610);
+	static inline auto FReset = PreyFunction<void(ArkDistractionManager* const _this, bool _bEnteringGameMode)>(0x1300010);
+	static inline auto FSerialize = PreyFunction<void(ArkDistractionManager* const _this, TSerialize _ser)>(0x1300060);
+	static inline auto FPostSerialize = PreyFunction<void(ArkDistractionManager* const _this)>(0x12FF750);
+	static inline auto FOnDistractionComplete = PreyFunction<void(ArkDistractionManager* const _this, unsigned _distractionEntityId, bool _bSuccess, bool _bTriggerAreaCooldown)>(0x12FF490);
+	static inline auto FDestroyInstance = PreyFunction<void(ArkDistractionManager* const _this, uint64_t _instanceIndex)>(0x12FEF00);
+	static inline auto FRemoveInvalidDistractions = PreyFunction<void(ArkDistractionManager* const _this)>(0x12FF860);
+	static inline auto FRemoveInvalidDistractionsFromEntity = PreyFunction<void(ArkDistractionManager* const _this, const unsigned _entityId)>(0x12FFB90);
+#endif
 };
-

@@ -41,4 +41,3 @@ struct MovementRequestResult // Id=8002229 Size=12
 	bool operator bool() const;
 #endif
 };
-

@@ -43,6 +43,7 @@ public:
 	void SetEmissiveSubMatId(int arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(ArkEmissiveComponent *const _this, IEntityRenderProxy *_pRenderProxy, int _slot, IMaterial *_pMaterialOverride)>(0x1159590);
 	static inline auto FCleanup = PreyFunction<void(ArkEmissiveComponent *const _this, IEntityRenderProxy *_pRenderProxy, int _slot)>(0x11594D0);
 	static inline auto FChangeMaterial = PreyFunction<void(ArkEmissiveComponent *const _this, IEntityRenderProxy *_pRenderProxy, int _slot, IMaterial *_pMaterialOverride)>(0x1159320);
@@ -52,5 +53,16 @@ public:
 	static inline auto FSetGlitchOverrides = PreyFunction<void(ArkEmissiveComponent *const _this, bool _bInterfered)>(0x11598D0);
 	static inline auto FGetEmissiveTexture = PreyFunction<const char *(ArkEmissiveComponent const *const _this)>(0x1159520);
 	static inline auto FLoadInterferenceOverrides = PreyFunction<void()>(0x11596A0);
+#else
+	static inline auto FArkEmissiveComponentOv2 = PreyFunction<void(ArkEmissiveComponent* const _this)>(0x11A8260);
+	static inline auto FInitialize = PreyFunction<void(ArkEmissiveComponent* const _this, IEntityRenderProxy* _pRenderProxy, int _slot, IMaterial* _pMaterialOverride)>(0x11A8510);
+	static inline auto FCleanup = PreyFunction<void(ArkEmissiveComponent* const _this, IEntityRenderProxy* _pRenderProxy, int _slot)>(0x11A8450);
+	static inline auto FChangeMaterial = PreyFunction<void(ArkEmissiveComponent* const _this, IEntityRenderProxy* _pRenderProxy, int _slot, IMaterial* _pMaterialOverride)>(0x11A82A0);
+	static inline auto FUpdateIntensity = PreyFunction<void(ArkEmissiveComponent* const _this, float _intensity)>(0x11A8CB0);
+	static inline auto FUpdateColor = PreyFunction<void(ArkEmissiveComponent* const _this, const ColorF& _color)>(0x11A8A20);
+	static inline auto FUpdateEmissiveTexture = PreyFunction<void(ArkEmissiveComponent* const _this, const char* _szEmissiveTexture)>(0x11A8B30);
+	static inline auto FSetGlitchOverrides = PreyFunction<void(ArkEmissiveComponent* const _this, bool _bInterfered)>(0x11A8840);
+	static inline auto FGetEmissiveTexture = PreyFunction<const char* (const ArkEmissiveComponent* const _this)>(0x11A84A0);
+	static inline auto FLoadInterferenceOverrides = PreyFunction<void()>(0x11A8620);
+#endif
 };
-

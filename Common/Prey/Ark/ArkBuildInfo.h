@@ -17,7 +17,11 @@ public:
 	std::mutex m_buildInfoMutex;
 	
 	ArkBuildInfo();
+#ifndef MOONCRASH
 	string GetBuildInfo(string const &_key) const { return FGetBuildInfo(this,_key); }
+#else
+	string GetBuildInfo(const string& _key) const { alignas(string) std::byte _return_buf_[sizeof(string)]; return *FGetBuildInfo(this, reinterpret_cast<string*>(_return_buf_), _key); }
+#endif
 	const void IterateBuildInfoEntries(std::function<void __cdecl(char const *,char const *)> OnEntry) const { FIterateBuildInfoEntries(this,OnEntry); }
 	void AddRuntimeBuildInfo(const char *key, const char *value) { FAddRuntimeBuildInfo(this,key,value); }
 	
@@ -35,8 +39,14 @@ public:
 	string parseBranchFromFile();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetBuildInfo = PreyFunction<string(ArkBuildInfo const *const _this, string const &_key)>(0x4BF080);
 	static inline auto FIterateBuildInfoEntries = PreyFunction<const void(ArkBuildInfo const *const _this, std::function<void __cdecl(char const *,char const *)> OnEntry)>(0x5C2DF0);
 	static inline auto FAddRuntimeBuildInfo = PreyFunction<void(ArkBuildInfo *const _this, const char *key, const char *value)>(0xDCB310);
+#else
+	static inline auto FArkBuildInfo = PreyFunction<void(ArkBuildInfo* const _this)>(0xDDFA00);
+	static inline auto FGetBuildInfo = PreyFunction<string*(const ArkBuildInfo* const _this, string* _return_value_, const string& _key)>(0x4D7F90);
+	static inline auto FIterateBuildInfoEntries = PreyFunction<const void(const ArkBuildInfo* const _this, std::function<void __cdecl(char const *,char const *)> OnEntry)>(0x5DBFB0);
+	static inline auto FAddRuntimeBuildInfo = PreyFunction<void(ArkBuildInfo* const _this, const char* key, const char* value)>(0xDE83F0);
+#endif
 };
-

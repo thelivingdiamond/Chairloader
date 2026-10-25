@@ -8,4 +8,3 @@ class IArkPlayerPsiListener
 public:
 	virtual void OnPsiChanged();
 };
-

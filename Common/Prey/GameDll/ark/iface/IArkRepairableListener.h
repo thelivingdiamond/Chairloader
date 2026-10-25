@@ -10,6 +10,9 @@ public:
 	virtual void OnBrokenChanged(bool arg0, bool arg1) = 0;
 	virtual void OnFortified();
 	
+#ifndef MOONCRASH
 	static inline auto FOnFortified = PreyFunction<void(IArkRepairableListener *const _this)>(0xA13080);
+#else
+	static inline auto FOnFortified = PreyFunction<void(IArkRepairableListener* const _this)>(0x1333E90);
+#endif
 };
-

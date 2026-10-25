@@ -10,6 +10,9 @@ struct IParticleEmitter;
 
 // ArkPsiPowerIndividualTargetingComponent
 // Header:  Prey/GameDll/ark/player/psipower/ArkPsiPowerIndividualTargetingComponent.h
+#ifdef MOONCRASH
+#include <Prey/CryCore/functor.h>
+#endif
 class ArkPsiPowerIndividualTargetingComponent : public CArkPsiPower3DTargetingComponent
 { // Size=616 (0x268)
 public:
@@ -40,6 +43,7 @@ public:
 	void KillTargetParticleEmitter();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPsiPowerIndividualTargetingComponentOv1 = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, const IArkPsiPower* _pPower)>(0x1590A50);
 	static inline auto FSetCallback = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, Functor0 _callback)>(0x1591650);
 	static inline auto FStop = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this)>(0x1591670);
@@ -53,5 +57,19 @@ public:
 	static inline auto FGatherTargets = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, Functor1wRet<IEntity const &,bool> _filter)>(0x1590DA0);
 	static inline auto FSetBestEntity = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, unsigned _target)>(0x1591250);
 	static inline auto FValidateTarget = PreyFunction<bool(const ArkPsiPowerIndividualTargetingComponent* const _this, const IEntity& _entity)>(0x15917E0);
+#else
+	static inline auto FArkPsiPowerIndividualTargetingComponentOv1 = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, const IArkPsiPower* _pPower)>(0x16B7150);
+	static inline auto FSetCallback = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, Functor0 _callback)>(0x16B7D50);
+	static inline auto FStop = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this)>(0x16B7D70);
+	static inline auto FReset = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this)>(0x16B7900);
+	static inline auto FGetSelectedEntity = PreyFunction<IEntity* (const ArkPsiPowerIndividualTargetingComponent* const _this)>(0x16B78A0);
+	static inline auto FGetUnselectedEntities = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerIndividualTargetingComponent* const _this, std::vector<IEntity*>* _return_value_)>(0x16B1C80);
+	static inline auto FGetSelectedEntities = PreyFunction<std::vector<IEntity*>*(const ArkPsiPowerIndividualTargetingComponent* const _this, std::vector<IEntity*>* _return_value_)>(0x16B7850);
+	static inline auto FUpdate = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, const float _fDt)>(0x16B7DD0);
+	static inline auto FUsePositionEmitter = PreyFunction<bool(const ArkPsiPowerIndividualTargetingComponent* const _this)>(0x13B0900);
+	static inline auto FOnDeleteEmitter = PreyFunction<void(IParticleEffectListener* const _this, IParticleEmitter* _pEmitter)>(0x16B78C0);
+	static inline auto FGatherTargets = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, Functor1wRet<IEntity const &,bool> _filter)>(0x16B74A0);
+	static inline auto FSetBestEntity = PreyFunction<void(ArkPsiPowerIndividualTargetingComponent* const _this, unsigned _target)>(0x16B7950);
+	static inline auto FValidateTarget = PreyFunction<bool(const ArkPsiPowerIndividualTargetingComponent* const _this, const IEntity& _entity)>(0x16B7EE0);
+#endif
 };
-

@@ -15,4 +15,3 @@ struct SEntityScriptEvent // Id=800C775 Size=24
 	uint8_t bOutput : 1;
 	uint8_t bOldEvent : 1;
 };
-

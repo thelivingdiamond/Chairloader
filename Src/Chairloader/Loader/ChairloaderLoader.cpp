@@ -23,11 +23,10 @@ EChairloaderInitResult ChairloaderLoader::Init()
             return EChairloaderInitResult::Failed;
         }
 
-        if (IsWhiplash())
+        if (!DetectFlavor())
         {
-            // Mooncrash is loaded by the same Prey.exe so it will also load mswsock.dll.
-            // Mooncrash is not supported at the moment
-            return EChairloaderInitResult::Skipped;
+            ShowMsgBox(MB_OK | MB_ICONERROR, "Failed to read the path of '{}'.", GAME_DLL_NAME);
+            return EChairloaderInitResult::Failed;
         }
 
         if (!ParseCommandLine())
@@ -52,8 +51,9 @@ EChairloaderInitResult ChairloaderLoader::Init()
         {
             ShowMsgBox(
                 MB_OK | MB_ICONERROR,
-                "Currently running version of the game is not supported.\n"
-                "Patch the game in Chairloader Mod Manager.");
+                "Currently running version of the game ({}) is not supported.\n"
+                "Patch the game in Chairloader Mod Manager.",
+                IsWhiplash() ? "Mooncrash" : "Prey");
             return EChairloaderInitResult::Failed;
         }
 
@@ -101,13 +101,14 @@ bool ChairloaderLoader::FindGameDll()
     return false;
 }
 
-bool ChairloaderLoader::IsWhiplash()
+bool ChairloaderLoader::DetectFlavor()
 {
     CRY_ASSERT(m_GameDllInfo);
 
-    // Check if the loaded PreyDll.dll is from Mooncrash.
     wchar_t preyDllPath[MAX_PATH] = {};
-    int pathLen = GetModuleFileNameW(m_GameDllInfo.hModule, preyDllPath, std::size(preyDllPath));
+    DWORD pathLen = GetModuleFileNameW(m_GameDllInfo.hModule, preyDllPath, (DWORD)std::size(preyDllPath));
+    if (pathLen == 0 || pathLen >= std::size(preyDllPath))
+        return false;
 
     // Convert slashes to backslashes (just in case)
     for (wchar_t& c : preyDllPath)
@@ -116,16 +117,23 @@ bool ChairloaderLoader::IsWhiplash()
             c = '\\';
     }
 
+    // Mooncrash ships its own PreyDll.dll under Whiplash\ and is launched by the same Prey.exe
+    m_Flavor = EGameFlavor::Prey;
     for (const wchar_t* suffix : WHIPLASH_PATHS)
     {
-        int suffixLen = wcslen(suffix);
+        size_t suffixLen = wcslen(suffix);
         if (pathLen >= suffixLen && !_wcsicmp(suffix, preyDllPath + pathLen - suffixLen))
         {
-            return true;
+            m_Flavor = EGameFlavor::Mooncrash;
+            break;
         }
     }
 
-    return false;
+    // Remember the directory: Chairloader.dll lives next to the game DLL it was built for
+    std::wstring_view pathView(preyDllPath, pathLen);
+    size_t slash = pathView.find_last_of(L'\\');
+    m_GameDllDir = std::wstring(pathView.substr(0, slash == std::wstring_view::npos ? 0 : slash + 1));
+    return !m_GameDllDir.empty();
 }
 
 bool ChairloaderLoader::ParseCommandLine()
@@ -163,12 +171,24 @@ bool ChairloaderLoader::ReadSupportedVersions(std::string& outError)
 {
     CRY_ASSERT(m_SupportedVersions.empty());
 
-    // Only one version is supported at the moment
-    m_SupportedVersions.push_back(GameVersionInfo{
-        "EGS-2021-08-18",
-        "BuildTime: Aug 18 2021 20:20:55",
-        0x1D8CBB8,
-    });
+    // The test string is the DLL's "BuildTime: ..." literal (tools/pe_find_string.py prints its RVA).
+    switch (m_Flavor)
+    {
+    case EGameFlavor::Prey:
+        m_SupportedVersions.push_back(GameVersionInfo{
+            "EGS-2021-08-18",
+            "BuildTime: Aug 18 2021 20:20:55",
+            0x1D8CBB8,
+        });
+        break;
+    case EGameFlavor::Mooncrash:
+        m_SupportedVersions.push_back(GameVersionInfo{
+            "EGS-2021-08-18",
+            "BuildTime: Aug 18 2021 20:04:57",
+            0x1EC5BD8,
+        });
+        break;
+    }
 
     outError = "";
     return true;
@@ -190,7 +210,14 @@ bool ChairloaderLoader::LoadChairloader(std::string& outError)
 {
     CRY_ASSERT(m_GameDllInfo);
     CRY_ASSERT(!m_hChairDll);
-    HMODULE hChairDll = LoadLibraryExA(CHAIRLOADER_DLL_NAME, nullptr, LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+    // Load the Chairloader.dll that sits next to the loaded game DLL 
+    std::wstring chairDllPath = m_GameDllDir;
+    std::string chairDllName = CHAIRLOADER_DLL_NAME;
+    std::wstring chairDllNameW;
+    Unicode::Convert(chairDllNameW, chairDllName);
+    chairDllPath += chairDllNameW;
+    HMODULE hChairDll = LoadLibraryExW(chairDllPath.c_str(), nullptr,
+        LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_USER_DIRS | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     
     if (hChairDll)
     {

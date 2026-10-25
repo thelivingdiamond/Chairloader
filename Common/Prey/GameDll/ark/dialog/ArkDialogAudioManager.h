@@ -40,9 +40,15 @@ public:
 	ArkDialogLoader::EArkLoadState GetState() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FRemoveRef = PreyFunction<void(ArkDialogLoader *const _this, IArkDialogLoadListener &_listener)>(0x13F7220);
 	static inline auto FOnLoad = PreyFunction<void(ArkDialogLoader *const _this, const bool _bSuccess)>(0x13F7080);
 	static inline auto FUnload = PreyFunction<void(ArkDialogLoader *const _this)>(0x13F7300);
+#else
+	static inline auto FRemoveRef = PreyFunction<void(ArkDialogLoader* const _this, IArkDialogLoadListener& _listener)>(0x1509240);
+	static inline auto FOnLoad = PreyFunction<void(ArkDialogLoader* const _this, const bool _bSuccess)>(0x15090A0);
+	static inline auto FUnload = PreyFunction<void(ArkDialogLoader* const _this)>(0x1509320);
+#endif
 };
 
 // Header: Exact
@@ -55,8 +61,12 @@ public:
 	std::vector<ArkDialogAudioTrigger const *> m_triggers;
 	std::array<ArkDialogLoader,16> m_loaders;
 	uint64_t m_playbackHandleGen;
-	static int s_drawDialogAudioDebug;
-	
+#ifndef MOONCRASH
+	static inline auto s_drawDialogAudioDebug = PreyGlobal<int>(0x2BE1248);
+#else
+	static inline auto s_drawDialogAudioDebug = PreyGlobal<int>(0x2D5B388);
+#endif
+
 	ArkDialogAudioManager();
 	virtual ~ArkDialogAudioManager();
 	virtual IArkDialogAudioManager::ELoadResult Load(unsigned _controlId, IArkDialogLoadListener &_listener);
@@ -70,6 +80,7 @@ public:
 	virtual bool IsRegistered(ArkDialogAudioTrigger const *_pTrigger) const;
 	static void OnAudioEvent(SAudioRequestInfo const *const pAudioRequestInfo) { FOnAudioEvent(pAudioRequestInfo); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDialogAudioManager = PreyFunction<void(ArkDialogAudioManager *const _this)>(0x13F6AE0);
 	static inline auto FLoad = PreyFunction<IArkDialogAudioManager::ELoadResult(ArkDialogAudioManager *const _this, unsigned _controlId, IArkDialogLoadListener &_listener)>(0x13F6CE0);
 	static inline auto FUnload = PreyFunction<void(ArkDialogAudioManager *const _this, unsigned _controlId, IArkDialogLoadListener &_listener)>(0x13F72C0);
@@ -81,5 +92,18 @@ public:
 	static inline auto FUnregisterTrigger = PreyFunction<void(ArkDialogAudioManager *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x13F73A0);
 	static inline auto FIsRegistered = PreyFunction<bool(ArkDialogAudioManager const *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x13F6C80);
 	static inline auto FOnAudioEvent = PreyFunction<void(SAudioRequestInfo const *const pAudioRequestInfo)>(0x13F6E50);
+#else
+	static inline auto FArkDialogAudioManagerOv1 = PreyFunction<void(ArkDialogAudioManager* const _this)>(0x1508A10);
+	static inline auto FBitNotArkDialogAudioManager = PreyFunction<void(ArkDialogAudioManager* const _this)>(0x1508B00);
+	static inline auto FLoad = PreyFunction<IArkDialogAudioManager::ELoadResult(ArkDialogAudioManager* const _this, unsigned _controlId, IArkDialogLoadListener& _listener)>(0x1508D00);
+	static inline auto FUnload = PreyFunction<void(ArkDialogAudioManager* const _this, unsigned _controlId, IArkDialogLoadListener& _listener)>(0x15092E0);
+	static inline auto FOnLoad = PreyFunction<void(ArkDialogAudioManager* const _this, unsigned _controlId, ArkDialogLoader* _pLoader, bool _bSuccess)>(0x1509000);
+	static inline auto FIsLoaded = PreyFunction<bool(ArkDialogAudioManager* const _this, unsigned _controlId)>(0x1508C70);
+	static inline auto FUpdate = PreyFunction<void(ArkDialogAudioManager* const _this)>(0x1509450);
+	static inline auto FGeneratePlaybackHandle = PreyFunction<uint64_t(ArkDialogAudioManager* const _this)>(0x1508C50);
+	static inline auto FRegisterTrigger = PreyFunction<void(ArkDialogAudioManager* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x15091B0);
+	static inline auto FUnregisterTrigger = PreyFunction<void(ArkDialogAudioManager* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x15093C0);
+	static inline auto FIsRegistered = PreyFunction<bool(const ArkDialogAudioManager* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x1508CA0);
+	static inline auto FOnAudioEvent = PreyFunction<void(const SAudioRequestInfo* const pAudioRequestInfo)>(0x1508E70);
+#endif
 };
-

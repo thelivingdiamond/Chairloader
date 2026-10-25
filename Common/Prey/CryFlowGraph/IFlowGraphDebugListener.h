@@ -21,4 +21,3 @@ struct IFlowGraphDebugListener // Id=8004714 Size=8
 	virtual void OnEnableTracepoint(STracePoint const &arg0, bool arg1) = 0;
 	virtual ~IFlowGraphDebugListener();
 };
-

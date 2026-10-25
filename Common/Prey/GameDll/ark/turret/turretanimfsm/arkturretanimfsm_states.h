@@ -1,6 +1,8 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/GameDll/ark/turret/ATStates.h>
 #include <Prey/GameDll/ark/turret/ArkTurretAnimFsm.h>
 
 namespace ArkTurretAnimFsm
@@ -143,4 +145,4 @@ public:
 };
 
 } // namespace ArkTurretAnimFsm::States
-
+#endif // !MOONCRASH (Mooncrash has no turret anim FSM: the base-only states stay base-only)

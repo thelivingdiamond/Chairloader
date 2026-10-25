@@ -12,4 +12,3 @@ struct SEntityLayerGarbage // Id=800212C Size=24
 	string layerName;
 	int nAge;
 };
-

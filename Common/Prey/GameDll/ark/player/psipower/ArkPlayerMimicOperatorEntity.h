@@ -31,6 +31,7 @@ public:
 	void Serialize(TSerialize _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicOperatorEntityOv1 = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this, const IEntityArchetype& _archetype, const QuatT& _worldTransform)>(0x131F4C0);
 	static inline auto FArkPlayerMimicOperatorEntityOv0 = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this, const unsigned _entityId)>(0x1455D10);
 	static inline auto FBitNotArkPlayerMimicOperatorEntity = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this)>(0x131F580);
@@ -42,5 +43,17 @@ public:
 	static inline auto FGetClass = PreyFunction<const IEntityClass* (const ArkPlayerMimicOperatorEntity* const _this)>(0x131F8A0);
 	static inline auto FPostSerialize = PreyFunction<void(const ArkPlayerMimicOperatorEntity* const _this)>(0x131FAD0);
 	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x131F5A0);
+#else
+	static inline auto FArkPlayerMimicOperatorEntityOv1 = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this, const IEntityArchetype& _archetype, const QuatT& _worldTransform)>(0x13F9C40);
+	static inline auto FArkPlayerMimicOperatorEntityOv0 = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this, const unsigned _entityId)>(0x156BBD0);
+	static inline auto FBitNotArkPlayerMimicOperatorEntity = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this)>(0x13FE2C0);
+	static inline auto FShow = PreyFunction<void(ArkPlayerMimicOperatorEntity* const _this, const Vec3& _velocity)>(0x13FA0F0);
+	static inline auto FIsVisible = PreyFunction<bool(const ArkPlayerMimicOperatorEntity* const _this)>(0x13FE6E0);
+	static inline auto FGetSize = PreyFunction<Vec3*(const ArkPlayerMimicOperatorEntity* const _this, Vec3* _return_value_)>(0x13FA0A0);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkPlayerMimicOperatorEntity* const _this, Vec3* _return_value_)>(0x13FE680);
+	static inline auto FGetHealth = PreyFunction<int(const ArkPlayerMimicOperatorEntity* const _this)>(0x13FA050);
+	static inline auto FGetClass = PreyFunction<const IEntityClass* (const ArkPlayerMimicOperatorEntity* const _this)>(0x13FA020);
+	static inline auto FPostSerialize = PreyFunction<void(const ArkPlayerMimicOperatorEntity* const _this)>(0x13FA0C0);
+	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x13F9D20);
+#endif
 };
-

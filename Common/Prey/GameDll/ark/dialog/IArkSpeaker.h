@@ -14,4 +14,3 @@ public:
 	virtual IArkConversation const *GetConversation() const = 0;
 	virtual void Stop(bool arg0, bool arg1) = 0;
 };
-

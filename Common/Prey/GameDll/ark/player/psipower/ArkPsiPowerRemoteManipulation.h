@@ -38,8 +38,13 @@ public:
 		ArkOverrideClassProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty
@@ -54,13 +59,26 @@ public:
 		ArkPsiCostProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkOverrideClassProperty = PreyGlobal<ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty>(0x2C03DB0);
+#else
+	static inline auto s_ArkOverrideClassProperty = PreyGlobal<ArkPsiPowerRemoteManipulationCostOverride::ArkOverrideClassProperty>(0x2D7E640);
+#endif
 	string m_OverrideClass;
+#ifndef MOONCRASH
 	static inline auto s_ArkPsiCostProperty = PreyGlobal<ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty>(0x2C03DD0);
+#else
+	static inline auto s_ArkPsiCostProperty = PreyGlobal<ArkPsiPowerRemoteManipulationCostOverride::ArkPsiCostProperty>(0x2D7E660);
+#endif
 	float m_PsiCost;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -73,8 +91,13 @@ public:
 	const float& GetPsiCost() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A1BD0);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A1D80);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C5680);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C5870);
+#endif
 };
 
 // ArkPsiPowerRemoteManipulationLevelProperties
@@ -94,8 +117,13 @@ public:
 		ArkDisplayNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty
@@ -110,8 +138,13 @@ public:
 		ArkDescriptionProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty
@@ -126,8 +159,13 @@ public:
 		ArkCooldownDurationSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty
@@ -142,8 +180,13 @@ public:
 		ArkNpcSignalPackageIdProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1467B60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084740);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty
@@ -158,19 +201,44 @@ public:
 		ArkTargetingPropertiesProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1466070);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty>(0x2C03E50);
+#else
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkDisplayNameProperty>(0x2D7E6E0);
+#endif
 	string m_DisplayName;
+#ifndef MOONCRASH
 	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty>(0x2C03E70);
+#else
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkDescriptionProperty>(0x2D7E700);
+#endif
 	string m_Description;
+#ifndef MOONCRASH
 	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty>(0x2C03E90);
+#else
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkCooldownDurationSecProperty>(0x2D7E720);
+#endif
 	float m_CooldownDurationSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkNpcSignalPackageIdProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty>(0x2C03EB0);
+#else
+	static inline auto s_ArkNpcSignalPackageIdProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkNpcSignalPackageIdProperty>(0x2D7E740);
+#endif
 	uint64_t m_NpcSignalPackageId;
+#ifndef MOONCRASH
 	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty>(0x2C03ED0);
+#else
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerRemoteManipulationLevelProperties::ArkTargetingPropertiesProperty>(0x2D7E760);
+#endif
 	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -189,8 +257,13 @@ public:
 	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1468140);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A1E20);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x157E120);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C5910);
+#endif
 };
 
 // ArkPsiPowerRemoteManipulationUniqueProperties
@@ -212,10 +285,17 @@ public:
 		ArkCostOverridesProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A0900);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A0970);
 		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* _pObject)>(0x15A0990);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C4400);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C4470);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty* const _this, ArkReflectedObject* _pObject)>(0x16C4490);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty
@@ -230,8 +310,13 @@ public:
 		ArkUsePowerAudioTriggerProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4F20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B3000);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty
@@ -246,15 +331,32 @@ public:
 		ArkWorldUIPostProcessVFXProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1086E60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1077BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkCostOverridesProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty>(0x2C03DF0);
+#else
+	static inline auto s_ArkCostOverridesProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkCostOverridesProperty>(0x2D7E680);
+#endif
 	std::vector<ArkPsiPowerRemoteManipulationCostOverride> m_CostOverrides;
+#ifndef MOONCRASH
 	static inline auto s_ArkUsePowerAudioTriggerProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty>(0x2C03E10);
+#else
+	static inline auto s_ArkUsePowerAudioTriggerProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkUsePowerAudioTriggerProperty>(0x2D7E6A0);
+#endif
 	string m_UsePowerAudioTrigger;
+#ifndef MOONCRASH
 	static inline auto s_ArkWorldUIPostProcessVFXProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty>(0x2C03E30);
+#else
+	static inline auto s_ArkWorldUIPostProcessVFXProperty = PreyGlobal<ArkPsiPowerRemoteManipulationUniqueProperties::ArkWorldUIPostProcessVFXProperty>(0x2D7E6C0);
+#endif
 	uint64_t m_WorldUIPostProcessVFX;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -269,8 +371,13 @@ public:
 	const uint64_t& GetWorldUIPostProcessVFX() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A1C00);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A1EC0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C56B0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C59B0);
+#endif
 };
 
 // RemoteManipulationPowerProperties
@@ -290,8 +397,13 @@ public:
 		ArkCommonProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+#endif
 	};
 
 	// RemoteManipulationPowerProperties::ArkUniqueProperty
@@ -306,8 +418,13 @@ public:
 		ArkUniqueProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A06D0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C41D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+#endif
 	};
 
 	// RemoteManipulationPowerProperties::ArkLevelsProperty
@@ -324,20 +441,39 @@ public:
 		ArkLevelsProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A07A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A0870);
 		static inline auto FIsArray = PreyFunction<bool(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x15A08C0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C42A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C4370);
+		static inline auto FIsArray = PreyFunction<bool(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const RemoteManipulationPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x16C43C0);
+#endif
 	};
 
 	using LevelProperties = ArkPsiPowerRemoteManipulationLevelProperties;
 	using UniqueProperties = ArkPsiPowerRemoteManipulationUniqueProperties;
 
+#ifndef MOONCRASH
 	static inline auto s_ArkCommonProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkCommonProperty>(0x2C03EF0);
+#else
+	static inline auto s_ArkCommonProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkCommonProperty>(0x2D7E780);
+#endif
 	ArkPsiPowerCommonProperties m_Common;
+#ifndef MOONCRASH
 	static inline auto s_ArkUniqueProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkUniqueProperty>(0x2C03F10);
+#else
+	static inline auto s_ArkUniqueProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkUniqueProperty>(0x2D7E7A0);
+#endif
 	ArkPsiPowerRemoteManipulationUniqueProperties m_Unique;
+#ifndef MOONCRASH
 	static inline auto s_ArkLevelsProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkLevelsProperty>(0x2C03F30);
+#else
+	static inline auto s_ArkLevelsProperty = PreyGlobal<RemoteManipulationPowerProperties::ArkLevelsProperty>(0x2D7E7C0);
+#endif
 	std::vector<ArkPsiPowerRemoteManipulationLevelProperties> m_Levels;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -353,9 +489,15 @@ public:
 	const std::vector<ArkPsiPowerRemoteManipulationLevelProperties>& GetLevels() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A1C40);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A1F60);
 	static inline auto FInit = PreyFunction<bool(RemoteManipulationPowerProperties* const _this)>(0x15A2AA0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C56F0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C5A50);
+	static inline auto FInit = PreyFunction<bool(RemoteManipulationPowerProperties* const _this)>(0x16C6610);
+#endif
 };
 
 
@@ -403,6 +545,7 @@ public:
 	float GetRange() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCArkPsiPowerRemoteManipulationOv1 = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x15A1880);
 	static inline auto FCancel = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x15A1BA0);
 	static inline auto FOnReset = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x1332A30);
@@ -432,4 +575,35 @@ public:
 	static inline auto FGetCost = PreyFunction<int(const CArkPsiPowerRemoteManipulation* const _this)>(0x15A2050);
 	static inline auto FOnSelectionChanged = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x15A2CB0);
 	static inline auto FFilterTarget = PreyFunction<bool(const CArkPsiPowerRemoteManipulation* const _this, const IEntity& _entity)>(0x15A1CE0);
+#else
+	static inline auto FCArkPsiPowerRemoteManipulationOv1 = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x16C5330);
+	static inline auto FCancel = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x16C5650);
+	static inline auto FOnReset = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x16C6820);
+	static inline auto FUpdateTargeting = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this, const float _frameTime)>(0x16C2110);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerRemoteManipulation* const _this)>(0x16C6B90);
+	static inline auto FRefreshTargets = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x16C68C0);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerRemoteManipulation* const _this, std::vector<IEntity*>* _return_value_)>(0x16C6560);
+	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerRemoteManipulation* const _this, std::vector<IEntity*>* _return_value_)>(0x16C65F0);
+	static inline auto FProcessInputForTargeting = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this, const CCryName& _actionId, int _activationMode, float _value)>(0x1333E90);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerRemoteManipulation* const _this)>(0x14B6CE0);
+	static inline auto FGetTargetPosition = PreyFunction<Vec3*(const CArkPsiPowerRemoteManipulation* const _this, Vec3* _return_value_)>(0x16C65B0);
+	static inline auto FGetTargetingComponent = PreyFunction<const ArkPsiPowerTargetingComponent* (const CArkPsiPowerRemoteManipulation* const _this)>(0x10ED490);
+	static inline auto FShowTextWhileTargeting = PreyFunction<bool(const CArkPsiPowerRemoteManipulation* const _this)>(0x1A302A0);
+	static inline auto FGetInteractionTypeForCurrentSelection = PreyFunction<EArkInteractionType(const CArkPsiPowerRemoteManipulation* const _this)>(0x16C5FF0);
+	static inline auto FGetInteractionInfoForEntity = PreyFunction<ArkInteractionInfo(const IEntity* const _pEntity)>(0x16C5E00);
+	static inline auto FOnBeforeSpawn = PreyFunction<bool(IEntitySystemSink* const _this, SEntitySpawnParams& _params)>(0x1A302A0);
+	static inline auto FOnSpawn = PreyFunction<void(IEntitySystemSink* const _this, IEntity* _pEntity, SEntitySpawnParams& _params)>(0x16C68B0);
+	static inline auto FOnRemove = PreyFunction<bool(IEntitySystemSink* const _this, IEntity* _pEntity)>(0x16C67F0);
+	static inline auto FOnReused = PreyFunction<void(IEntitySystemSink* const _this, IEntity* _pEntity, SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FOnEvent = PreyFunction<void(IEntitySystemSink* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FGetInteractionTypeForEntity = PreyFunction<EArkInteractionType(const IEntity* const _pEntity)>(0x16C6020);
+	static inline auto FGetScriptInteractionInfoForEntity = PreyFunction<ArkInteractionInfo(const IEntity* const _pEntity, bool& _bCouldChange)>(0x16C61B0);
+	static inline auto FUpdateScriptCacheForEntity = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this, const IEntity* _pEntity)>(0x16C6FD0);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerRemoteManipulation* const _this)>(0x16C6BA0);
+	static inline auto FGetExecutionError = PreyFunction<EArkPsiPowerError(const CArkPsiPowerRemoteManipulation* const _this)>(0x16C5DD0);
+	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this, const int _level)>(0x16C69B0);
+	static inline auto FGetCost = PreyFunction<int(const CArkPsiPowerRemoteManipulation* const _this)>(0x16C5B40);
+	static inline auto FOnSelectionChanged = PreyFunction<void(CArkPsiPowerRemoteManipulation* const _this)>(0x16C6830);
+	static inline auto FFilterTarget = PreyFunction<bool(const CArkPsiPowerRemoteManipulation* const _this, const IEntity& _entity)>(0x16C57D0);
+#endif
 };

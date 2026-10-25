@@ -44,4 +44,3 @@ struct IFlowGraphInspector // Id=8001C62 Size=8
 	virtual void RemoveFilter(_smart_ptr<IFlowGraphInspector::IFilter> arg0) = 0;
 	virtual void GetMemoryUsage(ICrySizer *arg0) const = 0;
 };
-

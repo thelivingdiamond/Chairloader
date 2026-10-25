@@ -11,6 +11,13 @@
 
 struct ArkInteractionInfo;
 struct ArkInteractionTestResult;
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+struct IPhysicalEntity;
+#endif
 namespace ArkSignalSystem
 {
 class Package;
@@ -65,6 +72,7 @@ public:
 	void OnDamaged(unsigned arg0, float arg1);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLaserTripline *const _this, ArkSignalSystem::Package const &_package)>(0x1188440);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkLaserTripline *const _this, bool _bRegister)>(0x11887A0);
 	static inline auto FUpdate = PreyFunction<void(ArkLaserTripline *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x1188D00);
@@ -82,5 +90,24 @@ public:
 	static inline auto FInitProperties = PreyFunction<void(ArkLaserTripline *const _this)>(0x1187E50);
 	static inline auto FDrawBeam = PreyFunction<void(ArkLaserTripline *const _this, Vec3 const &_start, Vec3 const &_end)>(0x1187950);
 	static inline auto FSetupEndPoint = PreyFunction<void(ArkLaserTripline *const _this)>(0x11888B0);
+#else
+	static inline auto FArkLaserTriplineOv1 = PreyFunction<void(ArkLaserTripline* const _this)>(0x12029F0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLaserTripline* const _this, const ArkSignalSystem::Package& _package)>(0x12036B0);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkLaserTripline* const _this, bool _bRegister)>(0x1203A20);
+	static inline auto FUpdate = PreyFunction<void(ArkLaserTripline* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1203F80);
+	static inline auto FProcessEvent = PreyFunction<void(ArkLaserTripline* const _this, SEntityEvent& _event)>(0x12038D0);
+	static inline auto FInit = PreyFunction<bool(ArkLaserTripline* const _this, IGameObject* _pGameObject)>(0x1203090);
+	static inline auto FPostInit = PreyFunction<void(ArkLaserTripline* const _this, IGameObject* _pGameObject)>(0x1203830);
+	static inline auto FRelease = PreyFunction<void(ArkLaserTripline* const _this)>(0x3E3960);
+	static inline auto FFullSerialize = PreyFunction<void(ArkLaserTripline* const _this, TSerialize _ser)>(0x1202FC0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkLaserTripline* const _this)>(0x12038B0);
+	static inline auto FOnDisruptedChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bDisrupted, bool _bWasForced)>(0x1203660);
+	static inline auto FGetSparkLoc = PreyFunction<QuatT*(const IArkDisruptableListener* const _this, QuatT* _return_value_)>(0x1203020);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x1203670);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x1203810);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x1203D70);
+	static inline auto FInitProperties = PreyFunction<void(ArkLaserTripline* const _this)>(0x12030C0);
+	static inline auto FDrawBeam = PreyFunction<void(ArkLaserTripline* const _this, const Vec3& _start, const Vec3& _end)>(0x1202BE0);
+	static inline auto FSetupEndPoint = PreyFunction<void(ArkLaserTripline* const _this)>(0x1203B30);
+#endif
 };
-

@@ -26,4 +26,3 @@ struct SEntityHits // Id=8004C41 Size=80
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 };
-

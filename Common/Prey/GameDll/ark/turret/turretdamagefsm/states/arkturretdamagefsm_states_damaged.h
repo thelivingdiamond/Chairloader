@@ -19,9 +19,13 @@ public:
 	void Enter(ArkTurretDamageFsm::StateParams const &_params) const { FEnter(this,_params); }
 	void Exit(ArkTurretDamageFsm::StateParams const &_params) const { FExit(this,_params); }
 	
+#ifndef MOONCRASH
 	static inline auto FEnter = PreyFunction<void(ArkTurretDamageFsm::States::Damaged const *const _this, ArkTurretDamageFsm::StateParams const &_params)>(0x135AFF0);
 	static inline auto FExit = PreyFunction<void(ArkTurretDamageFsm::States::Damaged const *const _this, ArkTurretDamageFsm::StateParams const &_params)>(0x135B030);
+#else
+	static inline auto FEnter = PreyFunction<void(const ArkTurretDamageFsm::States::Damaged* const _this, const ArkTurretDamageFsm::StateParams& _params)>(0x143E290);
+	static inline auto FExit = PreyFunction<void(const ArkTurretDamageFsm::States::Damaged* const _this, const ArkTurretDamageFsm::StateParams& _params)>(0x143E2E0);
+#endif
 };
 
 } // namespace ArkTurretDamageFsm::States
-

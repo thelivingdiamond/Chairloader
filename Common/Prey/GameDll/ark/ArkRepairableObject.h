@@ -16,6 +16,9 @@ struct SEntityUpdateContext;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkRepairableObject.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+#endif
 class ArkRepairableObject : public CArkGameObjectExtension<ArkRepairableObject>, public IArkRepairableListener // Id=801A8E0 Size=368
 {
 public:
@@ -50,6 +53,7 @@ public:
 	void OnReset(bool arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(ArkRepairableObject *const _this, IGameObject *_pGameObject)>(0x1257600);
 	static inline auto FPostInit = PreyFunction<void(ArkRepairableObject *const _this, IGameObject *_pGameObject)>(0x1258390);
 	static inline auto FRelease = PreyFunction<void(ArkRepairableObject *const _this)>(0xA97D40);
@@ -61,5 +65,18 @@ public:
 	static inline auto FLoadProperties = PreyFunction<void(ArkRepairableObject *const _this)>(0x1257640);
 	static inline auto FOnBrokenChanged = PreyFunction<void(ArkRepairableObject *const _this, bool _bBroken, bool _bWasForced)>(0x1257F50);
 	static inline auto FPlayVFX = PreyFunction<void(ArkRepairableObject *const _this)>(0x1258110);
+#else
+	static inline auto FArkRepairableObjectOv1 = PreyFunction<void(ArkRepairableObject* const _this)>(0x12FB460);
+	static inline auto FInit = PreyFunction<bool(ArkRepairableObject* const _this, IGameObject* _pGameObject)>(0x12FB770);
+	static inline auto FPostInit = PreyFunction<void(ArkRepairableObject* const _this, IGameObject* _pGameObject)>(0x12FC500);
+	static inline auto FRelease = PreyFunction<void(ArkRepairableObject* const _this)>(0x3E3960);
+	static inline auto FFullSerialize = PreyFunction<void(ArkRepairableObject* const _this, TSerialize _ser)>(0x12FB680);
+	static inline auto FPostSerialize = PreyFunction<void(ArkRepairableObject* const _this)>(0x12FC530);
+	static inline auto FUpdate = PreyFunction<void(ArkRepairableObject* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x12FC600);
+	static inline auto FProcessEvent = PreyFunction<void(ArkRepairableObject* const _this, SEntityEvent& _event)>(0x12FC540);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkRepairableObject* const _this, ICrySizer* _s)>(0x12FB740);
+	static inline auto FLoadProperties = PreyFunction<void(ArkRepairableObject* const _this)>(0x12FB7B0);
+	static inline auto FOnBrokenChanged = PreyFunction<void(IArkRepairableListener* const _this, bool _bBroken, bool _bWasForced)>(0x12FC0C0);
+	static inline auto FPlayVFX = PreyFunction<void(ArkRepairableObject* const _this)>(0x12FC280);
+#endif
 };
-

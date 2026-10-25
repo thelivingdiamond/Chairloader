@@ -8,12 +8,20 @@
 class ArkComplexVisualPerceivable : public ArkVisualPerceivable // Id=8016220 Size=8
 {
 public:
+#ifndef MOONCRASH
 	std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *> GetComplexVisualPerceivableWorldPoints(Vec3 *_pFirstAnyWorldPoint, Vec3 *_pLastAnyWorldPoint, Vec3 *_pFirstAcuteWorldPoint, Vec3 *_pLastAcuteWorldPoint, Vec3 *_pFirstAllWorldPoint, Vec3 *_pLastAllWorldPoint) const { return FGetComplexVisualPerceivableWorldPoints(this,_pFirstAnyWorldPoint,_pLastAnyWorldPoint,_pFirstAcuteWorldPoint,_pLastAcuteWorldPoint,_pFirstAllWorldPoint,_pLastAllWorldPoint); }
+#else
+	std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *> GetComplexVisualPerceivableWorldPoints(Vec3* _pFirstAnyWorldPoint, Vec3* _pLastAnyWorldPoint, Vec3* _pFirstAcuteWorldPoint, Vec3* _pLastAcuteWorldPoint, Vec3* _pFirstAllWorldPoint, Vec3* _pLastAllWorldPoint) const { alignas(std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>) std::byte _return_buf_[sizeof(std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>)]; return *FGetComplexVisualPerceivableWorldPoints(this, reinterpret_cast<std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>*>(_return_buf_), _pFirstAnyWorldPoint, _pLastAnyWorldPoint, _pFirstAcuteWorldPoint, _pLastAcuteWorldPoint, _pFirstAllWorldPoint, _pLastAllWorldPoint); }
+#endif
 	float GetVisibilityScalar() const { return FGetVisibilityScalar(this); }
 	virtual std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *> DoGetComplexVisualPerceivableWorldPoints(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2, Vec3 *arg3, Vec3 *arg4, Vec3 *arg5) const = 0;
 	virtual float DoGetVisibilityScalar() const = 0;
 	
+#ifndef MOONCRASH
 	static inline auto FGetComplexVisualPerceivableWorldPoints = PreyFunction<std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>(ArkComplexVisualPerceivable const *const _this, Vec3 *_pFirstAnyWorldPoint, Vec3 *_pLastAnyWorldPoint, Vec3 *_pFirstAcuteWorldPoint, Vec3 *_pLastAcuteWorldPoint, Vec3 *_pFirstAllWorldPoint, Vec3 *_pLastAllWorldPoint)>(0x1528750);
 	static inline auto FGetVisibilityScalar = PreyFunction<float(ArkComplexVisualPerceivable const *const _this)>(0x15AAEA0);
+#else
+	static inline auto FGetComplexVisualPerceivableWorldPoints = PreyFunction<std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>*(const ArkComplexVisualPerceivable* const _this, std::tuple<Vec3_tpl<float> *,Vec3_tpl<float> *,Vec3_tpl<float> *>* _return_value_, Vec3* _pFirstAnyWorldPoint, Vec3* _pLastAnyWorldPoint, Vec3* _pFirstAcuteWorldPoint, Vec3* _pLastAcuteWorldPoint, Vec3* _pFirstAllWorldPoint, Vec3* _pLastAllWorldPoint)>(0x16486B0);
+	static inline auto FGetVisibilityScalar = PreyFunction<float(const ArkComplexVisualPerceivable* const _this)>(0x6CBC30);
+#endif
 };
-

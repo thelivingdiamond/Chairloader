@@ -8,6 +8,9 @@ struct SFlowNodeConfig;
 
 // CArkFlowConsoleEvent
 // Header:  Prey/GameDll/ark/flowgraph/ArkFlowConsoleEvent.h
+#ifdef MOONCRASH
+#include <Prey/CryFlowGraph/IFlowSystem.h>
+#endif
 class CArkFlowConsoleEvent : public CFlowBaseNode<eNCT_Instanced>
 { // Size=40 (0x28)
 public:
@@ -37,11 +40,17 @@ public:
 	CArkFlowConsoleEvent(IFlowNode::SActivationInfo* _arg0_);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowConsoleEvent* const _this, SFlowNodeConfig& _rConfig)>(0x14A7720);
 	static inline auto FProcessEvent = PreyFunction<void(CArkFlowConsoleEvent* const _this, IFlowNode::EFlowEvent _Event, IFlowNode::SActivationInfo* _pActInfo)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowConsoleEvent* const _this, ICrySizer* _pSizer)>(0x8CFFA0);
 	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowConsoleEvent* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x14A76C0);
 	static inline auto FSetExecutionString = PreyFunction<void(CArkFlowConsoleEvent* const _this, const string& _rCommandString)>(0x14A79A0);
+#else
+	static inline auto FGetConfiguration = PreyFunction<void(CArkFlowConsoleEvent* const _this, SFlowNodeConfig& _rConfig)>(0x15BF340);
+	static inline auto FProcessEvent = PreyFunction<void(CArkFlowConsoleEvent* const _this, IFlowNode::EFlowEvent _Event, IFlowNode::SActivationInfo* _pActInfo)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkFlowConsoleEvent* const _this, ICrySizer* _pSizer)>(0x4C68D0);
+	static inline auto FClone = PreyFunction<_smart_ptr<IFlowNode>*(CArkFlowConsoleEvent* const _this, _smart_ptr<IFlowNode>* _return_value_, IFlowNode::SActivationInfo* _pActInfo)>(0x15BF260);
+	static inline auto FSetExecutionString = PreyFunction<void(CArkFlowConsoleEvent* const _this, const string& _rCommandString)>(0x15BF5C0);
+#endif
 };
-
-

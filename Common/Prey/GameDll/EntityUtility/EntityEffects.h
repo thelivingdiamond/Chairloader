@@ -10,6 +10,13 @@ struct IParticleEffect;
 struct IParticleEmitter;
 struct IRenderNode;
 
+#ifdef MOONCRASH
+namespace EntityEffects
+{
+struct SEffectAttachParams;
+struct SLightAttachParams;
+} // namespace EntityEffects
+#endif
 namespace EntityEffects
 {
 
@@ -105,6 +112,7 @@ public:
 	void GetMemoryStatistics(ICrySizer *arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitWithEntity = PreyFunction<void(EntityEffects::CEffectsController *const _this, IEntity *pEntity)>(0x10BE320);
 	static inline auto FFreeAllEffects = PreyFunction<void(EntityEffects::CEffectsController *const _this)>(0x16BCC80);
 	static inline auto FAttachParticleEffectOv3 = PreyFunction<unsigned(EntityEffects::CEffectsController *const _this, IParticleEffect *pParticleEffect, EntityEffects::SEffectAttachParams const &attachParams)>(0x16BC120);
@@ -114,7 +122,18 @@ public:
 	static inline auto FDetachEffect = PreyFunction<void(EntityEffects::CEffectsController *const _this, const unsigned effectId)>(0x16BCA40);
 	static inline auto FGetEffectEmitter = PreyFunction<IParticleEmitter *(EntityEffects::CEffectsController const *const _this, const unsigned effectId)>(0x16BCD20);
 	static inline auto FFindSafeSlot = PreyFunction<int(EntityEffects::CEffectsController *const _this, int firstSafeSlot)>(0x16BCBD0);
+#else
+	static inline auto FCEffectsControllerOv2 = PreyFunction<void(EntityEffects::CEffectsController* const _this)>(0x17DEB20);
+	static inline auto FInitWithEntity = PreyFunction<void(EntityEffects::CEffectsController* const _this, IEntity* pEntity)>(0x14AD1A0);
+	static inline auto FFreeAllEffects = PreyFunction<void(EntityEffects::CEffectsController* const _this)>(0x17DF6A0);
+	static inline auto FAttachParticleEffectOv3 = PreyFunction<unsigned(EntityEffects::CEffectsController* const _this, IParticleEffect* pParticleEffect, const EntityEffects::SEffectAttachParams& attachParams)>(0x17DEB40);
+	static inline auto FAttachParticleEffectOv2 = PreyFunction<unsigned(EntityEffects::CEffectsController* const _this, const char* effectName, const EntityEffects::SEffectAttachParams& attachParams)>(0x17DF3D0);
+	static inline auto FAttachParticleEffectOv1 = PreyFunction<unsigned(EntityEffects::CEffectsController* const _this, IParticleEffect* pParticleEffect, const int targetSlot, const char* helperName, const EntityEffects::SEffectAttachParams& attachParams)>(0x17DEE00);
+	static inline auto FAttachParticleEffectOv0 = PreyFunction<unsigned(EntityEffects::CEffectsController* const _this, const char* effectName, const int targetSlot, const char* helperName, const EntityEffects::SEffectAttachParams& attachParams)>(0x17DF410);
+	static inline auto FDetachEffect = PreyFunction<void(EntityEffects::CEffectsController* const _this, const unsigned effectId)>(0x17DF460);
+	static inline auto FGetEffectEmitter = PreyFunction<IParticleEmitter* (const EntityEffects::CEffectsController* const _this, const unsigned effectId)>(0x17DF740);
+	static inline auto FFindSafeSlot = PreyFunction<int(EntityEffects::CEffectsController* const _this, int firstSafeSlot)>(0x17DF5F0);
+#endif
 };
 
 } // namespace EntityEffects
-

@@ -10,4 +10,3 @@ public:
 	virtual void PushFrame() = 0;
 	virtual void PopFrame() = 0;
 };
-

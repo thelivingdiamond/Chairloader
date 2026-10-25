@@ -1,5 +1,4 @@
 // Copyright 2001-2016 Crytek GmbH / Crytek Group. All rights reserved.
-
 #ifndef __IGAMEOBJECT_H__
 #define __IGAMEOBJECT_H__
 
@@ -264,10 +263,11 @@ public:
 	// A one off call to never enable the physics aspect, this needs to be done *before* the BindToNetwork (typically in the GameObject's Init function)
 	virtual void                  DontSyncPhysics() = 0;
 
-	virtual IGameObjectSystem::ExtensionID GetExtensionId(const char *extension) = 0;
+	virtual IGameObjectSystem::ExtensionID GetExtensionId(const char *extension) const = 0;
 	// query extension. returns 0 if extension is not there.
-	virtual IGameObjectExtension* QueryExtension(const char* extension) const = 0;
 	virtual IGameObjectExtension* QueryExtension(IGameObjectSystem::ExtensionID id) const = 0;
+	// Not virtual in Prey; forwards to the ExtensionID overload.
+	IGameObjectExtension* QueryExtension(const char* extension) const { return QueryExtension(GetExtensionId(extension)); }
 
 	// set extension parameters
 	virtual bool                  SetExtensionParams(const char* extension, SmartScriptTable params) = 0;
@@ -313,13 +313,14 @@ public:
 	virtual bool SetAIActivation(EGameObjectAIActivationMode mode) = 0;
 	// enable/disable auto-disabling of physics
 	virtual void SetAutoDisablePhysicsMode(EAutoDisablePhysicsMode mode) = 0;
+	virtual void ForceReevaluateUpdateActivation() = 0;
 	// for debugging updates
 	virtual bool ShouldUpdate() = 0;
 
 	virtual bool CheckShouldAIUpdate() = 0;
 	virtual unsigned int GetAiActivationMode() = 0;
 	virtual void SetCloseDistThreshold(float) = 0;
-	virtual float GetCloseDistThresholdSq() = 0;
+	virtual float GetCloseDistThresholdSq() const = 0;
 	virtual void SetCurrDistFromPlayerSq(float) = 0;
 
 	// register a partial update in the netcode without actually serializing - useful only for working around other bugs
@@ -538,8 +539,6 @@ public:
 		return ms_statics.m_vMessages;
 	}
 
-	static void SetExtensionId(IGameObjectSystem::ExtensionID id) { ms_statics.m_extensionId = id; }
-
 protected:
 #if 0
 	static T_Derived* QueryExtension(EntityId id)
@@ -556,7 +555,7 @@ protected:
 	static void ActivateOutputPort(EntityId id, int port, const TFlowInputData& data)
 	{
 		SEntityEvent evnt;
-		evnt.event = ENTITY_EVENT_ACTIVATE_FLOW_NODE_OUTPUT;
+		evnt.event = ENTITY_EVENT_ACTIVE_FLOW_NODE_OUTPUT;
 		evnt.nParam[0] = port;
 		evnt.nParam[1] = (INT_PTR)&data;
 
@@ -592,7 +591,6 @@ private:
 	{
 		size_t                         m_nMessages;
 		SGameObjectExtensionRMI        m_vMessages[MAX_STATIC_MESSAGES];
-		IGameObjectSystem::ExtensionID m_extensionId;
 	};
 
 	static Statics ms_statics;

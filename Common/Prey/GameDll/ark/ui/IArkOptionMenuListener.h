@@ -9,4 +9,3 @@ class IArkOptionMenuListener // Id=80191AC Size=8
 public:
 	virtual void OnOptionMenuClose() = 0;
 };
-

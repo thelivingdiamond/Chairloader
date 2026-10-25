@@ -30,9 +30,15 @@ public:
 	const Quat& GetTargetRotation() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicScienceOperatorRotationControllerOv1 = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, const ArkPlayerMimicScienceOperatorController& _controller)>(0x12F1FA0);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, IEntity& _mimicEntity)>(0x12F2110);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x12F21E0);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, TSerialize _ser)>(0x12F2180);
+#else
+	static inline auto FArkPlayerMimicScienceOperatorRotationControllerOv1 = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, const ArkPlayerMimicScienceOperatorController& _controller)>(0x13A7590);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, IEntity& _mimicEntity)>(0x13A7700);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13A77D0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorRotationController* const _this, TSerialize _ser)>(0x13A7770);
+#endif
 };
-

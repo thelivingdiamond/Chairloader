@@ -53,4 +53,3 @@ struct Wrapper<bool>
 };
 
 } // namespace NFlowSystemUtils
-

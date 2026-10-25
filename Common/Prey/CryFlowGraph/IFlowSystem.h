@@ -344,7 +344,6 @@ struct IFlowNode
         eFE_SetEntityId,            //!< This event is send to set the entity of the FlowNode. Might also be sent in conjunction (pre) other events (like eFE_Initialize).
         eFE_Suspend,
         eFE_Resume,
-        eFE_EditorInputPortDataSet,
         eFE_ConnectInputPort,
         eFE_DisconnectInputPort,
         eFE_ConnectOutputPort,
@@ -405,7 +404,11 @@ struct IFlowNodeFactory // Id=8001C5D Size=8
     virtual void Reset() = 0;
     virtual bool AllowOverride() const { return FAllowOverride(this); }
 
+#ifndef MOONCRASH
     static inline auto FAllowOverride = PreyFunction<bool(IFlowNodeFactory const *const _this)>(0xDD23F0);
+#else
+	static inline auto FAllowOverride = PreyFunction<bool(const IFlowNodeFactory* const _this)>(0x13B0900);
+#endif
 };
 
 

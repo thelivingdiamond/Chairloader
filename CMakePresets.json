@@ -18,6 +18,16 @@
           "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
         }
       }
+    },
+    {
+      "name": "ninja-vcpkg-mooncrash",
+      "inherits": "ninja-vcpkg",
+      "displayName": "Ninja Multi-Config (Mooncrash)",
+      "description": "ninja-vcpkg, built for Mooncrash",
+      "binaryDir": "${sourceDir}/_build/${presetName}",
+      "cacheVariables": {
+        "PREY_MOONCRASH": "ON"
+      }
     }
   ],
   "buildPresets": [
@@ -26,6 +36,12 @@
       "configurePreset": "ninja-vcpkg",
       "displayName": "Build ninja-vcpkg",
       "description": "Build with Ninja the configuration specified with --config"
+    },
+    {
+      "name": "ninja-vcpkg-mooncrash",
+      "configurePreset": "ninja-vcpkg-mooncrash",
+      "displayName": "Build ninja-vcpkg (Mooncrash)",
+      "description": "Build with Ninja the Mooncrash configuration specified with --config"
     }
   ],
   "testPresets": [

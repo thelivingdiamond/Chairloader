@@ -32,7 +32,11 @@ public:
 		bool operator==(const ArkPlayerTargetSelector::ArkPlayerTarget& _arg0_) const;
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FArkPlayerTargetOv2 = PreyFunction<void(ArkPlayerTargetSelector::ArkPlayerTarget* const _this, const float _priority, const float _aimDistance, const unsigned& _entityId, const std::array<ArkInteractionInfo,4>& _interactionInfo)>(0x156B7C0);
+#else
+		static inline auto FArkPlayerTargetOv2 = PreyFunction<void(ArkPlayerTargetSelector::ArkPlayerTarget* const _this, const float _priority, const float _aimDistance, const unsigned& _entityId, const std::array<ArkInteractionInfo, 4>& _interactionInfo)>(0x16919F0);
+#endif
 	};
 
 	// ArkPlayerTargetSelector::IntersectResult
@@ -61,9 +65,15 @@ public:
 	unsigned m_forceSelectEntity;
 	std::vector<ArkPlayerTargetSelector::ArkPlayerTarget> m_candidateTargets;
 	std::map<uint64_t, float> m_itemTypePriorityMap;
+#ifndef MOONCRASH
 	static inline auto s_MaxItemScore = PreyGlobal<const float>(0x1E48B30);
 	static inline auto s_pDebugDrawCommandName = PreyGlobal<const char* const>(0x1E48B38);
 	static inline auto s_pLoadConfigCommandName = PreyGlobal<const char* const>(0x0);
+#else
+	static inline auto s_MaxItemScore = PreyGlobal<const float>(0x1F9B1DC);
+	static inline auto s_pDebugDrawCommandName = PreyGlobal<const char* const>(0x1F9B1E0);
+	static inline auto s_pLoadConfigCommandName = PreyGlobal<const char* const>(0x0);
+#endif
 
 	ArkPlayerTargetSelector();
 	~ArkPlayerTargetSelector();
@@ -77,7 +87,9 @@ public:
 	void UpdateCandidates() { FUpdateCandidates(this); }
 	void DrawDebug() const { FDrawDebug(this); }
 	Vec3 GetInteractionPosition(const IEntity& _entity, const ArkSafeScriptTable& _propertiesTable) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetInteractionPosition(this, reinterpret_cast<Vec3*>(_return_buf_), _entity, _propertiesTable); }
+#ifndef MOONCRASH
 	float GetInteractionDistanceSq(const ArkSafeScriptTable& _propertiesTable) const { return FGetInteractionDistanceSq(this, _propertiesTable); }
+#endif
 
 #if 0
 	void SetDrawDebug(const bool _arg0_);
@@ -90,6 +102,7 @@ public:
 	ArkPlayerTargetSelector::IntersectResult RayIntersectEntity(const Vec3& _arg0_, const Vec3& _arg1_, bool _arg2_, bool _arg3_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerTargetSelectorOv1 = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x156B840);
 	static inline auto FBitNotArkPlayerTargetSelector = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x156BB30);
 	static inline auto FStartHoovering = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x156D7A0);
@@ -103,5 +116,18 @@ public:
 	static inline auto FDrawDebug = PreyFunction<void(const ArkPlayerTargetSelector* const _this)>(0x156C600);
 	static inline auto FGetInteractionPosition = PreyFunction<Vec3*(const ArkPlayerTargetSelector* const _this, Vec3* _return_value_, const IEntity& _entity, const ArkSafeScriptTable& _propertiesTable)>(0x156CFB0);
 	static inline auto FGetInteractionDistanceSq = PreyFunction<float(const ArkPlayerTargetSelector* const _this, const ArkSafeScriptTable& _propertiesTable)>(0x156CEF0);
+#else
+	static inline auto FArkPlayerTargetSelectorOv1 = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x1691A70);
+	static inline auto FBitNotArkPlayerTargetSelector = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x1691D60);
+	static inline auto FStartHoovering = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x1693B70);
+	static inline auto FLoadConfigFile = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x1693630);
+	static inline auto FGetInteractionTarget = PreyFunction<unsigned(const ArkPlayerTargetSelector* const _this)>(0x1693610);
+	static inline auto FGetInteractionInfoForTarget = PreyFunction<const std::array<ArkInteractionInfo, 4>& (const ArkPlayerTargetSelector* const _this)>(0x1693380);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerTargetSelector* const _this, const float _frameTime)>(0x1693B90);
+	static inline auto FUpdateHoovering = PreyFunction<void(ArkPlayerTargetSelector* const _this, const float _frameTime)>(0x1693FF0);
+	static inline auto FSetDrawDebugCmd = PreyFunction<void(IConsoleCmdArgs* _pCmdArgs)>(0x1693AD0);
+	static inline auto FUpdateCandidates = PreyFunction<void(ArkPlayerTargetSelector* const _this)>(0x1693BC0);
+	static inline auto FDrawDebug = PreyFunction<void(const ArkPlayerTargetSelector* const _this)>(0x16929A0);
+	static inline auto FGetInteractionPosition = PreyFunction<Vec3*(const ArkPlayerTargetSelector* const _this, Vec3* _return_value_, const IEntity& _entity, const ArkSafeScriptTable& _propertiesTable)>(0x1693390);
+#endif
 };
-

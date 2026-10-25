@@ -3,7 +3,11 @@
 #include <mem.h>
 #include "SavePathPatch.h"
 
+#ifndef MOONCRASH
 static PreyGlobal<char> g_SavePathString(0x1C746C0);
+#else
+static PreyGlobal<char> g_SavePathString(0x1DAC6A8);
+#endif
 
 template <typename... Args>
 static void EarlyFatalError(std::string_view format, const Args& ...args)

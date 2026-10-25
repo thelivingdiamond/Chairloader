@@ -18,6 +18,9 @@ public:
 	void Reset();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FIsValidData = PreyFunction<bool(ArkDataComponentBase const *const _this, const uint64_t _id)>(0x1B933B0);
+#else
+	static inline auto FIsValidData = PreyFunction<bool(const ArkDataComponentBase* const _this, const uint64_t _id)>(0x1A302A0);
+#endif
 };
-

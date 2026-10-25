@@ -50,6 +50,7 @@ public:
 	void GetMemoryUsage(ICrySizer *arg0) const;
 	void LoadClassDescription(XmlNodeRef &arg0, bool arg1);
 #endif
+#ifndef MOONCRASH
 	static inline auto FRegisterEntityClass = PreyFunction<bool(CEntityClassRegistry *const _this, IEntityClass *pClass)>(0x986820);
 	static inline auto FUnregisterEntityClass = PreyFunction<bool(CEntityClassRegistry *const _this, IEntityClass *pClass)>(0x986BC0);
 	static inline auto FFindClass = PreyFunction<IEntityClass *(CEntityClassRegistry const *const _this, const char *sClassName)>(0x985D70);
@@ -63,5 +64,20 @@ public:
 	static inline auto FGetClassCount = PreyFunction<int(CEntityClassRegistry const *const _this)>(0x985E40);
 	static inline auto FInitializeDefaultClasses = PreyFunction<void(CEntityClassRegistry *const _this)>(0x985E50);
 	static inline auto FNotifyListeners = PreyFunction<void(CEntityClassRegistry *const _this, EEntityClassRegistryEvent event, IEntityClass const *pEntityClass)>(0x986740);
+#else
+	static inline auto FCEntityClassRegistryOv1 = PreyFunction<void(CEntityClassRegistry* const _this)>(0x9A2850);
+	static inline auto FRegisterEntityClass = PreyFunction<bool(CEntityClassRegistry* const _this, IEntityClass* pClass)>(0x9A3400);
+	static inline auto FUnregisterEntityClass = PreyFunction<bool(CEntityClassRegistry* const _this, IEntityClass* pClass)>(0x9A37A0);
+	static inline auto FFindClass = PreyFunction<IEntityClass* (const CEntityClassRegistry* const _this, const char* sClassName)>(0x9A2960);
+	static inline auto FGetDefaultClass = PreyFunction<IEntityClass* (const CEntityClassRegistry* const _this)>(0x598E60);
+	static inline auto FRegisterStdClass = PreyFunction<IEntityClass* (CEntityClassRegistry* const _this, const IEntityClassRegistry::SEntityClassDesc& entityClassDesc)>(0x9A3650);
+	static inline auto FRegisterListener = PreyFunction<void(CEntityClassRegistry* const _this, IEntityClassRegistryListener* pListener)>(0x9A35E0);
+	static inline auto FUnregisterListener = PreyFunction<void(CEntityClassRegistry* const _this, IEntityClassRegistryListener* pListener)>(0x9A38B0);
+	static inline auto FLoadClasses = PreyFunction<void(CEntityClassRegistry* const _this, const char* sRootPath, bool bOnlyNewClasses)>(0x9A2D70);
+	static inline auto FIteratorMoveFirst = PreyFunction<void(CEntityClassRegistry* const _this)>(0x9A2D30);
+	static inline auto FIteratorNext = PreyFunction<IEntityClass* (CEntityClassRegistry* const _this)>(0x9A2D40);
+	static inline auto FGetClassCount = PreyFunction<int(const CEntityClassRegistry* const _this)>(0x387590);
+	static inline auto FInitializeDefaultClasses = PreyFunction<void(CEntityClassRegistry* const _this)>(0x9A2A30);
+	static inline auto FNotifyListeners = PreyFunction<void(CEntityClassRegistry* const _this, EEntityClassRegistryEvent event, const IEntityClass* pEntityClass)>(0x9A3320);
+#endif
 };
-

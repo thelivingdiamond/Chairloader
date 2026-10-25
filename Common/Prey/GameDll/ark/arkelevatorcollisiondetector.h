@@ -13,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkelevatorcollisiondetector.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkElevatorCollisionDetector : public CGameObjectExtensionHelper<CArkElevatorCollisionDetector,IGameObjectExtension> // Id=8018FFF Size=104
 {
 public:
@@ -48,6 +53,7 @@ public:
 	void SetupLinkedEntities() { FSetupLinkedEntities(this); }
 	void OnReset() { FOnReset(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FGetMemoryUsage = PreyFunction<void(CArkElevatorCollisionDetector const *const _this, ICrySizer *_pSizer)>(0xA13080);
 	static inline auto FInit = PreyFunction<bool(CArkElevatorCollisionDetector *const _this, IGameObject *_pGameObject)>(0x1158890);
 	static inline auto FPostInit = PreyFunction<void(CArkElevatorCollisionDetector *const _this, IGameObject *_pGameObject)>(0x1158AC0);
@@ -72,5 +78,31 @@ public:
 	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkElevatorCollisionDetector *const _this)>(0xA13080);
 	static inline auto FSetupLinkedEntities = PreyFunction<void(CArkElevatorCollisionDetector *const _this)>(0x1158C30);
 	static inline auto FOnReset = PreyFunction<void(CArkElevatorCollisionDetector *const _this)>(0x11588C0);
+#else
+	static inline auto FCArkElevatorCollisionDetectorOv1 = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x11A7420);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkElevatorCollisionDetector* const _this, ICrySizer* _pSizer)>(0x1333E90);
+	static inline auto FInit = PreyFunction<bool(CArkElevatorCollisionDetector* const _this, IGameObject* _pGameObject)>(0x11A7810);
+	static inline auto FPostInit = PreyFunction<void(CArkElevatorCollisionDetector* const _this, IGameObject* _pGameObject)>(0x11A7A40);
+	static inline auto FInitClient = PreyFunction<void(CArkElevatorCollisionDetector* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkElevatorCollisionDetector* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkElevatorCollisionDetector* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkElevatorCollisionDetector* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkElevatorCollisionDetector* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x11A7B90);
+	static inline auto FFullSerialize = PreyFunction<void(CArkElevatorCollisionDetector* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkElevatorCollisionDetector* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0x13B0900);
+	static inline auto FPostSerialize = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkElevatorCollisionDetector* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkElevatorCollisionDetector* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkElevatorCollisionDetector* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkElevatorCollisionDetector* const _this, const SGameObjectEvent& _event)>(0x11A74E0);
+	static inline auto FProcessEvent = PreyFunction<void(CArkElevatorCollisionDetector* const _this, SEntityEvent& _event)>(0x11A7AA0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkElevatorCollisionDetector* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkElevatorCollisionDetector* const _this, bool _auth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkElevatorCollisionDetector* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkElevatorCollisionDetector* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x1333E90);
+	static inline auto FSetupLinkedEntities = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x11A7BB0);
+	static inline auto FOnReset = PreyFunction<void(CArkElevatorCollisionDetector* const _this)>(0x11A7840);
+#endif
 };
-

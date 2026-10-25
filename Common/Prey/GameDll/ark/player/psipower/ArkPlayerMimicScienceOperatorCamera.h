@@ -49,6 +49,7 @@ public:
 	void ProcessInput(const CCryName& _arg0_, const bool _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicScienceOperatorCameraOv2 = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this)>(0x12EE0B0);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const ArkPlayerMimicScienceOperatorController& _controller)>(0x12EE300);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x12EE580);
@@ -57,5 +58,14 @@ public:
 	static inline auto FSetInGravShaft = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const bool _bInGravShaft)>(0x12EE540);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, TSerialize _ser)>(0x12EE440);
 	static inline auto FRefreshInitialLerpValues = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const float _lerpTimerDuration)>(0x12EE3C0);
+#else
+	static inline auto FArkPlayerMimicScienceOperatorCameraOv2 = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this)>(0x13A36F0);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const ArkPlayerMimicScienceOperatorController& _controller)>(0x13A3940);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13A3BC0);
+	static inline auto FSetPosition = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const Vec3& _position)>(0x13A3BA0);
+	static inline auto FSetRotation = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const Quat& _rotation)>(0x13EEBD0);
+	static inline auto FSetInGravShaft = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const bool _bInGravShaft)>(0x13A3B80);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, TSerialize _ser)>(0x13A3A80);
+	static inline auto FRefreshInitialLerpValues = PreyFunction<void(ArkPlayerMimicScienceOperatorCamera* const _this, const float _lerpTimerDuration)>(0x13A3A00);
+#endif
 };
-

@@ -43,4 +43,3 @@ public:
 	virtual void PopAIAlwaysUpdate() = 0;
 	virtual void ResetAIAlwaysUpdate() = 0;
 };
-

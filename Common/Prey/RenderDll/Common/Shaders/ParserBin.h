@@ -741,7 +741,11 @@ class CParserBin
 	SParserFrame m_Value;
 	SParserFrame m_Data;
 
+#ifndef MOONCRASH
 	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2BA7198);
+#else
+	static inline auto m_StaticMacros = PreyGlobal<FXMacroBin>(0x2D163F8);
+#endif
 
 public:
 	CParserBin(SShaderBin* pBin)
@@ -932,49 +936,217 @@ public:
 	static constexpr bool m_bEditable = false;
 	static constexpr uint32 m_nPlatform = SF_D3D11;
 	static constexpr bool m_bEndians = false;
+#ifndef MOONCRASH
 	static inline auto m_bParseFX = PreyGlobal<bool>(0x2270BF8);
+#else
+	static inline auto m_bParseFX = PreyGlobal<bool>(0x23DDBF8);
+#endif
+#ifndef MOONCRASH
 	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2BA5FE1);
+#else
+	static inline auto m_bShaderCacheGen = PreyGlobal<bool>(0x2D15241);
+#endif
 
+#ifndef MOONCRASH
 	static inline auto FConstructor = PreyFunction<void (CParserBin* _this, SShaderBin* pBin, CShader* pSH)>(0x100BFA0);
+#else
+	static inline auto FConstructor = PreyFunction<void (CParserBin* _this, SShaderBin* pBin, CShader* pSH)>(0x1028200);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetStringOv2 = PreyFunction<const char* (unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey)>(0x100DDA0);
+#else
+	static inline auto FGetStringOv2 = PreyFunction<const char* (unsigned nToken, std::vector<STokenD>& Table, bool bOnlyKey)>(0x102A020);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetStringOv1 = PreyFunction<const char* (CParserBin* const _this, unsigned nToken, bool bOnlyKey)>(0x100DD90);
+#else
+	static inline auto FGetStringOv1 = PreyFunction<const char* (CParserBin* const _this, unsigned nToken, bool bOnlyKey)>(0x102A010);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetStringOv0 = PreyFunction<string(CParserBin* const _this, SParserFrame& Frame)>(0x100DA40);
+#else
+	static inline auto FGetStringOv0 = PreyFunction<string(CParserBin* const _this, SParserFrame& Frame)>(0x1029CC0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetNameString = PreyFunction<CCryNameR(CParserBin* const _this, SParserFrame& Frame)>(0x100D080);
+#else
+	static inline auto FGetNameString = PreyFunction<CCryNameR(CParserBin* const _this, SParserFrame& Frame)>(0x1029300);
+#endif
+#ifndef MOONCRASH
 	static inline auto FPreprocessTokens = PreyFunction<bool(CParserBin* const _this, TArray<unsigned int>& Tokens, int nPass, PodArray<unsigned int, 0>& tokensBuffer)>(0x1011F80);
+#else
+	static inline auto FPreprocessTokens = PreyFunction<bool(CParserBin* const _this, TArray<unsigned int>& Tokens, int nPass, PodArray<unsigned int, 0>& tokensBuffer)>(0x102E200);
+#endif
+#ifndef MOONCRASH
 	static inline auto FPreprocess = PreyFunction<bool(CParserBin* const _this, int nPass, TArray<unsigned int>& Tokens, std::vector<STokenD>* pSrcTable)>(0x1011DB0);
+#else
+	static inline auto FPreprocess = PreyFunction<bool(CParserBin* const _this, int nPass, TArray<unsigned int>& Tokens, std::vector<STokenD>* pSrcTable)>(0x102E030);
+#endif
+#ifndef MOONCRASH
 	static inline auto FFindMacro = PreyFunction<SMacroBinFX const* (unsigned dwName, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x100CB50);
+#else
+	static inline auto FFindMacro = PreyFunction<SMacroBinFX const* (unsigned dwName, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x1028DD0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FAddMacro = PreyFunction<bool(unsigned dwName, const unsigned* pMacro, int nMacroTokens, uint64_t nMask, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x100C1A0);
+#else
+	static inline auto FAddMacro = PreyFunction<bool(unsigned dwName, const unsigned* pMacro, int nMacroTokens, uint64_t nMask, std::map<unsigned int, SMacroBinFX, std::less<unsigned int>>& Macro)>(0x1028400);
+#endif
+#ifndef MOONCRASH
 	static inline auto FCleanPlatformMacros = PreyFunction<void()>(0x100C630);
+#else
+	static inline auto FCleanPlatformMacros = PreyFunction<void()>(0x1028890);
+#endif
+#ifndef MOONCRASH
 	static inline auto FNewUserToken = PreyFunction<unsigned(CParserBin* const _this, unsigned nToken, const char* psToken, bool bUseFinalTable)>(0x1010550);
+#else
+	static inline auto FNewUserToken = PreyFunction<unsigned(CParserBin* const _this, unsigned nToken, const char* psToken, bool bUseFinalTable)>(0x102C7D0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FMergeTable = PreyFunction<void(CParserBin* const _this, SShaderBin* pBin)>(0x10103D0);
+#else
+	static inline auto FMergeTable = PreyFunction<void(CParserBin* const _this, SShaderBin* pBin)>(0x102C650);
+#endif
+#ifndef MOONCRASH
 	static inline auto FCheckIfExpression = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nPass, uint64_t* nMask)>(0x100C300);
+#else
+	static inline auto FCheckIfExpression = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nPass, uint64_t* nMask)>(0x1028560);
+#endif
+#ifndef MOONCRASH
 	static inline auto FIgnorePreprocessBlock = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nMaxTokens, PodArray<unsigned int, 0>& tokensBuffer, int nPass)>(0x100DF20);
+#else
+	static inline auto FIgnorePreprocessBlock = PreyFunction<bool(CParserBin* const _this, const unsigned* pTokens, unsigned& nT, int nMaxTokens, PodArray<unsigned int, 0>& tokensBuffer, int nPass)>(0x102A1A0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetBool = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x100CC70);
+#else
+	static inline auto FGetBool = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x1028EF0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetInt = PreyFunction<int(CParserBin* const _this, unsigned nToken)>(0x100CFB0);
+#else
+	static inline auto FGetInt = PreyFunction<int(CParserBin* const _this, unsigned nToken)>(0x1029230);
+#endif
+#ifndef MOONCRASH
 	static inline auto FNextTokenOv0 = PreyFunction<unsigned(char*& buf, char* com, bool& bKey)>(0x10106E0);
+#else
+	static inline auto FNextTokenOv0 = PreyFunction<unsigned(char*& buf, char* com, bool& bKey)>(0x102C960);
+#endif
+#ifndef MOONCRASH
 	static inline auto FBeginFrame = PreyFunction<SParserFrame(CParserBin* const _this, SParserFrame& Frame)>(0x100C2C0);
+#else
+	static inline auto FBeginFrame = PreyFunction<SParserFrame(CParserBin* const _this, SParserFrame& Frame)>(0x1028520);
+#endif
+#ifndef MOONCRASH
 	static inline auto FEndFrame = PreyFunction<void(CParserBin* const _this, SParserFrame& Frame)>(0x706100);
+#else
+	static inline auto FEndFrame = PreyFunction<void(CParserBin* const _this, SParserFrame& Frame)>(0x1028DB0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetCompareFunc = PreyFunction<uint8_t(CParserBin* const _this, EToken eT)>(0x100CD00);
+#else
+	static inline auto FGetCompareFunc = PreyFunction<uint8_t(CParserBin* const _this, EToken eT)>(0x1028F80);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetSrcBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x100D8E0);
+#else
+	static inline auto FGetSrcBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x1029B60);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetDstBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x100CE50);
+#else
+	static inline auto FGetDstBlend = PreyFunction<int(CParserBin* const _this, EToken eT)>(0x10290D0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FInsertSkipTokens = PreyFunction<void(CParserBin* const _this, const unsigned* pTokens, unsigned nStart, unsigned nTokens, bool bSingle, PodArray<unsigned int, 0>& tokensBuffer)>(0x1010220);
+#else
+	static inline auto FInsertSkipTokens = PreyFunction<void(CParserBin* const _this, const unsigned* pTokens, unsigned nStart, unsigned nTokens, bool bSingle, PodArray<unsigned int, 0>& tokensBuffer)>(0x102C4A0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FParseObjectOv1 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens, int& nIndex)>(0x1010B70);
+#else
+	static inline auto FParseObjectOv1 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens, int& nIndex)>(0x102CDF0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FParseObjectOv0 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens)>(0x1010780);
+#else
+	static inline auto FParseObjectOv0 = PreyFunction<ETokenStorageClass(CParserBin* const _this, SFXTokenBin* pTokens)>(0x102CA00);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetNextToken = PreyFunction<int(CParserBin* const _this, unsigned& nStart, ETokenStorageClass& nTokenStorageClass)>(0x100D3F0);
+#else
+	static inline auto FGetNextToken = PreyFunction<int(CParserBin* const _this, unsigned& nStart, ETokenStorageClass& nTokenStorageClass)>(0x1029670);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetAssignmentData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x100CBE0);
+#else
+	static inline auto FGetAssignmentData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame)>(0x1028E60);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetSubData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame, EToken eT1, EToken eT2)>(0x100DE20);
+#else
+	static inline auto FGetSubData = PreyFunction<bool(CParserBin* const _this, SParserFrame& Frame, EToken eT1, EToken eT2)>(0x102A0A0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FFindTokenOv2 = PreyFunction<int(unsigned nStart, unsigned nLast, const unsigned* pTokens, unsigned nToken)>(0x100CBC0);
+#else
+	static inline auto FFindTokenOv2 = PreyFunction<int(unsigned nStart, unsigned nLast, const unsigned* pTokens, unsigned nToken)>(0x1028E40);
+#endif
+#ifndef MOONCRASH
 	static inline auto FFindTokenOv1 = PreyFunction<int(CParserBin* const _this, unsigned nStart, unsigned nLast, unsigned nToken)>(0x100CB90);
+#else
+	static inline auto FFindTokenOv1 = PreyFunction<int(CParserBin* const _this, unsigned nStart, unsigned nLast, unsigned nToken)>(0x1028E10);
+#endif
+#ifndef MOONCRASH
 	static inline auto FCopyTokensOv1 = PreyFunction<int(CParserBin* const _this, SParserFrame& Fragment, std::vector<unsigned int>& NewTokens)>(0x100C890);
+#else
+	static inline auto FCopyTokensOv1 = PreyFunction<int(CParserBin* const _this, SParserFrame& Fragment, std::vector<unsigned int>& NewTokens)>(0x1028AF0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FCopyTokensOv0 = PreyFunction<int(CParserBin* const _this, SCodeFragment* pCF, PodArray<unsigned int, 0>& SHData, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, unsigned nID)>(0x100C930);
+#else
+	static inline auto FCopyTokensOv0 = PreyFunction<int(CParserBin* const _this, SCodeFragment* pCF, PodArray<unsigned int, 0>& SHData, TArray<SCodeFragment>& Replaces, TArray<unsigned int>& NewTokens, unsigned nID)>(0x1028B90);
+#endif
+#ifndef MOONCRASH
 	static inline auto FfxToken = PreyFunction<unsigned(const char* szToken, bool* bKey)>(0x1013B60);
+#else
+	static inline auto FfxToken = PreyFunction<unsigned(const char* szToken, bool* bKey)>(0x102FE70);
+#endif
+#ifndef MOONCRASH
 	static inline auto FfxTokenKey = PreyFunction<unsigned(char* szToken, EToken eTC)>(0x1013BD0);
+#else
+	static inline auto FfxTokenKey = PreyFunction<unsigned(char* szToken, EToken eTC)>(0x102FEE0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetCRC32 = PreyFunction<unsigned(const char* szStr)>(0x100CCB0);
+#else
+	static inline auto FGetCRC32 = PreyFunction<unsigned(const char* szStr)>(0x1028F30);
+#endif
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<void()>(0x100E0B0);
+#else
+	static inline auto FInit = PreyFunction<void()>(0x102A330);
+#endif
+#ifndef MOONCRASH
 	static inline auto FSetupForD3D11 = PreyFunction<void()>(0x1013630);
+#else
+	static inline auto FSetupForD3D11 = PreyFunction<void()>(0x102F8B0);
+#endif
+#ifndef MOONCRASH
 	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x1013310);
+#else
+	static inline auto FSetupFeatureDefines = PreyFunction<void()>(0x102F590);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x100D8C0);
+#else
+	static inline auto FGetPlatformSpecName = PreyFunction<CCryNameTSCRC(CCryNameTSCRC orgName)>(0x1029B40);
+#endif
+#ifndef MOONCRASH
 	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x100D8B0);
+#else
+	static inline auto FGetPlatformShaderlistName = PreyFunction<const char* ()>(0x1029B30);
+#endif
 };
 
 #endif

@@ -10,6 +10,9 @@
 #include "Prey/GameDll/ark/ArkGame.h"
 #include "Prey/GameDll/ark/ArkLocationManager.h"
 #include "Prey/GameDll/ark/npc/ArkNpc.h"
+#ifdef MOONCRASH
+#include "Prey/GameDll/ark/npc/ArkNpcBody.h"
+#endif
 #include "Prey/GameDll/ark/ArkFactionManager.h"
 
 #include <Chairloader/IChairXmlUtils.h>
@@ -390,7 +393,12 @@ void EntityManager::drawEntityList(bool* bShow) {
                                     ImGui::TableNextColumn();
                                     ImGui::Text("Is Dissipating");
                                     ImGui::TableNextColumn();
+#ifndef MOONCRASH
                                     ImGui::Text("%s", npc->IsDissipating() ? "true" : "false");
+#else
+                                    // Mooncrash inlines ArkNpc::IsDissipating: body FSM in the dissipate state (cf. ArkNpcBody::Dissipate).
+                                    ImGui::Text("%s", npc->m_pBody && npc->m_pBody->m_fsm.m_currentStateId == EArkNpcBodyStateId::dissipate ? "true" : "false");
+#endif
                                     ImGui::TableNextRow();
                                     ImGui::TableNextColumn();
                                     ImGui::Text("Is Dormant");
@@ -1302,7 +1310,11 @@ void EntityManager::drawEntityList(bool* bShow) {
                                 if(ImGui::TreeNode("Raise Phantom")){
                                     //bool m_bCanBeRaisedPhantom; int m_maxAllowedRaisedPhantoms;
                                     ImGui::Text("Can Be Raised Phantom: %s", properties.m_raisePhantom.m_bCanBeRaisedPhantom ? "true" : "false");
+#ifndef MOONCRASH
                                     ImGui::Text("Max Allowed Raised Phantoms: %d", properties.m_raisePhantom.m_maxAllowedRaisedPhantoms);
+#else
+                                    ImGui::Text("Max Allowed Raised Phantoms: not available in Mooncrash (no such property)");
+#endif
                                     ImGui::TreePop();
                                 }
                                 // Shift

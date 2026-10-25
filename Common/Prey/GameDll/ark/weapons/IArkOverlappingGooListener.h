@@ -9,4 +9,3 @@ class IArkOverlappingGooListener // Id=8018FB7 Size=8
 public:
 	virtual void OnGooStatusChanged(bool arg0) = 0;
 };
-

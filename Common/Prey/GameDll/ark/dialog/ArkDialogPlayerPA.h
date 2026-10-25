@@ -33,6 +33,7 @@ public:
 	void SetChannel(const uint8_t arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayerPA *const _this, SDialogParams const &_params)>(0x14864B0);
 	static inline auto FStop = PreyFunction<void(ArkDialogPlayerPA *const _this, bool _bInvalidate)>(0x14867A0);
 	static inline auto FOnGamePause = PreyFunction<void(ArkDialogPlayerPA *const _this, bool _bPause)>(0x14863D0);
@@ -42,5 +43,16 @@ public:
 	static inline auto FPlayTriggerInternal = PreyFunction<bool(ArkDialogPlayerPA *const _this, ArkDialogAudioTrigger &_trigger)>(0x1486510);
 	static inline auto FOnDialogComplete = PreyFunction<void(ArkDialogPlayerPA *const _this, ArkDialogAudioTrigger const *_pTrigger, const bool _bAudioComplete)>(0x1486370);
 	static inline auto FUpdateAudioLevels = PreyFunction<void(ArkDialogPlayerPA *const _this, IEntity &_entity, unsigned _nEnvironmentId, unsigned _proxyId)>(0x14868D0);
+#else
+	static inline auto FArkDialogPlayerPAOv2 = PreyFunction<void(ArkDialogPlayerPA* const _this, ArkSpeakerBase* const _pSpeaker)>(0x159D830);
+	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayerPA* const _this, const SDialogParams& _params)>(0x159DD30);
+	static inline auto FStop = PreyFunction<void(ArkDialogPlayerPA* const _this, bool _bInvalidate)>(0x159E020);
+	static inline auto FOnGamePause = PreyFunction<void(ArkDialogPlayerPA* const _this, bool _bPause)>(0x159DC50);
+	static inline auto FSetDuckAudio = PreyFunction<void(ArkDialogPlayerPA* const _this, bool _bEnable)>(0x159DF40);
+	static inline auto FGetSubtitleAudioData = PreyFunction<std::vector<SSubtitleAudioData>*(const ArkDialogPlayerPA* const _this, std::vector<SSubtitleAudioData>* _return_value_)>(0x159D8C0);
+	static inline auto FIsPlayingSpeaker = PreyFunction<bool(const ArkDialogPlayerPA* const _this, unsigned _entityId)>(0x159DBC0);
+	static inline auto FPlayTriggerInternal = PreyFunction<bool(ArkDialogPlayerPA* const _this, ArkDialogAudioTrigger& _trigger)>(0x159DD90);
+	static inline auto FOnDialogComplete = PreyFunction<void(ArkDialogPlayerPA* const _this, const ArkDialogAudioTrigger* _pTrigger, const bool _bAudioComplete)>(0x159DBF0);
+	static inline auto FUpdateAudioLevels = PreyFunction<void(ArkDialogPlayerPA* const _this, IEntity& _entity, unsigned _nEnvironmentId, unsigned _proxyId)>(0x159E150);
+#endif
 };
-

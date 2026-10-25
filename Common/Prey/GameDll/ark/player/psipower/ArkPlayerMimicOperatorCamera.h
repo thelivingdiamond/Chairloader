@@ -22,7 +22,11 @@ public:
 	float GetCollisionTransitionDuration() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicOperatorCamera = PreyFunction<void(ArkPlayerMimicOperatorCamera* const _this)>(0x131EC40);
 	static inline auto FCollideCamera = PreyFunction<Vec3*(ArkPlayerMimicOperatorCamera* const _this, Vec3* _return_value_, const float _frameTime, const IEntity& _mimicEntity, const Vec3& _basePosition, const Vec3& _desiredPositionOffset, const Vec3& _safePositionOffset)>(0x131EC50);
+#else
+	static inline auto FArkPlayerMimicOperatorCamera = PreyFunction<void(ArkPlayerMimicOperatorCamera* const _this)>(0x13F93C0);
+	static inline auto FCollideCamera = PreyFunction<Vec3*(ArkPlayerMimicOperatorCamera* const _this, Vec3* _return_value_, const float _frameTime, const IEntity& _mimicEntity, const Vec3& _basePosition, const Vec3& _desiredPositionOffset, const Vec3& _safePositionOffset)>(0x13F93D0);
+#endif
 };
-

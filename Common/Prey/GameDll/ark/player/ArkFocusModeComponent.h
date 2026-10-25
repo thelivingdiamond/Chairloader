@@ -48,6 +48,7 @@ public:
 	ArkFocusModeUIComponent& GetFocusModeUIComponent();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkFocusModeComponentOv1 = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x1220EE0);
 	static inline auto FBitNotArkFocusModeComponent = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x1220FB0);
 	static inline auto FUpdate = PreyFunction<void(ArkFocusModeComponent* const _this, const float _frameTime)>(0x12219B0);
@@ -60,5 +61,18 @@ public:
 	static inline auto FPostSerialize = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x1221120);
 	static inline auto FReset = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x1221600);
 	static inline auto FEnableInputMode = PreyFunction<void(ArkFocusModeComponent* const _this, const bool _bEnable)>(0x1221010);
+#else
+	static inline auto FArkFocusModeComponentOv1 = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x12C0E40);
+	static inline auto FBitNotArkFocusModeComponent = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x12C0F10);
+	static inline auto FUpdate = PreyFunction<void(ArkFocusModeComponent* const _this, const float _frameTime)>(0x12C1910);
+	static inline auto FStop = PreyFunction<void(ArkFocusModeComponent* const _this, const bool _bFromTargeting)>(0x12C17A0);
+	static inline auto FStart = PreyFunction<bool(ArkFocusModeComponent* const _this, const bool _bOpenMenu)>(0x12C1690);
+	static inline auto FIsTargeting = PreyFunction<bool(const ArkFocusModeComponent* const _this)>(0x12C1060);
+	static inline auto FRegisterEnabledFlowNode = PreyFunction<void(ArkFocusModeComponent* const _this, const CArkFlowNodeFocusModeEnabled* _pFlowNode)>(0x12C1550);
+	static inline auto FProcessInput = PreyFunction<void(ArkFocusModeComponent* const _this, const CCryName _actionId, const int _activationMode, const float _value)>(0x12C1130);
+	static inline auto FSerialize = PreyFunction<void(ArkFocusModeComponent* const _this, TSerialize _ser)>(0x12C15E0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x12C1080);
+	static inline auto FReset = PreyFunction<void(ArkFocusModeComponent* const _this)>(0x12C1560);
+	static inline auto FEnableInputMode = PreyFunction<void(ArkFocusModeComponent* const _this, const bool _bEnable)>(0x12C0F70);
+#endif
 };
-

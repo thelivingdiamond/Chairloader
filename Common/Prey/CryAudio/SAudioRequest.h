@@ -16,4 +16,3 @@ struct SAudioRequest // Id=80021AA Size=40
 	void *pUserDataOwner;
 	SAudioRequestDataBase *pData;
 };
-

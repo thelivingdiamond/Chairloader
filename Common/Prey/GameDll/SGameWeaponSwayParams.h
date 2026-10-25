@@ -4,6 +4,12 @@
 
 // Header: Override
 // Prey/GameDll/SGameWeaponSwayParams.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SGameWeaponSwayParams // Id=8016D07 Size=48
 {
 	Vec3 inputMove;
@@ -15,4 +21,3 @@ struct SGameWeaponSwayParams // Id=8016D07 Size=48
 	void Serialize(Serialization::IArchive &arg0);
 #endif
 };
-

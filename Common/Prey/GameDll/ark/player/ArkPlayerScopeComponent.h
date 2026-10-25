@@ -30,8 +30,13 @@ public:
 		ArkPostProcessIdProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkPostProcessIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D720);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkPostProcessIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkPostProcessIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkPostProcessIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkZoomDeltaProperty
@@ -46,8 +51,13 @@ public:
 		ArkZoomDeltaProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomDeltaProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomDeltaProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomDeltaProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomDeltaProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty
@@ -62,8 +72,13 @@ public:
 		ArkFullyZoomedHFOVProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328670);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x1064F90);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x14035F0);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty
@@ -78,8 +93,13 @@ public:
 		ArkDefaultZoomHFOVProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty
@@ -94,8 +114,13 @@ public:
 		ArkDefaultZoomDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty
@@ -110,8 +135,13 @@ public:
 		ArkZoomingInAudioTriggerNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D4F20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B3000);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty
@@ -126,8 +156,13 @@ public:
 		ArkZoomingOutAudioTriggerNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15AE4C0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty
@@ -142,8 +177,13 @@ public:
 		ArkOpenAudioTriggerNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15917F0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A04B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty
@@ -158,8 +198,13 @@ public:
 		ArkCloseAudioTriggerNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1086280);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0510);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+#endif
 	};
 
 	// ArkPlayerScopeComponent::ArkArkInputLegendProperty
@@ -174,29 +219,74 @@ public:
 		ArkArkInputLegendProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkArkInputLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1245CB0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkArkInputLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPlayerScopeComponent::ArkArkInputLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12E79C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPlayerScopeComponent::ArkArkInputLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkPostProcessIdProperty = PreyGlobal<ArkPlayerScopeComponent::ArkPostProcessIdProperty>(0x2BD3580);
+#else
+	static inline auto s_ArkPostProcessIdProperty = PreyGlobal<ArkPlayerScopeComponent::ArkPostProcessIdProperty>(0x2D49D80);
+#endif
 	uint64_t m_PostProcessId;
+#ifndef MOONCRASH
 	static inline auto s_ArkZoomDeltaProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomDeltaProperty>(0x2BD35A0);
+#else
+	static inline auto s_ArkZoomDeltaProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomDeltaProperty>(0x2D49DA0);
+#endif
 	float m_ZoomDelta;
+#ifndef MOONCRASH
 	static inline auto s_ArkFullyZoomedHFOVProperty = PreyGlobal<ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty>(0x2BD35C0);
+#else
+	static inline auto s_ArkFullyZoomedHFOVProperty = PreyGlobal<ArkPlayerScopeComponent::ArkFullyZoomedHFOVProperty>(0x2D49DC0);
+#endif
 	float m_FullyZoomedHFOV;
+#ifndef MOONCRASH
 	static inline auto s_ArkDefaultZoomHFOVProperty = PreyGlobal<ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty>(0x2BD35E0);
+#else
+	static inline auto s_ArkDefaultZoomHFOVProperty = PreyGlobal<ArkPlayerScopeComponent::ArkDefaultZoomHFOVProperty>(0x2D49DE0);
+#endif
 	float m_DefaultZoomHFOV;
+#ifndef MOONCRASH
 	static inline auto s_ArkDefaultZoomDurationProperty = PreyGlobal<ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty>(0x2BD3600);
+#else
+	static inline auto s_ArkDefaultZoomDurationProperty = PreyGlobal<ArkPlayerScopeComponent::ArkDefaultZoomDurationProperty>(0x2D49E00);
+#endif
 	float m_DefaultZoomDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkZoomingInAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty>(0x2BD3620);
+#else
+	static inline auto s_ArkZoomingInAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomingInAudioTriggerNameProperty>(0x2D49E20);
+#endif
 	string m_ZoomingInAudioTriggerName;
+#ifndef MOONCRASH
 	static inline auto s_ArkZoomingOutAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty>(0x2BD3640);
+#else
+	static inline auto s_ArkZoomingOutAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkZoomingOutAudioTriggerNameProperty>(0x2D49E40);
+#endif
 	string m_ZoomingOutAudioTriggerName;
+#ifndef MOONCRASH
 	static inline auto s_ArkOpenAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty>(0x2BD3660);
+#else
+	static inline auto s_ArkOpenAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkOpenAudioTriggerNameProperty>(0x2D49E60);
+#endif
 	string m_OpenAudioTriggerName;
+#ifndef MOONCRASH
 	static inline auto s_ArkCloseAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty>(0x2BD3680);
+#else
+	static inline auto s_ArkCloseAudioTriggerNameProperty = PreyGlobal<ArkPlayerScopeComponent::ArkCloseAudioTriggerNameProperty>(0x2D49E80);
+#endif
 	string m_CloseAudioTriggerName;
+#ifndef MOONCRASH
 	static inline auto s_ArkArkInputLegendProperty = PreyGlobal<ArkPlayerScopeComponent::ArkArkInputLegendProperty>(0x2BD36A0);
+#else
+	static inline auto s_ArkArkInputLegendProperty = PreyGlobal<ArkPlayerScopeComponent::ArkArkInputLegendProperty>(0x2D49EA0);
+#endif
 	ArkInputLegend m_ArkInputLegend;
 	bool m_bScopeEnabled;
 	bool m_bScopeOn;
@@ -255,6 +345,7 @@ public:
 	const ArkInputLegend& GetArkInputLegend() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerScopeComponentOv2 = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x1245D50);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerScopeComponent* const _this, const XmlNodeRef& _root)>(0x1246210);
 	static inline auto FReset = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x1246480);
@@ -274,5 +365,25 @@ public:
 	static inline auto FStopAudio = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x1246540);
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1245F70);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1246070);
+#else
+	static inline auto FArkPlayerScopeComponentOv2 = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E7A70);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerScopeComponent* const _this, const XmlNodeRef& _root)>(0x12E7F30);
+	static inline auto FReset = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E81D0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerScopeComponent* const _this, TSerialize _ser)>(0x12E81E0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerScopeComponent* const _this, float _frameTime)>(0x12E83D0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPlayerScopeComponent* const _this, const CCryName& _actionId, const int _activationMode, const float _value)>(0x12E8140);
+	static inline auto FIsScopeOn = PreyFunction<bool(const ArkPlayerScopeComponent* const _this)>(0x12E7EE0);
+	static inline auto FToggle = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E82E0);
+	static inline auto FOpen = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E8060);
+	static inline auto FClose = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E7BD0);
+	static inline auto FSetScopeEnabled = PreyFunction<void(ArkPlayerScopeComponent* const _this, bool _bEnabled)>(0x12E8230);
+	static inline auto FClearZoom = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E7B50);
+	static inline auto FStartedSprinting = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E8250);
+	static inline auto FGetCurrentZoomRatio = PreyFunction<float(const ArkPlayerScopeComponent* const _this)>(0x12E7E80);
+	static inline auto FUpdateZoom = PreyFunction<void(ArkPlayerScopeComponent* const _this, float _value, float _deltaTime)>(0x12E8550);
+	static inline auto FIsZoomingIn = PreyFunction<bool(const ArkPlayerScopeComponent* const _this)>(0x12E7EF0);
+	static inline auto FStopAudio = PreyFunction<void(ArkPlayerScopeComponent* const _this)>(0x12E8290);
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12E7C90);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12E7D90);
+#endif
 };
-

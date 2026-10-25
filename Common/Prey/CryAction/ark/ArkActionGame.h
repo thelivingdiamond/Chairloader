@@ -34,9 +34,14 @@ public:
 	bool ShouldEntityNeverBreakGlass(EventPhysCollision const &arg0) const;
 	void PlayGlassBreakAudio(Vec3 arg0, const float arg1) const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FPlayCollisionEffect = PreyFunction<void(ArkActionGame *const _this, const uint16_t _effect, SMFXRunTimeEffectParams &_params)>(0x2A3620);
 	static inline auto FLoadConfig = PreyFunction<void(ArkActionGame *const _this)>(0x5AC510);
 	static inline auto FIsEntityPresentInList = PreyFunction<bool(EventPhysCollision const &_epc, ArkUtils::ClassList const &_list)>(0x5AC480);
+#else
+	static inline auto FPlayCollisionEffect = PreyFunction<void(ArkActionGame* const _this, const uint16_t _effect, SMFXRunTimeEffectParams& _params)>(0x2BBB80);
+	static inline auto FLoadConfig = PreyFunction<void(ArkActionGame* const _this)>(0x5C5BF0);
+	static inline auto FIsEntityPresentInList = PreyFunction<bool(const EventPhysCollision& _epc, const ArkUtils::ClassList& _list)>(0x5C5B60);
+#endif
 };
-

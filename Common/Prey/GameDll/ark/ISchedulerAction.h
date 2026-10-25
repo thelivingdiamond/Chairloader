@@ -14,4 +14,3 @@ struct ISchedulerAction // Id=8013D63 Size=8
 	virtual void destroy() = 0;
 	virtual void GetMemoryStatistics(ICrySizer *arg0) = 0;
 };
-

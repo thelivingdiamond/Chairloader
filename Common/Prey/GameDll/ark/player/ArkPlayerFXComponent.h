@@ -64,6 +64,7 @@ public:
 	void StopLoopingPostFX(uint64_t _id) { FStopLoopingPostFX(this, _id); }
 	void StopLoopingVFX(uint64_t _id, bool _bKill) { FStopLoopingVFX(this, _id, _bKill); }
 
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x12FE800);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerFXComponent* const _this, const float _frameTime)>(0x12FEE60);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerFXComponent* const _this, TSerialize _ser)>(0x12FE830);
@@ -75,6 +76,19 @@ public:
 	static inline auto FStopLoopingSFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, IEntity* _pEntity)>(0x12FEC80);
 	static inline auto FStopLoopingPostFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id)>(0x12FEC00);
 	static inline auto FStopLoopingVFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, bool _bKill)>(0x12FED10);
+#else
+	static inline auto FReset = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D9680);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerFXComponent* const _this, const float _frameTime)>(0x13D9CE0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerFXComponent* const _this, TSerialize _ser)>(0x13D96B0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D91D0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkPlayerFXComponent* const _this, const ArkSignalSystem::Package& _package)>(0x13D8550);
+	static inline auto FStopAllLoopingSFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D97F0);
+	static inline auto FStopAllLoopingPostFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D9740);
+	static inline auto FStopAllLoopingVFX = PreyFunction<void(ArkPlayerFXComponent* const _this)>(0x13D98E0);
+	static inline auto FStopLoopingSFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, IEntity* _pEntity)>(0x13D9B00);
+	static inline auto FStopLoopingPostFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id)>(0x13D9A80);
+	static inline auto FStopLoopingVFX = PreyFunction<void(ArkPlayerFXComponent* const _this, uint64_t _id, bool _bKill)>(0x13D9B90);
+#endif
 };
 
 // ArkSignalFXSignalEntry
@@ -94,8 +108,13 @@ public:
 		ArkSignalProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D720);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkSignalProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkSignalFXSignalEntry::ArkValueThresholdProperty
@@ -110,13 +129,26 @@ public:
 		ArkValueThresholdProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328E20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C5E0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXSignalEntry::ArkValueThresholdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkSignalProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkSignalProperty>(0x2BDA200);
+#else
+	static inline auto s_ArkSignalProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkSignalProperty>(0x2D53C50);
+#endif
 	uint64_t m_Signal;
+#ifndef MOONCRASH
 	static inline auto s_ArkValueThresholdProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkValueThresholdProperty>(0x2BDA220);
+#else
+	static inline auto s_ArkValueThresholdProperty = PreyGlobal<ArkSignalFXSignalEntry::ArkValueThresholdProperty>(0x2D53C70);
+#endif
 	float m_ValueThreshold;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -132,8 +164,13 @@ public:
 	bool operator==(const ArkSignalFXSignalEntry& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12FD580);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12FD740);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D8120);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D82E0);
+#endif
 };
 
 // ArkSignalFX
@@ -153,8 +190,13 @@ public:
 		ArkIDProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D720);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkSignalFX::ArkNameProperty
@@ -169,8 +211,13 @@ public:
 		ArkNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkSignalFX::ArkSignalsProperty
@@ -187,10 +234,17 @@ public:
 		ArkSignalsProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBD00);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBD30);
 		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFX::ArkSignalsProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* _pObject)>(0x12FBD50);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D6AB0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* const _pObject)>(0x13D6AE0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFX::ArkSignalsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkSignalFX::ArkSignalsProperty* const _this, ArkReflectedObject* _pObject)>(0x1093020);
+#endif
 	};
 
 	// ArkSignalFX::ArkPostEffectProperty
@@ -205,8 +259,13 @@ public:
 		ArkPostEffectProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A840);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B7770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+#endif
 	};
 
 	// ArkSignalFX::ArkPostEffectLoopDurationProperty
@@ -221,8 +280,13 @@ public:
 		ArkPostEffectLoopDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBD60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1056F40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1080CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkPostEffectLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x12E7A60);
+#endif
 	};
 
 	// ArkSignalFX::ArkParticleEffectProperty
@@ -237,8 +301,13 @@ public:
 		ArkParticleEffectProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1085FB0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x12F3810);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443770);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x10980B0);
+#endif
 	};
 
 	// ArkSignalFX::ArkParticleLoopDurationProperty
@@ -253,8 +322,13 @@ public:
 		ArkParticleLoopDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A650);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x1591850);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084450);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkParticleLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x119D010);
+#endif
 	};
 
 	// ArkSignalFX::ArkAudioTriggerStartProperty
@@ -269,8 +343,13 @@ public:
 		ArkAudioTriggerStartProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x106D660);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBD70);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10917B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStartProperty* const _this, ArkReflectedObject* const _pObject)>(0x109EE90);
+#endif
 	};
 
 	// ArkSignalFX::ArkAudioTriggerStopProperty
@@ -285,8 +364,13 @@ public:
 		ArkAudioTriggerStopProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBD80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBDE0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A0670);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkAudioTriggerStopProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A06D0);
+#endif
 	};
 
 	// ArkSignalFX::ArkLoopDurationProperty
@@ -301,8 +385,13 @@ public:
 		ArkLoopDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBDF0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10860E0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A31A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkLoopDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x10844A0);
+#endif
 	};
 
 	// ArkSignalFX::ArkCooldownProperty
@@ -317,8 +406,13 @@ public:
 		ArkCooldownProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1328A80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328A90);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D69A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkCooldownProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A31B0);
+#endif
 	};
 
 	// ArkSignalFX::ArkForceFeedbackProperty
@@ -333,33 +427,86 @@ public:
 		ArkForceFeedbackProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBE00);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject)>(0x1086170);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD500);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFX::ArkForceFeedbackProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B80);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkIDProperty = PreyGlobal<ArkSignalFX::ArkIDProperty>(0x2BDA240);
+#else
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkSignalFX::ArkIDProperty>(0x2D53C90);
+#endif
 	uint64_t m_ID;
+#ifndef MOONCRASH
 	static inline auto s_ArkNameProperty = PreyGlobal<ArkSignalFX::ArkNameProperty>(0x2BDA260);
+#else
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkSignalFX::ArkNameProperty>(0x2D53CB0);
+#endif
 	string m_Name;
+#ifndef MOONCRASH
 	static inline auto s_ArkSignalsProperty = PreyGlobal<ArkSignalFX::ArkSignalsProperty>(0x2BDA280);
+#else
+	static inline auto s_ArkSignalsProperty = PreyGlobal<ArkSignalFX::ArkSignalsProperty>(0x2D53CD0);
+#endif
 	std::vector<ArkSignalFXSignalEntry> m_Signals;
+#ifndef MOONCRASH
 	static inline auto s_ArkPostEffectProperty = PreyGlobal<ArkSignalFX::ArkPostEffectProperty>(0x2BDA2A0);
+#else
+	static inline auto s_ArkPostEffectProperty = PreyGlobal<ArkSignalFX::ArkPostEffectProperty>(0x2D53CF0);
+#endif
 	uint64_t m_PostEffect;
+#ifndef MOONCRASH
 	static inline auto s_ArkPostEffectLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkPostEffectLoopDurationProperty>(0x2BDA2C0);
+#else
+	static inline auto s_ArkPostEffectLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkPostEffectLoopDurationProperty>(0x2D53D10);
+#endif
 	float m_PostEffectLoopDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkParticleEffectProperty = PreyGlobal<ArkSignalFX::ArkParticleEffectProperty>(0x2BDA2E0);
+#else
+	static inline auto s_ArkParticleEffectProperty = PreyGlobal<ArkSignalFX::ArkParticleEffectProperty>(0x2D53D30);
+#endif
 	string m_ParticleEffect;
+#ifndef MOONCRASH
 	static inline auto s_ArkParticleLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkParticleLoopDurationProperty>(0x2BDA300);
+#else
+	static inline auto s_ArkParticleLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkParticleLoopDurationProperty>(0x2D53D50);
+#endif
 	float m_ParticleLoopDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkAudioTriggerStartProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStartProperty>(0x2BDA320);
+#else
+	static inline auto s_ArkAudioTriggerStartProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStartProperty>(0x2D53D70);
+#endif
 	string m_AudioTriggerStart;
+#ifndef MOONCRASH
 	static inline auto s_ArkAudioTriggerStopProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStopProperty>(0x2BDA340);
+#else
+	static inline auto s_ArkAudioTriggerStopProperty = PreyGlobal<ArkSignalFX::ArkAudioTriggerStopProperty>(0x2D53D90);
+#endif
 	string m_AudioTriggerStop;
+#ifndef MOONCRASH
 	static inline auto s_ArkLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkLoopDurationProperty>(0x2BDA360);
+#else
+	static inline auto s_ArkLoopDurationProperty = PreyGlobal<ArkSignalFX::ArkLoopDurationProperty>(0x2D53DB0);
+#endif
 	float m_LoopDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkCooldownProperty = PreyGlobal<ArkSignalFX::ArkCooldownProperty>(0x2BDA380);
+#else
+	static inline auto s_ArkCooldownProperty = PreyGlobal<ArkSignalFX::ArkCooldownProperty>(0x2D53DD0);
+#endif
 	float m_Cooldown;
+#ifndef MOONCRASH
 	static inline auto s_ArkForceFeedbackProperty = PreyGlobal<ArkSignalFX::ArkForceFeedbackProperty>(0x2BDA3A0);
+#else
+	static inline auto s_ArkForceFeedbackProperty = PreyGlobal<ArkSignalFX::ArkForceFeedbackProperty>(0x2D53DF0);
+#endif
 	string m_ForceFeedback;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -392,8 +539,13 @@ public:
 	const string& GetForceFeedback() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12FD4C0);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12FD5B0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D8060);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D8150);
+#endif
 };
 
 // ArkSignalFXLibrary
@@ -415,13 +567,24 @@ public:
 		ArkFXProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12FBE60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x12FBEB0);
 		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFXLibrary::ArkFXProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* _pObject)>(0x12FBEF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13D69B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* const _pObject)>(0x13D6A00);
+		static inline auto FIsArray = PreyFunction<bool(const ArkSignalFXLibrary::ArkFXProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkSignalFXLibrary::ArkFXProperty* const _this, ArkReflectedObject* _pObject)>(0x13D6A40);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkFXProperty = PreyGlobal<ArkSignalFXLibrary::ArkFXProperty>(0x2BDA3C0);
+#else
+	static inline auto s_ArkFXProperty = PreyGlobal<ArkSignalFXLibrary::ArkFXProperty>(0x2D53E10);
+#endif
 	std::vector<ArkSignalFX> m_FX;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -434,8 +597,13 @@ public:
 	const ArkSignalFX* FindSignalFX(const uint64_t _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12FD520);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x12FD650);
 	static inline auto FInit = PreyFunction<bool(ArkSignalFXLibrary* const _this)>(0x12FD7E0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13D80C0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x13D81F0);
+	static inline auto FInit = PreyFunction<bool(ArkSignalFXLibrary* const _this)>(0x13D8380);
+#endif
 };
-

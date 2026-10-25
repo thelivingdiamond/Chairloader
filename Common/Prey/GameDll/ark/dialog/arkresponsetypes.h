@@ -25,7 +25,11 @@ struct ArkResponseValue // Id=8013637 Size=16
 	void Serialize(TSerialize arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FoperatorEqOv3 = PreyFunction<void(ArkResponseValue *const _this, const char *const _value)>(0x1498130);
+#else
+	static inline auto FoperatorEqOv3 = PreyFunction<void(ArkResponseValue* const _this, const char* const _value)>(0x15AFC00);
+#endif
 };
 
 // Header: Exact
@@ -44,6 +48,9 @@ struct ArkResponseFact // Id=8013639 Size=24
 	static void Sort(std::vector<ArkResponseFact> &arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInsertPredicate = PreyFunction<bool(ArkResponseFact const &_fact, const uint64_t &_key)>(0x1488A30);
+#else
+	static inline auto FInsertPredicate = PreyFunction<bool(const ArkResponseFact& _fact, const uint64_t& _key)>(0x15A0B20);
+#endif
 };
-

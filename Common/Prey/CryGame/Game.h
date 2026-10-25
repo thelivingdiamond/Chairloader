@@ -59,6 +59,12 @@ class ArkCombatManager;
 class ArkCystoidManager;
 class ArkDistractionEntitySink;
 class ArkDistractionManager;
+#ifdef MOONCRASH
+class ArkDoomClockManager;
+class ArkDynamicCalledMimicManager;
+class ArkMoonRockManager;
+class ArkSeismicPerceptionManager;
+#endif
 class ArkDynamicCorpseManager;
 class ArkEncounterManager;
 class CArkFlowGraphManager;
@@ -120,9 +126,15 @@ class ArkActiveUserManagerBase;
 class CGame : public IGame, IGameFrameworkListener, IPlatformOS::IPlatformListener, IInputEventListener, ISystemEventListener, IArkActiveUserManagerListener
 {
 public:
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CGame* _this, IGameFramework* pFramework)>(0x16D0A90);
 	static inline auto FUpdate = PreyFunction<int(CGame* _this, bool haveFocus, unsigned int updateFlags)>(0x16D6230);
 	static inline auto FShutdown = PreyFunction<void(CGame* _this)>(0x16D6150);
+#else
+	static inline auto FInit = PreyFunction<bool(CGame* const _this, IGameFramework* pFramework)>(0x17F4560);
+	static inline auto FUpdate = PreyFunction<int(CGame* const _this, bool haveFocus, unsigned updateFlags)>(0x17F9D70);
+	static inline auto FShutdown = PreyFunction<void(CGame* const _this)>(0x17F9B50);
+#endif
 
 	enum ESaveIconMode : __int32
 	{
@@ -156,9 +168,10 @@ public:
 		eIAS_Accept = 0x14,
 		eIAS_Error = 0x15,
 	};
-	class IRenderSceneListener
-	{
-		void* vtable;
+	struct IRenderSceneListener
+	{ // Size=8 (0x8)
+		virtual ~IRenderSceneListener() {}
+		virtual void OnRenderScene(const struct SRenderingPassInfo& _arg0_) = 0;
 	};
 	enum EHostMigrationState : __int32
 	{
@@ -300,7 +313,13 @@ public:
 	std::unique_ptr<ArkCystoidManager> m_pArkCystoidManager;
 	std::unique_ptr<ArkDistractionEntitySink> m_pArkDistractionEntitySink;
 	std::unique_ptr<ArkDistractionManager> m_pArkDistractionManager;
+#ifdef MOONCRASH
+	std::unique_ptr<ArkDoomClockManager> m_pArkDoomClockManager;
+#endif
 	std::unique_ptr<ArkDynamicCorpseManager> m_pArkDynamicCorpseManager;
+#ifdef MOONCRASH
+	std::unique_ptr<ArkDynamicCalledMimicManager> m_pArkDynamicCalledMimicManager;
+#endif
 	std::unique_ptr<ArkEncounterManager> m_pArkEncounterManager;
 	std::unique_ptr<CArkFlowGraphManager> m_pArkFlowGraphManager;
 	std::unique_ptr<ArkEthericFogManager> m_pArkEthericFogManager;
@@ -313,6 +332,9 @@ public:
 	std::unique_ptr<ArkListenerManager> m_pArkListenerManager;
 	std::unique_ptr<ArkLurkManager> m_pArkLurkManager;
 	std::unique_ptr<ArkMetaTagManager> m_pArkMetaTagManager;
+#ifdef MOONCRASH
+	std::unique_ptr<ArkMoonRockManager> m_pArkMoonRockManager;
+#endif
 	std::unique_ptr<ArkNightmareEtherformManager> m_pArkNightmareEtherformManager;
 	std::unique_ptr<ArkNightmareSpawnManager> m_pArkNightmareSpawnManager;
 	std::unique_ptr<ArkNpcAbilityManager> m_pArkNpcAbilityManager;
@@ -332,6 +354,9 @@ public:
 	std::unique_ptr<ArkResponseManager> m_pArkResponseManager;
 	std::unique_ptr<ArkRetreatManager> m_pArkRetreatManager;
 	std::unique_ptr<ArkRoomPerceptionManager> m_pArkRoomPerceptionManager;
+#ifdef MOONCRASH
+	std::unique_ptr<ArkSeismicPerceptionManager> m_pArkSeismicPerceptionManager;
+#endif
 	std::unique_ptr<ArkSpatialManager> m_pArkSpatialManager;
 	std::unique_ptr<ArkTimeScaleManager> m_pArkTimeScaleManager;
 	std::unique_ptr<ArkVisualPerceptionManager> m_pArkVisualPerceptionManager;
@@ -352,6 +377,10 @@ public:
 	std::unique_ptr<ArkGame> m_pArkGame;
 	std::unique_ptr<ArkActiveUserManagerBase> m_pActiveUserManager;
 };
+#ifndef MOONCRASH
 static_assert(sizeof(CGame) == 0x450);
+#else
+static_assert(sizeof(CGame) == 0x470);
+#endif
 
 inline CGame* g_pGame = nullptr;

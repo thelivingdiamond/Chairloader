@@ -12,6 +12,9 @@ struct SEntitySpawnParams;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkprojectilepoolmanager.h
+#ifdef MOONCRASH
+#include <Prey/CryCore/Containers/VectorMap.h>
+#endif
 class CArkProjectilePoolManager // Id=8015F09 Size=24
 {
 public:
@@ -46,7 +49,11 @@ public:
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	uint64_t GetProjectilePackageId(IEntityArchetype *const _pArchetype) { return FGetProjectilePackageId(this,_pArchetype); }
 	void DestroyAllProjectilesForLevelTransition() { FDestroyAllProjectilesForLevelTransition(this); }
+#ifndef MOONCRASH
 	bool IsAnotherGrenadeDetonating(CArkProjectileGrenade *const _pGrenade) { return FIsAnotherGrenadeDetonating(this,_pGrenade); }
+#else
+	bool IsAnotherGrenadeDetonating(const unsigned _grenadeId) { return FIsAnotherGrenadeDetonatingOv1(this, _grenadeId); }
+#endif
 	bool IsAnotherGooDestroying(CArkProjectileGoo *const _pGoo) { return FIsAnotherGooDestroying(this,_pGoo); }
 	CArkProjectile *GetArkProjectileFromEntityId(const unsigned _entityId, const char *const _pArchetype) { return FGetArkProjectileFromEntityId(this,_entityId,_pArchetype); }
 	void DestroyAllProjectiles() { FDestroyAllProjectiles(this); }
@@ -58,6 +65,11 @@ public:
 	void FreePools();
 #endif
 	
+#ifdef MOONCRASH
+	void SerializeLTL(TSerialize _serializer) { FSerializeLTL(this, _serializer); }
+	bool IsAnotherGrenadeDetonating(CArkProjectileGrenade* const _pGrenade) { return FIsAnotherGrenadeDetonatingOv0(this, _pGrenade); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FBitNotCArkProjectilePoolManager = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124D4E0);
 	static inline auto FShutdown = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124F5A0);
 	static inline auto FOnLevelLoadEnd = PreyFunction<void(CArkProjectilePoolManager *const _this)>(0x124E6F0);
@@ -82,5 +94,33 @@ public:
 	static inline auto FFreePool = PreyFunction<void(CArkProjectilePoolManager *const _this, IEntityArchetype *const _pArchetype)>(0x124DD80);
 	static inline auto FDoSpawnProjectile = PreyFunction<CArkProjectile *(CArkProjectilePoolManager *const _this, SEntitySpawnParams &_spawnParams)>(0x124DCE0);
 	static inline auto FUseFromPool = PreyFunction<CArkProjectile *(CArkProjectilePoolManager *const _this, SEntitySpawnParams &_spawnParams)>(0x124F9E0);
+#else
+	static inline auto FCArkProjectilePoolManagerOv1 = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x1F4DF0);
+	static inline auto FBitNotCArkProjectilePoolManager = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F1760);
+	static inline auto FShutdown = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F3AF0);
+	static inline auto FOnLevelLoadEnd = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F2B50);
+	static inline auto FSerialize = PreyFunction<void(CArkProjectilePoolManager* const _this, TSerialize _ser)>(0x12F3310);
+	static inline auto FSerializeLTL = PreyFunction<void(CArkProjectilePoolManager* const _this, TSerialize _serializer)>(0x12F3A00);
+	static inline auto FPostSerialize = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F2BD0);
+	static inline auto FReset = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F2EF0);
+	static inline auto FLoadPoolDefinitions = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F28A0);
+	static inline auto FCreatePool = PreyFunction<void(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype, const int _maxPoolSize, const bool _bDeleteOnLevelTransition, const bool _bIsGrenade)>(0x12F1860);
+	static inline auto FSpawnAndReleaseAllPooledProjectiles = PreyFunction<void(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype, const int _maxPoolSize)>(0x12F3B70);
+	static inline auto FReturnAllToPool = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F2F00);
+	static inline auto FReturnToPool = PreyFunction<void(CArkProjectilePoolManager* const _this, CArkProjectile* const _pProjectile)>(0x12F30E0);
+	static inline auto FRemoveFromPool = PreyFunction<void(CArkProjectilePoolManager* const _this, CArkProjectile* const _pProjectile)>(0x12F2CE0);
+	static inline auto FIsPooled = PreyFunction<bool(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype)>(0x12F27E0);
+	static inline auto FSpawnProjectile = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, SEntitySpawnParams& _spawnParams, const bool _bIsPooled)>(0x12F3F20);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectilePoolManager* const _this, const float _frameTime)>(0x1333E90);
+	static inline auto FGetProjectilePackageId = PreyFunction<uint64_t(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype)>(0x12F2220);
+	static inline auto FDestroyAllProjectilesForLevelTransition = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F1D40);
+	static inline auto FIsAnotherGrenadeDetonatingOv1 = PreyFunction<bool(CArkProjectilePoolManager* const _this, const unsigned _grenadeId)>(0x12F2460);
+	static inline auto FIsAnotherGrenadeDetonatingOv0 = PreyFunction<bool(CArkProjectilePoolManager* const _this, CArkProjectileGrenade* const _pGrenade)>(0x12F2610);
+	static inline auto FIsAnotherGooDestroying = PreyFunction<bool(CArkProjectilePoolManager* const _this, CArkProjectileGoo* const _pGoo)>(0x12F2350);
+	static inline auto FGetArkProjectileFromEntityId = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, const unsigned _entityId, const char* const _pArchetype)>(0x12F2180);
+	static inline auto FDestroyAllProjectiles = PreyFunction<void(CArkProjectilePoolManager* const _this)>(0x12F1A60);
+	static inline auto FFreePool = PreyFunction<void(CArkProjectilePoolManager* const _this, IEntityArchetype* const _pArchetype)>(0x12F2000);
+	static inline auto FDoSpawnProjectile = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, SEntitySpawnParams& _spawnParams)>(0x12F1F60);
+	static inline auto FUseFromPool = PreyFunction<CArkProjectile* (CArkProjectilePoolManager* const _this, SEntitySpawnParams& _spawnParams)>(0x12F3F30);
+#endif
 };
-

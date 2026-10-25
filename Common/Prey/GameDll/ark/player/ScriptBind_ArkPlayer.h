@@ -8,6 +8,9 @@ union ScriptHandle;
 
 // CScriptBind_ArkPlayer
 // Header:  Prey/GameDll/ark/player/ScriptBind_ArkPlayer.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+#endif
 class CScriptBind_ArkPlayer : public CScriptableBase
 { // Size=96 (0x60)
 public:
@@ -39,7 +42,11 @@ public:
 	int ApplyStatModifierPackage(IFunctionHandler* _pH, const char* _packageId) { return FApplyStatModifierPackage(this, _pH, _packageId); }
 	int RemoveStatModifierPackage(IFunctionHandler* _pH, unsigned _packageId) { return FRemoveStatModifierPackage(this, _pH, _packageId); }
 	int QueryStat(IFunctionHandler* _pH, const char* _statName) { return FQueryStat(this, _pH, _statName); }
+#ifndef MOONCRASH
 	int GiveFabricationPlan(IFunctionHandler* _pH, const char* _pId, int _count, bool _bUnlimited) { return FGiveFabricationPlan(this, _pH, _pId, _count, _bUnlimited); }
+#else
+	int GiveFabricationPlan(IFunctionHandler* _pH, const char* _pId) { return FGiveFabricationPlan(this, _pH, _pId); }
+#endif
 	int RefillOxygen(IFunctionHandler* _pH) { return FRefillOxygen(this, _pH); }
 	int GiveOxygen(IFunctionHandler* _pH, float _oxygen) { return FGiveOxygen(this, _pH, _oxygen); }
 	int ExitWorldUIExamination(IFunctionHandler* _pH, bool _bForced) { return FExitWorldUIExamination(this, _pH, _bForced); }
@@ -50,6 +57,11 @@ public:
 	int IsExternalInventoryOpen(IFunctionHandler* _pH) { return FIsExternalInventoryOpen(this, _pH); }
 	int Spawn(IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles) { return FSpawn(this, _pH, _pos, _angles); }
 
+#ifdef MOONCRASH
+	int UnlockPropulsionSuit(IFunctionHandler* const _pH, float _propulsionForce, float _propulsionDuration) { return FUnlockPropulsionSuit(this, _pH, _propulsionForce, _propulsionDuration); }
+	int GiveChipset(IFunctionHandler* _pH, const char* _pArchetype) { return FGiveChipset(this, _pH, _pArchetype); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FCScriptBind_ArkPlayerOv2 = PreyFunction<void(CScriptBind_ArkPlayer* const _this)>(0x15B9520);
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkPlayer* const _this, const IEntity& _entity)>(0x15BA6A0);
 	static inline auto FIsMaxHealth = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x15BB840);
@@ -88,5 +100,46 @@ public:
 	static inline auto FPlayFragment = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _fragmentName)>(0x15BBC00);
 	static inline auto FIsExternalInventoryOpen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x15BB7B0);
 	static inline auto FSpawn = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles)>(0x15BC010);
+#else
+	static inline auto FCScriptBind_ArkPlayerOv2 = PreyFunction<void(CScriptBind_ArkPlayer* const _this)>(0x16DEC00);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_ArkPlayer* const _this, const IEntity& _entity)>(0x16DFDE0);
+	static inline auto FIsMaxHealth = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E11D0);
+	static inline auto FIsMaxPsi = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1340);
+	static inline auto FIsMaxOxygen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1290);
+	static inline auto FGetPsiPoints = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E0800);
+	static inline auto FIsMimickingObject = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1400);
+	static inline auto FSetPsiPoints = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, float _value)>(0x16E17E0);
+	static inline auto FUnlockPsiScanning = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, bool _bValue)>(0x16E1C70);
+	static inline auto FUnlockPropulsionSuit = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, float _propulsionForce, float _propulsionDuration)>(0x16E1BC0);
+	static inline auto FValidateKeyCode = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, const char* _keycodeID, const char* _input)>(0x16E1CC0);
+	static inline auto FHasAbility = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, const char* _abilityID)>(0x16E0D10);
+	static inline auto FGiveNote = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, const char* _noteID)>(0x16E0C20);
+	static inline auto FGiveAudioLog = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, const char* _audioLogID, bool _bAutoplay)>(0x16E0890);
+	static inline auto FGetLocationName = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* const _pH, const char* _locationID)>(0x16E0560);
+	static inline auto FSetViewAngles = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, Ang3 _angles)>(0x16E1830);
+	static inline auto FHasKeyCard = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _keycardID)>(0x16E0E20);
+	static inline auto FGiveKeyCard = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _keycardID)>(0x16E0B80);
+	static inline auto FHasPassword = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _characterID)>(0x16E0F30);
+	static inline auto FGetPasswordLength = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _characterID)>(0x16E0660);
+	static inline auto FGiveDownload = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _downloadID)>(0x16E0990);
+	static inline auto FGiveEmail = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _emailID)>(0x16E0A30);
+	static inline auto FEquipWeapon = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, ScriptHandle _weaponID)>(0x16E04D0);
+	static inline auto FUnequipWeapon = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1B80);
+	static inline auto FAddStatModifier = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _statName, float _modifier)>(0x16DFAF0);
+	static inline auto FRemoveStatModifier = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, unsigned _modId)>(0x16E1760);
+	static inline auto FApplyStatModifierPackage = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _packageId)>(0x16DFCE0);
+	static inline auto FRemoveStatModifierPackage = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, unsigned _packageId)>(0x16E17A0);
+	static inline auto FQueryStat = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _statName)>(0x16E1610);
+	static inline auto FGiveFabricationPlan = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _pId)>(0x16E0AD0);
+	static inline auto FGiveChipset = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _pArchetype)>(0x16E0940);
+	static inline auto FRefillOxygen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1720);
+	static inline auto FGiveOxygen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, float _oxygen)>(0x16E0CC0);
+	static inline auto FExitWorldUIExamination = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, bool _bForced)>(0x16E0510);
+	static inline auto FIsTraumaActive = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _traumaId)>(0x16E14A0);
+	static inline auto FIsAnyTraumaActive = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1040);
+	static inline auto FCanHealTrauma = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _traumaId)>(0x16DFF40);
+	static inline auto FPlayFragment = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, const char* _fragmentName)>(0x16E15A0);
+	static inline auto FIsExternalInventoryOpen = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH)>(0x16E1140);
+	static inline auto FSpawn = PreyFunction<int(CScriptBind_ArkPlayer* const _this, IFunctionHandler* _pH, Vec3 _pos, Ang3 _angles)>(0x16E19B0);
+#endif
 };
-

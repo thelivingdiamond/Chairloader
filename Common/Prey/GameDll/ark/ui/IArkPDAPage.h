@@ -26,6 +26,7 @@ public:
 	ArkPDATab GetTab() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FClose = PreyFunction<void(IArkPDAPage *const _this)>(0xA13080);
 	static inline auto FRefresh = PreyFunction<void(IArkPDAPage const *const _this)>(0xA13080);
 	static inline auto FUpdate = PreyFunction<void(IArkPDAPage *const _this, float _frameTime)>(0xA13080);
@@ -34,5 +35,14 @@ public:
 	static inline auto FSetupInputPrompts = PreyFunction<void(IArkPDAPage *const _this)>(0xA13080);
 	static inline auto FOnClosePDA = PreyFunction<void(IArkPDAPage *const _this)>(0xA13080);
 	static inline auto FHasNew = PreyFunction<bool(IArkPDAPage const *const _this)>(0xDD23F0);
+#else
+	static inline auto FClose = PreyFunction<void(IArkPDAPage* const _this)>(0x1333E90);
+	static inline auto FRefresh = PreyFunction<void(const IArkPDAPage* const _this)>(0x1333E90);
+	static inline auto FUpdate = PreyFunction<void(IArkPDAPage* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FProcessInput = PreyFunction<bool(IArkPDAPage* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x13B0900);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const IArkPDAPage* const _this)>(0x13B0900);
+	static inline auto FSetupInputPrompts = PreyFunction<void(IArkPDAPage* const _this)>(0x1333E90);
+	static inline auto FOnClosePDA = PreyFunction<void(IArkPDAPage* const _this)>(0x1333E90);
+	static inline auto FHasNew = PreyFunction<bool(const IArkPDAPage* const _this)>(0x13B0900);
+#endif
 };
-

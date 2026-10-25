@@ -20,4 +20,3 @@ struct IFlowEdgeIterator // Id=8001C43 Size=8
 	virtual void Release() = 0;
 	virtual bool Next(IFlowEdgeIterator::Edge &arg0) = 0;
 };
-

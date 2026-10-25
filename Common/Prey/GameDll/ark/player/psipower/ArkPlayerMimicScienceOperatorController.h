@@ -59,6 +59,7 @@ public:
 	IEntity* GetProxyTarget() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicScienceOperatorController = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x12F01B0);
 	static inline auto FBitNotArkPlayerMimicScienceOperatorController = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x12F0350);
 	static inline auto FInitialize_Derived = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, IEntity& _mimicEntity)>(0x12F0BC0);
@@ -77,5 +78,24 @@ public:
 	static inline auto FStartProbeAttackAnimation = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x12F1430);
 	static inline auto FStopProbeAttackAnimation = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x12F1600);
 	static inline auto FUpdateAttackTarget = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x12F16B0);
+#else
+	static inline auto FArkPlayerMimicScienceOperatorController = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A5990);
+	static inline auto FBitNotArkPlayerMimicScienceOperatorController = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A5B30);
+	static inline auto FInitialize_Derived = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, IEntity& _mimicEntity)>(0x13A6260);
+	static inline auto FUpdate_Derived = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13A74F0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, const CCryName& _actionId, const bool _bPressed)>(0x13A6870);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, TSerialize _ser)>(0x13A69F0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6860);
+	static inline auto FIsAttacking = PreyFunction<bool(const ArkPlayerMimicScienceOperatorController* const _this)>(0x13A63D0);
+	static inline auto FGetMovementSpeed = PreyFunction<float(const ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6220);
+	static inline auto FGetAttackTarget = PreyFunction<const IEntity* (const ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6150);
+	static inline auto FGetProperties = PreyFunction<const ArkPsiMimicScienceOperatorProperties& (const ArkPlayerMimicScienceOperatorController* const _this)>(0x5D8FE0);
+	static inline auto FOnNpcAnimActionExit = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, ArkNpcAnimAction& _animAction)>(0x13A6830);
+	static inline auto FOnNpcAnimActionEvent = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, ArkNpcAnimAction& _animAction, unsigned _eventCrc)>(0x13A66A0);
+	static inline auto FOnLightningCallback = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this, IEntity* _pArcEntity, IEntity* _pTargetEntity, float _strikeTime)>(0x13A63E0);
+	static inline auto FCleanUp = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6070);
+	static inline auto FStartProbeAttackAnimation = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6A70);
+	static inline auto FStopProbeAttackAnimation = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6BF0);
+	static inline auto FUpdateAttackTarget = PreyFunction<void(ArkPlayerMimicScienceOperatorController* const _this)>(0x13A6CA0);
+#endif
 };
-

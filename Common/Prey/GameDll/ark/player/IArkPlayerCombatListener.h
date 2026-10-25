@@ -11,7 +11,11 @@ public:
 	virtual void OnCombatChange(bool _bInCombat);
 	virtual void OnGrenadeThrown(IEntity* const _pGrenade);
 
+#ifndef MOONCRASH
 	static inline auto FOnCombatChange = PreyFunction<void(IArkPlayerCombatListener* const _this, bool _bInCombat)>(0xA13080);
 	static inline auto FOnGrenadeThrown = PreyFunction<void(IArkPlayerCombatListener* const _this, IEntity* const _pGrenade)>(0xA13080);
+#else
+	static inline auto FOnCombatChange = PreyFunction<void(IArkPlayerCombatListener* const _this, bool _bInCombat)>(0x1333E90);
+	static inline auto FOnGrenadeThrown = PreyFunction<void(IArkPlayerCombatListener* const _this, IEntity* const _pGrenade)>(0x1333E90);
+#endif
 };
-

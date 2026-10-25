@@ -8,6 +8,10 @@ class ArkClass;
 
 // Header: Exact
 // Prey/Ark/ArkPointOfInterest.h
+#ifdef MOONCRASH
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+class IArkValueBase;
+#endif
 class ArkPointOfInterest : public ArkReflectedObject // Id=8016B2D Size=24
 {
 public:
@@ -17,11 +21,20 @@ public:
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkPointOfInterest::ArkIDProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x106D720);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPointOfInterest::ArkIDProperty const *const _this, ArkReflectedObject *const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkPointOfInterest::ArkIDProperty s_ArkIDProperty;
+#else
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkPointOfInterest::ArkIDProperty>(0x2D27430);
+#endif
 	uint64_t m_ID;
 	
 	class ArkNameProperty : public ArkProperty // Id=8016B2F Size=32
@@ -30,11 +43,20 @@ public:
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkPointOfInterest::ArkNameProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPointOfInterest::ArkNameProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkPointOfInterest::ArkNameProperty s_ArkNameProperty;
+#else
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkPointOfInterest::ArkNameProperty>(0x2D27450);
+#endif
 	string m_Name;
 	
 	class ArkLabelProperty : public ArkProperty // Id=8016B30 Size=32
@@ -43,11 +65,20 @@ public:
 		virtual void SetValue(ArkReflectedObject *const _pObject, IArkValueBase const *_v) const;
 		virtual ArkReflectedObject *GetMemPtr(ArkReflectedObject *const _pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkPointOfInterest::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x10732F0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPointOfInterest::ArkLabelProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterest::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x119CEA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterest::ArkLabelProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkPointOfInterest::ArkLabelProperty s_ArkLabelProperty;
+#else
+	static inline auto s_ArkLabelProperty = PreyGlobal<ArkPointOfInterest::ArkLabelProperty>(0x2D27470);
+#endif
 	string m_Label;
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
@@ -62,8 +93,13 @@ public:
 	string const &GetLabel() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x107A1A0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x107A240);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x108AE00);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A2AB0);
+#endif
 };
 
 // Header: Exact
@@ -80,13 +116,25 @@ public:
 		virtual bool IsArray() const;
 		virtual void Reset(ArkReflectedObject *_pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkPointOfInterestLibrary::ArkPOIsProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x1079B20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkPointOfInterestLibrary::ArkPOIsProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1079BC0);
 		static inline auto FIsArray = PreyFunction<bool(ArkPointOfInterestLibrary::ArkPOIsProperty const *const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(ArkPointOfInterestLibrary::ArkPOIsProperty const *const _this, ArkReflectedObject *_pObject)>(0x1079C00);
+#else
+		static inline auto FArkPOIsPropertyOv2 = PreyFunction<void(ArkPointOfInterestLibrary::ArkPOIsProperty* const _this)>(0x10A27C0);
+		static inline auto FSetValue = PreyFunction<void(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10A2360);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* const _pObject)>(0x10A2400);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPointOfInterestLibrary::ArkPOIsProperty* const _this, ArkReflectedObject* _pObject)>(0x107D820);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkPointOfInterestLibrary::ArkPOIsProperty s_ArkPOIsProperty;
+#else
+	static inline auto s_ArkPOIsProperty = PreyGlobal<ArkPointOfInterestLibrary::ArkPOIsProperty>(0x2D27490);
+#endif
 	std::vector<ArkPointOfInterest> m_POIs;
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
@@ -100,8 +148,13 @@ public:
 	ArkPointOfInterest const *FindPOI(const uint64_t arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x107A1E0);
 	static inline auto FGetClass = PreyFunction<ArkClass *()>(0x107A2E0);
 	static inline auto FInit = PreyFunction<bool(ArkPointOfInterestLibrary *const _this)>(0x107A3D0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x10A2A50);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x10A2B50);
+	static inline auto FInit = PreyFunction<bool(ArkPointOfInterestLibrary* const _this)>(0x10A2C40);
+#endif
 };
-

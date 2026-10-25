@@ -13,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkSceneWindow.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkSceneWindow : public CGameObjectExtensionHelper<ArkSceneWindow,IGameObjectExtension> // Id=8019544 Size=64
 {
 public:
@@ -40,6 +45,7 @@ public:
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
 	virtual ~ArkSceneWindow();
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FPostInit = PreyFunction<void(ArkSceneWindow *const _this, IGameObject *_pGameObject)>(0xA13080);
 	static inline auto FInitClient = PreyFunction<void(ArkSceneWindow *const _this, int _channelId)>(0xA13080);
@@ -61,5 +67,28 @@ public:
 	static inline auto FPostUpdate = PreyFunction<void(ArkSceneWindow *const _this, float frameTime)>(0xA13080);
 	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSceneWindow *const _this)>(0xA13080);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkSceneWindow const *const _this, ICrySizer *_pS)>(0x1187D80);
+#else
+	static inline auto FArkSceneWindowOv2 = PreyFunction<void(ArkSceneWindow* const _this)>(0x122BA10);
+	static inline auto FInit = PreyFunction<bool(ArkSceneWindow* const _this, IGameObject* _pGameObject)>(0x37A880);
+	static inline auto FPostInit = PreyFunction<void(ArkSceneWindow* const _this, IGameObject* _pGameObject)>(0x1333E90);
+	static inline auto FInitClient = PreyFunction<void(ArkSceneWindow* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(ArkSceneWindow* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(ArkSceneWindow* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(ArkSceneWindow* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(ArkSceneWindow* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(ArkSceneWindow* const _this)>(0x3E3960);
+	static inline auto FFullSerialize = PreyFunction<void(ArkSceneWindow* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(ArkSceneWindow* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _pflags)>(0x13B0900);
+	static inline auto FPostSerialize = PreyFunction<void(ArkSceneWindow* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(ArkSceneWindow* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(ArkSceneWindow* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(ArkSceneWindow* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(ArkSceneWindow* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(ArkSceneWindow* const _this, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FSetChannelId = PreyFunction<void(ArkSceneWindow* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(ArkSceneWindow* const _this, bool _bAuth)>(0x1333E90);
+	static inline auto FPostUpdate = PreyFunction<void(ArkSceneWindow* const _this, float frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(ArkSceneWindow* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkSceneWindow* const _this, ICrySizer* _pS)>(0x182A3D0);
+#endif
 };
-

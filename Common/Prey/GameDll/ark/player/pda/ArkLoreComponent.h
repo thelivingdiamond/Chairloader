@@ -4,6 +4,9 @@
 
 // ArkLoreComponent
 // Header:  Prey/GameDll/ark/player/pda/ArkLoreComponent.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryString.h>
+#endif
 class ArkLoreComponent
 { // Size=24 (0x18)
 public:
@@ -39,10 +42,17 @@ public:
 	const std::vector<ArkLoreComponent::LoreData>& GetCollected() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FGiveLore = PreyFunction<void(ArkLoreComponent* const _this, const uint64_t _id, const bool _bLongForm)>(0x132F390);
 	static inline auto FHasLore = PreyFunction<bool(const ArkLoreComponent* const _this, const uint64_t _id)>(0x132F3F0);
 	static inline auto FIsNew = PreyFunction<bool(const ArkLoreComponent* const _this, const uint64_t _id)>(0x132F420);
 	static inline auto FSerialize = PreyFunction<void(ArkLoreComponent* const _this, TSerialize _ser)>(0x132F450);
 	static inline auto FGetFormattedContent = PreyFunction<wstring*(ArkLoreComponent* const _this, wstring* _return_value_, const uint64_t _id, string& _image)>(0x132F1D0);
+#else
+	static inline auto FGiveLore = PreyFunction<void(ArkLoreComponent* const _this, const uint64_t _id, const bool _bLongForm)>(0x140A700);
+	static inline auto FHasLore = PreyFunction<bool(const ArkLoreComponent* const _this, const uint64_t _id)>(0x140A760);
+	static inline auto FIsNew = PreyFunction<bool(const ArkLoreComponent* const _this, const uint64_t _id)>(0x140A790);
+	static inline auto FSerialize = PreyFunction<void(ArkLoreComponent* const _this, TSerialize _ser)>(0x140A7C0);
+	static inline auto FGetFormattedContent = PreyFunction<wstring*(ArkLoreComponent* const _this, wstring* _return_value_, const uint64_t _id, string& _image)>(0x140A540);
+#endif
 };
-

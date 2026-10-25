@@ -47,12 +47,22 @@ public:
 		float m_impulseMaxRadius;
 		bool m_bCheckLOS;
 		bool m_bBreaksGlass;
+#ifdef MOONCRASH
+		bool m_bShowOnHit;
+#endif
 		std::vector<IPhysicalEntity *> explodedPhysicsEntities;
 		
 		ArkExplosionInfo(Vec3 const &_center, const float _minRadius, const float _maxRadius, const uint64_t _packageId, const float _impulseFromCenter, const bool _bCheckLOS, const bool _bBreaksGlass, const uint64_t _cameraShakeId);
+#ifdef MOONCRASH
+		static inline auto FArkExplosionInfoOv3 = PreyFunction<void(ArkWeaponUtils::ArkExplosionInfo* const _this, const Vec3& _center, const float _minRadius, const float _maxRadius, const uint64_t _packageId, const float _impulseFromCenter, const bool _bCheckLOS, const bool _bBreaksGlass, const uint64_t _cameraShakeId)>(0x16AE290);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static IEntityClass *k_pGeomEntityClass;
+#else
+	static inline auto k_pGeomEntityClass = PreyGlobal<IEntityClass*>(0x2D82130);
+#endif
 	
 	static ArkWeaponUtils::PhysicsMaterialInfo FindMaterialAndUpdateValidHit(ray_hit const *const _pRayHits, const int _numHits, Vec3 const &_originalDirection) { return FFindMaterialAndUpdateValidHit(_pRayHits,_numHits,_originalDirection); }
 	static Vec3 CalculateOffsetPointInSquare(IEntity const *const _pEntity, Quat const &_rotation, const float _stepColumn, const float _stepRow, const int _numColumn, const int _numRow) { return FCalculateOffsetPointInSquare(_pEntity,_rotation,_stepColumn,_stepRow,_numColumn,_numRow); }
@@ -66,10 +76,17 @@ public:
 	static bool IsAttachingToStatic(IPhysicalEntity *_pCurrentHitPhysics) { return FIsAttachingToStatic(_pCurrentHitPhysics); }
 	static bool IsStaticPhysics(IPhysicalEntity *_pPhysics) { return FIsStaticPhysics(_pPhysics); }
 	static std::pair<float,bool> GetDamageScaleAgainstTarget(unsigned _target, std::vector<unsigned __int64> *_pSneakAttackMetaTags) { return FGetDamageScaleAgainstTarget(_target,_pSneakAttackMetaTags); }
+#ifndef MOONCRASH
 	static void OnHit(bool _bIsCritical, unsigned _target) { FOnHit(_bIsCritical,_target); }
 	static void SendExplosion(const unsigned _senderId, const unsigned _instigatorId, const float _signalScale, std::vector<unsigned __int64> *_pSneakAttackMetaTags, const float _mininumSignalScale, ArkWeaponUtils::ArkExplosionInfo &_arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity *> &)) { FSendExplosionOv1(_senderId,_instigatorId,_signalScale,_pSneakAttackMetaTags,_mininumSignalScale,_arkExplosionInfo,_leverageFlags,_entTypes,_UpdateEntitiesFunction); }
 	static void SendExplosion(const unsigned _senderId, const unsigned _instigatorId, const float _signalScale, std::vector<unsigned __int64> *_pSneakAttackMetaTags, const float _mininumSignalScale, ArkWeaponUtils::ArkExplosionInfo const &_arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity *> &)) { FSendExplosionOv0(_senderId,_instigatorId,_signalScale,_pSneakAttackMetaTags,_mininumSignalScale,_arkExplosionInfo,_leverageFlags,_entTypes,_UpdateEntitiesFunction); }
 	static void RemoveGooAttachedToEntity(IEntity const &_rEntity) { FRemoveGooAttachedToEntity(_rEntity); }
+#else
+	static void OnHit(bool _bIsCritical, bool _bResistant, unsigned _target) { FOnHit(_bIsCritical, _bResistant, _target); }
+	static void SendExplosion(const unsigned _senderId, const unsigned _instigatorId, const unsigned _weaponId, const float _signalScale, std::vector<uint64_t>* _pSneakAttackMetaTags, const float _mininumSignalScale, ArkWeaponUtils::ArkExplosionInfo& _arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity*>&)) { FSendExplosionOv1(_senderId, _instigatorId, _weaponId, _signalScale, _pSneakAttackMetaTags, _mininumSignalScale, _arkExplosionInfo, _leverageFlags, _entTypes, _UpdateEntitiesFunction); }
+	static void SendExplosion(const unsigned _senderId, const unsigned _instigatorId, const unsigned _weaponId, const float _signalScale, std::vector<uint64_t>* _pSneakAttackMetaTags, const float _mininumSignalScale, const ArkWeaponUtils::ArkExplosionInfo& _arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity*>&)) { FSendExplosionOv0(_senderId, _instigatorId, _weaponId, _signalScale, _pSneakAttackMetaTags, _mininumSignalScale, _arkExplosionInfo, _leverageFlags, _entTypes, _UpdateEntitiesFunction); }
+	static void RemoveGooAttachedToEntity(const IEntity& _rEntity, const float _radiusAOE) { FRemoveGooAttachedToEntity(_rEntity, _radiusAOE); }
+#endif
 	static bool HandleGooOverlappingEntity(IEntity const &_rEntity, const bool _bDestroy) { return FHandleGooOverlappingEntity(_rEntity,_bDestroy); }
 	static bool IsGlass(const int _surface_idx) { return FIsGlass(_surface_idx); }
 	static std::vector<ray_hit> FindEntitiesInShape(Vec3 const &_position, Vec3 const &_direction, const float _range, const float _size, const int _flags, const int _primitiveType, primitives::primitive *_pShape, IEntity const *const _pIgnoreEntity) { return FFindEntitiesInShape(_position,_direction,_range,_size,_flags,_primitiveType,_pShape,_pIgnoreEntity); }
@@ -90,6 +107,13 @@ public:
 	static bool IsAmmo(IEntity const &arg0);
 #endif
 	
+#ifdef MOONCRASH
+	static void HandleGooCollison(IPhysicalEntity* _gooPhysics, IPhysicalEntity* _pPhysicalEntity, IEntity* _pEntity, Vec3& _spawnPosition, Vec3& _spawnDirection) { FHandleGooCollison(_gooPhysics, _pPhysicalEntity, _pEntity, _spawnPosition, _spawnDirection); }
+	static void SendWeaponEnchantmentSignalsToEntity(CArkWeapon* _pWeapon, unsigned _targetId, unsigned _senderId, HitInfo* hitInfo) { FSendWeaponEnchantmentSignalsToEntity(_pWeapon, _targetId, _senderId, hitInfo); }
+	static void SendWeaponEnchantmentAOESignalToEntity(const CArkWeapon* const _pWeapon, const Vec3& _targetPos, const unsigned _senderId) { FSendWeaponEnchantmentAOESignalToEntity(_pWeapon, _targetPos, _senderId); }
+	static void PlayWeaponEnchantmentEffect(const CArkWeapon* const _pWeapon, const Vec3& _position, const Vec3& _normal) { FPlayWeaponEnchantmentEffect(_pWeapon, _position, _normal); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FFindMaterialAndUpdateValidHit = PreyFunction<ArkWeaponUtils::PhysicsMaterialInfo(ray_hit const *const _pRayHits, const int _numHits, Vec3 const &_originalDirection)>(0x1680F20);
 	static inline auto FCalculateOffsetPointInSquare = PreyFunction<Vec3(IEntity const *const _pEntity, Quat const &_rotation, const float _stepColumn, const float _stepRow, const int _numColumn, const int _numRow)>(0x167F790);
 	static inline auto FCalculatePointInCircle = PreyFunction<Vec3(IEntity const *const _pEntity, Vec3 const &_centerPoint, Quat const &_rotation, const float _minAngleRadians, const float _maxAngleRadians, const float _minDistance, const float _maxDistance)>(0x167F990);
@@ -117,5 +141,37 @@ public:
 	static inline auto FDoHitImpulseOv0 = PreyFunction<void(IEntity *const _pHitEntity, IPhysicalEntity *const _pHitPhysics, Vec3 _hitDirection, const int _partid, float _impulseScale, float _minMassScale, float _maxMassScale)>(0x16805F0);
 	static inline auto FDoWeaponImpulseOv1 = PreyFunction<void(IEntity *const _pHitEntity, IPhysicalEntity *const _pHitPhysics, Vec3 _hitPosition, Vec3 _hitDirection, const int _partid, CArkWeapon const *const _pWeapon, const float _impulseScale, const float _minMassScale, const float _maxMassScale)>(0x16807C0);
 	static inline auto FDoWeaponImpulseOv0 = PreyFunction<void(IEntity *const _pHitEntity, IPhysicalEntity *const _pHitPhysics, Vec3 _hitDirection, const int _partid, CArkWeapon const *const _pWeapon, const float _impulseScale, const float _minMassScale, const float _maxMassScale)>(0x1680A10);
+#else
+	static inline auto FFindMaterialAndUpdateValidHit = PreyFunction<ArkWeaponUtils::PhysicsMaterialInfo(const ray_hit* const _pRayHits, const int _numHits, const Vec3& _originalDirection)>(0x17A47E0);
+	static inline auto FCalculateOffsetPointInSquare = PreyFunction<Vec3(const IEntity* const _pEntity, const Quat& _rotation, const float _stepColumn, const float _stepRow, const int _numColumn, const int _numRow)>(0x17A3260);
+	static inline auto FCalculatePointInCircle = PreyFunction<Vec3(const IEntity* const _pEntity, const Vec3& _centerPoint, const Quat& _rotation, const float _minAngleRadians, const float _maxAngleRadians, const float _minDistance, const float _maxDistance)>(0x17A3460);
+	static inline auto FGetProjectileGooBall = PreyFunction<CArkProjectileGoo* (IPhysicalEntity* const _pHitPhysics)>(0x17A51C0);
+	static inline auto FGenerateFakeCollision = PreyFunction<void(EventPhysCollision& _collisionEventInfo, const ArkWeaponUtils::PhysicsMaterialInfo& _materialInfo, const Vec3 _hitDir, IEntity* const _pWeaponEntity, IPhysicalEntity* const _pOwnerPhysics, const float _damage, const float _radius, const bool _bSendEvent, const int16_t _matId)>(0x17A4DE0);
+	static inline auto FCollideBeam = PreyFunction<float(EventPhysCollision& _collisionEventInfo, const Vec3& _raycastStart, const Vec3& _raycastDir, const float _beamLength, const bool _bSkipOwner, unsigned _ownerId, IEntity* _pEntity, const bool _bSendEvent, const bool _bProjectile, const int _customSurfaceId)>(0x17A3860);
+	static inline auto FCannotAttachGooInGravity = PreyFunction<bool(IPhysicalEntity* const _pPhysics)>(0x17A3760);
+	static inline auto FHandleGooCollison = PreyFunction<void(IPhysicalEntity* _gooPhysics, IPhysicalEntity* _pPhysicalEntity, IEntity* _pEntity, Vec3& _spawnPosition, Vec3& _spawnDirection)>(0x17A52D0);
+	static inline auto FCanGooAttachToSurfaceOv1 = PreyFunction<bool(IMaterial* const _pMaterial)>(0x17A3700);
+	static inline auto FCanGooAttachToSurfaceOv0 = PreyFunction<bool(const int _surfaceIndex)>(0x17A3680);
+	static inline auto FSendWeaponEnchantmentSignalsToEntity = PreyFunction<void(CArkWeapon* _pWeapon, unsigned _targetId, unsigned _senderId, HitInfo* hitInfo)>(0x17A6800);
+	static inline auto FSendWeaponEnchantmentAOESignalToEntity = PreyFunction<void(const CArkWeapon* const _pWeapon, const Vec3& _targetPos, const unsigned _senderId)>(0x17A66B0);
+	static inline auto FPlayWeaponEnchantmentEffect = PreyFunction<void(const CArkWeapon* const _pWeapon, const Vec3& _position, const Vec3& _normal)>(0x17A5B70);
+	static inline auto FIsAttachingToStatic = PreyFunction<bool(IPhysicalEntity* _pCurrentHitPhysics)>(0x17A5890);
+	static inline auto FIsStaticPhysics = PreyFunction<bool(IPhysicalEntity* _pPhysics)>(0x17A59D0);
+	static inline auto FGetDamageScaleAgainstTarget = PreyFunction<std::pair<float, bool>(unsigned _target, const std::vector<uint64_t>* const _pSneakAttackMetaTags)>(0x17A4F80);
+	static inline auto FOnHit = PreyFunction<void(bool _bIsCritical, bool _bResistant, unsigned _target)>(0x17A5A60);
+	static inline auto FSendExplosionOv1 = PreyFunction<void(const unsigned _senderId, const unsigned _instigatorId, const unsigned _weaponId, const float _signalScale, std::vector<uint64_t>* _pSneakAttackMetaTags, const float _mininumSignalScale, ArkWeaponUtils::ArkExplosionInfo& _arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity*>&))>(0x17A6030);
+	static inline auto FSendExplosionOv0 = PreyFunction<void(const unsigned _senderId, const unsigned _instigatorId, const unsigned _weaponId, const float _signalScale, std::vector<uint64_t>* _pSneakAttackMetaTags, const float _mininumSignalScale, const ArkWeaponUtils::ArkExplosionInfo& _arkExplosionInfo, const unsigned _leverageFlags, const int _entTypes, void (*_UpdateEntitiesFunction)(std::vector<IPhysicalEntity*>&))>(0x17A6550);
+	static inline auto FRemoveGooAttachedToEntity = PreyFunction<void(const IEntity& _rEntity, const float _radiusAOE)>(0x17A5DD0);
+	static inline auto FHandleGooOverlappingEntity = PreyFunction<bool(const IEntity& _rEntity, const bool _bDestroy)>(0x17A5430);
+	static inline auto FIsGlass = PreyFunction<bool(const int _surface_idx)>(0x17A5970);
+	static inline auto FFindEntitiesInShape = PreyFunction<std::vector<ray_hit>(const Vec3& _position, const Vec3& _direction, const float _range, const float _size, const int _flags, const int _primitiveType, primitives::primitive* _pShape, const IEntity* const _pIgnoreEntity)>(0x17A45C0);
+	static inline auto FGetRadiusOfCone = PreyFunction<float(const float _coneAngle, const float _coneLength)>(0x17A52B0);
+	static inline auto FFindMaterialFromPhysicsPart = PreyFunction<bool(IPhysicalEntity* const _pPhysicsEntity, const int _ipart, const Vec3& _worldPosition, const Vec3& _worldDirection, ArkWeaponUtils::PhysicsMaterialInfo& _materialInfo, const int _defaultSurfaceIndex)>(0x17A49B0);
+	static inline auto FGetPhysicsEntityFromEntityId = PreyFunction<IPhysicalEntity* (const unsigned _entityId)>(0x17A5190);
+	static inline auto FGetEntityFromPhysicsId = PreyFunction<IEntity* (const int _physicsId)>(0x17A5150);
+	static inline auto FDoHitImpulseOv1 = PreyFunction<void(IEntity* const _pHitEntity, IPhysicalEntity* const _pHitPhysics, const Vec3 _hitPosition, const Vec3 _hitDirection, const int _partid, float _impulseScale, float _minMassScale, float _maxMassScale)>(0x17A3EA0);
+	static inline auto FDoHitImpulseOv0 = PreyFunction<void(IEntity* const _pHitEntity, IPhysicalEntity* const _pHitPhysics, const Vec3 _hitDirection, const int _partid, float _impulseScale, float _minMassScale, float _maxMassScale)>(0x17A40C0);
+	static inline auto FDoWeaponImpulseOv1 = PreyFunction<void(IEntity* const _pHitEntity, IPhysicalEntity* const _pHitPhysics, const Vec3 _hitPosition, const Vec3 _hitDirection, const int _partid, const CArkWeapon* const _pWeapon, const float _impulseScale, const float _minMassScale, const float _maxMassScale)>(0x17A4290);
+	static inline auto FDoWeaponImpulseOv0 = PreyFunction<void(IEntity* const _pHitEntity, IPhysicalEntity* const _pHitPhysics, const Vec3 _hitDirection, const int _partid, const CArkWeapon* const _pWeapon, const float _impulseScale, const float _minMassScale, const float _maxMassScale)>(0x17A44E0);
+#endif
 };
-

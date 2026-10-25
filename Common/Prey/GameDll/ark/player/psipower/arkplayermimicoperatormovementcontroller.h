@@ -33,4 +33,3 @@ public:
 	bool IsSprinting() const;
 #endif
 };
-

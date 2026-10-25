@@ -28,8 +28,13 @@ public:
 	void KillAllEffects();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkFocusModeEffectsManagerOv2 = PreyFunction<void(ArkFocusModeEffectsManager* const _this)>(0x1223270);
 	static inline auto FReset = PreyFunction<void(ArkFocusModeEffectsManager* const _this)>(0x12232E0);
 	static inline auto FSpawnParticleEffect = PreyFunction<void(ArkFocusModeEffectsManager* const _this, const ArkFocusModeEffectsManager::Transition _effect)>(0x1223570);
+#else
+	static inline auto FArkFocusModeEffectsManagerOv2 = PreyFunction<void(ArkFocusModeEffectsManager* const _this)>(0x12C3170);
+	static inline auto FReset = PreyFunction<void(ArkFocusModeEffectsManager* const _this)>(0x12C31E0);
+	static inline auto FSpawnParticleEffect = PreyFunction<void(ArkFocusModeEffectsManager* const _this, const ArkFocusModeEffectsManager::Transition _effect)>(0x12C3470);
+#endif
 };
-

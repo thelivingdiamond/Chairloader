@@ -17,7 +17,11 @@
 #include "ChairVarManager.h"
 
 constexpr char CONFIG_NAME[] = "Chairloader";
+#ifndef MOONCRASH
 static PreyGlobal<bool> s_freeCamActive(0x2C09352);
+#else
+static PreyGlobal<bool> s_freeCamActive(0x2D83482);
+#endif
 
 class CBetterCVarsWhitelist : public ICVarsWhitelist {
 public:

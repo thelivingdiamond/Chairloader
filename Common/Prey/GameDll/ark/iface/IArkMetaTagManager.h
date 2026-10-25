@@ -12,4 +12,3 @@ public:
 	virtual bool DoesEntityHaveTag(IEntity const &arg0, const uint64_t &arg1) const = 0;
 	virtual ~IArkMetaTagManager();
 };
-

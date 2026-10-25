@@ -17,6 +17,10 @@ struct IEntity;
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/desires/arknpcdesiretarget.h
+#ifdef MOONCRASH
+enum class EArkNpcDesireTargetRefreshResult;
+enum class EArkNpcDesireTargetType;
+#endif
 class ArkNpcEntityDesireTargetImpl // Id=80140AD Size=20
 {
 public:
@@ -39,7 +43,11 @@ public:
 	void SetTolerance(float arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityDesireTargetImpl *const _this)>(0x1525BF0);
+#else
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityDesireTargetImpl* const _this)>(0x1645580);
+#endif
 };
 
 // Header: FromCpp
@@ -67,7 +75,11 @@ public:
 	void SetTolerance(float arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoneDesireTargetImpl *const _this)>(0x15259A0);
+#else
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoneDesireTargetImpl* const _this)>(0x1645330);
+#endif
 };
 
 // Header: FromCpp
@@ -94,7 +106,11 @@ public:
 	void SetTolerance(float arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoundsCenterTargetImpl *const _this)>(0x1525B10);
+#else
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcEntityBoundsCenterTargetImpl* const _this)>(0x16454A0);
+#endif
 };
 
 // Header: FromCpp
@@ -122,7 +138,11 @@ public:
 	void SetTolerance(float arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcAttentionProxyDesireTargetImpl *const _this)>(0x15257C0);
+#else
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcAttentionProxyDesireTargetImpl* const _this)>(0x1645150);
+#endif
 };
 
 // Header: FromCpp
@@ -148,7 +168,11 @@ public:
 	void SetTolerance(float arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcCameraDesireTargetImpl *const _this)>(0x15258B0);
+#else
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcCameraDesireTargetImpl* const _this)>(0x1645240);
+#endif
 };
 
 // Header: FromCpp
@@ -175,8 +199,13 @@ public:
 	bool IsValid() const { return FIsValid(this); }
 	bool HasPosition() const { return FHasPosition(this); }
 	bool HasDirection() const { return FHasDirection(this); }
+#ifndef MOONCRASH
 	Vec3 GetPosition() const { return FGetPosition(this); }
 	Vec3 GetDirection() const { return FGetDirection(this); }
+#else
+	Vec3 GetPosition() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetPosition(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+	Vec3 GetDirection() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetDirection(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+#endif
 	unsigned GetEntityId() const { return FGetEntityId(this); }
 	float GetTolerance() const { return FGetTolerance(this); }
 	void SetTolerance(float _tolerance) { FSetTolerance(this,_tolerance); }
@@ -190,6 +219,7 @@ public:
 	bool IsStatic() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FNone = PreyFunction<ArkNpcDesireTarget()>(0x1524620);
 	static inline auto FLookAtPos = PreyFunction<ArkNpcDesireTarget(IEntity const &_entity)>(0x15254A0);
 	static inline auto FAttentionProxyOv1 = PreyFunction<ArkNpcDesireTarget(unsigned _npcEntityId, unsigned _targetEntityId)>(0x1524F20);
@@ -207,7 +237,27 @@ public:
 	static inline auto FGetTolerance = PreyFunction<float(ArkNpcDesireTarget const *const _this)>(0x1525340);
 	static inline auto FSetTolerance = PreyFunction<void(ArkNpcDesireTarget *const _this, float _tolerance)>(0x1525CA0);
 	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcDesireTarget *const _this)>(0x1525940);
+#else
+	static inline auto FNone = PreyFunction<ArkNpcDesireTarget()>(0x1643FB0);
+	static inline auto FLookAtPos = PreyFunction<ArkNpcDesireTarget(const IEntity& _entity)>(0x1644E30);
+	static inline auto FAttentionProxyOv1 = PreyFunction<ArkNpcDesireTarget(unsigned _npcEntityId, unsigned _targetEntityId)>(0x16448B0);
+	static inline auto FAttentionProxyOv0 = PreyFunction<ArkNpcDesireTarget(const IEntity& _npcEntity, const IEntity& _targetEntity)>(0x1644760);
+	static inline auto FAttackPosition = PreyFunction<ArkNpcDesireTarget(const IEntity& _entity)>(0x1644660);
+	static inline auto FDirection = PreyFunction<ArkNpcDesireTarget(const Vec3& _dir)>(0x16449E0);
+	static inline auto FArkNpcDesireTargetOv8 = PreyFunction<void(ArkNpcDesireTarget* const _this)>(0x1643FB0);
+	static inline auto FArkNpcDesireTargetOv7 = PreyFunction<void(ArkNpcDesireTarget* const _this, const Vec3& _position)>(0x1643EC0);
+	static inline auto FArkNpcDesireTargetOv5 = PreyFunction<void(ArkNpcDesireTarget* const _this, const IEntity& _entity)>(0x1643EF0);
+	static inline auto FArkNpcDesireTargetOv4 = PreyFunction<void(ArkNpcDesireTarget* const _this, const IEntity& _entity, float _tolerance)>(0x1643F40);
+	static inline auto FoperatorNotEq = PreyFunction<bool(const ArkNpcDesireTarget* const _this, const ArkNpcDesireTarget& _other)>(0x1643FC0);
+	static inline auto FGetTargetType = PreyFunction<EArkNpcDesireTargetType(const ArkNpcDesireTarget* const _this)>(0x1644C80);
+	static inline auto FIsValid = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644DD0);
+	static inline auto FHasPosition = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644D70);
+	static inline auto FHasDirection = PreyFunction<bool(const ArkNpcDesireTarget* const _this)>(0x1644D20);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkNpcDesireTarget* const _this, Vec3* _return_value_)>(0x1644C20);
+	static inline auto FGetDirection = PreyFunction<Vec3*(const ArkNpcDesireTarget* const _this, Vec3* _return_value_)>(0x1644B70);
+	static inline auto FGetEntityId = PreyFunction<unsigned(const ArkNpcDesireTarget* const _this)>(0x1644BD0);
+	static inline auto FGetTolerance = PreyFunction<float(const ArkNpcDesireTarget* const _this)>(0x1644CD0);
+	static inline auto FSetTolerance = PreyFunction<void(ArkNpcDesireTarget* const _this, float _tolerance)>(0x1645630);
+	static inline auto FRefresh = PreyFunction<EArkNpcDesireTargetRefreshResult(ArkNpcDesireTarget* const _this)>(0x16452D0);
+#endif
 };
-
-
-

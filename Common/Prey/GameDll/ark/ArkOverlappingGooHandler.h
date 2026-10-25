@@ -13,7 +13,11 @@ struct IGameObject;
 class ArkOverlappingGooHandler // Id=8018FB6 Size=32
 {
 public:
+#ifndef MOONCRASH
 	static float k_gooCheckTime;
+#else
+	static inline auto k_gooCheckTime = PreyGlobal<float>(0x23E0198);
+#endif
 	IArkOverlappingGooListener &m_listener;
 	ArkSimpleTimer m_gooCheckTimer;
 	bool m_bReactivateWhenGooRemoved;
@@ -33,9 +37,16 @@ public:
 	void SetReactivateWhenGooRemoved(const bool arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkOverlappingGooHandler = PreyFunction<void(ArkOverlappingGooHandler *const _this)>(0x11AB2E0);
 	static inline auto FPostInit = PreyFunction<void(ArkOverlappingGooHandler *const _this, IGameObject *_pGameObject)>(0x11AB320);
 	static inline auto FUpdate = PreyFunction<void(ArkOverlappingGooHandler *const _this, IEntity *const _pEntity, float _frameTime)>(0x11AB680);
 	static inline auto FSerialize = PreyFunction<void(ArkOverlappingGooHandler *const _this, TSerialize _ser)>(0x11AB630);
+#else
+	static inline auto FArkOverlappingGooHandlerOv1 = PreyFunction<void(ArkOverlappingGooHandler* const _this, IArkOverlappingGooListener& _listener)>(0x1226520);
+	static inline auto FBitNotArkOverlappingGooHandler = PreyFunction<void(ArkOverlappingGooHandler* const _this)>(0x1226550);
+	static inline auto FPostInit = PreyFunction<void(ArkOverlappingGooHandler* const _this, IGameObject* _pGameObject)>(0x1226590);
+	static inline auto FUpdate = PreyFunction<void(ArkOverlappingGooHandler* const _this, IEntity* const _pEntity, float _frameTime)>(0x12268F0);
+	static inline auto FSerialize = PreyFunction<void(ArkOverlappingGooHandler* const _this, TSerialize _ser)>(0x12268A0);
+#endif
 };
-

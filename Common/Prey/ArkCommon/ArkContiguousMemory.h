@@ -26,9 +26,18 @@ public:
 	void *Allocate(uint64_t arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetAllocatedByteCount = PreyFunction<uint64_t(ArkContiguousMemory const *const _this)>(0x1056380);
 	static inline auto FGetDataOv1 = PreyFunction<void *(ArkContiguousMemory *const _this)>(0x12E5E70);
 	static inline auto FGetDataOv0 = PreyFunction<const void *(ArkContiguousMemory const *const _this)>(0x12E5E70);
 	static inline auto FAllocateAligned = PreyFunction<void *(ArkContiguousMemory *const _this, uint64_t _byteCount, uint64_t _alignment)>(0x1056320);
+#else
+	static inline auto FArkContiguousMemoryOv3 = PreyFunction<void(ArkContiguousMemory* const _this)>(0x1F4DF0);
+	static inline auto FArkContiguousMemoryOv2 = PreyFunction<void(ArkContiguousMemory* const _this, uint64_t _reservedByteCount)>(0x1072900);
+	static inline auto FArkContiguousMemoryOv0 = PreyFunction<void(ArkContiguousMemory* const _this, ArkContiguousMemory&& _other)>(0x10728C0);
+	static inline auto FGetAllocatedByteCount = PreyFunction<uint64_t(const ArkContiguousMemory* const _this)>(0x10729A0);
+	static inline auto FGetDataOv1 = PreyFunction<void* (ArkContiguousMemory* const _this)>(0x1112EA0);
+	static inline auto FGetDataOv0 = PreyFunction<const void* (const ArkContiguousMemory* const _this)>(0x1112EA0);
+	static inline auto FAllocateAligned = PreyFunction<void* (ArkContiguousMemory* const _this, uint64_t _byteCount, uint64_t _alignment)>(0x1072940);
+#endif
 };
-

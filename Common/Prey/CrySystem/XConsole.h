@@ -9,6 +9,12 @@
 #include <Prey/CrySystem/XConsole.h>
 
 
+#ifdef MOONCRASH
+struct IConsoleCmdArgs;
+struct CConsoleCommand;
+struct CConsoleCommandArgs;
+class CXConsole;
+#endif
 struct CConsoleCommand // Id=800F8F6 Size=40
 {
     string m_sName;
@@ -39,9 +45,9 @@ class ITexture;
 struct ITimer;
 
 enum ScrollDir {
-    sdDown,
-    sdUp,
-    sdNone
+    sdDOWN,
+    sdUP,
+    sdNONE
 };
 
 // Header: Exact
@@ -58,9 +64,15 @@ struct CConsoleCommandArgs : public IConsoleCmdArgs // Id=800F8F7 Size=24
     virtual const char *GetCommandLine() const;
     virtual ~CConsoleCommandArgs();
 
+#ifndef MOONCRASH
     static inline auto FGetArgCount = PreyFunction<int(CConsoleCommandArgs const *const _this)>(0xDF48C0);
     static inline auto FGetArg = PreyFunction<const char *(CConsoleCommandArgs const *const _this, int nIndex)>(0xDF4870);
     static inline auto FGetCommandLine = PreyFunction<const char *(CConsoleCommandArgs const *const _this)>(0xDF4AA0);
+#else
+	static inline auto FGetArgCount = PreyFunction<int(const CConsoleCommandArgs* const _this)>(0xE11750);
+	static inline auto FGetArg = PreyFunction<const char* (const CConsoleCommandArgs* const _this, int nIndex)>(0xE11700);
+	static inline auto FGetCommandLine = PreyFunction<const char* (const CConsoleCommandArgs* const _this)>(0xE11920);
+#endif
 };
 
 // Header: Exact
@@ -148,11 +160,19 @@ public:
     ITimer *m_pTimer;
     INetwork *m_pNetwork;
     ICVar *m_pSysDeactivateConsole;
+#ifndef MOONCRASH
     static inline auto con_display_last_messages = PreyGlobal<int>(0x2B07980);
     static inline auto con_line_buffer_size = PreyGlobal<int>(0x226ADF0);
     static inline auto con_showonload = PreyGlobal<int>(0x2B07984);
     static inline auto con_debug = PreyGlobal<int>(0x2B07988);
     static inline auto con_restricted = PreyGlobal<int>(0x2B0798C);
+#else
+	static inline auto con_display_last_messages = PreyGlobal<int>(0x2C76BF0);
+	static inline auto con_line_buffer_size = PreyGlobal<int>(0x23D7E20);
+	static inline auto con_showonload = PreyGlobal<int>(0x2C76BF4);
+	static inline auto con_debug = PreyGlobal<int>(0x2C76BF8);
+	static inline auto con_restricted = PreyGlobal<int>(0x2C76BFC);
+#endif
     bool m_bConsoleIsEmerging;
 
     CXConsole();
@@ -236,12 +256,16 @@ public:
     void AddLine(const char *inputStr) { FAddLine(this,inputStr); }
     void AddLinePlus(const char *inputStr) { FAddLinePlus(this,inputStr); }
     void ExecuteCommand(CConsoleCommand &cmd, string &str, bool bIgnoreDevMode) { FExecuteCommand(this,cmd,str,bIgnoreDevMode); }
-//    void ConsoleLogInputResponse(const char *format, ... arg1) { FConsoleLogInputResponse(this,format,arg1); }
-//    void ConsoleLogInput(const char *format, ... arg1) { FConsoleLogInput(this,format,arg1); }
-//    void ConsoleWarning(const char *format, ... arg1) { FConsoleWarning(this,format,arg1); }
+//    void ConsoleLogInputResponse(const char *format, ...) { FConsoleLogInputResponse(this,format,arg1); }
+//    void ConsoleLogInput(const char *format, ...) { FConsoleLogInput(this,format,arg1); }
+//    void ConsoleWarning(const char *format, ...) { FConsoleWarning(this,format,arg1); }
     void DisplayHelp(const char *help, const char *name) { FDisplayHelp(this,help,name); }
     void DisplayVarValue(ICVar *pVar) { FDisplayVarValue(this,pVar); }
+#ifndef MOONCRASH
     void SplitCommands(const char *line, std::list<string,std::allocator<string>> &split) { FSplitCommands(this,line,split); }
+#else
+	void SplitCommands(const char* line, std::list<CryStringT<char>,std::allocator<CryStringT<char> > >& split) { FSplitCommands(this, line, split); }
+#endif
     void ExecuteStringInternal(const char *command, const bool bFromConsole, const bool bSilentMode) { FExecuteStringInternal(this,command,bFromConsole,bSilentMode); }
     void AddCheckedCVar(std::vector<std::pair<char const *,ICVar *>> &vector, std::pair<char const *,ICVar *> const &value) { FAddCheckedCVar(this,vector,value); }
     void RemoveCheckedCVar(std::vector<std::pair<char const *,ICVar *>> &vector, std::pair<char const *,ICVar *> const &value) { FRemoveCheckedCVar(this,vector,value); }
@@ -266,6 +290,7 @@ public:
 	static void CmdDumpLastHashedAnticheatVars(IConsoleCmdArgs *arg0);
 #endif
 
+#ifndef MOONCRASH
     static inline auto FBitNotCXConsole = PreyFunction<void(CXConsole *const _this)>(0xDEEAF0);
     static inline auto FInit = PreyFunction<void(CXConsole *const _this, CSystem *pSystem)>(0xDF5270);
     static inline auto FGetStatusOv0 = PreyFunction<bool(CXConsole *const _this)>(0xDF5160);
@@ -346,10 +371,93 @@ public:
     static inline auto FAddLine = PreyFunction<void(CXConsole *const _this, const char *inputStr)>(0xDEFA00);
     static inline auto FAddLinePlus = PreyFunction<void(CXConsole *const _this, const char *inputStr)>(0xDEFFA0);
     static inline auto FExecuteCommand = PreyFunction<void(CXConsole *const _this, CConsoleCommand &cmd, string &str, bool bIgnoreDevMode)>(0xDF23C0);
+#else
+	static inline auto FBitNotCXConsole = PreyFunction<void(CXConsole* const _this)>(0xE0B980);
+	static inline auto FInit = PreyFunction<void(CXConsole* const _this, CSystem* pSystem)>(0xE120E0);
+	static inline auto FGetStatusOv0 = PreyFunction<bool(CXConsole* const _this)>(0xE11FD0);
+	static inline auto FFreeRenderResources = PreyFunction<void(CXConsole* const _this)>(0xE11690);
+	static inline auto FCopyToClipboard = PreyFunction<void(CXConsole* const _this, const char* _sToCopy)>(0xE0DD10);
+	static inline auto FRelease = PreyFunction<void(CXConsole* const _this)>(0x3E3960);
+	static inline auto FRegisterString = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, const char* sValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*))>(0xE13D80);
+	static inline auto FRegisterInt = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, int iValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*))>(0xE13CA0);
+	static inline auto FRegisterInt64 = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, int64_t iValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*))>(0xE13BC0);
+	static inline auto FRegisterFloat = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, float fValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*))>(0xE13AE0);
+	static inline auto FRegisterOv2 = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, float* src, float fValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*), bool allowModify)>(0xE136B0);
+	static inline auto FRegisterOv1 = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, int* src, int iValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*), bool allowModify)>(0xE135B0);
+	static inline auto FRegisterOv0 = PreyFunction<ICVar* (CXConsole* const _this, const char* sName, const char* * src, const char* defaultValue, int nFlags, const char* help, void (*pChangeFunc)(ICVar*), bool allowModify)>(0xE137B0);
+	static inline auto FUnregisterVariable = PreyFunction<void(CXConsole* const _this, const char* sVarName, bool bDelete)>(0xE15A60);
+	static inline auto FSetScrollMax = PreyFunction<void(CXConsole* const _this, int value)>(0xE15440);
+	static inline auto FAddOutputPrintSink = PreyFunction<void(CXConsole* const _this, IOutputPrintSink* inpSink)>(0xE0D590);
+	static inline auto FRemoveOutputPrintSink = PreyFunction<void(CXConsole* const _this, IOutputPrintSink* inpSink)>(0xE14550);
+	static inline auto FShowConsole = PreyFunction<void(CXConsole* const _this, bool show, const int iRequestScrollMax)>(0xE15450);
+	static inline auto FDumpCVars = PreyFunction<void(CXConsole* const _this, ICVarDumpSink* pCallback, unsigned nFlagsFilter)>(0xE0EE40);
+	static inline auto FDumpCVarsToFile = PreyFunction<void(CXConsole* const _this, const char* fileName, unsigned nFlagsFilter)>(0xE0EF00);
+	static inline auto FDumpKeyBinds = PreyFunction<void(CXConsole* const _this, IKeyBindDumpSink* pCallback)>(0xE0F190);
+	static inline auto FCreateKeyBind = PreyFunction<void(CXConsole* const _this, const char* sCmd, const char* sRes)>(0xE0DDA0);
+	static inline auto FFindKeyBind = PreyFunction<const char* (const CXConsole* const _this, const char* sCmd)>(0xE11430);
+	static inline auto FSetImage = PreyFunction<void(CXConsole* const _this, ITexture* pImage, bool bDeleteCurrent)>(0xE152E0);
+	static inline auto FGetImage = PreyFunction<ITexture* (CXConsole* const _this)>(0xE11AA0);
+	static inline auto FStaticBackground = PreyFunction<void(CXConsole* const _this, bool bStatic)>(0xE157C0);
+	static inline auto FGetLineNo = PreyFunction<bool(const CXConsole* const _this, const int indwLineNo, char* outszBuffer, const int indwBufferSize)>(0xE11AB0);
+	static inline auto FGetLineCount = PreyFunction<int(const CXConsole* const _this)>(0x1036290);
+	static inline auto FGetCVar = PreyFunction<ICVar* (CXConsole* const _this, const char* sName)>(0xE11770);
+	static inline auto FGetVariableOv1 = PreyFunction<char* (CXConsole* const _this, const char* szVarName, const char* szFileName, const char* def_val)>(0x1CBB0B0);
+	static inline auto FGetVariableOv0 = PreyFunction<float(CXConsole* const _this, const char* szVarName, const char* szFileName, float def_val)>(0x714650);
+	static inline auto FPrintLine = PreyFunction<void(CXConsole* const _this, const char* s)>(0xE12C40);
+	static inline auto FPrintLinePlus = PreyFunction<void(CXConsole* const _this, const char* s)>(0xE12C50);
+	static inline auto FClear = PreyFunction<void(CXConsole* const _this)>(0xE0DB40);
+	static inline auto FUpdate = PreyFunction<void(CXConsole* const _this)>(0xE15B60);
+	static inline auto FDraw = PreyFunction<void(CXConsole* const _this)>(0xE0E560);
+	static inline auto FAddCommandOv1 = PreyFunction<void(CXConsole* const _this, const char* sCommand, void (*func)(IConsoleCmdArgs*), int nFlags, const char* sHelp)>(0xE0C380);
+	static inline auto FAddCommandOv0 = PreyFunction<void(CXConsole* const _this, const char* sCommand, const char* sScriptFunc, int nFlags, const char* sHelp)>(0xE0C0B0);
+	static inline auto FRemoveCommand = PreyFunction<void(CXConsole* const _this, const char* sName)>(0xE14370);
+	static inline auto FExecuteString = PreyFunction<void(CXConsole* const _this, const char* command, const bool bSilentMode, const bool bDeferExecution)>(0xE104D0);
+	// varargs: static inline auto FExit = PreyFunction<void(CXConsole* const _this, const char* szExitComments, ...)>(0xE11370);
+	static inline auto FIsOpened = PreyFunction<bool(CXConsole* const _this)>(0xE12530);
+	static inline auto FGetNumVars = PreyFunction<int(CXConsole* const _this)>(0x316A60);
+	static inline auto FGetSortedVars = PreyFunction<uint64_t(CXConsole* const _this, const char* * pszArray, uint64_t numItems, const char* szPrefix)>(0xE11DD0);
+	static inline auto FGetNumCheatVars = PreyFunction<int(CXConsole* const _this)>(0xE11D40);
+	static inline auto FSetCheatVarHashRange = PreyFunction<void(CXConsole* const _this, uint64_t firstVar, uint64_t lastVar)>(0xE152C0);
+	static inline auto FCalcCheatVarHash = PreyFunction<void(CXConsole* const _this)>(0xE0DA80);
+	static inline auto FIsHashCalculated = PreyFunction<bool(CXConsole* const _this)>(0xE12520);
+	static inline auto FGetCheatVarHash = PreyFunction<uint64_t(CXConsole* const _this)>(0x317840);
+	static inline auto FFindVar = PreyFunction<void(CXConsole* const _this, const char* substr)>(0xE114A0);
+	static inline auto FAutoComplete = PreyFunction<const char* (CXConsole* const _this, const char* substr)>(0xE0D5B0);
+	static inline auto FAutoCompletePrev = PreyFunction<const char* (CXConsole* const _this, const char* substr)>(0xE0D7C0);
+	static inline auto FProcessCompletion = PreyFunction<const char* (CXConsole* const _this, const char* szInputBuffer)>(0xE12C60);
+	static inline auto FRegisterAutoComplete = PreyFunction<void(CXConsole* const _this, const char* sVarOrCommand, IConsoleArgumentAutoComplete* pArgAutoComplete)>(0xE138C0);
+	static inline auto FUnRegisterAutoComplete = PreyFunction<void(CXConsole* const _this, const char* sVarOrCommand)>(0xE15940);
+	static inline auto FResetAutoCompletion = PreyFunction<void(CXConsole* const _this)>(0xE145C0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CXConsole* const _this, ICrySizer* pSizer)>(0xE11BA0);
+	static inline auto FResetProgressBar = PreyFunction<void(CXConsole* const _this, int nProgressBarRange)>(0xE145F0);
+	static inline auto FTickProgressBar = PreyFunction<void(CXConsole* const _this)>(0xE158D0);
+	static inline auto FSetLoadingImage = PreyFunction<void(CXConsole* const _this, const char* szFilename)>(0xE15380);
+	static inline auto FAddConsoleVarSink = PreyFunction<void(CXConsole* const _this, IConsoleVarSink* pSink)>(0xE0C810);
+	static inline auto FRemoveConsoleVarSink = PreyFunction<void(CXConsole* const _this, IConsoleVarSink* pSink)>(0xE14490);
+	static inline auto FGetHistoryElement = PreyFunction<const char* (CXConsole* const _this, const bool bUpOrDown)>(0xE119A0);
+	static inline auto FAddCommandToHistory = PreyFunction<void(CXConsole* const _this, const char* szCommand)>(0xE0C610);
+	static inline auto FSetInputLine = PreyFunction<void(CXConsole* const _this, const char* szLine)>(0xE15330);
+	static inline auto FLoadConfigVar = PreyFunction<void(CXConsole* const _this, const char* sVariable, const char* sValue)>(0xE12540);
+	static inline auto FEnableActivationKey = PreyFunction<void(CXConsole* const _this, bool bEnable)>(0xE0F240);
+	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x13B0900);
+	static inline auto FOnInputEventUI = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x13B0900);
+	static inline auto FOnConsoleCommand = PreyFunction<void(IRemoteConsoleListener* const _this, const char* cmd)>(0xE12C20);
+	static inline auto FOnBeforeVarChange = PreyFunction<bool(CXConsole* const _this, ICVar* pVar, const char* sNewValue)>(0xE129C0);
+	static inline auto FOnAfterVarChange = PreyFunction<void(CXConsole* const _this, ICVar* pVar)>(0xE12960);
+	static inline auto FRegisterCVarGroup = PreyFunction<ICVar* (CXConsole* const _this, const char* szName, const char* szFileName)>(0xE13A20);
+	static inline auto FPrintCheatVars = PreyFunction<void(CXConsole* const _this, bool bUseLastHashRange)>(0x1333E90);
+	static inline auto FGetCheatVarAt = PreyFunction<char* (CXConsole* const _this, unsigned nOffset)>(0xE11840);
+	static inline auto FDrawBuffer = PreyFunction<void(CXConsole* const _this, int nScrollPos, const char* szEffect)>(0xE0EB40);
+	static inline auto FRegisterVar = PreyFunction<void(CXConsole* const _this, ICVar* pCVar, void (*pChangeFunc)(ICVar*))>(0xE13EA0);
+	static inline auto FAddLine = PreyFunction<void(CXConsole* const _this, const char* inputStr)>(0xE0C890);
+	static inline auto FAddLinePlus = PreyFunction<void(CXConsole* const _this, const char* inputStr)>(0xE0CE30);
+	static inline auto FExecuteCommand = PreyFunction<void(CXConsole* const _this, CConsoleCommand& cmd, string& str, bool bIgnoreDevMode)>(0xE0F250);
+#endif
     //FIXME: make these functions work
-//    static inline auto FConsoleLogInputResponse = PreyFunction<void(CXConsole *const _this, const char *format, ... arg1)>(0xDF0DE0);
-//    static inline auto FConsoleLogInput = PreyFunction<void(CXConsole *const _this, const char *format, ... arg1)>(0xDF0DA0);
-//    static inline auto FConsoleWarning = PreyFunction<void(CXConsole *const _this, const char *format, ... arg1)>(0xDF0E40);
+#ifndef MOONCRASH
+//    static inline auto FConsoleLogInputResponse = PreyFunction<void(CXConsole *const _this, const char *format, ...)>(0xDF0DE0);
+//    static inline auto FConsoleLogInput = PreyFunction<void(CXConsole *const _this, const char *format, ...)>(0xDF0DA0);
+//    static inline auto FConsoleWarning = PreyFunction<void(CXConsole *const _this, const char *format, ...)>(0xDF0E40);
     static inline auto FDisplayHelp = PreyFunction<void(CXConsole *const _this, const char *help, const char *name)>(0xDF0FA0);
     static inline auto FDisplayVarValue = PreyFunction<void(CXConsole *const _this, ICVar *pVar)>(0xDF11D0);
     static inline auto FSplitCommands = PreyFunction<void(CXConsole *const _this, const char *line, std::list<string,std::allocator<string>> &split)>(0xDF86A0);
@@ -358,5 +466,22 @@ public:
     static inline auto FRemoveCheckedCVar = PreyFunction<void(CXConsole *const _this, std::vector<std::pair<char const *,ICVar *>> &vector, std::pair<char const *,ICVar *> const &value)>(0xDF7420);
     static inline auto FAddCVarsToHash = PreyFunction<void(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::pair<char const *,ICVar *> > > > begin, std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::pair<char const *,ICVar *> > > > end, CCrc32 &runningNameCrc32, CCrc32 &runningNameValueCrc32)>(0xDEEFC0);
     static inline auto FCVarNameLess = PreyFunction<bool(std::pair<char const *,ICVar *> const &lhs, std::pair<char const *,ICVar *> const &rhs)>(0xDF0BC0);
+#else
+	// varargs: static inline auto FConsoleLogInputResponse = PreyFunction<void(CXConsole* const _this, const char* format, ...)>(0xE0DC70);
+	// varargs: static inline auto FConsoleLogInput = PreyFunction<void(CXConsole* const _this, const char* format, ...)>(0xE0DC30);
+	// varargs: static inline auto FConsoleWarning = PreyFunction<void(CXConsole* const _this, const char* format, ...)>(0xE0DCD0);
+	static inline auto FDisplayHelp = PreyFunction<void(CXConsole* const _this, const char* help, const char* name)>(0xE0DE30);
+	static inline auto FDisplayVarValue = PreyFunction<void(CXConsole* const _this, ICVar* pVar)>(0xE0E060);
+	static inline auto FSplitCommands = PreyFunction<void(CXConsole* const _this, const char* line, std::list<CryStringT<char>,std::allocator<CryStringT<char> > >& split)>(0xE15500);
+	static inline auto FExecuteStringInternal = PreyFunction<void(CXConsole* const _this, const char* command, const bool bFromConsole, const bool bSilentMode)>(0xE107C0);
+	static inline auto FAddCheckedCVar = PreyFunction<void(CXConsole* const _this, std::vector<std::pair<const char*, ICVar*>>& vector, const std::pair<const char*, ICVar*>& value)>(0xE0BFE0);
+	static inline auto FRemoveCheckedCVar = PreyFunction<void(CXConsole* const _this, std::vector<std::pair<const char*, ICVar*>>& vector, const std::pair<const char*, ICVar*>& value)>(0xE14280);
+	static inline auto FAddCVarsToHash = PreyFunction<void(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::pair<char const *,ICVar *> > > > begin, std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<std::pair<char const *,ICVar *> > > > end, CCrc32& runningNameCrc32, CCrc32& runningNameValueCrc32)>(0xE0BE50);
+	static inline auto FCVarNameLess = PreyFunction<bool(const std::pair<const char*, ICVar*>& lhs, const std::pair<const char*, ICVar*>& rhs)>(0xE0DA50);
+#endif
+#ifdef MOONCRASH
+	static inline auto FCXConsoleOv1 = PreyFunction<void(CXConsole* const _this)>(0xE0B650);
+#endif
 };
 
+static_assert(sizeof(CXConsole) == 576);

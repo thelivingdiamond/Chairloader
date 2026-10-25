@@ -21,4 +21,3 @@ public:
 	virtual std::vector<IArkGlobalAction const *> GetActions() const = 0;
 	virtual _smart_ptr<IFlowGraph> CreateAction(string const &arg0) = 0;
 };
-

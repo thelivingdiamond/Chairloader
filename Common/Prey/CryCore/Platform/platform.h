@@ -588,7 +588,7 @@ void SetFlags(T& dest, U flags, bool b)
 //! The 'string_less' class below provides less functor implementation for 'string'.
 //! Supports direct comparison against plain C strings and stack strings.
 //! This is most effective in combination with STLPORT, where various 'find' and related methods are templated on the parameter type.
-struct string_less : public std::binary_function<string, string, bool>
+struct string_less
 {
 	bool operator()(const string& s1, const char* s2) const
 	{

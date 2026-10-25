@@ -12,17 +12,30 @@ struct SUIEventDesc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapageobjectives.h
+#ifdef MOONCRASH
+enum class ArkPDAPage;
+#endif
 class CArkPDAPageObjectives : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageObjectives> // Id=801BA99 Size=64
 {
 public:
+#ifdef MOONCRASH
+	uint64_t m_highlightObjectiveId;
+	uint64_t m_locationTaskId;
+#endif
+#ifndef MOONCRASH
 	int64_t m_highlightObjectiveId;
 	int64_t m_locationTaskId;
+#endif
 	bool m_bShowingCompleted;
 	
 	CArkPDAPageObjectives();
 	virtual ~CArkPDAPageObjectives();
 	virtual bool ProcessInput(CCryName const &_rActionId, const int _activationMode, const float _fValue);
+#ifndef MOONCRASH
 	void HighlightObjective(int64_t _objectiveId) const { FHighlightObjective(this,_objectiveId); }
+#else
+	void HighlightObjective(uint64_t _objectiveId) const { FHighlightObjective(this, _objectiveId); }
+#endif
 	void OnHighlightObjective(IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args) { FOnHighlightObjective(this,_pSender,_event,_args); }
 	void OnSetTrackedObjective(IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args) { FOnSetTrackedObjective(this,_pSender,_event,_args); }
 	void OnGotoMap(IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args) { FOnGotoMap(this,_pSender,_event,_args); }
@@ -40,6 +53,10 @@ public:
 	static bool IsObjectiveVisible(ArkObjective const &arg0);
 #endif
 	
+#ifdef MOONCRASH
+	void OnPressShowCompletedObjectives() { FOnPressShowCompletedObjectives(this); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FProcessInput = PreyFunction<bool(CArkPDAPageObjectives *const _this, CCryName const &_rActionId, const int _activationMode, const float _fValue)>(0x162BA60);
 	static inline auto FHighlightObjective = PreyFunction<void(CArkPDAPageObjectives const *const _this, int64_t _objectiveId)>(0x162AE90);
 	static inline auto FOnHighlightObjective = PreyFunction<void(CArkPDAPageObjectives *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x162B090);
@@ -53,5 +70,21 @@ public:
 	static inline auto FManagesInputPrompts = PreyFunction<bool(CArkPDAPageObjectives const *const _this)>(0x1B933B0);
 	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageObjectives *const _this)>(0x162BFE0);
 	static inline auto FUpdateShowMapButton = PreyFunction<void(CArkPDAPageObjectives const *const _this)>(0x162C410);
+#else
+	static inline auto FCArkPDAPageObjectivesOv1 = PreyFunction<void(CArkPDAPageObjectives* const _this)>(0x174BF90);
+	static inline auto FProcessInput = PreyFunction<bool(CArkPDAPageObjectives* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x174D810);
+	static inline auto FHighlightObjective = PreyFunction<void(const CArkPDAPageObjectives* const _this, uint64_t _objectiveId)>(0x174CAF0);
+	static inline auto FOnPressShowCompletedObjectives = PreyFunction<void(CArkPDAPageObjectives* const _this)>(0x174D460);
+	static inline auto FOnHighlightObjective = PreyFunction<void(CArkPDAPageObjectives* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x174CD60);
+	static inline auto FOnSetTrackedObjective = PreyFunction<void(CArkPDAPageObjectives* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x174D4F0);
+	static inline auto FOnGotoMap = PreyFunction<void(CArkPDAPageObjectives* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x174CD50);
+	static inline auto FGotoTaskOnMap = PreyFunction<void(const CArkPDAPageObjectives* const _this)>(0x174CA30);
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageObjectives* const _this)>(0x174D790);
+	static inline auto FClose = PreyFunction<void(CArkPDAPageObjectives* const _this)>(0x174AC00);
+	static inline auto FRefresh = PreyFunction<void(const CArkPDAPageObjectives* const _this)>(0x174D860);
+	static inline auto FUpdateInputPrompt = PreyFunction<void(const CArkPDAPageObjectives* const _this, const bool _bUpdateUI)>(0x174E0B0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageObjectives* const _this)>(0x1A302A0);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageObjectives* const _this)>(0x174DD40);
+	static inline auto FUpdateShowMapButton = PreyFunction<void(const CArkPDAPageObjectives* const _this)>(0x174E490);
+#endif
 };
-

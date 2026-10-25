@@ -43,7 +43,11 @@ public:
 	bool AreAllTriggersFree() const { return FAreAllTriggersFree(this); }
 	void SetDuckAudio(bool _bEnable) { FSetDuckAudio(this,_bEnable); }
 	virtual EArkDialogPlayerType GetType() const;
+#ifndef MOONCRASH
 	boost::optional<float> GetNormalizedPlaytime(uint64_t _dialogId) const { return FGetNormalizedPlaytime(this,_dialogId); }
+#else
+	boost::optional<float> GetNormalizedPlaytime(uint64_t _dialogId) const { alignas(boost::optional<float>) std::byte _return_buf_[sizeof(boost::optional<float>)]; return *FGetNormalizedPlaytime(this, reinterpret_cast<boost::optional<float>*>(_return_buf_), _dialogId); }
+#endif
 	virtual std::vector<SSubtitleAudioData> GetSubtitleAudioData() const;
 	ArkDialogPlayer::ELoadResult Load(SDialogParams const &_params) { return FLoad(this,_params); }
 	virtual void OnDialogComplete(ArkDialogAudioTrigger const *_pTrigger, const bool _bAudioFinished);
@@ -71,6 +75,7 @@ public:
 	bool IsAudioLogConversation() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkDialogPlayer = PreyFunction<void(ArkDialogPlayer *const _this)>(0x1484E80);
 	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayer *const _this, SDialogParams const &_params)>(0x1485600);
 	static inline auto FStop = PreyFunction<void(ArkDialogPlayer *const _this, bool _bInvalidate)>(0x1485A40);
@@ -93,5 +98,29 @@ public:
 	static inline auto FOnTriggerLoaded = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger, bool _bSuccess)>(0x14855C0);
 	static inline auto FOnTriggerCutoff = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x14855B0);
 	static inline auto FOnTriggerFinished = PreyFunction<void(ArkDialogPlayer *const _this, ArkDialogAudioTrigger const *_pTrigger)>(0x14855B0);
+#else
+	static inline auto FArkDialogPlayerOv1 = PreyFunction<void(ArkDialogPlayer* const _this, ArkSpeakerBase* _pSpeaker)>(0x159C620);
+	static inline auto FBitNotArkDialogPlayer = PreyFunction<void(ArkDialogPlayer* const _this)>(0x159C6F0);
+	static inline auto FPlay = PreyFunction<bool(ArkDialogPlayer* const _this, const SDialogParams& _params)>(0x159CE70);
+	static inline auto FStop = PreyFunction<void(ArkDialogPlayer* const _this, bool _bInvalidate)>(0x159D2C0);
+	static inline auto FUpdate = PreyFunction<void(ArkDialogPlayer* const _this, const float _frameTime)>(0x159D410);
+	static inline auto FSetVoiceEffect = PreyFunction<void(ArkDialogPlayer* const _this, unsigned _environmentId)>(0x159D2B0);
+	static inline auto FOnGamePause = PreyFunction<void(ArkDialogPlayer* const _this, bool _bPause)>(0x159CD70);
+	static inline auto FIsPlaying = PreyFunction<bool(const ArkDialogPlayer* const _this)>(0x159CBA0);
+	static inline auto FAreAllTriggersFree = PreyFunction<bool(const ArkDialogPlayer* const _this)>(0x159C8E0);
+	static inline auto FSetDuckAudio = PreyFunction<void(ArkDialogPlayer* const _this, bool _bEnable)>(0x159D220);
+	static inline auto FGetType = PreyFunction<EArkDialogPlayerType(const ArkDialogPlayer* const _this)>(0x1948930);
+	static inline auto FGetNormalizedPlaytime = PreyFunction<boost::optional<float>*(const ArkDialogPlayer* const _this, boost::optional<float>* _return_value_, uint64_t _dialogId)>(0x159C920);
+	static inline auto FGetSubtitleAudioData = PreyFunction<std::vector<SSubtitleAudioData>*(const ArkDialogPlayer* const _this, std::vector<SSubtitleAudioData>* _return_value_)>(0x159C970);
+	static inline auto FLoad = PreyFunction<ArkDialogPlayer::ELoadResult(ArkDialogPlayer* const _this, const SDialogParams& _params)>(0x159CBD0);
+	static inline auto FOnDialogComplete = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger, const bool _bAudioFinished)>(0x159CCC0);
+	static inline auto FPlayTriggerInternal = PreyFunction<bool(ArkDialogPlayer* const _this, ArkDialogAudioTrigger& _trigger)>(0x159CFC0);
+	static inline auto FGetEntity = PreyFunction<IEntity* (const ArkDialogPlayer* const _this)>(0x159C910);
+	static inline auto FUpdateAudioLevels = PreyFunction<void(ArkDialogPlayer* const _this, IEntity& _entity)>(0x159D4F0);
+	static inline auto FAddSubtitle = PreyFunction<void(const ArkDialogPlayer* const _this, const ArkDialogAudioTrigger& _trigger)>(0x159C7F0);
+	static inline auto FRemoveSubtitle = PreyFunction<void(const ArkDialogPlayer* const _this, const ArkDialogAudioTrigger& _trigger)>(0x159D1E0);
+	static inline auto FOnTriggerLoaded = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger, bool _bSuccess)>(0x159CE30);
+	static inline auto FOnTriggerCutoff = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x159CE20);
+	static inline auto FOnTriggerFinished = PreyFunction<void(ArkDialogPlayer* const _this, const ArkDialogAudioTrigger* _pTrigger)>(0x159CE20);
+#endif
 };
-

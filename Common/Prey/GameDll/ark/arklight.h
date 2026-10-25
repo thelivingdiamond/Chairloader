@@ -16,6 +16,11 @@ struct ArkInteractionInfo;
 class ArkLightDisruptionProfile;
 struct ArkLightManagerLightData;
 class ArkSafeScriptTable;
+#ifdef MOONCRASH
+#include <Prey/CryRenderer/IShader.h>
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+#endif
 namespace ArkSignalSystem
 {
 class Package;
@@ -45,9 +50,15 @@ public:
 	void RegisterForSignals(bool _bRegister) { FRegisterForSignals(this, _bRegister); }
 	void SetSignalGroupId(const uint64_t _id) { FSetSignalGroupId(this, _id); }
 
+#ifndef MOONCRASH
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, ArkSignalSystem::Package const& _package)>(0x1445C40);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x1446A20);
 	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x1447A90);
+#else
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkLightSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x155B370);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkLightSignalReceiver* const _this, bool _bRegister)>(0x155C150);
+	static inline auto FSetSignalGroupId = PreyFunction<void(ArkLightSignalReceiver* const _this, const uint64_t _id)>(0x155D1C0);
+#endif
 };
 
 // Header: FromCpp
@@ -221,7 +232,9 @@ public:
 	void SetEmpTargetInfluence(const float _value) { FSetEmpTargetInfluence(this,_value); }
 	void SetHealth_Internal(const float _value) { FSetHealth_Internal(this,_value); }
 	void SetLightStyle(const int _lightIndex, const uint8_t _style) { FSetLightStyle(this,_lightIndex,_style); }
+#ifndef MOONCRASH
 	void SetInterferenceState(EArkLightInterferenceState _interferenceState) { FSetInterferenceState(this,_interferenceState); }
+#endif
 	void SetMoved(CArkLight::EMovementResponse _response, bool _bFromLink) { FSetMoved(this,_response,_bFromLink); }
 	void PopulateInteractionForCarry(ArkInteractionInfo &_interactionInfo) const { FPopulateInteractionForCarry(this,_interactionInfo); }
 	
@@ -246,6 +259,7 @@ public:
 	void SetNeedsDisableShadows(const bool arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkLight *const _this, IGameObject *_pGameObject)>(0x1444F20);
 	static inline auto FPostInit = PreyFunction<void(CArkLight *const _this, IGameObject *_pGameObject)>(0x14461B0);
 	static inline auto FRelease = PreyFunction<void(CArkLight *const _this)>(0xA97D40);
@@ -305,4 +319,65 @@ public:
 	static inline auto FSetInterferenceState = PreyFunction<void(CArkLight *const _this, EArkLightInterferenceState _interferenceState)>(0x1447040);
 	static inline auto FSetMoved = PreyFunction<void(CArkLight *const _this, CArkLight::EMovementResponse _response, bool _bFromLink)>(0x1447380);
 	static inline auto FPopulateInteractionForCarry = PreyFunction<void(CArkLight const *const _this, ArkInteractionInfo &_interactionInfo)>(0x1446080);
+#else
+	static inline auto FCArkLightOv1 = PreyFunction<void(CArkLight* const _this)>(0x1559A90);
+	static inline auto FInit = PreyFunction<bool(CArkLight* const _this, IGameObject* _pGameObject)>(0x155A650);
+	static inline auto FPostInit = PreyFunction<void(CArkLight* const _this, IGameObject* _pGameObject)>(0x155B8E0);
+	static inline auto FRelease = PreyFunction<void(CArkLight* const _this)>(0x3E3960);
+	static inline auto FPostSerialize = PreyFunction<void(CArkLight* const _this)>(0x155B8F0);
+	static inline auto FUpdate = PreyFunction<void(CArkLight* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x155ED20);
+	static inline auto FHandleEvent = PreyFunction<void(CArkLight* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkLight* const _this, SEntityEvent& _event)>(0x155BA20);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkLight* const _this, ICrySizer* _pS)>(0x155A400);
+	static inline auto FSetPowered = PreyFunction<void(CArkLight* const _this, bool _bPowered)>(0x155D160);
+	static inline auto FRegisterListener = PreyFunction<void(CArkLight* const _this, IArkLightListener& _listener)>(0x155C270);
+	static inline auto FUnregisterListener = PreyFunction<void(CArkLight* const _this, IArkLightListener& _listener)>(0x155ECD0);
+	static inline auto FSetDiffuseColorOv1 = PreyFunction<void(CArkLight* const _this, const Vec3& _color, int _lightIndex, bool _bForce)>(0x155C520);
+	static inline auto FSetDiffuseColorOv0 = PreyFunction<void(CArkLight* const _this, const int _lightIndex, const Vec3 _color)>(0x155C480);
+	static inline auto FSetBrightness = PreyFunction<void(CArkLight* const _this, float _fBrightness, bool _bForce)>(0x155C2C0);
+	static inline auto FSetTimeBrightness = PreyFunction<void(CArkLight* const _this, float _fTimeBrightness, bool _bForce)>(0x155D360);
+	static inline auto FSetVisualEmpInfluence = PreyFunction<void(CArkLight* const _this, float _fEmpInfluence, bool _bForce)>(0x155D6C0);
+	static inline auto FSetVisualEmpBrightness = PreyFunction<void(CArkLight* const _this, float _fEmpBrightness, bool _bForce)>(0x155D520);
+	static inline auto FForceDisableAffectsThisAreaOnly = PreyFunction<void(CArkLight* const _this)>(0x155A270);
+	static inline auto FApplySerializedData = PreyFunction<void(CArkLight* const _this, const ArkLightManagerLightData& _data)>(0x155A090);
+	static inline auto FProcessScriptEvent = PreyFunction<void(CArkLight* const _this, const char* _szEventName)>(0x155BC10);
+	static inline auto FParseLightStyleData = PreyFunction<void(CArkLight* const _this, const int _index, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1209BE0);
+	static inline auto FParseLightShapeParams = PreyFunction<void(CArkLight* const _this, CArkLight::LightData& _lightData, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1209770);
+	static inline auto FParseLightParams = PreyFunction<void(CArkLight* const _this, CArkLight::LightData& _lightData, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1208B00);
+	static inline auto FLoadCachedProperties_Audio = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x12059D0);
+	static inline auto FLoadCachedProperties_Particles = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1207400);
+	static inline auto FLoadCachedProperties_Disruption = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1206010);
+	static inline auto FLoadCachedProperties_Lights = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x12065A0);
+	static inline auto FLoadCachedProperties_Breakable = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1205D50);
+	static inline auto FLoadCachedProperties_Time = PreyFunction<void(CArkLight* const _this, const ArkSafeScriptTable& _props, const ArkSafeScriptTable& _instProps)>(0x1207F00);
+	static inline auto FLoadCachedProperties = PreyFunction<void(CArkLight* const _this)>(0x1205300);
+	static inline auto FShutdown = PreyFunction<void(CArkLight* const _this)>(0x155E6E0);
+	static inline auto FStartup = PreyFunction<void(CArkLight* const _this)>(0x155EAA0);
+	static inline auto FCacheLightSlots = PreyFunction<void(CArkLight* const _this)>(0x155A140);
+	static inline auto FSetupLightSlots = PreyFunction<void(CArkLight* const _this)>(0x155DAF0);
+	static inline auto FSetupModel = PreyFunction<void(CArkLight* const _this, const bool _bPhysicalize)>(0x155DC40);
+	static inline auto FOnMaterialChanged = PreyFunction<void(CArkLight* const _this, IMaterial* _pNewMaterial)>(0x155B030);
+	static inline auto FQueueUpdateVisuals = PreyFunction<void(CArkLight* const _this)>(0x155C120);
+	static inline auto FOnDisruptStart = PreyFunction<void(CArkLight* const _this)>(0x155AC10);
+	static inline auto FInterferenceMaxBrightnessEffects = PreyFunction<void(CArkLight* const _this)>(0x155A6F0);
+	static inline auto FUpdateDisruption = PreyFunction<void(CArkLight* const _this, float _dt)>(0x155EED0);
+	static inline auto FUpdateVisuals = PreyFunction<void(CArkLight* const _this)>(0x155F380);
+	static inline auto FOnDisruptedChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bDisrupted, bool _bWasForced)>(0x155ADC0);
+	static inline auto FOnInterferenceChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bInterfered)>(0x155AF00);
+	static inline auto FGetSparkLoc = PreyFunction<QuatT*(const IArkDisruptableListener* const _this, QuatT* _return_value_)>(0x155A430);
+	static inline auto FAffectedByDisruption = PreyFunction<bool(const IArkDisruptableListener* const _this)>(0x155A070);
+	static inline auto FOnDisruptAccumulationValueChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x155ABD0);
+	static inline auto FOnInterferenceAccumulationValueChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x155AEC0);
+	static inline auto FOnSparkTimerChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x155B770);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x155B8C0);
+	static inline auto FPopulateRemoteManipulationInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, ArkInteractionInfo& _interactionInfo)>(0x155B8C0);
+	static inline auto FSetEmpBrightness = PreyFunction<void(CArkLight* const _this, const float _value)>(0x155C5E0);
+	static inline auto FSetEmpTargetBrightness = PreyFunction<void(CArkLight* const _this, const float _value)>(0x155C680);
+	static inline auto FSetEmpInfluence = PreyFunction<void(CArkLight* const _this, const float _value)>(0x155C630);
+	static inline auto FSetEmpTargetInfluence = PreyFunction<void(CArkLight* const _this, const float _value)>(0x155C6D0);
+	static inline auto FSetHealth_Internal = PreyFunction<void(CArkLight* const _this, const float _value)>(0x155C720);
+	static inline auto FSetLightStyle = PreyFunction<void(CArkLight* const _this, const int _lightIndex, const uint8_t _style)>(0x155CA50);
+	static inline auto FSetMoved = PreyFunction<void(CArkLight* const _this, CArkLight::EMovementResponse _response, bool _bFromLink)>(0x155CAB0);
+	static inline auto FPopulateInteractionForCarry = PreyFunction<void(const CArkLight* const _this, ArkInteractionInfo& _interactionInfo)>(0x155B7B0);
+#endif
 };
