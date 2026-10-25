@@ -25,6 +25,7 @@ set(_CHAIRLOADER_VERSION_TYPE "")  # Indicates a pre-release version (e.g. "-alp
 
 # Game path
 set(PREY_DLL_DIR "" CACHE PATH "(optional) Path to the game binaries directory (where Prey.exe/.dll are) to automatically install built binaries")
+set(PREY_MOONCRASH_DLL_DIR "" CACHE PATH "(optional) Path to the mooncrash game binaries directory (where Prey.dll is under the Whiplash/ folder) to automatically install built binaries")
 
 if(PREY_DLL_DIR)
 	get_filename_component(PREY_PATH "${PREY_DLL_DIR}/../../../../" ABSOLUTE)
@@ -63,16 +64,18 @@ function(cl_set_output_dir targetName outPath)
 	)
 endfunction()
 
-# Build for Mooncrash. Outputs go to Whiplash/ and Data-Mooncrash/ so base builds are not overwritten.
+# Build for Mooncrash
 option(PREY_MOONCRASH "Build for Mooncrash (Whiplash) instead of base Prey" OFF)
 
 # Sets target's output directory to the game binaries dir.
 # @param targetName Name of the target.
 function(cl_output_to_game_dir targetName)
-	if(PREY_DLL_DIR)
-		if(PREY_MOONCRASH)
-			cl_set_output_dir(${targetName} "${PREY_PATH}/Whiplash/Binaries/Danielle/x64/Release")
-		else()
+	if(PREY_MOONCRASH)
+		if(PREY_MOONCRASH_DLL_DIR)
+			cl_set_output_dir(${targetName} "${PREY_MOONCRASH_DLL_DIR}")
+		endif()
+	else()
+		if(PREY_DLL_DIR)
 			cl_set_output_dir(${targetName} "${PREY_DLL_DIR}")
 		endif()
 	endif()
