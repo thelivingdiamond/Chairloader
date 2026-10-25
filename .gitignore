@@ -21,5 +21,3 @@ CMakeUserPresets.json
 # Example mod
 /ExampleMod.dll
 /ExampleMod.pdb
-# Mooncrash build outputs (PREY_MOONCRASH)
-Data-Mooncrash/
