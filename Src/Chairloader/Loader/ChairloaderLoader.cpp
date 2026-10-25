@@ -183,7 +183,7 @@ bool ChairloaderLoader::ReadSupportedVersions(std::string& outError)
         break;
     case EGameFlavor::Mooncrash:
         m_SupportedVersions.push_back(GameVersionInfo{
-            "Mooncrash-2021-08-18",
+            "EGS-2021-08-18",
             "BuildTime: Aug 18 2021 20:04:57",
             0x1EC5BD8,
         });
