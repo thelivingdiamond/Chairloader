@@ -51,8 +51,10 @@ bool CEntityScript_LoadScript_Hook(CEntityScript* const _this, bool bForceReload
     // Precache of OnReset function.
     _this->m_pEntityTable->GetValue(SCRIPT_ONRESET, _this->m_pOnReset);
 
+#ifndef MOONCRASH
     // Precache of OnTransformFromEditorDone function.
     _this->m_pEntityTable->GetValue(SCRIPT_ONTRANSFORMATION_FROMEDITOR_DONE, _this->m_pOnTransformFromEditorDone);
+#endif
 
     // Enumerate all states.
     _this->EnumStates();

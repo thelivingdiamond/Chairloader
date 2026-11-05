@@ -7,8 +7,6 @@
 
 class XmlNodeRef;
 
-using EArkWritebackType = EArkConversationType;
-
 class ArkWritebackFact // Id=801368B Size=32
 {
 public:
@@ -50,7 +48,12 @@ public:
 	EArkCriterionKeyType GetKeyType() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCompare = PreyFunction<bool(ArkResponseCriterion const *const _this, const double _x)>(0x1498280);
+#else
+	static inline auto FArkResponseCriterionOv3 = PreyFunction<void(ArkResponseCriterion* const _this, XmlNodeRef _root)>(0x15AF4D0);
+	static inline auto FCompare = PreyFunction<bool(const ArkResponseCriterion* const _this, const double _x)>(0x15AFD50);
+#endif
 };
 
 // Header: FromCpp
@@ -91,6 +94,10 @@ public:
 	bool IsAvailable(const float arg0, const float arg1) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetNumber = PreyFunction<boost::optional<float>(const char *_input)>(0x1498300);
+#else
+	static inline auto FArkResponseRuleOv2 = PreyFunction<void(ArkResponseRule* const _this, XmlNodeRef _root, const CCryName& _filename)>(0x15AF720);
+	static inline auto FGetNumber = PreyFunction<boost::optional<float>(const char* _input)>(0x15AFDD0);
+#endif
 };
-

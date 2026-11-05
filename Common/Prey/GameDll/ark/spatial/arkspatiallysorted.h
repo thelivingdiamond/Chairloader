@@ -4,6 +4,13 @@
 
 // Header: Exact
 // Prey/GameDll/ark/spatial/arkspatiallysorted.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedApexTentacle.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedEntity.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedNpc.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatiallySortedTurret.h>
+class ArkSpatiallySortedKey;
+#endif
 template <typename T>
 class ArkSpatiallySorted // Id=8016150 Size=72
 {
@@ -34,4 +41,3 @@ public:
 	void Shrink();
 #endif
 };
-

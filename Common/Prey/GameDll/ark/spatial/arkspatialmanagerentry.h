@@ -4,6 +4,11 @@
 
 // Header: Exact
 // Prey/GameDll/ark/spatial/arkspatialmanagerentry.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_apextentacle.h>
+#include <Prey/GameDll/ark/spatial/arkspatialmanagerentry_typhonnest.h>
+#include <Prey/GameDll/ark/spatial/ArkSpatialManagerKey.h>
+#endif
 template <typename T>
 class ArkSpatialManagerEntry // Id=80152EF Size=16
 {
@@ -18,4 +23,3 @@ public:
 	void Reset();
 #endif
 };
-

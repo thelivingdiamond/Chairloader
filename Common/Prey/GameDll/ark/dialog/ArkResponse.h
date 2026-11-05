@@ -56,7 +56,11 @@ public:
 	std::vector<ArkResponse> m_responses;
 	
 	ArkResponseSet(XmlNodeRef _root);
+#ifndef MOONCRASH
 	ArkResponse *FindWeightedResponse(const float _currentTime, std::unordered_map<unsigned __int64,float> const &_entityLastUsed, std::unordered_map<unsigned __int64,float> const &_globalLastUsed) { return FFindWeightedResponse(this,_currentTime,_entityLastUsed,_globalLastUsed); }
+#else
+	ArkResponse* FindWeightedResponse(const float _currentTime, const std::unordered_map<uint64_t, float>& _entityLastUsed, const std::unordered_map<uint64_t, float>& _globalLastUsed) { return FFindWeightedResponse(this, _currentTime, _entityLastUsed, _globalLastUsed); }
+#endif
 	
 #if 0
 	void AddResponse(ArkResponse const &arg0);
@@ -65,6 +69,10 @@ public:
 	bool IsValid() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FFindWeightedResponse = PreyFunction<ArkResponse *(ArkResponseSet *const _this, const float _currentTime, std::unordered_map<unsigned __int64,float> const &_entityLastUsed, std::unordered_map<unsigned __int64,float> const &_globalLastUsed)>(0x148DA00);
+#else
+	static inline auto FArkResponseSetOv2 = PreyFunction<void(ArkResponseSet* const _this, XmlNodeRef _root)>(0x15A55E0);
+	static inline auto FFindWeightedResponse = PreyFunction<ArkResponse* (ArkResponseSet* const _this, const float _currentTime, const std::unordered_map<uint64_t, float>& _entityLastUsed, const std::unordered_map<uint64_t, float>& _globalLastUsed)>(0x15A56B0);
+#endif
 };
-

@@ -9,4 +9,3 @@ class IArkGlooIslandNavLinkManager // Id=80020DE Size=8
 public:
 	virtual unsigned GetNearbyGlooIslandEntityId(Vec3 const &arg0, float arg1) = 0;
 };
-

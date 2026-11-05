@@ -1,7 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-#include <Prey/CryAction/ScriptBind_Inventory.h>
+#include <Prey/GameDll/ark/scriptbind_inventory.h>
 #include <Prey/CryScriptSystem/IScriptSystem.h>
 #include <Prey/GameDll/ark/ScriptHandle.h>
 
@@ -12,6 +12,10 @@ struct ISystem;
 
 // Header: FromCpp
 // Prey/GameDll/ark/scriptbind_inventory.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+union ScriptHandle;
+#endif
 class CScriptBind_Inventory : public CScriptableBase // Id=8016544 Size=96
 {
 public:
@@ -33,6 +37,7 @@ public:
 	ArkInventory *GetInventory(IFunctionHandler *arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Inventory *const _this, ArkInventory *_pInventory)>(0x15C75D0);
 	static inline auto FDetachFrom = PreyFunction<void(CScriptBind_Inventory *const _this, ArkInventory const *_pInventory)>(0x15C7720);
 	static inline auto FGetMemoryUsage = PreyFunction<void(CScriptBind_Inventory const *const _this, ICrySizer *pSizer)>(0xA39190);
@@ -43,5 +48,17 @@ public:
 	static inline auto FSetPreventStorage = PreyFunction<int(CScriptBind_Inventory *const _this, IFunctionHandler *_pH, bool _bPreventStorage)>(0x15C8060);
 	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_Inventory *const _this)>(0x15C7B80);
 	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_Inventory *const _this)>(0x15C7D90);
+#else
+	static inline auto FCScriptBind_InventoryOv1 = PreyFunction<void(CScriptBind_Inventory* const _this, ISystem* _pSystem)>(0x16EE160);
+	static inline auto FAttachTo = PreyFunction<void(CScriptBind_Inventory* const _this, ArkInventory* _pInventory)>(0x16EE1D0);
+	static inline auto FDetachFrom = PreyFunction<void(CScriptBind_Inventory* const _this, const ArkInventory* _pInventory)>(0x16EE320);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CScriptBind_Inventory* const _this, ICrySizer* pSizer)>(0xA55F00);
+	static inline auto FRemoveItem = PreyFunction<int(CScriptBind_Inventory* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x16EEBF0);
+	static inline auto FIsEmpty = PreyFunction<int(CScriptBind_Inventory* const _this, IFunctionHandler* _pH)>(0x16EE690);
+	static inline auto FGetAllItems = PreyFunction<int(CScriptBind_Inventory* const _this, IFunctionHandler* _pH)>(0x16EE3C0);
+	static inline auto FSetDimensions = PreyFunction<int(CScriptBind_Inventory* const _this, IFunctionHandler* _pH, int _inventorySizeEnum)>(0x16EEC40);
+	static inline auto FSetPreventStorage = PreyFunction<int(CScriptBind_Inventory* const _this, IFunctionHandler* _pH, bool _bPreventStorage)>(0x16EEC80);
+	static inline auto FRegisterGlobals = PreyFunction<void(CScriptBind_Inventory* const _this)>(0x16EE790);
+	static inline auto FRegisterMethods = PreyFunction<void(CScriptBind_Inventory* const _this)>(0x16EE9A0);
+#endif
 };
-

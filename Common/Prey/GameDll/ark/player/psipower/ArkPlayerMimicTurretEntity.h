@@ -30,6 +30,7 @@ public:
 	void PostSerialize() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicTurretEntityOv1 = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this, const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x1323C00);
 	static inline auto FArkPlayerMimicTurretEntityOv0 = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this, const unsigned _entityId)>(0x1323C80);
 	static inline auto FBitNotArkPlayerMimicTurretEntity = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this)>(0x131F580);
@@ -40,5 +41,16 @@ public:
 	static inline auto FGetHealth = PreyFunction<int(const ArkPlayerMimicTurretEntity* const _this)>(0x1324080);
 	static inline auto FGetClass = PreyFunction<const IEntityClass* (const ArkPlayerMimicTurretEntity* const _this)>(0x131F8A0);
 	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x1323CC0);
+#else
+	static inline auto FArkPlayerMimicTurretEntityOv1 = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this, const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x13FE1F0);
+	static inline auto FArkPlayerMimicTurretEntityOv0 = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this, const unsigned _entityId)>(0x13FE280);
+	static inline auto FBitNotArkPlayerMimicTurretEntity = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this)>(0x13FE2C0);
+	static inline auto FShow = PreyFunction<void(ArkPlayerMimicTurretEntity* const _this, const Vec3& _velocity)>(0x13FE720);
+	static inline auto FIsVisible = PreyFunction<bool(const ArkPlayerMimicTurretEntity* const _this)>(0x13FE6E0);
+	static inline auto FGetSize = PreyFunction<Vec3*(const ArkPlayerMimicTurretEntity* const _this, Vec3* _return_value_)>(0x13FE6C0);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkPlayerMimicTurretEntity* const _this, Vec3* _return_value_)>(0x13FE680);
+	static inline auto FGetHealth = PreyFunction<int(const ArkPlayerMimicTurretEntity* const _this)>(0x13FE600);
+	static inline auto FGetClass = PreyFunction<const IEntityClass* (const ArkPlayerMimicTurretEntity* const _this)>(0x13FA020);
+	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x13FE2E0);
+#endif
 };
-

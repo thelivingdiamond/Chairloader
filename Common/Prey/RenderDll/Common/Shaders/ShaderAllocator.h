@@ -11,7 +11,11 @@
 typedef cry_crt_node_allocator ShaderBucketAllocator;
 
 extern ShaderBucketAllocator g_shaderBucketAllocator;
+#ifndef MOONCRASH
 inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2BA5FE8);
+#else
+inline PreyGlobal<IGeneralMemoryHeap*> g_shaderGeneralHeap(0x2D15248);
+#endif
 
 template<class T>
 class STLShaderAllocator : public stl::SAllocatorConstruct

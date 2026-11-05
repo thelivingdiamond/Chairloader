@@ -671,6 +671,7 @@ void WorldManager::DrawPathAirlockManagerTab() {
                 ImGui::TableSetupColumn("Locked Airlock");
                 ImGui::TableSetupScrollFreeze(1, 1);
                 ImGui::TableHeadersRow();
+#ifndef MOONCRASH   // Mooncrash's ArkStationAccessComponent has only m_lockedPaths (no airlock sets or accessors)
                 for (auto &lockedAirlock: ArkPlayer::GetInstancePtr()->m_playerComponent.GetStationAccessComponent().m_lockedAirlocks) {
                     ImGui::TableNextRow();
                     ImGui::TableNextColumn();
@@ -694,6 +695,11 @@ void WorldManager::DrawPathAirlockManagerTab() {
 
 
                 }
+#else
+                ImGui::TableNextRow();
+                ImGui::TableNextColumn();
+                ImGui::TextDisabled("Not available in Mooncrash (station access only tracks paths)");
+#endif
                 ImGui::EndTable();
             }
             if (ImGui::BeginTable("Hidden Airlocks", 1, ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY,
@@ -701,6 +707,7 @@ void WorldManager::DrawPathAirlockManagerTab() {
                 ImGui::TableSetupColumn("Hidden Airlocks");
                 ImGui::TableSetupScrollFreeze(1, 1);
                 ImGui::TableHeadersRow();
+#ifndef MOONCRASH   // Mooncrash's ArkStationAccessComponent has only m_lockedPaths (no airlock sets or accessors)
                 for (auto &hiddenAirlock: ArkPlayer::GetInstancePtr()->m_playerComponent.GetStationAccessComponent().m_hiddenAirlocks) {
                     ImGui::TableNextRow();
                     ImGui::TableNextColumn();
@@ -709,6 +716,11 @@ void WorldManager::DrawPathAirlockManagerTab() {
                         CryLog("Hidden Airlock {} clicked", hiddenAirlock);
                     }
                 }
+#else
+                ImGui::TableNextRow();
+                ImGui::TableNextColumn();
+                ImGui::TextDisabled("Not available in Mooncrash (station access only tracks paths)");
+#endif
                 ImGui::EndTable();
             }
         }

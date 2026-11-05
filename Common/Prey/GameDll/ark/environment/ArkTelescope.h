@@ -9,6 +9,11 @@ struct ArkInteractionTestResult;
 struct IEntity;
 struct IGameObject;
 
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkInteractionInfo.h>
+enum class EArkInteractionMode;
+enum class EArkInteractionType;
+#endif
 // Header: FromCpp
 // Prey/GameDll/ark/environment/ArkTelescope.h
 class ArkTelescope : public ArkEnvironmentalObject, public IArkPlayerInteractionListener // Id=8019736 Size=160
@@ -31,10 +36,17 @@ public:
 	float GetCameraStableFOV() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FPostInit = PreyFunction<void(ArkTelescope *const _this, IGameObject *_pGameObject)>(0x11BB1E0);
 	static inline auto FOnInteraction = PreyFunction<bool(ArkTelescope *const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity *const _pEntity)>(0x11BB1B0);
 	static inline auto FTestInteraction = PreyFunction<bool(ArkTelescope const *const _this, IEntity const *const _pEntity, ArkInteractionInfo const &_interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult &_result)>(0x11BB220);
 	static inline auto FPopulateInteractionInfo = PreyFunction<bool(ArkTelescope const *const _this, IEntity const *const _pEntity, std::array<ArkInteractionInfo,4> &_interactionArray)>(0x11BB1D0);
 	static inline auto FLoadProperties = PreyFunction<void(ArkTelescope *const _this)>(0x11BAEB0);
+#else
+	static inline auto FPostInit = PreyFunction<void(ArkTelescope* const _this, IGameObject* _pGameObject)>(0x123CAA0);
+	static inline auto FOnInteraction = PreyFunction<bool(IArkPlayerInteractionListener* const _this, EArkInteractionType _interaction, EArkInteractionMode _mode, IEntity* const _pEntity)>(0x123CA70);
+	static inline auto FTestInteraction = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, const ArkInteractionInfo& _interactionInfo, EArkInteractionMode _mode, ArkInteractionTestResult& _result)>(0x123CAE0);
+	static inline auto FPopulateInteractionInfo = PreyFunction<bool(const IArkPlayerInteractionListener* const _this, const IEntity* const _pEntity, std::array<ArkInteractionInfo, 4>& _interactionArray)>(0x123CA90);
+	static inline auto FLoadProperties = PreyFunction<void(ArkTelescope* const _this)>(0x123C770);
+#endif
 };
-

@@ -5,6 +5,12 @@
 
 // Header: Override
 // Prey/GameDll/ark/weapons/SStaticWeaponPoseParams.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SStaticWeaponPoseParams // Id=801D52C Size=32
 {
 	enum EPoseType
@@ -23,4 +29,3 @@ struct SStaticWeaponPoseParams // Id=801D52C Size=32
 	SStaticWeaponPoseParams::EPoseType GetPoseType() const;
 #endif
 };
-

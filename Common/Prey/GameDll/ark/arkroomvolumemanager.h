@@ -12,6 +12,11 @@ struct IConsoleCmdArgs;
 
 // Header: Override
 // Prey/GameDll/ark/arkroomvolumemanager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkRoomPath.h>
+#include <Prey/CryMath/Cry_Geo.h>
+struct AABB;
+#endif
 class ArkRoomPathNode // Id=80195F0 Size=8
 {
 public:
@@ -68,8 +73,13 @@ public:
 		std::vector<unsigned int> const &GetLinkedPortals() const;
 #endif
 		
+#ifndef MOONCRASH
 		static inline auto FIsPointInside = PreyFunction<bool(CArkRoomVolumeManager::VolumeData const *const _this, Vec3 const &_p)>(0x147C8D0);
 		static inline auto FRemoveLinkedPortal = PreyFunction<void(CArkRoomVolumeManager::VolumeData *const _this, const unsigned _portalId)>(0x147DCE0);
+#else
+		static inline auto FIsPointInside = PreyFunction<bool(const CArkRoomVolumeManager::VolumeData* const _this, const Vec3& _p)>(0x1593F60);
+		static inline auto FRemoveLinkedPortal = PreyFunction<void(CArkRoomVolumeManager::VolumeData* const _this, const unsigned _portalId)>(0x1595370);
+#endif
 	};
 
 	class PortalData // Id=80195F3 Size=96
@@ -94,11 +104,19 @@ public:
 		bool m_bExportable;
 		
 		void SetCorners(std::array<Vec3,4> const &_corners) { FSetCorners(this,_corners); }
+#ifndef MOONCRASH
 		Vec3 GetNearestPoint(Vec3 const &_point) const { return FGetNearestPointOv1(this,_point); }
 		Vec3 GetNearestPoint(Vec3 const &_startPoint, Vec3 const &_endPoint) const { return FGetNearestPointOv0(this,_startPoint,_endPoint); }
 		Vec3 GetNearestPointOnSide(Vec3 const &_point) const { return FGetNearestPointOnSide(this,_point); }
 		Vec3 GetClosestPointOnEdge(CArkRoomVolumeManager::PortalData::EPortalSide _side, Vec3 const &_point1, Vec3 const &_point2) const { return FGetClosestPointOnEdge(this,_side,_point1,_point2); }
 		Vec3 GetClosestPointInPortal(Vec3 const &_pointOnPlane, Vec3 const &_point1, Vec3 const &_point2) const { return FGetClosestPointInPortal(this,_pointOnPlane,_point1,_point2); }
+#else
+		Vec3 GetNearestPoint(const Vec3& _point) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetNearestPointOv1(this, reinterpret_cast<Vec3*>(_return_buf_), _point); }
+		Vec3 GetNearestPoint(const Vec3& _startPoint, const Vec3& _endPoint) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetNearestPointOv0(this, reinterpret_cast<Vec3*>(_return_buf_), _startPoint, _endPoint); }
+		Vec3 GetNearestPointOnSide(const Vec3& _point) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetNearestPointOnSide(this, reinterpret_cast<Vec3*>(_return_buf_), _point); }
+		Vec3 GetClosestPointOnEdge(const CArkRoomVolumeManager::PortalData::EPortalSide _side, const Vec3& _point1, const Vec3& _point2) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetClosestPointOnEdge(this, reinterpret_cast<Vec3*>(_return_buf_), _side, _point1, _point2); }
+		Vec3 GetClosestPointInPortal(const Vec3& _pointOnPlane, const Vec3& _point1, const Vec3& _point2) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetClosestPointInPortal(this, reinterpret_cast<Vec3*>(_return_buf_), _pointOnPlane, _point1, _point2); }
+#endif
 		
 #if 0
 		unsigned GetEntityId() const;
@@ -126,12 +144,21 @@ public:
 		Lineseg_tpl<float> GetEdge(CArkRoomVolumeManager::PortalData::EPortalSide arg0) const;
 #endif
 		
+#ifndef MOONCRASH
 		static inline auto FSetCorners = PreyFunction<void(CArkRoomVolumeManager::PortalData *const _this, std::array<Vec3,4> const &_corners)>(0x147E0C0);
 		static inline auto FGetNearestPointOv1 = PreyFunction<Vec3(CArkRoomVolumeManager::PortalData const *const _this, Vec3 const &_point)>(0x147B880);
 		static inline auto FGetNearestPointOv0 = PreyFunction<Vec3(CArkRoomVolumeManager::PortalData const *const _this, Vec3 const &_startPoint, Vec3 const &_endPoint)>(0x147B530);
 		static inline auto FGetNearestPointOnSide = PreyFunction<Vec3(CArkRoomVolumeManager::PortalData const *const _this, Vec3 const &_point)>(0x147BB80);
 		static inline auto FGetClosestPointOnEdge = PreyFunction<Vec3(CArkRoomVolumeManager::PortalData const *const _this, CArkRoomVolumeManager::PortalData::EPortalSide _side, Vec3 const &_point1, Vec3 const &_point2)>(0x147ADE0);
 		static inline auto FGetClosestPointInPortal = PreyFunction<Vec3(CArkRoomVolumeManager::PortalData const *const _this, Vec3 const &_pointOnPlane, Vec3 const &_point1, Vec3 const &_point2)>(0x147AA00);
+#else
+		static inline auto FSetCorners = PreyFunction<void(CArkRoomVolumeManager::PortalData* const _this, const std::array<Vec3, 4>& _corners)>(0x1595750);
+		static inline auto FGetNearestPointOv1 = PreyFunction<Vec3*(const CArkRoomVolumeManager::PortalData* const _this, Vec3* _return_value_, const Vec3& _point)>(0x1592F10);
+		static inline auto FGetNearestPointOv0 = PreyFunction<Vec3*(const CArkRoomVolumeManager::PortalData* const _this, Vec3* _return_value_, const Vec3& _startPoint, const Vec3& _endPoint)>(0x1592BC0);
+		static inline auto FGetNearestPointOnSide = PreyFunction<Vec3*(const CArkRoomVolumeManager::PortalData* const _this, Vec3* _return_value_, const Vec3& _point)>(0x1593210);
+		static inline auto FGetClosestPointOnEdge = PreyFunction<Vec3*(const CArkRoomVolumeManager::PortalData* const _this, Vec3* _return_value_, const CArkRoomVolumeManager::PortalData::EPortalSide _side, const Vec3& _point1, const Vec3& _point2)>(0x1592470);
+		static inline auto FGetClosestPointInPortal = PreyFunction<Vec3*(const CArkRoomVolumeManager::PortalData* const _this, Vec3* _return_value_, const Vec3& _pointOnPlane, const Vec3& _point1, const Vec3& _point2)>(0x1592090);
+#endif
 	};
 
 	using VolumeDataMap = std::unordered_map<unsigned int,CArkRoomVolumeManager::VolumeData>;
@@ -180,9 +207,15 @@ public:
 	bool IsRoomPortalValid(unsigned _portalId) const { return FIsRoomPortalValid(this,_portalId); }
 	bool SetRoomPortalOcclusion(unsigned _portalId, float _occlusion) { return FSetRoomPortalOcclusion(this,_portalId,_occlusion); }
 	void SetRoomPortalHazardOcclusion(unsigned _portalId, float _occlusion) { FSetRoomPortalHazardOcclusion(this,_portalId,_occlusion); }
+#ifndef MOONCRASH
 	boost::optional<float> GetDistance(Vec3 const &_startPos, Vec3 const &_endPos, float _maxDistance) const { return FGetDistance(this,_startPos,_endPos,_maxDistance); }
 	std::pair<float,float> GetHazardInfo(Vec3 const &_start, Vec3 const &_end, float _maxDistance) const { return FGetHazardInfo(this,_start,_end,_maxDistance); }
 	std::pair<float,float> GetDialogInfo(Vec3 const &_start, Vec3 const &_end, const float _maxDistance) const { return FGetDialogInfo(this,_start,_end,_maxDistance); }
+#else
+	boost::optional<float> GetDistance(const Vec3& _startPos, const Vec3& _endPos, float _maxDistance) const { alignas(boost::optional<float>) std::byte _return_buf_[sizeof(boost::optional<float>)]; return *FGetDistance(this, reinterpret_cast<boost::optional<float>*>(_return_buf_), _startPos, _endPos, _maxDistance); }
+	std::pair<float, float> GetHazardInfo(const Vec3& _start, const Vec3& _end, float _maxDistance) const { alignas(std::pair<float, float>) std::byte _return_buf_[sizeof(std::pair<float, float>)]; return *FGetHazardInfo(this, reinterpret_cast<std::pair<float, float>*>(_return_buf_), _start, _end, _maxDistance); }
+	std::pair<float, float> GetDialogInfo(const Vec3& _start, const Vec3& _end, const float _maxDistance) const { alignas(std::pair<float, float>) std::byte _return_buf_[sizeof(std::pair<float, float>)]; return *FGetDialogInfo(this, reinterpret_cast<std::pair<float, float>*>(_return_buf_), _start, _end, _maxDistance); }
+#endif
 	void ClearComputedDataInternal() { FClearComputedDataInternal(this); }
 	CArkRoomVolumeManager::VolumeData const *FindVolume(unsigned _volumeId) const { return FFindVolume(this,_volumeId); }
 	CArkRoomVolumeManager::PortalData const *FindPortal(unsigned _portalId) const { return FFindPortal(this,_portalId); }
@@ -196,7 +229,11 @@ public:
 	void BuildVolumeOctree() { FBuildVolumeOctree(this); }
 	void AddVolumeToOctree(CArkRoomVolumeManager::VolumeData const *_volume) { FAddVolumeToOctree(this,_volume); }
 	static void ExploreAudioPropagation_r(CArkRoomVolumeManager const &_roomVolumeManager, std::unordered_map<ArkRoomPathNodePair,ArkRoomPath> &_pathMap, ArkRoomPath &_currentPath, float _fMaxAudibleDistance, GeneratePropagationStats &_stats) { FExploreAudioPropagation_r(_roomVolumeManager,_pathMap,_currentPath,_fMaxAudibleDistance,_stats); }
+#ifndef MOONCRASH
 	static void ComputeAudioCmd(IConsoleCmdArgs *arg) { FComputeAudioCmd(arg); }
+#else
+	static void ComputeAudioCmd(IConsoleCmdArgs* __unnamed1) { FComputeAudioCmd(__unnamed1); }
+#endif
 	virtual ~CArkRoomVolumeManager();
 	
 #if 0
@@ -212,6 +249,7 @@ public:
 	bool DoesOctreeContainPoint(Vec3 const &arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FAcquireWriteAccess = PreyFunction<void(CArkRoomVolumeManager *const _this, unsigned long _writeThreadId)>(0x1478D70);
 	static inline auto FReleaseWriteAccess = PreyFunction<void(CArkRoomVolumeManager *const _this, unsigned long _writeThreadId)>(0x147DCD0);
 	static inline auto FSetServiceThreadId = PreyFunction<void(CArkRoomVolumeManager *const _this, unsigned long _serviceThreadId)>(0x147E730);
@@ -259,5 +297,54 @@ public:
 	static inline auto FAddVolumeToOctree = PreyFunction<void(CArkRoomVolumeManager *const _this, CArkRoomVolumeManager::VolumeData const *_volume)>(0x1478D80);
 	static inline auto FExploreAudioPropagation_r = PreyFunction<void(CArkRoomVolumeManager const &_roomVolumeManager, std::unordered_map<ArkRoomPathNodePair,ArkRoomPath> &_pathMap, ArkRoomPath &_currentPath, float _fMaxAudibleDistance, GeneratePropagationStats &_stats)>(0x1479C20);
 	static inline auto FComputeAudioCmd = PreyFunction<void(IConsoleCmdArgs *)>(0x1479360);
+#else
+	static inline auto FCArkRoomVolumeManagerOv2 = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x158FA20);
+	static inline auto FAcquireWriteAccess = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned long _writeThreadId)>(0x1590400);
+	static inline auto FReleaseWriteAccess = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned long _writeThreadId)>(0x1595360);
+	static inline auto FSetServiceThreadId = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned long _serviceThreadId)>(0x1595DC0);
+	static inline auto FLoad = PreyFunction<void(CArkRoomVolumeManager* const _this, const char* _filename)>(0x1594420);
+	static inline auto FReset = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x1595420);
+	static inline auto FClearComputedData = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x1590920);
+	static inline auto FGetOcclusion = PreyFunction<float(const CArkRoomVolumeManager* const _this, const Vec3& _soundPos, const Vec3& _listenerPos, float _maxDistance)>(0x1593530);
+	static inline auto FExport = PreyFunction<void(const CArkRoomVolumeManager* const _this, const char* _filename)>(0x15914B0);
+	static inline auto FRegisterVolume = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _volumeId, IArkRoomVolume* _roomVolume)>(0x1595240);
+	static inline auto FUnregisterVolume = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _volumeId)>(0x1595EB0);
+	static inline auto FRegisterPortal = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId, IArkRoomPortal* _roomPortal)>(0x15950F0);
+	static inline auto FUnregisterPortal = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId)>(0x1595DD0);
+	static inline auto FGetVolume = PreyFunction<IArkRoomVolume* (const CArkRoomVolumeManager* const _this, unsigned _entityId)>(0x1593DD0);
+	static inline auto FGetPortal = PreyFunction<IArkRoomPortal* (const CArkRoomVolumeManager* const _this, unsigned _entityId)>(0x1593B00);
+	static inline auto FSetRoomVolumePoints = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _entityId, const std::vector<Vec3>& _points, float _height, bool _resetPortals)>(0x1595C90);
+	static inline auto FResetRoomVolumePortals = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x15956F0);
+	static inline auto FSetRoomPortalCorners = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId, const std::array<Vec3, 4>& _corners)>(0x1595810);
+	static inline auto FResetPortalRoomVolumes = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId)>(0x1595490);
+	static inline auto FComputeAudioPropagation = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x1590A60);
+	static inline auto FGetVolumeAtPosition = PreyFunction<unsigned(const CArkRoomVolumeManager* const _this, const Vec3& _position)>(0x1593EB0);
+	static inline auto FValidateAudioPropagationPaths = PreyFunction<void(const CArkRoomVolumeManager* const _this, std::vector<std::pair<unsigned int, unsigned int>>& _invalidPathLinks)>(0x1595EF0);
+	static inline auto FValidatePortalVolumes = PreyFunction<void(const CArkRoomVolumeManager* const _this, std::vector<std::pair<unsigned int, unsigned int>>& _invalidOverlaps)>(0x1595FC0);
+	static inline auto FEnumerateCalculatedSoundPositions = PreyFunction<int(const CArkRoomVolumeManager* const _this, const Vec3& _soundPos, const Vec3& _listenerPos, IArkRoomVolumeManager::SoundPositionVisitor& _visitor)>(0x1591020);
+	static inline auto FGetRoomVolumePoints = PreyFunction<void(const CArkRoomVolumeManager* const _this, unsigned _volumeId, std::vector<Vec3>& _points, float& _height)>(0x1593CD0);
+	static inline auto FSetRoomVolumeExportable = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _volumeId, bool _bExported)>(0x1595BB0);
+	static inline auto FGetRoomPortalCorners = PreyFunction<void(const CArkRoomVolumeManager* const _this, unsigned _portalId, std::array<Vec3, 4>& _corners)>(0x1593BE0);
+	static inline auto FSetRoomPortalExportable = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId, bool _bExported)>(0x1595900);
+	static inline auto FIsRoomPortalValid = PreyFunction<bool(const CArkRoomVolumeManager* const _this, unsigned _portalId)>(0x1594330);
+	static inline auto FSetRoomPortalOcclusion = PreyFunction<bool(CArkRoomVolumeManager* const _this, unsigned _portalId, float _occlusion)>(0x1595AC0);
+	static inline auto FSetRoomPortalHazardOcclusion = PreyFunction<void(CArkRoomVolumeManager* const _this, unsigned _portalId, float _occlusion)>(0x15959E0);
+	static inline auto FGetDistance = PreyFunction<boost::optional<float>*(const CArkRoomVolumeManager* const _this, boost::optional<float>* _return_value_, const Vec3& _startPos, const Vec3& _endPos, float _maxDistance)>(0x15928A0);
+	static inline auto FGetHazardInfo = PreyFunction<std::pair<float, float>*(const CArkRoomVolumeManager* const _this, std::pair<float, float>* _return_value_, const Vec3& _start, const Vec3& _end, float _maxDistance)>(0x1592B80);
+	static inline auto FGetDialogInfo = PreyFunction<std::pair<float, float>*(const CArkRoomVolumeManager* const _this, std::pair<float, float>* _return_value_, const Vec3& _start, const Vec3& _end, const float _maxDistance)>(0x1592860);
+	static inline auto FClearComputedDataInternal = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x1590960);
+	static inline auto FFindVolume = PreyFunction<const CArkRoomVolumeManager::VolumeData* (const CArkRoomVolumeManager* const _this, unsigned _volumeId)>(0x1591D10);
+	static inline auto FFindPortal = PreyFunction<const CArkRoomVolumeManager::PortalData* (const CArkRoomVolumeManager* const _this, unsigned _portalId)>(0x1591C50);
+	static inline auto FGetOrCreateVolume = PreyFunction<CArkRoomVolumeManager::VolumeData& (CArkRoomVolumeManager* const _this, unsigned _volumeId)>(0x1593950);
+	static inline auto FGetOrCreatePortal = PreyFunction<CArkRoomVolumeManager::PortalData& (CArkRoomVolumeManager* const _this, unsigned _portalId)>(0x1593790);
+	static inline auto FIsPointInBothVolumes = PreyFunction<bool(const CArkRoomVolumeManager* const _this, unsigned _portalId, const Vec3& _point)>(0x1593ED0);
+	static inline auto FIsPortalValid = PreyFunction<bool(const CArkRoomVolumeManager* const _this, const CArkRoomVolumeManager::PortalData& _portal)>(0x15942D0);
+	static inline auto FDoesPortalOverlapVolume = PreyFunction<bool(const CArkRoomVolumeManager* const _this, const CArkRoomVolumeManager::PortalData& _portal, const CArkRoomVolumeManager::VolumeData& _volume)>(0x1590CA0);
+	static inline auto FResetPortalVolumes = PreyFunction<void(CArkRoomVolumeManager* const _this, CArkRoomVolumeManager::PortalData& _portal)>(0x1595560);
+	static inline auto FFindVolumeAtPoint = PreyFunction<const CArkRoomVolumeManager::VolumeData* (const CArkRoomVolumeManager* const _this, const Vec3& _point)>(0x1591DD0);
+	static inline auto FBuildVolumeOctree = PreyFunction<void(CArkRoomVolumeManager* const _this)>(0x1590880);
+	static inline auto FAddVolumeToOctree = PreyFunction<void(CArkRoomVolumeManager* const _this, const CArkRoomVolumeManager::VolumeData* _volume)>(0x1590410);
+	static inline auto FExploreAudioPropagation_r = PreyFunction<void(const CArkRoomVolumeManager& _roomVolumeManager, std::unordered_map<ArkRoomPathNodePair, ArkRoomPath>& _pathMap, ArkRoomPath& _currentPath, float _fMaxAudibleDistance, GeneratePropagationStats& _stats)>(0x15912B0);
+	static inline auto FComputeAudioCmd = PreyFunction<void(IConsoleCmdArgs* __unnamed1)>(0x15909F0);
+#endif
 };
-

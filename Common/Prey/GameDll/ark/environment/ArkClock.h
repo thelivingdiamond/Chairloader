@@ -23,10 +23,18 @@ public:
 	void LoadAnim() { FLoadAnim(this); }
 	virtual ~ArkClock();
 	
+#ifndef MOONCRASH
 	static inline auto FPostInit = PreyFunction<void(ArkClock *const _this, IGameObject *_pGameObject)>(0x11B9790);
 	static inline auto FUpdate = PreyFunction<void(ArkClock *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x11B9860);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkClock const *const _this, ICrySizer *_pS)>(0xA39190);
 	static inline auto FOnReset = PreyFunction<void(ArkClock *const _this, bool _bEnteringGameMode)>(0x11B9760);
 	static inline auto FLoadAnim = PreyFunction<void(ArkClock *const _this)>(0x11B9620);
+#else
+	static inline auto FArkClockOv2 = PreyFunction<void(ArkClock* const _this)>(0x123AFE0);
+	static inline auto FPostInit = PreyFunction<void(ArkClock* const _this, IGameObject* _pGameObject)>(0x123B1F0);
+	static inline auto FUpdate = PreyFunction<void(ArkClock* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x123B2C0);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkClock* const _this, ICrySizer* _pS)>(0xA55F00);
+	static inline auto FOnReset = PreyFunction<void(ArkClock* const _this, bool _bEnteringGameMode)>(0x123B1C0);
+	static inline auto FLoadAnim = PreyFunction<void(ArkClock* const _this)>(0x123B080);
+#endif
 };
-

@@ -38,10 +38,6 @@ struct SStreamInfo
 
 enum EConstantBufferShaderSlot
 {
-	// Scaleform
-	eConstantBufferShaderSlot_ScaleformMeshAttributes   = 0,
-	eConstantBufferShaderSlot_ScaleformRenderParameters = 0,
-
 	// Z/G-Buffer
 	eConstantBufferShaderSlot_PerBatch = 0,
 	eConstantBufferShaderSlot_PerInstanceLegacy = 1,

@@ -12,4 +12,3 @@ struct SGameContextParams // Id=8002007 Size=32
 	const char *demoRecorderFilename;
 	const char *demoPlaybackFilename;
 };
-

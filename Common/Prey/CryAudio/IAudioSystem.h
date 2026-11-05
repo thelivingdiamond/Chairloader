@@ -62,4 +62,3 @@ struct IAudioSystem // Id=80021A9 Size=8
 	virtual const char *GetAudioControlName(EAudioControlType arg0, const unsigned arg1, const unsigned arg2) = 0;
 	virtual void GetMemoryInfo(SAudioImplMemoryInfo &arg0) = 0;
 };
-

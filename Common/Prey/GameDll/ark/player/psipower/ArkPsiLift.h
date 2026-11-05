@@ -46,6 +46,10 @@ public:
 	unsigned GetOwnerId() const;
 #endif
 
+#ifdef MOONCRASH
+	ArkPsiLift& operator=(ArkPsiLift&& _lift) { return FoperatorEqOv1(this, std::move(_lift)); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FArkPsiLiftOv3 = PreyFunction<void(ArkPsiLift* const _this)>(0x13166D0);
 	static inline auto FArkPsiLiftOv2 = PreyFunction<void(ArkPsiLift* const _this, ArkPsiLift&& _lift)>(0x13164E0);
 	static inline auto FArkPsiLiftOv1 = PreyFunction<void(ArkPsiLift* const _this, const float _radius, const float _height, const unsigned _ownerId)>(0x1316560);
@@ -63,5 +67,23 @@ public:
 	static inline auto FSerialize = PreyFunction<void(ArkPsiLift* const _this, TSerialize _ser)>(0x1316C90);
 	static inline auto FPostSerialize = PreyFunction<void(ArkPsiLift* const _this)>(0x1316B10);
 	static inline auto FUpdateParticleEmitter = PreyFunction<void(const ArkPsiLift* const _this)>(0x1317320);
+#else
+	static inline auto FArkPsiLiftOv3 = PreyFunction<void(ArkPsiLift* const _this)>(0x13F0E40);
+	static inline auto FArkPsiLiftOv2 = PreyFunction<void(ArkPsiLift* const _this, ArkPsiLift&& _lift)>(0x13F0C50);
+	static inline auto FArkPsiLiftOv1 = PreyFunction<void(ArkPsiLift* const _this, const float _radius, const float _height, const unsigned _ownerId)>(0x13F0CD0);
+	static inline auto FBitNotArkPsiLift = PreyFunction<void(ArkPsiLift* const _this)>(0x13F0E90);
+	static inline auto FoperatorEqOv1 = PreyFunction<ArkPsiLift& (ArkPsiLift* const _this, ArkPsiLift&& _lift)>(0x13F0F20);
+	static inline auto FoperatorEqEq = PreyFunction<bool(const ArkPsiLift* const _this, const ArkPsiLift& _lift)>(0x13F0F60);
+	static inline auto FReset = PreyFunction<void(ArkPsiLift* const _this)>(0x13F1380);
+	static inline auto FVisible = PreyFunction<bool(const ArkPsiLift* const _this)>(0x13F1C00);
+	static inline auto FHide = PreyFunction<void(ArkPsiLift* const _this, const bool _bHide)>(0x13F1240);
+	static inline auto FSetAxis = PreyFunction<void(ArkPsiLift* const _this, const Vec3& _axis)>(0x13F15B0);
+	static inline auto FSetHeight = PreyFunction<void(ArkPsiLift* const _this, const float _height)>(0x13F1900);
+	static inline auto FSetPosition = PreyFunction<void(ArkPsiLift* const _this, const Vec3& _position)>(0x13F1920);
+	static inline auto FSpawnParticleEmitter = PreyFunction<void(ArkPsiLift* const _this, const char* _pParticleEffectName, const bool _bUseUiTime)>(0x13F1980);
+	static inline auto FGetBounds = PreyFunction<OBB*(const ArkPsiLift* const _this, OBB* _return_value_)>(0x13F0F70);
+	static inline auto FSerialize = PreyFunction<void(ArkPsiLift* const _this, TSerialize _ser)>(0x13F1400);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPsiLift* const _this)>(0x13F1280);
+	static inline auto FUpdateParticleEmitter = PreyFunction<void(const ArkPsiLift* const _this)>(0x13F1A90);
+#endif
 };
-

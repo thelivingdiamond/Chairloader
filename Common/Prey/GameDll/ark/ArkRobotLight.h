@@ -43,7 +43,11 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	void Initialize(IEntity &_entity) { FInitialize(this,_entity); }
 	void OnStartGame() { FOnStartGame(this); }
 	void Deinitialize() { FDeinitialize(this); }
+#ifndef MOONCRASH
 	void RemoveLight() { FRemoveLight(this); }
+#else
+	void RemoveLight(bool _bRemoveNow) { FRemoveLight(this, _bRemoveNow); }
+#endif
 	void Reset() { FReset(this); }
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Activate(bool _bActivate) { FActivate(this,_bActivate); }
@@ -78,6 +82,7 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	ColorF const &GetLightColor(bool arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(ArkRobotLight *const _this, IEntity &_entity)>(0x10BE320);
 	static inline auto FOnStartGame = PreyFunction<void(ArkRobotLight *const _this)>(0x13462B0);
 	static inline auto FDeinitialize = PreyFunction<void(ArkRobotLight *const _this)>(0x1345FA0);
@@ -102,5 +107,31 @@ struct ArkRobotLight // Id=80141D6 Size=96
 	static inline auto FGetLightAttachment = PreyFunction<IAttachment *(ArkRobotLight const *const _this)>(0x1346140);
 	static inline auto FGetArkLight = PreyFunction<CArkLight *(ArkRobotLight const *const _this)>(0x1346000);
 	static inline auto FGetDesiredLightArchetype = PreyFunction<IEntityArchetype *(ArkRobotLight const *const _this)>(0x13460D0);
+#else
+	static inline auto FArkRobotLightOv1 = PreyFunction<void(ArkRobotLight* const _this)>(0x14221A0);
+	static inline auto FInitialize = PreyFunction<void(ArkRobotLight* const _this, IEntity& _entity)>(0x14AD1A0);
+	static inline auto FOnStartGame = PreyFunction<void(ArkRobotLight* const _this)>(0x1422640);
+	static inline auto FDeinitialize = PreyFunction<void(ArkRobotLight* const _this)>(0x1422330);
+	static inline auto FRemoveLight = PreyFunction<void(ArkRobotLight* const _this, bool _bRemoveNow)>(0x1422760);
+	static inline auto FReset = PreyFunction<void(ArkRobotLight* const _this)>(0x14227D0);
+	static inline auto FUpdate = PreyFunction<void(ArkRobotLight* const _this, float _frameTime)>(0x1423030);
+	static inline auto FActivate = PreyFunction<void(ArkRobotLight* const _this, bool _bActivate)>(0x1422320);
+	static inline auto FHideGlow = PreyFunction<void(ArkRobotLight* const _this, bool _bHideGlow)>(0x1422630);
+	static inline auto FHideEntity = PreyFunction<void(ArkRobotLight* const _this, bool _bHideEntity)>(0x14225E0);
+	static inline auto FScriptEnable = PreyFunction<void(ArkRobotLight* const _this, bool _bEnable)>(0x1422A10);
+	static inline auto FStartFlicker = PreyFunction<void(ArkRobotLight* const _this, float _flickerDuration)>(0x1422E20);
+	static inline auto FStopFlicker = PreyFunction<void(ArkRobotLight* const _this)>(0x1422E50);
+	static inline auto FSetHacked = PreyFunction<void(ArkRobotLight* const _this)>(0x1422C10);
+	static inline auto FUpdateOnBrightness = PreyFunction<void(ArkRobotLight* const _this, const float _brightness)>(0x1423130);
+	static inline auto FSerialize = PreyFunction<void(ArkRobotLight* const _this, TSerialize _ser)>(0x1422A20);
+	static inline auto FPostSerialize = PreyFunction<void(ArkRobotLight* const _this)>(0x14226B0);
+	static inline auto FTryChangeLightArchetype = PreyFunction<void(ArkRobotLight* const _this)>(0x1422E60);
+	static inline auto FTurnOn = PreyFunction<void(ArkRobotLight* const _this)>(0x1422FB0);
+	static inline auto FTurnOff = PreyFunction<void(ArkRobotLight* const _this)>(0x1422F30);
+	static inline auto FTryChangeLightState = PreyFunction<void(ArkRobotLight* const _this)>(0x1422EC0);
+	static inline auto FSpawnLight = PreyFunction<bool(ArkRobotLight* const _this)>(0x1422C30);
+	static inline auto FGetLightAttachment = PreyFunction<IAttachment* (const ArkRobotLight* const _this)>(0x14224D0);
+	static inline auto FGetArkLight = PreyFunction<CArkLight* (const ArkRobotLight* const _this)>(0x1422390);
+	static inline auto FGetDesiredLightArchetype = PreyFunction<IEntityArchetype* (const ArkRobotLight* const _this)>(0x1422460);
+#endif
 };
-

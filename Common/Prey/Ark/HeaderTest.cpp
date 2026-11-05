@@ -1,6 +1,14 @@
-// Header test file for path Prey/Ark/ArkAbility.h
+// Header test file for path Prey/Ark/
+
 #include "ArkAbility.h"
+static_assert(sizeof(ArkStatModifier) == 16);
+static_assert(sizeof(ArkStatModifier::ArkStatNameProperty) == 32);
+static_assert(sizeof(ArkStatModifier::ArkModifierProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkAbility) == 160);
+#else
+static_assert(sizeof(ArkAbility) == 192);
+#endif
 static_assert(sizeof(ArkAbility::ArkIDProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkIconProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkNameProperty) == 32);
@@ -18,11 +26,15 @@ static_assert(sizeof(ArkAbility::ArkStatModifiersProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialPCProperty) == 32);
 static_assert(sizeof(ArkAbility::ArkTutorialImageProperty) == 32);
-static_assert(sizeof(ArkStatModifier) == 16);
-static_assert(sizeof(ArkStatModifier::ArkStatNameProperty) == 32);
-static_assert(sizeof(ArkStatModifier::ArkModifierProperty) == 32);
 static_assert(sizeof(ArkAbilities) == 32);
 static_assert(sizeof(ArkAbilities::ArkAbilitiesProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkAbility::ArkSignalKeywordProperty) == 32);
+static_assert(sizeof(ArkAbility::ArkSignalIdProperty) == 32);
+static_assert(sizeof(ArkAbility::ArkPackageIdProperty) == 32);
+static_assert(sizeof(ArkAbility::ArkIsInboundProperty) == 32);
+static_assert(sizeof(ArkAbility::ArkSignalScaleProperty) == 32);
+#endif
 
 #include "arkaudiolog.h"
 static_assert(sizeof(ArkAudioLogCollection) == 56);
@@ -34,6 +46,7 @@ static_assert(sizeof(ArkAudioLogCollection::ArkLinkedAudioLogsProperty) == 32);
 static_assert(sizeof(ArkAudioLogLibrary) == 56);
 static_assert(sizeof(ArkAudioLogLibrary::ArkAudioLogsProperty) == 32);
 static_assert(sizeof(ArkAudioLogLibrary::ArkAudioLogCollectionsProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkSecurityStation) == 112);
 static_assert(sizeof(ArkSecurityStation::ArkIDProperty) == 32);
 static_assert(sizeof(ArkSecurityStation::ArkNameProperty) == 32);
@@ -43,17 +56,36 @@ static_assert(sizeof(ArkSecurityStation::ArkEmailsProperty) == 32);
 static_assert(sizeof(ArkSecurityStation::ArkPersonnelProperty) == 32);
 static_assert(sizeof(ArkSecurityStation::ArkUtilitiesProperty) == 32);
 static_assert(sizeof(ArkSecurityStation::ArkPersonnelTitleProperty) == 32);
+#endif
+#ifdef MOONCRASH
+static_assert(sizeof(ArkAudioLog) == 88);
+static_assert(sizeof(ArkAudioLog::ArkIDProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkNameProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkConversationProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkKeyCodeProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkPasswordProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkDateProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkToProperty) == 32);
+static_assert(sizeof(ArkAudioLog::ArkFromProperty) == 32);
+#endif
 
 #include "ArkAudioUtil.h"
 static_assert(sizeof(ArkAudioControl) == 4);
 static_assert(sizeof(ArkAudioTrigger) == 4);
 static_assert(sizeof(ArkAudioRtpc) == 4);
+static_assert(sizeof(ArkAudioSwitch) == 4);
+static_assert(sizeof(ArkAudioSwitchState) == 4);
 
 #include "ArkBuildInfo.h"
 static_assert(sizeof(ArkBuildInfo) == 144);
 
 #include "ArkCameraShake.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCameraShake) == 80);
+#else
+static_assert(sizeof(ArkCameraShake) == 88);
+#endif
 static_assert(sizeof(ArkCameraShake::ArkIDProperty) == 32);
 static_assert(sizeof(ArkCameraShake::ArkNameProperty) == 32);
 static_assert(sizeof(ArkCameraShake::ArkChannelProperty) == 32);
@@ -67,14 +99,25 @@ static_assert(sizeof(ArkCameraShake::ArkRampOutDurationProperty) == 32);
 static_assert(sizeof(ArkCameraShake::ArkVerticalFrequencyProperty) == 32);
 static_assert(sizeof(ArkCameraShake::ArkHorizontalFrequencyProperty) == 32);
 static_assert(sizeof(ArkCameraShake::ArkForceFeedbackProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCameraShake_Procedural) == 88);
+#else
+static_assert(sizeof(ArkCameraShake_Procedural) == 96);
+#endif
 static_assert(sizeof(ArkCameraShake_Procedural::ArkPitchAmplitudeProperty) == 32);
 static_assert(sizeof(ArkCameraShake_Procedural::ArkYawAmplitudeProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCameraShake_Animated) == 88);
+#else
+static_assert(sizeof(ArkCameraShake_Animated) == 96);
+#endif
 static_assert(sizeof(ArkCameraShake_Animated::ArkAnimationProperty) == 32);
 static_assert(sizeof(ArkCameraShakeLibrary) == 56);
 static_assert(sizeof(ArkCameraShakeLibrary::ArkCameraShakesProperty) == 32);
 static_assert(sizeof(ArkCameraShakeLibrary::ArkChannelsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkCameraShake::ArkAffectsForceFeedbackIntensityProperty) == 32);
+#endif
 
 #include "ArkCharacter.h"
 static_assert(sizeof(ArkCharacterGroup) == 24);
@@ -83,7 +126,11 @@ static_assert(sizeof(ArkCharacterGroup::ArkNameProperty) == 32);
 static_assert(sizeof(ArkCharacterGroup::ArkNotesProperty) == 32);
 static_assert(sizeof(ArkCharacterGroups) == 32);
 static_assert(sizeof(ArkCharacterGroups::ArkGroupsProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCharacter) == 88);
+#else
+static_assert(sizeof(ArkCharacter) == 96);
+#endif
 static_assert(sizeof(ArkCharacter::ArkIDProperty) == 32);
 static_assert(sizeof(ArkCharacter::ArkNameProperty) == 32);
 static_assert(sizeof(ArkCharacter::ArkLabelProperty) == 32);
@@ -99,6 +146,7 @@ static_assert(sizeof(ArkCharacter::ArkHasTrackingChipProperty) == 32);
 static_assert(sizeof(ArkCharacter::ArkRosterLocationProperty) == 32);
 static_assert(sizeof(ArkCharacters) == 96);
 static_assert(sizeof(ArkCharacters::ArkCharactersProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkNote) == 72);
 static_assert(sizeof(ArkNote::ArkIDProperty) == 32);
 static_assert(sizeof(ArkNote::ArkNameProperty) == 32);
@@ -109,6 +157,11 @@ static_assert(sizeof(ArkNote::ArkKeyCodeProperty) == 32);
 static_assert(sizeof(ArkNote::ArkLocationProperty) == 32);
 static_assert(sizeof(ArkNote::ArkPasswordProperty) == 32);
 static_assert(sizeof(ArkNote::ArkImageNameProperty) == 32);
+#endif
+#ifdef MOONCRASH
+static_assert(sizeof(ArkCharacter::ArkResetPasswordPerCharacterProperty) == 32);
+static_assert(sizeof(ArkCharacter::ArkIgnoreTrackingProperty) == 32);
+#endif
 
 #include "ArkCharacterEffects.h"
 static_assert(sizeof(ArkAttachmentEffect) == 40);
@@ -138,6 +191,9 @@ static_assert(sizeof(ArkDialogVoice::ArkEffectProperty) == 32);
 static_assert(sizeof(ArkDialogVoice::ArkVoicesProperty) == 32);
 static_assert(sizeof(ArkDialogVoices) == 96);
 static_assert(sizeof(ArkDialogVoices::ArkVoicesProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDialogVoice::ArkAudioProperty) == 32);
+#endif
 
 #include "arkdistractiondata.h"
 static_assert(sizeof(DistractionPositioning) == 36);
@@ -156,7 +212,11 @@ static_assert(sizeof(DistractionAnimation::ArkLoopMinTimeProperty) == 32);
 static_assert(sizeof(DistractionAnimation::ArkLoopMaxTimeProperty) == 32);
 static_assert(sizeof(DistractionAnimation::ArkTypeProperty) == 32);
 static_assert(sizeof(DistractionAnimation::ArkHoverAddRootMotionProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(Distraction) == 160);
+#else
+static_assert(sizeof(Distraction) == 176);
+#endif
 static_assert(sizeof(Distraction::ArkIDProperty) == 32);
 static_assert(sizeof(Distraction::ArkNameProperty) == 32);
 static_assert(sizeof(Distraction::ArkDebugProperty) == 32);
@@ -185,6 +245,7 @@ static_assert(sizeof(Distraction::ArkDistractionAnimationProperty) == 32);
 static_assert(sizeof(Distraction::ArkDistractionEventProperty) == 32);
 static_assert(sizeof(ArkDistractions) == 32);
 static_assert(sizeof(ArkDistractions::ArkDistractionsProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkUtility) == 32);
 static_assert(sizeof(ArkUtility::ArkIDProperty) == 32);
 static_assert(sizeof(ArkUtility::ArkNameProperty) == 32);
@@ -203,6 +264,15 @@ static_assert(sizeof(ArkStationAirlock::ArkIDProperty) == 32);
 static_assert(sizeof(ArkStationAirlock::ArkLocationProperty) == 32);
 static_assert(sizeof(ArkStationAirlock::ArkStartsLockedProperty) == 32);
 static_assert(sizeof(ArkStationAirlock::ArkStartsHiddenProperty) == 32);
+#endif
+#ifdef MOONCRASH
+static_assert(sizeof(DistractionLookAt) == 16);
+static_assert(sizeof(DistractionLookAt::ArkLookAtRelativePosXProperty) == 32);
+static_assert(sizeof(DistractionLookAt::ArkLookAtRelativePosYProperty) == 32);
+static_assert(sizeof(DistractionLookAt::ArkLookAtRelativePosZProperty) == 32);
+static_assert(sizeof(DistractionLookAt::ArkModeProperty) == 32);
+static_assert(sizeof(Distraction::ArkAbilityContextIdProperty) == 32);
+#endif
 
 #include "ArkEmotion.h"
 static_assert(sizeof(ArkEmotion) == 32);
@@ -259,7 +329,11 @@ static_assert(sizeof(ArkEventDrivenAchievementLibrary) == 32);
 static_assert(sizeof(ArkEventDrivenAchievementLibrary::ArkEventDrivenAchievementsProperty) == 32);
 
 #include "ArkFabricationPlan.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkFabricationPlan) == 80);
+#else
+static_assert(sizeof(ArkFabricationPlan) == 160);
+#endif
 static_assert(sizeof(ArkFabricationPlan::ArkIDProperty) == 32);
 static_assert(sizeof(ArkFabricationPlan::ArkNameProperty) == 32);
 static_assert(sizeof(ArkFabricationPlan::ArkArchetypeProperty) == 32);
@@ -272,7 +346,11 @@ static_assert(sizeof(ArkFabricationPlan::ArkPositionOffsetProperty) == 32);
 static_assert(sizeof(ArkFabricationPlan::ArkRotationOffsetProperty) == 32);
 static_assert(sizeof(ArkFabricationPlan::ArkRawMaterialClassProperty) == 32);
 static_assert(sizeof(ArkFabricationPlan::ArkUseShortAnimationProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkFabricationPlans) == 128);
+#else
+static_assert(sizeof(ArkFabricationPlans) == 152);
+#endif
 static_assert(sizeof(ArkFabricationPlans::ArkSmallRawMaterialModelProperty) == 32);
 static_assert(sizeof(ArkFabricationPlans::ArkMediumRawMaterialModelProperty) == 32);
 static_assert(sizeof(ArkFabricationPlans::ArkLargeRawMaterialModelProperty) == 32);
@@ -286,12 +364,31 @@ static_assert(sizeof(ArkFabricationPlans::ArkMediumRawMaterialShortAnimProperty)
 static_assert(sizeof(ArkFabricationPlans::ArkLargeRawMaterialShortAnimProperty) == 32);
 static_assert(sizeof(ArkFabricationPlans::ArkXLargeRawMaterialShortAnimProperty) == 32);
 static_assert(sizeof(ArkFabricationPlans::ArkFabricationPlansProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkFabricationPlan::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkEntitlementProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkQualityTierProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkCryptoCostProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkReadyRoomArchetypeProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkReadyRoomLimitProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkSharedLimitPlansProperty) == 32);
+static_assert(sizeof(ArkFabricationPlan::ArkCategoryProperty) == 32);
+static_assert(sizeof(ArkFabricationPlanCategory) == 24);
+static_assert(sizeof(ArkFabricationPlanCategory::ArkIDProperty) == 32);
+static_assert(sizeof(ArkFabricationPlanCategory::ArkNameProperty) == 32);
+static_assert(sizeof(ArkFabricationPlanCategory::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkFabricationPlans::ArkCategoriesProperty) == 32);
+#endif
 
 #include "ArkFacingData.h"
 static_assert(sizeof(ArkFacingData) == 44);
 
 #include "arkgamemetrics.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkGameMetricProperties) == 40);
+#else
+static_assert(sizeof(ArkGameMetricProperties) == 48);
+#endif
 static_assert(sizeof(ArkGameMetricProperties::ArkIDProperty) == 32);
 static_assert(sizeof(ArkGameMetricProperties::ArkNameProperty) == 32);
 static_assert(sizeof(ArkGameMetricProperties::ArkLabelProperty) == 32);
@@ -300,6 +397,12 @@ static_assert(sizeof(ArkGameMetricProperties::ArkVisibilityThresholdProperty) ==
 static_assert(sizeof(ArkGameMetricProperties::ArkHiddenFromUIProperty) == 32);
 static_assert(sizeof(ArkGameMetricLibrary) == 32);
 static_assert(sizeof(ArkGameMetricLibrary::ArkMetricsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkGameMetricProperties::ArkCryptoValueProperty) == 32);
+static_assert(sizeof(ArkGameMetricProperties::ArkNonLinearCryptoProperty) == 32);
+static_assert(sizeof(ArkGameMetricProperties::ArkResetWithSimulationProperty) == 32);
+static_assert(sizeof(ArkGameMetricProperties::ArkApplyDoomCryptoMultiplierProperty) == 32);
+#endif
 
 #include "ArkGameMode.h"
 static_assert(sizeof(ArkGameMode) == 24);
@@ -325,6 +428,7 @@ static_assert(sizeof(ArkInputAction::ArkActionProperty) == 32);
 static_assert(sizeof(ArkInputAction::ArkActionMapProperty) == 32);
 
 #include "ArkGameStateCondition.h"
+static_assert(sizeof(ArkConditionResult) == 8);
 static_assert(sizeof(ArkConditionEvaluationData) == 24);
 static_assert(sizeof(ArkConditionEvaluationData::EntityIdentifiers) == 16);
 static_assert(sizeof(ArkCondition) == 8);
@@ -388,10 +492,11 @@ static_assert(sizeof(ArkGameMetricCondition::ArkComparisonTypeProperty) == 32);
 static_assert(sizeof(ArkTraumaActiveCondition) == 16);
 static_assert(sizeof(ArkTraumaActiveCondition::ArkTraumaProperty) == 32);
 static_assert(sizeof(ArkPlayerInCombatCondition) == 8);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkDifficultyOptionCondition) == 16);
 static_assert(sizeof(ArkDifficultyOptionCondition::ArkDifficultyOptionProperty) == 32);
-static_assert(sizeof(ArkConditionResult) == 8);
 static_assert(sizeof(ArkAutoSaveResult) == 8);
+#endif
 static_assert(sizeof(ArkDisplayTutorialResult) == 16);
 static_assert(sizeof(ArkDisplayTutorialResult::ArkTutorialProperty) == 32);
 static_assert(sizeof(ArkCollectTutorialResult) == 16);
@@ -410,15 +515,29 @@ static_assert(sizeof(ArkLockTipResult::ArkTipLockProperty) == 32);
 static_assert(sizeof(ArkLockTipResult::ArkLockedProperty) == 32);
 static_assert(sizeof(ArkGameStateConditionLibrary) == 32);
 static_assert(sizeof(ArkGameStateConditionLibrary::ArkGameStateConditionsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDoomClockLevelCondition) == 16);
+static_assert(sizeof(ArkDoomClockLevelCondition::ArkLevelProperty) == 32);
+static_assert(sizeof(ArkDoomClockLevelCondition::ArkComparisonTypeProperty) == 32);
+static_assert(sizeof(ArkCompleteChecklistEntryResult) == 16);
+static_assert(sizeof(ArkCompleteChecklistEntryResult::ArkChecklistEntryProperty) == 32);
+#endif
 
 #include "ArkKeyCard.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkKeyCard) == 32);
+#else
+static_assert(sizeof(ArkKeyCard) == 40);
+#endif
 static_assert(sizeof(ArkKeyCard::ArkIDProperty) == 32);
 static_assert(sizeof(ArkKeyCard::ArkNameProperty) == 32);
 static_assert(sizeof(ArkKeyCard::ArkLabelProperty) == 32);
 static_assert(sizeof(ArkKeyCard::ArkLocationProperty) == 32);
 static_assert(sizeof(ArkKeyCards) == 32);
 static_assert(sizeof(ArkKeyCards::ArkKeyCardsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkKeyCard::ArkResetWithCharacterChangeProperty) == 32);
+#endif
 
 #include "ArkKeyCode.h"
 static_assert(sizeof(ArkKeyCode) == 40);
@@ -448,22 +567,53 @@ static_assert(sizeof(ArkLocation::ArkRichPresenceProperty) == 32);
 static_assert(sizeof(ArkLocation::ArkTransitionsProperty) == 32);
 static_assert(sizeof(ArkLocations) == 32);
 static_assert(sizeof(ArkLocations::ArkLocationsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkTransition) == 24);
+static_assert(sizeof(ArkTransition::ArkConnectionAProperty) == 32);
+static_assert(sizeof(ArkTransition::ArkConnectionBProperty) == 32);
+static_assert(sizeof(ArkTransition::ArkCostProperty) == 32);
+#endif
 
 #include "ArkLootTable.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkLootItem) == 32);
+#else
+static_assert(sizeof(ArkLootItem) == 40);
+#endif
 static_assert(sizeof(ArkLootItem::ArkArchetypeProperty) == 32);
 static_assert(sizeof(ArkLootItem::ArkCountMinProperty) == 32);
 static_assert(sizeof(ArkLootItem::ArkCountMaxProperty) == 32);
 static_assert(sizeof(ArkLootItem::ArkWeightProperty) == 32);
 static_assert(sizeof(ArkLootItem::ArkLootRequirementProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkLootSlot) == 32);
+#else
+static_assert(sizeof(ArkLootSlot) == 16);
+#endif
 static_assert(sizeof(ArkLootSlot::ArkPercentProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkLootSlot::ArkItemsProperty) == 32);
+#endif
+#ifndef MOONCRASH
 static_assert(sizeof(ArkLootTable) == 32);
+#else
+static_assert(sizeof(ArkLootTable) == 40);
+#endif
 static_assert(sizeof(ArkLootTable::ArkNameProperty) == 32);
 static_assert(sizeof(ArkLootTable::ArkSlotsProperty) == 32);
 static_assert(sizeof(ArkLootTables) == 32);
 static_assert(sizeof(ArkLootTables::ArkTablesProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkLootItem::ArkQualityOverrideProperty) == 32);
+static_assert(sizeof(ArkLootSpawn) == 40);
+static_assert(sizeof(ArkLootSpawn::ArkIDProperty) == 32);
+static_assert(sizeof(ArkLootSpawn::ArkNameProperty) == 32);
+static_assert(sizeof(ArkLootSpawn::ArkItemsProperty) == 32);
+static_assert(sizeof(ArkLootSpawns) == 32);
+static_assert(sizeof(ArkLootSpawns::ArkLootsProperty) == 32);
+static_assert(sizeof(ArkLootSlot::ArkSpawnProperty) == 32);
+static_assert(sizeof(ArkLootTable::ArkIDProperty) == 32);
+#endif
 
 #include "ArkLoreEntry.h"
 static_assert(sizeof(ArkLoreEntry) == 64);
@@ -488,22 +638,18 @@ static_assert(sizeof(ArkPsiPowerMimicEffectsProperties::ArkMorphOutParticleEffec
 static_assert(sizeof(ArkPsiPowerMimicEffectsProperties::ArkObjectMorphInParticleEffectProperty) == 32);
 
 #include "ArkMaterialAnimations.h"
-static_assert(sizeof(ArkMaterialAnimation) == 88);
-static_assert(sizeof(ArkMaterialAnimation::ArkIdProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimation::ArkNameProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimation::ArkAttachmentNameProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimation::ArkMeshSlotProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimation::ArkMaterialReferenceProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimation::ArkSubMaterialsProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimationRgbKeysArray) == 24);
-static_assert(sizeof(ArkMaterialAnimationRgbKeysArray::ArkRgbKeysProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimationKey) == 8);
+static_assert(sizeof(ArkMaterialAnimationKey::ArkTimeProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimationKey::ArkValueProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimationKeysArray) == 24);
+static_assert(sizeof(ArkMaterialAnimationKeysArray::ArkKeysProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationRgbKey) == 16);
 static_assert(sizeof(ArkMaterialAnimationRgbKey::ArkTimeProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationRgbKey::ArkRedProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationRgbKey::ArkGreenProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationRgbKey::ArkBlueProperty) == 32);
-static_assert(sizeof(ArkMaterialAnimationKeysArray) == 24);
-static_assert(sizeof(ArkMaterialAnimationKeysArray::ArkKeysProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimationRgbKeysArray) == 24);
+static_assert(sizeof(ArkMaterialAnimationRgbKeysArray::ArkRgbKeysProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData) == 200);
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkSubMaterialSlotProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkDiffuseProperty) == 32);
@@ -514,6 +660,13 @@ static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkSmoothnessProperty)
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkAlphaTestProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkAmbientProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimationSubMaterialData::ArkEmissiveIntensityProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation) == 88);
+static_assert(sizeof(ArkMaterialAnimation::ArkIdProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation::ArkNameProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation::ArkAttachmentNameProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation::ArkMeshSlotProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation::ArkMaterialReferenceProperty) == 32);
+static_assert(sizeof(ArkMaterialAnimation::ArkSubMaterialsProperty) == 32);
 static_assert(sizeof(ArkMaterialAnimations) == 32);
 static_assert(sizeof(ArkMaterialAnimations::ArkAnimationsProperty) == 32);
 
@@ -527,11 +680,32 @@ static_assert(sizeof(ArkMetaTags::ArkMetaTagsProperty) == 32);
 #include "arknote.h"
 static_assert(sizeof(ArkNotes) == 32);
 static_assert(sizeof(ArkNotes::ArkNotesProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkNote) == 80);
+static_assert(sizeof(ArkNote::ArkIDProperty) == 32);
+static_assert(sizeof(ArkNote::ArkNameProperty) == 32);
+static_assert(sizeof(ArkNote::ArkPlotCriticalProperty) == 32);
+static_assert(sizeof(ArkNote::ArkSubjectProperty) == 32);
+static_assert(sizeof(ArkNote::ArkContentProperty) == 32);
+static_assert(sizeof(ArkNote::ArkKeyCodeProperty) == 32);
+static_assert(sizeof(ArkNote::ArkLocationProperty) == 32);
+static_assert(sizeof(ArkNote::ArkPasswordProperty) == 32);
+static_assert(sizeof(ArkNote::ArkImageNameProperty) == 32);
+static_assert(sizeof(ArkNote::ArkResetWithCharacterChangeProperty) == 32);
+#endif
 
 #include "arkobjectiveutils.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkObjectiveUtils::CArkObjectiveTaskData) == 72);
 static_assert(sizeof(ArkObjectiveUtils::CArkObjectiveData) == 96);
+#else
+static_assert(sizeof(ArkObjectiveUtils::CArkObjectiveTaskData) == 80);
+static_assert(sizeof(ArkObjectiveUtils::CArkObjectiveData) == 112);
+#endif
 static_assert(sizeof(ArkObjectiveUtils::CArkObjectiveLib) == 24);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkObjectiveUtils::CArkBountyObjectiveTaskData) == 104);
+#endif
 
 #include "ArkPointOfInterest.h"
 static_assert(sizeof(ArkPointOfInterest) == 24);
@@ -626,9 +800,25 @@ static_assert(sizeof(ArkResearchTopics::ArkTopicsProperty) == 32);
 #include "arksecuritystation.h"
 static_assert(sizeof(ArkSecurityStations) == 32);
 static_assert(sizeof(ArkSecurityStations::ArkSecurityStationsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSecurityStation) == 120);
+static_assert(sizeof(ArkSecurityStation::ArkIDProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkNameProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkUserProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkLocationProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkEmailsProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkPersonnelProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkUtilitiesProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkPersonnelTitleProperty) == 32);
+static_assert(sizeof(ArkSecurityStation::ArkInSatelliteProperty) == 32);
+#endif
 
 #include "arksignalsystemdata.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkSignalSystem::Data) == 96);
+#else
+static_assert(sizeof(ArkSignalSystem::Data) == 120);
+#endif
 static_assert(sizeof(ArkSignalSystem::Data::SignalGroupData) == 40);
 static_assert(sizeof(ArkSignalSystem::Data::PackageData) == 40);
 static_assert(sizeof(ArkSignalSystem::Data::PackageData::SignalValueData) == 16);
@@ -636,21 +826,39 @@ static_assert(sizeof(ArkSignalSystem::Data::SignalData) == 16);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData) == 40);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData::RuleData) == 72);
 static_assert(sizeof(ArkSignalSystem::Data::ModifierData::RuleData::FactorData) == 16);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSignalSystem::Data::DamageSignalData) == 8);
+#endif
 
 #include "ArkStationAccess.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkTransition) == 24);
 static_assert(sizeof(ArkTransition::ArkConnectionAProperty) == 32);
 static_assert(sizeof(ArkTransition::ArkConnectionBProperty) == 32);
 static_assert(sizeof(ArkTransition::ArkCostProperty) == 32);
+#endif
+#ifndef MOONCRASH
 static_assert(sizeof(ArkStationPath) == 40);
+#else
+static_assert(sizeof(ArkStationPath) == 48);
+#endif
 static_assert(sizeof(ArkStationPath::ArkIDProperty) == 32);
 static_assert(sizeof(ArkStationPath::ArkNameProperty) == 32);
 static_assert(sizeof(ArkStationPath::ArkFlashIDProperty) == 32);
 static_assert(sizeof(ArkStationPath::ArkLocationAProperty) == 32);
 static_assert(sizeof(ArkStationPath::ArkLocationBProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkStationAccess) == 56);
+#else
+static_assert(sizeof(ArkStationAccess) == 32);
+#endif
 static_assert(sizeof(ArkStationAccess::ArkPathsProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkStationAccess::ArkAirlocksProperty) == 32);
+#endif
+#ifdef MOONCRASH
+static_assert(sizeof(ArkStationPath::ArkStartsLockedProperty) == 32);
+#endif
 
 #include "ArkTip.h"
 static_assert(sizeof(ArkTip) == 64);
@@ -672,7 +880,28 @@ static_assert(sizeof(ArkTipLibrary::ArkLocksProperty) == 32);
 static_assert(sizeof(ArkTipLibrary::ArkSequencesProperty) == 32);
 
 #include "ArkTraumas.h"
+static_assert(sizeof(ArkConditionalStatModifier) == 24);
+static_assert(sizeof(ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty) == 32);
+static_assert(sizeof(ArkConditionalSignalModifier) == 24);
+static_assert(sizeof(ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty) == 32);
+#ifndef MOONCRASH
+static_assert(sizeof(ArkTraumaPhase) == 80);
+#else
+static_assert(sizeof(ArkTraumaPhase) == 72);
+#endif
+static_assert(sizeof(ArkTraumaPhase::ArkDamageThresholdProperty) == 32);
+static_assert(sizeof(ArkTraumaPhase::ArkDescriptionProperty) == 32);
+#ifndef MOONCRASH
+static_assert(sizeof(ArkTraumaPhase::ArkAltOxygenDescriptionProperty) == 32);
+#endif
+static_assert(sizeof(ArkTraumaPhase::ArkHudIconProperty) == 32);
+static_assert(sizeof(ArkTraumaPhase::ArkSignalModifiersProperty) == 32);
+static_assert(sizeof(ArkTraumaPhase::ArkStatModifiersProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkTrauma) == 176);
+#else
+static_assert(sizeof(ArkTrauma) == 208);
+#endif
 static_assert(sizeof(ArkTrauma::ArkIDProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkNameProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkLabelProperty) == 32);
@@ -681,10 +910,14 @@ static_assert(sizeof(ArkTrauma::ArkHowToRemoveProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkDoesStackProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkMaxAccumulationProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkDrainRateProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkTrauma::ArkRemoveOnDrainProperty) == 32);
+#endif
 static_assert(sizeof(ArkTrauma::ArkFillHudIconProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkSuitVOProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkTrauma::ArkPlayerMaterialProperty) == 32);
+#endif
 static_assert(sizeof(ArkTrauma::ArkPlayerMaterialPriorityProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkTraumaSFXProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkTraumaStopSFXProperty) == 32);
@@ -697,21 +930,20 @@ static_assert(sizeof(ArkTrauma::ArkTagStateProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkRemoveSignalProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkAccumulateSignalProperty) == 32);
 static_assert(sizeof(ArkTrauma::ArkPhasesProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase) == 80);
-static_assert(sizeof(ArkTraumaPhase::ArkDamageThresholdProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase::ArkDescriptionProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase::ArkAltOxygenDescriptionProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase::ArkHudIconProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase::ArkSignalModifiersProperty) == 32);
-static_assert(sizeof(ArkTraumaPhase::ArkStatModifiersProperty) == 32);
-static_assert(sizeof(ArkConditionalSignalModifier) == 24);
-static_assert(sizeof(ArkConditionalSignalModifier::ArkIsActiveInAlternateFormProperty) == 32);
-static_assert(sizeof(ArkConditionalStatModifier) == 24);
-static_assert(sizeof(ArkConditionalStatModifier::ArkIsActiveInAlternateFormProperty) == 32);
 static_assert(sizeof(ArkTraumas) == 32);
 static_assert(sizeof(ArkTraumas::ArkTraumasProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkTraumaMaterial) == 16);
+static_assert(sizeof(ArkTraumaMaterial::ArkPlayableCharacterProperty) == 32);
+static_assert(sizeof(ArkTraumaMaterial::ArkMaterialNameProperty) == 32);
+static_assert(sizeof(ArkTraumaPhase::ArkRemoveOnDrainProperty) == 32);
+static_assert(sizeof(ArkTrauma::ArkPlayerMaterialsProperty) == 32);
+static_assert(sizeof(ArkTrauma::ArkRepeatSFXProperty) == 32);
+static_assert(sizeof(ArkTrauma::ArkRepeatPostEffectProperty) == 32);
+#endif
 
 #include "ArkTutorial.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties) == 104);
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkMinHeightProperty) == 32);
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkMaxRangeProperty) == 32);
@@ -731,6 +963,7 @@ static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkPlayerPostEffectIdPrope
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkPlayerEnterAudioTriggerProperty) == 32);
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkPlayerExitAudioTriggerProperty) == 32);
 static_assert(sizeof(ArkPsiPowerLiftUniqueProperties::ArkEnterLiftSignalPackageIdProperty) == 32);
+#endif
 static_assert(sizeof(ArkTutorial) == 56);
 static_assert(sizeof(ArkTutorial::ArkIDProperty) == 32);
 static_assert(sizeof(ArkTutorial::ArkNameProperty) == 32);
@@ -753,6 +986,15 @@ static_assert(sizeof(ArkTutorialLibrary) == 40);
 static_assert(sizeof(ArkTutorialLibrary::ArkTutorialsProperty) == 32);
 static_assert(sizeof(ArkTutorialLibrary::ArkContextualDisplayTimeProperty) == 32);
 static_assert(sizeof(ArkTutorialLibrary::ArkNagDisplayTimeProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkCardTutorial::ArkEscapeNoticeProperty) == 32);
+static_assert(sizeof(ArkCardTutorial::ArkAutoCollectProperty) == 32);
+static_assert(sizeof(ArkNagTutorial) == 64);
+static_assert(sizeof(ArkNagTutorial::ArkDurationProperty) == 32);
+static_assert(sizeof(ArkReadyRoomTutorial) == 72);
+static_assert(sizeof(ArkReadyRoomTutorial::ArkTitleProperty) == 32);
+static_assert(sizeof(ArkReadyRoomTutorial::ArkPositionProperty) == 32);
+#endif
 
 #include "ArkUtils.h"
 static_assert(sizeof(ArkUtils::ClassList) == 24);
@@ -760,14 +1002,6 @@ static_assert(sizeof(ArkUtils::CollisionCache) == 24);
 static_assert(sizeof(ArkUtils::CollisionCache::Collision) == 12);
 
 #include "ArkWeaponModifier.h"
-static_assert(sizeof(ArkWeaponModifier) == 72);
-static_assert(sizeof(ArkWeaponModifier::ArkIDProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkNameProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkLabelProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkDefaultSummaryProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkDescriptionProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkInstallWeaponProperty) == 32);
-static_assert(sizeof(ArkWeaponModifier::ArkWeaponModLevelsProperty) == 32);
 static_assert(sizeof(ArkWeaponModLevel) == 88);
 static_assert(sizeof(ArkWeaponModLevel::ArkLevelProperty) == 32);
 static_assert(sizeof(ArkWeaponModLevel::ArkSummaryProperty) == 32);
@@ -776,8 +1010,66 @@ static_assert(sizeof(ArkWeaponModLevel::ArkTagStateProperty) == 32);
 static_assert(sizeof(ArkWeaponModLevel::ArkPrereqProperty) == 32);
 static_assert(sizeof(ArkWeaponModLevel::ArkSignalModifiersProperty) == 32);
 static_assert(sizeof(ArkWeaponModLevel::ArkStatModifiersProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier) == 72);
+static_assert(sizeof(ArkWeaponModifier::ArkIDProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkNameProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkDefaultSummaryProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkDescriptionProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkInstallWeaponProperty) == 32);
+static_assert(sizeof(ArkWeaponModifier::ArkWeaponModLevelsProperty) == 32);
 static_assert(sizeof(ArkWeaponModifiers) == 32);
 static_assert(sizeof(ArkWeaponModifiers::ArkWeaponModifiersProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt) == 64);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentPointNameProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentPointNameAddProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentEffectProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentEffectAddProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkVFXLibraryNameProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkVFXEffectNameProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentModelProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentAdditionalArt::ArkAttachmentAnimProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentReplacementArt) == 16);
+static_assert(sizeof(ArkWeaponEnchantmentReplacementArt::ArkTracerEffectProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentReplacementArt::ArkPickupModel3PProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo) == 192);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkInstallWeaponProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkTagStateProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkReplacementArtProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkAdditionalArtProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkProjectileOverrideProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkAOERadiusProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkAOESignalPackageProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkSignalModifiersProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkStatModifiersProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantmentInfo::ArkSignalPackageIdsProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment) == 88);
+static_assert(sizeof(ArkWeaponEnchantment::ArkIDProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkNameProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkDescriptionProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkIconNameSmallProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkIconNameLargeProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkKeywordProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkKeywordSignalIDProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantment::ArkWeaponsAllowedProperty) == 32);
+static_assert(sizeof(ArkWeaponEnchantments) == 32);
+static_assert(sizeof(ArkWeaponEnchantments::ArkWeaponEnchantmentsProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTierInfo) == 3);
+static_assert(sizeof(ArkWeaponQualityTierInfo::ArkNumModsToInstallProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTierInfo::ArkMaxModsPerStatProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTierInfo::ArkChanceForEnchantmentProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier) == 24);
+static_assert(sizeof(ArkWeaponQualityTier::ArkInstallWeaponProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier::ArkDefaultTierProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier::ArkCommonTierProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier::ArkRareTierProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier::ArkLegendaryTierProperty) == 32);
+static_assert(sizeof(ArkWeaponQualityTier::ArkSpecialTierProperty) == 32);
+static_assert(sizeof(ArkWeaponQuality) == 32);
+static_assert(sizeof(ArkWeaponQuality::ArkQualityTiersProperty) == 32);
+#endif
 
 #include "ArkWorkstation.h"
 static_assert(sizeof(ArkDownload) == 40);
@@ -805,7 +1097,11 @@ static_assert(sizeof(ArkEmail::ArkKeycodeProperty) == 32);
 static_assert(sizeof(ArkEmail::ArkPasswordProperty) == 32);
 static_assert(sizeof(ArkEmail::ArkSentProperty) == 32);
 static_assert(sizeof(ArkEmail::ArkImportantProperty) == 32);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkWorkstation) == 120);
+#else
+static_assert(sizeof(ArkWorkstation) == 128);
+#endif
 static_assert(sizeof(ArkWorkstation::ArkIDProperty) == 32);
 static_assert(sizeof(ArkWorkstation::ArkNameProperty) == 32);
 static_assert(sizeof(ArkWorkstation::ArkWorkstationTitleProperty) == 32);
@@ -819,6 +1115,24 @@ static_assert(sizeof(ArkWorkstations) == 32);
 static_assert(sizeof(ArkWorkstations::ArkWorkstationsProperty) == 32);
 static_assert(sizeof(ArkEmails) == 32);
 static_assert(sizeof(ArkEmails::ArkEmailsProperty) == 32);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkUtility) == 32);
+static_assert(sizeof(ArkUtility::ArkIDProperty) == 32);
+static_assert(sizeof(ArkUtility::ArkNameProperty) == 32);
+static_assert(sizeof(ArkUtility::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkUtility::ArkTypeProperty) == 32);
+static_assert(sizeof(ArkUtility::ArkEnabledProperty) == 32);
+static_assert(sizeof(ArkUtility::ArkHiddenProperty) == 32);
+static_assert(sizeof(ArkUtilityButton) == 32);
+static_assert(sizeof(ArkUtilityButton::ArkIDProperty) == 32);
+static_assert(sizeof(ArkUtilityButton::ArkNameProperty) == 32);
+static_assert(sizeof(ArkUtilityButton::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkUtilityButton::ArkEnabledProperty) == 32);
+static_assert(sizeof(ArkUtilityButton::ArkHiddenProperty) == 32);
+static_assert(sizeof(ArkEmail::ArkResetWithCharacterChangeProperty) == 32);
+static_assert(sizeof(ArkEmail::ArkPersistThroughSimResetProperty) == 32);
+static_assert(sizeof(ArkWorkstation::ArkInSatelliteProperty) == 32);
+#endif
 
 #include "IArkDialogLoadListener.h"
 static_assert(sizeof(IArkDialogLoadListener) == 8);
@@ -829,4 +1143,257 @@ static_assert(sizeof(TArkPostEffectValue::ExtractType) == 1);
 static_assert(sizeof(TArkPostEffectValue::IsEqual) == 1);
 
 #include "iarkspacemanager.h"
+static_assert(sizeof(SHDRParams) == 60);
+static_assert(sizeof(ArkSpaceObject) == 56);
+#ifndef MOONCRASH
 static_assert(sizeof(ArkSpaceSettings) == 240);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkAbilityLayout.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkAbilityCategory) == 64);
+static_assert(sizeof(ArkAbilityCategory::ArkNameProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkDescriptionProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkIconProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkIsAlienProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkIsPetsProperty) == 32);
+static_assert(sizeof(ArkAbilityCategory::ArkRowsProperty) == 32);
+static_assert(sizeof(ArkAbilityLayout) == 40);
+static_assert(sizeof(ArkAbilityLayout::ArkIDProperty) == 32);
+static_assert(sizeof(ArkAbilityLayout::ArkNameProperty) == 32);
+static_assert(sizeof(ArkAbilityLayout::ArkCategoriesProperty) == 32);
+static_assert(sizeof(ArkAbilityLayoutLibrary) == 32);
+static_assert(sizeof(ArkAbilityLayoutLibrary::ArkLayoutsProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkBounty.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkBounty) == 112);
+static_assert(sizeof(ArkBounty::ArkIDProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkNameProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkWeaponProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkAlternateWeaponsProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkVerbProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkLethalProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkTargetWhiteListProperty) == 32);
+static_assert(sizeof(ArkBounty::ArkTargetBlackListProperty) == 32);
+static_assert(sizeof(ArkBountyTarget) == 48);
+static_assert(sizeof(ArkBountyTarget::ArkIDProperty) == 32);
+static_assert(sizeof(ArkBountyTarget::ArkNameProperty) == 32);
+static_assert(sizeof(ArkBountyTarget::ArkMetaTagsProperty) == 32);
+static_assert(sizeof(ArkBountyTarget::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkBountyBoard) == 56);
+static_assert(sizeof(ArkBountyBoard::ArkBountiesProperty) == 32);
+static_assert(sizeof(ArkBountyBoard::ArkTargetsProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkChallenge.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDate) == 12);
+static_assert(sizeof(ArkDate::ArkMonthProperty) == 32);
+static_assert(sizeof(ArkDate::ArkDayProperty) == 32);
+static_assert(sizeof(ArkDate::ArkYearProperty) == 32);
+static_assert(sizeof(ArkChallenge) == 152);
+static_assert(sizeof(ArkChallenge::ArkIDProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkSeedProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkPlayableCharacterProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingMapProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingCryptoProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingNeuromodsProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingFabPlansProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingItemsProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingAbilitiesProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartingStoreChipsetsProperty) == 32);
+static_assert(sizeof(ArkChallenge::ArkStartDateProperty) == 32);
+static_assert(sizeof(ArkChallengeList) == 24);
+static_assert(sizeof(ArkChallengeList::ArkChallengesProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkChecklist.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkChecklistCategory) == 24);
+static_assert(sizeof(ArkChecklistCategory::ArkIDProperty) == 32);
+static_assert(sizeof(ArkChecklistCategory::ArkNameProperty) == 32);
+static_assert(sizeof(ArkChecklistCategory::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry) == 56);
+static_assert(sizeof(ArkChecklistEntry::ArkIDProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkNameProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkCryptoProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkSuppressNotificationProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkStartsDisabledProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkCategoryProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkGameMetricProperty) == 32);
+static_assert(sizeof(ArkChecklistEntry::ArkMetricTotalProperty) == 32);
+static_assert(sizeof(ArkChecklist) == 56);
+static_assert(sizeof(ArkChecklist::ArkEntriesProperty) == 32);
+static_assert(sizeof(ArkChecklist::ArkCategoriesProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "arkdeferredaction.h"
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkEscapeMethod.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkEscapeMethod) == 24);
+static_assert(sizeof(ArkEscapeMethod::ArkIDProperty) == 32);
+static_assert(sizeof(ArkEscapeMethod::ArkNameProperty) == 32);
+static_assert(sizeof(ArkEscapeMethod::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkEscapeMethodLibrary) == 32);
+static_assert(sizeof(ArkEscapeMethodLibrary::ArkMethodsProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "arklineofsightcheck.h"
+struct HeaderTestLosImpl16 { uint64_t pad[2]; }; // stand-in for the 16-byte LineOfSightCheckImpl<...> bases
+static_assert(sizeof(ArkDeferredAction<ArkLineOfSightCheck<HeaderTestLosImpl16, 1>::DeferredRayCastImpl>) == 352);
+static_assert(sizeof(ArkLineOfSightCheck<HeaderTestLosImpl16, 1>) == 376);
+static_assert(sizeof(ArkLineOfSightCheck<HeaderTestLosImpl16, 2>) == 728);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkPlayableCharacter.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkReadyRoomInfo) == 16);
+static_assert(sizeof(ArkReadyRoomInfo::ArkLockedModelProperty) == 32);
+static_assert(sizeof(ArkReadyRoomInfo::ArkUnlockedModelProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo) == 64);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkADBProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkControllerDefProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkFragmentProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkIdleTagProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkLockedTagProperty) == 32);
+static_assert(sizeof(ArkReadyRoomCharacterInfo::ArkDeadTagProperty) == 32);
+static_assert(sizeof(ArkReadyRoomPropInfo) == 56);
+static_assert(sizeof(ArkReadyRoomPropInfo::ArkIdleIntroAnimProperty) == 32);
+static_assert(sizeof(ArkReadyRoomPropInfo::ArkIdleLoopAnimProperty) == 32);
+static_assert(sizeof(ArkReadyRoomPropInfo::ArkLockedAnimProperty) == 32);
+static_assert(sizeof(ArkReadyRoomPropInfo::ArkDeadAnimProperty) == 32);
+static_assert(sizeof(ArkReadyRoomPropInfo::ArkEscapedAnimProperty) == 32);
+static_assert(sizeof(ArkStartingItem) == 16);
+static_assert(sizeof(ArkStartingItem::ArkArchetypeProperty) == 32);
+static_assert(sizeof(ArkStartingItem::ArkQuantityProperty) == 32);
+static_assert(sizeof(ArkStartingItem::ArkShowOnCharacterSelectProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter) == 376);
+static_assert(sizeof(ArkPlayableCharacter::ArkIDProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkNameProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkPortraitImageProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkClassLabelProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkDescriptionProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkLockedDescriptionProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkLockedObjectiveProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkSpecialtiesProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkUnlockMethodProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkModelProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkArmsSkinProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkLegsSkinProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkReadyRoomCharacterProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkReadyRoomHandPropProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkReadyRoomEnvironmentPropProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkStatModifierProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkAbilityLayoutProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkStartsUnlockedProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkSkeletonKeyProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkCorpseProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkStartingAbilitiesProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkStartingItemsProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkSwitchStateProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacter::ArkInitialObjectiveDescriptionProperty) == 32);
+static_assert(sizeof(ArkPlayableCharacterLibrary) == 32);
+static_assert(sizeof(ArkPlayableCharacterLibrary::ArkPlayableCharactersProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
+#ifdef MOONCRASH
+static_assert(sizeof(ArkPsiBlastProperties) == 144);
+static_assert(sizeof(ArkPsiBlastProperties::ArkRadiusProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkTriggerRadiusProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkForceProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkFalloffScaleProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkFalloffRadiusProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkDelaySecProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionDelaySecProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkDurationSecProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkUpdateIntervalSecProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkMaxBlastCountProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkSignalPackageIdProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionSignalPackageIdProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkNoiseIdProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkLoudnessIdProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkPreExplosionParticleEffectProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkKillPreExplosionParticleEffectProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionParticleEffectProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkStartDelayAudioTriggerProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkStopDelayAudioTriggerProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkExplosionAudioTriggerProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkStartPersistentAudioTriggerProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkStopPersistentAudioTriggerProperty) == 32);
+static_assert(sizeof(ArkPsiBlastProperties::ArkCameraShakeProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkRandomValue.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkRandomDoorState) == 24);
+static_assert(sizeof(ArkRandomDoorState::ArkIDProperty) == 32);
+static_assert(sizeof(ArkRandomDoorState::ArkNameProperty) == 32);
+static_assert(sizeof(ArkRandomDoorState::ArkLinkIdProperty) == 32);
+static_assert(sizeof(ArkRandomDoorStates) == 32);
+static_assert(sizeof(ArkRandomDoorStates::ArkRandomDoorStatesProperty) == 32);
+static_assert(sizeof(ArkRandomValue) == 24);
+static_assert(sizeof(ArkRandomValue::ArkIDProperty) == 32);
+static_assert(sizeof(ArkRandomValue::ArkNameProperty) == 32);
+static_assert(sizeof(ArkRandomValue::ArkMinProperty) == 32);
+static_assert(sizeof(ArkRandomValue::ArkMaxProperty) == 32);
+static_assert(sizeof(ArkRandomValues) == 32);
+static_assert(sizeof(ArkRandomValues::ArkRandomValuesProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkShuffledList.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkShuffledList) == 32);
+static_assert(sizeof(ArkShuffledList::ArkIDProperty) == 32);
+static_assert(sizeof(ArkShuffledList::ArkNameProperty) == 32);
+static_assert(sizeof(ArkShuffledList::ArkMinValueProperty) == 32);
+static_assert(sizeof(ArkShuffledList::ArkMaxValueProperty) == 32);
+static_assert(sizeof(ArkShuffledList::ArkStepSizeProperty) == 32);
+static_assert(sizeof(ArkShuffledListLibrary) == 32);
+static_assert(sizeof(ArkShuffledListLibrary::ArkShuffledListsProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkStringCollection.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkStringCollection) == 40);
+static_assert(sizeof(ArkStringCollection::ArkIDProperty) == 32);
+static_assert(sizeof(ArkStringCollection::ArkNameProperty) == 32);
+static_assert(sizeof(ArkStringCollection::ArkStringsProperty) == 32);
+static_assert(sizeof(ArkStringCollectionLibrary) == 32);
+static_assert(sizeof(ArkStringCollectionLibrary::ArkCollectionsProperty) == 32);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkDeferredActionImpl.h"
+static_assert(sizeof(ArkDeferredActionImpl_RayCast<void>) == 1);
+static_assert(sizeof(ArkDeferredActionImpl_IntersectionTest<void>) == 1);
+#endif

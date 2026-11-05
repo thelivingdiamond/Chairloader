@@ -40,10 +40,17 @@ public:
 	void PostSerialize() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicRigidControllerOv2 = PreyFunction<void(ArkPlayerMimicRigidController* const _this)>(0x131D2E0);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicRigidController* const _this, IEntity& _mimicEntity)>(0x131D520);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicRigidController* const _this, const float _frameTime, IEntity& _entity)>(0x131D650);
 	static inline auto FProcessInput = PreyFunction<void(ArkPlayerMimicRigidController* const _this, const CCryName& _actionId, const bool _bPressed)>(0x131D620);
 	static inline auto FGetModalLegend = PreyFunction<const ArkInputLegend& (const ArkPlayerMimicRigidController* const _this)>(0x131D500);
+#else
+	static inline auto FArkPlayerMimicRigidControllerOv2 = PreyFunction<void(ArkPlayerMimicRigidController* const _this)>(0x13F7A60);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicRigidController* const _this, IEntity& _mimicEntity)>(0x13F7CA0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicRigidController* const _this, const float _frameTime, IEntity& _entity)>(0x13F7DD0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPlayerMimicRigidController* const _this, const CCryName& _actionId, const bool _bPressed)>(0x13F7DA0);
+	static inline auto FGetModalLegend = PreyFunction<const ArkInputLegend& (const ArkPlayerMimicRigidController* const _this)>(0x13F7C80);
+#endif
 };
-

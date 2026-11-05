@@ -1,8 +1,7 @@
-// Header test file for path Prey/GameDll/ark/dialog/ArkConversation.h
+// Header test file for path Prey/GameDll/ark/dialog/
+
 #include "ArkConversation.h"
 static_assert(sizeof(ArkConversation) == 96);
-static_assert(sizeof(ArkSpeakerBase) == 240);
-static_assert(sizeof(ArkActiveUserManagerBase) == 40);
 
 #include "ArkDialogAudioManager.h"
 static_assert(sizeof(ArkDialogLoader) == 56);
@@ -30,6 +29,7 @@ static_assert(sizeof(ArkDialogSubtitleManager) == 168);
 static_assert(sizeof(ArkGlobalFacts) == 72);
 
 #include "arkpadialogmanager.h"
+static_assert(sizeof(SSpeakerEntity) == 8);
 static_assert(sizeof(CArkPADialogManager) == 2432);
 
 #include "ArkResponse.h"
@@ -37,13 +37,18 @@ static_assert(sizeof(ArkResponse) == 72);
 static_assert(sizeof(ArkResponseSet) == 24);
 
 #include "ArkResponseManager.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkResponseManager) == 2072);
+#else
+static_assert(sizeof(ArkResponseManager) == 2104);
+#endif
 static_assert(sizeof(ArkResponseManager::QueryIterSet) == 16);
 
 #include "ArkResponseQuery.h"
 static_assert(sizeof(ArkResponseQuery) == 24);
 
 #include "ArkResponseRule.h"
+static_assert(sizeof(ArkWritebackFact) == 32);
 static_assert(sizeof(ArkResponseCriterion) == 40);
 static_assert(sizeof(ArkResponseRule) == 96);
 
@@ -81,3 +86,38 @@ static_assert(sizeof(SArkRuleQuery) == 40);
 
 #include "SSubtitleAudioData.h"
 static_assert(sizeof(SSubtitleAudioData) == 16);
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkDialogPlayerNull.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDialogPlayerNull) == 8);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkDialogPlayerPlayer.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDialogPlayerPlayer) == 264);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "arkflownodedialogtrigger.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkPADialogTrigger) == 24);
+static_assert(sizeof(ArkTelepathDialogTrigger) == 8);
+static_assert(sizeof(ArkTranscribeDialogTrigger) == 16);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkPlayerDeathSummarizer.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkPlayerDeathSummarizer) == 264);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSpeakerBase.h"
+static_assert(sizeof(ArkSpeakerBase) == 240);
+#endif

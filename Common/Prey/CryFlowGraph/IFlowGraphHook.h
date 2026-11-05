@@ -31,4 +31,3 @@ struct IFlowGraphHook // Id=80036A1 Size=8
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 };
-

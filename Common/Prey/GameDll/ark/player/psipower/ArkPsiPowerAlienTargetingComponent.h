@@ -16,6 +16,9 @@ public:
 	CArkPsiPowerAlienTargetingComponent(const IArkPsiPower* const _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FGetEntitiesInSphere = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerAlienTargetingComponent* const _this, std::vector<IEntity*>* _return_value_, const float _radius)>(0x1584FC0);
+#else
+	static inline auto FGetEntitiesInSphere = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerAlienTargetingComponent* const _this, std::vector<IEntity*>* _return_value_, const float _radius)>(0x16AC220);
+#endif
 };
-

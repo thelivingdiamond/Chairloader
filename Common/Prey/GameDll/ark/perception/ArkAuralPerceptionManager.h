@@ -18,6 +18,9 @@ public:
 	struct Noise // Id=8014FAE Size=56
 	{
 		unsigned m_noiseMakerEntityId;
+#ifdef MOONCRASH
+		unsigned m_noiseEmitterEntityId;
+#endif
 		ArkGameNoiseInfo m_noiseInfo;
 		float m_magnitude;
 		Vec3 m_position;
@@ -31,6 +34,9 @@ public:
 		ArkAuralPerceptionManager::Noise m_noise;
 		
 		RepeatingNoise(int _id, float _repeatPeriod, ArkAuralPerceptionManager::Noise const &_noise);
+#ifdef MOONCRASH
+		static inline auto FRepeatingNoiseOv2 = PreyFunction<void(ArkAuralPerceptionManager::RepeatingNoise* const _this, int _id, float _repeatPeriod, const ArkAuralPerceptionManager::Noise& _noise)>(0x156FD10);
+#endif
 	};
 
 	struct PerceiverInfo // Id=8014FB0 Size=16
@@ -93,8 +99,13 @@ public:
 	void RegisterPerceivable(unsigned _perceivableEntityId, ArkAuralPerceivable const &_perceivable) { FRegisterPerceivable(this,_perceivableEntityId,_perceivable); }
 	bool IsPerceivableRegistered(unsigned _perceivableEntityId) const { return FIsPerceivableRegistered(this,_perceivableEntityId); }
 	void UnregisterPerceivable(unsigned _perceivableEntityId) { FUnregisterPerceivable(this,_perceivableEntityId); }
+#ifndef MOONCRASH
 	void AddNoise(unsigned _noiseMakerEntityId, ArkGameNoiseInfo const &_noiseInfo, float _magnitude, Vec3 const &_position, uint64_t _loudness) { FAddNoise(this,_noiseMakerEntityId,_noiseInfo,_magnitude,_position,_loudness); }
 	int AddRepeatingNoise(unsigned _noiseMakerEntityId, ArkGameNoiseInfo const &_noiseInfo, float _magnitude, Vec3 const &_position, uint64_t _loudness, float _repeatPeriod) { return FAddRepeatingNoise(this,_noiseMakerEntityId,_noiseInfo,_magnitude,_position,_loudness,_repeatPeriod); }
+#else
+	void AddNoise(unsigned _noiseMakerEntityId, unsigned _noiseEmitterEntityId, const ArkGameNoiseInfo& _noiseInfo, float _magnitude, const Vec3& _position, uint64_t _loudness) { FAddNoise(this, _noiseMakerEntityId, _noiseEmitterEntityId, _noiseInfo, _magnitude, _position, _loudness); }
+	int AddRepeatingNoise(unsigned _noiseMakerEntityId, unsigned _noiseEmitterEntityId, const ArkGameNoiseInfo& _noiseInfo, float _magnitude, const Vec3& _position, uint64_t _loudness, float _repeatPeriod) { return FAddRepeatingNoise(this, _noiseMakerEntityId, _noiseEmitterEntityId, _noiseInfo, _magnitude, _position, _loudness, _repeatPeriod); }
+#endif
 	void RemoveRepeatingNoise(int _noiseId) { FRemoveRepeatingNoise(this,_noiseId); }
 	void UpdateRepeatingNoisePosition(int _noiseId, Vec3 const &_position) { FUpdateRepeatingNoisePosition(this,_noiseId,_position); }
 	void Update(float _elapsedTime) { FUpdate(this,_elapsedTime); }
@@ -103,6 +114,7 @@ public:
 	std::_Vector_iterator<std::_Vector_val<std::_Simple_types<ArkAuralPerceptionManager::RepeatingNoise> > > FindRepeatingNoise(int arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(ArkAuralPerceptionManager *const _this)>(0x145A050);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkAuralPerceptionManager *const _this)>(0x145A290);
 	static inline auto FReset = PreyFunction<void(ArkAuralPerceptionManager *const _this, bool _bEnteringGameMode)>(0xA13080);
@@ -117,5 +129,21 @@ public:
 	static inline auto FRemoveRepeatingNoise = PreyFunction<void(ArkAuralPerceptionManager *const _this, int _noiseId)>(0x145A580);
 	static inline auto FUpdateRepeatingNoisePosition = PreyFunction<void(ArkAuralPerceptionManager *const _this, int _noiseId, Vec3 const &_position)>(0x145AF20);
 	static inline auto FUpdate = PreyFunction<void(ArkAuralPerceptionManager *const _this, float _elapsedTime)>(0x145A870);
+#else
+	static inline auto FArkAuralPerceptionManagerOv1 = PreyFunction<void(ArkAuralPerceptionManager* const _this)>(0x156FBD0);
+	static inline auto FInitialize = PreyFunction<void(ArkAuralPerceptionManager* const _this)>(0x156FFD0);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkAuralPerceptionManager* const _this)>(0x1570160);
+	static inline auto FReset = PreyFunction<void(ArkAuralPerceptionManager* const _this, bool _bEnteringGameMode)>(0x1333E90);
+	static inline auto FRegisterPerceiver = PreyFunction<void(ArkAuralPerceptionManager* const _this, unsigned _perceiverEntityId, ArkAuralPerceiver& _perceiver)>(0x1570350);
+	static inline auto FIsPerceiverRegistered = PreyFunction<bool(ArkAuralPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x12BA340);
+	static inline auto FUnregisterPerceiver = PreyFunction<void(ArkAuralPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x1570630);
+	static inline auto FRegisterPerceivable = PreyFunction<void(ArkAuralPerceptionManager* const _this, unsigned _perceivableEntityId, const ArkAuralPerceivable& _perceivable)>(0x1570250);
+	static inline auto FIsPerceivableRegistered = PreyFunction<bool(const ArkAuralPerceptionManager* const _this, unsigned _perceivableEntityId)>(0x1502A30);
+	static inline auto FUnregisterPerceivable = PreyFunction<void(ArkAuralPerceptionManager* const _this, unsigned _perceivableEntityId)>(0x1570520);
+	static inline auto FAddNoise = PreyFunction<void(ArkAuralPerceptionManager* const _this, unsigned _noiseMakerEntityId, unsigned _noiseEmitterEntityId, const ArkGameNoiseInfo& _noiseInfo, float _magnitude, const Vec3& _position, uint64_t _loudness)>(0x156FD90);
+	static inline auto FAddRepeatingNoise = PreyFunction<int(ArkAuralPerceptionManager* const _this, unsigned _noiseMakerEntityId, unsigned _noiseEmitterEntityId, const ArkGameNoiseInfo& _noiseInfo, float _magnitude, const Vec3& _position, uint64_t _loudness, float _repeatPeriod)>(0x156FE30);
+	static inline auto FRemoveRepeatingNoise = PreyFunction<void(ArkAuralPerceptionManager* const _this, int _noiseId)>(0x1570450);
+	static inline auto FUpdateRepeatingNoisePosition = PreyFunction<void(ArkAuralPerceptionManager* const _this, int _noiseId, const Vec3& _position)>(0x1570E00);
+	static inline auto FUpdate = PreyFunction<void(ArkAuralPerceptionManager* const _this, float _elapsedTime)>(0x1570740);
+#endif
 };
-

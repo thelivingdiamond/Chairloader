@@ -14,4 +14,3 @@ struct IUIEventListener // Id=8002306 Size=8
 	virtual void OnEventSystemDestroyed(IUIEventSystem *arg0) = 0;
 	virtual ~IUIEventListener();
 };
-

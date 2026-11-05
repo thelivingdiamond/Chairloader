@@ -23,6 +23,9 @@ public:
 	void Serialize(TSerialize arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkApexVolumeManager *const _this, const float _frameTime)>(0x114B7E0);
+#else
+	static inline auto FUpdate = PreyFunction<void(ArkApexVolumeManager* const _this, const float _frameTime)>(0x1192590);
+#endif
 };
-

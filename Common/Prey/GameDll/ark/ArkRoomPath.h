@@ -27,7 +27,11 @@ public:
 	float GetHazardOcclusion(CArkRoomVolumeManager const &_roomVolumeManager) const { return FGetHazardOcclusion(this,_roomVolumeManager); }
 	bool IsBetterThan(ArkRoomPath const &_other) const { return FIsBetterThan(this,_other); }
 	void Reverse() { FReverse(this); }
+#ifndef MOONCRASH
 	Vec3 Finalize(CArkRoomVolumeManager const &_roomVolumeManager, Vec3 const &_startPoint, Vec3 const &_endPoint, std::vector<Vec3> &_pathPoints) const { return FFinalize(this,_roomVolumeManager,_startPoint,_endPoint,_pathPoints); }
+#else
+	Vec3 Finalize(const CArkRoomVolumeManager& _roomVolumeManager, const Vec3& _startPoint, const Vec3& _endPoint, std::vector<Vec3>& _pathPoints) const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FFinalize(this, reinterpret_cast<Vec3*>(_return_buf_), _roomVolumeManager, _startPoint, _endPoint, _pathPoints); }
+#endif
 	bool Validate(CArkRoomVolumeManager const &_roomVolumeManager, std::function<void __cdecl(unsigned int,unsigned int)> const &_onInvalidFn) const { return FValidate(this,_roomVolumeManager,_onInvalidFn); }
 	
 #if 0
@@ -38,6 +42,7 @@ public:
 	std::vector<unsigned int> const &GetPortals() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FAppendPathNode = PreyFunction<void(ArkRoomPath *const _this, ArkRoomPathNode const &_pathEnd)>(0x1470370);
 	static inline auto FRemoveLastPathNode = PreyFunction<void(ArkRoomPath *const _this)>(0x1470A80);
 	static inline auto FGetVolumeId = PreyFunction<unsigned(ArkRoomPath const *const _this, int _index)>(0x14709F0);
@@ -51,5 +56,21 @@ public:
 	static inline auto FReverse = PreyFunction<void(ArkRoomPath *const _this)>(0x1470A90);
 	static inline auto FFinalize = PreyFunction<Vec3(ArkRoomPath const *const _this, CArkRoomVolumeManager const &_roomVolumeManager, Vec3 const &_startPoint, Vec3 const &_endPoint, std::vector<Vec3> &_pathPoints)>(0x14703A0);
 	static inline auto FValidate = PreyFunction<bool(ArkRoomPath const *const _this, CArkRoomVolumeManager const &_roomVolumeManager, std::function<void __cdecl(unsigned int,unsigned int)> const &_onInvalidFn)>(0x1470AF0);
+#else
+	static inline auto FArkRoomPathOv3 = PreyFunction<void(ArkRoomPath* const _this, unsigned _startingVolumeId)>(0x1587AB0);
+	static inline auto FArkRoomPathOv2 = PreyFunction<void(ArkRoomPath* const _this, const std::vector<unsigned int>& _volumes, const std::vector<unsigned int>& _portals)>(0x1587A70);
+	static inline auto FAppendPathNode = PreyFunction<void(ArkRoomPath* const _this, const ArkRoomPathNode& _pathEnd)>(0x1587B00);
+	static inline auto FRemoveLastPathNode = PreyFunction<void(ArkRoomPath* const _this)>(0x1588210);
+	static inline auto FGetVolumeId = PreyFunction<unsigned(const ArkRoomPath* const _this, int _index)>(0x1588180);
+	static inline auto FGetLastVolumeId = PreyFunction<unsigned(const ArkRoomPath* const _this)>(0x15880B0);
+	static inline auto FHasVolume = PreyFunction<bool(const ArkRoomPath* const _this, unsigned _entityId)>(0x15881A0);
+	static inline auto FGetPortalId = PreyFunction<unsigned(const ArkRoomPath* const _this, int _index)>(0x1588160);
+	static inline auto FGetLastPortalId = PreyFunction<unsigned(const ArkRoomPath* const _this)>(0x1588090);
+	static inline auto FGetOcclusion = PreyFunction<float(const ArkRoomPath* const _this, const CArkRoomVolumeManager& _roomVolumeManager)>(0x15880D0);
+	static inline auto FGetHazardOcclusion = PreyFunction<float(const ArkRoomPath* const _this, const CArkRoomVolumeManager& _roomVolumeManager)>(0x1588000);
+	static inline auto FIsBetterThan = PreyFunction<bool(const ArkRoomPath* const _this, const ArkRoomPath& _other)>(0x15881D0);
+	static inline auto FReverse = PreyFunction<void(ArkRoomPath* const _this)>(0x1588220);
+	static inline auto FFinalize = PreyFunction<Vec3*(const ArkRoomPath* const _this, Vec3* _return_value_, const CArkRoomVolumeManager& _roomVolumeManager, const Vec3& _startPoint, const Vec3& _endPoint, std::vector<Vec3>& _pathPoints)>(0x1587B30);
+	static inline auto FValidate = PreyFunction<bool(const ArkRoomPath* const _this, const CArkRoomVolumeManager& _roomVolumeManager, const std::function<void __cdecl(unsigned int,unsigned int)>& _onInvalidFn)>(0x1588280);
+#endif
 };
-

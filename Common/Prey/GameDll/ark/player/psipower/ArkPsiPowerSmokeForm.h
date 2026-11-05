@@ -30,8 +30,13 @@ public:
 		ArkDisplayNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty
@@ -46,8 +51,13 @@ public:
 		ArkDescriptionProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty
@@ -62,8 +72,13 @@ public:
 		ArkCooldownDurationSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty
@@ -78,8 +93,13 @@ public:
 		ArkPsiCostPerSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107A830);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A4070);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1402FE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x14E0B70);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty
@@ -94,19 +114,44 @@ public:
 		ArkMaxHeightProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10629C0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty>(0x2C04138);
+#else
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkDisplayNameProperty>(0x2D7E9C8);
+#endif
 	string m_DisplayName;
+#ifndef MOONCRASH
 	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty>(0x2C04158);
+#else
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkDescriptionProperty>(0x2D7E9E8);
+#endif
 	string m_Description;
+#ifndef MOONCRASH
 	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty>(0x2C04178);
+#else
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkCooldownDurationSecProperty>(0x2D7EA08);
+#endif
 	float m_CooldownDurationSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkPsiCostPerSecProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty>(0x2C04198);
+#else
+	static inline auto s_ArkPsiCostPerSecProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkPsiCostPerSecProperty>(0x2D7EA28);
+#endif
 	float m_PsiCostPerSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkMaxHeightProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty>(0x2C041B8);
+#else
+	static inline auto s_ArkMaxHeightProperty = PreyGlobal<ArkPsiPowerSmokeFormLevelProperties::ArkMaxHeightProperty>(0x2D7EA48);
+#endif
 	float m_MaxHeight;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -125,8 +170,13 @@ public:
 	const float& GetMaxHeight() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x12F6460);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A4C10);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x13BD8A0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C8800);
+#endif
 };
 
 // ArkPsiPowerSmokeFormUniqueProperties
@@ -148,10 +198,17 @@ public:
 		ArkSignalModifiersProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A4050);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject)>(0x1610DD0);
 		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* _pObject)>(0x1073510);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1075A30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* const _pObject)>(0x1075A50);
+		static inline auto FIsArray = PreyFunction<bool(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty* const _this, ArkReflectedObject* _pObject)>(0x1075A70);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty
@@ -166,8 +223,13 @@ public:
 		ArkObjectFadeDistanceProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10629C0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16B7EF0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty
@@ -182,15 +244,32 @@ public:
 		ArkPostProcessEffectProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1086E60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1077BD0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkSignalModifiersProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty>(0x2C040D8);
+#else
+	static inline auto s_ArkSignalModifiersProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkSignalModifiersProperty>(0x2D7E968);
+#endif
 	std::vector<uint64_t> m_SignalModifiers;
+#ifndef MOONCRASH
 	static inline auto s_ArkObjectFadeDistanceProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty>(0x2C040F8);
+#else
+	static inline auto s_ArkObjectFadeDistanceProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkObjectFadeDistanceProperty>(0x2D7E988);
+#endif
 	float m_ObjectFadeDistance;
+#ifndef MOONCRASH
 	static inline auto s_ArkPostProcessEffectProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty>(0x2C04118);
+#else
+	static inline auto s_ArkPostProcessEffectProperty = PreyGlobal<ArkPsiPowerSmokeFormUniqueProperties::ArkPostProcessEffectProperty>(0x2D7E9A8);
+#endif
 	uint64_t m_PostProcessEffect;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -205,8 +284,13 @@ public:
 	const uint64_t& GetPostProcessEffect() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A48C0);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A4CB0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C84A0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C88A0);
+#endif
 };
 
 // SmokeFormPowerProperties
@@ -226,8 +310,13 @@ public:
 		ArkCommonProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+#endif
 	};
 
 	// SmokeFormPowerProperties::ArkUniqueProperty
@@ -242,8 +331,13 @@ public:
 		ArkUniqueProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A3D40);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C79C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+#endif
 	};
 
 	// SmokeFormPowerProperties::ArkLevelsProperty
@@ -260,20 +354,39 @@ public:
 		ArkLevelsProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A3F00);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A3FC0);
 		static inline auto FIsArray = PreyFunction<bool(const SmokeFormPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x15A4010);
+#else
+		static inline auto FSetValue = PreyFunction<void(const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C7B80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C7C40);
+		static inline auto FIsArray = PreyFunction<bool(const SmokeFormPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const SmokeFormPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x16C7C90);
+#endif
 	};
 
 	using LevelProperties = ArkPsiPowerSmokeFormLevelProperties;
 	using UniqueProperties = ArkPsiPowerSmokeFormUniqueProperties;
 
+#ifndef MOONCRASH
 	static inline auto s_ArkCommonProperty = PreyGlobal<SmokeFormPowerProperties::ArkCommonProperty>(0x2C041D8);
+#else
+	static inline auto s_ArkCommonProperty = PreyGlobal<SmokeFormPowerProperties::ArkCommonProperty>(0x2D7EA68);
+#endif
 	ArkPsiPowerCommonProperties m_Common;
+#ifndef MOONCRASH
 	static inline auto s_ArkUniqueProperty = PreyGlobal<SmokeFormPowerProperties::ArkUniqueProperty>(0x2C041F8);
+#else
+	static inline auto s_ArkUniqueProperty = PreyGlobal<SmokeFormPowerProperties::ArkUniqueProperty>(0x2D7EA88);
+#endif
 	ArkPsiPowerSmokeFormUniqueProperties m_Unique;
+#ifndef MOONCRASH
 	static inline auto s_ArkLevelsProperty = PreyGlobal<SmokeFormPowerProperties::ArkLevelsProperty>(0x2C04218);
+#else
+	static inline auto s_ArkLevelsProperty = PreyGlobal<SmokeFormPowerProperties::ArkLevelsProperty>(0x2D7EAA8);
+#endif
 	std::vector<ArkPsiPowerSmokeFormLevelProperties> m_Levels;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -289,9 +402,15 @@ public:
 	const std::vector<ArkPsiPowerSmokeFormLevelProperties>& GetLevels() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A4900);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A4D50);
 	static inline auto FInit = PreyFunction<bool(SmokeFormPowerProperties* const _this)>(0x15A5100);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C84E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C8940);
+	static inline auto FInit = PreyFunction<bool(SmokeFormPowerProperties* const _this)>(0x16C8CF0);
+#endif
 };
 
 // ArkPsiPowerSmokeForm
@@ -322,6 +441,7 @@ public:
 	bool CanExit() const { return FCanExit(this); }
 	void RestoreOpacities() { FRestoreOpacities(this); }
 
+#ifndef MOONCRASH
 	static inline auto FArkPsiPowerSmokeFormOv2 = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x15A4620);
 	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x15A5790);
 	static inline auto FCanEnterFocusMode = PreyFunction<bool(const ArkPsiPowerSmokeForm* const _this, const EArkPsiPowers& _equippedPower)>(0x15A47E0);
@@ -339,4 +459,23 @@ public:
 	static inline auto FTryMorphOut = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x15A5940);
 	static inline auto FCanExit = PreyFunction<bool(const ArkPsiPowerSmokeForm* const _this)>(0x15A4800);
 	static inline auto FRestoreOpacities = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x15A55D0);
+#else
+	static inline auto FArkPsiPowerSmokeFormOv2 = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x16C8200);
+	static inline auto FStartTargeting = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x16C9380);
+	static inline auto FCanEnterFocusMode = PreyFunction<bool(const ArkPsiPowerSmokeForm* const _this, const EArkPsiPowers& _equippedPower)>(0x16C83C0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPsiPowerSmokeForm* const _this, const CCryName& _actionId, int _activationMode, float _value)>(0x16C9130);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const ArkPsiPowerSmokeForm* const _this)>(0x114BBC0);
+	static inline auto FGetModalLegend = PreyFunction<const ArkInputLegend& (const ArkPsiPowerSmokeForm* const _this)>(0x16C8BE0);
+	static inline auto FMorphIn = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x16C8ED0);
+	static inline auto FExit = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x16C85C0);
+	static inline auto FStartActiveParticleEffect = PreyFunction<void(ArkPsiPowerSmokeForm* const _this, const char* _pEffectName)>(0x16C9300);
+	static inline auto FStopActiveParticleEffect = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x16C9500);
+	static inline auto FStop = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x16C94A0);
+	static inline auto FStart_Derived = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x16C93E0);
+	static inline auto FUpdate = PreyFunction<void(ArkPsiPowerSmokeForm* const _this, const float _frameTime)>(0x16C9700);
+	static inline auto FGetCanCancel = PreyFunction<bool(const ArkPsiPowerSmokeForm* const _this)>(0x16C87A0);
+	static inline auto FTryMorphOut = PreyFunction<bool(ArkPsiPowerSmokeForm* const _this)>(0x16C9530);
+	static inline auto FCanExit = PreyFunction<bool(const ArkPsiPowerSmokeForm* const _this)>(0x16C83E0);
+	static inline auto FRestoreOpacities = PreyFunction<void(ArkPsiPowerSmokeForm* const _this)>(0x16C91C0);
+#endif
 };

@@ -9,6 +9,12 @@
 
 CArkWeapon::CArkWeapon(bool _bRetainPhysicsOnEquip)
 	: m_disruptionVFX(m_effectController, 0)
+#ifdef MOONCRASH
+	// Slot 0 for all three, as the Mooncrash constructor passes them
+	, m_enchantmentEffect(m_characterEffectController, 0)
+	, m_enchantmentEffectAdd(m_characterEffectController, 0)
+	, m_disarmEffect(m_effectController, 0)
+#endif
 	, m_playerLight(EArkPlayerLightPriority::Weapon, this)
 	, m_bRetainPhysicsOnEquip(_bRetainPhysicsOnEquip)
 {

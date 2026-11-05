@@ -4,6 +4,9 @@
 
 // ArkKeyCodeEntry
 // Header:  Prey/GameDll/ark/player/pda/ArkKeyCodeComponent.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryString.h>
+#endif
 class ArkKeyCodeEntry
 { // Size=24 (0x18)
 public:
@@ -49,6 +52,7 @@ public:
 	const std::vector<ArkKeyCodeEntry>& GetCollected() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkKeyCodeComponentOv2 = PreyFunction<void(ArkKeyCodeComponent* const _this)>(0x15B74B0);
 	static inline auto FCollect = PreyFunction<bool(ArkKeyCodeComponent* const _this, const uint64_t _id)>(0x15B74E0);
 	static inline auto FValidate = PreyFunction<bool(ArkKeyCodeComponent* const _this, const uint64_t _id, const string& _code)>(0x15B7C30);
@@ -59,5 +63,16 @@ public:
 	static inline auto FGetFormattedLabel = PreyFunction<wstring*(ArkKeyCodeComponent* const _this, wstring* _return_value_, const uint64_t _id)>(0x15B7930);
 	static inline auto FFormatStringWithCode = PreyFunction<bool(ArkKeyCodeComponent* const _this, wstring& _input, const uint64_t _id)>(0x15B76F0);
 	static inline auto FGetEntry = PreyFunction<ArkKeyCodeEntry* (ArkKeyCodeComponent* const _this, const uint64_t _id)>(0x15B7890);
+#else
+	static inline auto FArkKeyCodeComponentOv2 = PreyFunction<void(ArkKeyCodeComponent* const _this)>(0x16DCB70);
+	static inline auto FCollect = PreyFunction<bool(ArkKeyCodeComponent* const _this, const uint64_t _id)>(0x16DCBA0);
+	static inline auto FValidate = PreyFunction<bool(ArkKeyCodeComponent* const _this, const uint64_t _id, const string& _code)>(0x16DD320);
+	static inline auto FReset = PreyFunction<void(ArkKeyCodeComponent* const _this)>(0x16DD2C0);
+	static inline auto FSerialize = PreyFunction<void(ArkKeyCodeComponent* const _this, TSerialize ser)>(0x16DD2D0);
+	static inline auto FInitializeEntryCode = PreyFunction<bool(ArkKeyCodeComponent* const _this, ArkKeyCodeEntry& _entry)>(0x16DD110);
+	static inline auto FMarkCollectedViewed = PreyFunction<void(ArkKeyCodeComponent* const _this)>(0x16DD2A0);
+	static inline auto FGetFormattedLabel = PreyFunction<wstring*(ArkKeyCodeComponent* const _this, wstring* _return_value_, const uint64_t _id)>(0x16DD020);
+	static inline auto FFormatStringWithCode = PreyFunction<bool(ArkKeyCodeComponent* const _this, wstring& _input, const uint64_t _id)>(0x16DCDE0);
+	static inline auto FGetEntry = PreyFunction<ArkKeyCodeEntry* (ArkKeyCodeComponent* const _this, const uint64_t _id)>(0x16DCF80);
+#endif
 };
-

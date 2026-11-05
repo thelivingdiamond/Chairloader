@@ -43,4 +43,3 @@ public:
 	virtual void GetMemoryUsage(ICrySizer *_pS) const;
 #endif
 };
-

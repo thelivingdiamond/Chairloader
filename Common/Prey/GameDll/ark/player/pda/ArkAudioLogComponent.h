@@ -71,6 +71,10 @@ public:
 	void SendAudioLogPlaybackCompleteEvent(const bool _arg0_);
 #endif
 
+#ifdef MOONCRASH
+	void Remove(const uint64_t _collectionId) { FRemove(this, _collectionId); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FArkAudioLogComponentOv1 = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x15B1D70);
 	static inline auto FLoadConfig = PreyFunction<void(ArkAudioLogComponent* const _this, XmlNodeRef _config)>(0x15B22D0);
 	static inline auto FUpdate = PreyFunction<void(ArkAudioLogComponent* const _this, float _frameTime)>(0x15B2F90);
@@ -90,5 +94,26 @@ public:
 	static inline auto FPlayAudioLog_InternalOv0 = PreyFunction<bool(ArkAudioLogComponent* const _this, const ArkAudioLog& _audioLog)>(0x15B2500);
 	static inline auto FPlayLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this, uint64_t _audioLogId, bool _bResetTimer, bool _bAutoPlayed)>(0x15B2770);
 	static inline auto FStopLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x15B2D80);
+#else
+	static inline auto FArkAudioLogComponentOv1 = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6260);
+	static inline auto FLoadConfig = PreyFunction<void(ArkAudioLogComponent* const _this, XmlNodeRef _config)>(0x16D6780);
+	static inline auto FUpdate = PreyFunction<void(ArkAudioLogComponent* const _this, float _frameTime)>(0x16D75D0);
+	static inline auto FCollect = PreyFunction<void(ArkAudioLogComponent* const _this, const uint64_t _collectionId, bool _bAutoplay)>(0x16D6440);
+	static inline auto FRemove = PreyFunction<void(ArkAudioLogComponent* const _this, const uint64_t _collectionId)>(0x16D70E0);
+	static inline auto FHasPlayedAudioLog = PreyFunction<bool(const ArkAudioLogComponent* const _this, const uint64_t _id)>(0x16D6750);
+	static inline auto FGetCurrentlyPlayingAudioLog = PreyFunction<uint64_t(const ArkAudioLogComponent* const _this)>(0x16D6740);
+	static inline auto FStopPlayingOrLoading = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D7540);
+	static inline auto FReset = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D7230);
+	static inline auto FSerialize = PreyFunction<void(ArkAudioLogComponent* const _this, TSerialize _ser)>(0x16D7290);
+	static inline auto FPostSerialize = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6E50);
+	static inline auto FPlayAudioLog = PreyFunction<void(ArkAudioLogComponent* const _this, const uint64_t _audioLogId)>(0x16D69D0);
+	static inline auto FPlayLastAudioLog = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6C00);
+	static inline auto FOnConversationComplete = PreyFunction<void(ArkAudioLogComponent* const _this, const bool _bComplete)>(0x16D6860);
+	static inline auto FPumpUnheardAudioLogQueue = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6EF0);
+	static inline auto FClearQueuedAutoPlayAudioLogs = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D6390);
+	static inline auto FOnGameEnded = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D69C0);
+	static inline auto FPlayAudioLog_InternalOv0 = PreyFunction<bool(ArkAudioLogComponent* const _this, const ArkAudioLog& _audioLog)>(0x16D69E0);
+	static inline auto FPlayLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this, uint64_t _audioLogId, bool _bResetTimer, bool _bAutoPlayed)>(0x16D6C60);
+	static inline auto FStopLoadingAudioLogSequence = PreyFunction<void(ArkAudioLogComponent* const _this)>(0x16D73C0);
+#endif
 };
-

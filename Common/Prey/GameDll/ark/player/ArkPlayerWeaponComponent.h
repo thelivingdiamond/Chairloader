@@ -58,7 +58,9 @@ public:
 	std::vector<ArkPlayerWeaponComponent::GameLogData> m_criticalHitData;
 	std::vector<ArkPlayerWeaponComponent::GameLogData> m_mimicHitData;
 
+#ifndef MOONCRASH
     ArkPlayerWeaponComponent(ArkPlayer& _arg0_);
+#endif
 	virtual ~ArkPlayerWeaponComponent();
 	void Init() { FInit(this); }
 	unsigned GetEquippedOrToEquipWeaponId() const { return FGetEquippedOrToEquipWeaponId(this); }
@@ -66,7 +68,11 @@ public:
 	CArkWeapon* GetEquippedWeapon() const { return FGetEquippedWeapon(this); }
 	float GetInputRotationScale(const float _frameTime) { return FGetInputRotationScale(this, _frameTime); }
 	void RemoveWeapons() { FRemoveWeapons(this); }
+#ifndef MOONCRASH
 	void UnequipWeapon(const bool _bUnselect, const bool _bToReequip) { FUnequipWeapon(this, _bUnselect, _bToReequip); }
+#else
+	void UnequipWeapon(const bool _bUnselect, const bool _bToReequip, const bool _bImmediate) { FUnequipWeapon(this, _bUnselect, _bToReequip, _bImmediate); }
+#endif
 	void SneakAttackAgainstTarget(unsigned _targetId, float _scale) { FSneakAttackAgainstTarget(this, _targetId, _scale); }
 	void CriticalHitAgainstTarget(unsigned _targetId) { FCriticalHitAgainstTarget(this, _targetId); }
 	void MimicHit(unsigned _targetId) { FMimicHit(this, _targetId); }
@@ -92,8 +98,16 @@ public:
 	bool HasWeaponArchetypeBeenAcquired(uint64_t _weaponArchId) const { return FHasWeaponArchetypeBeenAcquired(this, _weaponArchId); }
 	void AddToAcquiredWeaponTypes(uint64_t _weaponArchId) { FAddToAcquiredWeaponTypes(this, _weaponArchId); }
 	virtual void OnEntityEvent(IEntity* _pEntity, SEntityEvent& _event);
+#ifndef MOONCRASH
 	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId);
+#else
+	virtual void OnItemAdded(unsigned _entityId, unsigned _originalId, bool _bPrimaryInventory);
+#endif
+#ifndef MOONCRASH
 	virtual void OnItemRemoved(unsigned _entityId);
+#else
+	virtual void OnItemRemoved(unsigned _entityId, bool _bPrimaryInventory);
+#endif
 	virtual void OnAbilityAdded(uint64_t _abilityId);
 	bool CanEquip() const { return FCanEquip(this); }
 	void OnDoubleWrenchEnabled() { FOnDoubleWrenchEnabled(this); }
@@ -117,6 +131,7 @@ public:
 	bool IsSpecialWeapon(unsigned _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FBitNotArkPlayerWeaponComponent = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x1247520);
 	static inline auto FInit = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x1248D30);
 	static inline auto FGetEquippedOrToEquipWeaponId = PreyFunction<unsigned(const ArkPlayerWeaponComponent* const _this)>(0x12484B0);
@@ -157,5 +172,63 @@ public:
 	static inline auto FOnDoubleWrenchEnabled = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x1249430);
 	static inline auto FRestoreVitalsOnSneakAttack = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x1249C50);
 	static inline auto FEnsureSpecialWeapons = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x1247C90);
+#else
+	static inline auto FBitNotArkPlayerWeaponComponent = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EAB40);
+	static inline auto FInit = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12ECC70);
+	static inline auto FGetEquippedOrToEquipWeaponId = PreyFunction<unsigned(const ArkPlayerWeaponComponent* const _this)>(0x12EC050);
+	static inline auto FGetFavoritedWeapons = PreyFunction<std::vector<unsigned int>*(const ArkPlayerWeaponComponent* const _this, std::vector<unsigned int>* _return_value_)>(0x12EC0B0);
+	static inline auto FGetEquippedWeapon = PreyFunction<CArkWeapon* (const ArkPlayerWeaponComponent* const _this)>(0x12EC0A0);
+	static inline auto FGetInputRotationScale = PreyFunction<float(ArkPlayerWeaponComponent* const _this, const float _frameTime)>(0x12EC5B0);
+	static inline auto FRemoveWeapons = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EDA70);
+	static inline auto FUnequipWeapon = PreyFunction<void(ArkPlayerWeaponComponent* const _this, const bool _bUnselect, const bool _bToReequip, const bool _bImmediate)>(0x12EECF0);
+	static inline auto FSneakAttackAgainstTarget = PreyFunction<void(ArkPlayerWeaponComponent* const _this, unsigned _targetId, float _scale)>(0x12EE900);
+	static inline auto FCriticalHitAgainstTarget = PreyFunction<void(ArkPlayerWeaponComponent* const _this, unsigned _targetId)>(0x12EB0E0);
+	static inline auto FMimicHit = PreyFunction<void(ArkPlayerWeaponComponent* const _this, unsigned _targetId)>(0x12ECDE0);
+	static inline auto FGetGrenadeWeapon = PreyFunction<CArkWeapon* (const ArkPlayerWeaponComponent* const _this, const CArkItem& _ammoPickupItem)>(0x12EC480);
+	static inline auto FCanWeaponBeEquipped = PreyFunction<bool(const ArkPlayerWeaponComponent* const _this, unsigned _weaponId)>(0x12EB060);
+	static inline auto FEquip = PreyFunction<bool(ArkPlayerWeaponComponent* const _this, const unsigned _itemId)>(0x12EBB40);
+	static inline auto FEquipWeaponOv0 = PreyFunction<bool(ArkPlayerWeaponComponent* const _this, const unsigned _newWeaponId)>(0x12EBBF0);
+	static inline auto FIsEquipped = PreyFunction<bool(const ArkPlayerWeaponComponent* const _this, const unsigned _itemId)>(0x12ECCC0);
+	static inline auto FGiveGrenadeWeapon = PreyFunction<void(ArkPlayerWeaponComponent* const _this, const string& _archetypeName)>(0x12EC670);
+	static inline auto FGiveSpecialWeapons = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EC780);
+	static inline auto FSpawnWeapon = PreyFunction<unsigned(ArkPlayerWeaponComponent* const _this, SEntitySpawnParams& _params)>(0x12EEC20);
+	static inline auto FFindWeapon = PreyFunction<unsigned(const ArkPlayerWeaponComponent* const _this, const uint64_t _archetypeId)>(0x12EBEB0);
+	static inline auto FIsWrench = PreyFunction<bool(unsigned _itemId)>(0x12ECD80);
+	static inline auto FShouldConsiderWeaponAsDoubleWrench = PreyFunction<bool(const ArkPlayerWeaponComponent* const _this, const unsigned _itemId)>(0x12EE800);
+	static inline auto FGetDoubleWrench = PreyFunction<CArkWeapon* (const ArkPlayerWeaponComponent* const _this)>(0x12EBFC0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerWeaponComponent* const _this, float _frameTime)>(0x12EED70);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerWeaponComponent* const _this, TSerialize& _ser)>(0x12EDD90);
+	static inline auto FSerializeForLevelTransition = PreyFunction<void(ArkPlayerWeaponComponent* const _this, TSerialize& _ser)>(0x12EDEF0);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12ED910);
+	static inline auto FHideWeapon = PreyFunction<void(const ArkPlayerWeaponComponent* const _this)>(0x12ECC30);
+	static inline auto FShowWeapon = PreyFunction<void(const ArkPlayerWeaponComponent* const _this)>(0x12EE8C0);
+	static inline auto FSetCanEquip = PreyFunction<void(ArkPlayerWeaponComponent* const _this, const bool _bCanEquip)>(0x12EE7F0);
+	static inline auto FHasWeaponArchetypeBeenAcquired = PreyFunction<bool(const ArkPlayerWeaponComponent* const _this, uint64_t _weaponArchId)>(0x12ECC00);
+	static inline auto FAddToAcquiredWeaponTypes = PreyFunction<void(ArkPlayerWeaponComponent* const _this, uint64_t _weaponArchId)>(0x12EADF0);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x12ED440);
+	static inline auto FOnItemAdded = PreyFunction<void(ArkPlayerWeaponComponent* const _this, unsigned _entityId, unsigned _originalId, bool _bPrimaryInventory)>(0x12ED530);
+	static inline auto FOnItemRemoved = PreyFunction<void(ArkPlayerWeaponComponent* const _this, unsigned _entityId, bool _bPrimaryInventory)>(0x12ED6C0);
+	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener* const _this, uint64_t _abilityId)>(0x12ED350);
+	static inline auto FCanEquip = PreyFunction<bool(const ArkPlayerWeaponComponent* const _this)>(0x12EAF60);
+	static inline auto FOnDoubleWrenchEnabled = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12ED370);
+	static inline auto FRestoreVitalsOnSneakAttack = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EDD00);
+	static inline auto FEnsureSpecialWeapons = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EB550);
+#endif
+#ifdef MOONCRASH
+	std::vector<unsigned int> GetWeaponEntityIds() const { alignas(std::vector<unsigned int>) std::byte _return_buf_[sizeof(std::vector<unsigned int>)]; return *FGetWeaponEntityIds(this, reinterpret_cast<std::vector<unsigned int>*>(_return_buf_)); }
+	void ResetForCharacterChange() { FResetForCharacterChange(this); }
+	void CancelAllWeaponActions() { FCancelAllWeaponActions(this); }
+	void RemoveFromAcquiredWeaponTypes(uint64_t _weaponArchId) { FRemoveFromAcquiredWeaponTypes(this, _weaponArchId); }
+	unsigned FindEntityIdFromWeaponId(const uint64_t _weaponId) { return FFindEntityIdFromWeaponId(this, _weaponId); }
+	void AssignWeaponIdsToWeapons() { FAssignWeaponIdsToWeapons(this); }
+#endif
+#ifdef MOONCRASH
+	static inline auto k_currentWeaponId = PreyGlobal<uint64_t>(0x2D49F20);
+	static inline auto FGetWeaponEntityIds = PreyFunction<std::vector<unsigned int>*(const ArkPlayerWeaponComponent* const _this, std::vector<unsigned int>* _return_value_)>(0x12EC620);
+	static inline auto FResetForCharacterChange = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EDC00);
+	static inline auto FCancelAllWeaponActions = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EB0A0);
+	static inline auto FRemoveFromAcquiredWeaponTypes = PreyFunction<void(ArkPlayerWeaponComponent* const _this, uint64_t _weaponArchId)>(0x12EDA20);
+	static inline auto FFindEntityIdFromWeaponId = PreyFunction<unsigned(ArkPlayerWeaponComponent* const _this, const uint64_t _weaponId)>(0x12EBDB0);
+	static inline auto FAssignWeaponIdsToWeapons = PreyFunction<void(ArkPlayerWeaponComponent* const _this)>(0x12EAE40);
+#endif
 };
-

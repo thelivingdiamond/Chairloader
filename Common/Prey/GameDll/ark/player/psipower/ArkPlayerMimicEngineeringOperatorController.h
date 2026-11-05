@@ -43,6 +43,7 @@ public:
 	void PostSerialize() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicEngineeringOperatorControllerOv2 = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this)>(0x13151B0);
 	static inline auto FInitialize_Derived = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, IEntity& _mimicEntity)>(0x1315380);
 	static inline auto FUpdate_Derived = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13156C0);
@@ -53,5 +54,16 @@ public:
 	static inline auto FGetMovementSpeed = PreyFunction<float(const ArkPlayerMimicEngineeringOperatorController* const _this)>(0x1315330);
 	static inline auto FGetMimicTargetRotation = PreyFunction<Quat*(const ArkPlayerMimicEngineeringOperatorController* const _this, Quat* _return_value_)>(0x1315310);
 	static inline auto FGetProperties = PreyFunction<const ArkPsiMimicEngineeringOperatorProperties& (const ArkPlayerMimicEngineeringOperatorController* const _this)>(0x1315370);
+#else
+	static inline auto FArkPlayerMimicEngineeringOperatorControllerOv2 = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this)>(0x13EF920);
+	static inline auto FInitialize_Derived = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, IEntity& _mimicEntity)>(0x13EFAE0);
+	static inline auto FUpdate_Derived = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, const float _frameTime, IEntity& _mimicEntity)>(0x13EFE30);
+	static inline auto FResetModalLegend_Derived = PreyFunction<void(const ArkPlayerMimicEngineeringOperatorController* const _this, ArkInputLegend& _inputLegend)>(0x13EFDB0);
+	static inline auto FProcessInput = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, const CCryName& _actionId, const bool _bPressed)>(0x13EFC40);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicEngineeringOperatorController* const _this, TSerialize _ser)>(0x13EFDE0);
+	static inline auto FIsAttacking = PreyFunction<bool(const ArkPlayerMimicEngineeringOperatorController* const _this)>(0x13EFC30);
+	static inline auto FGetMovementSpeed = PreyFunction<float(const ArkPlayerMimicEngineeringOperatorController* const _this)>(0x13EFAA0);
+	static inline auto FGetMimicTargetRotation = PreyFunction<Quat*(const ArkPlayerMimicEngineeringOperatorController* const _this, Quat* _return_value_)>(0x13EFA80);
+	static inline auto FGetProperties = PreyFunction<const ArkPsiMimicEngineeringOperatorProperties& (const ArkPlayerMimicEngineeringOperatorController* const _this)>(0xAB5630);
+#endif
 };
-

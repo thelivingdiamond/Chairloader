@@ -9,4 +9,3 @@ public:
 	virtual void OnDialogStart(uint64_t arg0) = 0;
 	virtual void OnDialogEnd(uint64_t arg0) = 0;
 };
-

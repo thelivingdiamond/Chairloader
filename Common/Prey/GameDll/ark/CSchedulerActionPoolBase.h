@@ -7,7 +7,11 @@
 class CSchedulerActionPoolBase // Id=8016CF3 Size=24
 {
 public:
+#ifndef MOONCRASH
 	static CSchedulerActionPoolBase *s_poolListHead;
+#else
+	static inline auto s_poolListHead = PreyGlobal<CSchedulerActionPoolBase*>(0x2D8E5C0);
+#endif
 	CSchedulerActionPoolBase *m_pPrev;
 	CSchedulerActionPoolBase *m_pNext;
 	
@@ -18,4 +22,3 @@ public:
 	static void ResetAll();
 #endif
 };
-

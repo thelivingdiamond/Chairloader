@@ -63,6 +63,7 @@ struct RayCastRequest
 	RayCastRequest()
 		: skipListCount(0)
 		, maxHitCount(1)
+		, collclass(0, 0)
 	{
 	}
 
@@ -74,6 +75,7 @@ struct RayCastRequest
 		, flags(_flags)
 		, skipListCount(_skipListCount)
 		, maxHitCount(_maxHitCount)
+		, collclass(0, 0)
 	{
 		assert(maxHitCount <= RayCastResult::MaxHitCount);
 		assert(skipListCount <= MaxSkipListCount);
@@ -102,6 +104,7 @@ struct RayCastRequest
 	uint8            skipListCount;
 	IPhysicalEntity* skipList[MaxSkipListCount];
 	uint8            maxHitCount;
+	SCollisionClass  collclass;
 };
 
 template<int RayCasterID>

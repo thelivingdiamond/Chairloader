@@ -11,8 +11,13 @@ public:
 	virtual void OnUnlockTargetReticle(const unsigned _id);
 	virtual void OnUpdateTargetReticle(const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime);
 
+#ifndef MOONCRASH
 	static inline auto FOnLockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _id)>(0xA13080);
 	static inline auto FOnUnlockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _id)>(0xA13080);
 	static inline auto FOnUpdateTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime)>(0xA13080);
+#else
+	static inline auto FOnLockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _id)>(0x1333E90);
+	static inline auto FOnUnlockTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _id)>(0x1333E90);
+	static inline auto FOnUpdateTargetReticle = PreyFunction<void(IArkPsiScanningComponentListener* const _this, const unsigned _targetEntityId, const bool _bIsInHud, const float _frameTime)>(0x1333E90);
+#endif
 };
-

@@ -25,6 +25,9 @@ struct SEntitySpawnParams;
 
 // ArkScanState
 // Header:  Prey/GameDll/ark/player/ArkPsiScanningComponent.h
+#ifdef MOONCRASH
+#include <Prey/CryString/CryString.h>
+#endif
 class ArkScanState
 { // Size=16 (0x10)
 public:
@@ -82,7 +85,9 @@ public:
 	uint64_t m_postProcessEffectId;
 	bool m_bPaused;
 	bool m_bEnabled;
+#ifndef MOONCRASH
 	bool m_bAvailable;
+#endif
 	bool m_bStatusBarVisible;
 	bool m_bTargetNotScannable;
 	bool m_bAutoUnequipEnabled;
@@ -115,7 +120,9 @@ public:
 	void Reset() { FReset(this); }
 	void Serialize(TSerialize _ser) { FSerialize(this, _ser); }
 	void PostSerialize() { FPostSerialize(this); }
+#ifndef MOONCRASH
 	void SetAvailable(bool _bValue) { FSetAvailable(this, _bValue); }
+#endif
 	void Update(const float _deltaTime) { FUpdate(this, _deltaTime); }
 	void UpdateHUDMarkerElements() { FUpdateHUDMarkerElements(this); }
 	void ProcessInput(const CCryName& _actionId, const int _activationMode, const float _value) { FProcessInput(this, _actionId, _activationMode, _value); }
@@ -173,6 +180,7 @@ public:
 	void RemoveSubjectFromLists(unsigned _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPsiScanningComponentOv1 = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x15A7640);
 	static inline auto FBitNotArkPsiScanningComponent = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x15A7980);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPsiScanningComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x15AB100);
@@ -225,6 +233,59 @@ public:
 	static inline auto FAddSubjectToList = PreyFunction<void(ArkPsiScanningComponent* const _this, IEntity* _pEntity)>(0x15A8720);
 	static inline auto FIsValidSubject = PreyFunction<bool(const ArkPsiScanningComponent* const _this, IEntity* _pEntity)>(0x15AABF0);
 	static inline auto FPlayPsychoscopeAnimation = PreyFunction<void(ArkPsiScanningComponent* const _this, const char* const _animName)>(0x15AB130);
+#else
+	static inline auto FArkPsiScanningComponentOv1 = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CB470);
+	static inline auto FBitNotArkPsiScanningComponent = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CB7B0);
+	static inline auto FOnStatChange = PreyFunction<void(ArkPsiScanningComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x16CEF80);
+	static inline auto FInit = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CDC60);
+	static inline auto FReset = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CFA10);
+	static inline auto FSerialize = PreyFunction<void(ArkPsiScanningComponent* const _this, TSerialize _ser)>(0x16CFA70);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CF0F0);
+	static inline auto FUpdate = PreyFunction<void(ArkPsiScanningComponent* const _this, const float _deltaTime)>(0x16D08B0);
+	static inline auto FUpdateHUDMarkerElements = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D0B30);
+	static inline auto FProcessInput = PreyFunction<void(ArkPsiScanningComponent* const _this, const CCryName& _actionId, const int _activationMode, const float _value)>(0x16CF230);
+	static inline auto FLockTargetingReticle = PreyFunction<void(ArkPsiScanningComponent* const _this, const bool _bLock)>(0x16CEAF0);
+	static inline auto FRegisterListener = PreyFunction<void(ArkPsiScanningComponent* const _this, IArkPsiScanningComponentListener* _pListener)>(0x16CF9C0);
+	static inline auto FUnregisterListener = PreyFunction<void(ArkPsiScanningComponent* const _this, IArkPsiScanningComponentListener* _pListener)>(0x16D0860);
+	static inline auto FIsPositionInScannerScreen = PreyFunction<bool(const Vec3& _pos)>(0x16CE3A0);
+	static inline auto FGetTargetAttachmentPosition = PreyFunction<Vec3(const IEntity& _entity)>(0x16CD6F0);
+	static inline auto FHasScannedEntity = PreyFunction<bool(const ArkPsiScanningComponent* const _this, unsigned _target)>(0x16CD760);
+	static inline auto FSetDisrupted = PreyFunction<void(ArkPsiScanningComponent* const _this, bool _bDisrupted)>(0x16CFB10);
+	static inline auto FEnablePsiMeter = PreyFunction<void(ArkPsiScanningComponent* const _this, const bool _bEnabled)>(0x16CC920);
+	static inline auto FTurnOn = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D0760);
+	static inline auto FTurnOff = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D05E0);
+	static inline auto FSetPaused = PreyFunction<void(ArkPsiScanningComponent* const _this, bool _bPaused)>(0x16CFF20);
+	static inline auto FHideStatusBar = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CDA50);
+	static inline auto FShowScanningHud = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D0090);
+	static inline auto FHideScanningHud = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CD8B0);
+	static inline auto FUpdateTargetDetails = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D11B0);
+	static inline auto FFindTarget = PreyFunction<unsigned(ArkPsiScanningComponent* const _this, bool _bPreferUnresearched)>(0x16CCA50);
+	static inline auto FSetLockedEntity = PreyFunction<void(ArkPsiScanningComponent* const _this, unsigned _target, bool _bForce)>(0x16CFC70);
+	static inline auto FSetTargetedEntity = PreyFunction<void(ArkPsiScanningComponent* const _this, unsigned _target)>(0x16D0010);
+	static inline auto FTriggerResearchedFanfare = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16D02C0);
+	static inline auto FExitResearchedFanfare = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CC9A0);
+	static inline auto FRefreshFocusTarget = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CF290);
+	static inline auto FOnMetaTagAdded = PreyFunction<void(IArkMetaTagListener* const _this, unsigned _entityId, const uint64_t _tag)>(0x6CBC30);
+	static inline auto FOnMetaTagRemoved = PreyFunction<void(IArkMetaTagListener* const _this, unsigned _entityId, const uint64_t _tag)>(0x16CEBD0);
+	static inline auto FOnMetaTagsAdded = PreyFunction<void(IArkMetaTagListener* const _this, unsigned _entityId)>(0x16CED40);
+	static inline auto FOnAllDynamicMetaTagsRemoved = PreyFunction<void(IArkMetaTagListener* const _this, unsigned _entityId)>(0x16CEBD0);
+	static inline auto FCheckIfTargetStillValid = PreyFunction<void(ArkPsiScanningComponent* const _this, unsigned _entityId)>(0x16CC670);
+	static inline auto FOnEntityUnderReticleChanged = PreyFunction<void(IArkHUDListener* const _this, const unsigned _oldEntity, const unsigned _newEntity)>(0x16CEBE0);
+	static inline auto FOnBeforeSpawn = PreyFunction<bool(IEntitySystemSink* const _this, SEntitySpawnParams& _params)>(0x1A302A0);
+	static inline auto FOnSpawn = PreyFunction<void(IEntitySystemSink* const _this, IEntity* const _pEntity, SEntitySpawnParams& params)>(0x16CEF70);
+	static inline auto FOnRemove = PreyFunction<bool(IEntitySystemSink* const _this, IEntity* const _pEntity)>(0x16CEDB0);
+	static inline auto FOnReused = PreyFunction<void(IEntitySystemSink* const _this, IEntity* const _pEntity, SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FOnEvent = PreyFunction<void(IEntitySystemSink* const _this, IEntity* const _pEntity, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FUpdateTargetReticle = PreyFunction<void(ArkPsiScanningComponent* const _this, float _deltaTime)>(0x16D1680);
+	static inline auto FUpdateLockedReticle = PreyFunction<void(ArkPsiScanningComponent* const _this, float _deltaTime)>(0x16D0BC0);
+	static inline auto FFinishedScan = PreyFunction<void(ArkPsiScanningComponent* const _this, const IEntity* _pLockedEntity)>(0x16CCD60);
+	static inline auto FIsTargetValid = PreyFunction<bool(const ArkPsiScanningComponent* const _this, const IEntity* _pTarget, const Vec3& _playerWorldPos, float _maxRangeSq, bool _bStrict, bool& _bPermanentlyInvalid, Vec2& _entityScreenPos)>(0x16CE750);
+	static inline auto FInqTargetResearch = PreyFunction<void(const ArkPsiScanningComponent* const _this, const IEntity& _target, int& _currentPips, int& _maxPips, string& _lore)>(0x16CDFE0);
+	static inline auto FBuildSubjectLists = PreyFunction<void(ArkPsiScanningComponent* const _this)>(0x16CC600);
+	static inline auto FAddSubjectToList = PreyFunction<void(ArkPsiScanningComponent* const _this, IEntity* _pEntity)>(0x16CC550);
+	static inline auto FIsValidSubject = PreyFunction<bool(const ArkPsiScanningComponent* const _this, IEntity* _pEntity)>(0x16CEA80);
+	static inline auto FPlayPsychoscopeAnimation = PreyFunction<void(ArkPsiScanningComponent* const _this, const char* const _animName)>(0x16CEFB0);
+#endif
 };
 
 // ArkScanning
@@ -244,8 +305,13 @@ public:
 		ArkEventBonusSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkEventBonusSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1068CD0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkEventBonusSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkEventBonusSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x108D2F0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkEventBonusSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+#endif
 	};
 
 	// ArkScanning::ArkLockonTimeSecProperty
@@ -260,8 +326,13 @@ public:
 		ArkLockonTimeSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1360080);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6320);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C1F30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1444320);
+#endif
 	};
 
 	// ArkScanning::ArkLockonTimeoutSecProperty
@@ -276,8 +347,13 @@ public:
 		ArkLockonTimeoutSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1068E40);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1068E60);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C1F50);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9CA0);
+#endif
 	};
 
 	// ArkScanning::ArkLockonTimeoutFlashingStartProperty
@@ -292,8 +368,13 @@ public:
 		ArkLockonTimeoutFlashingStartProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutFlashingStartProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221AE0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutFlashingStartProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221B00);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutFlashingStartProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443640);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutFlashingStartProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1F70);
+#endif
 	};
 
 	// ArkScanning::ArkLockonTimeoutFlashingFreqProperty
@@ -308,8 +389,13 @@ public:
 		ArkLockonTimeoutFlashingFreqProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutFlashingFreqProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6340);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutFlashingFreqProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6360);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonTimeoutFlashingFreqProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C1F90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonTimeoutFlashingFreqProperty* const _this, ArkReflectedObject* const _pObject)>(0x108A0C0);
+#endif
 	};
 
 	// ArkScanning::ArkMaxDistanceScanRateMultiplierProperty
@@ -324,8 +410,13 @@ public:
 		ArkMaxDistanceScanRateMultiplierProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkMaxDistanceScanRateMultiplierProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221B20);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkMaxDistanceScanRateMultiplierProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6380);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkMaxDistanceScanRateMultiplierProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9CC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkMaxDistanceScanRateMultiplierProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1FB0);
+#endif
 	};
 
 	// ArkScanning::ArkAutoUnequipTimeoutSecProperty
@@ -340,8 +431,13 @@ public:
 		ArkAutoUnequipTimeoutSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkAutoUnequipTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A63A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkAutoUnequipTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1360170);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkAutoUnequipTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19B0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkAutoUnequipTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1FF0);
+#endif
 	};
 
 	// ArkScanning::ArkScanCompleteLockonTimeoutSecProperty
@@ -356,8 +452,13 @@ public:
 		ArkScanCompleteLockonTimeoutSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkScanCompleteLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1086230);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkScanCompleteLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A63C0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkScanCompleteLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x12C8C90);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkScanCompleteLockonTimeoutSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C8CB0);
+#endif
 	};
 
 	// ArkScanning::ArkLockonAttachmentProperty
@@ -372,8 +473,13 @@ public:
 		ArkLockonAttachmentProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonAttachmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A63E0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonAttachmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221B60);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLockonAttachmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9CE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLockonAttachmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B470);
+#endif
 	};
 
 	// ArkScanning::ArkPostProcessEffectProperty
@@ -388,8 +494,13 @@ public:
 		ArkPostProcessEffectProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1221B80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x105A980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9D40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPostProcessEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089B40);
+#endif
 	};
 
 	// ArkScanning::ArkEnableAutoUnequipProperty
@@ -404,8 +515,13 @@ public:
 		ArkEnableAutoUnequipProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkEnableAutoUnequipProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6440);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkEnableAutoUnequipProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221C40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkEnableAutoUnequipProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9DA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkEnableAutoUnequipProperty* const _this, ArkReflectedObject* const _pObject)>(0x1089B80);
+#endif
 	};
 
 	// ArkScanning::ArkScanFirstTargetOnEquipProperty
@@ -420,8 +536,13 @@ public:
 		ArkScanFirstTargetOnEquipProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkScanFirstTargetOnEquipProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6460);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkScanFirstTargetOnEquipProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkScanFirstTargetOnEquipProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9DC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkScanFirstTargetOnEquipProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9DE0);
+#endif
 	};
 
 	// ArkScanning::ArkFanfareZoomDurationProperty
@@ -436,8 +557,13 @@ public:
 		ArkFanfareZoomDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x105AA00);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x105AA20);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x107B550);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B570);
+#endif
 	};
 
 	// ArkScanning::ArkFanfareZoomOutDurationProperty
@@ -452,8 +578,13 @@ public:
 		ArkFanfareZoomOutDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomOutDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x105AA40);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomOutDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x105AA60);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomOutDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9E00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomOutDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9E20);
+#endif
 	};
 
 	// ArkScanning::ArkFanfareZoomHFOVProperty
@@ -468,8 +599,13 @@ public:
 		ArkFanfareZoomHFOVProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A64A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A64C0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9E40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareZoomHFOVProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9E60);
+#endif
 	};
 
 	// ArkScanning::ArkFanfareCameraSpeedProperty
@@ -484,8 +620,13 @@ public:
 		ArkFanfareCameraSpeedProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareCameraSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A64E0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareCameraSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x105AA80);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareCameraSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9E80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareCameraSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B590);
+#endif
 	};
 
 	// ArkScanning::ArkErrorMessageDurationProperty
@@ -500,8 +641,13 @@ public:
 		ArkErrorMessageDurationProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkErrorMessageDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6500);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkErrorMessageDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6520);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkErrorMessageDurationProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9EA0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkErrorMessageDurationProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9EC0);
+#endif
 	};
 
 	// ArkScanning::ArkPsychoscopeHideTimeProperty
@@ -516,8 +662,13 @@ public:
 		ArkPsychoscopeHideTimeProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPsychoscopeHideTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6540);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPsychoscopeHideTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221D20);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPsychoscopeHideTimeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9EE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPsychoscopeHideTimeProperty* const _this, ArkReflectedObject* const _pObject)>(0x107B5D0);
+#endif
 	};
 
 	// ArkScanning::ArkReminderUIDelayProperty
@@ -532,8 +683,13 @@ public:
 		ArkReminderUIDelayProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkReminderUIDelayProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6560);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkReminderUIDelayProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6580);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkReminderUIDelayProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkReminderUIDelayProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C9F20);
+#endif
 	};
 
 	// ArkScanning::ArkReticleLerpSpeedProperty
@@ -548,8 +704,13 @@ public:
 		ArkReticleLerpSpeedProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkReticleLerpSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A65A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkReticleLerpSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x1221DA0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkReticleLerpSpeedProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9F40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkReticleLerpSpeedProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1BC0);
+#endif
 	};
 
 	// ArkScanning::ArkLightArchetypeProperty
@@ -564,8 +725,13 @@ public:
 		ArkLightArchetypeProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLightArchetypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A5FF0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLightArchetypeProperty* const _this, ArkReflectedObject* const _pObject)>(0x1066210);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLightArchetypeProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9F60);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLightArchetypeProperty* const _this, ArkReflectedObject* const _pObject)>(0x12C1C90);
+#endif
 	};
 
 	// ArkScanning::ArkLightAttachmentProperty
@@ -580,8 +746,13 @@ public:
 		ArkLightAttachmentProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLightAttachmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6050);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLightAttachmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A60B0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkLightAttachmentProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C9FC0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkLightAttachmentProperty* const _this, ArkReflectedObject* const _pObject)>(0x16CA020);
+#endif
 	};
 
 	// ArkScanning::ArkResearchRtpcProperty
@@ -596,8 +767,13 @@ public:
 		ArkResearchRtpcProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkResearchRtpcProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A60D0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkResearchRtpcProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6130);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkResearchRtpcProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16CA040);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkResearchRtpcProperty* const _this, ArkReflectedObject* const _pObject)>(0x16CA0A0);
+#endif
 	};
 
 	// ArkScanning::ArkPauseResearchAudioTriggerProperty
@@ -612,8 +788,13 @@ public:
 		ArkPauseResearchAudioTriggerProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPauseResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6150);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPauseResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A61B0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkPauseResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16CA0C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkPauseResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x16CA120);
+#endif
 	};
 
 	// ArkScanning::ArkResumeResearchAudioTriggerProperty
@@ -628,8 +809,13 @@ public:
 		ArkResumeResearchAudioTriggerProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkResumeResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A61D0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkResumeResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6230);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkResumeResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16CA140);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkResumeResearchAudioTriggerProperty* const _this, ArkReflectedObject* const _pObject)>(0x16CA1A0);
+#endif
 	};
 
 	// ArkScanning::ArkFanfareInputLegendProperty
@@ -644,61 +830,170 @@ public:
 		ArkFanfareInputLegendProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareInputLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15A6250);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareInputLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x15A6300);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkScanning::ArkFanfareInputLegendProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16CA1C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkScanning::ArkFanfareInputLegendProperty* const _this, ArkReflectedObject* const _pObject)>(0x16CA270);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkEventBonusSecProperty = PreyGlobal<ArkScanning::ArkEventBonusSecProperty>(0x2C04390);
+#else
+	static inline auto s_ArkEventBonusSecProperty = PreyGlobal<ArkScanning::ArkEventBonusSecProperty>(0x2D7EC20);
+#endif
 	float m_EventBonusSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkLockonTimeSecProperty = PreyGlobal<ArkScanning::ArkLockonTimeSecProperty>(0x2C043B0);
+#else
+	static inline auto s_ArkLockonTimeSecProperty = PreyGlobal<ArkScanning::ArkLockonTimeSecProperty>(0x2D7EC40);
+#endif
 	float m_LockonTimeSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkLockonTimeoutSecProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutSecProperty>(0x2C043D0);
+#else
+	static inline auto s_ArkLockonTimeoutSecProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutSecProperty>(0x2D7EC60);
+#endif
 	float m_LockonTimeoutSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkLockonTimeoutFlashingStartProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutFlashingStartProperty>(0x2C043F0);
+#else
+	static inline auto s_ArkLockonTimeoutFlashingStartProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutFlashingStartProperty>(0x2D7EC80);
+#endif
 	float m_LockonTimeoutFlashingStart;
+#ifndef MOONCRASH
 	static inline auto s_ArkLockonTimeoutFlashingFreqProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutFlashingFreqProperty>(0x2C04410);
+#else
+	static inline auto s_ArkLockonTimeoutFlashingFreqProperty = PreyGlobal<ArkScanning::ArkLockonTimeoutFlashingFreqProperty>(0x2D7ECA0);
+#endif
 	float m_LockonTimeoutFlashingFreq;
+#ifndef MOONCRASH
 	static inline auto s_ArkMaxDistanceScanRateMultiplierProperty = PreyGlobal<ArkScanning::ArkMaxDistanceScanRateMultiplierProperty>(0x2C04430);
+#else
+	static inline auto s_ArkMaxDistanceScanRateMultiplierProperty = PreyGlobal<ArkScanning::ArkMaxDistanceScanRateMultiplierProperty>(0x2D7ECC0);
+#endif
 	float m_MaxDistanceScanRateMultiplier;
+#ifndef MOONCRASH
 	static inline auto s_ArkAutoUnequipTimeoutSecProperty = PreyGlobal<ArkScanning::ArkAutoUnequipTimeoutSecProperty>(0x2C04450);
+#else
+	static inline auto s_ArkAutoUnequipTimeoutSecProperty = PreyGlobal<ArkScanning::ArkAutoUnequipTimeoutSecProperty>(0x2D7ECE0);
+#endif
 	float m_AutoUnequipTimeoutSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkScanCompleteLockonTimeoutSecProperty = PreyGlobal<ArkScanning::ArkScanCompleteLockonTimeoutSecProperty>(0x2C04470);
+#else
+	static inline auto s_ArkScanCompleteLockonTimeoutSecProperty = PreyGlobal<ArkScanning::ArkScanCompleteLockonTimeoutSecProperty>(0x2D7ED00);
+#endif
 	float m_ScanCompleteLockonTimeoutSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkLockonAttachmentProperty = PreyGlobal<ArkScanning::ArkLockonAttachmentProperty>(0x2C04490);
+#else
+	static inline auto s_ArkLockonAttachmentProperty = PreyGlobal<ArkScanning::ArkLockonAttachmentProperty>(0x2D7ED20);
+#endif
 	string m_LockonAttachment;
+#ifndef MOONCRASH
 	static inline auto s_ArkPostProcessEffectProperty = PreyGlobal<ArkScanning::ArkPostProcessEffectProperty>(0x2C044B0);
+#else
+	static inline auto s_ArkPostProcessEffectProperty = PreyGlobal<ArkScanning::ArkPostProcessEffectProperty>(0x2D7ED40);
+#endif
 	string m_PostProcessEffect;
+#ifndef MOONCRASH
 	static inline auto s_ArkEnableAutoUnequipProperty = PreyGlobal<ArkScanning::ArkEnableAutoUnequipProperty>(0x2C044D0);
+#else
+	static inline auto s_ArkEnableAutoUnequipProperty = PreyGlobal<ArkScanning::ArkEnableAutoUnequipProperty>(0x2D7ED60);
+#endif
 	bool m_EnableAutoUnequip;
+#ifndef MOONCRASH
 	static inline auto s_ArkScanFirstTargetOnEquipProperty = PreyGlobal<ArkScanning::ArkScanFirstTargetOnEquipProperty>(0x2C044F0);
+#else
+	static inline auto s_ArkScanFirstTargetOnEquipProperty = PreyGlobal<ArkScanning::ArkScanFirstTargetOnEquipProperty>(0x2D7ED80);
+#endif
 	bool m_ScanFirstTargetOnEquip;
+#ifndef MOONCRASH
 	static inline auto s_ArkFanfareZoomDurationProperty = PreyGlobal<ArkScanning::ArkFanfareZoomDurationProperty>(0x2C04510);
+#else
+	static inline auto s_ArkFanfareZoomDurationProperty = PreyGlobal<ArkScanning::ArkFanfareZoomDurationProperty>(0x2D7EDA0);
+#endif
 	float m_FanfareZoomDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkFanfareZoomOutDurationProperty = PreyGlobal<ArkScanning::ArkFanfareZoomOutDurationProperty>(0x2C04530);
+#else
+	static inline auto s_ArkFanfareZoomOutDurationProperty = PreyGlobal<ArkScanning::ArkFanfareZoomOutDurationProperty>(0x2D7EDC0);
+#endif
 	float m_FanfareZoomOutDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkFanfareZoomHFOVProperty = PreyGlobal<ArkScanning::ArkFanfareZoomHFOVProperty>(0x2C04550);
+#else
+	static inline auto s_ArkFanfareZoomHFOVProperty = PreyGlobal<ArkScanning::ArkFanfareZoomHFOVProperty>(0x2D7EDE0);
+#endif
 	float m_FanfareZoomHFOV;
+#ifndef MOONCRASH
 	static inline auto s_ArkFanfareCameraSpeedProperty = PreyGlobal<ArkScanning::ArkFanfareCameraSpeedProperty>(0x2C04570);
+#else
+	static inline auto s_ArkFanfareCameraSpeedProperty = PreyGlobal<ArkScanning::ArkFanfareCameraSpeedProperty>(0x2D7EE00);
+#endif
 	float m_FanfareCameraSpeed;
+#ifndef MOONCRASH
 	static inline auto s_ArkErrorMessageDurationProperty = PreyGlobal<ArkScanning::ArkErrorMessageDurationProperty>(0x2C04590);
+#else
+	static inline auto s_ArkErrorMessageDurationProperty = PreyGlobal<ArkScanning::ArkErrorMessageDurationProperty>(0x2D7EE20);
+#endif
 	float m_ErrorMessageDuration;
+#ifndef MOONCRASH
 	static inline auto s_ArkPsychoscopeHideTimeProperty = PreyGlobal<ArkScanning::ArkPsychoscopeHideTimeProperty>(0x2C045B0);
+#else
+	static inline auto s_ArkPsychoscopeHideTimeProperty = PreyGlobal<ArkScanning::ArkPsychoscopeHideTimeProperty>(0x2D7EE40);
+#endif
 	float m_PsychoscopeHideTime;
+#ifndef MOONCRASH
 	static inline auto s_ArkReminderUIDelayProperty = PreyGlobal<ArkScanning::ArkReminderUIDelayProperty>(0x2C045D0);
+#else
+	static inline auto s_ArkReminderUIDelayProperty = PreyGlobal<ArkScanning::ArkReminderUIDelayProperty>(0x2D7EE60);
+#endif
 	float m_ReminderUIDelay;
+#ifndef MOONCRASH
 	static inline auto s_ArkReticleLerpSpeedProperty = PreyGlobal<ArkScanning::ArkReticleLerpSpeedProperty>(0x2C045F0);
+#else
+	static inline auto s_ArkReticleLerpSpeedProperty = PreyGlobal<ArkScanning::ArkReticleLerpSpeedProperty>(0x2D7EE80);
+#endif
 	float m_ReticleLerpSpeed;
+#ifndef MOONCRASH
 	static inline auto s_ArkLightArchetypeProperty = PreyGlobal<ArkScanning::ArkLightArchetypeProperty>(0x2C04610);
+#else
+	static inline auto s_ArkLightArchetypeProperty = PreyGlobal<ArkScanning::ArkLightArchetypeProperty>(0x2D7EEA0);
+#endif
 	string m_LightArchetype;
+#ifndef MOONCRASH
 	static inline auto s_ArkLightAttachmentProperty = PreyGlobal<ArkScanning::ArkLightAttachmentProperty>(0x2C04630);
+#else
+	static inline auto s_ArkLightAttachmentProperty = PreyGlobal<ArkScanning::ArkLightAttachmentProperty>(0x2D7EEC0);
+#endif
 	string m_LightAttachment;
+#ifndef MOONCRASH
 	static inline auto s_ArkResearchRtpcProperty = PreyGlobal<ArkScanning::ArkResearchRtpcProperty>(0x2C04650);
+#else
+	static inline auto s_ArkResearchRtpcProperty = PreyGlobal<ArkScanning::ArkResearchRtpcProperty>(0x2D7EEE0);
+#endif
 	string m_ResearchRtpc;
+#ifndef MOONCRASH
 	static inline auto s_ArkPauseResearchAudioTriggerProperty = PreyGlobal<ArkScanning::ArkPauseResearchAudioTriggerProperty>(0x2C04670);
+#else
+	static inline auto s_ArkPauseResearchAudioTriggerProperty = PreyGlobal<ArkScanning::ArkPauseResearchAudioTriggerProperty>(0x2D7EF00);
+#endif
 	string m_PauseResearchAudioTrigger;
+#ifndef MOONCRASH
 	static inline auto s_ArkResumeResearchAudioTriggerProperty = PreyGlobal<ArkScanning::ArkResumeResearchAudioTriggerProperty>(0x2C04690);
+#else
+	static inline auto s_ArkResumeResearchAudioTriggerProperty = PreyGlobal<ArkScanning::ArkResumeResearchAudioTriggerProperty>(0x2D7EF20);
+#endif
 	string m_ResumeResearchAudioTrigger;
+#ifndef MOONCRASH
 	static inline auto s_ArkFanfareInputLegendProperty = PreyGlobal<ArkScanning::ArkFanfareInputLegendProperty>(0x2C046B0);
+#else
+	static inline auto s_ArkFanfareInputLegendProperty = PreyGlobal<ArkScanning::ArkFanfareInputLegendProperty>(0x2D7EF40);
+#endif
 	ArkInputLegend m_FanfareInputLegend;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -760,8 +1055,13 @@ public:
 	const ArkInputLegend& GetFanfareInputLegend() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15A8A00);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15A9610);
 	static inline auto FInit = PreyFunction<bool(ArkScanning* const _this)>(0x15A9F60);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16CC830);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16CD490);
+	static inline auto FInit = PreyFunction<bool(ArkScanning* const _this)>(0x16CDDE0);
+#endif
 };
-

@@ -89,7 +89,11 @@ public:
 	
 	std::list<IActionMapEventListener *,std::allocator<IActionMapEventListener *> > m_actionMapEventListeners;
 	unsigned m_defaultEntityId;
+#ifndef MOONCRASH
 	static inline auto s_pThis = PreyGlobal<CActionMapManager *>(0x247FAE0);
+#else
+	static inline auto s_pThis = PreyGlobal<CActionMapManager*>(0x25EF100);
+#endif
 	
 	CActionMapManager(IInput *pInput);
 	virtual bool OnInputEvent(SInputEvent const &event);
@@ -184,7 +188,8 @@ public:
 	bool ProcessAlwaysListeners(CCryName const &arg0, int arg1, float arg2, SInputEvent const &arg3);
 	void SetCurrentlyRefiringInput(bool arg0);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FOnInputEvent = PreyFunction<bool(CActionMapManager *const _this, SInputEvent const &event)>(0x3D0640);
 	static inline auto FUpdate = PreyFunction<void(CActionMapManager *const _this)>(0x3D1F70);
 	static inline auto FReset = PreyFunction<void(CActionMapManager *const _this)>(0x3D1B40);
@@ -260,5 +265,82 @@ public:
 	static inline auto FCreateEventPriorityList = PreyFunction<bool(CActionMapManager *const _this, SInputEvent const &inputEvent, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &priorityList)>(0x3CE750);
 	static inline auto FCreateRefiredEventPriorityList = PreyFunction<bool(CActionMapManager *const _this, CActionMapManager::SRefireData *pRefireData, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &priorityList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &removeList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> > &delayPressNeedsReleaseList)>(0x3CE980);
 	static inline auto FUpdateRefiringInputs = PreyFunction<void(CActionMapManager *const _this)>(0x3D2230);
+#else
+	static inline auto FCActionMapManagerOv1 = PreyFunction<void(CActionMapManager* const _this, IInput* pInput)>(0x3E7810);
+	static inline auto FOnInputEvent = PreyFunction<bool(IInputEventListener* const _this, const SInputEvent& event)>(0x3EA840);
+	static inline auto FUpdate = PreyFunction<void(CActionMapManager* const _this)>(0x3EC170);
+	static inline auto FReset = PreyFunction<void(CActionMapManager* const _this)>(0x3EBD40);
+	static inline auto FResetBindings = PreyFunction<void(CActionMapManager* const _this)>(0x3EBDD0);
+	static inline auto FClear = PreyFunction<void(CActionMapManager* const _this)>(0x3E8560);
+	static inline auto FInitActionMaps = PreyFunction<bool(CActionMapManager* const _this, const char* filename)>(0x3E9E50);
+	static inline auto FSetLoadFromXMLPath = PreyFunction<void(CActionMapManager* const _this, const char* szPath)>(0x3EC040);
+	static inline auto FGetLoadFromXMLPath = PreyFunction<const char* (const CActionMapManager* const _this)>(0x7E3C90);
+	static inline auto FLoadFromXML = PreyFunction<bool(CActionMapManager* const _this, const XmlNodeRef& node)>(0x3EA3B0);
+	static inline auto FLoadRebindDataFromXML = PreyFunction<bool(CActionMapManager* const _this, const XmlNodeRef& node)>(0x3EA670);
+	static inline auto FSaveRebindDataToXML = PreyFunction<bool(CActionMapManager* const _this, XmlNodeRef& node)>(0x3EBE60);
+	static inline auto FAddExtraActionListener = PreyFunction<bool(CActionMapManager* const _this, IActionListener* pExtraActionListener, const char* actionMap)>(0x3E82B0);
+	static inline auto FRemoveExtraActionListener = PreyFunction<bool(CActionMapManager* const _this, IActionListener* pExtraActionListener, const char* actionMap)>(0x3EBA60);
+	static inline auto FGetExtraActionListeners = PreyFunction<const std::vector<IActionListener*>& (const CActionMapManager* const _this)>(0x10ED260);
+	static inline auto FAddAlwaysActionListener = PreyFunction<void(CActionMapManager* const _this, std::shared_ptr<IBlockingActionListener> pActionListener)>(0x3E7F60);
+	static inline auto FRemoveAlwaysActionListener = PreyFunction<void(CActionMapManager* const _this, std::shared_ptr<IBlockingActionListener> pActionListener)>(0x3EB350);
+	static inline auto FRemoveAllAlwaysActionListeners = PreyFunction<void(CActionMapManager* const _this)>(0x3EB080);
+	static inline auto FCreateActionMap = PreyFunction<IActionMap* (CActionMapManager* const _this, const char* name)>(0x3E87D0);
+	static inline auto FRemoveActionMap = PreyFunction<bool(CActionMapManager* const _this, const char* name)>(0x3EAED0);
+	static inline auto FRemoveAllActionMaps = PreyFunction<void(CActionMapManager* const _this)>(0x3EAF90);
+	static inline auto FGetActionMapOv1 = PreyFunction<IActionMap* (CActionMapManager* const _this, const char* name)>(0x3E93F0);
+	static inline auto FGetActionMapOv0 = PreyFunction<const IActionMap* (const CActionMapManager* const _this, const char* name)>(0x3E9460);
+	static inline auto FCreateActionFilter = PreyFunction<IActionFilter* (CActionMapManager* const _this, const char* name, EActionFilterType type)>(0x3E8680);
+	static inline auto FGetActionFilter = PreyFunction<IActionFilter* (CActionMapManager* const _this, const char* name)>(0x3E92A0);
+	static inline auto FCreateActionMapIterator = PreyFunction<_smart_ptr<IActionMapIterator>*(CActionMapManager* const _this, _smart_ptr<IActionMapIterator>* _return_value_)>(0x3E88C0);
+	static inline auto FCreateActionFilterIterator = PreyFunction<_smart_ptr<IActionFilterIterator>*(CActionMapManager* const _this, _smart_ptr<IActionFilterIterator>* _return_value_)>(0x3E8750);
+	static inline auto FEnable = PreyFunction<void(CActionMapManager* const _this, const bool enable, const bool resetStateOnDisable)>(0x3E8E60);
+	static inline auto FEnableActionMap = PreyFunction<void(CActionMapManager* const _this, const char* name, bool enable)>(0x3E8F20);
+	static inline auto FEnableFilter = PreyFunction<void(CActionMapManager* const _this, const char* name, bool enable)>(0x3E9090);
+	static inline auto FIsFilterEnabled = PreyFunction<bool(CActionMapManager* const _this, const char* name)>(0x3EA190);
+	static inline auto FRemoveAllFilters = PreyFunction<void(CActionMapManager* const _this)>(0x3EB1C0);
+	static inline auto FReleaseFilteredActions = PreyFunction<void(CActionMapManager* const _this)>(0x3EAE30);
+	static inline auto FClearStoredCurrentInputData = PreyFunction<void(CActionMapManager* const _this)>(0x3E8660);
+	static inline auto FReBindActionInputOv1 = PreyFunction<bool(CActionMapManager* const _this, const char* actionMapName, const CCryName& actionId, const char* szCurrentInput, const char* szNewInput)>(0x3EAC10);
+	static inline auto FReBindActionInputOv0 = PreyFunction<bool(CActionMapManager* const _this, const char* actionMapName, const CCryName& actionId, const EActionInputDevice deviceType, const int iDeviceIndex, const char* szNewInput)>(0x3EAC80);
+	static inline auto FGetActionInput = PreyFunction<const SActionInput* (const CActionMapManager* const _this, const char* actionMapName, const CCryName& actionId, const EActionInputDevice device, const int iByDeviceIndex)>(0x3E9310);
+	static inline auto FGetVersion = PreyFunction<int(const CActionMapManager* const _this)>(0x9F2640);
+	static inline auto FSetVersion = PreyFunction<void(CActionMapManager* const _this, int version)>(0x3EC110);
+	static inline auto FEnumerateActions = PreyFunction<void(const CActionMapManager* const _this, IActionMapPopulateCallBack* pCallBack)>(0x3E9200);
+	static inline auto FGetActionsCount = PreyFunction<int(const CActionMapManager* const _this)>(0x3E9540);
+	static inline auto FGetActionMapsCount = PreyFunction<int(const CActionMapManager* const _this)>(0x3E9530);
+	static inline auto FAddInputDeviceMapping = PreyFunction<bool(CActionMapManager* const _this, const EActionInputDevice deviceType, const char* szDeviceTypeStr)>(0x3E8380);
+	static inline auto FRemoveInputDeviceMapping = PreyFunction<bool(CActionMapManager* const _this, const EActionInputDevice deviceType)>(0x3EBB30);
+	static inline auto FClearInputDevicesMappings = PreyFunction<void(CActionMapManager* const _this)>(0x3E85C0);
+	static inline auto FGetNumInputDeviceData = PreyFunction<int(const CActionMapManager* const _this)>(0x3E9950);
+	static inline auto FGetInputDeviceDataByIndex = PreyFunction<const SActionInputDeviceData* (CActionMapManager* const _this, const int iIndex)>(0x3E96A0);
+	static inline auto FGetInputDeviceDataByTypeOv1 = PreyFunction<const SActionInputDeviceData* (CActionMapManager* const _this, const EActionInputDevice deviceType)>(0x3E9750);
+	static inline auto FGetInputDeviceDataByTypeOv0 = PreyFunction<const SActionInputDeviceData* (CActionMapManager* const _this, const char* szDeviceType)>(0x3E96F0);
+	static inline auto FRemoveAllRefireData = PreyFunction<void(CActionMapManager* const _this)>(0x3EB280);
+	static inline auto FLoadControllerLayoutFile = PreyFunction<bool(CActionMapManager* const _this, const char* szLayoutKeyName)>(0x3EA200);
+	static inline auto FSetDefaultActionEntity = PreyFunction<void(CActionMapManager* const _this, unsigned id, bool bUpdateAll)>(0x3EBF90);
+	static inline auto FGetDefaultActionEntity = PreyFunction<unsigned(const CActionMapManager* const _this)>(0x3E95E0);
+	static inline auto FRegisterActionMapEventListener = PreyFunction<void(CActionMapManager* const _this, IActionMapEventListener* pActionMapEventListener)>(0x3EACF0);
+	static inline auto FUnregisterActionMapEventListener = PreyFunction<void(CActionMapManager* const _this, IActionMapEventListener* pActionMapEventListener)>(0x3EC120);
+	static inline auto FBroadcastActionMapEvent = PreyFunction<void(CActionMapManager* const _this, const SActionMapEvent& event)>(0x3E8490);
+	static inline auto FActionFiltered = PreyFunction<bool(CActionMapManager* const _this, const CCryName& action)>(0x3E7EB0);
+	static inline auto FReleaseActionIfActive = PreyFunction<void(CActionMapManager* const _this, const CCryName& actionId)>(0x3EAD90);
+	static inline auto FAddBind = PreyFunction<bool(CActionMapManager* const _this, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3E80E0);
+	static inline auto FRemoveBindOv2 = PreyFunction<bool(CActionMapManager* const _this, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3EB920);
+	static inline auto FRemoveBindOv1 = PreyFunction<void(CActionMapManager* const _this, CActionMap* pActionMap)>(0x3EB440);
+	static inline auto FRemoveBindOv0 = PreyFunction<void(CActionMapManager* const _this, CActionMapAction* pAction)>(0x3EB6B0);
+	static inline auto FHasBind = PreyFunction<bool(const CActionMapManager* const _this, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3E9D30);
+	static inline auto FUpdateRefireData = PreyFunction<bool(CActionMapManager* const _this, const SInputEvent& event, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3EC240);
+	static inline auto FRemoveRefireDataOv2 = PreyFunction<bool(CActionMapManager* const _this, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput)>(0x3EBC10);
+	static inline auto FSetRefireDataDelayedPressNeedsRelease = PreyFunction<bool(CActionMapManager* const _this, const SInputEvent& event, CActionMap* pActionMap, CActionMapAction* pAction, SActionInput* pActionInput, const bool bDelayedPressNeedsRelease)>(0x3EC070);
+	static inline auto FRemoveAllDelayedPressRefireData = PreyFunction<void(CActionMapManager* const _this)>(0x3EB090);
+	static inline auto FGetHighestPressDelayPriority = PreyFunction<int(const CActionMapManager* const _this)>(0x3E95F0);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(CActionMapManager* const _this, ICrySizer* pSizer)>(0x3E9780);
+	static inline auto FGetActionFilterStack = PreyFunction<IActionFilterStack* (CActionMapManager* const _this)>(0x65D590);
+	static inline auto FBitNotCActionMapManager = PreyFunction<void(CActionMapManager* const _this)>(0x3E7C40);
+	static inline auto FPreloadControllerLayout = PreyFunction<bool(CActionMapManager* const _this, const XmlNodeRef& controllerLayout)>(0x3EA960);
+	static inline auto FHandleAcceptedEvents = PreyFunction<bool(CActionMapManager* const _this, const SInputEvent& event, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList)>(0x3E9980);
+	static inline auto FCreateEventPriorityList = PreyFunction<bool(CActionMapManager* const _this, const SInputEvent& inputEvent, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList)>(0x3E8940);
+	static inline auto FCreateRefiredEventPriorityList = PreyFunction<bool(CActionMapManager* const _this, CActionMapManager::SRefireData* pRefireData, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& priorityList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& removeList, std::list<CActionMapManager::SBindData const *,std::allocator<CActionMapManager::SBindData const *> >& delayPressNeedsReleaseList)>(0x3E8B70);
+	static inline auto FUpdateRefiringInputs = PreyFunction<void(CActionMapManager* const _this)>(0x3EC430);
+#endif
 };
-

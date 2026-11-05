@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -215,4 +216,161 @@ public:
 };
 
 } // namespace ATStates
+#else // MOONCRASH
+// Header file automatically created from a PDB.
+#pragma once
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#include <Prey/GameDll/ark/turret/ATStates.h>
 
+class ArkTurretFsm;
+enum class ValidTargetResult;
+
+namespace ATStates
+{
+
+// ATStates::Attacking
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class Attacking : public ATStates::BaseState
+{ // Size=48 (0x30)
+public:
+	enum class State
+	{
+		windUp = 0,
+		shooting = 1,
+		cooldown = 2,
+	};
+
+	ArkSimpleTimer m_losingTargetTimer;
+	ArkSimpleTimer m_callForHelpPulseTimer;
+	ArkSimpleTimer m_windUpTimer;
+	ArkSimpleTimer m_shootingTimer;
+	ArkSimpleTimer m_cooldownTimer;
+	ATStates::Attacking::State m_state;
+	bool m_bLosingTarget;
+
+	Attacking();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+	void Update(ArkTurretFsm& _fsm, const float _frameTime) { FUpdate(this, _fsm, _frameTime); }
+	void StartWindup(ArkTurretFsm& _fsm) { FStartWindup(this, _fsm); }
+
+#if 0
+	const char* GetStateName() const;
+	ValidTargetResult UpdateTargetTracking(ArkTurretFsm& _arg0_, const float _arg1_);
+	void StartShooting(ArkTurretFsm& _arg0_);
+	void StartCooldown(ArkTurretFsm& _arg0_);
+	void UpdateWindup(ArkTurretFsm& _arg0_, const float _arg1_);
+	void UpdateShooting(ArkTurretFsm& _arg0_, const float _arg1_);
+	void UpdateCooldown(ArkTurretFsm& _arg0_, const float _arg1_);
+#endif
+
+	static inline auto FAttacking = PreyFunction<void(ATStates::Attacking* const _this)>(0x170BF50);
+	static inline auto FEnter = PreyFunction<void(ATStates::Attacking* const _this, ArkTurretFsm& _fsm)>(0x170BFC0);
+	static inline auto FExit = PreyFunction<void(ATStates::Attacking* const _this, ArkTurretFsm& _fsm)>(0x170C340);
+	static inline auto FUpdate = PreyFunction<void(ATStates::Attacking* const _this, ArkTurretFsm& _fsm, const float _frameTime)>(0x170C450);
+	static inline auto FStartWindup = PreyFunction<void(ATStates::Attacking* const _this, ArkTurretFsm& _fsm)>(0x170C3D0);
+};
+
+// ATStates::Disabled
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class Disabled : public ATStates::BaseState
+{ // Size=1 (0x1)
+public:
+	Disabled();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+
+#if 0
+	const char* GetStateName() const;
+#endif
+
+	static inline auto FDisabled = PreyFunction<void(ATStates::Disabled* const _this)>(0x3DAC90);
+	static inline auto FEnter = PreyFunction<void(ATStates::Disabled* const _this, ArkTurretFsm& _fsm)>(0x170C0F0);
+	static inline auto FExit = PreyFunction<void(ATStates::Disabled* const _this, ArkTurretFsm& _fsm)>(0x1333E90);
+};
+
+// ATStates::PlayerCarried
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class PlayerCarried : public ATStates::BaseState
+{ // Size=1 (0x1)
+public:
+	PlayerCarried();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+
+#if 0
+	const char* GetStateName() const;
+#endif
+
+	static inline auto FPlayerCarried = PreyFunction<void(ATStates::PlayerCarried* const _this)>(0x3DAC90);
+	static inline auto FEnter = PreyFunction<void(ATStates::PlayerCarried* const _this, ArkTurretFsm& _fsm)>(0x170C120);
+	static inline auto FExit = PreyFunction<void(ATStates::PlayerCarried* const _this, ArkTurretFsm& _fsm)>(0x170C360);
+};
+
+// ATStates::PlayerControlled
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class PlayerControlled : public ATStates::BaseState
+{ // Size=1 (0x1)
+public:
+	PlayerControlled();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+	void Update(ArkTurretFsm& _fsm, const float _frameTime) { FUpdate(this, _fsm, _frameTime); }
+
+#if 0
+	const char* GetStateName() const;
+#endif
+
+	static inline auto FPlayerControlled = PreyFunction<void(ATStates::PlayerControlled* const _this)>(0x3DAC90);
+	static inline auto FEnter = PreyFunction<void(ATStates::PlayerControlled* const _this, ArkTurretFsm& _fsm)>(0x170C180);
+	static inline auto FExit = PreyFunction<void(ATStates::PlayerControlled* const _this, ArkTurretFsm& _fsm)>(0x170C380);
+	static inline auto FUpdate = PreyFunction<void(ATStates::PlayerControlled* const _this, ArkTurretFsm& _fsm, const float _frameTime)>(0x1333E90);
+};
+
+// ATStates::Searching
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class Searching : public ATStates::BaseState
+{ // Size=4 (0x4)
+public:
+	float m_searchAnimDelayTimer;
+
+	Searching();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+	void Update(ArkTurretFsm& _fsm, const float _frameTime) { FUpdate(this, _fsm, _frameTime); }
+
+#if 0
+	const char* GetStateName() const;
+#endif
+
+	static inline auto FSearching = PreyFunction<void(ATStates::Searching* const _this)>(0x170BF90);
+	static inline auto FEnter = PreyFunction<void(ATStates::Searching* const _this, ArkTurretFsm& _fsm)>(0x170C1A0);
+	static inline auto FExit = PreyFunction<void(ATStates::Searching* const _this, ArkTurretFsm& _fsm)>(0x170C390);
+	static inline auto FUpdate = PreyFunction<void(ATStates::Searching* const _this, ArkTurretFsm& _fsm, const float _frameTime)>(0x170C730);
+};
+
+// ATStates::Undeployed
+// Header:  Prey/GameDll/ark/turret/arkturretfsmstates.h
+class Undeployed : public ATStates::BaseState
+{ // Size=8 (0x8)
+public:
+	ArkSimpleTimer m_fallenToUprightDelayTimer;
+
+	Undeployed();
+	void Enter(ArkTurretFsm& _fsm) { FEnter(this, _fsm); }
+	void Exit(ArkTurretFsm& _fsm) { FExit(this, _fsm); }
+	void Update(ArkTurretFsm& _fsm, const float _frameTime) { FUpdate(this, _fsm, _frameTime); }
+
+#if 0
+	const char* GetStateName() const;
+#endif
+
+	static inline auto FUndeployed = PreyFunction<void(ATStates::Undeployed* const _this)>(0x170BFA0);
+	static inline auto FEnter = PreyFunction<void(ATStates::Undeployed* const _this, ArkTurretFsm& _fsm)>(0x170C260);
+	static inline auto FExit = PreyFunction<void(ATStates::Undeployed* const _this, ArkTurretFsm& _fsm)>(0x170C3A0);
+	static inline auto FUpdate = PreyFunction<void(ATStates::Undeployed* const _this, ArkTurretFsm& _fsm, const float _frameTime)>(0x170C840);
+};
+
+
+} // namespace ATStates
+#endif // !MOONCRASH

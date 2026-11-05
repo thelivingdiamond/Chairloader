@@ -41,11 +41,19 @@ public:
 	void ProcessInput(const CCryName& _arg0_, const bool _arg1_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicMilitaryOperatorCameraOv2 = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this)>(0x130F380);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const ArkPlayerMimicMilitaryOperatorController& _controller)>(0x130F540);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x130F6F0);
 	static inline auto FGetRotation = PreyFunction<Quat*(const ArkPlayerMimicMilitaryOperatorCamera* const _this, Quat* _return_value_)>(0x130F400);
 	static inline auto FSetInGravShaft = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const bool _bInGravShaft)>(0x130F6B0);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, TSerialize _ser)>(0x130F5E0);
+#else
+	static inline auto FArkPlayerMimicMilitaryOperatorCameraOv2 = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this)>(0x13E9A70);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const ArkPlayerMimicMilitaryOperatorController& _controller)>(0x13E9C30);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13E9DE0);
+	static inline auto FGetRotation = PreyFunction<Quat*(const ArkPlayerMimicMilitaryOperatorCamera* const _this, Quat* _return_value_)>(0x13E9AF0);
+	static inline auto FSetInGravShaft = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, const bool _bInGravShaft)>(0x13E9DA0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicMilitaryOperatorCamera* const _this, TSerialize _ser)>(0x13E9CD0);
+#endif
 };
-

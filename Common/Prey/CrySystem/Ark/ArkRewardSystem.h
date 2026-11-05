@@ -32,6 +32,7 @@ public:
 		bool bCriteriaMet;
 	};
 
+#ifndef MOONCRASH // base only: Mooncrash has a CPlatformOS_ServiceTaskBase RewardUnlockJob instead (Size=136)
 	struct IArkRewardsJobInfo
 	{ // Size=8 (0x8)
 		enum class ArkRewardsJobInfoType : unsigned
@@ -90,9 +91,12 @@ public:
 		static inline auto FRun = PreyFunction<void(CArkRewardSystem::ArkRewardsThread* const _this)>(0xD5CDB0);
 		static inline auto FCancel = PreyFunction<void(CArkRewardSystem::ArkRewardsThread* const _this)>(0xD5C580);
 	};
+#endif // !MOONCRASH
 
 	static constexpr const uint64_t kNoAssociatedMetric = 0;
+#ifndef MOONCRASH
 	CArkRewardSystem::ArkRewardsThread* m_pRewardsThread = nullptr;
+#endif
 	IArkRewardSystemCallbackHandler* m_pHandler = nullptr;
 	std::vector<CArkRewardSystem::ArkRewardTrackable> m_trackables;
 	std::unordered_map<uint64_t, CArkRewardSystem::ArkRewardTrackable*> m_trackablesByMetric;
@@ -121,6 +125,7 @@ public:
 	bool SuppressRewards() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCArkRewardSystemOv1 = PreyFunction<void(CArkRewardSystem* const _this)>(0xD5C0F0);
 	static inline auto FInit = PreyFunction<bool(CArkRewardSystem* const _this)>(0xD5C710);
 	static inline auto FSetActiveUserId = PreyFunction<void(CArkRewardSystem* const _this, unsigned _userId)>(0xD5D0B0);
@@ -135,5 +140,20 @@ public:
 	static inline auto FSetCallbackHandler = PreyFunction<void(CArkRewardSystem* const _this, IArkRewardSystemCallbackHandler* _pHandler)>(0x9FBCE0);
 	static inline auto FInternalTrackableUpdated = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackableId, unsigned _oldVal, unsigned _newVal)>(0xA13080);
 	static inline auto FInternalRewardUnlocked = PreyFunction<void(CArkRewardSystem* const _this, unsigned _rewardId)>(0xA13080);
-};
-
+#else
+	static inline auto FCArkRewardSystemOv1 = PreyFunction<void(CArkRewardSystem* const _this)>(0xD79C80);
+	static inline auto FInit = PreyFunction<bool(CArkRewardSystem* const _this)>(0x1A302A0);
+	static inline auto FSetActiveUserId = PreyFunction<void(CArkRewardSystem* const _this, unsigned _userId)>(0xD7A590);
+	static inline auto FLoadRewardData = PreyFunction<bool(CArkRewardSystem* const _this, const string& _strRewardFile)>(0xD7A0D0);
+	static inline auto FSetInitialTrackableValueOv1 = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackable, unsigned _value)>(0xD7A610);
+	static inline auto FSetInitialTrackableValueOv0 = PreyFunction<void(CArkRewardSystem* const _this, uint64_t _associatedMetric, unsigned _value)>(0xD7A620);
+	static inline auto FIncrementTrackableValueOv1 = PreyFunction<unsigned(CArkRewardSystem* const _this, unsigned _trackable)>(0xD7A020);
+	static inline auto FIncrementTrackableValueOv0 = PreyFunction<unsigned(CArkRewardSystem* const _this, uint64_t _associatedMetric)>(0xD7A060);
+	static inline auto FUpdateTrackableValueMax = PreyFunction<unsigned(CArkRewardSystem* const _this, uint64_t _associatedMetric, unsigned _value)>(0xD7A670);
+	static inline auto FUnlockReward = PreyFunction<void(CArkRewardSystem* const _this, unsigned _reward)>(0xD7A660);
+	static inline auto FResetTrackableData = PreyFunction<void(CArkRewardSystem* const _this)>(0xD7A530);
+	static inline auto FSetCallbackHandler = PreyFunction<void(CArkRewardSystem* const _this, IArkRewardSystemCallbackHandler* _pHandler)>(0x17DB400);
+	static inline auto FInternalTrackableUpdated = PreyFunction<void(CArkRewardSystem* const _this, unsigned _trackableId, unsigned _oldVal, unsigned _newVal)>(0x1333E90);
+	static inline auto FInternalRewardUnlocked = PreyFunction<void(CArkRewardSystem* const _this, unsigned _rewardId)>(0x1333E90);
+#endif
+};

@@ -7,4 +7,3 @@
 struct IArkPostEffectManager // Id=80020C7 Size=1
 {
 };
-

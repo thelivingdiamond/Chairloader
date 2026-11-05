@@ -16,4 +16,3 @@ struct ArkInteractionInfo // Id=8014062 Size=24
 	bool operator!=(ArkInteractionInfo const &arg0) const;
 #endif
 };
-

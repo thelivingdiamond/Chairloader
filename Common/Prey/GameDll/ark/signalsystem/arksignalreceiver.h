@@ -25,11 +25,18 @@ public:
 	virtual ArkSignalSystem::PackageSignalRampContainer *GetPackageSignalRampContainer();
 	virtual void OnKilled(unsigned _killerId) const;
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotReceiver = PreyFunction<void(ArkSignalSystem::Receiver *const _this)>(0x15DEE00);
 	static inline auto FInit = PreyFunction<void(ArkSignalSystem::Receiver *const _this, const unsigned &_entityId)>(0x15DEEC0);
 	static inline auto FGetPackageSignalRampContainer = PreyFunction<ArkSignalSystem::PackageSignalRampContainer *(ArkSignalSystem::Receiver *const _this)>(0x158AEF0);
 	static inline auto FOnKilled = PreyFunction<void(ArkSignalSystem::Receiver const *const _this, unsigned _killerId)>(0x15DEF20);
+#else
+	static inline auto FReceiverOv1 = PreyFunction<void(ArkSignalSystem::Receiver* const _this)>(0x1706D90);
+	static inline auto FBitNotReceiver = PreyFunction<void(ArkSignalSystem::Receiver* const _this)>(0x1706DB0);
+	static inline auto FInit = PreyFunction<void(ArkSignalSystem::Receiver* const _this, const unsigned& _entityId)>(0x1706E70);
+	static inline auto FGetPackageSignalRampContainer = PreyFunction<ArkSignalSystem::PackageSignalRampContainer* (ArkSignalSystem::Receiver* const _this)>(0x1CBB0B0);
+	static inline auto FOnKilled = PreyFunction<void(const ArkSignalSystem::Receiver* const _this, unsigned _killerId)>(0x1706ED0);
+#endif
 };
 
 } // namespace ArkSignalSystem
-

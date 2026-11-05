@@ -120,6 +120,7 @@ public:
 	void chair_RemoveData(uint32 CRC);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC8BA0);
 	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9200);
 	static inline auto FFlush = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFC9240);
@@ -128,6 +129,17 @@ public:
 	static inline auto FSaveData = PreyFunction<void(CResFileLookupDataMan const* const _this, const char* acFilename)>(0xFC9700);
 	static inline auto FAddData = PreyFunction<void(CResFileLookupDataMan* const _this, CResFile const* pResFile, unsigned CRC)>(0xFC8C90);
 	static inline auto FGetData = PreyFunction<SResFileLookupData* (CResFileLookupDataMan* const _this, CCryNameTSCRC const& name)>(0xFC9270);
+#else
+	static inline auto FCResFileLookupDataManOv1 = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE4F30);
+	static inline auto FBitNotCResFileLookupDataMan = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE4FD0);
+	static inline auto FClear = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE5630);
+	static inline auto FFlush = PreyFunction<void(CResFileLookupDataMan* const _this)>(0xFE5670);
+	static inline auto FAdjustName = PreyFunction<CCryNameTSCRC*(CResFileLookupDataMan* const _this, CCryNameTSCRC* _return_value_, const char* szName)>(0xFE5480);
+	static inline auto FLoadData = PreyFunction<bool(CResFileLookupDataMan* const _this, const char* acFilename, bool bReadOnly)>(0xFE56F0);
+	static inline auto FSaveData = PreyFunction<void(const CResFileLookupDataMan* const _this, const char* acFilename)>(0xFE5B30);
+	static inline auto FAddData = PreyFunction<void(CResFileLookupDataMan* const _this, const CResFile* pResFile, unsigned CRC)>(0xFE50C0);
+	static inline auto FGetData = PreyFunction<SResFileLookupData* (CResFileLookupDataMan* const _this, const CCryNameTSCRC& name)>(0xFE56A0);
+#endif
 };
 
 #endif //  __RESFILELOOKUPDATAMAN_H__

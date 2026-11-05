@@ -22,11 +22,19 @@ public:
 	void LoadScriptedSurfaceTypes(const char* sFolder, bool bReload) { FLoadScriptedSurfaceTypes(this, sFolder, bReload); }
 	virtual void GetMemoryStatistics(ICrySizer* pSizer) const;
 
+#ifndef MOONCRASH
 	static inline auto FCScriptBindingsOv1 = PreyFunction<void(CScriptBindings* const _this)>(0xD2B040);
 	static inline auto FBitNotCScriptBindings = PreyFunction<void(CScriptBindings* const _this)>(0xD2B060);
 	static inline auto FInit = PreyFunction<void(CScriptBindings* const _this, ISystem* pSystem, IScriptSystem* pSS)>(0xD2B240);
 	static inline auto FDone = PreyFunction<void(CScriptBindings* const _this)>(0xD2B1B0);
 	static inline auto FLoadScriptedSurfaceTypes = PreyFunction<void(CScriptBindings* const _this, const char* sFolder, bool bReload)>(0xD2B430);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(const CScriptBindings* const _this, ICrySizer* pSizer)>(0xA13080);
+#else
+	static inline auto FCScriptBindingsOv1 = PreyFunction<void(CScriptBindings* const _this)>(0xD48B00);
+	static inline auto FBitNotCScriptBindings = PreyFunction<void(CScriptBindings* const _this)>(0xD48B20);
+	static inline auto FInit = PreyFunction<void(CScriptBindings* const _this, ISystem* pSystem, IScriptSystem* pSS)>(0xD48D00);
+	static inline auto FDone = PreyFunction<void(CScriptBindings* const _this)>(0xD48C70);
+	static inline auto FLoadScriptedSurfaceTypes = PreyFunction<void(CScriptBindings* const _this, const char* sFolder, bool bReload)>(0xD48EF0);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(const CScriptBindings* const _this, ICrySizer* pSizer)>(0x1333E90);
+#endif
 };
-

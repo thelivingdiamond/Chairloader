@@ -50,6 +50,7 @@ public:
 	void DrawTargetingInfo(const Vec3& _arg0_, const float _arg1_, const ColorB& _arg2_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCArkPsiPowerLift = PreyFunction<void(CArkPsiPowerLift* const _this)>(0x1596040);
 	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerLift* const _this)>(0x1598620);
 	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerLift* const _this)>(0x1598490);
@@ -65,5 +66,21 @@ public:
 	static inline auto FOnPlayerExitLift = PreyFunction<void(const CArkPsiPowerLift* const _this)>(0x1597A60);
 	static inline auto FUpdateTargetingCylinder = PreyFunction<bool(CArkPsiPowerLift* const _this, const float _frameTime)>(0x1599730);
 	static inline auto FUpdateTargetingCylinderZeroG = PreyFunction<bool(CArkPsiPowerLift* const _this, const float _frameTime)>(0x159A220);
+#else
+	static inline auto FCArkPsiPowerLift = PreyFunction<void(CArkPsiPowerLift* const _this)>(0x16BB330);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerLift* const _this)>(0x16BCE90);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerLift* const _this)>(0x16BCD00);
+	static inline auto FCancel = PreyFunction<void(CArkPsiPowerLift* const _this)>(0x16BBBF0);
+	static inline auto FUpdate = PreyFunction<void(CArkPsiPowerLift* const _this, const float _frameTime)>(0x16BD090);
+	static inline auto FUpdateTargeting = PreyFunction<void(CArkPsiPowerLift* const _this, const float _frameTime)>(0x16BD240);
+	static inline auto FSerialize = PreyFunction<void(CArkPsiPowerLift* const _this, TSerialize _ser)>(0x16BCBA0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPsiPowerLift* const _this)>(0x16BC250);
+	static inline auto FGetTargetPosition = PreyFunction<Vec3*(const CArkPsiPowerLift* const _this, Vec3* _return_value_)>(0x16BBFD0);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerLift* const _this, std::vector<IEntity*>* _return_value_)>(0x16BBDF0);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerLift* const _this)>(0x141A3D0);
+	static inline auto FOnPlayerEnterLift = PreyFunction<void(const CArkPsiPowerLift* const _this)>(0x16BC0D0);
+	static inline auto FOnPlayerExitLift = PreyFunction<void(const CArkPsiPowerLift* const _this)>(0x16BC190);
+	static inline auto FUpdateTargetingCylinder = PreyFunction<bool(CArkPsiPowerLift* const _this, const float _frameTime)>(0x16BD3F0);
+	static inline auto FUpdateTargetingCylinderZeroG = PreyFunction<bool(CArkPsiPowerLift* const _this, const float _frameTime)>(0x16BDEE0);
+#endif
 };
-

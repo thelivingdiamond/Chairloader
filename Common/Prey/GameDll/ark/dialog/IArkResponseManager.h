@@ -21,4 +21,3 @@ public:
 	virtual uint64_t GetNextConversationId() = 0;
 	virtual IArkDialogAudioManager &GetAudioManager() = 0;
 };
-

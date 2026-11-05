@@ -10,6 +10,9 @@ struct SEntityUpdateContext;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkTurretCountArea.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/arkgameobjectextension.h>
+#endif
 class ArkTurretCountArea : public CArkGameObjectExtension<ArkTurretCountArea> // Id=80195C4 Size=128
 {
 public:
@@ -60,6 +63,7 @@ public:
 	void OnReset(bool arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(ArkTurretCountArea *const _this, IGameObject *_pGameObject)>(0x11B15D0);
 	static inline auto FPostInit = PreyFunction<void(ArkTurretCountArea *const _this, IGameObject *_pGameObject)>(0x11B1A40);
 	static inline auto FFullSerialize = PreyFunction<void(ArkTurretCountArea *const _this, TSerialize _ser)>(0x11B13A0);
@@ -71,5 +75,18 @@ public:
 	static inline auto FTestAndAddTarget = PreyFunction<void(ArkTurretCountArea *const _this, unsigned _target, bool _bSendOutputs)>(0x11B1CB0);
 	static inline auto FLoadProperties = PreyFunction<void(ArkTurretCountArea *const _this)>(0x11B16D0);
 	static inline auto FGetTurretState = PreyFunction<ArkTurretCountArea::EArkTurretState(ArkTurretCountArea const *const _this, unsigned _turret)>(0x11B14B0);
+#else
+	static inline auto FArkTurretCountAreaOv2 = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E5F0);
+	static inline auto FInit = PreyFunction<bool(ArkTurretCountArea* const _this, IGameObject* _pGameObject)>(0x122EB20);
+	static inline auto FPostInit = PreyFunction<void(ArkTurretCountArea* const _this, IGameObject* _pGameObject)>(0x122EF90);
+	static inline auto FFullSerialize = PreyFunction<void(ArkTurretCountArea* const _this, TSerialize _ser)>(0x122E990);
+	static inline auto FUpdate = PreyFunction<void(ArkTurretCountArea* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x122F2E0);
+	static inline auto FRelease = PreyFunction<void(ArkTurretCountArea* const _this)>(0x3E3960);
+	static inline auto FProcessEvent = PreyFunction<void(ArkTurretCountArea* const _this, SEntityEvent& _event)>(0x122EFF0);
+	static inline auto FEnable = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E6F0);
+	static inline auto FDisable = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122E6A0);
+	static inline auto FTestAndAddTarget = PreyFunction<void(ArkTurretCountArea* const _this, unsigned _target, bool _bSendOutputs)>(0x122F1E0);
+	static inline auto FLoadProperties = PreyFunction<void(ArkTurretCountArea* const _this)>(0x122EC20);
+	static inline auto FGetTurretState = PreyFunction<ArkTurretCountArea::EArkTurretState(const ArkTurretCountArea* const _this, unsigned _turret)>(0x122EAA0);
+#endif
 };
-

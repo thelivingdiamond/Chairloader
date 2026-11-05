@@ -33,12 +33,20 @@ public:
 	static CryGUID const &GetCID();
 	static std::shared_ptr<CEngineModule_CryInput> CreateClassInstance();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FGetFactory = PreyFunction<ICryFactory *(CEngineModule_CryInput const *const _this)>(0x9DA760);
 	static inline auto FQueryInterface = PreyFunction<void *(CEngineModule_CryInput const *const _this, CryGUID const &iid)>(0x182A3A0);
 	static inline auto FQueryComposite = PreyFunction<void *(CEngineModule_CryInput const *const _this, const char *name)>(0x158AEF0);
 	static inline auto FGetName = PreyFunction<const char *(CEngineModule_CryInput *const _this)>(0x9DA770);
 	static inline auto FGetCategory = PreyFunction<const char *(CEngineModule_CryInput *const _this)>(0xD0C1F0);
 	static inline auto FInitialize = PreyFunction<bool(CEngineModule_CryInput *const _this, SSystemGlobalEnvironment &env, SSystemInitParams const &initParams)>(0x9DA780);
+#else
+	static inline auto FGetFactory = PreyFunction<ICryFactory* (const CEngineModule_CryInput* const _this)>(0x9F7B20);
+	static inline auto FQueryInterface = PreyFunction<void* (const CEngineModule_CryInput* const _this, const CryGUID& iid)>(0x1949360);
+	static inline auto FQueryComposite = PreyFunction<void* (const CEngineModule_CryInput* const _this, const char* name)>(0x1CBB0B0);
+	static inline auto FGetName = PreyFunction<const char* (CEngineModule_CryInput* const _this)>(0x9F7B30);
+	static inline auto FGetCategory = PreyFunction<const char* (CEngineModule_CryInput* const _this)>(0xD29A50);
+	static inline auto FInitialize = PreyFunction<bool(CEngineModule_CryInput* const _this, SSystemGlobalEnvironment& env, const SSystemInitParams& initParams)>(0x9F7B40);
+#endif
 };
-

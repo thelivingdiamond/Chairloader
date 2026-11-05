@@ -12,4 +12,3 @@ struct SAutoRegUIEventSystem : public IUIEventSystemFactory // Id=801B922 Size=1
 	virtual std::shared_ptr<IUIGameEventSystem> Create();
 #endif
 };
-

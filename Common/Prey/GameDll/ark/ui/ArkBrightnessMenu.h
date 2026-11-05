@@ -18,6 +18,11 @@ struct SUIEventDesc;
 
 // Header: Exact
 // Prey/GameDll/ark/ui/ArkBrightnessMenu.h
+#ifdef MOONCRASH
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+enum EControlScheme;
+#endif
 class ArkBrightnessMenu : public ArkUIMenuBase<ArkBrightnessMenu>, public std::enable_shared_from_this<ArkBrightnessMenu>, public IBlockingActionListener, public IUIGameEventSystem, public IUIControlSchemeListener, public IUIModule, public IArkActiveUserManagerListener // Id=801B925 Size=112
 {
 public:
@@ -41,11 +46,11 @@ public:
 	virtual void OnActiveUserSignedOut();
 	void ShowMenu(ArkOptionMenu *_pOptionMenu) { FShowMenu(this,_pOptionMenu); }
 	void ApplyBrightnessUI(const float _fBrightness) const { FApplyBrightnessUI(this,_fBrightness); }
-	static void OnSetBrightness(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event) { FOnSetBrightness(__this,_pSender,_event); }
-	static void OnCloseMenu(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event) { FOnCloseMenu(__this,_pSender,_event); }
-	static void OnMenuTransitionOut(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event) { FOnMenuTransitionOut(__this,_pSender,_event); }
-	static void OnButtonPress(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event) { FOnButtonPress(__this,_pSender,_event); }
-	static void OnPressBack(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event) { FOnPressBack(__this,_pSender,_event); }
+	void OnSetBrightness(IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnSetBrightness(this, _pSender, _event, _args); }
+	void OnCloseMenu(IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnCloseMenu(this, _pSender, _event, _args); }
+	void OnMenuTransitionOut(IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnMenuTransitionOut(this, _pSender, _event, _args); }
+	void OnButtonPress(IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnButtonPress(this, _pSender, _event, _args); }
+	void OnPressBack(IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args) { FOnPressBack(this, _pSender, _event, _args); }
 	virtual ~ArkBrightnessMenu();
 	
 #if 0
@@ -57,6 +62,7 @@ public:
 	void UpdateInputPrompts() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(ArkBrightnessMenu const *const _this)>(0x1344CA0);
 	static inline auto FInitEventSystem = PreyFunction<void(ArkBrightnessMenu *const _this)>(0x1344D00);
 	static inline auto FUnloadEventSystem = PreyFunction<void(ArkBrightnessMenu *const _this)>(0x1345C50);
@@ -71,10 +77,30 @@ public:
 	static inline auto FOnActiveUserSignedOut = PreyFunction<void(ArkBrightnessMenu *const _this)>(0xA13080);
 	static inline auto FShowMenu = PreyFunction<void(ArkBrightnessMenu *const _this, ArkOptionMenu *_pOptionMenu)>(0x13457C0);
 	static inline auto FApplyBrightnessUI = PreyFunction<void(ArkBrightnessMenu const *const _this, const float _fBrightness)>(0x1344B40);
-	static inline auto FOnSetBrightness = PreyFunction<void(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event)>(0x1345560);
-	static inline auto FOnCloseMenu = PreyFunction<void(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event)>(0x1345550);
-	static inline auto FOnMenuTransitionOut = PreyFunction<void(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event)>(0x1345540);
-	static inline auto FOnButtonPress = PreyFunction<void(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event)>(0x1345060);
-	static inline auto FOnPressBack = PreyFunction<void(IUIElement *__this, SUIEventDesc const &_pSender, SUIArguments const &_event)>(0x1345550);
+	static inline auto FOnSetBrightness = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1345560);
+	static inline auto FOnCloseMenu = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1345550);
+	static inline auto FOnMenuTransitionOut = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1345540);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1345060);
+	static inline auto FOnPressBack = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1345550);
+#else
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1421030);
+	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1421090);
+	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1421FE0);
+	static inline auto FInit = PreyFunction<void(IUIModule* const _this)>(0x1421040);
+	static inline auto FUpdateModule = PreyFunction<void(IUIModule* const _this, float _fDelta)>(0x1422080);
+	static inline auto FOnSetVisible = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* pSender, bool bVisible)>(0x14219B0);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x14214D0);
+	static inline auto FOnAction = PreyFunction<bool(IBlockingActionListener* const _this, const CCryName& _action, int _activationMode, float _value, const SInputEvent& _inputEvent)>(0x1421120);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(IArkActiveUserManagerListener* const _this, unsigned __unnamed1)>(0x1333E90);
+	static inline auto FOnActiveUserDisconnected = PreyFunction<void(IArkActiveUserManagerListener* const _this, bool _bControllerDisconnect)>(0x1421220);
+	static inline auto FOnActiveUserReengaged = PreyFunction<bool(IArkActiveUserManagerListener* const _this)>(0x1421310);
+	static inline auto FOnActiveUserSignedOut = PreyFunction<void(IArkActiveUserManagerListener* const _this)>(0x1333E90);
+	static inline auto FShowMenu = PreyFunction<void(ArkBrightnessMenu* const _this, ArkOptionMenu* _pOptionMenu)>(0x1421B50);
+	static inline auto FApplyBrightnessUI = PreyFunction<void(const ArkBrightnessMenu* const _this, const float _fBrightness)>(0x1420ED0);
+	static inline auto FOnSetBrightness = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14218F0);
+	static inline auto FOnCloseMenu = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14214C0);
+	static inline auto FOnMenuTransitionOut = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14218E0);
+	static inline auto FOnButtonPress = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14213F0);
+	static inline auto FOnPressBack = PreyFunction<void(ArkBrightnessMenu* const _this, IUIElement* _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14214C0);
+#endif
 };
-

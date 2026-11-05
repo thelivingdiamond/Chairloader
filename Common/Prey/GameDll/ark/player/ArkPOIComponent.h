@@ -37,11 +37,19 @@ public:
 	void RemoveMarker(unsigned _entityId) { FRemoveMarker(this, _entityId); }
 	void UpdateMarkers() { FUpdateMarkers(this); }
 
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkPOIComponent* const _this)>(0x1301610);
 	static inline auto FSerialize = PreyFunction<void(ArkPOIComponent* const _this, TSerialize _ser)>(0x1301640);
 	static inline auto FPostSerialize = PreyFunction<void(ArkPOIComponent* const _this)>(0x1301360);
 	static inline auto FAddMarker = PreyFunction<void(ArkPOIComponent* const _this, unsigned _entityId, uint64_t _poiId, float _minRange, float _maxRange)>(0x1301160);
 	static inline auto FRemoveMarker = PreyFunction<void(ArkPOIComponent* const _this, unsigned _entityId)>(0x1301440);
 	static inline auto FUpdateMarkers = PreyFunction<void(ArkPOIComponent* const _this)>(0x1301660);
+#else
+	static inline auto FReset = PreyFunction<void(ArkPOIComponent* const _this)>(0x13DC550);
+	static inline auto FSerialize = PreyFunction<void(ArkPOIComponent* const _this, TSerialize _ser)>(0x13DC580);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPOIComponent* const _this)>(0x13DC2A0);
+	static inline auto FAddMarker = PreyFunction<void(ArkPOIComponent* const _this, unsigned _entityId, uint64_t _poiId, float _minRange, float _maxRange)>(0x13DC0A0);
+	static inline auto FRemoveMarker = PreyFunction<void(ArkPOIComponent* const _this, unsigned _entityId)>(0x13DC380);
+	static inline auto FUpdateMarkers = PreyFunction<void(ArkPOIComponent* const _this)>(0x13DC5A0);
+#endif
 };
-

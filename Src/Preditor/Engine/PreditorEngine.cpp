@@ -163,8 +163,16 @@ PreditorAsMod g_PreditorAsMod;
 //----------------------------------------------------------------------------
 // Function pointers
 //----------------------------------------------------------------------------
+#ifndef MOONCRASH
 auto Prey_CreateSystemInterface = PreyFunction<ISystem* (const SSystemInitParams& startupParams)>(0xDA2010);
+#else
+auto Prey_CreateSystemInterface = PreyFunction<ISystem* (const SSystemInitParams& startupParams)>(0xDBFCB0);
+#endif
+#ifndef MOONCRASH
 auto Prey_CreateGameStartup = PreyFunction<CGameStartup* ()>(0x16FD6B0);
+#else
+auto Prey_CreateGameStartup = PreyFunction<CGameStartup* ()>(0x18216A0);
+#endif
 
 //----------------------------------------------------------------------------
 // Hooks

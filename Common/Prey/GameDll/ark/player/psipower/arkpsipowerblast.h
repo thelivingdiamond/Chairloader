@@ -18,6 +18,10 @@ class ThermalBlastPowerProperties;
 
 // CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiElectrostaticBurst,ElectrostaticBurstPowerProperties,0>
 // Header:  Prey/GameDll/ark/player/psipower/arkpsipowerblast.h
+#ifdef MOONCRASH
+class FlarePowerProperties;
+struct IParticleEffect;
+#endif
 template <typename TTargetComponent, typename TBlast, typename TProperties, int SOMETHING>
 class CArkPsiPowerBlast : public CArkPsiPower<TProperties>
 { // Size=696 (0x2B8)
@@ -68,4 +72,3 @@ public:
 	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerBlast<CArkPsiPower3DTargetingComponent,CArkPsiElectrostaticBurst,ElectrostaticBurstPowerProperties,0>* const _this, const int _level)>(0x158D340);
 #endif
 };
-

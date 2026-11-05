@@ -40,11 +40,19 @@ public:
 	EArkPlayerLightPriority GetPriority() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetLightVisible = PreyFunction<void(ArkPlayerLight* const _this, bool _bVisible)>(0x1238180);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerLight* const _this, TSerialize _ser)>(0x1238160);
 	static inline auto FGetLightAttachmentEntity = PreyFunction<unsigned(const ArkPlayerLight* const _this)>(0x158AEF0);
 	static inline auto FAttachLightEntity = PreyFunction<void(const ArkPlayerLight* const _this)>(0xA13080);
 	static inline auto FSpawnLightEntity = PreyFunction<void(ArkPlayerLight* const _this)>(0xA13080);
+#else
+	static inline auto FSetLightVisible = PreyFunction<void(ArkPlayerLight* const _this, bool _bVisible)>(0x12D9090);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerLight* const _this, TSerialize _ser)>(0x12D9070);
+	static inline auto FGetLightAttachmentEntity = PreyFunction<unsigned(const ArkPlayerLight* const _this)>(0x1CBB0B0);
+	static inline auto FAttachLightEntity = PreyFunction<void(const ArkPlayerLight* const _this)>(0x1333E90);
+	static inline auto FSpawnLightEntity = PreyFunction<void(ArkPlayerLight* const _this)>(0x1333E90);
+#endif
 };
 
 // ArkPlayerLightEntity
@@ -88,6 +96,7 @@ public:
 	void CleanupLightEntity();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkPlayerLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x1237E60);
 	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x12380C0);
 	static inline auto FGetLightAttachmentEntity = PreyFunction<unsigned(const ArkPlayerLightEntity* const _this)>(0x12380B0);
@@ -95,6 +104,15 @@ public:
 	static inline auto FSpawnLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x1238220);
 	static inline auto FRemoveLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x1238110);
 	static inline auto FSetLightVisible_Internal = PreyFunction<void(ArkPlayerLightEntity* const _this, bool _bVisible)>(0x12381C0);
+#else
+	static inline auto FBitNotArkPlayerLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x12D8D80);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x12D8FD0);
+	static inline auto FGetLightAttachmentEntity = PreyFunction<unsigned(const ArkPlayerLightEntity* const _this)>(0xD8FD10);
+	static inline auto FAttachLightEntity = PreyFunction<void(const ArkPlayerLightEntity* const _this)>(0x12D8F10);
+	static inline auto FSpawnLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x12D9130);
+	static inline auto FRemoveLightEntity = PreyFunction<void(ArkPlayerLightEntity* const _this)>(0x12D9020);
+	static inline auto FSetLightVisible_Internal = PreyFunction<void(ArkPlayerLightEntity* const _this, bool _bVisible)>(0x12D90D0);
+#endif
 };
 
 // ArkPlayerLightVFX
@@ -112,6 +130,11 @@ public:
 	void SetLocation(const ParticleLoc _arg0_);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLightVFXOv2 = PreyFunction<void(ArkPlayerLightVFX* const _this, EArkPlayerLightPriority _priority, IArkPlayerLightOwner* _pOwner)>(0x1237E20);
 	static inline auto FSetLightVisible_Internal = PreyFunction<void(ArkPlayerLightVFX* const _this, bool _bVisible)>(0x1238200);
+#else
+	static inline auto FArkPlayerLightVFXOv2 = PreyFunction<void(ArkPlayerLightVFX* const _this, EArkPlayerLightPriority _priority, IArkPlayerLightOwner* _pOwner)>(0x12D8D40);
+	static inline auto FSetLightVisible_Internal = PreyFunction<void(ArkPlayerLightVFX* const _this, bool _bVisible)>(0x12D9110);
+#endif
 };

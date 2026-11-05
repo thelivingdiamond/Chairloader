@@ -14,7 +14,11 @@ public:
 	virtual ~ArkPsiPowerMimicTargetingComponent();
 	virtual bool ValidateTarget(const IEntity& _entity) const;
 
+#ifndef MOONCRASH
 	static inline auto FArkPsiPowerMimicTargetingComponentOv1 = PreyFunction<void(ArkPsiPowerMimicTargetingComponent* const _this, const IArkPsiPower* _pPower)>(0x12F6A90);
 	static inline auto FValidateTarget = PreyFunction<bool(const ArkPsiPowerMimicTargetingComponent* const _this, const IEntity& _entity)>(0x12F6B30);
+#else
+	static inline auto FArkPsiPowerMimicTargetingComponentOv1 = PreyFunction<void(ArkPsiPowerMimicTargetingComponent* const _this, const IArkPsiPower* _pPower)>(0x13BDED0);
+	static inline auto FValidateTarget = PreyFunction<bool(const ArkPsiPowerMimicTargetingComponent* const _this, const IEntity& _entity)>(0x13BDF70);
+#endif
 };
-

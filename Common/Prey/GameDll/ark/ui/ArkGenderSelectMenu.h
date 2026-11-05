@@ -20,10 +20,46 @@ struct SInputEvent;
 struct SUIArguments;
 struct SUIEventDesc;
 
+#ifdef MOONCRASH
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#include <Prey/CryFlowGraph/IFlowBaseNode.h>
+#include <Prey/CryFlowGraph/IFlowSystem.h>
+enum EControlScheme;
+#endif
+#if 0 // MOONCRASH copy; disabled in the base body as well
+// ArkFlowNodeGenderSelectMenu
+// Header:  Prey/GameDll/ark/ui/ArkGenderSelectMenu.h
+class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<eNCT_Singleton>
+{ // Size=16 (0x10)
+public:
+	enum class InPort
+	{
+		trigger = 0,
+	};
+
+	enum class OutPort
+	{
+		out = 0,
+	};
+
+	virtual void GetConfiguration(SFlowNodeConfig& _config);
+	virtual void ProcessEvent(IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo);
+	virtual void GetMemoryUsage(ICrySizer* _pS) const;
+
+#if 0
+	ArkFlowNodeGenderSelectMenu(const IFlowNode::SActivationInfo* const _arg0_);
+#endif
+
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, SFlowNodeConfig& _config)>(0x1423310);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeGenderSelectMenu* const _this, IFlowNode::EFlowEvent _event, IFlowNode::SActivationInfo* _pActInfo)>(0x1423520);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeGenderSelectMenu* const _this, ICrySizer* _pS)>(0x455F00);
+};
+#endif
 #if 0
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkgenderselectmenu.h
-class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<0> // Id=801BA41 Size=16
+class ArkFlowNodeGenderSelectMenu : public CFlowBaseNode<eNCT_Singleton> // Id=801BA41 Size=16
 {
 public:
 	enum class InPort
@@ -84,6 +120,7 @@ public:
 	bool IsSelectedGenderFemale() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(ArkGenderSelectMenu const *const _this)>(0x1348960);
 	static inline auto FInitEventSystem = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348970);
 	static inline auto FUnloadEventSystem = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1349360);
@@ -104,5 +141,26 @@ public:
 	static inline auto FOnGenderSelected = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348EC0);
 	static inline auto FStartExitTransition = PreyFunction<void(ArkGenderSelectMenu *const _this, bool _bStartGame)>(0x1349280);
 	static inline auto FClose = PreyFunction<void(ArkGenderSelectMenu *const _this)>(0x1348920);
+#else
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1423CE0);
+	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1423CF0);
+	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x14246E0);
+	static inline auto FUpdateModule = PreyFunction<void(IUIModule* const _this, float _delta)>(0x1424970);
+	static inline auto FOnInit = PreyFunction<void(ArkGenderSelectMenu* const _this, IUIElement* _pSender, IFlashPlayer* _pFlashPlayer)>(0x1424270);
+	static inline auto FOnUnload = PreyFunction<void(ArkGenderSelectMenu* const _this, IUIElement* _pSender)>(0x1424470);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1424120);
+	static inline auto FOnAction = PreyFunction<bool(IBlockingActionListener* const _this, const CCryName& _action, int _activationMode, float _value, const SInputEvent& _inputEvent)>(0x1423D60);
+	static inline auto FOnActiveUserIdChanged = PreyFunction<void(IArkActiveUserManagerListener* const _this, unsigned __unnamed1)>(0x1333E90);
+	static inline auto FOnActiveUserDisconnected = PreyFunction<void(IArkActiveUserManagerListener* const _this, bool _bControllerDisconnect)>(0x1423E30);
+	static inline auto FOnActiveUserReengaged = PreyFunction<bool(IArkActiveUserManagerListener* const _this)>(0x1424000);
+	static inline auto FOnActiveUserSignedOut = PreyFunction<void(IArkActiveUserManagerListener* const _this)>(0x1333E90);
+	static inline auto FOpen = PreyFunction<void(ArkGenderSelectMenu* const _this)>(0x1424570);
+	static inline auto FOnGenderSelect = PreyFunction<void(ArkGenderSelectMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1424150);
+	static inline auto FOnLoadTransitionComplete = PreyFunction<void(ArkGenderSelectMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x14218E0);
+	static inline auto FOnBackPressed = PreyFunction<void(ArkGenderSelectMenu* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1424110);
+	static inline auto FUpdateInputPrompts = PreyFunction<void(const ArkGenderSelectMenu* const _this)>(0x1424760);
+	static inline auto FOnGenderSelected = PreyFunction<void(ArkGenderSelectMenu* const _this)>(0x1424240);
+	static inline auto FStartExitTransition = PreyFunction<void(ArkGenderSelectMenu* const _this, bool _bStartGame)>(0x1424600);
+	static inline auto FClose = PreyFunction<void(ArkGenderSelectMenu* const _this)>(0x1423CA0);
+#endif
 };
-

@@ -14,4 +14,3 @@ struct IFlowNodeIterator // Id=8000F5F Size=8
 	virtual void Release() = 0;
 	virtual IFlowNodeData *Next(uint16_t &arg0) = 0;
 };
-

@@ -9,4 +9,3 @@ class IArkDebugMenuListener // Id=80191AE Size=8
 public:
 	virtual void OnToggleDebugMenu(bool arg0) = 0;
 };
-

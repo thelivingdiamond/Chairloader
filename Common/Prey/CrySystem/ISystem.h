@@ -110,6 +110,9 @@ struct ICryPluginManager;
 struct IArkDlcSystem;
 struct IArkRewardSystem;
 struct IArkEntitlementSystem;
+#ifdef MOONCRASH
+struct IArkCommerceSystem;
+#endif // MOONCRASH
 struct IArkDlcSystem;
 class IArkRoomVolumeManager;
 class ArkBuildInfo;
@@ -251,6 +254,7 @@ enum ESystemGlobalState
 };
 
 //! System wide events.
+#ifndef MOONCRASH
 enum ESystemEvent
 {
 	//! Seeds all random number generators to the same seed number, WParam will hold seed value.
@@ -496,6 +500,81 @@ enum ESystemEvent
 	ESYSTEM_EVENT_LOAD_SAVE_STARTED,
 	ESYSTEM_EVENT_QUICKLOAD_SAVE_FINISHED,
 };
+#else
+enum ESystemEvent
+{
+	ESYSTEM_EVENT_RANDOM_SEED = 0x1,
+	ESYSTEM_EVENT_RANDOM_ENABLE = 0x2,
+	ESYSTEM_EVENT_RANDOM_DISABLE = 0x3,
+	ESYSTEM_EVENT_CHANGE_FOCUS = 0xA,
+	ESYSTEM_EVENT_MOVE = 0xB,
+	ESYSTEM_EVENT_RESIZE = 0xC,
+	ESYSTEM_EVENT_ACTIVATE = 0xD,
+	ESYSTEM_EVENT_POS_CHANGED = 0xE,
+	ESYSTEM_EVENT_STYLE_CHANGED = 0xF,
+	ESYSTEM_EVENT_LEVEL_LOAD_START_PRELOADINGSCREEN = 0x10,
+	ESYSTEM_EVENT_LEVEL_LOAD_RESUME_GAME = 0x11,
+	ESYSTEM_EVENT_LEVEL_LOAD_PREPARE = 0x12,
+	ESYSTEM_EVENT_LEVEL_LOAD_START_LOADINGSCREEN = 0x13,
+	ESYSTEM_EVENT_LEVEL_LOAD_LOADINGSCREEN_ACTIVE = 0x14,
+	ESYSTEM_EVENT_LEVEL_LOAD_START = 0x15,
+	ESYSTEM_EVENT_LEVEL_LOAD_FLUSH = 0x16,
+	ESYSTEM_EVENT_LEVEL_LOAD_END = 0x17,
+	ESYSTEM_EVENT_LEVEL_LOAD_ERROR = 0x18,
+	ESYSTEM_EVENT_LEVEL_NOT_READY = 0x19,
+	ESYSTEM_EVENT_LEVEL_PRECACHE_START = 0x1A,
+	ESYSTEM_EVENT_LEVEL_PRECACHE_CAMERA_READY = 0x1B,
+	ESYSTEM_EVENT_LEVEL_PRECACHE_FIRST_FRAME = 0x1C,
+	ESYSTEM_EVENT_LEVEL_GAMEPLAY_START = 0x1D,
+	ESYSTEM_EVENT_LEVEL_UNLOAD = 0x1E,
+	ESYSTEM_EVENT_LEVEL_POST_UNLOAD = 0x1F,
+	ESYSTEM_EVENT_GAME_MATERIALS_UNLOADED = 0x20,
+	ESYSTEM_EVENT_GAME_CONTEXT_END_START = 0x21,
+	ESYSTEM_EVENT_GAME_CONTEXT_END_DONE = 0x22,
+	ESYSTEM_EVENT_TRANSITION_GAME_STATE_LOADED = 0x23,
+	ESYSTEM_EVENT_GAME_POST_INIT = 0x24,
+	ESYSTEM_EVENT_GAME_POST_INIT_DONE = 0x25,
+	ESYSTEM_EVENT_FULL_SHUTDOWN = 0x26,
+	ESYSTEM_EVENT_FAST_SHUTDOWN = 0x27,
+	ESYSTEM_EVENT_LANGUAGE_CHANGE = 0x28,
+	ESYSTEM_EVENT_TOGGLE_FULLSCREEN = 0x29,
+	ESYSTEM_EVENT_SHARE_SHADER_COMBINATIONS = 0x2A,
+	ESYSTEM_EVENT_3D_POST_RENDERING_START = 0x2B,
+	ESYSTEM_EVENT_3D_POST_RENDERING_END = 0x2C,
+	ESYSTEM_EVENT_SWITCHING_TO_LEVEL_HEAP = 0x2D,
+	ESYSTEM_EVENT_SWITCHED_TO_LEVEL_HEAP = 0x2E,
+	ESYSTEM_EVENT_SWITCHING_TO_GLOBAL_HEAP = 0x2F,
+	ESYSTEM_EVENT_SWITCHED_TO_GLOBAL_HEAP = 0x30,
+	ESYSTEM_EVENT_LEVEL_PRECACHE_END = 0x31,
+	ESYSTEM_EVENT_GAME_MODE_SWITCH_START = 0x32,
+	ESYSTEM_EVENT_GAME_MODE_SWITCH_END = 0x33,
+	ESYSTEM_EVENT_VIDEO = 0x34,
+	ESYSTEM_EVENT_GAME_PAUSED = 0x35,
+	ESYSTEM_EVENT_GAME_RESUMED = 0x36,
+	ESYSTEM_EVENT_TIME_OF_DAY_SET = 0x37,
+	ESYSTEM_EVENT_EDITOR_ON_INIT = 0x38,
+	ESYSTEM_EVENT_FRONTEND_INITIALISED = 0x39,
+	ESYSTEM_EVENT_EDITOR_GAME_MODE_CHANGED = 0x3A,
+	ESYSTEM_EVENT_EDITOR_SIMULATION_MODE_CHANGED = 0x3B,
+	ESYSTEM_EVENT_FRONTEND_RELOADED = 0x3C,
+	ESYSTEM_EVENT_PLM_ON_RESUMING = 0x3D,
+	ESYSTEM_EVENT_PLM_ON_SUSPENDING = 0x3E,
+	ESYSTEM_EVENT_PLM_ON_CONSTRAINED = 0x3F,
+	ESYSTEM_EVENT_PLM_ON_FULL = 0x40,
+	ESYSTEM_EVENT_PLM_ON_TERMINATED = 0x41,
+	ESYSTEM_EVENT_PLM_ON_SUSPENDING_COMPLETED = 0x42,
+	ESYSTEM_EVENT_CONTROLLER_REMOVED = 0x43,
+	ESYSTEM_EVENT_CONTROLLER_ADDED = 0x44,
+	ESYSTEM_EVENT_STREAMING_INSTALL_ERROR = 0x45,
+	ESYSTEM_EVENT_ONLINE_SERVICES_INITIALISED = 0x46,
+	ESYSTEM_EVENT_AUDIO_IMPLEMENTATION_LOADED = 0x47,
+	ESYSTEM_EVENT_USER = 0x1000,
+	ESYSTEM_EVENT_CRYSYSTEM_INIT_DONE = 0x1001,
+	ESYSTEM_EVENT_ENTITY_UNLOAD = 0x1002,
+	ESYSTEM_EVENT_LOAD_SAVE_STARTED = 0x1003,
+	ESYSTEM_EVENT_QUICKLOAD_SAVE_FINISHED = 0x1004,
+};
+#endif
 
 //! User defined callback, which can be passed to ISystem.
 struct ISystemUserCallback
@@ -830,6 +909,9 @@ struct SSystemGlobalEnvironment
 	ICryLobby*                   pLobby;
 	IArkRewardSystem*            pArkRewardSystem;
 	IArkEntitlementSystem*       pArkEntitlementSystem;
+#ifdef MOONCRASH
+	IArkCommerceSystem*          pArkCommerceSystem;
+#endif // MOONCRASH
 	IArkDlcSystem*               pArkDlcSystem;
 	IScriptSystem*               pScriptSystem;
 	IPhysicalWorld*              pPhysicalWorld;
@@ -1024,7 +1106,7 @@ public:
 		mAsyncDipState.nValue = 0;
 	};
 
-	CRY_ALIGN(32) UAsyncDipState mAsyncDipState;
+	CRY_ALIGN(64) UAsyncDipState mAsyncDipState;
 };
 
 // The ISystem interface that follows has a member function called 'GetUserName'. If we don't #undef'ine the same-named Win32 symbol here ISystem wouldn't even compile.
@@ -1236,7 +1318,9 @@ struct ISystem
 	//! \return Can be NULL, because it only exists when running through the editor, not in pure game mode.
 	virtual IResourceManager*                  GetIResourceManager() = 0;
 	virtual IThreadTaskManager*                GetIThreadTaskManager() = 0;
+#ifndef MOONCRASH
 	virtual IProfilingSystem*                  GetIProfilingSystem() = 0;
+#endif // !MOONCRASH
 	virtual ISystemEventDispatcher*            GetISystemEventDispatcher() = 0;
 	virtual IVisualLog*                        GetIVisualLog() = 0;
 	virtual IFileChangeMonitor*                GetIFileChangeMonitor() = 0;
@@ -1285,7 +1369,9 @@ struct ISystem
 	virtual bool GetForceNonDevMode() const = 0;
 	virtual bool WasInDevMode() const = 0;
 	virtual bool IsDevMode() const = 0;
+#ifndef MOONCRASH
 	virtual bool IsMODValid(const char* szMODName) const = 0;
+#endif // !MOONCRASH
 	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////
@@ -1297,7 +1383,11 @@ struct ISystem
 	virtual XmlNodeRef LoadXmlFromBuffer(const char* buffer, size_t size, bool bReuseStrings = false) = 0;
 
 	//! Loads xml file, returns 0 if load failed.
+#ifndef MOONCRASH
 	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, bool bAllowUseFilesystem = false) = 0;
+#else // MOONCRASH
+	virtual XmlNodeRef LoadXmlFromFile(const char* sFilename, bool bReuseStrings = false, unsigned _nFileFlags = 0) = 0;
+#endif // !MOONCRASH
 
 	//! Retrieves access to XML utilities interface.
 	virtual IXmlUtils* GetXmlUtils() = 0;
@@ -1341,11 +1431,11 @@ struct ISystem
 
 	// Summary:
 	//	 Starts bootprofiler session.
-	virtual void StartBootProfilerSession(const char* szName) = 0;
+	virtual void StartBootProfilerSessionFrames(const char* pName) = 0;
 
 	// Summary:
 	//	 Stops bootprofiler session.
-	virtual void StopBootProfilerSession(const char* szName) = 0;
+	virtual void StopBootProfilerSessionFrames() = 0;
 
 	//! game dll should call this on frame start
 	//virtual void OnFrameStart(const char* szName) = 0;

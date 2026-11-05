@@ -1,5 +1,6 @@
 // Header file automatically created from a PDB.
 #pragma once
+#include <Prey/CryAction/ICryMannequin.h>
 #include <Prey/CryNetwork/ISerialize.h>
 
 class ArkMaterialAnimation;
@@ -7,6 +8,9 @@ struct IMaterial;
 
 // ArkEtherDuplicateMaterialAnimation
 // Header:  Prey/GameDll/ark/player/psipower/ArkEtherDuplicateAction.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/ICryMannequin.h>
+#endif
 class ArkEtherDuplicateMaterialAnimation
 { // Size=24 (0x18)
 public:
@@ -24,7 +28,11 @@ public:
 	int GetKeyFrameStartIndex() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkEtherDuplicateMaterialAnimation* const _this, const float _frameTime)>(0x146BD70);
+#else
+	static inline auto FUpdate = PreyFunction<void(ArkEtherDuplicateMaterialAnimation* const _this, const float _frameTime)>(0x1583660);
+#endif
 };
 
 // ArkEtherDuplicateAction
@@ -48,9 +56,15 @@ public:
 	ArkEtherDuplicateAction();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkEtherDuplicateActionOv0 = PreyFunction<void(ArkEtherDuplicateAction* const _this, const char* _pGravityTag, const char* _pDirectionTag, IMaterial* _pMaterial, const ArkMaterialAnimation* _pMaterialAnimation)>(0x146B880);
 	static inline auto FSerialize = PreyFunction<void(ArkEtherDuplicateAction* const _this, TSerialize _ser)>(0x146BC20);
 	static inline auto FOnInitialise = PreyFunction<void(ArkEtherDuplicateAction* const _this)>(0x146BB20);
 	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkEtherDuplicateAction* const _this, const float _frameTime)>(0x146BD30);
+#else
+	static inline auto FArkEtherDuplicateActionOv0 = PreyFunction<void(ArkEtherDuplicateAction* const _this, const char* _pGravityTag, const char* _pDirectionTag, IMaterial* _pMaterial, const ArkMaterialAnimation* _pMaterialAnimation)>(0x1583170);
+	static inline auto FSerialize = PreyFunction<void(ArkEtherDuplicateAction* const _this, TSerialize _ser)>(0x1583510);
+	static inline auto FOnInitialise = PreyFunction<void(ArkEtherDuplicateAction* const _this)>(0x1583410);
+	static inline auto FUpdate = PreyFunction<IAction::EStatus(ArkEtherDuplicateAction* const _this, const float _frameTime)>(0x1583620);
+#endif
 };
-

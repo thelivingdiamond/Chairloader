@@ -16,4 +16,3 @@ struct MovementRequestID // Id=8002226 Size=4
 	static MovementRequestID Invalid();
 #endif
 };
-

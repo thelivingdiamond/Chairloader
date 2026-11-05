@@ -4,6 +4,9 @@
 
 // Header: Exact
 // Prey/Ark/iarkposteffectmanager.h
+#ifdef MOONCRASH
+enum class EArkPostEffectDataType;
+#endif
 class TArkPostEffectValue // Id=8003994 Size=24
 {
 public:
@@ -26,6 +29,10 @@ public:
 	EArkPostEffectDataType GetType() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FoperatorEq = PreyFunction<TArkPostEffectValue &(TArkPostEffectValue *const _this, TArkPostEffectValue const &_rhs)>(0x13D10F0);
+#else
+	static inline auto FTArkPostEffectValueOv0 = PreyFunction<void(TArkPostEffectValue* const _this, const TArkPostEffectValue& _rhs)>(0x1527AA0);
+	static inline auto FoperatorEq = PreyFunction<TArkPostEffectValue& (TArkPostEffectValue* const _this, const TArkPostEffectValue& _rhs)>(0x14DCF90);
+#endif
 };
-

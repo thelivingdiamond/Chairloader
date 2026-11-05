@@ -8,4 +8,3 @@ class IArkPlayerStatusListener
 public:
 	virtual void OnStatusChanged(uint64_t _statusId, bool _bActive) = 0;
 };
-

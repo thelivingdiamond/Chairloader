@@ -1,5 +1,7 @@
+#ifndef MOONCRASH // Prey only: Mooncrash keeps the game's CArkSteamDlcSystem (see ChairSteamAPI::ReplaceArkSystems)
 #include <Chairloader/SteamAPI/IChairSteamAPI.h>
 #include "SteamAPI/ArkSteamDlcSystem.h"
+
 
 void ArkSteamDlcSystem::InitEnv(SSystemGlobalEnvironment* _gEnv)
 {
@@ -22,3 +24,4 @@ void ArkSteamDlcSystem::Refresh()
             CryLog("[ArkSteamDlcSystem] DLC {} is installed", dlcInfo.Name);
     }
 }
+#endif

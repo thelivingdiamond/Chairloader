@@ -19,4 +19,3 @@ public:
 	string const &GetScreenshotPath() const;
 #endif
 };
-

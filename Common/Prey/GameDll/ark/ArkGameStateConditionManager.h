@@ -14,6 +14,10 @@ class ArkGameStateCondition;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkGameStateConditionManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+enum class EArkConditionTriggerType;
+#endif
 class ArkGameStateConditionManager : public IArkInventoryListener, public IArkAbilityListener, public IArkObjectiveStateListener, public IArkHUDListener, public IArkPlayerCombatListener // Id=80166D1 Size=200
 {
 public:
@@ -31,7 +35,11 @@ public:
 		
 		void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 		
+#ifndef MOONCRASH
 		static inline auto FSerialize = PreyFunction<void(ArkGameStateConditionManager::DelayedResultEntry *const _this, TSerialize _ser)>(0x13C1D20);
+#else
+		static inline auto FSerialize = PreyFunction<void(ArkGameStateConditionManager::DelayedResultEntry* const _this, TSerialize _ser)>(0x14CDE20);
+#endif
 	};
 
 	std::vector<ArkGameStateConditionManager::DelayedResultEntry> m_delayedResults;
@@ -46,8 +54,16 @@ public:
 	void Update(float _frameTime) { FUpdate(this,_frameTime); }
 	void Serialize(TSerialize ser) { FSerialize(this,ser); }
 	void OnGameEnded() { FOnGameEnded(this); }
+#ifndef MOONCRASH
 	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId);
+#else
+	virtual void OnItemAdded(unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory);
+#endif
+#ifndef MOONCRASH
 	virtual void OnItemRemoved(unsigned _itemId);
+#else
+	virtual void OnItemRemoved(unsigned _itemId, bool _bPrimaryInventory);
+#endif
 	virtual void OnAbilityAdded(uint64_t _abilityID);
 	virtual void OnObjectiveAssigned(uint64_t _objectiveId);
 	virtual void OnObjectiveUnassigned(uint64_t _objectiveId);
@@ -68,6 +84,7 @@ public:
 	void BuildEnabledList();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FTriggerReevaluationOv3 = PreyFunction<void(ArkGameStateConditionManager *const _this, EArkConditionTriggerType _type)>(0x13C1FD0);
 	static inline auto FTriggerReevaluationOv2 = PreyFunction<void(ArkGameStateConditionManager *const _this, EArkConditionTriggerType _type, uint64_t _changeId)>(0x13C2070);
 	static inline auto FTriggerReevaluationOv1 = PreyFunction<void(ArkGameStateConditionManager *const _this, EArkConditionTriggerType _type, unsigned _entityId)>(0x13C2020);
@@ -93,5 +110,31 @@ public:
 	static inline auto FOnCombatChange = PreyFunction<void(ArkGameStateConditionManager *const _this, bool _bInCombat)>(0x13C1620);
 	static inline auto FSetConditionEnabled = PreyFunction<void(ArkGameStateConditionManager *const _this, uint64_t _gameStateConditionId, bool _bEnable)>(0x13C1EB0);
 	static inline auto FExecuteCondition = PreyFunction<void(ArkGameStateConditionManager *const _this, ArkGameStateCondition const &_condition)>(0x13C1350);
+#else
+	static inline auto FTriggerReevaluationOv3 = PreyFunction<void(ArkGameStateConditionManager* const _this, EArkConditionTriggerType _type)>(0x14CE0D0);
+	static inline auto FTriggerReevaluationOv2 = PreyFunction<void(ArkGameStateConditionManager* const _this, EArkConditionTriggerType _type, uint64_t _changeId)>(0x14CE170);
+	static inline auto FTriggerReevaluationOv1 = PreyFunction<void(ArkGameStateConditionManager* const _this, EArkConditionTriggerType _type, unsigned _entityId)>(0x14CE120);
+	static inline auto FTriggerReevaluationOv0 = PreyFunction<void(ArkGameStateConditionManager* const _this, EArkConditionTriggerType _type, uint64_t _archetypeId, unsigned _entityId)>(0x14CE1C0);
+	static inline auto FInit = PreyFunction<void(ArkGameStateConditionManager* const _this)>(0x14CD640);
+	static inline auto FShutdown = PreyFunction<void(ArkGameStateConditionManager* const _this)>(0x14CE040);
+	static inline auto FReset = PreyFunction<void(ArkGameStateConditionManager* const _this)>(0x14CD9D0);
+	static inline auto FUpdate = PreyFunction<void(ArkGameStateConditionManager* const _this, float _frameTime)>(0x14CE210);
+	static inline auto FSerialize = PreyFunction<void(ArkGameStateConditionManager* const _this, TSerialize ser)>(0x14CDAB0);
+	static inline auto FOnGameEnded = PreyFunction<void(ArkGameStateConditionManager* const _this)>(0x14CD7D0);
+	static inline auto FOnItemAdded = PreyFunction<void(ArkGameStateConditionManager* const _this, unsigned _itemId, unsigned _originalId, bool _bPrimaryInventory)>(0x14CD7F0);
+	static inline auto FOnItemRemoved = PreyFunction<void(ArkGameStateConditionManager* const _this, unsigned _itemId, bool _bPrimaryInventory)>(0x14CD890);
+	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener* const _this, uint64_t _abilityID)>(0x14CD6D0);
+	static inline auto FOnObjectiveAssigned = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x14CD930);
+	static inline auto FOnObjectiveUnassigned = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x14CD930);
+	static inline auto FOnObjectiveCompleted = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x14CD930);
+	static inline auto FOnObjectiveFailed = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x14CD930);
+	static inline auto FOnTaskActivated = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _taskId)>(0x14CD980);
+	static inline auto FOnTaskDeactivated = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _taskId)>(0x14CD980);
+	static inline auto FOnTaskCompleted = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _taskId)>(0x14CD980);
+	static inline auto FOnTaskFailed = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _taskId)>(0x14CD980);
+	static inline auto FOnEntityUnderReticleChanged = PreyFunction<void(IArkHUDListener* const _this, const unsigned _oldEntity, const unsigned _newEntity)>(0x14CD770);
+	static inline auto FOnCombatChange = PreyFunction<void(IArkPlayerCombatListener* const _this, bool _bInCombat)>(0x14CD720);
+	static inline auto FSetConditionEnabled = PreyFunction<void(ArkGameStateConditionManager* const _this, uint64_t _gameStateConditionId, bool _bEnable)>(0x14CDFB0);
+	static inline auto FExecuteCondition = PreyFunction<void(ArkGameStateConditionManager* const _this, const ArkGameStateCondition& _condition)>(0x14CD450);
+#endif
 };
-

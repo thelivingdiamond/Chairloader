@@ -11,5 +11,7 @@ struct ArkSimpleAuralPerceptionInfo // Id=801430F Size=32
 	ArkGameNoiseInfo m_noiseInfo;
 	
 	ArkSimpleAuralPerceptionInfo(unsigned _noiseMakerEntityId, ArkGameNoiseInfo const &_noiseInfo);
+#ifdef MOONCRASH
+	static inline auto FArkSimpleAuralPerceptionInfoOv2 = PreyFunction<void(ArkSimpleAuralPerceptionInfo* const _this, unsigned _noiseMakerEntityId, const ArkGameNoiseInfo& _noiseInfo)>(0x135AC70);
+#endif
 };
-

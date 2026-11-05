@@ -4,6 +4,12 @@
 
 // Header: Override
 // Prey/GameDll/ark/weapons/SStaticWiggleParams.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SStaticWiggleParams // Id=801D53E Size=8
 {
 	float frequency;
@@ -13,4 +19,3 @@ struct SStaticWiggleParams // Id=801D53E Size=8
 	void Serialize(Serialization::IArchive &arg0);
 #endif
 };
-

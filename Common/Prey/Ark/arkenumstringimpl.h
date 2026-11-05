@@ -4,6 +4,9 @@
 
 // Header: FromCpp
 // Prey/Ark/arkenumstringimpl.h
+#ifdef MOONCRASH
+enum class EArkComparisonType;
+#endif
 class ArkComparison // Id=8013B85 Size=1
 {
 public:
@@ -13,6 +16,9 @@ public:
 	static const char *GetStringFromEnum(EArkComparisonType arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetEnumFromString = PreyFunction<EArkComparisonType(const char *_string)>(0x1064AA0);
+#else
+	static inline auto FGetEnumFromString = PreyFunction<EArkComparisonType(const char* _string)>(0x10879E0);
+#endif
 };
-

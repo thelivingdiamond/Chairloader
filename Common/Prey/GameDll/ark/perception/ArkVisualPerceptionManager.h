@@ -10,6 +10,13 @@ class ArkVisualPerceiver;
 
 // Header: FromCpp
 // Prey/GameDll/ark/perception/ArkVisualPerceptionManager.h
+#include <Prey/GameDll/ark/perception/ArkComplexVisualPerceptionInfo.h>
+#include <Prey/ArkCommon/ArkInterval.h>
+#include <Prey/CryPhysics/RayCastQueue.h>
+enum class EArkLineOfSightCheckStatus;
+struct IPhysicalEntity;
+struct RayCastRequest;
+class XmlNodeRef;
 class ArkVisualPerceptionManager // Id=801621F Size=1800
 {
 public:
@@ -92,7 +99,11 @@ public:
 		
 		void Load(XmlNodeRef const &_node) { FLoad(this,_node); }
 		
+#ifndef MOONCRASH
 		static inline auto FLoad = PreyFunction<void(ArkVisualPerceptionManager::VisionConeDefinition *const _this, XmlNodeRef const &_node)>(0x15335B0);
+#else
+		static inline auto FLoad = PreyFunction<void(ArkVisualPerceptionManager::VisionConeDefinition* const _this, const XmlNodeRef& _node)>(0x1653420);
+#endif
 	};
 
 	struct VisionConeProperties // Id=8016226 Size=100
@@ -197,7 +208,11 @@ public:
 		
 		void Clear() { FClear(this); }
 		
+#ifndef MOONCRASH
 		static inline auto FClear = PreyFunction<void(ArkVisualPerceptionManager::ComplexPerceivableWorldPoints *const _this)>(0x1532CD0);
+#else
+		static inline auto FClear = PreyFunction<void(ArkVisualPerceptionManager::ComplexPerceivableWorldPoints* const _this)>(0x1652B40);
+#endif
 	};
 
 	class SimpleLineOfSightCheckImpl // Id=8016238 Size=1
@@ -210,17 +225,19 @@ public:
 #endif
 	};
 
-	class ?$LineOfSightCheckImpl@VSimpleLineOfSightCheckImpl@ArkVisualPerceptionManager@@ : private ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl // Id=8016239 Size=16
-	{
+	// LineOfSightCheckImpl<Impl> (Impl = Simple/ComplexAny/ComplexAcute/ComplexAll). No method has an address.
+	template<typename Impl>
+	class LineOfSightCheckImpl : private Impl
+	{ // Size=16 (0x10)
 	public:
 		using RayCasterType = RayCastQueue<41>;
-		
+
 		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
-		
+
 #if 0
-		void LineOfSightCheckImpl<ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl>(ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const &arg0);
-		RayCastQueue<41> &GetRayCaster() const;
-		bool GetRayCastRequest(uint64_t arg0, RayCastRequest &arg1) const;
+		LineOfSightCheckImpl(const ArkVisualPerceptionManager::PerceiverPerceivableIndexPair&);
+		RayCastQueue<41>& GetRayCaster() const;
+		bool GetRayCastRequest(uint64_t, RayCastRequest&) const;
 		void OnSucceeded();
 		void OnFailed();
 #endif
@@ -245,22 +262,6 @@ public:
 #endif
 	};
 
-	class ?$LineOfSightCheckImpl@VComplexAnyLineOfSightCheckImpl@ArkVisualPerceptionManager@@ : private ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl // Id=8016246 Size=16
-	{
-	public:
-		using RayCasterType = RayCastQueue<41>;
-		
-		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
-		
-#if 0
-		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>(ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const &arg0);
-		RayCastQueue<41> &GetRayCaster() const;
-		bool GetRayCastRequest(uint64_t arg0, RayCastRequest &arg1) const;
-		void OnSucceeded();
-		void OnFailed();
-#endif
-	};
-
 	using ComplexAnyLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl>,2>;
 	
 	class ComplexAcuteLineOfSightCheckImpl : protected ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase // Id=8016251 Size=1
@@ -272,22 +273,6 @@ public:
 #endif
 	};
 
-	class ?$LineOfSightCheckImpl@VComplexAcuteLineOfSightCheckImpl@ArkVisualPerceptionManager@@ : private ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl // Id=8016252 Size=16
-	{
-	public:
-		using RayCasterType = RayCastQueue<41>;
-		
-		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
-		
-#if 0
-		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>(ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const &arg0);
-		RayCastQueue<41> &GetRayCaster() const;
-		bool GetRayCastRequest(uint64_t arg0, RayCastRequest &arg1) const;
-		void OnSucceeded();
-		void OnFailed();
-#endif
-	};
-
 	using ComplexAcuteLineOfSightCheck = ArkLineOfSightCheck<ArkVisualPerceptionManager::LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl>,1>;
 	
 	class ComplexAllLineOfSightCheckImpl : protected ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase // Id=801625D Size=1
@@ -296,22 +281,6 @@ public:
 #if 0
 		static bool ShouldRayCast(ArkVisualPerceptionManager const &arg0, uint64_t arg1, uint64_t arg2, uint64_t arg3);
 		static Vec3 GetRayCastTarget(ArkVisualPerceptionManager const &arg0, uint64_t arg1, uint64_t arg2);
-#endif
-	};
-
-	class ?$LineOfSightCheckImpl@VComplexAllLineOfSightCheckImpl@ArkVisualPerceptionManager@@ : private ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl // Id=801625E Size=16
-	{
-	public:
-		using RayCasterType = RayCastQueue<41>;
-		
-		ArkVisualPerceptionManager::PerceiverPerceivableIndexPair m_perceiverPerceivableIndexPair;
-		
-#if 0
-		void LineOfSightCheckImpl<ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl>(ArkVisualPerceptionManager::PerceiverPerceivableIndexPair const &arg0);
-		RayCastQueue<41> &GetRayCaster() const;
-		bool GetRayCastRequest(uint64_t arg0, RayCastRequest &arg1) const;
-		void OnSucceeded();
-		void OnFailed();
 #endif
 	};
 
@@ -331,8 +300,13 @@ public:
 		EArkLineOfSightCheckStatus GetStatus() const;
 #endif
 		
+#ifndef MOONCRASH
 		static inline auto FBegin = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks *const _this)>(0x15323F0);
 		static inline auto FReset = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks *const _this)>(0x15368B0);
+#else
+		static inline auto FBegin = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks* const _this)>(0x1652260);
+		static inline auto FReset = PreyFunction<void(ArkVisualPerceptionManager::ComplexLineOfSightChecks* const _this)>(0x1656720);
+#endif
 	};
 
 	static constexpr const uint64_t k_maxVisionConeCount = 2;
@@ -478,6 +452,10 @@ public:
 	float CalcVisionConeMagnitude(ArkVisualPerceptionManager::VisionConeProperties const &arg0, Vec3 const &arg1, float arg2) const;
 #endif
 	
+#ifdef MOONCRASH
+	void ResetVisionCones(unsigned _perceiverEntityId, const ArkVisualPerceiver& _perceiver) { FResetVisionCones(this, _perceiverEntityId, _perceiver); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FBitNotArkVisualPerceptionManager = PreyFunction<void(ArkVisualPerceptionManager *const _this)>(0x152F120);
 	static inline auto FInitialize = PreyFunction<void(ArkVisualPerceptionManager *const _this)>(0x1533440);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkVisualPerceptionManager *const _this)>(0x1534BF0);
@@ -511,5 +489,41 @@ public:
 	static inline auto FCalculatePerceiverBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager *const _this, uint64_t _perceiverIndex)>(0x1532980);
 	static inline auto FCalcVisionConeMagnitudeOv1 = PreyFunction<float(ArkVisualPerceptionManager const *const _this, uint64_t _perceiverIndex, Vec3 const &_worldPosition)>(0x1532660);
 	static inline auto FCalculatePlayerMagnitude = PreyFunction<float(float _distance, ArkVisualPerceptionManager::VisionConeProperties const &_visionConeProperties)>(0x1532B80);
+#else
+	static inline auto FArkVisualPerceptionManagerOv1 = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x164E730);
+	static inline auto FBitNotArkVisualPerceptionManager = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x164EF90);
+	static inline auto FInitialize = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x16532B0);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1654A60);
+	static inline auto FReset = PreyFunction<void(ArkVisualPerceptionManager* const _this, bool _bEnteringGameMode)>(0x1656680);
+	static inline auto FRegisterPerceiver = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, ArkVisualPerceiver& _perceiver)>(0x1656300);
+	static inline auto FIsPerceiverRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x16532C0);
+	static inline auto FUnregisterPerceiver = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x1656D20);
+	static inline auto FRegisterSimplePerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId, const ArkSimpleVisualPerceivable& _perceivable)>(0x1656400);
+	static inline auto FIsSimplePerceivableRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId)>(0x1653370);
+	static inline auto FUnregisterSimplePerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _simplePerceivableEntityId)>(0x16571E0);
+	static inline auto FRegisterComplexPerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId, const ArkComplexVisualPerceivable& _perceivable)>(0x1656120);
+	static inline auto FIsComplexPerceivableRegistered = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x14F75F0);
+	static inline auto FUnregisterComplexPerceivable = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x1656BD0);
+	static inline auto FPerceiverCanSeeSimplePerceivable = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _simplePerceivableEntityId)>(0x1655D00);
+	static inline auto FPerceiverCanSeeComplexPerceivable = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId)>(0x1655B40);
+	static inline auto FResetVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, const ArkVisualPerceiver& _perceiver)>(0x16568D0);
+	static inline auto FSetAcuteVision = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled)>(0x1656910);
+	static inline auto FSetXRayVision = PreyFunction<void(ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId, bool _bEnabled)>(0x1656B30);
+	static inline auto FHasXRayVisionOv1 = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, unsigned _perceiverEntityId, unsigned _complexPerceivableEntityId)>(0x16530F0);
+	static inline auto FUpdate = PreyFunction<void(ArkVisualPerceptionManager* const _this, float _elapsedTime)>(0x1657310);
+	static inline auto FGetVisionConeSemiangles = PreyFunction<bool(const ArkVisualPerceptionManager* const _this, uint64_t _visionConeId, float& _outHorizontalSemiangle, float& _outUpSemiangle, float& _outDownSemiangle)>(0x1652FA0);
+	static inline auto FLoadVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1653790);
+	static inline auto FAssignVisionCones = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver)>(0x1651F20);
+	static inline auto FAddBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _index, ArkVisualPerceptionManager::EBoundsEndpointType _type, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes)>(0x1651D60);
+	static inline auto FRemoveBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _index, std::vector<ArkInterval<unsigned __int64>>& _xAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _yAxisBoundsEndpointIndexes, std::vector<ArkInterval<unsigned __int64>>& _zAxisBoundsEndpointIndexes)>(0x16565C0);
+	static inline auto FAcquireAllPerceivableInfo = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1651540);
+	static inline auto FCollectCandidates = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1652BB0);
+	static inline auto FVerifyCandidates = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1657770);
+	static inline auto FUpdatePerceptionFlagsOv0 = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceivableCount, std::vector<bool>& _perceptionFlags, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _startPerceivingIndexPairs, std::vector<ArkVisualPerceptionManager::PerceiverPerceivableIndexPair>& _stopPerceivingIndexPairs)>(0x16576D0);
+	static inline auto FNotifyPerceivers = PreyFunction<void(ArkVisualPerceptionManager* const _this)>(0x1654290);
+	static inline auto FAcquirePerceiverVisionTransforms = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const ArkVisualPerceiver& _perceiver)>(0x1651820);
+	static inline auto FCalculatePerceiverBoundsEndpoints = PreyFunction<void(ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex)>(0x16527F0);
+	static inline auto FCalcVisionConeMagnitudeOv1 = PreyFunction<float(const ArkVisualPerceptionManager* const _this, uint64_t _perceiverIndex, const Vec3& _worldPosition)>(0x16524D0);
+	static inline auto FCalculatePlayerMagnitude = PreyFunction<float(float _distance, const ArkVisualPerceptionManager::VisionConeProperties& _visionConeProperties)>(0x16529F0);
+#endif
 };
-

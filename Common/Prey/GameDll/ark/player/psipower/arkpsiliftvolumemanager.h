@@ -25,4 +25,3 @@ public:
 	virtual void OnEntityEvent(IEntity *_pEntity, SEntityEvent &_event);
 	bool HasLiftVolumes() const;
 };
-

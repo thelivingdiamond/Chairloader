@@ -20,7 +20,12 @@ public:
 	virtual ~ArkEnvironmentalObjectSignalReceiver();
 	virtual void OnReceiveSignal(ArkSignalSystem::Package const &_package);
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkEnvironmentalObjectSignalReceiver = PreyFunction<void(ArkEnvironmentalObjectSignalReceiver *const _this)>(0x13BD3C0);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkEnvironmentalObjectSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x13BD410);
+#else
+	static inline auto FArkEnvironmentalObjectSignalReceiverOv1 = PreyFunction<void(ArkEnvironmentalObjectSignalReceiver* const _this, ArkEnvironmentalObject& _object)>(0x14C96A0);
+	static inline auto FBitNotArkEnvironmentalObjectSignalReceiver = PreyFunction<void(ArkEnvironmentalObjectSignalReceiver* const _this)>(0x14C96E0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkEnvironmentalObjectSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x14C9730);
+#endif
 };
-

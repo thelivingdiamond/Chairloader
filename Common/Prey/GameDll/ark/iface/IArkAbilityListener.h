@@ -10,7 +10,11 @@ public:
 	virtual void OnAbilityAdded(uint64_t _abilityID) {FOnAbilityAdded(this, _abilityID);}
 	virtual void OnBecomeAlien() {FOnBecomeAlien(this);}
 	
+#ifndef MOONCRASH
 	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener *const _this, uint64_t _abilityID)>(0xA13080);
 	static inline auto FOnBecomeAlien = PreyFunction<void(IArkAbilityListener *const _this)>(0xA13080);
+#else
+	static inline auto FOnAbilityAdded = PreyFunction<void(IArkAbilityListener* const _this, uint64_t _abilityID)>(0x1333E90);
+	static inline auto FOnBecomeAlien = PreyFunction<void(IArkAbilityListener* const _this)>(0x1333E90);
+#endif
 };
-

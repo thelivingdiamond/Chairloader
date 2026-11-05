@@ -17,14 +17,28 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkmapvolume.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+#include <Prey/CryGame/IGameVolumes.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class ArkBitVector : public std::vector<bool> // Id=80167C2 Size=32
 {
 public:
+#ifndef MOONCRASH
 	static const uint8_t k_bitsPerChar;
+#else
+	static inline auto k_bitsPerChar = PreyGlobal<const uint8_t>(0x1F822CD);
+#endif
 	
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
 	
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(ArkBitVector *const _this, TSerialize _ser)>(0x144AA60);
+#else
+	static inline auto FSerialize = PreyFunction<void(ArkBitVector* const _this, TSerialize _ser)>(0x15601E0);
+#endif
 };
 
 // Header: FromCpp
@@ -45,8 +59,13 @@ public:
 	float GetHeight() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetVolume = PreyFunction<void(CArkVolume *const _this, Matrix34 const &_worldTM, IGameVolumes::VolumeInfo const &_volumeInfo)>(0x144ADD0);
 	static inline auto FBitNotCArkVolume = PreyFunction<void(CArkVolume *const _this)>(0x1F09C0);
+#else
+	static inline auto FCArkVolumeOv2 = PreyFunction<void(CArkVolume* const _this)>(0x155FA70);
+	static inline auto FSetVolume = PreyFunction<void(CArkVolume* const _this, const Matrix34& _worldTM, const IGameVolumes::VolumeInfo& _volumeInfo)>(0x1560550);
+#endif
 };
 
 // Header: FromCpp
@@ -100,6 +119,7 @@ public:
 	bool GetShowIcons() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkMapVolume *const _this, IGameObject *_pGameObject)>(0x144A380);
 	static inline auto FPostInit = PreyFunction<void(CArkMapVolume *const _this, IGameObject *_pGameObject)>(0xA13080);
 	static inline auto FInitClient = PreyFunction<void(CArkMapVolume *const _this, int _channelId)>(0xA13080);
@@ -127,5 +147,33 @@ public:
 	static inline auto FResizeVisitedArea = PreyFunction<void(CArkMapVolume *const _this, const unsigned _size)>(0x144AA50);
 	static inline auto FLoadVolumeData = PreyFunction<void(CArkMapVolume *const _this)>(0x144A410);
 	static inline auto FResetVisitedArea = PreyFunction<void(CArkMapVolume *const _this)>(0x144A9A0);
+#else
+	static inline auto FInit = PreyFunction<bool(CArkMapVolume* const _this, IGameObject* _pGameObject)>(0x155FB00);
+	static inline auto FPostInit = PreyFunction<void(CArkMapVolume* const _this, IGameObject* _pGameObject)>(0x1333E90);
+	static inline auto FInitClient = PreyFunction<void(CArkMapVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkMapVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkMapVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1A302A0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkMapVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkMapVolume* const _this, TSerialize _signature)>(0x1A302A0);
+	static inline auto FRelease = PreyFunction<void(CArkMapVolume* const _this)>(0x15600F0);
+	static inline auto FFullSerialize = PreyFunction<void(CArkMapVolume* const _this, TSerialize _ser)>(0x155FA90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkMapVolume* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkMapVolume* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkMapVolume* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkMapVolume* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkMapVolume* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkMapVolume* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkMapVolume* const _this, SEntityEvent& _event)>(0x15600A0);
+	static inline auto FSetChannelId = PreyFunction<void(CArkMapVolume* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkMapVolume* const _this, bool _bAuth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkMapVolume* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkMapVolume* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkMapVolume* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkMapVolume* const _this, ICrySizer* _pCrySizer)>(0x1333E90);
+	static inline auto FIsPointInside = PreyFunction<bool(const CArkMapVolume* const _this, const Vec3& _point)>(0x155FB30);
+	static inline auto FSetVisited = PreyFunction<void(CArkMapVolume* const _this, const unsigned _cellIndex)>(0x1560520);
+	static inline auto FResizeVisitedArea = PreyFunction<void(CArkMapVolume* const _this, const unsigned _size)>(0x15601D0);
+	static inline auto FLoadVolumeData = PreyFunction<void(CArkMapVolume* const _this)>(0x155FB90);
+	static inline auto FResetVisitedArea = PreyFunction<void(CArkMapVolume* const _this)>(0x1560120);
+#endif
 };
-

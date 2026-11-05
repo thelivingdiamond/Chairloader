@@ -11,6 +11,9 @@ struct SUIEventDesc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapagestationmap.h
+#ifdef MOONCRASH
+enum class ArkPDAPage;
+#endif
 class CArkPDAPageStationMap : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageStationMap> // Id=801BA76 Size=64
 {
 public:
@@ -37,6 +40,10 @@ public:
 	static ArkPDAPage GetPDAPage();
 #endif
 	
+#ifdef MOONCRASH
+	void OnPressMapObjective() { FOnPressMapObjective(this); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FOpen = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x134DBE0);
 	static inline auto FUpdate = PreyFunction<void(CArkPDAPageStationMap *const _this, float _frameTime)>(0x134E840);
 	static inline auto FClose = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x1628FA0);
@@ -48,5 +55,19 @@ public:
 	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageStationMap *const _this)>(0x134E740);
 	static inline auto FUpdateInputPrompt = PreyFunction<void(CArkPDAPageStationMap const *const _this)>(0x134E8B0);
 	static inline auto FManagesInputPrompts = PreyFunction<bool(CArkPDAPageStationMap const *const _this)>(0x1B933B0);
+#else
+	static inline auto FCArkPDAPageStationMapOv1 = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142B9F0);
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142C610);
+	static inline auto FUpdate = PreyFunction<void(CArkPDAPageStationMap* const _this, float _frameTime)>(0x142D250);
+	static inline auto FClose = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x174AC00);
+	static inline auto FOnClosePDA = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x9A07D0);
+	static inline auto FProcessInput = PreyFunction<bool(CArkPDAPageStationMap* const _this, const CCryName& _rActionId, const int _activationMode, const float _fValue)>(0x142CC10);
+	static inline auto FSetCurrentLocation = PreyFunction<void(const CArkPDAPageStationMap* const _this, uint64_t _locationId)>(0x142CD60);
+	static inline auto FSetZoom = PreyFunction<void(CArkPDAPageStationMap* const _this, const float _zoomAmount)>(0x142CF20);
+	static inline auto FOnPressMapObjective = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142BD50);
+	static inline auto FOnSelectLevel = PreyFunction<void(CArkPDAPageStationMap* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x142BDA0);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageStationMap* const _this)>(0x142D0D0);
+	static inline auto FUpdateInputPrompt = PreyFunction<void(const CArkPDAPageStationMap* const _this)>(0x142D2C0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageStationMap* const _this)>(0x1A302A0);
+#endif
 };
-

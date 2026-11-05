@@ -38,4 +38,71 @@ struct IMovementController
 	virtual void CancelMovementTransition() = 0;
 	virtual void BlockMovementTransitions() = 0;
 	virtual void UnblockMovementTransitions() = 0;
+
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
+	static inline auto FGetDesiredMoveDir = PreyFunction<Vec2*(const IMovementController* const _this, Vec2* _return_value_)>(0x1674930);
+	static inline auto FSetExactPositioningListener = PreyFunction<void(IMovementController* const _this, IExactPositioningListener* pExactPositioningListener)>(0x1333E90);
+	static inline auto FGetExactPositioningTarget = PreyFunction<const SExactPositioningTarget* (IMovementController* const _this)>(0x1CBB0B0);
+	static inline auto FCancelMovementTransition = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
+	static inline auto FBlockMovementTransitions = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
+	static inline auto FUnblockMovementTransitions = PreyFunction<void(IMovementController* const _this)>(0x1333E90);
+#endif
+};
+
+struct SStanceState
+{ // Size=164 (0xA4)
+	Vec3 pos;
+	Vec3 entityDirection;
+	Vec3 animationBodyDirection;
+	Vec3 upDirection;
+	Vec3 weaponPosition;
+	Vec3 aimDirection;
+	Vec3 fireDirection;
+	Vec3 eyePosition;
+	Vec3 eyeDirection;
+	float lean;
+	float peekOver;
+	AABB m_StanceSize;
+	AABB m_ColliderSize;
+
+	SStanceState();
+
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
+	static inline auto FSStanceStateOv2 = PreyFunction<void(SStanceState* const _this)>(0x417CE0);
+#endif
+};
+
+// SMovementState
+// Header:  CryEngine/cryaction/IMovementController.h
+// Include: Prey/CryAction/IMovementController.h
+struct SMovementState : public SStanceState
+{ // Size=244 (0xF4)
+	Vec3 fireTarget;
+	EStance stance;
+	Vec3 animationEyeDirection;
+	Vec3 movementDirection;
+	Vec3 lastMovementDirection;
+	float desiredSpeed;
+	float minSpeed;
+	float normalSpeed;
+	float maxSpeed;
+	float slopeAngle;
+	bool atMoveTarget;
+	bool isAlive;
+	bool isAiming;
+	bool isFiring;
+	bool isVisible;
+	bool isMoving;
+
+	SMovementState();
+
+#ifndef MOONCRASH
+	// not tracked from base game
+#else
+	static inline auto FSMovementStateOv2 = PreyFunction<void(SMovementState* const _this)>(0x417C50);
+#endif
 };

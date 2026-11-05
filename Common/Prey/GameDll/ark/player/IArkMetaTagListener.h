@@ -11,4 +11,3 @@ public:
 	virtual void OnMetaTagsAdded(unsigned _arg0_);
 	virtual void OnAllDynamicMetaTagsRemoved(unsigned _arg0_);
 };
-

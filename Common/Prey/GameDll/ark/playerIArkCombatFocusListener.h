@@ -9,4 +9,3 @@ class IArkCombatFocusListener // Id=80154E1 Size=8
 public:
 	virtual void OnCombatFocusChanged(bool arg0) = 0;
 };
-

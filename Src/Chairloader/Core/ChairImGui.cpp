@@ -14,7 +14,11 @@ class CBasicEventListener;
 static ChairImGui g_ChairImGui;
 static auto s_hookCBaseInputPostInputEvent = CBaseInput::FPostInputEvent.MakeHook();
 static auto s_CHardwareMouse_Event_Hook = CHardwareMouse::FEvent.MakeHook();
+#ifndef MOONCRASH
 static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x1685F90);
+#else
+static auto s_CBasicEventListener_OnSetCursor = PreyFunction<int(CBasicEventListener* const _this, HWND__* hWnd)>(0x17A9910);
+#endif
 static auto s_CBasicEventListener_OnSetCursor_Hook = s_CBasicEventListener_OnSetCursor.MakeHook();
 static auto s_CSystem_RenderEnd_Hook = CSystem::FRenderEnd.MakeHook();
 

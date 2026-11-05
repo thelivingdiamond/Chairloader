@@ -49,6 +49,7 @@ public:
 	int GetCurrentVolumeIndex(const Vec3& _arg0_) const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkLevelMapComponentOv1 = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x1224560);
 	static inline auto FOnLevelLoadEnd = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x1225AF0);
 	static inline auto FOnMapVolumeReset = PreyFunction<void(ArkLevelMapComponent* const _this, CArkMapVolume& _volume)>(0x1225860);
@@ -69,5 +70,26 @@ public:
 	static inline auto FResetMapsAcquired = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x1227570);
 	static inline auto FGetFogPixelSize = PreyFunction<float()>(0x1225390);
 	static inline auto FGetCurrentArkLocation = PreyFunction<const ArkLocation* ()>(0x12248E0);
+#else
+	static inline auto FArkLevelMapComponentOv1 = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x12C4460);
+	static inline auto FOnLevelLoadEnd = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x12C59E0);
+	static inline auto FOnMapVolumeReset = PreyFunction<void(ArkLevelMapComponent* const _this, CArkMapVolume& _volume)>(0x12C5720);
+	static inline auto FUpdate = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x12C5C60);
+	static inline auto FReset = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x12C59E0);
+	static inline auto FSerialize = PreyFunction<void(ArkLevelMapComponent* const _this, TSerialize _ser)>(0x12C5A50);
+	static inline auto FGetFogData = PreyFunction<std::vector<unsigned char>*(const ArkLevelMapComponent* const _this, std::vector<unsigned char>* _return_value_, const int _index)>(0x12C4C20);
+	static inline auto FGetFogCellSize = PreyFunction<float(const ArkLevelMapComponent* const _this)>(0x12C4C00);
+	static inline auto FGetLevelBounds = PreyFunction<AABB*(const ArkLevelMapComponent* const _this, AABB* _return_value_)>(0x12C5230);
+	static inline auto FGetFloorBounds = PreyFunction<AABB*(const ArkLevelMapComponent* const _this, AABB* _return_value_, unsigned _nFloor)>(0x12C4A90);
+	static inline auto FGetCurrentVolume = PreyFunction<CArkMapVolume* (const ArkLevelMapComponent* const _this, const Vec3& _worldPos)>(0x12C49D0);
+	static inline auto FGetCurrentFloorIndex = PreyFunction<int(const ArkLevelMapComponent* const _this, const Vec3& _worldPos)>(0x12C4910);
+	static inline auto FGetMapTextureID = PreyFunction<int(const ArkLevelMapComponent* const _this, const unsigned _nFloor)>(0x12C5350);
+	static inline auto FIsVisitedNear = PreyFunction<bool(const ArkLevelMapComponent* const _this, const unsigned _nFloor, const Vec3& _worldPos)>(0x12C54D0);
+	static inline auto FGetFogArea = PreyFunction<Vec2i*(const ArkLevelMapComponent* const _this, Vec2i* _return_value_, const AABB& _bounds)>(0x12C4B90);
+	static inline auto FSetMapAcquired = PreyFunction<void(ArkLevelMapComponent* const _this, uint64_t _locationId, bool _bAcquired)>(0x12C5BB0);
+	static inline auto FIsMapAcquired = PreyFunction<bool(const ArkLevelMapComponent* const _this, uint64_t _locationId)>(0x12C54A0);
+	static inline auto FResetMapsAcquired = PreyFunction<void(ArkLevelMapComponent* const _this)>(0x12C75D0);
+	static inline auto FGetFogPixelSize = PreyFunction<float()>(0x12C5220);
+	static inline auto FGetCurrentArkLocation = PreyFunction<const ArkLocation* ()>(0x12C4710);
+#endif
 };
-

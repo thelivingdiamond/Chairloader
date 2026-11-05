@@ -19,8 +19,13 @@ public:
 	static const char *GetTypeNameS();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(ArkModalDialogInGame const *const _this)>(0x134AD80);
 	static inline auto FGetUIElement = PreyFunction<IUIElement *(ArkModalDialogInGame const *const _this)>(0x1605260);
 	static inline auto FGetDialogClassName = PreyFunction<const char *(ArkModalDialogInGame const *const _this)>(0x134AD80);
+#else
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x1429190);
+	static inline auto FGetUIElement = PreyFunction<IUIElement* (const ArkModalDialogInGame* const _this)>(0x1726490);
+	static inline auto FGetDialogClassName = PreyFunction<const char* (const ArkModalDialogInGame* const _this)>(0x1429190);
+#endif
 };
-

@@ -33,6 +33,7 @@ public:
 	void SetLoaded(const uint64_t _id, const bool _bLoaded) { FSetLoaded(this,_id,_bLoaded); }
 	ArkLocationManager::LocationInfo const *GetAlternateNameInfo(const uint64_t _id) const { return FGetAlternateNameInfo(this,_id); }
 	
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkLocationManager *const _this)>(0x11983D0);
 	static inline auto FSerialize = PreyFunction<void(ArkLocationManager *const _this, TSerialize ser)>(0x11983E0);
 	static inline auto FGetLocationLabel = PreyFunction<const char *(ArkLocationManager const *const _this, uint64_t _id)>(0x11981C0);
@@ -44,5 +45,17 @@ public:
 	static inline auto FHasLoaded = PreyFunction<bool(ArkLocationManager const *const _this, const uint64_t _id)>(0x1198230);
 	static inline auto FSetLoaded = PreyFunction<void(ArkLocationManager *const _this, const uint64_t _id, const bool _bLoaded)>(0x1198750);
 	static inline auto FGetAlternateNameInfo = PreyFunction<ArkLocationManager::LocationInfo const *(ArkLocationManager const *const _this, const uint64_t _id)>(0x1197ED0);
+#else
+	static inline auto FReset = PreyFunction<void(ArkLocationManager* const _this)>(0x1214590);
+	static inline auto FSerialize = PreyFunction<void(ArkLocationManager* const _this, TSerialize ser)>(0x12145A0);
+	static inline auto FGetLocationLabel = PreyFunction<const char* (const ArkLocationManager* const _this, uint64_t _id)>(0x1214380);
+	static inline auto FGetCurrentLocationLabel = PreyFunction<const char* (const ArkLocationManager* const _this)>(0x12141D0);
+	static inline auto FGetCurrentLocationScreenshotPath = PreyFunction<const char* (const ArkLocationManager* const _this)>(0x12142A0);
+	static inline auto FGetCurrentLocation = PreyFunction<uint64_t(const ArkLocationManager* const _this)>(0x1214100);
+	static inline auto FSetAlternateName = PreyFunction<void(ArkLocationManager* const _this, const uint64_t _id, const char* _altName, const char* _screenshotPath)>(0x1214710);
+	static inline auto FRemoveAlternateName = PreyFunction<void(ArkLocationManager* const _this, const uint64_t _id)>(0x1214450);
+	static inline auto FHasLoaded = PreyFunction<bool(const ArkLocationManager* const _this, const uint64_t _id)>(0x12143F0);
+	static inline auto FSetLoaded = PreyFunction<void(ArkLocationManager* const _this, const uint64_t _id, const bool _bLoaded)>(0x1214910);
+	static inline auto FGetAlternateNameInfo = PreyFunction<const ArkLocationManager::LocationInfo* (const ArkLocationManager* const _this, const uint64_t _id)>(0x1214000);
+#endif
 };
-

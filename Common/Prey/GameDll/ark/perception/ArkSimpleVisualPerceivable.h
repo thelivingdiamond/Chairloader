@@ -11,6 +11,9 @@ public:
 	Vec3 *GetSimpleVisualPerceivableWorldPoints(Vec3 *_pFirstWorldPoint, Vec3 *_pLastWorldPoint) const { return FGetSimpleVisualPerceivableWorldPoints(this,_pFirstWorldPoint,_pLastWorldPoint); }
 	virtual Vec3 *DoGetSimpleVisualPerceivableWorldPoints(Vec3 *arg0, Vec3 *arg1) const = 0;
 	
+#ifndef MOONCRASH
 	static inline auto FGetSimpleVisualPerceivableWorldPoints = PreyFunction<Vec3 *(ArkSimpleVisualPerceivable const *const _this, Vec3 *_pFirstWorldPoint, Vec3 *_pLastWorldPoint)>(0x172F070);
+#else
+	static inline auto FGetSimpleVisualPerceivableWorldPoints = PreyFunction<Vec3* (const ArkSimpleVisualPerceivable* const _this, Vec3* _pFirstWorldPoint, Vec3* _pLastWorldPoint)>(0x1855F90);
+#endif
 };
-

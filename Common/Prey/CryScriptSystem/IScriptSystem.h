@@ -369,7 +369,7 @@ struct IScriptSystem
 	virtual void          ShowDebugger(const char* pszSourceFile, int iLine, const char* pszReason) = 0;
 
 	virtual HBREAKPOINT   AddBreakPoint(const char* sFile, int nLineNumber) = 0;
-	virtual IScriptTable* GetLocalVariables(int nLevel, bool bRecursive) = 0;
+	virtual IScriptTable* GetLocalVariables(int nLevel) = 0; // Prey: no bRecursive (CRYENGINE 5 has one)
 
 	//! \return A table containing 1 entry per stack level(aka per call). An entry will look like this table.
 	//! \code
@@ -413,7 +413,7 @@ struct IScriptSystem
 	//! Resets all the script timers.
 	virtual void ResetTimers() = 0;
 
-	virtual int  GetStackSize() const = 0;
+	virtual int  GetStackSize() = 0; // Prey: not const
 
 	//! Retrieves size of memory allocated in script.
 	virtual uint32 GetScriptAllocSize() = 0;

@@ -27,4 +27,3 @@ struct IHostMigrationEventListener // Id=80007D7 Size=8
 	virtual void OnComplete(SHostMigrationInfo &arg0) = 0;
 	virtual IHostMigrationEventListener::EHostMigrationReturn OnReset(SHostMigrationInfo &arg0, unsigned &arg1) = 0;
 };
-

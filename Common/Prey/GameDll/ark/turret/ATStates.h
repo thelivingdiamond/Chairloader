@@ -4,6 +4,7 @@
 
 class ArkTurretFsm;
 
+#ifndef MOONCRASH
 enum class EArkTurretStateId
 {
 	any = -1,
@@ -18,6 +19,20 @@ enum class EArkTurretStateId
 	disabled = 8,
 	count_ = 9,
 };
+#else
+enum class EArkTurretStateId : int
+{   // Mooncrash: no fallenSpaz / flowgraphControlled
+	any = -1,
+	null = 0,
+	undeployed = 1,
+	attacking = 2,
+	searching = 3,
+	playerControlled = 4,
+	playerCarried = 5,
+	disabled = 6,
+	count_ = 7,
+};
+#endif
 
 namespace ATStates
 {
@@ -38,4 +53,3 @@ public:
 };
 
 } // namespace ATStates
-

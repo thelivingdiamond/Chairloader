@@ -8,6 +8,12 @@ struct IMaterial;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkMaterialAnimationManager.h
+#ifdef MOONCRASH
+#include <Prey/ArkStubs.h>
+#include <Prey/ArkStubs.h>
+enum class EMaterialParamFloat;
+enum class EMaterialParamVec3;
+#endif
 class ArkMaterialAnimationManager // Id=8014235 Size=584
 {
 public:
@@ -62,6 +68,7 @@ public:
 	void StopAllAnimations();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkMaterialAnimationManager = PreyFunction<void(ArkMaterialAnimationManager *const _this)>(0x1199F80);
 	static inline auto FStartAnimationOv1 = PreyFunction<void(ArkMaterialAnimationManager *const _this, ArkMaterialAnimationType _animationType, float _blendInTime)>(0x119B540);
 	static inline auto FUpdateAnimationOv1 = PreyFunction<bool(ArkMaterialAnimationManager *const _this, ArkMaterialAnimationType _animationType, float _currentTime, float _elapsedTime)>(0x119B800);
@@ -79,5 +86,24 @@ public:
 	static inline auto FGetMaterialAnimationByType = PreyFunction<ArkMaterialAnimation const *(ArkMaterialAnimationManager const *const _this, ArkMaterialAnimationType _animationType)>(0x119A8A0);
 	static inline auto FGetUniqueMaterial = PreyFunction<IMaterial *(ArkMaterialAnimationManager *const _this, ArkMaterialAnimation const *_pMatAnim)>(0x119A910);
 	static inline auto FClearUniqueMaterial = PreyFunction<void(ArkMaterialAnimationManager *const _this, ArkMaterialAnimation const *_pMatAnim)>(0x119A3D0);
+#else
+	static inline auto FArkMaterialAnimationManagerOv1 = PreyFunction<void(ArkMaterialAnimationManager* const _this)>(0x1215CA0);
+	static inline auto FBitNotArkMaterialAnimationManager = PreyFunction<void(ArkMaterialAnimationManager* const _this)>(0x1215F60);
+	static inline auto FStartAnimationOv1 = PreyFunction<void(ArkMaterialAnimationManager* const _this, ArkMaterialAnimationType _animationType, float _blendInTime)>(0x1217510);
+	static inline auto FUpdateAnimationOv1 = PreyFunction<bool(ArkMaterialAnimationManager* const _this, ArkMaterialAnimationType _animationType, float _currentTime, float _elapsedTime)>(0x12177E0);
+	static inline auto FUpdateAnimationOv0 = PreyFunction<bool(ArkMaterialAnimationManager* const _this, ArkMaterialAnimationManager::ActiveAnimationData& _animation, const ArkMaterialAnimation* _pMaterialAnim, float _currentTime, float _elapsedTime)>(0x1217620);
+	static inline auto FStartOneOffAnimation = PreyFunction<void(ArkMaterialAnimationManager* const _this, float _blendInTime)>(0x12175A0);
+	static inline auto FUpdateOneOffAnimation = PreyFunction<bool(ArkMaterialAnimationManager* const _this, float _currentTime, float _elapsedTime)>(0x1217AC0);
+	static inline auto FStopOneOffAnimation = PreyFunction<void(ArkMaterialAnimationManager* const _this)>(0x1217610);
+	static inline auto FUpdateMaterialParams = PreyFunction<void(ArkMaterialAnimationManager* const _this, float _frameTime)>(0x1217840);
+	static inline auto FGetDuration = PreyFunction<float(const ArkMaterialAnimationManager* const _this, ArkMaterialAnimationType _animationType)>(0x12167E0);
+	static inline auto FSimpleLerpAnimation = PreyFunction<void(ArkMaterialAnimationManager* const _this, ArkMaterialAnimationType _animationType, float _lerpPercent)>(0x1217120);
+	static inline auto FInitializeOv1 = PreyFunction<void(ArkMaterialAnimationManager* const _this, IEntity& _entity)>(0x1216C50);
+	static inline auto FInitializeOv0 = PreyFunction<void(ArkMaterialAnimationManager* const _this, IEntity& _entity, const uint64_t _oneOffAnimation)>(0x1216EE0);
+	static inline auto FShutDown = PreyFunction<void(ArkMaterialAnimationManager* const _this)>(0x1217610);
+	static inline auto FSetMaterialParameter = PreyFunction<void(ArkMaterialAnimationManager* const _this, IMaterial* _pMaterial, EMaterialParamFloat _paramFloat, EMaterialParamVec3 _paramVec3, const char* _paramName, float _floatValue, const Vec3& _vectorValue, bool _bIsFloat, float _time)>(0x1216F40);
+	static inline auto FGetMaterialAnimationByType = PreyFunction<const ArkMaterialAnimation* (const ArkMaterialAnimationManager* const _this, ArkMaterialAnimationType _animationType)>(0x1216880);
+	static inline auto FGetUniqueMaterial = PreyFunction<IMaterial* (ArkMaterialAnimationManager* const _this, const ArkMaterialAnimation* _pMatAnim)>(0x12168F0);
+	static inline auto FClearUniqueMaterial = PreyFunction<void(ArkMaterialAnimationManager* const _this, const ArkMaterialAnimation* _pMatAnim)>(0x12163B0);
+#endif
 };
-

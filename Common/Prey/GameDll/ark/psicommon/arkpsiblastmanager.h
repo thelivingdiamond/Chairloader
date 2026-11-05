@@ -15,6 +15,15 @@ struct SEntityEvent;
 
 // Header: Exact
 // Prey/GameDll/ark/psicommon/arkpsiblastmanager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/psicommon/ArkPsiElectrostaticBurst.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiFearBlast.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiFlareBlast.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiKineticBlast.h>
+#include <Prey/GameDll/ark/psicommon/ArkPsiThermalBlast.h>
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
+class ArkPsiFlareBlastProperties;
+#endif
 template <typename T>
 class CArkPsiBlastManager : public IEntityEventListener // Id=801C18A Size=160
 {
@@ -35,4 +44,3 @@ public:
 	void PostSerialize();
 	virtual void OnEntityEvent(IEntity *_pEntity, SEntityEvent &_event);
 };
-

@@ -8,4 +8,3 @@ class IArkHUDListener
 public:
 	virtual void OnEntityUnderReticleChanged(const unsigned _arg0_, const unsigned _arg1_);
 };
-

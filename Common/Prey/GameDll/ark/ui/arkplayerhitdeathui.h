@@ -13,6 +13,16 @@ struct SUIEvent;
 
 // Header: Exact
 // Prey/GameDll/ark/ui/arkplayerhitdeathui.h
+#ifdef MOONCRASH
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/CrySystem/Scaleform/IFlashUI.h>
+#include <Prey/GameDll/ark/IUIGameEventSystem.h>
+#include <Prey/ArkStubs.h>
+enum class EArkSaveLoadMode;
+enum EControlScheme;
+enum ESystemEvent;
+struct SUIArguments;
+#endif
 class CArkPlayerHitDeathUI : public IUIEventListener, public IUIGameEventSystem, public ISystemEventListener, public IArkSaveLoadMenuListener, public IUIControlSchemeListener, public IUIElementEventListener // Id=801BBBC Size=176
 {
 public:
@@ -69,6 +79,7 @@ public:
 	static const char *SystemToUIEventSystemName();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetTypeName = PreyFunction<const char *(CArkPlayerHitDeathUI const *const _this)>(0x162D930);
 	static inline auto FOnEvent = PreyFunction<SUIArguments(CArkPlayerHitDeathUI *const _this, SUIEvent const &_event)>(0x162F450);
 	static inline auto FOnEventSystemDestroyed = PreyFunction<void(CArkPlayerHitDeathUI *const _this, IUIEventSystem *_pEventSystem)>(0x162F480);
@@ -92,5 +103,29 @@ public:
 	static inline auto FOnDeathScreenCloseCompleted = PreyFunction<void(CArkPlayerHitDeathUI *const _this)>(0x162F3F0);
 	static inline auto FUpdateInputPrompts = PreyFunction<void(CArkPlayerHitDeathUI const *const _this)>(0x162F980);
 	static inline auto FShowLoadGameError = PreyFunction<void(CArkPlayerHitDeathUI const *const _this, const char *_errorText)>(0x162F840);
+#else
+	static inline auto FGetTypeName = PreyFunction<const char* (const IUIGameEventSystem* const _this)>(0x17500A0);
+	static inline auto FOnEvent = PreyFunction<SUIArguments*(CArkPlayerHitDeathUI* const _this, SUIArguments* _return_value_, const SUIEvent& _event)>(0x1751BD0);
+	static inline auto FOnEventSystemDestroyed = PreyFunction<void(CArkPlayerHitDeathUI* const _this, IUIEventSystem* _pEventSystem)>(0x1751C00);
+	static inline auto FInitEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x1750A00);
+	static inline auto FUnloadEventSystem = PreyFunction<void(IUIGameEventSystem* const _this)>(0x17520C0);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent _event, uint64_t _wparam, uint64_t _lparam)>(0x1751F10);
+	static inline auto FOnSaveLoadMenuClose = PreyFunction<void(IArkSaveLoadMenuListener* const _this, EArkSaveLoadMode _mode, bool _bLoading)>(0x1751E40);
+	static inline auto FOnLoadingStart = PreyFunction<void(IArkSaveLoadMenuListener* const _this)>(0x1751DA0);
+	static inline auto FOnLoadSuccess = PreyFunction<void(IArkSaveLoadMenuListener* const _this)>(0x1751C50);
+	static inline auto FOnLoadFail = PreyFunction<bool(IArkSaveLoadMenuListener* const _this)>(0x1751C20);
+	static inline auto FOnControlSchemeChanged = PreyFunction<bool(IUIControlSchemeListener* const _this, const EControlScheme _controlScheme)>(0x1751B10);
+	static inline auto FOnSetVisible = PreyFunction<void(IUIElementEventListener* const _this, IUIElement* _pSender, bool _bVisible)>(0x1751EA0);
+	static inline auto FHandleOpenDeathScreen = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x17506C0);
+	static inline auto FHandleDeathScreenQuit = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x17501B0);
+	static inline auto FHandleDeathScreenReload = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x17502A0);
+	static inline auto FHandleDeathScreenRestart = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x1750470);
+	static inline auto FHandleDeathScreenRevivePlayer = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x1750670);
+	static inline auto FHandleDeathScreenLoadGame = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x17500B0);
+	static inline auto FHandleStartClosingDeathScreen = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x17509A0);
+	static inline auto FInvokeUIEvent = PreyFunction<void(const CArkPlayerHitDeathUI* const _this, const SUIEvent& _event)>(0x1751A70);
+	static inline auto FOnDeathScreenCloseCompleted = PreyFunction<void(CArkPlayerHitDeathUI* const _this)>(0x1751B70);
+	static inline auto FUpdateInputPrompts = PreyFunction<void(const CArkPlayerHitDeathUI* const _this)>(0x1752100);
+	static inline auto FShowLoadGameError = PreyFunction<void(const CArkPlayerHitDeathUI* const _this, const char* _errorText)>(0x1751FC0);
+#endif
 };
-

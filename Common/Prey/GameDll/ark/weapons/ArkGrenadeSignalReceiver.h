@@ -22,9 +22,15 @@ public:
 	void SetDamageSignalGroup(const uint64_t _signalGroupId) { FSetDamageSignalGroup(this,_signalGroupId); }
 	void RegisterForSignals(const bool _bRegister) { FRegisterForSignals(this,_bRegister); }
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotArkGrenadeSignalReceiver = PreyFunction<void(ArkGrenadeSignalReceiver *const _this)>(0x16433B0);
 	static inline auto FOnReceiveSignal = PreyFunction<void(ArkGrenadeSignalReceiver *const _this, ArkSignalSystem::Package const &_package)>(0x1643430);
 	static inline auto FSetDamageSignalGroup = PreyFunction<void(ArkGrenadeSignalReceiver *const _this, const uint64_t _signalGroupId)>(0x1447A90);
 	static inline auto FRegisterForSignals = PreyFunction<void(ArkGrenadeSignalReceiver *const _this, const bool _bRegister)>(0x16435A0);
+#else
+	static inline auto FBitNotArkGrenadeSignalReceiver = PreyFunction<void(ArkGrenadeSignalReceiver* const _this)>(0x1767180);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkGrenadeSignalReceiver* const _this, const ArkSignalSystem::Package& _package)>(0x1767200);
+	static inline auto FSetDamageSignalGroup = PreyFunction<void(ArkGrenadeSignalReceiver* const _this, const uint64_t _signalGroupId)>(0x155D1C0);
+	static inline auto FRegisterForSignals = PreyFunction<void(ArkGrenadeSignalReceiver* const _this, const bool _bRegister)>(0x1767390);
+#endif
 };
-

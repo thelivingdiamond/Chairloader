@@ -47,10 +47,15 @@ public:
 	void Reset() { FReset(this); }
 	bool CalculateRamp(ArkSignalSystem::Package const &_package, float &_outScale) { return FCalculateRamp(this,_package,_outScale); }
 	
+#ifndef MOONCRASH
 	static inline auto FAddRamp = PreyFunction<void(ArkSignalSystem::PackageSignalRampContainer *const _this, uint64_t _id, ArkSignalSystem::PackageSignalRamp _ramp)>(0x1336180);
 	static inline auto FReset = PreyFunction<void(ArkSignalSystem::PackageSignalRampContainer *const _this)>(0x13364E0);
 	static inline auto FCalculateRamp = PreyFunction<bool(ArkSignalSystem::PackageSignalRampContainer *const _this, ArkSignalSystem::Package const &_package, float &_outScale)>(0x1336280);
+#else
+	static inline auto FAddRamp = PreyFunction<void(ArkSignalSystem::PackageSignalRampContainer* const _this, uint64_t _id, ArkSignalSystem::PackageSignalRamp _ramp)>(0x1411D10);
+	static inline auto FReset = PreyFunction<void(ArkSignalSystem::PackageSignalRampContainer* const _this)>(0x1412070);
+	static inline auto FCalculateRamp = PreyFunction<bool(ArkSignalSystem::PackageSignalRampContainer* const _this, const ArkSignalSystem::Package& _package, float& _outScale)>(0x1411E10);
+#endif
 };
 
 } // namespace ArkSignalSystem
-

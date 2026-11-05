@@ -70,6 +70,7 @@ enum EStreamTaskPriority
 	estpIdle        = 5,
 };
 
+#ifndef MOONCRASH
 enum EStreamSourceMediaType
 {
 	eStreamSourceTypeUnknown = 0,
@@ -77,6 +78,14 @@ enum EStreamSourceMediaType
 	eStreamSourceTypeDisc,
 	eStreamSourceTypeMemory,
 };
+#else
+enum EStreamSourceMediaType
+{
+	eStreamSourceTypeUnknown = 0,
+	eStreamSourceTypeHDD = 1,
+	eStreamSourceTypeMemory = 2,
+};
+#endif
 
 #if defined(STREAMENGINE_ENABLE_STATS)
 #include <CryCore/Containers/CryArray.h>

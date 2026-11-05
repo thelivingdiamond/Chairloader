@@ -20,4 +20,3 @@ public:
 	float GetHalftHeight() const;
 #endif
 };
-

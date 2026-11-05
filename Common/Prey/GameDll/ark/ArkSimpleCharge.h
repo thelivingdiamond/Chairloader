@@ -31,11 +31,24 @@ public:
 	void SetCharged();
 #endif
 	
+#ifdef MOONCRASH
+	bool Drain(float _amount) { return FDrain(this, _amount); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FCharge = PreyFunction<bool(ArkChargeAmount *const _this, float _amount)>(0x11AF410);
 	static inline auto FAdjust = PreyFunction<bool(ArkChargeAmount *const _this, float _amount)>(0x11AF3D0);
 	static inline auto FSetMaxAmount = PreyFunction<void(ArkChargeAmount *const _this, float _maxAmount, bool _bMaintainRatio)>(0x11AF560);
 	static inline auto FGetChargedRatio = PreyFunction<float(ArkChargeAmount const *const _this)>(0x11AF430);
 	static inline auto FSerialize = PreyFunction<void(ArkChargeAmount *const _this, TSerialize _ser)>(0x11AF460);
+#else
+	static inline auto FArkChargeAmountOv0 = PreyFunction<void(ArkChargeAmount* const _this, float _maxAmount, bool _bCharged)>(0x122CA50);
+	static inline auto FDrain = PreyFunction<bool(ArkChargeAmount* const _this, float _amount)>(0x122CB40);
+	static inline auto FCharge = PreyFunction<bool(ArkChargeAmount* const _this, float _amount)>(0x122CB20);
+	static inline auto FAdjust = PreyFunction<bool(ArkChargeAmount* const _this, float _amount)>(0x122CAE0);
+	static inline auto FSetMaxAmount = PreyFunction<void(ArkChargeAmount* const _this, float _maxAmount, bool _bMaintainRatio)>(0x122CC90);
+	static inline auto FGetChargedRatio = PreyFunction<float(const ArkChargeAmount* const _this)>(0x122CB60);
+	static inline auto FSerialize = PreyFunction<void(ArkChargeAmount* const _this, TSerialize _ser)>(0x122CB90);
+#endif
 };
 
 // Header: FromCpp
@@ -46,6 +59,9 @@ public:
 	bool m_bCharging;
 	float m_chargeRate;
 	float m_drainRate;
+#ifdef MOONCRASH
+	ArkSimpleCharge();
+#endif
 	
 	ArkSimpleCharge(float _maxAmount, bool _bCharged, float _chargeRate, float _drainRate);
 	bool Update(float _frameTime) { return FUpdate(this,_frameTime); }
@@ -60,7 +76,13 @@ public:
 	float GetDrainRate() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<bool(ArkSimpleCharge *const _this, float _frameTime)>(0x11AF5B0);
 	static inline auto FSerialize = PreyFunction<void(ArkSimpleCharge *const _this, TSerialize _ser)>(0x11AF4B0);
+#else
+	static inline auto FArkSimpleChargeOv1 = PreyFunction<void(ArkSimpleCharge* const _this)>(0x122CAB0);
+	static inline auto FArkSimpleChargeOv0 = PreyFunction<void(ArkSimpleCharge* const _this, float _maxAmount, bool _bCharged, float _chargeRate, float _drainRate)>(0x122CA80);
+	static inline auto FUpdate = PreyFunction<bool(ArkSimpleCharge* const _this, float _frameTime)>(0x122CCE0);
+	static inline auto FSerialize = PreyFunction<void(ArkSimpleCharge* const _this, TSerialize _ser)>(0x122CBE0);
+#endif
 };
-

@@ -5,10 +5,17 @@
 
 // Header: Exact
 // Prey/GameDll/ark/arkprojectilegoonetworkmanager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkSimpleTimer.h>
+#endif
 class CArkProjectileGooNetworkManager // Id=8015EDC Size=88
 {
 public:
+#ifndef MOONCRASH
 	static const int k_invalidNetworkId;
+#else
+	static inline auto k_invalidNetworkId = PreyGlobal<const int>(0x1F4CA3C);
+#endif
 	
 	struct GooNetwork // Id=8015EDD Size=88
 	{
@@ -30,6 +37,9 @@ public:
 		bool IsEmpty() const;
 		void ClearAll();
 		void LockAll();
+#endif
+#ifdef MOONCRASH
+		static inline auto FGooNetworkOv1 = PreyFunction<void(CArkProjectileGooNetworkManager::GooNetwork* const _this, const unsigned _gooId, const float _lockTime, const float _burstTime)>(0x12EF400);
 #endif
 	};
 
@@ -57,6 +67,7 @@ public:
 	void DeleteNetwork(const int arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FShutdown = PreyFunction<void(CArkProjectileGooNetworkManager *const _this)>(0x124BC30);
 	static inline auto FSerialize = PreyFunction<void(CArkProjectileGooNetworkManager *const _this, TSerialize _ser)>(0x124B670);
 	static inline auto FReset = PreyFunction<void(CArkProjectileGooNetworkManager *const _this)>(0x124BC30);
@@ -67,5 +78,16 @@ public:
 	static inline auto FNeedsToBurst = PreyFunction<void(CArkProjectileGooNetworkManager *const _this, const int _networkId, const unsigned _gooId)>(0x124B600);
 	static inline auto FIncreaseGoo = PreyFunction<bool(CArkProjectileGooNetworkManager *const _this, const int _networkId, const unsigned _gooId, const float _gooScale)>(0x124B500);
 	static inline auto FGetGooNetworkFromId = PreyFunction<CArkProjectileGooNetworkManager::GooNetwork *(CArkProjectileGooNetworkManager *const _this, const int _networkId)>(0x124B440);
+#else
+	static inline auto FShutdown = PreyFunction<void(CArkProjectileGooNetworkManager* const _this)>(0x12EF8F0);
+	static inline auto FSerialize = PreyFunction<void(CArkProjectileGooNetworkManager* const _this, TSerialize _ser)>(0x12EF930);
+	static inline auto FReset = PreyFunction<void(CArkProjectileGooNetworkManager* const _this)>(0x12EF8F0);
+	static inline auto FUpdate = PreyFunction<void(CArkProjectileGooNetworkManager* const _this, const float _frameTime)>(0x12EFEF0);
+	static inline auto FCreateNetwork = PreyFunction<int(CArkProjectileGooNetworkManager* const _this, const unsigned _gooId, const float _lockTime, const float _burstTime)>(0x12EF4F0);
+	static inline auto FAddToNetwork = PreyFunction<void(CArkProjectileGooNetworkManager* const _this, const int _networkId, const unsigned _gooId)>(0x12EF4C0);
+	static inline auto FDeleteFromNetwork = PreyFunction<void(CArkProjectileGooNetworkManager* const _this, const int _networkId, const unsigned _gooId)>(0x12EF5F0);
+	static inline auto FNeedsToBurst = PreyFunction<void(CArkProjectileGooNetworkManager* const _this, const int _networkId, const unsigned _gooId)>(0x12EF880);
+	static inline auto FIncreaseGoo = PreyFunction<bool(CArkProjectileGooNetworkManager* const _this, const int _networkId, const unsigned _gooId, const float _gooScale)>(0x12EF780);
+	static inline auto FGetGooNetworkFromId = PreyFunction<CArkProjectileGooNetworkManager::GooNetwork* (CArkProjectileGooNetworkManager* const _this, const int _networkId)>(0x12EF6C0);
+#endif
 };
-

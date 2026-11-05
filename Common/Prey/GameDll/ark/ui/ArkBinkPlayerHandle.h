@@ -20,4 +20,3 @@ struct ArkBinkPlayerHandle // Id=8001A61 Size=8
 	void Invalidate();
 #endif
 };
-

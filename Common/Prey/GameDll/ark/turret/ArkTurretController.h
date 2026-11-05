@@ -47,43 +47,168 @@ public:
 	float m_timeOutOfDesiredRange;
 	std::vector<int> m_constraintIds;
 	float m_currentLerpSpeed;
+#ifdef MOONCRASH
+	std::list<Vec3_tpl<float>,std::allocator<Vec3_tpl<float> > > m_lastOwnerLocations;
+#endif
+#ifndef MOONCRASH
 	std::list<Vec3,std::allocator<Vec3>> m_lastOwnerLocations;
+#endif
+#ifndef MOONCRASH
 	static float s_breakDistanceSq;
+#else
+	static inline auto s_breakDistanceSq = PreyGlobal<float>(0x23E3708);
+#endif
+#ifndef MOONCRASH
 	static float s_startRecoveryDistanceSq;
+#else
+	static inline auto s_startRecoveryDistanceSq = PreyGlobal<float>(0x23E370C);
+#endif
+#ifndef MOONCRASH
 	static float s_lerpMaxSpeed;
+#else
+	static inline auto s_lerpMaxSpeed = PreyGlobal<float>(0x23E3710);
+#endif
+#ifndef MOONCRASH
 	static float s_lerpObstructedMaxSpeed;
+#else
+	static inline auto s_lerpObstructedMaxSpeed = PreyGlobal<float>(0x23E3714);
+#endif
+#ifndef MOONCRASH
 	static float s_lerpAcceleration;
+#else
+	static inline auto s_lerpAcceleration = PreyGlobal<float>(0x23E3718);
+#endif
+#ifndef MOONCRASH
 	static float s_lerpObstructedAcceleration;
+#else
+	static inline auto s_lerpObstructedAcceleration = PreyGlobal<float>(0x23E371C);
+#endif
+#ifndef MOONCRASH
 	static float s_turretFloatAmplitude;
+#else
+	static inline auto s_turretFloatAmplitude = PreyGlobal<float>(0x23E3720);
+#endif
+#ifndef MOONCRASH
 	static float s_turretFloatSpeed;
+#else
+	static inline auto s_turretFloatSpeed = PreyGlobal<float>(0x23E3724);
+#endif
+#ifndef MOONCRASH
 	static float s_turretFloatMaxNoiseAngle;
+#else
+	static inline auto s_turretFloatMaxNoiseAngle = PreyGlobal<float>(0x23E3728);
+#endif
+#ifndef MOONCRASH
 	static float s_turretFloatNoiseAngleSpeed;
+#else
+	static inline auto s_turretFloatNoiseAngleSpeed = PreyGlobal<float>(0x23E372C);
+#endif
+#ifndef MOONCRASH
 	static float s_turretDropStunDuration;
+#else
+	static inline auto s_turretDropStunDuration = PreyGlobal<float>(0x23E3730);
+#endif
+#ifndef MOONCRASH
 	static float s_avoidOwnerRadius;
+#else
+	static inline auto s_avoidOwnerRadius = PreyGlobal<float>(0x23E3734);
+#endif
+#ifndef MOONCRASH
 	static float s_approximateTurretRadius;
+#else
+	static inline auto s_approximateTurretRadius = PreyGlobal<float>(0x23E3738);
+#endif
+#ifndef MOONCRASH
 	static float s_ownerHalfHeight;
+#else
+	static inline auto s_ownerHalfHeight = PreyGlobal<float>(0x23E373C);
+#endif
+#ifndef MOONCRASH
 	static float s_stuckTestMaxTime;
+#else
+	static inline auto s_stuckTestMaxTime = PreyGlobal<float>(0x23E3740);
+#endif
+#ifndef MOONCRASH
 	static float s_stuckTestMinDistanceSq;
+#else
+	static inline auto s_stuckTestMinDistanceSq = PreyGlobal<float>(0x23E3744);
+#endif
+#ifndef MOONCRASH
 	static float s_adjustedMinMoveSpeed;
+#else
+	static inline auto s_adjustedMinMoveSpeed = PreyGlobal<float>(0x23E3748);
+#endif
+#ifndef MOONCRASH
 	static float s_minTimeBetweenTraces;
+#else
+	static inline auto s_minTimeBetweenTraces = PreyGlobal<float>(0x23E374C);
+#endif
+#ifndef MOONCRASH
 	static float s_targetPositionTooCloseTime;
+#else
+	static inline auto s_targetPositionTooCloseTime = PreyGlobal<float>(0x23E3750);
+#endif
+#ifndef MOONCRASH
 	static float s_expectedTurretHeight;
+#else
+	static inline auto s_expectedTurretHeight = PreyGlobal<float>(0x23E3754);
+#endif
+#ifndef MOONCRASH
 	static float s_formationResetHoldDistSq;
+#else
+	static inline auto s_formationResetHoldDistSq = PreyGlobal<float>(0x23E3758);
+#endif
+#ifndef MOONCRASH
 	static float s_maxStuckTimeAllowed;
+#else
+	static inline auto s_maxStuckTimeAllowed = PreyGlobal<float>(0x23E375C);
+#endif
+#ifndef MOONCRASH
 	static float s_maxTimeOutOfRangeAllowed;
+#else
+	static inline auto s_maxTimeOutOfRangeAllowed = PreyGlobal<float>(0x23E3760);
+#endif
+#ifndef MOONCRASH
 	static float s_distBetweenLastOwnerLocations;
+#else
+	static inline auto s_distBetweenLastOwnerLocations = PreyGlobal<float>(0x23E3764);
+#endif
+#ifndef MOONCRASH
 	static float s_rotatingToPointGiveUpDistanceSq;
+#else
+	static inline auto s_rotatingToPointGiveUpDistanceSq = PreyGlobal<float>(0x23E3768);
+#endif
+#ifndef MOONCRASH
 	static float s_returningToPointGiveUpDistanceSq;
+#else
+	static inline auto s_returningToPointGiveUpDistanceSq = PreyGlobal<float>(0x23E376C);
+#endif
+#ifndef MOONCRASH
 	static float s_followPathHeightAdjustment;
+#else
+	static inline auto s_followPathHeightAdjustment = PreyGlobal<float>(0x23E3770);
+#endif
+#ifndef MOONCRASH
 	static float s_turretTooCloseRadius;
+#else
+	static inline auto s_turretTooCloseRadius = PreyGlobal<float>(0x23E3774);
+#endif
+#ifndef MOONCRASH
 	static uint64_t s_maxNumOwnerPosListEntries;
+#else
+	static inline auto s_maxNumOwnerPosListEntries = PreyGlobal<uint64_t>(0x23E3778);
+#endif
 	
 	ArkTurretController();
 	void StartControllingTurret(IEntity &_turretEntity, uint64_t _newTurretFaction, unsigned _controllingEntityId) { FStartControllingTurret(this,_turretEntity,_newTurretFaction,_controllingEntityId); }
 	void StopControllingTurret() { FStopControllingTurret(this); }
 	void SetupConstraint(IPhysicalEntity *_pOwnerPhysics, IPhysicalEntity *_pTurretPhysics) { FSetupConstraint(this,_pOwnerPhysics,_pTurretPhysics); }
 	bool IsControllingTurret() const { return FIsControllingTurret(this); }
+#ifndef MOONCRASH
 	Vec3 GetControlledTurretWorldPos() const { return FGetControlledTurretWorldPos(this); }
+#else
+	Vec3 GetControlledTurretWorldPos() const { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetControlledTurretWorldPos(this, reinterpret_cast<Vec3*>(_return_buf_)); }
+#endif
 	void CalcTraceAdjustDesiredPos(Vec3 _startPos, Vec3 &_desiredTracePos, ArkNpc const &_npc, float _minTurretTraceAdjustmentRadius) const { FCalcTraceAdjustDesiredPos(this,_startPos,_desiredTracePos,_npc,_minTurretTraceAdjustmentRadius); }
 	bool Update(ArkNpc const &_npc, Vec3 _npcCenter, Vec3 _desriredPos, Vec3 _desiredAimTarget, uint64_t _expectedTurretFactionId, float _turretTraceAdjustmentRadius, bool _bCanCheckTraces, float _elapsedTime) { return FUpdate(this,_npc,_npcCenter,_desriredPos,_desiredAimTarget,_expectedTurretFactionId,_turretTraceAdjustmentRadius,_bCanCheckTraces,_elapsedTime); }
 	void SetControlPointIndex(int _controlPointIndex) { FSetControlPointIndex(this,_controlPointIndex); }
@@ -117,6 +242,10 @@ public:
 	void ResetLerpValues();
 #endif
 	
+#ifdef MOONCRASH
+	unsigned GetControlledTurretId() const { return FGetControlledTurretId(this); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FStartControllingTurret = PreyFunction<void(ArkTurretController *const _this, IEntity &_turretEntity, uint64_t _newTurretFaction, unsigned _controllingEntityId)>(0x133F910);
 	static inline auto FStopControllingTurret = PreyFunction<void(ArkTurretController *const _this)>(0x1340040);
 	static inline auto FSetupConstraint = PreyFunction<void(ArkTurretController *const _this, IPhysicalEntity *_pOwnerPhysics, IPhysicalEntity *_pTurretPhysics)>(0x133F730);
@@ -140,5 +269,31 @@ public:
 	static inline auto FPushAwayFromOwner = PreyFunction<bool(ArkTurretController *const _this, IEntity &_entity, Vec3 _ownerPos)>(0x133F310);
 	static inline auto FResetStuckTimers = PreyFunction<void(ArkTurretController *const _this)>(0x133F480);
 	static inline auto FLoadConfig = PreyFunction<void(ArkTurretController *const _this)>(0x133E7D0);
+#else
+	static inline auto FArkTurretControllerOv2 = PreyFunction<void(ArkTurretController* const _this)>(0x141A5E0);
+	static inline auto FStartControllingTurret = PreyFunction<void(ArkTurretController* const _this, IEntity& _turretEntity, uint64_t _newTurretFaction, unsigned _controllingEntityId)>(0x141BD90);
+	static inline auto FStopControllingTurret = PreyFunction<void(ArkTurretController* const _this)>(0x141C4D0);
+	static inline auto FSetupConstraint = PreyFunction<void(ArkTurretController* const _this, IPhysicalEntity* _pOwnerPhysics, IPhysicalEntity* _pTurretPhysics)>(0x141BB10);
+	static inline auto FIsControllingTurret = PreyFunction<bool(const ArkTurretController* const _this)>(0x141ABA0);
+	static inline auto FGetControlledTurretWorldPos = PreyFunction<Vec3*(const ArkTurretController* const _this, Vec3* _return_value_)>(0x141AB40);
+	static inline auto FGetControlledTurretId = PreyFunction<unsigned(const ArkTurretController* const _this)>(0x12A08E0);
+	static inline auto FCalcTraceAdjustDesiredPos = PreyFunction<void(const ArkTurretController* const _this, Vec3 _startPos, Vec3& _desiredTracePos, const ArkNpc& _npc, float _minTurretTraceAdjustmentRadius)>(0x141A6B0);
+	static inline auto FUpdate = PreyFunction<bool(ArkTurretController* const _this, const ArkNpc& _npc, Vec3 _npcCenter, Vec3 _desriredPos, Vec3 _desiredAimTarget, uint64_t _expectedTurretFactionId, float _turretTraceAdjustmentRadius, bool _bCanCheckTraces, float _elapsedTime)>(0x141C8B0);
+	static inline auto FSetControlPointIndex = PreyFunction<void(ArkTurretController* const _this, int _controlPointIndex)>(0x141BB00);
+	static inline auto FHasControlPointIndex = PreyFunction<bool(const ArkTurretController* const _this)>(0x141AB90);
+	static inline auto FGetControlPointIndex = PreyFunction<int(const ArkTurretController* const _this)>(0x11883D0);
+	static inline auto FSetId = PreyFunction<void(ArkTurretController* const _this, int _id)>(0x7CA210);
+	static inline auto FSerialize = PreyFunction<void(ArkTurretController* const _this, TSerialize _ser)>(0x141B890);
+	static inline auto FPostSerialize = PreyFunction<void(ArkTurretController* const _this, const ArkNpc& _npc)>(0x141B5D0);
+	static inline auto FOnFormationChange = PreyFunction<void(ArkTurretController* const _this)>(0x141B5C0);
+	static inline auto FStartGrabberControl = PreyFunction<void(ArkTurretController* const _this, IEntity& _turretEntity)>(0x141C170);
+	static inline auto FUpdateGrabberMovement = PreyFunction<bool(ArkTurretController* const _this, IEntity& _entity, const ArkNpc& _npc, Vec3 _target, Quat _desiredRotation, float _elapsedTime)>(0x141D540);
+	static inline auto FStopGrabberControl = PreyFunction<void(ArkTurretController* const _this, IEntity& _turretEntity)>(0x141C6E0);
+	static inline auto FStartHoldingInPlace = PreyFunction<void(ArkTurretController* const _this, IEntity& _turretEntity, Vec3& _delta)>(0x141C420);
+	static inline auto FMoveGrabbedEntityToPoint = PreyFunction<bool(ArkTurretController* const _this, IEntity& _entity, const Vec3& _target, const Vec3& _delta, const Quat& _desiredRotation, const float _finishedMoveDistance, const float _frameTime, bool& out_bFinishedMovement)>(0x141B070);
+	static inline auto FUpdateOwnerTracking = PreyFunction<void(ArkTurretController* const _this, IEntity& _ownerEntity, bool _bLimitListSize)>(0x141E7F0);
+	static inline auto FPushAwayFromOwner = PreyFunction<bool(ArkTurretController* const _this, IEntity& _entity, const Vec3 _ownerPos)>(0x141B6F0);
+	static inline auto FResetStuckTimers = PreyFunction<void(ArkTurretController* const _this)>(0x141B860);
+	static inline auto FLoadConfig = PreyFunction<void(ArkTurretController* const _this)>(0x141ABB0);
+#endif
 };
-

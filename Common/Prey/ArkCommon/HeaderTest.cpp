@@ -1,4 +1,5 @@
-// Header test file for path Prey/ArkCommon/ArkContiguousMemory.h
+// Header test file for path Prey/ArkCommon/
+
 #include "ArkContiguousMemory.h"
 static_assert(sizeof(ArkContiguousMemory) == 24);
 
@@ -6,13 +7,19 @@ static_assert(sizeof(ArkContiguousMemory) == 24);
 static_assert(sizeof(ArkContiguousMemorySizer) == 8);
 
 #include "ArkDelegate.h"
-//static_assert(sizeof(ArkFlowNodeObjectiveState) == 64);
-//static_assert(sizeof(ArkFlowNodeTaskState) == 64);
-//static_assert(sizeof(CArkFlowNodeWorkstationResult) == 64);
-//static_assert(sizeof(CArkFlowNodeConfirmDialog) == 64);
 
 #include "ArkRegularOutcome.h"
 static_assert(sizeof(ArkRegularOutcome) == 4);
 
-//#include "arkunanimous.h"
-//static_assert(sizeof(ArkNpcBodyStateEnterParams_Busy) == 16);
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "arkblackboardautoentry.h"
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSafeIterator.h"
+#include "arkintrusivelist.h"
+class ArkNpcAnimActionObserver;
+static_assert(sizeof(ArkIntrusiveListImpl::ArkIntrusiveListIterator<ArkNpcAnimActionObserver>) == 8);
+static_assert(sizeof(ArkIntrusiveListImpl::ArkIntrusiveListConstIterator<ArkNpcAnimActionObserver>) == 8);
+static_assert(sizeof(ArkSafeIterator<ArkIntrusiveListImpl::ArkIntrusiveListIterator<ArkNpcAnimActionObserver>>) == 16);
+#endif

@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <iterator>
 
 template <typename T>
 class ArkIntrusiveList;
@@ -25,6 +26,70 @@ public:
 #endif
 };
 
+// The std::iterator base (deprecated in C++17) is replaced by the same typedefs. Size=8.
+namespace ArkIntrusiveListImpl
+{
+
+template <typename T>
+class ArkIntrusiveListIterator
+{
+public:
+	using iterator_category = std::bidirectional_iterator_tag;
+	using value_type = T;
+	using difference_type = int64_t;
+	using pointer = T*;
+	using reference = T&;
+
+	ArkIntrusiveListElement<T>* m_pElem;
+
+#if 0
+	ArkIntrusiveListIterator();
+	ArkIntrusiveListIterator(const ArkIntrusiveListIterator<T>&);
+	ArkIntrusiveListIterator(ArkIntrusiveListElement<T>&);
+	ArkIntrusiveListIterator<T>& operator=(const ArkIntrusiveListIterator<T>&);
+	operator ArkIntrusiveListConstIterator<T>() const;
+	ArkIntrusiveListIterator<T>& operator--();
+	ArkIntrusiveListIterator<T> operator--(int);
+	ArkIntrusiveListIterator<T>& operator++();
+	ArkIntrusiveListIterator<T> operator++(int);
+	bool operator==(const ArkIntrusiveListIterator<T>&) const;
+	bool operator!=(const ArkIntrusiveListIterator<T>&) const;
+	T& operator*() const;
+	T* operator->() const;
+#endif
+};
+
+template <typename T>
+class ArkIntrusiveListConstIterator
+{
+public:
+	using iterator_category = std::bidirectional_iterator_tag;
+	using value_type = const T;
+	using difference_type = int64_t;
+	using pointer = const T*;
+	using reference = const T&;
+
+	ArkIntrusiveListElement<T>* m_pElem; // non-const in the game
+
+#if 0
+	ArkIntrusiveListConstIterator();
+	ArkIntrusiveListConstIterator(const ArkIntrusiveListConstIterator<T>&);
+	ArkIntrusiveListConstIterator(const ArkIntrusiveListElement<T>&);
+	ArkIntrusiveListConstIterator<T>& operator=(const ArkIntrusiveListConstIterator<T>&);
+	ArkIntrusiveListConstIterator<T>& operator--();
+	ArkIntrusiveListConstIterator<T> operator--(int);
+	ArkIntrusiveListConstIterator<T>& operator++();
+	ArkIntrusiveListConstIterator<T> operator++(int);
+	bool operator==(const ArkIntrusiveListConstIterator<T>&) const;
+	bool operator!=(const ArkIntrusiveListConstIterator<T>&) const;
+	T& operator*() const;
+	T* operator->() const;
+#endif
+};
+
+} // namespace ArkIntrusiveListImpl
+
+
 // Header: Exact
 // Prey/ArkCommon/arkintrusivelist.h
 template <typename T>
@@ -36,10 +101,10 @@ public:
 	using const_reference = T const &;
 	using pointer = T *;
 	using const_pointer = T const *;
-	//using iterator = ArkIntrusiveListImpl::ArkIntrusiveListIterator<T>;
-	//using const_iterator = ArkIntrusiveListImpl::ArkIntrusiveListConstIterator<T>;
-	//using reverse_iterator = std::reverse_iterator<ArkIntrusiveListImpl::ArkIntrusiveListIterator<T> >;
-	//using const_reverse_iterator = std::reverse_iterator<ArkIntrusiveListImpl::ArkIntrusiveListConstIterator<T> >;
+	using iterator = ArkIntrusiveListImpl::ArkIntrusiveListIterator<T>;
+	using const_iterator = ArkIntrusiveListImpl::ArkIntrusiveListConstIterator<T>;
+	using reverse_iterator = std::reverse_iterator<ArkIntrusiveListImpl::ArkIntrusiveListIterator<T> >;
+	using const_reverse_iterator = std::reverse_iterator<ArkIntrusiveListImpl::ArkIntrusiveListConstIterator<T> >;
 	using difference_type = int64_t;
 	using size_type = uint64_t;
 	
@@ -81,4 +146,3 @@ public:
 	void unsafe_remove(ArkIntrusiveListElement<T> &arg0);
 #endif
 };
-

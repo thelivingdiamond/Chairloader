@@ -43,11 +43,19 @@ public:
 	void ProcessInput(const CCryName& _arg0_, const bool _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicTurretCameraOv2 = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this)>(0x1322000);
 	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const ArkPlayerMimicTurretController& _controller)>(0x17CD570);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x1322230);
 	static inline auto FGetRotation = PreyFunction<Quat*(const ArkPlayerMimicTurretCamera* const _this, Quat* _return_value_)>(0x1322040);
 	static inline auto FSetRotation = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const Quat& _rotation)>(0x13221B0);
 	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, TSerialize _ser)>(0x1322110);
+#else
+	static inline auto FArkPlayerMimicTurretCameraOv2 = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this)>(0x13FC5F0);
+	static inline auto FInitialize = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const ArkPlayerMimicTurretController& _controller)>(0x19396F0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13FC820);
+	static inline auto FGetRotation = PreyFunction<Quat*(const ArkPlayerMimicTurretCamera* const _this, Quat* _return_value_)>(0x13FC630);
+	static inline auto FSetRotation = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, const Quat& _rotation)>(0x13FC7A0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicTurretCamera* const _this, TSerialize _ser)>(0x13FC700);
+#endif
 };
-

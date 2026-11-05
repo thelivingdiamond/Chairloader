@@ -4,6 +4,9 @@
 
 // Header: Override
 // Prey/GameDll/ark/ui/IArkSaveLoadMenuListener.h
+#ifdef MOONCRASH
+enum class EArkSaveLoadMode;
+#endif
 class IArkSaveLoadMenuListener // Id=80191E3 Size=8
 {
 public:
@@ -12,4 +15,3 @@ public:
 	virtual void OnLoadSuccess() = 0;
 	virtual bool OnLoadFail() = 0;
 };
-

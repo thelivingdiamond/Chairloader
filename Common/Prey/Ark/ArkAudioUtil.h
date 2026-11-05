@@ -6,6 +6,14 @@ struct IEntity;
 
 // Header: Override
 // Prey/Ark/ArkAudioUtil.h
+#ifdef MOONCRASH
+enum class EPlayerSex;
+class ArkAudioControl;
+class ArkAudioTrigger;
+class ArkAudioRtpc;
+class ArkAudioSwitch;
+class ArkAudioSwitchState;
+#endif
 class ArkAudioControl // Id=80020DC Size=4
 {
 public:
@@ -28,9 +36,15 @@ public:
 	void Execute(IEntity *_pEntity) const { FExecute(this,_pEntity); }
 	void Stop(IEntity *_pEntity) const { FStop(this,_pEntity); }
 	
+#ifndef MOONCRASH
 	static inline auto FLoad = PreyFunction<bool(ArkAudioTrigger *const _this, const char *_pName)>(0x12086D0);
 	static inline auto FExecute = PreyFunction<void(ArkAudioTrigger const *const _this, IEntity *_pEntity)>(0x10B19B0);
 	static inline auto FStop = PreyFunction<void(ArkAudioTrigger const *const _this, IEntity *_pEntity)>(0x1236480);
+#else
+	static inline auto FLoad = PreyFunction<bool(ArkAudioTrigger* const _this, const char* _pName)>(0x10E2860);
+	static inline auto FExecute = PreyFunction<void(const ArkAudioTrigger* const _this, IEntity* _pEntity)>(0x10E0140);
+	static inline auto FStop = PreyFunction<void(const ArkAudioTrigger* const _this, IEntity* _pEntity)>(0x11CC730);
+#endif
 };
 
 // Header: Override
@@ -44,7 +58,11 @@ public:
 	bool Load(const char *arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetValue = PreyFunction<void(ArkAudioRtpc const *const _this, float _value, IEntity *_pEntity)>(0x12402B0);
+#else
+	static inline auto FSetValue = PreyFunction<void(const ArkAudioRtpc* const _this, float _value, IEntity* _pEntity)>(0x12E0F30);
+#endif
 };
 
 // ArkAudioSwitch
@@ -70,6 +88,12 @@ public:
 	ArkAudioSwitch(unsigned _arg0_);
 	bool Load(const char* _arg0_);
 	void SetState(const ArkAudioSwitchState& _arg0_, IEntity* _arg1_) const;
+#endif
+#ifdef MOONCRASH
+	void SetState(const ArkAudioSwitchState& _state, IEntity* _pEntity) const { FSetState(this, _state, _pEntity); }
+#endif
+#ifdef MOONCRASH
+	static inline auto FSetState = PreyFunction<void(const ArkAudioSwitch* const _this, const ArkAudioSwitchState& _state, IEntity* _pEntity)>(0x1572A50);
 #endif
 };
 
@@ -122,5 +146,9 @@ public:
 	bool LoadState(T _arg0_, const char* _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FSetState = PreyFunction<void(TArkAudioSwitch const* const _this, T _state, IEntity * _pEntity)>(0x132BC80);
+#else
+	static inline auto FSetState = PreyFunction<void(TArkAudioSwitch const* const _this, T _state, IEntity * _pEntity)>(0x13C1F40);
+#endif
 };

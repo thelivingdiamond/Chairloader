@@ -1,9 +1,8 @@
 // Header file automatically created from a PDB.
 
 #pragma once
-//#include <Prey/CrySystem/Scaleform/IFlashUI.h>
 #include <Prey/GameDll/ark/ui/IUIElementEventListener.h>
-#include <Prey/GameDll/ark/dialog/ArkConversation.h>
+#include <Prey/GameDll/ark/dialog/ArkSpeakerBase.h>
 
 struct IEntity;
 struct IUIElement;
@@ -39,4 +38,3 @@ public:
 	virtual EArkConversationDominance GetDefaultDominance() const;
 	virtual void SetDuckAudio(const bool _bEnable);
 };
-

@@ -47,4 +47,3 @@ struct SAudioManagerRequestDataBase : public SAudioRequestDataBase // Id=8002D38
 	void __dflt_ctor_closure();
 #endif
 };
-

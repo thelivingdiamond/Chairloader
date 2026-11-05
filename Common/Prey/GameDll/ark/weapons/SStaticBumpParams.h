@@ -4,6 +4,12 @@
 
 // Header: Override
 // Prey/GameDll/ark/weapons/SStaticBumpParams.h
+#ifdef MOONCRASH
+namespace Serialization
+{
+class IArchive;
+} // namespace Serialization
+#endif
 struct SStaticBumpParams // Id=801D539 Size=12
 {
 	float time;
@@ -14,4 +20,3 @@ struct SStaticBumpParams // Id=801D539 Size=12
 	void Serialize(Serialization::IArchive &arg0);
 #endif
 };
-

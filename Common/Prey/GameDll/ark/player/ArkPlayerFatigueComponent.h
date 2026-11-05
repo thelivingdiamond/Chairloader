@@ -49,6 +49,7 @@ public:
 	void ActivateTrauma(bool _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerFatigueComponentOv1 = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12343E0);
 	static inline auto FInit = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x1234900);
 	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const XmlNodeRef& _root)>(0x12349C0);
@@ -61,5 +62,18 @@ public:
 	static inline auto FPreviewFatigue = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _fatigueAmount)>(0x1234B90);
 	static inline auto FOnPreviewAnimationFinished = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x1234B00);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x1234B40);
+#else
+	static inline auto FArkPlayerFatigueComponentOv1 = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D52D0);
+	static inline auto FInit = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D57F0);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const XmlNodeRef& _root)>(0x12D58B0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _frameTime)>(0x12D60A0);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerFatigueComponent* const _this, TSerialize _ser)>(0x12D5DB0);
+	static inline auto FReset = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D5C50);
+	static inline auto FTestExhaustion = PreyFunction<bool(const ArkPlayerFatigueComponent* const _this)>(0x12D5FF0);
+	static inline auto FTestStamina = PreyFunction<bool(const ArkPlayerFatigueComponent* const _this)>(0x12D6050);
+	static inline auto FAdjustFatigue = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _fatigueAmount)>(0x12D5470);
+	static inline auto FPreviewFatigue = PreyFunction<void(ArkPlayerFatigueComponent* const _this, float _fatigueAmount)>(0x12D5A80);
+	static inline auto FOnPreviewAnimationFinished = PreyFunction<void(ArkPlayerFatigueComponent* const _this)>(0x12D59F0);
+	static inline auto FOnStatChange = PreyFunction<void(ArkPlayerFatigueComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x12D5A30);
+#endif
 };
-

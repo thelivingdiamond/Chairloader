@@ -1,4 +1,5 @@
-// Header test file for path Prey/GameDll/ark/perception/ArkAttentiveSubject.h
+// Header test file for path Prey/GameDll/ark/perception/
+
 #include "ArkAttentiveSubject.h"
 static_assert(sizeof(ArkAttentiveSubject) == 8);
 
@@ -50,8 +51,8 @@ static_assert(sizeof(ArkVisualPerceivable) == 8);
 
 #include "arkvisualperceiver.h"
 static_assert(sizeof(ArkVisualPerceiverVisionParams) == 60);
+static_assert(sizeof(ArkVisualPerceiver) == 8);
 
-#if 0
 #include "ArkVisualPerceptionManager.h"
 static_assert(sizeof(ArkVisualPerceptionManager) == 1800);
 static_assert(sizeof(ArkVisualPerceptionManager::VisionConeDefinition) == 44);
@@ -64,13 +65,66 @@ static_assert(sizeof(ArkVisualPerceptionManager::PerceiverPerceivableIndexPairHa
 static_assert(sizeof(ArkVisualPerceptionManager::SimplePerceivableWorldPoints) == 12);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexPerceivableWorldPoints) == 60);
 static_assert(sizeof(ArkVisualPerceptionManager::SimpleLineOfSightCheckImpl) == 1);
-static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VSimpleLineOfSightCheckImpl@ArkVisualPerceptionManager@@) == 16);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexLineOfSightCheckImplBase) == 1);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexAnyLineOfSightCheckImpl) == 1);
-static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VComplexAnyLineOfSightCheckImpl@ArkVisualPerceptionManager@@) == 16);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexAcuteLineOfSightCheckImpl) == 1);
-static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VComplexAcuteLineOfSightCheckImpl@ArkVisualPerceptionManager@@) == 16);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexAllLineOfSightCheckImpl) == 1);
-static_assert(sizeof(ArkVisualPerceptionManager::?$LineOfSightCheckImpl@VComplexAllLineOfSightCheckImpl@ArkVisualPerceptionManager@@) == 16);
 static_assert(sizeof(ArkVisualPerceptionManager::ComplexLineOfSightChecks) == 1832);
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkAuralPerceiver.h"
+static_assert(sizeof(ArkAuralPerceiver) == 8);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkComplexSeismicPerceptionInfo.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkComplexSeismicPerceptionInfo) == 24);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkRoomPerceiver.h"
+static_assert(sizeof(ArkRoomPerceiver) == 8);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSeismicBounds.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSeismicBounds) == 12);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSeismicPerceivable.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSeismicPerceivable) == 8);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSeismicPerceiver.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSeismicPerceiver) == 8);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSeismicPerceptionManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSeismicPerceptionManager) == 632);
+static_assert(sizeof(ArkSeismicPerceptionManager::SimpleSeismicEvent) == 16);
+static_assert(sizeof(ArkSeismicPerceptionManager::ComplexSeismicEvent) == 24);
+static_assert(sizeof(ArkSeismicPerceptionManager::SimpleTremor) == 20);
+static_assert(sizeof(ArkSeismicPerceptionManager::ComplexTremor) == 28);
+static_assert(sizeof(ArkSeismicPerceptionManager::MeshPerceiver) == 16);
+static_assert(sizeof(ArkSeismicPerceptionManager::MeshNotificationIndexes) == 24);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSimpleSeismicPerceptionInfo.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSimpleSeismicPerceptionInfo) == 16);
+#endif
 #endif

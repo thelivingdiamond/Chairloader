@@ -16,4 +16,3 @@ struct ArkAttentionLevelChange // Id=801430D Size=28
 	bool m_bSwitchedTarget;
 	unsigned m_oldAttentionObjectEntityId;
 };
-

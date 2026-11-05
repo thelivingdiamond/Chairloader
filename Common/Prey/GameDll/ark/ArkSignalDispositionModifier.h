@@ -16,7 +16,11 @@ public:
 	void LoadConfig(XmlNodeRef const &_root) { FLoadConfig(this,_root); }
 	float GetFactor(const unsigned _instigatorId, const unsigned _ownerId, std::vector<ArkSignalSystem::Package::Value> const &_values) const { return FGetFactor(this,_instigatorId,_ownerId,_values); }
 	
+#ifndef MOONCRASH
 	static inline auto FLoadConfig = PreyFunction<void(ArkSignalDispositionModifier *const _this, XmlNodeRef const &_root)>(0x11AEF00);
 	static inline auto FGetFactor = PreyFunction<float(ArkSignalDispositionModifier const *const _this, const unsigned _instigatorId, const unsigned _ownerId, std::vector<ArkSignalSystem::Package::Value> const &_values)>(0x11AEDA0);
+#else
+	static inline auto FLoadConfig = PreyFunction<void(ArkSignalDispositionModifier* const _this, const XmlNodeRef& _root)>(0x122C580);
+	static inline auto FGetFactor = PreyFunction<float(const ArkSignalDispositionModifier* const _this, const unsigned _instigatorId, const unsigned _ownerId, const std::vector<ArkSignalSystem::Package::Value>& _values)>(0x122C4B0);
+#endif
 };
-

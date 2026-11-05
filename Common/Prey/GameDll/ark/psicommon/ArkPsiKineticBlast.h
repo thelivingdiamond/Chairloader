@@ -12,6 +12,10 @@ struct IEntity;
 
 // ArkPsiKineticBlastProperties
 // Header:  Prey/GameDll/ark/psicommon/ArkPsiKineticBlast.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
+#include <Prey/GameDll/ark/ArkPsiBlastProperties.h>
+#endif
 class ArkPsiKineticBlastProperties : public ArkReflectedObject
 { // Size=144 (0x90)
 public:
@@ -24,12 +28,22 @@ public:
 		virtual void SetValue(ArkReflectedObject* const _pObject, const IArkValueBase* _v) const;
 		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
 
+#ifndef MOONCRASH
 		static inline auto FArkBlastPropertiesPropertyOv2 = PreyFunction<void(ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this)>(0x1581D10);
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1580AE0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FArkBlastPropertiesPropertyOv2 = PreyFunction<void(ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this)>(0x16A92C0);
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16A9060);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkBlastPropertiesProperty = PreyGlobal<ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty>(0x2C03390);
+#else
+	static inline auto s_ArkBlastPropertiesProperty = PreyGlobal<ArkPsiKineticBlastProperties::ArkBlastPropertiesProperty>(0x2D7DC78);
+#endif
 	ArkPsiBlastProperties m_BlastProperties;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -40,7 +54,11 @@ public:
 	const ArkPsiBlastProperties& GetBlastProperties() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x15811D0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16A9600);
+#endif
 };
 
 // CArkPsiKineticBlast
@@ -61,9 +79,18 @@ public:
 	CArkPsiKineticBlast(CArkPsiKineticBlast&& _arg0_);
 #endif
 
+#ifdef MOONCRASH
+	CArkPsiKineticBlast& operator=(CArkPsiKineticBlast&& _blast) { return FoperatorEq(this, std::move(_blast)); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FCArkPsiKineticBlastOv0 = PreyFunction<void(CArkPsiKineticBlast* const _this, const Vec3& _pos, const CArkPsiBlastProperties<ArkPsiKineticBlastProperties>* _pProperties)>(0x1581190);
 	static inline auto FoperatorEq = PreyFunction<CArkPsiKineticBlast& (CArkPsiKineticBlast* const _this, CArkPsiKineticBlast&& _blast)>(0x15811B0);
 	static inline auto FGetPower = PreyFunction<EArkPsiPowers(const CArkPsiKineticBlast* const _this)>(0xC36440);
 	static inline auto FUpdateEffect = PreyFunction<void(const CArkPsiKineticBlast* const _this, const std::vector<IEntity*> _entities)>(0x15820D0);
+#else
+	static inline auto FCArkPsiKineticBlastOv0 = PreyFunction<void(CArkPsiKineticBlast* const _this, const Vec3& _pos, const CArkPsiBlastProperties<ArkPsiKineticBlastProperties>* _pProperties)>(0x16A8CE0);
+	static inline auto FoperatorEq = PreyFunction<CArkPsiKineticBlast& (CArkPsiKineticBlast* const _this, CArkPsiKineticBlast&& _blast)>(0x16A8220);
+	static inline auto FGetPower = PreyFunction<EArkPsiPowers(const CArkPsiKineticBlast* const _this)>(0x1A2FA50);
+	static inline auto FUpdateEffect = PreyFunction<void(const CArkPsiKineticBlast* const _this, const std::vector<IEntity*> _entities)>(0x16A9660);
+#endif
 };
-

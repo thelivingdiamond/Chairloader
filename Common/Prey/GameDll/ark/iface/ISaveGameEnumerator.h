@@ -6,6 +6,10 @@
 // Header: Override
 // Prey/GameDll/ark/iface/ISaveGameEnumerator.h
 #include <Prey/ArkStubs.h>
+#ifdef MOONCRASH
+#include <Prey/CrySystem/XML/IXml.h>
+struct ISaveGameThumbnail;
+#endif
 struct ISaveGameEnumerator // Id=8001FC9 Size=8
 {
 	struct SGameMetaData // Id=8001FCA Size=56
@@ -38,4 +42,3 @@ struct ISaveGameEnumerator // Id=8001FC9 Size=8
 	virtual void AddRef() = 0;
 	virtual void Release() = 0;
 };
-

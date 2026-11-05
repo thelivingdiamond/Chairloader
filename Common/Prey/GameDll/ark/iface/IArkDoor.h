@@ -15,4 +15,3 @@ public:
 	virtual void SetUsing(unsigned arg0, bool arg1) = 0;
 	virtual bool IsDoorGlooed() const = 0;
 };
-

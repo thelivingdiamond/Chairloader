@@ -30,6 +30,10 @@ public:
 	bool GetDefaultHiddenStateForButton(uint64_t _arg0_) const;
 #endif
 
+#ifdef MOONCRASH
+	void ResetSimulation() { FResetSimulation(this); }
+#endif
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(ArkUtilityComponent* const _this, TSerialize ser)>(0x132D020);
 	static inline auto FIsUtilityEnabled = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x132CEE0);
 	static inline auto FSetUtilityEnabled = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bEnabled)>(0x132D1D0);
@@ -39,5 +43,16 @@ public:
 	static inline auto FSetUtilityButtonEnabled = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bEnabled)>(0x132D0B0);
 	static inline auto FIsUtilityButtonHidden = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x132CE50);
 	static inline auto FSetUtilityButtonHidden = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bHidden)>(0x132D140);
+#else
+	static inline auto FSerialize = PreyFunction<void(ArkUtilityComponent* const _this, TSerialize ser)>(0x14079A0);
+	static inline auto FResetSimulation = PreyFunction<void(ArkUtilityComponent* const _this)>(0x14075B0);
+	static inline auto FIsUtilityEnabled = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x1407470);
+	static inline auto FSetUtilityEnabled = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bEnabled)>(0x1407B50);
+	static inline auto FIsUtilityHidden = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x1407510);
+	static inline auto FSetUtilityHidden = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bHidden)>(0x1407BE0);
+	static inline auto FIsUtilityButtonEnabled = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x1407360);
+	static inline auto FSetUtilityButtonEnabled = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bEnabled)>(0x1407A30);
+	static inline auto FIsUtilityButtonHidden = PreyFunction<bool(const ArkUtilityComponent* const _this, uint64_t _id)>(0x14073E0);
+	static inline auto FSetUtilityButtonHidden = PreyFunction<void(ArkUtilityComponent* const _this, uint64_t _id, bool _bHidden)>(0x1407AC0);
+#endif
 };
-

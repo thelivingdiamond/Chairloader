@@ -20,6 +20,9 @@ public:
 	void Grow(unsigned arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInsert = PreyFunction<void(ArkResponseQuery *const _this, ArkResponseFact const &_fact)>(0x1495F30);
+#else
+	static inline auto FInsert = PreyFunction<void(ArkResponseQuery* const _this, const ArkResponseFact& _fact)>(0x15ADA00);
+#endif
 };
-

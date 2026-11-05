@@ -38,8 +38,13 @@ public:
 		bool operator==(const uint64_t _arg0_) const;
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FActivatePharma = PreyFunction<void(ArkPharmaComponent::ActivePharma* const _this)>(0x1229610);
 		static inline auto FDeactivatePharma = PreyFunction<void(ArkPharmaComponent::ActivePharma* const _this, bool _bImmediate)>(0x1229EE0);
+#else
+		static inline auto FActivatePharma = PreyFunction<void(ArkPharmaComponent::ActivePharma* const _this)>(0x12CAA90);
+		static inline auto FDeactivatePharma = PreyFunction<void(ArkPharmaComponent::ActivePharma* const _this, bool _bImmediate)>(0x12CB360);
+#endif
 	};
 
 	std::vector<ArkPharmaComponent::ActivePharma> m_activePharmas;
@@ -63,6 +68,7 @@ public:
 	void RemoveExpiringPharma();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPharmaComponentOv1 = PreyFunction<void(ArkPharmaComponent* const _this)>(0x1229380);
 	static inline auto FUpdate = PreyFunction<void(ArkPharmaComponent* const _this, float _frameTime)>(0x122A740);
 	static inline auto FSerialize = PreyFunction<void(ArkPharmaComponent* const _this, TSerialize _ser)>(0x122A6F0);
@@ -73,5 +79,16 @@ public:
 	static inline auto FPopulateUIInfo = PreyFunction<void(const ArkPharmaComponent* const _this, std::vector<ArkPlayerStatusUIInfo>& _uiInfo)>(0x122A370);
 	static inline auto FOnStatChange = PreyFunction<void(ArkPharmaComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x122A310);
 	static inline auto FClearExpiringPharmas = PreyFunction<void(ArkPharmaComponent* const _this)>(0x1229DF0);
+#else
+	static inline auto FArkPharmaComponentOv1 = PreyFunction<void(ArkPharmaComponent* const _this)>(0x12CA800);
+	static inline auto FUpdate = PreyFunction<void(ArkPharmaComponent* const _this, float _frameTime)>(0x12CBBC0);
+	static inline auto FSerialize = PreyFunction<void(ArkPharmaComponent* const _this, TSerialize _ser)>(0x12CBB70);
+	static inline auto FLoadConfig = PreyFunction<void(ArkPharmaComponent* const _this, const XmlNodeRef& _node)>(0x12CB770);
+	static inline auto FReset = PreyFunction<void(ArkPharmaComponent* const _this)>(0x12CBB00);
+	static inline auto FOnGameEnded = PreyFunction<void(ArkPharmaComponent* const _this)>(0x12CBB00);
+	static inline auto FApplyPharma = PreyFunction<void(ArkPharmaComponent* const _this, IEntity* _pPharma)>(0x12CAE10);
+	static inline auto FPopulateUIInfo = PreyFunction<void(const ArkPharmaComponent* const _this, std::vector<ArkPlayerStatusUIInfo>& _uiInfo)>(0x12CB7F0);
+	static inline auto FOnStatChange = PreyFunction<void(ArkPharmaComponent* const _this, const unsigned _ownerId, const CCryName& _stat64i32, const float _previousValue, const float _newValue)>(0x12CB790);
+	static inline auto FClearExpiringPharmas = PreyFunction<void(ArkPharmaComponent* const _this)>(0x12CB270);
+#endif
 };
-

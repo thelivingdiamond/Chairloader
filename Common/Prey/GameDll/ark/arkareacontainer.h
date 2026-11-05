@@ -13,6 +13,11 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkareacontainer.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkAreaContainer : public CGameObjectExtensionHelper<CArkAreaContainer,IGameObjectExtension> // Id=8014FAA Size=88
 {
 public:
@@ -54,6 +59,7 @@ public:
 	void ClearAreaShapes();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkAreaContainer *const _this, IGameObject *_pGameObject)>(0x13CACC0);
 	static inline auto FInitClient = PreyFunction<void(CArkAreaContainer *const _this, int channelId)>(0xA13080);
 	static inline auto FPostInit = PreyFunction<void(CArkAreaContainer *const _this, IGameObject *pGameObject)>(0xA13080);
@@ -79,5 +85,32 @@ public:
 	static inline auto FContainsArea = PreyFunction<bool(CArkAreaContainer const *const _this, unsigned _areaEntityId)>(0x13CAB90);
 	static inline auto FIsPointInAnyArea = PreyFunction<bool(CArkAreaContainer const *const _this, Vec3 const &_point)>(0x13CAD50);
 	static inline auto FInitializeAreaShapes = PreyFunction<void(CArkAreaContainer *const _this)>(0x13CACE0);
+#else
+	static inline auto FCArkAreaContainerOv1 = PreyFunction<void(CArkAreaContainer* const _this)>(0x14D6B30);
+	static inline auto FInit = PreyFunction<bool(CArkAreaContainer* const _this, IGameObject* _pGameObject)>(0x37A880);
+	static inline auto FInitClient = PreyFunction<void(CArkAreaContainer* const _this, int channelId)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(CArkAreaContainer* const _this, IGameObject* pGameObject)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkAreaContainer* const _this, int channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkAreaContainer* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkAreaContainer* const _this, IGameObject* pGameObject, const SEntitySpawnParams& params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkAreaContainer* const _this, TSerialize signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkAreaContainer* const _this)>(0x3E3960);
+	static inline auto FFullSerialize = PreyFunction<void(CArkAreaContainer* const _this, TSerialize ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkAreaContainer* const _this, TSerialize ser, EEntityAspects aspect, uint8_t profile, int flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkAreaContainer* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkAreaContainer* const _this, TSerialize ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkAreaContainer* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkAreaContainer* const _this, SEntityUpdateContext& ctx, int updateSlot)>(0x1333E90);
+	static inline auto FPostUpdate = PreyFunction<void(CArkAreaContainer* const _this, float frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkAreaContainer* const _this)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkAreaContainer* const _this, const SGameObjectEvent& event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkAreaContainer* const _this, SEntityEvent& event)>(0x14D6E00);
+	static inline auto FSetChannelId = PreyFunction<void(CArkAreaContainer* const _this, uint16_t id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkAreaContainer* const _this, bool auth)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkAreaContainer* const _this, ICrySizer* s)>(0xE98E40);
+	static inline auto FGetAreas = PreyFunction<const std::vector<unsigned int>& (CArkAreaContainer* const _this)>(0x14D6C10);
+	static inline auto FContainsArea = PreyFunction<bool(const CArkAreaContainer* const _this, unsigned _areaEntityId)>(0x14D6BE0);
+	static inline auto FIsPointInAnyArea = PreyFunction<bool(const CArkAreaContainer* const _this, const Vec3& _point)>(0x14D6D80);
+	static inline auto FInitializeAreaShapes = PreyFunction<void(CArkAreaContainer* const _this)>(0x14D6D10);
+#endif
 };
-

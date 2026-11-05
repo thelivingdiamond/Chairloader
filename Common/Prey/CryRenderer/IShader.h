@@ -681,10 +681,8 @@ struct SEfTexModificator
 
 		CASE_TEXMOD(m_Tiling[0]);
 		CASE_TEXMOD(m_Tiling[1]);
-		CASE_TEXMOD(m_Tiling[2]);
 		CASE_TEXMOD(m_Offs[0]);
 		CASE_TEXMOD(m_Offs[1]);
-		CASE_TEXMOD(m_Offs[2]);
 
 		CASE_TEXMODANGLE(m_Rot[0]);
 		CASE_TEXMODANGLE(m_Rot[1]);
@@ -714,8 +712,8 @@ struct SEfTexModificator
 
 	Matrix44A m_TexMatrix;
 
-	float m_Tiling[3];
-	float m_Offs[3];
+	float m_Tiling[2];
+	float m_Offs[2];
 
 	float m_OscRate[2];
 	float m_OscAmplitude[2];
@@ -2096,7 +2094,7 @@ struct IEntity;
 
 struct IAnimNode;
 
-struct ILightAnimWrapper:public _i_reference_target_t
+struct ILightAnimWrapper:public _i_multithread_reference_target_t
 {
 public:
 	virtual bool Resolve() = 0;

@@ -8,8 +8,13 @@ class CAutoRegFlowNodeBase : public IFlowNodeFactory // Id=8005975 Size=24
 public:
     const char *m_sClassName;
     CAutoRegFlowNodeBase *m_pNext;
+#ifndef MOONCRASH
     static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase *>(0x24808D0);
     static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase *>(0x24808D8);
+#else
+    static inline auto m_pFirst = PreyGlobal<CAutoRegFlowNodeBase *>(0x25EFEF0);
+    static inline auto m_pLast = PreyGlobal<CAutoRegFlowNodeBase *>(0x25EFEF8);
+#endif
 
     virtual ~CAutoRegFlowNodeBase();
     virtual void AddRef();
@@ -17,11 +22,19 @@ public:
     virtual void Reset();
     virtual void GetMemoryUsage(ICrySizer *s) const;
 
+#ifndef MOONCRASH
     static inline auto FBitNotCAutoRegFlowNodeBase = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0x2B1BF0);
     static inline auto FAddRef = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FRelease = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FReset = PreyFunction<void(CAutoRegFlowNodeBase *const _this)>(0xA13080);
     static inline auto FGetMemoryUsage = PreyFunction<void(CAutoRegFlowNodeBase const *const _this, ICrySizer *s)>(0x2B0D00);
+#else
+	static inline auto FBitNotCAutoRegFlowNodeBase = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x2C4CD0);
+	static inline auto FAddRef = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FRelease = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FReset = PreyFunction<void(CAutoRegFlowNodeBase* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CAutoRegFlowNodeBase* const _this, ICrySizer* s)>(0x2BF8C0);
+#endif
 };
 
 template<class T>

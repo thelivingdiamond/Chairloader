@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 #pragma once
 #include <Prey/CryNetwork/ISerialize.h>
@@ -63,4 +64,4 @@ public:
 	static inline auto FGetModSignalPackage = PreyFunction<uint64_t(const ArkEquipmentModComponent* const _this, const uint64_t _archetypeId)>(0x132DD40);
 	static inline auto FHasSpace = PreyFunction<bool(const ArkEquipmentModComponent* const _this, const ArkEquipmentMod& _chipset)>(0x132DEE0);
 };
-
+#endif // !MOONCRASH

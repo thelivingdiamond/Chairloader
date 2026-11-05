@@ -6,6 +6,7 @@
 
 // Header: MadeUp
 // _unknown/ArkTurretFsmBase_template__void_.h
+#ifndef MOONCRASH
 template <typename T>
 class ArkTurretFsmBase_template_ // Id=80152AB Size=76
 {
@@ -53,4 +54,21 @@ public:
 	void ExitCurrentState();
 #endif
 };
+#else
+template <typename T>
+class ArkTurretFsmBase_template_ // Size=68 (Mooncrash: 7 states)
+{
+public:
+	using EStateId = EArkTurretStateId;
+	using BaseStateType = ATStates::BaseState;
 
+	static constexpr const uint64_t k_stateCount = 7;
+	EArkTurretStateId m_currentStateId;
+	ATStates::Undeployed m_undeployedState;
+	ATStates::Attacking m_attackingState;
+	ATStates::Searching m_searchingState;
+	ATStates::PlayerControlled m_playerControlledState;
+	ATStates::PlayerCarried m_playerCarriedState;
+	ATStates::Disabled m_disabledState;
+};
+#endif

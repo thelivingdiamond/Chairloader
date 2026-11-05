@@ -10,4 +10,3 @@ class IArkPsiPowerListener
 public:
 	virtual void OnPowerAcquired(EArkPsiPowers _power) = 0;
 };
-

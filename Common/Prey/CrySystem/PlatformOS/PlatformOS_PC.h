@@ -34,15 +34,17 @@ class CPlatformOS_PC
 	, public IPlatformOS::IPlatformListener
 	, public ISystemEventListener
 	, public IGameFrameworkListener
-{ // Size=200 (0xC8)
+{ // Size=200 (0xC8), Mooncrash: Size=256 (0x100)
 public:
 	CPlatformOS_Base::CStableFPSWatcher m_fpsWatcher;
 	CListenerSet<IPlatformOS::IPlatformListener *> m_listeners;
 	std::vector<char> m_encryptionMagic;
 	std::vector<unsigned char> m_encryptionKey;
 	float m_delayLevelStartIcon;
+#ifndef MOONCRASH
 	int m_cachePakStatus;
 	unsigned m_cachePakUserId;
+#endif // !MOONCRASH
 	bool m_bSignedIn;
 	bool m_bSaving;
 	bool m_bAllowMessageBox;
@@ -57,6 +59,9 @@ public:
 	CPlatformOS_PC(const uint8_t createParams);
 	virtual unsigned InitLanguageInfo(unsigned _languagesWithData);
 	virtual void Tick(float realFrameTime);
+#ifdef MOONCRASH
+	virtual void PostServiceTask(IPlatformOS::IServiceTask* _task);
+#endif // MOONCRASH
 	virtual const char* GetPlatformName() const;
 	virtual unsigned UserGetMaximumSignedInUsers() const;
 	virtual bool UserIsSignedIn(unsigned userIndex) const;
@@ -84,6 +89,9 @@ public:
 	virtual std::shared_ptr<IPlatformOS::ISaveReader> SaveGetReader(const char* fileName, unsigned _userId);
 	virtual std::shared_ptr<IPlatformOS::ISaveWriter> SaveGetWriter(const char* fileName, unsigned _userId);
 	virtual bool SaveCopyFiles(const char* _szSource, const char* _szDestination, const char* _szPattern, unsigned user);
+#ifdef MOONCRASH
+	virtual std::vector<string> GetSaveFileNamesFromContainer(const char* _containerName, const char* _pattern);
+#endif // MOONCRASH
 	virtual bool KeyboardStart(unsigned inUserIndex, unsigned flags, const wchar_t* title, const wchar_t* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback);
 	virtual bool KeyboardIsRunning();
 	virtual bool KeyboardCancel();
@@ -93,20 +101,29 @@ public:
 	virtual void RemoveListener(IPlatformOS::IPlatformListener* pListener);
 	virtual void NotifyListeners(IPlatformOS::SPlatformEvent& event);
 	virtual const char* GetSKUId();
+#ifndef MOONCRASH
 	virtual unsigned GetBaseServiceLabelForCurrentSku() const;
 	virtual unsigned GetLeadServiceLabelForCurrentSku() const;
+#endif // !MOONCRASH
 	virtual IPlatformOS::EMsgBoxResult DebugMessageBox(const char* body, const char* title, unsigned flags) const;
+#ifndef MOONCRASH
 	virtual bool PostLocalizationBootChecks();
+#endif // !MOONCRASH
 	virtual void GetMemoryUsage(ICrySizer* pSizer) const;
+#ifndef MOONCRASH
 	virtual bool DebugSave(IPlatformOS::SDebugDump& dump);
 	virtual bool ConsoleLoadGame(IConsoleCmdArgs* pArgs);
+#endif // !MOONCRASH
 	virtual const char* const GetHostName();
 	virtual void InitEncryptionKey(const char* pMagic, uint64_t magicLength, const uint8_t* pKey, uint64_t keyLength);
 	virtual void GetEncryptionKey(const std::vector<char>* * pMagic, const std::vector<unsigned char>* * pKey);
+#ifndef MOONCRASH
 	virtual bool IsStoreCompleted();
 	virtual bool IsTrial() const;
 	virtual void ShowStoreProduct(const char* _productId, unsigned __unnamed1);
+#endif // !MOONCRASH
 	virtual EArkFirstPartyEnvironmentQueryResponse QueryFirstPartyEnvironment(EArkFirstPartyEnvironment& _env);
+#ifndef MOONCRASH
 	virtual EUserPIIStatus GetUserPII(unsigned inUser, SUserPII* pOutPII);
 	virtual IPlatformOS::ECDP_Start StartUsingCachePaks(unsigned userId, bool* outWritesOccurred);
 	virtual IPlatformOS::ECDP_End EndUsingCachePaks(unsigned userId);
@@ -118,6 +135,7 @@ public:
 	virtual IPlatformOS::EZipExtractFail ExtractZips(const char* path);
 	virtual void SetOpticalDriveIdle(bool bIdle);
 	virtual void AllowOpticalDriveUsage(bool bAllow);
+#endif // !MOONCRASH
 	virtual bool GetLocalIPAddress(char* ipAddress, unsigned& ip, int length) const;
 	virtual CStreamingInstallBase* GetStreamingInstall();
 	virtual ELanguageID GetLanguageIDFromName(const char* languageName) const;
@@ -138,7 +156,8 @@ public:
 	bool DecryptAndCheckSigning(const char* _arg0_, int _arg1_, char* * _arg2_, int* _arg3_, const uint8_t* _arg4_);
 	bool UseSteamReadWriter() const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FCPlatformOS_PCOv2 = PreyFunction<void(CPlatformOS_PC* const _this, const uint8_t createParams)>(0xE75AD0);
 	static inline auto FInitLanguageInfo = PreyFunction<unsigned(CPlatformOS_PC* const _this, unsigned _languagesWithData)>(0xE76C70);
 	static inline auto FTick = PreyFunction<void(CPlatformOS_PC* const _this, float realFrameTime)>(0xE78270);
@@ -216,6 +235,64 @@ public:
 	static inline auto FSetRichPresence = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned userId, const SRichPresenceData* richPresenceData)>(0xE77EE0);
 	static inline auto FRecurseZipContents = PreyFunction<IPlatformOS::EZipExtractFail(CPlatformOS_PC* const _this, ZipDir::FileEntryTree* pSourceDir, const char* currentPath, _smart_ptr<ZipDir::CacheRW> pCache)>(0xE775B0);
 	static inline auto FSxmlMissingFromHDD = PreyFunction<bool(CPlatformOS_PC* const _this, ZipDir::FileEntryTree* pZipRoot, const char* userPath, _smart_ptr<ZipDir::CacheRW> pZip)>(0xE77F60);
+#else
+	static inline auto FCPlatformOS_PC = PreyFunction<void(CPlatformOS_PC* const _this, const uint8_t createParams)>(0xE928C0);
+	static inline auto FInitLanguageInfo = PreyFunction<unsigned(CPlatformOS_PC* const _this, unsigned _languagesWithData)>(0xE936D0);
+	static inline auto FTick = PreyFunction<void(CPlatformOS_PC* const _this, float realFrameTime)>(0xE945F0);
+	static inline auto FPostServiceTask = PreyFunction<void(CPlatformOS_PC* const _this, IPlatformOS::IServiceTask* _task)>(0x5A35F0);
+	static inline auto FGetPlatformName = PreyFunction<const char* (const CPlatformOS_PC* const _this)>(0xE93340);
+	static inline auto FUserGetMaximumSignedInUsers = PreyFunction<unsigned(const CPlatformOS_PC* const _this)>(0x1948930);
+	static inline auto FUserIsSignedIn = PreyFunction<bool(const CPlatformOS_PC* const _this, unsigned userIndex)>(0xE94B80);
+	static inline auto FUserDoSignIn = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned userId)>(0xE94980);
+	static inline auto FUserSignOut = PreyFunction<void(CPlatformOS_PC* const _this, unsigned userId)>(0x1333E90);
+	static inline auto FGetFirstSignedInUser = PreyFunction<unsigned(const CPlatformOS_PC* const _this)>(0xE92FF0);
+	static inline auto FUserGetPlayerIndex = PreyFunction<unsigned(const CPlatformOS_PC* const _this, const char* userName)>(0x1CBB0B0);
+	static inline auto FUserGetPlayerId = PreyFunction<unsigned(const CPlatformOS_PC* const _this, const char* const userName)>(0x1CBB0B0);
+	static inline auto FUserGetName = PreyFunction<bool(const CPlatformOS_PC* const _this, unsigned userIndex, CryFixedStringT<257>& outName)>(0xE949F0);
+	static inline auto FUserGetId = PreyFunction<unsigned(const CPlatformOS_PC* const _this, const SUserXUID& __unnamed1)>(0x1CBB0B0);
+	static inline auto FUserGetXUID = PreyFunction<bool(const CPlatformOS_PC* const _this, unsigned userId, SUserXUID& __unnamed1)>(0x13B0900);
+	static inline auto FUserGetOnlineName = PreyFunction<bool(const CPlatformOS_PC* const _this, unsigned userIndex, CryFixedStringT<257>& outName)>(0xE94B70);
+	static inline auto FUserSelectStorageDevice = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned userIndex, bool bForceUI)>(0x1A302A0);
+	static inline auto FGetUserProfilePreference = PreyFunction<bool(const CPlatformOS_PC* const _this, unsigned user, IPlatformOS::EUserProfilePreference ePreference, IPlatformOS::SUserProfileVariant& outResult)>(0x13B0900);
+	static inline auto FMountSaveFile = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned userIndex)>(0x1A302A0);
+	static inline auto FGetUserPairedToDevice = PreyFunction<unsigned(CPlatformOS_PC* const _this, uint64_t __unnamed1)>(0x1CBB0B0);
+	static inline auto FGetDevicesPairedToUser = PreyFunction<int(const CPlatformOS_PC* const _this, unsigned userId, std::vector<uint64_t>& outDeviceIds)>(0xE92F60);
+	static inline auto FGetFileFinder = PreyFunction<std::shared_ptr<IPlatformOS::IFileFinder>*(CPlatformOS_PC* const _this, std::shared_ptr<IPlatformOS::IFileFinder>* _return_value_, const char* _szPattern, unsigned _user)>(0xE92F90);
+	static inline auto FFileExists = PreyFunction<EFileState(CPlatformOS_PC* const _this, const char* _szPath, unsigned _user)>(0xE92F40);
+	static inline auto FMountDLCContent = PreyFunction<void(CPlatformOS_PC* const _this, IPlatformOS::IDLCListener* pCallback, unsigned user, const uint8_t* keyData)>(0xE938A0);
+	static inline auto FCanRestartTitle = PreyFunction<bool(const CPlatformOS_PC* const _this)>(0x1A302A0);
+	static inline auto FRestartTitle = PreyFunction<void(CPlatformOS_PC* const _this, const char* pLoadFrom)>(0xE94000);
+	static inline auto FBeginSaveLoad = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned user, bool bSave)>(0xE92DD0);
+	static inline auto FEndSaveLoad = PreyFunction<void(CPlatformOS_PC* const _this, unsigned user)>(0xE92EE0);
+	static inline auto FSaveGetReader = PreyFunction<std::shared_ptr<IPlatformOS::ISaveReader>*(CPlatformOS_PC* const _this, std::shared_ptr<IPlatformOS::ISaveReader>* _return_value_, const char* fileName, unsigned _userId)>(0xE943F0);
+	static inline auto FSaveGetWriter = PreyFunction<std::shared_ptr<IPlatformOS::ISaveWriter>*(CPlatformOS_PC* const _this, std::shared_ptr<IPlatformOS::ISaveWriter>* _return_value_, const char* fileName, unsigned _userId)>(0xE944D0);
+	static inline auto FSaveCopyFiles = PreyFunction<bool(CPlatformOS_PC* const _this, const char* _szSource, const char* _szDestination, const char* _szPattern, unsigned user)>(0xE94390);
+	static inline auto FGetSaveFileNamesFromContainer = PreyFunction<std::vector<string>*(CPlatformOS_PC* const _this, std::vector<string>* _return_value_, const char* _containerName, const char* _pattern)>(0xE93350);
+	static inline auto FKeyboardStart = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned inUserIndex, unsigned flags, const wchar_t* title, const wchar_t* initialInput, int maxInputLength, IVirtualKeyboardEvents* pInCallback)>(0x13B0900);
+	static inline auto FKeyboardIsRunning = PreyFunction<bool(CPlatformOS_PC* const _this)>(0x13B0900);
+	static inline auto FKeyboardCancel = PreyFunction<bool(CPlatformOS_PC* const _this)>(0x13B0900);
+	static inline auto FStringVerifyStart = PreyFunction<bool(CPlatformOS_PC* const _this, const wchar_t* inString, IStringVerifyEvents* pInCallback)>(0x13B0900);
+	static inline auto FIsVerifyingString = PreyFunction<bool(CPlatformOS_PC* const _this)>(0x13B0900);
+	static inline auto FAddListener = PreyFunction<void(CPlatformOS_PC* const _this, IPlatformOS::IPlatformListener* pListener, const char* szName)>(0xE92D80);
+	static inline auto FRemoveListener = PreyFunction<void(CPlatformOS_PC* const _this, IPlatformOS::IPlatformListener* pListener)>(0xE93F80);
+	static inline auto FNotifyListeners = PreyFunction<void(CPlatformOS_PC* const _this, IPlatformOS::SPlatformEvent& event)>(0xE93DD0);
+	static inline auto FGetSKUId = PreyFunction<const char* (CPlatformOS_PC* const _this)>(0x1CBB0B0);
+	static inline auto FDebugMessageBox = PreyFunction<IPlatformOS::EMsgBoxResult(const CPlatformOS_PC* const _this, const char* body, const char* title, unsigned flags)>(0xE92E60);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CPlatformOS_PC* const _this, ICrySizer* pSizer)>(0xE932A0);
+	static inline auto FGetHostName = PreyFunction<const char* const (CPlatformOS_PC* const _this)>(0xE93070);
+	static inline auto FInitEncryptionKey = PreyFunction<void(CPlatformOS_PC* const _this, const char* pMagic, uint64_t magicLength, const uint8_t* pKey, uint64_t keyLength)>(0xE93630);
+	static inline auto FGetEncryptionKey = PreyFunction<void(CPlatformOS_PC* const _this, const std::vector<char>* * pMagic, const std::vector<unsigned char>* * pKey)>(0xE92F70);
+	static inline auto FQueryFirstPartyEnvironment = PreyFunction<EArkFirstPartyEnvironmentQueryResponse(CPlatformOS_PC* const _this, EArkFirstPartyEnvironment& _env)>(0xE93F70);
+	static inline auto FGetLocalIPAddress = PreyFunction<bool(const CPlatformOS_PC* const _this, char* ipAddress, unsigned& ip, int length)>(0xE93110);
+	static inline auto FGetStreamingInstall = PreyFunction<CStreamingInstallBase* (CPlatformOS_PC* const _this)>(0xE93620);
+	static inline auto FGetLanguageIDFromName = PreyFunction<ELanguageID(const CPlatformOS_PC* const _this, const char* languageName)>(0xE93100);
+	static inline auto FOnPlatformEvent = PreyFunction<void(IPlatformOS::IPlatformListener* const _this, const IPlatformOS::SPlatformEvent& _event)>(0xE93EF0);
+	static inline auto FOnSystemEvent = PreyFunction<void(ISystemEventListener* const _this, ESystemEvent event, uint64_t wparam, uint64_t lparam)>(0xE93F10);
+	static inline auto FOnPostUpdate = PreyFunction<void(IGameFrameworkListener* const _this, float fDeltaTime)>(0x1333E90);
+	static inline auto FOnSaveGame = PreyFunction<void(IGameFrameworkListener* const _this, ISaveGame* pSaveGame)>(0x1333E90);
+	static inline auto FOnLoadGame = PreyFunction<void(IGameFrameworkListener* const _this, ILoadGame* pLoadGame)>(0x1333E90);
+	static inline auto FOnLevelEnd = PreyFunction<void(IGameFrameworkListener* const _this, const char* nextLevel)>(0x1333E90);
+	static inline auto FOnActionEvent = PreyFunction<void(IGameFrameworkListener* const _this, const SActionEvent& event)>(0xE93EA0);
+	static inline auto FSetRichPresence = PreyFunction<bool(CPlatformOS_PC* const _this, unsigned userId, const SRichPresenceData* richPresenceData)>(0xE945C0);
+#endif
 };
-
-

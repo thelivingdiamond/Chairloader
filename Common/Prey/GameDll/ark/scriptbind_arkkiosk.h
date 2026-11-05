@@ -8,6 +8,10 @@ struct IFunctionHandler;
 
 // Header: FromCpp
 // Prey/GameDll/ark/scriptbind_arkkiosk.h
+#ifdef MOONCRASH
+#include <Prey/CryScriptSystem/ScriptHelpers.h>
+union ScriptHandle;
+#endif
 class CScriptBind_ArkKiosk : public CScriptableBase // Id=8016641 Size=96
 {
 public:
@@ -36,6 +40,7 @@ public:
 	int SetElevatorStateFail(IFunctionHandler *_pH, ScriptHandle _entityId) { return FSetElevatorStateFail(this,_pH,_entityId); }
 	virtual ~CScriptBind_ArkKiosk();
 	
+#ifndef MOONCRASH
 	static inline auto FSetKioskPowered = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId, bool _bPowered)>(0x1335CF0);
 	static inline auto FSetKioskButtonHeader = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId, int _button, const char *_header)>(0x1335A80);
 	static inline auto FSetKioskButtonBody = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId, int _button, const char *_body)>(0x1335990);
@@ -58,5 +63,29 @@ public:
 	static inline auto FSetElevatorStateDefault = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId)>(0x1335800);
 	static inline auto FSetElevatorStateProcessing = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId)>(0x1335870);
 	static inline auto FSetElevatorStateFail = PreyFunction<int(CScriptBind_ArkKiosk *const _this, IFunctionHandler *_pH, ScriptHandle _entityId)>(0x1335830);
+#else
+	static inline auto FCScriptBind_ArkKioskOv2 = PreyFunction<void(CScriptBind_ArkKiosk* const _this)>(0x140FF80);
+	static inline auto FSetKioskPowered = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, bool _bPowered)>(0x1411880);
+	static inline auto FSetKioskButtonHeader = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, const char* _header)>(0x1411610);
+	static inline auto FSetKioskButtonBody = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, const char* _body)>(0x1411520);
+	static inline auto FSetKioskButtonState = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, int _state)>(0x1411700);
+	static inline auto FSetKioskButtonVisible = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, bool _bVisible)>(0x1411750);
+	static inline auto FSetKioskHeader = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _header)>(0x14117A0);
+	static inline auto FSetKioskBody = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _body)>(0x1411440);
+	static inline auto FSetMultipleChoiceQuestion = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _question)>(0x1411A50);
+	static inline auto FSetMultipleChoiceAnswer = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _id, const char* _answer)>(0x1411A00);
+	static inline auto FDisplayMultipleChoiceRorschach = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1410B40);
+	static inline auto FDisplayMultipleChoiceQuestion = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1410B10);
+	static inline auto FDisplayMultipleChoiceLogo = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1410AE0);
+	static inline auto FDisplayMultipleChoiceStart = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1410B70);
+	static inline auto FSetElevatorCurrentFloor = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _text)>(0x14110F0);
+	static inline auto FSetElevatorDefaultText = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _text)>(0x14111D0);
+	static inline auto FSetElevatorFailText = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, const char* _text)>(0x14112B0);
+	static inline auto FSetElevatorButtonFloor = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, const char* _text)>(0x1410EC0);
+	static inline auto FSetElevatorButtonSecondary = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, const char* _text)>(0x1410FB0);
+	static inline auto FSetElevatorButtonVisible = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId, int _button, bool _bVisible)>(0x14110A0);
+	static inline auto FSetElevatorStateDefault = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1411390);
+	static inline auto FSetElevatorStateProcessing = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x1411400);
+	static inline auto FSetElevatorStateFail = PreyFunction<int(CScriptBind_ArkKiosk* const _this, IFunctionHandler* _pH, ScriptHandle _entityId)>(0x14113C0);
+#endif
 };
-

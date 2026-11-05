@@ -9,4 +9,3 @@ struct IUIPseudoRTTI // Id=8014CCA Size=8
 	virtual ~IUIPseudoRTTI();
 	virtual const char *GetTypeName() const = 0;
 };
-

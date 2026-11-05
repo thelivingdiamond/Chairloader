@@ -1,3 +1,4 @@
+#ifndef MOONCRASH
 // Header file automatically created from a PDB.
 
 #pragma once
@@ -73,4 +74,4 @@ public:
 	static inline auto FClearActiveStatMods = PreyFunction<void(ArkEquipmentMod *const _this)>(0x115C840);
 	static inline auto FSetupActiveStatMods = PreyFunction<void(ArkEquipmentMod *const _this)>(0x115DB00);
 };
-
+#endif // !MOONCRASH

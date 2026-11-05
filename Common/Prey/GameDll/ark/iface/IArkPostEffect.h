@@ -7,4 +7,3 @@
 struct IArkPostEffect // Id=8015DB6 Size=1
 {
 };
-

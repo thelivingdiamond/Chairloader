@@ -14,8 +14,13 @@ public:
 	virtual unsigned DoGetCurrentRoomEntityId() const = 0;
 	virtual bool DoGetIsInMimicryHidden() const = 0;
 	
+#ifndef MOONCRASH
 	static inline auto FGetEntityId = PreyFunction<unsigned(ArkComplexRoomPerceivable const *const _this)>(0x13B26F0);
 	static inline auto FGetCurrentRoomEntityId = PreyFunction<unsigned(ArkComplexRoomPerceivable const *const _this)>(0x172F070);
 	static inline auto FGetIsInMimicryHidden = PreyFunction<bool(ArkComplexRoomPerceivable const *const _this)>(0x15AAEA0);
+#else
+	static inline auto FGetEntityId = PreyFunction<unsigned(const ArkComplexRoomPerceivable* const _this)>(0x14BE950);
+	static inline auto FGetCurrentRoomEntityId = PreyFunction<unsigned(const ArkComplexRoomPerceivable* const _this)>(0x1855F90);
+	static inline auto FGetIsInMimicryHidden = PreyFunction<bool(const ArkComplexRoomPerceivable* const _this)>(0x6CBC30);
+#endif
 };
-

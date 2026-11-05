@@ -8,6 +8,10 @@
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/desires/ArkNpcNoiseStateDesire.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireBase.h>
+enum class EArkNpcNoiseStateDesirePriority;
+#endif
 class ArkNpcNoiseStateDesire : public ArkNpcDesireBase<ArkNpcNoiseStateDesireManager,ArkNpcNoiseStateDesire,enum EArkNpcNoiseStateDesirePriority> // Id=8014148 Size=72
 {
 public:
@@ -19,11 +23,18 @@ public:
 		StateParam(EArkNpcNoiseState _noiseStateType);
 		bool Set(ArkNpcNoiseStateDesire &_desire) const { return FSet(this,_desire); }
 		
+#ifndef MOONCRASH
 		static inline auto FSet = PreyFunction<bool(ArkNpcNoiseStateDesire::StateParam const *const _this, ArkNpcNoiseStateDesire &_desire)>(0x1213020);
+#else
+		static inline auto FStateParam = PreyFunction<void(ArkNpcNoiseStateDesire::StateParam* const _this, EArkNpcNoiseState _noiseStateType)>(0x156BBD0);
+		static inline auto FSet = PreyFunction<bool(const ArkNpcNoiseStateDesire::StateParam* const _this, ArkNpcNoiseStateDesire& _desire)>(0x12A2500);
+#endif
 	};
 
 	EArkNpcNoiseState m_noiseState;
 	
 	ArkNpcNoiseStateDesire(EArkNpcNoiseStateDesirePriority _priority, const char *_dbgSource);
+#ifdef MOONCRASH
+	static inline auto FArkNpcNoiseStateDesireOv1 = PreyFunction<void(ArkNpcNoiseStateDesire* const _this, EArkNpcNoiseStateDesirePriority _priority, const char* _dbgSource)>(0x12A2380);
+#endif
 };
-

@@ -14,4 +14,3 @@ struct ArkAttentionTag // Id=8014DE6 Size=8
 	int *operator int ArkSafeBool<struct ArkAttentionTag>::*() const;
 #endif
 };
-

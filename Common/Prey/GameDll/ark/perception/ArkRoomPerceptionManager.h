@@ -7,6 +7,9 @@ class ArkRoomPerceiver;
 
 // Header: FromCpp
 // Prey/GameDll/ark/perception/ArkRoomPerceptionManager.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/perception/ArkComplexRoomPerceptionInfo.h>
+#endif
 class ArkRoomPerceptionManager // Id=8015056 Size=408
 {
 public:
@@ -66,6 +69,7 @@ public:
 	void UnregisterComplexPerceivable(unsigned _complexPerceivableEntityId) { FUnregisterComplexPerceivable(this,_complexPerceivableEntityId); }
 	void Update(float _elapsedTime) { FUpdate(this,_elapsedTime); }
 	
+#ifndef MOONCRASH
 	static inline auto FInitialize = PreyFunction<void(ArkRoomPerceptionManager *const _this)>(0x12B0290);
 	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkRoomPerceptionManager *const _this)>(0x12B0860);
 	static inline auto FRegisterPerceiver = PreyFunction<void(ArkRoomPerceptionManager *const _this, unsigned _perceiverEntityId, ArkRoomPerceiver &_perceiver)>(0x12B0A70);
@@ -75,5 +79,16 @@ public:
 	static inline auto FIsComplexPerceivableRegistered = PreyFunction<bool(ArkRoomPerceptionManager const *const _this, unsigned _complexPerceivableEntityId)>(0x12B06E0);
 	static inline auto FUnregisterComplexPerceivable = PreyFunction<void(ArkRoomPerceptionManager *const _this, unsigned _complexPerceivableEntityId)>(0x12B0D80);
 	static inline auto FUpdate = PreyFunction<void(ArkRoomPerceptionManager *const _this, float _elapsedTime)>(0x12B1010);
+#else
+	static inline auto FArkRoomPerceptionManagerOv1 = PreyFunction<void(ArkRoomPerceptionManager* const _this)>(0x1359630);
+	static inline auto FInitialize = PreyFunction<void(ArkRoomPerceptionManager* const _this)>(0x1359770);
+	static inline auto FOnLevelLoadStart = PreyFunction<void(ArkRoomPerceptionManager* const _this)>(0x1359D30);
+	static inline auto FRegisterPerceiver = PreyFunction<void(ArkRoomPerceptionManager* const _this, unsigned _perceiverEntityId, ArkRoomPerceiver& _perceiver)>(0x1359F40);
+	static inline auto FIsPerceiverRegistered = PreyFunction<bool(ArkRoomPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x1359C70);
+	static inline auto FUnregisterPerceiver = PreyFunction<void(ArkRoomPerceptionManager* const _this, unsigned _perceiverEntityId)>(0x135A370);
+	static inline auto FRegisterComplexPerceivable = PreyFunction<void(ArkRoomPerceptionManager* const _this, unsigned _complexPerceivableEntityId, const ArkComplexRoomPerceivable& _complexPerceivable)>(0x1359E40);
+	static inline auto FIsComplexPerceivableRegistered = PreyFunction<bool(const ArkRoomPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x1359BB0);
+	static inline auto FUnregisterComplexPerceivable = PreyFunction<void(ArkRoomPerceptionManager* const _this, unsigned _complexPerceivableEntityId)>(0x135A250);
+	static inline auto FUpdate = PreyFunction<void(ArkRoomPerceptionManager* const _this, float _elapsedTime)>(0x135A4E0);
+#endif
 };
-

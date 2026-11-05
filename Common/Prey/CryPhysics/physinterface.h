@@ -709,6 +709,7 @@ enum phentity_flags
 	pef_log_poststep              = 0x8000000,                                                 //!< entity will log EventPhysPostStep events
 };
 
+#ifndef MOONCRASH
 enum ark_phentity_flags
 {
 	ark_pef_pushable_by_ai = 0x1,
@@ -722,6 +723,22 @@ enum ark_phentity_flags
 	ark_pef_push_leverage3 = 0x100,
 	ark_pef_hits_articulated = 0x200,
 };
+#else
+enum ark_phentity_flags
+{
+	ark_pef_pushable_by_ai = 0x1,
+	ark_pef_no_impulse_on_collision = 0x2,
+	ark_pef_bounce_straight = 0x4,
+	ark_pef_leverage1 = 0x8,
+	ark_pef_leverage2 = 0x10,
+	ark_pef_leverage3 = 0x20,
+	ark_pef_push_leverage1 = 0x40,
+	ark_pef_push_leverage2 = 0x80,
+	ark_pef_push_leverage3 = 0x100,
+	ark_pef_hits_articulated = 0x200,
+	ark_pef_nostop_on_collision = 0x400,
+};
+#endif
 
 struct pe_params_flags : pe_params
 {
@@ -1008,6 +1025,9 @@ struct pe_params_particle : pe_params
 	Vec3             wspin;             //!< angular velocity
 	Vec3             gravity;           //!< stores this gravity and uses it if the current area's gravity is equal to the global gravity
 	Vec3             waterGravity;      //!< gravity when underwater
+#ifdef MOONCRASH
+	int              bOverrideWorldGravity;
+#endif
 	Vec3             normal;            //!< aligns this direction with the surface normal when sliding
 	Vec3             rollAxis;          //!< aligns this directon with the roll axis when rolling (0,0,0 to disable alignment)
 	quaternionf      q0;                //!< initial orientation (zero means x along direction of movement, z up)
@@ -1796,6 +1816,7 @@ struct pe_status_living : pe_status
 	float            timeFlying;       //!< for how long the entity was flying
 	Vec3             camOffset;        //!< camera offset
 	Vec3             vel;              //!< actual velocity (as rate of position change)
+	Vec3             actualVel;
 	Vec3             velUnconstrained; //!< 'physical' movement velocity
 	Vec3             velRequested;     //!< velocity requested in the last action
 	Vec3             velGround;        //!< velocity of the object entity is standing on
@@ -1804,6 +1825,10 @@ struct pe_status_living : pe_status
 	int              groundSurfaceIdx;
 	int              groundSurfaceIdxAux; //!< contact with the ground that also has default collision flags
 	IPhysicalEntity* pGroundCollider;     //!< only returns an actual entity if the ground collider is not static
+	IPhysicalEntity* pStaticGroundCollider;
+#ifdef MOONCRASH
+	int              bInsideSlope;
+#endif
 	int              iGroundColliderPart;
 	float            timeSinceStanceChange;
 	//! int bOnStairs; //! tries to detect repeated abrupt ground height changes
@@ -1907,7 +1932,7 @@ struct pe_status_rope : pe_status
 	{
 		type = type_id;
 		pPoints = pVelocities = pVtx = pContactNorms = 0;
-		nCollStat = nCollDyn = bTargetPoseActive = bStrained = 0;
+		nCollStat = nCollDyn = bTargetPoseActive = 0;
 		stiffnessAnim = timeLastActive = 0;
 		nVtx = 0;
 		lock = 0;
@@ -1919,7 +1944,6 @@ struct pe_status_rope : pe_status
 	int                               nCollStat, nCollDyn; //!< number of rope contacts with static and dynamic objects
 	int                               bTargetPoseActive;   //!< current traget pose mode (0, 1, or 2)
 	float                             stiffnessAnim;       //!< current target pose stiffness
-	int                               bStrained;           //!< whether the rope is strained, either along a line or wrapped around objects
 	strided_pointer<IPhysicalEntity*> pContactEnts;        //!< returns a pointer to internal data, the caller doesn't need to provide it
 	int                               nVtx;                //!< current number of vertices, used for ropes with dynamic subdivision
 	Vec3*                             pVtx;                //!< expects the caller to provide the array
@@ -2007,6 +2031,7 @@ enum geom_flags
 	geom_colltype_solid         = 0x1FFF & ~geom_colltype_explosion, geom_collides = 0xFFFF
 };
 
+#ifndef MOONCRASH
 enum class ark_geom_flags
 {
 	geom_colltype_sight = 128,
@@ -2015,6 +2040,17 @@ enum class ark_geom_flags
 	geom_colltype_projectile = 2048,
 	geom_colltype_breaks_glass = 4096,
 };
+#else
+enum class ark_geom_flags
+{
+	geom_colltype_sight = 128,
+	geom_colltype_voxelizeSphereAsBox = 256,
+	geom_colltype_acute_sight = 512,
+	geom_colltype_permeable = 1024,
+	geom_colltype_projectile = 2048,
+	geom_colltype_breaks_glass = 4096,
+};
+#endif
 
 struct pe_geomparams
 {
@@ -2722,6 +2758,7 @@ enum rwi_flags
 	rwi_colltype_any             = 0x400,        //!< if several colltype flag are specified, switches between requiring all or any of them in a geometry
 	rwi_queue                    = 0x800,        //!< queues the RWI request, when done it'll generate EventPhysRWIResult
 	rwi_force_pierceable_noncoll = 0x1000,       //!< non-colliding geometries will be treated as pierceable regardless of the actual material
+	rwi_debug_trace              = 0x2000,
 	rwi_update_last_hit          = 0x4000,       //!< update phitLast with the current hit results (should be set if the last hit should be reused for a "warm" start)
 	rwi_any_hit                  = 0x8000        //!< returns the first found hit for meshes, not necessarily the closets
 };
@@ -2907,6 +2944,10 @@ struct PhysicsVars : SolverSettings
 	int playerLeverageLevel;
 	float rigidBodyDampingZeroG;
 	float ragdollPenetrationThreshold;
+#ifdef MOONCRASH
+	float lowGImpulseScale;
+	float rigidBodyDampingLowG;
+#endif
 };
 
 struct ray_hit

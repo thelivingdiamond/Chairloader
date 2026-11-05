@@ -13,4 +13,3 @@ public:
 	virtual uint64_t GetCurrentEmotion() const = 0;
 	virtual ~IArkEmotionExtension();
 };
-

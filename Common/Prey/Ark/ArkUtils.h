@@ -21,7 +21,11 @@ public:
 	bool Contains(IEntityClass const *const arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<void(ArkUtils::ClassList *const _this, XmlNodeRef const &_root)>(0x5AC380);
+#else
+	static inline auto FInit = PreyFunction<void(ArkUtils::ClassList* const _this, const XmlNodeRef& _root)>(0x5C5A60);
+#endif
 };
 
 } // namespace ArkUtils
@@ -53,4 +57,3 @@ public:
 };
 
 } // namespace ArkUtils
-

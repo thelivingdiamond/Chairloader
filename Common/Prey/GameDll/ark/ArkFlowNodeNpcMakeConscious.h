@@ -11,7 +11,10 @@ class XmlNodeRef;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ArkFlowNodeNpcMakeConscious.h
-class ArkFlowNodeNpcMakeConscious : public CFlowBaseNode<0> // Id=80190DD Size=16
+#ifdef MOONCRASH
+#include <Prey/CryFlowGraph/IFlowBaseNode.h>
+#endif
+class ArkFlowNodeNpcMakeConscious : public CFlowBaseNode<eNCT_Singleton> // Id=80190DD Size=16
 {
 public:
 	enum class EInputPortIndex
@@ -32,11 +35,19 @@ public:
 	virtual void Serialize(IFlowNode::SActivationInfo *, TSerialize ser);
 	virtual void PostSerialize(IFlowNode::SActivationInfo *);
 	
+#ifndef MOONCRASH
 	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcMakeConscious *const _this, SFlowNodeConfig &config)>(0x116A050);
 	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcMakeConscious *const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo *_pActInfo)>(0x116A260);
 	static inline auto FGetMemoryUsage = PreyFunction<void(ArkFlowNodeNpcMakeConscious const *const _this, ICrySizer *s)>(0x44D760);
 	static inline auto FSerializeXML = PreyFunction<bool(ArkFlowNodeNpcMakeConscious *const _this, IFlowNode::SActivationInfo *, XmlNodeRef const &, bool )>(0x1B933B0);
 	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcMakeConscious *const _this, IFlowNode::SActivationInfo *, TSerialize ser)>(0xA13080);
 	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcMakeConscious *const _this, IFlowNode::SActivationInfo *)>(0xA13080);
+#else
+	static inline auto FGetConfiguration = PreyFunction<void(ArkFlowNodeNpcMakeConscious* const _this, SFlowNodeConfig& config)>(0x11B7940);
+	static inline auto FProcessEvent = PreyFunction<void(ArkFlowNodeNpcMakeConscious* const _this, IFlowNode::EFlowEvent event, IFlowNode::SActivationInfo* _pActInfo)>(0x11B7B50);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const ArkFlowNodeNpcMakeConscious* const _this, ICrySizer* s)>(0x455F00);
+	static inline auto FSerializeXML = PreyFunction<bool(ArkFlowNodeNpcMakeConscious* const _this, IFlowNode::SActivationInfo* __unnamed1, const XmlNodeRef& __unnamed2, bool __unnamed3)>(0x1A302A0);
+	static inline auto FSerialize = PreyFunction<void(ArkFlowNodeNpcMakeConscious* const _this, IFlowNode::SActivationInfo* __unnamed1, TSerialize ser)>(0x1333E90);
+	static inline auto FPostSerialize = PreyFunction<void(ArkFlowNodeNpcMakeConscious* const _this, IFlowNode::SActivationInfo* __unnamed1)>(0x1333E90);
+#endif
 };
-

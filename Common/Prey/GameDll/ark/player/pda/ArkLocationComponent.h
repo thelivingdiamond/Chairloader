@@ -34,11 +34,19 @@ public:
 	void Update(float _frameTime) { FUpdate(this, _frameTime); }
 	void Serialize(TSerialize ser) { FSerialize(this, ser); }
 
+#ifndef MOONCRASH
 	static inline auto FArkLocationComponentOv2 = PreyFunction<void(ArkLocationComponent* const _this)>(0x15B5440);
 	static inline auto FDiscover = PreyFunction<void(ArkLocationComponent* const _this, const uint64_t _id, bool _bShowPopup)>(0x15B5470);
 	static inline auto FHasDiscovered = PreyFunction<bool(const ArkLocationComponent* const _this, const uint64_t _id)>(0x15B57D0);
 	static inline auto FReset = PreyFunction<void(ArkLocationComponent* const _this)>(0x15B5800);
 	static inline auto FUpdate = PreyFunction<void(ArkLocationComponent* const _this, float _frameTime)>(0x15B59A0);
 	static inline auto FSerialize = PreyFunction<void(ArkLocationComponent* const _this, TSerialize ser)>(0x15B5810);
+#else
+	static inline auto FArkLocationComponentOv2 = PreyFunction<void(ArkLocationComponent* const _this)>(0x16DA3C0);
+	static inline auto FDiscover = PreyFunction<void(ArkLocationComponent* const _this, const uint64_t _id, bool _bShowPopup)>(0x16DABD0);
+	static inline auto FHasDiscovered = PreyFunction<bool(const ArkLocationComponent* const _this, const uint64_t _id)>(0x16DAF50);
+	static inline auto FReset = PreyFunction<void(ArkLocationComponent* const _this)>(0x16DA5E0);
+	static inline auto FUpdate = PreyFunction<void(ArkLocationComponent* const _this, float _frameTime)>(0x16DB110);
+	static inline auto FSerialize = PreyFunction<void(ArkLocationComponent* const _this, TSerialize ser)>(0x16DAF80);
+#endif
 };
-

@@ -280,8 +280,6 @@ enum EBatchFlags
 	FB_ARK_SCENEMASK_GEN = 0x8000,
 	FB_ZPREPASS_INDEX = 0x5,
 	FB_ALPHA_TEST_INDEX = 0x6,
-
-	FB_MASK            = 0xfffff //! FB flags cannot exceed 0xfffff
 };
 
 // Commit flags

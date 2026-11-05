@@ -9,7 +9,11 @@ class CFlashUIElement;
 namespace
 {
 
+#ifndef MOONCRASH
 auto CFlashUIElement_Render = PreyFunction<void(CFlashUIElement* const _this)>(0x2FF300);
+#else
+auto CFlashUIElement_Render = PreyFunction<void(CFlashUIElement* const _this)>(0x31A090);
+#endif
 
 auto g_CSystem_Render_Hook = CSystem::FRender.MakeHook();
 auto g_CFlashUIElement_Render_Hook = CFlashUIElement_Render.MakeHook();

@@ -1129,7 +1129,6 @@ struct SVisAreaInfo
 	float fViewDistRatio;
 	bool  bDoubleSide;
 	bool  bUseDeepness;
-	bool  bUseInIndoors;
 	bool  bOceanIsVisible;
 	bool  bIgnoreGI;
 	bool  bIgnoreOutdoorAO;
@@ -2537,11 +2536,12 @@ struct SRenderingPassInfo
 		CUBEMAP_GEN                = BIT(16),
 		GEOM_CACHES                = BIT(17),
 		DISABLE_RENDER_CHUNK_MERGE = BIT(18),
+		SHADOW_SHELLS              = BIT(19),
 
 		// below are precombined flags
 		STATIC_OBJECTS          = BRUSHES | VEGETATION,
-		DEFAULT_FLAGS           = SHADOWS | BRUSHES | VEGETATION | ENTITIES | TERRAIN | WATEROCEAN | PARTICLES | DECALS | TERRAIN_DETAIL_MATERIALS | FAR_SPRITES | MERGED_MESHES | WATER_WAVES | ROADS | WATER_VOLUMES | CLOUDS | GEOM_CACHES,
-		DEFAULT_SHADOWS_FLAGS   = BRUSHES | VEGETATION | ENTITIES | TERRAIN | WATEROCEAN | PARTICLES | DECALS | TERRAIN_DETAIL_MATERIALS | FAR_SPRITES | MERGED_MESHES | WATER_WAVES | ROADS | WATER_VOLUMES | CLOUDS | GEOM_CACHES,
+		DEFAULT_FLAGS           = SHADOWS | BRUSHES | VEGETATION | ENTITIES | TERRAIN | PARTICLES | DECALS | TERRAIN_DETAIL_MATERIALS | MERGED_MESHES | ROADS | WATER_VOLUMES | CLOUDS | GEOM_CACHES,
+		DEFAULT_SHADOWS_FLAGS   = BRUSHES | VEGETATION | ENTITIES | TERRAIN | PARTICLES | DECALS | TERRAIN_DETAIL_MATERIALS | MERGED_MESHES | ROADS | WATER_VOLUMES | CLOUDS | GEOM_CACHES | SHADOW_SHELLS,
 		DEFAULT_RECURSIVE_FLAGS = BRUSHES | VEGETATION | ENTITIES | TERRAIN | WATEROCEAN | PARTICLES | DECALS | TERRAIN_DETAIL_MATERIALS | FAR_SPRITES | MERGED_MESHES | WATER_WAVES | ROADS | WATER_VOLUMES | CLOUDS | GEOM_CACHES
 	};
 
@@ -2681,7 +2681,11 @@ private:
 	void* m_pJobState;
 
 public:
+#ifndef MOONCRASH
 	static inline auto FCreateGeneralPassRenderingInfo = PreyFunction<SRenderingPassInfo(CCamera const& rCamera, unsigned nRenderingFlags, bool bAuxWindow)>(0x1E5E60);
+#else
+	static inline auto FCreateGeneralPassRenderingInfo = PreyFunction<SRenderingPassInfo(const CCamera& rCamera, unsigned nRenderingFlags, bool bAuxWindow)>(0x1FE7A0);
+#endif
 };
 
 ///////////////////////////////////////////////////////////////////////////////

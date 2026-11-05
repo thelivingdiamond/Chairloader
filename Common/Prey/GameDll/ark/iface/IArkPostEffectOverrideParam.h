@@ -7,4 +7,3 @@
 struct IArkPostEffectOverrideParam // Id=8015DB5 Size=1
 {
 };
-

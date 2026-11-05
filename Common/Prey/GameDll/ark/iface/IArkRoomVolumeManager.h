@@ -44,4 +44,3 @@ public:
 	virtual void ValidatePortalVolumes(std::vector<std::pair<unsigned int,unsigned int>> &arg0) const = 0;
 	virtual int EnumerateCalculatedSoundPositions(Vec3 const &arg0, Vec3 const &arg1, IArkRoomVolumeManager::SoundPositionVisitor &arg2) const = 0;
 };
-

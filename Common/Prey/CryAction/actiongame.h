@@ -140,7 +140,12 @@ public:
 	};
 
 	uint8_t m_proceduralBreakFlags;
+#ifndef MOONCRASH
 	static inline auto s_this = PreyGlobal<CActionGame *>(0x249EFF0);
+#else
+	static inline auto s_this = PreyGlobal<CActionGame*>(0x260E628);
+#endif
+
 	IEntitySystem *m_pEntitySystem;
 	INetwork *m_pNetwork;
 	INetNub *m_pClientNub;
@@ -204,6 +209,7 @@ public:
 	std::map<unsigned int,CActionGame::SVegCollisionStatus *,std::less<unsigned int>> m_treeBreakStatus;
 	int m_nEffectCounter;
 	SMFXRunTimeEffectParams m_lstCachedEffects[8];
+#ifndef MOONCRASH
 	static inline auto g_procedural_breaking = PreyGlobal<int>(0x249EFF8);
 	static inline auto g_joint_breaking = PreyGlobal<int>(0x224A3E8);
 	static inline auto g_tree_cut_reuse_dist = PreyGlobal<float>(0x249EFFC);
@@ -212,6 +218,16 @@ public:
 	static inline auto g_breakage_mem_limit = PreyGlobal<int>(0x249F008);
 	static inline auto g_breakage_debug = PreyGlobal<int>(0x249F00C);
 	static inline auto s_waterMaterialId = PreyGlobal<int>(0x224A3EC);
+#else
+	static inline auto g_procedural_breaking = PreyGlobal<int>(0x260E5D8);
+	static inline auto g_joint_breaking = PreyGlobal<int>(0x23B7420);
+	static inline auto g_tree_cut_reuse_dist = PreyGlobal<float>(0x260E5DC);
+	static inline auto g_no_secondary_breaking = PreyGlobal<int>(0x260E5E0);
+	static inline auto g_no_breaking_by_objects = PreyGlobal<int>(0x260E5E4);
+	static inline auto g_breakage_mem_limit = PreyGlobal<int>(0x260E5E8);
+	static inline auto g_breakage_debug = PreyGlobal<int>(0x260E5EC);
+	static inline auto s_waterMaterialId = PreyGlobal<int>(0x23B7424);
+#endif
 	
 	enum eDisconnectState
 	{
@@ -378,7 +394,8 @@ public:
 	void AddProtectedPath(const char *arg0);
 	bool AllowProceduralBreaking(uint8_t arg0);
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FBitNotCActionGame = PreyFunction<void(CActionGame *const _this)>(0x5A7D20);
 	static inline auto FInit = PreyFunction<bool(CActionGame *const _this, SGameStartParams const *pGameStartParams)>(0x5AB470);
 	static inline auto FClientInit = PreyFunction<void(CActionGame *const _this, SGameStartParams const *pGameStartParams, bool *io_ok, bool *io_hasPbSvStarted, bool *io_requireBlockingConnection)>(0x5A9100);
@@ -446,6 +463,76 @@ public:
 	static inline auto FConditionInGame = PreyFunction<bool(CActionGame *const _this, CGameClientChannel *pChannel)>(0x5A9370);
 	static inline auto FBlockingConnect = PreyFunction<bool(CActionGame *const _this, bool (*condition)(CGameClientChannel *), bool requireClientChannel, const char *conditionText)>(0x5A8A80);
 	static inline auto FBackupGameStartParams = PreyFunction<void(CActionGame *const _this, SGameStartParams const *pGameStartParams)>(0x5A88A0);
+#else
+	static inline auto FCActionGameOv1 = PreyFunction<void(CActionGame* const _this, CScriptRMI* pScriptRMI)>(0x5C0A90);
+	static inline auto FBitNotCActionGame = PreyFunction<void(CActionGame* const _this)>(0x5C1440);
+	static inline auto FInit = PreyFunction<bool(CActionGame* const _this, const SGameStartParams* pGameStartParams)>(0x5C4B60);
+	static inline auto FClientInit = PreyFunction<void(CActionGame* const _this, const SGameStartParams* pGameStartParams, bool* io_ok, bool* io_hasPbSvStarted, bool* io_requireBlockingConnection)>(0x5C27F0);
+	static inline auto FChangeGameContext = PreyFunction<bool(CActionGame* const _this, const SGameContextParams* pGameContextParams)>(0x5C2460);
+	static inline auto FBlockingSpawnPlayer = PreyFunction<bool(CActionGame* const _this)>(0x5C23A0);
+	static inline auto FFixBrokenObjects = PreyFunction<void(CActionGame* const _this, bool bRestoreBroken)>(0x5C33E0);
+	static inline auto FGetClientActor = PreyFunction<IActor* (CActionGame* const _this)>(0x5C44C0);
+	static inline auto FUpdate = PreyFunction<bool(CActionGame* const _this)>(0x5CCBD0);
+	static inline auto FAddGlobalPhysicsCallback = PreyFunction<void(CActionGame* const _this, int event, void (*proc)(const EventPhys*, void*), void* userdata)>(0x5C1E10);
+	static inline auto FRemoveGlobalPhysicsCallback = PreyFunction<void(CActionGame* const _this, int event, void (*proc)(const EventPhys*, void*), void* userdata)>(0x5CBFC0);
+	static inline auto FSerializeBreakableObjects = PreyFunction<void(CActionGame* const _this, TSerialize ser)>(0x5CC3E0);
+	static inline auto FFlushBreakableObjects = PreyFunction<void(CActionGame* const _this)>(0x5C3680);
+	static inline auto FClearBreakHistory = PreyFunction<void(CActionGame* const _this)>(0x5C2490);
+	static inline auto FOnBreakageSpawnedEntity = PreyFunction<void(CActionGame* const _this, IEntity* pEntity, IPhysicalEntity* pPhysEntity, IPhysicalEntity* pSrcPhysEntity)>(0x5C62C0);
+	static inline auto FInitImmersiveness = PreyFunction<void(CActionGame* const _this)>(0x5C5B50);
+	static inline auto FUpdateImmersiveness = PreyFunction<void(CActionGame* const _this)>(0x5CD650);
+	static inline auto FOnEditorSetGameMode = PreyFunction<void(CActionGame* const _this, bool bGameMode)>(0x5C86D0);
+	static inline auto FDumpStats = PreyFunction<void(CActionGame* const _this)>(0x5C3050);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CActionGame* const _this, ICrySizer* s)>(0x5C4580);
+	static inline auto FReleaseGameStats = PreyFunction<void(CActionGame* const _this)>(0x5CBDB0);
+	static inline auto FFreeBrokenMeshesForEntity = PreyFunction<void(CActionGame* const _this, IPhysicalEntity* pent)>(0x5C4370);
+	static inline auto FOnEntitySystemReset = PreyFunction<void(CActionGame* const _this)>(0x5C8A40);
+	static inline auto FRegisterCVars = PreyFunction<void()>(0x5CB410);
+	static inline auto FImpactBreaksGlass = PreyFunction<bool(const EventPhysCollision& _epc, const ISurfaceType* _pSurfType)>(0x5C4A60);
+	static inline auto FEnablePhysicsEvents = PreyFunction<void(CActionGame* const _this, bool enable)>(0x5C3070);
+	static inline auto FOnBBoxOverlap = PreyFunction<int(const EventPhys* pEvent)>(0x5C5EA0);
+	static inline auto FOnCollisionLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5C6650);
+	static inline auto FOnPostStepLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5C9400);
+	static inline auto FOnStateChangeLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5CA1A0);
+	static inline auto FOnCreatePhysicalEntityLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5C8370);
+	static inline auto FOnUpdateMeshLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5CA4B0);
+	static inline auto FOnRemovePhysicalEntityPartsLogged = PreyFunction<int(const EventPhys* pEvent)>(0x5C9EC0);
+	static inline auto FOnPhysEntityDeleted = PreyFunction<int(const EventPhys* pEvent)>(0x5C9280);
+	static inline auto FOnCollisionImmediate = PreyFunction<int(const EventPhys* pEvent)>(0x5C6330);
+	static inline auto FOnPostStepImmediate = PreyFunction<int(const EventPhys* pEvent)>(0x5C92C0);
+	static inline auto FOnStateChangeImmediate = PreyFunction<int(const EventPhys* pEvent)>(0x5CA080);
+	static inline auto FOnCreatePhysicalEntityImmediate = PreyFunction<int(const EventPhys* pEvent)>(0x5C81E0);
+	static inline auto FOnUpdateMeshImmediate = PreyFunction<int(const EventPhys* pEvent)>(0x5CA3B0);
+	static inline auto FOnHit = PreyFunction<void(CActionGame* const _this, const HitInfo& __unnamed1)>(0x1333E90);
+	static inline auto FOnExplosion = PreyFunction<void(CActionGame* const _this, const ExplosionInfo& ei)>(0x5C8A50);
+	static inline auto FOnServerExplosion = PreyFunction<void(CActionGame* const _this, const ExplosionInfo& __unnamed1)>(0x1333E90);
+	static inline auto FOnCollisionLogged_MaterialFX = PreyFunction<void(const EventPhys* pEvent)>(0x5C6B00);
+	static inline auto FOnCollisionLogged_Breakable = PreyFunction<void(const EventPhys* pEvent)>(0x5C6880);
+	static inline auto FOnPostStepLogged_MaterialFX = PreyFunction<void(const EventPhys* pEvent)>(0x5C9520);
+	static inline auto FOnInitiate = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C8FF0);
+	static inline auto FOnDisconnectClient = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C85C0);
+	static inline auto FOnDemoteToClient = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C8560);
+	static inline auto FOnPromoteToServer = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C97B0);
+	static inline auto FOnReconnectClient = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C9C70);
+	static inline auto FOnFinalise = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x5C8F90);
+	static inline auto FOnComplete = PreyFunction<void(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo)>(0x1333E90);
+	static inline auto FOnTerminate = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x1CBB0B0);
+	static inline auto FOnReset = PreyFunction<IHostMigrationEventListener::EHostMigrationReturn(IHostMigrationEventListener* const _this, SHostMigrationInfo& hostMigrationInfo, unsigned& state)>(0x1CBB0B0);
+	static inline auto FRegisterBreakEvent = PreyFunction<SBreakEvent& (CActionGame* const _this, const EventPhysCollision* pColl, float energy)>(0x5CA850);
+	static inline auto FUpdateEntityIdForBrokenPart = PreyFunction<unsigned(CActionGame* const _this, unsigned idSrc)>(0x5CD340);
+	static inline auto FUpdateEntityIdForVegetationBreak = PreyFunction<unsigned(CActionGame* const _this, IRenderNode* pVeg)>(0x5CD490);
+	static inline auto FRegisterEntsForBreakageReuse = PreyFunction<void(CActionGame* const _this, IPhysicalEntity* pPhysEnt, int partid, IPhysicalEntity* pPhysEntNew, float h, float size)>(0x5CBA00);
+	static inline auto FRemoveEntFromBreakageReuse = PreyFunction<void(CActionGame* const _this, IPhysicalEntity* pEntity, int bRemoveOnlyIfSecondary)>(0x5CBDE0);
+	static inline auto FClearTreeBreakageReuseLog = PreyFunction<void(CActionGame* const _this)>(0x5C2690);
+	static inline auto FFreeBrokenMesh = PreyFunction<int(CActionGame* const _this, IPhysicalEntity* pent, SBrokenMeshSize& bm)>(0x5C3890);
+	static inline auto FRegisterBrokenMesh = PreyFunction<void(CActionGame* const _this, IPhysicalEntity* pPhysEnt, IGeometry* pPhysGeom, int partid, IStatObj* pStatObj, IGeometry* pSkel, float timeout, const char* fractureFX)>(0x5CAAD0);
+	static inline auto FDrawBrokenMeshes = PreyFunction<void(CActionGame* const _this)>(0x5C2AA0);
+	static inline auto FConditionHavePlayer = PreyFunction<bool(CActionGame* const _this, CGameClientChannel* pChannel)>(0x5C2A50);
+	static inline auto FConditionHaveConnection = PreyFunction<bool(CActionGame* const _this, CGameClientChannel* pChannel)>(0x5C2A40);
+	static inline auto FConditionInGame = PreyFunction<bool(CActionGame* const _this, CGameClientChannel* pChannel)>(0x5C2A60);
+	static inline auto FBlockingConnect = PreyFunction<bool(CActionGame* const _this, bool (*condition)(CGameClientChannel*), bool requireClientChannel, const char* conditionText)>(0x5C2170);
+	static inline auto FBackupGameStartParams = PreyFunction<void(CActionGame* const _this, const SGameStartParams* pGameStartParams)>(0x5C1F90);
+#endif
 };
 
 // Header: Exact
@@ -480,8 +567,12 @@ struct SBreakEvent // Id=8004A07 Size=164
 #if 0
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FSerialize = PreyFunction<void(SBreakEvent *const _this, TSerialize ser)>(0x5B2A70);
+#else
+	static inline auto FSerialize = PreyFunction<void(SBreakEvent* const _this, TSerialize ser)>(0x5CC150);
+#endif
 };
 
 // Header: FromCpp
@@ -496,7 +587,12 @@ public:
 	CAdjustLocalConnectionPacketRate(float rate, float inactivityTimeout);
 	~CAdjustLocalConnectionPacketRate();
 
+#ifndef MOONCRASH
 	static inline auto FBitNotCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate *const _this)>(0x5A8360);
+#else
+	static inline auto FCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate* const _this, float rate, float inactivityTimeout)>(0x5C1080);
+	static inline auto FBitNotCAdjustLocalConnectionPacketRate = PreyFunction<void(CAdjustLocalConnectionPacketRate* const _this)>(0x5C1A80);
+#endif
 };
 
 // Header: FromCpp
@@ -518,7 +614,8 @@ struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
 	virtual void End();
 	virtual void SetResourceCollector(IResourceCollector *pColl);
 	virtual ~CrySizerNaive();
-	
+
+#ifndef MOONCRASH
 	static inline auto FRelease = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
 	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0xD87500);
 	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive *const _this)>(0x5BFB50);
@@ -530,5 +627,17 @@ struct CrySizerNaive : public ICrySizer // Id=80072EE Size=32
 	static inline auto FReset = PreyFunction<void(CrySizerNaive *const _this)>(0x1800CA0);
 	static inline auto FEnd = PreyFunction<void(CrySizerNaive *const _this)>(0xA13080);
 	static inline auto FSetResourceCollector = PreyFunction<void(CrySizerNaive *const _this, IResourceCollector *pColl)>(0xA13080);
+#else
+	static inline auto FRelease = PreyFunction<void(CrySizerNaive* const _this)>(0x1333E90);
+	static inline auto FGetTotalSize = PreyFunction<uint64_t(CrySizerNaive* const _this)>(0x598E60);
+	static inline auto FGetObjectCount = PreyFunction<uint64_t(CrySizerNaive* const _this)>(0x547450);
+	static inline auto FGetResourceCollector = PreyFunction<IResourceCollector* (CrySizerNaive* const _this)>(0x1CBB0B0);
+	static inline auto FPush = PreyFunction<void(CrySizerNaive* const _this, const char* __unnamed1)>(0x1333E90);
+	static inline auto FPushSubcomponent = PreyFunction<void(CrySizerNaive* const _this, const char* __unnamed1)>(0x1333E90);
+	static inline auto FPop = PreyFunction<void(CrySizerNaive* const _this)>(0x1333E90);
+	static inline auto FAddObject = PreyFunction<bool(CrySizerNaive* const _this, const void* id, uint64_t size, int count)>(0x5C1F70);
+	static inline auto FReset = PreyFunction<void(CrySizerNaive* const _this)>(0x1924F90);
+	static inline auto FEnd = PreyFunction<void(CrySizerNaive* const _this)>(0x1333E90);
+	static inline auto FSetResourceCollector = PreyFunction<void(CrySizerNaive* const _this, IResourceCollector* pColl)>(0x1333E90);
+#endif
 };
-

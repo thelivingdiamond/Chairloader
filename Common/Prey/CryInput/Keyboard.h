@@ -25,8 +25,17 @@ public:
         wchar_t wcl;
     };
 
+#ifndef MOONCRASH
+#ifndef MOONCRASH
     static inline auto m_scanCodes = PreyGlobal<CKeyboard::SScanCode [256]>(0x2766760);
     static inline auto Symbol = PreyGlobal<SInputSymbol *[256]>(0x2767360);
+#endif
+#else
+#ifndef MOONCRASH
+	static inline auto m_scanCodes = PreyGlobal<CKeyboard::SScanCode [256]>(0x28D59F0);
+	static inline auto Symbol = PreyGlobal<SInputSymbol* [256]>(0x28D65F0);
+#endif
+#endif
 
     CKeyboard(CDXInput &input);
     virtual int GetDeviceIndex() const;
@@ -38,7 +47,9 @@ public:
     virtual const wchar_t *GetOSKeyName(SInputEvent const &event);
     virtual void OnLanguageChange();
     virtual void ClearBufferedKeyState();
+#ifndef MOONCRASH
     void SetupKeyNames() { FSetupKeyNames(this); }
+#endif
     virtual ~CKeyboard();
 
 #if 0
@@ -49,6 +60,8 @@ public:
 	void ProcessKey(unsigned arg0, bool arg1);
 #endif
 
+#ifndef MOONCRASH
+#ifndef MOONCRASH
     static inline auto FGetDeviceIndex = PreyFunction<int(CKeyboard const *const _this)>(0x158AEF0);
     static inline auto FInit = PreyFunction<bool(CKeyboard *const _this)>(0x9D1010);
     static inline auto FUpdate = PreyFunction<void(CKeyboard *const _this, bool bFocus)>(0x9D2DA0);
@@ -59,5 +72,20 @@ public:
     static inline auto FOnLanguageChange = PreyFunction<void(CKeyboard *const _this)>(0x9D1070);
     static inline auto FClearBufferedKeyState = PreyFunction<void(CKeyboard *const _this)>(0x9D0AD0);
     static inline auto FSetupKeyNames = PreyFunction<void(CKeyboard *const _this)>(0x9D1150);
+#endif
+#else
+#ifndef MOONCRASH
+	static inline auto FCKeyboardOv2 = PreyFunction<void(CKeyboard* const _this, CDXInput& input)>(0x9EDDE0);
+	static inline auto FGetDeviceIndex = PreyFunction<int(const CKeyboard* const _this)>(0x1CBB0B0);
+	static inline auto FInit = PreyFunction<bool(CKeyboard* const _this)>(0x9EE3A0);
+	static inline auto FUpdate = PreyFunction<void(CKeyboard* const _this, bool bFocus)>(0x9F0130);
+	static inline auto FSetExclusiveMode = PreyFunction<bool(CKeyboard* const _this, bool value)>(0x9EE410);
+	static inline auto FClearKeyState = PreyFunction<void(CKeyboard* const _this)>(0x9EDEA0);
+	static inline auto FGetInputCharAscii = PreyFunction<char(CKeyboard* const _this, const SInputEvent& event)>(0x9EDF40);
+	static inline auto FGetOSKeyName = PreyFunction<const wchar_t* (CKeyboard* const _this, const SInputEvent& event)>(0x9EE0A0);
+	static inline auto FOnLanguageChange = PreyFunction<void(CKeyboard* const _this)>(0x9EE400);
+	static inline auto FClearBufferedKeyState = PreyFunction<void(CKeyboard* const _this)>(0x9EDE60);
+	static inline auto FSetupKeyNames = PreyFunction<void(CKeyboard* const _this)>(0x9EE4E0);
+#endif
+#endif
 };
-

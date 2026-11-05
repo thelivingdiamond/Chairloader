@@ -14,4 +14,3 @@ public:
 	virtual void RemoveListener(IArkConversationListener *const arg0) = 0;
 	virtual uint64_t GetConversationId() const = 0;
 };
-

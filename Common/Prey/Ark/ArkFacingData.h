@@ -21,8 +21,15 @@ struct ArkFacingData // Id=800222A Size=44
 	Vec3 alignTarget;
 	unsigned alignEntityId;
 	
+#ifndef MOONCRASH
 	Vec3 GetDirection(Vec3 const &_curPos) { return FGetDirection(this,_curPos); }
+#else
+	Vec3 GetDirection(const Vec3& _curPos) { alignas(Vec3) std::byte _return_buf_[sizeof(Vec3)]; return *FGetDirection(this, reinterpret_cast<Vec3*>(_return_buf_), _curPos); }
+#endif
 	
+#ifndef MOONCRASH
 	static inline auto FGetDirection = PreyFunction<Vec3(ArkFacingData *const _this, Vec3 const &_curPos)>(0x5F27C0);
+#else
+	static inline auto FGetDirection = PreyFunction<Vec3*(ArkFacingData* const _this, Vec3* _return_value_, const Vec3& _curPos)>(0x60D190);
+#endif
 };
-

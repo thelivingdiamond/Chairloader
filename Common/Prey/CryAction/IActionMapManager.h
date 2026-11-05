@@ -302,6 +302,7 @@ struct IActionFilter
 	virtual void        GetMemoryUsage(ICrySizer*) const = 0;
 	virtual void        Release() = 0;
 	virtual void        Filter(const ActionId& action) = 0;
+	virtual void        ClearFilters() = 0;
 	virtual bool        SerializeXML(const XmlNodeRef& root, bool bLoading) = 0;
 	virtual const char* GetName() = 0;
 	virtual void        Enable(bool enable) = 0;
@@ -347,12 +348,15 @@ struct IActionMapEventListener
 
 //------------------------------------------------------------------------
 
+class IActionFilterStack;
+
 // #if 0
 struct IActionMapManager
 {
     virtual ~IActionMapManager(){}
     virtual void                          Update() = 0;
     virtual void                          Reset() = 0;
+    virtual void                          ResetBindings() = 0;
     virtual void                          Clear() = 0;
 
     virtual bool                          InitActionMaps(const char* filename) = 0;
@@ -389,6 +393,7 @@ struct IActionMapManager
     virtual void                          ClearStoredCurrentInputData() = 0;
 
     virtual bool                          ReBindActionInput(const char* actionMapName, const ActionId& actionId, const char* szCurrentInput, const char* szNewInput) = 0;
+    virtual bool                          ReBindActionInput(const char* actionMapName, const ActionId& actionId, const EActionInputDevice deviceType, const int iDeviceIndex, const char* szNewInput) = 0;
 
     virtual int                           GetVersion() const = 0;
     virtual void                          SetVersion(int version) = 0;
@@ -412,6 +417,8 @@ struct IActionMapManager
     virtual void                          SetDefaultActionEntity(EntityId id, bool bUpdateAll = true) = 0;
     virtual void                          RegisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
     virtual void                          UnregisterActionMapEventListener(IActionMapEventListener* pActionMapEventListener) = 0;
+    virtual IActionFilterStack*           GetActionFilterStack() = 0;
+    virtual bool                          ActionFiltered(const ActionId& action) = 0;
 };
 // #endif
 

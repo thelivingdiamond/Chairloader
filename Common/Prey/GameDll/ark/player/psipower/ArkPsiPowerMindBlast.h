@@ -33,8 +33,13 @@ public:
 		ArkDisplayNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPsiPowerMindBlastProperties::ArkDescriptionProperty
@@ -49,8 +54,13 @@ public:
 		ArkDescriptionProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty
@@ -65,8 +75,13 @@ public:
 		ArkCooldownDurationSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
 	// ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty
@@ -81,8 +96,13 @@ public:
 		ArkSignalPackageIdProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1467B60);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1084740);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty
@@ -97,8 +117,13 @@ public:
 		ArkExecuteOnTargetParticleEffectProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x15AE4C0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088980);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x140C600);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C41C0);
+#endif
 	};
 
 	// ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty
@@ -113,21 +138,50 @@ public:
 		ArkTargetingPropertiesProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x159F110);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088F70);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C2C40);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1080CB0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty>(0x2C03B98);
+#else
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkDisplayNameProperty>(0x2D7E430);
+#endif
 	string m_DisplayName;
+#ifndef MOONCRASH
 	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkDescriptionProperty>(0x2C03BB8);
+#else
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkDescriptionProperty>(0x2D7E450);
+#endif
 	string m_Description;
+#ifndef MOONCRASH
 	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty>(0x2C03BD8);
+#else
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkCooldownDurationSecProperty>(0x2D7E470);
+#endif
 	float m_CooldownDurationSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkSignalPackageIdProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty>(0x2C03BF8);
+#else
+	static inline auto s_ArkSignalPackageIdProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkSignalPackageIdProperty>(0x2D7E490);
+#endif
 	uint64_t m_SignalPackageId;
+#ifndef MOONCRASH
 	static inline auto s_ArkExecuteOnTargetParticleEffectProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty>(0x2C03C18);
+#else
+	static inline auto s_ArkExecuteOnTargetParticleEffectProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkExecuteOnTargetParticleEffectProperty>(0x2D7E4B0);
+#endif
 	string m_ExecuteOnTargetParticleEffect;
+#ifndef MOONCRASH
 	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty>(0x2C03C38);
+#else
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerMindBlastProperties::ArkTargetingPropertiesProperty>(0x2D7E4D0);
+#endif
 	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -148,8 +202,13 @@ public:
 	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x159FA00);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x159FCE0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C3530);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C3870);
+#endif
 };
 
 // MindBlastPowerProperties
@@ -169,8 +228,13 @@ public:
 		ArkCommonProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+#endif
 	};
 
 	// MindBlastPowerProperties::ArkUniqueProperty
@@ -185,8 +249,13 @@ public:
 		ArkUniqueProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1468710);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B8620);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+#endif
 	};
 
 	// MindBlastPowerProperties::ArkLevelsProperty
@@ -203,20 +272,39 @@ public:
 		ArkLevelsProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x159F150);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x159F260);
 		static inline auto FIsArray = PreyFunction<bool(const MindBlastPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x159F2B0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x16C2C80);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x16C2D90);
+		static inline auto FIsArray = PreyFunction<bool(const MindBlastPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const MindBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x16C2DE0);
+#endif
 	};
 
 	using LevelProperties = ArkPsiPowerMindBlastProperties;
 	using UniqueProperties = bool;
 
+#ifndef MOONCRASH
 	static inline auto s_ArkCommonProperty = PreyGlobal<MindBlastPowerProperties::ArkCommonProperty>(0x2C03C58);
+#else
+	static inline auto s_ArkCommonProperty = PreyGlobal<MindBlastPowerProperties::ArkCommonProperty>(0x2D7E4F0);
+#endif
 	ArkPsiPowerCommonProperties m_Common;
+#ifndef MOONCRASH
 	static inline auto s_ArkUniqueProperty = PreyGlobal<MindBlastPowerProperties::ArkUniqueProperty>(0x2C03C78);
+#else
+	static inline auto s_ArkUniqueProperty = PreyGlobal<MindBlastPowerProperties::ArkUniqueProperty>(0x2D7E510);
+#endif
 	bool m_Unique;
+#ifndef MOONCRASH
 	static inline auto s_ArkLevelsProperty = PreyGlobal<MindBlastPowerProperties::ArkLevelsProperty>(0x2C03C98);
+#else
+	static inline auto s_ArkLevelsProperty = PreyGlobal<MindBlastPowerProperties::ArkLevelsProperty>(0x2D7E530);
+#endif
 	std::vector<ArkPsiPowerMindBlastProperties> m_Levels;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -232,9 +320,15 @@ public:
 	const std::vector<ArkPsiPowerMindBlastProperties>& GetLevels() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x159FA70);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x159FD80);
 	static inline auto FInit = PreyFunction<bool(MindBlastPowerProperties* const _this)>(0x159FEE0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16C35A0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x16C3910);
+	static inline auto FInit = PreyFunction<bool(MindBlastPowerProperties* const _this)>(0x16C3A30);
+#endif
 };
 
 // CArkPsiPowerMindBlast
@@ -266,6 +360,7 @@ public:
 	void Cleanup();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FProcessInputForTargeting = PreyFunction<void(CArkPsiPowerMindBlast* const _this, const CCryName& _rActionId, int _activationMode, float _value)>(0xA13080);
 	static inline auto FRefreshTargets = PreyFunction<void(CArkPsiPowerMindBlast* const _this)>(0x15A00D0);
 	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>* (const CArkPsiPowerMindBlast* const _this, std::vector<IEntity*>* _return_value_)>(0x159FEA0);
@@ -281,5 +376,21 @@ public:
 	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerMindBlast* const _this)>(0x15A01B0);
 	static inline auto FGetExecutionError = PreyFunction<EArkPsiPowerError(const CArkPsiPowerMindBlast* const _this)>(0x159FE80);
 	static inline auto FFilterTarget = PreyFunction<bool(const CArkPsiPowerMindBlast* const _this, const IEntity& _entity)>(0x159FAF0);
+#else
+	static inline auto FProcessInputForTargeting = PreyFunction<void(CArkPsiPowerMindBlast* const _this, const CCryName& _rActionId, int _activationMode, float _value)>(0x1333E90);
+	static inline auto FRefreshTargets = PreyFunction<void(CArkPsiPowerMindBlast* const _this)>(0x16C3C20);
+	static inline auto FGetSelectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerMindBlast* const _this, std::vector<IEntity*>* _return_value_)>(0x140DF90);
+	static inline auto FGetUnselectedTargets = PreyFunction<std::vector<IEntity*>*(const CArkPsiPowerMindBlast* const _this, std::vector<IEntity*>* _return_value_)>(0x140DFF0);
+	static inline auto FCancel = PreyFunction<void(CArkPsiPowerMindBlast* const _this)>(0x140D970);
+	static inline auto FStartTargeting = PreyFunction<bool(CArkPsiPowerMindBlast* const _this)>(0x16C3CF0);
+	static inline auto FOnReset = PreyFunction<void(CArkPsiPowerMindBlast* const _this)>(0x16C3C10);
+	static inline auto FUpdateTargeting = PreyFunction<void(CArkPsiPowerMindBlast* const _this, const float _fFrameTime)>(0x140EBF0);
+	static inline auto FGetEnum = PreyFunction<EArkPsiPowers(const CArkPsiPowerMindBlast* const _this)>(0x16C3A00);
+	static inline auto FGetTargetPosition = PreyFunction<Vec3*(const CArkPsiPowerMindBlast* const _this, Vec3* _return_value_)>(0x140DFB0);
+	static inline auto FGetTargetingComponent = PreyFunction<const ArkPsiPowerTargetingComponent* (const CArkPsiPowerMindBlast* const _this)>(0x1368F30);
+	static inline auto FSetLevel_Derived = PreyFunction<void(CArkPsiPowerMindBlast* const _this, const int _level)>(0x16C3C90);
+	static inline auto FStart_Derived = PreyFunction<bool(CArkPsiPowerMindBlast* const _this)>(0x16C3D00);
+	static inline auto FGetExecutionError = PreyFunction<EArkPsiPowerError(const CArkPsiPowerMindBlast* const _this)>(0x16C3A10);
+	static inline auto FFilterTarget = PreyFunction<bool(const CArkPsiPowerMindBlast* const _this, const IEntity& _entity)>(0x16C3670);
+#endif
 };
-

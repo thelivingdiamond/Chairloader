@@ -15,4 +15,3 @@ struct SEntitySchedulingProfiles // Id=80053DC Size=8
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 };
-

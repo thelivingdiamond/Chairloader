@@ -27,8 +27,13 @@ public:
 		ArkDisplayNameProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x135FC80);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1443F00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
 	// ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty
@@ -43,8 +48,13 @@ public:
 		ArkDescriptionProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10637A0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10B19D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
 	// ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty
@@ -59,8 +69,13 @@ public:
 		ArkCooldownDurationSecProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1064FA0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466BF0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157DA30);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty* const _this, ArkReflectedObject* const _pObject)>(0x13C06B0);
+#endif
 	};
 
 	// ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty
@@ -75,8 +90,13 @@ public:
 		ArkBlastTypePropertiesProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14686C0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x10821F0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157E5D0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1082790);
+#endif
 	};
 
 	// ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty
@@ -91,19 +111,44 @@ public:
 		ArkTargetingPropertiesProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1466C00);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1468700);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157E610);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1084620);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty>(0x2BF0070);
+#else
+	static inline auto s_ArkDisplayNameProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDisplayNameProperty>(0x2D6ABF8);
+#endif
 	string m_DisplayName;
+#ifndef MOONCRASH
 	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty>(0x2BF0090);
+#else
+	static inline auto s_ArkDescriptionProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkDescriptionProperty>(0x2D6AC18);
+#endif
 	string m_Description;
+#ifndef MOONCRASH
 	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty>(0x2BF00B0);
+#else
+	static inline auto s_ArkCooldownDurationSecProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkCooldownDurationSecProperty>(0x2D6AC38);
+#endif
 	float m_CooldownDurationSec;
+#ifndef MOONCRASH
 	static inline auto s_ArkBlastTypePropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty>(0x2BF00D0);
+#else
+	static inline auto s_ArkBlastTypePropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkBlastTypePropertiesProperty>(0x2D6AC58);
+#endif
 	ArkPsiKineticBlastProperties m_BlastTypeProperties;
+#ifndef MOONCRASH
 	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty>(0x2BF00F0);
+#else
+	static inline auto s_ArkTargetingPropertiesProperty = PreyGlobal<ArkPsiPowerKineticBlastProperties::ArkTargetingPropertiesProperty>(0x2D6AC78);
+#endif
 	ArkPsiPowerTargetingComponentProperties m_TargetingProperties;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -122,8 +167,13 @@ public:
 	const ArkPsiPowerTargetingComponentProperties& GetTargetingProperties() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x146D680);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1468D70);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x16AB9E0);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1580620);
+#endif
 };
 
 // KineticBlastPowerProperties
@@ -143,8 +193,13 @@ public:
 		ArkCommonProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1591940);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x10660A0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x14030A0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkCommonProperty* const _this, ArkReflectedObject* const _pObject)>(0x108CDE0);
+#endif
 	};
 
 	// KineticBlastPowerProperties::ArkUniqueProperty
@@ -159,8 +214,13 @@ public:
 		ArkUniqueProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1468710);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x1466C40);
+#else
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x13B8620);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkUniqueProperty* const _this, ArkReflectedObject* const _pObject)>(0x13BF510);
+#endif
 	};
 
 	// KineticBlastPowerProperties::ArkLevelsProperty
@@ -177,20 +237,39 @@ public:
 		ArkLevelsProperty();
 	#endif
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1468730);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x1468830);
 		static inline auto FIsArray = PreyFunction<bool(const KineticBlastPowerProperties::ArkLevelsProperty* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x1466DB0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x157FEE0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* const _pObject)>(0x157FFE0);
+		static inline auto FIsArray = PreyFunction<bool(const KineticBlastPowerProperties::ArkLevelsProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const KineticBlastPowerProperties::ArkLevelsProperty* const _this, ArkReflectedObject* _pObject)>(0x157E7A0);
+#endif
 	};
 
 	using LevelProperties = ArkPsiPowerKineticBlastProperties;
 	using UniqueProperties = bool;
 
+#ifndef MOONCRASH
 	static inline auto s_ArkCommonProperty = PreyGlobal<KineticBlastPowerProperties::ArkCommonProperty>(0x2BF0110);
+#else
+	static inline auto s_ArkCommonProperty = PreyGlobal<KineticBlastPowerProperties::ArkCommonProperty>(0x2D6AC98);
+#endif
 	ArkPsiPowerCommonProperties m_Common;
+#ifndef MOONCRASH
 	static inline auto s_ArkUniqueProperty = PreyGlobal<KineticBlastPowerProperties::ArkUniqueProperty>(0x2BF0130);
+#else
+	static inline auto s_ArkUniqueProperty = PreyGlobal<KineticBlastPowerProperties::ArkUniqueProperty>(0x2D6ACB8);
+#endif
 	bool m_Unique;
+#ifndef MOONCRASH
 	static inline auto s_ArkLevelsProperty = PreyGlobal<KineticBlastPowerProperties::ArkLevelsProperty>(0x2BF0150);
+#else
+	static inline auto s_ArkLevelsProperty = PreyGlobal<KineticBlastPowerProperties::ArkLevelsProperty>(0x2D6ACD8);
+#endif
 	std::vector<ArkPsiPowerKineticBlastProperties> m_Levels;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -206,8 +285,13 @@ public:
 	const std::vector<ArkPsiPowerKineticBlastProperties>& GetLevels() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1468CF0);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1468E10);
 	static inline auto FInit = PreyFunction<bool(KineticBlastPowerProperties* const _this)>(0x1468F00);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1580550);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15806C0);
+	static inline auto FInit = PreyFunction<bool(KineticBlastPowerProperties* const _this)>(0x15807B0);
+#endif
 };
-

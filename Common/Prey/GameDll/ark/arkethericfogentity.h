@@ -17,6 +17,10 @@ class SmartScriptTable;
 
 // Header: Exact
 // Prey/GameDll/ark/arkethericfogentity.h
+#ifdef MOONCRASH
+enum EEntityAspects;
+struct ISerializableInfo;
+#endif
 class CArkEthericFogEntity : public CGameObjectExtensionHelper<CArkEthericFogEntity,IGameObjectExtension> // Id=801905F Size=384
 {
 public:
@@ -27,6 +31,9 @@ public:
 	float m_debugDisplayRefreshTimer;
 	float m_radius;
 	float m_height;
+#ifdef MOONCRASH
+	float m_dangerIndicatorRadius;
+#endif
 	float m_ethericFogLifetime;
 	float m_damageTickRate;
 	float m_damageTimer;
@@ -68,6 +75,7 @@ public:
 	IParticleEffect *LoadEffect(const char *const arg0, SmartScriptTable const &arg1) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkEthericFogEntity *const _this, IGameObject *_pGameObject)>(0x142C380);
 	static inline auto FUpdate = PreyFunction<void(CArkEthericFogEntity *const _this, SEntityUpdateContext &_ctx, int _updateSlot)>(0x142CF10);
 	static inline auto FProcessEvent = PreyFunction<void(CArkEthericFogEntity *const _this, SEntityEvent &_event)>(0xA13080);
@@ -93,5 +101,32 @@ public:
 	static inline auto FSetLargeAttributes = PreyFunction<void(CArkEthericFogEntity *const _this, bool _bFromLoad)>(0x142C7B0);
 	static inline auto FStartFogEffects = PreyFunction<void(CArkEthericFogEntity *const _this, bool _bFromLoad)>(0x142CEB0);
 	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEthericFogEntity *const _this)>(0x142C3B0);
+#else
+	static inline auto FCArkEthericFogEntityOv1 = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1541A20);
+	static inline auto FInit = PreyFunction<bool(CArkEthericFogEntity* const _this, IGameObject* _pGameObject)>(0x1541C80);
+	static inline auto FUpdate = PreyFunction<void(CArkEthericFogEntity* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x15429C0);
+	static inline auto FProcessEvent = PreyFunction<void(CArkEthericFogEntity* const _this, SEntityEvent& _event)>(0x1333E90);
+	static inline auto FInitClient = PreyFunction<void(CArkEthericFogEntity* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInit = PreyFunction<void(CArkEthericFogEntity* const _this, IGameObject* _pGameObject)>(0x147BE20);
+	static inline auto FPostInitClient = PreyFunction<void(CArkEthericFogEntity* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkEthericFogEntity* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x13B0900);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkEthericFogEntity* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkEthericFogEntity* const _this, TSerialize _signature)>(0x13B0900);
+	static inline auto FRelease = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1542070);
+	static inline auto FFullSerialize = PreyFunction<void(CArkEthericFogEntity* const _this, TSerialize _ser)>(0x1541B40);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkEthericFogEntity* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1542020);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkEthericFogEntity* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkEthericFogEntity* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FPostUpdate = PreyFunction<void(CArkEthericFogEntity* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1333E90);
+	static inline auto FHandleEvent = PreyFunction<void(CArkEthericFogEntity* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FSetChannelId = PreyFunction<void(CArkEthericFogEntity* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bAuth)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkEthericFogEntity* const _this, ICrySizer* _pS)>(0x1541C50);
+	static inline auto FSetSmallAttributes = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bFromLoad)>(0x15424F0);
+	static inline auto FSetLargeAttributes = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bFromLoad)>(0x15420B0);
+	static inline auto FStartFogEffects = PreyFunction<void(CArkEthericFogEntity* const _this, bool _bFromLoad)>(0x1542930);
+	static inline auto FLoadScriptVariables = PreyFunction<void(CArkEthericFogEntity* const _this)>(0x1541CB0);
+#endif
 };
-

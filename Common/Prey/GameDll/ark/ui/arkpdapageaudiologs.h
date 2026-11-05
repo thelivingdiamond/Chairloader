@@ -11,6 +11,9 @@ struct SUIEventDesc;
 
 // Header: FromCpp
 // Prey/GameDll/ark/ui/arkpdapageaudiologs.h
+#ifdef MOONCRASH
+enum class ArkPDAPage;
+#endif
 class CArkPDAPageAudioLogs : public IArkPDAPage, public ArkUIMenuBase<CArkPDAPageAudioLogs> // Id=801C9E4 Size=64
 {
 public:
@@ -37,6 +40,7 @@ public:
 	bool IsAudioLogQueued() const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(CArkPDAPageAudioLogs *const _this, float _frameTime)>(0x1619AB0);
 	static inline auto FOnPlaybackComplete = PreyFunction<void(CArkPDAPageAudioLogs *const _this, bool _bComplete)>(0x16186A0);
 	static inline auto FMarkAsListened = PreyFunction<void(CArkPDAPageAudioLogs *const _this, uint64_t _audioLogId)>(0x16184E0);
@@ -48,5 +52,18 @@ public:
 	static inline auto FUpdateInputPrompts = PreyFunction<void(CArkPDAPageAudioLogs const *const _this, const bool _bUpdateUI)>(0x1619B10);
 	static inline auto FOnStartPlayback = PreyFunction<void(CArkPDAPageAudioLogs *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x1618C00);
 	static inline auto FOnShowAudioLog = PreyFunction<void(CArkPDAPageAudioLogs *const _this, IUIElement *const _pSender, SUIEventDesc const &_event, SUIArguments const &_args)>(0x16186B0);
+#else
+	static inline auto FCArkPDAPageAudioLogsOv1 = PreyFunction<void(CArkPDAPageAudioLogs* const _this)>(0x1739A20);
+	static inline auto FUpdate = PreyFunction<void(CArkPDAPageAudioLogs* const _this, float _frameTime)>(0x173B440);
+	static inline auto FOnPlaybackComplete = PreyFunction<void(CArkPDAPageAudioLogs* const _this, bool _bComplete)>(0x1739FC0);
+	static inline auto FMarkAsListened = PreyFunction<void(CArkPDAPageAudioLogs* const _this, uint64_t _audioLogId)>(0x1739E00);
+	static inline auto FOpen = PreyFunction<void(CArkPDAPageAudioLogs* const _this)>(0x173A8F0);
+	static inline auto FClose = PreyFunction<void(CArkPDAPageAudioLogs* const _this)>(0x1739D80);
+	static inline auto FRefresh = PreyFunction<void(const CArkPDAPageAudioLogs* const _this)>(0x173A950);
+	static inline auto FSetupInputPrompts = PreyFunction<void(CArkPDAPageAudioLogs* const _this)>(0x173B2E0);
+	static inline auto FManagesInputPrompts = PreyFunction<bool(const CArkPDAPageAudioLogs* const _this)>(0x1A302A0);
+	static inline auto FUpdateInputPrompts = PreyFunction<void(const CArkPDAPageAudioLogs* const _this, const bool _bUpdateUI)>(0x173B4A0);
+	static inline auto FOnStartPlayback = PreyFunction<void(CArkPDAPageAudioLogs* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x173A530);
+	static inline auto FOnShowAudioLog = PreyFunction<void(CArkPDAPageAudioLogs* const _this, IUIElement* const _pSender, const SUIEventDesc& _event, const SUIArguments& _args)>(0x1739FD0);
+#endif
 };
-

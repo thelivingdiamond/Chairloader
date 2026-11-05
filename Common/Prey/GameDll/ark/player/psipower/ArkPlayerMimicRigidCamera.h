@@ -30,7 +30,11 @@ public:
 	void Serialize(TSerialize _arg0_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FGetPointOnCylinder = PreyFunction<Vec3*(const ArkMimicCameraCylinder* const _this, Vec3* _return_value_, const Vec3& _position)>(0x1317EC0);
+#else
+	static inline auto FGetPointOnCylinder = PreyFunction<Vec3*(const ArkMimicCameraCylinder* const _this, Vec3* _return_value_, const Vec3& _position)>(0x13F2620);
+#endif
 };
 
 // ArkMimicCameraPathFinder
@@ -60,7 +64,11 @@ public:
 	Vec3 GetNearest(const Vec3& _arg0_, const float _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(ArkMimicCameraPathFinder* const _this, const Vec3& _position)>(0x1318730);
+#else
+	static inline auto FUpdate = PreyFunction<void(ArkMimicCameraPathFinder* const _this, const Vec3& _position)>(0x13F2E90);
+#endif
 };
 
 // ArkPlayerMimicRigidCamera
@@ -106,6 +114,7 @@ public:
 	void ProcessInput(const CCryName& _arg0_, const bool _arg1_);
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicRigidCameraOv1 = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this)>(0x1317AA0);
 	static inline auto FBitNotArkPlayerMimicRigidCamera = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this)>(0x1317B50);
 	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x1318820);
@@ -120,5 +129,20 @@ public:
 	static inline auto FUpdateGravShaft = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x131A250);
 	static inline auto FUpdateCameraCylinderRadius = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const float _radialSpeed, const float _maxRadius, IPhysicalEntity* _pIgnoreEntity)>(0x13188A0);
 	static inline auto FHasStaticCollision = PreyFunction<bool(const ArkPlayerMimicRigidCamera* const _this, const Vec3& _start, const Vec3& _end, IPhysicalEntity* _pIgnoreEntity)>(0x1318280);
+#else
+	static inline auto FArkPlayerMimicRigidCameraOv1 = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this)>(0x13F2200);
+	static inline auto FBitNotArkPlayerMimicRigidCamera = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this)>(0x13F22B0);
+	static inline auto FUpdate = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13F2F80);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkPlayerMimicRigidCamera* const _this, Vec3* _return_value_)>(0x13F28E0);
+	static inline auto FGetRotation = PreyFunction<Quat*(const ArkPlayerMimicRigidCamera* const _this, Quat* _return_value_)>(0x13F2910);
+	static inline auto FSetPosition = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const Vec3& _position)>(0x13F2D90);
+	static inline auto FSetRotation = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const Quat& _rotation)>(0x13F2E30);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, TSerialize _ser)>(0x13F2B00);
+	static inline auto FUpdatePositionCorrection = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime)>(0x13F5200);
+	static inline auto FUpdateG = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13F32A0);
+	static inline auto FUpdateZeroG = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13F56A0);
+	static inline auto FUpdateGravShaft = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const IEntity& _mimicEntity)>(0x13F49F0);
+	static inline auto FUpdateCameraCylinderRadius = PreyFunction<void(ArkPlayerMimicRigidCamera* const _this, const float _frameTime, const float _radialSpeed, const float _maxRadius, IPhysicalEntity* _pIgnoreEntity)>(0x13F3000);
+	static inline auto FHasStaticCollision = PreyFunction<bool(const ArkPlayerMimicRigidCamera* const _this, const Vec3& _start, const Vec3& _end, IPhysicalEntity* _pIgnoreEntity)>(0x13F29E0);
+#endif
 };
-

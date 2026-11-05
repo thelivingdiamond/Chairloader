@@ -14,6 +14,9 @@ struct SFlowAddress;
 class TFlowInputData;
 enum EFlowGraphStepMode {
     none = 0,
+    stepGlobal = 1,
+    stepLocal = 2,
+    stepOut = 3,
 };
 
 // Header: MadeUp
@@ -55,4 +58,3 @@ struct IFlowGraphDebugger : public ICryUnknown // Id=8004711 Size=8
 	static CryGUID const &IID();
 #endif
 };
-

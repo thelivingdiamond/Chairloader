@@ -35,4 +35,3 @@ public:
 	virtual void NotifyOfItemCountChange(unsigned arg0) const = 0;
 	virtual void DoMetricsSnapshot(XmlNodeRef const &arg0) const = 0;
 };
-

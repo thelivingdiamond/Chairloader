@@ -28,6 +28,7 @@ public:
 	EArkPlayerLightPriority GetVisibleLight() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLightManager = PreyFunction<void(ArkPlayerLightManager* const _this)>(0x1238460);
 	static inline auto FReset = PreyFunction<void(ArkPlayerLightManager* const _this)>(0x12385F0);
 	static inline auto FRegisterArkPlayerLight = PreyFunction<void(ArkPlayerLightManager* const _this, ArkPlayerLight* _pLight)>(0x12385E0);
@@ -37,5 +38,15 @@ public:
 	static inline auto FSetSuppressed = PreyFunction<void(ArkPlayerLightManager* const _this, bool _bSuppress)>(0x1238650);
 	static inline auto FAttachLightsToPlayer = PreyFunction<void(const ArkPlayerLightManager* const _this)>(0x1238480);
 	static inline auto FUpdateLightVisibility = PreyFunction<void(const ArkPlayerLightManager* const _this)>(0x1238690);
+#else
+	static inline auto FArkPlayerLightManager = PreyFunction<void(ArkPlayerLightManager* const _this)>(0x12D9370);
+	static inline auto FReset = PreyFunction<void(ArkPlayerLightManager* const _this)>(0x12D9500);
+	static inline auto FRegisterArkPlayerLight = PreyFunction<void(ArkPlayerLightManager* const _this, ArkPlayerLight* _pLight)>(0x12D94F0);
+	static inline auto FUnregisterArkPlayerLight = PreyFunction<void(ArkPlayerLightManager* const _this, ArkPlayerLight* _pLight)>(0x12D9580);
+	static inline auto FPostSerialize = PreyFunction<void(ArkPlayerLightManager* const _this)>(0x12D9410);
+	static inline auto FSetLightVisible = PreyFunction<bool(const ArkPlayerLightManager* const _this, ArkPlayerLight& _light, bool _bVisible)>(0x12D9530);
+	static inline auto FSetSuppressed = PreyFunction<void(ArkPlayerLightManager* const _this, bool _bSuppress)>(0x12D9560);
+	static inline auto FAttachLightsToPlayer = PreyFunction<void(const ArkPlayerLightManager* const _this)>(0x12D9390);
+	static inline auto FUpdateLightVisibility = PreyFunction<void(const ArkPlayerLightManager* const _this)>(0x12D95A0);
+#endif
 };
-

@@ -11,6 +11,10 @@ class XmlNodeRef;
 
 // Header: Exact
 // Prey/GameDll/ark/arkstatscomponent.h
+#ifdef MOONCRASH
+#include <Prey/ArkCommon/reflection/ArkProperty.h>
+class IArkValueBase;
+#endif
 class ArkStatModifierPackage : public ArkReflectedObject // Id=8015F86 Size=40
 {
 public:
@@ -20,11 +24,20 @@ public:
 		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
 		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkStatModifierPackage::ArkIDProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x106D720);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkStatModifierPackage::ArkIDProperty const* const _this, ArkReflectedObject* const _pObject)>(0x106D730);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkStatModifierPackage::ArkIDProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x142D5C0);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStatModifierPackage::ArkIDProperty* const _this, ArkReflectedObject* const _pObject)>(0x1088870);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkStatModifierPackage::ArkIDProperty s_ArkIDProperty;
+#else
+	static inline auto s_ArkIDProperty = PreyGlobal<ArkStatModifierPackage::ArkIDProperty>(0x2D6C9B0);
+#endif
 	uint64_t m_ID;
 
 	class ArkNameProperty : public ArkProperty // Id=8015F88 Size=32
@@ -33,11 +46,20 @@ public:
 		virtual void SetValue(ArkReflectedObject* const _pObject, IArkValueBase const* _v) const;
 		virtual ArkReflectedObject* GetMemPtr(ArkReflectedObject* const _pObject) const;
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkStatModifierPackage::ArkNameProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1067250);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkStatModifierPackage::ArkNameProperty const* const _this, ArkReflectedObject* const _pObject)>(0x1328480);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkStatModifierPackage::ArkNameProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x10AD070);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStatModifierPackage::ArkNameProperty* const _this, ArkReflectedObject* const _pObject)>(0x1093260);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkStatModifierPackage::ArkNameProperty s_ArkNameProperty;
+#else
+	static inline auto s_ArkNameProperty = PreyGlobal<ArkStatModifierPackage::ArkNameProperty>(0x2D6C9D0);
+#endif
 	CCryName m_Name;
 
 	class ArkModifiersProperty : public ArkProperty // Id=8015F89 Size=32
@@ -48,13 +70,24 @@ public:
 		virtual bool IsArray() const;
 		virtual void Reset(ArkReflectedObject* _pObject) const;
 
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkStatModifierPackage::ArkModifiersProperty const* const _this, ArkReflectedObject* const _pObject, IArkValueBase const* _v)>(0x1480550);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (ArkStatModifierPackage::ArkModifiersProperty const* const _this, ArkReflectedObject* const _pObject)>(0x14805B0);
 		static inline auto FIsArray = PreyFunction<bool(ArkStatModifierPackage::ArkModifiersProperty const* const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(ArkStatModifierPackage::ArkModifiersProperty const* const _this, ArkReflectedObject* _pObject)>(0x14805D0);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkStatModifierPackage::ArkModifiersProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1597D70);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStatModifierPackage::ArkModifiersProperty* const _this, ArkReflectedObject* const _pObject)>(0x1597DD0);
+		static inline auto FIsArray = PreyFunction<bool(const ArkStatModifierPackage::ArkModifiersProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkStatModifierPackage::ArkModifiersProperty* const _this, ArkReflectedObject* _pObject)>(0x1597DF0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkStatModifierPackage::ArkModifiersProperty s_ArkModifiersProperty;
+#else
+	static inline auto s_ArkModifiersProperty = PreyGlobal<ArkStatModifierPackage::ArkModifiersProperty>(0x2D6C9F0);
+#endif
 	std::vector<ArkStatModifier> m_Modifiers;
 
 	static ArkReflectedObject* Create() { return FCreate(); }
@@ -69,8 +102,13 @@ public:
 	std::vector<ArkStatModifier> const& GetModifiers() const;
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1481C20);
 	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x1481CD0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1599440);
+	static inline auto FGetClass = PreyFunction<ArkClass* ()>(0x15994F0);
+#endif
 };
 
 // Header: Exact
@@ -86,13 +124,24 @@ public:
 		virtual bool IsArray() const;
 		virtual void Reset(ArkReflectedObject *_pObject) const;
 		
+#ifndef MOONCRASH
 		static inline auto FSetValue = PreyFunction<void(ArkStatModifierPackages::ArkPackagesProperty const *const _this, ArkReflectedObject *const _pObject, IArkValueBase const *_v)>(0x14805E0);
 		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject *(ArkStatModifierPackages::ArkPackagesProperty const *const _this, ArkReflectedObject *const _pObject)>(0x1480660);
 		static inline auto FIsArray = PreyFunction<bool(ArkStatModifierPackages::ArkPackagesProperty const *const _this)>(0x1B933B0);
 		static inline auto FReset = PreyFunction<void(ArkStatModifierPackages::ArkPackagesProperty const *const _this, ArkReflectedObject *_pObject)>(0x1480680);
+#else
+		static inline auto FSetValue = PreyFunction<void(const ArkStatModifierPackages::ArkPackagesProperty* const _this, ArkReflectedObject* const _pObject, const IArkValueBase* _v)>(0x1597E00);
+		static inline auto FGetMemPtr = PreyFunction<ArkReflectedObject* (const ArkStatModifierPackages::ArkPackagesProperty* const _this, ArkReflectedObject* const _pObject)>(0x1597E80);
+		static inline auto FIsArray = PreyFunction<bool(const ArkStatModifierPackages::ArkPackagesProperty* const _this)>(0x1A302A0);
+		static inline auto FReset = PreyFunction<void(const ArkStatModifierPackages::ArkPackagesProperty* const _this, ArkReflectedObject* _pObject)>(0x1597EA0);
+#endif
 	};
 
+#ifndef MOONCRASH
 	static ArkStatModifierPackages::ArkPackagesProperty s_ArkPackagesProperty;
+#else
+	static inline auto s_ArkPackagesProperty = PreyGlobal<ArkStatModifierPackages::ArkPackagesProperty>(0x2D6CA10);
+#endif
 	std::vector<ArkStatModifierPackage> m_Packages;
 	
 	static ArkReflectedObject *Create() { return FCreate(); }
@@ -104,7 +153,11 @@ public:
 	ArkStatModifierPackage const *Find(uint64_t arg0) const;
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FCreate = PreyFunction<ArkReflectedObject *()>(0x16140D0);
+#else
+	static inline auto FCreate = PreyFunction<ArkReflectedObject* ()>(0x1077160);
+#endif
 };
 
 // Header: Exact
@@ -162,6 +215,7 @@ public:
 	unsigned UpdateCurrentId();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FReset = PreyFunction<void(ArkStatsComponent *const _this, XmlNodeRef const &_config)>(0x1482270);
 	static inline auto FAddStats = PreyFunction<void(ArkStatsComponent *const _this, std::unordered_map<CCryName,float> &_statsMap)>(0x1481670);
 	static inline auto FClear = PreyFunction<void(ArkStatsComponent *const _this)>(0x1481BF0);
@@ -173,5 +227,17 @@ public:
 	static inline auto FApplyPackage = PreyFunction<unsigned(ArkStatsComponent *const _this, uint64_t _packageId)>(0x1481910);
 	static inline auto FRemoveModifier = PreyFunction<void(ArkStatsComponent *const _this, unsigned _modifierId, bool _bSilent)>(0x1481DE0);
 	static inline auto FRemovePackage = PreyFunction<void(ArkStatsComponent *const _this, unsigned _packageId, bool _bSilent)>(0x1481F40);
+#else
+	static inline auto FReset = PreyFunction<void(ArkStatsComponent* const _this, const XmlNodeRef& _config)>(0x1599A90);
+	static inline auto FAddStats = PreyFunction<void(ArkStatsComponent* const _this, std::unordered_map<CCryName, float>& _statsMap)>(0x1598E90);
+	static inline auto FClear = PreyFunction<void(ArkStatsComponent* const _this)>(0x1599410);
+	static inline auto FSerialize = PreyFunction<void(ArkStatsComponent* const _this, TSerialize _ser)>(0x1599EF0);
+	static inline auto FGetStatOv1 = PreyFunction<float(const ArkStatsComponent* const _this, const CCryName& _stat64i32)>(0x1599590);
+	static inline auto FGetStatOv0 = PreyFunction<float(const ArkStatsComponent* const _this, const string& _stat64i32)>(0x12CFEA0);
+	static inline auto FGetBaseStat = PreyFunction<float(const ArkStatsComponent* const _this, const CCryName& _stat64i32)>(0x1599480);
+	static inline auto FAddModifierOv0 = PreyFunction<unsigned(ArkStatsComponent* const _this, const CCryName& _statName, float _modifier, const string& _modName)>(0x1598CE0);
+	static inline auto FApplyPackage = PreyFunction<unsigned(ArkStatsComponent* const _this, uint64_t _packageId)>(0x1599130);
+	static inline auto FRemoveModifier = PreyFunction<void(ArkStatsComponent* const _this, unsigned _modifierId, bool _bSilent)>(0x1599600);
+	static inline auto FRemovePackage = PreyFunction<void(ArkStatsComponent* const _this, unsigned _packageId, bool _bSilent)>(0x1599760);
+#endif
 };
-

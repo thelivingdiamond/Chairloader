@@ -13,6 +13,9 @@ struct ArkBlackListItem // Id=801AACC Size=16
 	
 	bool IsEqual(IEntity const &_entity) const { return FIsEqual(this,_entity); }
 	
+#ifndef MOONCRASH
 	static inline auto FIsEqual = PreyFunction<bool(ArkBlackListItem const *const _this, IEntity const &_entity)>(0x13CAE30);
+#else
+	static inline auto FIsEqual = PreyFunction<bool(const ArkBlackListItem* const _this, const IEntity& _entity)>(0x14D6E60);
+#endif
 };
-

@@ -13,4 +13,3 @@ public:
 	virtual const char *GetName() const = 0;
 	virtual ~IArkRoomVolume();
 };
-

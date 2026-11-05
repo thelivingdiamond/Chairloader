@@ -12,6 +12,11 @@
 
 // Header: FromCpp
 // Prey/GameDll/ark/npc/desires/ArkNpcFacingDesire.h
+#ifdef MOONCRASH
+#include <Prey/ArkCommon/ArkDelegate.h>
+#include <Prey/GameDll/ark/npc/desires/ArkNpcDesireBase.h>
+enum class EArkNpcFacingDesirePriority;
+#endif
 class ArkNpcFacingDesire : public ArkNpcDesireBase<ArkNpcFacingDesireManager,ArkNpcFacingDesire,enum EArkNpcFacingDesirePriority> // Id=80140FB Size=168
 {
 public:
@@ -25,7 +30,12 @@ public:
 		TargetParam(ArkNpcDesireTarget const &_target);
 		bool Set(ArkNpcFacingDesire &_desire) const { return FSet(this,_desire); }
 		
+#ifndef MOONCRASH
 		static inline auto FSet = PreyFunction<bool(ArkNpcFacingDesire::TargetParam const *const _this, ArkNpcFacingDesire &_desire)>(0x1525E50);
+#else
+		static inline auto FTargetParam = PreyFunction<void(ArkNpcFacingDesire::TargetParam* const _this, const ArkNpcDesireTarget& _target)>(0x14124F0);
+		static inline auto FSet = PreyFunction<bool(const ArkNpcFacingDesire::TargetParam* const _this, ArkNpcFacingDesire& _desire)>(0x16457E0);
+#endif
 	};
 
 	class MaintainTurnAlignParam // Id=8014101 Size=8
@@ -46,7 +56,12 @@ public:
 		MinSpeedParam(EArkNpcSpeedType _minSpeed);
 		bool Set(ArkNpcFacingDesire &_desire) const { return FSet(this,_desire); }
 		
+#ifndef MOONCRASH
 		static inline auto FSet = PreyFunction<bool(ArkNpcFacingDesire::MinSpeedParam const *const _this, ArkNpcFacingDesire &_desire)>(0x1525E30);
+#else
+		static inline auto FMinSpeedParam = PreyFunction<void(ArkNpcFacingDesire::MinSpeedParam* const _this, EArkNpcSpeedType _minSpeed)>(0x156BBD0);
+		static inline auto FSet = PreyFunction<bool(const ArkNpcFacingDesire::MinSpeedParam* const _this, ArkNpcFacingDesire& _desire)>(0x16457C0);
+#endif
 	};
 
 	enum class TurnState
@@ -71,7 +86,12 @@ public:
 	void ClearCallback();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FSetCallback = PreyFunction<void(ArkNpcFacingDesire *const _this, ArkDelegate<void __cdecl(enum EArkNpcFacingDesireCallbackEvent)> _callback)>(0x1525EB0);
 	static inline auto FSetResumeAngle = PreyFunction<void(ArkNpcFacingDesire *const _this, float _resumeAngle)>(0x1525ED0);
+#else
+	static inline auto FArkNpcFacingDesireOv1 = PreyFunction<void(ArkNpcFacingDesire* const _this, EArkNpcFacingDesirePriority _priority, const char* _dbgSource)>(0x1645690);
+	static inline auto FSetCallback = PreyFunction<void(ArkNpcFacingDesire* const _this, ArkDelegate<void __cdecl(enum EArkNpcFacingDesireCallbackEvent)> _callback)>(0x1645840);
+	static inline auto FSetResumeAngle = PreyFunction<void(ArkNpcFacingDesire* const _this, float _resumeAngle)>(0x1645860);
+#endif
 };
-

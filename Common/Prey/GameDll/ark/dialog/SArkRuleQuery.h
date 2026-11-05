@@ -11,4 +11,3 @@ struct SArkRuleQuery // Id=801397F Size=40
 	float currentTime;
 	bool bIgnoreVoice;
 };
-

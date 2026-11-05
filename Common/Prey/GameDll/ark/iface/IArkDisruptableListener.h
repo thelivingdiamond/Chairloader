@@ -15,10 +15,17 @@ public:
 	virtual void OnInterferenceAccumulationValueChanged(const float _value) const;
 	virtual void OnSparkTimerChanged(const float _value) const;
 	
+#ifndef MOONCRASH
 	static inline auto FOnInterferenceChanged = PreyFunction<void(IArkDisruptableListener *const _this, bool _bInterfered)>(0xA13080);
 	static inline auto FAffectedByDisruption = PreyFunction<bool(IArkDisruptableListener const *const _this)>(0x1B933B0);
 	static inline auto FOnDisruptAccumulationValueChanged = PreyFunction<void(IArkDisruptableListener const *const _this, const float _value)>(0xA13080);
 	static inline auto FOnInterferenceAccumulationValueChanged = PreyFunction<void(IArkDisruptableListener const *const _this, const float _value)>(0xA13080);
 	static inline auto FOnSparkTimerChanged = PreyFunction<void(IArkDisruptableListener const *const _this, const float _value)>(0xA13080);
+#else
+	static inline auto FOnInterferenceChanged = PreyFunction<void(IArkDisruptableListener* const _this, bool _bInterfered)>(0x1333E90);
+	static inline auto FAffectedByDisruption = PreyFunction<bool(const IArkDisruptableListener* const _this)>(0x1A302A0);
+	static inline auto FOnDisruptAccumulationValueChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x1333E90);
+	static inline auto FOnInterferenceAccumulationValueChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x1333E90);
+	static inline auto FOnSparkTimerChanged = PreyFunction<void(const IArkDisruptableListener* const _this, const float _value)>(0x1333E90);
+#endif
 };
-

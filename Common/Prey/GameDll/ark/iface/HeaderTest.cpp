@@ -1,4 +1,5 @@
-// Header test file for path Prey/GameDll/ark/iface/IArkAbilityListener.h
+// Header test file for path Prey/GameDll/ark/iface/
+
 #include "IArkAbilityListener.h"
 static_assert(sizeof(IArkAbilityListener) == 8);
 
@@ -45,7 +46,9 @@ static_assert(sizeof(IArkGravShaftListener) == 8);
 static_assert(sizeof(IArkGroundColliderListener) == 8);
 
 #include "IArkInventory.h"
+#ifndef MOONCRASH
 static_assert(sizeof(IArkInventory) == 8);
+#endif
 
 #include "IArkInventoryListener.h"
 static_assert(sizeof(IArkInventoryListener) == 8);

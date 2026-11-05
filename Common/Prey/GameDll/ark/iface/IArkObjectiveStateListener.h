@@ -16,9 +16,15 @@ public:
 	virtual void OnTaskCompleted(uint64_t arg0);
 	virtual void OnTaskFailed(uint64_t arg0);
 	
+#ifndef MOONCRASH
 	static inline auto FOnObjectiveAssigned = PreyFunction<void(IArkObjectiveStateListener *const _this, uint64_t _objectiveId)>(0xA13080);
 	static inline auto FOnObjectiveUnassigned = PreyFunction<void(IArkObjectiveStateListener *const _this, uint64_t _objectiveId)>(0xA13080);
 	static inline auto FOnObjectiveCompleted = PreyFunction<void(IArkObjectiveStateListener *const _this, uint64_t _objectiveId)>(0xA13080);
 	static inline auto FOnObjectiveFailed = PreyFunction<void(IArkObjectiveStateListener *const _this, uint64_t _objectiveId)>(0xA13080);
+#else
+	static inline auto FOnObjectiveAssigned = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x1333E90);
+	static inline auto FOnObjectiveUnassigned = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x1333E90);
+	static inline auto FOnObjectiveCompleted = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x1333E90);
+	static inline auto FOnObjectiveFailed = PreyFunction<void(IArkObjectiveStateListener* const _this, uint64_t _objectiveId)>(0x1333E90);
+#endif
 };
-

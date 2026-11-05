@@ -47,9 +47,14 @@ public:
 	unsigned m_nInterferenceId;
 	unsigned m_nInterruptId;
 	ICVar *m_pChannelDebug;
-	static int pa_drawDebug;
+#ifndef MOONCRASH
+	static inline auto pa_drawDebug = PreyGlobal<int>(0x2BF248C);
+#else
+	static inline auto pa_drawDebug = PreyGlobal<int>(0x2D6D1A0);
+#endif
 	
 	CArkPADialogManager();
+	virtual ~CArkPADialogManager();
 	void Update(const float _frameTime) { FUpdate(this,_frameTime); }
 	void Reset() { FReset(this); }
 	virtual void PlayDialog(uint8_t _channelId, SDialogParams &_params);
@@ -60,7 +65,11 @@ public:
 	void RegisterEntity(uint8_t _channelId, unsigned _entityId, float _scale) { FRegisterEntity(this,_channelId,_entityId,_scale); }
 	void UnregisterEntity(uint8_t _channelId, unsigned _entityId) { FUnregisterEntity(this,_channelId,_entityId); }
 	bool IsChannelEmpty(uint8_t _channelId) const { return FIsChannelEmpty(this,_channelId); }
+#ifndef MOONCRASH
 	std::vector<IEntity *> GetClosestSpeakers(const uint8_t _channelId, const unsigned _count) const { return FGetClosestSpeakers(this,_channelId,_count); }
+#else
+	std::vector<IEntity*> GetClosestSpeakers(const uint8_t _channelId, const unsigned _count) const { alignas(std::vector<IEntity*>) std::byte _return_buf_[sizeof(std::vector<IEntity*>)]; return *FGetClosestSpeakers(this, reinterpret_cast<std::vector<IEntity*>*>(_return_buf_), _channelId, _count); }
+#endif
 	void ClearQueuedAnnouncement(ArkFlowNodeDialogTrigger<ArkPADialogTrigger> const *_pPATrigger, uint8_t _channelId) { FClearQueuedAnnouncement(this,_pPATrigger,_channelId); }
 	static bool ShouldApplySpeakerAudioEffect(IEntity const *_pEntity) { return FShouldApplySpeakerAudioEffect(_pEntity); }
 	void Serialize(TSerialize _ser) { FSerialize(this,_ser); }
@@ -74,6 +83,7 @@ public:
 	void PlayQueuedAnnouncement(uint8_t arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FUpdate = PreyFunction<void(CArkPADialogManager *const _this, const float _frameTime)>(0x148C5E0);
 	static inline auto FReset = PreyFunction<void(CArkPADialogManager *const _this)>(0x148C0C0);
 	static inline auto FPlayDialog = PreyFunction<void(CArkPADialogManager *const _this, uint8_t _channelId, SDialogParams &_params)>(0x148BCB0);
@@ -90,5 +100,23 @@ public:
 	static inline auto FSerialize = PreyFunction<void(CArkPADialogManager *const _this, TSerialize _ser)>(0x148C130);
 	static inline auto FPostSerialize = PreyFunction<void(CArkPADialogManager *const _this)>(0x148C020);
 	static inline auto FOnChimeComplete = PreyFunction<void(SAudioRequestInfo const *const pAudioRequestInfo)>(0x148BA90);
+#else
+	static inline auto FCArkPADialogManagerOv1 = PreyFunction<void(CArkPADialogManager* const _this)>(0x15A2F80);
+	static inline auto FUpdate = PreyFunction<void(CArkPADialogManager* const _this, const float _frameTime)>(0x15A4290);
+	static inline auto FReset = PreyFunction<void(CArkPADialogManager* const _this)>(0x15A3D40);
+	static inline auto FPlayDialog = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, SDialogParams& _params)>(0x15A3950);
+	static inline auto FPlayPAAnnouncement = PreyFunction<bool(CArkPADialogManager* const _this, ArkFlowNodeDialogTrigger<ArkPADialogTrigger>& _PATrigger, uint64_t _ruleId, uint8_t _channelId, EArkChimeType _chimeType)>(0x15A3970);
+	static inline auto FStop = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, bool _bInterrupt)>(0x15A3FE0);
+	static inline auto FPause = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, bool _bPaused)>(0x15A38E0);
+	static inline auto FSetDuckAudio = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, bool _bEnable)>(0x15A3E00);
+	static inline auto FRegisterEntity = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, unsigned _entityId, float _scale)>(0x15A3CE0);
+	static inline auto FUnregisterEntity = PreyFunction<void(CArkPADialogManager* const _this, uint8_t _channelId, unsigned _entityId)>(0x15A4200);
+	static inline auto FIsChannelEmpty = PreyFunction<bool(const CArkPADialogManager* const _this, uint8_t _channelId)>(0x15A3710);
+	static inline auto FGetClosestSpeakers = PreyFunction<std::vector<IEntity*>*(const CArkPADialogManager* const _this, std::vector<IEntity*>* _return_value_, const uint8_t _channelId, const unsigned _count)>(0x15A3500);
+	static inline auto FClearQueuedAnnouncement = PreyFunction<void(CArkPADialogManager* const _this, const ArkFlowNodeDialogTrigger<ArkPADialogTrigger>* _pPATrigger, uint8_t _channelId)>(0x15A34D0);
+	static inline auto FShouldApplySpeakerAudioEffect = PreyFunction<bool(const IEntity* _pEntity)>(0x15A3E20);
+	static inline auto FSerialize = PreyFunction<void(CArkPADialogManager* const _this, TSerialize _ser)>(0x15A3DB0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkPADialogManager* const _this)>(0x15A3CA0);
+	static inline auto FOnChimeComplete = PreyFunction<void(const SAudioRequestInfo* const pAudioRequestInfo)>(0x15A3730);
+#endif
 };
-

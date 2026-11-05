@@ -1159,5 +1159,3 @@ ILINE Matrix33_tpl<F1>& dotproduct_matrix(const Vec3_tpl<F1>& v, const Vec3_tpl<
 	m.m22 = v.z * op.z;
 	return m;
 }
-
-

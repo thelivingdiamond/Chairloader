@@ -5,7 +5,7 @@
 // CPlatformOS_Base
 // Header:  CryEngine/crysystem/platformos/PlatformOS_Base.h
 struct CPlatformOS_Base : public IPlatformOS
-{ // Size=16 (0x10)
+{ // Size=16 (0x10), Mooncrash: Size=80 (0x50)
 	// CPlatformOS_Base::CStableFPSWatcher
 	// Header:  CryEngine/crysystem/platformos/PlatformOS_Base.h
 	class CStableFPSWatcher
@@ -25,7 +25,14 @@ struct CPlatformOS_Base : public IPlatformOS
 	
 	ELanguageID m_languageId;
 	unsigned m_supportedLanguages;
+#ifdef MOONCRASH
+	// CryMT::CLocklessPointerQueue<IPlatformOS::IServiceTask,std::allocator<IPlatformOS::IServiceTask> > (Size=64); the template is not in the tree.
+	alignas(8) unsigned char m_mainThreadTasks[64];
+#endif // MOONCRASH
 	
+#ifdef MOONCRASH
+	virtual void PostMainThreadTask(IPlatformOS::IServiceTask* const _task);
+#endif // MOONCRASH
 	virtual bool UsePlatformSavingAPI() const;
 	virtual ELanguageID GetLanguageIDFromName(const char* _arg0_) const;
 	virtual ELanguageID GetSystemLanguageID() const;
@@ -36,10 +43,20 @@ struct CPlatformOS_Base : public IPlatformOS
 #if 0
 	CPlatformOS_Base();
 #endif
-	
+
+#ifndef MOONCRASH
 	static inline auto FUsePlatformSavingAPI = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xE78440);
 	static inline auto FGetSystemLanguageID = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this)>(0xEEBB60);
 	static inline auto FGetNumSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0xE76B90);
 	static inline auto FGetSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0x1A4D090);
 	static inline auto FSwapConfirmCancel = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xDD23F0);
+#else
+	static inline auto FPostMainThreadTask = PreyFunction<void(CPlatformOS_Base* const _this, IPlatformOS::IServiceTask* const _task)>(0xE93F20);
+	static inline auto FUsePlatformSavingAPI = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0xE94940);
+	static inline auto FGetLanguageIDFromName = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this, const char* languageName)>(0xE930C0);
+	static inline auto FGetSystemLanguageID = PreyFunction<ELanguageID(const CPlatformOS_Base* const _this)>(0x899030);
+	static inline auto FGetNumSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0xE93300);
+	static inline auto FGetSystemSupportedLanguages = PreyFunction<unsigned(const CPlatformOS_Base* const _this)>(0x528760);
+	static inline auto FSwapConfirmCancel = PreyFunction<bool(const CPlatformOS_Base* const _this)>(0x13B0900);
+#endif
 };

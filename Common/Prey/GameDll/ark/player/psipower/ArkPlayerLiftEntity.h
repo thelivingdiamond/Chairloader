@@ -9,6 +9,9 @@ struct IEntity;
 
 // ArkPlayerLiftEntity
 // Header:  Prey/GameDll/ark/player/psipower/ArkPlayerLiftEntity.h
+#ifdef MOONCRASH
+#include <Prey/GameDll/ark/player/psipower/ArkPsiLiftVolume.h>
+#endif
 class ArkPlayerLiftEntity
 { // Size=16 (0x10)
 public:
@@ -23,12 +26,21 @@ public:
 	void Update(const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime) const { FUpdate(this, _entity, _lift, _frameTime); }
 	void PostSerialize(const IEntity& _entity) const { FPostSerialize(this, _entity); }
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLiftEntityOv1 = PreyFunction<void(ArkPlayerLiftEntity* const _this)>(0x130E8D0);
 	static inline auto FArkPlayerLiftEntityOv0 = PreyFunction<void(ArkPlayerLiftEntity* const _this, const float _inwardLiftForce, const float _upwardLiftForce)>(0x130E890);
 	static inline auto FEnterLiftVolume = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x130E920);
 	static inline auto FExitLiftVolume = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x130E9F0);
 	static inline auto FUpdate = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime)>(0x130EC30);
 	static inline auto FPostSerialize = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x130EAB0);
+#else
+	static inline auto FArkPlayerLiftEntityOv1 = PreyFunction<void(ArkPlayerLiftEntity* const _this)>(0x13E8ED0);
+	static inline auto FArkPlayerLiftEntityOv0 = PreyFunction<void(ArkPlayerLiftEntity* const _this, const float _inwardLiftForce, const float _upwardLiftForce)>(0x13E8E90);
+	static inline auto FEnterLiftVolume = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x13E9010);
+	static inline auto FExitLiftVolume = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x13E90E0);
+	static inline auto FUpdate = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity, const ArkPsiLift& _lift, const float _frameTime)>(0x13E9320);
+	static inline auto FPostSerialize = PreyFunction<void(const ArkPlayerLiftEntity* const _this, const IEntity& _entity)>(0x13E91A0);
+#endif
 };
 
 // ArkPlayerLiftEntitySpawner
@@ -41,7 +53,11 @@ public:
 	ArkPlayerLiftEntitySpawner();
 	ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity> Spawn(const unsigned _entityId) const { alignas(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>) std::byte _return_buf_[sizeof(ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>)]; return *FSpawn(this, reinterpret_cast<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>*>(_return_buf_), _entityId); }
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerLiftEntitySpawner = PreyFunction<void(ArkPlayerLiftEntitySpawner* const _this)>(0x130E8F0);
 	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>*(const ArkPlayerLiftEntitySpawner* const _this, ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>* _return_value_, const unsigned _entityId)>(0x130EAE0);
+#else
+	static inline auto FArkPlayerLiftEntitySpawner = PreyFunction<void(ArkPlayerLiftEntitySpawner* const _this)>(0x13E8EF0);
+	static inline auto FSpawn = PreyFunction<ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>*(const ArkPlayerLiftEntitySpawner* const _this, ArkPsiLiftVolumeEntity<ArkPlayerLiftEntity>* _return_value_, const unsigned _entityId)>(0x13E91D0);
+#endif
 };
-

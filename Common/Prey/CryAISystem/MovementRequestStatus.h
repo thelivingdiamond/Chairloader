@@ -32,4 +32,3 @@ struct MovementRequestStatus // Id=800222B Size=296
 	MovementRequestStatus::ID operator enum MovementRequestStatus::ID() const;
 #endif
 };
-

@@ -27,6 +27,9 @@ class ArkPlayerMimicRigidEntity
 public:
 	// ArkPlayerMimicRigidEntity::SignalGroup
 	// Header:  Prey/GameDll/ark/player/psipower/ArkPlayerMimicRigidEntity.h
+#ifdef MOONCRASH
+	using SignalGroup = ArkSignalSystem::Data::SignalGroupData;
+#else
 	class SignalGroup : public ArkSignalSystem::Data::SortableData<ArkSignalSystem::Data::SignalGroupData>
 	{ // Size=40 (0x28)
 	public:
@@ -43,9 +46,19 @@ public:
 		const std::vector<uint64_t>& GetSignals() const;
 	#endif
 
-		static inline auto FHasSignal = PreyFunction<bool(const ArkSignalSystem::Data::SignalGroupData* const _this, const uint64_t _id)>(0x13FA450);
-		static inline auto FLoadParamters = PreyFunction<void(ArkSignalSystem::Data::SignalGroupData* const _this, const XmlNodeRef _node)>(0x15DA250);
+#ifdef MOONCRASH
+		bool HasSignal(const uint64_t _id) const { return FHasSignal(this, _id); }
+		void LoadParamters(const XmlNodeRef _node) { FLoadParamters(this, _node); }
+#endif
+#ifndef MOONCRASH
+		static inline auto FHasSignal = PreyFunction<bool(const ArkPlayerMimicRigidEntity::SignalGroup* const _this, const uint64_t _id)>(0x13FA450);
+		static inline auto FLoadParamters = PreyFunction<void(ArkPlayerMimicRigidEntity::SignalGroup* const _this, const XmlNodeRef _node)>(0x15DA250);
+#else
+		static inline auto FHasSignal = PreyFunction<bool(const ArkPlayerMimicRigidEntity::SignalGroup* const _this, const uint64_t _id)>(0x150C620);
+		static inline auto FLoadParamters = PreyFunction<void(ArkPlayerMimicRigidEntity::SignalGroup* const _this, const XmlNodeRef _node)>(0x1702370);
+#endif
 	};
+#endif
 
 	Vec3 m_scale;
 	string m_statObjPath;
@@ -83,6 +96,7 @@ public:
 	void EnableAttentionObject();
 #endif
 
+#ifndef MOONCRASH
 	static inline auto FArkPlayerMimicRigidEntityOv1 = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x131B720);
 	static inline auto FArkPlayerMimicRigidEntityOv0 = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const unsigned _entityId)>(0x131C0C0);
 	static inline auto FBitNotArkPlayerMimicRigidEntity = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x131C240);
@@ -99,5 +113,22 @@ public:
 	static inline auto FInitializeGeometry = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x131C9A0);
 	static inline auto FInitializeSignalReceiver = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x131CB50);
 	static inline auto FDisableAttentionObject = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x131C7E0);
+#else
+	static inline auto FArkPlayerMimicRigidEntityOv1 = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const IEntity& _targetEntity, const QuatT& _worldTransform)>(0x13F5ED0);
+	static inline auto FArkPlayerMimicRigidEntityOv0 = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const unsigned _entityId)>(0x13F6870);
+	static inline auto FBitNotArkPlayerMimicRigidEntity = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x13F69F0);
+	static inline auto FShow = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const Vec3& _velocity)>(0x13F7800);
+	static inline auto FIsVisible = PreyFunction<bool(const ArkPlayerMimicRigidEntity* const _this)>(0x13F7490);
+	static inline auto FGetSize = PreyFunction<Vec3*(const ArkPlayerMimicRigidEntity* const _this, Vec3* _return_value_)>(0x13F70C0);
+	static inline auto FGetPosition = PreyFunction<Vec3*(const ArkPlayerMimicRigidEntity* const _this, Vec3* _return_value_)>(0x13F7050);
+	static inline auto FGetClass = PreyFunction<const IEntityClass* (const ArkPlayerMimicRigidEntity* const _this)>(0x13F7020);
+	static inline auto FSerialize = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, TSerialize _ser)>(0x13F76A0);
+	static inline auto FOnBroken = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this, const IEntity& _entity)>(0x13F74D0);
+	static inline auto FOnReceiveSignal = PreyFunction<void(ArkSignalSystem::Receiver* const _this, const ArkSignalSystem::Package& _package)>(0x13F75C0);
+	static inline auto FOnEntityEvent = PreyFunction<void(IEntityEventListener* const _this, IEntity* _pEntity, SEntityEvent& _event)>(0x13F7500);
+	static inline auto FComputeInitialWorldBounds = PreyFunction<OBB(const IEntity& _targetEntity)>(0x13F6BF0);
+	static inline auto FInitializeGeometry = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x13F7150);
+	static inline auto FInitializeSignalReceiver = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x13F7300);
+	static inline auto FDisableAttentionObject = PreyFunction<void(ArkPlayerMimicRigidEntity* const _this)>(0x13F6F90);
+#endif
 };
-

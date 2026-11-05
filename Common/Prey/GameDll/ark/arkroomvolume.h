@@ -18,6 +18,12 @@ struct SGameObjectEvent;
 
 // Header: FromCpp
 // Prey/GameDll/ark/arkroomvolume.h
+#ifdef MOONCRASH
+#include <Prey/CryAction/IGameObject.h>
+enum EEntityAspects;
+enum EEntityEvent;
+struct ISerializableInfo;
+#endif
 class CArkRoomVolume : public CGameObjectExtensionHelper<CArkRoomVolume,IGameObjectExtension>, public IArkRoomVolume, public IAreaManagerEventListener // Id=801C077 Size=128
 {
 public:
@@ -58,6 +64,7 @@ public:
 	virtual void OnAreaManagerEvent(EEntityEvent _event, unsigned _triggerEntityID, IArea *_pArea);
 	void SetupAmbientSound() { FSetupAmbientSound(this); }
 	
+#ifndef MOONCRASH
 	static inline auto FInit = PreyFunction<bool(CArkRoomVolume *const _this, IGameObject *_pGameObject)>(0x1471910);
 	static inline auto FPostInit = PreyFunction<void(CArkRoomVolume *const _this, IGameObject *_pGameObject)>(0xA13080);
 	static inline auto FInitClient = PreyFunction<void(CArkRoomVolume *const _this, int _channelId)>(0xA13080);
@@ -86,5 +93,35 @@ public:
 	static inline auto FGetName = PreyFunction<const char *(CArkRoomVolume const *const _this)>(0x14718F0);
 	static inline auto FOnAreaManagerEvent = PreyFunction<void(CArkRoomVolume *const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea *_pArea)>(0x1471A80);
 	static inline auto FSetupAmbientSound = PreyFunction<void(CArkRoomVolume *const _this)>(0x1471EC0);
+#else
+	static inline auto FCArkRoomVolumeOv1 = PreyFunction<void(CArkRoomVolume* const _this)>(0x1588EE0);
+	static inline auto FInit = PreyFunction<bool(CArkRoomVolume* const _this, IGameObject* _pGameObject)>(0x15890A0);
+	static inline auto FPostInit = PreyFunction<void(CArkRoomVolume* const _this, IGameObject* _pGameObject)>(0x1333E90);
+	static inline auto FInitClient = PreyFunction<void(CArkRoomVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FPostInitClient = PreyFunction<void(CArkRoomVolume* const _this, int _channelId)>(0x1333E90);
+	static inline auto FReloadExtension = PreyFunction<bool(CArkRoomVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1A302A0);
+	static inline auto FPostReloadExtension = PreyFunction<void(CArkRoomVolume* const _this, IGameObject* _pGameObject, const SEntitySpawnParams& _params)>(0x1333E90);
+	static inline auto FGetEntityPoolSignature = PreyFunction<bool(CArkRoomVolume* const _this, TSerialize _signature)>(0x1A302A0);
+	static inline auto FRelease = PreyFunction<void(CArkRoomVolume* const _this)>(0x1589440);
+	static inline auto FFullSerialize = PreyFunction<void(CArkRoomVolume* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FNetSerialize = PreyFunction<bool(CArkRoomVolume* const _this, TSerialize _ser, EEntityAspects _aspect, uint8_t _profile, int _flags)>(0x1A302A0);
+	static inline auto FPostSerialize = PreyFunction<void(CArkRoomVolume* const _this)>(0x1333E90);
+	static inline auto FSerializeSpawnInfo = PreyFunction<void(CArkRoomVolume* const _this, TSerialize _ser)>(0x1333E90);
+	static inline auto FGetSpawnInfo = PreyFunction<_smart_ptr<ISerializableInfo>*(CArkRoomVolume* const _this, _smart_ptr<ISerializableInfo>* _return_value_)>(0x361570);
+	static inline auto FUpdate = PreyFunction<void(CArkRoomVolume* const _this, SEntityUpdateContext& _ctx, int _updateSlot)>(0x1589A60);
+	static inline auto FHandleEvent = PreyFunction<void(CArkRoomVolume* const _this, const SGameObjectEvent& _event)>(0x1333E90);
+	static inline auto FProcessEvent = PreyFunction<void(CArkRoomVolume* const _this, SEntityEvent& _event)>(0x1589320);
+	static inline auto FSetChannelId = PreyFunction<void(CArkRoomVolume* const _this, uint16_t _id)>(0x1333E90);
+	static inline auto FSetAuthority = PreyFunction<void(CArkRoomVolume* const _this, bool _bAuth)>(0x1333E90);
+	static inline auto FGetRMIBase = PreyFunction<const void* (const CArkRoomVolume* const _this)>(0x1CBB0B0);
+	static inline auto FPostUpdate = PreyFunction<void(CArkRoomVolume* const _this, float _frameTime)>(0x1333E90);
+	static inline auto FPostRemoteSpawn = PreyFunction<void(CArkRoomVolume* const _this)>(0x1333E90);
+	static inline auto FGetMemoryUsage = PreyFunction<void(const CArkRoomVolume* const _this, ICrySizer* _pCrySizer)>(0x1333E90);
+	static inline auto FIsPointInside = PreyFunction<bool(const IArkRoomVolume* const _this, const Vec3& _point)>(0x15891B0);
+	static inline auto FSetPoints = PreyFunction<void(IArkRoomVolume* const _this, const std::vector<Vec3>& _points, float _height, bool _resetPoints)>(0x1589520);
+	static inline auto FSetExportable = PreyFunction<void(IArkRoomVolume* const _this, bool _bExported)>(0x15894E0);
+	static inline auto FGetName = PreyFunction<const char* (const IArkRoomVolume* const _this)>(0x1588790);
+	static inline auto FOnAreaManagerEvent = PreyFunction<void(IAreaManagerEventListener* const _this, EEntityEvent _event, unsigned _triggerEntityID, IArea* _pArea)>(0x1589210);
+	static inline auto FSetupAmbientSound = PreyFunction<void(CArkRoomVolume* const _this)>(0x1589640);
+#endif
 };
-

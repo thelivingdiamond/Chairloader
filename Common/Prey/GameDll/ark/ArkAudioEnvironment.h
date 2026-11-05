@@ -21,4 +21,3 @@ public:
 	void SetName(const char *arg0);
 #endif
 };
-

@@ -1,6 +1,7 @@
 // Header file automatically created from a PDB.
 
 #pragma once
+#include <Prey/CryMemory/PoolAllocator.h>
 #include <Prey/GameDll/item.h>
 #include <Prey/GameDll/ark/CSchedulerActionPoolBase.h>
 #include <Prey/GameDll/ark/ISchedulerAction.h>
@@ -10,6 +11,9 @@ struct ITimer;
 
 // Header: FromCpp
 // Prey/GameDll/itemscheduler.h
+#ifdef MOONCRASH
+class CItem;
+#endif
 class CItemScheduler // Id=8013D61 Size=104
 {
 public:
@@ -51,9 +55,18 @@ public:
 	std::vector<CItemScheduler::STimerAction> m_timers;
 	std::vector<CItemScheduler::STimerAction> m_actives;
 	std::vector<CItemScheduler::SScheduledAction> m_schedule;
+#ifdef MOONCRASH
+	CItemScheduler(CItem* item);
+#endif
 	
+#ifndef MOONCRASH
 	void CItemScheduler(CItem *item);
+#endif
+#ifndef MOONCRASH
 	virtual void ~CItemScheduler();
+#else
+	virtual ~CItemScheduler();
+#endif
 	void Reset(bool keepPersistent) { FReset(this,keepPersistent); }
 	void Update(float frameTime) { FUpdate(this,frameTime); }
 	void TimerAction(float fTimeSeconds, ISchedulerAction *action, bool persistent) { FTimerActionOv0(this,fTimeSeconds,action,persistent); }
@@ -69,12 +82,22 @@ public:
 	bool IsLocked();
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FBitNotCItemScheduler = PreyFunction<void(CItemScheduler *const _this)>(0x1766E70);
 	static inline auto FReset = PreyFunction<void(CItemScheduler *const _this, bool keepPersistent)>(0x1767140);
 	static inline auto FUpdate = PreyFunction<void(CItemScheduler *const _this, float frameTime)>(0x17672E0);
 	static inline auto FTimerActionOv0 = PreyFunction<void(CItemScheduler *const _this, float fTimeSeconds, ISchedulerAction *action, bool persistent)>(0x1767260);
 	static inline auto FGetMemoryStatistics = PreyFunction<void(CItemScheduler const *const _this, ICrySizer *s)>(0x17670A0);
 	static inline auto FSetBusy = PreyFunction<void(CItemScheduler *const _this, bool busy)>(0x1767250);
+#else
+	static inline auto FCItemSchedulerOv1 = PreyFunction<void(CItemScheduler* const _this, CItem* item)>(0x188DBD0);
+	static inline auto FBitNotCItemScheduler = PreyFunction<void(CItemScheduler* const _this)>(0x188DC20);
+	static inline auto FReset = PreyFunction<void(CItemScheduler* const _this, bool keepPersistent)>(0x188DEF0);
+	static inline auto FUpdate = PreyFunction<void(CItemScheduler* const _this, float frameTime)>(0x188E090);
+	static inline auto FTimerActionOv0 = PreyFunction<void(CItemScheduler* const _this, float fTimeSeconds, ISchedulerAction* action, bool persistent)>(0x188E010);
+	static inline auto FGetMemoryStatistics = PreyFunction<void(const CItemScheduler* const _this, ICrySizer* s)>(0x188DE50);
+	static inline auto FSetBusy = PreyFunction<void(CItemScheduler* const _this, bool busy)>(0x188E000);
+#endif
 };
 
 // Header: Exact
@@ -107,4 +130,3 @@ public:
 	virtual void GetMemoryStatistics(ICrySizer *s);
 #endif
 };
-

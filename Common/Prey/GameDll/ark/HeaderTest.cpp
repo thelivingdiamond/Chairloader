@@ -1,5 +1,7 @@
-// Header test file for path Prey/GameDll/ark/ArkAirJetManager.h
+// Header test file for path Prey/GameDll/ark/
+
 #include "ArkAirJetManager.h"
+static_assert(sizeof(ArkAirJet) == 16);
 static_assert(sizeof(ArkAirJetManager) == 48);
 
 #include "arkanglerotationcomponent.h"
@@ -14,15 +16,15 @@ static_assert(sizeof(ArkApexVolumeManager) == 96);
 #include "arkareacontainer.h"
 static_assert(sizeof(CArkAreaContainer) == 88);
 
-//#include "arkattachmentclipevent.h"
-//static_assert(sizeof(CArkAttachmentClipEvent) == 72);
-//tatic_assert(sizeof(CArkAttachmentEventParams) == 24);
-
 #include "ArkAudioEnvironment.h"
 static_assert(sizeof(ArkAudioEnvironment) == 4);
 
 #include "ArkAuxiliaryInventory.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkAuxiliaryInventory) == 136);
+#else
+static_assert(sizeof(ArkAuxiliaryInventory) == 128);
+#endif
 
 #include "ArkBlackListItem.h"
 static_assert(sizeof(ArkBlackListItem) == 16);
@@ -33,24 +35,15 @@ static_assert(sizeof(CArkBreakable) == 376);
 #include "ArkBreakableGlass.h"
 static_assert(sizeof(ArkBreakableGlass) == 64);
 
-//#include "arkcamerafovclipevent.h"
-//static_assert(sizeof(CArkCameraFOVClipEventParams) == 16);
-//static_assert(sizeof(CArkCameraFOVClipEvent) == 80);
-
-//#include "arkcamerashakeclipevent.h"
-//static_assert(sizeof(CArkCameraShakeClipEventParams) == 16);
-//static_assert(sizeof(CArkCameraShakeClipEvent) == 56);
-
-//#include "ArkCameraShakeManager.h"
-//static_assert(sizeof(ArkCameraShakeManager) == 56);
-//static_assert(sizeof(ArkCameraShakeManager::CameraShakeEntry) == 64);
-//static_assert(sizeof(ArkCameraShakeManager::ChannelEntry) == 16);
-
 #include "ArkCaptureVolume.h"
 static_assert(sizeof(ArkCaptureVolume) == 64);
 
 #include "ArkCharacterEffectsManager.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCharacterEffectsManager) == 1544);
+#else
+static_assert(sizeof(ArkCharacterEffectsManager) == 1832);
+#endif
 
 #include "ArkCharacterManager.h"
 static_assert(sizeof(ArkCharacterManager) == 64);
@@ -62,13 +55,21 @@ static_assert(sizeof(CArkCornerSmoother3D::SPredictionSettings) == 64);
 static_assert(sizeof(CArkCornerSmoother3D::SPrediction) == 1204);
 
 #include "ArkCraftingIngredient.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkCraftingIngredient) == 416);
+#else
+static_assert(sizeof(ArkCraftingIngredient) == 440);
+#endif
 
 #include "ArkDataComponentBase.h"
 static_assert(sizeof(ArkDataComponentBase) == 32);
 
 #include "ArkDifficultyComponent.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkDifficultyComponent) == 32);
+#else
+static_assert(sizeof(ArkDifficultyComponent) == 24);
+#endif
 static_assert(sizeof(ArkDifficultyLevel) == 32);
 static_assert(sizeof(ArkDifficultyLevel::ArkLevelProperty) == 32);
 static_assert(sizeof(ArkDifficultyLevel::ArkVisualAttentionScalarProperty) == 32);
@@ -82,36 +83,15 @@ static_assert(sizeof(ArkDisruptable) == 152);
 #include "ArkDisruptableSignalReceiver.h"
 static_assert(sizeof(ArkDisruptableSignalReceiver) == 24);
 
-//#include "ArkDistractionInstance.h"
-//static_assert(sizeof(ArkDistractionInstance) == 40);
-//static_assert(sizeof(ArkDistractionInstance::ObstacleCheckState) == 16);
-
 #include "ArkDistractionManager.h"
 static_assert(sizeof(ArkDistractionManager) == 200);
 
 #include "ArkDoor.h"
-#if 0
-static_assert(sizeof(ArkNpcMovementDesire) == 240);
-static_assert(sizeof(ArkNpcMovementDesire::DestinationParam) == 8);
-static_assert(sizeof(ArkNpcMovementDesire::EnableNavMeshQueryParam) == 12);
-static_assert(sizeof(ArkNpcMovementDesire::DisableNavMeshQueryParam) == 1);
-static_assert(sizeof(ArkNpcMovementDesire::ForcePathParam) == 1);
-static_assert(sizeof(ArkNpcMovementDesire::ForceGoToNavMeshParam) == 1);
-static_assert(sizeof(ArkNpcMovementDesire::StanceParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::SpeedLiteralParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::AccelLiteralParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::DecelLiteralParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::StopDistanceParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::UseExactPositionParam) == 20);
-static_assert(sizeof(ArkNpcMovementDesire::ShiftParam) == 24);
-static_assert(sizeof(ArkNpcMovementDesire::JumpParam) == 16);
-static_assert(sizeof(ArkNpcMovementDesire::HoverParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::ContinueMovingParam) == 1);
-static_assert(sizeof(ArkNpcMovementDesire::ScriptMoveParam) == 1);
-static_assert(sizeof(ArkNpcMovementDesire::ObstacleAvoidanceParam) == 4);
-static_assert(sizeof(ArkNpcMovementDesire::ErrorParam) == 1);
-#endif
+#ifndef MOONCRASH
 static_assert(sizeof(ArkDoor) == 688);
+#else
+static_assert(sizeof(ArkDoor) == 1008);
+#endif
 
 #include "ArkEffectParameters.h"
 static_assert(sizeof(ArkEffectParameters) == 40);
@@ -124,13 +104,17 @@ static_assert(sizeof(ArkEntityEffectBase) == 128);
 static_assert(sizeof(ArkEntityEffect) == 136);
 static_assert(sizeof(ArkEntityPointerEffect) == 136);
 static_assert(sizeof(ArkEntityAttachmentEffect) == 88);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkCharacterAttachmentEffect) == 88);
+static_assert(sizeof(EntityEffects::ArkEffectsCharacterController) == 40);
+#endif
 
 #include "arkelevatorcollisiondetector.h"
 static_assert(sizeof(CArkElevatorCollisionDetector) == 104);
 
 #include "ArkEmissiveComponent.h"
-static_assert(sizeof(ArkEmissiveComponent) == 64);
 static_assert(sizeof(ArkParamOverride) == 8);
+static_assert(sizeof(ArkEmissiveComponent) == 64);
 
 #include "ArkEmotionExtension.h"
 static_assert(sizeof(ArkEmotionExtension) == 80);
@@ -139,10 +123,16 @@ static_assert(sizeof(ArkEmotionExtension) == 80);
 static_assert(sizeof(ArkEntityGrabber) == 40);
 
 #include "ArkEquipmentMod.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkEquipmentMod) == 416);
+#endif
 
 #include "arkethericdoppelganger.h"
+#ifndef MOONCRASH
 static_assert(sizeof(CArkEthericDoppelganger) == 768);
+#else
+static_assert(sizeof(CArkEthericDoppelganger) == 776);
+#endif
 
 #include "arkethericfogentity.h"
 static_assert(sizeof(CArkEthericFogEntity) == 384);
@@ -151,16 +141,15 @@ static_assert(sizeof(CArkEthericFogEntity) == 384);
 static_assert(sizeof(ArkEthericFogManager) == 40);
 static_assert(sizeof(ArkEthericFogManager::EthericFogInfo) == 8);
 
-#if 0
-#include "ArkEventScheduler.h"
-static_assert(sizeof(ArkEventScheduler) == 40);
-static_assert(sizeof(ArkEventScheduler::TimeEventInfo) == 32);
-static_assert(sizeof(ArkFlowNodeTimeEventBase) == 64);
-static_assert(sizeof(ArkFlowNodeAbsoluteTimeEvent) == 64);
-static_assert(sizeof(ArkFlowNodeRelativeTimeEvent) == 64);
-static_assert(sizeof(ArkFlowNodeGetGameTime) == 16);
-static_assert(sizeof(ArkFlowNodeSetGameTime) == 16);
-#endif
+// Disabled: base build fails inside this header (C1083: Cannot open include file: 'Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h': No such file or d)
+//#include "ArkEventScheduler.h"
+//static_assert(sizeof(ArkEventScheduler) == 40);
+//static_assert(sizeof(ArkEventScheduler::TimeEventInfo) == 32);
+//static_assert(sizeof(ArkFlowNodeTimeEventBase) == 64);
+//static_assert(sizeof(ArkFlowNodeAbsoluteTimeEvent) == 64);
+//static_assert(sizeof(ArkFlowNodeRelativeTimeEvent) == 64);
+//static_assert(sizeof(ArkFlowNodeGetGameTime) == 16);
+//static_assert(sizeof(ArkFlowNodeSetGameTime) == 16);
 
 #include "ArkExclusiveActionFilter.h"
 static_assert(sizeof(ArkExclusiveActionFilter) == 88);
@@ -169,30 +158,44 @@ static_assert(sizeof(ArkExclusiveActionFilter) == 88);
 static_assert(sizeof(ArkFabricationPlanIngredients) == 20);
 
 #include "ArkFabricator.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkFabricator) == 1960);
+#else
+static_assert(sizeof(ArkFabricator) == 1984);
+#endif
 
 #include "ArkFactionLink.h"
 static_assert(sizeof(ArkFactionLink) == 24);
 
 #include "ArkFactionManager.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkFactionManager) == 472);
-
-#if 0
-#include "ArkFlowNodeDissipateNightmare.h"
-static_assert(sizeof(ArkFlowNodeDissipateNightmare) == 16);
-
-#include "ArkFlowNodeNpcMakeConscious.h"
-static_assert(sizeof(ArkFlowNodeNpcMakeConscious) == 16);
-
-#include "ArkFlowNodeNpcTrackView_GetStartPos.h"
-static_assert(sizeof(ArkFlowNodeNpcTrackView_GetStartPos) == 16);
-
-#include "arkflownodenpctrackview_setdynamicentity.h"
-static_assert(sizeof(ArkFlowNodeNpcTrackView_SetDynamicNode) == 16);
 #endif
 
+// Disabled: base build fails inside this header (C1083: Cannot open include file: 'Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h': No such file or d)
+//#include "ArkFlowNodeDissipateNightmare.h"
+//#ifndef MOONCRASH
+//static_assert(sizeof(ArkFlowNodeDissipateNightmare) == 16);
+//#endif
+
+// Disabled: base build cannot reach this header (gamedll/ark/arkflownodenpcmakeconscious.h -> Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h)
+//#include "ArkFlowNodeNpcMakeConscious.h"
+//static_assert(sizeof(ArkFlowNodeNpcMakeConscious) == 16);
+
+// Disabled: base build cannot reach this header (gamedll/ark/arkflownodenpctrackview_getstartpos.h -> Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h)
+//#include "ArkFlowNodeNpcTrackView_GetStartPos.h"
+//static_assert(sizeof(ArkFlowNodeNpcTrackView_GetStartPos) == 16);
+
+// Disabled: base build cannot reach this header (gamedll/ark/arkflownodenpctrackview_setdynamicentity.h -> Prey/CryAISystem/FlowNodes/AIFlowBaseNode.h)
+//#include "arkflownodenpctrackview_setdynamicentity.h"
+//static_assert(sizeof(ArkFlowNodeNpcTrackView_SetDynamicNode) == 16);
+
 #include "ArkGame.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkGame) == 472);
+#else
+static_assert(sizeof(ArkGame) == 464);
+#endif
 static_assert(sizeof(ArkGame::ScreenBlackFadeInfo) == 8);
 
 #include "ArkGameDataManager.h"
@@ -219,23 +222,37 @@ static_assert(sizeof(CArkGlassBreaker) == 72);
 static_assert(sizeof(ArkGlintConfigManager) == 72);
 
 #include "arkglooeffectutils.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkGlooEffects) == 232);
 static_assert(sizeof(ArkGlooEffectAccumulated) == 248);
 static_assert(sizeof(ArkGlooEffectTimed) == 240);
+#else
+static_assert(sizeof(ArkGlooEffects) == 240);
+static_assert(sizeof(ArkGlooEffectAccumulated) == 256);
+static_assert(sizeof(ArkGlooEffectTimed) == 248);
+#endif
 
 #include "arkglooislandnavlinkmanager.h"
 static_assert(sizeof(CArkGlooIslandNavLinkManager) == 80);
 static_assert(sizeof(CArkGlooIslandNavLinkManager::GlooIsland) == 184);
 
 #include "arkgravshaftentity.h"
+#ifndef MOONCRASH
 static_assert(sizeof(CArkGravShaftEntity) == 568);
+#else
+static_assert(sizeof(CArkGravShaftEntity) == 576);
+#endif
 static_assert(sizeof(CArkGravShaftEntity::ArkContainedEntity) == 32);
 
 #include "ArkGroundColliderComponent.h"
 static_assert(sizeof(ArkGroundColliderComponent) == 16);
 
 #include "ArkHealthExtension.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkHealthExtension) == 72);
+#else
+static_assert(sizeof(ArkHealthExtension) == 80);
+#endif
 
 #include "ArkInteractionInfo.h"
 static_assert(sizeof(ArkInteractionInfo) == 24);
@@ -244,11 +261,20 @@ static_assert(sizeof(ArkInteractionInfo) == 24);
 static_assert(sizeof(ArkInteractionTestResult) == 40);
 
 #include "ArkInteractiveMachine.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkInteractiveMachine) == 760);
+#else
+static_assert(sizeof(ArkInteractiveMachine) == 784);
+#endif
 
 #include "arkinteractiveobject.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkInteractiveMachinePerceivable) == 16);
 static_assert(sizeof(ArkInteractiveObjectPerceivable) == 16);
+#endif
+#ifdef MOONCRASH
+static_assert(sizeof(ArkInteractiveObject) == 848);
+#endif
 
 #include "ArkLaserTripline.h"
 static_assert(sizeof(ArkLaserTripline) == 344);
@@ -277,7 +303,11 @@ static_assert(sizeof(ArkLightManagerDisruptableData) == 16);
 static_assert(sizeof(ArkLightTimeManager) == 72);
 
 #include "ArkListenerManager.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkListenerManager) == 1032);
+#else
+static_assert(sizeof(ArkListenerManager) == 1168);
+#endif
 
 #include "ArkLocationManager.h"
 static_assert(sizeof(ArkLocationManager) == 88);
@@ -302,14 +332,24 @@ static_assert(sizeof(ArkMetaTagManager::ArchetypeTagInfo) == 8);
 static_assert(sizeof(CArkNavIslandJumpLink) == 208);
 
 #include "ArkNeuromod.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkNeuromod) == 384);
+#else
+static_assert(sizeof(ArkNeuromod) == 408);
+#endif
 
 #include "ArkNewGamePlus.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkNewGamePlus) == 64);
 static_assert(sizeof(ArkNewGamePlus::ArkResearchSaveData) == 16);
+#endif
 
 #include "ArkOperatorDispenser.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkOperatorDispenser) == 2456);
+#else
+static_assert(sizeof(ArkOperatorDispenser) == 2488);
+#endif
 static_assert(sizeof(ArkOperatorDispenser::SpawnedOperator) == 8);
 
 #include "ArkOverlappingGooHandler.h"
@@ -318,24 +358,15 @@ static_assert(sizeof(ArkOverlappingGooHandler) == 32);
 #include "ArkPasswordProtected.h"
 static_assert(sizeof(ArkPasswordProtected) == 16);
 
-//#include "arkplayercameralockclipevent.h"
-//static_assert(sizeof(CArkPlayerCameraLockClipEvent) == 48);
-
-//#include "arkplayerdisablemovementclipevent.h"
-//static_assert(sizeof(CArkPlayerDisableMovementClipEvent) == 48);
-
 #include "ArkPostEffectManager.h"
+static_assert(sizeof(ArkPostEffect) == 96);
 static_assert(sizeof(ArkPostEffectManager) == 256);
 static_assert(sizeof(ArkPostEffectManager::SBlendOutInfo) == 16);
-//static_assert(sizeof(SPostEffectCurve) == 16);
-//static_assert(sizeof(SPostEffectCurveParam) == 72);
-//static_assert(sizeof(ArkPostEffectOverrideParam) == 160);
-static_assert(sizeof(ArkPostEffect) == 96);
-
-//#include "arkposteffectprocclip.h"
-//static_assert(sizeof(CArkPostEffectClipEventParams) == 16);
-//static_assert(sizeof(CArkEnablePostEffectClipEvent) == 56);
-//static_assert(sizeof(CArkDisablePostEffectClipEvent) == 56);
+#ifdef MOONCRASH
+static_assert(sizeof(SPostEffectCurve) == 16);
+static_assert(sizeof(SPostEffectCurveParam) == 72);
+static_assert(sizeof(ArkPostEffectOverrideParam) == 160);
+#endif
 
 #include "arkprojectilegoonetworkmanager.h"
 static_assert(sizeof(CArkProjectileGooNetworkManager) == 88);
@@ -349,25 +380,16 @@ static_assert(sizeof(CArkProjectileGooPhysicsManager::DynamicEntity_GooInfo) == 
 static_assert(sizeof(CArkProjectilePoolManager) == 24);
 static_assert(sizeof(CArkProjectilePoolManager::SProjectilePoolDesc) == 72);
 
-//#include "arkpsipowermimicclipevent.h"
-//static_assert(sizeof(CArkPsiPowerMimicMorphInObjectClipEvent) == 48);
-
-//#include "arkpsipowersmokeformclipevent.h"
-//static_assert(sizeof(CArkPsiPowerSmokeFormEnterClipEvent) == 48);
-//static_assert(sizeof(CArkPsiPowerSmokeFormExitClipEvent) == 48);
-//static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEventParams) == 16);
-//static_assert(sizeof(CArkPsiPowerSmokeStartActiveParticleEffectClipEvent) == 56);
-//static_assert(sizeof(CArkPsiPowerSmokeStopActiveParticleEffectClipEvent) == 48);
-
 #include "ArkRecycler.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkRecycler) == 1248);
+#else
+static_assert(sizeof(ArkRecycler) == 1280);
+#endif
 static_assert(sizeof(ArkRecycler::RecycleData) == 24);
 
 #include "ArkRecycleUtils.h"
 static_assert(sizeof(ArkRecycleUtils) == 1);
-
-//#include "arkreleaseslaveclipevent.h"
-//static_assert(sizeof(CArkReleaseSlaveProceduralClipEvent) == 48);
 
 #include "ArkRepairable.h"
 static_assert(sizeof(ArkRepairableLite) == 48);
@@ -386,6 +408,8 @@ static_assert(sizeof(ArkRoomPath) == 56);
 static_assert(sizeof(CArkRoomVolume) == 128);
 
 #include "arkroomvolumemanager.h"
+static_assert(sizeof(ArkRoomPathNode) == 8);
+static_assert(sizeof(ArkRoomPathNodePair) == 16);
 static_assert(sizeof(CArkRoomVolumeManager) == 328);
 static_assert(sizeof(CArkRoomVolumeManager::VolumeData) == 72);
 static_assert(sizeof(CArkRoomVolumeManager::PortalData) == 96);
@@ -420,15 +444,15 @@ static_assert(sizeof(ArkComplexVisionInput) == 8);
 static_assert(sizeof(ArkSpeakerExtension) == 72);
 
 #include "ArkStatsComponent.h"
+static_assert(sizeof(ArkStatModifierPackage) == 40);
+static_assert(sizeof(ArkStatModifierPackage::ArkIDProperty) == 32);
+static_assert(sizeof(ArkStatModifierPackage::ArkNameProperty) == 32);
+static_assert(sizeof(ArkStatModifierPackage::ArkModifiersProperty) == 32);
 static_assert(sizeof(ArkStatModifierPackages) == 24);
 static_assert(sizeof(ArkStatModifierPackages::ArkPackagesProperty) == 32);
 static_assert(sizeof(ArkStatsComponent) == 160);
 static_assert(sizeof(ArkStatsComponent::ArkModifier) == 8);
 static_assert(sizeof(ArkStatsComponent::ArkStat) == 32);
-static_assert(sizeof(ArkStatModifierPackage) == 40);
-static_assert(sizeof(ArkStatModifierPackage::ArkIDProperty) == 32);
-static_assert(sizeof(ArkStatModifierPackage::ArkNameProperty) == 32);
-static_assert(sizeof(ArkStatModifierPackage::ArkModifiersProperty) == 32);
 
 #include "arktargetlerper.h"
 static_assert(sizeof(CArkTargetLerper) == 120);
@@ -448,10 +472,17 @@ static_assert(sizeof(ArkTurretCountArea) == 128);
 static_assert(sizeof(ArkTurretCountArea::TurretEntry) == 8);
 
 #include "ArkTutorialSystem.h"
+#ifndef MOONCRASH
 static_assert(sizeof(ArkTutorialSystem) == 744);
+#else
+static_assert(sizeof(ArkTutorialSystem) == 1680);
+#endif
 static_assert(sizeof(ArkTutorialSystem::ContextualPackage) == 64);
 static_assert(sizeof(ArkTutorialSystem::ContextualEntry) == 160);
 static_assert(sizeof(ArkTutorialSystem::CardEntry) == 40);
+#ifdef MOONCRASH
+static_assert(sizeof(ArkTutorialSystem::ReadyRoomEntry) == 64);
+#endif
 
 #include "CSchedulerActionPoolBase.h"
 static_assert(sizeof(CSchedulerActionPoolBase) == 24);
@@ -462,7 +493,6 @@ static_assert(sizeof(ISchedulerAction) == 8);
 #include "playerIArkCombatFocusListener.h"
 static_assert(sizeof(IArkCombatFocusListener) == 8);
 
-#if 0
 #include "scriptbind_ark.h"
 static_assert(sizeof(CScriptBind_Ark) == 112);
 
@@ -481,11 +511,188 @@ static_assert(sizeof(CScriptBind_ArkNpc) == 112);
 #include "scriptbind_arkroster.h"
 static_assert(sizeof(CScriptBind_ArkRoster) == 96);
 
-#include "scriptbind_inventory.h"
-static_assert(sizeof(CScriptBind_Inventory) == 96);
+// Disabled: base build cannot reach this header (gamedll/ark/scriptbind_inventory.h -> Prey/CryAction/ScriptBind_Inventory.h)
+//#include "scriptbind_inventory.h"
+//static_assert(sizeof(CScriptBind_Inventory) == 96);
 
-#include "scriptbind_itemsystem.h"
-static_assert(sizeof(CScriptBind_ItemSystem) == 96);
-#endif
+// Disabled: base build cannot reach this header (gamedll/ark/scriptbind_itemsystem.h -> Prey/CryAction/ScriptBind_ItemSystem.h)
+//#include "scriptbind_itemsystem.h"
+//static_assert(sizeof(CScriptBind_ItemSystem) == 96);
 
 #include "ArkItemSystem.h"
+#ifndef MOONCRASH
+static_assert(sizeof(ArkItemSystem) == 248);
+#else
+static_assert(sizeof(ArkItemSystem) == 232);
+#endif
+static_assert(sizeof(ArkItemSystem::IArkItemCreator) == 8);
+class CArkItem;
+static_assert(sizeof(ArkItemSystem::CArkItemCreator<CArkItem>) == 8);
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkAvoidanceField.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkAvoidanceField) == 12);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkChallengeManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkChallengeManager) == 112);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkDoomClockManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem::ArkDurationProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem::ArkPreIncrementProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem::ArkMaxSummonedPhantomsProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem::ArkLabelProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_ProfileElem::ArkCryptoMultiplierProperty) == 32);
+static_assert(sizeof(ArkDoomClockEntityData_Level) == 8);
+static_assert(sizeof(ArkDoomClockEntityData_Level::ArkHealthModifierProperty) == 32);
+static_assert(sizeof(ArkDoomClockEntityData_Level::ArkDamageModifierProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_Profile) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_Profile::ArkNameProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData_Profile::ArkLevelsProperty) == 32);
+static_assert(sizeof(ArkDoomClockLevelFanfare) == 24);
+static_assert(sizeof(ArkDoomClockLevelFanfare::ArkVFXProperty) == 32);
+static_assert(sizeof(ArkDoomClockLevelFanfare::ArkSFXProperty) == 32);
+static_assert(sizeof(ArkDoomClockLevelFanfare::ArkPostFXProperty) == 32);
+static_assert(sizeof(ArkDoomClockEntityData) == 32);
+static_assert(sizeof(ArkDoomClockEntityData::ArkNameProperty) == 32);
+static_assert(sizeof(ArkDoomClockEntityData::ArkLevelsProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData) == 72);
+static_assert(sizeof(ArkDoomClockGlobalData::ArkMaxLevelProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData::ArkProfileProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData::ArkLevelFanfareProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData::ArkPreIncrementPostFXProperty) == 32);
+static_assert(sizeof(ArkDoomClockGlobalData::ArkPreIncrementVFXProperty) == 32);
+static_assert(sizeof(ArkDoomClockData) == 96);
+static_assert(sizeof(ArkDoomClockData::ArkGlobalDataProperty) == 32);
+static_assert(sizeof(ArkDoomClockData::ArkEntityDataProperty) == 32);
+static_assert(sizeof(ArkDoomClockManager) == 144);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkDoorRNG.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkDoorRNG) == 16);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowNodeNpcCorruptHuman.h"
+static_assert(sizeof(ArkFlowNodeNpcCorruptHuman) == 16);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowNodeNpcCorruptOperator.h"
+static_assert(sizeof(ArkFlowNodeNpcCorruptOperator) == 16);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowNodeNpcEnableAutoCorruption.h"
+static_assert(sizeof(ArkFlowNodeNpcEnableAutoCorruption) == 16);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowNodeNpcRequestCorruptNpc.h"
+static_assert(sizeof(ArkFlowNodeNpcRequestCorruptNpc) == 16);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowSetPlayerTimeDilation.h"
+static_assert(sizeof(CArkFlowSetPlayerTimeDilation) == 24);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkFlowSetWorldTimeDilation.h"
+static_assert(sizeof(CArkFlowSetWorldTimeDilation) == 24);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkMoonRockEntity.h"
+#ifdef MOONCRASH
+static_assert(sizeof(CArkMoonRockEntity) == 352);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkMoonRockManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkMoonRockManager) == 168);
+static_assert(sizeof(ArkMoonRockManager::DeferredRayCastImpl) == 48);
+static_assert(sizeof(ArkDeferredAction<ArkMoonRockManager::DeferredRayCastImpl>) == 384);
+static_assert(sizeof(ArkMoonRockManager::MoonRockTargetInfo) == 20);
+static_assert(sizeof(ArkMoonRockManager::MoonRockInfo) == 36);
+static_assert(sizeof(ArkMoonRockManager::MoonRockUserInfo) == 48);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkNavLowGJumpLink.h"
+#ifdef MOONCRASH
+static_assert(sizeof(CArkNavLowGJumpLink) == 256);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkPhantomGravityWarp.h"
+static_assert(sizeof(CArkPhantomGravityWarp) == 168);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkPlayableCharacterManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkPlayableCharacterManager) == 264);
+static_assert(sizeof(ArkPlayableCharacterManager::SDeathInfo) == 16);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkRandomValueManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkRandomValueManager) == 136);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkRecycleHelper.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkRecycleHelper) == 360);
+static_assert(sizeof(ArkRecycleHelper::RecycleEntityInfo) == 3);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkRoomPortal.h"
+static_assert(sizeof(CArkRoomPortal) == 128);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSeededPickupSpawner.h"
+#ifdef MOONCRASH
+static_assert(sizeof(CArkSeededPickupSpawner) == 64);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ArkSimulationManager.h"
+#ifdef MOONCRASH
+static_assert(sizeof(ArkSimulationManager) == 5);
+#endif
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "IUIGameEventSystem.h"
+static_assert(sizeof(IUIGameEventSystem) == 8);
+#endif
+
+#if defined(MOONCRASH) || defined(PREY_HEADERTEST_ALL)   // new header: not compiled by base builds yet
+#include "ScriptHandle.h"
+#endif

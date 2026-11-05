@@ -11,7 +11,11 @@ public:
 	virtual void OnStartCarry(IEntity* const _pEntity);
 	virtual void OnStopCarry(IEntity* const _pEntity, bool _bThrown);
 
+#ifndef MOONCRASH
 	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0xA13080);
 	static inline auto FOnStopCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity, bool _bThrown)>(0xA13080);
+#else
+	static inline auto FOnStartCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity)>(0x1333E90);
+	static inline auto FOnStopCarry = PreyFunction<void(IArkPlayerCarryListener* const _this, IEntity* const _pEntity, bool _bThrown)>(0x1333E90);
+#endif
 };
-

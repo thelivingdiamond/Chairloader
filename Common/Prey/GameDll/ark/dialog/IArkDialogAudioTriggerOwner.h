@@ -12,4 +12,3 @@ public:
 	virtual void OnTriggerCutoff(ArkDialogAudioTrigger const *arg0) = 0;
 	virtual void OnTriggerFinished(ArkDialogAudioTrigger const *arg0) = 0;
 };
-

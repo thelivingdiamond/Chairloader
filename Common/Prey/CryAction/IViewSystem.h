@@ -193,6 +193,7 @@ struct IView
 		float sustainDuration;
 		float fadeInDuration;
 		float fadeOutDuration;
+		float speed;   // Prey addition
 		float frequency;
 		float randomness;
 		int   shakeID;
@@ -208,6 +209,7 @@ struct IView
 			, sustainDuration(0)
 			, fadeInDuration(0)
 			, fadeOutDuration(2.f)
+			, speed(0)
 			, frequency(0)
 			, randomness(0)
 			, shakeID(0)
@@ -257,11 +259,11 @@ struct IViewSystem
 	virtual void   SetActiveView(unsigned int viewId) = 0;
 
 	//utility functions
-	virtual IView*       GetView(unsigned int viewId) const = 0;
-	virtual IView*       GetActiveView() const = 0;
+	virtual IView*       GetView(unsigned int viewId) = 0;
+	virtual IView*       GetActiveView() = 0;
 
-	virtual unsigned int GetViewId(IView* pView) const = 0;
-	virtual unsigned int GetActiveViewId() const = 0;
+	virtual unsigned int GetViewId(IView* pView) = 0;
+	virtual unsigned int GetActiveViewId() = 0;
 
 	virtual IView*       GetViewByEntityId(unsigned int id, bool forceCreate = false) = 0;
 
@@ -272,7 +274,7 @@ struct IViewSystem
 	virtual void         PostSerialize() = 0;
 
 	// Get default distance to near clipping plane.
-	virtual float GetDefaultZNear() const = 0;
+	virtual float GetDefaultZNear() = 0;
 
 	virtual void  SetBlendParams(float fBlendPosSpeed, float fBlendRotSpeed, bool performBlendOut) = 0;
 

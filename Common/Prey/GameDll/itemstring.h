@@ -50,12 +50,19 @@ public:
 	void _release(const char *arg0);
 #endif
 	
+#ifndef MOONCRASH
 	static inline auto FoperatorEqOv1 = PreyFunction<SharedString::CSharedString &(SharedString::CSharedString *const _this, SharedString::CSharedString const &n)>(0x17609F0);
 	static inline auto FoperatorEqOv0 = PreyFunction<SharedString::CSharedString &(SharedString::CSharedString *const _this, const char *s)>(0x169D060);
 	static inline auto Freset = PreyFunction<void(SharedString::CSharedString *const _this)>(0x17634C0);
 	static inline auto Fclear = PreyFunction<void(SharedString::CSharedString *const _this)>(0x17634C0);
 	static inline auto FGetNameTable = PreyFunction<SharedString::CNameTable *()>(0x11CFF40);
+#else
+	static inline auto FoperatorEqOv1 = PreyFunction<SharedString::CSharedString& (SharedString::CSharedString* const _this, const SharedString::CSharedString& n)>(0x1887780);
+	static inline auto FoperatorEqOv0 = PreyFunction<SharedString::CSharedString& (SharedString::CSharedString* const _this, const char* s)>(0x17BFE30);
+	static inline auto Freset = PreyFunction<void(SharedString::CSharedString* const _this)>(0x1890750);
+	static inline auto Fclear = PreyFunction<void(SharedString::CSharedString* const _this)>(0x1890750);
+	static inline auto FGetNameTable = PreyFunction<SharedString::CNameTable* ()>(0x11A6170);
+#endif
 };
 
 } // namespace SharedString
-

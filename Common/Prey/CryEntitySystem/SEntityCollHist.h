@@ -25,4 +25,3 @@ struct SEntityCollHist // Id=8004C21 Size=64
 	void GetMemoryUsage(ICrySizer *arg0) const;
 #endif
 };
-

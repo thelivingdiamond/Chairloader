@@ -14,8 +14,13 @@ namespace
 {
 
 std::unique_ptr<IChairLogger> g_pLuaLog;
+#ifndef MOONCRASH
 PreyFunction<void(IConsoleCmdArgs* pArgs)> g_ReloadScriptCmd(0x0D12360);
+#else
+PreyFunction<void(IConsoleCmdArgs* pArgs)> g_ReloadScriptCmd(0x0D300F0);
+#endif
 
+#ifndef MOONCRASH
 PreyFunction<const char* (lua_State* L, int idx, size_t* len)> lua_tolstring(0xD2CD60);
 PreyFunction<int(lua_State* L, const char* buff, size_t sz, const char* name)> luaL_loadbuffer(0xD2DEE0);
 PreyFunction<int(lua_State* L)> lua_gettop(0xD2BED0);
@@ -27,6 +32,19 @@ PreyFunction<int(lua_State* L, int nargs, int nresults, int errfunc)> lua_pcall(
 PreyFunction<void(lua_State* L, int idx)> lua_remove(0xD2C860);
 PreyFunction<void(lua_State* L, int e)> lua_storedebuginfo(0xD41210);
 PreyFunction<int(lua_State* L)> lua_isstoredebuginfo(0xD41050);
+#else
+PreyFunction<const char* (lua_State* L, int idx, size_t* len)> lua_tolstring(0xD4A840);
+PreyFunction<int(lua_State* L, const char* buff, size_t sz, const char* name)> luaL_loadbuffer(0xD4B9C0);
+PreyFunction<int(lua_State* L)> lua_gettop(0xD499B0);
+PreyFunction<int(lua_State* L, int idx)> lua_settop(0xD4A650);
+PreyFunction<void(lua_State* L, int idx, int n)> lua_rawgeti(0xD4A200);
+PreyFunction<void(lua_State* L, int idx)> lua_insert(0xD49A60);
+PreyFunction<int(lua_State* L, int idx)> lua_setfenv(0xD4A460);
+PreyFunction<int(lua_State* L, int nargs, int nresults, int errfunc)> lua_pcall(0xD49D60);
+PreyFunction<void(lua_State* L, int idx)> lua_remove(0xD4A340);
+PreyFunction<void(lua_State* L, int e)> lua_storedebuginfo(0xD5ECE0);
+PreyFunction<int(lua_State* L)> lua_isstoredebuginfo(0xD5EB20);
+#endif
 
 auto g_ReloadScriptCmd_Hook = g_ReloadScriptCmd.MakeHook();
 auto g_CScriptSystem_ErrorHandler_Hook = CScriptSystem::FErrorHandler.MakeHook();
